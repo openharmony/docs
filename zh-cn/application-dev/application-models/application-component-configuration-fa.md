@@ -22,7 +22,7 @@
           "actions": ["action.system.home"]
         }
       ]
-      // ...
+      ...
     }
   ```
 

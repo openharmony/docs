@@ -344,7 +344,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
    ```ts
    {
      "module": {
-       // ...
+       ...
        "extensionAbilities": [
          {
            "description": "inputMethod",

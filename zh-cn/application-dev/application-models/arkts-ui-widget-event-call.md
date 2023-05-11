@@ -52,13 +52,13 @@
   
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
-
+  
   function FunACall(data) {
     // 获取call事件中传递的所有参数
     console.log('FunACall param:' + JSON.stringify(data.readString()));
     return null;
   }
-
+  
   function FunBCall(data) {
     console.log('FunACall param:' + JSON.stringify(data.readString()));
     return null;
@@ -67,23 +67,23 @@
   export default class CameraAbility extends UIAbility {
     // 如果UIAbility第一次启动，在收到call事件后会触发onCreate生命周期回调
     onCreate(want, launchParam) {
-        try {
-            // 监听call事件所需的方法
-            this.callee.on('funA', FunACall);
-            this.callee.on('funB', FunBCall);
-        } catch (error) {
-            console.log('register failed with error. Cause: ' + JSON.stringify(error));
-        }
+      try {
+        // 监听call事件所需的方法
+        this.callee.on('funA', FunACall);
+        this.callee.on('funB', FunBCall);
+      } catch (error) {
+        console.log('register failed with error. Cause: ' + JSON.stringify(error));
+      }
     }
-
+  
     // 进程退出时，解除监听
     onDestroy() {
-        try {
-            this.callee.off('funA');
-            this.callee.off('funB');
-        } catch (error) {
-            console.log('register failed with error. Cause: ' + JSON.stringify(error));
-        }
+      try {
+        this.callee.off('funA');
+        this.callee.off('funB');
+      } catch (error) {
+        console.log('register failed with error. Cause: ' + JSON.stringify(error));
+      }
     }
   };
   ```

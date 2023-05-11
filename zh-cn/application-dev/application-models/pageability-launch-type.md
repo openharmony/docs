@@ -17,13 +17,13 @@
 ```json
 {
   "module": {
-    // ...
+    ...
     "abilities": [
       {
         // singleton: 单实例模式
         // standard: 多实例模式
         "launchType": "standard",
-        // ...
+        ...
       }
     ]
   }

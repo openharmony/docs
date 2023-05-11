@@ -14,9 +14,9 @@
    import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility'
    
    export default class StaticSubscriber extends StaticSubscriberExtensionAbility {
-       onReceiveEvent(event) {
-           console.log('onReceiveEvent, event:' + event.event);
-       }
+     onReceiveEvent(event) {
+       console.log('onReceiveEvent, event:' + event.event);
+     }
    }
    ```
 
@@ -29,7 +29,7 @@
    ```ts
    {
      "module": {
-       ......
+       ...
        "extensionAbilities": [
          {
            "name": "StaticSubscriber",
@@ -47,7 +47,7 @@
            ]
          }
        ]
-       ......
+       ...
      }
    }
    ```

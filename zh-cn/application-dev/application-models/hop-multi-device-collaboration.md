@@ -63,7 +63,7 @@
        // 其中createDeviceManager接口为系统API
        deviceManager.createDeviceManager('ohos.samples.demo', (err, dm) => {
            if (err) {
-               // ...
+               ...
                return
            }
            dmClass = dm
@@ -83,7 +83,7 @@
    }
    ```
 
-4. 设置目标组件参数，调用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，启动UIAbility或ServiceExtensionAbility。
+4. 设置目标组件参数，调用[`startAbility()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，启动UIAbility或ServiceExtensionAbility。
 
    ```ts
    let want = {
@@ -94,9 +94,9 @@
    }
    // context为发起端UIAbility的AbilityContext
    this.context.startAbility(want).then(() => {
-       // ...
+       ...
    }).catch((err) => {
-       // ...
+       ...
    })
    ```
 
@@ -150,9 +150,9 @@
    }
    // context为发起端UIAbility的AbilityContext
    this.context.startAbilityForResult(want).then((data) => {
-       // ...
+       ...
    }).catch((err) => {
-       // ...
+       ...
    })
    ```
 
@@ -170,7 +170,7 @@
    }
    // context为目标端UIAbility的AbilityContext
    this.context.terminateSelfWithResult(abilityResult, (err) => {
-       // ...
+       ...
    });
    ```
 
@@ -179,17 +179,17 @@
    ```ts
    const RESULT_CODE: number = 1001;
    
-   // ...
+   ...
    
    // context为调用方UIAbility的UIAbilityContext
    this.context.startAbilityForResult(want).then((data) => {
        if (data?.resultCode === RESULT_CODE) {
            // 解析目标端UIAbility返回的信息
            let info = data.want?.parameters?.info
-           // ...
+           ...
        }
    }).catch((err) => {
-       // ...
+       ...
    })
    ```
 
