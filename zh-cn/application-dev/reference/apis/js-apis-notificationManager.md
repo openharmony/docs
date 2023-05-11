@@ -3975,11 +3975,11 @@ notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data) => 
 });
 ```
 
-## notificationManager.on
+## notificationManager.on<sup>10+</sup>
 
 on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void;
 
-订阅检查通知的回调。
+注册通知监听回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -3991,18 +3991,16 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
-| type | checkNotification | 是   | 要侦听的回调的类型。   |
+| type | string | 是   | 回调函数类型名，固定为'checkNotification'。 |
 | callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo)) =>  [NotificationCheckResult](#notificationcheckresult)    | 是   | 消息验证函数指针。 |
 
 **错误码：**
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
-| 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
-| 202      | Not system application to call the interface. |
-| 401      | The parameter check failed.               |
-| 1600001  | Internal error.                     |
+| 错误码ID | 错误信息        |
+| -------- | --------------- |
+| 1600001  | Internal error. |
 
 **示例：**
 
@@ -4022,11 +4020,11 @@ function OnCheckNotification(info : notificationManager.NotificationCheckInfo) {
 }
 ```
 
-## notificationManager.off
+## notificationManager.off<sup>10+</sup>
 
 off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void;
 
-取消订阅检查通知的回调。
+取消通知监听回调。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -4038,18 +4036,16 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
-| type | checkNotification | 是   | 要侦听的回调的类型。   |
+| type | string                                                       | 是   | 回调函数类型名，固定为'checkNotification'。 |
 | callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo)) =>  [NotificationCheckResult](#notificationcheckresult)  | 否   | 消息验证函数指针。 |
 
 **错误码：**
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
-| 错误码ID | 错误信息                            |
-| -------- | ----------------------------------- |
-| 202      | Not system application to call the interface. |
-| 401      | The parameter check failed.               |
-| 1600001  | Internal error.                     |
+| 错误码ID | 错误信息        |
+| -------- | --------------- |
+| 1600001  | Internal error. |
 
 **示例：**
 
@@ -4155,20 +4151,20 @@ try{
 
 ## NotificationCheckInfo
 
-通知检查参数。
+用于校验通知的参数。
 
 
-| 名称                 | 类型       | 说明       |
-| -------------------- | -------- | ---------- |
-| bundleName         | string | bundle名称。 |
-| notificationId | number | 通知Id。 |
-| contentType  | [ContentType](#contenttype) | 通知类型。 |
+| 名称                 | 类型       | 可读   | 可写   | 说明     |
+| -------------------- | -------- | ---------- | ---------- | ---------- |
+| bundleName         | string | 是 | 否 | bundle名称。 |
+| notificationId | number | 是 | 否 | 通知Id。 |
+| contentType  | [ContentType](#contenttype) | 是 | 否 | 通知类型。 |
 
 ## NotificationCheckResult
 
-通知检查结果。
+通知校验结果。
 
-| 名称                 | 类型       | 说明       |
-| -------------------- | -------- | ---------- |
-| code         | number | 0-display, 1-no display。 |
-| message | string | 结果信息。 |
+| 名称                 | 类型       | 可读     | 可写     | 说明       |
+| -------------------- | -------- | ---------- | ---------- | ---------- |
+| code         | number | 是 | 否 | 0-display, 1-no display。 |
+| message | string | 是 | 否 | 结果信息。 |
