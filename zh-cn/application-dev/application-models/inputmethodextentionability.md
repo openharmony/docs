@@ -66,7 +66,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
      }
    
      onDestroy() {
-       console.log("onDestroy.");
+       console.info("onDestroy.");
        this.context.destroy();
      }
    }

@@ -115,7 +115,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 
   insertDataToMap(key: string, val: number, callback: insertDataToMapCallback): void {
     // 开发者自行实现业务逻辑
-    console.log(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
+    console.info(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
     callback(ERR_OK);
   }
 }
@@ -320,10 +320,10 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
       let serviceExtProxy = new IdlServiceExtProxy(remote);
       // 通过接口调用的方式进行通信，屏蔽了RPC通信的细节，简洁明了
       serviceExtProxy.processData(1, (errorCode, retVal) => {
-        console.log(`processData, errorCode: ${errorCode}, retVal: ${retVal}`);
+        console.info(`processData, errorCode: ${errorCode}, retVal: ${retVal}`);
       });
       serviceExtProxy.insertDataToMap('theKey', 1, (errorCode) => {
-        console.log(`insertDataToMap, errorCode: ${errorCode}`);
+        console.info(`insertDataToMap, errorCode: ${errorCode}`);
       })
     },
     onDisconnect(elementName) {
@@ -415,7 +415,7 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
 
     insertDataToMap(key: string, val: number, callback: insertDataToMapCallback): void {
       // 开发者自行实现业务逻辑
-      console.log(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
+      console.info(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
       callback(ERR_OK);
     }
   }
@@ -455,7 +455,7 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
   
     insertDataToMap(key: string, val: number, callback: insertDataToMapCallback): void {
       // 开发者自行实现业务逻辑
-      console.log(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
+      console.info(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
       callback(ERR_OK);
     }
   }

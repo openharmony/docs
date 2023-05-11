@@ -180,7 +180,7 @@
          // 监听call事件所需的方法
         this.callee.on(MSG_SEND_METHOD, FunACall);
       } catch (error) {
-        console.log(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`)
+        console.info(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`)
       }
     }
     ...

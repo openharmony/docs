@@ -439,10 +439,10 @@
                    // 注册caller的协同场景下跨设备组件状态变化监听通知
                    try {
                         caller.onRemoteStateChange((str) => {
-                            console.log('Remote state changed ' + str);
+                            console.info('Remote state changed ' + str);
                         });
                     } catch (error) {
-                        console.log('Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+                        console.info('Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
                     }
                }
            }).catch((error) => {
