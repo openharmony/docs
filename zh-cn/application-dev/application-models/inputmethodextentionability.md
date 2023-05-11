@@ -1,11 +1,11 @@
 # InputMethodExtensionAbility开发指南
 
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)是inputMethod类型的ExtensionAbility组件，提供输入法框架服务相关扩展能力。
+## 使用场景
+[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)基于[ExtensionAbility](extensionability-overview.md)框架，用于开发输入法应用。
 
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)可以被其他组件启动或连接，并根据调用者的请求信息在后台处理相关事务。
+[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)实例及其所在的ExtensionAbility进程的整个生命周期，都是由输入法框架进行调度管理。输入法框架提供了[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)基类，开发者需要派生此基类，以实现输入法应用生命周期开始和销毁时的相关初始化操作和资源清理工作等。
 
-
-InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis/js-apis-inputmethod-extension-context.md)提供相关能力。
+[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)通过[InputMethodExtensionContext](../reference/apis/js-apis-inputmethod-extension-context.md)提供相关能力。
 
 
 ## 实现一个输入法应用
@@ -67,7 +67,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
    
      onDestroy() {
        console.log("onDestroy.");
-       this.context.destroy();
+       this.keyboardController.onDestroy();  // 销毁窗口并去注册事件监听
      }
    }
    ```
@@ -103,10 +103,9 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
    
      public onDestroy(): void			// 应用生命周期销毁
      {
-       this.unRegisterListener();		// 注销事件监听
+       this.unRegisterListener();		// 去注册事件监听
        let win = windowManager.findWindow(this.windowName);
        win.destroyWindow();				// 销毁窗口
-       this.mContext.terminateSelf();	// 销毁InputMethodExtensionAbility服务
      }
    
      private initWindow(): void		// 初始化窗口
@@ -156,7 +155,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
        })
        globalThis.inputAbility.on('inputStop', (imeId) => {
          if (imeId == "包名/Ability名") {
-           this.onDestroy();
+           this.mContext.destroy();	// 销毁InputMethodExtensionAbility服务
          }
        });
      }
@@ -339,7 +338,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
    }
    ```
 
-5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册InputMethodExtensionAbility，type标签需要设置为“inputMethod”，srcEnty标签表示当前InputMethodExtensionAbility组件所对应的代码路径。
+5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册InputMethodExtensionAbility，type标签需要设置为“inputMethod”，srcEntry标签表示当前InputMethodExtensionAbility组件所对应的代码路径。
 
    ```ts
    {
@@ -350,7 +349,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
            "description": "inputMethod",
            "icon": "$media:icon",
            "name": "InputMethodExtAbility",
-           "srcEnty": "./ets/inputmethodextability/InputMethodService.ts",
+           "srcEntry": "./ets/inputmethodextability/InputMethodService.ts",
            "type": "inputMethod",
            "exported": true,
          }
@@ -362,8 +361,8 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
 
 
 
-## 相关实例
+## 相关示例
 
-针对InputMethodExtensionAbility开发，有以下相关实例可供参考：
+针对InputMethodExtensionAbility开发，有以下相关示例可供参考：
 
 - [Kika输入法](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/CompleteApps/KikaInput)
