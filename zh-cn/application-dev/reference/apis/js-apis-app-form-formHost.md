@@ -1889,11 +1889,12 @@ function getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFi
 
 **错误码：**
 
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16500050 | An IPC connection error happened. |
 | 16501000  | An internal functional error occurred. |
-| 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。 ||
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
@@ -1915,7 +1916,7 @@ try {
 }
 ```
 
-## getRunningFormInfosByFilter
+## getRunningFormInfosByFilter<sup>10+</sup>
 
 function getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
 
@@ -1934,11 +1935,12 @@ function getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFi
 
 **错误码：**
 
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16500050 | An IPC connection error happened. |
 | 16501000  | An internal functional error occurred. |
-| 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。 ||
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
@@ -1962,7 +1964,7 @@ try {
 }
 ```
 
-## getRunningFormInfoById
+## getRunningFormInfoById<sup>10+</sup>
 
 function getRunningFormInfoById(formId: string): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
 
@@ -1986,11 +1988,12 @@ function getRunningFormInfoById(formId: string): Promise&lt;Array&lt;formInfo.Ru
 
 **错误码：**
 
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16500050 | An IPC connection error happened. |
 | 16501000  | An internal functional error occurred. |
-| 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。 ||
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
@@ -2006,7 +2009,7 @@ try {
 }
 ```
 
-## getRunningFormInfoById
+## getRunningFormInfoById<sup>10+</sup>
 
 function getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
 
@@ -2025,11 +2028,12 @@ function getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;Array
 
 **错误码：**
 
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 16500050 | An IPC connection error happened. |
 | 16501000  | An internal functional error occurred. |
-| 以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。 ||
 
 ```ts
 import formHost from '@ohos.app.form.formHost';

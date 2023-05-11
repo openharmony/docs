@@ -139,7 +139,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | FORM_VISIBLE | 1   | 表示卡片为可见。 |
 | FORM_INVISIBLE   | 2   | 表示卡片为不可见。 |
 
-## RunningFormInfo 
+## RunningFormInfo<sup>10+</sup>
 
 卡片使用方信息
 
@@ -156,7 +156,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | formName        | string               | 是    | 否     | 卡片名称。                                 |
 | dimension | number               | 是    | 否     | 卡片规格。   |
 
-## formProviderFilter 
+## formProviderFilter<sup>10+</sup>
 
 卡片提供方信息
 
