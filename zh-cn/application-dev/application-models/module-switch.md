@@ -71,5 +71,5 @@
 | formsEnabled | 标识Ability是否支持卡片（forms）功能 | / | Stage模型不支持 |
 | forms | 标识服务卡片的属性。该标签仅当formsEnabled为"true"时，才能生效 | form_config.json文件 | Stage模型在开发视图的resources/base/profile下面定义配置文件form_config.json |
 | srcLanguage | Ability开发语言的类型 | / | Stage模型不支持 |
-| srcPath | 该标签标识Ability对应的JS组件代码路径 | srcEnty | 该标签标识ability所对应的js代码路径。 |
+| srcPath | 该标签标识Ability对应的JS组件代码路径 | srcEntry | 该标签标识ability所对应的js代码路径。 |
 | uriPermission | 标识该Ability有权访问的应用程序数据 | / | Stage模型不支持 |
