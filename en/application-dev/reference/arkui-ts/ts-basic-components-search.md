@@ -16,12 +16,11 @@ Search(options?: { value?: string; placeholder?: string; icon?: string; controll
 
 **Parameters**
 
-| Name     | Type        | Mandatory| Description                                                    |
-| ----------- | ---------------- | ---- | ------------------------------------------------------------ |
-| value       | string           | No  | Text input in the search text box.                                |
-| placeholder | string | No  | Text displayed when there is no input.                                    |
-| icon        | string           | No  | Path to the search icon. By default, the system search icon is used. The supported icon formats are .svg, .jpg, and .png.|
-| controller  | SearchController | No  | Controller of the **\<Search>** component.                                                    |
+| Name     | Type                                            | Mandatory| Description                                                    |
+| ----------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value       | string                                               | No  | Text input in the search text box.<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md).|
+| icon        | string                                               | No  | Path to the search icon. By default, the system search icon is used.<br>For details about the supported image types, see [Image](ts-basic-components-image.md).|
+| controller  | SearchController                                     | No  | Controller of the **\<Search>** component.                                      |
 
 ## Attributes
 
