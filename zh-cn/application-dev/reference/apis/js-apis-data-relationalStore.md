@@ -212,7 +212,7 @@ let context = featureAbility.getContext()
 
 relationalStore.deleteRdbStore(context, "RdbTest.db", function (err) {
   if (err) {
-    console.error(`Delete RdbStore failed, err: ${err}`);
+    console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Delete RdbStore successfully.`);
@@ -228,7 +228,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage){
     relationalStore.deleteRdbStore(this.context, "RdbTest.db", function (err) {
       if (err) {
-        console.error(`Delete RdbStore failed, err: ${err}`);
+        console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
       }
       console.info(`Delete RdbStore successfully.`);
@@ -280,7 +280,7 @@ let promise = relationalStore.deleteRdbStore(context, "RdbTest.db");
 promise.then(()=>{
   console.info(`Delete RdbStore successfully.`);
 }).catch((err) => {
-  console.error(`Delete RdbStore failed, err: ${err}`);
+  console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -295,7 +295,7 @@ class EntryAbility extends UIAbility {
     promise.then(()=>{
       console.info(`Delete RdbStore successfully.`);
     }).catch((err) => {
-      console.error(`Delete RdbStore failed, err: ${err}`);
+      console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
   }
 }
@@ -311,7 +311,7 @@ class EntryAbility extends UIAbility {
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | name          | string        | 是   | 数据库文件名。                                            |
 | securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别                                        |
-| encrypt       | boolean       | 否   | 指定数据库是否加密。<br/> true:加密。<br/> false:非加密。 |
+| encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。 |
 
 ## SecurityLevel
 
@@ -2583,7 +2583,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)    | 是   | 订阅类型。 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; | 是   | 指分布式数据库中数据更改事件的观察者。      |
+| observer | Callback&lt;Array&lt;string&gt;&gt; | 是   | 指分布式数据库中数据更改事件的观察者。Array&lt;string>为数据库中的数据发生改变的对端设备ID。 |
 
 **示例：**
 
@@ -2614,7 +2614,7 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)     | 是   | 订阅类型。                                 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; | 是   | 指已注册的数据更改观察者。                  |
+| observer | Callback&lt;Array&lt;string&gt;&gt; | 是   | 指已注册的数据更改观察者。Array&lt;string>为数据库中的数据发生改变的对端设备ID。 |
 
 **示例：**
 
