@@ -187,7 +187,7 @@ On device A, touch the **Start** button provided by the initiator application to
    
    // ...
    
-   // context is the UIAbilityContext of the initiator UIAbility.
+   // context is the AbilityContext of the initiator UIAbility.
    this.context.startAbilityForResult(want).then((data) => {
        if (data?.resultCode === RESULT_CODE) {
            // Parse the information returned by the target UIAbility.
@@ -384,12 +384,12 @@ The following describes how to implement multi-device collaboration through cros
        ```json
        "abilities":[{
            "name": ".CalleeAbility",
-           "srcEntrance": "./ets/CalleeAbility/CalleeAbility.ts",
+           "srcEnty": "./ets/CalleeAbility/CalleeAbility.ts",
            "launchType": "singleton",
            "description": "$string:CalleeAbility_desc",
            "icon": "$media:icon",
            "label": "$string:CalleeAbility_label",
-           "visible": true
+           "exported": true
        }]
        ```
 
@@ -459,7 +459,7 @@ The following describes how to implement multi-device collaboration through cros
        
            onDestroy() {
                try {
-                this.callee.off(MSG_SEND_METHOD)
+                   this.callee.off(MSG_SEND_METHOD)
                } catch (error) {
                    console.error(TAG, `${MSG_SEND_METHOD} unregister failed with error ${JSON.stringify(error)}`)
                }
@@ -491,7 +491,7 @@ The following describes how to implement multi-device collaboration through cros
                if (data != null) {
                    caller = data
                    console.info('get remote caller success')
-                   // Register the onRelease listener of the CallerAbility.
+                   // Register the onRelease() listener of the CallerAbility.
                    caller.onRelease((msg) => {
                        console.info(`remote caller onRelease is called ${msg}`)
                    })

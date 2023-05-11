@@ -1,5 +1,6 @@
 # WindowExtensionAbility
 
+
 [WindowExtensionAbility](../reference/apis/js-apis-application-windowExtensionAbility.md) is a type of ExtensionAbility component that allows a system application to be embedded in and displayed over another application.
 
 
@@ -14,7 +15,7 @@ the context is [WindowExtensionContext](../reference/apis/js-apis-inner-applicat
 >
 
 
-## Setting an Embedded Ability (for System Applications Only)
+## Setting an Embedded UIAbility (for System Applications Only)
 
 The **WindowExtensionAbility** class provides **onConnect()**, **onDisconnect()**, and **onWindowReady()** lifecycle callbacks, which can be overridden.
 
@@ -58,7 +59,7 @@ To implement an embedded application, manually create a WindowExtensionAbility i
     }
    ```
 
-4. Register the WindowExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) corresponding to the **Module** project. Set **type** to **"window"** and **srcEntrance** to the code path of the ExtensionAbility component.
+4. Register the WindowExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) corresponding to the **Module** project. Set **type** to **"window"** and **srcEnty** to the code path of the ExtensionAbility component.
 
    ```json
    {
@@ -66,11 +67,11 @@ To implement an embedded application, manually create a WindowExtensionAbility i
        "extensionAbilities": [
             {
                 "name": "WindowExtAbility",
-                "srcEntrance": "./ets/WindowExtAbility/WindowExtAbility.ts",
+                "srcEnty": "./ets/WindowExtAbility/WindowExtAbility.ts",
                 "icon": "$media:icon",
                 "description": "WindowExtension",
                 "type": "window",
-                "visible": true,
+                "exported": true,
             }
         ],
      }
@@ -78,7 +79,7 @@ To implement an embedded application, manually create a WindowExtensionAbility i
    ```
 
 
-## Starting an Embedded Ability (for System Applications Only)
+## Starting an Embedded UIAbility (for System Applications Only)
 
 System applications can load the created WindowExtensionAbility through the AbilityComponent.
 
