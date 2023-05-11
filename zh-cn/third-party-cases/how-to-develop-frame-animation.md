@@ -30,15 +30,16 @@
 
 ## 开发步骤
 1. 搭建UI框架。
+   使用两个Row组件分别呈现背景图和火柴人，第二个Row组件作为第一个Row组件的子组件，父Row组件的背景设置为背景图，子Row组件中添加Image组件用来呈现火柴人单帧图像。
     ```ts
     @Entry
     @Component
     export default struct frameAnimation {
       build() {
         Column() {
-          // 背景窗口
+          // 父Row组件
           Row() {
-            // 火柴人窗口
+            // 子Row组件
             Row() {
               // 通过Image组件显示火柴人图像
               Image($r("app.media.man")).height(60).width(545.16)
@@ -75,7 +76,7 @@
     }
     ```
 2. 添加火柴人和背景图片的移动逻辑。
-通过状态变量设定火柴人和背景图片的位置，位置变化时可以实时刷新UI界面。
+   通过状态变量设定火柴人和背景图片的位置，位置变化时可以实时刷新UI界面。
     ```ts
     // 火柴人位置变量
     @State manPostion: {
@@ -88,7 +89,7 @@
       y: number
     } = { x: 0, y: 0 }
     ```
-给火柴人和背景图片添加位置属性。
+   给火柴人和背景图片添加位置属性。
     ```ts
     Row() {
       Row() {
@@ -107,7 +108,7 @@
     ...
     ```
 3. 为''run''按钮和"stop"按钮绑定控制逻辑。
-构建火柴人和背景图片移动的方法，用来设定火柴人和背景图片每次移动的距离。这里要注意火柴人每次移动的距离等于两个火柴人之间的间隔距离（像素值）。
+   构建火柴人和背景图片移动的方法，用来设定火柴人和背景图片每次移动的距离。这里要注意火柴人每次移动的距离等于两个火柴人之间的间隔距离（像素值）。
     ```ts
     // 火柴人移动方法
     manWalk() {
@@ -127,14 +128,14 @@
       }
     }
     ```
-创建doAnimation()方法调用上述两个方法，以便在后续的定时器中使用。
+   创建doAnimation()方法调用上述两个方法，以便在后续的定时器中使用。
     ```ts
     doAnimation() {
       this.manWalk()
       this.treesMove()
       }
     ```
-通过setInterval为“run”按钮绑定走动逻辑。
+   通过setInterval为“run”按钮绑定走动逻辑。
     ```ts
     Button('run')
       .margin({ right: 10 })
@@ -148,7 +149,7 @@
         this.timerList.push(timer)
       })
     ```
-通过clearAllInterval为“stop”按钮绑定停止逻辑。
+   通过clearAllInterval为“stop”按钮绑定停止逻辑。
     ```ts
     Button('stop')
       .type(ButtonType.Normal)
@@ -212,9 +213,9 @@ export default struct frameAnimation {
 
   build() {
     Column() {
-      // 背景窗口
+      // 父Row组件
       Row() {
-        // 火柴人窗口
+        // 子Row组件
         Row() {
           // 通过Image组件显示火柴人图像
           Image($r("app.media.man"))
