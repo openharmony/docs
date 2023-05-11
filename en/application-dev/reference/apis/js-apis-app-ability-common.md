@@ -24,9 +24,8 @@ import common from '@ohos.app.ability.common';
 | Context   | [Context](js-apis-inner-application-context.md)               | Level-2 module **Context**.|
 | ExtensionContext   | [ExtensionContext](js-apis-inner-application-extensionContext.md)               | Level-2 module **ExtensionContext**.|
 | FormExtensionContext   | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md)               | Level-2 module **FormExtensionContext**.|
-| AreaMode   | [AreaMode](#areamode)               | Enumerated values of **AreaMode**.|
+| ServiceExtensionContext | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md) | Level-2 module **ServiceExtensionContext**. |
 | EventHub   | [EventHub](js-apis-inner-application-eventHub.md)               | Level-2 module **EventHub**.|
-| PermissionRequestResult   | [PermissionRequestResult](js-apis-inner-application-permissionRequestResult.md)               | Level-2 module **PermissionRequestResult**.|
 | PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#PacMap)               | Level-2 module **PacMap**.|
 | AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | Level-2 module **AbilityResult**.|
 | ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | Level-2 module **ConnectOptions**.|
@@ -42,21 +41,8 @@ let baseContext: common.BaseContext;
 let context: common.Context;
 let extensionContext: common.ExtensionContext;
 let formExtensionContext: common.FormExtensionContext;
-let areaMode: common.AreaMode;
 let eventHub: common.EventHub;
-let permissionRequestResult: common.PermissionRequestResult;
 let pacMap: common.PacMap;
 let abilityResult: common.AbilityResult;
 let connectOptions: common.ConnectOptions;
 ```
-
-## AreaMode
-
-Enumerates the data encryption levels.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-| Name           | Value   | Description           |
-| --------------- | ---- | --------------- |
-| EL1             | 0    | Device-level encryption area, which is accessible after the device is powered on.  |
-| EL2             | 1    | User-level encryption area, which is accessible only after the device is powered on and the password is entered (for the first time).|
