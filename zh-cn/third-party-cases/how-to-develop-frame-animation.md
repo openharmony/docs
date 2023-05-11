@@ -30,6 +30,7 @@
 
 ## 开发步骤
 1. 搭建UI框架。
+
    使用两个Row组件分别呈现背景图和火柴人，第二个Row组件作为第一个Row组件的子组件，父Row组件的背景设置为背景图，子Row组件中添加Image组件用来呈现火柴人单帧图像。
     ```ts
     @Entry
@@ -76,6 +77,7 @@
     }
     ```
 2. 添加火柴人和背景图片的移动逻辑。
+
    通过状态变量设定火柴人和背景图片的位置，位置变化时可以实时刷新UI界面。
     ```ts
     // 火柴人位置变量
@@ -108,6 +110,7 @@
     ...
     ```
 3. 为''run''按钮和"stop"按钮绑定控制逻辑。
+
    构建火柴人和背景图片移动的方法，用来设定火柴人和背景图片每次移动的距离。这里要注意火柴人每次移动的距离等于两个火柴人之间的间隔距离（像素值）。
     ```ts
     // 火柴人移动方法
@@ -269,7 +272,7 @@ export default struct frameAnimation {
 ```
 
 ## 参考
-- [Timer (定时器)](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/apis/js-apis-timer.md/)
-- [图形变换](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-transformation.md/)
-- [背景设置](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-background.md/)
+- [Timer (定时器)](../application-dev/reference/apis/js-apis-timer.md)
+- [图形变换](../application-dev/reference/arkui-ts/ts-universal-attributes-transformation.md)
+- [背景设置](../application-dev/reference/arkui-ts/ts-universal-attributes-background.md)
 
