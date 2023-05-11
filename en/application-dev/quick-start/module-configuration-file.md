@@ -1,7 +1,7 @@
 # module.json5 Configuration File
 
 
-This document gives an overview of the **module.json5** configuration file. To start with, let's go through an example of what this file contains.
+This topic gives an overview of the **module.json5** configuration file. To start with, let's go through an example of what this file contains.
 
 ```json
 {
@@ -61,7 +61,8 @@ This document gives an overview of the **module.json5** configuration file. To s
     ]
   },
   "targetModuleName": "feature",
-  "targetPriority": 50
+  "targetPriority": 50,
+  "isolationMode": "nonisolationFirst"
 }
 ```
 
@@ -93,6 +94,8 @@ As shown above, the **module.json5** file contains several tags.
 | [dependencies](#dependencies)| List of shared libraries on which the current module depends during running.| Object array| Yes (initial value: left empty) |
 | targetModuleName | Target module of the bundle. The value is a string with a maximum of 31 bytes. It must be unique in the entire application.|String|Yes (if the initial value is used, the target module is not a module with the overlay feature)|
 | targetPriority | Priority of the module. When **targetModuleName** is set, the module is a module with the overlay feature. The value ranges from 1 to 100.|Number|Yes (initial value: **1**)|
+| [proxyDatas](#proxydatas) | List of data proxies provided by the module.| Object array| Yes (initial value: left empty)|
+| isolationMode | Multi-process configuration of the module. The options are as follows:<br>- **nonisolationFirst**: The module preferentially runs in a non-independent process.<br>- **isolationFirst**: The module preferentially runs in an independent process.<br>- **isolationOnly**: The module runs only in an independent process.<br>- **nonisolationOnly**: The module runs only in non-independent processes.|String|Yes (initial value: **nonisolationFirst**)|
 
 ## deviceTypes
 
@@ -300,7 +303,7 @@ Set **icon**, **label**, and **skills** under **abilities** in the **module.json
 | [launchType](../application-models/uiability-launch-type.md) | Launch type of the UIAbility component. The options are as follows:<br>- **multiton**: A new UIAbility instance is created each time the UIAbility component is started.<br>- **singleton**: A new UIAbility instance is created only when the UIAbility component is started for the first time.<br>- **specified**: You can determine whether to create a new UIAbility instance when the application is running.| String| Yes (initial value: **"singleton"**)|
 | description | Description of the UIAbility component. The value is a string with a maximum of 255 bytes or a resource index to the description in multiple languages.| String| Yes (initial value: left empty)|
 | icon | Icon of the UIAbility component. The value is an icon resource index.| String| Yes (initial value: left empty)<br>If **UIAbility** is set to **MainElement**, this attribute is mandatory.|
-| label | Name of the UIAbility component displayed to users. The value is a string resource index.<br>If **UIAbility** is set to **MainElement** of the current module, this attribute is mandatory and its value must be unique in the application.| String| No|
+| label | Name of the UIAbility component displayed to users. The value is a string resource index.| String| Yes (initial value: left empty)<br>If **UIAbility** is set to **MainElement**, this attribute is mandatory.|
 | permissions | Permissions required for another application to access the UIAbility component.<br>The value is an array of permission names predefined by the system, generally in the reverse domain name notation. It contains a maximum of 255 bytes.| String array| Yes (initial value: left empty)|
 | [metadata](#metadata)| Metadata information of the UIAbility component.| Object array| Yes (initial value: left empty)|
 | exported | Whether the UIAbility component can be called by other applications.<br>- **true**: The UIAbility component can be called by other applications.<br>- **false**: The UIAbility component cannot be called by other applications.| Boolean| Yes (initial value: **false**)|
@@ -440,7 +443,7 @@ The **extensionAbilities** tag represents the configuration of extensionAbilitie
 | type | Type of the ExtensionAbility component. The options are as follows:<br>- **form**: ExtensionAbility of a widget.<br>- **workScheduler**: ExtensionAbility of a Work Scheduler task.<br>- **inputMethod**: ExtensionAbility of an input method.<br>- **service**: service component running in the background.<br>- **accessibility**: ExtensionAbility of an accessibility feature.<br>- **dataShare**: ExtensionAbility for data sharing.<br>- **fileShare**: ExtensionAbility for file sharing.<br>- **staticSubscriber**: ExtensionAbility for static broadcast.<br>- **wallpaper**: ExtensionAbility of the wallpaper.<br>- **backup**: ExtensionAbility for data backup.<br>- **window**: ExtensionAbility of a window. This type of ExtensionAbility creates a window during startup for which you can develop the GUI. The window is then combined with other application windows through **abilityComponent**.<br>- **thumbnail**: ExtensionAbility for obtaining file thumbnails. You can provide thumbnails for files of customized file types.<br>- **preview**: ExtensionAbility for preview. This type of ExtensionAbility can parse the file and display it in a window. You can combine the window with other application windows.<br>- **print**: ExtensionAbility for the print framework.<br>- **driver**: ExtensionAbility for the driver framework.<br>**NOTE**<br>The **service** and **dataShare** types apply only to system applications and do not take effect for third-party applications.| String| No|
 | permissions | Permissions required for another application to access the ExtensionAbility component.<br>The value is generally in the reverse domain name notation and contains a maximum of 255 bytes. It is an array of permission names predefined by the system or customized. The name of a customized permission must be the same as the **name** value of a permission defined in the **defPermissions** attribute.| String array| Yes (initial value: left empty)|
 | uri | Data URI provided by the ExtensionAbility component. The value is a string with a maximum of 255 bytes, in the reverse domain name notation.<br>**NOTE**<br>This attribute is mandatory when the type of the ExtensionAbility component is set to **dataShare**.| String| Yes (initial value: left empty)|
-|skills | Feature set of [wants](../application-models/want-overview.md) that can be received by the ExtensionAbility component.<br>Configuration rule: In an entry package, you can configure multiple **skills** attributes with the entry capability. (A **skills** attribute with the entry capability is the one that has **ohos.want.action.home** and **entity.system.home** configured.) The **label** and **icon** in the first ExtensionAbility that has **skills** configured are used as the **label** and **icon** of the entire OpenHarmony service/application.<br>**NOTE**<br>The **skills** attribute with the entry capability can be configured for the feature package of an OpenHarmony application, but not for an OpenHarmony service. | Array| Yes (initial value: left empty)|
+|skills | Feature set of [wants](../application-models/want-overview.md) that can be received by the ExtensionAbility component.<br>Configuration rule: In an entry package, you can configure multiple **skills** attributes with the entry capability. (A **skills** attribute with the entry capability is the one that has **ohos.want.action.home** and **entity.system.home** configured.) The **label** and **icon** in the first ExtensionAbility that has **skills** configured are used as the **label** and **icon** of the entire OpenHarmony service/application.<br>**NOTE**<br>The **skills** attribute with the entry capability can be configured for the feature package of an OpenHarmony application, but not for an OpenHarmony service.| Array| Yes (initial value: left empty)|
 | [metadata](#metadata)| Metadata of the ExtensionAbility component.| Object| Yes (initial value: left empty)|
 | exported | Whether the ExtensionAbility component can be called by other applications. <br>- **true**: The ExtensionAbility component can be called by other applications.<br>- **false**: The UIAbility component cannot be called by other applications.| Boolean| Yes (initial value: **false**)|
 
@@ -595,7 +598,7 @@ The **shortcut** information is identified in **metadata**, where:
 
 ## distributionFilter
 
-The **distributionFilter** tag defines the rules for distributing HAP files based on different device specifications, so that precise matching can be performed when the application market distributes applications. Distribution rules cover five factors: API version, screen shape, screen size, screen resolution, and country code. During distribution, a unique HAP is determined based on the mapping between **deviceType** and these five factors. This tag must be configured in the **/resource/profile resource** directory. Its sub-tags are optional.
+The **distributionFilter** tag defines the rules for distributing HAP files based on different device specifications, so that precise matching can be performed when the application market distributes applications. Distribution rules cover the following factors: screen shape, screen size, screen resolution, and country/region code. During distribution, a unique HAP is determined based on the mapping between **deviceType** and these five factors. This tag must be configured in the **/resource/profile resource** directory. Its sub-tags are optional.
 
   **Table 12** distributionFilter
 
@@ -792,6 +795,38 @@ Example of the **dependencies** structure:
         "bundleName":"com.share.library",
         "moduleName": "library",
         "versionCode": 10001
+      }
+    ]
+  }
+}
+```
+
+## proxyDatas
+
+The **proxyDatas** tag provides the list of data proxies provided by the module. It can be configured only for entry and feature modules.
+
+**Table 21** proxyDatas
+| Name   | Description                          | Data Type| Initial Value Allowed|
+| ----------- | ------------------------------ | -------- | ---------- |
+| uri | URI of the data proxy. The URIs configured for different data proxies must be unique and must be in the *datashareproxy://Current application package name/xxx* format. | String  | No|
+| requiredReadPermission  | Permission required for reading data from the data proxy. For non-system applications, this field is mandatory, and the permission level must be system_basic or system_core. For system applications, this field is optional, and the permission level is not limited. For details about the permission level, see [Application Permission List](../security/permission-list.md).| String  | Yes (initial value: left empty)|
+| requiredWritePermission | Permission required for writing data to the data proxy. For non-system applications, this field is mandatory, and the permission level must be system_basic or system_core. For system applications, this field is optional, and the permission level is not limited. For details about the permission level, see [Application Permission List](../security/permission-list.md).| String  | Yes (initial value: left empty)|
+| [metadata](#metadata)| Metadata of the data proxy. Only the **name** and **resource** fields can be configured.| Object| Yes (initial value: left empty)|
+
+Example of the **proxyDatas** structure:
+
+```json
+{
+  "module": {
+    "proxyDatas": [
+      {
+        "uri":"datashareproxy://com.ohos.datashare/event/Meeting",
+        "requiredReadPermission": "ohos.permission.GET_BUNDLE_INFO",
+        "requiredWritePermission": "ohos.permission.GET_BUNDLE_INFO",
+        "metadata": {
+          "name": "datashare_metadata",
+          "resource": "$profile:datashare"
+        }
       }
     ]
   }
