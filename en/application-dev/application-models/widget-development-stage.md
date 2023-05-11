@@ -332,7 +332,7 @@ export default class EntryFormAbility extends FormExtension {
 }
 ```
 
-For details about how to implement persistent data storage, see [Lightweight Data Store Development](../database/database-preference-guidelines.md).
+For details about how to implement persistent data storage, see [Persisting Preferences Data](../database/data-persistence-by-preferences.md).
 
 The **Want** object passed in by the widget host to the widget provider contains a flag that specifies whether the requested widget is normal or temporary.
 

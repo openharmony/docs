@@ -369,15 +369,15 @@ create(encoding?: string,options?: { fatal?: boolean; ignoreBOM?: boolean }): Te
 
 | 参数名   | 类型   | 必填 | 说明                                             |
 | -------- | ------ | ---- | ------------------------------------------------ |
-| encoding | string | 否   | 编码格式。                                       |
+| encoding | string | 否   | 编码格式，默认值是'utf-8'。                      |
 | options  | Object | 否   | 编码相关选项参数，存在两个属性fatal和ignoreBOM。 |
 
 **表1.1**options
 
 | 名称      | 参数类型 | 必填 | 说明               |
 | --------- | -------- | ---- | ------------------ |
-| fatal     | boolean  | 否   | 是否显示致命错误。 |
-| ignoreBOM | boolean  | 否   | 是否忽略BOM标记。  |
+| fatal     | boolean  | 否   | 是否显示致命错误，默认值是false。 |
+| ignoreBOM | boolean  | 否   | 是否忽略BOM标记，默认值是false。  |
 
 **示例：**
 
@@ -445,15 +445,15 @@ TextDecoder的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| encoding | string | 否 | 编码格式。 |
+| encoding | string | 否 | 编码格式，默认值是'utf-8'。 |
 | options | Object | 否 | 编码相关选项参数，存在两个属性fatal和ignoreBOM。 |
 
   **表1** options
 
 | 名称 | 参数类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| fatal | boolean | 否 | 是否显示致命错误。 |
-| ignoreBOM | boolean | 否 | 是否忽略BOM标记。 |
+| fatal | boolean | 否 | 是否显示致命错误，默认值是false。 |
+| ignoreBOM | boolean | 否 | 是否忽略BOM标记，默认值是false。 |
 
 **示例：**
 
@@ -518,7 +518,7 @@ TextEncoder用于将字符串编码为字节数组，支持多种编码格式，
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | 是 | 否 | 编码格式，默认值是utf-8。 |
+| encoding | string | 是 | 否 | 编码格式，默认值是'utf-8'。 |
 
 
 ### constructor

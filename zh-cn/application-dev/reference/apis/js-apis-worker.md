@@ -204,7 +204,7 @@ postMessage(message: Object, options?: PostMessageOptions): void
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | message | Object                                    | 是   | 发送至Worker的数据。                                         |
-| options | [PostMessageOptions](#postmessageoptions) | 否   | 可传输对象是&nbsp;ArrayBuffer&nbsp;的实例对象。若不填入该参数，默认设置为"undefined"。|
+| options | [PostMessageOptions](#postmessageoptions) | 否   | 可传输对象是&nbsp;ArrayBuffer&nbsp;的实例对象。若不填入该参数，默认设置为 undefined。|
 
 **错误码：**
 
@@ -905,7 +905,7 @@ Worker线程向宿主线程发送消息。
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | message | Object                                    | 是   | 发送至宿主线程的数据。                                       |
-| options | [PostMessageOptions](#postmessageoptions) | 否   | 可传输对象是ArrayBuffer的实例对象。若不填入该参数，默认设置为"undefined"。|
+| options | [PostMessageOptions](#postmessageoptions) | 否   | 可传输对象是ArrayBuffer的实例对象。若不填入该参数，默认设置为 undefined。|
 
 **错误码：**
 
@@ -1296,7 +1296,7 @@ postMessage(message: Object, options?: PostMessageOptions): void
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | message | Object                                    | 是   | 发送至Worker的数据。                                         |
-| options | [PostMessageOptions](#postmessageoptions) | 否   | 可传输对象是&nbsp;ArrayBuffer&nbsp;的实例对象。若不填入该参数，默认设置为"undefined"。|
+| options | [PostMessageOptions](#postmessageoptions) | 否   | 可传输对象是&nbsp;ArrayBuffer&nbsp;的实例对象。若不填入该参数，默认设置为 undefined。|
 
 **示例：**
 
@@ -1766,7 +1766,7 @@ Worker线程向宿主线程发送消息。
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | message | Object                                    | 是   | 发送至宿主线程的数据。                                       |
-| options | [PostMessageOptions](#postmessageoptions) | 否   | 可传输对象是ArrayBuffer的实例对象。若不填入该参数，默认设置为"undefined"。|
+| options | [PostMessageOptions](#postmessageoptions) | 否   | 可传输对象是ArrayBuffer的实例对象。若不填入该参数，默认设置为 undefined。|
 
 **示例：**
 

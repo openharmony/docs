@@ -1877,3 +1877,23 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+## ohos.permission.ACCESS_CAST_ENGINE_MIRROR
+
+允许应用使用镜像投屏能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ACCESS_CAST_ENGINE_STREAM
+
+允许应用调用系统资源投射能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
