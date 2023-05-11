@@ -122,3 +122,5 @@
         - [热场景定制开发指导](subsys-thermal_scene.md)
     - 电源管理
         - [电源模式定制开发指导](subsys-power-mode-customization.md)
+        - [电源默认休眠行为定制开发指导](subsys-power-default-sleep-behavior-customization.md)
+        - [唤醒源定制开发指导](subsys-power-wakeup-source-customization.md)
