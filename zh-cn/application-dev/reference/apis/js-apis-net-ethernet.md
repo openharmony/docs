@@ -419,9 +419,7 @@ on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: bo
 
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
-| 201     | Permission denied.                           |
 | 202     | System permission denied.                      |
-| 401     | Parameter error.                             |
 
 **示例：**
 
@@ -454,9 +452,7 @@ off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: 
 
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
-| 201     | Permission denied.                           |
 | 202     | System permission denied.                      |
-| 401     | Parameter error.                             |
 
 **示例：**
 

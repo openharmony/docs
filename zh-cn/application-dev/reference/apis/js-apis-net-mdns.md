@@ -215,8 +215,8 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 | 401     | Parameter error. |
 | 2100002 | Operation failed. Cannot connect to service. |
 | 2100003 | System internal error. |
-| 2204002 | Service instance not found. |
-| 2204008 | Service instance duplicated. |
+| 2204002 | Callback not found. |
+| 2204008 | Service instance not found. |
 | 2204010 | Send packet failed. |
 
 > **错误码说明：**

@@ -61,7 +61,7 @@ export default {
 
 ## network.subscribe<sup>3+</sup>
 
-subscribe(Object): void
+subscribe(options?:SubscribeOptions): void
 
 订阅当前设备的网络连接状态。如果多次调用，会覆盖前一次调用。
 

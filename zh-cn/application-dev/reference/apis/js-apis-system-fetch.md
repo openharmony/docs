@@ -16,7 +16,7 @@ import fetch from '@system.fetch';
 
 ## fetch.fetch<sup>3+</sup>
 
-fetch(Object): void
+fetch(options:FetchOptions): void
 
 通过网络获取数据。
 
