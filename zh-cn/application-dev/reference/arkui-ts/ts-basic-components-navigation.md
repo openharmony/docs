@@ -14,8 +14,17 @@ Navigation组件一般作为Page页面的根容器，通过属性设置来展示
 
 ## 接口
 
-Navigation()
+**方法1：** Navigation()
 
+**方法2：** Navigation(pathInfos: NavPathStack)<sup>10+</sup>
+
+  绑定路由栈到Navigation组件。
+
+**参数：**
+
+| 参数名     | 参数类型                                | 必填   | 参数描述          |
+| ------- | ----------------------------------- | ---- | ------------- |
+| pathInfos   | [NavPathStack](#navpathstack10) | 否    | 路由栈信息。 |
 
 ## 属性
 
@@ -36,7 +45,209 @@ Navigation()
 | mode<sup>9+</sup>             | [NavigationMode](#navigationmode枚举说明)    | 导航栏的显示模式。<br/>默认值：NavigationMode.Auto<br/>自适应：基于组件宽度自适应单栏和双栏。 |
 | backButtonIcon<sup>9+</sup>   | string&nbsp;\|&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)&nbsp;\|&nbsp;[Resource](ts-types.md#resource) | 设置导航栏返回图标。不支持隐藏NavDestination组件标题栏中的返回图标。 |
 | hideNavBar<sup>9+</sup>       | boolean                                  | 是否显示导航栏（仅在mode为NavigationMode.Split时生效）。 |
+| navDestination<sup>10+</sup>  | builder: (name: string, param: unknown) => void | 创建NavDestination组件。<br/>**说明：** <br/>使用builder函数，基于name和param构造NavDestination组件。builder中允许在NavDestination组件外包含一层自定义组件， 但自定义组件不允许设置属性和事件，否则仅显示空白。 |
 
+## NavPathStack<sup>10+</sup>
+
+Navigation路由栈。
+
+### push<sup>10+</sup>
+
+push(info: NavPathInfo): void
+
+将info指定的NavDestination页面信息入栈。
+
+**参数：**
+
+| 名称     | 类型                      | 必填   | 描述              |
+| ------ | ----------------------- | ---- | --------------- |
+| info  | [NavPathInfo](#navpathinfo10)                  | 是    | NavDestination页面的信息。   |
+
+### pushName<sup>10+</sup>
+
+pushName(name: string, param: unknown): void
+
+将name指定的NavDestination页面信息入栈，传递的数据为param。
+
+**参数：**
+
+| 名称     | 类型                      | 必填   | 描述              |
+| ------ | ----------------------- | ---- | --------------- |
+| name  | string                  | 是    | NavDestination页面名称。   |
+| param  | unknown                  | 是    | NavDestination页面详细参数。   |
+
+### pop<sup>10+</sup>
+
+pop(): NavPathInfo | undefined
+
+弹出路由栈栈顶元素。
+
+**返回值：**
+
+| 类型     | 说明       |
+| ------ | -------- |
+| NavPathInfo | 返回栈顶NavDestination页面的信息。 |
+| undefined | 当路由栈为空时返回undefined。 |
+
+### popTo<sup>10+</sup>
+
+popTo(name: string): number
+
+回退路由栈到第一个名为name的NavDestination页面。
+
+**参数：**
+
+| 名称     | 类型                      | 必填   | 描述              |
+| ------ | ----------------------- | ---- | --------------- |
+| name  | string                  | 是    | NavDestination页面名称。   |
+
+**返回值：**
+
+| 类型     | 说明       |
+| ------ | -------- |
+| number | 如果栈中存在名为name的NavDestination页面，则返回第一个名为name的NavDestination页面的索引，否则返回-1。 |
+
+### popToIndex<sup>10+</sup>
+
+popToIndex(index: number): void
+
+回退路由栈到index指定的NavDestination页面。
+
+**参数：**
+
+| 名称     | 类型                      | 必填   | 描述              |
+| ------ | ----------------------- | ---- | --------------- |
+| index  | number                  | 是    | NavDestination页面的位置索引。   |
+
+### moveToTop<sup>10+</sup>
+
+moveToTop(name: string): number
+
+将第一个名为name的NavDestination页面移到栈顶。
+
+**参数：**
+
+| 名称     | 类型                      | 必填   | 描述              |
+| ------ | ----------------------- | ---- | --------------- |
+| name  | string                  | 是    | NavDestination页面名称。   |
+
+**返回值：**
+
+| 类型     | 说明       |
+| ------ | -------- |
+| number | 如果栈中存在名为name的NavDestination页面，则返回第一个名为name的NavDestination页面的当前索引，否则返回-1。 |
+
+### moveIndexToTop<sup>10+</sup>
+
+moveIndexToTop(index: number): void
+
+将index指定的NavDestination页面移到栈顶。
+
+**参数：**
+
+| 名称     | 类型                      | 必填   | 描述              |
+| ------ | ----------------------- | ---- | --------------- |
+| index  | number                  | 是    | NavDestination页面的位置索引。   |
+
+### clear<sup>10+</sup>
+
+clear(): void
+
+清除栈中所有页面。
+
+### getAllPathName<sup>10+</sup>
+
+getAllPathName(): Array<string\>
+
+获取栈中所有NavDestination页面的名称。
+
+**返回值：**
+
+| 类型     | 说明       |
+| ------ | -------- |
+| Array<string\> | 返回栈中所有NavDestination页面的名称。 |
+
+### getParamByIndex<sup>10+</sup>
+
+getParamByIndex(index: number): unknown | undefined
+
+获取index指定的NavDestination页面的参数信息。
+
+**参数：**
+
+| 名称     | 类型                      | 必填   | 描述              |
+| ------ | ----------------------- | ---- | --------------- |
+| index  | number                  | 是    | NavDestination页面的位置索引。   |
+
+**返回值：**
+
+| 类型     | 说明       |
+| ------ | -------- |
+| unknown  | 返回对应NavDestination页面的参数信息。 |
+| undefined | 传入index无效时返回undefined。 |
+
+### getParamByName<sup>10+</sup>
+
+getParamByName(name: string): Array<unknown\>
+
+获取全部名为name的NavDestination页面的参数信息。
+
+**参数：**
+
+| 名称     | 类型                      | 必填   | 描述              |
+| ------ | ----------------------- | ---- | --------------- |
+| name  | string                  | 是    | NavDestination页面名称。   |
+
+**返回值：**
+
+| 类型     | 说明       |
+| ------ | -------- |
+| Array<unknown\>  | 返回全部名为name的NavDestination页面的参数信息。 |
+
+### getIndexByName<sup>10+</sup>
+
+getIndexByName(name: string): Array<number\>
+
+获取全部名为name的NavDestination页面的位置索引。
+
+**参数：**
+
+| 名称     | 类型                      | 必填   | 描述              |
+| ------ | ----------------------- | ---- | --------------- |
+| name  | string                  | 是    | NavDestination页面名称。   |
+
+**返回值：**
+
+| 类型     | 说明       |
+| ------ | -------- |
+| Array<number\>  | 返回全部名为name的NavDestination页面的位置索引。 |
+
+### size<sup>10+</sup>
+
+size(): number
+
+获取栈大小。
+
+**返回值：**
+
+| 类型     | 说明       |
+| ------ | -------- |
+| number  | 返回栈大小。 |
+
+## NavPathInfo<sup>10+</sup>
+
+路由页面信息。
+
+### constructor
+
+constructor(name: string, param: unknown)
+
+**参数：**
+
+| 名称     | 类型                      | 必填   | 描述              |
+| ------ | ----------------------- | ---- | --------------- |
+| name  | string                  | 是    | NavDestination页面名称。   |
+| param  | unknown                  | 否    | NavDestination页面详细参数。   |
 
 ## NavigationMenuItem类型说明
 
