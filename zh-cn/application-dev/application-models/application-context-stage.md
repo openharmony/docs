@@ -82,13 +82,13 @@
 
 | 属性名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| bundleCodeDir       | string   | 是   | 否   | 安装文件路径。应用在内部存储上的安装路径。不能拼接路径访问资源文件，请使用[资源管理接口](../reference/apis/js-apis-resource-manager.md)访问资源。                   |
-| cacheDir | string | 是 | 否 | 应用缓存文件路径。应用在内部存储上的缓存路径。<br/>对应于“设置&nbsp;&gt;&nbsp;应用管理”，找到对应应用的“存储”中的缓存内容。 |
-| filesDir            | string   | 是   | 否   | 应用通用文件路径。应用在内部存储上的文件路径。<br/>本目录下存放的文件可能会被应用迁移或者备份的时候同步到其他目录中。 |
-| preferencesDir      | string   | 是   | 是   | 应用首选项文件路径。指示应用程序首选项目录。                 |
-| tempDir             | string   | 是   | 否   | 应用临时文件路径。<br/>在应用卸载后，系统会删除存储在此目录中的文件。 |
+| bundleCodeDir       | string   | 是   | 否   | 安装文件路径。应用在内部存储上的安装路径。                   |
+| cacheDir | string | 是 | 否 | 缓存文件路径。应用在内部存储上的缓存路径。<br/>对应于“设置&nbsp;&gt;&nbsp;应用管理”，找到对应应用的“存储”中的缓存内容。 |
+| filesDir            | string   | 是   | 否   | 通用文件路径。应用在内部存储上的文件路径。<br/>本目录下存放的文件可能会被应用迁移或者备份的时候同步到其他目录中。 |
+| preferencesDir      | string   | 是   | 是   | 首选项文件路径。指示应用程序首选项目录。                 |
+| tempDir             | string   | 是   | 否   | 临时文件路径。<br/>在应用卸载后，系统会删除存储在此目录中的文件。 |
 | databaseDir         | string   | 是   | 否   | 数据库路径。获取本地数据库存储路径。                         |
-| distributedFilesDir | string | 是 | 否 | 应用分布式文件路径。 |
+| distributedFilesDir | string | 是 | 否 | 分布式文件路径。 |
 
 获取路径的能力是基类Context中提供的能力，因此在ApplicationContext、AbilityStageContext、UIAbilityContext和ExtensionContext中均可以获取，在各类Context中获取到的路径会有一些差别，具体差别如下图所示。
 
