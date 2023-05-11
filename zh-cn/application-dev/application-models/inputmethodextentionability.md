@@ -67,7 +67,7 @@
    
      onDestroy() {
        console.log("onDestroy.");
-       this.keyboardController.destroy();
+       this.keyboardController.onDestroy();  // 销毁窗口并去注册事件监听
      }
    }
    ```
