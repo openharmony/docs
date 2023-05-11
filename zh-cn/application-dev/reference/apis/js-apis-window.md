@@ -2701,7 +2701,7 @@ try {
 
 ### off('avoidAreaChange')<sup>9+</sup>
 
-off(type: 'avoidAreaChange', callback: Callback&lt;{AvoidAreaType, AvoidArea}&gt;): void
+off(type: 'avoidAreaChange', callback?: Callback&lt;{AvoidAreaType, AvoidArea}&gt;): void
 
 关闭系统规避区变化的监听。
 
@@ -3471,7 +3471,7 @@ let colorSpace = windowClass.getWindowColorSpace();
 
 setWindowBackgroundColor(color: string): void
 
-设置窗口的背景色。Stage模型下，该接口需要在[loadContent](#loadcontent9)之后使用。
+设置窗口的背景色。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -6024,7 +6024,7 @@ promise.then((data)=> {
 
 setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的背景色，使用callback异步回调。Stage模型下，该接口需要在[loadContent](#loadcontent9)或[setUIContent()](#setuicontent9)之后使用。
+设置窗口的背景色，使用callback异步回调。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 > **说明：**
 >
@@ -6056,7 +6056,7 @@ windowClass.setBackgroundColor(color, (err) => {
 
 setBackgroundColor(color: string): Promise&lt;void&gt;
 
-设置窗口的背景色，使用Promise异步回调。Stage模型下，该接口需要在[loadContent](#loadcontent9)或[setUIContent()](#setuicontent9)之后使用。
+设置窗口的背景色，使用Promise异步回调。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 > **说明：**
 >

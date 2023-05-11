@@ -7,7 +7,7 @@ HML（OpenHarmony Markup Language）是一套类HTML的标记语言，通过组�
 ## 页面结构
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="item-container">
   <text class="item-title">Image Show</text>
@@ -21,7 +21,7 @@ HML（OpenHarmony Markup Language）是一套类HTML的标记语言，通过组�
 ## 数据绑定
 
 
-```
+```html
 <!-- xxx.hml -->
 <div onclick="changeText">
   <text> {{content[1]}} </text>
@@ -29,7 +29,7 @@ HML（OpenHarmony Markup Language）是一套类HTML的标记语言，通过组�
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -42,9 +42,9 @@ export default {
 ```
 
 >  **说明：**
-> - 针对数组内的数据修改，请使用splice方法生效数据绑定变更。
-> 
-> - hml中的js表达式不支持ES6语法。
+>  - 针对数组内的数据修改，请使用splice方法生效数据绑定变更。
+>
+>  - hml中的js表达式不支持ES6语法。
 
 
 ## 事件绑定
@@ -52,7 +52,7 @@ export default {
 事件绑定的回调函数接收一个事件对象参数，可以通过访问该事件对象获取事件信息。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <!-- 通过'@'绑定事件 -->
@@ -73,7 +73,7 @@ export default {
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -88,11 +88,11 @@ export default {
 
 >  **说明：**
 >
-> 事件冒泡机制从API Version 5开始支持。升级SDK后，运行存量JS应用，采用旧写法（onclick）的事件绑定还是按事件不冒泡进行处理。但如果使用新版本SDK重新打包JS应用，将旧写法按事件冒泡进行处理。为了避免业务逻辑错误，建议将旧写法（如onclick）改成新写法（grab:click）。
+>  事件冒泡机制从API Version 5开始支持。升级SDK后，运行存量JS应用，采用旧写法（onclick）的事件绑定还是按事件不冒泡进行处理。但如果使用新版本SDK重新打包JS应用，将旧写法按事件冒泡进行处理。为了避免业务逻辑错误，建议将旧写法（如onclick）改成新写法（grab:click）。
 
 **示例：**
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <text class="title">{{count}}</text>
@@ -108,8 +108,8 @@ export default {
 ```
 
 
-```
-/* xxx.js */
+```js
+// xxx.js 
 export default {
   data: {
     count: 0
@@ -127,7 +127,7 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
     display: flex;
@@ -164,7 +164,7 @@ export default {
 ## 列表渲染
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="array-container">
   <!-- div列表渲染 -->
@@ -184,7 +184,7 @@ export default {
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -211,11 +211,12 @@ tid属性主要用来加速for循环的重渲染，旨在列表中的数据有�
 
 - for="(i, v) in array"：其中元素索引为i，元素变量为v，遍历数组对象array。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+>  **说明：**
+>
 > - 数组中的每个元素必须存在tid指定的数据属性，否则运行时可能会导致异常。
-> 
+>
 > - 数组中被tid指定的属性要保证唯一性，如果不是则会造成性能损耗。比如，示例中只有id和name可以作为tid字段，因为它们属于唯一字段。
-> 
+>
 > - tid不支持表达式。
 
 
@@ -224,7 +225,7 @@ tid属性主要用来加速for循环的重渲染，旨在列表中的数据有�
 条件渲染分为2种：if/elif/else和show。两种写法的区别在于：第一种写法里if为false时，组件不会在vdom中构建，也不会渲染，而第二种写法里show为false时虽然也不渲染，但会在vdom中构建；另外，当使用if/elif/else写法时，节点必须是兄弟节点，否则编译无法通过。实例如下：
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <button class="btn" type="capsule" value="toggleShow" onclick="toggleShow"></button>
@@ -236,8 +237,8 @@ tid属性主要用来加速for循环的重渲染，旨在列表中的数据有�
 ```
 
 
-```
-// xxx.css
+```css
+/* xxx.css */
 .container{
   flex-direction: column;
   align-items: center;
@@ -250,7 +251,7 @@ tid属性主要用来加速for循环的重渲染，旨在列表中的数据有�
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -269,7 +270,7 @@ export default {
 优化渲染优化：show方法。当show为真时，节点正常渲染；当为假时，仅仅设置display样式为none。
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <button class="btn" type="capsule" value="toggle" onclick="toggle"></button>
@@ -278,8 +279,8 @@ export default {
 ```
 
 
-```
-// xxx.css
+```css
+/* xxx.css */
 .container{
   flex-direction: column;
   align-items: center;
@@ -292,7 +293,7 @@ export default {
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -305,4 +306,5 @@ export default {
 ```
 
 >  **说明：**
-> 禁止在同一个元素上同时设置for和if属性。
+>
+>  禁止在同一个元素上同时设置for和if属性。

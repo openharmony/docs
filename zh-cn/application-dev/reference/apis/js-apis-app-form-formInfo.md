@@ -102,6 +102,8 @@ import formInfo from '@ohos.app.form.formInfo';
 | ABILITY_NAME_KEY   | 'ohos.extra.param.key.ability_name'   | ability名称。  |
 | DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id'   | 设备标识。   |
 | BUNDLE_NAME_KEY    | 'ohos.extra.param.key.bundle_name'   | 指示指定要获取的捆绑Bundle名称的键。 |
+| LAUNCH_REASON_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_launch_reason'   | 卡片创建原因。   |
+| PARAM_FORM_CUSTOMIZE_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_customize'   | 自定义数据。   |
 
 ##  FormDimension
 
@@ -168,3 +170,14 @@ import formInfo from '@ohos.app.form.formInfo';
 | formName        | string               | 是    | 否     | 卡片名称。                                 |
 | moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。                      |
 | abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
+
+## LaunchReason<sup>10+</sup>
+
+卡片创建原因枚举。
+
+**系统能力**：SystemCapability.Ability.Form
+
+| 名称        |  值   | 说明         |
+| ----------- | ---- | ------------ |
+| FORM_DEFAULT | 1   | 表示卡片创建原因为默认创建。 |
+| FORM_SHARE   | 2   | 表示卡片创建原因为共享创建。 |

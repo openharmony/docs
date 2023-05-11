@@ -1,6 +1,6 @@
 # @ohos.enterprise.networkManager (Network Management)
 
-The **networkManager** module provides network management capabilities for enterprise devices, including obtaining the device IP address and MAC address. Only the enterprise device administrator applications can call the APIs provided by this module.
+The **networkManager** module provides APIs for network management of enterprise devices, including obtaining the device IP address and MAC address. Only the device administrator applications can call the APIs provided by this module.
 
 > **NOTE**
 >
@@ -16,7 +16,7 @@ import networkManager from '@ohos.enterprise.networkManager';
 
 getAllNetworkInterfaces(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-Obtains all active network interfaces. This API uses an asynchronous callback to return the result.
+Obtains all active network interfaces through a device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.GET_NETWORK_INFO
 
@@ -28,14 +28,14 @@ Obtains all active network interfaces. This API uses an asynchronous callback to
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;            | Yes   | Callback invoked to return the active network interfaces obtained.      |
+| admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application that obtains the information.                 |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is an array of network interfaces obtained. If the operation fails, **err** is an error object.    |
 
 **Error codes**
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -60,7 +60,7 @@ networkManager.getAllNetworkInterfaces(admin, (error, result) => {
 
 getAllNetworkInterfaces(admin: Want): Promise&lt;Array&lt;string&gt;&gt;
 
-Obtains all active network interfaces. This API uses a promise to return the result.
+Obtains all active network interfaces through a device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -72,19 +72,19 @@ Obtains all active network interfaces. This API uses a promise to return the res
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application that obtains the information.|
 
 **Return value**
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the active network interfaces obtained. |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return an array of network interfaces obtained. |
 
 **Error codes**
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -107,7 +107,7 @@ networkManager.getAllNetworkInterfaces(wantTemp).then((result) => {
 
 getIpAddress(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the IP address of a device. This API uses an asynchronous callback to return the result.
+Obtains the device IP address based on the given network interface through a device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.GET_NETWORK_INFO
 
@@ -119,15 +119,15 @@ Obtains the IP address of a device. This API uses an asynchronous callback to re
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
+| admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application that obtains the information.                 |
 | networkInterface    | string     | Yes   | Network interface.                 |
-| callback | AsyncCallback&lt;string&gt;            | Yes   | Callback invoked to return the device IP address obtained.      |
+| callback | AsyncCallback&lt;string&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the IP address obtained. If the operation fails, **err** is an error object.      |
 
 **Error codes**
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -152,7 +152,7 @@ networkManager.getIpAddress(wantTemp, "eth0", (error, result) => {
 
 getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 
-Obtains the IP address of a device. This API uses a promise to return the result.
+Obtains the device IP address based on the given network interface through a device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -164,7 +164,7 @@ Obtains the IP address of a device. This API uses a promise to return the result
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application that obtains the information.|
 | networkInterface    | string     | Yes   | Network interface.                 |
 
 **Return value**
@@ -177,7 +177,7 @@ Obtains the IP address of a device. This API uses a promise to return the result
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -200,7 +200,7 @@ networkManager.getIpAddress(wantTemp, "eth0").then((result) => {
 
 getMac(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the MAC address of a device. This API uses an asynchronous callback to return the result.
+Obtains the device MAC address based on the given network interface through a device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -212,15 +212,15 @@ Obtains the MAC address of a device. This API uses an asynchronous callback to r
 
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
+| admin    | [Want](js-apis-app-ability-want.md)      | Yes   | Device administrator application that obtains the information.                 |
 | networkInterface    | string     | Yes   | Network interface.                 |
-| callback | AsyncCallback&lt;string&gt;            | Yes   | Callback invoked to return the device MAC address obtained.      |
+| callback | AsyncCallback&lt;string&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the MAC address obtained. If the operation fails, **err** is an error object.      |
 
 **Error codes**
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -245,7 +245,7 @@ networkManager.getMac(wantTemp, "eth0", (error, result) => {
 
 getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 
-Obtains the MAC address of a device. This API uses a promise to return the result.
+Obtain the device MAC address based on the given network interface through a device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -257,7 +257,7 @@ Obtains the MAC address of a device. This API uses a promise to return the resul
 
 | Name  | Type                                 | Mandatory  | Description     |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
+| admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application that obtains the information.|
 | networkInterface    | string     | Yes   | Network interface.                 |
 
 **Return value**
@@ -270,7 +270,7 @@ Obtains the MAC address of a device. This API uses a promise to return the resul
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|

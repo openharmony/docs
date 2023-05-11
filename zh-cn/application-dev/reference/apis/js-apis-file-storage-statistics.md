@@ -667,6 +667,8 @@ getUserStorageStats(callback: AsyncCallback&lt;StorageStats&gt;): void
   });
   ```
 
+## storageStatistics.getUserStorageStats<sup>9+</sup>
+
 getUserStorageStats(userId: number): Promise&lt;StorageStats&gt;
 
 异步获取指定用户各类别存储空间大小（单位为Byte），以promise方式返回。

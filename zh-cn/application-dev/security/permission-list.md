@@ -1506,7 +1506,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 ## ohos.permission.ACCESS_CERT_MANAGER
 
@@ -1836,7 +1836,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：TURE
+**ACL使能**：TRUE
 
 ## ohos.permission.GET_DISTRIBUTED_ACCOUNTS
 
@@ -1846,7 +1846,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：TURE
+**ACL使能**：TRUE
 
 ## ohos.permission.GET_LOCAL_ACCOUNTS
 
@@ -1856,7 +1856,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：TURE
+**ACL使能**：TRUE
 
 ## ohos.permission.READ_HIVIEW_SYSTEM
 

@@ -5,10 +5,9 @@
 
 OpenHarmony 3.1.7 Release provides enhanced system security over OpenHarmony 3.1.6 Release by rectifying memory leak issues, certain known vulnerabilities in open-source components such as Linux kernel, and system stability issues. The matching SDK version is also updated.
 
+## Version Mapping
 
-## Mapping relationship
-
-  **Table 1** Version mapping of software and tools
+**Table 1** Version mapping of software and tools
 
 | Software/Tool                                            | Version                                                        | Remarks                                                        |
 | ------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -100,11 +99,9 @@ This version does not involve feature updates.
 
 This version does not involve API updates.
 
-
-
 ### Chip and Development Board Adaptation
 
-For details about the adaptation status, see [SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard.md).
+For details about the adaptation status, see [SIG_DevBoard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard.md).
 
 
 ### Resolved Issues
@@ -120,8 +117,6 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 | ArkUI development framework | The image effect function is invalid. ([I65UID](https://gitee.com/openharmony/arkui_ace_engine/issues/I65UID))|
 | Ability framework| After two windows are paired in split-screen mode, if one window is closed, the other window is also closed. ([I6AF0Y](https://gitee.com/openharmony/ability_ability_runtime/issues/I6AF0Y))|
 | DFX subsystem   | **libhilog.z.so** crashes in **ohos.samples.distributedmusicplayer**. ([I6DCSL](https://gitee.com/openharmony/hiviewdfx_hilog/issues/I6DCSL))|
-
-
 
 
 ### Fixed Security Vulnerabilities
@@ -147,7 +142,7 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 | I6JH2L | Security vulnerabilities of the kernel_linux_4.19 component: CVE-2023-23559, CVE-2022-47929, CVE-2022-2873, and CVE-2023-23455| [PR](https://gitee.com/openharmony/kernel_linux_4.19/pulls/103) |
 | I6LCHO | Security vulnerability of the kernel_linux_4.19 component: CVE-2023-0030          | [PR](https://gitee.com/openharmony/kernel_linux_4.19/pulls/111) |
 
-##  
+## Known Issues 
 
 **Table 5** Known issues
 

@@ -167,6 +167,7 @@
 
 - UI界面
   - [@ohos.animator (动画)](js-apis-animator.md)
+  - [@ohos.arkui.drawableDescriptor(DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
   - [@ohos.curves (插值计算)](js-apis-curve.md)
   - [@ohos.matrix4 (矩阵变换)](js-apis-matrix4.md)
   - [@ohos.mediaquery (媒体查询)](js-apis-mediaquery.md)
@@ -314,8 +315,6 @@
   - [Timer (定时器)](js-apis-timer.md)
   - application
     - [AccessibilityExtensionContext (辅助功能扩展上下文)](js-apis-inner-application-accessibilityExtensionContext.md)
-  - imf
-    - [InputMethodCommon](js-apis-inputmethod-InputMethodCommon.md)
 
 - 设备管理
   - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)
@@ -356,8 +355,9 @@
 - 定制管理
   - [@ohos.configPolicy (配置策略)](js-apis-configPolicy.md)
   - [@ohos.enterprise.accountManager (帐户管理)](js-apis-enterprise-accountManager.md)
-  - [@ohos.enterprise.bundleManager (包管理)](js-apis-enterprise-bundleManager.md)
   - [@ohos.enterprise.adminManager (企业设备管理)](js-apis-enterprise-adminManager.md)
+  - [@ohos.enterprise.applicationManager (应用管理)](js-apis-enterprise-applicationManager.md)
+  - [@ohos.enterprise.bundleManager (包管理)](js-apis-enterprise-bundleManager.md)
   - [@ohos.enterprise.dateTimeManager (系统时间管理)](js-apis-enterprise-dateTimeManager.md)
   - [@ohos.enterprise.deviceControl (设备控制管理)](js-apis-enterprise-deviceControl.md)
   - [@ohos.enterprise.deviceInfo (设备信息管理)](js-apis-enterprise-deviceInfo.md)

@@ -544,9 +544,39 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 1. 通过-s参数指定卸载的应用为共享库应用。
 2. 通过UninstallParam参数的bundleName及versionCode指定卸载的共享库的包名及版本。
 
+## 17700042 数据代理中的uri配置错误
+**错误信息**<br/>
+Failed to install the HAP because of incorrect URI in the data proxy.
+
+**错误描述**<br/>
+安装应用时，数据代理的uri配置错误。
+
+**可能原因**<br/>
+1. uri中的包名与当前应用的包名不一致。
+2. uri重复。
+
+**处理步骤**<br/>
+1. 修改uri中的包名为当前应用的包名。
+2. 修改重复的uri，每一个数据代理的uri都是唯一的。
+
+## 17700043 数据代理中的权限配置错误
+**错误信息**<br/>
+Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core).
+
+**错误描述**<br/>
+安装应用时，非系统应用的数据代理的权限等级过低，应为system_basic或system_core。
+
+**可能原因**<br/>
+1. 非系统应用的数据代理未配置权限。
+1. 非系统应用的数据代理的权限等级过低。
+
+**处理步骤**<br/>
+1. 在数据代理中配置读权限和写权限。
+2. 修改读权限和写权限，并确认其权限等级为system_basic或system_core。
+
 ## 17700044 安装包设置的多进程配置项与系统配置项设置矛盾
 **错误信息**<br/>
-Failed to install because the isolationMode does not match the system.
+Failed to install the HAP because the isolationMode configured is not supported.
 
 **错误描述**<br/>
 安装应用时，设置的isolationMode与系统配置项所允许的系统配置项矛盾。

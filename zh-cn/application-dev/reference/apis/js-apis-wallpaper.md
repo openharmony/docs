@@ -13,6 +13,21 @@
 ```js
 import wallpaper from '@ohos.wallpaper';
 ```
+## WallpaperResourceType<sup>10+</sup>
+
+定义壁纸资源的枚举类型。
+
+**系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**系统接口**：此接口为系统接口。
+
+| 名称 | 值 |说明 |
+| -------- | -------- |-------- |
+| DEFAULT | 0 |默认为图片资源。 |
+| PICTURE | 1 |图片资源。 |
+| VIDEO | 2 |视频资源。 |
+| PACKAGE | 3 |包资源。 |
+
 
 ## WallpaperType<sup>7+</sup>
 
@@ -43,6 +58,158 @@ import wallpaper from '@ohos.wallpaper';
 | blue | number | 是 | 是 | 表示蓝色值，范围为 0 到 255。 |
 | alpha | number | 是 | 是 | 表示 alpha 值，范围为 0 到 255。 |
 
+
+## wallpaper.setVideo<sup>10+</sup>
+
+setVideo(source: string, wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
+
+将视频资源设置为桌面或锁屏的动态壁纸。
+
+**需要权限**：ohos.permission.SET_WALLPAPER
+
+**系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| source | string | 是 | mp4文件的Uri路径。 |
+| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，设置壁纸成功，error为undefined，否则返回error信息。 |
+
+**示例：**
+
+```js
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.mp4";
+try {
+    wallpaper.setVideo(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
+        if (error) {
+            console.error(`failed to setVideo because: ${JSON.stringify(error)}`);
+            return;
+        }
+        console.log(`success to setVideo.`);
+    });
+} catch (error) {
+    console.error(`failed to setVideo because: ${JSON.stringify(error)}`);
+}
+
+```
+
+## wallpaper.setVideo<sup>10+</sup>
+
+setVideo(source: string, wallpaperType: WallpaperType): Promise&lt;void&gt;
+
+将视频资源设置为桌面或锁屏的动态壁纸。
+
+**需要权限**：ohos.permission.SET_WALLPAPER
+
+**系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| source | string | 是 | mp4文件的Uri路径。 |
+| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```js
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.mp4";
+try {
+    wallpaper.setVideo(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
+        console.log(`success to setVideo.`);
+    }).catch((error) => {
+        console.error(`failed to setVideo because: ${JSON.stringify(error)}`);
+    });
+} catch (error) {
+    console.error(`failed to setVideo because: ${JSON.stringify(error)}`);
+}
+```
+
+## wallpaper.on('wallpaperChange')<sup>10+</sup>
+
+on(type: 'wallpaperChange', callback: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType) =&gt; void): void
+
+订阅壁纸变化通知事件。
+
+**系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 事件回调类型。支持的事件为'wallpaperChange'，完成壁纸切换后触发该事件。 |
+| callback | function | 是 | 壁纸变化触发该回调方法，返回壁纸类型和壁纸资源类型。<br/>- wallpaperType<br/>  壁纸类型。<br/>- resourceType<br/>  壁纸资源类型。 |
+
+**示例：**
+
+```js
+try {
+    let listener = (wallpaperType, resourceType) => {
+        console.log(`wallpaper color changed.`);
+    };
+    wallpaper.on('wallpaperChange', listener);
+} catch (error) {
+    console.error(`failed to on because: ${JSON.stringify(error)}`);
+}
+```
+
+## wallpaper.off('wallpaperChange')<sup>10+</sup>
+
+off(type: 'wallpaperChange', callback?: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType) =&gt; void): void
+
+取消订阅壁纸变化通知事件。
+
+**系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| type | string | 是 | 事件回调类型。支持的事件为'wallpaperChange'，完成壁纸切换后触发该事件。 |
+| callback | function | 否 |   表示要取消的壁纸变化回调，不填写该参数则取消订阅该type对应的所有回调。<br/>- wallpaperType<br/>  壁纸类型。<br/>- resourceType<br/>  壁纸资源类型。 |
+
+**示例：**
+
+```js
+let listener = (wallpaperType, resourceType) => {
+    console.log(`wallpaper color changed.`);
+};
+try {
+    wallpaper.on('wallpaperChange', listener);
+} catch (error) {
+    console.error(`failed to on because: ${JSON.stringify(error)}`);
+}
+
+try {
+    // 取消订阅listener
+    wallpaper.off('wallpaperChange', listener);
+} catch (error) {
+    console.error(`failed to off because: ${JSON.stringify(error)}`);
+}
+
+try {
+    // 取消所有'wallpaperChange'类型的订阅
+    wallpaper.off('wallpaperChange');
+} catch (error) {
+    console.error(`failed to off because: ${JSON.stringify(error)}`);
+}
+```
 
 ## wallpaper.getColorsSync<sup>9+</sup>
 
@@ -210,7 +377,7 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType, callback
 
 ```js
 // source类型为string
-let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
 wallpaper.setImage(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
     if (error) {
         console.error(`failed to setImage because: ${JSON.stringify(error)}`);
@@ -270,7 +437,7 @@ setImage(source: string | image.PixelMap, wallpaperType: WallpaperType): Promise
 
 ```js
 // source类型为string
-let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
 wallpaper.setImage(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
     console.log(`success to setImage.`);
 }).catch((error) => {
@@ -898,7 +1065,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType, call
 
 ```js
 // source类型为string
-let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
 wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
     if (error) {
         console.error(`failed to setWallpaper because: ${JSON.stringify(error)}`);
@@ -960,7 +1127,7 @@ setWallpaper(source: string | image.PixelMap, wallpaperType: WallpaperType): Pro
 
 ```js
 // source类型为string
-let wallpaperPath = "/data/data/ohos.acts.aafwk.plrdtest.form/files/Cup_ic.jpg";
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/js.jpeg";
 wallpaper.setWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
     console.log(`success to setWallpaper.`);
   }).catch((error) => {

@@ -1865,6 +1865,98 @@ try {
 }
 ```
 
+## acquireFormData<sup>10+</sup>
+
+acquireFormData(formId: string, callback: AsyncCallback\<void>): void
+
+请求卡片提供方数据。使用callback异步回调。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明    |
+| ------ | ------ | ---- | ------- |
+| formId | string | 是   | 卡片标识。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+**示例：**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+
+let formId = '12400633174999288';
+try {
+  formHost.acquireFormData(formId, (error) => {
+    if (error) {
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
+    }
+  });
+} catch(error) {
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## acquireFormData<sup>10+</sup>
+
+function acquireFormData(formId: string): Promise\<void\>;
+
+请求卡片提供方数据。使用Promise异步回调。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名      | 类型            | 必填 | 说明                             |
+| ----------- | --------------- | ---- | -------------------------------- |
+| formId | string | 是   | 卡片标识。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+
+let formId = '12400633174999288';
+try {
+  formHost.acquireFormData(formId).then(() => {
+    console.log('formHost acquireFormData success');
+  }).catch((error) => {
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
+  });
+} catch(error) {
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+}
+```
+
 ## getRunningFormInfosByFilter<sup>10+</sup>
 
 function getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
@@ -2051,3 +2143,4 @@ try {
   console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
+

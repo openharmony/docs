@@ -21,7 +21,7 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | arrayValue | Array&lt;string&gt; | 是 | 字母索引字符串数组，不可设置为空。 |
-| selected   | number              | 是    | 初始选中项索引值，若超出索引值范围，则取默认值0。     |
+| selected   | number              | 是    | 初始选中项索引值，若超出索引值范围，则取默认值0。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 
 ## 属性
 
@@ -40,7 +40,7 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 | font                    | [Font](ts-types.md#font) | 设置字母索引条默认字体样式。<br/>默认值：<br/>{<br/>size:10,<br/> style:FontStyle.Normal,<br/> weight:FontWeight.Normal,<br/> family:'HarmonyOS Sans'<br/>}                      |
 | itemSize                | string&nbsp;\|&nbsp;number            | 设置字母索引条字母区域大小，字母区域为正方形，即正方形边长。不支持设置为百分比。<br/>默认值：24.0<br/>单位：vp |
 | alignStyle              | value: [IndexerAlign](#indexeralign枚举说明),<br/>offset<sup>10+</sup>?: [Length](ts-types.md#length) | value：设置字母索引条弹框的对齐样式，支持弹窗显示在索引条右侧和左侧。<br/>默认值: IndexerAlign.Right。<br/>offset：设置提示弹窗与索引条之间间距，大于等于0为有效值，在不设置或设置为小于0的情况下间距与popupPosition.x相同。 |
-| selected | number | 设置选中项索引值。<br/>默认值：0。 |
+| selected | number | 设置选中项索引值。<br/>默认值：0。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | popupPosition | [Position](ts-types.md#position8) | 设置弹出窗口相对于索引器条上边框中点的位置。<br/>默认值：{x:96.0, y:48.0}。 |
 | popupSelectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置提示弹窗非字母部分选中文字色。 <br/>默认值：#FF182431 |
 | popupUnselectedColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置提示弹窗非字母部分未选中文字色。 <br/>默认值：#FF182431 |
