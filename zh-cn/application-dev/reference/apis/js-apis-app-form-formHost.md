@@ -2022,8 +2022,8 @@ function getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFi
 
 | 参数名      | 类型            | 必填 | 说明                             |
 | ----------- | --------------- | ---- | -------------------------------- |
-| formProviderFilter     | formInfo.FormProviderFilter <br />[formInfo.FormProviderFilter](js-apis-app-form-formInfo.md#formProviderFilter)| 是   | 卡片提供方应用信息。 |
-| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; <br />| 是 | 回调函数。返回查询到的使用方列表信息，error为undefined，data为查询到的使用方列表信息；否则为错误对象。 |
+| formProviderFilter     | formInfo.FormProviderFilter [formInfo.FormProviderFilter](js-apis-app-form-formInfo.md#formProviderFilter) | 是   | 卡片提供方应用信息。 |
+| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。返回查询到的使用方列表信息，error为undefined，data为查询到的使用方列表信息；否则为错误对象。 |
 
 **错误码：**
 
@@ -2116,7 +2116,7 @@ function getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;Array
 | 参数名      | 类型            | 必填 | 说明                             |
 | ----------- | --------------- | ---- | -------------------------------- |
 | formId     | string | 是   | 卡片标识。 |
-| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;<br /> | 是 | 回调函数。返回查询到的使用方列表信息，error为undefined，data为查询到的使用方列表信息；否则为错误对象。 |
+| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。返回查询到的使用方列表信息，error为undefined，data为查询到的使用方列表信息；否则为错误对象。 |
 
 **错误码：**
 
@@ -2143,4 +2143,3 @@ try {
   console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
-
