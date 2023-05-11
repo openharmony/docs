@@ -921,9 +921,7 @@ SharingIfaceState }>): void
 
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
-| 201     | Permission denied.                           |
 | 202     | System permission denied                          |
-| 401     | Parameter error.                             |
 
 **示例：**
 
@@ -957,9 +955,7 @@ SharingIfaceState }>): void
 
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
-| 201     | Permission denied.                           |
 | 202     | System permission denied                          |
-| 401     | Parameter error.                             |
 
 **示例：**
 
@@ -992,9 +988,7 @@ on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void
 
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
-| 201     | Permission denied.                           |
 | 202     | System permission denied                          |
-| 401     | Parameter error.                             |
 
 **示例：**
 
@@ -1027,9 +1021,7 @@ off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void
 
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
-| 201     | Permission denied.                           |
 | 202     | System permission denied                          |
-| 401     | Parameter error.                             |
 
 **示例：**
 
