@@ -36,7 +36,7 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
-| 202     | System permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
@@ -96,7 +96,7 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
-| 202     | System permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
@@ -148,7 +148,7 @@ getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>):
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
-| 202     | System permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
@@ -202,7 +202,7 @@ getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
-| 202     | System permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
@@ -249,7 +249,7 @@ isIfaceActive(iface: string, callback: AsyncCallback\<number>): void
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
-| 202     | System permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
@@ -297,7 +297,7 @@ isIfaceActive(iface: string): Promise\<number>
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
-| 202     | System permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
@@ -337,7 +337,7 @@ getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
-| 202     | System permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
 
@@ -379,7 +379,7 @@ getAllActiveIfaces(): Promise\<Array\<string>>
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
-| 202     | System permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
 
@@ -419,7 +419,7 @@ on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: bo
 
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
-| 202     | System permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 
 **示例：**
 
@@ -452,7 +452,7 @@ off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: 
 
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
-| 202     | System permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 
 **示例：**
 

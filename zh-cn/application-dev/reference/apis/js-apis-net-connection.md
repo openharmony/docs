@@ -821,6 +821,7 @@ enableAirplaneMode(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
+| 202 | Non-system applications use system APIs.|
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -854,6 +855,7 @@ enableAirplaneMode(): Promise\<void>
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
+| 202 | Non-system applications use system APIs.|
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -887,6 +889,7 @@ disableAirplaneMode(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
+| 202 | Non-system applications use system APIs.|
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -920,6 +923,7 @@ disableAirplaneMode(): Promise\<void>
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
+| 202 | Non-system applications use system APIs.|
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 

@@ -108,7 +108,7 @@ isSharing(callback: AsyncCallback\<boolean>): void
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
-| 202     | System permission denied                           |
+| 202     | Non-system applications use system APIs.                           |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 | 2202011 | Cannot get network sharing configuration.                      |
@@ -145,7 +145,7 @@ isSharing(): Promise\<boolean>
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
-| 202     | System permission denied                           |
+| 202     | Non-system applications use system APIs.                           |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 | 2202011 | Cannot get network sharing configuration.                      |
@@ -281,7 +281,7 @@ stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
-| 202     | System permission denied                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -331,7 +331,7 @@ stopSharing(type: SharingIfaceType): Promise\<void>
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
-| 202     | System permission denied                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -854,7 +854,7 @@ on(type: 'sharingStateChange', callback: Callback\<boolean>): void
 
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
-| 202     | System permission denied                          |
+| 202     | Non-system applications use system APIs.                          |
 
 **示例：**
 
@@ -887,7 +887,7 @@ off(type: 'sharingStateChange', callback?: Callback\<boolean>): void
 
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
-| 202     | System permission denied                          |
+| 202     | Non-system applications use system APIs.                          |
 
 **示例：**
 
@@ -921,7 +921,7 @@ SharingIfaceState }>): void
 
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
-| 202     | System permission denied                          |
+| 202     | Non-system applications use system APIs.                          |
 
 **示例：**
 
@@ -955,7 +955,7 @@ SharingIfaceState }>): void
 
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
-| 202     | System permission denied                          |
+| 202     | Non-system applications use system APIs.                          |
 
 **示例：**
 
@@ -988,7 +988,7 @@ on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void
 
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
-| 202     | System permission denied                          |
+| 202     | Non-system applications use system APIs.                          |
 
 **示例：**
 
@@ -1021,7 +1021,7 @@ off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void
 
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
-| 202     | System permission denied                          |
+| 202     | Non-system applications use system APIs.                          |
 
 **示例：**
 
