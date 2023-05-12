@@ -12,7 +12,7 @@ AccessibilityExtensionAbility基于ExtensionAbility框架，提供无障碍扩�
 
 本文档将从以下场景来介绍AccessibilityExtensionAbility的基本开发：
 
-- [AccessibilityExtensionAbility概述](#accessibilityExtensionAbility概述)
+- [AccessibilityExtensionAbility概述](#accessibilityextensionability概述)
 - [如何创建一个无障碍扩展服务](#如何创建一个无障碍扩展服务)
 - [如何处理一个无障碍事件](#如何处理一个无障碍事件)
 - [如何声明无障碍扩展服务具备的能力](#如何声明无障碍扩展服务具备的能力)
