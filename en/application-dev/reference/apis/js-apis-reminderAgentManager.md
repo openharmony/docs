@@ -570,6 +570,7 @@ Enumerates button types.
 | -------- | -------- | -------- |
 | ACTION_BUTTON_TYPE_CLOSE | 0 | Button for closing the reminder.|
 | ACTION_BUTTON_TYPE_SNOOZE | 1 | Button for snoozing the reminder.|
+| ACTION_BUTTON_TYPE_CUSTOM<sup>10+</sup>  | 2 | Custom button. (This is a system API.)|
 
 
 ## ReminderType
@@ -587,7 +588,7 @@ Enumerates reminder types.
 
 ## ActionButton
 
-Defines a button displayed in the reminder notification.
+Defines a button displayed for the reminder in the notification panel.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -595,18 +596,19 @@ Defines a button displayed in the reminder notification.
 | -------- | -------- | -------- | -------- |
 | title | string | Yes| Text on the button.|
 | type | [ActionButtonType](#actionbuttontype) | Yes| Button type.|
+| wantAgent<sup>10+</sup> | [WantAgent](#wantagent) | No| Ability information that is displayed after the button is clicked. (This is a system API.)|
 
 
 ## WantAgent
 
-Sets the package and ability that are redirected to when the reminder notification is clicked.
+Defines the information about the redirected-to ability.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pkgName | string | Yes| Name of the HAP that is redirected to when the reminder notification is clicked.|
-| abilityName | string | Yes| Name of the ability that is redirected to when the reminder notification is clicked.|
+| pkgName | string | Yes| Name of the target package.|
+| abilityName | string | Yes| Name of the target ability.|
 
 
 ## MaxScreenWantAgent
@@ -617,7 +619,7 @@ Provides the information about the target package and ability to start automatic
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pkgName | string | Yes| Name of the HAP that is automatically started when the reminder arrives and the device is not in use.|
+| pkgName | string | Yes| Name of the package that is automatically started when the reminder arrives and the device is not in use.|
 | abilityName | string | Yes| Name of the ability that is automatically started when the reminder arrives and the device is not in use.|
 
 
@@ -630,18 +632,20 @@ Defines the reminder to publish.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | reminderType | [ReminderType](#remindertype) | Yes| Type of the reminder.|
-| actionButton | [ActionButton](#actionbutton) | No| Button displayed in the reminder notification. (The parameter is optional. Up to two buttons are supported.)|
-| wantAgent | [WantAgent](#wantagent) | No| Information about the ability that is redirected to when the notification is clicked.|
+| actionButton | [ActionButton](#actionbutton) | No| Button displayed for the reminder in the notification panel. For common applications, a maximum of two buttons are supported. For system applications, a maximum of two buttons are supported in API version 9, and a maximum of three buttons are supported in API version 10 and later versions.  |
+| wantAgent | [WantAgent](#wantagent) | No| Information about the ability that is redirected to when the reminder is clicked.|
 | maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | No| Information about the ability that is automatically started when the reminder arrives. If the device is in use, a notification will be displayed.|
 | ringDuration | number | No| Ringing duration, in seconds. The default value is **1**.|
 | snoozeTimes | number | No| Number of reminder snooze times. The default value is **0**.|
-| timeInterval | number | No| Reminder snooze interval, in seconds. The default value is **0**.|
+| timeInterval | number | No| Reminder snooze interval, in seconds. The minimum value is 5 minutes.|
 | title | string | No| Reminder title.|
 | content | string | No| Reminder content.|
 | expiredContent | string | No| Content to be displayed after the reminder expires.|
 | snoozeContent | string | No| Content to be displayed when the reminder is snoozing.|
 | notificationId | number | No| Notification ID used by the reminder. If there are reminders with the same notification ID, the later one will overwrite the earlier one.|
-| slotType | [notification.SlotType](js-apis-notification.md#slottype) | No| Type of the slot used by the reminder.|
+| slotType | [notification.SlotType](js-apis-notificationManager.md#slottype) | No| Type of the slot used by the reminder.|
+| tapDismissed<sup>10+</sup> | boolean | No| Whether the notification is automatically cleared. The value is the same as that of [NotificationRequest.tapDismissed](js-apis-inner-notification-notificationRequest.md#notificationrequest).|
+| autoDeletedTime<sup>10+</sup> | number | No| Time when the notification is automatically cleared. The value is the same as that of [NotificationRequest.autoDeletedTime](js-apis-inner-notification-notificationRequest.md#notificationrequest).|
 
 
 ## ReminderRequestCalendar
