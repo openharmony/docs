@@ -343,7 +343,7 @@
    ```ts
    {
      "module": {
-       // ...
+       ...
        "extensionAbilities": [
          {
            "description": "inputMethod",

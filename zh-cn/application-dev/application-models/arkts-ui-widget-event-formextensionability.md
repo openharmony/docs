@@ -4,7 +4,7 @@
 在卡片页面中可以通过**postCardAction**接口触发message事件至FormExtensionAbility，然后由FormExtensionAbility刷新卡片内容，下面是这种刷新方式的简单示例。
 
 
-- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发事件至FormExtensionAbility
+- 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发事件至FormExtensionAbility。
   
   ```ts
   let storage = new LocalStorage();
@@ -34,7 +34,7 @@
   }
   ```
   
-- 在FormExtensionAbility的onFormEvent生命周期中调用[updateForm](../reference/apis/js-apis-app-form-formProvider.md#updateform)接口刷新卡片
+- 在FormExtensionAbility的onFormEvent生命周期中调用[updateForm](../reference/apis/js-apis-app-form-formProvider.md#updateform)接口刷新卡片。
   
   ```ts
   import formBindingData from '@ohos.app.form.formBindingData';
@@ -57,10 +57,9 @@
       })
     }
   
-    // ...
+    ...
   }
   ```
 
-  运行效果如下图所示。
-
+  运行效果如下图所示。  
   ![WidgetUpdatePage](figures/WidgetUpdatePage.png)

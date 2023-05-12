@@ -55,7 +55,7 @@
       - [Want概述](want-overview.md)
       - [显式Want与隐式Want匹配规则](explicit-implicit-want-mappings.md)
       - [常见action与entities](actions-entities.md)
-      - [使用显式Want启动Ability](ability-startup-with-explicit-want.md)
+      - [使用显式Want启动应用组件](ability-startup-with-explicit-want.md)
       - [使用隐式Want打开网址](ability-startup-with-implicit-want.md)
       - [应用间使用Want分享数据](data-share-via-want.md)
     - [组件启动规则（Stage模型）](component-startup-rules.md)

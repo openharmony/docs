@@ -25,13 +25,12 @@
 2. 移除的粘性公共事件，必须是本应用之前已发布的粘性公共事件，发布粘性公共事件参考[公共事件发布](common-event-publish.md)章节。
 
    ```ts
-   CommonEventManager.removeStickyCommonEvent("sticky_event", (err) => {  // sticky_event粘性公共事件名
-       if (err) {
-           console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
-           return;
-       }
-       console.info(`Remove sticky event AsyncCallback success`);
-       }
+   commonEventManager.removeStickyCommonEvent("sticky_event", (err) => { // sticky_event粘性公共事件名
+     if (err) {
+       console.error(`Failed to remove sticky common event. Code is ${err.code}, message is ${err.message}`);
+       return;
+     }
+     console.info(`Succeeded in removeing sticky event.`);
    });
    ```
 
