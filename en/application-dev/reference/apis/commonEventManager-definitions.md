@@ -671,7 +671,7 @@ Indicates that the system idle mode has changed.
 - Required subscriber permissions: none
 
 ## [COMMON_EVENT_DEVICE_IDLE_EXEMPTION_LIST_UPDATED<sup>10+<sup>](./common_event/commonEvent-resourceschedule.md)
-Indicates that the list of exempt applications has been updated in the idle mode. This event is available only for system applications.
+Indicates that the list of exempted applications has been updated. This event is available only for system applications.
 - Value: **usual.event.DEVICE_IDLE_EXEMPTION_LIST_UPDATED**
 - Required subscriber permissions: none
 
