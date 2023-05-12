@@ -320,7 +320,7 @@ static notifyDataChange(accountId: string,bundleName:string, callback: AsyncCall
 
 通知云端的数据变更，使用callback异步回调。
 
-**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
 **参数：**
 
@@ -354,7 +354,7 @@ static notifyDataChange(accountId: string,bundleName:string): Promise&lt;void&gt
 
 通知云端的数据变更，使用Promise异步回调。
 
-**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
 **参数：**
 
