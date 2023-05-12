@@ -31,4 +31,11 @@ NavDestination()
 
 ## 事件
 
-支持[通用事件](ts-universal-events-click.md)。
+除支持[通用事件](ts-universal-events-click.md)外，还支持如下事件：
+
+
+| 名称                                       | 功能描述                                     |
+| ---------------------------------------- | ---------------------------------------- |
+| onShown(callback:&nbsp;(param:&nbsp;unknown)&nbsp;=&gt;&nbsp;void)<sup>10+</sup> | 当该NavDestination页面显示时触发此回调。param表示当前页面的详细参数信息。<br/>**说明：** <br/>后续onShown接口将修改为onShown(callback:&nbsp;()&nbsp;=&gt;&nbsp;void) |
+| onHidden(callback:&nbsp;()&nbsp;=&gt;&nbsp;void)<sup>10+</sup> | 当该NavDestination页面隐藏时触发此回调。 |
+| onBackPressed(callback:&nbsp;()&nbsp;=&gt;&nbsp;boolean)<sup>10+</sup> | 当点击返回键时，触发该回调。<br/>返回值为true时，表示重写返回键逻辑，返回值为false时，表示回退到上一个页面。<br/> |
