@@ -1,8 +1,5 @@
 # @ohos.util.LightWeightSet (Nonlinear Container LightWeightSet)
 
-> **NOTE**
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 **LightWeightSet** stores a set of values, each of which must be unique.
 
 **LightWeightSet** is based on generics and uses a lightweight structure. Its default initial capacity is 8, and it has the capacity doubled in each expansion.
@@ -15,6 +12,11 @@ Compared with **[HashSet](js-apis-hashset.md)**, which can also store values, **
 
 This topic uses the following to identify the use of generics:
 - T: Type
+
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 
 ## Modules to Import
 
@@ -227,9 +229,8 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-let result = lightWeightSet.has(123);
 lightWeightSet.add(123);
-result = lightWeightSet.has(123);
+let result = lightWeightSet.has(123);
 ```
 
 
@@ -267,7 +268,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
-let obj = ["squirrel", "sparrow"];
+let obj = ["sparrow", "squirrel"];
 let result = lightWeightSet.equal(obj);
 ```
 
