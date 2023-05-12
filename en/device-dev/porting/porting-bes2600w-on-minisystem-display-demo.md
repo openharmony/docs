@@ -1,6 +1,6 @@
 # Mini-System Devices with Screens – Bestechnic SoC Porting Case
 
-This document exemplifies the porting procedure for a development board on a mini-system device with a screen – an intelligent switch panel. It uses the BES multi-modal V200Z-R development board powered by the Bestechnic BES2600W SoC as an example. Components such as `ace_engine_lite`, `graphic_ui`, `aafwk_lite`, `appexecfwk_lite`, and `HDF` are adapted based on the OpenHarmony LiteOS-M kernel. This example uses the board-SoC separation solution as the porting architecture, the Newlib C or Musl C library as the toolchain, and GN and Kconfig graphical configuration for LiteOS-M kernel compilation.
+This document exemplifies the porting procedure for a development board on a mini-system device with a screen – an intelligent switch panel. It uses the BES multi-modal V200Z-R development board powered by the Bestechnic BES2600W SoC as an example. Components such as `ace_engine_lite`, `arkui_ui_lite`, `aafwk_lite`, `appexecfwk_lite`, and `HDF` are adapted based on the OpenHarmony LiteOS-M kernel. This example uses the board-SoC separation solution as the porting architecture, the Newlib C or Musl C library as the toolchain, and GN and Kconfig graphical configuration for LiteOS-M kernel compilation.
 
 ## Compilation and Building
 
@@ -1311,7 +1311,7 @@ aafwk_lite + appexecfwk_lite    (AAFWK + APPEXECFWK)
       |
 ace_engine_lite + jerryscript + i18n_lite + resmgr_lite + utils/native/lite/... (ACE and JS engines and their dependencies)
       |
-graphic_ui + graphic_utils      (Graphic framework)
+arkui_lite + graphic_graphic_utils_lite      (Graphic framework)
       |
 giflib + libjpeg + libpng + qrcodegen + freetype... (Third-party graphics library)
 ```
