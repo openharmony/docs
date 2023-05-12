@@ -464,12 +464,12 @@ The procedure is as follows:
 
 **Fuzzing Test**
 
-[Fuzzing case specifications](https://gitee.com/openharmony/test_developertest/blob/master/libs/fuzzlib/README_zh.md)
+[Fuzzing case specifications](https://gitee.com/openharmony/testfwk_developer_test/blob/master/libs/fuzzlib/README_zh.md)
 
 
 **Benchmark Test**
 
-[Benchmark case specifications](https://gitee.com/openharmony/test_developertest/blob/master/libs/benchmark/README_zh.md)
+[Benchmark case specifications](https://gitee.com/openharmony/testfwk_developer_test/blob/master/libs/benchmark/README_zh.md)
 
 ## **Test Case Building**
 
