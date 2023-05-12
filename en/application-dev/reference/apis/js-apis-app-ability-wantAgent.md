@@ -1,6 +1,6 @@
 # @ohos.app.ability.wantAgent (WantAgent)
 
-The **WantAgent** module provides APIs for creating and comparing **WantAgent** objects, and obtaining the user ID and bundle name of a **WantAgent** object. You are advised to use this module, since it will replace the [@ohos.wantAgent](js-apis-wantAgent.md) module in the near future.
+The **WantAgent** module provides APIs for triggering, canceling, and comparing **WantAgent** objects. You can use the APIs to create a **WantAgent** object, and obtain the user ID, bundle name, and want information of the object.
 
 > **NOTE**
 > 
@@ -24,8 +24,17 @@ Obtains a **WantAgent** object. This API uses an asynchronous callback to return
 
 | Name    | Type                      | Mandatory| Description                   |
 | -------- | -------------------------- | ---- | ----------------------- |
-| info     | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)              | Yes  | Information about the **WantAgent** object to obtain.          |
+| info     | WantAgentInfo              | Yes  | Information about the **WantAgent** object to obtain.          |
 | callback | AsyncCallback\<WantAgent\> | Yes  | Callback used to return the **WantAgent** object.|
+
+**Error codes**
+
+| ID   | Error Message           |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000151   | Invalid wantagent object.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -93,6 +102,15 @@ Obtains a **WantAgent** object. This API uses a promise to return the result. If
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<WantAgent\> | Promise used to return the **WantAgent** object.|
 
+**Error codes**
+
+| ID   | Error Message           |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000151   | Invalid wantagent object.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```js
@@ -153,16 +171,25 @@ Obtains the bundle name of a **WantAgent** object. This API uses an asynchronous
 | agent    | WantAgent               | Yes  | Target **WantAgent** object.                    |
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the bundle name.|
 
+**Error codes**
+
+| ID   | Error Message           |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000151   | Invalid wantagent object.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```js
 import WantAgent from '@ohos.app.ability.wantAgent';
 
 
-// wantAgent object
+// WantAgent object
 let wantAgent;
 
-//getWantAgent callback
+// getWantAgent callback
 function getWantAgentCallback(err, data) {
 	console.info('==========================>getWantAgentCallback=======================>');
     if (err.code == 0) {
@@ -234,16 +261,25 @@ Obtains the bundle name of a **WantAgent** object. This API uses a promise to re
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<string\> | Promise used to return the bundle name.|
 
+**Error codes**
+
+| ID   | Error Message           |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000151   | Invalid wantagent object.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```js
 import WantAgent from '@ohos.app.ability.wantAgent';
 
 
-// wantAgent object
+// WantAgent object
 let wantAgent;
 
-//WantAgentInfo object
+// WantAgentInfo object
 let wantAgentInfo = {
     wants: [
         {
@@ -302,13 +338,22 @@ Obtains the user ID of a **WantAgent** object. This API uses an asynchronous cal
 | agent    | WantAgent               | Yes  | Target **WantAgent** object.                      |
 | callback | AsyncCallback\<number\> | Yes  | Callback used to return the user ID.|
 
+**Error codes**
+
+| ID   | Error Message           |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000151   | Invalid wantagent object.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```js
 import WantAgent from '@ohos.app.ability.wantAgent';
 
 
-// wantAgent object
+// WantAgent object
 let wantAgent;
 
 // getWantAgent callback
@@ -383,13 +428,22 @@ Obtains the user ID of a **WantAgent** object. This API uses a promise to return
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<number\> | Promise used to return the user ID.|
 
+**Error codes**
+
+| ID   | Error Message           |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000151   | Invalid wantagent object.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```js
 import WantAgent from '@ohos.app.ability.wantAgent';
 
 
-// wantAgent object
+// WantAgent object
 let wantAgent;
 
 // WantAgentInfo object
@@ -453,13 +507,23 @@ Obtains the want in a **WantAgent** object. This API uses an asynchronous callba
 | agent    | WantAgent             | Yes  | Target **WantAgent** object.                  |
 | callback | AsyncCallback\<[Want](js-apis-app-ability-want.md)\> | Yes  | Callback used to return the want.|
 
+**Error codes**
+
+| ID   | Error Message           |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000015   | Service timeout.|
+| 16000151   | Invalid wantagent object.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```js
 import WantAgent from '@ohos.app.ability.wantAgent';
 
 
-// wantAgent object
+// WantAgent object
 let wantAgent;
 
 // getWantAgent callback
@@ -536,13 +600,23 @@ Obtains the want in a **WantAgent** object. This API uses a promise to return th
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<Want\> | Promise used to return the want.|
 
+**Error codes**
+
+| ID   | Error Message           |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000015   | Service timeout.|
+| 16000151   | Invalid wantagent object.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```js
 import WantAgent from '@ohos.app.ability.wantAgent';
 
 
-// wantAgent object
+// WantAgent object
 let wantAgent;
 
 // WantAgentInfo object
@@ -604,13 +678,22 @@ Cancels a **WantAgent** object. This API uses an asynchronous callback to return
 | agent    | WantAgent             | Yes  | Target **WantAgent** object.              |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+| ID   | Error Message           |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000151   | Invalid wantagent object.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```js
 import WantAgent from '@ohos.app.ability.wantAgent';
 
 
-// wantAgent object
+// WantAgent object
 let wantAgent;
 
 // getWantAgent callback
@@ -685,13 +768,22 @@ Cancels a **WantAgent** object. This API uses a promise to return the result.
 | --------------- | ------------------------------- |
 | Promise\<void\> | Promise used to return the result.|
 
+**Error codes**
+
+| ID   | Error Message           |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000151   | Invalid wantagent object.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```js
 import WantAgent from '@ohos.app.ability.wantAgent';
 
 
-// wantAgent object
+// WantAgent object
 let wantAgent;
 
 // WantAgentInfo object
@@ -751,15 +843,16 @@ Triggers a **WantAgent** object. This API uses an asynchronous callback to retur
 | Name       | Type                         | Mandatory| Description                           |
 | ----------- | ----------------------------- | ---- | ------------------------------- |
 | agent       | WantAgent                     | Yes  | Target **WantAgent** object.                  |
-| triggerInfo | TriggerInfo                  | Yes  | **TriggerInfo** object.                |
+| triggerInfo | TriggerInfo                   | Yes  | **TriggerInfo** object.                |
 | callback    | AsyncCallback\<[CompleteData](#completedata)\> | No  | Callback used to return the result.|
 
+**Example**
 
 ```js
 import WantAgent from '@ohos.app.ability.wantAgent';
 
 
-// wantAgent object
+// WantAgent object
 let wantAgent;
 
 // getWantAgent callback
@@ -823,7 +916,7 @@ try {
 
 equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback\<boolean\>): void
 
-Checks whether two **WantAgent** objects are equal to determine whether the same operation is from the same application. This API uses an asynchronous callback to return the result.
+Checks whether two **WantAgent** objects are equal. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -841,7 +934,7 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 import WantAgent from '@ohos.app.ability.wantAgent';
 
 
-// wantAgent object
+// WantAgent object
 let wantAgent1;
 let wantAgent2;
 
@@ -902,7 +995,7 @@ try {
 
 equal(agent: WantAgent, otherAgent: WantAgent): Promise\<boolean\>
 
-Checks whether two **WantAgent** objects are equal to determine whether the same operation is from the same application. This API uses a promise to return the result.
+Checks whether two **WantAgent** objects are equal. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -925,7 +1018,7 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 import WantAgent from '@ohos.app.ability.wantAgent';
 
 
-// wantAgent object
+// WantAgent object
 let wantAgent1;
 let wantAgent2;
 
@@ -987,12 +1080,22 @@ Obtains the operation type of a **WantAgent** object. This API uses an asynchron
 | agent      | WantAgent                | Yes  | Target **WantAgent** object.                          |
 | callback   | AsyncCallback\<number> | Yes  | Callback used to return the operation type.|
 
+**Error codes**
+
+| ID   | Error Message           |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000015   | Service timeout.|
+| 16000151   | Invalid wantagent object.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```js
 import WantAgent from '@ohos.app.ability.wantAgent';
 
-// wantAgent object
+// WantAgent object
 let wantAgent;
 
 // WantAgentInfo object
@@ -1057,12 +1160,22 @@ Obtains the operation type of a **WantAgent** object. This API uses a promise to
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<number> | Promise used to return the operation type.|
 
+**Error codes**
+
+| ID   | Error Message           |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000015   | Service timeout.|
+| 16000151   | Invalid wantagent object.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```js
 import WantAgent from '@ohos.app.ability.wantAgent';
 
-// wantAgent object
+// WantAgent object
 let wantAgent;
 
 // WantAgentInfo object
@@ -1153,4 +1266,3 @@ try {
 | finalCode      | number                          | Yes  | Request code that triggers the **WantAgent** object.|
 | finalData      | string                          | Yes  | Final data collected by the common event. |
 | extraInfo      | {[key: string]: any}            | No  | Extra information.              |
-
