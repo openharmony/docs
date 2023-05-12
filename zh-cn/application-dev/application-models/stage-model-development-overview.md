@@ -5,7 +5,7 @@
 
 下图展示了Stage模型中的基本概念。
 
-  **图1** Stage模型概念图  
+**图1** Stage模型概念图  
 ![stage-concepts](figures/stage-concepts.png)
 
 - [UIAbility组件](uiability-overview.md)和[ExtensionAbility组件](extensionability-overview.md)
