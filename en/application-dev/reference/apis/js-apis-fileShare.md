@@ -51,7 +51,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 import wantConstant from '@ohos.app.ability.wantConstant';
 
 
-let uri = 'datashare:///media/image/8';
+let uri = 'file://media/image/8';
 let bundleName = 'com.demo.test';
 try {
     fileShare.grantUriPermission(uri, bundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION, (err) => {
@@ -111,7 +111,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
   ```js
 import wantConstant from '@ohos.app.ability.wantConstant';
 
-let uri = 'datashare:///media/image/8';
+let uri = 'file://media/image/8';
 let bundleName = 'com.demo.test';
 try {
     fileShare.grantUriPermission(uri, bundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION |

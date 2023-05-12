@@ -654,7 +654,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
   // The media library URI is used as an example.
   // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceUri = "datashare:///media/file/6";
+  let sourceUri = "file://media/file/6";
   let displayName = "file1"
   let fileUri = null;
   try {
@@ -698,7 +698,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
   // The media library URI is used as an example.
   // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceUri = "datashare:///media/file/6";
+  let sourceUri = "file://media/file/6";
   let displayName = "file1"
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
@@ -747,7 +747,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
   // The media library URI is used as an example.
   // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceUri = "datashare:///media/file/6";
+  let sourceUri = "file://media/file/6";
   let dirName = "dirTest"
   let dirUri = null;
   try {
@@ -791,7 +791,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
   // The media library URI is used as an example.
   // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceUri = "datashare:///media/file/6";
+  let sourceUri = "file://media/file/6";
   let dirName = "dirTest"
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
@@ -840,7 +840,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
   // The media library URI is used as an example.
   // In the sample code, targetUri indicates a file in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let targetUri  = "datashare:///media/file/100";
+  let targetUri  = "file://media/file/100";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     let fd = await fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ);
@@ -877,7 +877,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
   // The media library URI is used as an example.
   // In the sample code, targetUri indicates a file in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let targetUri  = "datashare:///media/file/100";
+  let targetUri  = "file://media/file/100";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ, function (err, fd) {
@@ -924,7 +924,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
   // The media library URI is used as an example.
   // In the sample code, targetUri indicates a file in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let targetUri = "datashare:///media/file/100";
+  let targetUri = "file://media/file/100";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     let code = await fileAccessHelper.delete(targetUri);
@@ -962,7 +962,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
   // The media library URI is used as an example.
   // In the sample code, targetUri indicates a file in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let targetUri = "datashare:///media/file/100";
+  let targetUri = "file://media/file/100";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     fileAccessHelper.delete(targetUri, function (err, code) {
@@ -1010,8 +1010,8 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
   // The media library URI is used as an example.
   // In the sample code, sourceFile destFile indicates the file or directory in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceFile = "datashare:///media/file/102";
-  let destFile = "datashare:///media/file/101";
+  let sourceFile = "file://media/file/102";
+  let destFile = "file://media/file/101";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     let fileUri = await fileAccessHelper.move(sourceFile, destFile);
@@ -1049,8 +1049,8 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
   // The media library URI is used as an example.
   // In the sample code, sourceFile destFile indicates the file or directory in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceFile = "datashare:///media/file/102";
-  let destFile = "datashare:///media/file/101";
+  let sourceFile = "file://media/file/102";
+  let destFile = "file://media/file/101";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     fileAccessHelper.move(sourceFile, destFile, function (err, fileUri) {
@@ -1098,7 +1098,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
   // The media library URI is used as an example.
   // In the sample code, sourceDir indicates a file in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceDir = "datashare:///media/file/100";
+  let sourceDir = "file://media/file/100";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     let DestDir = await fileAccessHelper.rename(sourceDir, "testDir");
@@ -1136,7 +1136,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
   // The media library URI is used as an example.
   // In the sample code, sourceDir indicates a file in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceDir = "datashare:///media/file/100";
+  let sourceDir = "file://media/file/100";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     fileAccessHelper.rename(sourceDir, "testDir", function (err, DestDir) {
@@ -1183,7 +1183,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
   // The media library URI is used as an example.
   // In the sample code, sourceDir indicates a file in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceDir = "datashare:///media/file/100";
+  let sourceDir = "file://media/file/100";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     let existJudgment = await fileAccessHelper.access(sourceDir);
@@ -1223,7 +1223,7 @@ For details about error codes, see [File Management Error Codes](../errorcodes/e
   // The media library URI is used as an example.
   // In the sample code, sourceDir indicates a file in the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceDir = "datashare:///media/file/100";
+  let sourceDir = "file://media/file/100";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     fileAccessHelper.access(sourceDir, function (err, existJudgment) {
@@ -1269,7 +1269,7 @@ Obtains a **FileInfo** object based on the specified URI. This API uses a promis
   // The media library URI is used as an example.
   // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceUri = "datashare:///media/file/6";
+  let sourceUri = "file://media/file/6";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     let fileInfo = await fileAccessHelper.getFileInfoFromUri(sourceUri);
@@ -1301,7 +1301,7 @@ Obtains a **FileInfo** object based on the specified URI. This API uses an async
   // The media library URI is used as an example.
   // In the sample code, sourceUri indicates the Download directory. The URI is the URI in fileInfo.
   // You can use the URI obtained.
-  let sourceUri = "datashare:///media/file/6";
+  let sourceUri = "file://media/file/6";
   try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     fileAccessHelper.getFileInfoFromUri(sourceUri, function (err, fileInfo) {
@@ -1421,7 +1421,7 @@ Obtains the **Pixelmap** object of a media file based on the specified URI and s
 // The media library URI is used as an example.
 // In the sample code, targetUri indicates a media file (image, audio, or video) in the Download directory. The URI is the URI in fileInfo.
 // You can use the URI obtained.
-let targetUri = "datashare:///media/image/100";
+let targetUri = "file://media/image/100";
 let size = { width: 128, height: 128 };
 try {
   // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
@@ -1458,7 +1458,7 @@ Obtains the **Pixelmap** object of a media file based on the specified URI and s
 // The media library URI is used as an example.
 // In the sample code, targetUri indicates a media file (image, audio, or video) in the Download directory. The URI is the URI in fileInfo.
 // You can use the URI obtained.
-let targetUri = "datashare:///media/image/100";
+let targetUri = "file://media/image/100";
 let size = { width: 128, height: 128 };
 try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
@@ -1566,8 +1566,8 @@ Copies a file or directory. This API uses a promise to return the result.
 
 | Name   | Type   | Mandatory| Description                                                        |
 | --------- | ------- | ---- | ------------------------------------------------------------ |
-| sourceUri | string  | Yes  | URI of the file or directory to copy, for example, **datashare:///media/file/102**. |
-| destUri   | string  | Yes  | URI of the destination directory, for example, **datashare:///media/file/101**.         |
+| sourceUri | string  | Yes  | URI of the file or directory to copy, for example, **file://media/file/102**. |
+| destUri   | string  | Yes  | URI of the destination directory, for example, **file://media/file/101**.         |
 | force     | boolean | No  | Whether to forcibly overwrite the file with the same name. <br>If **force** is **true**, the file with the same name will be overwritten. If **force** is **false** or not specified, the file with the same name will not be overwritten.|
 
 **Return value**
@@ -1582,8 +1582,8 @@ Example 1: Copy a file with **force** unspecified.
 // The media library URI is used as an example.
 // In the sample code, sourceFile indicates the file (directory) in the Download directory to copy, destFile indicates the destination directory in the Download directory, and uri is to URI in fileInfo.
 // You can use the URI obtained.
-let sourceFile = "datashare:///media/file/102";
-let destFile = "datashare:///media/file/101";
+let sourceFile = "file://media/file/102";
+let destFile = "file://media/file/101";
 try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     let copyResult = await fileAccessHelper.copy(sourceFile, destFile);
@@ -1608,8 +1608,8 @@ Example 2: Copy a file or directory when **force** set to **true**.
 // The media library URI is used as an example.
 // In the sample code, sourceFile indicates the file (directory) in the Download directory to copy, destFile indicates the destination directory in the Download directory, and uri is to URI in fileInfo.
 // You can use the URI obtained.
-let sourceFile = "datashare:///media/file/102";
-let destFile = "datashare:///media/file/101";
+let sourceFile = "file://media/file/102";
+let destFile = "file://media/file/101";
 try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     let copyResult = await fileAccessHelper.copy(sourceFile, destFile, true);
@@ -1642,8 +1642,8 @@ Copies a file or directory. This API uses an asynchronous callback to return the
 
 | Name   | Type                                            | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| sourceUri | string                                           | Yes  | URI of the file or directory to copy, for example, **datashare:///media/file/102**. |
-| destUri   | string                                           | Yes  | URI of the destination directory, for example, **datashare:///media/file/101**.         |
+| sourceUri | string                                           | Yes  | URI of the file or directory to copy, for example, **file://media/file/102**. |
+| destUri   | string                                           | Yes  | URI of the destination directory, for example, **file://media/file/101**.         |
 | callback  | AsyncCallback&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If the file or directory is copied successfully, no information is returned. If the file copy fails, **copyResult** is returned.|
 
 **Example**
@@ -1652,8 +1652,8 @@ Copies a file or directory. This API uses an asynchronous callback to return the
 // The media library URI is used as an example.
 // In the sample code, sourceFile indicates the file (directory) in the Download directory to copy, destFile indicates the destination directory in the Download directory, and uri is to URI in fileInfo.
 // You can use the URI obtained.
-let sourceFile = "datashare:///media/file/102";
-let destFile = "datashare:///media/file/101";
+let sourceFile = "file://media/file/102";
+let destFile = "file://media/file/101";
 try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     fileAccessHelper.copy(sourceFile, destFile, async (err, copyResult) => {
@@ -1691,8 +1691,8 @@ Copies a file or directory. This API uses an asynchronous callback to return the
 
 | Name   | Type                                            | Mandatory| Description                                                        |
 | --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| sourceUri | string                                           | Yes  | URI of the file or directory to copy, for example, **datashare:///media/file/102**. |
-| destUri   | string                                           | Yes  | URI of the destination directory, for example, **datashare:///media/file/101**.         |
+| sourceUri | string                                           | Yes  | URI of the file or directory to copy, for example, **file://media/file/102**. |
+| destUri   | string                                           | Yes  | URI of the destination directory, for example, **file://media/file/101**.         |
 | force     | boolean                                          | Yes  | Whether to forcibly overwrite the file with the same name. <br>If **force** is **true**, the file with the same name will be overwritten. If **force** is **false** or not specified, the file with the same name will not be overwritten.|
 | callback  | AsyncCallback&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | Yes  | Callback invoked to return the result. If the file or directory is copied successfully, no information is returned. If the file copy fails, **copyResult** is returned.|
 
@@ -1702,8 +1702,8 @@ Copies a file or directory. This API uses an asynchronous callback to return the
 // The media library URI is used as an example.
 // In the sample code, sourceFile indicates the file (directory) in the Download directory to copy, destFile indicates the destination directory in the Download directory, and uri is to URI in fileInfo.
 // You can use the URI obtained.
-let sourceFile = "datashare:///media/file/102";
-let destFile = "datashare:///media/file/101";
+let sourceFile = "file://media/file/102";
+let destFile = "file://media/file/101";
 try {
     // Obtain fileAccessHelper by referring to the sample code of fileAccess.createFileAccessHelper.
     fileAccessHelper.copy(sourceFile, destFile, true, async (err, copyResult) => {
