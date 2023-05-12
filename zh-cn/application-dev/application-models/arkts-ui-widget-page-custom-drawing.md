@@ -3,7 +3,7 @@
 
 ArkTS卡片开放了自定义绘制的能力，在卡片上可以通过[Canvas](../reference/arkui-ts/ts-components-canvas-canvas.md)组件创建一块画布，然后通过[CanvasRenderingContext2D](../reference/arkui-ts/ts-canvasrenderingcontext2d.md)对象在画布上进行自定义图形的绘制，如下示例代码实现了在画布的中心绘制了一个笑脸。
 
-```typescript
+```ts
 @Entry
 @Component
 struct Card {
@@ -39,14 +39,14 @@ struct Card {
             this.context.fillStyle = 'red';
             this.context.fill();
             // 绘制笑脸的左眼
-            let leftR = radius / 4;;
+            let leftR = radius / 4;
             let leftX = circleX - (radius / 2);
             let leftY = circleY - (radius / 3.5);
             this.context.beginPath();
             this.context.arc(leftX, leftY, leftR, 0, Math.PI, true);
             this.context.strokeStyle = '#ffff00';
             this.context.lineWidth = 10;
-            this.context.stroke();;
+            this.context.stroke();
             // 绘制笑脸的右眼
             let rightR = radius / 4;
             let rightX = circleX + (radius / 2);
