@@ -11,7 +11,7 @@
 | 配置项           | FA模型                                      | Stage模型                                                    |
 | ---------------- | ------------------------------------------- | ------------------------------------------------------------ |
 | 配置项位置       | formAbility和forms配置都在config.json文件里 | 一级目录module.json5配置文件中配置extensionAbilities（针对formExtensionAbility的配置），二级目录form_config.json文件中配置forms（针对formExtensionAbility里包含的forms的详细配置） |
-| 卡片代码路径     | srcPath，不带文件名                         | srcEnty，带文件名                                            |
+| 卡片代码路径     | srcPath，不带文件名                         | srcEntry，带文件名                                           |
 | 语言             | srcLanguage支持配置为js或ets                | 无此配置项，只支持ets                                        |
 | 是否使能卡片     | formsEnabled                                | 无，type配置项配置为form即使能                               |
 | ability类型      | type：service                               | type：form                                                   |
@@ -32,7 +32,7 @@
 
 | 入口及生命周期 | FA模型 | Stage模型 |
 | -------- | -------- | -------- |
-| 入口文件 | srcPath指向的目录下的form.ts | srcEnty指向的文件 |
+| 入口文件 | srcPath指向的目录下的form.ts | srcEntry指向的文件 |
 | 生命周期 | export&nbsp;default | import&nbsp;FormExtension&nbsp;from&nbsp;'\@ohos.app.form.FormExtensionAbility';<br/>export&nbsp;default&nbsp;class&nbsp;FormAbility&nbsp;extends&nbsp;FormExtension |
 
 

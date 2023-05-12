@@ -9,23 +9,23 @@
   UIAbility启动PageAbility和UIAbility启动UIAbility的方式完全相同。
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends UIAbility {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.info("MainAbility onCreate")
+        console.info("EntryAbility onCreate")
     }
     onDestroy() {
-        console.info("MainAbility onDestroy")
+        console.info("EntryAbility onDestroy")
     }
     onWindowStageCreate(windowStage) {
-        console.info("MainAbility onWindowStageCreate")
+        console.info("EntryAbility onWindowStageCreate")
         windowStage.loadContent('pages/Index', (err, data) => {
-            // ...
+            ...
         });
         let want = {
             bundleName: "com.ohos.fa",
-            abilityName: "MainAbility",
+            abilityName: "EntryAbility",
         };
         this.context.startAbility(want).then(() => {
             console.info('Start Ability successfully.');
@@ -34,13 +34,13 @@ export default class MainAbility extends UIAbility {
         });
     }
     onWindowStageDestroy() {
-        console.info("MainAbility onWindowStageDestroy")
+        console.info("EntryAbility onWindowStageDestroy")
     }
     onForeground() {
-        console.info("MainAbility onForeground")
+        console.info("EntryAbility onForeground")
     }
     onBackground() {
-        console.info("MainAbility onBackground")
+        console.info("EntryAbility onBackground")
     }
 }
 ```
@@ -54,23 +54,23 @@ UIAbility通过startAbilityForResult启动PageABility和UIAbility通过startAbil
 
 
 ```ts
-import UIAbility from '@ohos.app.ability.UIAbility'
+import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends UIAbility {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.info("MainAbility onCreate")
+        console.info("EntryAbility onCreate")
     }
     onDestroy() {
-        console.info("MainAbility onDestroy")
+        console.info("EntryAbility onDestroy")
     }
     onWindowStageCreate(windowStage) {
-        console.info("MainAbility onWindowStageCreate")
+        console.info("EntryAbility onWindowStageCreate")
         windowStage.loadContent('pages/Index', (err, data) => {
-            // ...
+            ...
         });
         let want = {
             bundleName: "com.ohos.fa",
-            abilityName: "MainAbility",
+            abilityName: "EntryAbility",
         };
         this.context.startAbilityForResult(want).then((result) => {
             console.info('Ability verify result: ' + JSON.stringify(result));
@@ -79,13 +79,13 @@ export default class MainAbility extends UIAbility {
         });
     }
     onWindowStageDestroy() {
-        console.info("MainAbility onWindowStageDestroy")
+        console.info("EntryAbility onWindowStageDestroy")
     }
     onForeground() {
-        console.info("MainAbility onForeground")
+        console.info("EntryAbility onForeground")
     }
     onBackground() {
-        console.info("MainAbility onBackground")
+        console.info("EntryAbility onBackground")
     }
 }
 ```
@@ -110,7 +110,7 @@ export default class ServiceExtension extends Extension {
         console.info("ServiceExtension onRequest")
         let wantFA = {
             bundleName: "com.ohos.fa",
-            abilityName: "MainAbility",
+            abilityName: "EntryAbility",
         };
         this.context.startAbility(wantFA).then(() => {
             console.info('Start Ability successfully.');

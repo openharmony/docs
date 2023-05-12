@@ -174,7 +174,7 @@ Stage卡片开发，即基于[Stage模型](stage-model-development-overview.md)�
        "extensionAbilities": [
          {
            "name": "EntryFormAbility",
-           "srcEnty": "./ets/entryformability/EntryFormAbility.ts",
+           "srcEntry": "./ets/entryformability/EntryFormAbility.ts",
            "label": "$string:EntryFormAbility_label",
            "description": "$string:EntryFormAbility_desc",
            "type": "form",

@@ -21,5 +21,5 @@ FA模型下的线程主要有如下三类：
 基于OpenHarmony的线程模型，不同的业务功能运行在不同的线程上，业务功能的交互就需要线程间通信。线程间通信目前主要有Emitter和Worker两种方式，其中Emitter主要适用于线程间的事件同步， Worker主要用于新开一个线程执行耗时任务。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > FA模型每个ability都有一个独立的线程，Emiter可用于Ability线程内、Ability线程间、Ability线程与Worker线程的事件同步。

@@ -30,7 +30,7 @@ export default {
 ```
 
 
-PageAbility创建成功后，其abilities相关的配置项在config.json中体现，一个名字为MainAbility的config.json配置文件示例如下：
+PageAbility创建成功后，其abilities相关的配置项在config.json中体现，一个名字为EntryAbility的config.json配置文件示例如下：
 
 ```json
 {
@@ -48,13 +48,13 @@ PageAbility创建成功后，其abilities相关的配置项在config.json中体�
       ],
       "orientation": "unspecified",
       "visible": true,
-      "srcPath": "MainAbility",
-      "name": ".MainAbility",
+      "srcPath": "EntryAbility",
+      "name": ".EntryAbility",
       "srcLanguage": "ets",
       "icon": "$media:icon",
-      "description": "$string:MainAbility_desc",
+      "description": "$string:EntryAbility_desc",
       "formsEnabled": false,
-      "label": "$string:MainAbility_label",
+      "label": "$string:EntryAbility_label",
       "type": "page",
       "launchType": "singleton"
     }
