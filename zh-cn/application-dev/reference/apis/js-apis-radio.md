@@ -2539,6 +2539,101 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 });
 ```
 
+
+## radio.getBasebandVersion<sup>10+</sup>
+
+getBasebandVersion\(slotId: number, callback: AsyncCallback\<string\>\): void
+
+获取设备的基带版本号。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                                   |
+| -------- | ----------------------- | ---- | ------------------------------------- |
+| slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。获取的基带版本号。            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let slotId = 0;
+radio.getBasebandVersion(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getBasebandVersion<sup>10+</sup>
+
+getBasebandVersion\(slotId: number\): Promise\<string\>
+
+获取设备的基带版本号。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                                  |
+| -------- | ----------------------- | ---- | ------------------------------------- |
+| slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型              | 说明                                    |
+| ----------------- | -------------------------------------- |
+| Promise\<string\> | 以Promise形式返回设备的基带版本号。      |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let slotId = 0;
+let promise = radio.getBasebandVersion(slotId);
+promise.then(data => {
+    console.log(`getBasebandVersion success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getBasebandVersion failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
 ## RadioTechnology
 
 无线接入技术。
