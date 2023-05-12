@@ -16,7 +16,7 @@ import fetch from '@system.fetch';
 
 ## fetch.fetch<sup>3+</sup>
 
-fetch(options:FetchOptions): void
+fetch(Object): void
 
 通过网络获取数据。
 
@@ -25,8 +25,23 @@ fetch(options:FetchOptions): void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | FetchOptions | 是 | 调用参数。 |
+| url | string | 是 | 资源地址。 |
+| data | string \| Object | 否 | 请求的参数，可选类型是字符串或者json对象。详见表 data与Content-Type关系。 |
+| header | Object | 否 | 设置请求的header。 |
+| method | string | 否 | 请求方法默认为GET，可选值为：OPTIONS、GET、HEAD、POST、PUT、DELETE、TRACE。 |
+| responseType | string | 否 | 默认会根据服务器返回header中的Content-Type确定返回类型，支持文本和json格式。详见success返回值。 |
+| success | Function | 否 | 接口调用成功的回调函数，返回值为[FetchResponse](#fetchresponse) |
+| fail | Function | 否 | 接口调用失败的回调函数。 |
+| complete | Function | 否 | 接口调用结束的回调函数。 |
 
+**表1** data与Content-Type关系
+
+| data | Content-Type | 说明 |
+| -------- | -------- | -------- |
+| string | 不设置 | Content-Type默认为&nbsp;text/plain，data值作为请求的body。 |
+| string | 任意&nbsp;Type | data值作为请求的body。 |
+| Object | 不设置 | Content-Type默认为application/x-www-form-urlencoded，data按照资源地址规则进行encode拼接作为请求的body。 |
+| Object | application/x-www-form-urlencoded | data按照资源地址规则进行encode拼接作为请求的body。 |
 
 ## FetchResponse<sup>3+</sup>
 
@@ -69,30 +84,6 @@ export default {
   }
 }
 ```
-
-## FetchOptions<sup>3+</sup>
-
-**系统能力：** SystemCapability.Communication.NetStack 
-
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| url | string | 是 | 资源地址。 |
-| data | string \| Object | 否 | 请求的参数，可选类型是字符串或者json对象。详见表 data与Content-Type关系。 |
-| header | Object | 否 | 设置请求的header。 |
-| method | string | 否 | 请求方法默认为GET，可选值为：OPTIONS、GET、HEAD、POST、PUT、DELETE、TRACE。 |
-| responseType | string | 否 | 默认会根据服务器返回header中的Content-Type确定返回类型，支持文本和json格式。详见success返回值。 |
-| success | Function | 否 | 接口调用成功的回调函数，返回值为[FetchResponse](#fetchresponse) |
-| fail | Function | 否 | 接口调用失败的回调函数。 |
-| complete | Function | 否 | 接口调用结束的回调函数。 |
-
-**表3** data与Content-Type关系
-
-| data | Content-Type | 说明 |
-| -------- | -------- | -------- |
-| string | 不设置 | Content-Type默认为&nbsp;text/plain，data值作为请求的body。 |
-| string | 任意&nbsp;Type | data值作为请求的body。 |
-| Object | 不设置 | Content-Type默认为application/x-www-form-urlencoded，data按照资源地址规则进行encode拼接作为请求的body。 |
-| Object | application/x-www-form-urlencoded | data按照资源地址规则进行encode拼接作为请求的body。 |
 
 
 > **说明：**

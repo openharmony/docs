@@ -23,7 +23,7 @@ ohos.permission.GET_NETWORK_INFO
 
 ## network.getType<sup>3+</sup>
 
-getType(options?:GetTypeOptions): void
+getType(Object): void
 
 获取当前设备的网络类型。
 
@@ -33,7 +33,9 @@ getType(options?:GetTypeOptions): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | GetTypeOptions | 否 | 可选参数。 |
+| success | Function | 否 | 接口调用成功的回调函数，返回值为[NetworkResponse](#networkresponse) |
+| fail | Function | 否 | 接口调用失败的回调函数。 |
+| complete | Function | 否 | 接口调用结束的回调函数。 |
 
 fail返回值：
 
@@ -61,7 +63,7 @@ export default {
 
 ## network.subscribe<sup>3+</sup>
 
-subscribe(options?:SubscribeOptions): void
+subscribe(Object): void
 
 订阅当前设备的网络连接状态。如果多次调用，会覆盖前一次调用。
 
@@ -71,7 +73,8 @@ subscribe(options?:SubscribeOptions): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | SubscribeOptions | 否 | 可选参数。 |
+| success | Function | 否 | 网络发生变化的回调函数，返回值为[NetworkResponse](#networkresponse) |
+| fail | Function | 否 | 接口调用失败的回调函数。 |
 
 fail返回值：
 
@@ -125,22 +128,3 @@ export default {
 | -------- | -------- | -------- | -------- |
 | metered | boolean | 否 |是否按照流量计费。 |
 | type | string | 是|网络类型，可能的值有2g，3g，4g，5g，wifi，none等。 |
-
-## GetTypeOptions<sup>3+</sup>
-
-**系统能力：** SystemCapability.Communication.NetManager.Core
-
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| success | Function | 否 | 接口调用成功的回调函数，返回值为[NetworkResponse](#networkresponse) |
-| fail | Function | 否 | 接口调用失败的回调函数。 |
-| complete | Function | 否 | 接口调用结束的回调函数。 |
-
-## SubscribeOptions<sup>3+</sup>
-
-**系统能力：** SystemCapability.Communication.NetManager.Core
-
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| success | Function | 否 | 网络发生变化的回调函数，返回值为[NetworkResponse](#networkresponse) |
-| fail | Function | 否 | 接口调用失败的回调函数。 |
