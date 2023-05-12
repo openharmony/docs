@@ -253,7 +253,7 @@ resourceManager.getResourceManager((error, mgr) => {
 
 | 名称     | 类型    | 可读   | 可写  | 说明           |
 | ------ | ------  | ---- | ---- | ------------------ |
-| fd     | number  | 是    | 否 | rawfile的descriptor |
+| fd     | number  | 是    | 否 | rawfile所在hap的文件描述符 |
 | offset | number  | 是    | 否 | rawfile的起始偏移量      |
 | length | number  | 是    | 否 | rawfile的文件长度       |
 
@@ -2407,7 +2407,7 @@ getNumber(resId: number): number
 
 | 类型     | 说明         |
 | ------ | ---------- | 
-| number | 资源ID值对应的数值。Integer对应的是原数值，float对应的是真实像素点值 |
+| number | 资源ID值对应的数值。Integer对应的是原数值，float对应的是真实像素点值，具体参考示例代码 |
 
 以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
@@ -2452,7 +2452,7 @@ getNumber(resource: Resource): number
 
 | 类型     | 说明              |
 | ------ | --------------- |
-| number | resource对象对应的数值。Integer对应的是原数值，float对应的是真实像素点值 |
+| number | resource对象对应的数值。Integer对应的是原数值，float对应的是真实像素点值, 具体参考示例代码 |
 
 以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
