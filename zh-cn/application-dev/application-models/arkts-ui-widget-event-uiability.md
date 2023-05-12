@@ -1,9 +1,9 @@
-# 通过UIAbility刷新卡片内容
+# 通过router或call事件刷新卡片内容
 
 
 在卡片页面中可以通过**postCardAction**接口触发router事件或者call事件拉起UIAbility，然后由UIAbility刷新卡片内容，下面是这种刷新方式的简单示例。
 
-## 通过postCardAction接口触发router事件
+## 通过router事件刷新卡片内容
 
 - 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发router事件至FormExtensionAbility。
   
@@ -86,7 +86,7 @@
   }
   ```
 
-## 通过postCardAction接口触发call事件
+## 通过call事件刷新卡片内容
 
 - 在使用**postCardAction**接口的call事件时，需要在FormExtensionAbility中的onAddForm生命周期回调中更新formId。
    
