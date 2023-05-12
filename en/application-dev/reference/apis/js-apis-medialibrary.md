@@ -713,8 +713,8 @@ Starts image preview, with the first image to preview specified. This API can be
 
 ```js
 let images = [
-    'datashare:///media/xxxx/2',
-    'datashare:///media/xxxx/3'
+    'file://media/xxxx/2',
+    'file://media/xxxx/3'
 ];
 /* Preview online images.
 let images = [
@@ -756,8 +756,8 @@ Starts image preview. This API can be used to preview local images whose URIs st
 
 ```js
 let images = [
-    'datashare:///media/xxxx/2',
-    'datashare:///media/xxxx/3'
+    'file://media/xxxx/2',
+    'file://media/xxxx/3'
 ];
 /* Preview online images.
 let images = [
@@ -804,8 +804,8 @@ Starts image preview, with the first image to preview specified. This API can be
 
 ```js
 let images = [
-    'datashare:///media/xxxx/2',
-    'datashare:///media/xxxx/3'
+    'file://media/xxxx/2',
+    'file://media/xxxx/3'
 ];
 /* Preview online images.
 let images = [
@@ -1046,7 +1046,7 @@ Provides APIs for encapsulating file asset attributes.
 | Name                     | Type                    | Readable| Writable| Description                                                  |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
 | id                        | number                   | Yes  | No  | File asset ID.                                          |
-| uri                       | string                   | Yes  | No  | File asset URI, for example, **datashare:///media/image/2**.        |
+| uri                       | string                   | Yes  | No  | File asset URI, for example, **file://media/image/2**.        |
 | mimeType                  | string                   | Yes  | No  | Extended file attributes.                                          |
 | mediaType<sup>8+</sup>    | [MediaType](#mediatype8) | Yes  | No  | Media type.                                              |
 | displayName               | string                   | Yes  | Yes  | Display file name, including the file name extension.                                |
