@@ -1094,9 +1094,9 @@ http的数据类型。
 
 | 名称 | 值 | 说明     |
 | ------------------  | -- | ----------- |
-| STRING<sup>6+</sup>              | 0 | 字符串类型。 |
-| OBJECT<sup>6+</sup>              | 1 | 对象类型。    |
-| ARRAY_BUFFER<sup>6+</sup>        | 2 | 二进制数组类型。|
+| STRING              | 0 | 字符串类型。 |
+| OBJECT              | 1 | 对象类型。    |
+| ARRAY_BUFFER        | 2 | 二进制数组类型。|
 
 ## HttpProtocol<sup>9+</sup>
 
