@@ -14,3 +14,4 @@
 - [时间时区子系统公共事件定义](commonEvent-time.md)
 - [网络管理子系统公共事件定义](commonEvent-netmanager.md)
 - [短信应用公共事件定义](commonEvent-mms.md)
+- [窗口管理子系统公共事件定义](commonEvent-window.md)
