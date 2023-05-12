@@ -101,6 +101,31 @@
           - [EnterpriseAdminExtensionAbility](application-models/enterprise-extensionAbility.md)
           - [InputMethodExtensionAbility](application-models/inputmethodextentionability.md)
           - [WindowExtensionAbility](application-models/windowextensionability.md)
+        - Service Widget Development in Stage Model
+          - [Service Widget Overview](application-models/service-widget-overview.md)
+          - Developing an ArkTS Widget
+            - [ArkTS Widget Working Principles](application-models/arkts-ui-widget-working-principles.md)
+            - [ArkTS Widget Related Modules](application-models/arkts-ui-widget-modules.md)
+            - ArkTS Widget Development
+              - [Creating an ArkTS Widget](application-models/arkts-ui-widget-creation.md)
+              - [Configuring Widget Configuration Files](application-models/arkts-ui-widget-configuration.md)
+              - [Widget Lifecycle Management](application-models/arkts-ui-widget-lifecycle.md)
+              - Widget Page Development
+                - [Widget Page Capability Overview](application-models/arkts-ui-widget-page-overview.md)
+                - [Using Animations in the Widget](application-models/arkts-ui-widget-page-animation.md)
+                - [Applying Custom Drawing in the Widget](application-models/arkts-ui-widget-page-custom-drawing.md)
+              - Widget Event Development
+                - [Widget Event Capability Overview](application-models/arkts-ui-widget-event-overview.md)
+                - [Updating Widget Content Through FormExtensionAbility](application-models/arkts-ui-widget-event-formextensionability.md)
+                - [Updating Widget Content Through UIAbility](application-models/arkts-ui-widget-event-uiability.md)
+                - [Redirecting to a Specified Page Through the Router Event](application-models/arkts-ui-widget-event-router.md)
+              - Widget Data Interaction
+                - [Widget Data Interaction Overview](application-models/arkts-ui-widget-interaction-overview.md)
+                - [Configuring a Widget to Update Periodically](application-models/arkts-ui-widget-update-by-time.md)
+                - [Updating Local and Online Images in the Widget](application-models/arkts-ui-widget-image-update.md)
+                - [Updating Widget Content by State](application-models/arkts-ui-widget-update-by-status.md)
+                - [Updating Widget Content by Widget Host (for System Applications Only)](application-models/arkts-ui-widget-content-update.md)
+          - [Developing a JS Widget](application-models/js-ui-widget-development.md)
         - [AbilityStage Component Container](application-models/abilitystage.md)
         - [Context](application-models/application-context-stage.md)
         - Want
@@ -749,6 +774,7 @@
         - [Time Picker Dialog Box](reference/arkui-ts/ts-methods-timepicker-dialog.md)
         - [Text Picker Dialog Box](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [Menu](reference/arkui-ts/ts-methods-menu.md)
+    - [Custom Component Lifecycle](reference/arkui-ts/ts-custom-component-lifecycle.md)
     - [State Management with Application-level Variables](reference/arkui-ts/ts-state-management.md)
     - [Pixel Units](reference/arkui-ts/ts-pixel-units.md)
     - [Built-in Enums](reference/arkui-ts/ts-appendix-enums.md)
@@ -1514,6 +1540,5 @@
   - [File Management Development](faqs/faqs-file-management.md)
   - [Network Management Development](faqs/faqs-network-management.md)
   - [DFX Development](faqs/faqs-dfx.md)
-
   - [Startup Development](faqs/faqs-startup.md)
   - [Usage of Third- and Fourth-Party Libraries](faqs/faqs-third-fourth-party-library.md)
