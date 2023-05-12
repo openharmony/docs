@@ -20,3 +20,6 @@
   - [同设备跨应用数据共享概述](share-device-data-across-apps-overview.md)
   - [通过DataShareExtensionAbility实现数据共享](share-data-by-datashareextensionability.md)
   - [通过静默数据访问实现数据共享](share-data-by-silent-access.md)
+- 跨设备跨应用标准化数据通道
+  - [跨设备跨应用标准化数据通道概述](unified-data-channel-across-devices-and-apps-overview.md)
+  - [标准化数据定义](unified-data-definition.md)
