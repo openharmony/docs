@@ -59,7 +59,6 @@ try {
     } else {
       console.error('Failed to enable' + `, error code is ${err.code}, message is ${err.message}`);
     }
-    done();
   });
 } catch (e) {
   console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
@@ -129,7 +128,6 @@ try {
     } else {
       console.error('Failed to disableCloud' + `, error code is ${err.code}, message is ${err.message}`);
     }
-    done();
   });
 } catch (e) {
   console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
@@ -201,7 +199,6 @@ try {
     } else {
       console.error('Failed to change App cloud switch' + `, error code is ${err.code}, message is ${err.message}`);
     }
-    done();
   });
 } catch (e) {
   console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
@@ -274,7 +271,6 @@ try {
     } else {
       console.error('Failed to clean' + `, error code is ${err.code}, message is ${err.message}`);
     }
-    done();
   });
 } catch (e) {
   console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
@@ -346,7 +342,6 @@ try {
     } else {
       console.error('Failed to notify the change of data' + `, error code is ${err.code}, message is ${err.message}`);
     }
-    done();
   });
 } catch (e) {
   console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
