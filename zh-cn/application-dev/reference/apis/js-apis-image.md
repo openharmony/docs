@@ -2791,12 +2791,46 @@ PixelMap的初始化选项。
 svg规格说明。
 
 
-| 名称          | 类型                             | 可读 | 可写 | 说明         |
-| ------------- | -------------------------------- | ---- | ---- | ------------ |
-| componentType | [ComponentType](#componenttype9) | 是   | 否   | 组件类型。   |
-| rowStride     | number                           | 是   | 否   | 行距。       |
-| pixelStride   | number                           | 是   | 否   | 像素间距。   |
-| byteBuffer    | ArrayBuffer                      | 是   | 否   | 组件缓冲区。 |
+| 标签/属性      |
+| ------------- |
+|a|
+|circle|
+|clipPath|
+|defs|
+|ellipse|
+|feBlend|
+|feColorMatrix|
+|feComposite|
+|feDiffuseLighting|
+|feDisplacementMap|
+|feDistantLight|
+|feFlood|
+|feGaussianBlur|
+|feImage|
+|feMorphology|
+|feOffset|
+|fePointLight|
+|feSpecularLighting|
+|feSpotLight|
+|feTurbulence|
+|filter|
+|g|
+|image|
+|line|
+|linearGradient|
+|mask|
+|path|
+|pattern|
+|polygon|
+|polyline|
+|radialGradient|
+|rect|
+|stop|
+|svg|
+|text|
+|textPath|
+|tspan|
+|use|
 
 ## ResponseCode
 
