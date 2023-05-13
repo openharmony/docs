@@ -936,7 +936,7 @@ createImageSource(uri: string): ImageSource
 
 | 参数名 | 类型   | 必填 | 说明                               |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW。 |
+| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW [svg](#svg)。 |
 
 **返回值：**
 
@@ -974,7 +974,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 | 参数名  | 类型                            | 必填 | 说明                                |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW。 |
+| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW [svg](#svg)。 |
 | options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片序号与默认属性值。|
 
 **返回值：**
@@ -2778,6 +2778,18 @@ PixelMap的初始化选项。
 描述图像颜色分量。
 
 **系统能力：** SystemCapability.Multimedia.Image.Core
+
+| 名称          | 类型                             | 可读 | 可写 | 说明         |
+| ------------- | -------------------------------- | ---- | ---- | ------------ |
+| componentType | [ComponentType](#componenttype9) | 是   | 否   | 组件类型。   |
+| rowStride     | number                           | 是   | 否   | 行距。       |
+| pixelStride   | number                           | 是   | 否   | 像素间距。   |
+| byteBuffer    | ArrayBuffer                      | 是   | 否   | 组件缓冲区。 |
+
+## svg
+
+svg规格说明。
+
 
 | 名称          | 类型                             | 可读 | 可写 | 说明         |
 | ------------- | -------------------------------- | ---- | ---- | ------------ |
