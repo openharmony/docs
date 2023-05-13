@@ -20,7 +20,7 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 ## 导入模块 
 
 ```js
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton} from '@ohos.UiTest';
+import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UiElementInfo, UiEventObserver} from '@ohos.UiTest';
 ```
 
 ## MatchPattern
@@ -140,6 +140,18 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 | MOUSE_BUTTON_LEFT   | 0    | 鼠标左键。   |
 | MOUSE_BUTTON_RIGHT  | 1    | 鼠标右键。   |
 | MOUSE_BUTTON_MIDDLE | 2    | 鼠标中间键。 |
+
+## UiElementInfo<sup>10+</sup>
+
+UI事件的相关信息。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+| 名称       | 类型   | 可读 | 可写 | 说明                  |
+| ---------- | ------ | ---- | ---- | --------------------- |
+| bundleName | string | 是   | 否   | 归属应用的包名。      |
+| type       | string | 是   | 否   | 控件/窗口类型。       |
+| text       | string | 是   | 否   | 控件/窗口的文本信息。 |
 
 ## On<sup>9+</sup>
 
@@ -899,7 +911,7 @@ isChecked(): Promise\<boolean>
 async function demo() {
     let driver = Driver.create();
     let checkBox = await driver.findComponent(ON.type('Checkbox'));
-    if(await checkBox.isChecked) {
+    if(await checkBox.isChecked()) {
         console.info('This checkBox is checked');
     } else {
         console.info('This checkBox is not checked');
@@ -936,7 +948,7 @@ isCheckable(): Promise\<boolean>
 async function demo() {
     let driver = Driver.create();
     let checkBox = await driver.findComponent(ON.type('Checkbox'));
-    if(await checkBox.isCheckable) {
+    if(await checkBox.isCheckable()) {
         console.info('This checkBox is checkable');
     } else {
         console.info('This checkBox is not checkable');
@@ -2389,6 +2401,37 @@ async function demo() {
 }
 ```
 
+### createUiEventObserver<sup>10+</sup>
+
+createUiEventObserver(): UiEventObserver;
+
+创建一个UI事件监听器。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型                                            | 说明                                  |
+| ----------------------------------------------- | ------------------------------------- |
+| Promise\<[UiEventObserver](#uieventobserver10)> | 以Promise形式返回找到的目标窗口对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 17000002 | API does not allow calling concurrently. |
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = Driver.create();
+    let obeserver = await driver.createUiEventObserve();
+}
+```
+
 ## PointerMatrix<sup>9+</sup>
 
 存储多指操作中每根手指每一步动作的坐标点及其行为的二维数组。
@@ -2890,6 +2933,42 @@ async function demo() {
     let driver = Driver.create();
     let window = await driver.findWindow({actived: true});
     await window.close();
+}
+```
+
+## UiEventObserver<sup>10+</sup>
+
+UI事件监听器。
+
+### once<sup>10+</sup>
+
+once(type: 'toastShow', callback: Callback<UiElementInfo>): void;
+
+once(type: 'dialogShow', callback: Callback<UiElementInfo>): void;
+
+监听事件，事件发生时执行对应的回调方法。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名   | 类型                                        | 必填 | 说明                 |
+| -------- | ------------------------------------------- | ---- | -------------------- |
+| type     | string                                      | 是   | 监听的事件名称       |
+| callback | Callback<[UiElementInfo](#uielementinfo10)> | 是   | 事件发生时执行的回调 |
+
+**示例：**
+
+```js
+async function demo() {
+    let observer = await driver.createUiEventObserver()
+    let  callback = (UiElementInfo)=>{
+        console.info(UiElementInfo.bundleName)
+        console.info(UiElementInfo.text)
+        console.info(UiElementInfo.type)
+     }
+    observer.once('toastShow', callback)
+    observer.once('dialogShow', callback)
 }
 ```
 
