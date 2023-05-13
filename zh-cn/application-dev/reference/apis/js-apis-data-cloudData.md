@@ -33,7 +33,7 @@ import ddm from '@ohos.data.cloudData';
 
 ### enableCloud
 
-static enableCloud(accountId: string, switches: {[bundleName: string]: boolean}, callback: AsyncCallback&lt;void&gt;):&lt;void&gt;
+static enableCloud(accountId: string, switches: {[bundleName: string]: boolean}, callback: AsyncCallback&lt;void&gt;):void
 
 打开端云协同，使用callback异步回调。
 
@@ -104,7 +104,7 @@ try {
 
 ### disableCloud
 
-static disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;):&lt;void&gt;
+static disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;):void
 
 关闭端云协同，使用callback异步回调。
 
@@ -172,7 +172,7 @@ try {
 
 ### changeAppCloudSwitch
 
-static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean, callback: AsyncCallback&lt;void&gt;):&lt;void&gt;
+static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean, callback: AsyncCallback&lt;void&gt;):void
 
 修改单个应用端云协同开关，使用callback异步回调。
 
@@ -245,7 +245,7 @@ try {
 
 ### clean
 
-static clean(accountId: string, appActions: {[bundleName: string]: Action}, callback: AsyncCallback&lt;void&gt;):&lt;void&gt;
+static clean(accountId: string, appActions: {[bundleName: string]: Action}, callback: AsyncCallback&lt;void&gt;):void
 
 清除本地数据中云信息，使用callback异步回调。
 
@@ -316,7 +316,7 @@ try {
 
 ### notifyDataChange
 
-static notifyDataChange(accountId: string,bundleName:string, callback: AsyncCallback&lt;void&gt;):&lt;void&gt;
+static notifyDataChange(accountId: string,bundleName:string, callback: AsyncCallback&lt;void&gt;):void
 
 通知云端的数据变更，使用callback异步回调。
 
