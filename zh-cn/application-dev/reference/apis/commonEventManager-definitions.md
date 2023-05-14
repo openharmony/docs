@@ -789,7 +789,7 @@ Wi-Fi P2P群组信息已更改。
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_QUICK_FIX_REVOKE_RESULT <sup>9+<sup>
-表示撤销快速修复应用补丁的动作结果。
+表示撤销快速修复应用补丁的动作。
 - 值： usual.event.QUICK_FIX_REVOKE_RESULT
 - 订阅者所需权限： 无
 
@@ -931,3 +931,7 @@ Wi-Fi P2P群组信息已更改。
 ## [COMMON_EVENT_QUICK_FIX_APPLY_RESULT<sup>10+<sup>](./common_event/commonEvent-ability.md)
 
 指示快速修复应用的动作。
+
+## [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT<sup>10+<sup>](./common_event/commonEvent-ability.md)
+
+指示撤销快速修复应用的动作。
