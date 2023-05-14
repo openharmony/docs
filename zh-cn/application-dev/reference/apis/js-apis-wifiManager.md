@@ -247,6 +247,37 @@ WLAN热点信息。
 | WIFI_SEC_TYPE_WAPI_PSK<sup>9+</sup> | 9 | WAPI-PSK加密类型。 |
 
 
+## WifiBandType<sup>10+</sup>
+
+表示WIFI频段类型的枚举。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| **名称** | **值** | **说明** |
+| -------- | -------- | -------- |
+| WIFI_BAND_NONE | 0 | 无效频段类型。 |
+| WIFI_BAND_2G | 1 | 2.4G频段类型。 |
+| WIFI_BAND_5G | 2 | 5G频段类型。 |
+| WIFI_BAND_6G | 3 | 6G频段类型。 |
+| WIFI_BAND_60G | 4 | 60G频段类型。 |
+
+## WifiStandard<sup>10+</sup>
+
+表示WIFI标准的枚举。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| **名称** | **值** | **说明** |
+| -------- | -------- | -------- |
+| WIFI_STANDARD_UNDEFINED | 0 | 无效WIFI标准类型。 |
+| WIFI_STANDARD_11A | 1 | 802.11a WiFi标准类型。 |
+| WIFI_STANDARD_11B | 2 | 802.11b WiFi标准类型。 |
+| WIFI_STANDARD_11G | 3 | 802.11g WiFi标准类型。 |
+| WIFI_STANDARD_11N | 4 | 802.11n WiFi标准类型。 |
+| WIFI_STANDARD_11AC | 5 | 802.11ac WiFi标准类型。 |
+| WIFI_STANDARD_11AX | 6 | 802.11ax WiFi标准类型。 |
+| WIFI_STANDARD_11AD | 7 | 802.11ad WiFi标准类型。 |
+
 ## WifiInfoElem<sup>9+</sup>
 
 WLAN热点信息。
@@ -834,18 +865,22 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | networkId | number | 是 | 否 | 网络配置ID。 <br /> **系统接口：** 此接口为系统接口。 |
 | rssi | number | 是 | 否 | 热点的信号强度(dBm)。 |
 | band | number | 是 | 否 | WLAN接入点的频段。 |
-| linkSpeed | number | 是 | 否 | WLAN接入点的速度。 |
+| linkSpeed | number | 是 | 否 | WLAN接入点的上行速度。 |
+| rxLinkSpeed<sup>10+</sup> | number | 是 | 否 | WLAN接入点的下行速度。 |
+| maxSupportedTxLinkSpeed<sup>10+</sup> | number | 是 | 否 | 当前支持的最大上行速率。 |
+| maxSupportedRxLinkSpeed<sup>10+</sup> | number | 是 | 否 | 当前支持的最大下行速率。 |
 | frequency | number | 是 | 否 | WLAN接入点的频率。 |
 | isHidden | boolean | 是 | 否 | WLAN接入点是否是隐藏网络。 |
 | isRestricted | boolean | 是 | 否 | WLAN接入点是否限制数据量。 |
 | chload | number | 是 | 否 | 连接负载，值越大表示负载约高。 <br /> **系统接口：** 此接口为系统接口。 |
 | snr | number | 是 | 否 | 信噪比。 <br /> **系统接口：** 此接口为系统接口。 |
-| macType<sup>9+</sup> | number | 是 | 否 | MAC地址类型。 |
+| macType | number | 是 | 否 | MAC地址类型。 |
 | macAddress | string | 是 | 否 | 设备的MAC地址。 |
 | ipAddress | number | 是 | 否 | WLAN连接的IP地址。 |
 | suppState | [SuppState](#suppstate) | 是 | 否 | 请求状态。 <br /> **系统接口：** 此接口为系统接口。 |
 | connState | [ConnState](#connstate) | 是 | 否 | WLAN连接状态。 |
-
+| channelWidth<sup>10+</sup> | [WifiChannelWidth](#connstate) | 是 | 否 | 当前连接热点的信道带宽。 |
+| wifiStandard<sup>10+</sup> | [WifiStandard](#connstate) | 是 | 否 | 当前连接热点的WiFi标准。 |
 
 ## ConnState<sup>9+</sup>
 
@@ -1248,6 +1283,44 @@ removeDevice(id: number): void
   | -------- | -------- |
 | 2501000  | Operation failed.|
 
+## wifi.isBandTypeSupported<sup>10+</sup>
+
+isBandTypeSupported(bandType: WifiBandType): boolean
+
+判断当前频段是否支持。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
+## wifi.get5GChannelList<sup>10+</sup>
+
+get5GChannelList(): Array<number>
+
+获取当前设备支持的5G信道列表。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **类型** | **说明** |
+  | -------- | -------- |
+| 2501000  | Operation failed.|
+
 ## wifi.enableHotspot<sup>9+</sup>
 
 enableHotspot(): void
@@ -1376,12 +1449,12 @@ setHotspotConfig(config: HotspotConfig): void
 
 | **名称** | **类型** | **可读** | **可写** | **说明** |
 | -------- | -------- | -------- | -------- | -------- |
-| ssid | string | 是 | 否 | 热点的SSID，编码格式为UTF-8。 |
-| securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 否 | 加密类型。 |
-| band | number | 是 | 否 | 热点的带宽。1: 2.4G, 2: 5G, 3: 双模频段 |
-| preSharedKey | string | 是 | 否 | 热点的密钥。 |
-| maxConn | number | 是 | 否 | 最大设备连接数。 |
-
+| ssid | string | 是 | 是 | 热点的SSID，编码格式为UTF-8。 |
+| securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 是 | 加密类型。 |
+| band | number | 是 | 是 | 热点的带宽。1: 2.4G, 2: 5G, 3: 双模频段 |
+| channel<sup>10+</sup> | number | 是 | 是 | 热点的信道。 |
+| preSharedKey | string | 是 | 是 | 热点的密钥。 |
+| maxConn | number | 是 | 是 | 最大设备连接数。 |
 
 ## wifi.getHotspotConfig<sup>9+</sup>
 
