@@ -17,6 +17,7 @@
 在设备/data/log/faultlog/faultlogger/下面，以appfreeze-开头的日志。
 
 日志格文件名格式是appfreeze-应用包名-应用UID-秒级时间
+
 ![appfreeze_20230308145160](figures/appfreeze_20230308145160.png)
 
 ### 通过DevEco Studio获取日志
@@ -24,6 +25,7 @@
 DevEco Studio会收集设备的故障日志到FaultLog下面：
 
 DevEco Studio会将包名和故障和时间都分类好显示
+
 ![appfreeze_20230308145161](figures/appfreeze_20230308145161.png)
 
 
@@ -113,23 +115,32 @@ faultlogger对外提供了故障查询接口，可以查询各种故障信息，
 | memory | 跟当前时间当前进程的内存使用情况 |
 
 OpenStacktraceCatcher当前进程堆栈示例：
+
 示例堆栈表面窗口通过IPC向下发送事件的时候没有调用下去，停留在IPC通信阶段
+
 ![appfreeze_20230310105869](figures/appfreeze_20230310105869.png)
 
 BinderCatcher信息示例：
 示例表面当前1561进程向685进程请求通信，等待了超过10s没有得到响应。
+
 ![appfreeze_20230310105868](figures/appfreeze_20230310105868.png)
 
 PeerBinder Stacktrace信息示例：
+
 示例展示对端卡死进程685的堆栈信息
+
 ![appfreeze_20230310105870](figures/appfreeze_20230310105870.png)
 
 cpuusage信息示例：
+
 整机CPU信息
+
 ![appfreeze_20230310105871](figures/appfreeze_20230310105871.png)
 
 memory信息示例：
+
 当前进程内存信息
+
 ![appfreeze_20230310105872](figures/appfreeze_20230310105872.png)
 
 ### 日志主干特异性信息(应用主线程卡死超时)

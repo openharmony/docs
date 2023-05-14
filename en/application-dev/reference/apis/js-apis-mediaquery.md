@@ -26,7 +26,7 @@ Sets the media query condition. This API returns the corresponding media query l
 
 | Name      | Type    | Mandatory  | Description                                      |
 | --------- | ------ | ---- | ---------------------------------------- |
-| condition | string | Yes   | Media query condition. For details, see [Syntax of Media Query Conditions](../../ui/ui-ts-layout-mediaquery.md#syntax-of-media-query-conditions).|
+| condition | string | Yes   | Media query condition. For details, see [Syntax of Media Query Conditions](../../ui/arkts-layout-development-media-query.md#syntax-of-media-query-conditions).|
 
 **Return value**
 
@@ -158,3 +158,5 @@ struct MediaQueryExample {
   }
 }
 ```
+
+ <!--no_check--> 

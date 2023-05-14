@@ -309,3 +309,42 @@ export default class MyFormExtensionAbility extends FormExtensionAbility {
   }
 };
 ```
+
+## onAcquireFormData<sup>10+</sup>
+
+onAcquireFormData?(formId: string): { [key: string]: Object }
+
+卡片提供方接收卡片请求自定义数据的通知接口。
+
+**系统接口**: 此接口为系统接口。
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| formId | string | 是   | 卡片标识。 |
+
+**返回值：**
+
+| 类型                                                         | 说明                                                        |
+| ------------------------------------------------------------ | ----------------------------------------------------------- |
+| {[key: string]: any} | 卡片的自定义数据，由开发者自行决定传入的键值对。 |
+
+**示例：**
+
+```ts
+import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
+
+export default class MyFormExtensionAbility extends FormExtensionAbility {
+  onAcquireFormData(formId) {
+    console.log('FormExtensionAbility onAcquireFormData, formId: ${formId}');
+    let wantParams = {
+      'temperature': '20',
+      'time': '2022-8-8 09:59',
+    };
+    return wantParams;
+  }
+};
+```

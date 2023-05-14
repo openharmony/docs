@@ -50,7 +50,7 @@ grantUriPermission(uri: string, bundleName: string, mode: number, callback: Asyn
 import wantConstant from '@ohos.app.ability.wantConstant';
 
 
-let uri = 'datashare:///media/image/8';
+let uri = 'file://media/image/8';
 let bundleName = 'com.demo.test';
 try {
     fileShare.grantUriPermission(uri, bundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION, (err) => {
@@ -107,7 +107,7 @@ grantUriPermission(uri: string, bundleName: string, mode: number): Promise&lt;vo
   ```js
 import wantConstant from '@ohos.app.ability.wantConstant';
 
-let uri = 'datashare:///media/image/8';
+let uri = 'file://media/image/8';
 let bundleName = 'com.demo.test';
 try {
     fileShare.grantUriPermission(uri, bundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION |

@@ -3,6 +3,7 @@
 
 提供获取pixelmap的数据和信息的接口方法。
 
+使用该文件下接口，需要依赖：libpixelmap_ndk.z.so
 
 @Syscap SystemCapability.Multimedia.Image
 

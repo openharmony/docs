@@ -128,7 +128,7 @@ For details about the APIs, see [User File Access and Management](../reference/a
    // Create a file.
    // sourceUri is the URI in fileinfo of the Download directory.
    // You need to use the obtained URI for development.
-   let sourceUri = "datashare:///media/file/6";
+   let sourceUri = "file://media/file/6";
    let displayName = "file1";
    let fileUri = null;
    try {

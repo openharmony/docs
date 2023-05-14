@@ -38,8 +38,9 @@
           - 开发卡片事件
             - [卡片事件能力说明](arkts-ui-widget-event-overview.md)
             - [通过FormExtensionAbility刷新卡片内容](arkts-ui-widget-event-formextensionability.md)
-            - [通过UIAbility刷新卡片内容](arkts-ui-widget-event-uiability.md)
             - [使用router事件跳转到指定页面](arkts-ui-widget-event-router.md)
+            - [使用call事件拉起指定UIAbility到后台](arkts-ui-widget-event-call.md)
+            - [通过UIAbility刷新卡片内容](arkts-ui-widget-event-uiability.md)
           - 卡片数据交互
             - [卡片数据交互说明](arkts-ui-widget-interaction-overview.md)
             - [定时刷新和定点刷新](arkts-ui-widget-update-by-time.md)
@@ -54,7 +55,7 @@
       - [Want概述](want-overview.md)
       - [显式Want与隐式Want匹配规则](explicit-implicit-want-mappings.md)
       - [常见action与entities](actions-entities.md)
-      - [使用显式Want启动Ability](ability-startup-with-explicit-want.md)
+      - [使用显式Want启动应用组件](ability-startup-with-explicit-want.md)
       - [使用隐式Want打开网址](ability-startup-with-implicit-want.md)
       - [应用间使用Want分享数据](data-share-via-want.md)
     - [组件启动规则（Stage模型）](component-startup-rules.md)

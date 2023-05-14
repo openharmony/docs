@@ -2,7 +2,7 @@
 
 ## Introduction
 
-ArkUI is a UI development framework that provides what you'll need to develop application UIs in OpenHarmony, including UI components, animations, drawing, interaction events, and JavaScript API extension mechanisms. ArkUI comes with two development paradigms: eTS-based declarative development paradigm (declarative development paradigm for short) and JavaScript-compatible web-like development paradigm (web-like development paradigm for short).
+ArkUI is a UI development framework that provides what you'll need to develop application UIs in OpenHarmony, including UI components, animations, drawing, interaction events, and JavaScript API extension mechanisms. ArkUI comes with two development paradigms: ArkTS-based declarative development paradigm (declarative development paradigm for short) and JavaScript-compatible web-like development paradigm (web-like development paradigm for short).
 
 **Framework Structure**
 

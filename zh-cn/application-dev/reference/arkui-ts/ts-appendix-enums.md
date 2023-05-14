@@ -528,3 +528,11 @@
 | MAX_LINES_FIRST         | 设置文本高度自适应方式为以MaxLines优先。         |
 | MIN_FONT_SIZE_FIRST     | 设置文本高度自适应方式为以缩小字体优先。         |
 | LAYOUT_CONSTRAINT_FIRST | 设置文本高度自适应方式为以布局约束（高度）优先。 |
+
+## TransitionEdge<sup>10+<sup>
+| 名称 | 描述 |
+| -------- | -------- |
+| TOP | 窗口的上边缘 |
+| BOTTOM | 窗口的下边缘 |
+| START | 窗口的左边缘 |
+| END | 窗口的右边缘 |

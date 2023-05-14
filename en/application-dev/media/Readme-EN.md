@@ -45,11 +45,11 @@
     - [Session Management](camera-session-management.md)
     - [Camera Preview](camera-preview.md)
     - [Camera Photographing](camera-shooting.md)
-    - [Video Recording](camera-recording.md)
+    - [Camera Recording](camera-recording.md)
     - [Camera Metadata](camera-metadata.md)
   - Best Practices
     - [Camera Photographing Sample](camera-shooting-case.md)
-    - [Video Recording Sample](camera-recording-case.md)
+    - [Camera Recording Sample](camera-recording-case.md)
 - Image
   - [Image Overview](image-overview.md)
   - [Image Decoding](image-decoding.md)

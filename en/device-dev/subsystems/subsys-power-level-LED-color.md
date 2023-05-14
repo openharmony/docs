@@ -8,6 +8,7 @@ OpenHarmony provides the battery level and LED color mapping by default. Some pr
 
 ### Constraints
 
+ 
 The configuration path for battery level customization is subject to the [configuration policy](https://gitee.com/openharmony/customization_config_policy). In this development guide, `/vendor` is used as an example of the configuration path. During actual development, you need to modify the customization path based on the product configuration policy.
 
 ## How to Develop
@@ -36,7 +37,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     ├── battery_config.json
     ```
 
-3. Write the custom `battery_config.json` file by referring to the `battery_config.json` file in the default folder of battery level and LED color mapping configuration. For example:
+3. Write the custom `battery_config.json` file by referring to the [battery_config.json](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/services/native/profile/battery_config.json) file in the default folder of battery level and LED color mapping configuration. For example:
 
     ```json
     {
@@ -57,18 +58,23 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     }
     ```
 
-    **Table 1** Description of the battery level and LED color mapping configuration
+    **Table 1** Description of battery levels
 
-    | Item| Description|
+    | Battery Level| Description|
     | -------- | -------- |
     | low | Low battery level|
     | normal | Normal battery level|
     | high | High battery level|
+
+    **Table 2** Configuration items for the battery level range and LED color
+
+    | Configuration Item| Description|
+    | -------- | -------- |
     | soc | Battery level range|
     | rgb | LED RGB combination|
 
 
-4. Write the `BUILD.gn` file by referring to the `BUILD.gn` in the default folder of battery level and LED color mapping configuration to pack the `battery_config.json` file to the `//vendor/etc/battery` directory. The configuration is as follows:
+4. Write the `BUILD.gn` file by referring to the [BUILD.gn](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/services/native/profile/BUILD.gn) file in the default folder of battery level and LED color mapping configuration to pack the `battery_config.json` file to the `//vendor/etc/battery` directory. The configuration is as follows:
 
     ```shell
     import("//build/ohos.gni")                # Reference build/ohos.gni.
@@ -207,6 +213,8 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
 ## Reference
 During development, you can refer to the [default battery level and LED color mapping configuration](https://gitee.com/openharmony/powermgr_battery_manager/blob/master/services/native/profile/battery_config.json), as shown below:
 
+ 
+
 ```json 
 {
     "light": {
@@ -226,4 +234,4 @@ During development, you can refer to the [default battery level and LED color ma
 }
 ``` 
 
-Packing path: `/system/etc/battery`
+Packing path: /system/etc/battery

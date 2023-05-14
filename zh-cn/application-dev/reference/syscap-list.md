@@ -309,6 +309,14 @@ GNSS硬件相关能力
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
 
+## SystemCapability.MultimodalInput.Input.RemoteInputDevice
+
+远程输入设备
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
+
 ## SystemCapability.MultimodalInput.Input.InputMonitor
 
 输入事件监听者
@@ -328,6 +336,14 @@ GNSS硬件相关能力
 ## SystemCapability.MultimodalInput.Input.InputSimulator
 
 输入事件模拟者
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.MultimodalInput.Input.InputFilter
+
+输入过滤
 
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -997,6 +1013,14 @@ TS/JS语言基础库
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 是     | 是   | 否   | 是     | 否           | 否     |
 
+## SystemCapability.UserIAM.UserAuth.FingerprintAuth
+
+指纹认证
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 否     | 是   | 否   | 否     | 否           | 否     |
+
 ## SystemCapability.MiscServices.InputMethodFramework
 
 输入法框架
@@ -1637,9 +1661,9 @@ VPN
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
 
-## SystemCapability.MultimodalInput.Input.Pointer
+## SystemCapability.MultimodalInput.Input.ShortKey
 
-Pointer输入增强能力
+快捷键
 
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -1668,4 +1692,12 @@ Pointer输入增强能力
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 是     | 是     | 是   | 是   | 是     | 是           | 是     |
+
+## SystemCapability.Msdp.DeviceStatus.Cooperate
+
+设备状态感知
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 否     | 是   | 否   | 否     | 否           | 否     |
 

@@ -78,6 +78,7 @@
       - [插件](subsys-boot-init-plugin.md)
       - [组件化启动](subsys-boot-init-sub-unit.md)
       - [init运行日志规范化](subsys-boot-init-log.md)
+      - [Seccomp策略使能开发指导](subsys-boot-init-seccomp.md)
     - [appspawn应用孵化组件](subsys-boot-appspawn.md)
     - [bootstrap服务启动组件](subsys-boot-bootstrap.md)
     - [常见问题](subsys-boot-faqs.md)

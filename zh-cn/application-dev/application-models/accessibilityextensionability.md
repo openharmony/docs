@@ -38,15 +38,15 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 class AccessibilityExtAbility extends AccessibilityExtensionAbility {
     onConnect() {
-        console.log('AccessibilityExtAbility onConnect');
+        console.info('AccessibilityExtAbility onConnect');
     }
 
     onDisconnect() {
-        console.log('AccessibilityExtAbility onDisconnect');
+        console.info('AccessibilityExtAbility onDisconnect');
     }
 
     onAccessibilityEvent(accessibilityEvent) {
-        console.log('AccessibilityExtAbility onAccessibilityEvent: ' + JSON.stringify(accessibilityEvent));
+        console.info('AccessibilityExtAbility onAccessibilityEvent: ' + JSON.stringify(accessibilityEvent));
     }
 }
 
@@ -67,9 +67,9 @@ export default AccessibilityExtAbility;
 
 ```typescript
 onAccessibilityEvent(accessibilityEvent) {
-    console.log('AccessibilityExtAbility onAccessibilityEvent: ' + JSON.stringify(accessibilityEvent));
+    console.info('AccessibilityExtAbility onAccessibilityEvent: ' + JSON.stringify(accessibilityEvent));
     if (accessibilityEvent.eventType === 'pageStateUpdate') {
-        console.log('AccessibilityExtAbility onAccessibilityEvent: pageStateUpdate');
+        console.info('AccessibilityExtAbility onAccessibilityEvent: pageStateUpdate');
         // TODO: 自定义相关逻辑开发
     }
 }
