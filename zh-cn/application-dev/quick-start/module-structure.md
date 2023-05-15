@@ -190,7 +190,11 @@ metadata对象示例：
 
 ## abilities对象的内部结构
 
-**入口图标的设置:** 需要在配置文件（config.json）中abilities配置下设置icon，label以及skills,而且skills的配置下必须同时包含“ohos.want.action.home” 和 “entity.system.home”:
+**OpenHarmony中不允许应用隐藏入口图标**
+
+OpenHarmony系统对无图标应用严格管控，防止一些恶意应用故意配置无入口图标，导致用户找不到软件所在的位置，无法操作卸载应用，在一定程度上保证用户的手机安全。
+
+**入口图标的设置:** 需要在配置文件（config.json）中abilities配置下设置icon，label以及skills，而且skills的配置下必须同时包含“ohos.want.action.home” 和 “entity.system.home”。
 ```
 {
   "module":{
@@ -212,9 +216,6 @@ metadata对象示例：
   }
 }
 ```
-**OpenHarmony中不允许应用隐藏入口图标**
-
-OpenHarmony系统对无图标应用严格管控，防止一些恶意应用故意配置无入口图标，导致用户找不到软件所在的位置，无法操作卸载应用，在一定程度上保证用户的手机安全。
 
 如果应用确需隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。详细的入口图标及入口标签的显示规则如下。
 * HAP中包含Page类型的PageAbility
@@ -236,8 +237,6 @@ OpenHarmony系统对无图标应用严格管控，防止一些恶意应用故意
     * 系统将使用应用的包名作为入口标签，并显示在桌面上。
   * 该应用具有隐藏图标的特权
     * 桌面查询时不返回应用信息，不会在桌面上显示对应的入口图标和标签。
-
-注：应用详情页面中显示的label可能与桌面上显示的不同。如果非Page类型的PageAbility配置了入口图标和label，那么详情页中显示的即为配置的。<br>
 
 **应用的详情页示意图** 
 
@@ -278,6 +277,7 @@ OpenHarmony系统对无图标应用严格管控，防止一些恶意应用故意
 | startWindowBackground | 标识该Ability启动页面背景颜色资源文件的索引。该标签仅适用于page类型的Ability。取值示例：$color:red。 | 字符串 | 可缺省，缺省值为空。 |
 | removeMissionAfterTerminate | 该标签标识Ability销毁后是否从任务列表中移除任务。该标签仅适用于page类型的Ability。true表示销毁后移除任务，&nbsp;false表示销毁后不移除任务。 | 布尔值 | 可缺省，缺省值为false。 |
 
+注：应用详情页面中显示的label可能与桌面上显示的不同。如果非Page类型的PageAbility配置了入口图标和label，那么详情页中显示的即为配置的。
 ## uriPermission对象的内部结构
 
 **表9** **uriPermission对象的内部结构说明**
