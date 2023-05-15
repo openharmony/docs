@@ -3,7 +3,7 @@
 
 ## 概述<a name="section11522349121115"></a>
 
-本文将介绍如何快速搭建基于OpenHarmony标准系统（Hi3516DV300开发板）的应用开发环境，并基于一个时钟APP示例逐步展示应用的创建、开发、调试和安装等流程。示例代码可以通过[本链接](https://gitee.com/openharmony/app_samples/tree/master/common/Clock)获取。
+本文将介绍如何快速搭建基于OpenHarmony标准系统（Hi3516DV300开发板）的应用开发环境，并基于一个时钟APP示例逐步展示应用的创建、开发、调试和安装等流程。示例代码可以通过[本链接](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/JsClock)获取。
 
 时钟App是一款显示实时时间的应用，显示效果如下图所示：
 
