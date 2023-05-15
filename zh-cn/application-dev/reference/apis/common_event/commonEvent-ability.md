@@ -28,7 +28,7 @@
 
 在设备上指定用户清除应用包数据，将会触发事件通知服务发布该系统公共事件。
 
-## COMMON_EVENT_QUICK_FIX_APPLY_RESULT
+## COMMON_EVENT_QUICK_FIX_APPLY_RESULT<sup>9+</sup>
 
 指示快速修复应用的动作。
 

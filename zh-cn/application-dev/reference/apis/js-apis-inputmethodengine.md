@@ -377,7 +377,7 @@ off(type: 'setCallingWindow', callback: (wid:number) => void): void
 **示例：**
 
 ```js
-inputMethodEngine.getInputMethodAbility().off('setCallingWindow', () => {
+inputMethodEngine.getInputMethodAbility().off('setCallingWindow', (wid) => {
   console.log('inputMethodAbility delete setCallingWindow notification.');
 });
 ```
@@ -1122,7 +1122,7 @@ try {
 
 moveTo(x: number, y: number): Promise\<void>
 
-移动面板位置，使用callback异步回调。
+移动面板位置。使用promise异步回调。
 
 对FLG_FIXED状态的panel不产生实际移动效果。
 

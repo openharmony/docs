@@ -145,7 +145,7 @@ Obtains the query string applicable to this URI.
 
 ```js
 const result = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-result.toString()
+let result1 = result.toString();
 ```
 
 
@@ -205,7 +205,7 @@ Checks whether this URI is the same as another URI object.
 ```js
 const uriInstance = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
 const uriInstance1 = new uri.URI('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-uriInstance.equalsTo(uriInstance1);
+let result = uriInstance.equalsTo(uriInstance1);
 ```
 
 ### checkIsAbsolute

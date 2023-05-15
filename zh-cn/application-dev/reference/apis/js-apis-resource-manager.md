@@ -640,7 +640,6 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
   }
   ```
 
-
 ### getMediaContent<sup>9+</sup>
 
 getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
@@ -680,6 +679,45 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
   }
   ```
 
+### getMediaContent<sup>10+</sup>
+
+getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
+
+用户获取指定资源ID对应的指定屏幕密度媒体文件内容，使用callback形式返回字节数组。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名      | 类型                              | 必填   | 说明                 |
+| -------- | ------------------------------- | ---- | ------------------ |
+| resId    | number                          | 是    | 资源ID值              |
+| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**示例：** 
+  ```ts
+  try {
+    this.context.resourceManager.getMediaContent($r('app.media.test').id, 120, (error, value) => {
+        if (error != null) {
+            console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+        } else {
+            let media = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
 
 ### getMediaContent<sup>9+</sup>
 
@@ -723,6 +761,49 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
   }
   ```
 
+### getMediaContent<sup>10+</sup>
+
+getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
+
+用户获取指定资源ID对应的指定屏幕密度媒体文件内容，使用Promise形式返回字节数组。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resId | number | 是    | 资源ID值 |
+| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+
+**返回值：**
+
+| 类型                        | 说明             |
+| ------------------------- | -------------- |
+| Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容 |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**示例：** 
+  ```ts
+  try {
+      this.context.resourceManager.getMediaContent($r('app.media.test').id, 120).then(value => {
+          let media = value;
+      }).catch(error => {
+          console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+      });
+  } catch (error) {
+    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
 ### getMediaContent<sup>9+</sup>
 
 getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): void
@@ -758,6 +839,51 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
     this.context.resourceManager.getMediaContent(resource, (error, value) => {
         if (error != null) {
           console.log("error is " + error);
+        } else {
+          let media = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getMediaContent<sup>10+</sup>
+
+getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
+
+用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用callback形式返回字节数组。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名      | 类型                              | 必填   | 说明                 |
+| -------- | ------------------------------- | ---- | ------------------ |
+| resource | [Resource](#resource9)          | 是    | 资源信息               |
+| [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**示例：** 
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.media.test').id
+  };
+  try {
+    this.context.resourceManager.getMediaContent(resource, 120, (error, value) => {
+        if (error != null) {
+          console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
         } else {
           let media = value;
         }
@@ -814,6 +940,53 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
   }
   ```
 
+### getMediaContent<sup>10+</sup>
+
+getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
+
+用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用Promise形式返回字节数组。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名      | 类型                     | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
+| resource | [Resource](#resource9) | 是    | 资源信息 |
+| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+
+**返回值：**
+
+| 类型                        | 说明                  |
+| ------------------------- | ------------------- |
+| Promise&lt;Uint8Array&gt; | resource对象对应的媒体文件内容 |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**示例：** 
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.media.test').id
+  };
+  try {
+    this.context.resourceManager.getMediaContent(resource, 120).then(value => {
+      let media = value;
+    }).catch(error => {
+      console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+    });
+  } catch (error) {
+    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
 
 ### getMediaContentBase64<sup>9+</sup>
 
@@ -854,6 +1027,45 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
   }
   ```
 
+### getMediaContentBase64<sup>10+</sup>
+
+getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt;string&gt;): void
+
+用户获取指定资源ID对应的指定屏幕密度图片资源Base64编码，使用callback形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名      | 类型                          | 必填   | 说明                       |
+| -------- | --------------------------- | ---- | ------------------------ |
+| resId    | number                      | 是    | 资源ID值                    |
+| [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**示例：** 
+  ```ts
+  try {
+    this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120, (error, value) => {
+        if (error != null) {
+            console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+        } else {
+            let media = value;
+        }
+    });       
+  } catch (error) {
+    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
 
 ### getMediaContentBase64<sup>9+</sup>
 
@@ -894,7 +1106,50 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
     });
   } catch (error) {
     console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
-  } 
+  }
+  ```
+
+### getMediaContentBase64<sup>10+</sup>
+
+getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
+
+用户获取指定资源ID对应的指定屏幕密度图片资源Base64编码，使用Promise形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resId | number | 是    | 资源ID值 |
+| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+
+**返回值：**
+
+| 类型                    | 说明                   |
+| --------------------- | -------------------- |
+| Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码 |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**示例：** 
+  ```ts
+  try {
+    this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120).then(value => {
+        let media = value;
+    }).catch(error => {
+        console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    });
+  } catch (error) {
+    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 ### getMediaContentBase64<sup>9+</sup>
@@ -932,6 +1187,51 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
     this.context.resourceManager.getMediaContentBase64(resource, (error, value) => {
         if (error != null) {
             console.log("error is " + error);
+        } else {
+            let media = value;
+        }
+    });
+  } catch (error) {
+    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getMediaContentBase64<sup>10+</sup>
+
+getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallback&lt;string&gt;): void
+
+用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用callback形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名      | 类型                          | 必填   | 说明                       |
+| -------- | --------------------------- | ---- | ------------------------ |
+| resource | [Resource](#resource9)      | 是    | 资源信息                     |
+| [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**示例：** 
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.media.test').id
+  };
+  try {
+    this.context.resourceManager.getMediaContentBase64(resource, 120, (error, value) => {
+        if (error != null) {
+            console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
         } else {
             let media = value;
         }
@@ -988,6 +1288,53 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
   }
   ```
 
+### getMediaContentBase64<sup>10+</sup>
+
+getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt;
+
+用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用Promise形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名      | 类型                     | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
+| resource | [Resource](#resource9) | 是    | 资源信息 |
+| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+
+**返回值：**
+
+| 类型                    | 说明                        |
+| --------------------- | ------------------------- |
+| Promise&lt;string&gt; | resource对象对应的图片资源Base64编码 |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**示例：** 
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.media.test').id
+  };
+  try {
+    this.context.resourceManager.getMediaContentBase64(resource, 120).then(value => {
+        let media = value;
+    }).catch(error => {
+        console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    });
+  } catch (error) {
+    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
 
 ### getConfiguration
 
@@ -1789,7 +2136,6 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 | -------- | ---------------------------------------- |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
 
 **示例：** 
   ```ts
@@ -1797,6 +2143,46 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
     this.context.resourceManager.getMediaByName("test", (error, value) => {
         if (error != null) {
             console.log("error is " + error);
+        } else {
+            let media = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getMediaByName<sup>10+</sup>
+
+getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
+
+用户获取指定资源ID对应的指定屏幕密度媒体文件内容，使用callback形式返回字节数组。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名      | 类型                              | 必填   | 说明                 |
+| -------- | ------------------------------- | ---- | ------------------ |
+| resName  | string                          | 是    | 资源名称               |
+| [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+
+**示例：** 
+  ```ts
+  try {
+    this.context.resourceManager.getMediaByName("test", 120, (error, value) => {
+        if (error != null) {
+            console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
         } else {
             let media = value;
         }
@@ -1834,7 +2220,6 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 | -------- | ---------------------------------------- |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
 
 **示例：** 
   ```ts
@@ -1843,6 +2228,49 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
         let media = value;
     }).catch(error => {
         console.log("getMediaByName promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getMediaByName<sup>10+</sup>
+
+getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
+
+用户获取指定资源名称对应的指定屏幕密度媒体文件内容，使用Promise形式返回字节数组。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
+| resName | string | 是    | 资源名称 |
+| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+
+**返回值：**
+
+| 类型                        | 说明            |
+| ------------------------- | ------------- |
+| Promise&lt;Uint8Array&gt; | 资源名称对应的媒体文件内容 |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+
+**示例：** 
+  ```ts
+  try {
+    this.context.resourceManager.getMediaByName("test", 120).then(value => {
+        let media = value;
+    }).catch(error => {
+        console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
     console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`)
@@ -1872,7 +2300,6 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 | -------- | ---------------------------------------- |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
 
 **示例：** 
   ```ts
@@ -1880,6 +2307,46 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
     this.context.resourceManager.getMediaBase64ByName("test", (error, value) => {
         if (error != null) {
             console.log("error is " + error);
+        } else {
+            let media = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getMediaBase64ByName<sup>10+</sup>
+
+getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&lt;string&gt;): void
+
+用户获取指定资源名称对应的指定屏幕密度图片资源Base64编码，使用callback形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名      | 类型                          | 必填   | 说明                       |
+| -------- | --------------------------- | ---- | ------------------------ |
+| resName  | string                      | 是    | 资源名称                     |
+| [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+
+**示例：** 
+  ```ts
+  try {
+    this.context.resourceManager.getMediaBase64ByName("test", 120, (error, value) => {
+        if (error != null) {
+            console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
         } else {
             let media = value;
         }
@@ -1917,7 +2384,6 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 | -------- | ---------------------------------------- |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
 
 **示例：** 
   ```ts
@@ -1926,6 +2392,49 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
         let media = value;
     }).catch(error => {
         console.log("getMediaBase64ByName promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getMediaBase64ByName<sup>10+</sup>
+
+getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
+
+用户获取指定资源名称对应的指定屏幕密度图片资源Base64编码，使用Promise形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
+| resName | string | 是    | 资源名称 |
+| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+
+**返回值：**
+
+| 类型                    | 说明                  |
+| --------------------- | ------------------- |
+| Promise&lt;string&gt; | 资源名称对应的图片资源Base64编码 |
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+
+**示例：** 
+  ```ts
+  try {
+    this.context.resourceManager.getMediaBase64ByName("test", 120).then(value => {
+        let media = value;
+    }).catch(error => {
+        console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
     console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`)

@@ -1,8 +1,5 @@
 # @ohos.util.HashSet (Nonlinear Container HashSet)
 
-> **NOTE**
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 **HashSet** is implemented based on [HashMap](js-apis-hashmap.md). In **HashSet**, only the **value** object is processed.
 
 Unlike [TreeSet](js-apis-treeset.md), which stores and accesses data in sorted order, **HashSet** stores data in a random order. This means that **HashSet** may use a different order when storing and accessing elements. Both of them allows only unique elements. However, null values are allowed in **HashSet**, but not allowed in **TreeSet**.
@@ -11,6 +8,11 @@ Unlike [TreeSet](js-apis-treeset.md), which stores and accesses data in sorted o
 
 This topic uses the following to identify the use of generics:
 - T: Type
+
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 
 ## Modules to Import
 
@@ -125,9 +127,8 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```ts
 let hashSet = new HashSet();
-let result = hashSet.has("squirrel");
 hashSet.add("squirrel");
-let result1 = hashSet.has("squirrel");
+let result = hashSet.has("squirrel");
 ```
 
 

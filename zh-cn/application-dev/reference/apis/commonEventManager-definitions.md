@@ -5,10 +5,8 @@
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-## COMMON_EVENT_BOOT_COMPLETED
+## [COMMON_EVENT_BOOT_COMPLETED](./common_event/commonEvent-ability.md)
 表示用户已完成引导并加载系统的公共事件的操作。
-- 值： usual.event.BOOT_COMPLETED
-- 订阅者所需权限： ohos.permission.RECEIVER_STARTUP_COMPLETED
 
 ## COMMON_EVENT_LOCKED_BOOT_COMPLETED
 （预留事件，暂未支持）表示用户已完成引导，系统已加载，但屏幕仍锁定的公共事件的操作。
@@ -128,15 +126,11 @@
 - 值： usual.event.PACKAGE_CHANGED
 - 订阅者所需权限： 无
 
-## COMMON_EVENT_PACKAGE_RESTARTED
+## [COMMON_EVENT_PACKAGE_RESTARTED](./common_event/commonEvent-ability.md)
 表示用户重启应用包并杀死其所有进程的普通事件的动作。
-- 值： usual.event.PACKAGE_RESTARTED
-- 订阅者所需权限： 无
 
-## COMMON_EVENT_PACKAGE_DATA_CLEARED
+## [COMMON_EVENT_PACKAGE_DATA_CLEARED](./common_event/commonEvent-ability.md)
 用户清除应用包数据的公共事件的动作。
-- 值： usual.event.PACKAGE_DATA_CLEARED
-- 订阅者所需权限： 无
 
 ## COMMON_EVENT_PACKAGE_CACHE_CLEARED<sup>9+</sup>
 用户清除应用包缓存数据的公共事件的动作。
@@ -568,9 +562,14 @@ Wi-Fi P2P群组信息已更改。
 - 值： usual.event.CHARGE_TYPE_CHANGED
 - 订阅者所需权限： 无
 
-## COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED
-（预留事件，暂未支持）表示系统空闲模式已更改的公共事件的动作。
+## [COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED](./common_event/commonEvent-resourceschedule.md)
+表示系统待机空闲模式已更改的公共事件的动作。
 - 值： usual.event.DEVICE_IDLE_MODE_CHANGED
+- 订阅者所需权限： 无
+
+## [COMMON_EVENT_DEVICE_IDLE_EXEMPTION_LIST_UPDATED<sup>10+<sup>](./common_event/commonEvent-resourceschedule.md)
+表示系统待机空闲模式下豁免应用程序列表已更新的公共事件的动作。仅限系统应用使用。
+- 值： usual.event.DEVICE_IDLE_EXEMPTION_LIST_UPDATED
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_POWER_SAVE_MODE_CHANGED
@@ -783,7 +782,7 @@ Wi-Fi P2P群组信息已更改。
 - 值： usual.event.SPN_INFO_CHANGED
 - 订阅者所需权限： 无
 
-## COMMON_EVENT_QUICK_FIX_APPLY_RESULT <sup>9+<sup>
+## [COMMON_EVENT_QUICK_FIX_APPLY_RESULT<sup>9+<sup>](./common_event/commonEvent-ability.md)
 表示快速修复应用的动作。
 - 值： usual.event.QUICK_FIX_APPLY_RESULT
 - 订阅者所需权限： 无
@@ -910,22 +909,6 @@ Wi-Fi P2P群组信息已更改。
 
 - 值：usual.event.SCREEN_UNLOCKED
 - 订阅者所需权限：无
-
-## [COMMON_EVENT_BOOT_COMPLETED](./common_event/commonEvent-ability.md)
-
-指示用户已完成引导并加载系统的公共事件操作。
-
-## [COMMON_EVENT_PACKAGE_RESTARTED](./common_event/commonEvent-ability.md)
-
-表示用户重启应用包并杀死其所有进程的普通事件的动作。
-
-## [COMMON_EVENT_PACKAGE_DATA_CLEARED](./common_event/commonEvent-ability.md)
-
-表示用户清除应用包数据的公共事件的动作。
-
-## [COMMON_EVENT_QUICK_FIX_APPLY_RESULT<sup>10+<sup>](./common_event/commonEvent-ability.md)
-
-指示快速修复应用的动作。
 
 ## [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT<sup>10+<sup>](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result)
 
