@@ -1,9 +1,6 @@
 # 卡片事件能力说明
 
-
-ArkTS卡片中提供了postCardAction()接口用于卡片内部和提供方应用间的交互，当前支持router、message和call三种类型的事件，仅在卡片中可以调用。
-
-
+ArkTS卡片中提供了postCardAction()接口用于卡片内部和提供方应用间的交互，当前支持router、message和call三种类型的事件，仅在卡片中可以调用。  
 ![WidgetPostCardAction](figures/WidgetPostCardAction.png)
 
 
@@ -28,12 +25,10 @@ action参数说明：
 | "bundleName" | string | "router"&nbsp;/&nbsp;"call"&nbsp;类型时跳转的包名，可选。 |
 | "moduleName" | string | "router"&nbsp;/&nbsp;"call"&nbsp;类型时跳转的模块名，可选。 |
 | "abilityName" | string | "router"&nbsp;/&nbsp;"call"&nbsp;类型时跳转的UIAbility名，必填。 |
-| "params" | Object | 当前action携带的额外参数，内容使用JSON格式的键值对形式。 |
+| "params" | Object | 当前action携带的额外参数，内容使用JSON格式的键值对形式。"call"&nbsp;类型时需填入参数'method'，且类型需要为string类型，用于触发UIAbility中对应的方法，必填。 |
 
 
-postCardAction()接口示例代码：
-
-
+`postCardAction()`接口示例代码：
 
 ```typescript
 Button('跳转')
@@ -49,9 +44,21 @@ Button('跳转')
       }
     });
   })
+
+Button('拉至后台')
+  .width('40%')
+  .height('20%')
+  .onClick(() => {
+    postCardAction(this, {
+      'action': 'call',
+      'bundleName': 'com.example.myapplication',
+      'abilityName': 'EntryAbility',
+      'params': {
+        'method': 'fun', // 自定义调用的方法名，必填
+        'message': 'testForcall' // 自定义要发送的message
+      }
+    });
+  })
 ```
 
-
-以下是卡片开发过程中可以通过卡片事件实现的典型开发场景：
-
-
+以下介绍通过卡片事件实现的典型开发场景。

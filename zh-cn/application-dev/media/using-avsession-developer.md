@@ -31,7 +31,7 @@
 1. 通过AVSessionManager的方法创建并激活媒体会话。
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession'; //导入AVSession模块
+   import AVSessionManager from '@ohos.multimedia.avsession'; //导入AVSessionManager模块
    
    // 创建session
    async createSession() {

@@ -64,6 +64,9 @@ httpRequest.request(
 );
 ```
 
+> **说明：**
+> console.info()输出的数据中包含换行符会导致数据出现截断现象。
+
 ## http.createHttp
 
 createHttp(): HttpRequest
@@ -97,7 +100,7 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>):void
 根据URL地址，发起HTTP网络请求，使用callback方式作为异步方法。
 
 > **说明：**
-> 此接口仅支持数据大小为5M以内的数据传输。
+> 此接口仅支持数据大小为5M以内的数据接收。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -148,7 +151,7 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 根据URL地址和相关配置项，发起HTTP网络请求，使用callback方式作为异步方法。
 
 > **说明：**
-> 此接口仅支持数据大小为5M以内的数据传输。
+> 此接口仅支持数据大小为5M以内的数据接收。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -234,7 +237,7 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 根据URL地址，发起HTTP网络请求，使用Promise方式作为异步方法。
 
 > **说明：**
-> 此接口仅支持数据大小为5M以内的数据传输。
+> 此接口仅支持数据大小为5M以内的数据接收。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -330,9 +333,7 @@ destroy(): void
 httpRequest.destroy();
 ```
 
-```
-
-### on('headerReceive')
+### on('headerReceive')<sup>(deprecated)</sup>
 
 on(type: 'headerReceive', callback: AsyncCallback\<Object\>): void
 
@@ -358,7 +359,7 @@ httpRequest.on('headerReceive', (data) => {
 });
 ```
 
-### off('headerReceive')
+### off('headerReceive')<sup>(deprecated)</sup>
 
 off(type: 'headerReceive', callback?: AsyncCallback\<Object\>): void
 
@@ -464,12 +465,12 @@ httpRequest.once('headersReceive', (header) => {
 | 名称         | 类型                                          | 必填 | 说明                                                         |
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | method         | [RequestMethod](#requestmethod)               | 否   | 请求方式，默认为GET。                                                   |
-| extraData      | string<sup>6+</sup> \| Object<sup>6+</sup> \| ArrayBuffer<sup>8+</sup>  | 否   | 发送请求的额外数据，默认无此字段。<br />- 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content，以UTF-8编码形式作为请求体。<sup>6+</sup><br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求参数的补充。开发者需传入Encode编码后的string类型参数，Object类型的参数无需预编码，参数内容会拼接到URL中进行发送；ArrayBuffer类型的参数不会做拼接处理。<sup>6+</sup> |
+| extraData      | string<sup>6+</sup> \| Object<sup>6+</sup> \| ArrayBuffer<sup>8+</sup>  | 否   | 发送请求的额外数据，默认无此字段。<br />- 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content，以UTF-8编码形式作为请求体。当'Content-Type'为'application/x-www-form-urlencoded'时，请求提交的信息主体数据应在key和value进行URL转码后按照键值对"key1=value1&key2=value2&key3=value3"的方式进行编码。<sup>6+</sup><br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求参数的补充。开发者需传入Encode编码后的string类型参数，Object类型的参数无需预编码，参数内容会拼接到URL中进行发送；ArrayBuffer类型的参数不会做拼接处理。<sup>6+</sup> |
 | expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | 否   | 指定返回数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。 |
 | usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认为true。   |
-| priority<sup>9+</sup>        | number                          | 否   | 优先级，范围\[0,1000]，默认是0。                           |
+| priority<sup>9+</sup>        | number                          | 否   | 优先级，范围[1,1000]，默认是1。                           |
 | header                       | Object                          | 否   | HTTP请求头字段。默认{'Content-Type': 'application/json'}。   |
-| readTimeout                  | number                          | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。              |
+| readTimeout                  | number                          | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。<br />设置为0表示不会出现超时情况。 |
 | connectTimeout               | number                          | 否   | 连接超时时间。单位为毫秒（ms），默认为60000ms。              |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | 否   | 使用协议。默认值由系统自动指定。                             |
 

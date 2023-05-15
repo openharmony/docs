@@ -62,6 +62,25 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
   | hapModuleQuickFixFiles | Array\<string> | 是 | 快速修复补丁文件（补丁文件需包含有效的文件路径）。 |
   | callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 18500002 | Copy file failed, maybe not exist or inaccessible. |
+| 18500008 | Internal error. |
+
+在打补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEvent-definitions.md#common_event_quick_fix_apply_result9)的参数返回给应用开发者。这部分错误码及错误信息如下：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 18500003 | Deploy hqf failed. |
+| 18500004 | Switch hqf failed. |
+| 18500005 | Delete hqf failed. |
+| 18500006 | Load patch failed. |
+| 18500007 | Unload patch failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 > 说明：调用applyQuickFix接口时，补丁文件所在路径为应用沙箱路径。沙箱路径的获取参考[获取应用的沙箱路径](js-apis-bundle-BundleInstaller.md#获取应用的沙箱路径)，映射到设备上的路径为/proc/&lt;应用进程Id&gt;/root/沙箱路径。
 
 **示例：**
@@ -107,6 +126,25 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
   | -------- | -------- |
   | Promise\<void> | 返回相应结果。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 18500002 | Copy file failed, maybe not exist or inaccessible. |
+| 18500008 | Internal error. |
+
+在打补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEvent-definitions.md#common_event_quick_fix_apply_result9)的参数返回给应用开发者。这部分错误码及错误信息如下：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 18500003 | Deploy hqf failed. |
+| 18500004 | Switch hqf failed. |
+| 18500005 | Delete hqf failed. |
+| 18500006 | Load patch failed. |
+| 18500007 | Unload patch failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
@@ -142,6 +180,15 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
   | -------- | -------- | -------- | -------- |
   | bundleName | string | 是 |应用的包名。  | 
   | callback | AsyncCallback\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | 是 | 应用的快速修复信息。 | 
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 18500001 | The bundle is not exist. |
+| 18500008 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -185,6 +232,15 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
   | 类型 | 说明 |
   | -------- | -------- |
   | Promise\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | 返回应用的快速修复信息。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 18500001 | The bundle is not exist. |
+| 18500008 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     

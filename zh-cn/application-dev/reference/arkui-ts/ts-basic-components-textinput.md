@@ -31,7 +31,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 
 | 名称                       | 参数类型                                     | 描述                                       |
 | ------------------------ | ---------------------------------------- | ---------------------------------------- |
-| type                     | InputType                                | 设置输入框类型。<br/>默认值：InputType.Normal        |
+| type                     | [InputType](#inputtype枚举说明)              | 设置输入框类型。<br/>默认值：InputType.Normal        |
 | placeholderColor         | [ResourceColor](ts-types.md#resourcecolor)     | 设置placeholder文本颜色。|
 | placeholderFont          | [Font](ts-types.md#font) | 设置placeholder文本样式。 |
 | enterKeyType             | EnterKeyType                             | 设置输入法回车键类型，目前仅支持默认类型显示。<br/>默认值：EnterKeyType.Done |
@@ -129,6 +129,9 @@ struct TextInputExample {
         .margin(20)
         .fontSize(14)
         .fontColor(Color.Black)
+        .inputFilter('[a-z]', (e) => {
+          console.log(JSON.stringify(e))
+        })
         .onChange((value: string) => {
           this.text = value
         })

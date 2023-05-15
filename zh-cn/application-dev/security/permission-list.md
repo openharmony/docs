@@ -1577,3 +1577,33 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+## ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
+
+允许应用管理系统分布式帐号信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.GET_DISTRIBUTED_ACCOUNTS
+
+允许应用查询系统分布式帐号信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.GET_LOCAL_ACCOUNTS
+
+允许应用查询系统本地帐号信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE

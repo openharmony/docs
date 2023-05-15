@@ -21,4 +21,5 @@
 - [分布式文件系统](distributed-fs-overview.md)：提供跨设备的文件访问能力。所谓跨设备，指文件不一定存储在本地设备或外置存储设备，而是通过计算机网络与其他分布式设备相连。
 
 **图1** 文件分类模型示意图
+
 ![File classification model](figures/file-classification-model.png)

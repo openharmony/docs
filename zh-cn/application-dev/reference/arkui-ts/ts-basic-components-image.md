@@ -368,7 +368,7 @@ import context from '@ohos.app.ability.common';
 struct LoadImageExample {
   @State resourcesPath: string = ''
   @State sandboxPath: string = ''
-  context: context.UIAbility = getContext(this) as context.UIAbilityContext
+  context: context.UIAbilityContext = getContext(this) as context.UIAbilityContext
 
   build() {
     Column() {
@@ -395,6 +395,12 @@ struct LoadImageExample {
       Image(this.resourcesPath)
         .width(100)
         .height(100)
+        .colorFilter([
+          0.30, 0.59, 0.11, 0, 0,
+          0.30, 0.59, 0.11, 0, 0,
+          0.30, 0.59, 0.11, 0, 0,
+          0, 0, 0, 1.0, 0
+        ])
       Text(`沙箱图片路径:${this.sandboxPath}`)
         .fontSize(20)
         .margin({ bottom: 10 })

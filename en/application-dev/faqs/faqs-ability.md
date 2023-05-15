@@ -212,5 +212,3 @@ The following conditions must be met:
 1. Before the redirection to the previous page, a confirm dialog box will be displayed. Note that **router.disableAlertBeforeBackPage** is used to disable the display of a confirm dialog box before returning to the previous page (default), and **router.enableAlertBeforeBackPage** is used to enable the display.
 
 2. The system return key is used.
-
-  

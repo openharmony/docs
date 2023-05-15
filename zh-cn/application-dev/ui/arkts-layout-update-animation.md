@@ -1,13 +1,13 @@
 # 布局更新动画
 
 
-[属性动画](../reference/arkui-ts/ts-animatorproperty.md)（animation）和[显式动画](../reference/arkui-ts/ts-explicit-animation.md)（animateTo）是ArkUI提供的最基础和常用的动画功能。在布局属性（如[尺寸属性](../reference/arkui-ts/ts-universal-attributes-size.md)、[位置属性](../reference/arkui-ts/ts-universal-attributes-location.md)）发生变化时，可以通过属性动画或显式动画，按照动画参数过渡到新的布局参数状态。
+[显式动画](../reference/arkui-ts/ts-explicit-animation.md)（animateTo）和[属性动画](../reference/arkui-ts/ts-animatorproperty.md)（animation）是ArkUI提供的最基础和常用的动画功能。在布局属性（如[尺寸属性](../reference/arkui-ts/ts-universal-attributes-size.md)、[位置属性](../reference/arkui-ts/ts-universal-attributes-location.md)）发生变化时，可以通过属性动画或显式动画，按照动画参数过渡到新的布局参数状态。
 
 
-| 动画类型 | 特点                                       | 适用场景     |
-| ---- | ---------------------------------------- | -------- |
-| 属性动画 | 动画设置简单，属性变化时自动触发动画。                      | 较简单的动画场景 |
+| 动画类型 | 特点                                       |
+| ---- | ---------------------------------------- |
 | 显式动画 | 闭包内的变化均会触发动画，包括由数据变化引起的组件的增删、组件属性的变化等，可以做较为复杂的动画。 | 较复杂的动画场景 |
+| 属性动画 | 动画设置简单，属性变化时自动触发动画。                      |
 
 
 ## 使用显式动画产生布局更新动画
@@ -226,9 +226,9 @@ struct LayoutChange2 {
         .height(this.myHeight)
         // animation只对其上面的type、width、height属性生效，时长为1000ms，曲线为Ease
         .animation({ duration: 1000, curve: Curve.Ease })
+        // animation对下面的backgroundColor、margin属性不生效
         .backgroundColor(this.myColor)
         .margin(20)
-        // animation对下面的backgroundColor、margin属性不生效
 
       Button("area: click me")
         .fontSize(12)
@@ -263,8 +263,8 @@ struct LayoutChange2 {
 
 >**说明：**
 >
->  1. 使用属性动画时，会按照指定的属性动画参数执行动画。每个组件可为自己的属性配置不同参数的属性动画。
+>    1. 使用属性动画时，会按照指定的属性动画参数执行动画。每个组件可为自己的属性配置不同参数的属性动画。
 >
->  2. 显式动画会对动画闭包前后造成的所有界面差异执行动画，且使用同一动画参数，适用于统一执行的场景。此外，显式动画也可以用于一些非属性变量造成的动画，如if/else的条件，ForEach使用的数组元素的删减。
+>    2. 显式动画会对动画闭包前后造成的所有界面差异执行动画，且使用同一动画参数，适用于统一执行的场景。此外，显式动画也可以用于一些非属性变量造成的动画，如if/else的条件，ForEach使用的数组元素的删减。
 >
->  3. 如果一个属性配置了属性动画，且在显式动画闭包中改变该属性值，属性动画优先生效，会使用属性动画的动画参数。
+>    3. 如果一个属性配置了属性动画，且在显式动画闭包中改变该属性值，属性动画优先生效，会使用属性动画的动画参数。

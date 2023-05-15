@@ -752,6 +752,8 @@ abstract get(): T
 
 读取从AppStorage/LocalStorage同步属性的数据。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **返回值：**
 
 | 类型   | 描述                              |
@@ -770,8 +772,9 @@ prop1.get(); //  prop1.get()=47
 
 abstract set(newValue: T): void
 
-
 设置AppStorage/LocalStorage同步属性的数据。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 
 **参数：**

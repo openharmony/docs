@@ -64,9 +64,10 @@
        // 建议下载能快速下载完成的小文件，如在5秒内未下载完成，则此次网络图片无法刷新至卡片页面上
        let netFile = 'https://xxxx/xxxx.png'; // 需要在此处使用真实的网络图片下载链接
        let tempDir = this.context.getApplicationContext().tempDir;
-       let tmpFile = tempDir + '/file' + Date.now();
+       let fileName = 'file' + Date.now();
+       let tmpFile = tempDir + '/' + fileName;
        request.downloadFile(this.context, {
-         url: netFile, filePath: tmpFile
+         url: netFile, filePath: tmpFile, enableMetered: true, enableRoaming: true
        }).then((task) => {
          task.on('complete', function callback() {
            console.info('ArkTSCard download complete:' + tmpFile);
@@ -76,14 +77,14 @@
            } catch (e) {
              console.error(`openSync failed: ${JSON.stringify(e)}`);
            }
+           let fileInfo = {};
+           fileInfo[fileName] = file.fd;
            let formData = {
-             'text': 'Image: Https',
-             'imgName': 'imgHttps',
-             'formImages': {
-               'imgHttps': file.fd
-             },
+             'text': 'Image:' + fileName,
+             'imgName': fileName,
+             'formImages': fileInfo,
              'loaded': true
-           }
+           };
            let formInfo = formBindingData.createFormBindingData(formData)
            formProvider.updateForm(formId, formInfo).then((data) => {
              console.info('FormAbility updateForm success.' + JSON.stringify(data));
@@ -108,7 +109,7 @@
    ```
 
 4. 在卡片页面通过Image组件展示EntryFormAbility传递过来的卡片内容。
-   
+
    ```ts
    let storage = new LocalStorage();
    @Entry(storage)
@@ -159,8 +160,7 @@
    }
    ```
 
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - Image组件通过入参(**memory://fileName**)中的**memory://**标识来进行远端内存图片显示，其中**fileName**需要和EntryFormAbility传递对象(**'formImages': {key: fd})**中的**key**相对应。
 > 
 > - Image组件通过传入的参数是否有变化来决定是否刷新图片，因此EntryFormAbility每次传递过来的**imgName**都需要不同，连续传递两个相同的**imgName**时，图片不会刷新。

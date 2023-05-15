@@ -1,8 +1,8 @@
 # 应用模型
 
 - 应用模型概述
-  - [OpenHarmony应用模型的构成要素](application-model-composition.md)
-  - [OpenHarmony应用模型解读](application-model-description.md)
+  - [应用模型的构成要素](application-model-composition.md)
+  - [应用模型解读](application-model-description.md)
 - Stage模型开发指导
   - [Stage模型开发概述](stage-model-development-overview.md)
   - Stage模型应用组件
@@ -55,7 +55,7 @@
       - [Want概述](want-overview.md)
       - [显式Want与隐式Want匹配规则](explicit-implicit-want-mappings.md)
       - [常见action与entities](actions-entities.md)
-      - [使用显式Want启动Ability](ability-startup-with-explicit-want.md)
+      - [使用显式Want启动应用组件](ability-startup-with-explicit-want.md)
       - [使用隐式Want打开网址](ability-startup-with-implicit-want.md)
       - [应用间使用Want分享数据](data-share-via-want.md)
     - [组件启动规则（Stage模型）](component-startup-rules.md)
@@ -63,6 +63,7 @@
       - [流转概述](inter-device-interaction-hop-overview.md)
       - [跨端迁移（仅对系统应用开放）](hop-cross-device-migration.md)
       - [多端协同（仅对系统应用开放）](hop-multi-device-collaboration.md)
+    - [订阅系统环境变量的变化](subscribe-system-environment-variable-changes.md)
   - 进程间通信
     - [进程模型](process-model-stage.md)
     - 公共事件
@@ -82,6 +83,8 @@
     - [任务管理场景介绍](mission-management-overview.md)
     - [任务管理与启动模式](mission-management-launch-type.md)
     - [页面栈及任务链](page-mission-stack.md)
+    - [设置任务快照的图标和名称](mission-set-icon-name-for-task-snapshot.md)
+  - [Stage模型应用配置文件](config-file-stage.md)
 - FA模型开发指导
   - [FA模型开发概述](fa-model-development-overview.md)
   - FA模型应用组件

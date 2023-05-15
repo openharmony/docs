@@ -23,7 +23,7 @@ URI示例：
 
 - 本地设备：dataability:///_com.domainname.dataability.persondata_/_person_/_1_
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 本地设备的"device_id"字段为空，因此在"dataability:"后面有三个"/"。
 
 
@@ -38,7 +38,7 @@ URI示例：
 | "name" | Ability名称。 |
 | "type" | UIAbility类型，DataAbility的类型为"data"。 |
 | "uri" | 通信使用的URI。 |
-| "exported" | 对其他应用是否可见，设置为true时，DataAbility才能与其他应用进行通信传输数据。 |
+| "visible" | 对其他应用是否可见，设置为true时，DataAbility才能与其他应用进行通信传输数据。 |
 
 config.json配置样例
 
@@ -51,7 +51,7 @@ config.json配置样例
   "srcLanguage": "ets",
   "description": "$string:description_dataability",
   "type": "data",
-  "exported": true,
+  "visible": true,
   "uri": "dataability://ohos.samples.etsdataability.DataAbility"
 }]
 ```

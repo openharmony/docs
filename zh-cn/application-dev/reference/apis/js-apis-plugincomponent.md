@@ -55,8 +55,8 @@ Plugin组件模板参数。
 | --------- | ----------------------------------- | ---- | -------------------------------------------------------------- |
 | want      | [Want](js-apis-application-want.md) | 是   | 组件使用者Ability信息。                                        |
 | name      | string                              | 是   | 组件名称。                                                     |
-| data      | [KVObject](#kvobject)               | 否   | 组件数据值。                                                   |
-| extraData | [KVObject](#kvobject)               | 否   | 附加数据值。                                                   |
+| data      | [KVObject](#kvobject)               | 是   | 组件数据值。                                                   |
+| extraData | [KVObject](#kvobject)               | 是   | 附加数据值。                                                   |
 | jsonPath  | string                              | 否   | 存放模板路径的[external.json](#externaljson文件说明)件的路径。 |
 
 ### PushParameterForStage
@@ -74,8 +74,8 @@ Plugin组件模板参数。
 | owner     | [Want](js-apis-application-want.md) | 是   | 组件提供方Ability信息。                                          |
 | target    | [Want](js-apis-application-want.md) | 是   | 组件使用者Ability信息。                                          |
 | name      | string                              | 是   | 组件名称。                                                       |
-| data      | [KVObject](#kvobject)               | 否   | 组件数据值。                                                     |
-| extraData | [KVObject](#kvobject)               | 否   | 附加数据值。                                                     |
+| data      | [KVObject](#kvobject)               | 是   | 组件数据值。                                                     |
+| extraData | [KVObject](#kvobject)               | 是   | 附加数据值。                                                     |
 | jsonPath  | string                              | 否   | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。 |
 
 ### RequestParameters
@@ -117,11 +117,11 @@ PluginManager.Request方法时候接收到的回调结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称              | 类型                                                 | 必填 | 说明       |
-| ----------------- | ---------------------------------------------------- | ---- | ---------- |
-| componentTemplate | [PluginComponentTemplate](#plugincomponenttemplate)] | 是   | 组件模板。 |
-| data              | [KVObject](#kvobject)                                | 是   | 组件数据。 |
-| extraData         | [KVObject](#kvobject)                                | 是   | 附加数据。 |
+| 名称              | 类型                                                | 必填 | 说明       |
+| ----------------- | --------------------------------------------------- | ---- | ---------- |
+| componentTemplate | [PluginComponentTemplate](#plugincomponenttemplate) | 是   | 组件模板。 |
+| data              | [KVObject](#kvobject)                               | 是   | 组件数据。 |
+| extraData         | [KVObject](#kvobject)                               | 是   | 附加数据。 |
 
 ### RequestEventResult
 
@@ -175,7 +175,7 @@ OnRequestEventCallback = (source: Want, name: string, data: KVObject) => Request
 | 参数      | 类型                                | 必填 | 说明                        |
 | --------- | ----------------------------------- | ---- | --------------------------- |
 | source    | [Want](js-apis-application-want.md) | 是   | request请求发送方相关信息。 |
-| data      | [KVObject](#kvobject)               | 是   | 数据。                      |
+| name      | string                              | 是   | 模板名称。                  |
 | extraData | [KVObject](#kvobject)               | 是   | 附加数据。                  |
 
 **示例：**

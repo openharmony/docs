@@ -1,10 +1,10 @@
-# @ohos.file.picker (Picker)
+# @ohos.file.picker (File Picker)
+
+**Picker** encapsulates the system applications such as **PhotoViewPicker**, **DocumentViewPicker** and **AudioViewPicker** to provide capabilities of selecting and saving files of different types. The application can select the picker as required.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
-**Picker** encapsulates system applications, such as **PhotoViewPicker**, **DocumentViewPicker**, and **AudioViewPicker**, and provides capabilities of selecting and saving images, videos, documents, and audio clips. The application can select the picker as required.
 
 ## Modules to Import
 ```js
@@ -27,7 +27,7 @@ let photoPicker = new picker.PhotoViewPicker();
 
 select(option?: PhotoSelectOptions) : Promise&lt;PhotoSelectResult&gt;
 
-Selects one or more images or videos in a **photoPicker** page. This API uses a promise to return the result. You can pass in **PhotoSelectOptions** to specify the media type and the maximum number of files to select.
+Selects one or more images or videos in a **photoPicker** page. This API uses a promise to return the result. You can pass in **PhotoSelectOptions** to specify the media file type and the maximum number of files to select.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -35,7 +35,7 @@ Selects one or more images or videos in a **photoPicker** page. This API uses a 
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| option | [PhotoSelectOptions](#photoselectoptions) | No  | Options for selecting images or videos.|
+| option | [PhotoSelectOptions](#photoselectoptions) | No  | Options for selecting files. If this parameter is not specified, images and videos are selected by default. A maximum of 50 files can be selected.|
 
 **Return value**
 
@@ -67,7 +67,7 @@ async function example() {
 
 select(option: PhotoSelectOptions, callback: AsyncCallback&lt;PhotoSelectResult&gt;) : void
 
-Selects one or more images or videos in a **photoPicker** page. This API uses an asynchronous callback to return the result. You can pass in **PhotoSelectOptions** to specify the media type and the maximum number of files to select.
+Selects one or more images or videos in a **photoPicker** page. This API uses an asynchronous callback to return the result. You can pass in **PhotoSelectOptions** to specify the media file type and the maximum number of files to select.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -145,7 +145,7 @@ Saves one or more images or videos in a **photoPicker** page. This API uses a pr
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| option | [PhotoSaveOptions](#photosaveoptions) | No  | Options for saving images or videos.|
+| option | [PhotoSaveOptions](#photosaveoptions) | No  | Options for saving files. If this parameter is not specified, a **photoPicker** page will be displayed for the user to enter the names of the files to save.|
 
 **Return value**
 
@@ -265,7 +265,7 @@ Selects one or more documents in a **documentPicker** page. This API uses a prom
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| option | [DocumentSelectOptions](#documentselectoptions) | No  | Options for selecting documents.|
+| option | [DocumentSelectOptions](#documentselectoptions) | No  | Options for select documents. If this parameter is not specified, the **documentPicker** page is displayed by default.|
 
 **Return value**
 
@@ -372,13 +372,13 @@ Saves one or more documents in a **documentPicker** page. This API uses a promis
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| option | [DocumentSaveOptions](#documentsaveoptions) | No  | Options for saving the documents.|
+| option | [DocumentSaveOptions](#documentsaveoptions) | No  | Options for saving the documents. If this parameter is not specified, a **documentPicker** page will be displayed for the user to enter the names of the documents to save.|
 
 **Return value**
 
 | Type                           | Description   |
 | ----------------------------- | :---- |
-| Promise&lt;Array&lt;string&gt;&gt;  | Promise used to return the URIs of the documents saved.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the URIs of the documents saved.|
 
 **Example**
 
@@ -492,7 +492,7 @@ Selects one or more audio files in an **audioPicker** page (currently, a **docum
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| option | [AudioSelectOptions](#audioselectoptions) | No  | Options for selecting audio files.|
+| option | [AudioSelectOptions](#audioselectoptions) | No  | Options for selecting the audio files. If this parameter is not specified, the **audioPicker** page is displayed by default. |
 
 **Return value**
 
@@ -590,7 +590,7 @@ async function example() {
 
 save(option?: AudioSaveOptions) : Promise&lt;Array&lt;string&gt;&gt;
 
-Saves one or more audio files in an **audioPicker** page (currently, a **documentPicker** page is displayed). This API uses a promise to return the result. You can pass in **AudioSaveOptions** to specify the file names of the audio clips to save.
+Saves one or more audio files in an **audioPicker** page (currently, a **documentPicker** page is displayed). This API uses a promise to return the result. You can pass in **AudioSaveOptions** to specify the names of the audio files to save.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -598,7 +598,7 @@ Saves one or more audio files in an **audioPicker** page (currently, a **documen
 
 | Name | Type   | Mandatory| Description                      |
 | ------- | ------- | ---- | -------------------------- |
-| option | [AudioSaveOptions](#audiosaveoptions) | No  | Options for saving audio files.|
+| option | [AudioSaveOptions](#audiosaveoptions) | No  | Options for saving audio files. If this parameter is not specified, an **audioPicker** page will be displayed for the user to enter the names of the files to save.|
 
 **Return value**
 
@@ -629,7 +629,7 @@ async function example() {
 
 save(option: AudioSaveOptions, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;) : void
 
-Saves one or more audio files in an **audioPicker** page (currently, a **documentPicker** page is displayed). This API uses an asynchronous callback to return the result. You can pass in **AudioSaveOptions** to specify the file names of the audio clips to save.
+Saves one or more audio files in an **audioPicker** page (currently, a **documentPicker** page is displayed). This API uses an asynchronous callback to return the result. You can pass in **AudioSaveOptions** to specify the names of the audio files to save.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -714,7 +714,7 @@ Defines the options for selecting images or videos.
 
 | Name                   | Type               | Mandatory| Description                         |
 | ----------------------- | ------------------- | ---- | -------------------------------- |
-| MIMEType?              | [PhotoViewMIMETypes](#photoviewmimetypes)   | No  | Media file types to select.|
+| MIMEType?              | [PhotoViewMIMETypes](#photoviewmimetypes)   | No  | Available media file types. **IMAGE_VIDEO_TYPE** is used by default.|
 | maxSelectNumber?       | number | No  | Maximum number of media files to select. The default value is **50**, and the maximum value is **500**.     |
 
 ## PhotoSelectResult
@@ -726,7 +726,7 @@ Defines information about the images or videos selected.
 | Name                   | Type               | Readable| Writable| Description                          |
 | ----------------------- | ------------------- | ---- | ---- | ------------------------------ |
 | photoUris        | Array&lt;string&gt;    | Yes  | Yes  | URIs of the media files selected.|
-| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media file is the original image.| 
+| isOriginalPhoto        | boolean    | Yes  | Yes  | Whether the selected media file is the original image.|
 
 ## PhotoSaveOptions
 
@@ -736,7 +736,7 @@ Defines the options for saving images or videos.
 
 | Name                   | Type               | Mandatory|  Description                          |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames?              | Array&lt;string&gt;    | No | Files names of the images or videos to save.|
+| newFileNames?              | Array&lt;string&gt;    | No | Names of the files to save. If this parameter is not specified, the user needs to enter the file names.|
 
 ## DocumentSelectOptions
 
@@ -752,11 +752,11 @@ Defines the options for saving documents.
 
 | Name                   | Type               | Mandatory|  Description                          |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames?            | Array&lt;string&gt;    | No  | File names of the documents to save.|
+| newFileNames?            | Array&lt;string&gt;    | No  | Names of the documents to save. If this parameter is not specified, the user needs to enter the document names. |
 
 ## AudioSelectOptions
 
-Defines the options for selecting audio clips. Currently, this parameter cannot be configured.
+Defines the options for selecting audio files. Currently, this parameter cannot be configured.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -768,4 +768,4 @@ Defines the options for saving audio files.
 
 | Name                   | Type               | Mandatory|  Description                          |
 | ----------------------- | ------------------- | ---- | ---------------------------- |
-| newFileNames?              | Array&lt;string&gt;    | No | File names of the audio clips to save.|
+| newFileNames?              | Array&lt;string&gt;    | No | Name of the audio files to save. If this parameter is not specified, the user needs to enter the file names.|

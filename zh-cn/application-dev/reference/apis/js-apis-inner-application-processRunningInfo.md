@@ -6,6 +6,12 @@
 > - 本模块接口从API version 9 开始废弃，建议使用[ProcessInformation<sup>9+</sup>](js-apis-inner-application-processInformation.md)替代。
 > - 本模块首批接口从API version 8 开始支持。
 
+## 导入模块
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+```
+
 ## 属性
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission

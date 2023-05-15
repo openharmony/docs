@@ -12,21 +12,20 @@
 
 文件URI的格式为：
 
-  格式为file://&lt;bundleName&gt;/&lt;path&gt;/\#networkid=&lt;networkid&gt;
+  格式为file://&lt;bundleName&gt;/&lt;path&gt;
+
 - file：文件URI的标志。
 
 - bundleName：该文件资源的属主。
 
 - path：文件资源在应用沙箱中的路径。
 
-- networkid：为可选项，用于分布式文件系统标志该文件资源所归属的设备；当不需要区分文件位置时，该选项可不填写。
-
 ## 分享文件给其他应用
 
 在分享文件给其他应用前，开发者需要先[获取应用文件路径](../application-models/application-context-stage.md#获取应用开发路径)。
 
 1. 获取文件在应用沙箱中的路径，并转换为文件URI。
-     
+
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
    import fileuri from '@ohos.file.fileuri';
@@ -49,7 +48,7 @@
    > **说明：**
    >
    > 写权限分享时，同时授予读权限。
- 
+
    ```ts
    import fileuri from '@ohos.file.fileuri';
    import window from '@ohos.window';
@@ -118,7 +117,6 @@
 
 通过接口want的参数获取分享文件的URI，获取文件URI后通过fs.open()接口打开文件，获取对应的file对象后，可对文件进行读写操作。
 
-  
 ```ts
 // xxx.ets
 import fs from '@ohos.file.fs';

@@ -29,7 +29,7 @@ Creates a **Filter** instance based on the pixel map.
 
 | Name   | Type              | Mandatory| Description    |
 | ------- | ----------------- | ---- | -------- |
-| source  | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes  | **PixelMap** instance created by the image module.  |
+| source  | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes  | **PixelMap** instance created by the image module. An instance can be obtained by decoding an image or directly created. For details, see [Image Overview](../../media/image-overview.md).  |
 
 **Return value**
 
@@ -61,7 +61,7 @@ Creates a **ColorPicker** instance based on the pixel map. This API uses a promi
 
 | Name    | Type        | Mandatory| Description                      |
 | -------- | ----------- | ---- | -------------------------- |
-| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes  |  **PixelMap** instance created by the image module.|
+| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes  |  **PixelMap** instance created by the image module. An instance can be obtained by decoding an image or directly created. For details, see [Image Overview](../../media/image-overview.md).|
 
 **Return value**
 
@@ -95,7 +95,7 @@ Creates a **ColorPicker** instance based on the pixel map. This API uses an asyn
 
 | Name    | Type               | Mandatory| Description                      |
 | -------- | ------------------ | ---- | -------------------------- |
-| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes |**PixelMap** instance created by the image module. |
+| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes |**PixelMap** instance created by the image module. An instance can be obtained by decoding an image or directly created. For details, see [Image Overview](../../media/image-overview.md). |
 | callback | AsyncCallback\<[ColorPicker](#colorpicker)> | Yes | Callback used to return the **ColorPicker** instance created.|
 
 **Example**
@@ -131,13 +131,13 @@ A class that stores the color picked.
 
 ## ColorPicker
 
-A class used to obtain the main color of an image from its data. Before calling any method of **ColorPicker**, use [createColorPicker](#effectkitcreatecolorpicker) to create a **ColorPicker** instance.
+A class used to obtain the color from an image. Before calling any method of **ColorPicker**, use [createColorPicker](#effectkitcreatecolorpicker) to create a **ColorPicker** instance.
 
 ### getMainColor
 
 getMainColor(): Promise\<Color>
 
-Obtains the main color of the image and writes the result to a **[Color](#color)** instance. This API uses a promise to return the result.
+Obtains the main color from the image and writes the result to a [Color](#color) instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -162,7 +162,7 @@ colorPicker.getMainColor().then(color => {
 
 getMainColorSync(): Color
 
-Obtains the main color of the image and writes the result to a **[Color](#color)** instance. This API returns the result in synchronous mode.
+Obtains the main color from the image and writes the result to a [Color](#color) instance. This API returns the result in synchronous mode.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 

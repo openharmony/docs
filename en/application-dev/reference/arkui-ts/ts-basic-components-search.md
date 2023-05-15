@@ -16,12 +16,11 @@ Search(options?: { value?: string; placeholder?: string; icon?: string; controll
 
 **Parameters**
 
-| Name     | Type        | Mandatory| Description                                                    |
-| ----------- | ---------------- | ---- | ------------------------------------------------------------ |
-| value       | string           | No  | Text input in the search text box.                                                |
-| placeholder | string           | No  | Text displayed when there is no input.                                        |
-| icon        | string           | No  | Path to the search icon. By default, the system search icon is used. The supported icon formats are .svg, .jpg, and .png.|
-| controller  | SearchController | No  | Controller of the **\<Search>** component.                                                    |
+| Name     | Type                                            | Mandatory| Description                                                    |
+| ----------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value       | string                                               | No  | Text input in the search text box.<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md).|
+| icon        | string                                               | No  | Path to the search icon. By default, the system search icon is used.<br>For details about the supported image types, see [Image](ts-basic-components-image.md).|
+| controller  | SearchController                                     | No  | Controller of the **\<Search>** component.                                      |
 
 ## Attributes
 
@@ -31,8 +30,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | ----------------------- | ------------------------------------------------ | ---------------------------------------------- |
 | searchButton            | string                                           | Text on the search button located next to the search text box. By default, there is no search button.        |
 | placeholderColor        | [ResourceColor](ts-types.md#resourcecolor)       | Placeholder text color.                          |
-| placeholderFont         | [Font](ts-types.md#font)                         | Placeholder text font.                          |
-| textFont                | [Font](ts-types.md#font)                         | Text font for the search text box.                              |
+| placeholderFont         | [Font](ts-types.md#font)                         | Placeholder text style, including the font size, font width, font family, and font style. Currently, only the default font family is supported.                        |
+| textFont                | [Font](ts-types.md#font)                         | Style of the text entered in the search box, including the font size, font width, font family, and font style. Currently, only the default font family is supported.                          |
 | textAlign               | [TextAlign](ts-appendix-enums.md#textalign)      | Text alignment mode in the search text box.<br>Default value: **TextAlign.Start**   |
 | copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.                            |
 
@@ -44,9 +43,9 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 | ------------------------------------------- | ------------------------------------------------------------ |
 | onSubmit(callback: (value: string) => void) | Invoked when users click the search icon or the search button, or touch the search button on a soft keyboard.<br> - **value**: current text input. |
 | onChange(callback: (value: string) => void) | Invoked when the input in the text box changes.<br> - **value**: current text input. |
-| onCopy(callback: (value: string) => void)   | Invoked when data is copied to the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text copied. |
-| onCut(callback: (value: string) => void)    | Invoked when data is cut from the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text cut. |
-| onPaste(callback: (value: string) => void)  | Invoked when data is pasted from the pasteboard, which is displayed when the search text box is long pressed.<br> -**value**: text pasted. |
+| onCopy(callback: (value: string) => void)   | Invoked when data is copied to the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text copied.     |
+| onCut(callback: (value: string) => void)    | Invoked when data is cut from the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text cut.     |
+| onPaste(callback: (value: string) => void)  | Invoked when data is pasted from the pasteboard, which is displayed when the search text box is long pressed.<br> -**value**: text pasted.     |
 
 ## SearchController
 

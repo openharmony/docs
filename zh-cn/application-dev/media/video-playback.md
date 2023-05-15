@@ -16,7 +16,7 @@
 
 ![Playback status change](figures/video-playback-status-change.png)
 
-状态的详细说明请参考[AVPlayerState](../reference/apis/js-apis-media.md#avplayerstate9)。当播放处于prepared / playing / paused / compeled状态时，播放引擎处于工作状态，这需要占用系统较多的运行内存。当客户端暂时不使用播放器时，调用reset()或release()回收内存资源，做好资源利用。
+状态的详细说明请参考[AVPlayerState](../reference/apis/js-apis-media.md#avplayerstate9)。当播放处于prepared / playing / paused / completed状态时，播放引擎处于工作状态，这需要占用系统较多的运行内存。当客户端暂时不使用播放器时，调用reset()或release()回收内存资源，做好资源利用。
 
 ### 开发步骤及注意事项
 
@@ -32,8 +32,8 @@
    | durationUpdate | 用于进度条，监听进度条长度，刷新资源时长。 | 
    | timeUpdate | 用于进度条，监听进度条当前位置，刷新当前时间。 | 
    | seekDone | 响应API调用，监听seek()请求完成情况。<br/>当使用seek()跳转到指定播放位置后，如果seek操作成功，将上报该事件。 | 
-   | speedDone | 响应API调用，监听setSpeed()请求完成情况。<br/>当使用setSpeed()跳转到指定播放位置后，如果setSpeed操作成功，将上报该事件。 | 
-   | volumeChange | 响应API调用，监听setVolume()请求完成情况。<br/>当使用setVolume()跳转到指定播放位置后，如果setVolume操作成功，将上报该事件。 | 
+   | speedDone | 响应API调用，监听setSpeed()请求完成情况。<br/>当使用setSpeed()设置播放倍速后，如果setSpeed操作成功，将上报该事件。 | 
+   | volumeChange | 响应API调用，监听setVolume()请求完成情况。<br/>当使用setVolume()调节播放音量后，如果setVolume操作成功，将上报该事件。 | 
    | bitrateDone | 响应API调用，用于HLS协议流，监听setBitrate()请求完成情况。<br/>当使用setBitrate()指定播放比特率后，如果setBitrate操作成功，将上报该事件。 | 
    | availableBitrates | 用于HLS协议流，监听HLS资源的可选bitrates，用于setBitrate()。 | 
    | bufferingUpdate | 用于网络播放，监听网络播放缓冲信息。 | 
@@ -46,7 +46,7 @@
    >
    > 下面代码示例中的url仅作示意使用，开发者需根据实际情况，确认资源有效性并设置：
    > 
-   > - 确认相应的资源文件可用，并使用应用沙箱路径访问对应资源，参考[获取应用文件路径](../application-models/application-context-stage.md#获取应用开发路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../file-management/app-sandbox-directory.md)。
+   > - 如果使用本地资源播放，必须确认资源文件可用，并使用应用沙箱路径访问对应资源，参考[获取应用文件路径](../application-models/application-context-stage.md#获取应用开发路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../file-management/app-sandbox-directory.md)。
    > 
    > - 如果使用网络播放路径，需[申请相关权限](../security/accesstoken-guidelines.md)：ohos.permission.INTERNET。
    > 
@@ -61,9 +61,9 @@
 
 6. 视频播控：播放play()，暂停pause()，跳转seek()，停止stop() 等操作。
 
-7. 调用reset()重置资源，AVPlayer重新进入idle状态，允许更换资源url。
+7. （可选）更换资源：调用reset()重置资源，AVPlayer重新进入idle状态，允许更换资源url。
 
-8. 调用release()销毁实例，AVPlayer进入released状态，退出播放。
+8. 退出播放：调用release()销毁实例，AVPlayer进入released状态，退出播放。
 
 
 ### 完整示例

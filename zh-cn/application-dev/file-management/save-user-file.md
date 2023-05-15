@@ -8,13 +8,13 @@
 ## 保存图片或视频类文件
 
 1. 导入选择器模块。
-     
+
    ```ts
    import picker from '@ohos.file.picker';
    ```
 
 2. 创建图库保存选项实例。
-     
+
    ```ts
    const photoSaveOptions = new picker.PhotoSaveOptions(); // 创建文件管理器保存选项实例
    photoSaveOptions.newFileNames = ["PhotoViewPicker01.jpg"]; // 保存文件名（可选）
@@ -22,7 +22,7 @@
 
 3. 创建图库选择器实例，调用[save()](../reference/apis/js-apis-file-picker.md#save)接口拉起FilePicker界面进行文件保存。
      用户选择目标文件夹，用户选择与文件类型相对应的文件夹，即可完成文件保存操作。保存成功后，返回保存文档的URI。
-     
+
    ```ts
    const photoViewPicker = new picker.PhotoViewPicker();
    photoViewPicker.save(photoSaveOptions)
@@ -35,17 +35,16 @@
      })
    ```
 
-
 ## 保存文档类文件
 
 1. 导入选择器模块。
-     
+
    ```ts
    import picker from '@ohos.file.picker';
    ```
 
 2. 创建文档保存选项实例。
-     
+
    ```ts
    const documentSaveOptions = new picker.DocumentSaveOptions(); // 创建文件管理器选项实例
    documentSaveOptions.newFileNames = ["DocumentViewPicker01.txt"]; // 保存文件名（可选）
@@ -58,7 +57,6 @@
    >
    > 目前DocumentSelectOptions不支持参数配置，默认可以选择所有类型的用户文件。
 
-     
    ```ts
    const documentViewPicker = new picker.DocumentViewPicker(); // 创建文件选择器实例
    documentViewPicker.save(documentSaveOptions)
@@ -71,17 +69,16 @@
      })
    ```
 
-
 ## 保存音频类文件
 
 1. 导入选择器模块。
-     
+
    ```ts
    import picker from '@ohos.file.picker';
    ```
 
 2. 创建音频保存选项实例。
-     
+
    ```ts
    const audioSaveOptions = new picker.AudioSaveOptions(); // 创建文件管理器选项实例
    audioSaveOptions.newFileNames = ['AudioViewPicker01.mp3']; // 保存文件名（可选）
@@ -92,8 +89,7 @@
    > **说明：**
    >
    > 目前AudioSelectOptions不支持参数配置，默认可以选择所有类型的用户文件。
-   
-     
+
    ```ts
    const audioViewPicker = new picker.AudioViewPicker();
    audioViewPicker.save(audioSaveOptions)

@@ -864,8 +864,8 @@ moveTo(x: number, y: number): void
 
 | 参数   | 类型     | 描述        |
 | ---- | ------ | --------- |
-| x    | number | 指定位置的x坐标。 |
-| y    | number | 指定位置的y坐标。 |
+| x    | number | 指定位置的x坐标。<br>单位：vp |
+| y    | number | 指定位置的y坐标。<br>单位：vp |
 
 **示例：** 
   ```html
@@ -901,8 +901,8 @@ lineTo(x: number, y: number): void
 
 | 参数   | 类型     | 描述        |
 | ---- | ------ | --------- |
-| x    | number | 指定位置的x坐标。 |
-| y    | number | 指定位置的y坐标。 |
+| x    | number | 指定位置的x坐标。<br>单位：vp |
+| y    | number | 指定位置的y坐标。<br>单位：vp |
 
 **示例：** 
   ```html
@@ -1025,7 +1025,7 @@ bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number,
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 

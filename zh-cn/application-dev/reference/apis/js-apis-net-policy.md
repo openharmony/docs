@@ -12,9 +12,9 @@
 import policy from '@ohos.net.policy'
 ```
 
-## policy.setBackgroundPolicy
+## policy.setBackgroundAllowed
 
-setBackgroundPolicy(isAllowed: boolean, callback: AsyncCallback\<void>): void
+setBackgroundAllowed(isAllowed: boolean, callback: AsyncCallback\<void>): void
 
 设置后台网络策略，使用callback方式作为异步方法。
 
@@ -42,18 +42,16 @@ setBackgroundPolicy(isAllowed: boolean, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-policy.setBackgroundPolicy(Boolean(Number.parseInt(this.isBoolean))), (error, data) => {
-  this.callBack(error, data);
+policy.setBackgroundAllowed(Boolean(Number.parseInt(this.isBoolean)), (error) => {
+  this.callBack(error);
   console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
-}
-)
+})
 ;
 ```
 
-## policy.setBackgroundPolicy
+## policy.setBackgroundAllowed
 
-setBackgroundPolicy(isAllowed: boolean): Promise\<void>
+setBackgroundAllowed(isAllowed: boolean): Promise\<void>
 
 设置后台网络策略，使用Promise方式作为异步方法。
 
@@ -86,9 +84,8 @@ setBackgroundPolicy(isAllowed: boolean): Promise\<void>
 **示例：**
 
 ```js
-policy.setBackgroundPolicy(Boolean(Number.parseInt(this.isBoolean))).then(function (error, data) {
+policy.setBackgroundAllowed(Boolean(Number.parseInt(this.isBoolean))).then(function (error) {
   console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
 })
 ```
 
@@ -194,8 +191,8 @@ setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>
 let param = {
   uid: Number.parseInt(this.firstParam), policy: Number.parseInt(this.currentNetUidPolicy)
 }
-policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.currentNetUidPolicy), (error, data) => {
-  this.callBack(error, data);
+policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.currentNetUidPolicy), (error) => {
+  console.log(JSON.stringify(error))
 });
 ```
 
@@ -238,9 +235,8 @@ setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
 let param = {
   uid: Number.parseInt(this.firstParam), policy: Number.parseInt(this.currentNetUidPolicy)
 }
-policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.currentNetUidPolicy)).then(function (error, data) {
+policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.currentNetUidPolicy)).then(function (error) {
   console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
 })
 
 ```
@@ -509,8 +505,8 @@ let param = {
 };
 this.netQuotaPolicyList.push(param);
 
-policy.setNetQuotaPolicies(this.netQuotaPolicyList, (error, data) => {
-  this.callBack(error, data);
+policy.setNetQuotaPolicies(this.netQuotaPolicyList, (error) => {
+  console.log(JSON.stringify(error))
 });
 ```
 
@@ -563,9 +559,8 @@ let param = {
 };
 this.netQuotaPolicyList.push(param);
 
-policy.setNetQuotaPolicies(this.netQuotaPolicyList).then(function (error, data) {
+policy.setNetQuotaPolicies(this.netQuotaPolicyList).then(function (error) {
   console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
 })
 ```
 
@@ -600,8 +595,8 @@ restoreAllPolicies(iccid: string, callback: AsyncCallback\<void>): void
 
 ```js
 this.firstParam = iccid;
-policy.restoreAllPolicies(this.firstParam, (error, data) => {
-  this.callBack(error, data);
+policy.restoreAllPolicies(this.firstParam, (error) => {
+  console.log(JSON.stringify(error))
 });
 ```
 
@@ -641,9 +636,8 @@ restoreAllPolicies(iccid: string): Promise\<void>;
 
 ```js
 this.firstParam = iccid;
-policy.restoreAllPolicies(this.firstParam).then(function (error, data) {
+policy.restoreAllPolicies(this.firstParam).then(function (error) {
   console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
 })
 
 ```
@@ -724,7 +718,6 @@ isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>;
 **示例：**
 
 ```js
-
 let param = {
   uid: Number.parseInt(this.firstParam), isMetered: Boolean(Number.parseInt(this.isBoolean))
 }
@@ -766,7 +759,6 @@ isUidNetAllowed(uid: number, iface: string, callback: AsyncCallback\<boolean>): 
 **示例：**
 
 ```js
-
 let param = {
   uid: Number.parseInt(this.firstParam), iface: this.secondParam
 }
@@ -818,7 +810,6 @@ policy.isUidNetAllowed(Number.parseInt(this.firstParam), this.secondParam).then(
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
-
 ```
 
 ## policy.setDeviceIdleAllowList
@@ -855,8 +846,8 @@ setDeviceIdleAllowList(uid: number, isAllowed: boolean, callback: AsyncCallback\
 let param = {
   uid: Number.parseInt(this.firstParam), isAllowed: Boolean(Number.parseInt(this.isBoolean))
 }
-policy.setDeviceIdleAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean)), (error, data) => {
-  this.callBack(error, data);
+policy.setDeviceIdleAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean)), (error) => {
+  console.log(JSON.stringify(error))
 });
 ```
 
@@ -899,9 +890,8 @@ setDeviceIdleAllowList(uid: number, isAllowed: boolean): Promise\<void>;
 let param = {
   uid: Number.parseInt(this.firstParam), isAllowed: Boolean(Number.parseInt(this.isBoolean))
 }
-policy.setDeviceIdleAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then(function (error, data) {
+policy.setDeviceIdleAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then(function (error) {
   console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
 })
 
 ```
@@ -1080,8 +1070,8 @@ resetPolicies(iccid: string, callback: AsyncCallback\<void>): void
 
 ```js
 this.firstParam = iccid
-policy.resetPolicies(this.firstParam, (error, data) => {
-  this.callBack(error, data);
+policy.resetPolicies(this.firstParam, (error) => {
+  console.log(JSON.stringify(error))
 });
 ```
 
@@ -1124,9 +1114,8 @@ policy.getUidsByPolicy(Number.parseInt(this.firstParam)).then(function (error, d
 
 })
 this.firstParam = iccid
-policy.resetPolicies(this.firstParam).then(function (error, data) {
+policy.resetPolicies(this.firstParam).then(function (error) {
   console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
 })
 
 ```
@@ -1252,8 +1241,8 @@ setPowerSaveAllowList(uid: number, isAllowed: boolean, callback: AsyncCallback\<
 let param = {
   uid: Number.parseInt(this.firstParam), isAllowed: Boolean(Number.parseInt(this.isBoolean))
 }
-policy.setPowerSaveAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean)), (error, data) => {
-  this.callBack(error, data);
+policy.setPowerSaveAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean)), (error) => {
+  console.log(JSON.stringify(error))
 });
 ```
 
@@ -1296,9 +1285,8 @@ setPowerSaveAllowList(uid: number, isAllowed: boolean): Promise\<void>;
 let param = {
   uid: Number.parseInt(this.firstParam), isAllowed: Boolean(Number.parseInt(this.isBoolean))
 }
-policy.setPowerSaveAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then(function (error, data) {
+policy.setPowerSaveAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then(function (error) {
   console.log(JSON.stringify(error))
-  console.log(JSON.stringify(data))
 })
 
 ```
@@ -1393,7 +1381,7 @@ on(type: "netUidPolicyChange", callback: Callback\<{ uid: number, policy: NetUid
 
 ```js
 policy.on('netUidPolicyChange', (data) => {
-  this.log('on netUidPolicyChange：' + JSON.stringify(data));
+  this.log('on netUidPolicyChange: ' + JSON.stringify(data));
 })
 ```
 
@@ -1418,7 +1406,7 @@ on(type: "netUidRuleChange", callback: Callback\<{ uid: number, rule: NetUidRule
 
 ```js
 policy.on('netUidRuleChange', (data) => {
-  this.log('on netUidRuleChange：' + JSON.stringify(data));
+  this.log('on netUidRuleChange: ' + JSON.stringify(data));
 })
 ```
 
@@ -1443,7 +1431,7 @@ on(type: "netMeteredIfacesChange", callback: Callback\<Array\<string>>): void
 
 ```js
 policy.on('netMeteredIfacesChange', (data) => {
-  this.log('on netMeteredIfacesChange：' + JSON.stringify(data));
+  this.log('on netMeteredIfacesChange: ' + JSON.stringify(data));
 })
 ```
 
@@ -1468,7 +1456,7 @@ on(type: "netQuotaPolicyChange", callback: Callback\<Array\<NetQuotaPolicy>>): v
 
 ```js
 policy.on('netQuotaPolicyChange', (data) => {
-  this.log('on netQuotaPolicyChange：' + JSON.stringify(data));
+  this.log('on netQuotaPolicyChange: ' + JSON.stringify(data));
 })
 ```
 
@@ -1493,7 +1481,7 @@ on(type: "netBackgroundPolicyChange", callback: Callback\<boolean>): void
 
 ```js
 policy.on('netBackgroundPolicyChange', (data) => {
-  this.log('on netBackgroundPolicyChange：' + JSON.stringify(data));
+  this.log('on netBackgroundPolicyChange: ' + JSON.stringify(data));
 })
 ```
 

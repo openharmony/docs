@@ -133,8 +133,21 @@ deviceTypes示例：
 }
 ```
 
-在开发视图的resources/base/profile下面定义配置文件**main_pages**.json，其中文件名(**main_pages**)可自定义，需要和前文中pages标签指定的信息对应，配置文件中列举了当前应用组件中的页面信息。
+在开发视图的resources/base/profile下面定义配置文件**main_pages**.json，其中文件名(**main_pages**)可自定义，需要和前文中pages标签指定的信息对应。配置文件中列举了当前应用组件中的页面信息，包含页面的路由信息和显示窗口相关的配置。
 
+  **表3** **pages配置文件标签说明**
+
+| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
+| -------- | -------- | -------- | -------- |
+| src | 描述有关JavaScript模块中所有页面的路由信息，包括页面路径和页面名称。该值是一个字符串数组，其中每个元素表示一个页面，第一个元素表示主页。 | 字符串数组 | 该标签不可缺省。 |
+| window | 用于定义与显示窗口相关的配置。	 | 对象 | 该标签可缺省，缺省值为空。 |
+
+  **表4** **pages配置文件中的window标签说明**
+
+| 属性名称 | 含义 | 数据类型 | 是否可缺省 |
+| -------- | -------- | -------- | -------- |
+| designWidth | 标识页面设计基准宽度。以此为基准，根据实际设备宽度来缩放元素大小。 | 数值 | 可缺省，缺省值为720px。 |
+| autoDesignWidth | 标识页面设计基准宽度是否自动计算。当配置为true时，designWidth将会被忽略，设计基准宽度由设备宽度与屏幕密度计算得出。 | 布尔值 | 可缺省，缺省值为false。 |
 
 ```json
 {
@@ -143,7 +156,11 @@ deviceTypes示例：
     "pages/second/payment",
     "pages/third/shopping_cart",
     "pages/four/owner"
-  ]
+  ],
+  "window": {
+    "designWidth": 720,
+    "autoDesignWidth": false
+  }
 }
 ```
 
@@ -152,7 +169,7 @@ deviceTypes示例：
 
 该标签标识HAP的自定义元信息，标签值为数组类型，包含name，value，resource三个子标签。
 
-  **表3** **metadata标签说明**
+  **表5** **metadata标签说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -258,13 +275,13 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置入口
     * 用户点击该桌面图标，页面跳转到该应用的详情页面（图1）
   * 该应用具有隐藏图标的特权
     * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。<br><br>
-  
+
 应用的详情页例图
 
 ![应用的详情页例图](figures/application_details.jpg)
 
 
-  **表4** **abilities标签说明**
+  **表6** **abilities标签说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -273,7 +290,7 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置入口
 | [launchType](../application-models/uiability-launch-type.md) | 标识当前UIAbility组件的启动模式，可选标签值：<br/>-&nbsp;multiton：标准实例模式，每次启动创建一个新的实例。<br/>-&nbsp;singleton：单实例模式，仅第一次启动创建新实例。<br/>-&nbsp;specified：指定实例模式，运行时由开发者决定是否创建新实例。 | 字符串 | 可缺省，该标签缺省为“singleton”。 |
 | description | 标识当前UIAbility组件的描述信息，标签值是字符串类型（最长255字节）或对描述内容的资源索引，要求采用资源索引方式，以支持多语言。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | icon | 标识当前UIAbility组件的图标，标签值为图标资源文件的索引。 | 字符串 | 该标签可缺省，缺省值为空。<br/>如果UIAbility被配置为MainElement，该标签必须配置。 |
-| label | 标识当前UIAbility组件对用户显示的名称，标签值配置为该名称的资源索引以支持多语言。<br/>如果UIAbility被配置当前Module的mainElement时，该标签必须配置，且应用内唯一。 | 字符串 | 该标签不可缺省。 |
+| label | 标识当前UIAbility组件对用户显示的名称，标签值配置为该名称的资源索引以支持多语言。 | 字符串 | 该标签可缺省，缺省值为空。<br/>如果UIAbility被配置为MainElement，该标签必须配置。 |
 | permissions | 标识当前UIAbility组件自定义的权限信息。当其他应用访问该UIAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为系统预定义的权限。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | [metadata](#metadata标签) | 标识当前UIAbility组件的元信息。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | exported | 标识当前UIAbility组件是否可以被其他应用调用。<br/>-&nbsp;true：表示可以被其他应用调用。<br/>-&nbsp;false：表示不可以被其他应用调用。 | 布尔值 | 该标签可缺省，缺省值为false。 |
@@ -347,7 +364,7 @@ abilities示例：
 
 该标签标识UIAbility组件或者ExtensionAbility组件能够接收的[Want](../application-models/want-overview.md)的特征。
 
-  **表5** **skills标签说明**
+  **表7** **skills标签说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -355,7 +372,7 @@ abilities示例：
 | entities | 标识能够接收Want的[Entity值的集合](../application-models/actions-entities.md)。 | 字符串数组 | 可缺省，缺省值为空。 |
 |uris | 标识与Want中URI（Uniform&nbsp;Resource&nbsp;Identifier）相匹配的集合。 | 对象数组 | 可缺省，缺省值为空。 |
 
-  **表6** **uris对象内部结构说明**
+  **表8** **uris对象内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -401,7 +418,7 @@ skills示例：
 
 描述extensionAbilities的配置信息，标签值为数组类型，该标签下的配置只对当前extensionAbilities生效。
 
-  **表7** **extensionAbilities标签说明**
+  **表9** **extensionAbilities标签说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -461,7 +478,7 @@ extensionAbilities示例：
 > - 在requestPermissions标签中配置的权限项将在应用级别生效，即该权限适用于整个应用程序。
 > - 如果应用需要订阅自己发布的事件，而且应用在extensionAbilities标签中的permissions字段中设置了访问该应用所需要的权限，那么应用也需要在requestPermissions标签中注册相关权限才能收到该事件。
 
-  **表8** **requestPermissions标签说明**
+  **表10** **requestPermissions标签说明**
 
 | 属性 | 含义 | 类型 | 取值范围 | 默认值 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -501,6 +518,8 @@ metadata中指定shortcut信息，其中：
 - name：指定shortcuts的名称。使用ohos.ability.shortcuts作为shortcuts信息的标识。
 
 - resource：指定shortcuts信息的资源位置。
+
+**表11** **shortcuts标签说明**
 
 | 属性 | 含义 | 类型  | 默认值 |
 | -------- | -------- | -------- | -------- |
@@ -568,7 +587,7 @@ metadata中指定shortcut信息，其中：
 
 该标签下的子标签均为可选字段，在应用市场云端分发时做精准匹配使用，distributionFilter标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。该标签可配置的分发策略维度包括API Version、屏幕形状、屏幕尺寸、屏幕分辨率，设备的国家与地区码。在进行分发时，通过deviceType与这五个属性的匹配关系，唯一确定一个用于分发到设备的HAP。该标签需要配置在/resource/profile资源目录下。
 
-  **表9** **distributionFilter标签标签配置说明**
+  **表12** **distributionFilter标签标签配置说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -578,28 +597,28 @@ metadata中指定shortcut信息，其中：
 | countryCode | 表示应用需要分发的国家地区码，具体值以ISO-3166-1标准为准。支持多个国家和地区枚举定义。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 
 
-  **表10** **screenShape对象的内部结构**
+  **表13** **screenShape对象的内部结构**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | policy | 标识该子属性取值规则。配置为“exclude”或“include”。<br/>-&nbsp;exclude：表示需要排除的value属性。<br/>-&nbsp;include：表示需要包含的value属性。 | 字符串 | 该标签不可缺省。 |
 | value | 支持的取值为circle（圆形）、rect（矩形）。场景示例：针对智能穿戴设备，可为圆形表盘和矩形表盘分别提供不同的HAP。 | 字符串数组 | 该标签不可缺省。 |
 
-  **表11** **screenWindow对象的内部结构说明**
+  **表14** **screenWindow对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | policy | 标识该子属性取值规则。配置为“exclude”或“include”。<br/>-&nbsp;exclude：表示该字段取值不包含value枚举值匹配规则的匹配该属性。<br/>-&nbsp;include：表示该字段取值满足value枚举值匹配规则的匹配该属性。 | 字符串 | 该标签不可缺省。 |
 | value | 单个字符串的取值格式为“宽&nbsp;\*&nbsp;高”，取值为整数像素值，例如“454&nbsp;\*&nbsp;454”。 | 字符串数组 | 该标签不可缺省。 |
 
-  **表12** **screenDensity对象的内部结构说明**
+  **表15** **screenDensity对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
 | policy | 标识该子属性取值规则。配置为“exclude”或“include”。<br/>-&nbsp;exclude：表示需要排除的value属性。<br/>-&nbsp;include：表示需要包含的value属性。 | 字符串 | 该标签不可缺省。 |
 | value | 该标签标识屏幕的像素密度（dpi&nbsp;:Dot&nbsp;Per&nbsp;Inch）。 | 字符串数组 | 该标签不可缺省。 |
 
-  **表13** **countryCode对象的内部结构说明**
+  **表16** **countryCode对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -666,7 +685,7 @@ metadata中指定shortcut信息，其中：
 
 此标签用于支持对测试框架的配置。
 
-  **表14** **testRunner标签说明**
+  **表17** **testRunner标签说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -692,7 +711,7 @@ testRunner标签示例：
 
 此标签用于支持对原子化服务的配置。此标签仅在app.json中bundleType指定为atomicService时使能。
 
-**表14** **atomicService标签说明**
+**表18** **atomicService标签说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -718,7 +737,7 @@ atomicService标签示例：
 
 此标签标识原子化服务中预加载列表。
 
-**表14** **preloads标签说明**
+**表19** **preloads标签说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
@@ -744,7 +763,7 @@ preloads标签示例：
 
 此标签标识模块运行时依赖的共享库列表。
 
-**表14** **dependencies标签说明**
+**表20** **dependencies标签说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |

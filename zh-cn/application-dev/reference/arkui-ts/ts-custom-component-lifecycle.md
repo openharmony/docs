@@ -43,7 +43,7 @@ onPageHide?(): void
 
 onBackPress?(): void
 
-当用户点击返回按钮时触发，仅\@Entry装饰的自定义组件生效。返回true表示页面自己处理返回逻辑，不进行页面路由，返回false表示使用默认的路由返回逻辑。不设置返回值按照false处理。
+当用户点击返回按钮时触发，仅\@Entry装饰的自定义组件生效。
 
 
 ```ts
@@ -88,6 +88,8 @@ onLayout?(children: Array&lt;LayoutChild&gt;, constraint: ConstraintSizeOptions)
 
 框架会在自定义组件布局时，将该自定义组件的子节点信息和自身的尺寸范围通过onLayout传递给该自定义组件。不允许在onLayout函数中改变状态变量。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名        | 类型                                       | 说明               |
@@ -102,6 +104,8 @@ onMeasure?(children: Array&lt;LayoutChild&gt;, constraint: ConstraintSizeOptions
 
 框架会在自定义组件确定尺寸时，将该自定义组件的子节点信息和自身的尺寸范围通过onMeasure传递给该自定义组件。不允许在onMeasure函数中改变状态变量。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名        | 类型                                       | 说明               |
@@ -113,6 +117,8 @@ onMeasure?(children: Array&lt;LayoutChild&gt;, constraint: ConstraintSizeOptions
 ## LayoutChild<sup>9+</sup>
 
 子组件布局信息。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 参数         | 参数类型                                     | 描述                  |
 | ---------- | ---------------------------------------- | ------------------- |
@@ -129,6 +135,8 @@ onMeasure?(children: Array&lt;LayoutChild&gt;, constraint: ConstraintSizeOptions
 
 子组件border信息。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 | 参数          | 参数类型                                 | 描述                      |
 | ----------- | ------------------------------------ | ----------------------- |
 | borderWidth | [EdgeWidths](ts-types.md#edgewidths) | 边框宽度类型，用于描述组件边框不同方向的宽度。 |
@@ -139,6 +147,8 @@ onMeasure?(children: Array&lt;LayoutChild&gt;, constraint: ConstraintSizeOptions
 ## LayoutInfo<sup>9+</sup>
 
 子组件layout信息。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 参数         | 参数类型                                     | 描述       |
 | ---------- | ---------------------------------------- | -------- |

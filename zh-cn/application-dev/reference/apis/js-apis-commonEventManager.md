@@ -43,6 +43,14 @@ publish(event: string, callback: AsyncCallback\<void>): void
 |1500008    |CEMS error|
 |1500009    |system error|
 
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
+| 1500004  | not System services.                |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
+| 1500009  | error obtaining system parameters.  |
+
 **示例：**
 
 ```ts
@@ -87,6 +95,14 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 |1500008    |CEMS error|
 |1500009    |system error|
 
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
+| 1500004  | not System services.                |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
+| 1500009  | error obtaining system parameters.  |
 
 **示例：**
 
@@ -144,6 +160,15 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 |1500008    |CEMS error|
 |1500009    |system error|
 
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 202  | not system app.                         |
+| 401  | The parameter check failed.             |
+| 1500004  | not System services.                |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
+| 1500009  | error obtaining system parameters.  |
+
 **示例：**
 
 ```ts
@@ -196,6 +221,15 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 |1500008    |CEMS error|
 |1500009    |system error|
 
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 202  | not system app.                         |
+| 401  | The parameter check failed.             |
+| 1500004  | not System services.                |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
+| 1500009  | error obtaining system parameters.  |
+
 **示例：**
 
 
@@ -242,6 +276,14 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallbac
 | ------------- | ------------------------------------------------------------ | ---- | -------------------------- |
 | subscribeInfo | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)        | 是   | 表示订阅信息。             |
 | callback      | AsyncCallback\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | 是   | 表示创建订阅者的回调方法。 |
+
+**错误码：**
+
+错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
 
 **示例：**
 
@@ -293,6 +335,14 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventS
 | --------------------------------------------------------- | ---------------- |
 | Promise\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | 返回订阅者对象。 |
 
+**错误码：**
+
+错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
+
 **示例：**
 
 ```ts
@@ -333,6 +383,17 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEven
 | ---------- | ---------------------------------------------------- | ---- | -------------------------------- |
 | subscriber | [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)     | 是   | 表示订阅者对象。                 |
 | callback   | AsyncCallback\<[CommonEventData](./js-apis-inner-commonEvent-commonEventData.md)> | 是   | 表示接收公共事件数据的回调函数。 |
+
+**错误码：**
+
+错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
+| 801  | capability not supported.               |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
 
 **示例：**
 
@@ -394,6 +455,17 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>):
 | ---------- | ----------------------------------------------- | ---- | ------------------------ |
 | subscriber | [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md) | 是   | 表示订阅者对象。         |
 | callback   | AsyncCallback\<void>                            | 否   | 表示取消订阅的回调方法。 |
+
+**错误码：**
+
+错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
+| 801  | capability not supported.               |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
 
 **示例：**
 
@@ -465,6 +537,19 @@ getCode(callback: AsyncCallback\<number>): void
 | -------- | ---------------------- | ---- | ------------------ |
 | callback | AsyncCallback\<number> | 是   | 公共事件的结果代码。 |
 
+**错误码：**
+
+错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201  | The application dose not have permission to call the interface. |
+| 202  | not system app.                         |
+| 401  | The parameter check failed.             |
+| 1500004  | not system service.                 |
+| 1500007  | The message send error.             |
+| 1500008  | The CEMS error.                     |
+
 **示例：**
 
 ```ts
@@ -494,6 +579,19 @@ getCode(): Promise\<number>
 | 类型             | 说明                 |
 | ---------------- | -------------------- |
 | Promise\<number> | 公共事件的结果代码。 |
+
+**错误码：**
+
+错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201  | The application dose not have permission to call the interface. |
+| 202  | not system app.                         |
+| 401  | The parameter check failed.             |
+| 1500004  | not system service.                 |
+| 1500007  | The message send error.             |
+| 1500008  | The CEMS error.                     |
 
 **示例：**
 

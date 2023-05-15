@@ -57,7 +57,7 @@
 
 - **本地数据变化通知**：本地设备的应用内订阅数据变化通知，数据库增删改数据时，会收到通知。
 
-- **分布式数据变化通知**：同一应用订阅组网内其他设备数据变化的通知，其他设备增删改数据时，本设备会收到通知。数据变化通知可以让用户及时感知到两端数据的不同，并进行同步操作，保证分布式数据库的一致性。
+- **分布式数据变化通知**：同一应用订阅组网内其他设备数据变化的通知，其他设备增删改数据时，本设备会收到通知。
 
 
 ## 约束限制
@@ -68,9 +68,9 @@
 
 - 键值型数据库不支持应用程序自定义冲突解决策略。
 
-- 每个应用程序最多支持同时打开16个分布式数据库。
+- 每个应用程序最多支持同时打开16个键值型分布式数据库。
 
-- 允许同时订阅数据变化通知的数据库最大数量为8个。
+- 单个数据库最多支持注册8个订阅数据变化的回调。
 
 - 手动同步功能，仅系统应用可用。
 
@@ -160,8 +160,9 @@
        encrypt: false,
        backup: false,
        autoSync: false,
+       // kvStoreType不填时，默认创建多设备协同数据库
        kvStoreType: distributedKVStore.KVStoreType.SINGLE_VERSION,
-       // 设备协同数据库：kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
+       // 多设备协同数据库：kvStoreType: distributedKVStore.KVStoreType.DEVICE_COLLABORATION,
        securityLevel: distributedKVStore.SecurityLevel.S1
      };
      kvManager.getKVStore('storeId', options, (err, kvStore) => {

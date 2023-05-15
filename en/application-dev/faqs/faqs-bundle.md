@@ -14,7 +14,7 @@ Applicable to: OpenHarmony SDK 3.2.3.5, stage model of API version 9
 
 Obtain the bundle name through **context.abilityInfo.bundleName**.
 
-Reference: [AbilityContext](../reference/apis/js-apis-ability-context.md) and [AbilityInfo](../reference/apis/js-apis-bundle-AbilityInfo.md)
+Reference: [AbilityInfo](../reference/apis/js-apis-bundle-AbilityInfo.md)
 
 ## How do I obtain an application icon?
 

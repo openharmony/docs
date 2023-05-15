@@ -416,7 +416,7 @@ on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: bo
 **示例：**
 
 ```js
- ethernet.on('interfaceStateChange', (data) => {
+ethernet.on('interfaceStateChange', (data) => {
   console.log('on interfaceSharingStateChange：' + JSON.stringify(data));
 });
 ```

@@ -1,56 +1,50 @@
 # AVSession Overview
 
-> **NOTE**
->
-> All APIs of the **AVSession** module are system APIs and can be called only by system applications.
+The Audio and Video Session (AVSession) service is used to manage the playback behavior of all audio and video applications in the system in a unified manner. For example, it allows only one audio application in the playing state.
 
-## Overview
+Audio and video applications access the AVSession service and send application data (for example, a song that is being played and playback state) to it. Through a controller, the user can choose another application or device to continue the playback. If an application does not access the AVSession service, its playback will be forcibly interrupted when it switches to the background.
 
-  AVSession, short for audio and video session, is also known as media session.
-  - Application developers can use the APIs provided by the **AVSession** module to connect their audio and video applications to the system's Media Controller.
-  - System developers can use the APIs provided by the **AVSession** module to display media information of system audio and video applications and carry out unified playback control.
-
-  You can implement the following features through the **AVSession** module:
-
-  1. Unified playback control entry
-
-     If there are multiple audio and video applications on the device, users need to switch to and access different applications to control media playback. With AVSession, a unified playback control entry of the system (such as Media Controller) is used for playback control of these audio and video applications. No more switching is required.
-
-  2. Better background application management
-
-     When an application running in the background automatically starts audio playback, it is difficult for users to locate the application. With AVSession, users can quickly find the application that plays the audio clip in Media Controller.
+To implement background playback, you must request a continuous task to prevent the task from being suspended. For details, see [Continuous Task Development](../task-management/continuous-task-dev-guide.md).
 
 ## Basic Concepts
 
+Be familiar with the following basic concepts before development:
+
 - AVSession
 
-  A channel used for information exchange between applications and Media Controller. For AVSession, one end is the media application under control, and the other end is Media Controller. Through AVSession, an application can transfer the media playback information to Media Controller and receive control commands from Media Controller.
-  
+  For AVSession, one end is the audio and video applications under control, and the other end is a controller (for example, Media Controller or AI Voice). AVSession provides a channel for information exchange between the application and controller. 
+
+- Provider
+
+  An audio and video application that accesses the AVSession service. After accessing AVSession, the audio and video application must provide the media information, for example, the name of the item to play and the playback state, to AVSession. Through AVSession, the application also receives control commands from the controller and responds accordingly.
+
+- Controller
+
+  A system application that accesses AVSession to provide global control on audio and video playback behavior. Typical controllers on OpenHarmony devices are Media Controller and AI Voice. The following sections use Media Controller as an example of the controller. After accessing AVSession, the controller obtains the latest media information and sends control commands to the audio and video applications through AVSession.
+
 - AVSessionController
 
-  Object that controls media sessions and thereby controls the playback behavior of applications. Through AVSessionController, Media Controller can control the playback behavior of applications, obtain playback information, and send control commands. It can also monitor the playback state of applications to ensure synchronization of the media session information.
+  An object that controls the playback behavior of the provider. It obtains the playback information of the audio and video application and listens for the application playback changes to synchronize the AVSession information between the application and controller. The controller is the holder of an **AVSessionController** object.
 
-- Media Controller
-  
-  Holder of AVSessionController. Through AVSessionController, Media Controller sends commands to control media playback of applications.
+- AVSessionManager
 
-## Implementation Principle
+  An object that provides the capability of managing sessions. It can create an **AVSession** object, create an **AVSessionController** object, send control commands, and listen for session state changes.
 
-The **AVSession** module provides two classes: **AVSession** and **AVSessionController**.
 
-**Figure 1** AVSession interaction
+## AVSession Interaction Process
 
-![en-us_image_avsession](figures/en-us_image_avsession.png)
+AVSessions are classified into local AVSessions and distributed AVSessions.
 
-- Interaction between the application and Media Controller: First, an audio application creates an **AVSession** object and sets session information, including media metadata, launcher ability, and playback state information. Then, Media Controller creates an **AVSessionController** object to obtain session-related information and send the 'play' command to the audio application. Finally, the audio application responds to the command and updates the playback state.
+![AVSession Interaction Process](figures/avsession-interaction-process.png)
 
-- Distributed projection: When a connected device creates a local session, Media Controller or the audio application can select another device to be projected based on the device list, synchronize the local session to the remote device, and generate a controllable remote session. The remote session is controlled by sending control commands to the remote device's application through its AVSessionController.
+- Local AVSession
+
+  Local AVSession establishes a connection between the provider and controller in the local device, so as to implement unified playback control and media information display for audio and video applications in the system.
+
+- Distributed AVSession
+
+  Distributed AVSession establishes a connection between the provider and controller in the cross-device scenario, so as to implement cross-device playback control and media information display for audio and video applications in the system. For example, you can project the content played on device A to device B and perform playback control on device B.
 
 ## Constraints
 
-- The playback information displayed in Media Controller is the media information proactively written by the media application to AVSession.
-- Media Controller controls the playback of a media application based on the responses of the media application to control commands.
-- AVSession can transmit media playback information and control commands. It does not display information or execute control commands.
-- Do not develop Media Controller for common applications. For common audio and video applications running on OpenHarmony, the default control end is Media Controller, which is a system application. You do not need to carry out additional development for Media Controller.
-- If you want to develop your own system running OpenHarmony, you can develop your own Media Controller.
-- For better background management of audio and video applications, the **AVSession** module enforces background control for applications. Only applications that have accessed AVSession can play audio in the background. Otherwise, the system forcibly pauses the playback when an application switches to the background.
+The AVSession service manages the playback behavior of all audio and video applications in the system. To continue the playback after switching to the background, the audio and video applications must access the AVSession service.

@@ -48,7 +48,7 @@ module示例：
           }
         ],
         "orientation": "unspecified",
-        "exported": true,
+        "visible": true,
         "srcPath": "EntryAbility",
         "name": ".EntryAbility",
         "srcLanguage": "ets",
@@ -57,7 +57,7 @@ module示例：
         "formsEnabled": false,
         "label": "$string:MainAbility_label",
         "type": "page",
-        "launchType": "multiton"
+        "launchType": "standard"
       }
     ],
     "distro": {
@@ -261,10 +261,10 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置入口
 | name | 标识Ability名称。取值可采用反向域名方式表示，由包名和类名组成，如"com.example.myapplication.EntryAbility"；也可采用"."开头的类名方式表示，如".EntryAbility"。<br/>Ability的名称，需在一个应用的范围内保证唯一。说明：在使用DevEco&nbsp;Studio新建项目时，默认生成首个Ability的配置，即"config.json"中"EntryAbility"的配置。如使用其他IDE工具，可自定义名称。该标签最大长度为127个字节。 | 字符串 | 不可缺省 |
 | description | 标识对Ability的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
 | icon | 标识Ability图标资源文件的索引。取值示例：$media:ability_icon。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的icon将同时作为应用的icon。如果存在多个符合条件的Ability，则取位置靠前的Ability的icon作为应用的icon。<br/>说明：应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。 | 字符串 | 可缺省，缺省值为空。 |
-| label | 标识Ability对用户显示的名称。取值可以是Ability名称，也可以是对该名称的资源索引，以支持多语言。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的label将同时作为应用的label。如果存在多个符合条件的Ability，则取位置靠前的Ability的label作为应用的label。<br/>说明：&nbsp;应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。该标签为资源文件中定义的字符串的引用，或以"{}"包括的字符串。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
+| label | 标识Ability对用户显示的名称。取值是对该名称的资源索引，支持多语言，例：$string:ability_label。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的label将同时作为应用的label。如果存在多个符合条件的Ability，则取位置靠前的Ability的label作为应用的label。<br/>说明：&nbsp;应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。该标签为资源文件中定义的字符串的引用，或以"{}"包括的字符串。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
 | uri | 标识Ability的统一资源标识符。该标签最大长度为255个字节。 | 字符串 | 可缺省，对于data类型的Ability不可缺省。 |
-| launchType | 标识Ability的启动模式，支持"multiton"和"singleton"两种模式：<br/>multiton：表示该Ability可以有多实例。该模式适用于大多数应用场景。<br/>singleton：表示该Ability在所有任务栈中仅可以有一个实例。例如，具有全局唯一性的呼叫来电界面即采用"singleton"模式。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串 | 可缺省，缺省值为"singleton"。 |
-| exported | 标识Ability是否可以被其他应用调用。<br/>true：可以被其他应用调用。<br/>false：不能被其他应用调用。 | 布尔类型 | 可缺省，缺省值为"false"。 |
+| launchType | 标识Ability的启动模式，支持"standard"和"singleton"两种模式：<br/>standard：表示该Ability可以有多实例。该模式适用于大多数应用场景。<br/>singleton：表示该Ability在所有任务栈中仅可以有一个实例。例如，具有全局唯一性的呼叫来电界面即采用"singleton"模式。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串 | 可缺省，缺省值为"singleton"。 |
+| visible | 标识Ability是否可以被其他应用调用。<br/>true：可以被其他应用调用。<br/>false：不能被其他应用调用。 | 布尔类型 | 可缺省，缺省值为"false"。 |
 | permissions | 标识其他应用的Ability调用此Ability时需要申请的权限集合，一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为系统预定义的权限。 | 字符串数组 | 可缺省，缺省值为空。 |
 |skills | 标识Ability能够接收的want的特征。 | 对象数组 | 可缺省，缺省值为空。 |
 | deviceCapability | 标识Ability运行时要求设备具有的能力，采用字符串数组的格式表示。该标签为数组，支持最多配置512个元素，单个元素最大字节长度为64。 | 字符串数组 | 可缺省，缺省值为空。 |
@@ -277,7 +277,7 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置入口
 | writePermission | 标识向Ability写数据所需的权限。该标签仅适用于data类型的Ability。取值为长度不超过255字节的字符串。 | 字符串 | 可缺省，缺省为空。 |
 | configChanges | 标识Ability关注的系统配置集合。当已关注的配置发生变更后，Ability会收到onConfigurationUpdated回调。取值范围：<br/>mcc：表示IMSI移动设备国家/地区代码（MCC）发生变更。典型场景：检测到SIM并更新MCC。<br/>mnc：IMSI移动设备网络代码（MNC）发生变更。典型场景：检测到SIM并更新MNC。<br/>locale：表示语言区域发生变更。典型场景：用户已为设备文本的文本显示选择新的语言类型。<br/>layout：表示屏幕布局发生变更。典型场景：当前有不同的显示形态都处于活跃状态。<br/>fontSize：表示字号发生变更。典型场景：用户已设置新的全局字号。<br/>orientation：表示屏幕方向发生变更。典型场景：用户旋转设备。<br/>density：表示显示密度发生变更。典型场景：用户可能指定不同的显示比例，或当前有不同的显示形态同时处于活跃状态。<br/>size：显示窗口大小发生变更。<br/>smallestSize：显示窗口较短边的边长发生变更。<br/>colorMode：颜色模式发生变更。 | 字符串数组 | 可缺省，缺省为空。 |
 | mission | 标识Ability指定的任务栈。该标签仅适用于page类型的Ability。默认情况下应用中所有Ability同属一个任务栈。 | 字符串 | 可缺省，缺省为应用的包名。 |
-| targetAbility | 标识当前Ability重用的目标Ability。该标签仅适用于page类型的Ability。如果配置了targetAbility属性，则当前Ability（即别名Ability）的属性中仅name、icon、label、exported、permissions、skills生效，其他属性均沿用targetAbility中的属性值。目标Ability必须与别名Ability在同一应用中，且在配置文件中目标Ability必须在别名之前进行声明。 | 字符串 | 可缺省，缺省值为空。表示当前Ability不是一个别名Ability。 |
+| targetAbility | 标识当前Ability重用的目标Ability。该标签仅适用于page类型的Ability。如果配置了targetAbility属性，则当前Ability（即别名Ability）的属性中仅name、icon、label、visible、permissions、skills生效，其他属性均沿用targetAbility中的属性值。目标Ability必须与别名Ability在同一应用中，且在配置文件中目标Ability必须在别名之前进行声明。 | 字符串 | 可缺省，缺省值为空。表示当前Ability不是一个别名Ability。 |
 | formsEnabled | 标识Ability是否支持卡片（forms）功能。该标签仅适用于page类型的Ability。<br/>true：支持卡片能力。<br/>false：不支持卡片能力。 | 布尔值 | 可缺省，缺省值为false。 |
 | forms | 标识服务卡片的属性。该标签仅当formsEnabled为"true"时，才能生效。 | 对象数组 | 可缺省，缺省值为空。 |
 | srcLanguage | Ability开发语言的类型，开发者创建工程时由开发者手动选择开发语言。 | 字符串 | 可缺省，缺省值为“js”。 |
@@ -308,10 +308,10 @@ abilities示例：
     "icon": "$media:ic_launcher",
     // $string:example 为字符串类资源
     "label": "$string:example",
-    "launchType": "multiton",
+    "launchType": "standard",
     "orientation": "unspecified",
     "permissions": [], 
-    "exported": true,
+    "visible": true,
     "skills": [
       {
         "actions": [
@@ -338,9 +338,9 @@ abilities示例：
     "description": "example play ability",
     "icon": "$media:ic_launcher",
     "label": "$string:example",
-    "launchType": "multiton",
+    "launchType": "standard",
     "orientation": "unspecified",
-    "exported": false,
+    "visible": false,
     "skills": [
       {
         "actions": [
@@ -361,7 +361,7 @@ abilities示例：
     "name": ".UserADataAbility",
     "type": "data",
     "uri": "dataability://com.example.world.test.UserADataAbility",
-    "exported": true
+    "visible": true
   }
 ]
 ```

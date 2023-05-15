@@ -135,7 +135,7 @@ To create a widget in the stage model, you need to implement lifecycle callbacks
   | Name   | Description                                                        | Data Type  | Default Value Allowed          |
   | ----------- | ------------------------------------------------------------ | ---------- | -------------------- |
   | name        | Name of the Extension ability. This field must be specified.                | String    | No                  |
-  | srcEntrance | Path of the Extension ability lifecycle code. This field must be specified.| String    | No                  |
+  | srcEnty    | Path of the Extension ability lifecycle code. This field must be specified.| String    | No                  |
   | description | Description of the Extension ability. The value can be a string or a resource index to descriptions in multiple languages.| String    | Yes (initial value: left empty)|
   | icon        | Index of the Extension ability icon file.                  | String    | Yes (initial value: left empty)|
   | label       | Descriptive information about the Extension ability presented externally. The value can be a string or a resource index to the description.| String    | Yes (initial value: left empty)|
@@ -150,7 +150,7 @@ To create a widget in the stage model, you need to implement lifecycle callbacks
      ```json
   "extensionAbilities": [{
       "name": "FormAbility",
-      "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+      "srcEnty": "./ets/FormAbility/FormAbility.ts",
       "label": "$string:form_FormAbility_label",
       "description": "$string:form_FormAbility_desc",
       "type": "form",

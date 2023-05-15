@@ -50,55 +50,6 @@ tabs是一种常见的界面导航结构。通过页签容器，用户可以快�
 ![zh-cn_image_0000001165191390](figures/zh-cn_image_0000001165191390.gif)
 
 
-## 设置tabs方向
-
-tabs默认展示索引为index的标签及内容。通过设置vertical属性使组件纵向展示。
-
-```html
-<!-- xxx.hml -->
-<div class="container" style="background-color:#F1F3F5;">
-  <tabs index="1"  vertical="true">
-    <tab-bar >
-      <text>item1</text>
-      <text style="margin-top: 50px;">item2</text>
-    </tab-bar>
-    <tab-content>
-      <div>
-        <image src="common/images/bg-tv.jpg" style="object-fit: contain;"> </image>
-      </div>
-      <div>
-        <image src="common/images/img1.jpg" style="object-fit: contain;"> </image>
-      </div>
-    </tab-content>
-  </tabs>
-</div>
-```
-
-![zh-cn_image_0000001208908643](figures/zh-cn_image_0000001208908643.gif)
-
-设置mode属性使tab-bar的子组件均分，设置scrollable属性使tab-content不可进行左右滑动切换内容。
-
-```html
-<!-- xxx.hml -->
-<div class="container" style="background-color:#F1F3F5;">
-  <tabs style="margin-top: 30px;">
-    <tab-bar mode="fixed">
-      <text>item1</text>
-      <text>item2</text>
-    </tab-bar>
-    <tab-content scrollable="false">
-      <div>
-        <image src="common/images/bg-tv.jpg" style="object-fit: contain;"> </image>
-      </div>
-      <div>
-        <image src="common/images/img2.jpg" style="object-fit: contain;"> </image>
-      </div>
-    </tab-content>
-  </tabs>
-</div>
-```
-
-![zh-cn_image_0000001209028575](figures/zh-cn_image_0000001209028575.gif)
 
 
 ## 设置样式

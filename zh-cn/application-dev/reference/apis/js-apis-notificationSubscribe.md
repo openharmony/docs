@@ -40,6 +40,9 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                      |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.             |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -92,6 +95,9 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                      |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.             |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -142,6 +148,9 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                      |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.             |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -187,6 +196,9 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                      |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.             |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -234,6 +246,9 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                      |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.             |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -279,6 +294,9 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -334,6 +352,9 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -382,6 +403,9 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -428,6 +452,9 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -468,6 +495,9 @@ removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -513,6 +543,9 @@ removeAll(callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -555,6 +588,9 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -594,6 +630,9 @@ removeAll(userId: number, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -639,6 +678,9 @@ removeAll(userId: number): Promise\<void>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -973,47 +1015,6 @@ let subscriber = {
 notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
-### onBadgeChanged<sup>10+</sup>
-
- onBadgeChanged?:(data: [BadgeNumberCallbackData](#badgenumbercallbackdata)) => void
-
-监听应用角标个数变化。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名   | 类型                                                         | 必填 | 说明                       |
-| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<[BadgeNumberCallbackData](#badgenumbercallbackdata)\> | 是   | 回调返回监听到的应用信息。 |
-
-**示例：**
-
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onBadgeChangedCallback(data) {
-    console.info("bundle: ", data.bundle);
-    console.info("uid: ", data.uid);
-    console.info("badgeNumber: ", data.badgeNumber);
-};
-
-let subscriber = {
-    onBadgeChanged: onBadgeChangedCallback
-};
-
-notificationSubscribe.subscribe(subscriber, subscribeCallback);
-```
-
-
 ## RemoveReason
 
 **系统能力**：SystemCapability.Notification.Notification
@@ -1024,15 +1025,3 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 | -------------------- | --- | -------------------- |
 | CLICK_REASON_REMOVE  | 1   | 点击通知后删除通知。    |
 | CANCEL_REASON_REMOVE | 2   | 用户删除通知。         |
-
-## BadgeNumberCallbackData<sup>10+</sup>
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-| 名称        | 类型   | 可读 | 可写 | 描述         |
-| ----------- | ------ | ---- | ---- | ------------ |
-| bundle      | string | 是   | 否   | 应用的包名。 |
-| uid         | number | 是   | 否   | 应用的uid。  |
-| badgeNumber | number | 是   | 否   | 角标个数。   |
