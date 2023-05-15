@@ -936,7 +936,7 @@ createImageSource(uri: string): ImageSource
 
 | 参数名 | 类型   | 必填 | 说明                               |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW [SVG<sup>10+</sup>](#svg)。 |
+| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW [SVG(##SVG标签说明)<sup>10+</sup>]。 |
 
 **返回值：**
 
@@ -974,7 +974,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 | 参数名  | 类型                            | 必填 | 说明                                |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW [SVG<sup>10+</sup>](#svg)。 |
+| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW [SVG(##SVG标签说明)<sup>10+</sup>]。 |
 | options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片序号与默认属性值。|
 
 **返回值：**
