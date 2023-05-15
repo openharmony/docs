@@ -666,13 +666,8 @@ Indicates that the system charging type has changed. This event is available onl
 - Required subscriber permissions: none
 
 ## [COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED](./common_event/commonEvent-resourceschedule.md)
-Indicates that the system idle mode has changed.
+(Reserved, not supported yet) Indicates that the system idle mode has changed.
 - Value: **usual.event.DEVICE_IDLE_MODE_CHANGED**
-- Required subscriber permissions: none
-
-## [COMMON_EVENT_DEVICE_IDLE_EXEMPTION_LIST_UPDATED<sup>10+<sup>](./common_event/commonEvent-resourceschedule.md)
-Indicates that the list of exempted applications has been updated. This event is available only for system applications.
-- Value: **usual.event.DEVICE_IDLE_EXEMPTION_LIST_UPDATED**
 - Required subscriber permissions: none
 
 ## COMMON_EVENT_POWER_SAVE_MODE_CHANGED
