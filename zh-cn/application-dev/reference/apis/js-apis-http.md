@@ -984,8 +984,6 @@ flush(callback: AsyncCallback\<void\>): void
 
 将缓存中的数据写入文件系统，以便在下一个HTTP请求中访问所有缓存数据，使用callback方式作为异步方法。
 
-**系统接口**：此接口为系统接口。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -1012,8 +1010,6 @@ flush(): Promise\<void\>
 
 将缓存中的数据写入文件系统，以便在下一个HTTP请求中访问所有缓存数据，使用Promise方式作为异步方法。
 
-**系统接口**：此接口为系统接口。
-
 **系统能力**：SystemCapability.Communication.NetStack
 
 **返回值：**
@@ -1037,8 +1033,6 @@ httpResponseCache.flush().then(() => {
 delete(callback: AsyncCallback\<void\>): void
 
 禁用缓存并删除其中的数据，使用callback方式作为异步方法。
-
-**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -1065,8 +1059,6 @@ httpResponseCache.delete(err => {
 delete(): Promise\<void\>
 
 禁用缓存并删除其中的数据，使用Promise方式作为异步方法。
-
-**系统接口**：此接口为系统接口。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
