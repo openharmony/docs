@@ -670,6 +670,7 @@ Indicates that the system charging type has changed. This event is available onl
 - Value: **usual.event.DEVICE_IDLE_MODE_CHANGED**
 - Required subscriber permissions: none
 
+
 ## COMMON_EVENT_POWER_SAVE_MODE_CHANGED
 Indicates that the system power saving mode has changed.
 - Value: **usual.event.POWER_SAVE_MODE_CHANGED**
