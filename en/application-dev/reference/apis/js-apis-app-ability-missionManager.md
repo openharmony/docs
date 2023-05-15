@@ -3,7 +3,7 @@
 The **missionManager** module provides APIs to lock, unlock, and clear missions, and switch a mission to the foreground.
 
 > **NOTE**
->
+> 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -32,7 +32,7 @@ Registers a listener to observe the mission status.
 
   | Name| Type| Mandatory| Description|
   | -------- | -------- | -------- | -------- |
-  | listener | [MissionListener](js-apis-inner-application-missionListener.md) | Yes| Mission status listener to register.|
+  | listener | [MissionListener](js-apis-inner-application-missionListener.md) | Yes| Listener to register.|
 
 **Return value**
 
@@ -79,7 +79,7 @@ export default class EntryAbility extends UIAbility {
     }
 
     onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
+        // The main window is created. Set a main page for this ability.
         console.log('[Demo] EntryAbility onWindowStageCreate');
         try {
             listenerId = missionManager.on('mission', listener);
@@ -107,7 +107,7 @@ export default class EntryAbility extends UIAbility {
 
 off(type: 'mission', listenerId: number, callback: AsyncCallback&lt;void&gt;): void;
 
-Deregisters a mission status listener.
+Deregisters a mission status listener. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.MANAGE_MISSIONS
 
@@ -121,6 +121,14 @@ Deregisters a mission status listener.
   | -------- | -------- | -------- | -------- |
   | listenerId | number | Yes| Index of the mission status listener to deregister. It is returned by **registerMissionListener()**.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16300002 | Input error. The specified mission listener does not exist. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -161,7 +169,7 @@ export default class EntryAbility extends UIAbility {
     }
 
     onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
+        // The main window is created. Set a main page for this ability.
         console.log('[Demo] EntryAbility onWindowStageCreate');
         try {
             listenerId = missionManager.on('mission', listener);
@@ -205,9 +213,17 @@ Deregisters a mission status listener. This API uses a promise to return the res
 
 **Return value**
 
-  | Type| Description|
+  | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+  | Promise&lt;void&gt; | Promise used to return the result.| 
+  
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16300002 | Input error. The specified mission listener does not exist. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -248,7 +264,7 @@ export default class EntryAbility extends UIAbility {
     }
 
     onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
+        // The main window is created. Set a main page for this ability.
         console.log('[Demo] EntryAbility onWindowStageCreate');
         try {
             listenerId = missionManager.on('mission', listener);
@@ -631,6 +647,14 @@ Locks a given mission. This API uses an asynchronous callback to return the resu
   | missionId | number | Yes| Mission ID.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16300001 | Mission not found. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
   ```ts
@@ -673,9 +697,17 @@ Locks a given mission. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type| Description|
+  | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+  | Promise&lt;void&gt; | Promise used to return the result.| 
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16300001 | Mission not found. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -719,6 +751,14 @@ Unlocks a given mission. This API uses an asynchronous callback to return the re
 | missionId | number | Yes| Mission ID.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16300001 | Mission not found. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
   ```ts
@@ -761,9 +801,17 @@ Unlocks a given mission. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type| Description|
+  | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+  | Promise&lt;void&gt; | Promise used to return the result.| 
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16300001 | Mission not found. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -852,9 +900,9 @@ Clears a given mission, regardless of whether it is locked. This API uses a prom
 
 **Return value**
 
-  | Type| Description|
+  | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+  | Promise&lt;void&gt; | Promise used to return the result.| 
 
 **Example**
 
@@ -916,9 +964,9 @@ Clears all unlocked missions. This API uses a promise to return the result.
 
 **Return value**
 
-  | Type| Description|
+  | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+  | Promise&lt;void&gt; | Promise used to return the result.| 
 
 **Example**
 
@@ -948,6 +996,14 @@ Switches a given mission to the foreground. This API uses an asynchronous callba
   | -------- | -------- | -------- | -------- |
   | missionId | number | Yes| Mission ID.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -990,6 +1046,14 @@ Switches a given mission to the foreground, with the startup parameters for the 
   | missionId | number | Yes| Mission ID.|
   | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Startup parameters, which are used to specify the window mode and device ID for switching the mission to the foreground.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1034,9 +1098,17 @@ Switches a given mission to the foreground, with the startup parameters for the 
 
 **Return value**
 
-  | Type| Description|
+  | Type| Description| 
   | -------- | -------- |
-  | Promise&lt;void&gt; | Promise used to return the result.|
+  | Promise&lt;void&gt; | Promise used to return the result.| 
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
