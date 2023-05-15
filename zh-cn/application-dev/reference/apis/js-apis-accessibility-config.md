@@ -425,7 +425,7 @@ off(callback?: Callback&lt;T&gt;): void;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;T&gt; | 否 | 要取消的监听回调函数。 |
+| callback | Callback&lt;T&gt; | 否 | 取消指定callback对象的事件响应。 |
 
 **示例：**
 
