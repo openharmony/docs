@@ -27,11 +27,7 @@ ListItem(value?: string)
 | sticky<sup>(deprecated)</sup> | [Sticky](#stickydeprecated枚举说明) | 设置ListItem吸顶效果。<br/>默认值：Sticky.None<br/>从API version9开始废弃，推荐使用[List组件sticky属性](ts-container-list.md#属性)。 |
 | editable<sup>(deprecated)</sup>  | boolean&nbsp;\|&nbsp;[EditMode](#editmodedeprecated枚举说明) | 当前ListItem元素是否可编辑，进入编辑模式后可删除或移动列表项。<br/>从API version9开始废弃。<br/>默认值：false |
 | selectable<sup>8+</sup> | boolean | 当前ListItem元素是否可以被鼠标框选。<br/>**说明：**<br/>外层List容器的鼠标框选开启时，ListItem的框选才生效。<br/>默认值：true |
-<<<<<<< Updated upstream
-| swipeAction<sup>9+</sup> | {<br/>start?:&nbsp;CustomBuilder,<br/>end?:CustomBuilder,<br/>edgeEffect?:&nbsp;[SwipeEdgeEffect](#swipeedgeeffect9枚举说明),<br/>startDeleteArea?:&nbsp;[SwipeDeleteArea](#SwipeDeleteArea10对象说明),<br/>endDeleteArea?:&nbsp;[SwipeDeleteArea](#SwipeDeleteArea10对象说明),<br/>} | 用于设置ListItem的划出组件。<br/>- start:&nbsp;ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。<br/>- end:&nbsp;ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。<br/>- edgeEffect:&nbsp;滑动效果。<br/>- startDeleteArea:&nbsp;ListItem向右划动时item左边的组件长距离滑动删除选项（List垂直布局时）或ListItem向下划动时item上方的组件长距离滑动删除选项（List水平布局时）。<br/>- endDeleteArea:&nbsp;ListItem向左划动时item右边的组件长距离滑动删除选项（List垂直布局时）或ListItem向上划动时item下方的组件长距离滑动删除选项（List水平布局时）。<br/>**说明：** <br/>start和end对应的@builder函数中顶层必须是单个组件，不能是if/else、ForEach、LazyForEach语句。<br/>startDeleteArea和endDeleteArea必须有对应的start和end搭配使用。 |
-=======
 | swipeAction<sup>9+</sup> | {<br/>start?:&nbsp;CustomBuilder&nbsp;\|&nbsp;[SwipeActionItem](#SwipeActionItem10对象说明),<br/>end?:CustomBuilder&nbsp;\|&nbsp;[SwipeActionItem](#SwipeActionItem10对象说明),<br/>edgeEffect?:&nbsp;[SwipeEdgeEffect](#swipeedgeeffect9枚举说明),<br/>} | 用于设置ListItem的划出组件。<br/>- start:&nbsp;ListItem向右划动时item左边的组件（List垂直布局时）或ListItem向下划动时item上方的组件（List水平布局时）。<br/>- end:&nbsp;ListItem向左划动时item右边的组件（List垂直布局时）或ListItem向上划动时item下方的组件（List水平布局时）。<br/>- edgeEffect:&nbsp;滑动效果。<br/>- swipeActionItem:&nbsp;ListItem向右或向左划动时item左边或右边的组件长距离滑动删除选项（List垂直布局时）ListItem向下或向上划动时item上方或下方的组件长距离滑动删除选项（List水平布局时）。<br/>**说明：** <br/>start和end对应的@builder函数中顶层必须是单个组件，不能是if/else、ForEach、LazyForEach语句。 |
->>>>>>> Stashed changes
 
 ## Sticky<sup>(deprecated)</sup>枚举说明
 从API version9开始废弃，推荐使用[List组件stickyStyle枚举](ts-container-list.md#stickystyle9枚举说明)。
@@ -55,16 +51,6 @@ ListItem(value?: string)
 | Spring | ListItem划动距离超过划出组件大小后可以继续划动，松手后按照弹簧阻尼曲线回弹。 |
 | None | ListItem划动距离不能超过划出组件大小。 |
 
-<<<<<<< Updated upstream
-## SwipeDeleteArea<sup>10+</sup>对象说明
-
-| 名称                 | 参数类型                                                     | 必填 | 描述                                                         |
-| -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| deleteAreaDistance | [Length](ts-types.md#length) | 是 | 设置组件长距离滑动删除距离阈值 |
-| onDelete | () => **void** | 是 | 组件进入长距删除区后删除ListItem时调用。<br/>进入长距删除区后，抬手时触发；或者滑动速度大于初始速度阈值时触发 |
-| onEntryDeleteArea | () => **void** | 否 | 在滑动条目进入删除区域时调用，只触发一次，当再次进入时仍触发。 |
-| onExitDeleteArea | () => **void** | 否 |当滑动条目退出删除区域时调用，只触发一次，当再次退出时仍触发。 |
-=======
 ## SwipeActionItem<sup>10+</sup>对象说明
 
 | 名称                 | 参数类型                                                     | 必填 | 描述                                                         |
@@ -75,7 +61,6 @@ ListItem(value?: string)
 | onExitDeleteArea | () => **void** | 否 |当滑动条目退出删除区域时调用，只触发一次，当再次退出时仍触发。 |
 | builder |  CustomBuilder | 否 |当列表项向右或向右滑动（当列表方向为“垂直”时），向下或向下滑动（当列方向为“水平”时）时显示的操作项。 |
 | useDefaultDeleteAnimation | boolean | 否 |设置是否使用默认的删除动画。 |
->>>>>>> Stashed changes
 ## 事件
 
 | 名称 | 功能描述 |
@@ -165,13 +150,7 @@ struct ListItemExample2 {
 @Component
 struct ListItemExample3 {
   @State arr: number[] = [0, 1, 2, 3, 4]
-<<<<<<< Updated upstream
-  @State enterStartDeleteAreaString: string = "not enterStartDeleteArea"
   @State enterEndDeleteAreaString: string = "not enterEndDeleteArea"
-  @State exitStartDeleteAreaString: string = "not exitStartDeleteArea"
-=======
-  @State enterEndDeleteAreaString: string = "not enterEndDeleteArea"
->>>>>>> Stashed changes
   @State exitEndDeleteAreaString: string = "not exitEndDeleteArea"
 
   @Builder itemEnd(index: number) {
@@ -198,15 +177,6 @@ struct ListItemExample3 {
               .borderRadius(10)
               .backgroundColor(0xFFFFFF)
           }
-<<<<<<< Updated upstream
-          .swipeAction({ end:this.itemEnd.bind(this, index)})
-          .swipeAction({endDeleteArea:{
-            onDelete:()=>{
-              this.arr.splice(index, 1)
-            },
-            deleteAreaDistance:80,
-            onEntryDeleteArea:()=>{
-=======
           .swipeAction({end:{
             builder:this.itemEnd.bind(this, index),
             useDefaultDeleteAnimation:true,
@@ -215,7 +185,6 @@ struct ListItemExample3 {
             },
             deleteAreaDistance:150,
             onEnterDeleteArea:()=>{
->>>>>>> Stashed changes
               this.enterEndDeleteAreaString = "enterEndDeleteArea"
               this.exitEndDeleteAreaString = "not exitEndDeleteArea"
             },
@@ -227,13 +196,7 @@ struct ListItemExample3 {
           })
         }, item => item)
       }
-<<<<<<< Updated upstream
-      Text(this.enterStartDeleteAreaString).fontSize(20)
       Text(this.enterEndDeleteAreaString).fontSize(20)
-      Text(this.exitStartDeleteAreaString).fontSize(20)
-=======
-      Text(this.enterEndDeleteAreaString).fontSize(20)
->>>>>>> Stashed changes
       Text(this.exitEndDeleteAreaString).fontSize(20)
     }
     .padding(10)
