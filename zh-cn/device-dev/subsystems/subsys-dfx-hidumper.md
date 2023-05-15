@@ -168,6 +168,7 @@ HiDumper可以为开发者导出系统当前基本信息，通过这些基本信
     |----------------|----|
     | GL             | GPU内存   |
     | Graph          | 图形内存  |
+    | ark ts heap    | ArkTS堆的内存占用  |
     | guard          | 保护段所占内存   |
     | native heap    | 堆内存   |
     | AnonPage other | 其它没有被映射到文件的页所占内存  |
