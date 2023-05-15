@@ -1,8 +1,5 @@
 # @ohos.util.ArrayList (Linear Container ArrayList)
 
-> **NOTE**
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 **ArrayList** is a linear data structure that is implemented based on arrays. **ArrayList** can dynamically adjust the capacity based on project requirements. It increases the capacity by 50% each time.
 
 Similar to **ArrayList**, **[Vector](js-apis-vector.md)** is also implemented based on arrays and can dynamically adjust the capacity. It increases the capability by 100% each time.
@@ -13,6 +10,11 @@ When compared with **[LinkedList](js-apis-linkedlist.md)**, **ArrayList** is mor
 
 This topic uses the following to identify the use of generics:
 - T: Type
+
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 
 ## Modules to Import
 
@@ -160,9 +162,8 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```ts
 let arrayList = new ArrayList();
-let result = arrayList.has("squirrel");
 arrayList.add("squirrel");
-let result1 = arrayList.has("squirrel");
+let result = arrayList.has("squirrel");
 ```
 
 ### getIndexOf
@@ -535,9 +536,7 @@ arrayList.add(2);
 arrayList.add(4);
 arrayList.add(5);
 arrayList.add(4);
-let result1 = arrayList.subArrayList(2, 4);
-let result2 = arrayList.subArrayList(4, 3);
-let result3 = arrayList.subArrayList(2, 6);
+let result = arrayList.subArrayList(2, 4);
 ```
 
 ### clear
