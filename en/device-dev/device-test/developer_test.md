@@ -107,7 +107,7 @@ Click [here](https://gitee.com/openharmony/docs/blob/master/en/device-dev/get-co
     0 upgraded, 0 newly installed, 0 to remove and 11 not upgraded.
     ```
 
-7. If the device supports HDC connection, install the HDC tool. For details about the installation process, see [HDC-OpenHarmony device connector](https://gitee.com/openharmony/developtools_hdc_standard/blob/master/README.md).
+7. If the device supports HDC connection, install the HDC tool. For details about the installation process, see [HDC-OpenHarmony device connector](https://gitee.com/openharmony/developtools_hdc/blob/master/README.md).
 
 
 ### Environment Dependency Check
@@ -464,12 +464,12 @@ The procedure is as follows:
 
 **Fuzzing Test**
 
-[Fuzzing case specifications](https://gitee.com/openharmony/test_developertest/blob/master/libs/fuzzlib/README_zh.md)
+[Fuzzing case specifications](https://gitee.com/openharmony/testfwk_developer_test/blob/master/libs/fuzzlib/README_zh.md)
 
 
 **Benchmark Test**
 
-[Benchmark case specifications](https://gitee.com/openharmony/test_developertest/blob/master/libs/benchmark/README_zh.md)
+[Benchmark case specifications](https://gitee.com/openharmony/testfwk_developer_test/blob/master/libs/benchmark/README_zh.md)
 
 ## **Test Case Building**
 
