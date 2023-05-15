@@ -3,8 +3,8 @@
 ## 场景介绍
 
 开发者可以通过两种不同的方式实现拨打电话的功能：
-- 对于系统应用，开发者可以使用dial接口，直接进行音频/视频呼叫，在应用界面显示对应的通话。
-- 对于三方应用，开发者可以使用makecall接口，拉起系统电话应用，用户可以自行呼出通话。
+- 对于系统应用，开发者可以使用dialCall接口，直接进行音频/视频呼叫，在应用界面显示对应的通话。
+- 对于三方应用，开发者可以使用makeCall接口，拉起系统电话应用，用户可以自行呼出通话。
 
 ## 基本概念
 
@@ -32,8 +32,8 @@
 |                                  接口名                                             | 描述                                                         |
 | ----------------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | hasVoiceCapability(): boolean;                                                      | 判断是否具有语音功能。                                        |
-| dial(phoneNumber: string, callback: AsyncCallback<boolean>): void                   | 拨号。该接口为系统接口。                                      |
-| makeCall(phoneNumber: string, callback: AsyncCallback<void>): void                  | 转到拨号屏幕，显示被叫号码。                                  |
+| dialCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void                   | 拨号。该接口为系统接口。                                      |
+| makeCall(phoneNumber: string, callback: AsyncCallback&lt;void&gt;): void                  | 转到拨号屏幕，显示被叫号码。                                  |
 
 observer模块为开发者提供订阅和取消订阅通话业务状态的功能。具体API说明详见[接口文档](../reference/apis/js-apis-observer.md)。
 
@@ -43,15 +43,15 @@ observer模块为开发者提供订阅和取消订阅通话业务状态的功能
 
 ## 开发步骤
 
-### 使用dial拨打电话（仅供系统应用使用）
+### 使用dialCall拨打电话（仅供系统应用使用）
 
-1. 声明接口调用所需要的权限：ohos.permission.PLACE_CALL
-ohos.permission.PLACE_CALL权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/accesstoken-overview.md#权限使用的基本原则)。然后参考[配置文件权限声明指导文档](../security/accesstoken-guidelines.md#配置文件权限声明)声明对应权限。
+1. 声明接口调用所需要的权限：ohos.permission.PLACE_CALL。
+此权限级别为system_basic，在申请权限前，请保证符合[权限使用的基本原则](../security/accesstoken-overview.md#权限使用的基本原则)。然后参考[配置文件权限声明指导文档](../security/accesstoken-guidelines.md#配置文件权限声明)声明对应权限。
 2. 导入call和observer模块。
 3. 调用hasVoiceCapability，确认当前设备是否支持拨号。
    如果设备支持呼叫能力，则继续跳转到拨号界面，并显示拨号的号码。
-4. 调用dial接口，拨打电话。
-5.（可选）订阅通话业务状态变化。
+4. 调用dialCall接口，拨打电话。
+5. （可选）订阅通话业务状态变化。
    ```js
     // import需要的模块
     import call from '@ohos.telephony.call'
@@ -64,9 +64,9 @@ ohos.permission.PLACE_CALL权限级别为system_basic，在申请权限前，请
         return;
     }
     // 如果设备支持呼叫能力，调用以下接口进行拨号
-    call.dial("13xxxx", (err, data) => {
-        this.output = this.output + `dial: ${JSON.stringify(data)}\n`
-        console.log(`callback: dial err->${JSON.stringify(err)} data->${JSON.stringify(data)}`)
+    call.dialCall("13xxxx", (err, data) => {
+        this.output = this.output + `dial call: ${JSON.stringify(data)}\n`
+        console.log(`callback: dial call err->${JSON.stringify(err)} data->${JSON.stringify(data)}`)
     })
 
     // 订阅通话业务状态变化（可选）
@@ -75,13 +75,13 @@ ohos.permission.PLACE_CALL权限级别为system_basic，在申请权限前，请
     });
    ```
 
-### 使用makecall拨打电话
+### 使用makeCall拨打电话
 
 1. 导入call和observer模块。
 2. 调用hasVoiceCapability，确认当前设备是否支持拨号。
    如果设备支持呼叫能力，则继续跳转到拨号界面，并显示拨号的号码。
-3. 调用makecall接口，拉起系统电话应用，拨打电话。
-4.（可选）订阅通话业务状态变化。
+3. 调用makeCall接口，拉起系统电话应用，拨打电话。
+4. （可选）订阅通话业务状态变化。
 
    ```js
     // import需要的模块
