@@ -228,66 +228,6 @@ deviceTypes示例：
 
 abilities标签描述UIAbility组件的配置信息，标签值为数组类型，该标签下的配置只对当前UIAbility生效。
 
-**OpenHarmony中不允许应用隐藏入口图标**
-
-OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置入口图标，那么系统将应用app.json中的icon作为入口图标，并显示在桌面上。<br>
-用户点击该图标，将跳转到设置应用管理中对应的应用详情页面（图1）中。<br>
-如果应用想要隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。
-
-**场景说明：** 该功能能防止一些恶意应用，故意配置无入口图标，导致用户找不到软件所在的位置，无法操作卸载应用，在一定程度上保证用户的手机安全
-
-**入口图标的设置:** 需要在配置文件（module.json5）中abilities配置下设置icon，label以及skills,而且skills的配置下的必须同时包含“ohos.want.action.home” 和 “entity.system.home”:
-```
-{
-  "module":{
-
-    ...
-
-    "abilities": [{
-      "icon": "$media:icon",
-      "label": "Login",
-      "skills": [{
-        "actions": ["ohos.want.action.home"],
-        "entities": ["entity.system.home"],
-        "uris": []
-      }]
-    }],
-    ...
-
-  }
-}
-```
-
-**入口图标及入口标签的显示规则**
-* HAP中包含UIAbility
-  * 配置文件（module.json5）中abilities配置中设置了入口图标
-    * 该应用没有隐藏图标的特权
-      * 显示桌面图标为该UIAbility配置的图标
-      * 显示桌面Label为该UIAbility配置的Label（如果没有配置Label，返回包名）
-      * 显示组件名为该UIAbility的组件名
-      * 用户点击该桌面图标，页面跳转到该UIAbility首页
-    * 该应用具有隐藏图标的特权
-      * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
-  * 配置文件（module.json5）中abilities配置中未设置入口图标
-    * 该应用没有隐藏图标的特权
-      * 显示桌面图标为app配置下的图标（app.json中icon为必填项）
-      * 显示桌面Label为app配置下的label（app.json中label为必填项）
-      * 用户点击该桌面图标，页面跳转到该应用的详情页面（图1）
-    * 该应用具有隐藏图标的特权
-      * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
-* HAP中不包含UIAbility
-  * 该应用没有隐藏图标的特权
-    * 显示桌面图标为app配置下的图标（app.json中icon为必填项）
-    * 显示桌面Label为app配置下的label（app.json中label为必填项）
-    * 用户点击该桌面图标，页面跳转到该应用的详情页面（图1）
-  * 该应用具有隐藏图标的特权
-    * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。<br><br>
-
-应用的详情页例图
-
-![应用的详情页例图](figures/application_details.jpg)
-
-
   **表6** **abilities标签说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
