@@ -910,6 +910,6 @@ Wi-Fi P2P群组信息已更改。
 - 值：usual.event.SCREEN_UNLOCKED
 - 订阅者所需权限：无
 
-## [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT<sup>10+<sup>](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result)
+## [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT<sup>10+<sup>](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)
 
 指示撤销快速修复的动作。
