@@ -148,7 +148,7 @@ on\(type: \'signalInfoChange\', callback: Callback\<Array\<SignalInformation\>\>
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | 是   | 信号状态变化事件，参数固定为'signalInfoChange'。              |
-| callback | Callback<Array<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 是   | 回调函数。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
+| callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 是   | 回调函数。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
 
 **错误码：**
 
@@ -185,7 +185,7 @@ on\(type: \'signalInfoChange\', options: { slotId: number }, callback: Callback\
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | 是   | 信号状态变化事件，参数固定为'signalInfoChange'。              |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
-| callback | Callback<Array<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 是   | 回调函数。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
+| callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 是   | 回调函数。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
 
 **错误码：**
 
@@ -225,7 +225,7 @@ off\(type: \'signalInfoChange\', callback?: Callback\<Array\<SignalInformation\>
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 信号状态变化事件，参数固定为'signalInfoChange'。              |
-| callback | Callback<Array<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 否   | 回调函数。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
+| callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 否   | 回调函数。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
 
 **错误码：**
 
@@ -265,10 +265,10 @@ on\(type: \'cellInfoChange\', callback: Callback\<Array\<CellInformation\>\>\): 
 
 **参数：**
 
-| 参数名   | 类型                                                      | 必填 | 说明                                                         |
-| -------- | --------------------------------------------------------- | ---- |------------------------------------------------------------|
-| type     | string                                                    | 是   | 小区信息变化事件，固定为'cellInfoChange'。              |
-| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | 是   | 回调函数。|
+| 参数名   | 类型                                                      | 必填 | 说明                                      |
+| -------- | --------------------------------------------------------- | ---- |------------------------------------------|
+| type     | string                                                    | 是   | 小区信息变化事件，固定为'cellInfoChange'。 |
+| callback | Callback\<Array\<[CellInformation](js-apis-radio.md#cellinformation8)\>\> | 是   | 回调函数。                |
 
 **错误码：**
 
@@ -307,11 +307,11 @@ on\(type: \'cellInfoChange\', options: { slotId: number }, callback: Callback\<A
 
 **参数：**
 
-| 参数名 | 类型                                               | 必填 | 说明                                                         |
-| ------ |--------------------------------------------------| ---- |------------------------------------------------------------|
-| type     | string                                           | 是   | 小区信息变化事件，固定为'cellInfoChange'。                                                   |
-| slotId | number                                           | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                              |
-| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | 是   | 回调函数。|
+| 参数名 | 类型                                               | 必填 | 说明                                      |
+| ------ |--------------------------------------------------| ---- |--------------------------------------------|
+| type     | string                                           | 是   | 小区信息变化事件，固定为'cellInfoChange'。 |
+| slotId | number                                           | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2      |
+| callback | Callback\<Array\<[CellInformation](js-apis-radio.md#cellinformation8)\>\> | 是   | 回调函数。       |
 
 **错误码：**
 
@@ -355,7 +355,7 @@ off\(type: \'cellInfoChange\', callback?: Callback\<Array\<CellInformation\>\>\)
 | 参数名   | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                    | 是   | 小区信息变化事件，固定为'cellInfoChange'。                                            |
-| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | 否   | 回调函数。|
+| callback | Callback\<Array\<[CellInformation](js-apis-radio.md#cellinformation8)\>\> | 否   | 回调函数。|
 
 **错误码：**
 
