@@ -665,7 +665,7 @@ Indicates that the system charging type has changed. This event is available onl
 - Value: **usual.event.CHARGE_TYPE_CHANGED**
 - Required subscriber permissions: none
 
-## [COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED](./common_event/commonEvent-resourceschedule.md)
+## COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED
 (Reserved, not supported yet) Indicates that the system idle mode has changed.
 - Value: **usual.event.DEVICE_IDLE_MODE_CHANGED**
 - Required subscriber permissions: none
