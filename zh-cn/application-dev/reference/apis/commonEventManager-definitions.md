@@ -562,9 +562,14 @@ Wi-Fi P2P群组信息已更改。
 - 值： usual.event.CHARGE_TYPE_CHANGED
 - 订阅者所需权限： 无
 
-## COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED
-（预留事件，暂未支持）表示系统空闲模式已更改的公共事件的动作。
+## [COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED](./common_event/commonEvent-resourceschedule.md)
+表示系统待机空闲模式已更改的公共事件的动作。
 - 值： usual.event.DEVICE_IDLE_MODE_CHANGED
+- 订阅者所需权限： 无
+
+## [COMMON_EVENT_DEVICE_IDLE_EXEMPTION_LIST_UPDATED<sup>10+<sup>](./common_event/commonEvent-resourceschedule.md)
+表示系统待机空闲模式下豁免应用程序列表已更新的公共事件的动作。仅限系统应用使用。
+- 值： usual.event.DEVICE_IDLE_EXEMPTION_LIST_UPDATED
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_POWER_SAVE_MODE_CHANGED
