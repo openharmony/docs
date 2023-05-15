@@ -879,8 +879,8 @@ getLinkedInfo(callback: AsyncCallback&lt;WifiLinkedInfo&gt;): void
 | ipAddress | number | 是 | 否 | WLAN连接的IP地址。 |
 | suppState | [SuppState](#suppstate) | 是 | 否 | 请求状态。 <br /> **系统接口：** 此接口为系统接口。 |
 | connState | [ConnState](#connstate) | 是 | 否 | WLAN连接状态。 |
-| channelWidth<sup>10+</sup> | [WifiChannelWidth](#connstate) | 是 | 否 | 当前连接热点的信道带宽。 |
-| wifiStandard<sup>10+</sup> | [WifiStandard](#connstate) | 是 | 否 | 当前连接热点的WiFi标准。 |
+| channelWidth<sup>10+</sup> | [WifiChannelWidth](#WifiChannelWidth) | 是 | 否 | 当前连接热点的信道带宽。 |
+| wifiStandard<sup>10+</sup> | [WifiStandard](#WifiStandard) | 是 | 否 | 当前连接热点的WiFi标准。 |
 
 ## ConnState<sup>9+</sup>
 
