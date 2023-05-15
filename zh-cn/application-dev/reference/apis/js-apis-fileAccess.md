@@ -654,7 +654,7 @@ createFile(uri: string, displayName: string) : Promise&lt;string&gt;
   // 以媒体库uri为例
   // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceUri = "datashare:///media/file/6";
+  let sourceUri = "file://media/file/6";
   let displayName = "file1"
   let fileUri = null;
   try {
@@ -698,7 +698,7 @@ createFile(uri: string, displayName: string, callback: AsyncCallback&lt;string&g
   // 以媒体库uri为例
   // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceUri = "datashare:///media/file/6";
+  let sourceUri = "file://media/file/6";
   let displayName = "file1"
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
@@ -747,7 +747,7 @@ mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
   // 以媒体库uri为例
   // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceUri = "datashare:///media/file/6";
+  let sourceUri = "file://media/file/6";
   let dirName = "dirTest"
   let dirUri = null;
   try {
@@ -791,7 +791,7 @@ mkDir(parentUri: string, displayName: string, callback: AsyncCallback&lt;string&
   // 以媒体库uri为例
   // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceUri = "datashare:///media/file/6";
+  let sourceUri = "file://media/file/6";
   let dirName = "dirTest"
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
@@ -840,7 +840,7 @@ openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;
   // 以媒体库uri为例
   // 示例代码targetUri表示Download目录下文件，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let targetUri  = "datashare:///media/file/100";
+  let targetUri  = "file://media/file/100";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let fd = await fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ);
@@ -877,7 +877,7 @@ openFile(uri: string, flags: OPENFLAGS, callback: AsyncCallback&lt;number&gt;) :
   // 以媒体库uri为例
   // 示例代码targetUri表示Download目录下文件，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let targetUri  = "datashare:///media/file/100";
+  let targetUri  = "file://media/file/100";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     fileAccessHelper.openFile(targetUri, fileAccess.OPENFLAGS.READ, function (err, fd) {
@@ -924,7 +924,7 @@ delete(uri: string) : Promise&lt;number&gt;
   // 以媒体库uri为例
   // 示例代码targetUri表示Download目录下文件，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let targetUri = "datashare:///media/file/100";
+  let targetUri = "file://media/file/100";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let code = await fileAccessHelper.delete(targetUri);
@@ -962,7 +962,7 @@ delete(uri: string, callback: AsyncCallback&lt;number&gt;) : void
   // 以媒体库uri为例
   // 示例代码targetUri表示Download目录下文件，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let targetUri = "datashare:///media/file/100";
+  let targetUri = "file://media/file/100";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     fileAccessHelper.delete(targetUri, function (err, code) {
@@ -1010,8 +1010,8 @@ move(sourceFile: string, destFile: string) : Promise&lt;string&gt;
   // 以媒体库uri为例
   // 示例代码sourceFile destFile表示Download目录下文件或文件夹，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceFile = "datashare:///media/file/102";
-  let destFile = "datashare:///media/file/101";
+  let sourceFile = "file://media/file/102";
+  let destFile = "file://media/file/101";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let fileUri = await fileAccessHelper.move(sourceFile, destFile);
@@ -1049,8 +1049,8 @@ move(sourceFile: string, destFile: string, callback: AsyncCallback&lt;string&gt;
   // 以媒体库uri为例
   // 示例代码sourceFile destFile表示Download目录下文件或文件夹，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceFile = "datashare:///media/file/102";
-  let destFile = "datashare:///media/file/101";
+  let sourceFile = "file://media/file/102";
+  let destFile = "file://media/file/101";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     fileAccessHelper.move(sourceFile, destFile, function (err, fileUri) {
@@ -1098,7 +1098,7 @@ rename(uri: string, displayName: string) : Promise&lt;string&gt;
   // 以媒体库uri为例
   // 示例代码sourceDir表示Download目录下文件，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceDir = "datashare:///media/file/100";
+  let sourceDir = "file://media/file/100";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let DestDir = await fileAccessHelper.rename(sourceDir, "testDir");
@@ -1136,7 +1136,7 @@ rename(uri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) 
   // 以媒体库uri为例
   // 示例代码sourceDir表示Download目录下文件，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceDir = "datashare:///media/file/100";
+  let sourceDir = "file://media/file/100";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     fileAccessHelper.rename(sourceDir, "testDir", function (err, DestDir) {
@@ -1183,7 +1183,7 @@ access(sourceFileUri: string) : Promise&lt;boolean&gt;
   // 以媒体库uri为例
   // 示例代码sourceDir表示Download目录下文件，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceDir = "datashare:///media/file/100";
+  let sourceDir = "file://media/file/100";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let existJudgment = await fileAccessHelper.access(sourceDir);
@@ -1223,7 +1223,7 @@ access(sourceFileUri: string, callback: AsyncCallback&lt;boolean&gt;) : void
   // 以媒体库uri为例
   // 示例代码sourceDir表示Download目录下文件，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceDir = "datashare:///media/file/100";
+  let sourceDir = "file://media/file/100";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     fileAccessHelper.access(sourceDir, function (err, existJudgment) {
@@ -1269,7 +1269,7 @@ getFileInfoFromUri(uri: string) : Promise\<FileInfo>
   // 以媒体库uri为例
   // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceUri = "datashare:///media/file/6";
+  let sourceUri = "file://media/file/6";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let fileInfo = await fileAccessHelper.getFileInfoFromUri(sourceUri);
@@ -1301,7 +1301,7 @@ getFileInfoFromUri(uri: string, callback: AsyncCallback\<FileInfo>) : void
   // 以媒体库uri为例
   // 示例代码sourceUri表示Download目录，该uri是对应的fileInfo中uri
   // 开发者应根据自己实际获取的uri进行开发
-  let sourceUri = "datashare:///media/file/6";
+  let sourceUri = "file://media/file/6";
   try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     fileAccessHelper.getFileInfoFromUri(sourceUri, function (err, fileInfo) {
@@ -1421,7 +1421,7 @@ getThumbnail(uri: string, size: image.Size) : Promise&lt;image.PixelMap&gt;
 // 以媒体库uri为例
 // 示例代码targetUri表示Download目录下某个媒体文件(图片、音频、视频)，该uri是对应的fileInfo中uri
 // 开发者应根据自己实际获取的uri进行开发
-let targetUri = "datashare:///media/image/100";
+let targetUri = "file://media/image/100";
 let size = { width: 128, height: 128 };
 try {
   // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
@@ -1458,7 +1458,7 @@ try {
 // 以媒体库uri为例
 // 示例代码targetUri表示Download目录下某个媒体文件(图片、音频、视频)，该uri是对应的fileInfo中uri
 // 开发者应根据自己实际获取的uri进行开发
-let targetUri = "datashare:///media/image/100";
+let targetUri = "file://media/image/100";
 let size = { width: 128, height: 128 };
 try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
@@ -1566,8 +1566,8 @@ copy(sourceUri: string, destUri: string, force?: boolean) : Promise&lt;Array&lt;
 
 | 参数名    | 类型    | 必填 | 说明                                                         |
 | --------- | ------- | ---- | ------------------------------------------------------------ |
-| sourceUri | string  | 是   | 待拷贝的源文件(夹)的 uri，例如：datashare:///media/file/102  |
-| destUri   | string  | 是   | 目标文件夹的 uri，例如：datashare:///media/file/101          |
+| sourceUri | string  | 是   | 待拷贝的源文件(夹)的 uri，例如：file://media/file/102  |
+| destUri   | string  | 是   | 目标文件夹的 uri，例如：file://media/file/101          |
 | force     | boolean | 否   | 含有同名文件时是否强制覆盖文件，force 为 true 时强制覆盖文件，force 为空或 false 时不强制覆盖文件 |
 
 **返回值：**
@@ -1582,8 +1582,8 @@ copy(sourceUri: string, destUri: string, force?: boolean) : Promise&lt;Array&lt;
 // 以媒体库uri为例
 // 示例代码中的sourceFile表示Download目录下的源文件(夹)，destFile表示Download目录下的目标文件夹，该uri对应fileInfo中的uri
 // 开发者应根据自己实际获取的uri进行开发
-let sourceFile = "datashare:///media/file/102";
-let destFile = "datashare:///media/file/101";
+let sourceFile = "file://media/file/102";
+let destFile = "file://media/file/101";
 try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let copyResult = await fileAccessHelper.copy(sourceFile, destFile);
@@ -1608,8 +1608,8 @@ try {
 // 以媒体库uri为例
 // 示例代码中的sourceFile表示Download目录下的源文件(夹)，destFile表示Download目录下的目标文件夹，该uri对应fileInfo中的uri
 // 开发者应根据自己实际获取的uri进行开发
-let sourceFile = "datashare:///media/file/102";
-let destFile = "datashare:///media/file/101";
+let sourceFile = "file://media/file/102";
+let destFile = "file://media/file/101";
 try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     let copyResult = await fileAccessHelper.copy(sourceFile, destFile, true);
@@ -1642,8 +1642,8 @@ copy(sourceUri: string, destUri: string, callback: AsyncCallback&lt;Array&lt;Cop
 
 | 参数名    | 类型                                             | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| sourceUri | string                                           | 是   | 待拷贝的源文件(夹)的 uri，例如：datashare:///media/file/102  |
-| destUri   | string                                           | 是   | 目标文件夹的 uri，例如：datashare:///media/file/101          |
+| sourceUri | string                                           | 是   | 待拷贝的源文件(夹)的 uri，例如：file://media/file/102  |
+| destUri   | string                                           | 是   | 目标文件夹的 uri，例如：file://media/file/101          |
 | callback  | AsyncCallback&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | 是   | 返回 copyresult 数组，copyResult 为复制操作失败的返回信息，复制成功无返回信息 |
 
 **示例：**
@@ -1652,8 +1652,8 @@ copy(sourceUri: string, destUri: string, callback: AsyncCallback&lt;Array&lt;Cop
 // 以媒体库uri为例
 // 示例代码中的sourceFile表示Download目录下的源文件(夹)，destFile表示Download目录下的目标文件夹，该uri对应fileInfo中的uri
 // 开发者应根据自己实际获取的uri进行开发
-let sourceFile = "datashare:///media/file/102";
-let destFile = "datashare:///media/file/101";
+let sourceFile = "file://media/file/102";
+let destFile = "file://media/file/101";
 try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     fileAccessHelper.copy(sourceFile, destFile, async (err, copyResult) => {
@@ -1691,8 +1691,8 @@ copy(sourceUri: string, destUri: string, force: boolean, callback: AsyncCallback
 
 | 参数名    | 类型                                             | 必填 | 说明                                                         |
 | --------- | ------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| sourceUri | string                                           | 是   | 待拷贝的源文件(夹)的 uri，例如：datashare:///media/file/102  |
-| destUri   | string                                           | 是   | 目标文件夹的 uri，例如：datashare:///media/file/101          |
+| sourceUri | string                                           | 是   | 待拷贝的源文件(夹)的 uri，例如：file://media/file/102  |
+| destUri   | string                                           | 是   | 目标文件夹的 uri，例如：file://media/file/101          |
 | force     | boolean                                          | 是   | 含有同名文件时是否强制覆盖文件，force 为 true 时强制覆盖文件，force 为空或 false 时不强制覆盖文件 |
 | callback  | AsyncCallback&lt;Array&lt;[CopyResult](#copyresult10)&gt;&gt; | 是   | 返回 copyresult 数组，copyResult 为复制操作失败的返回信息，复制成功无返回信息 |
 
@@ -1702,8 +1702,8 @@ copy(sourceUri: string, destUri: string, force: boolean, callback: AsyncCallback
 // 以媒体库uri为例
 // 示例代码中的sourceFile表示Download目录下的源文件(夹)，destFile表示Download目录下的目标文件夹，该uri对应fileInfo中的uri
 // 开发者应根据自己实际获取的uri进行开发
-let sourceFile = "datashare:///media/file/102";
-let destFile = "datashare:///media/file/101";
+let sourceFile = "file://media/file/102";
+let destFile = "file://media/file/101";
 try {
     // fileAccessHelper 参考 fileAccess.createFileAccessHelper 示例代码获取
     fileAccessHelper.copy(sourceFile, destFile, true, async (err, copyResult) => {

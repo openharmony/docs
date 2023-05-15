@@ -16,7 +16,8 @@ There are two roles in **DataShare**:
 
 - Data consumer: accesses the data provided by the provider using [createDataShareHelper()](../reference/apis/js-apis-data-dataShare.md#datasharecreatedatasharehelper).
 
-**Figure 1** Data sharing mechanism 
+**Figure 1** Data sharing mechanism
+ 
 ![dataShare](figures/dataShare.jpg)
 
 - The **DataShareExtensionAbility** module, as the data provider, implements services related to data sharing between applications.
@@ -125,15 +126,15 @@ override the service implementation as required. For example, if the data provid
 
      **Table 1** Fields in module.json5
    
-   | Field| Description| Mandatory| 
+   | Field| Description| Mandatory|
    | -------- | -------- | -------- |
-   | name | Ability name, corresponding to the **ExtensionAbility** class name derived from **Ability**.| Yes| 
-   | type | Ability type. The value is **dataShare**, indicating the development is based on the **datashare** template.| Yes| 
-   | uri | URI used for communication. It is the unique identifier for the data consumer to connect to the provider.| Yes| 
-   | exported | Whether it is visible to other applications. Data sharing is allowed only when the value is **true**.| Yes| 
-   | readPermission | Permission required for accessing data. If this parameter is not set, the read permission is not verified by default.| No| 
-   | writePermission | Permission required for modifying data. If this parameter is not set, write permission verification is not performed by default.| No| 
-   | metadata   | Configuration for silent access, including the **name** and **resource** fields.<br> The **name** field identifies the configuration, which has a fixed value of **ohos.extension.dataShare**.<br> The **resource** field has a fixed value of **$profile:data_share_config**, which indicates that the profile name is **data_share_config.json**.| **metadata** is mandatory when the ability launch type is **singleton**. For details about the ability launch type, see **launchType** in the [Internal Structure of the abilities Attribute](../quick-start/module-structure.md#internal-structure-of-the-abilities-attribute).| 
+   | name | Ability name, corresponding to the **ExtensionAbility** class name derived from **Ability**.| Yes|
+   | type | Ability type. The value is **dataShare**, indicating the development is based on the **datashare** template.| Yes|
+   | uri | URI used for communication. It is the unique identifier for the data consumer to connect to the provider.| Yes|
+   | exported | Whether it is visible to other applications. Data sharing is allowed only when the value is **true**.| Yes|
+   | readPermission | Permission required for accessing data. If this parameter is not set, the read permission is not verified by default.| No|
+   | writePermission | Permission required for modifying data. If this parameter is not set, write permission verification is not performed by default.| No|
+   | metadata   | Configuration for silent access, including the **name** and **resource** fields.<br> The **name** field identifies the configuration, which has a fixed value of **ohos.extension.dataShare**.<br> The **resource** field has a fixed value of **$profile:data_share_config**, which indicates that the profile name is **data_share_config.json**.| **metadata** is mandatory when the ability launch type is **singleton**. For details about the ability launch type, see **launchType** in the [Internal Structure of the abilities Attribute](../quick-start/module-structure.md#internal-structure-of-the-abilities-attribute).|
 
    **module.json5 example**
    

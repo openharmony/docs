@@ -18,6 +18,14 @@ Counter()
 
 Since API version 9, this API is supported in ArkTS widgets.
 
+## Attributes
+
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+
+| Name                         | Type                              | Description                                      |
+| --------------------------- | ---------------------------------------- | ---------------------------------------- |
+| enableInc<sup>10+</sup>              | boolean                            | Whether the plus button is enabled.<br>Default value: **true**  |
+| enableDec<sup>10+</sup>           | boolean                                  | Whether the minus button is enabled.<br>Default value: **true**|
 
 ## Events
 

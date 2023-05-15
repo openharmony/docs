@@ -120,7 +120,7 @@ Image支持加载存档图、多媒体像素图两种类型。
   2. 从媒体库获取的url格式通常如下。
       ​    
       ```ts
-      Image('datashare:///media/5')
+      Image('file://media/5')
       .width(200)
       ```
 

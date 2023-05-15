@@ -1506,7 +1506,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 ## ohos.permission.ACCESS_CERT_MANAGER
 
@@ -1836,7 +1836,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：TURE
+**ACL使能**：TRUE
 
 ## ohos.permission.GET_DISTRIBUTED_ACCOUNTS
 
@@ -1846,7 +1846,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：TURE
+**ACL使能**：TRUE
 
 ## ohos.permission.GET_LOCAL_ACCOUNTS
 
@@ -1856,4 +1856,44 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：TURE
+**ACL使能**：TRUE
+
+## ohos.permission.READ_HIVIEW_SYSTEM
+
+允许应用访问hiview的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.WRITE_HIVIEW_SYSTEM
+
+允许应用修改hiview的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ACCESS_CAST_ENGINE_MIRROR
+
+允许应用使用镜像投屏能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ACCESS_CAST_ENGINE_STREAM
+
+允许应用调用系统资源投射能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE

@@ -11,7 +11,7 @@ ExtensionAbility组件是基于特定场景（例如服务卡片、输入法等�
 
 - [WorkSchedulerExtensionAbility](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md)：WORK_SCHEDULER类型的ExtensionAbility组件，用于提供延迟任务回调实现的能力。
 
-- [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod.md)：INPUT_METHOD类型的ExtensionAbility组件，提供对输入法框架的管理，包括隐藏输入法、查询已安装的输入法列表和显示输入法选择对话框。
+- [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod.md)：INPUT_METHOD类型的ExtensionAbility组件，用于开发输入法应用。
 
 - [ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md)：SERVICE类型的ExtensionAbility组件，用于提供后台服务场景相关能力。
 
@@ -39,8 +39,7 @@ ExtensionAbility组件是基于特定场景（例如服务卡片、输入法等�
 
   以[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod.md)组件为例进行说明，如下图所示，调用方应用发起对InputMethodExtensionAbility组件的调用，此时将先调用输入法管理服务，由输入法管理服务拉起[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod.md)组件，返回给调用方，同时开始管理其生命周期。
 
-  **图1** 使用InputMethodExtensionAbility组件
-
+**图1** 使用InputMethodExtensionAbility组件  
 ![ExtensionAbility-start](figures/ExtensionAbility-start.png)
 
 
@@ -48,8 +47,7 @@ ExtensionAbility组件是基于特定场景（例如服务卡片、输入法等�
 
 以实现卡片[FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md)为例进行说明。卡片框架提供了[FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md)基类，开发者通过派生此基类（如MyFormExtensionAbility），实现回调（如创建卡片的onCreate()回调、更新卡片的onUpdateForm()回调等）来实现具体卡片功能，具体见开发指导见[服务卡片FormExtensionAbility](service-widget-overview.md)。
 
-卡片FormExtensionAbility实现方不用关心使用方何时去请求添加、删除卡片，FormExtensionAbility实例及其所在的ExtensionAbility进程的整个生命周期，都是由卡片管理系统服务FormManagerService进行调度管理。
-
+卡片FormExtensionAbility实现方不用关心使用方何时去请求添加、删除卡片，FormExtensionAbility实例及其所在的ExtensionAbility进程的整个生命周期，都是由卡片管理系统服务FormManagerService进行调度管理。  
 ![form_extension](figures/form_extension.png)
 
 

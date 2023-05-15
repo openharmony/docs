@@ -32,11 +32,11 @@ Worker构造函数的选项信息，用于为Worker添加其他信息。
 
 **系统能力：** SystemCapability.Utils.Lang
 
-| 名称 | 类型 | 可读 | 可写 | 说明           |
+| 名称 | 类型 | 可读 | 可写 | 说明 |
 | ---- | -------- | ---- | ---- | -------------- |
-| type | "classic" \| "module" | 是   | 是   | Worker执行脚本的模式类型，默认为classic类型，暂不支持module类型。 |
-| name | string   | 是   | 是   | Worker的名称。 |
-| shared | boolean | 是   | 是   | 暂不支持共享Worker功能。 |
+| type | "classic" \| "module" | 是   | 是 | Worker执行脚本的模式类型，暂不支持module类型，默认值为"classic"。 |
+| name | string   | 是   | 是 | Worker的名称，默认值为 undefined 。 |
+| shared | boolean | 是   | 是 | 表示Worker共享功能，此接口暂不支持。 |
 
 
 ## ThreadWorker<sup>9+</sup>
@@ -187,8 +187,6 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void;
 ```js
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
-workerInstance.postMessage("hello world");
-
 var buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
 ```
@@ -206,7 +204,7 @@ postMessage(message: Object, options?: PostMessageOptions): void
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | message | Object                                    | 是   | 发送至Worker的数据。                                         |
-| options | [PostMessageOptions](#postmessageoptions) | 否   | 可转移对象是&nbsp;ArrayBuffer&nbsp;的实例对象。transferList数组中不可传入null。 |
+| options | [PostMessageOptions](#postmessageoptions) | 否   | 可传输对象是&nbsp;ArrayBuffer&nbsp;的实例对象。若不填入该参数，默认设置为 undefined。|
 
 **错误码：**
 
@@ -907,7 +905,7 @@ Worker线程向宿主线程发送消息。
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | message | Object                                    | 是   | 发送至宿主线程的数据。                                       |
-| options | [PostMessageOptions](#postmessageoptions) | 否   | 可转移对象是ArrayBuffer的实例对象。transferList数组中不可传入null。 |
+| options | [PostMessageOptions](#postmessageoptions) | 否   | 可传输对象是ArrayBuffer的实例对象。若不填入该参数，默认设置为 undefined。|
 
 **错误码：**
 
@@ -1278,8 +1276,6 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void;
 ```js
 const workerInstance = new worker.Worker("workers/worker.js");
 
-workerInstance.postMessage("hello world");
-
 var buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
 ```
@@ -1300,7 +1296,7 @@ postMessage(message: Object, options?: PostMessageOptions): void
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | message | Object                                    | 是   | 发送至Worker的数据。                                         |
-| options | [PostMessageOptions](#postmessageoptions) | 否   | 可转移对象是&nbsp;ArrayBuffer&nbsp;的实例对象。transferList数组中不可传入null。 |
+| options | [PostMessageOptions](#postmessageoptions) | 否   | 可传输对象是&nbsp;ArrayBuffer&nbsp;的实例对象。若不填入该参数，默认设置为 undefined。|
 
 **示例：**
 
@@ -1308,6 +1304,9 @@ postMessage(message: Object, options?: PostMessageOptions): void
 const workerInstance = new worker.Worker("workers/worker.js");
 
 workerInstance.postMessage("hello world");
+
+var buffer = new ArrayBuffer(8);
+workerInstance.postMessage(buffer, [buffer]);
 ```
 
 
@@ -1692,11 +1691,32 @@ Worker线程用于与宿主线程通信的类，通过postMessage接口发送消
 > **说明：**<br/>
 > 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9)替代。
 
+### postMessage<sup>(deprecated)</sup>
+
+postMessage(messageObject: Object, transfer: Transferable[]): void;
+
+Worker线程向宿主线程发送消息。
+
+> **说明：**<br/>
+> 此接口暂不支持使用，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-2)替代。
+
+**系统能力：** SystemCapability.Utils.Lang
+
+**参数：**
+
+| 参数名  | 类型                                      | 必填 | 说明                                                         |
+| ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| messageObject | Object                                    | 是   | 发送至宿主线程的数据。                                       |
+| transfer| Transferable[]                            | 是   | 暂不支持该参数类型。                                         |
+
 ### postMessage<sup>9+</sup>
 
 postMessage(messageObject: Object, transfer: ArrayBuffer[]): void;
 
 Worker线程向宿主线程发送消息。
+
+> **说明：**<br/>
+> DedicatedWorkerGlobalScope类自API version 9 开始废弃，本接口建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-2)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1737,7 +1757,7 @@ postMessage(messageObject: Object, options?: PostMessageOptions): void
 Worker线程向宿主线程发送消息。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).postMessage<sup>9+</sup>替代。
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-3)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1746,7 +1766,7 @@ Worker线程向宿主线程发送消息。
 | 参数名  | 类型                                      | 必填 | 说明                                                         |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | message | Object                                    | 是   | 发送至宿主线程的数据。                                       |
-| options | [PostMessageOptions](#postmessageoptions) | 否   | 可转移对象是ArrayBuffer的实例对象。transferList数组中不可传入null。 |
+| options | [PostMessageOptions](#postmessageoptions) | 否   | 可传输对象是ArrayBuffer的实例对象。若不填入该参数，默认设置为 undefined。|
 
 **示例：**
 
@@ -1777,7 +1797,7 @@ close(): void
 销毁Worker线程，终止Worker接收消息。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).close<sup>9+</sup>替代。
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.close<sup>9+</sup>](#close9)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1805,7 +1825,7 @@ onmessage?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) =&gt; void
 DedicatedWorkerGlobalScope的onmessage属性表示Worker线程收到来自其宿主线程通过postMessage接口发送的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).onmessage<sup>9+</sup>替代。
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.onmessage<sup>9+</sup>](#onmessage9-1)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1841,7 +1861,7 @@ onmessageerror?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) =&gt; void
 DedicatedWorkerGlobalScope的onmessageerror属性表示当Worker对象接收到一条无法被反序列化的消息时被调用的事件处理程序，处理程序在Worker线程中执行。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).onmessageerror<sup>9+</sup>替代。
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[ThreadWorkerGlobalScope<sup>9+</sup>.onmessageerror<sup>9+</sup>](#onmessageerror9-1)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -1877,7 +1897,7 @@ parentPort.onmessageerror = function(e) {
 
 | 名称     | 类型     | 可读 | 可写 | 说明                              |
 | -------- | -------- | ---- | ---- | --------------------------------- |
-| transfer | Object[] | 是   | 是   | ArrayBuffer数组，用于传递所有权。 |
+| transfer | Object[] | 是   | 是   | ArrayBuffer数组，用于传递所有权。该数组中不可传入null。 |
 
 
 ## Event
@@ -1975,7 +1995,7 @@ onerror?: (ev: ErrorEvent) =&gt; void
 WorkerGlobalScope的onerror属性表示Worker在执行过程中发生异常被调用的事件处理程序，处理程序在Worker线程中执行。
 
 > **说明：**<br/>
-> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[GlobalScope<sup>9+</sup>](#globalscope9).onerror替代。
+> 从API version 7 开始支持，从API version 9 开始废弃，建议使用[GlobalScope<sup>9+</sup>.onerror<sup>9+</sup>](#onerror9-1)替代。
 
 **系统能力：** SystemCapability.Utils.Lang
 

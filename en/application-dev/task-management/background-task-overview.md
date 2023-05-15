@@ -6,9 +6,9 @@ If an application or a service module running in the background has a service to
 
 ## Background Task Types
 
-For more targeted management of background applications, OpenHarmony classifies background tasks into the following types and provides an extended resource request mode:
+For more targeted management of background applications, OpenHarmony classifies background tasks into the following types and provides an extended resource request mode — efficiency resources:
 
-- **No background task**: An application or service module does not need further processing when switched to the background.
+- **No background task required**: An application or service module does not need further processing when switched to the background.
 
 - **Transient task**: If an application or service module has an urgent, short task that must continue in the background until it is completed, such as data compression, the application or service module can request a transient task for delayed suspension.
 
@@ -16,7 +16,7 @@ For more targeted management of background applications, OpenHarmony classifies 
 
 - **Work Scheduler task**: The Work Scheduler provides a mechanism for applications to execute non-real-time tasks when the system is idle. If the preset conditions are met, the tasks will be placed in the execution queue and scheduled when the system is idle.
 
-- **Efficiency resources**: If an application needs to ensure that it will not be suspended within a period of time or can normally use certain system resources when it is suspended, it can request efficiency resources, including software and hardware resources. Different types of efficiency resources come with different privileges. For example, the CPU resources enable an application or process to keep running without being suspended, and the WORK_SCHEDULER resources allow for more task execution time before the application or process is suspended.
+**Efficiency resources**: If an application needs to ensure that it will not be suspended within a period of time or can normally use certain system resources when it is suspended, it can request efficiency resources, including software and hardware resources. Different types of efficiency resources come with different privileges. For example, the CPU resources enable an application or process to keep running without being suspended, and the WORK_SCHEDULER resources allow for more task execution time before the application or process is suspended.
 
 ## Selecting a Background Task
 
@@ -68,7 +68,7 @@ OpenHarmony provides 9 background modes for services that require continuous tas
 - If the task is complete, the application should exit the background mode. If the system detects that an application is not using the resources in the corresponding background mode when the application is running in the background, the application is suspended.
 - Ensure that the requested continuous task background mode matches the application type. If the background mode does not match the application type, the system will suspend the task once it detects the issue.
 - If a requested continuous task is not actually executed, the system will suspend the task once it detects the issue.
-- Each ability can request only one continuous task at a time.
+- An ability can request only one continuous task at a time. If an application has multiple abilities, you can request a continuous task for each ability.
 
 ## Work Scheduler Tasks
 The Work Scheduler provides a mechanism for an application to execute a non-real-time task, for example, data learning, when the system is idle. The system places the Work Scheduler tasks requested by applications in a queue and determines the optimal scheduling time of each task based on the storage space, power consumption, temperature, and more. Persistence is supported. This means that a requested Work Scheduler task can be triggered when the application exits or the device restarts.

@@ -73,7 +73,7 @@ The following figure shows the application file directories. The path of a file 
    | distributedfiles | distributedFilesDir | Distributed file directory| Directory in **el2** for saving the application files that can be directly accessed across devices.<br>This directory is cleared when the application is uninstalled.| 
    | files | filesDir | Application file directory| Directory for saving the application's persistent files on the device.<br>This directory is cleared when the application is uninstalled.| 
    | cache | cacheDir | Application cache file directory| Directory for caching the downloaded files of the application or saving the cache files regenerated on the device.<br>This directory is automatically cleared when the size of the **cache** directory reaches the quota or the system storage space reaches a certain threshold. The user can also clear this directory by using a system space management application. <br>The application needs to check whether the file still exists and determine whether to cache the file again.| 
-   | preferences | preferencesDir | Preferences file directory| Directory for saving common application configuration and user preference data managed by using database APIs.<br>This directory is cleared when the application is uninstalled. For details, see [Data Persistence by User Preferences](../database/data-persistence-by-preferences.md).| 
+   | preferences | preferencesDir | Preferences file directory| Directory for saving common application configuration and user preference data managed by using database APIs.<br>This directory is cleared when the application is uninstalled. For details, see [Persisting Preferences Data](../database/data-persistence-by-preferences.md).| 
    | temp | tempDir | Temporary file directory| Directory for saving the files generated and required during the application's runtime on the device. <br>This directory is cleared when the application exits.| 
 
    The application file paths are used in the following scenarios:
@@ -92,5 +92,3 @@ The following figure shows the application file directories. The path of a file 
       Used to store application preferences data, including preference files and configuration files. This directory applied to storing only a small amount of data.
    - Temporary file directory<br>
       Used to store temporarily generated data of an application, including cached database data and images, temporary log files, downloaded application installation package files. The data stored in this directory is deleted after being used.
-
-<!--no_check-->

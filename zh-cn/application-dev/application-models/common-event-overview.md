@@ -24,5 +24,5 @@ OpenHarmony通过CES（Common Event Service，公共事件服务）为应用程�
 
 每个应用都可以按需订阅公共事件，订阅成功，当公共事件发布时，系统会将其发送给对应的应用。这些公共事件可能来自系统、其他应用和应用自身。
 
-  **图1** 公共事件示意图   
+**图1** 公共事件示意图  
 ![common-event](figures/common-event.png)

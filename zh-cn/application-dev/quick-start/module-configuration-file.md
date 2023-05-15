@@ -61,7 +61,8 @@
     ]
   },
   "targetModuleName": "feature",
-  "targetPriority": 50
+  "targetPriority": 50,
+  "isolationMode": "nonisolationFirst"
 }
 ```
 
@@ -93,6 +94,9 @@ module.json5配置文件包含以下标签。
 | [dependencies](#dependencies标签)| 标识当前模块运行时依赖的共享库列表。| 对象数组 | 该标签可缺省，缺省值为空。  |
 | targetModuleName | 标识当前包所指定的目标module, 标签值采用字符串表示（最大长度31个字节），该名称在指定的应用中要唯一。|字符串|该标签可缺省，缺省时当前包为非overlay特性的Module。|
 | targetPriority | 标识当前Module的优先级, 当targetModuleName字段配置之后，当前Module为overlay特征的Module, 该标签的额取值范围为1~100|数值|该标签可缺省, 缺省值为1。|
+| [proxyDatas](#proxydatas标签) | 标识当前Module提供的数据代理列表。| 对象数组 | 该标签可缺省，缺省值为空。|
+| isolationMode | 标识当前Module的多进程配置项。类型有4种，分别：<br/>-&nbsp;nonisolationFirst：优先在非独立进程中运行。<br/>-&nbsp;isolationFirst：优先在独立进程中运行。<br/>-&nbsp;isolationOnly：只在独立进程中运行。<br/>-&nbsp;nonisolationOnly：只在非独立进程中运行。 |字符串|该标签可缺省, 缺省值为nonisolationFirst。|
+| generateBuildHash |标识当前HAP/HSP是否由打包工具生成哈希值。如果存在，则在系统OTA升级但应用的versionCode保持不变时，可根据哈希值判断应用是否需要升级。<br/>该字段仅在[app.json5文件](./app-configuration-file.md)中的generateBuildHash字段为false时使能。<br/><strong>注：</strong>该字段仅对预置应用生效。|布尔值|该标签可缺省, 缺省值为false。|
 
 ## deviceTypes标签
 
@@ -293,7 +297,7 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置入口
 | [launchType](../application-models/uiability-launch-type.md) | 标识当前UIAbility组件的启动模式，可选标签值：<br/>-&nbsp;multiton：标准实例模式，每次启动创建一个新的实例。<br/>-&nbsp;singleton：单实例模式，仅第一次启动创建新实例。<br/>-&nbsp;specified：指定实例模式，运行时由开发者决定是否创建新实例。 | 字符串 | 可缺省，该标签缺省为“singleton”。 |
 | description | 标识当前UIAbility组件的描述信息，标签值是字符串类型（最长255字节）或对描述内容的资源索引，要求采用资源索引方式，以支持多语言。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | icon | 标识当前UIAbility组件的图标，标签值为图标资源文件的索引。 | 字符串 | 该标签可缺省，缺省值为空。<br/>如果UIAbility被配置为MainElement，该标签必须配置。 |
-| label | 标识当前UIAbility组件对用户显示的名称，标签值配置为该名称的资源索引以支持多语言。<br/>如果UIAbility被配置当前Module的mainElement时，该标签必须配置，且应用内唯一。 | 字符串 | 该标签不可缺省。 |
+| label | 标识当前UIAbility组件对用户显示的名称，标签值配置为该名称的资源索引以支持多语言。 | 字符串 | 该标签可缺省，缺省值为空。<br/>如果UIAbility被配置为MainElement，该标签必须配置。 |
 | permissions | 标识当前UIAbility组件自定义的权限信息。当其他应用访问该UIAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为系统预定义的权限。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | [metadata](#metadata标签) | 标识当前UIAbility组件的元信息。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | exported | 标识当前UIAbility组件是否可以被其他应用调用。<br/>-&nbsp;true：表示可以被其他应用调用。<br/>-&nbsp;false：表示不可以被其他应用调用。 | 布尔值 | 该标签可缺省，缺省值为false。 |
@@ -588,7 +592,7 @@ metadata中指定shortcut信息，其中：
 
 ## distributionFilter标签
 
-该标签下的子标签均为可选字段，在应用市场云端分发时做精准匹配使用，distributionFilter标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。该标签可配置的分发策略维度包括API Version、屏幕形状、屏幕尺寸、屏幕分辨率，设备的国家与地区码。在进行分发时，通过deviceType与这五个属性的匹配关系，唯一确定一个用于分发到设备的HAP。该标签需要配置在/resource/profile资源目录下。
+该标签下的子标签均为可选字段，在应用市场云端分发时做精准匹配使用，distributionFilter标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。该标签可配置的分发策略维度包括屏幕形状、屏幕尺寸、屏幕分辨率，设备的国家与地区码。在进行分发时，通过deviceType与这五个属性的匹配关系，唯一确定一个用于分发到设备的HAP。该标签需要配置在/resource/profile资源目录下。
 
   **表12** **distributionFilter标签标签配置说明**
 
@@ -785,6 +789,38 @@ dependencies标签示例：
         "bundleName":"com.share.library",
         "moduleName": "library",
         "versionCode": 10001
+      }
+    ]
+  }
+}
+```
+
+## proxyDatas标签
+
+此标签标识模块提供的数据代理列表，仅限entry和feature配置。
+
+**表21** **proxyDatas标签说明**
+| 属性名称    | 含义                           | 数据类型 | 是否可缺省 |
+| ----------- | ------------------------------ | -------- | ---------- |
+| uri | 标识用于访问该数据代理的uri，不同的数据代理配置的uri不可重复，且需要满足`datashareproxy://当前应用包名/xxx`的格式。  | 字符串   | 不可缺省。 |
+| requiredReadPermission  | 标识从该数据代理中读取数据所需要的权限，非系统应用配置的权限的等级需为system_basic或system_core，系统应用可以不配置权限，且权限的等级没有限制。权限等级可以参考[权限列表](../security/permission-list.md)。 | 字符串   | 可缺省，缺省值为空。 |
+| requiredWritePermission | 标识向该数据代理中读取数据所需要的权限。非系统应用配置的权限的等级需为system_basic或system_core，系统应用可以不配置权限，且权限的等级没有限制。权限等级可以参考[权限列表](../security/permission-list.md)。 | 字符串   | 可缺省，缺省值为空。 |
+| [metadata](#metadata标签) | 标识该数据代理的元信息，只支持配置name和resource字段。 | 对象 | 可缺省，缺省值为空。 |
+
+proxyDatas标签示例：
+
+```json
+{
+  "module": {
+    "proxyDatas": [
+      {
+        "uri":"datashareproxy://com.ohos.datashare/event/Meeting",
+        "requiredReadPermission": "ohos.permission.GET_BUNDLE_INFO",
+        "requiredWritePermission": "ohos.permission.GET_BUNDLE_INFO",
+        "metadata": {
+          "name": "datashare_metadata",
+          "resource": "$profile:datashare"
+        }
       }
     ]
   }

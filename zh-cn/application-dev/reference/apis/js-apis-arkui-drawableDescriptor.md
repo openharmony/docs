@@ -1,4 +1,4 @@
-# @ohos.arkui.drawableDescriptor  (DrawableDescriptor)
+#@ohos.arkui.drawableDescriptor(DrawableDescriptor)
 
 本模块提供获取pixelMap的能力，包括前景、背景、蒙版和分层图标。
 
@@ -53,8 +53,8 @@ getPixelMap(): image.PixelMap;
 
 **返回值：**
 
-| 类型                              | 说明              |
-| --------------------------------- | ---------------- |
+| 类型                                       | 说明       |
+| ---------------------------------------- | -------- |
 | [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | PixelMap |
 
 **示例：**
@@ -71,8 +71,8 @@ getPixelMap(): image.PixelMap;
 
 **返回值：**
 
-| 类型                              | 说明              |
-| --------------------------------- | ---------------- |
+| 类型                                       | 说明       |
+| ---------------------------------------- | -------- |
 | [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | PixelMap |
 
 **示例：**
@@ -89,8 +89,8 @@ getForeground(): DrawableDescriptor;
 
 **返回值：**
 
-| 类型                              | 说明              |
-| --------------------------------- | ---------------- |
+| 类型                                       | 说明                   |
+| ---------------------------------------- | -------------------- |
 | [DrawableDescriptor](#drawabledescriptor) | DrawableDescriptor对象 |
 
 **示例：**
@@ -107,8 +107,8 @@ getBackground(): DrawableDescriptor;
 
 **返回值：**
 
-| 类型                              | 说明              |
-| --------------------------------- | ---------------- |
+| 类型                                       | 说明                   |
+| ---------------------------------------- | -------------------- |
 | [DrawableDescriptor](#drawabledescriptor) | DrawableDescriptor对象 |
 
 **示例：**
@@ -125,8 +125,8 @@ getMask(): DrawableDescriptor;
 
 **返回值：**
 
-| 类型                              | 说明              |
-| --------------------------------- | ---------------- |
+| 类型                                       | 说明                   |
+| ---------------------------------------- | -------------------- |
 | [DrawableDescriptor](#drawabledescriptor) | DrawableDescriptor对象 |
 
 **示例：**

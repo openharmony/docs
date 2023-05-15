@@ -22,7 +22,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| min | number \| string | No| Minimum size of the **\<Blank>** component in the container along the main axis.<br>Default value: **0**|
+| min | number \| string | No| Minimum size of the **\<Blank>** component in the container along the main axis.<br>Default value: **0**<br>**NOTE**<br>This parameter cannot be set in percentage. If the value is negative, the default value is used. If the minimum size is larger than the available space of the container, it is used as the component size, and the component extends beyond the container.|
 
 ## Attributes
 
@@ -30,10 +30,14 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | Color to fill the empty spaces.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| color | [ResourceColor](ts-types.md#resourcecolor) | Color to fill the empty spaces.<br>Default value: **Color.Transparent**<br>Since API version 9, this API is supported in ArkTS widgets. |
 
+## Events
+
+The [universal events](ts-universal-events-click.md) are supported.
 
 ## Example
+
 ### Example 1
 The sample below shows how the **\<Blank>** component fills the empty spaces in the container in landscape and portrait modes.
 ```ts
