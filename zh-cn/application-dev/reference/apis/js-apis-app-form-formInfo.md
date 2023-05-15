@@ -141,6 +141,36 @@ import formInfo from '@ohos.app.form.formInfo';
 | FORM_VISIBLE | 1   | 表示卡片为可见。 |
 | FORM_INVISIBLE   | 2   | 表示卡片为不可见。 |
 
+## RunningFormInfo<sup>10+</sup>
+
+卡片使用方信息
+
+**系统能力**：SystemCapability.Ability.Form
+
+| 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
+| ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
+| formId  | string               | 是    | 否     | 卡片标识。                   |
+| bundleName  | string               | 是    | 否     | 提供方卡片所属包的Bundle名称。                   |
+| hostBundleName  | string               | 是    | 否     | 使用方卡片所属包的Bundle名称。                   |
+| visibilityType  | [VisibilityType](#visibilitytype)               | 是    | 否     | 卡片当前可见类型枚举。                   |
+| moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。                      |
+| abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
+| formName        | string               | 是    | 否     | 卡片名称。                                 |
+| dimension | number               | 是    | 否     | 卡片规格。   |
+
+## formProviderFilter<sup>10+</sup>
+
+卡片提供方信息
+
+**系统能力**：SystemCapability.Ability.Form
+
+| 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
+| ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
+| bundleName  | string               | 是    | 否     | 提供方卡片所属包的Bundle名称。                   |
+| formName        | string               | 是    | 否     | 卡片名称。                                 |
+| moduleName  | string               | 是    | 否     | 卡片所属模块的模块名称。                      |
+| abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
+
 ## LaunchReason<sup>10+</sup>
 
 卡片创建原因枚举。

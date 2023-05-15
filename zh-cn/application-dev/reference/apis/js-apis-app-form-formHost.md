@@ -1957,3 +1957,189 @@ try {
 }
 ```
 
+## getRunningFormInfosByFilter<sup>10+</sup>
+
+function getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
+
+根据提供方信息查询卡片已有的使用方列表信息。使用Promise异步回调。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名      | 类型            | 必填 | 说明                             |
+| ----------- | --------------- | ---- | -------------------------------- |
+| formProviderFilter     | [formInfo.FormProviderFilter](js-apis-app-form-formInfo.md#formProviderFilter) | 是   | 卡片提供方应用信息。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#RunningFormInfo)&gt;&gt; | Promise对象，返回查询到的使用方列表信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16501000  | An internal functional error occurred. |
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+
+let formInstanceFilter = {
+  bundleName: "com.example.formprovide",
+  abilityName: "EntryFormAbility",
+  formName: "widget",
+  moduleName: "entry"
+}
+try {
+  formHost.getRunningFormInfosByFilter(formInstanceFilter).then(data1 => {
+    console.info('formHost getRunningFormInfosByFilter return err :');
+  }).catch((error) => {
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
+  });
+} catch(error) {
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## getRunningFormInfosByFilter<sup>10+</sup>
+
+function getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
+
+根据提供方信息查询卡片已有的使用方列表信息。使用callback异步回调。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名      | 类型            | 必填 | 说明                             |
+| ----------- | --------------- | ---- | -------------------------------- |
+| formProviderFilter     | formInfo.FormProviderFilter [formInfo.FormProviderFilter](js-apis-app-form-formInfo.md#formProviderFilter) | 是   | 卡片提供方应用信息。 |
+| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。返回查询到的使用方列表信息，error为undefined，data为查询到的使用方列表信息；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16501000  | An internal functional error occurred. |
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+
+let formInstanceFilter = {
+  bundleName: "com.example.formprovide",
+  abilityName: "EntryFormAbility",
+  formName: "widget",
+  moduleName: "entry"
+}
+try {
+  formHost.getRunningFormInfosByFilter(formInstanceFilter,(error, data) => {
+    if (error) {
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
+    } else {
+      console.log('formHost getRunningFormInfosByFilter, data: ${JSON.stringify(data)}');
+    }
+  });
+} catch(error) {
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## getRunningFormInfoById<sup>10+</sup>
+
+function getRunningFormInfoById(formId: string): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
+
+根据formId查询卡片已有的使用方列表信息。使用Promise异步回调。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名      | 类型            | 必填 | 说明                             |
+| ----------- | --------------- | ---- | -------------------------------- |
+| formId     | string | 是   | 卡片标识。 |
+
+**返回值：**
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;Array&lt;formInfo.RunningFormInfo[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象，返回查询到的使用方列表信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16501000  | An internal functional error occurred. |
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+let formId = '12400633174999288';
+try {
+  formHost.getRunningFormInfoById(formId).then(data1 => {
+    console.info('formHost getRunningFormInfoById return err :');
+  }).catch((error) => {
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
+  });
+} catch(error) {
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## getRunningFormInfoById<sup>10+</sup>
+
+function getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
+
+根据提供方信息查询卡片已有的使用方列表信息。使用callback异步回调。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名      | 类型            | 必填 | 说明                             |
+| ----------- | --------------- | ---- | -------------------------------- |
+| formId     | string | 是   | 卡片标识。 |
+| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。返回查询到的使用方列表信息，error为undefined，data为查询到的使用方列表信息；否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16501000  | An internal functional error occurred. |
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+
+let formId = '12400633174999288';
+try {
+  formHost.getRunningFormInfoById(formId,(error, data) => {
+    if (error) {
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
+    } else {
+      console.log('formHost getRunningFormInfoById, data: ${JSON.stringify(data)}');
+    }
+  });
+} catch(error) {
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+}
+```
