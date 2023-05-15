@@ -1,6 +1,7 @@
 # @ohos.file.picker (选择器)
 
 > **说明：**
+>
 > 该模块接口从API Version 9开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 选择器(Picker)是一个封装PhotoViewPicker、DocumentViewPicker、AudioViewPicker等系统应用选择与保存能力的模块。应用可以自行选择使用哪种picker实现文件选择和文件保存的功能。

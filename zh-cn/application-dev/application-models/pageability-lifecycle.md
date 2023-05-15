@@ -41,7 +41,7 @@ PageAbility生命周期回调与生命周期状态的关系如下图所示。
 ![fa-pageAbility-lifecycle](figures/fa-pageAbility-lifecycle.png)
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 1、PageAbility的生命周期回调均为同步接口。
-> 
-> 2、目前app.js环境中仅支持onCreate和onDestroy回调，app.ets环境支持全量生命周期回调。
+> **说明：**
+>
+> 1. PageAbility的生命周期回调均为同步接口。
+> 2. 目前app.js环境中仅支持onCreate和onDestroy回调，app.ets环境支持全量生命周期回调。

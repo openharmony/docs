@@ -61,7 +61,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 };
 ```
 
-​	4.在工程Module对应的[module.json5](../quick-start/module-configuration-file.md)配置文件中注册ServiceExtensionAbility，type标签需要设置为“enterpriseAdmin”，srcEnty标签表示当前ExtensionAbility组件所对应的代码路径。
+​	4.在工程Module对应的[module.json5](../quick-start/module-configuration-file.md)配置文件中注册ServiceExtensionAbility，type标签需要设置为“enterpriseAdmin”，srcEntry标签表示当前ExtensionAbility组件所对应的代码路径。
 
 ```ts
 "extensionAbilities": [
@@ -69,7 +69,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
         "name": "ohos.samples.enterprise_admin_ext_ability",
         "type": "enterpriseAdmin",
         "exported": true,
-        "srcEnty": "./ets/enterpriseextability/EnterpriseAdminAbility.ts"
+        "srcEntry": "./ets/enterpriseextability/EnterpriseAdminAbility.ts"
       }
     ]
 ```

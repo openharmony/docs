@@ -170,7 +170,7 @@
 
 以下示例为\@State装饰的简单类型，count被\@State装饰成为状态变量，count的改变引起Button组件的刷新：
 
-- 当状态变量count改变时，查询到只有Buttont组件关联了它；
+- 当状态变量count改变时，查询到只有Button组件关联了它；
 
 - 执行Button组件的更新方法，实现按需刷新。
 

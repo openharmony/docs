@@ -49,7 +49,7 @@
 
 - 通信适配层：由OpenHarmony SDK提供，负责与卡片管理服务通信，用于将卡片的更新数据主动推送到卡片管理服务。
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > 实际开发时只需要作为卡片提供方进行卡片内容的开发，卡片使用方和卡片管理服务由系统自动处理。
 
 
@@ -121,52 +121,52 @@ FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片�
    
    ```ts
    export default {
-       onCreate(want) {
-           console.info('FormAbility onCreate');
-           // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
-           let obj = {
-               "title": "titleOnCreate",
-               "detail": "detailOnCreate"
-           };
-           let formData = formBindingData.createFormBindingData(obj);
-           return formData;
-       },
-       onCastToNormal(formId) {
-           // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
-           console.info('FormAbility onCastToNormal');
-       },
-       onUpdate(formId) {
-           // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
-           console.info('FormAbility onUpdate');
-           let obj = {
-               "title": "titleOnUpdate",
-               "detail": "detailOnUpdate"
-           };
-           let formData = formBindingData.createFormBindingData(obj);
-           formProvider.updateForm(formId, formData).catch((error) => {
-               console.info('FormAbility updateForm, error:' + JSON.stringify(error));
-           });
-       },
-       onVisibilityChange(newStatus) {
-           // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
-           console.info('FormAbility onVisibilityChange');
-       },
-       onEvent(formId, message) {
-           // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
-           console.info('FormAbility onEvent');
-       },
-       onDestroy(formId) {
-           // 删除卡片实例数据
-           console.info('FormAbility onDestroy');
-       },
-       onAcquireFormState(want) {
-           console.info('FormAbility onAcquireFormState');
-           return formInfo.FormState.READY;
-       },
+     onCreate(want) {
+       console.info('FormAbility onCreate');
+       // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
+       let obj = {
+         "title": "titleOnCreate",
+         "detail": "detailOnCreate"
+       };
+       let formData = formBindingData.createFormBindingData(obj);
+       return formData;
+     },
+     onCastToNormal(formId) {
+       // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
+       console.info('FormAbility onCastToNormal');
+     },
+     onUpdate(formId) {
+       // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
+       console.info('FormAbility onUpdate');
+       let obj = {
+         "title": "titleOnUpdate",
+         "detail": "detailOnUpdate"
+       };
+       let formData = formBindingData.createFormBindingData(obj);
+       formProvider.updateForm(formId, formData).catch((error) => {
+         console.info('FormAbility updateForm, error:' + JSON.stringify(error));
+       });
+     },
+     onVisibilityChange(newStatus) {
+       // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
+       console.info('FormAbility onVisibilityChange');
+     },
+     onEvent(formId, message) {
+       // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
+       console.info('FormAbility onEvent');
+     },
+     onDestroy(formId) {
+       // 删除卡片实例数据
+       console.info('FormAbility onDestroy');
+     },
+     onAcquireFormState(want) {
+       console.info('FormAbility onAcquireFormState');
+       return formInfo.FormState.READY;
+     },
    }
    ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > FormAbility不能常驻后台，即在卡片生命周期回调函数中无法处理长时间的任务。
 
 ### 配置卡片配置文件
@@ -186,15 +186,15 @@ FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片�
 
   
   ```json
-     "js": [{
-         "name": "widget",
-         "pages": ["pages/index/index"],
-         "window": {
-             "designWidth": 720,
-             "autoDesignWidth": true
-         },
-         "type": "form"
-     }]
+  "js": [{
+     "name": "widget",
+     "pages": ["pages/index/index"],
+     "window": {
+         "designWidth": 720,
+         "autoDesignWidth": true
+     },
+     "type": "form"
+  }]
   ```
 
 - abilities模块，用于对应卡片的FormAbility，内部字段结构说明：
@@ -230,7 +230,7 @@ FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片�
          "type": "service",
          "srcLanguage": "ets",
          "formsEnabled": true,
-         "formConfigAbility": "ability://com.example.entry.MainAbility",
+         "formConfigAbility": "ability://com.example.entry.EntryAbility",
          "forms": [{
              "colorMode": "auto",
              "defaultDimension": "2*2",
@@ -273,7 +273,7 @@ async function storeFormInfo(formId: string, formName: string, tempFlag: boolean
     }
 }
 
-// ...
+...
     onCreate(want) {
         console.info('FormAbility onCreate');
 
@@ -291,7 +291,7 @@ async function storeFormInfo(formId: string, formName: string, tempFlag: boolean
         let formData = formBindingData.createFormBindingData(obj);
         return formData;
     }
-// ...
+...
 ```
 
 且需要适配onDestroy卡片删除通知接口，在其中实现卡片实例数据的删除。
@@ -311,14 +311,14 @@ async function deleteFormInfo(formId: string) {
     }
 }
 
-// ...
+...
     onDestroy(formId) {
         console.info('FormAbility onDestroy');
         // 删除之前持久化的卡片实例数据
         // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
         deleteFormInfo(formId);
     }
-// ...
+...
 ```
 
 具体的持久化方法可以参考[数据管理开发指导](../database/app-data-persistence-overview.md)。
@@ -360,8 +360,8 @@ onUpdate(formId) {
 
 ![widget-development-fa](figures/widget-development-fa.png)
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> FA模型当前仅支持JS扩展的类Web开发范式来实现卡片的UI界面。
+> **说明：**
+> FA模型当前仅支持JS扩展的类Web开发范式来实现卡片的UI。
 
 - HML：使用类Web范式的组件描述卡片的页面信息。
   
@@ -431,7 +431,7 @@ onUpdate(formId) {
     "actions": {
       "routerEvent": {
         "action": "router",
-        "abilityName": "com.example.entry.MainAbility",
+        "abilityName": "com.example.entry.EntryAbility",
         "params": {
           "message": "add detail"
         }
@@ -449,8 +449,8 @@ onUpdate(formId) {
 
 2. 如何设置router事件：
    - action属性值为"router"；
-   - abilityName为跳转目标的Ability名（支持跳转FA模型的PageAbility组件和Stage模型的UIAbility组件），如目前DevEco创建的FA模型的MainAbility默认名为com.example.entry.MainAbility；
-   - params为传递给跳转目标Ability的自定义参数，可以按需填写。其值可以在目标Ability启动时的want中的parameters里获取。如FA模型MainAbility的onCreate生命周期里可以通过featureAbility.getWant()获取到want，然后在其parameters字段下获取到配置的参数；
+   - abilityName为跳转目标的Ability名（支持跳转FA模型的PageAbility组件和Stage模型的UIAbility组件），如目前DevEco创建的FA模型的UIAbility默认名为com.example.entry.EntryAbility；
+   - params为传递给跳转目标Ability的自定义参数，可以按需填写。其值可以在目标Ability启动时的want中的parameters里获取。如FA模型EntryAbility的onCreate生命周期里可以通过featureAbility.getWant()获取到want，然后在其parameters字段下获取到配置的参数；
 
 3. 如何设置message事件：
    - action属性值为"message"；
@@ -526,7 +526,7 @@ onUpdate(formId) {
     "actions": {
       "routerEvent": {
         "action": "router",
-        "abilityName": "com.example.entry.MainAbility",
+        "abilityName": "com.example.entry.EntryAbility",
         "params": {
           "message": "add detail"
         }
@@ -540,13 +540,3 @@ onUpdate(formId) {
     }
   }
   ```
-
-
-## 相关实例
-
-针对FA模型卡片提供方的开发，有以下相关实例可供参考：
-
-
-- [FormAbility：FA模型卡片（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ability/FormAbility)
-
-- [FormLauncher：卡片使用方（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ability/FormLauncher)

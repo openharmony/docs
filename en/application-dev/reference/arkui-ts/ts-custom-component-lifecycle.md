@@ -43,7 +43,7 @@ Invoked when a page is hidden. This callback is used in the routing process or s
 
 onBackPress?(): void
 
-Invoked when a user clicks the back button. It works only for the custom components decorated by **@Entry**. The value **true** is returned if the page processes the return logic instead of performing page routing. The value false is returned if the default return logic is used. If the return value is not set, the value **false** is used.
+Invoked when a user clicks the back button. It works only for the custom components decorated by **@Entry**. The value **true** is returned if the page processes the return logic instead of performing page routing. The value **false** is returned if the default return logic is used. If the return value is not set, the value **false** is used.
 
 
 ```ts
@@ -126,7 +126,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | id         | string                                   | ID of the child component.             |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | Constraint size of the child component.           |
 | borderInfo | [LayoutBorderInfo](#layoutborderinfo9)   | Provides the border information of the child component.       |
-| position   | [Position](ts-types.md#position)         | Position coordinates of the child component.           |
+| position   | [Position](ts-types.md#position8)         | Position coordinates of the child component.           |
 | measure    | (childConstraint:) =&gt; void  | Method called to apply the size constraint to the child component.|
 | layout     | (LayoutInfo:  [LayoutInfo](#layoutinfo9)) =&gt; void| Method called to apply the layout information to the child component.|
 
@@ -139,7 +139,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Parameter         | Type                                | Description                     |
 | ----------- | ------------------------------------ | ----------------------- |
-| borderWidth | [EdgeWidths](ts-types.md#edgewidths) | Edge widths in different directions of the component.|
+| borderWidth | [EdgeWidths](ts-types.md#edgewidths9) | Edge widths in different directions of the component.|
 | margin      | [Margin](ts-types.md#margin)         | Margins in different directions of the component.  |
 | padding     | [Padding](ts-types.md#padding)       | Paddings in different directions of the component.  |
 
@@ -152,7 +152,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Parameter        | Type                                    | Description      |
 | ---------- | ---------------------------------------- | -------- |
-| position   | [Position](ts-types.md#position)         | Position coordinates of the child component.|
+| position   | [Position](ts-types.md#position8)         | Position coordinates of the child component.|
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | Constraint size of the child component.|
 
 
