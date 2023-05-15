@@ -251,17 +251,17 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
   }
   ```
 
-  ## quickFixManager.revokeQuickFix
+## quickFixManager.revokeQuickFix<sup>10+<sup>
 
 revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 
-撤销快速修复的补丁接口。
+撤销快速修复的接口。
 
-**需要权限**: ohos.permission.INSTALL_BUNDLE 与 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限**：ohos.permission.INSTALL_BUNDLE 与 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -277,7 +277,7 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 | 18500001 | The bundle is not exist or no patch has applied. |
 | 18500009 | The application has a apply quick fix task that is being processed. |
 
-在撤销补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](commonEventManager-definitions.md#common_event_quick_fix_revoke_result9)的参数返回给应用开发者。这部分错误码及错误信息如下：
+在撤销补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)的参数返回给应用开发者。这部分错误码及错误信息如下：
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
@@ -286,8 +286,6 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 | 18500007 | Unload patch failed. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
-
-> 说明：调用revokeQuickFix接口时。
 
 **示例：**
 
@@ -298,17 +296,17 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
   });
 ```
 
-## quickFixManager.revokeQuickFix
+## quickFixManager.revokeQuickFix<sup>10+<sup>
 
 revokeQuickFix(bundleName: string): Promise\<void>;
 
-撤销快速修复的补丁接口。
+撤销快速修复的接口。
 
-**需要权限**: ohos.permission.INSTALL_BUNDLE 与 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+**需要权限**：ohos.permission.INSTALL_BUNDLE 与 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.QuickFix
 
-**系统API**: 此接口为系统接口，三方应用不支持调用。
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -329,7 +327,7 @@ revokeQuickFix(bundleName: string): Promise\<void>;
 | 18500001 | The bundle is not exist or no patch has applied. |
 | 18500009 | The application has a apply quick fix task that is being processed. |
 
-在撤销补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](commonEventManager-definitions.md#common_event_quick_fix_revoke_result9)的参数返回给应用开发者。这部分错误码及错误信息如下：
+在撤销补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)的参数返回给应用开发者。这部分错误码及错误信息如下：
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
