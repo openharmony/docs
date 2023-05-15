@@ -59,7 +59,7 @@ ListItem(value?: string)
 | onDelete | () => **void** | 否 | 组件进入长距删除区后删除ListItem时调用。<br/>进入长距删除区后，抬手时触发；或者滑动速度大于初始速度阈值时触发 |
 | onEntryDeleteArea | () => **void** | 否 | 在滑动条目进入删除区域时调用，只触发一次，当再次进入时仍触发。 |
 | onExitDeleteArea | () => **void** | 否 |当滑动条目退出删除区域时调用，只触发一次，当再次退出时仍触发。 |
-| builder |  CustomBuilder | 否 |当列表项向右或向右滑动（当列表方向为“垂直”时），向下或向下滑动（当列方向为“水平”时）时显示的操作项。 |
+| builder |  CustomBuilder | 否 |当列表项向左或向右滑动（当列表方向为“垂直”时），向上或向下滑动（当列方向为“水平”时）时显示的操作项。 |
 | useDefaultDeleteAnimation | boolean | 否 |设置是否使用默认的删除动画。 |
 ## 事件
 
