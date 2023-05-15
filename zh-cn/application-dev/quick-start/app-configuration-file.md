@@ -56,3 +56,4 @@ app.json5配置文件包含以下标签。
 | default | 标识对default设备做的特殊配置，可以配置的属性字段有上文提到的：minAPIVersion。<br/>如果使用该属性对default设备做了特殊配置，则应用在default设备中会采用此处配置的属性值，并忽略在app.json5公共区域配置的属性值。 | 对象 | 该标签可缺省，缺省时default设备使用app.json5公共区域配置的属性值。 |
 |targetBundleName|标识当前包所指定的目标应用, 标签值的取值规则和范围与bundleName标签一致。|字符串|该标签可缺省，缺省时当前包为非overlay特性的应用。|
 |targetPriority|标识当前应用的优先级, 当targetBundleName字段配置之后，当前应用为overlay特征的应用, 该标签的额取值范围为1~100|数值|该标签可缺省, 缺省值为1。|
+|generateBuildHash |标识当前应用的所有HAP/HSP是否由打包工具生成哈希值。如果存在，则在系统OTA升级但应用的versionCode保持不变时，可根据哈希值判断应用是否需要升级。<br/>该字段若为true，该应用下的所有hap和hsp都会由打包工具生成其哈希值。<br/><strong>注：</strong>该字段仅对预置应用生效。|布尔值|该标签可缺省, 缺省值为false。|

@@ -96,6 +96,7 @@ module.json5配置文件包含以下标签。
 | targetPriority | 标识当前Module的优先级, 当targetModuleName字段配置之后，当前Module为overlay特征的Module, 该标签的额取值范围为1~100|数值|该标签可缺省, 缺省值为1。|
 | [proxyDatas](#proxydatas标签) | 标识当前Module提供的数据代理列表。| 对象数组 | 该标签可缺省，缺省值为空。|
 | isolationMode | 标识当前Module的多进程配置项。类型有4种，分别：<br/>-&nbsp;nonisolationFirst：优先在非独立进程中运行。<br/>-&nbsp;isolationFirst：优先在独立进程中运行。<br/>-&nbsp;isolationOnly：只在独立进程中运行。<br/>-&nbsp;nonisolationOnly：只在非独立进程中运行。 |字符串|该标签可缺省, 缺省值为nonisolationFirst。|
+| generateBuildHash |标识当前HAP/HSP是否由打包工具生成哈希值。如果存在，则在系统OTA升级但应用的versionCode保持不变时，可根据哈希值判断应用是否需要升级。<br/>该字段仅在[app.json5文件](./app-configuration-file.md)中的generateBuildHash字段为false时使能。<br/><strong>注：</strong>该字段仅对预置应用生效。|布尔值|该标签可缺省, 缺省值为false。|
 
 ## deviceTypes标签
 
