@@ -487,6 +487,8 @@ getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
   ```js
   try {
+    // 设备网络标识，可以从可信设备列表中获取
+    let networkId = "xxxxxxx"
     dmInstance.getDeviceInfo(networkId, (err, data) => {
     if (err) {
       console.error("getDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
@@ -530,6 +532,8 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 **示例：**
 
   ```js
+  // 设备网络标识，可以从可信设备列表中获取
+  let networkId = "xxxxxxx"
   dmInstance.getDeviceInfo(networkId).then((data) => {
     console.log('get device info: ' + JSON.stringify(data));
   }).catch((err) => {
@@ -944,11 +948,11 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
     "userId" : "123"
   }
   try {
-    dmClass.requestCredentialRegisterInfo(credentialInfo, (data) => {
+    dmInstance.requestCredentialRegisterInfo(credentialInfo, (data) => {
       if (data) {
           console.info("requestCredentialRegisterInfo result:" + JSON.stringify(data));
       } else {
-          console.info.push("requestCredentialRegisterInfo result: data is null");
+          console.info("requestCredentialRegisterInfo result: data is null");
       }
     });
   } catch (err) {
@@ -995,11 +999,11 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
     ]
   }
   try {
-    dmClass.importCredential(credentialInfo, (data) => {
+    dmInstance.importCredential(credentialInfo, (data) => {
       if (data) {
           console.info("importCredential result:" + JSON.stringify(data));
       } else {
-          console.info.push("importCredential result: data is null");
+          console.info("importCredential result: data is null");
       }
     });
   } catch (err) {
@@ -1031,11 +1035,11 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
     "userId" : "123"
   }
   try {
-    dmClass.deleteCredential(queryInfo, (data) => {
+    dmInstance.deleteCredential(queryInfo, (data) => {
       if (data) {
           console.info("deleteCredential result:" + JSON.stringify(data));
       } else {
-          console.info.push("deleteCredential result: data is null");
+          console.info("deleteCredential result: data is null");
       }
     });
   } catch (err) {
