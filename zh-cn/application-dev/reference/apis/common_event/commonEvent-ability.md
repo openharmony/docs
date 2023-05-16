@@ -36,3 +36,12 @@
 - 订阅方需要的权限：无
 
 在设备上指定用户快速修复应用，将会触发事件通知服务发布该系统公共事件。
+
+## COMMON_EVENT_QUICK_FIX_REVOKE_RESULT<sup>10+<sup>
+
+指示撤销快速修复的动作。
+
+- 常量值："usual.event.QUICK_FIX_REVOKE_RESULT"
+- 订阅方需要的权限：无
+
+在设备上撤销快速修复时，将会触发事件通知服务发布该系统公共事件。
