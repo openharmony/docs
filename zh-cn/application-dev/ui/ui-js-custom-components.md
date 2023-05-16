@@ -99,10 +99,3 @@
 ![zh-cn_image_0000001070693737](figures/zh-cn_image_0000001070693737.png)
 
 
-## 相关实例
-
-针对自定义组件开发，有以下相关实例可供参考：
-
-- [`JSUICustomComponent`：自定义组件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/JSUICustomComponent)
-
-- [自定义组件（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/JSCanvasComponet)

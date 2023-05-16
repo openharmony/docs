@@ -78,7 +78,7 @@
 
 ## 页面开发
 
-天气应用中涉及较多的页面和弹窗，本小节以天气主页为例，简单介绍不同设备下的页面实现思路。天气应用已经在[OpenHarmony应用示例](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/MultiDeviceAppDev/Weather)中开源，感兴趣的读者可以自行下载及了解详细代码实现。
+天气应用中涉及较多的页面和弹窗，本小节以天气主页为例，简单介绍不同设备下的页面实现思路。天气应用已经在[OpenHarmony应用示例](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SuperFeature/MultiDeviceAppDev/Weather)中开源，感兴趣的读者可以自行下载及了解详细代码实现。
 
   观察天气主页在不同设备上的UX设计图，可以进行如下设计：
 - 将天气主页划分为9个基础区域，如：

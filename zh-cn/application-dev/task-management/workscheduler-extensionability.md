@@ -199,5 +199,5 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
 
 针对WorkSchedulerExtensionAbility开发，有以下相关实例可供参考：
 
-- [WorkScheduler的创建与使用（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ResourcesSchedule/WorkScheduler)
+- [WorkScheduler的创建与使用（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/TaskManagement/WorkScheduler)
 

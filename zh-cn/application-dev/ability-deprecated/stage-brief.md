@@ -116,7 +116,7 @@ Stage模型的应用包的工程目录结构，请参考[OpenHarmony工程介绍
 
 针对Stage模型下的Ability开发，有以下相关实例可供参考：
 
-- [`StageModel`：Stage模型（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ability/StageModel)
-- [`WindowExtAbility`：窗口扩展（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ability/WindowExtAbility)
-- [`MissionManager`：系统任务管理（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ability/MissionManager)
-- [`Launcher`：仿桌面应用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ability/Launcher)
+- [`StageModel`：Stage模型（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/ApplicationModels/StageModel)
+- [`WindowExtAbility`：窗口扩展（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SystemFeature/WindowManagement/WindowExtAbility)
+- [`MissionManager`：系统任务管理（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SystemFeature/ApplicationModels/MissionManager)
+- [`Launcher`：仿桌面应用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SystemFeature/ApplicationModels/Launcher)

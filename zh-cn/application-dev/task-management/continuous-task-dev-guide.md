@@ -421,9 +421,3 @@ export default class BgTaskAbility extends Ability {
     }
 };
 ```
-
-## 相关实例
-
-基于后台任务管理，有以下相关实例可供参考：
-
-- [`BackgroundTaskManager`：后台任务管理（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ResourcesSchedule/BackgroundTaskManager)

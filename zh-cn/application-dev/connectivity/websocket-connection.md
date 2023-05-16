@@ -82,9 +82,3 @@ ws.connect(defaultIpAddress, (err, value) => {
   }
 });
 ```
-
-## 相关实例
-
-针对WebSocket连接的开发，有以下相关实例可供参考：
-
-- [`WebSocket`：WebSocket（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/Network/WebSocket)

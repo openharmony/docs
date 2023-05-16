@@ -196,9 +196,8 @@ ArkTS API新增支持错误码的上报，帮助开发者快速捕捉异常，�
 
 | 子系统<div style="width:100px"></div> | 名称 | 简介 |
 | -------- | -------- | -------- |
-| 事件通知 | [Emitter: 处理进程内事件](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/Notification/Emitter) | 本示例主要展示进程内事件通知，用户通过选择对应商品并提交订单后在订单列表显示所选商品。 |
-| 资源调度 | [AlarmClock: 后台代理提醒](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/Notification/AlarmClock) | 本示例通过使用后台代理提醒的能力，创建闹钟的定时提醒，保证应用被冻结或退出时，计时和弹出提醒的功能可以被后台系统服务代理。 |
-| 窗口 | [Window: 窗口](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/Graphics/Window) | 本本示例展示了创建新窗口，将应用悬浮在其他界面，及应用分屏等功能。 |
+| 事件通知 | [CustomEmitter: 处理进程内事件](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/Notification/CustomEmitter) | 本示例主要展示进程内事件通知，用户通过选择对应商品并提交订单后在订单列表显示所选商品。 |
+| 窗口 | [WindowManage: 窗口](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/WindowManagement/WindowManage) | 本本示例展示了创建新窗口，将应用悬浮在其他界面，及应用分屏等功能。 |
 
 请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。
 

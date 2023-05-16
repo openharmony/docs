@@ -703,9 +703,3 @@ WebGL主要帮助开发者在前端开发中完成图形图像的相关处理，
 **图2** 点击按钮绘制彩色三角形的效果图
 
 ![zh-cn_image_0000001192429306](figures/zh-cn_image_0000001192429306.gif)
-
-## 相关实例
-
-针对WebGL开发，有以下相关实例可供参考：
-
-- [`JsWbgGL`：WebGL（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/Graphics/JsWebGL)

@@ -619,11 +619,3 @@ export default {
 ![zh-cn_image_0000001179018876](figures/zh-cn_image_0000001179018876.gif)
 
 
-
-## 相关实例
-
-针对chart开发，有以下相关实例可供参考：
-
-- [`chart`：图表组件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/chart)
-
-- [chart（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/SwitchApplication)

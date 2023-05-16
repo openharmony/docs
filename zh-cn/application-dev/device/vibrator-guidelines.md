@@ -69,4 +69,4 @@
 
 针对振动开发，有以下相关实例可供参考：
 
-- [`Vibrator`：振动（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/device/Vibrator)
+- [`Vibrator`：振动（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/DeviceManagement/Vibrator)

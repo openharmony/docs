@@ -309,9 +309,3 @@ export default {
 
 ![zh-cn_image_0000001234287779](figures/zh-cn_image_0000001234287779.gif)
 
-
-## 相关实例
-
-针对list开发，有以下相关实例可供参考：
-
-- [`JsList`：商品列表（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/JsList)
