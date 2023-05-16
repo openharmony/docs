@@ -3506,6 +3506,8 @@ setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): vo
 
 设置屏幕亮度值，使用callback异步回调。
 
+当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：**
@@ -3546,6 +3548,8 @@ try {
 setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
 设置屏幕亮度值，使用Promise异步回调。
+
+当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -6094,6 +6098,8 @@ setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置屏幕亮度值，使用callback异步回调。
 
+当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
+
 > **说明：**
 >
 > 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowBrightness()](#setwindowbrightness9)。
@@ -6125,6 +6131,8 @@ windowClass.setBrightness(brightness, (err) => {
 setBrightness(brightness: number): Promise&lt;void&gt;
 
 设置屏幕亮度值，使用Promise异步回调。
+
+当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
 
 > **说明：**
 >
