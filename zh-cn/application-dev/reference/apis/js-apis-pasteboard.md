@@ -487,6 +487,16 @@ record.convertToText().then((data) => {
 
 在调用PasteData的接口前，需要先获取一个PasteData对象。
 
+### 属性
+
+**系统能力：** SystemCapability.MiscServices.Pasteboard
+
+| 名称 | 类型 | 可读 | 可写  | 说明 |
+| -------- | -------- | -------- |-----| -------- |
+| pasteDataProperty<sup>7+</sup> | [PasteDataProperty](#pastedataproperty7) | 是 | 是   | 剪贴板数据的属性数据。 |
+| records<sup>7+</sup>  | std::vector&lt;[PasteDataRecord](#pastedatarecord7)&gt; | 是 |  是   | 剪贴板内容条目的数据。 |
+
+
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 ### getPrimaryText
