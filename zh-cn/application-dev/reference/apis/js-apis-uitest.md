@@ -2940,7 +2940,7 @@ async function demo() {
 
 UI事件监听器。
 
-### once('toastShow')<sup>10+</sup>
+### once('toastShow')
 
 once(type: 'toastShow', callback: Callback\<UIElementInfo>):void;
 
@@ -2969,7 +2969,7 @@ async function demo() {
 }
 ```
 
-### once('dialogShow')<sup>10+</sup>
+### once('dialogShow')
 
 once(type: 'dialogShow', callback: Callback\<UIElementInfo>): void;
 
