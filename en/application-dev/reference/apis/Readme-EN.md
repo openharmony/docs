@@ -237,7 +237,7 @@
   - [@ohos.file.environment (Directory Environment Capability)](js-apis-file-environment.md)
   - [@ohos.file.fileAccess (User File Access and Management)](js-apis-fileAccess.md)
   - [@ohos.file.fileExtensionInfo (User File Extension Information)](js-apis-fileExtensionInfo.md)
-  - [@ohos.file.fileUri (File URI)](js-apis-file-fileUri.md)
+  - [@ohos.file.fileuri (File URI)](js-apis-file-fileuri.md)
   - [@ohos.file.fs (File Management)](js-apis-file-fs.md)
   - [@ohos.file.hash (File Hash Processing)](js-apis-file-hash.md)
   - [@ohos.file.picker (File Picker)](js-apis-file-picker.md)

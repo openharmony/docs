@@ -222,7 +222,7 @@ This section describes how to start the UIAbility of another application through
    ```ts
    let context = ...; // UIAbilityContext
    
-   // context is the AbilityContext of the UIAbility instance to stop.
+   // context is the UIAbilityContext of the UIAbility instance to stop.
    context.terminateSelf((err) => {
      // ...
    });
@@ -487,7 +487,7 @@ In summary, when a UIAbility instance of application A has been created and the 
 
 > **NOTE**
 >
-> When the [launch type of the target UIAbility](uiability-launch-type.md) is set to **standard**, a new instance is created each time the target UIAbility is started. In this case, the [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant) callback will not be invoked.
+> When the [launch type of the target UIAbility](uiability-launch-type.md) is set to **multiton**, a new instance is created each time the target UIAbility is started. In this case, the [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant) callback will not be invoked.
 
 
 ## Using Call to Implement UIAbility Interaction (for System Applications Only)

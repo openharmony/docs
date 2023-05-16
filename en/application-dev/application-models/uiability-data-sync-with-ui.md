@@ -124,14 +124,14 @@ By binding attributes or methods to **globalThis**, you can implement data synch
 
    ```ts
    let entryAbilityWant;
-   
+
    @Entry
    @Component
    struct Index {
      aboutToAppear() {
        entryAbilityWant = globalThis.entryAbilityWant;
      }
-   
+
      // Page display.
      build() {
        // ...
@@ -161,7 +161,7 @@ To implement data synchronization between two UIAbility components in the same a
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility'
-   
+
    export default class UIAbilityB extends UIAbility {
        onCreate(want, launch) {
            // UIAbilityB reads name from globalThis and outputs it.
@@ -194,7 +194,7 @@ To implement data synchronization between the UIAbility and ExtensionAbility com
 
    ```ts
    import Extension from '@ohos.app.ability.ServiceExtensionAbility'
-   
+
    export default class ServiceExtAbility extends Extension {
        onCreate(want) {
            / / ServiceExtAbility reads name from globalThis and outputs it.
@@ -247,7 +247,7 @@ The following provides an example to describe the object overwritten problem in 
      }
    }
    ```
-   
+
 3. In the UIAbilityB file, [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md) is stored in **globalThis** and has the same name as that in the UIAbilityA file.
 
    ```ts
@@ -277,7 +277,7 @@ The following provides an example to describe the object overwritten problem in 
      }
    }
    ```
-   
+
 5. Switch the UIAbilityB instance to the background and switch the UIAbilityA instance to the foreground. In this case, UIAbilityA will not enter the **onCreate()** lifecycle again.
 
    ```ts
@@ -309,4 +309,6 @@ The following provides an example to describe the object overwritten problem in 
 
 ## Using AppStorage or LocalStorage for Data Synchronization
 
-ArkUI provides AppStorage and LocalStorage to implement application- and UIAbility-level data synchronization, respectively. Both solutions can be used to manage the application state, enhance application performance, and improve user experience. The AppStorage is a global state manager and is applicable when multiple UIAbilities share the same state data. The LocalStorage is a local state manager that manages state data used inside a single UIAbility. They help you control the application state more flexibly and improve the maintainability and scalability of applications. For details, see [State Management of Application-Level Variables](../quick-start/arkts-state-mgmt-application-level.md).
+ArkUI provides AppStorage and LocalStorage to implement application- and UIAbility-level data synchronization, respectively. Both solutions can be used to manage the application state, enhance application performance, and improve user experience. The AppStorage is a global state manager and is applicable when multiple UIAbilities share the same state data. The LocalStorage is a local state manager that manages state data used inside a single UIAbility. They help you control the application state more flexibly and improve the maintainability and scalability of applications. For details, see [State Management of Application-Level Variables](../quick-start/arkts-application-state-management-overview.md).
+
+ <!--no_check--> 

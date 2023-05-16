@@ -89,7 +89,7 @@ Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRe
   import lottie from '@ohos/lottie'
   ```
 
-  具体接口参考[Lottie](../reference/arkui-ts/ts-components-canvas-lottie.md)，相关实例请参考[Lottie实例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Lottie)。
+  具体接口参考[Lottie](../reference/arkui-ts/ts-components-canvas-lottie.md)，具体实例请参考[Lottie动画](#相关实例)。
 
   >**说明：**
   >
@@ -344,4 +344,8 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
 
   ![2023032422159](figures/2023032422159.jpg)
 
-  ​
+  ## 相关实例
+
+  使用画布绘制自定义图形，有以下相关实例可供参考：
+
+  - [Lottie动画](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Lottie)

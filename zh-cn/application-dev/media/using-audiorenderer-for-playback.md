@@ -151,9 +151,6 @@ export default class AudioRendererDemo {
         console.info(`${TAG}: creating AudioRenderer success`);
         this.renderModel = renderer;
         this.renderModel.on('stateChange', (state) => { // 设置监听事件，当转换到指定的状态时触发回调
-          if (state == 1) {
-            console.info('audio renderer state is: STATE_PREPARED');
-          }
           if (state == 2) {
             console.info('audio renderer state is: STATE_RUNNING');
           }

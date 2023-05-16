@@ -128,7 +128,7 @@ OpenHarmony预置了FileManager文件管理器。系统应用开发者也可以�
    // 创建文件
    // 示例代码sourceUri是Download目录的fileinfo中的URI
    // 开发者应根据自己实际获取fileinfo的URI进行开发
-   let sourceUri = "datashare:///media/file/6";
+   let sourceUri = "file://media/file/6";
    let displayName = "file1";
    let fileUri = null;
    try {

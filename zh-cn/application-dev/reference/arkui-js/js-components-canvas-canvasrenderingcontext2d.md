@@ -1,6 +1,7 @@
 # CanvasRenderingContext2D对象
 
 >  **说明：**
+>
 >  从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 使用CanvasRenderingContext2D在canvas画布组件上进行绘制，绘制对象可以是矩形、文本、图片等。
@@ -862,10 +863,10 @@ moveTo(x: number, y: number): void
 
 **参数：** 
 
-| 参数   | 类型     | 描述        |
-| ---- | ------ | --------- |
-| x    | number | 指定位置的x坐标。 |
-| y    | number | 指定位置的y坐标。 |
+| 参数   | 类型     | 描述                 |
+| ---- | ------ | ------------------ |
+| x    | number | 指定位置的x坐标。<br>单位：vp |
+| y    | number | 指定位置的y坐标。<br>单位：vp |
 
 **示例：** 
   ```html
@@ -901,8 +902,8 @@ lineTo(x: number, y: number): void
 
 | 参数   | 类型     | 描述        |
 | ---- | ------ | --------- |
-| x    | number | 指定位置的x坐标。 |
-| y    | number | 指定位置的y坐标。 |
+| x    | number | 指定位置的x坐标。<br>单位：vp |
+| y    | number | 指定位置的y坐标。<br>单位：vp |
 
 **示例：** 
   ```html

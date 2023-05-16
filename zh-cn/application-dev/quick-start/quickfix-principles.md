@@ -18,7 +18,7 @@
 <br>上图是OpenHarmony应用程序发布的快速修复的包格式
 * 从图中可以看出包含两种包格式：
     * appqf（Application Quick Fix）
-    <br> appqf与应用的app pack包是一一对应关系，具体可参考[应用程序包结构](application-package-structure-stage)的介绍。
+    <br> appqf与应用的app pack包是一一对应关系，具体可参考[应用程序包结构](application-package-structure-stage.md)的介绍。
         * appqf包是OpenHarmony应用用于发布到应用市场的单元，不能够直接安装到设备上。
         * 它是由一个或多个hqf（Harmony Ability Package Quick Fix）组成，这些hqf包在应用市场会从appqf包中拆分出来，再被分发到具体的设备上。
         * appqf包上架到应用市场前要有开发者的签名信息。签名方式可可参考[Hap包签名工具](../security/hapsigntool-overview.md)的介绍。

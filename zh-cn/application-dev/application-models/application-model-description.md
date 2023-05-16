@@ -37,7 +37,7 @@ Stage模型之所以成为主推模型，源于其设计思想。Stage模型的�
 
    Stage模型重新定义应用能力的边界，平衡应用能力和系统管控成本。
 
-   - 提供特定场景（如卡片、输入法）的应用组件，以便满足更多的使用场景。
+   - 提供特定场景（如服务卡片、输入法）的应用组件，以便满足更多的使用场景。
    - 规范化后台进程管理：为保障用户体验，Stage模型对后台应用进程进行了有序治理，应用程序不能随意驻留在后台，同时应用后台行为受到严格管理，防止恶意应用行为。
 
 
@@ -51,7 +51,7 @@ Stage模型之所以成为主推模型，源于其设计思想。Stage模型的�
 
 | 项目 | FA模型 | Stage模型 |
 | -------- | -------- | -------- |
-| **应用组件** | 1.&nbsp;组件分类<br/>![fa-model-component](figures/fa-model-component.png)&nbsp;&nbsp;&nbsp;-&nbsp;PageAbility组件：包含UI界面，提供展示UI的能力。详细介绍请参见[PageAbility组件概述](pageability-overview.md)。<br/>&nbsp;&nbsp;&nbsp;-&nbsp;ServiceAbility组件：提供后台服务的能力，无UI界面。详细介绍请参见[ServiceAbility组件概述](serviceability-overview.md)。<br/>&nbsp;&nbsp;&nbsp;-&nbsp;DataAbility组件：提供数据分享的能力，无UI界面。详细介绍请参见[DataAbility组件概述](dataability-overview.md)。<br/>2.&nbsp;开发方式<br/>&nbsp;&nbsp;&nbsp;通过导出匿名对象、固定入口文件的方式指定应用组件。开发者无法进行派生，不利于扩展能力。 | 1.&nbsp;组件分类<br/>![stage-model-component](figures/stage-model-component.png)&nbsp;&nbsp;&nbsp;-&nbsp;UIAbility组件：包含UI界面，提供展示UI的能力，主要用于和用户交互。详细介绍请参见[UIAbility组件概述](uiability-overview.md)。<br/>&nbsp;&nbsp;&nbsp;-&nbsp;ExtensionAbility组件：提供特定场景（如卡片、输入法）的扩展能力，满足更多的使用场景。详细介绍请参见[ExtensionAbility组件概述](extensionability-overview.md)。<br/>2.&nbsp;开发方式<br/>&nbsp;&nbsp;&nbsp;采用面向对象的方式，将应用组件以类接口的形式开放给开发者，可以进行派生，利于扩展能力。 |
+| **应用组件** | 1.&nbsp;组件分类<br/>![fa-model-component](figures/fa-model-component.png)&nbsp;&nbsp;&nbsp;-&nbsp;PageAbility组件：包含UI，提供展示UI的能力。详细介绍请参见[PageAbility组件概述](pageability-overview.md)。<br/>&nbsp;&nbsp;&nbsp;-&nbsp;ServiceAbility组件：提供后台服务的能力，无UI。详细介绍请参见[ServiceAbility组件概述](serviceability-overview.md)。<br/>&nbsp;&nbsp;&nbsp;-&nbsp;DataAbility组件：提供数据分享的能力，无UI。详细介绍请参见[DataAbility组件概述](dataability-overview.md)。<br/>2.&nbsp;开发方式<br/>&nbsp;&nbsp;&nbsp;通过导出匿名对象、固定入口文件的方式指定应用组件。开发者无法进行派生，不利于扩展能力。 | 1.&nbsp;组件分类<br/>![stage-model-component](figures/stage-model-component.png)&nbsp;&nbsp;&nbsp;-&nbsp;UIAbility组件：包含UI，提供展示UI的能力，主要用于和用户交互。详细介绍请参见[UIAbility组件概述](uiability-overview.md)。<br/>&nbsp;&nbsp;&nbsp;-&nbsp;ExtensionAbility组件：提供特定场景（如卡片、输入法）的扩展能力，满足更多的使用场景。详细介绍请参见[ExtensionAbility组件概述](extensionability-overview.md)。<br/>2.&nbsp;开发方式<br/>&nbsp;&nbsp;&nbsp;采用面向对象的方式，将应用组件以类接口的形式开放给开发者，可以进行派生，利于扩展能力。 |
 | **进程模型** | 有两类进程：<br/>1.&nbsp;主进程<br/>2.&nbsp;渲染进程<br/>详细介绍请参见[进程模型](process-model-fa.md)。 | 有三类进程：<br/>1.&nbsp;主进程<br/>2.&nbsp;ExtensionAbility进程<br/>3.&nbsp;渲染进程<br/>详细介绍请参见[进程模型](process-model-stage.md)。 |
 | **线程模型** | 1.&nbsp;ArkTS引擎实例的创建<br/>&nbsp;&nbsp;&nbsp;一个进程可以运行多个应用组件实例，每个应用组件实例运行在一个单独的ArkTS引擎实例中。<br/>2.&nbsp;线程模型<br/>&nbsp;&nbsp;&nbsp;每个ArkTS引擎实例都在一个单独线程（非主线程）上创建，主线程没有ArkTS引擎实例。<br/>3.&nbsp;进程内对象共享：不支持。<br/>详细介绍请参见[线程模型](thread-model-fa.md)。 | 1.&nbsp;ArkTS引擎实例的创建<br/>&nbsp;&nbsp;&nbsp;一个进程可以运行多个应用组件实例，所有应用组件实例共享一个ArkTS引擎实例。<br/>2.&nbsp;线程模型<br/>&nbsp;&nbsp;&nbsp;ArkTS引擎实例在主线程上创建。<br/>3.&nbsp;进程内对象共享：支持。<br/>详细介绍请参见[线程模型](thread-model-stage.md)。 |
 | **任务管理模型** | -&nbsp;每个PageAbility组件实例创建一个任务。<br/>-&nbsp;任务会持久化存储，直到超过最大任务个数（根据产品配置自定义）或者用户主动删除任务。<br/>-&nbsp;PageAbility组件之间不会形成栈的结构。<br/>详细介绍请参见[任务管理场景介绍](mission-management-overview.md)。 | -&nbsp;每个UIAbility组件实例创建一个任务。<br/>-&nbsp;任务会持久化存储，直到超过最大任务个数（根据产品配置自定义）或者用户主动删除任务。<br/>-&nbsp;UIAbility组件之间不会形成栈的结构。<br/>详细介绍请参见[任务管理场景介绍](mission-management-overview.md)。 |

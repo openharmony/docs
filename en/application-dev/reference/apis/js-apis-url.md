@@ -225,7 +225,7 @@ Checks whether a key has a value.
 ```js
 let urlObject = Url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 let paramsObject = new Url.URLParams(urlObject.search.slice(1)); 
-paramsObject.has('bard') === true;
+let result = paramsObject.has('bard');
 ```
 
 
@@ -336,7 +336,7 @@ Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and th
 
 ```js
 const paramsObject = new Url.URLParams('fod=bay&edg=bap');
-for (const [name, value] of paramsObject) {
+for (const [name, value] of paramsObject[Symbol.iterator]()) {
     console.log(name, value); 
 } 
 ```
@@ -460,7 +460,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 ```js
 let mm = 'https://username:password@host:8080';
 let url = Url.URL.parseURL(mm); 
-url.toString(); // Output 'https://username:password@host:8080/';
+let result = url.toString(); // Output 'https://username:password@host:8080/'
 ```
 
 ### tostring
@@ -481,7 +481,7 @@ Converts the parsed URL into a string.
 
 ```js
 const url = Url.URL.parseURL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-url.toString();
+let result = url.toString();
 ```
 
 ### toJSON
@@ -501,7 +501,7 @@ Converts the parsed URL into a JSON string.
 **Example**
 ```js
 const url = Url.URL.parseURL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-url.toJSON();
+let result = url.toJSON();
 ```
 
 ## URLSearchParams<sup>(deprecated)</sup>
