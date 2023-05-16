@@ -15,6 +15,8 @@
 - [如何在网格组件中通过拖拽交换子组件的位置](griditem-drag-and-drop.md)
 - [如何实现逐帧动画](how-to-develop-frame-animation.md)
 - [如何实现抽屉式导航](navigation-drawer.md)
+- [如何实现内容下拉变化](content-changing-with-pulldown.md)
+- [如何实现圆形进度条](circle-progress-bar.md)
 ### 网络管理
 - [如何请求并加载网络图片](how-to-load-images-from-internet.md)
 
