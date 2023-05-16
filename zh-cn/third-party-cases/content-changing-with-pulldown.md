@@ -51,7 +51,7 @@
     ...
     //中层子组件
     ...
-          Column() {
+      Column() {
         Row() {
           Text('当点击此场景卡片时：').fontSize(16)
           Blank()
