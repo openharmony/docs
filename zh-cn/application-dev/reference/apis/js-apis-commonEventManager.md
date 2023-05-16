@@ -588,7 +588,7 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback<void>): void;
 
 | 参数名   | 类型                 | 必填 | 说明                             |
 | -------- | -------------------- | ---- | -------------------------------- |
-| enable    | bool               | 是   | 表示静态订阅事件使能状态。       |
+| enable    | bool               | 是   | 表示静态订阅事件使能状态。 true:使能  false：去使能      |
 | callback | AsyncCallback\<void> | 是   | 表示设置静态订阅事件使能状态的回调方法。 |
 
 **错误码：**
@@ -597,8 +597,6 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback<void>): void;
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 202  | not system app.                         |
-| 401  | The parameter check failed.             |
 | 1500007  | The message send error.             |
 | 1500008  | The CEMS error.                     |
 
@@ -632,7 +630,7 @@ setStaticSubscriberState(enable: boolean): Promise<void>;
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| enable  | bool | 是   | 表示静态订阅事件使能状态。 |
+| enable  | bool | 是   | 表示静态订阅事件使能状态。true:使能  false：去使能 |
 
 **返回值：**
 
@@ -646,8 +644,6 @@ setStaticSubscriberState(enable: boolean): Promise<void>;
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 202  | not system app.                         |
-| 401  | The parameter check failed.             |
 | 1500007  | The message send error.             |
 | 1500008  | The CEMS error.                     |
 
