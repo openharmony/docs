@@ -1452,7 +1452,7 @@ setHotspotConfig(config: HotspotConfig): void
 | ssid | string | 是 | 是 | 热点的SSID，编码格式为UTF-8。 |
 | securityType | [WifiSecurityType](#wifisecuritytype) | 是 | 是 | 加密类型。 |
 | band | number | 是 | 是 | 热点的带宽。1: 2.4G, 2: 5G, 3: 双模频段 |
-| channel<sup>10+</sup> | number | 是 | 是 | 热点的信道。 |
+| channel<sup>10+</sup> | number | 是 | 是 | 热点的信道（2.4G：1~14,5G：7~196，双模频段：暂不支持）。 |
 | preSharedKey | string | 是 | 是 | 热点的密钥。 |
 | maxConn | number | 是 | 是 | 最大设备连接数。 |
 
