@@ -3979,7 +3979,7 @@ notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data) => 
 
 on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void;
 
-注册通知监听回调。
+注册通知监听回调。通知服务将通知信息回调给校验程序，校验程序返回校验结果决定该通知是否发布，如营销类通知发布频率控制等。
 
 **系统能力**：SystemCapability.Notification.Notification
 
