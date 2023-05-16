@@ -111,7 +111,7 @@ In this example, the **\<Toggle>** component is used to enable or disable Blueto
 
 ```ts
 // xxx.ets
-import prompt from '@ohos.promptAction';
+import promptAction from '@ohos.promptAction';
 @Entry
 @Component
 struct ToggleExample {
