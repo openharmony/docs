@@ -16,12 +16,12 @@ Matrix2D()
 
 | 属性                      | 类型   | 描述                                                         |
 | ------------------------- | ------ | ------------------------------------------------------------ |
-| [scaleX](#scaleX)         | number | 水平缩放系数。 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [scaleY](#scaleY)         | number | 垂直缩放系数。 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [rotateX](#rotateX)       | number | 水平倾斜系数。从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [rotateY](#rotateY)       | number | 垂直倾斜系数。从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [translateX](#translateX) | number | 水平平移距离，单位为vp。 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [translateY](#translateY) | number | 垂直平移距离，单位为vp。 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [scaleX](#scalex)         | number | 水平缩放系数。 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [scaleY](#scaley)         | number | 垂直缩放系数。 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [rotateX](#rotatex)       | number | 水平倾斜系数。从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [rotateY](#rotatey)       | number | 垂直倾斜系数。从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [translateX](#translatex) | number | 水平平移距离，单位为vp。 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [translateY](#translatey) | number | 垂直平移距离，单位为vp。 从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 >  **说明：**
 >  
@@ -251,7 +251,7 @@ identity(): Matrix2D
 
 | 类型                  | 说明       |
 | --------------------- | ---------- |
-| [Matrix2D](#Matrix2D) | 单位矩阵。 |
+| [Matrix2D](#matrix2d) | 单位矩阵。 |
 
 **示例：**
 
@@ -300,7 +300,7 @@ invert(): Matrix2D
 
 | 类型                  | 说明         |
 | --------------------- | ------------ |
-| [Matrix2D](#Matrix2D) | 逆矩阵结果。 |
+| [Matrix2D](#matrix2d) | 逆矩阵结果。 |
 
 **示例：**
 
@@ -363,7 +363,7 @@ multiply(other?: Matrix2D): Matrix2D
 
 | 类型                  | 说明           |
 | --------------------- | -------------- |
-| [Matrix2D](#Matrix2D) | 相乘结果矩阵。 |
+| [Matrix2D](#matrix2d) | 相乘结果矩阵。 |
 
 **示例：**
 
@@ -433,7 +433,7 @@ rotate(degree: number, rx?: number, ry?: number): Matrix2D
 
 | 类型                  | 说明                 |
 | --------------------- | -------------------- |
-| [Matrix2D](#Matrix2D) | 旋转后结果矩阵对象。 |
+| [Matrix2D](#matrix2d) | 旋转后结果矩阵对象。 |
 
 **示例：**
 
@@ -495,7 +495,7 @@ translate(tx?: number, ty?: number): Matrix2D
 
 | 类型                  | 说明                 |
 | --------------------- | -------------------- |
-| [Matrix2D](#Matrix2D) | 平移后结果矩阵对象。 |
+| [Matrix2D](#matrix2d) | 平移后结果矩阵对象。 |
 
 **示例：**
 
@@ -557,7 +557,7 @@ scale(sx?: number, sy?: number): Matrix2D
 
 | 类型                  | 说明               |
 | --------------------- | ------------------ |
-| [Matrix2D](#Matrix2D) | 缩放结果矩阵对象。 |
+| [Matrix2D](#matrix2d) | 缩放结果矩阵对象。 |
 
 **示例：**
 
