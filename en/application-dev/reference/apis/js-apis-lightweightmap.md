@@ -1,8 +1,5 @@
 # @ohos.util.LightWeightMap (Nonlinear Container LightWeightMap) 
 
-> **NOTE**
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 **LightWeightMap** stores key-value (KV) pairs. Each key must be unique and have only one value.
 
 **LightWeightMap** is based on generics and uses a lightweight structure. Its default initial capacity is 8, and it has the capacity doubled in each expansion.
@@ -16,6 +13,11 @@ Compared with **[HashMap](js-apis-hashmap.md)**, which can also store KV pairs, 
 This topic uses the following to identify the use of generics:
 - K: Key
 - V: Value
+
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 
 ## Modules to Import
 
@@ -197,9 +199,8 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-let result = lightWeightMap.hasValue(123);
 lightWeightMap.set("squirrel", 123);
-let result1 = lightWeightMap.hasValue(123);
+let result = lightWeightMap.hasValue(123);
 ```
 
 

@@ -15,7 +15,8 @@ The OpenHarmony process model is shown below.
 
 > NOTE
 >
-> You can create ServiceExtensionAbility and DataShareExtensionAbility only for system applications.
+> - You can create ServiceExtensionAbility and DataShareExtensionAbility only for system applications.
+> - To view information about all running processes, run the **hdc shell** command to enter the shell CLI of the device, and run the **ps -ef** command.
 
 A system application can apply for multi-process permissions (as shown in the following figure) and configure a custom process for an HAP. UIAbility, DataShareExtensionAbility, and ServiceExtensionAbility in the HAP run in the custom process. Different HAPs run in different processes by configuring different process names.
 

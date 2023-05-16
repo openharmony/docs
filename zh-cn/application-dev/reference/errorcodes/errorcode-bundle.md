@@ -375,7 +375,7 @@ The specified ability is disabled.
 指定的ability被禁用。
 
 **处理步骤**<br/>
-确认指定的ability是否被禁用，可以使用[bm工具命令](../../../readme/%E5%8C%85%E7%AE%A1%E7%90%86%E5%AD%90%E7%B3%BB%E7%BB%9F.md%23bm%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4)查询对应的应用信息。
+确认指定的ability是否被禁用，可以使用[bm工具命令](../../../readme/包管理子系统.md#bm工具命令)查询对应的应用信息。
 
 ## 17700030 指定的应用不支持清除缓存文件
 
@@ -389,8 +389,8 @@ The specified bundle does not support clearing of cache files.
 指定的应用为系统应用且在签名证书中配置了不能清除数据(AllowAppDataNotCleared)的字段。
 
 **处理步骤**<br/>
-1.确认指定的应用是否为系统应用，可以使用[bm工具命令](../../../readme/%E5%8C%85%E7%AE%A1%E7%90%86%E5%AD%90%E7%B3%BB%E7%BB%9F.md%23bm%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4)查询对应的应用信息，查看isSystemApp是否为true。
-2.确认指定的应用是否配置了能清除缓存(AllowAppDataNotCleared)的字段，可以使用[bm工具命令](../../../readme/%E5%8C%85%E7%AE%A1%E7%90%86%E5%AD%90%E7%B3%BB%E7%BB%9F.md%23bm%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4)查询对应的应用信息，查看userDataClearable是否为true。
+1.确认指定的应用是否为系统应用，可以使用[bm工具命令](../../../readme/包管理子系统.md#bm工具命令)查询对应的应用信息，查看isSystemApp是否为true。
+2.确认指定的应用是否配置了能清除缓存(AllowAppDataNotCleared)的字段，可以使用[bm工具命令](../../../readme/包管理子系统.md#bm工具命令)查询对应的应用信息，查看userDataClearable是否为true。
 
 ## 17700031 Overlay特性校验失败导致HAP安装失败
 
@@ -544,6 +544,19 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 1. 通过-s参数指定卸载的应用为共享库应用。
 2. 通过UninstallParam参数的bundleName及versionCode指定卸载的共享库的包名及版本。
 
+## 17700041 企业设备管理不允许安装该应用
+**错误信息**<br/>
+Failed to install because enterprise device management disallow install.
+
+**错误描述**<br/>
+安装应用时，企业设备管理不允许安装。
+
+**可能原因**<br/>
+1. 企业设备管理不允许安装该应用。
+
+**处理步骤**<br/>
+1. 请在设备中检查应用是否被企业设备管理禁止安装。
+
 ## 17700042 数据代理中的uri配置错误
 **错误信息**<br/>
 Failed to install the HAP because of incorrect URI in the data proxy.
@@ -587,4 +600,16 @@ Failed to install the HAP because the isolationMode configured is not supported.
 
 **处理步骤**<br/>
 1. 按照设备的隔离模式正确配置HAP字段isolationMode。
-<!--no_check-->
+
+## 17700045 企业设备管理不允许卸载该应用
+**错误信息**<br/>
+Failed to uninstall because enterprise device management disallow uninstall.
+
+**错误描述**<br/>
+卸载应用时，企业设备管理不允许卸载。
+
+**可能原因**<br/>
+1. 企业设备管理不允许安装该应用。
+
+**处理步骤**<br/>
+1. 请在设备中检查应用是否被企业设备管理禁止卸载安装。

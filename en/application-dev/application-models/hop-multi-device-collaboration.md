@@ -5,7 +5,7 @@
 
 Multi-device coordination involves the following scenarios:
 
-- [Starting UIAbility and ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-and-serviceextensionability-across-devices-no-data-returned)
+- [Starting UIAbility or ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-or-serviceextensionability-across-devices-no-data-returned)
 
 - [Starting UIAbility Across Devices (Data Returned)](#starting-uiability-across-devices-data-returned)
 
@@ -31,9 +31,9 @@ The figure below shows the multi-device collaboration process.
 - For better user experience, you are advised to use the **want** parameter to transmit data smaller than 100 KB.
 
 
-## Starting UIAbility and ServiceExtensionAbility Across Devices (No Data Returned)
+## Starting UIAbility or ServiceExtensionAbility Across Devices (No Data Returned)
 
-On device A, touch the **Start** button provided by the initiator application to start a specified UIAbility on device B.
+On device A, touch the **Start** button provided by the initiator application to start a specified UIAbility or ServiceExtensionAbility on device B.
 
 
 ### Available APIs
@@ -42,7 +42,9 @@ On device A, touch the **Start** button provided by the initiator application to
 
 | **API**| **Description**|
 | -------- | -------- |
-| startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void; | Starts UIAbility and ServiceExtensionAbility. This API uses an asynchronous callback to return the result.|
+| startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void; | Starts a UIAbility or ServiceExtensionAbility. This API uses an asynchronous callback to return the result.|
+| stopServiceExtensionAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void; | Stops a ServiceExtensionAbility. This API uses an asynchronous callback to return the result.|
+| stopServiceExtensionAbility(want: Want): Promise&lt;void&gt;; | Stops a ServiceExtensionAbility. This API uses a promise to return the result.|
 
 
 ### How to Develop
@@ -81,7 +83,7 @@ On device A, touch the **Start** button provided by the initiator application to
    }
    ```
 
-4. Set the target component parameters, and call [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to start UIAbility or ServiceExtensionAbility.
+4. Set the target component parameters, and call [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to start a UIAbility or ServiceExtensionAbility.
 
    ```ts
    let want = {
@@ -98,6 +100,22 @@ On device A, touch the **Start** button provided by the initiator application to
    })
    ```
 
+5. Call stopServiceExtensionAbility(../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopserviceextensionability) to stop the ServiceExtensionAbility when it is no longer required on device B. (This API cannot be used to stop a UIAbility. Users must manually stop a UIAbility through task management.)
+
+   ```ts
+   let want = {
+       deviceId: getRemoteDeviceId(),
+       bundleName: 'com.example.myapplication',
+       abilityName: 'FuncAbility',
+       moduleName: 'module1', // moduleName is optional.
+   }
+   // Stop the ServiceExtensionAbility started by calling startAbility().
+   this.context.stopServiceExtensionAbility(want).then(() => {
+       console.info("stop service extension ability success")
+   }).catch((err) => {
+       console.info("stop service extension ability err is " + JSON.stringify(err))
+   })
+   ```
 
 ## Starting UIAbility Across Devices (Data Returned)
 
@@ -121,7 +139,7 @@ On device A, touch the **Start** button provided by the initiator application to
 
 2. Display a dialog box to ask authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/accesstoken-guidelines.md#requesting-user-authorization).
 
-3. Set the target component parameters on the initiator, and call **startAbilityForResult()** to start the target UIAbility. **data** in the asynchronous callback is used to receive the information returned by the target UIAbility to the initiator UIAbility after the target UIAbility terminates itself. For details about how to implement **getRemoteDeviceId()**, see [Starting UIAbility and ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-and-serviceextensionability-across-devices-no-data-returned).
+3. Set the target component parameters on the initiator, and call **startAbilityForResult()** to start the target UIAbility. **data** in the asynchronous callback is used to receive the information returned by the target UIAbility to the initiator UIAbility after the target UIAbility terminates itself. For details about how to implement **getRemoteDeviceId()**, see [Starting UIAbility or ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-or-serviceextensionability-across-devices-no-data-returned).
 
    ```ts
    let want = {
@@ -253,7 +271,7 @@ A system application can connect to a service on another device by calling [conn
       let connectionId = this.context.connectServiceExtensionAbility(want, options);
       ```
 
-      For details about how to implement **getRemoteDeviceId()**, see [Starting UIAbility and ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-and-serviceextensionability-across-devices-no-data-returned).
+      For details about how to implement **getRemoteDeviceId()**, see [Starting UIAbility or ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-or-serviceextensionability-across-devices-no-data-returned).
 
 5. Disconnect the connection. Use **disconnectServiceExtensionAbility()** to disconnect from the background service.
 
@@ -313,12 +331,12 @@ The following describes how to implement multi-device collaboration through cros
          ```json
          "abilities":[{
              "name": ".CalleeAbility",
-             "srcEntrance": "./ets/CalleeAbility/CalleeAbility.ts",
+             "srcEntry": "./ets/CalleeAbility/CalleeAbility.ts",
              "launchType": "singleton",
              "description": "$string:CalleeAbility_desc",
              "icon": "$media:icon",
              "label": "$string:CalleeAbility_label",
-             "visible": true
+             "exported": true
          }]
          ```
      2. Import the **UIAbility** module.
@@ -438,7 +456,7 @@ The following describes how to implement multi-device collaboration through cros
        }
        ```
 
-       For details about how to implement **getRemoteDeviceId()**, see [Starting UIAbility and ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-and-serviceextensionability-across-devices-no-data-returned).
+       For details about how to implement **getRemoteDeviceId()**, see [Starting UIAbility or ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-or-serviceextensionability-across-devices-no-data-returned).
 
 5. Sends agreed parcelable data to the CalleeAbility.
    1. The parcelable data can be sent to the CalleeAbility with or without a return value. The method and parcelable data must be consistent with those of the CalleeAbility. The following example describes how to send data to the CalleeAbility.

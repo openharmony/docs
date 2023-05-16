@@ -318,6 +318,7 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 | 17700004 | The specified user ID is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
+| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
 
 **示例：**
 
@@ -375,6 +376,7 @@ uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
 | 17700001 | The specified bundle name is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
+| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
 
 **示例：**
 
@@ -433,6 +435,7 @@ uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
 | 17700004 | The specified user ID is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
+| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
 
 **示例：**
 ```ts

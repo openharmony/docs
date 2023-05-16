@@ -1,17 +1,16 @@
 # ServiceExtensionAbility
 
-- [ServiceExtensionAbility](#serviceextensionability)
-  - [概述](#概述)
-  - [生命周期](#生命周期)
-  - [实现一个后台服务（仅对系统应用开放）](#实现一个后台服务仅对系统应用开放)
-    - [开发准备](#开发准备)
-    - [定义IDL接口](#定义idl接口)
-    - [创建ServiceExtensionAbility](#创建serviceextensionability)
-  - [启动一个后台服务（仅对系统应用开放）](#启动一个后台服务仅对系统应用开放)
-  - [连接一个后台服务](#连接一个后台服务)
-  - [客户端与服务端通信](#客户端与服务端通信)
-  - [服务端对客户端身份校验](#服务端对客户端身份校验)
-  - [相关示例](#相关示例)
+- [概述](#概述)
+- [生命周期](#生命周期)
+- [实现一个后台服务（仅对系统应用开放）](#实现一个后台服务仅对系统应用开放)
+  - [开发准备](#开发准备)
+  - [定义IDL接口](#定义idl接口)
+  - [创建ServiceExtensionAbility](#创建serviceextensionability)
+- [启动一个后台服务（仅对系统应用开放）](#启动一个后台服务仅对系统应用开放)
+- [连接一个后台服务](#连接一个后台服务)
+- [客户端与服务端通信](#客户端与服务端通信)
+- [服务端对客户端身份校验](#服务端对客户端身份校验)
+- [相关示例](#相关示例)
 
 ## 概述
 
@@ -41,7 +40,7 @@
 
 [ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md)提供了onCreate()、onRequest()、onConnect()、onDisconnect()和onDestory()生命周期回调，根据需要重写对应的回调方法。下图展示了ServiceExtensionAbility的生命周期。
 
-  **图1** ServiceExtensionAbility生命周期
+  **图1** ServiceExtensionAbility生命周期  
 ![ServiceExtensionAbility-lifecycle](figures/ServiceExtensionAbility-lifecycle.png)
 
 - **onCreate**
@@ -116,7 +115,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 
   insertDataToMap(key: string, val: number, callback: insertDataToMapCallback): void {
     // 开发者自行实现业务逻辑
-    console.log(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
+    console.info(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
     callback(ERR_OK);
   }
 }
@@ -182,7 +181,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
    ```json
    {
      "module": {
-       // ...
+       ...
        "extensionAbilities": [
          {
            "name": "ServiceExtAbility",
@@ -207,41 +206,43 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 1. 在系统应用中启动一个新的ServiceExtensionAbility。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
 
    ```ts
+   let context = ...; // UIAbilityContext
    let want = {
-       "deviceId": "",
-       "bundleName": "com.example.myapplication",
-       "abilityName": "ServiceExtAbility"
+     "deviceId": "",
+     "bundleName": "com.example.myapplication",
+     "abilityName": "ServiceExtAbility"
    };
-   this.context.startServiceExtensionAbility(want).then(() => {
-       console.info('startServiceExtensionAbility success');
-   }).catch((error) => {
-       console.info('startServiceExtensionAbility failed');
+   context.startServiceExtensionAbility(want).then(() => {
+     console.info('Succeeded in starting ServiceExtensionAbility.');
+   }).catch((err) => {
+     console.error(`Failed to start ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
    })
    ```
 
 2. 在系统应用中停止一个已启动的ServiceExtensionAbility。
 
    ```ts
+   let context = ...; // UIAbilityContext
    let want = {
-       "deviceId": "",
-       "bundleName": "com.example.myapplication",
-       "abilityName": "ServiceExtAbility"
+     "deviceId": "",
+     "bundleName": "com.example.myapplication",
+     "abilityName": "ServiceExtAbility"
    };
-   this.context.stopServiceExtensionAbility(want).then(() => {
-       console.info('stopServiceExtensionAbility success');
-   }).catch((error) => {
-       console.info('stopServiceExtensionAbility failed');
+   context.stopServiceExtensionAbility(want).then(() => {
+     console.info('Succeeded in stoping ServiceExtensionAbility.');
+   }).catch((err) => {
+     console.error(`Failed to stop ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
    })
    ```
 
 3. 已启动的ServiceExtensionAbility停止自身。
 
    ```ts
-   // this是当前ServiceExtensionAbility
-   this.context.terminateSelf().then(() => {
-       console.info('terminateSelf success');
-   }).catch((error) => {
-       console.info('terminateSelf failed');
+   let context = ...; // ServiceExtensionContext
+   context.terminateSelf().then(() => {
+     console.info('Succeeded in terminating self.');
+   }).catch((err) => {
+     console.error(`Failed to terminate self. Code is ${err.code}, message is ${err.message}`);
    })
    ```
 
@@ -262,27 +263,27 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
   
   ```ts
   let want = {
-      "deviceId": "",
-      "bundleName": "com.example.myapplication",
-      "abilityName": "ServiceExtAbility"
+    "deviceId": "",
+    "bundleName": "com.example.myapplication",
+    "abilityName": "ServiceExtAbility"
   };
   let options = {
-      onConnect(elementName, remote) {
-          /* 此处的入参remote为ServiceExtensionAbility在onConnect生命周期回调中返回的对象,
-           * 开发者通过这个对象便可以与ServiceExtensionAbility进行通信，具体通信方式见下文
-           */
-          console.info('onConnect callback');
-          if (remote === null) {
-              console.info(`onConnect remote is null`);
-              return;
-          }
-      },
-      onDisconnect(elementName) {
-          console.info('onDisconnect callback')
-      },
-      onFailed(code) {
-          console.info('onFailed callback')
+    onConnect(elementName, remote) {
+      /* 此处的入参remote为ServiceExtensionAbility在onConnect生命周期回调中返回的对象,
+       * 开发者通过这个对象便可以与ServiceExtensionAbility进行通信，具体通信方式见下文
+       */
+      console.info('onConnect callback');
+      if (remote === null) {
+        console.info(`onConnect remote is null`);
+        return;
       }
+    },
+    onDisconnect(elementName) {
+      console.info('onDisconnect callback')
+    },
+    onFailed(code) {
+      console.info('onFailed callback')
+    }
   }
   // 建立连接后返回的Id需要保存下来，在解绑服务时需要作为参数传入
   let connectionId = this.context.connectServiceExtensionAbility(want, options);
@@ -293,9 +294,9 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
   ```ts
   // connectionId为调用connectServiceExtensionAbility接口时的返回值，需开发者自行维护
   this.context.disconnectServiceExtensionAbility(connectionId).then((data) => {
-      console.info('disconnectServiceExtensionAbility success');
+    console.info('disconnectServiceExtensionAbility success');
   }).catch((error) => {
-      console.error('disconnectServiceExtensionAbility failed');
+    console.error('disconnectServiceExtensionAbility failed');
   })
   ```
 
@@ -310,27 +311,27 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
   import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
 
   let options = {
-      onConnect(elementName, remote) {
-          console.info('onConnect callback');
-          if (remote === null) {
-              console.info(`onConnect remote is null`);
-              return;
-          }
-          let serviceExtProxy = new IdlServiceExtProxy(remote);
-          // 通过接口调用的方式进行通信，屏蔽了RPC通信的细节，简洁明了
-          serviceExtProxy.processData(1, (errorCode, retVal) => {
-              console.log(`processData, errorCode: ${errorCode}, retVal: ${retVal}`);
-          });
-          serviceExtProxy.insertDataToMap('theKey', 1, (errorCode) => {
-              console.log(`insertDataToMap, errorCode: ${errorCode}`);
-          })
-      },
-      onDisconnect(elementName) {
-          console.info('onDisconnect callback')
-      },
-      onFailed(code) {
-          console.info('onFailed callback')
+    onConnect(elementName, remote) {
+      console.info('onConnect callback');
+      if (remote === null) {
+        console.info(`onConnect remote is null`);
+        return;
       }
+      let serviceExtProxy = new IdlServiceExtProxy(remote);
+      // 通过接口调用的方式进行通信，屏蔽了RPC通信的细节，简洁明了
+      serviceExtProxy.processData(1, (errorCode, retVal) => {
+        console.info(`processData, errorCode: ${errorCode}, retVal: ${retVal}`);
+      });
+      serviceExtProxy.insertDataToMap('theKey', 1, (errorCode) => {
+        console.info(`insertDataToMap, errorCode: ${errorCode}`);
+      })
+    },
+    onDisconnect(elementName) {
+      console.info('onDisconnect callback')
+    },
+    onFailed(code) {
+      console.info('onFailed callback')
+    }
   }
   ```
 
@@ -338,40 +339,40 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
 
   ```ts
   import rpc from '@ohos.rpc';
-
+  
   const REQUEST_CODE = 1;
   let options = {
-      onConnect(elementName, remote) {
-          console.info('onConnect callback');
-          if (remote === null) {
-              console.info(`onConnect remote is null`);
-              return;
-          }
-          // 直接调用rpc的接口向服务端发送消息，客户端需自行对入参进行序列化，对返回值进行反序列化，操作繁琐
-          let option = new rpc.MessageOption();
-          let data = new rpc.MessageSequence();
-          let reply = new rpc.MessageSequence();
-          data.writeInt(100);
-
-          // @param code 表示客户端发送的服务请求代码。
-          // @param data 表示客户端发送的{@link MessageSequence}对象。
-          // @param reply 表示远程服务发送的响应消息对象。
-          // @param options 指示操作是同步的还是异步的。
-          // 
-          // @return 如果操作成功返回{@code true}； 否则返回 {@code false}。
-          remote.sendMessageRequest(REQUEST_CODE, data, reply, option).then((ret) => {
-              let msg = reply.readInt();
-              console.info(`sendMessageRequest ret:${ret} msg:${msg}`);
-          }).catch((error) => {
-              console.info('sendMessageRequest failed');
-          });
-      },
-      onDisconnect(elementName) {
-          console.info('onDisconnect callback')
-      },
-      onFailed(code) {
-          console.info('onFailed callback')
+    onConnect(elementName, remote) {
+      console.info('onConnect callback');
+      if (remote === null) {
+        console.info(`onConnect remote is null`);
+        return;
       }
+      // 直接调用rpc的接口向服务端发送消息，客户端需自行对入参进行序列化，对返回值进行反序列化，操作繁琐
+      let option = new rpc.MessageOption();
+      let data = new rpc.MessageSequence();
+      let reply = new rpc.MessageSequence();
+      data.writeInt(100);
+  
+      // @param code 表示客户端发送的服务请求代码。
+      // @param data 表示客户端发送的{@link MessageSequence}对象。
+      // @param reply 表示远程服务发送的响应消息对象。
+      // @param options 指示操作是同步的还是异步的。
+      // 
+      // @return 如果操作成功返回{@code true}； 否则返回 {@code false}。
+      remote.sendMessageRequest(REQUEST_CODE, data, reply, option).then((ret) => {
+        let msg = reply.readInt();
+        console.info(`sendMessageRequest ret:${ret} msg:${msg}`);
+      }).catch((error) => {
+        console.info('sendMessageRequest failed');
+      });
+    },
+    onDisconnect(elementName) {
+      console.info('onDisconnect callback')
+    },
+    onFailed(code) {
+      console.info('onFailed callback')
+    }
   }
   ```
 
@@ -386,8 +387,8 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
   ```ts
   import rpc from '@ohos.rpc';
   import bundleManager from '@ohos.bundle.bundleManager';
-  import {processDataCallback} from './i_idl_service_ext';
-  import {insertDataToMapCallback} from './i_idl_service_ext';
+  import { processDataCallback } from './i_idl_service_ext';
+  import { insertDataToMapCallback } from './i_idl_service_ext';
   import IdlServiceExtStub from './idl_service_ext_stub';
 
   const ERR_OK = 0;
@@ -402,7 +403,7 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
       bundleManager.getBundleNameByUid(callerUid).then((callerBundleName) => {
         console.info(TAG, 'getBundleNameByUid: ' + callerBundleName);
         // 对客户端包名进行识别
-        if (callerBundleName != 'com.example.connectextapp') {  // 识别不通过
+        if (callerBundleName != 'com.example.connectextapp') { // 识别不通过
           console.info(TAG, 'The caller bundle is not in whitelist, reject');
           return;
         }
@@ -414,7 +415,7 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
 
     insertDataToMap(key: string, val: number, callback: insertDataToMapCallback): void {
       // 开发者自行实现业务逻辑
-      console.log(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
+      console.info(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
       callback(ERR_OK);
     }
   }
@@ -430,15 +431,15 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
   import {processDataCallback} from './i_idl_service_ext';
   import {insertDataToMapCallback} from './i_idl_service_ext';
   import IdlServiceExtStub from './idl_service_ext_stub';
-
+  
   const ERR_OK = 0;
   const ERR_DENY = -1;
   const TAG: string = "[IdlServiceExtImpl]";
-
+  
   export default class ServiceExtImpl extends IdlServiceExtStub {
     processData(data: number, callback: processDataCallback): void {
       console.info(TAG, `processData: ${data}`);
-
+  
       let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
       let accessManger = abilityAccessCtrl.createAtManager();
       // 所校验的具体权限由开发者自行选择，此处ohos.permission.SET_WALLPAPER只作为示例
@@ -451,10 +452,10 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
       }
       callback(ERR_OK, data + 1);     // 鉴权通过，执行正常业务逻辑
     }
-
+  
     insertDataToMap(key: string, val: number, callback: insertDataToMapCallback): void {
       // 开发者自行实现业务逻辑
-      console.log(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
+      console.info(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
       callback(ERR_OK);
     }
   }

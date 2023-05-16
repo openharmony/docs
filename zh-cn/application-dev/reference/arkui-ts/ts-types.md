@@ -122,8 +122,8 @@
 | 类型                                      | 说明                                             |
 | ---------------------------------------- | ------------------------------------------------- |
 | [Color](ts-appendix-enums.md#color)      | 颜色枚举值。                                       |
-| number                                   | HEX格式颜色，支持rgb。                                      |
-| string                                   | rgb或者argb格式颜色。                              |
+| number                                   | HEX格式颜色，支持rgb。示例：0xffffff。                                      |
+| string                                   | rgb或者argb格式颜色。示例：'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'。                              |
 | [Resource](#resource)                    | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。 |
 
 ## ColoringStrategy

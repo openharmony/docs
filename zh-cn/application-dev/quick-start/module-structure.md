@@ -24,6 +24,7 @@ module对象包含HAP的配置信息。
 |commonEvents | 定义了公共事件静态订阅者的信息，该字段中需要声明静态订阅者的名称、权限要求及订阅事件列表信息，当订阅的公共事件发送时，该公共事件静态订阅者将被拉起。这里的静态订阅者区分于常用的动态订阅者，前者无需在业务代码中主动调用订阅事件的接口，在公共事件发布时可能未被拉起，而动态订阅者则在业务代码中主动调用公共事件订阅的相关API，因此需要应用处于活动状态。 | 对象数组 | 可缺省，缺省为空。 |
 | entryTheme | 此标签标识OpenHarmony内部主题的关键字。将标记值设置为名称的资源索引。 | 字符串 | 可缺省，缺省值为空。 |
 |testRunner | 此标签用于支持对测试框架的配置。 | 对象 | 可缺省，缺省值为空。 |
+|generateBuildHash |标识当前HAP/HSP是否由打包工具生成哈希值。如果存在，则在系统OTA升级但应用的[version下的code](./app-structure.md#version对象内部结构)保持不变时，可根据哈希值判断应用是否需要升级。<br/><strong>注：</strong>该字段仅对预置应用生效。|布尔值|该标签可缺省, 缺省值为false。|
 
 module示例：
 
@@ -310,7 +311,7 @@ abilities示例：
     "label": "$string:example",
     "launchType": "standard",
     "orientation": "unspecified",
-    "permissions": [], 
+    "permissions": [],
     "visible": true,
     "skills": [
       {
@@ -323,11 +324,11 @@ abilities示例：
       }
     ],
     "configChanges": [
-      "locale", 
-      "layout", 
-      "fontSize", 
+      "locale",
+      "layout",
+      "fontSize",
       "orientation"
-    ], 
+    ],
     "type": "page",
     "startWindowIcon": "$media:icon",
     "startWindowBackground": "$color:red",
@@ -397,7 +398,7 @@ skills示例：
   {
     "actions": [
       "action.system.home"
-    ], 
+    ],
     "entities": [
       "entity.system.home"
     ],
@@ -469,11 +470,11 @@ js示例：
 ```json
 "js": [
   {
-    "name": "default", 
-    "pages": [      
+    "name": "default",
+    "pages": [
       "pages/index/index",
       "pages/detail/detail"
-    ],     
+    ],
     "window": {
       "designWidth": 720,
       "autoDesignWidth": false
