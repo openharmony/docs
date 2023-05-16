@@ -31,9 +31,9 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name            | Type                                    | Description       |
 | -------------- | ---------------------------------------- | --------- |
 | scrollable     | [ScrollDirection](#scrolldirection)                        | Scroll direction.<br>Default value: **ScrollDirection.Vertical**|
-| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | Scrollbar status.<br>Default value: **BarState.Auto**|
+| scrollBar      | [BarState](ts-appendix-enums.md#barstate) | Scrollbar status.<br>Default value: **BarState.Auto**<br>**NOTE**<br>If the container component cannot be scrolled, the scrollbar is not displayed. If the size of a child component of a container component is infinite, the scrollbar cannot be dragged or scrolled with the child component.|
 | scrollBarColor | string \| number \| [Color](ts-appendix-enums.md#color)   | Color of the scrollbar.|
-| scrollBarWidth | string \| number         | Width of the scrollbar.|
+| scrollBarWidth | string \| number         | Width of the scrollbar. This attribute cannot be set in percentage.<br>Default value: **4**<br>Unit: vp<br>**NOTE**<br>If the width of the scrollbar exceeds its height, it will change to the default value.|
 | edgeEffect     | [EdgeEffect](ts-appendix-enums.md#edgeeffect)            | Scroll effect. For details, see **EdgeEffect**.<br>Default value: **EdgeEffect.None**|
 
 ## ScrollDirection
@@ -42,18 +42,18 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Horizontal | Only horizontal scrolling is supported.    |
 | Vertical   | Only vertical scrolling is supported.    |
 | None       | Scrolling is disabled.              |
-| Free<sup>(deprecated)</sup> | Vertical or horizontal scrolling is supported.<br>This API is deprecated since API version 9. |
+| Free<sup>(deprecated)</sup> | Vertical or horizontal scrolling is supported.<br>This API is deprecated since API version 9.|
 
 ## Events
 
 | Name                                                        | Description                                                    |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onScrollFrameBegin<sup>9+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | Triggered when each frame scrolling starts. The input parameters indicate the amount by which the **\<Scroll>** component will scroll. The event handler then works out the amount by which the component needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by.<br>\- **state**: current scrolling status.<br>- **offsetRemain**: actual amount by which the component scrolls.|
-| onScroll(event: (xOffset: number, yOffset: number) => void)  | Triggered to return the horizontal and vertical offsets during scrolling when the specified scroll event occurs.         |
-| onScrollEdge(event: (side: Edge) => void)                    | Triggered when scrolling reaches the edge.                                        |
-| onScrollEnd<sup>(deprecated) </sup>(event: () => void)                               | Triggered when scrolling stops.<br>This event is deprecated since API version 9. Use the **onScrollStop** event instead.    |
-| onScrollStart<sup>9+</sup>(event: () => void) | Triggered when scrolling starts and is initiated by the user's finger dragging the **\<Scroll>** component or its scrollbar. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](#scroller) starts.|
-| onScrollStop<sup>9+</sup>(event: () => void) | Triggered when scrolling stops after the user's finger leaves the screen. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](#scroller) stops.|
+| onScrollFrameBegin<sup>9+</sup>(event: (offset: number, state: ScrollState) => { offsetRemain }) | Triggered when each frame scrolling starts. The input parameters indicate the amount by which the **\<Scroll>** component will scroll. The event handler then works out the amount by which the component needs to scroll based on the real-world situation and returns the result.<br>\- **offset**: amount to scroll by.<br>\- **state**: current scrolling status.<br>- **offsetRemain**: actual amount by which the component scrolls.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is not triggered when the controller API is called.<br>3. No out-of-bounds bounce effect is triggered.<br>**NOTE**<br>The value of **offsetRemain** can be a negative value.<br>If the **onScrollFrameBegine** event and **scrollBy** method are used to implement nested scrolling, set the **edgeEffect** attribute of the scrollable child component to **None**. For example, if a **\<List>** is nested in the **\<Scroll>** component, **edgeEffect** of the **\<List>** must be set to **EdgeEffect.None**.|
+| onScroll(event: (xOffset: number, yOffset: number) => void)  | Triggered to return the horizontal and vertical offsets during scrolling when the specified scroll event occurs.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. The out-of-bounds bounce effect is triggered.|
+| onScrollEdge(event: (side: Edge) => void)                    | Triggered when scrolling reaches the edge.<br>**NOTE**<br>1. This event is triggered when scrolling reaches the edge after being started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called.<br>3. The out-of-bounds bounce effect is triggered.|
+| onScrollEnd<sup>(deprecated) </sup>(event: () => void)       | Triggered when scrolling stops.<br>This event is deprecated since API version 9. Use the **onScrollStop** event instead.<br>**NOTE**<br>1. This event is triggered when scrolling is stopped by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called, accompanied by a transition animation.|
+| onScrollStart<sup>9+</sup>(event: () => void)                | Triggered when scrolling starts and is initiated by the user's finger dragging the **\<Scroll>** component or its scrollbar. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](#scroller) starts.<br>**NOTE**<br>1. This event is triggered when scrolling is started by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called, accompanied by a transition animation.|
+| onScrollStop<sup>9+</sup>(event: () => void)                 | Triggered when scrolling stops after the user's finger leaves the screen. This event is also triggered when the animation contained in the scrolling triggered by [Scroller](#scroller) stops.<br>**NOTE**<br>1. This event is triggered when scrolling is stopped by the **\<Scroll>** component or other input settings, such as keyboard and mouse operations.<br>2. This event is triggered when the controller API is called, accompanied by a transition animation.|
 
 >  **NOTE**
 >
@@ -82,9 +82,9 @@ Scrolls to the specified position.
 
 | Name   | Type                                                    | Mandatory| Description                                                    |
 | --------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| xOffset   | number | string                                              | Yes  | Horizontal scrolling offset.                                              |
-| yOffset   | number | string                                              | Yes  | Vertical scrolling offset.                                              |
-| animation | {<br>duration: number,<br>curve: [Curve](ts-appendix-enums.md#curve)<br>} | No  | Animation configuration, which includes the following:<br>- **duration**: scrolling duration.<br>- **curve**: scrolling curve.|
+| xOffset   | number \| string                                   | Yes  | Horizontal scrolling offset.<br>**NOTE**<br>This parameter cannot be set in percentage.<br>This parameter is valid only when the scroll axis is the x-axis.|
+| yOffset   | number \| string                                   | Yes  | Vertical scrolling offset.<br>**NOTE**<br>This parameter cannot be set in percentage.<br>This parameter is valid only when the scroll axis is the y-axis.|
+| animation | {<br>duration: number,<br>curve: [Curve](ts-appendix-enums.md#curve)<br>} | No  | Animation configuration, which includes the following:<br>- **duration**: scrolling duration.<br>- **curve**: scrolling curve.<br>Default value:<br>{<br>duration: 0,<br>curve: Curve.Ease<br>}<br>**NOTE**<br>A value less than 0 evaluates to the default value.|
 
 
 ### scrollEdge
@@ -124,9 +124,9 @@ Obtains the scrolling offset.
 
 **Return value**
 
-| Type                                      | Description                                      |
-| ---------------------------------------- | ---------------------------------------- |
-| {<br>xOffset: number,<br>yOffset: number<br>} | **xOffset**: horizontal scrolling offset.<br>**yOffset**: vertical scrolling offset.|
+| Type                                                      | Description                                                        |
+| ---------------------------------------------------------- | ------------------------------------------------------------ |
+| {<br>xOffset: number,<br>yOffset: number<br>} | **xOffset**: horizontal scrolling offset.<br>**yOffset**: vertical scrolling offset.<br>**NOTE**<br>The unit of the return value is vp.|
 
 
 ### scrollToIndex
@@ -198,7 +198,7 @@ struct ScrollExample {
       .scrollable(ScrollDirection.Vertical)  // The scrollbar scrolls in the vertical direction.
       .scrollBar(BarState.On)  // The scrollbar is always displayed.
       .scrollBarColor(Color.Gray)  // Color of the scrollbar.
-      .scrollBarWidth(30) // Width of the scrollbar.
+      .scrollBarWidth(10) // The scrollbar width is 10.
       .edgeEffect(EdgeEffect.None)
       .onScroll((xOffset: number, yOffset: number) => {
         console.info(xOffset + ' ' + yOffset)
@@ -211,21 +211,25 @@ struct ScrollExample {
       })
 
       Button('scroll 150')
+        .height('5%')
         .onClick(() => { // Click to scroll down to 150.0 vp.
           this.scroller.scrollBy(0,150)
         })
         .margin({ top: 10, left: 20 })
       Button('scroll 100')
+        .height('5%')
         .onClick(() => { // Click to scroll down by 100.0 vp.
           this.scroller.scrollTo({ xOffset: 0, yOffset: this.scroller.currentOffset().yOffset + 100 })
         })
         .margin({ top: 60, left: 20 })
       Button('back top')
+        .height('5%')
         .onClick(() => { // Click to go back to the top.
           this.scroller.scrollEdge(Edge.Top)
         })
         .margin({ top: 110, left: 20 })
       Button('next page')
+        .height('5%')
         .onClick(() => { // Click to go to the next page.
           this.scroller.scrollPage({ next: true })
         })
