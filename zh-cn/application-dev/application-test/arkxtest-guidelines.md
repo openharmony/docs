@@ -256,7 +256,7 @@ UI测试用例执行失败，查看hilog日志发现日志中有“uitest-api do
 
 1.检查用例实现，异步接口增加await语法糖调用。
 
-2.避免多进程执行UI测试用例。
+2.避免多进程执行UI的测试用例。
 
 **3、失败日志有“dose not exist on current UI! Check if the UI has changed after you got the widget object”错误信息**
 
