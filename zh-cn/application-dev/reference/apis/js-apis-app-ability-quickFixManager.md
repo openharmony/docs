@@ -255,7 +255,7 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
 
 revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 
-撤销快速修复的接口。
+撤销快速修复的接口，使用callback方式返回结果。
 
 **需要权限**：ohos.permission.INSTALL_BUNDLE 与 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -272,6 +272,8 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 
 **错误码**：
 
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 18500001 | The bundle is not exist or no patch has applied. |
@@ -284,8 +286,6 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 | 18500004 | Switch hqf failed. |
 | 18500005 | Delete hqf failed. |
 | 18500007 | Unload patch failed. |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -300,7 +300,7 @@ revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
 
 revokeQuickFix(bundleName: string): Promise\<void>;
 
-撤销快速修复的接口。
+撤销快速修复的接口，使用Promise方式返回结果。
 
 **需要权限**：ohos.permission.INSTALL_BUNDLE 与 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -322,6 +322,8 @@ revokeQuickFix(bundleName: string): Promise\<void>;
 
 **错误码**：
 
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------- |
 | 18500001 | The bundle is not exist or no patch has applied. |
@@ -334,8 +336,6 @@ revokeQuickFix(bundleName: string): Promise\<void>;
 | 18500004 | Switch hqf failed. |
 | 18500005 | Delete hqf failed. |
 | 18500007 | Unload patch failed. |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
