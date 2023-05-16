@@ -1178,11 +1178,11 @@ try {
 }
 ```
 
-## getRunningFormInfos
+## getRunningFormInfos<sup>10+</sup>
 
 getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;, hostBundleName?: string): void
 
-获取设备上指定应用为卡片使用方的当前卡片信息。使用callback异步回调。
+获取设备上正在运行的所有非临时卡片信息。使用callback异步回调。
 
 **需要权限**：ohos.permission.REQUIRE_FORM
 
@@ -1192,19 +1192,16 @@ getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| callback | AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt; | 是 | 回调函数。获取设备上指定应用为卡片使用方的当前卡片信息成功，error为undefined，data为查询到的卡片信息；否则为错误对象。 |
-| hostBundleName | string | 否 |  要查询的使用方名称。 <br> 缺省时获取设备上所有卡片使用方的当前卡片信息。 |
+| callback | AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt; | 是 | 回调函数。获取设备上指定应用为卡片使用方的当前卡片信息成功，error为undefined，data为查询到的卡片信息。|
+| hostBundleName | string | 否 |  指定要查询的卡片使用方名称，指定后会仅返回该卡片使用方下正在运行的非临时卡片信息。 <br> 缺省时，返回设备上所有正在运行的非临时卡片信息。 |
 
 **错误码：**
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permissions denied. |
-| 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
-|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+| 16500060 | A service connection error happened, please try again later. ||
 
 **示例：**
 
@@ -1224,11 +1221,11 @@ try {
 }
 ```
 
-## getRunningFormInfos
+## getRunningFormInfos<sup>10+</sup>
 
 getRunningFormInfos(hostBundleName?: string):  Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
 
-获取设备上指定应用为卡片使用方的当前卡片信息。使用Promise异步回调。
+获取设备上正在运行的所有非临时卡片信息。使用Promise异步回调。
 
 **需要权限**：ohos.permission.REQUIRE_FORM
 
@@ -1238,7 +1235,7 @@ getRunningFormInfos(hostBundleName?: string):  Promise&lt;Array&lt;formInfo.Runn
 
 | 参数名 | 类型    | 必填 | 说明    |
 | ------ | ------ | ---- | ------- |
-| hostBundleName | string | 否 |  要查询的使用方名称。 <br> 缺省时获取设备上所有卡片使用方的当前卡片信息。 |
+| hostBundleName | string | 否 |  指定要查询的卡片使用方名称，指定后会仅返回该卡片使用方下正在运行的非临时卡片信息。 <br> 缺省时，返回设备上所有正在运行的非临时卡片信息。 |
 
 **返回值：**
 
@@ -1247,15 +1244,12 @@ getRunningFormInfos(hostBundleName?: string):  Promise&lt;Array&lt;formInfo.Runn
 | Promise&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象，返回查询到的卡片信息。 |
 
 **错误码：**
+以下错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 201 | Permissions denied. |
-| 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
-| 16500060 | A service connection error happened, please try again later. |
-|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+| 16500060 | A service connection error happened, please try again later. ||
 
 **示例：**
 
@@ -1559,7 +1553,7 @@ let callback = function(formId) {
 formHost.off('formUninstall', callback);
 ```
 
-## on('formAdd')
+## on('formAdd')<sup>10+</sup>
 
  on(type: 'formAdd', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
 
@@ -1577,14 +1571,6 @@ formHost.off('formUninstall', callback);
 | callback | Callback&lt;formInfo.RunningFormInfo&gt; | 是 | 回调函数。返回新增卡片的RunningFormInfo。 |
 | bundleName | string | 否 | 指定订阅卡片使用方包的bundleName。缺省则订阅所有卡片使用方的卡片新增事件。 |
 
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
-
 **示例：**
 
 ```ts
@@ -1598,7 +1584,7 @@ formHost.on('formAdd', callback);
 formHost.on('formAdd', callback, bundleName);
 ```
 
-## off('formAdd')
+## off('formAdd')<sup>10+</sup>
 
  off(type: "formAdd", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
 
@@ -1615,14 +1601,6 @@ formHost.on('formAdd', callback, bundleName);
 | type | string | 是   | 填写'formAdd'，表示卡片新增事件。 |
 | callback | Callback&lt;formInfo.RunningFormInfo&gt; | 否 | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br> 需与对应on('formAdd')的callback一致。|
 | bundleName | string | 否 | 指定订阅卡片使用方包的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 缺省则订阅所有卡片使用方的卡片删除事件，与注册时未填写bundleName的on接口相对应。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
@@ -1641,7 +1619,7 @@ formHost.off('formAdd', callback, bundleName);
 > on('formAdd', callback, bundleName)与off('formAdd', callback, bundleName)相对应；
 > 订阅（on）只能由自己对应的取消订阅接口（off）取消。
 
-## on('formRemove')
+## on('formRemove')<sup>10+</sup>
 
  on(type: 'formRemove', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
 
@@ -1659,14 +1637,6 @@ formHost.off('formAdd', callback, bundleName);
 | callback | Callback&lt;formInfo.RunningFormInfo&gt; | 是 | 回调函数。返回删除卡片的RunningFormInfo。 |
 | bundleName | string | 否 | 指定订阅卡片使用方包的bundleName。缺省则订阅所有卡片使用方的卡片删除事件。 |
 
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
-
 **示例：**
 
 ```ts
@@ -1680,7 +1650,7 @@ formHost.on('formRemove', callback);
 formHost.on('formRemove', callback, bundleName);
 ```
 
-## off('formRemove')
+## off('formRemove')<sup>10+</sup>
 
  off(type: "formRemove", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
 
@@ -1697,14 +1667,6 @@ formHost.on('formRemove', callback, bundleName);
 | type | string | 是   | 填写'formRemove'，表示卡片删除事件。 |
 | callback | Callback&lt;formInfo.RunningFormInfo&gt; | 否 | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br> 需与对应on('formRemove')的callback一致。|
 | bundleName | string | 否 | 指定订阅卡片使用方包的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 缺省则订阅所有卡片使用方的卡片删除事件，与注册时未填写bundleName的on接口相对应。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| -------- | -------- |
-| 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
-|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 
