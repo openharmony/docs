@@ -5,7 +5,7 @@
 
 ## 开发应用内HSP
 
-`HSP`模块可以在`DevEco Studio`中由指定模板创建，我们以创建一个名为`library`的`HSP`模块为例。基本的工程目录结构大致如下：
+通过DevEco Studio创建一个HSP模块，创建方式可[参考](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section7717162312546)，我们以创建一个名为`library`的`HSP`模块为例。基本的工程目录结构大致如下：
 ```
 library
 ├── src
@@ -88,7 +88,7 @@ export { MyTitleBar } from './components/MyTitleBar'
 ### 导出native方法
 在`HSP`中也可以包含`C++`编写的`so`。对于`so`中的`native`方法，`HSP`通过间接的方式导出，以导出`libnative.so`的乘法接口`multi`为例：
 ```ts
-// ibrary/src/main/ets/utils/nativeTest.ts
+// library/src/main/ets/utils/nativeTest.ts
 import native from "libnative.so"
 
 export function nativeMulti(a: number, b: number) {
@@ -103,15 +103,9 @@ export { nativeMulti } from './utils/nativeTest'
 ```
 
 ## 使用应用内HSP
-要使用`HSP`中的接口，首先需要在使用方的`oh-package.json5`中配置对它的依赖。如果应用内`HSP`和使用方在同一工程下，可以直接本地引用，例如：
-```json
-// entry/oh-package.json5
-"dependencies": {
-    "library": "file:../library"
-}
-```
-然后就可以像使用`HAR`一样调用`HSP`的对外接口了。
-例如，上面的`library`已经导出了下面这些接口：
+要使用HSP中的接口，首先需要在使用方的oh-package.json5中配置对它的依赖，配置方式可[参考](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section6161154819195)。
+依赖配置成功后，就可以像使用HAR一样调用HSP的对外接口了。 例如，上面的library已经导出了下面这些接口：
+
 ```ts
 // library/src/main/ets/index.ets
 export { Log, add, minus } from './utils/test'
