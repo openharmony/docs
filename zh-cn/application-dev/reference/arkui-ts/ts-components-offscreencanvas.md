@@ -120,6 +120,9 @@ struct OffscreenCanvasPage {
         .height('100%')
         .backgroundColor('#ffff00')
         .onReady(() => {
+          var offContext = this.offCanvas.getContext("2d", this.settings)
+          offContext.font = '70px sans-serif'
+          offContext.fillText("Offscreen : Hello World!", 20, 60)
           var imageData = this.offCanvas.transferToImageBitmap()
           this.context.transferFromImageBitmap(imageData)
         })
@@ -186,7 +189,7 @@ struct OffscreenCanvasExamplePage {
             offContext.stroke()
             offContext.fillStyle = '#FF00FF'
             offContext.fillRect(100, 100, 60, 60)
-            var imageData = offContext.transferToImageBitmap()
+            var imageData = this.offscreenCanvas.transferToImageBitmap()
             this.context.transferFromImageBitmap(imageData)
           })
       }.width('100%').height('100%')
