@@ -20,7 +20,7 @@
 常见的状态类型：
 
 
-  |![1_zh-cn_image_0000001568212890.png](figures/1_zh-cn_image_0000001568212890.png) | ![1_zh-cn_image_0000001568212891.png](figures/1_zh-cn_image_0000001568212891.png) | ![1_zh-cn_image_0000001568212892.png](figures/1_zh-cn_image_0000001568212892.png) |
+  |![1_zh-cn_image_0000001568212890.png](figures/1_zh-cn_image_0000001568212890.png) | ![1_zh-cn_image_0000001568293053.png](figures/1_zh-cn_image_0000001568293053.png) | ![1_zh-cn_image_0000001568212892.png](figures/1_zh-cn_image_0000001568212892.png) |
 | -------- | -------- | -------- |
 |**正常态** <br/>表明当前控件可交互。|**不可用态** <br/>表明当前控件不可交互。 | **点击态** <br/>表明当前控件当前处于点击状态。<br/>手指或鼠标按下且未释放。  | 
  | ![1_zh-cn_image_0000001568212893.png](figures/1_zh-cn_image_0000001568212893.png) |  ![1_zh-cn_image_0000001568212894.png](figures/1_zh-cn_image_0000001568212894.png)  |  ![1_zh-cn_image_0000001568212895.png](figures/1_zh-cn_image_0000001568212895.png) |
