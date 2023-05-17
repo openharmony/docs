@@ -5,6 +5,7 @@
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块接口需激活为[设备管理员应用](js-apis-enterprise-adminManager.md#adminmanagerenableadmin)后才能调用，实现相应功能。
 
 ## 导入模块
 
@@ -49,7 +50,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
 applicationManager.addDisallowedRunningBundles(wantTemp, appIds, (error) => {
     if (error != null) {
@@ -95,7 +96,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
 applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100, (error) => {
     if (error != null) {
@@ -146,7 +147,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
 applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100).then(() => {
     console.log("success");
@@ -191,7 +192,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
 applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, (error) => {
     if (error != null) {
@@ -237,7 +238,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
 applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100, (error) => {
     if (error != null) {
@@ -288,7 +289,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
 applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100).then(() => {
     console.log("success");
