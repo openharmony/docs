@@ -23,9 +23,9 @@ In this example, the basic composition of ArkTS is as follows.
 
 - [Custom component](arkts-create-custom-components.md): reusable UI unit, which can be combined with other components, such as the struct **Hello** decorated by @Component.
 
-- Built-in component: default basic or container component preset in ArkTS, which can be directly invoked, such as** \<Column>**,** \<Text>**, **\<Divider>**, and **\<Button>** components in the sample code.
+- Built-in component: default basic or container component preset in ArkTS, which can be directly invoked, such as **\<Column>**, **\<Text>**, **\<Divider>**, and **\<Button>** components in the sample code.
 
-- Attribute method: method used to configure component attributes, such as **fontSize()**, **width()**, **height()**, and **color()**. You can configure multiple attributes of a component in method chaining mode.
+- Attribute method: method used to configure component attributes, such as **fontSize()**, **width()**, **height()**, and **backgroundColor()**. You can configure multiple attributes of a component in method chaining mode.
 
 - Event method: method used to add the logic for a component to respond to an event. In the sample code, **onClick()** following **Button** is an event method. You can configure response logic for multiple events in method chaining mode.
 
