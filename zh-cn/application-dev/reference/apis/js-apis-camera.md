@@ -551,8 +551,8 @@ on(type: 'cameraStatus', callback: AsyncCallback\<CameraStatusInfo\>): void
 
 ```js
 cameraManager.on('cameraStatus', (cameraStatusInfo) => {
-    console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
-    console.log(`status: ${cameraStatusInfo.status}`);
+    console.log(`camera : ${cameraStatusInfo.cameraDevice.GetID()}`);
+    console.log(`status: ${cameraStatusInfo.cameraStatus}`);
 })
 ```
 
@@ -1680,7 +1680,7 @@ setMeteringPoint(point: Point): void
 
 | 参数名           | 类型                            | 必填 | 说明                 |
 | ------------- | -------------------------------| ---- | ------------------- |
-| exposurePoint | [Point](#point)                | 是   | 曝光点。              |
+| exposurePoint | [Point](#point)                | 是   | 曝光点。 设置范围应在[0,1]之内， 超过范围，如果小于0设置0，大于1设置1             |
 
 **返回值：**
 
@@ -1755,7 +1755,7 @@ setExposureBias(exposureBias: number): void
 
 | 参数名     | 类型                            | 必填 | 说明                 |
 | -------- | -------------------------------| ---- | ------------------- |
-| exposureBias   | number                   | 是   | 曝光补偿,getExposureBiasRange查询支持的范围,接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode) |
+| exposureBias   | number                   | 是   | 曝光补偿,getExposureBiasRange查询支持的范围,接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode), 如果设置超过支持范围的值，自动匹配到就近临界点 |
 
 **错误码：**
 
@@ -1938,7 +1938,7 @@ setFocusPoint(point: Point): void
 
 | 参数名      | 类型                     | 必填 | 说明                 |
 | -------- | ----------------------- | ---- | ------------------- |
-| Point1    | [Point](#point)         | 是   | 焦点。                |
+| Point1    | [Point](#point)         | 是   | 焦点。设置范围应在[0,1]之内， 超过范围，如果小于0设置0，大于1设置1   |
 
 **返回值：**
 
@@ -2737,7 +2737,7 @@ capture(setting?: PhotoCaptureSetting): Promise\<void\>
 
 | 参数名     | 类型                                         | 必填 | 说明      |
 | ------- | ------------------------------------------- | ---- | -------- |
-| setting | [PhotoCaptureSetting](#photocapturesetting) | 否   | 拍照设置。 |
+| setting | [PhotoCaptureSetting](#photocapturesetting) | 否   | 拍照设置, 传入undefined 类型数据按默认无参处理 |
 
 **返回值：**
 
