@@ -139,7 +139,7 @@ scrollToIndex(value: number): void
 
 >  **说明：**
 >
->  仅支持Grid、List组件。
+>  仅支持Grid、List、WaterFlow组件。
 
 **参数：**
 
