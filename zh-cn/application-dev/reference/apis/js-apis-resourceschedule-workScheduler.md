@@ -130,7 +130,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 | 参数名      | 类型                                    | 必填   | 说明                                       |
 | -------- | ------------------------------------- | ---- | ---------------------------------------- |
 | workId   | number                                | 是    | work的id。                                 |
-| callback | AsyncCallback\<[WorkInfo](#workinfo)> | 是    | 指定的callback回调方法。如果指定的工作Id有效，则返回从WorkSchedulerService获取的有效工作状态；否则返回null。 |
+| callback | AsyncCallback\<[WorkInfo](#workinfo)> | 是    | 指定的callback回调方法。如果指定的工作Id有效，则返回从WorkSchedulerService获取的有效工作状态；否则抛出异常。 |
 
 **错误码**：
 
@@ -178,7 +178,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 | 类型                              | 说明                                       |
 | ------------------------------- | ---------------------------------------- |
-| Promise\<[WorkInfo](#workinfo)> | 指定的Promise回调方法。如果指定的工作ID有效，则返回从WorkSchedulerService获取的有效工作状态；否则返回null。 |
+| Promise\<[WorkInfo](#workinfo)> | 指定的Promise回调方法。如果指定的工作ID有效，则返回从WorkSchedulerService获取的有效工作状态；否则抛出异常。 |
 
 **错误码**：
 

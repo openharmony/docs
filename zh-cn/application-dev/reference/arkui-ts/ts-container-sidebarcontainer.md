@@ -13,7 +13,7 @@
 
 >  **说明：**
 >
->  - 子组件类型：系统组件和自定义组件，不支持渲染控制类型（[if/else](../../quick-start/arkts-rendering-control.md#条件渲染)、[ForEach](quick-start/arkts-rendering-control.md#循环渲染)和[LazyForEach](quick-start/arkts-rendering-control.md#数据懒加载)）。
+>  - 子组件类型：系统组件和自定义组件，不支持渲染控制类型（[if/else](../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)）。
 >  - 子组件个数：必须且仅包含2个子组件。
 >  - 子组件个数异常时：3个或以上子组件，显示第一个和第二个。1个子组件，显示侧边栏，内容区为空白。
 
@@ -41,7 +41,7 @@ SideBarContainer( type?: SideBarContainerType )
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| showSideBar | boolean | 设置是否显示侧边栏。<br/>默认值：true |
+| showSideBar | boolean | 设置是否显示侧边栏。<br/>默认值：true<br />从API version 10开始，该属性支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | controlButton | [ButtonStyle](#buttonstyle对象说明)                            | 设置侧边栏控制按钮的属性。 |
 | showControlButton | boolean | 设置是否显示控制按钮。<br/>默认值：true |
 | sideBarWidth | number&nbsp;\|&nbsp;[Length](ts-types.md#length)<sup>9+</sup> | 设置侧边栏的宽度。<br/>默认值：200<br/>单位：vp<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>受最小宽度和最大宽度限制，不在限制区域内取最近的点。<br/>sideBarWidth优先于侧边栏子组件width，sideBarWidth未设置时默认值优先级低于侧边栏子组件width。 |
@@ -104,14 +104,13 @@ SideBarContainer( type?: SideBarContainerType )
 @Entry
 @Component
 struct SideBarContainerExample {
-  normalIcon : Resource = $r("app.media.icon")
+  normalIcon: Resource = $r("app.media.icon")
   selectedIcon: Resource = $r("app.media.icon")
   @State arr: number[] = [1, 2, 3]
   @State current: number = 1
 
   build() {
-    SideBarContainer(SideBarContainerType.Embed)
-    {
+    SideBarContainer(SideBarContainerType.Embed) {
       Column() {
         ForEach(this.arr, (item, index) => {
           Column({ space: 5 }) {
@@ -136,6 +135,13 @@ struct SideBarContainerExample {
       }
       .margin({ top: 50, left: 20, right: 30 })
     }
+    .controlButton({
+      icons: {
+        hidden: $r('app.media.drawer'),
+        shown: $r('app.media.drawer'),
+        switching: $r('app.media.drawer')
+      }
+    })
     .sideBarWidth(150)
     .minSideBarWidth(50)
     .maxSideBarWidth(300)

@@ -570,6 +570,7 @@ try {
 | -------- | -------- | -------- |
 | ACTION_BUTTON_TYPE_CLOSE | 0 | 表示关闭提醒的按钮。 |
 | ACTION_BUTTON_TYPE_SNOOZE | 1 | 表示延迟提醒的按钮。 |
+| ACTION_BUTTON_TYPE_CUSTOM<sup>10+</sup>  | 2 | 表示自定义的按钮。（系统接口） |
 
 
 ## ReminderType
@@ -595,18 +596,20 @@ try {
 | -------- | -------- | -------- | -------- |
 | title | string | 是 | 按钮显示的标题。 |
 | type | [ActionButtonType](#actionbuttontype) | 是 | 按钮的类型。 |
+| wantAgent<sup>10+</sup> | [WantAgent](#wantagent) | 否 | 点击按钮跳转的ability信息。（系统接口） |
 
 
 ## WantAgent
 
-点击提醒通知后跳转的目标`ability`信息。
+跳转目标的ability信息。
 
 **系统能力**：`SystemCapability.Notification.ReminderAgent`
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pkgName | string | 是 | 指明点击提醒通知栏后跳转的目标HAP名。 |
-| abilityName | string | 是 | 指明点击提醒通知栏后跳转的目标ability名称。 |
+| pkgName | string | 是 | 指明跳转的目标包名。 |
+| abilityName | string | 是 | 指明跳转的目标ability名称。 |
+| uri | string<sup>10+</sup> | 否 | 指明跳转目标的uri信息。（系统接口） |
 
 
 ## MaxScreenWantAgent
@@ -617,7 +620,7 @@ try {
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pkgName | string | 是 | 指明提醒到达时自动拉起的目标HAP名（如果设备在使用中，则只弹出通知横幅框）。 |
+| pkgName | string | 是 | 指明提醒到达时自动拉起的目标包名（如果设备在使用中，则只弹出通知横幅框）。 |
 | abilityName | string | 是 | 指明提醒到达时自动拉起的目标ability名（如果设备在使用中，则只弹出通知横幅框）。 |
 
 
@@ -630,18 +633,20 @@ try {
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | reminderType | [ReminderType](#remindertype) | 是 | 指明提醒类型。 |
-| actionButton | [ActionButton](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮（参数可选，支持0/1/2个按钮）。 |
+| actionButton | [ActionButton](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮（参数可选。普通应用：最多支持两个按钮，系统应用：API9最多支持两个按钮，API10及以后最多支持三个按钮。）。 |
 | wantAgent | [WantAgent](#wantagent) | 否 | 点击通知后需要跳转的目标ability信息。 |
 | maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时跳转的目标包。如果设备正在使用中，则弹出一个通知框。 |
 | ringDuration | number | 否 | 指明响铃时长（单位：秒），默认1秒。 |
 | snoozeTimes | number | 否 | 指明延迟提醒次数，默认0次。 |
-| timeInterval | number | 否 | 执行延迟提醒间隔（单位：秒），默认0秒。 |
+| timeInterval | number | 否 | 执行延迟提醒间隔（单位：秒），最少5分钟。 |
 | title | string | 否 | 指明提醒标题。 |
 | content | string | 否 | 指明提醒内容。 |
 | expiredContent | string | 否 | 指明提醒过期后需要显示的内容。 |
 | snoozeContent | string | 否 | 指明延迟提醒时需要显示的内容。 |
 | notificationId | number | 否 | 指明提醒使用的通知的id号，相同id号的提醒会覆盖。 |
-| slotType | [notification.SlotType](js-apis-notification.md#slottype) | 否 | 指明提醒的slot类型。 |
+| slotType | [notification.SlotType](js-apis-notificationManager.md#slottype) | 否 | 指明提醒的slot类型。 |
+| tapDismissed<sup>10+</sup> | boolean | 否 | 通知是否自动清除，同[NotificationRequest.tapDismissed](js-apis-inner-notification-notificationRequest.md#notificationrequest)。 |
+| autoDeletedTime<sup>10+</sup> | number | 否 | 自动清除的时间，同[NotificationRequest.autoDeletedTime](js-apis-inner-notification-notificationRequest.md#notificationrequest)。 |
 
 
 ## ReminderRequestCalendar

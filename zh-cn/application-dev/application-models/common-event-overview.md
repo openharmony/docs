@@ -7,7 +7,7 @@ OpenHarmony通过CES（Common Event Service，公共事件服务）为应用程�
 公共事件从系统角度可分为：系统公共事件和自定义公共事件。
 
 
-- 系统公共事件：CES内部定义的公共事件，只有系统应用和系统服务才能发布，例如HAP安装，更新，卸载等公共事件。目前支持的系统公共事件详见[系统公共事件列表](../reference/apis/js-apis-commonEventManager.md#support)。
+- 系统公共事件：CES内部定义的公共事件，只有系统应用和系统服务才能发布，例如HAP安装，更新，卸载等公共事件。目前支持的系统公共事件详见[系统公共事件列表](../reference/apis/commonEventManager-definitions.md)。
 
 - 自定义公共事件：应用自定义一些公共事件用来实现跨进程的事件通信能力。
 
@@ -24,5 +24,5 @@ OpenHarmony通过CES（Common Event Service，公共事件服务）为应用程�
 
 每个应用都可以按需订阅公共事件，订阅成功，当公共事件发布时，系统会将其发送给对应的应用。这些公共事件可能来自系统、其他应用和应用自身。
 
-  **图1** 公共事件示意图   
+**图1** 公共事件示意图  
 ![common-event](figures/common-event.png)

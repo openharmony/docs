@@ -148,7 +148,6 @@ Creates an app account with custom data. This API uses a promise to return the r
 | 12300002 | Invalid name or options. |
 | 12300004 | Account already exists. |
 | 12300007 | The number of accounts reaches the upper limit. |
-| 12400003 | The number of custom data reaches the upper limit. |
 
 **Example**
 
@@ -248,7 +247,7 @@ Creates an app account implicitly based on the specified account owner and optio
 | ID| Error Message|
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or options. |
+| 12300002 | Invalid owner or options. |
 | 12300007 | The number of accounts reaches the upper limit. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
@@ -481,7 +480,6 @@ Checks whether an app can access the data of an account. This API uses an asynch
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or bundleName. |
 | 12300003 | Account not found. |
-| 12400001 | Application not found. |
 
 **Example**
 
@@ -527,7 +525,6 @@ Checks whether an app can access the data of an account. This API uses a promise
 | 12300001 | System service exception. |
 | 12300002 | Invalid name or bundleName. |
 | 12300003 | Account not found. |
-| 12400001 | Application not found. |
 
 **Example**
 
@@ -903,7 +900,7 @@ Sets custom data for an app account. This API uses an asynchronous callback to r
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or key or value. |
+| 12300002 | Invalid name, key, or value. |
 | 12300003 | Account not found. |
 | 12400003 | The number of custom data reaches the upper limit. |
 
@@ -950,7 +947,7 @@ Sets custom data for an app account. This API uses a promise to return the resul
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or key or value. |
+| 12300002 | Invalid name, key, or value. |
 | 12300003 | Account not found. |
 | 12400003 | The number of custom data reaches the upper limit. |
 
@@ -1267,7 +1264,6 @@ Subscribes to account information changes of apps.
 | ------- | ------- |
 | 12300001 | System service exception. |
 | 12300002 | Invalid type or owners. |
-| 12300011 | Callback has been registered. |
 | 12400001 | Application not found. |
 
 **Example**
@@ -1304,7 +1300,6 @@ Unsubscribes from account information changes.
 | ------- | -------|
 | 12300001 | System service exception. |
 | 12300002 | Invalid type. |
-| 12300012 | Callback has not been registered. |
 
 **Example**
 
@@ -1347,7 +1342,7 @@ Authenticates an app account. This API uses an asynchronous callback to return t
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or authType. |
+| 12300002 | Invalid name, owner, or authType. |
 | 12300003 | Account not found. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
@@ -1410,8 +1405,8 @@ Authenticates an app account with customized options. This API uses an asynchron
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or authType. |
-| 12300003 | Account not exist. |
+| 12300002 | Invalid name, owner, authType, or options. |
+| 12300003 | Account not found. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
 | 12300114 | Authenticator service exception. |
@@ -1522,7 +1517,7 @@ Obtains the authorization token of the specified authentication type for an app 
 | ID| Error Message|
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or authType. |
+| 12300002 | Invalid name, owner, or authType. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 
@@ -1562,7 +1557,7 @@ Sets an authorization token of the specific authentication type for an app accou
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or authType or token. |
+| 12300002 | Invalid name, authType, or token. |
 | 12300003 | Account not found. |
 | 12400004 | The number of token reaches the upper limit. |
 
@@ -1609,7 +1604,7 @@ Sets an authorization token of the specific authentication type for an app accou
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or authType or token. |
+| 12300002 | Invalid name, authType, or token. |
 | 12300003 | Account not found. |
 | 12400004 | The number of token reaches the upper limit. |
 
@@ -1650,7 +1645,7 @@ Deletes the authorization token of the specified authentication type for an app 
 | ID| Error Message|
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or authType or token. |
+| 12300002 | Invalid name, owner, authType, or token. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 
@@ -1698,7 +1693,7 @@ Deletes the authorization token of the specified authentication type for an app 
 | ID| Error Message|
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or authType or token. |
+| 12300002 | Invalid name, owner, authType, or token. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 
@@ -1739,7 +1734,7 @@ Sets the visibility of an authorization token to an app. This API uses an asynch
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or authType or bundleName. |
+| 12300002 | Invalid name, authType, or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 | 12400001 | Application not found. |
@@ -1789,7 +1784,7 @@ Sets the visibility of an authorization token to an app. This API uses a promise
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or authType or bundleName. |
+| 12300002 | Invalid name, authType, or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
 | 12400001 | Application not found. |
@@ -1831,10 +1826,9 @@ Checks the visibility of an authorization token of the specified authentication 
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or authType or bundleName. |
+| 12300002 | Invalid name, authType, or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
-| 12400001 | Application not found. |
 
 **Example**
 
@@ -1879,10 +1873,9 @@ Checks the visibility of an authorization token of the specified authentication 
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or authType or bundleName. |
+| 12300002 | Invalid name, authType, or bundleName. |
 | 12300003 | Account not found. |
 | 12300107 | AuthType not found. |
-| 12400001 | Application not found. |
 
 **Example**
 
@@ -2092,31 +2085,34 @@ Obtains the authenticator callback for the authentication session. This API uses
 **Example**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-  featureAbility.getWant((err, want) => {
-    var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
-    try {
-      appAccountManager.getAuthCallback(sessionId, (err, callback) => {
-        if (err.code != account_appAccount.ResultCode.SUCCESS) {
-            console.log("getAuthCallback err: "  + JSON.stringify(err));
-            return;
-        }
-        var result = {
-          accountInfo: {
-            name: "Lisi",
-            owner: "com.example.accountjsdemo",
-          },
-          tokenInfo: {
-            token: "xxxxxx",
-            authType: "getSocialData"
+  import UIAbility from '@ohos.app.ability.UIAbility';
+
+  export default class EntryAbility extends UIAbility {
+    onCreate(want, param) {
+      var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
+      try {
+        appAccountManager.getAuthCallback(sessionId, (err, callback) => {
+          if (err != null) {
+              console.log("getAuthCallback err: "  + JSON.stringify(err));
+              return;
           }
-        }; 
-        callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
-      });
-    } catch (err) {
-        console.log("getAuthCallback exception: "  + JSON.stringify(err));
+          var result = {
+            accountInfo: {
+              name: "Lisi",
+              owner: "com.example.accountjsdemo",
+            },
+            tokenInfo: {
+              token: "xxxxxx",
+              authType: "getSocialData"
+            }
+          }; 
+          callback.onResult(0, result);
+        });
+      } catch (err) {
+          console.log("getAuthCallback exception: "  + JSON.stringify(err));
+      }
     }
-  });
+  }
   ```
 
 ### getAuthCallback<sup>9+</sup>
@@ -2150,9 +2146,10 @@ Obtains the authenticator callback for the authentication session. This API uses
 **Example**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
+  import UIAbility from '@ohos.app.ability.UIAbility';
 
-  featureAbility.getWant().then((want) => {
+  export default class EntryAbility extends UIAbility {
+    onCreate(want, param) {
       var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
       try {
         appAccountManager.getAuthCallback(sessionId).then((callback) => {
@@ -2166,16 +2163,15 @@ Obtains the authenticator callback for the authentication session. This API uses
             authType: "getSocialData"
           }
         };
-        callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+        callback.onResult(0, result);
         }).catch((err) => {
-            console.log("getAuthCallback err: "  + JSON.stringify(err));
+          console.log("getAuthCallback err: "  + JSON.stringify(err));
         });
       } catch (err) {
         console.log("getAuthCallback exception: "  + JSON.stringify(err));
       }
-  }).catch((err) => {
-      console.log("getWant err: "  + JSON.stringify(err));
-  });
+    }
+  }
   ```
 
 ### queryAuthenticatorInfo<sup>9+</sup>
@@ -2281,7 +2277,7 @@ Checks whether an app account has specific labels. This API uses an asynchronous
 | ID| Error Message|
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or labels. |
+| 12300002 | Invalid name, owner, or labels. |
 | 12300003 | Account not found. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
@@ -2331,7 +2327,7 @@ Checks whether an app account has specific labels. This API uses a promise to re
 | ID| Error Message|
 | ------- | ------- |
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or labels. |
+| 12300002 | Invalid name, owner, or labels. |
 | 12300003 | Account not found. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
@@ -2594,7 +2590,7 @@ Verifies the user credential. This API uses an asynchronous callback to return t
 | ID| Error Message|
 | ------- | -------|
 | 12300001 | System service exception. |
-| 12300002 | Invalid name or owner or options. |
+| 12300002 | Invalid name, owner, or options. |
 | 12300003 | Account not found. |
 | 12300010 | Account service busy. |
 | 12300113 | Authenticator service not found. |
@@ -2775,7 +2771,8 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 
 Adds an app account name and additional information. This API uses an asynchronous callback to return the result. This API uses a promise to return the result.
 
-> **NOTE**<br> 
+> **NOTE**
+> 
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [createAccount](#createaccount9-2).
 
 **System capability**: SystemCapability.Account.AppAccount
@@ -4288,10 +4285,12 @@ Obtains the authenticator callback for an authentication session. This API uses 
 **Example**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
-  featureAbility.getWant((err, want) => {
-    var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
-    appAccountManager.getAuthenticatorCallback(sessionId, (err, callback) => {
+  import UIAbility from '@ohos.app.ability.UIAbility';
+
+  export default class EntryAbility extends UIAbility {
+    onCreate(want, param) {
+      var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
+      appAccountManager.getAuthenticatorCallback(sessionId, (err, callback) => {
         if (err.code != account_appAccount.ResultCode.SUCCESS) {
             console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
             return;
@@ -4301,8 +4300,9 @@ Obtains the authenticator callback for an authentication session. This API uses 
                       [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
                       [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
         callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
-    });
-  });
+      });
+    }
+  }
   ```
 
 ### getAuthenticatorCallback<sup>(deprecated)</sup>
@@ -4332,22 +4332,22 @@ Obtains the authenticator callback for an authentication session. This API uses 
 **Example**
 
   ```js
-  import featureAbility from '@ohos.ability.featureAbility';
+  import UIAbility from '@ohos.app.ability.UIAbility';
 
-  featureAbility.getWant().then((want) => {
+  export default class EntryAbility extends UIAbility {
+    onCreate(want, param) {
       var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
       appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
-          var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
-                        [account_appAccount.Constants.KEY_OWNER]: "com.example.accountjsdemo",
-                        [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
-                        [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
-          callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
+        var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
+                      [account_appAccount.Constants.KEY_OWNER]: "com.example.accountjsdemo",
+                      [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
+                      [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+        callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }).catch((err) => {
-          console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
+        console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
       });
-  }).catch((err) => {
-      console.log("getWant err: "  + JSON.stringify(err));
-  });
+    }
+  }
   ```
 
 ### getAuthenticatorInfo<sup>(deprecated)</sup>
@@ -4561,7 +4561,8 @@ Enumerates the constants.
 
 Enumerates the result codes.
 
-> **NOTE**<br>
+> **NOTE**
+> 
 > This enum is supported since API version 8 and deprecated since API version 9. Error codes are used from API version 9. For details, see [Account Management Error Codes](../errorcodes/errorcode-account.md).
 
 **System capability**: SystemCapability.Account.AppAccount

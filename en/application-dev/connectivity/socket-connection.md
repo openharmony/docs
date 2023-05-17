@@ -186,136 +186,136 @@ TLS Socket connection process on the client:
 ```js
    import socket from '@ohos.net.socket'
 
-   // Create a TLS Socket connection (for two-way authentication).
-   let tlsTwoWay = socket.constructTLSSocketInstance();
+// Create a TLS Socket connection (for two-way authentication).
+let tlsTwoWay = socket.constructTLSSocketInstance();
 
-   // Subscribe to TLS Socket connection events.
-   tlsTwoWay.on('message', value => {
-       console.log("on message")
-       let buffer = value.message
-       let dataView = new DataView(buffer)
-       let str = ""
-       for (let i = 0; i < dataView.byteLength; ++i) {
-           str += String.fromCharCode(dataView.getUint8(i))
-       }
-       console.log("on connect received:" + str)
-   });
-   tlsTwoWay.on('connect', () => {
-       console.log("on connect")
-   });
-   tlsTwoWay.on('close', () => {
-       console.log("on close")
-   });
+// Subscribe to TLS Socket connection events.
+tlsTwoWay.on('message', value => {
+  console.log("on message")
+  let buffer = value.message
+  let dataView = new DataView(buffer)
+  let str = ""
+  for (let i = 0; i < dataView.byteLength; ++i) {
+    str += String.fromCharCode(dataView.getUint8(i))
+  }
+  console.log("on connect received:" + str)
+});
+tlsTwoWay.on('connect', () => {
+  console.log("on connect")
+});
+tlsTwoWay.on('close', () => {
+  console.log("on close")
+});
 
-   // Bind the local IP address and port number.
-   tlsTwoWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
-       if (err) {
-           console.log('bind fail');
-           return;
-       }
-       console.log('bind success');
-   });
+// Bind the local IP address and port number.
+tlsTwoWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
 
-   // Set the communication parameters.
-   let options = {
-       ALPNProtocols: ["spdy/1", "http/1.1"],
+// Set the communication parameters.
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
 
-       // Set up a connection to the specified IP address and port number.
-       address: {
-           address: "192.168.xx.xxx",
-           port: xxxx, // Port
-           family: 1,
-       },
+  // Set up a connection to the specified IP address and port number.
+  address: {
+    address: "192.168.xx.xxx",
+    port: xxxx, // Port
+    family: 1,
+  },
 
-       // Set the parameters used for authentication during communication.
-       secureOptions: {
-           key: "xxxx",                            // Key
-           cert: "xxxx",                           // Digital certificate
-           ca: ["xxxx"],                           // CA certificate
-           passwd: "xxxx",                         // Password for generating the key
-           protocols: [socket.Protocol.TLSv12],    // Communication protocol
-           useRemoteCipherPrefer: true,            // Whether to preferentially use the peer cipher suite
-           signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",    // Signature algorithm
-           cipherSuite: "AES256-SHA256",           // Cipher suite
-       },
-   };
+  // Set the parameters used for authentication during communication.
+  secureOptions: {
+    key: "xxxx",                            // Key
+    cert: "xxxx",                           // Digital certificate
+    ca: ["xxxx"],                           // CA certificate
+    passwd: "xxxx",                         // Password for generating the key
+    protocols: [socket.Protocol.TLSv12],    // Communication protocol
+    useRemoteCipherPrefer: true,            // Whether to preferentially use the peer cipher suite
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",    // Signature algorithm
+    cipherSuite: "AES256-SHA256",           // Cipher suite
+  },
+};
 
-   // Set up a connection.
-   tlsTwoWay.connect(options, (err, data) => {
-       console.error(err);
-       console.log(data);
-   });
+// Set up a connection.
+tlsTwoWay.connect(options, (err, data) => {
+  console.error(err);
+  console.log(data);
+});
 
-   // Enable the TCP Socket connection to be automatically closed after use. Then, disable listening for TCP Socket connection events.
-   tlsTwoWay.close((err) => {
-       if (err) {
-           console.log("close callback error = " + err);
-       } else {
-           console.log("close success");
-       }
-       tlsTwoWay.off('message');
-       tlsTwoWay.off('connect');
-       tlsTwoWay.off('close');
-   });
+// Enable the TCP Socket connection to be automatically closed after use. Then, disable listening for TCP Socket connection events.
+tlsTwoWay.close((err) => {
+  if (err) {
+    console.log("close callback error = " + err);
+  } else {
+    console.log("close success");
+  }
+  tlsTwoWay.off('message');
+  tlsTwoWay.off('connect');
+  tlsTwoWay.off('close');
+});
 
-   // Create a TLS Socket connection (for one-way authentication).
-   let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
+// Create a TLS Socket connection (for one-way authentication).
+let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
 
-   // Subscribe to TLS Socket connection events.
-   tlsTwoWay.on('message', value => {
-       console.log("on message")
-       let buffer = value.message
-       let dataView = new DataView(buffer)
-       let str = ""
-       for (let i = 0;i < dataView.byteLength; ++i) {
-           str += String.fromCharCode(dataView.getUint8(i))
-       }
-       console.log("on connect received:" + str)
-   });
-   tlsTwoWay.on('connect', () => {
-       console.log("on connect")
-   });
-   tlsTwoWay.on('close', () => {
-       console.log("on close")
-   });
+// Subscribe to TLS Socket connection events.
+tlsTwoWay.on('message', value => {
+  console.log("on message")
+  let buffer = value.message
+  let dataView = new DataView(buffer)
+  let str = ""
+  for (let i = 0; i < dataView.byteLength; ++i) {
+    str += String.fromCharCode(dataView.getUint8(i))
+  }
+  console.log("on connect received:" + str)
+});
+tlsTwoWay.on('connect', () => {
+  console.log("on connect")
+});
+tlsTwoWay.on('close', () => {
+  console.log("on close")
+});
 
-   // Bind the local IP address and port number.
-   tlsOneWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
-       if (err) {
-           console.log('bind fail');
-           return;
-       }
-       console.log('bind success');
-   });
+// Bind the local IP address and port number.
+tlsOneWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
 
-   // Set the communication parameters.
-   let oneWayOptions = {
-       address: {
-           address: "192.168.xxx.xxx",
-           port: xxxx,
-           family: 1,
-       },
-       secureOptions: {
-           ca: ["xxxx","xxxx"],            // CA certificate
-           cipherSuite: "AES256-SHA256",   // Cipher suite
-       },
-   };
+// Set the communication parameters.
+let oneWayOptions = {
+  address: {
+    address: "192.168.xxx.xxx",
+    port: xxxx,
+    family: 1,
+  },
+  secureOptions: {
+    ca: ["xxxx","xxxx"],            // CA certificate
+    cipherSuite: "AES256-SHA256",   // Cipher suite
+  },
+};
 
-   // Set up a connection.
-   tlsOneWay.connect(oneWayOptions, (err, data) => {
-       console.error(err);
-       console.log(data);
-   });
+// Set up a connection.
+tlsOneWay.connect(oneWayOptions, (err, data) => {
+  console.error(err);
+  console.log(data);
+});
 
-   // Enable the TCP Socket connection to be automatically closed after use. Then, disable listening for TCP Socket connection events.
-   tlsTwoWay.close((err) => {
-       if (err) {
-           console.log("close callback error = " + err);
-       } else {
-           console.log("close success");
-       }
-       tlsTwoWay.off('message');
-       tlsTwoWay.off('connect');
-       tlsTwoWay.off('close');
-   });
+// Enable the TCP Socket connection to be automatically closed after use. Then, disable listening for TCP Socket connection events.
+tlsTwoWay.close((err) => {
+  if (err) {
+    console.log("close callback error = " + err);
+  } else {
+    console.log("close success");
+  }
+  tlsTwoWay.off('message');
+  tlsTwoWay.off('connect');
+  tlsTwoWay.off('close');
+});
 ```

@@ -1,5 +1,9 @@
 # Pasteboard Error Codes
 
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
+
 ## 12900001 Index Out of Range
 
 **Error Message**

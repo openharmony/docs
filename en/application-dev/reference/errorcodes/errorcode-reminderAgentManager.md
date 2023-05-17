@@ -1,5 +1,9 @@
 # reminderAgentManager Error Codes
 
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
+
 ## 1700001 Notification Disabled
 
 **Error Message**
@@ -32,8 +36,8 @@ The number of reminders exceeds the limit when **publishReminder()** is called.
 
 **Possible Causes**
 
-1. There are already 2000 reminders for the entire system.
-2. There are already 30 reminders for the application.
+1. The number of reminders generated for the entire system exceeds 2000 in API version 9 or 12000 in API version 10 or later.
+2. The number of reminders generated for the application exceeds 30 in API version 9 or 30 (for a common application) or 10000 (for a system application) in API version 10 or later.
 
 **Solution**
 

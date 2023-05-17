@@ -45,9 +45,9 @@ BLE connection parameters can be configured, and the connection process is optim
 | Software/Tool| Version| Remarks|
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2 Beta5 | NA |
-| Public SDK | Ohos_sdk_public 3.2.10.6 (API Version 9 Beta5) | This toolkit is intended for application developers and does not contain system APIs that require system permissions. It is provided as standard in DevEco Studio.|
-| (Optional) HUAWEI DevEco Studio| *To be released*| Recommended for developing OpenHarmony applications|
-| (Optional) HUAWEI DevEco Device Tool| *To be released*| Recommended for developing OpenHarmony smart devices|
+| Public SDK | Ohos_sdk_public 3.2.10.6 (API Version 9 Beta5) | This toolkit is intended for application developers and does not contain system APIs that require system permissions.<br>It is provided as standard in DevEco Studio.|
+| (Optional) HUAWEI DevEco Studio| 3.1 Beta1 | Recommended for developing OpenHarmony applications |
+| (Optional) HUAWEI DevEco Device Tool| 3.1 Beta2 | Recommended for developing OpenHarmony smart devices |
 
 
 ## Source Code Acquisition
@@ -137,9 +137,9 @@ This version has the following updates to OpenHarmony 3.2 Beta4.
 
 ### SDK Updates
 
-From this version, only the public SDK is released. It can also be downloaded through DevEco Studio.
+From this version on, only the public SDK is released. You can obtain the public SDK from the mirror or download it from DevEco Studio for your application development.
 
-To use the full SDK, you must download the source code, build the source code, and switch to the full SDK. For details, see [Guide to Building Full SDK](../application-dev/quick-start/full-sdk-compile-guide.md).
+To use the full SDK that contains system APIs, you must download the full code, compile and build an SDK file, and switch to the full SDK on DevEco Studio. For details about how to compile the full SDK using the source code, see [Full SDK Compilation Guide](../application-dev/quick-start/full-sdk-compile-guide.md).
 
 
 ### Feature Updates
@@ -162,28 +162,28 @@ To use the full SDK, you must download the source code, build the source code, a
 | File storage| - Unified URI processing is added for application files.<br>- Temporary authorization and unified open entry are added for user data.<br>The following requirements are involved:<br>I687C8 [New capability] Unified URI processing for application files<br>I64U8W [Basic capability] Temporary authorization and unified open entry for user data| NA |
 | Ability framework| - The restart of resident processes is optimized.<br>- The widget database can be switched.<br>- The asynchronous **onConnected** lifecycle is provided.<br>The following requirements are involved:<br>I65M3F [Basic capability] ShellCommand execution control<br>I65V83 [Basic capability] ServiceExtensionAbility support for asynchronous **onConnected** lifecycle<br>I61H21 [Basic capability] Change of the local widget database<br>I63UJ5 [Ability] [ability_runtime] Exception handling in API version 8 and earlier versions<br>I6BDCW [Basic capability] Forbidden to load code in the **data** directory during application loading<br>I6BDDU [Basic capability] Default ability launch mode of the FA model: Standard<br>I6BDE2 [Basic capability] Protection against frequent restart of resident applications| NA |
 
+For details about the API changes, see [API Differences](api-diff/v3.2-beta5/Readme-EN.md).
+
+For details about the API changes of each subsystem, see [Changelogs](changelogs/v3.2-beta5/Readme-EN.md).
 
 ### Chip and Development Board Adaptation
 
-For details about the adaptation status, see [SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard.md).
+For details about the adaptation status, see [SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard.md).
 
 
 ### Samples
 
-**Table 4** New samples
+  **Table 4** New samples
 
 | Subsystem| Name| Introduction| Programming Language|
 | -------- | -------- | -------- | -------- |
-| Web subsystem| [JS Injection and Execution](https://gitee.com/openharmony/applications_app_samples/tree/master/Web/RunJsInWeb)| This sample is based on HTML5 games. It uses the ArkUI component **\<button>** to implement basic game control. This sample demonstrates the JS injection and execution capabilities of the WebView component and the communication capabilities between native applications and HTML5.| ArkTS|
-| Multimedia subsystem| [QR code scanning](https://gitee.com/openharmony/applications_app_samples/tree/master/media/QRCodeScan)| The sample app is used to scan QR code. With the app, you can select a QR code image from a folder to identify the QR code information.| ArkTS|
-| ArkUI | [Typical Setting Page of One-Time Development for Multi-Device Deployment](https://gitee.com/openharmony/applications_app_samples/tree/master/MultiDeviceAppDev/Settings)| This sample shows a typical page for setting an application. The page has different display effects in the small window and large window, reflecting the capability of one-time development for multi-device deployment.| ArkTS|
-| File management subsystem| [File Management](https://gitee.com/openharmony/applications_app_samples/tree/master/FileManager/FileManager)| This sample demonstrates file management. It uses the [mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md), [userFileManager](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-userfilemanager.md) and [fileio](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-fileio.md) APIs to add and access media library files and files in the application sandbox.| ArkTS|
-| Multimedia subsystem| [Screen Recording](https://gitee.com/openharmony/applications_app_samples/tree/master/media/ScreenRecorder)| This sample illustrates how to implement screen (including audio) recording. The main task of screen recording is to create a virtual screen, capture graphics frames displayed on the screen, encode the video, and save the encoded video to a file.| ArkTS|
-| Window Manager| [Screen Detection](https://gitee.com/openharmony/applications_app_samples/tree/master/device/ScreenDetector)| The sample app monitors the number of connected screens in real time. A maximum of five virtual screens can be created, and the screen attributes can be displayed by clicking the corresponding rectangle.| ArkTS|
-| Ability framework| [Game Widget on the Stage Model](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/FormGame)| This sample shows how to develop a simple game widget on the stage model.| ArkTS|
+| Multimedia subsystem| [QR code scanning](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/media/Scan)| The sample app is used to scan QR code. With the app, you can select a QR code image from a folder to identify the QR code information.| ArkTS|
+| ArkUI | [Home Page of the Application Market](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/MultiDeviceAppDev/AppMarket)| This sample shows the home page of the application market. The page has different display effects in the small window and large window, reflecting the capability of one-time development for multi-device deployment.| ArkTS|
+| File management subsystem| [File Management](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/FileManager/FileIo)| This sample demonstrates file management. It uses the [mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md), [userFileManager](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-userFileManager.md) and [fileio](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/apis/js-apis-fileio.md) APIs to add and access media library files and files in the application sandbox.| ArkTS|
+| Ability framework| [Gallery Widget](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/ability/GalleryForm)| This sample demonstrates the display of **Gallery** images in a widget and periodic update of the widget.| ArkTS|
 
 
-For more information, visit [Samples](https://gitee.com/openharmony/app_samples).
+For more information, visit [Samples](https://gitee.com/openharmony/applications_app_samples).
 
 
 ## Resolved Issues

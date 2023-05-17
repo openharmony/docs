@@ -241,4 +241,4 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
 
 ## 相关实例
 针对MindSpore Lite 的使用，有以下相关实例可供参考：
-- [简易MSLite教程](https://gitee.com/openharmony/third_party_mindspore/tree/master/mindspore/lite/examples/quick_start_c)
+- [简易MSLite教程](https://gitee.com/openharmony/third_party_mindspore/tree/OpenHarmony-3.2-Release/mindspore/lite/examples/quick_start_c)

@@ -6,10 +6,7 @@ EnterpriseAdminExtensionAbility is a mandatory component for Mobile Device Manag
 
 ## Constraints
 
-- **Function constraints**
-
-  EnterpriseAdminExtensionAbility is applicable only to enterprise administrator applications.
-  
+EnterpriseAdminExtensionAbility is applicable only to enterprise administrator applications.
 
 ## Observing Activation/Deactivation of a Device Administrator Application and Installation/Removal of an Application
 
@@ -25,11 +22,11 @@ EnterpriseAdminExtensionAbility is a mandatory component for Mobile Device Manag
 
 ### Available APIs
 
-| Class                           | API                                       | Description                        |
-| :------------------------------ | ----------------------------------------- | ---------------------------- |
+| Class                           | API                                 | Description                        |
+| ------------------------------ | ----------------------------------------- | ---------------------------- |
+| EnterpriseAdminExtensionAbility | onAdminEnabled(): void                    | Called when a device administrator application is activated.  |
 | EnterpriseAdminExtensionAbility | onAdminDisabled(): void                   | Called when a device administrator application is deactivated.|
 | EnterpriseAdminExtensionAbility | onBundleAdded(bundleName: string): void   | Called when an application is installed on a device.            |
-| EnterpriseAdminExtensionAbility | onAdminEnabled(): void                    | Called when a device administrator application is activated.  |
 | EnterpriseAdminExtensionAbility | onBundleRemoved(bundleName: string): void | Called when an application is removed from a device.            |
 
 ### How to Develop
@@ -78,10 +75,9 @@ To implement EnterpriseAdminExtensionAbility, you need to activate the device ad
 
 ## Example
 
-Use **subscribeManagedEvent()** and **unsubscribeManagedEvent()** in the **@ohos.enterprise.adminManager** module to subscribe to application installation and removal events. When an application is installed or removed, the MDM application is notified of the event. Then, the MDM application reports the event in the callback to notify the enterprise administrator.
+Use **subscribeManagedEvent** in the **@ohos.enterprise.adminManager** module to subscribe to application installation and removal events. When an application is installed or removed, the MDM application is notified of the event. Then, the MDM application reports the event in the callback to notify the enterprise administrator. To unsubscribe from events, use **unsubscribeManagedEvent**.
 
 ```ts
-  @State managedEvents: Array<adminManager.ManagedEvent> = [0,1]
   @State subscribeManagedEventMsg: string = ""
   @State unsubscribeManagedEventMsg: string = ""
 

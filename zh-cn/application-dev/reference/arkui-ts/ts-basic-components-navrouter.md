@@ -10,16 +10,57 @@
 
 必须包含两个子组件，其中第二个子组件必须为[NavDestination](ts-basic-components-navdestination.md)。
 
+> **说明：**
+>
+> 子组件个数异常时：
+> 1. 有且仅有1个时，触发路由到NavDestination的能力失效。
+> 2. 有且仅有1个时，且使用NavDestination场景下，不进行路由。
+> 3. 大于2个时，后续的子组件不显示。
+> 4. 第二个子组件不为NavDestination时，触发路由功能失效。
+
 ## 接口
 
-NavRouter()
+**方法1：** NavRouter()
 
+**方法2：** NavRouter(value: RouteInfo)<sup>10+</sup>
+
+  提供路由信息，指定点击NavRouter时，要跳转的NavDestination页面。
+
+
+**参数：**
+
+| 参数名     | 参数类型                                | 必填   | 参数描述          |
+| ------- | ----------------------------------- | ---- | ------------- |
+| value   | [RouteInfo](#routeinfo10对象说明) | 否    | 路由信息 |
+
+## 属性
+
+除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
+
+| 名称                            | 参数类型                                     | 描述                                       |
+| ----------------------------- | ---------------------------------------- | ---------------------------------------- |
+| mode                  | [NavRouteMode](#navroutemode枚举类型说明)                                  | 指定点击NavRouter跳转到NavDestination页面时，使用的路由模式。<br/>默认值：NavRouteMode.PUSH_WITH_RECREATE<br/> |
+
+## RouteInfo<sup>10+</sup>对象说明
+
+| 名称                 | 参数类型                                                     | 必填 | 描述                                                         |
+| -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| name             | string            | 是   | 点击NavRouter跳转到的NavDestination页面的名称。 |
+| param             | unknown            | 否   | 点击NavRouter跳转到NavDestination页面时，传递的参数。 |
+
+## NavRouteMode枚举类型说明
+
+| 名称    | 描述               |
+| ----- | ---------------- |
+| PUSH_WITH_RECREATE | 跳转到新的NavDestination页面时，替换当前显示的NavDestination页面，页面销毁，但该页面信息仍保留在路由栈中。 |
+| PUSH   | 跳转到新的NavDestination页面时，覆盖当前显示的NavDestination页面，该页面不销毁，且页面信息保留在路由栈中。 |
+| REPLACE   | 跳转到新的NavDestination页面时，替换当前显示的NavDestination页面，页面销毁，且该页面信息从路由栈中清除。 |
 
 ## 事件
 
-| 名称                                       | 功能描述                                     |
-| ---------------------------------------- | ---------------------------------------- |
-| onStateChange(callback: (isActivated: boolean) => void) | 组件激活状态切换时触发该回调。返回值isActivated为true时表示激活，为false时表示未激活。</br> **说明：** 用户点击NavRouter，激活NavRouter，加载对应的NavDestination子组件时，回调onStateChange(true)；NavRouter对应的NavDestination子组件不再显示时，回调onStateChange(false)。  |
+| 名称                                                    | 功能描述                                                     |
+| ------------------------------------------------------- | ------------------------------------------------------------ |
+| onStateChange(callback: (isActivated: boolean) => void) | 组件激活状态切换时触发该回调。返回值isActivated为true时表示激活，为false时表示未激活。<br/> **说明：** <br/>开发者点击激活NavRouter，加载对应的NavDestination子组件时，回调onStateChange(true)。NavRouter对应的NavDestination子组件不再显示时，回调onStateChange(false)。 |
 
 ## 示例
 

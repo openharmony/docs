@@ -2,6 +2,12 @@
 
 表示任务的详细信息，可以通过[getMissionInfo](js-apis-app-ability-missionManager.md#missionmanagergetmissioninfo)获取。
 
+## 导入模块
+
+```ts
+import missionManager from '@ohos.app.ability.missionManager';
+```
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Mission
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
@@ -23,9 +29,9 @@ import missionManager from '@ohos.app.ability.missionManager';
 
 try {
   missionManager.getMissionInfo('', 1, (error, data) => {
-    if (error.code) {
+    if (error) {
         // 处理业务逻辑错误
-        console.error('getMissionInfo failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfo failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
     }
 

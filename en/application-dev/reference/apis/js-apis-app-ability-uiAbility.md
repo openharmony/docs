@@ -300,6 +300,33 @@ class MyUIAbility extends UIAbility {
 }
   ```
 
+## UIAbility.onShare<sup>10+</sup>
+
+onShare(wantParam:{ [key: string]: Object }): void;
+
+Called when an ability shares data.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| wantParam | {[key:&nbsp;string]:&nbsp;Object} | Yes| **want** parameter.|
+
+**Example**
+    
+  ```ts
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+class MyUIAbility extends UIAbility {
+    onShare(wantParams) {
+        console.log('onShare');
+        wantParams['ohos.extra.param.key.contentTitle'] = {title: "W3"};
+        wantParams['ohos.extra.param.key.shareAbstract'] = {abstract: "communication for huawei employee"};
+        wantParams['ohos.extra.param.key.shareUrl'] = {url: "w3.huawei.com"};
+    }
+}
+  ```
 
 
 ## Caller
@@ -331,7 +358,9 @@ Sends sequenceable data to the target ability.
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
+| 16200001 | Caller released. The caller has been released. |
+| 16200002 | Callee invalid. The callee does not exist. |
+| 16000050 | Internal Error. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
@@ -375,10 +404,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
             console.log('Caller call() called');
           })
           .catch((callErr) => {
-            console.log('Caller.call catch error, error.code: ${JSON.stringify(callErr.code)}, error.message: ${JSON.stringify(callErr.message)}');
+            console.log('Caller.call catch error, error.code: ${callErr.code}, error.message: ${callErr.message}');
           });
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -410,7 +439,9 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
+| 16200001 | Caller released. The caller has been released. |
+| 16200002 | Callee invalid. The callee does not exist. |
+| 16000050 | Internal Error. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
@@ -456,10 +487,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
             data.readParcelable(retmsg);
           })
           .catch((callErr) => {
-            console.log('Caller.callWithResult catch error, error.code: ${JSON.stringify(callErr.code)}, error.message: ${JSON.stringify(callErr.message)}');
+            console.log('Caller.callWithResult catch error, error.code: ${callErr.code}, error.message: ${callErr.message}');
           });
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -478,10 +509,10 @@ Releases the caller interface of the target ability.
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
 | 16200001 | Caller released. The caller has been released. |
 | 16200002 | Callee invalid. The callee does not exist. |
-| 16000050 | Internal Error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
     
@@ -498,10 +529,10 @@ Releases the caller interface of the target ability.
         try {
           caller.release();
         } catch (releaseErr) {
-          console.log('Caller.release catch error, error.code: ${JSON.stringify(releaseErr.code)}, error.message: ${JSON.stringify(releaseErr.message)}');
+          console.log('Caller.release catch error, error.code: ${releaseErr.code}, error.message: ${releaseErr.message}');
         }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -514,6 +545,14 @@ Releases the caller interface of the target ability.
 Registers a callback that is invoked when the stub on the target ability is disconnected.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16200001 | Caller released. The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Parameters**
 
@@ -538,12 +577,63 @@ Registers a callback that is invoked when the stub on the target ability is disc
                 console.log(' Caller OnRelease CallBack is called ${str}');
             });
           } catch (error) {
-            console.log('Caller.onRelease catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+            console.log('Caller.onRelease catch error, error.code: $error.code}, error.message: ${error.message}');
           }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
+  }
+  ```
+
+  ## Caller.onRemoteStateChange
+
+ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
+
+Registers a callback that is invoked when the remote ability state changes in the collaboration scenario.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| callback | [OnRemoteStateChangeCallback](#onremotestatechangecallback) | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16200001 | Caller released. The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+    
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+
+  let caller;
+  let dstDeviceId: string;
+  export default class MainAbility extends UIAbility {
+      onWindowStageCreate(windowStage: Window.WindowStage) {
+          this.context.startAbilityByCall({
+              bundleName: 'com.example.myservice',
+              abilityName: 'MainUIAbility',
+              deviceId: dstDeviceId
+          }).then((obj) => {
+              caller = obj;
+              try {
+                  caller.onRemoteStateChange((str) => {
+                      console.log('Remote state changed ' + str);
+                  });
+              } catch (error) {
+                  console.log('Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+              }
+          }).catch((err) => {
+              console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+          });
+      }
   }
   ```
 
@@ -566,7 +656,7 @@ Registers a callback that is invoked when the stub on the target ability is disc
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
+| 16200001 | Caller released. The caller has been released. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
@@ -587,10 +677,10 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
                 console.log(' Caller OnRelease CallBack is called ${str}');
             });
           } catch (error) {
-            console.log('Caller.on catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+            console.log('Caller.on catch error, error.code: ${error.code}, error.message: ${error.message}');
           }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -611,13 +701,6 @@ Deregisters a callback that is invoked when the stub on the target ability is di
 | type | string | Yes| Event type. The value is fixed at **release**.|
 | callback | [OnReleaseCallback](#onreleasecallback) | Yes| Callback used to return the result.|
 
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
-For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-
 **Example**
     
   ```ts
@@ -637,10 +720,10 @@ For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
             caller.on('release', onReleaseCallBack);
             caller.off('release', onReleaseCallBack);
           } catch (error) {
-            console.log('Caller.on or Caller.off catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+            console.log('Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}');
           }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -659,13 +742,6 @@ Deregisters a callback that is invoked when the stub on the target ability is di
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is fixed at **release**.|
-
-**Error codes**
-
-| ID| Error Message|
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
-For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
     
@@ -686,10 +762,10 @@ For other IDs, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
             caller.on('release', onReleaseCallBack);
             caller.off('release');
           } catch (error) {  
-            console.error('Caller.on or Caller.off catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+            console.error('Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}');
           }
       }).catch((err) => {
-        console.error('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.error('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -718,7 +794,8 @@ Registers a caller notification callback, which is invoked when the target abili
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
+| 16200004 | Method registered. The method has registered. |
+| 16000050 | Internal error. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
@@ -759,7 +836,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       try {
         this.callee.on(method, funcCallBack);
       } catch (error) {
-        console.log('Callee.on catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.log('Callee.on catch error, error.code: ${error.code}, error.message: ${error.message}');
       }
     }
   }
@@ -783,7 +860,8 @@ Deregisters a caller notification callback, which is invoked when the target abi
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
+| 16200005 | Method not registered. The method has not registered. |
+| 16000050 | Internal error. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
@@ -798,7 +876,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
       try {
         this.callee.off(method);
       } catch (error) {
-        console.log('Callee.off catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.log('Callee.off catch error, error.code: ${error.code}, error.message: ${error.message}');
       }
     }
   }
@@ -813,6 +891,16 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | Name| Readable| Writable| Type| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | (msg: string) | Yes| No| function | Prototype of the listener function registered by the caller.|
+
+## OnRemoteStateChangeCallback
+
+(msg: string): void;
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+| Name| Readable| Writable| Type| Description|
+| -------- | -------- | -------- | -------- | -------- |
+| (msg: string) | Yes| No| function | Prototype of the ability state change listener function registered by the caller in the collaboration scenario.|
 
 ## CalleeCallback
 

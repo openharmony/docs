@@ -87,8 +87,8 @@ repo forall -c 'git lfs pull'
 | Hi3516 standard system solution (binary)| 3.1.2 Release | [Download](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/standard_hi3516.tar.gz)| [Download](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/standard_hi3516.tar.gz.sha256)|
 | RK3568 standard system solution (binary)| 3.1.2 Release | [Download](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/standard_rk3568.tar.gz)| [Download](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/standard_rk3568.tar.gz.sha256)|
 | Hi3861 mini system solution (binary)| 3.1.2 Release | [Download](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/hispark_pegasus.tar.gz)| [Download](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/hispark_pegasus.tar.gz.sha256)|
-| Hi3516 mini system solution - LiteOS (binary)| 3.1.2 Release | [Download](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/hispark_taurus.tar.gz)| [Download](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/hispark_taurus.tar.gz.sha256)|
-| Hi3516 mini system solution - Linux (binary)| 3.1.2 Release | [Download](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/hispark_taurus_linux.tar.gz)| [Download](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/hispark_taurus_linux.tar.gz.sha256)|
+| Hi3516 small system solution - LiteOS (binary)| 3.1.2 Release | [Download](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/hispark_taurus.tar.gz)| [Download](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/hispark_taurus.tar.gz.sha256)|
+| Hi3516 small system solution - Linux (binary)| 3.1.2 Release | [Download](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/hispark_taurus_linux.tar.gz)| [Download](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/hispark_taurus_linux.tar.gz.sha256)|
 | Full SDK package for the standard system (macOS)| 3.1.7.5 | [Download](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-mac-full.tar.gz)| [Download](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-mac-full.tar.gz.sha256)|
 | Full SDK package for the standard system (Windows/Linux)| 3.1.7.5 | [Download](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-full.tar.gz)| [Download](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-full.tar.gz.sha256)|
 | Public SDK package for the standard system (macOS)| 3.1.7.5 | [Download](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-mac-public.tar.gz)| [Download](https://mirrors.huaweicloud.com/harmonyos/os/3.1.2/ohos-sdk-mac-public.tar.gz.sha256)|
@@ -117,7 +117,7 @@ This version does not involve API updates.
 
 ### Chip and Development Board Adaptation
 
-For details about the adaptation status, see [SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard.md).
+For details about the adaptation status, see [SIG_DevBoard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard.md).
 
 
 ## Resolved Issues

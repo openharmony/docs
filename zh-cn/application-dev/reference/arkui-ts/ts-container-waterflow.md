@@ -253,13 +253,15 @@ struct WaterflowDemo {
 
   build() {
     Column({ space: 2 }) {
-      WaterFlow({ footer: this.itemFoot, scroller: this.scroller }) {
+      WaterFlow({ footer: this.itemFoot.bind(this), scroller: this.scroller }) {
         LazyForEach(this.datasource, (item: number) => {
           FlowItem() {
             Column() {
               Text("N" + item).fontSize(12).height('16')
               Image('res/waterFlowTest(' + item % 5 + ').jpg')
                 .objectFit(ImageFit.Fill)
+                .width('100%')
+                .layoutWeight(1)
             }
           }
           .width(this.itemWidthArray[item])

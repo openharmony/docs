@@ -10,7 +10,7 @@ The following figure shows the basic concepts used in the stage model.
 
 - [UIAbility component](uiability-overview.md) and [ExtensionAbility component](extensionability-overview.md)
   
-  The stage model provides two types of application components: UIAbility and ExtensionAbility. Both have specific classes and support object-oriented development. They are the specific implementation of the abstract ability concept on the stage model. They are also units scheduled by the Ability Manager Service (AMS), which schedules their lifecycles as well.
+  The stage model provides two types of application components: UIAbility and ExtensionAbility. Both have specific classes and support object-oriented development.
   
   - UIAbility has the UI and is mainly used for user interaction. For example, with UIAbility, the Gallery application can display images in the liquid layout. After a user selects an image, it uses a new UI to display the image details. The user can touch the **Back** button to return to the liquid layout. The lifecycle of the UIAbility component contains the creation, destruction, foreground, and background states. Display-related states are exposed through WindowStage events.
   
@@ -22,6 +22,7 @@ The following figure shows the basic concepts used in the stage model.
 - [Context](application-context-stage.md)
 
   In the stage model, Context and its derived classes provide a variety of resources and capabilities that can be called during the runtime. The UIAbility component and ExtensionAbility derived classes have different Context classes. These classes, which all inherit from the base class Context, provide different capabilities.
+
 - [AbilityStage](abilitystage.md)
 
   Each HAP of the Entry or Feature type has an AbilityStage class instance during the runtime. When the code in the HAP is loaded to the process for the first time, the system creates an AbilityStage class instance first. Each UIAbility class defined in the HAP is associated with this class instance after instantiation. Through this class instance, you can obtain the runtime information of the UIAbility instances in the HAP.

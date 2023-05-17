@@ -32,7 +32,7 @@ XmlSerializer的构造函数。
 
 ```js
 let arrayBuffer = new ArrayBuffer(2048);
-let thatSer = new xml.XmlSerializer(arrayBuffer,"utf-8");
+let thatSer = new xml.XmlSerializer(arrayBuffer, "utf-8");
 thatSer.setDeclaration();
 let result = '<?xml version="1.0" encoding="utf-8"?>';
 let view = new Uint8Array(arrayBuffer);
@@ -400,13 +400,9 @@ let strXml =
     '        </h:tr>' +
     '    </h:table>' +
     '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let i = 0; i < strLen; ++i) {
-    bufView[i] = strXml.charCodeAt(i);
-}
-let that = new xml.XmlPullParser(arrayBuffer, 'UTF-8');
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer, 'UTF-8');
 let str1 = '';
 function func1(name, value){
     str1 += name+':'+value;
@@ -442,13 +438,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;
@@ -456,7 +448,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.getDepth();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
@@ -513,13 +505,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;
@@ -527,7 +515,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.getColumnNumber();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
@@ -560,13 +548,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;
@@ -574,7 +558,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.getDepth();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
@@ -610,13 +594,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;
@@ -624,7 +604,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.getLineNumber();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
@@ -657,13 +637,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;
@@ -671,7 +647,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.getName();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
@@ -703,13 +679,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;
@@ -717,7 +689,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.getNamespace();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
@@ -749,13 +721,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;
@@ -763,7 +731,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.getPrefix();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
@@ -796,13 +764,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;
@@ -810,7 +774,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.getText();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
@@ -842,13 +806,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;
@@ -856,7 +816,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.isEmptyElementTag();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
@@ -888,13 +848,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;
@@ -902,7 +858,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.isWhitespace();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);
@@ -933,13 +889,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;
@@ -947,7 +899,7 @@ function func(key, value){
     arrTag[i] = 'key:'+key+' value:'+ value.getAttributeCount();
     str += arrTag[i];
     i++;
-    return true; // Determines whether to continuely parse, which is used to continue or terminate parsing.
+    return true; // Determines whether to continually parse, which is used to continue or terminate parsing.
 }
 let options = {supportDoctype:true, ignoreNameSpace:true, tokenValueCallbackFunction:func}
 that.parse(options);

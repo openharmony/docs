@@ -154,7 +154,7 @@ URI示例：
    import featureAbility from '@ohos.ability.featureAbility'
    import ohos_data_ability from '@ohos.data.dataAbility'
    import ohos_data_rdb from '@ohos.data.rdb'
-
+   
    var urivar = "dataability:///com.ix.DataAbility"
    var DAHelper = featureAbility.acquireDataAbilityHelper(
     urivar
@@ -309,8 +309,3 @@ URI示例：
    );
    ```
 
-## 相关实例
-
-针对DataAbility开发，有以下相关实例可供参考：
-
-- [`FaModel`：FA模型（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/FaModel)

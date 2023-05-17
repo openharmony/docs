@@ -16,6 +16,8 @@
 >- 从API Version 9开始，该接口不再维护，推荐使用新接口[`@ohos.data.distributedKVStore`](js-apis-distributedKVStore.md)。
 >
 >- 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+>
+>- 本模块中所有需要获取deviceId的接口，都仅系统应用可用。
 
 
 ## 导入模块
@@ -88,25 +90,22 @@ createKVManager(config: KVManagerConfig): Promise&lt;KVManager&gt;
 **示例：**
 ```js
 
-let kvManager;
 try {
-    const kvManagerConfig = {
-        bundleName : 'com.example.datamanagertest',
-        userInfo : {
-            userId : '0',
-            userType : distributedData.UserType.SAME_USER_ID
-        }
+  const kvManagerConfig = {
+    bundleName: 'com.example.datamanagertest',
+    userInfo: {
+      userId: '0',
+      userType: distributedData.UserType.SAME_USER_ID
     }
-    distributedData.createKVManager(kvManagerConfig, function (err, manager) {
-        if (err) {
-            console.log("Failed to create KVManager: "  + JSON.stringify(err));
-            return;
-        }
-        console.log("Succeeded in creating KVManager");
-        kvManager = manager;
-    });
+  }
+  distributedData.createKVManager(kvManagerConfig).then((manager) => {
+    console.log("Succeeded in creating KVManager");
+    kvManager = manager;
+  }).catch((err) => {
+    console.error("Failed to create KVManager: " + JSON.stringify(err));
+  });
 } catch (e) {
-    console.log("An unexpected error occurred. Error:" + e);
+  console.log("An unexpected error occurred. Error:" + e);
 }
 ```
 
@@ -129,8 +128,8 @@ try {
 
 | 名称 | 类型 | 必填 | 说明 |
 | ----- | ------ |------ | ------ |
-| userId | string | 否  | 指示要设置的用户ID。 |
-| userType | [UserType](#usertype) | 否  | 指示要设置的用户类型。 |
+| userId | string | 否  | 指示要设置的用户ID，默认为'0'。 |
+| userType | [UserType](#usertype) | 否  | 指示要设置的用户类型，默认为0。 |
 
 
 ## UserType
@@ -268,7 +267,7 @@ const options = {
     backup: false,
     autoSync: true,
     kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
-    schema: '',
+    schema: undefined,
     securityLevel: distributedData.SecurityLevel.S2,
 }
 try {
@@ -318,7 +317,7 @@ const options = {
     backup: false,
     autoSync: true,
     kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
-    schema: '',
+    schema: undefined,
     securityLevel: distributedData.SecurityLevel.S2,
 }
 try {
@@ -366,7 +365,7 @@ const options = {
     backup : false,
     autoSync : true,
     kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-    schema : '',
+    schema : undefined,
     securityLevel : distributedData.SecurityLevel.S2,
 }
 try {
@@ -415,7 +414,7 @@ const options = {
     backup : false,
     autoSync : true,
     kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-    schema : '',
+    schema : undefined,
     securityLevel : distributedData.SecurityLevel.S2,
 }
 try {
@@ -549,7 +548,7 @@ off(event: 'distributedDataServiceDie', deathCallback?: Callback&lt;void&gt;): v
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------  | ----  | ----------------------- |
 | event  | string | 是    | 取消订阅的事件名，固定为'distributedDataServiceDie'，即服务状态变更事件。 |
-| deathCallback  | Callback&lt;void&gt;  | 否    | 回调函数。 |
+| deathCallback  | Callback&lt;void&gt;  | 否    | 取消订阅的函数。如不设置callback，则取消所有已订阅的函数。 |
 
 
 **示例：**
@@ -575,13 +574,13 @@ try {
 
 | 名称  | 类型 | 必填   | 说明                    |
 | -----  | ------  | ------  | -------------------|
-| createIfMissing  | boolean | 否 | 当数据库文件不存在时是否创建数据库，默认创建。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
-| encrypt  | boolean | 否 |设置数据库文件是否加密，默认不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core     |
-| backup  | boolean | 否 |设置数据库文件是否备份，默认备份。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
-| autoSync  | boolean | 否 |设置数据库文件是否自动同步。默认为false，即手动同步；设置为true时，表示自动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC     |
-| kvStoreType | [KVStoreType](#kvstoretype) | 否 |设置要创建的数据库类型，默认为多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
-| securityLevel | [SecurityLevel](#securitylevel) | 否 |设置数据库安全级别，默认不设置安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core  |
-| schema<sup>8+</sup> | [Schema](#schema8) | 否 | 设置定义存储在数据库中的值。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
+| createIfMissing  | boolean | 否 | 当数据库文件不存在时是否创建数据库，默认为true，即创建。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| encrypt  | boolean | 否 |设置数据库文件是否加密，默认为false, 即不加密。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core     |
+| backup  | boolean | 否 |设置数据库文件是否备份，默认为true，即备份。 <br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| autoSync  | boolean | 否 |设置数据库文件是否自动同步。默认为false，即手动同步。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core<br>**需要权限**： ohos.permission.DISTRIBUTED_DATASYNC     |
+| kvStoreType | [KVStoreType](#kvstoretype) | 否 |设置要创建的数据库类型，默认为DEVICE_COLLABORATION，即多设备协同数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core |
+| securityLevel | [SecurityLevel](#securitylevel) | 是 |设置数据库安全级别(S1-S4)。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core  |
+| schema<sup>8+</sup> | [Schema](#schema8) | 否 | 设置定义存储在数据库中的值，默认为undefined, 即不使用schema。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
 
 
 ## KVStoreType
@@ -602,8 +601,8 @@ KVStore数据库类型枚举。
 
 | 名称  | 值 | 说明                    |
 | ---   | ----  | ----------------------- |
-| NO_LEVEL  | 0 | 表示数据库不设置安全级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore   |
-| S0  | 1 | 表示数据库的安全级别为公共级别。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
+| NO_LEVEL  | 0 | 表示数据库不设置安全级别(已废弃)。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.DistributedKVStore   |
+| S0  | 1 | 表示数据库的安全级别为公共级别(已废弃)。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
 | S1  | 2 | 表示数据库的安全级别为低级别，当数据泄露时会产生较低影响。例如，包含壁纸等系统数据的数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
 | S2  | 3 | 表示数据库的安全级别为中级别，当数据泄露时会产生较大影响。例如，包含录音、视频等用户生成数据或通话记录等信息的数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
 | S3  | 5 | 表示数据库的安全级别为高级别，当数据泄露时会产生重大影响。例如，包含用户运动、健康、位置等信息的数据库。<br>**系统能力：** SystemCapability.DistributedDataManager.KVStore.Core    |
@@ -2012,6 +2011,10 @@ try {
 deviceId(deviceId:string):Query
 
 添加设备ID作为key的前缀。
+> **说明：** 
+>
+> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -2292,7 +2295,7 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 | 参数名   | 类型                                                      | 必填 | 说明                                                     |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
 | event    | string                                                    | 是   | 取消订阅的事件名，固定为'dataChange'，表示数据变更事件。 |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 否   | 回调函数。                                               |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 否   | 取消订阅的函数。如不设置callback，则取消所有订阅的函数。 |
 
 
 
@@ -2330,7 +2333,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 | 参数名       | 类型                                          | 必填 | 说明                                                       |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
 | event        | string                                        | 是   | 取消订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 否   | 回调函数。用于向调用方发送同步结果的回调。                 |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 否   | 取消订阅的函数。如不设置callback，则取消所有订阅的函数。 |
 
 **示例：**
 
@@ -3664,6 +3667,10 @@ try {
 removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 删除指定设备的数据，使用callback异步回调。
+> **说明：** 
+>
+> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3706,6 +3713,10 @@ try {
 removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 删除指定设备的数据，使用Promise异步回调。
+> **说明：** 
+>
+> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -3754,7 +3765,7 @@ try {
 
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
-在手动同步方式下，触发数据库同步。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
+在手动同步方式下，触发数据库同步。
 > **说明：** 
 >
 > 其中deviceIds通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
@@ -3769,7 +3780,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 | --------- | --------------------- | ---- | ---------------------------------------------- |
 | deviceIds | string[]              | 是   | 同一组网环境下，需要同步的设备的deviceId列表。 |
 | mode      | [SyncMode](#syncmode) | 是   | 同步模式。                                     |
-| delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒）。     |
+| delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒），默认为0。     |
 
 **示例：**
 
@@ -3884,7 +3895,7 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 | 参数名   | 类型                                                      | 必填 | 说明                                                     |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
 | event    | string                                                    | 是   | 取消订阅的事件名，固定为'dataChange'，表示数据变更事件。 |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 否   | 回调函数。                                               |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 否   | 取消订阅的函数。如不设置callback，则取消所有订阅的函数。 |
 
 **示例：**
 
@@ -3920,7 +3931,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 | 参数名       | 类型                                          | 必填 | 说明                                                       |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
 | event        | string                                        | 是   | 取消订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 否   | 回调函数。用于向调用方发送同步结果的回调。                 |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 否   | 取消订阅的函数。如不设置callback，则取消所有订阅的函数。  |
 
 **示例：**
 
@@ -4084,6 +4095,10 @@ try {
 get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean|string|number|Uint8Array&gt;): void
 
 获取与指定设备ID和key匹配的string值，使用callback异步回调。
+> **说明：** 
+>
+> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：**   SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4119,6 +4134,10 @@ try{
 get(deviceId: string, key: string): Promise&lt;boolean|string|number|Uint8Array&gt;
 
 获取与指定设备ID和key匹配的string值，使用Promise异步回调。
+> **说明：** 
+>
+> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4163,6 +4182,10 @@ try {
 getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 获取与指定设备ID和key前缀匹配的所有键值对，使用callback异步回调。
+> **说明：** 
+>
+> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4211,6 +4234,10 @@ try {
 getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 
 获取与指定设备ID和key前缀匹配的所有键值对，使用Promise异步回调。
+> **说明：** 
+>
+> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4380,6 +4407,10 @@ try {
 getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 获取与指定设备ID和Query对象匹配的键值对列表，使用callback异步回调。
+> **说明：** 
+>
+> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4433,6 +4464,10 @@ try {
 getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 
 获取与指定设备ID和Query对象匹配的键值对列表，使用Promise异步回调。
+> **说明：** 
+>
+> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4493,6 +4528,10 @@ try {
 getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
 获取与指定设备ID和key前缀匹配的KvStoreResultSet对象，使用callback异步回调。
+> **说明：** 
+>
+> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4528,6 +4567,10 @@ try {
 getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KvStoreResultSet&gt;
 
 获取与指定设备ID和key前缀匹配的KvStoreResultSet对象，使用Promise异步回调。
+> **说明：** 
+>
+> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4688,6 +4731,10 @@ try {
 getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KvStoreResultSet&gt;): void
 
 获取与指定设备ID和Query对象匹配的KvStoreResultSet对象，使用callback异步回调。
+> **说明：** 
+>
+> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4740,6 +4787,10 @@ try {
 getResultSet(deviceId: string, query: Query): Promise&lt;KvStoreResultSet&gt;
 
 获取与指定设备ID和Query对象匹配的KvStoreResultSet对象，使用Promise异步回调。
+> **说明：** 
+>
+> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -4982,6 +5033,10 @@ try {
 getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&gt;): void;
 
 获取与指定设备ID和Query对象匹配的结果数，使用callback异步回调。
+> **说明：** 
+>
+> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -5029,6 +5084,10 @@ try {
 getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 
 获取与指定设备ID和Query对象匹配的结果数，使用Promise异步回调。
+> **说明：** 
+>
+> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -5085,6 +5144,10 @@ try {
 removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 从当前数据库中删除指定设备的数据，使用callback异步回调。
+> **说明：** 
+>
+> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -5127,6 +5190,10 @@ try {
 removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 从当前数据库中删除指定设备的数据，使用Promise异步回调。
+> **说明：** 
+>
+> 其中deviceId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> deviceId具体获取方式请参考[sync接口示例](#sync)。
 
 **系统能力：**  SystemCapability.DistributedDataManager.KVStore.DistributedKVStore
 
@@ -5175,11 +5242,11 @@ try {
 
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
-在手动同步方式下，触发数据库同步。关于分布式数据服务的同步方式说明，请见[分布式数据服务概述](../../database/database-mdds-overview.md)。
+在手动同步方式下，触发数据库同步。
 
 > **说明：**
 >
-> 其中devicesId通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceIds通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
 
 **需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
 
@@ -5191,7 +5258,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 | -----  | ------   | ----  | ----------------------- |
 | deviceIds    |string[]               | 是    |需要同步DeviceKvStore数据库的设备ID列表。 |
 | mode            |[SyncMode](#syncmode)  | 是    |同步模式。  |
-| delayMs  |number                 | 否    |可选参数，允许延时时间，单位：ms（毫秒）。  |
+| delayMs  |number                 | 否    |可选参数，允许延时时间，单位：ms（毫秒），默认为0。  |
 
 **示例：**
 
@@ -5306,7 +5373,7 @@ off(event:'dataChange', listener?: Callback&lt;ChangeNotification&gt;): void
 | 参数名   | 类型                                                      | 必填 | 说明                                                     |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
 | event    | string                                                    | 是   | 取消订阅的事件名，固定为'dataChange'，表示数据变更事件。 |
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 否   | 回调函数。                                               |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | 否   | 取消订阅的函数。如不设置callback，则取消所有订阅的函数。 |
 
 **示例：**
 
@@ -5342,7 +5409,7 @@ off(event: 'syncComplete', syncCallback?: Callback&lt;Array&lt;[string, number]&
 | 参数名       | 类型                                          | 必填 | 说明                                                       |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
 | event        | string                                        | 是   | 取消订阅的事件名，固定为'syncComplete'，表示同步完成事件。 |
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 否   | 回调函数。用于向调用方发送同步结果的回调。                 |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | 否   | 取消订阅的函数。如不设置callback，则取消所有订阅的函数。  |
 
 **示例：**
 

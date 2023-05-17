@@ -16,13 +16,17 @@ import wantConstant from '@ohos.app.ability.wantConstant';
 
 want的Params操作的常量。
 
-| 名称                    | 值                          | 说明                                                         |
-| ----------------------- | --------------------------- | ------------------------------------------------------------ |
-| DLP_PARAMS_SANDBOX      | ohos.dlp.params.sandbox     | 指示沙盒标志的参数的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
-| DLP_PARAMS_BUNDLE_NAME  | ohos.dlp.params.bundleName  | 指示DLP Bundle名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
-| DLP_PARAMS_MODULE_NAME  | ohos.dlp.params.moduleName  | 指示DLP模块名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
-| DLP_PARAMS_ABILITY_NAME | ohos.dlp.params.abilityName | 指示DLP能力名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
-| DLP_PARAMS_INDEX        | ohos.dlp.params.index       | 指示DLP索引参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
+| 名称                    | 值                                 | 说明                                                                           |
+| ----------------------- | ---------------------------------- | ------------------------------------------------------------------------------ |
+| DLP_PARAMS_SANDBOX      | ohos.dlp.params.sandbox            | 指示沙盒标志的参数的操作。<br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
+| DLP_PARAMS_BUNDLE_NAME  | ohos.dlp.params.bundleName         | 指示DLP Bundle名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
+| DLP_PARAMS_MODULE_NAME  | ohos.dlp.params.moduleName         | 指示DLP模块名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
+| DLP_PARAMS_ABILITY_NAME | ohos.dlp.params.abilityName        | 指示DLP能力名称的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
+| DLP_PARAMS_INDEX        | ohos.dlp.params.index              | 指示DLP索引参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
+| ABILITY_RECOVERY_RESTART | ohos.ability.params.abilityRecoveryRestart | 指示当前Ability是否发生了故障恢复重启。 |
+| CONTENT_TITLE_KEY       | ohos.extra.param.key.contentTitle  | 指示原子化服务支持分享标题的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
+| SHARE_ABSTRACT_KEY      | ohos.extra.param.key.shareAbstract | 指示原子化服务支持分享内容的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
+| SHARE_URL_KEY           | ohos.extra.param.key.shareUrl      | 指示原子化服务支持分享链接的参数的操作。 <br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
 
 
 ## wantConstant.Flags

@@ -1,6 +1,7 @@
 # AbilityStageMonitor
 
-提供用于匹配满足指定条件的受监视的AbilityStage对象的方法。最近匹配的AbilityStage对象将保存在AbilityStageMonitor对象中。  
+提供用于匹配满足指定条件的受监视的AbilityStage对象的方法。最近匹配的AbilityStage对象将保存在AbilityStageMonitor对象中。 
+
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -20,7 +21,7 @@ let monitor = {
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityStageMonitor(monitor, (error, data) => {
-    if (error && error.code !== 0) {
+    if (error) {
         console.error('waitAbilityStageMonitor fail, error: ${JSON.stringify(error)}');
     } else {
         console.log('waitAbilityStageMonitor success, data: ${JSON.stringify(data)}');

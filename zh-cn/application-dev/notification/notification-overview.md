@@ -30,6 +30,4 @@ OpenHarmony通过ANS（Advanced Notification Service，通知系统服务）对�
 
 基于通知的开发，有以下相关实例可供参考：
 
-- [`CustomNotification`：自定义通知（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/Notification/CustomNotification)
-
-- [`Notification`：订阅、发送通知（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/Notification/Notification)
+- [`CustomNotification`：自定义通知（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Notification/CustomNotification)

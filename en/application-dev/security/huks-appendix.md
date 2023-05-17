@@ -1,70 +1,91 @@
 # HUKS Cipher Algorithm Specifications
 
+## Application Scope
+This document provides the HUKS specifications. Mandatory specifications are algorithm specifications that must be supported. Optional specifications can be used based on actual situation. Before using the optional specifications, refer to the documents provided by the vendor to ensure that the specifications are supported.
+
+**You are advised to use mandatory specifications to develop applications for compatibility purposes.**
+
 ## Supported Algorithm Types and Parameter Combinations
 
-### Key Import/Generation
+### Key Import/Generation Specifications
 
-| Algorithm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    | API Level| Supported Key Length (Bit)    |
-| -------------- | :---------------: | ------------------ |
-| AES    |        8+         | 128, 192, 256|
-| RSA    |        8+         | 512, 768, 1024, 2048, 3072, 4096|
-| HMAC   |        8+         | 8 to 1024 (inclusive)<br/>The value must be an integer multiple of 8. |
-| ECC    |        8+         | 224, 256, 384, 521|
-| Ed25519 |        8+         | 256    |
-| X25519  |        8+         | 256    |
-| DSA    |        8+         | 8 to 1024 (inclusive)<br/>The value must be an integer multiple of 8. |
-| DH    |        8+         | 2048, 3072, 4096               |
-| SM2    |        9+         | 256                |
-| SM3    |        9+         | 256                |
-| SM4    |        9+         | 128                |
+| Algorithm   | API Level| Supported Key Length (Bit)    |Mandatory|
+| -------------- | :---------------: | ------------------ |:------------------: |
+| AES    |        8+         | 128, 192, 256| Yes|
+| RSA    |        8+         | 512, 768, 1024|No|
+| RSA    |        8+         | 2048, 3072, 4096|Yes|
+| HMAC   |        8+         | An integer multiple of 8, ranging from 8 to 1024 (inclusive)  |Yes|
+| ECC    |        8+         | 224 |No|
+| ECC    |        8+         | 256, 384, 521|Yes|
+| Ed25519 |        8+         | 256    |Yes|
+| X25519  |        8+         | 256    |Yes|
+| DSA    |        8+         | An integer multiple of 8, ranging from 8 to 1024 (inclusive)   |No|
+| DH    |        8+         | 2048                |Yes|
+| DH    |        8+         | 3072, 4096               |No|
+| SM2    |        9+         | 256                |Yes|
+| SM4    |        9+         | 128                |Yes|
 
-### Encryption and Decryption
+### Specifications for the Combination of the Cipher Algorithm, Block Cipher Mode, and Padding Mode
 
-| Algorithm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | API Level| Remarks                                                        |
-| ----------------------- | :----: | ---------------- |
-| AES/CBC/NoPadding<br>AES/ECB/NoPadding<br>AES/CTR/NoPadding<br>AES/GCM/NoPadding<br>AES/CBC/PKCS7<br>AES/ECB/PKCS7 | 8+                | The initialization vector (IV) is mandatory in CBC, ECB, or CTR mode.<br>The **Nonce**, **AAD**, and **AEAD** parameters are mandatory in GCM mode. |
-| RSA/ECB/NoPadding<br>RSA/ECB/PKCS1_V1_5<br>RSA/ECB/OAEP             | 8+                |    |
-| SM4/CTR/NoPadding<br>SM4/ECB/NoPadding<br>SM4/CBC/NoPadding<br>SM4/ECB/PKCS7<br>SM4/CBC/PKCS7 | 9+                |   |
+| Algorithm/Block Cipher Mode/Padding Mode| API Level| Remarks                                                        |Mandatory|
+| ----------------------- | :----: | ---------------- | :----------------: |
+| AES/ECB/NoPadding<br>AES/ECB/PKCS7 | 8+          |   |No|
+| AES/CBC/NoPadding <br> AES/CBC/PKCS7<br>AES/CTR/NoPadding| 8+  | The **IV** parameter is mandatory.|Yes|
+| AES/GCM/NoPadding | 8+        | **Nonce**, **AAD**, and **AEAD** are mandatory.  |Yes|
+| RSA/ECB/NoPadding<br>RSA/ECB/PKCS1_V1_5<br>RSA/ECB/OAEP             | 8+                |  The OAEP padding mode supports SHA-256, SHA-384, and SHA-512 digest algorithms. | Yes|
+| SM4/ECB/NoPadding<br> SM4/ECB/PKCS7<br>SM4/CBC/PKCS7 | 9+ | The **IV** parameter is mandatory in CBC mode. |No|
+| SM4/CTR/NoPadding<br>SM4/CBC/NoPadding<br>| 9+  | The **IV** parameter is mandatory. |Yes|
 
 
 
-### Signing and Signature Verification
+### Specifications for the Combination of the Signing & Signature Verification Algorithm, Digest Algorithm, and Padding Mode
 
 
-| Algorithm     | API Level| Remarks    |
-| --------- | :----------: | ----------------- |
-| RSA/MD5/PKCS1_V1_5<br>RSA/SHA1/PKCS1_V1_5<br>RSA/SHA224/PKCS1_V1_5<br>RSA/SHA256/PKCS1_V1_5<br>RSA/SHA384/PKCS1_V1_5<br>RSA/SHA512/PKCS1_V1_5<br>RSA/SHA1/PSS<br>RSA/SHA224/PSS<br>RSA/SHA256/PSS<br>RSA/SHA384/PSS | 8+                | |
-| RSA/NoDigest/PKCS1_V1_5 | 9+                | |
-| DSA/SHA1<br>DSA/SHA224<br>DSA/SHA256<br>DSA/SHA384<br>DSA/SHA512     |  8+                | |
-| DSA/NoDigest     |  9+                | |
-| ECC/SHA1<br>ECC/SHA224<br>ECC/SHA256<br>ECC/SHA384<br>ECC/SHA512      | 8+                | |
-| ECC/NoDigest     |  9+                | |
-| ED25519/SHA1<br>ED25519/SHA224<br>ED25519/SHA256<br>ED25519/SHA384<br>ED25519/SHA512 |8+                | |
-| ED25519/NoDigest     |  9+                | |
-| SM2/SM3<br>SM2/NoDigest |9+                | |
+| Algorithm/Digest Algorithm/Padding Mode     | API Level| Remarks|Mandatory|
+| --------- | :----------: | ---------- |  :-----------------: |
+| RSA/MD5/PKCS1_V1_5<br>RSA/SHA1/PKCS1_V1_5<br>RSA/SHA224/PKCS1_V1_5 <br>RSA/SHA224/PSS| 8+                | |No|
+| RSA/SHA256/PKCS1_V1_5<br>RSA/SHA384/PKCS1_V1_5<br>RSA/SHA512/PKCS1_V1_5<br>RSA/SHA256/PSS<br>RSA/SHA384/PSS<br>RSA/SHA512/PSS | 8+                | | Yes
+| RSA/NoDigest/PKCS1_V1_5 | 9+    |If **NoDigest** is used, **TAG HuksKeyDigest.HUKS_DIGEST_NONE** must be set.|No|
+| DSA/SHA1<br>DSA/SHA224<br>DSA/SHA256<br>DSA/SHA384<br>DSA/SHA512     |  8+                | |No|
+| DSA/NoDigest     |  9+   |If **NoDigest** is used, **TAG HuksKeyDigest.HUKS_DIGEST_NONE** must be set.|No|
+| ECC/SHA1<br>ECC/SHA224   | 8+      | |No|
+| ECC/SHA256<br>ECC/SHA384<br>ECC/SHA512      | 8+                | |Yes|
+| ECC/NoDigest     |  9+   |If **NoDigest** is used, **TAG HuksKeyDigest.HUKS_DIGEST_NONE** must be set.|No|
+| ED25519/NoDigest     |  8+       | If **NoDigest** is used, **TAG HuksKeyDigest.HUKS_DIGEST_NONE** must be set.|Yes|
+| SM2/SM3|9+      | |Yes|
 
-### Key Agreement
+### key Agreement Algorithms
 
-| Algorithm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   | API Level| Remarks    |
-| ------ | :-----------: | ------------------------------ |
-| ECDH    | 8+   |  The key must be of the ECC type. |
-| DH        | 8+  |             |
-| X25519  | 8+  |             |
+| Algorithm  | API Level| Remarks    | Mandatory|
+| ------ | :-----------: | ------------------------------ |:-----------: |
+| ECDH    | 8+   |  The key must be of the ECC type. | Yes|
+| DH        | 8+  |             |Yes|
+| X25519  | 8+  |             |Yes|
 
-### Key Derivation
+### Specifications for the Combination of the Digest Algorithm and HMAC Key Length
+| Digest | Key Length| API Level| Mandatory|
+| ------ | :-----------: |:-----------: |:-----------: |
+| SHA256  |An integer multiple of 8, ranging from 192 to 1024| 8+   |   Yes|
+| SHA384  |An integer multiple of 8, ranging from 256 to 1024| 8+  |  Yes|
+| SHA512  |An integer multiple of 8, ranging from 256 to 1024| 8+  | Yes|
+### Specifications for the Combination of the Derivation Algorithm and Digest
 
-| Algorithm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |API Level        | Derived Key and Length (Bit)       | Remarks                 |
-| ------------------------- | :-----------: | :----------: | ----------------- |
-| HKDF/SHA256<br>HKDF/SHA384<br>HKDF/SHA512   | 8+ | Algorithm: AES, HMAC, and SM4<br>Length: 256, 384, 512 | The derived key can be stored in the HUKS or directly returned in plaintext.|
-| PBKDF2/SHA256<br>PBKDF2/SHA384<br>PBKDF2/SHA512    | 8+ | Algorithm: AES, HMAC, and SM4<br>Length: 256, 384, 512 | The derived key can be stored in the HUKS or directly returned in plaintext.|
+| Algorithm/Digest|  Algorithm/Length of the Base Key    | Available Algorithm/Length of the Derived Key             | Remarks|API Level|Mandatory|
+| ----------------- |-------------------------------- | ----------------------- | ------------ |:---------: |:--:|
+| HKDF/SHA256   | AES/192-256 | AES/128/192/256<br>HMAC/8-1024<br>SM4/128 | A derived key is the key session result obtained by the service using the Init-Update-Finish mechanism. It can be managed by the HUKS (the key is always in a TEE) or independently managed by the service based on service requirements.|8+|Yes|
+| HKDF/SHA384  | AES/256 | AES/128/192/256<br>HMAC/8-1024<br>SM4/128 | A derived key is the key session result obtained by the service using the Init-Update-Finish mechanism. It can be managed by the HUKS (the key is always in a TEE) or independently managed by the service based on service requirements.|8+|Yes|
+|HKDF/SHA512   | AES/256 | AES/128/192/256<br>HMAC/8-1024<br>SM4/128 | A derived key is the key session result obtained by the service using the Init-Update-Finish mechanism. It can be managed by the HUKS (the key is always in a TEE) or independently managed by the service based on service requirements.|8+|Yes|
+| PBKDF2/SHA256   | AES/192-256 | AES/128/192/256<br>HMAC/8-1024<br>SM4/128 | A derived key is the key session result obtained by the service using the Init-Update-Finish mechanism. It can be managed by the HUKS (the key is always in a TEE) or independently managed by the service based on service requirements.|8+|Yes|
+| PBKDF2/SHA384   |AES/256  | AES/128/192/256<br>HMAC/8-1024<br>SM4/128 | A derived key is the key session result obtained by the service using the Init-Update-Finish mechanism. It can be managed by the HUKS (the key is always in a TEE) or independently managed by the service based on service requirements.|8+|Yes|
+| PBKDF2/SHA512    | AES/256 | AES/128/192/256<br>HMAC/8-1024<br>SM4/128 | A derived key is the key session result obtained by the service using the Init-Update-Finish mechanism. It can be managed by the HUKS (the key is always in a TEE) or independently managed by the service based on service requirements.|8+|Yes|
 
 ### Key Attestation
 
-| Algorithm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |API Level| Remarks                                           |
-| ------------------ | :-----: | ------------------------------------------------------------ |
-| RSA | 9+ | Only the keys using the PSS padding are supported. |
-| ECC                | 9+ |   |
-| X25519             | 9+ |   |
+| Algorithm|API Level| Remarks | Mandatory|
+| ------------------ | :-----: | ----------------------------- | :-------:|
+| RSA | 9+ |  The padding mode can be PSS or PKCS1_V1_5.|Yes|
+| ECC                | 9+ |   |Yes|
+| X25519             | 9+ |   |Yes|
 
 ## Key Material Formats
 HUKS defines a set of formats for the material of key pairs, public keys, and private keys of different cipher algorithms.
@@ -74,17 +95,17 @@ Key pair material = Key pair material header + Original key pair material
 
 The following uses the RSA key as an example. The application needs to apply for a Uint8Array and assign the variables to the corresponding positions based on the memory structure of the RSA key pair material.
 
-**Figure 1** Memory structure of the SRSA key material
+**Figure 1** Memory structure of the RSA key material
 
 ![huks_keymaterial_struct](figures/huks_keymaterial_struct.png)
 
 ```ts
 let rsa2048KeyPairMaterial = new Uint8Array([
     0x01, 0x00, 0x00, 0x00, // Key algorithm: huks.HuksKeyAlg.HUKS_ALG_RSA = 1
-    0x00, 0x08, 0x00, 0x00, // Key size: 2048 bits
-    0x00, 0x01, 0x00, 0x00, // Length of modulus n: 256 bytes
-    0x03, 0x00, 0x00, 0x00, // Length of the public key exponent e: 3 bytes
-    0x00, 0x01, 0x00, 0x00, // Length of the private key exponent d: 256 bytes
+    0x00, 0x08, 0x00, 0x00, // Key size (bit): 2048
+    0x00, 0x01, 0x00, 0x00, // Length of modulus n (byte): 256
+    0x03, 0x00, 0x00, 0x00, // Length of the public key exponent e (byte): 3
+    0x00, 0x01, 0x00, 0x00, // Length of the private key exponent d (byte): 256
     // Modulus n
     0xc5, 0x35, 0x62, 0x48, 0xc4, 0x92, 0x87, 0x73, 0x0d, 0x42, 0x96, 0xfc, 0x7b, 0x11, 0x05, 0x06,
     0x0f, 0x8d, 0x66, 0xc1, 0x0e, 0xad, 0x37, 0x44, 0x92, 0x95, 0x2f, 0x6a, 0x55, 0xba, 0xec, 0x1d,
@@ -184,10 +205,10 @@ The following uses the RSA private key material as an example:
 ```ts
 let rsa2048PrivateKeyMaterial = new Uint8Array([
     0x01, 0x00, 0x00, 0x00, // Key algorithm: huks.HuksKeyAlg.HUKS_ALG_RSA = 1
-    0x00, 0x08, 0x00, 0x00, // Key size: 2048 bits
-    0x00, 0x01, 0x00, 0x00, // Length of modulus n: 256 byptes
-    0x00, 0x00, 0x00, 0x00, // Length of the public key exponent e: 0
-    0x00, 0x01, 0x00, 0x00, // Length of the private key exponent d: 256 bytes
+    0x00, 0x08, 0x00, 0x00, // Key size (bit): 2048
+    0x00, 0x01, 0x00, 0x00, // Length of modulus n (byte): 256
+    0x00, 0x00, 0x00, 0x00, // Length of the public key exponent e (byte): 0
+    0x00, 0x01, 0x00, 0x00, // Length of the private key exponent d (byte): 256
     // Modulus n
     0xc5, 0x35, 0x62, 0x48, 0xc4, 0x92, 0x87, 0x73, 0x0d, 0x42, 0x96, 0xfc, 0x7b, 0x11, 0x05, 0x06,
     0x0f, 0x8d, 0x66, 0xc1, 0x0e, 0xad, 0x37, 0x44, 0x92, 0x95, 0x2f, 0x6a, 0x55, 0xba, 0xec, 0x1d,

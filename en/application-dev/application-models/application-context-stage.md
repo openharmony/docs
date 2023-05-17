@@ -19,10 +19,10 @@
      ```ts
      import UIAbility from '@ohos.app.ability.UIAbility';
      export default class EntryAbility extends UIAbility {
-         onCreate(want, launchParam) {
-             let uiAbilityContext = this.context;
-             // ...
-         }
+       onCreate(want, launchParam) {
+         let uiAbilityContext = this.context;
+         // ...
+       }
      }
      ```
      
@@ -34,21 +34,21 @@
      ```ts
      import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
      export default class MyService extends ServiceExtensionAbility {
-         onCreate(want) {
-             let serviceExtensionContext = this.context;
-             // ...
-         }
+       onCreate(want) {
+         let serviceExtensionContext = this.context;
+         // ...
+       }
      }
      ```
   - [AbilityStageContext](../reference/apis/js-apis-inner-application-abilityStageContext.md): module-level context. It provides **HapModuleInfo** and **Configuration** in addition to those provided by the base class **Context**.
     
      ```ts
-     import AbilityStage from "@ohos.app.ability.AbilityStage";
+     import AbilityStage from '@ohos.app.ability.AbilityStage';
      export default class MyAbilityStage extends AbilityStage {
-         onCreate() {
-             let abilityStageContext = this.context;
-             // ...
-         }
+       onCreate() {
+         let abilityStageContext = this.context;
+         // ...
+       }
      }
      ```
   - [ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md): application-level context. It provides APIs for subscribing to application component lifecycle changes, system memory changes, and system environment changes. The application-level context can be obtained from UIAbility, ExtensionAbility, and AbilityStage.
@@ -56,10 +56,10 @@
      ```ts
      import UIAbility from '@ohos.app.ability.UIAbility';
      export default class EntryAbility extends UIAbility {
-         onCreate(want, launchParam) {
-             let applicationContext = this.context.getApplicationContext();
-             // ...
-         }
+       onCreate(want, launchParam) {
+         let applicationContext = this.context.getApplicationContext();
+         // ...
+       }
      }
      ```
 
@@ -71,7 +71,7 @@ This topic describes how to use the context in the following scenarios:
 
 
 - [Obtaining the Application Development Path](#obtaining-the-application-development-path)
-- [Obtaining and Modifying Encrypted Areas](#obtaining-and-modifying-encrypted-areas)
+- [Obtaining and Modifying Encryption Areas](#obtaining-and-modifying-encryption-areas)
 - [Creating Context of Another Application or Module](#creating-context-of-another-application-or-module)
 - [Subscribing to UIAbility Lifecycle Changes in a Process](#subscribing-to-uiability-lifecycle-changes-in-a-process)
 
@@ -84,13 +84,13 @@ The following table describes the application development paths obtained from co
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| cacheDir | string | Yes| No| Cache directory of the application on the internal storage.<br>It is the content of **Storage** of an application under **Settings > Apps & services > Apps**.|
-| tempDir | string | Yes| No| Temporary file directory of the application.<br>Files in this directory are deleted after the application is uninstalled.|
-| filesDir | string | Yes| No| File directory of the application on the internal storage.<br>Files in this directory may be synchronized to other directories during application migration or backup.|
-| databaseDir | string | Yes| No| Storage directory of the local database.|
-| bundleCodeDir | string | Yes| No| Installation directory of the application on the internal storage.|
-| distributedFilesDir | string | Yes| No| Storage directory of distributed application data files.|
-| preferencesDir | string | Yes| Yes| Preferences directory of the application.|
+| bundleCodeDir       | string   | Yes  | No  | Path for storing the application's installation package, that is, installation directory of the application on the internal storage. Do not access resource files by concatenating paths. Use [@ohos.resourceManager] instead.                  |
+| cacheDir | string | Yes| No| Path for storing the application's cache files, that is, cache directory of the application on the internal storage.<br>It is the content of **Storage** of an application under **Settings > Apps & services > Apps**.|
+| filesDir            | string   | Yes  | No  | Path for storing the application's common files, that is, file directory of the application on the internal storage.<br>Files in this directory may be synchronized to other directories during application migration or backup.|
+| preferencesDir      | string   | Yes  | Yes  | Path for storing the application's preference files, that is, preferences directory of the application.                |
+| tempDir             | string   | Yes  | No  | Path for storing the application's temporary files.<br>Files in this directory are deleted after the application is uninstalled.|
+| databaseDir         | string   | Yes  | No  | Path for storing the application's database, that is, storage directory of the local database.                        |
+| distributedFilesDir | string | Yes| No| Path for storing the application's distributed files.|
 
 The capability of obtaining the application development path is provided by the base class **Context**. This capability is also provided by **ApplicationContext**, **AbilityStageContext**, **UIAbilityContext**, and **ExtensionContext**. However, the paths obtained from different contexts may differ, as shown below.
 
@@ -127,16 +127,16 @@ The sample code for obtaining the application development paths is as follows:
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        let cacheDir = this.context.cacheDir;
-        let tempDir = this.context.tempDir;
-        let filesDir = this.context.filesDir;
-        let databaseDir = this.context.databaseDir;
-        let bundleCodeDir = this.context.bundleCodeDir;
-        let distributedFilesDir = this.context.distributedFilesDir;
-        let preferencesDir = this.context.preferencesDir;
-        // ...
-    }
+  onCreate(want, launchParam) {
+    let cacheDir = this.context.cacheDir;
+    let tempDir = this.context.tempDir;
+    let filesDir = this.context.filesDir;
+    let databaseDir = this.context.databaseDir;
+    let bundleCodeDir = this.context.bundleCodeDir;
+    let distributedFilesDir = this.context.distributedFilesDir;
+    let preferencesDir = this.context.preferencesDir;
+    // ...
+  }
 }
 ```
 
@@ -144,59 +144,66 @@ export default class EntryAbility extends UIAbility {
 >
 > The sample code obtains the sandbox path of the application development path. The absolute path can be obtained by running the **find / -name <fileName>** command in the hdc shell after file creation or modification.
 
-### Obtaining and Modifying Encrypted Areas
+### Obtaining and Modifying Encryption Areas
 
-You can read and write [the area attribute in the context](../reference/apis/js-apis-inner-application-context.md) to obtain and set an encrypted area. Two encryption levels are supported:
+Encrypting application files enhances data security by preventing files from unauthorized access. Different application files require different levels of protection. For private files, such as alarms and wallpapers, the application must place them in the device-level encryption area (EL1) to ensure that they can be accessed before the user enters the password. For sensitive files, such as personal privacy data, the application must place them in the user-level encryption area (EL2).
 
-- AreaMode.EL1: device-level encryption area, which is accessible after the device is powered on.
+In practice, you need to select a proper encrypted area based on scenario-specific requirements to protect application data security. The proper use of EL1 and the EL2 can efficiently improve the security.
 
-- AreaMode.EL2: user-level encryption area, which is accessible only after the device is powered on and the password is entered (for the first time).
+> **NOTE**
+>
+> - AreaMode.EL1: device-level encryption area, which is accessible after the device is powered on.
+>
+> - AreaMode.EL2: user-level encryption area, which is accessible only after the device is powered on and the password is entered (for the first time).
+
+You can obtain and set the encryption area by reading and writing the [area attribute in Context](../reference/apis/js-apis-inner-application-context.md).
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        // Before storing common information, switch the encryption level to EL1.
-        if (this.context.area === 1) {// Obtain the area.
-            this.context.area = 0; // Modify the area.
-        }
-        // Store common information.
-
-        // Before storing sensitive information, switch the encryption level to EL2.
-        if (this.context.area === 0) { // Obtain the area.
-            this.context.area = 1;     // Modify the area.
-        }
-        // Store sensitive information.
+  onCreate(want, launchParam) {
+    // Before storing common information, switch the encryption level to EL1.
+    if (this.context.area === 1) {// Obtain the area.
+      this.context.area = 0; // Modify the area.
     }
+    // Store common information.
+
+    // Before storing sensitive information, switch the encryption level to EL2.
+    if (this.context.area === 0) { // Obtain the area.
+      this.context.area = 1; // Modify the area.
+    }
+    // Store sensitive information.
+  }
 }
 ```
 
 
 ### Creating Context of Another Application or Module
 
-The base class **Context** provides the [createBundleContext(bundleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatebundlecontext), [createModuleContext(moduleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext), and [createModuleContext(bundleName:string, moduleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext-1) methods for creating the context of other applications or modules, so as to obtain the resource information, for example, [obtaining the application development paths](#obtaining-the-application-development-path) of other modules.
+The base class **Context** provides [createBundleContext(bundleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatebundlecontext), [createModuleContext(moduleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext), and [createModuleContext(bundleName:string, moduleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext-1) to create the context of other applications or modules, so as to obtain the resource information, for example, [obtaining the application development paths](#obtaining-the-application-development-path) of other modules.
 
 - Call **createBundleContext(bundleName:string)** to create the context of another application.
   > **NOTE**
   >
   > To obtain the context of another application:
-  >
-  > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Permission Application Guide](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+  > 
+  > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+  > 
   > - This is a system API and cannot be called by third-party applications.
 
   For example, application information displayed on the home screen includes the application name and icon. The home screen application calls the foregoing method to obtain the context information, so as to obtain the resource information including the application name and icon.
-
+  
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   
   export default class EntryAbility extends UIAbility {
-      onCreate(want, launchParam) {
-          let bundleName2 = "com.example.application";
-          let context2 = this.context.createBundleContext(bundleName2);
-          let label2 = context2.applicationInfo.label;
-          // ...
-      }
+    onCreate(want, launchParam) {
+      let bundleName2 = 'com.example.application';
+      let context2 = this.context.createBundleContext(bundleName2);
+      let label2 = context2.applicationInfo.label;
+      // ...
+    }
   }
   ```
 
@@ -205,99 +212,113 @@ The base class **Context** provides the [createBundleContext(bundleName:string)]
   >
   > To obtain the context of a specified module of another application:
   >
-  > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Permission Application Guide](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+  > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+  >
   > - This is a system API and cannot be called by third-party applications.
-
+  
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   
   export default class EntryAbility extends UIAbility {
-      onCreate(want, launchParam) {
-          let bundleName2 = "com.example.application";
-          let moduleName2 = "module1";
-          let context2 = this.context.createModuleContext(bundleName2, moduleName2);
-          // ...
-      }
+    onCreate(want, launchParam) {
+      let bundleName2 = 'com.example.application';
+      let moduleName2 = 'module1';
+      let context2 = this.context.createModuleContext(bundleName2, moduleName2);
+      // ...
+    }
   }
   ```
-
+  
 - Call **createModuleContext(moduleName:string)** to obtain the context of another module in the current application. After obtaining the context, you can obtain the resource information of that module.
   
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   
   export default class EntryAbility extends UIAbility {
-      onCreate(want, launchParam) {
-          let moduleName2 = "module1";
-          let context2 = this.context.createModuleContext(moduleName2);
-          // ...
-      }
+    onCreate(want, launchParam) {
+      let moduleName2 = 'module1';
+      let context2 = this.context.createModuleContext(moduleName2);
+      // ...
+    }
   }
   ```
 
 
 ### Subscribing to UIAbility Lifecycle Changes in a Process
 
-In the DFX statistics scenario of an application, if you need to collect statistics on the stay duration and access frequency of a page, you can subscribe to UIAbility lifecycle changes.
+In the DFX statistics scenario of an application, if you need to collect statistics on the stay duration and access frequency of a page, you can subscribe to UIAbility lifecycle changes in a process.
 
-[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md) provides APIs for subscribing to UIAbility lifecycle changes in a process. When the UIAbility lifecycle changes in a process, for example, being created or destroyed, becoming visible or invisible, or gaining or losing focus, the corresponding callback is triggered, and a listener ID is returned. The ID is incremented by 1 each time the listener is registered. When the number of listeners exceeds the upper limit (2^63-1), -1 is returned. The following uses [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md) as an example.
+[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md) provides APIs for subscribing to UIAbility lifecycle changes in a process. When the UIAbility lifecycle changes in a process, for example, being created or destroyed, becoming visible or invisible, or gaining or losing focus, the corresponding callback is triggered. Each time the callback is registered, a listener lifecycle ID is returned, with the value incremented by 1 each time. When the number of listeners exceeds the upper limit (2^63-1), **-1** is returned. The following uses [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md) as an example.
 
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
-const TAG: string = "[Example].[Entry].[EntryAbility]";
+const TAG: string = '[Example].[Entry].[EntryAbility]';
 
 export default class EntryAbility extends UIAbility {
-    lifecycleId: number;
+  // Define a lifecycle ID.
+  lifecycleId: number;
 
-    onCreate(want, launchParam) {
-        let abilityLifecycleCallback = {
-            onAbilityCreate(uiability) {
-                console.info(TAG, "onAbilityCreate uiability:" + JSON.stringify(uiability));
-            },
-            onWindowStageCreate(uiability, windowStage) {
-                console.info(TAG, "onWindowStageCreate uiability:" + JSON.stringify(uiability));
-                console.info(TAG, "onWindowStageCreate windowStage:" + JSON.stringify(windowStage));
-            },
-            onWindowStageActive(uiability, windowStage) {
-                console.info(TAG, "onWindowStageActive uiability:" + JSON.stringify(uiability));
-                console.info(TAG, "onWindowStageActive windowStage:" + JSON.stringify(windowStage));
-            },
-            onWindowStageInactive(uiability, windowStage) {
-                console.info(TAG, "onWindowStageInactive uiability:" + JSON.stringify(uiability));
-                console.info(TAG, "onWindowStageInactive windowStage:" + JSON.stringify(windowStage));
-            },
-            onWindowStageDestroy(uiability, windowStage) {
-                console.info(TAG, "onWindowStageDestroy uiability:" + JSON.stringify(uiability));
-                console.info(TAG, "onWindowStageDestroy windowStage:" + JSON.stringify(windowStage));
-            },
-            onAbilityDestroy(uiability) {
-                console.info(TAG, "onAbilityDestroy uiability:" + JSON.stringify(uiability));
-            },
-            onAbilityForeground(uiability) {
-                console.info(TAG, "onAbilityForeground uiability:" + JSON.stringify(uiability));
-            },
-            onAbilityBackground(uiability) {
-                console.info(TAG, "onAbilityBackground uiability:" + JSON.stringify(uiability));
-            },
-            onAbilityContinue(uiability) {
-                console.info(TAG, "onAbilityContinue uiability:" + JSON.stringify(uiability));
-            }
-        }
-        // 1. Obtain the application context through the context attribute.
-        let applicationContext = this.context.getApplicationContext();
-        // 2. Register a listener for the lifecycle changes through the application context.
-        this.lifecycleId = applicationContext.on("abilityLifecycle", abilityLifecycleCallback);
-        console.info(TAG, "register callback number: " + JSON.stringify(this.lifecycleId));
+  onCreate(want, launchParam) {
+    // Define a lifecycle callback object.
+    let abilityLifecycleCallback = {
+      // Called when a UIAbility is created.
+      onAbilityCreate(uiAbility) {
+        console.log(TAG, `onAbilityCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+      },
+      // Called when a window is created.
+      onWindowStageCreate(uiAbility, windowStage: window.WindowStage) {
+        console.log(TAG, `onWindowStageCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.log(TAG, `onWindowStageCreate windowStage: ${JSON.stringify(windowStage)}`);
+      },
+      // Called when the window becomes active.
+      onWindowStageActive(uiAbility, windowStage: window.WindowStage) {
+        console.log(TAG, `onWindowStageActive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.log(TAG, `onWindowStageActive windowStage: ${JSON.stringify(windowStage)}`);
+      },
+      // Called when the window becomes inactive.
+      onWindowStageInactive(uiAbility, windowStage: window.WindowStage) {
+        console.log(TAG, `onWindowStageInactive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.log(TAG, `onWindowStageInactive windowStage: ${JSON.stringify(windowStage)}`);
+      },
+      // Called when the window is destroyed.
+      onWindowStageDestroy(uiAbility, windowStage: window.WindowStage) {
+        console.log(TAG, `onWindowStageDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.log(TAG, `onWindowStageDestroy windowStage: ${JSON.stringify(windowStage)}`);
+      },
+      // Called when the UIAbility is destroyed.
+      onAbilityDestroy(uiAbility) {
+        console.log(TAG, `onAbilityDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+      },
+      // Called when the UIAbility is switched from the background to the foreground.
+      onAbilityForeground(uiAbility) {
+        console.log(TAG, `onAbilityForeground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+      },
+      // Called when the UIAbility is switched from the foreground to the background.
+      onAbilityBackground(uiAbility) {
+        console.log(TAG, `onAbilityBackground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+      },
+      // Called when UIAbility is continued on another device.
+      onAbilityContinue(uiAbility) {
+        console.log(TAG, `onAbilityContinue uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+      }
     }
+    // Obtain the application context.
+    let applicationContext = this.context.getApplicationContext();
+    // Register the application lifecycle callback.
+    this.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
+    console.log(TAG, `register callback number: ${this.lifecycleId}`);
+  }
 
-    onDestroy() {
-        let applicationContext = this.context.getApplicationContext();
-        applicationContext.off("abilityLifecycle", this.lifecycleId, (error, data) => {
-            console.info(TAG, "unregister callback success, err: " + JSON.stringify(error));
-        });
-    }
+  // ...
+
+  onDestroy() {
+    // Obtain the application context.
+    let applicationContext = this.context.getApplicationContext();
+    // Deregister the application lifecycle callback.
+    applicationContext.off('abilityLifecycle', this.lifecycleId);
+  }
 }
 ```

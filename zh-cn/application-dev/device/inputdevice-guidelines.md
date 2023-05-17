@@ -29,7 +29,6 @@ import inputDevice from '@ohos.multimodalInput.inputDevice';
 
 1. 调用getDeviceList方法查询所有连接的输入设备，调用getKeyboardType方法遍历所有连接的设备，判断是否有物理键盘，若有则标记已有物理键盘连接，该步骤确保监听设备热插拔之前，检测所有插入的输入设备。
 2. 调用on接口监听输入设备热插拔事件，若监听到有物理键盘插入，则标记已有物理键盘连接；若监听到有物理键盘拔掉，则标记没有物理键盘连接。
-3. 文本框进行输入时，判断是否有物理键盘连接，如果有物理键盘则不弹出虚拟键盘，如果没有物理键盘则弹出虚拟键盘。
 
 
 ```js
@@ -65,6 +64,4 @@ try {
 } catch (error) {
   console.log(`Execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
-  // 3.根据isPhysicalKeyboardExist的值决定虚拟键盘是否弹出
-  // TODO
 ```

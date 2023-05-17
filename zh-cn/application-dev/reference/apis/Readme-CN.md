@@ -152,6 +152,7 @@
   - bundleManager
     - [abilityInfo](js-apis-bundleManager-abilityInfo.md)
     - [applicationInfo](js-apis-bundleManager-applicationInfo.md)
+    - [AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)
     - [bundleInfo](js-apis-bundleManager-bundleInfo.md)
     - [BundlePackInfo](js-apis-bundleManager-BundlePackInfo.md)
     - [dispatchInfo](js-apis-bundleManager-dispatchInfo.md)
@@ -166,6 +167,7 @@
 
 - UI界面
   - [@ohos.animator (动画)](js-apis-animator.md)
+  - [@ohos.arkui.drawableDescriptor(DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
   - [@ohos.curves (插值计算)](js-apis-curve.md)
   - [@ohos.matrix4 (矩阵变换)](js-apis-matrix4.md)
   - [@ohos.mediaquery (媒体查询)](js-apis-mediaquery.md)
@@ -200,7 +202,7 @@
   - [@ohos.intl (国际化-Intl)](js-apis-intl.md)
   - [@ohos.resourceManager (资源管理)](js-apis-resource-manager.md)
 
-- 后台任务
+- 后台任务(Background Task)
   - [@ohos.distributedMissionManager (分布式任务管理)](js-apis-distributedMissionManager.md)
   - [@ohos.reminderAgentManager (后台代理提醒)](js-apis-reminderAgentManager.md)
   - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](js-apis-resourceschedule-backgroundTaskManager.md)
@@ -233,10 +235,12 @@
   - [@ohos.data.ValuesBucket (数据集)](js-apis-data-valuesBucket.md)
 
 - 文件管理
+  - [@ohos.file.backup (备份恢复)](js-apis-file-backup.md)
+  - [@ohos.file.cloudSyncManager (端云同步管理)](js-apis-file-cloudsyncmanager.md)
   - [@ohos.file.environment (目录环境能力)](js-apis-file-environment.md)
   - [@ohos.file.fileAccess (公共文件访问与管理)](js-apis-fileAccess.md)
   - [@ohos.file.fileExtensionInfo (公共文件访问与管理属性信息)](js-apis-fileExtensionInfo.md)
-  - [@ohos.file.fileUri (文件URI)](js-apis-file-fileUri.md)
+  - [@ohos.file.fileuri (文件URI)](js-apis-file-fileuri.md)
   - [@ohos.file.fs (文件管理)](js-apis-file-fs.md)
   - [@ohos.file.hash (文件哈希处理)](js-apis-file-hash.md)
   - [@ohos.file.picker (选择器)](js-apis-file-picker.md)
@@ -267,7 +271,8 @@
   - [@ohos.request (上传下载)](js-apis-request.md)
 
 - 通信与连接
-  - [@ohos.bluetooth (蓝牙)](js-apis-bluetooth.md)
+  - [@ohos.bluetooth (蓝牙)(待停用)](js-apis-bluetooth.md)
+  - [@ohos.bluetoothManager (蓝牙)(推荐)](js-apis-bluetoothManager.md)
   - [@ohos.connectedTag (有源标签)](js-apis-connectedTag.md)
   - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](js-apis-cardEmulation.md)
   - [@ohos.nfc.controller (标准NFC)](js-apis-nfcController.md)
@@ -310,8 +315,6 @@
   - [Timer (定时器)](js-apis-timer.md)
   - application
     - [AccessibilityExtensionContext (辅助功能扩展上下文)](js-apis-inner-application-accessibilityExtensionContext.md)
-  - imf
-    - [InputMethodCommon](js-apis-inputmethod-InputMethodCommon.md)
 
 - 设备管理
   - [@ohos.batteryInfo (电量信息)](js-apis-battery-info.md)
@@ -352,8 +355,9 @@
 - 定制管理
   - [@ohos.configPolicy (配置策略)](js-apis-configPolicy.md)
   - [@ohos.enterprise.accountManager (帐户管理)](js-apis-enterprise-accountManager.md)
-  - [@ohos.enterprise.bundleManager (包管理)](js-apis-enterprise-bundleManager.md)
   - [@ohos.enterprise.adminManager (企业设备管理)](js-apis-enterprise-adminManager.md)
+  - [@ohos.enterprise.applicationManager (应用管理)](js-apis-enterprise-applicationManager.md)
+  - [@ohos.enterprise.bundleManager (包管理)](js-apis-enterprise-bundleManager.md)
   - [@ohos.enterprise.dateTimeManager (系统时间管理)](js-apis-enterprise-dateTimeManager.md)
   - [@ohos.enterprise.deviceControl (设备控制管理)](js-apis-enterprise-deviceControl.md)
   - [@ohos.enterprise.deviceInfo (设备信息管理)](js-apis-enterprise-deviceInfo.md)
@@ -411,7 +415,6 @@
   - [@ohos.systemParameter (系统属性)](js-apis-system-parameter.md)
   - [@ohos.systemTime (系统时间、时区)](js-apis-system-time.md)
   - [@ohos.usb (USB管理)](js-apis-usb-deprecated.md)
-  - [@ohos.usbV9 (USB管理)](js-apis-usb.md)
   - [@system.app (应用上下文)](js-apis-system-app.md)
   - [@system.battery (电量信息)](js-apis-system-battery.md)
   - [@system.bluetooth (蓝牙)](js-apis-system-bluetooth.md)

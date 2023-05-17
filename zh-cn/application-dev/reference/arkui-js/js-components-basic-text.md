@@ -76,7 +76,7 @@
 
 
 ## 示例
-1. 
+1. ​
 ```html
 <!-- xxx.hml -->
 <div class="container">
@@ -137,5 +137,5 @@
 ```
 
 
-![zh-cn_image_0000001167823076](figures/text.png)
+![zh-cn_image_0000001167823076](figures/js-text.png)
 

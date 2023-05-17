@@ -542,7 +542,7 @@ inWindow(bundleName: string): On;
 **示例：**
 
 ```js
-let on = ON.inWindow(ON.inWindow('com.uitestScene.acts')); // 使用静态构造器ON创建On对象，指定目标控件位于给出的应用窗口内。
+let on = ON.inWindow('com.uitestScene.acts'); // 使用静态构造器ON创建On对象，指定目标控件位于给出的应用窗口内。
 ```
 
 ## Component<sup>9+</sup>

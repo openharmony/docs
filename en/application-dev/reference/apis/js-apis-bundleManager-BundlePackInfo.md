@@ -5,6 +5,8 @@ The **BundlePackInfo** module provides information in the **pack.info** file. Th
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
+> The APIs provided by this module are system APIs.
 
 ## BundlePackInfo
 
@@ -63,10 +65,10 @@ The **BundlePackInfo** module provides information in the **pack.info** file. Th
 | ------------------ | ------------------------------------------------- | ---- | ---- | ---------------------------------- |
 | mainAbility | string | Yes| No| Name of the main ability.|
 | apiVersion         | [ApiVersion](#apiversion)                         | Yes  | No  | API version of the module.                 |
-| deviceType         | Array\<string>                                    | Yes  | No  | Device types supported by the module.                |
+| deviceTypes         | Array\<string>                                    | Yes  | No  | Device types supported by the module.                |
 | distro             | [ModuleDistroInfo](#moduledistroinfo)             | Yes  | No  | Distribution information of the module.                |
 | abilities          | Array\<[ModuleAbilityInfo](#moduleabilityinfo)>   | Yes  | No  | Ability information of the module.              |
-| extensionAbilities | Array\<[ExtensionAbilities](#extensionability)> | Yes  | No  | ExtensionAbility information of the module.|
+| extensionAbilities | Array\<[ExtensionAbility](#extensionability)> | Yes  | No  | ExtensionAbility information of the module.|
 
 ## ModuleDistroInfo
 
@@ -123,7 +125,7 @@ The **BundlePackInfo** module provides information in the **pack.info** file. Th
 
 ## ApiVersion
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.BundleManager.BundleFrameWork.FreeInstall
 

@@ -11,6 +11,10 @@
 
 支持单个子组件。
 
+>  **说明：**
+>
+>  子组件类型：系统组件和自定义组件，支持渲染控制类型（[if/else](../../quick-start/arkts-rendering-control-ifelse.md)、[ForEach](../../quick-start/arkts-rendering-control-foreach.md)和[LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)）。
+
 
 ## 接口
 
@@ -22,12 +26,12 @@
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| count | number | 是 | - | 设置提醒消息数。 |
-| position | [BadgePosition](#badgeposition枚举说明) | 否 | BadgePosition.RightTop | 设置提示点显示位置。 |
-| maxCount | number | 否 | 99 | 最大消息数，超过最大消息时仅显示maxCount+。 |
-| style | [BadgeStyle](#badgestyle对象说明) | 是 | - | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
+| 参数名 | 参数类型 | 必填 | 参数描述 |
+| -------- | -------- | -------- | -------- |
+| count | number | 是 | 设置提醒消息数。<br/>**说明：** <br/>小于等于0时不显示信息标记。 |
+| position | [BadgePosition](#badgeposition枚举说明) | 否 | 设置提示点显示位置。<br/>默认值：BadgePosition.RightTop |
+| maxCount | number | 否 | 最大消息数，超过最大消息时仅显示maxCount+。<br/>默认值：99 |
+| style | [BadgeStyle](#badgestyle对象说明) | 是 | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
 
 **方法2：** Badge(value: {value: string, position?: BadgePosition, style: BadgeStyle})
 
@@ -57,15 +61,23 @@
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称                      | 类型                                                         | 必填 | 默认值            | 描述                                                         |
-| ------------------------- | ------------------------------------------------------------ | ---- | ----------------- | ------------------------------------------------------------ |
-| color                     | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | Color.White       | 文本颜色。                                                   |
-| fontSize                  | number&nbsp;\|&nbsp;string                                   | 否   | 10                | 文本大小，单位vp。                                           |
-| badgeSize                 | number&nbsp;\|&nbsp;string                                   | 否   | 16                | Badge的大小，单位vp。不支持百分比形式设置。当设置为非法值时，按照默认值处理。 |
-| badgeColor                | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | Color.Red         | Badge的颜色。                                                |
-| fontWeight<sup>10+</sup>  | number \|[FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | FontWeight.Normal | 设置文本的字体粗细。                                         |
-| borderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | Color.Red         | 底板描边颜色。                                               |
-| borderWidth<sup>10+</sup> | [Length](ts-types.md#length)                                 | 否   | 1.0vp             | 底板描边粗细。                                               |
+| 名称                      | 类型                                                         | 必填 | 描述                                                         |
+| ------------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| color                     | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 文本颜色。<br/>默认值：Color.White                           |
+| fontSize                  | number&nbsp;\|&nbsp;string                                   | 否   | 文本大小。<br/>默认值：10<br/>单位：vp<br/>**说明：** <br/>不支持设置百分比。 |
+| badgeSize                 | number&nbsp;\|&nbsp;string                                   | 否   | Badge的大小。<br/>默认值：16<br/>单位：vp<br/>**说明：** <br/>不支持设置百分比。当设置为非法值时，按照默认值处理。 |
+| badgeColor                | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | Badge的颜色。<br/>默认值：Color.Red                          |
+| fontWeight<sup>10+</sup>  | number \|[FontWeight](ts-appendix-enums.md#fontweight) \| string | 否   | 设置文本的字体粗细。<br/>默认值：FontWeight.Normal<br/>**说明：** <br/>不支持设置百分比。 |
+| borderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)                   | 否   | 底板描边颜色。                                               |
+| borderWidth<sup>10+</sup> | [Length](ts-types.md#length)                                 | 否   | 底板描边粗细。<br/>默认值：1<br/>单位：vp<br/>**说明：** <br/>不支持设置百分比。 |
+
+## 属性
+
+支持[通用属性](ts-universal-attributes-size.md)。
+
+## 事件
+
+支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
 

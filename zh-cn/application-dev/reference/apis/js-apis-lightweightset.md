@@ -1,8 +1,5 @@
 # @ohos.util.LightWeightSet (非线性容器LightWeightSet)
 
-> **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 LightWeightSet可用于存储一系列值的集合，存储元素中value值唯一。
 
 LightWeightSet依据泛型定义，采用轻量级结构，初始默认容量大小为8，每次扩容大小为原始容量的两倍。
@@ -13,8 +10,13 @@ LightWeightSet和[HashSet](js-apis-hashset.md)都是用来存储键值的集合�
 
 **推荐使用场景：** 当需要存取某个集合或是对某个集合去重时，推荐使用占用内存更小的LightWeightSet。
 
-文档中存在泛型的使用,涉及以下泛型标记符:<br>
-- T: Type, 类
+文档中存在泛型的使用，涉及以下泛型标记符：<br>
+- T：Type，类
+
+> **说明：**
+>
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 
 ## 导入模块
 
@@ -227,9 +229,8 @@ has(key: T): boolean
 
 ```ts
 let lightWeightSet = new LightWeightSet();
-let result = lightWeightSet.has(123);
 lightWeightSet.add(123);
-result = lightWeightSet.has(123);
+let result = lightWeightSet.has(123);
 ```
 
 
@@ -267,7 +268,7 @@ equal(obj: Object): boolean
 let lightWeightSet = new LightWeightSet();
 lightWeightSet.add("squirrel");
 lightWeightSet.add("sparrow");
-let obj = ["squirrel", "sparrow"];
+let obj = ["sparrow", "squirrel"];
 let result = lightWeightSet.equal(obj);
 ```
 

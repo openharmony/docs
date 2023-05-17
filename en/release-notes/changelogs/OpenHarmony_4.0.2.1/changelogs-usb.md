@@ -1,4 +1,4 @@
-USB Manager ChangeLog
+# USB Subsystem API Changelog
 
 ## cl.usb_manager.1 System API Change
 
@@ -13,6 +13,16 @@ If your application is developed based on earlier versions, modify the return va
 | ohos.usbV9.d.ts | function setCurrentFunctions(funcs: FunctionType): Promise<boolean>; | function setCurrentFunctions(funcs: FunctionType): Promise<void>; |
 | ohos.usbV9.d.ts | function setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): Promise<boolean>; | function setPortRoles(portId: number, powerRole: PowerRoleType, dataRole: DataRoleType): Promise<void>; |
 
+## cl.usb_manager.2 SDK API Deletion
+
+The **@ohos.usbV9.d.ts** file was deleted in OpenHarmony 4.0.5.5.
+
+You need to import **@ohos.usbManager** to use USB service APIs.
+
+  ```ts
+  import usbManager from '@ohos.usbManager';
+  ```
+
 **Adaptation Guide**
 
-For details, see the [reference](../../../application-dev/reference/errorcodes/errorcode-universal.md) for each API.
+For details about usage of each API, see the [API Reference](../../../application-dev/reference/apis/js-apis-usbManager.md).

@@ -1,4 +1,4 @@
-# OpenHarmony 1.1.0 LTS \(2021-04-01\)
+# OpenHarmony 1.1.0 LTS \(2021-04-01\) (EOL)
 
 ## Overview
 
@@ -139,10 +139,10 @@ The following table describes the optimization of repositories.
 | startup_frameworks_syspara_lite                              | startup_syspara_lite                          | Repository renamed |
 | startup_hals_syspara_lite                                    | N/A                                           | Read-only archiving                   |
 | startup_interfaces_kits_syspara_lite                         | N/A                                           | Read-only archiving                   |
-| graphic_lite                                                 | graphic_surface                               | Repository renamed |
-| N/A                                                          | graphic_ui                                    | New module                            |
-| N/A                                                          | graphic_utils                                 | New module                            |
-| N/A                                                          | graphic_wms                                   | New module                            |
+| graphic_lite                                                 | graphic_surface_lite                          | Repository renamed |
+| N/A                                                          | arkui_ui_lite                                 | Repository renamed module             |
+| N/A                                                          | graphic_graphic_utils_lite                    | Repository renamed module             |
+| N/A                                                          | window_manager_lite                           | Repository renamed module             |
 | N/A                                                          | third_party_giflib                            | New module                            |
 | N/A                                                          | third_party_qrcodegen                         | New module                            |
 | N/A                                                          | drivers_adapter_khdf_linux                    | New module                            |

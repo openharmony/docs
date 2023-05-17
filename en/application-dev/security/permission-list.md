@@ -436,7 +436,7 @@ Allows an application to obtain the sensitive permissions that have been granted
 
 ## ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION
 
-Allows an application to set attributes for the applications of other users.
+Allows an application to set the attributes of applications of other users.
 
 **Permission level**: system_core
 
@@ -496,7 +496,7 @@ Allows an application to read data from a gyroscope sensor or uncalibrated gyros
 
 ## ohos.permission.INSTALL_BUNDLE
 
-Allows an application to install and uninstall other applications.
+Allows an application to install and uninstall other applications (except enterprise InHouse applications).
 
 **Permission level**: system_core
 
@@ -964,6 +964,36 @@ Allows the device administrator to set account management policies.
 
 **Enable via ACL**: TRUE
 
+## ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
+
+Allows the device administrator to set bundle installation policies.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.ENTERPRISE_SET_NETWORK
+
+Allows the device administrator application to set network information.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
+
+Allows the device administrator application to set application running policies.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
 ## ohos.permission.NFC_TAG
 
 Allows an application to read NFC tag information.
@@ -1136,7 +1166,7 @@ Allows an application to add, remove, and modify call logs.
 
 ## ohos.permission.WRITE_CONTACTS
 
-Allows an application to add, remove, and modify contacts.
+Allows an application to add, remove, and modify Contacts.
 
 **Permission level**: system_basic
 
@@ -1490,7 +1520,7 @@ Allows an application to manage private credentials and query certificate status
 
 ## ohos.permission.ACCESS_PUSH_SERVICE
 
-Allows an application to to access the Ability of the push service.
+Allows an application to access the Ability of the push service.
 
 **Permission level**: system_basic
 
@@ -1618,6 +1648,26 @@ Allows an application to have backup and restore capabilities.
 
 **Enable via ACL**: TRUE
 
+## ohos.permission.CLOUDFILE_SYNC_MANAGER
+
+Allows an application to obtain the device-cloud synchronization management capability.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.CLOUDFILE_SYNC
+
+Allows an application to perform device-cloud synchronization.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
 ## ohos.permission.FILE_ACCESS_MANAGER
 
 Allows a file management application to access user data files through the FAF.
@@ -1630,7 +1680,7 @@ Allows a file management application to access user data files through the FAF.
 
 ## ohos.permission.MANAGE_AUDIO_CONFIG
 
-Allows an application to to mute microphones globally.
+Allows an application to mute microphones globally.
 
 **Permission level**: system_basic
 
@@ -1711,6 +1761,116 @@ Allows an application to obtain the capability of managing print tasks.
 ## ohos.permission.CHANGE_OVERLAY_ENABLED_STATE
 
 Allows a system application to disable the application with the overlay feature enabled.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.CONNECT_CELLULAR_CALL_SERVICE
+
+Allows a system ability (SA) to access the cellular call SA.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable ACL**: FALSE
+
+## ohos.permission.CONNECT_IMS_SERVICE
+
+Allows an SA to access the IMS SA.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable ACL**: FALSE
+
+## ohos.permission.ACCESS_SENSING_WITH_ULTRASOUND
+
+Allows an application to use ultrasonic sensing.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable ACL**: FALSE
+
+## ohos.permission.INSTALL_ENTERPRISE_BUNDLE
+
+Allows an application to install and uninstall enterprise InHouse applications.
+
+**Permission level**: system_core
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.PROXY_AUTHORIZATION_URI
+
+Allows the application proxy to authorize the URI.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable ACL**: FALSE
+
+## ohos.permission.GET_INSTALLED_BUNDLE_LIST
+
+Allows an application to obtain the list of installed applications.
+
+**Permission level**: system_basic
+
+**Authorization mode**: user_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
+
+Allows an application to manage distributed account information.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.GET_DISTRIBUTED_ACCOUNTS
+
+Allows an application to obtain distributed account information.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.GET_LOCAL_ACCOUNTS
+
+Allows an application to obtain local account information.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.READ_HIVIEW_SYSTEM
+
+Allows an application to access HiView data.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.WRITE_HIVIEW_SYSTEM
+
+Allows an application to modify HiView data.
 
 **Permission level**: system_basic
 

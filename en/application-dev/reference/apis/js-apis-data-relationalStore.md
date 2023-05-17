@@ -1,6 +1,6 @@
 # @ohos.data.relationalStore (RDB Store)
 
-The relational database (RDB) store manages data based on relational models. With the underlying SQLite database, the RDB store provides a complete mechanism for managing local databases. To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements.
+The relational database (RDB) store manages data based on relational models. With the underlying SQLite database, the RDB store provides a complete mechanism for managing local databases. To satisfy different needs in complicated scenarios, the RDB store offers a series of APIs for performing operations such as adding, deleting, modifying, and querying data, and supports direct execution of SQL statements. The worker threads are not supported.
 
 The **relationalStore** module provides the following functions:
 
@@ -115,7 +115,7 @@ Obtains an RDB store. This API uses a promise to return the result. You can set 
 
 | Type                                     | Description                             |
 | ----------------------------------------- | --------------------------------- |
-| Promise&lt;[RdbStore](#rdbstore)&gt; | Promise used to return the RDB store obtained.|
+| Promise&lt;[RdbStore](#rdbstore)&gt; | Promise used to return the **RdbStore** object.|
 
 **Error codes**
 
@@ -317,6 +317,10 @@ Defines the RDB store configuration.
 
 Enumerates the RDB store security levels.
 
+> **NOTE**
+>
+> To perform data synchronization operations, the RDB store security level must be lower than or equal to that of the peer device. For details, see the [Cross-Device Data Synchronization Mechanism](../../database/sync-app-data-across-devices-overview.md#cross-device-data-synchronization-mechanism).
+
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | Name| Value  | Description                                                        |
@@ -414,8 +418,11 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 
 inDevices(devices: Array&lt;string&gt;): RdbPredicates
 
-
 Sets an **RdbPredicates** to specify the remote devices to connect on the network during distributed database synchronization.
+
+> **NOTE**
+>
+> The value of **devices** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -434,8 +441,24 @@ Sets an **RdbPredicates** to specify the remote devices to connect on the networ
 **Example**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+let deviceIds = [];
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+    }
+})
+                                  
 let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
-predicates.inDevices(['12345678abcde']);
+predicates.inDevices(deviceIds);
 ```
 
 ### inAllDevices
@@ -1225,9 +1248,9 @@ predicates.notIn("NAME", ["Lisa", "Rose"]);
 
 ## RdbStore
 
-Provides methods to manage an RDB store.
+Provides APIs to manage an RDB store.
 
-Before using the following APIs, use [executeSql](#executesql) to initialize the database table structure and related data. For details, see [RDB Development](../../database/database-relational-guidelines.md).
+Before using the APIs of this class, use [executeSql](#executesql) to initialize the database table structure and related data.
 
 ### Attributes<sup>10+</sup>
 
@@ -1261,6 +1284,14 @@ Inserts a row of data into a table. This API uses an asynchronous callback to re
 | table    | string                        | Yes  | Name of the target table.                                          |
 | values   | [ValuesBucket](#valuesbucket) | Yes  | Row of data to insert.                                |
 | callback | AsyncCallback&lt;number&gt;   | Yes  | Callback invoked to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**           |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **Example**
 
@@ -1296,6 +1327,14 @@ Inserts a row of data into a table. This API uses an asynchronous callback to re
 | values   | [ValuesBucket](#valuesbucket)               | Yes  | Row of data to insert.                                |
 | conflict | [ConflictResolution](#conflictresolution10) | Yes  | Resolution used to resolve the conflict.                                        |
 | callback | AsyncCallback&lt;number&gt;                 | Yes  | Callback invoked to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**           |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **Example**
 
@@ -1336,6 +1375,14 @@ Inserts a row of data into a table. This API uses a promise to return the result
 | --------------------- | ------------------------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**           |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **Example**
 
 ```js
@@ -1375,6 +1422,14 @@ Inserts a row of data into a table. This API uses a promise to return the result
 | --------------------- | ------------------------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**           |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **Example**
 
 ```js
@@ -1407,6 +1462,14 @@ Batch inserts data into a table. This API uses an asynchronous callback to retur
 | table    | string                                     | Yes  | Name of the target table.                                            |
 | values   | Array&lt;[ValuesBucket](#valuesbucket)&gt; | Yes  | An array of data to insert.                                |
 | callback | AsyncCallback&lt;number&gt;                | Yes  | Callback invoked to return the result. If the operation is successful, the number of inserted data records is returned. Otherwise, **-1** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**           |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **Example**
 
@@ -1461,6 +1524,14 @@ Batch inserts data into a table. This API uses a promise to return the result.
 | --------------------- | ----------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the number of inserted data records is returned. Otherwise, **-1** is returned.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**           |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **Example**
 
 ```js
@@ -1508,6 +1579,14 @@ Updates data in the RDB store based on the specified **RdbPredicates** object. T
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Update conditions specified by the **RdbPredicates** object.                   |
 | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the number of rows updated.                  |
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**           |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **Example**
 
 ```js
@@ -1544,6 +1623,14 @@ Updates data in the RDB store based on the specified **RdbPredicates** object. T
 | predicates | [RdbPredicates](#rdbpredicates)            | Yes  | Update conditions specified by the **RdbPredicates** object.                     |
 | conflict   | [ConflictResolution](#conflictresolution10) | Yes  | Resolution used to resolve the conflict.                                          |
 | callback   | AsyncCallback&lt;number&gt;                 | Yes  | Callback invoked to return the number of rows updated.                  |
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**           |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **Example**
 
@@ -1586,6 +1673,14 @@ Updates data based on the specified **RdbPredicates** object. This API uses a pr
 | --------------------- | ----------------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the number of rows updated.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**           |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **Example**
 
 ```js
@@ -1627,6 +1722,14 @@ Updates data based on the specified **RdbPredicates** object. This API uses a pr
 | --------------------- | ----------------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the number of rows updated.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**           |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **Example**
 
 ```js
@@ -1664,6 +1767,14 @@ Updates data based on the specified **DataSharePredicates** object. This API use
 | values     | [ValuesBucket](#valuesbucket)                                | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Update conditions specified by the **DataSharePredicates** object.               |
 | callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the number of rows updated.                  |
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**           |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **Example**
 
@@ -1710,6 +1821,14 @@ Updates data based on the specified **DataSharePredicates** object. This API use
 | --------------------- | ----------------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the number of rows updated.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**           |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **Example**
 
 ```js
@@ -1745,6 +1864,14 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Conditions specified by the **RdbPredicates** object for deleting data.|
 | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the number of rows deleted. |
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**           |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **Example**
 
 ```js
@@ -1779,6 +1906,14 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 | --------------------- | ------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the number of rows deleted.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**           |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **Example**
 
 ```js
@@ -1809,6 +1944,14 @@ Deletes data from the RDB store based on the specified **DataSharePredicates** o
 | table      | string                                                       | Yes  | Name of the target table.                             |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions specified by the **DataSharePredicates** object for deleting data.|
 | callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the number of rows deleted.     |
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**           |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **Example**
 
@@ -1847,6 +1990,14 @@ Deletes data from the RDB store based on the specified **DataSharePredicates** o
 | Type                 | Description                           |
 | --------------------- | ------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the number of rows deleted.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**           |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **Example**
 
@@ -2008,24 +2159,42 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 Queries data from the RDB store of a remote device based on specified conditions. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> The value of **device** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 
-| Name    | Type                                                        | Mandatory| Description                                                       |
-| ---------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| device     | string                                                       | Yes  | Network ID of the remote device.                                |
-| table      | string                                                       | Yes  | Name of the target table.                                           |
-| predicates | [RdbPredicates](#rdbpredicates)                         | Yes  | Query conditions specified by the **RdbPredicates** object.                |
-| columns    | Array&lt;string&gt;                                          | Yes  | Columns to query. If this parameter is not specified, the query applies to all columns.           |
+| Name    | Type                                        | Mandatory| Description                                                     |
+| ---------- | -------------------------------------------- | ---- | --------------------------------------------------------- |
+| device     | string                                       | Yes  | ID of the remote device.                                       |
+| table      | string                                       | Yes  | Name of the target table.                                         |
+| predicates | [RdbPredicates](#rdbpredicates)              | Yes  | Query conditions specified by the **RdbPredicates** object.                |
+| columns    | Array&lt;string&gt;                          | Yes  | Columns to query. If this parameter is not specified, the query applies to all columns.         |
 | callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
 **Example**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+let deviceId = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    deviceId = devices[0].deviceId;
+})
+
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
-store.remoteQuery("deviceId", "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
+store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
   function(err, resultSet) {
     if (err) {
       console.error(`Failed to remoteQuery, err: ${err}`);
@@ -2043,13 +2212,17 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 
 Queries data from the RDB store of a remote device based on specified conditions. This API uses a promise to return the result.
 
+> **NOTE**
+>
+> The value of **device** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
 **Parameters**
 
 | Name    | Type                                | Mandatory| Description                                            |
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------ |
-| device     | string                               | Yes  | Network ID of the remote device.                     |
+| device     | string                               | Yes  | ID of the remote device.                  |
 | table      | string                               | Yes  | Name of the target table.                                |
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Query conditions specified by the **RdbPredicates** object.     |
 | columns    | Array&lt;string&gt;                  | Yes  | Columns to query. If this parameter is not specified, the query applies to all columns.|
@@ -2063,9 +2236,23 @@ Queries data from the RDB store of a remote device based on specified conditions
 **Example**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+let deviceId = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    deviceId = devices[0].deviceId;
+})
+
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
-let promise = store.remoteQuery("deviceId", "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
+let promise = store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
   console.info(`ResultSet column count: ${resultSet.columnCount}`);
@@ -2084,11 +2271,11 @@ Queries data using the specified SQL statement. This API uses an asynchronous ca
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                       |
-| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| sql      | string                                                       | Yes  | SQL statement to run.                                      |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt;                         | Yes  | Arguments in the SQL statement.                                        |
-| callback | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
+| Name  | Type                                        | Mandatory| Description                                                        |
+| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| sql      | string                                       | Yes  | SQL statement to run.                                       |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt;         | Yes  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, the value of this parameter must be an empty array.|
+| callback | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.   |
 
 **Example**
 
@@ -2113,10 +2300,10 @@ Queries data using the specified SQL statement. This API uses a promise to retur
 
 **Parameters**
 
-| Name  | Type                                | Mandatory| Description                 |
-| -------- | ------------------------------------ | ---- | --------------------- |
-| sql      | string                               | Yes  | SQL statement to run.|
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement.  |
+| Name  | Type                                | Mandatory| Description                                                        |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| sql      | string                               | Yes  | SQL statement to run.                                       |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank.|
 
 **Return value**
 
@@ -2127,7 +2314,7 @@ Queries data using the specified SQL statement. This API uses a promise to retur
 **Example**
 
 ```js
-let promise = store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo']);
+let promise = store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
   console.info(`ResultSet column count: ${resultSet.columnCount}`);
@@ -2146,22 +2333,30 @@ Executes an SQL statement that contains specified arguments but returns no value
 
 **Parameters**
 
-| Name  | Type                                | Mandatory| Description                  |
-| -------- | ------------------------------------ | ---- | ---------------------- |
-| sql      | string                               | Yes  | SQL statement to run. |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | Yes  | Arguments in the SQL statement.   |
-| callback | AsyncCallback&lt;void&gt;            | Yes  | Callback invoked to return the result.|
+| Name  | Type                                | Mandatory| Description                                                        |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| sql      | string                               | Yes  | SQL statement to run.                                       |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | Yes  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, the value of this parameter must be an empty array.|
+| callback | AsyncCallback&lt;void&gt;            | Yes  | Callback invoked to return the result.                                      |
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**           |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **Example**
 
 ```js
-const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-store.executeSql(SQL_CREATE_TABLE, null, function(err) {
+const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = ?"
+store.executeSql(SQL_DELETE_TABLE, ['zhangsan'], function(err) {
   if (err) {
     console.error(`ExecuteSql failed, err: ${err}`);
     return;
   }
-  console.info(`Create table done.`);
+  console.info(`Delete table done.`);
 })
 ```
 
@@ -2175,10 +2370,10 @@ Executes an SQL statement that contains specified arguments but returns no value
 
 **Parameters**
 
-| Name  | Type                                | Mandatory| Description                 |
-| -------- | ------------------------------------ | ---- | --------------------- |
-| sql      | string                               | Yes  | SQL statement to run.|
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement.  |
+| Name  | Type                                | Mandatory| Description                                                        |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| sql      | string                               | Yes  | SQL statement to run.                                       |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | No  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, leave this parameter blank.|
 
 **Return value**
 
@@ -2186,13 +2381,21 @@ Executes an SQL statement that contains specified arguments but returns no value
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**           |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
+
 **Example**
 
 ```js
-const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-let promise = store.executeSql(SQL_CREATE_TABLE);
+const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
+let promise = store.executeSql(SQL_DELETE_TABLE);
 promise.then(() => {
-    console.info(`Create table done.`);
+    console.info(`Delete table done.`);
 }).catch((err) => {
     console.error(`ExecuteSql failed, err: ${err}`);
 })
@@ -2205,6 +2408,14 @@ beginTransaction():void
 Starts the transaction before executing an SQL statement.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**           |
+| ------------ | ----------------------- |
+| 14800047     | The WAL file size exceeds the default limit.|
 
 **Example**
 
@@ -2488,7 +2699,11 @@ promise.then(() => {
 
 obtainDistributedTableName(device: string, table: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the distributed table name for a remote device based on the local table name. This API uses an asynchronous callback to return the result. The distributed table name is required when the RDB store of a remote device is queried.
+Obtains the distributed table name of a remote device based on the local table name of the device. The distributed table name is required when the RDB store of a remote device is queried.
+
+> **NOTE**
+>
+> The value of **device** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -2498,14 +2713,28 @@ Obtains the distributed table name for a remote device based on the local table 
 
 | Name  | Type                       | Mandatory| Description                                                        |
 | -------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| device   | string                      | Yes  | Remote device.                                                 |
-| table    | string                      | Yes  | Local table name.                                                  |
+| device   | string                      | Yes  | ID of the remote device.                                               |
+| table    | string                      | Yes  | Local table name of the remote device.                                        |
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the result. If the operation succeeds, the distributed table name of the remote device is returned.|
 
 **Example**
 
 ```js
-store.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, tableName) {
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+let deviceId = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    deviceId = devices[0].deviceId;
+})
+
+store.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
     if (err) {
         console.error(`ObtainDistributedTableName failed, err: ${err}`);
         return;
@@ -2518,7 +2747,11 @@ store.obtainDistributedTableName("12345678abcde", "EMPLOYEE", function (err, tab
 
  obtainDistributedTableName(device: string, table: string): Promise&lt;string&gt;
 
-Obtains the distributed table name for a remote device based on the local table name. This API uses a promise to return the result. The distributed table name is required when the RDB store of a remote device is queried.
+Obtains the distributed table name of a remote device based on the local table name of the device. The distributed table name is required when the RDB store of a remote device is queried.
+
+> **NOTE**
+>
+> The value of **device** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -2526,10 +2759,10 @@ Obtains the distributed table name for a remote device based on the local table 
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description      |
-| ------ | ------ | ---- | ---------- |
-| device | string | Yes  | Remote device.|
-| table  | string | Yes  | Local table name.|
+| Name| Type  | Mandatory| Description                |
+| ------ | ------ | ---- | -------------------- |
+| device | string | Yes  | ID of the remote device.        |
+| table  | string | Yes  | Local table name of the remote device.|
 
 **Return value**
 
@@ -2540,7 +2773,21 @@ Obtains the distributed table name for a remote device based on the local table 
 **Example**
 
 ```js
-let promise = store.obtainDistributedTableName("12345678abcde", "EMPLOYEE");
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+let deviceId = null;
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    deviceId = devices[0].deviceId;
+})
+
+let promise = store.obtainDistributedTableName(deviceId, "EMPLOYEE");
 promise.then((tableName) => {
   console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
 }).catch((err) => {
@@ -2569,8 +2816,24 @@ Synchronizes data between devices. This API uses an asynchronous callback to ret
 **Example**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+let deviceIds = [];
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+    }
+})
+
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-predicates.inDevices(['12345678abcde']);
+predicates.inDevices(deviceIds);
 store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
   if (err) {
     console.error(`Sync failed, err: ${err}`);
@@ -2609,8 +2872,24 @@ Synchronizes data between devices. This API uses a promise to return the result.
 **Example**
 
 ```js
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+let dmInstance = null;
+let deviceIds = [];
+
+deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
+    if (err) {
+        console.log("create device manager failed, err=" + err);
+        return;
+    }
+    dmInstance = manager;
+    let devices = dmInstance.getTrustedDeviceListSync();
+    for (var i = 0; i < devices.length; i++) {
+        deviceIds[i] = devices[i].deviceId;
+    }
+})
+
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
-predicates.inDevices(['12345678abcde']);
+predicates.inDevices(deviceIds);
 let promise = store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates);
 promise.then((result) =>{
   console.info(`Sync done.`);
@@ -2634,9 +2913,9 @@ Registers an observer for this RDB store. When the data in the RDB store changes
 
 | Name  | Type                               | Mandatory| Description                                       |
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
-| event    | string                              | Yes  | Event to observe. The value is **dataChange**, which indicates a data change event. |
+| event    | string                              | Yes  | Event to observe. The value is **dataChange**, which indicates a data change event.         |
 | type     | [SubscribeType](#subscribetype)    | Yes  | Subscription type to register.|
-| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes  | Callback invoked to return the data change event. |
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes  | Callback invoked to return the data change event.     |
 
 **Example**
 
@@ -2657,7 +2936,7 @@ try {
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-Unregisters the observer of the specified type from the RDB store. This API uses an asynchronous callback to return the result.
+Unregisters the observer of the specified type from the RDB store. This API uses a callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -2667,7 +2946,7 @@ Unregisters the observer of the specified type from the RDB store. This API uses
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
 | event    | string                              | Yes  | Event type. The value is **dataChange**, which indicates a data change event. |
 | type     | [SubscribeType](#subscribetype)     | Yes  | Subscription type to unregister.                              |
-| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes  | Callback for the data change event. |
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes  | Callback for the data change event.                 |
 
 **Example**
 
@@ -3182,3 +3461,5 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 | **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
 | 14800012     | The result set is  empty or the specified location is invalid. |
+
+<!--no_check-->

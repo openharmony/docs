@@ -142,7 +142,7 @@ repo forall -c 'git lfs pull'
 
 ### 芯片及开发板适配
 
-芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
+芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)信息。
 
 ## 修复缺陷列表
 
@@ -151,7 +151,7 @@ repo forall -c 'git lfs pull'
 | ISSUE单                                                      | 问题描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [I4UUFR](https://gitee.com/openharmony/third_party_e2fsprogs/issues/I4UUFR) | 本地编译构建Hi3516开发板版本镜像                             |
-| [I4WDD3](https://gitee.com/openharmony/multimedia_camera_standard/issues/I4WDD3) | 【RK3568】录像后无法查看视频                                 |
+| I4WDD3 | 【RK3568】录像后无法查看视频                                 |
 | [I50EBB](https://gitee.com/openharmony/docs/issues/I50EBB)   | 【Hi3516烧录】标准系统Hi3516镜像无法通过IDE烧录              |
 
 

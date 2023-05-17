@@ -45,7 +45,7 @@ Updates the configuration. This API uses an asynchronous callback to return the 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | config    | [Configuration](js-apis-app-ability-configuration.md)   | Yes   | New configuration. You only need to configure the items to be updated.|
-| callback  | AsyncCallback\<void>                   | Yes   | Callback used to return the API call result. You can perform error handling or custom processing in this callback.     |
+| callback  | AsyncCallback\<void>                   | Yes   | Callback used to return the API call result. You can perform error handling or custom processing in it.     |
 
 **Error codes**
 
@@ -72,14 +72,14 @@ const config = {
 
 try {
     abilityManager.updateConfiguration(config, (err) => {
-        if (err && err.code !== 0) {
+        if (err) {
             console.error('updateConfiguration fail, err: ${JSON.stringify(err)}');
         } else {
             console.log('updateConfiguration success.');
         }
     });
 } catch (paramError) {
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
 }
 ```
 
@@ -103,7 +103,7 @@ Updates the configuration. This API uses a promise to return the result.
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<void> | Promise used to return the API call result. You can perform error handling or custom processing in this callback.|
+| Promise\<void> | Promise used to return the API call result. You can perform error handling or custom processing in it.|
 
 **Error codes**
 
@@ -135,7 +135,7 @@ try {
         console.error('updateConfiguration fail, err: ${JSON.stringify(err)}');
     });
 } catch (paramError) {
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
 }
 ```
 
@@ -153,7 +153,7 @@ Obtains the ability running information. This API uses an asynchronous callback 
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | Yes   | Callback used to return the API call result and the ability running information. You can perform error handling or custom processing in this callback.     |
+| callback  | AsyncCallback\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>>  | Yes   | Callback used to return the API call result and the ability running information. You can perform error handling or custom processing in it.     |
 
 **Error codes**
 
@@ -170,14 +170,14 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 
 try {
     abilityManager.getAbilityRunningInfos((err, data) => {
-        if (err && err.code !== 0) {
+        if (err) {
             console.error('getAbilityRunningInfos fail, error: ${JSON.stringify(err)}');
         } else {
             console.log('getAbilityRunningInfos success, data: ${JSON.stringify(data)}');
         }
     });
 } catch (paramError) {
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
 }
 ```
 
@@ -195,7 +195,7 @@ Obtains the UIAbility running information. This API uses a promise to return the
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>> | Promise used to return the API call result and the UIAbility running information. You can perform error handling or custom processing in this callback.|
+| Promise\<Array\<[AbilityRunningInfo](js-apis-inner-application-abilityRunningInfo.md)>> | Promise used to return the API call result and the UIAbility running information. You can perform error handling or custom processing in it.|
 
 **Error codes**
 
@@ -217,7 +217,7 @@ try {
         console.error('getAbilityRunningInfos fail, err: ${JSON.stringify(err)}');
     });
 } catch (paramError) {
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
 }
 ```
 
@@ -236,7 +236,7 @@ Obtains the ExtensionAbility running information. This API uses an asynchronous 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
 | upperLimit | number                                   | Yes| Maximum number of messages that can be obtained. The maximum value is 2<sup>31</sup>-1.|
-| callback  | AsyncCallback\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>>  | Yes   | Callback used to return the API call result and the ExtensionAbility running information. You can perform error handling or custom processing in this callback.     |
+| callback  | AsyncCallback\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>>  | Yes   | Callback used to return the API call result and the ExtensionAbility running information. You can perform error handling or custom processing in it.     |
 
 **Error codes**
 
@@ -254,15 +254,15 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 let upperLimit = 10;
 
 try {
-    abilityManager.getExtensionRunningInfos(upperLimit, (err, data) => { 
-        if (err && err.code !== 0) {
+    abilityManager.getExtensionRunningInfos(upperLimit, (err, data) => {
+        if (err) {
             console.error('getExtensionRunningInfos fail, err: ${JSON.stringify(err)}');
         } else {
             console.log('getExtensionRunningInfos success, data: ${JSON.stringify(data)}');
         }
     });
 } catch (paramError) {
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
 }
 ```
 
@@ -286,7 +286,7 @@ Obtains the ExtensionAbility running information. This API uses a promise to ret
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>> | Promise used to return the API call result and the ExtensionAbility running information. You can perform error handling or custom processing in this callback.|
+| Promise\<Array\<[ExtensionRunningInfo](js-apis-inner-application-extensionRunningInfo.md)>> | Promise used to return the API call result and the ExtensionAbility running information. You can perform error handling or custom processing in it.|
 
 **Error codes**
 
@@ -310,7 +310,7 @@ try {
         console.error('getExtensionRunningInfos fail, err: ${JSON.stringify(err)}');
     });
 } catch (paramError) {
-    console.error('error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}');
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
 }
 ```
 
@@ -326,7 +326,7 @@ Obtains the top ability, which is the ability that has the window focus. This AP
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| callback  | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)>  | Yes   | Callback used to return the API call result and the element name of the top ability. You can perform error handling or custom processing in this callback.     |
+| callback  | AsyncCallback\<[ElementName](js-apis-bundleManager-elementName.md)>  | Yes   | Callback used to return the API call result and the element name of the top ability. You can perform error handling or custom processing in it.     |
 
 **Error codes**
 
@@ -342,7 +342,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 import abilityManager from '@ohos.app.ability.abilityManager';
 
 abilityManager.getTopAbility((err, data) => { 
-    if (err && err.code !== 0) {
+    if (err) {
         console.error('getTopAbility fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('getTopAbility success, data: ${JSON.stringify(data)}');
@@ -362,7 +362,7 @@ Obtains the top ability, which is the ability that has the window focus. This AP
 
 | Type                                      | Description     |
 | ---------------------------------------- | ------- |
-| Promise\<[ElementName](js-apis-bundleManager-elementName.md)>| Promise used to return the API call result and the element name of the top ability. You can perform error handling or custom processing in this callback.|
+| Promise\<[ElementName](js-apis-bundleManager-elementName.md)>| Promise used to return the API call result and the element name of the top ability. You can perform error handling or custom processing in it.|
 
 **Error codes**
 
@@ -382,4 +382,79 @@ abilityManager.getTopAbility().then((data) => {
 }).catch((err) => {
     console.error('getTopAbility fail, err: ${JSON.stringify(err)}');
 });
+```
+
+## acquireShareData<sup>10+</sup>
+
+acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Object}>): void;
+
+Acquires the shared data of the target device. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Parameters**
+
+| Name       | Type                                      | Mandatory  | Description            |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| missionId | number                                   | Yes| Mission ID on the target device. The maximum value is 2<sup>31</sup>-1.|
+| callback  | AsyncCallback<{[key: string]: Object}>  | Yes   | Callback used to return the API call result and the shared data. You can perform error handling or custom processing in it.     |
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+
+abilityManager.acquireShareData(1, (err, wantParam) => { 
+    if (err) {
+        console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
+    } else {
+        console.log(`acquireShareData success, data: ${JSON.stringify(data)}`);
+    }
+});
+
+```
+
+## acquireShareData<sup>10+</sup>
+
+acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
+
+Acquires the shared data of the target device. This API uses a promise to return the result.
+ 
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**Return value**
+
+| Type                                      | Description     |
+| ---------------------------------------- | ------- |
+| Promise<{[key: string]: Object}>| Promise used to return the API call result and the shared data. You can perform error handling or custom processing in it.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+try {
+    abilityManager.acquireShareData(1).then((wantParam) => {
+    console.log(`acquireShareData success, data: ${JSON.stringify(data)}`);
+    }).catch((err) => {
+    console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
+    });
+} catch (paramError) {
+    console.error(`error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}`);
+}
 ```

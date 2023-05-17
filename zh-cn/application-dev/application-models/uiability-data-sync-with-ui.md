@@ -14,7 +14,7 @@
 
 在[基类Context](application-context-stage.md)中，提供了EventHub对象，使用EventHub实现UIAbility与UI之间的数据通信需要先获取EventHub对象。本章节将以此为例进行说明。
 
-1. 在UIAbility中调用[eventHub.on()](../reference/apis/js-apis-inner-application-eventHub.md#eventhubon)方法注册一个自定义事件“event1”，[eventHub.on()](../reference/apis/js-apis-inner-application-eventHub.md#eventhubon)有如下两种调用方式，使用其中一种即可。
+1. 在UIAbility中调用[`eventHub.on()`](../reference/apis/js-apis-inner-application-eventHub.md#eventhubon)方法注册一个自定义事件“event1”，[`eventHub.on()`](../reference/apis/js-apis-inner-application-eventHub.md#eventhubon)有如下两种调用方式，使用其中一种即可。
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
@@ -22,25 +22,25 @@
    const TAG: string = '[Example].[Entry].[EntryAbility]';
 
    export default class EntryAbility extends UIAbility {
-       func1(...data) {
-           // 触发事件，完成相应的业务操作
-           console.info(TAG, '1. ' + JSON.stringify(data));
-       }
+     func1(...data) {
+       // 触发事件，完成相应的业务操作
+       console.info(TAG, '1. ' + JSON.stringify(data));
+     }
 
-       onCreate(want, launch) {
-           // 获取eventHub
-           let eventhub = this.context.eventHub;
-           // 执行订阅操作
-           eventhub.on('event1', this.func1);
-           eventhub.on('event1', (...data) => {
-               // 触发事件，完成相应的业务操作
-               console.info(TAG, '2. ' + JSON.stringify(data));
-           });
-       }
+     onCreate(want, launch) {
+       // 获取eventHub
+       let eventhub = this.context.eventHub;
+       // 执行订阅操作
+       eventhub.on('event1', this.func1);
+       eventhub.on('event1', (...data) => {
+         // 触发事件，完成相应的业务操作
+         console.info(TAG, '2. ' + JSON.stringify(data));
+       });
+     }
    }
    ```
 
-2. 在UI界面中通过[eventHub.emit()](../reference/apis/js-apis-inner-application-eventHub.md#eventhubemit)方法触发该事件，在触发事件的同时，根据需要传入参数信息。
+2. 在UI中通过[eventHub.emit()](../reference/apis/js-apis-inner-application-eventHub.md#eventhubemit)方法触发该事件，在触发事件的同时，根据需要传入参数信息。
 
    ```ts
    import common from '@ohos.app.ability.common';
@@ -62,7 +62,7 @@
 
      // 页面展示
      build() {
-       // ...
+       ...
      }
    }
    ```
@@ -89,9 +89,8 @@
 
 globalThis是[ArkTS引擎实例](thread-model-stage.md)内部的一个全局对象，引擎内部的UIAbility/ExtensionAbility/Page都可以使用，因此可以使用globalThis对象进行数据同步。
 
-  **图1** 使用globalThis进行数据同步
-
-  ![globalThis1](figures/globalThis1.png)
+**图1** 使用globalThis进行数据同步  
+![globalThis1](figures/globalThis1.png)
 
 
 如上图所示，下面从如下三个场景和一个注意点来介绍globalThis的使用：
@@ -103,24 +102,24 @@ globalThis是[ArkTS引擎实例](thread-model-stage.md)内部的一个全局对�
 
 ### UIAbility和Page之间使用globalThis
 
-通过在globalThis对象上绑定属性/方法，可以实现UIAbility组件与UI之间的数据同步。例如在UIAbility组件中绑定want参数，即可在UIAbility对应的UI界面上使用want参数信息。
+通过在globalThis对象上绑定属性/方法，可以实现UIAbility组件与UI之间的数据同步。例如在UIAbility组件中绑定want参数，即可在UIAbility对应的UI上使用want参数信息。
 
-1. 调用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动一个UIAbility实例时，被启动的UIAbility创建完成后会进入onCreate()生命周期回调，且在onCreate()生命周期回调中能够接受到传递过来的want参数，可以将want参数绑定到globalThis上。
+1. 调用[`startAbility()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)方法启动一个UIAbility实例时，被启动的UIAbility创建完成后会进入[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)生命周期回调，且在[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)生命周期回调中能够接受到传递过来的want参数，可以将want参数绑定到globalThis上。
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
 
    export default class EntryAbility extends UIAbility {
-       onCreate(want, launch) {
-           globalThis.entryAbilityWant = want;
-           // ...
-       }
+     onCreate(want, launch) {
+       globalThis.entryAbilityWant = want;
+       ...
+     }
 
-       // ...
+     ...
    }
    ```
 
-2. 在UI界面中即可通过globalThis获取到want参数信息。
+2. 在UI中即可通过globalThis获取到want参数信息。
 
    ```ts
    let entryAbilityWant;
@@ -134,7 +133,7 @@ globalThis是[ArkTS引擎实例](thread-model-stage.md)内部的一个全局对�
    
      // 页面展示
      build() {
-       // ...
+       ...
      }
    }
    ```
@@ -150,10 +149,10 @@ globalThis是[ArkTS引擎实例](thread-model-stage.md)内部的一个全局对�
    import UIAbility from '@ohos.app.ability.UIAbility'
 
    export default class UIAbilityA extends UIAbility {
-       onCreate(want, launch) {
-           globalThis.entryAbilityStr = 'UIAbilityA'; // UIAbilityA存放字符串“UIAbilityA”到globalThis
-           // ...
-       }
+     onCreate(want, launch) {
+       globalThis.entryAbilityStr = 'UIAbilityA'; // UIAbilityA存放字符串“UIAbilityA”到globalThis
+       ...
+     }
    }
    ```
 
@@ -163,11 +162,11 @@ globalThis是[ArkTS引擎实例](thread-model-stage.md)内部的一个全局对�
    import UIAbility from '@ohos.app.ability.UIAbility'
    
    export default class UIAbilityB extends UIAbility {
-       onCreate(want, launch) {
-           // UIAbilityB从globalThis读取name并输出
-           console.info('name from entryAbilityStr: ' + globalThis.entryAbilityStr);
-           // ...
-       }
+     onCreate(want, launch) {
+       // UIAbilityB从globalThis读取name并输出
+       console.info('name from entryAbilityStr: ' + globalThis.entryAbilityStr);
+       ...
+     }
    }
    ```
 
@@ -182,11 +181,11 @@ globalThis是[ArkTS引擎实例](thread-model-stage.md)内部的一个全局对�
    import UIAbility from '@ohos.app.ability.UIAbility'
 
    export default class UIAbilityA extends UIAbility {
-       onCreate(want, launch) {
-           // UIAbilityA存放字符串“UIAbilityA”到globalThis
-           globalThis.entryAbilityStr = 'UIAbilityA';
-           // ...
-       }
+     onCreate(want, launch) {
+       // UIAbilityA存放字符串“UIAbilityA”到globalThis
+       globalThis.entryAbilityStr = 'UIAbilityA';
+       ...
+     }
    }
    ```
 
@@ -196,19 +195,18 @@ globalThis是[ArkTS引擎实例](thread-model-stage.md)内部的一个全局对�
    import Extension from '@ohos.app.ability.ServiceExtensionAbility'
    
    export default class ServiceExtAbility extends Extension {
-       onCreate(want) {
-           // ServiceExtAbility从globalThis读取name并输出
-           console.info('name from entryAbilityStr: ' + globalThis.entryAbilityStr);
-           // ...
-       }
+     onCreate(want) {
+       // ServiceExtAbility从globalThis读取name并输出
+       console.info('name from entryAbilityStr: ' + globalThis.entryAbilityStr);
+       ...
+     }
    }
    ```
 
 
 ### globalThis使用的注意事项
 
-  **图2** globalThis注意事项
-
+**图2** globalThis注意事项  
 ![globalThis2](figures/globalThis2.png)
 
 - Stage模型下进程内的UIAbility组件共享ArkTS引擎实例，使用globalThis时需要避免存放相同名称的对象。例如UIAbilityA和UIAbilityB可以使用globalThis共享数据，在存放相同名称的对象时，先存放的对象会被后存放的对象覆盖。
@@ -225,10 +223,10 @@ Stage模型上同名对象覆盖导致问题的场景举例说明。
    import UIAbility from '@ohos.app.ability.UIAbility'
 
    export default class UIAbilityA extends UIAbility {
-       onCreate(want, launch) {
-           globalThis.context = this.context; // UIAbilityA存放context到globalThis
-           // ...
-       }
+     onCreate(want, launch) {
+       globalThis.context = this.context; // UIAbilityA存放context到globalThis
+       ...
+     }
    }
    ```
 
@@ -243,22 +241,22 @@ Stage模型上同名对象覆盖导致问题的场景举例说明。
      }
      // 页面展示
      build() {
-       // ...
+       ...
      }
    }
    ```
-   
+
 3. 在UIAbilityB文件中使用globalThis中存放了[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)，并且命名为相同的名称。
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility'
 
    export default class UIAbilityB extends UIAbility {
-       onCreate(want, launch) {
-           // UIAbilityB覆盖了UIAbilityA在globalThis中存放的context
-           globalThis.context = this.context;
-           // ...
-       }
+     onCreate(want, launch) {
+       // UIAbilityB覆盖了UIAbilityA在globalThis中存放的context
+       globalThis.context = this.context;
+       ...
+     }
    }
    ```
 
@@ -273,21 +271,21 @@ Stage模型上同名对象覆盖导致问题的场景举例说明。
      }
      // 页面展示
      build() {
-       // ...
+       ...
      }
    }
    ```
-   
+
 5. 在UIAbilityB实例切换至后台，将UIAbilityA实例从后台切换回到前台。此时UIAbilityA的onCreate生命周期不会再次进入。
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility'
 
    export default class UIAbilityA extends UIAbility {
-       onCreate(want, launch) { // UIAbilityA从后台进入前台，不会再走这个生命周期
-           globalThis.context = this.context;
-           // ...
-       }
+     onCreate(want, launch) { // UIAbilityA从后台进入前台，不会再走这个生命周期
+       globalThis.context = this.context;
+       ...
+     }
    }
    ```
 
@@ -302,11 +300,11 @@ Stage模型上同名对象覆盖导致问题的场景举例说明。
      }
      // 页面展示
      build() {
-       // ...
+       ...
      }
    }
    ```
 
 ## 使用AppStorage/LocalStorage进行数据同步
 
-ArkUI提供了AppStorage和LocalStorage两种应用级别的状态管理方案，可用于实现应用级别和UIAbility级别的数据同步。使用这些方案可以方便地管理应用状态，提高应用性能和用户体验。其中，AppStorage是一个全局的状态管理器，适用于多个UIAbility共享同一状态数据的情况；而LocalStorage则是一个局部的状态管理器，适用于单个UIAbility内部使用的状态数据。通过这两种方案，开发者可以更加灵活地控制应用状态，提高应用的可维护性和可扩展性。详细请参见[应用级变量的状态管理](../quick-start/arkts-state-mgmt-application-level.md)。
+ArkUI提供了AppStorage和LocalStorage两种应用级别的状态管理方案，可用于实现应用级别和UIAbility级别的数据同步。使用这些方案可以方便地管理应用状态，提高应用性能和用户体验。其中，AppStorage是一个全局的状态管理器，适用于多个UIAbility共享同一状态数据的情况；而LocalStorage则是一个局部的状态管理器，适用于单个UIAbility内部使用的状态数据。通过这两种方案，开发者可以更加灵活地控制应用状态，提高应用的可维护性和可扩展性。详细请参见[应用级变量的状态管理](../quick-start/arkts-application-state-management-overview.md)。

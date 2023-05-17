@@ -1,11 +1,11 @@
 # InputMethodExtensionAbility开发指南
 
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)是inputMethod类型的ExtensionAbility组件，提供输入法框架服务相关扩展能力。
+## 使用场景
+[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)基于[ExtensionAbility](extensionability-overview.md)框架，用于开发输入法应用。
 
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)可以被其他组件启动或连接，并根据调用者的请求信息在后台处理相关事务。
+[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)实例及其所在的ExtensionAbility进程的整个生命周期，都是由输入法框架进行调度管理。输入法框架提供了[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)基类，开发者需要派生此基类，以实现输入法应用生命周期开始和销毁时的相关初始化操作和资源清理工作等。
 
-
-InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis/js-apis-inputmethod-extension-context.md)提供相关能力。
+[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)通过[InputMethodExtensionContext](../reference/apis/js-apis-inputmethod-extension-context.md)提供相关能力。
 
 
 ## 实现一个输入法应用
@@ -29,7 +29,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
 在工程Module对应的ets目录下，右键选择“New &gt; Extention Ability > InputMethod”，即可创建出InputMethodExtensionAbility的最小化模板。
 
 > **说明：**
-> 在编译输入法应用时，要使用system_core级别的签名，否则无法拉起输入法键盘。
+> 在编译输入法应用时，要使用system_basic级别的签名，否则无法拉起输入法键盘。
 > [签名指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465)
 
 最小化模板为一个最基本的输入法应用，包含软键盘拉起以及输入删除功能。后续开发者可在此基础上添加功能，如隐藏键盘等，实现自己的输入法应用。
@@ -67,7 +67,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
    
      onDestroy() {
        console.log("onDestroy.");
-       this.context.destroy();
+       this.keyboardController.onDestroy();  // 销毁窗口并去注册事件监听
      }
    }
    ```
@@ -103,10 +103,9 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
    
      public onDestroy(): void			// 应用生命周期销毁
      {
-       this.unRegisterListener();		// 注销事件监听
+       this.unRegisterListener();		// 去注册事件监听
        let win = windowManager.findWindow(this.windowName);
        win.destroyWindow();				// 销毁窗口
-       this.mContext.terminateSelf();	// 销毁InputMethodExtensionAbility服务
      }
    
      private initWindow(): void		// 初始化窗口
@@ -156,7 +155,7 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
        })
        globalThis.inputAbility.on('inputStop', (imeId) => {
          if (imeId == "包名/Ability名") {
-           this.onDestroy();
+           this.mContext.destroy();	// 销毁InputMethodExtensionAbility服务
          }
        });
      }
@@ -339,20 +338,20 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
    }
    ```
 
-5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册InputMethodExtensionAbility，type标签需要设置为“inputMethod”，srcEntrance标签表示当前InputMethodExtensionAbility组件所对应的代码路径。
+5. 在工程Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册InputMethodExtensionAbility，type标签需要设置为“inputMethod”，srcEntry标签表示当前InputMethodExtensionAbility组件所对应的代码路径。
 
    ```ts
    {
      "module": {
-       // ...
+       ...
        "extensionAbilities": [
          {
            "description": "inputMethod",
            "icon": "$media:icon",
            "name": "InputMethodExtAbility",
-           "srcEntrance": "./ets/inputmethodextability/InputMethodService.ts",
+           "srcEntry": "./ets/inputmethodextability/InputMethodService.ts",
            "type": "inputMethod",
-           "visible": true,
+           "exported": true,
          }
        ]
      }
@@ -361,9 +360,53 @@ InputMethodExtensionAbility通过[InputMethodExtensionContext](../reference/apis
 
 
 
+## 限制
+
+为了降低InputMethodExtensionAbility能力被三方应用滥用的风险，在InputMethodExtensionAbility中限制调用以下模块中的接口。
+
+> **说明：**
+>
+> - 若导入被限制的模块，在编译时不报错，在运行时会返回错误的值，即undefined，导致不生效。
+> - 当前未禁止对音频管理模块[@ohos.multimedia.audio (音频管理)](../reference/apis/js-apis-audio.md)的访问，但要求开发者应遵循以下约定：
+>   - 不得因用户未授予录音权限而禁止用户使用输入法应用的非语音输入法功能；
+>   - 仅允许InputMethodExtensionAbility处于前台时开展与录音相关的业务。如仅允许软键盘在前台且用户主动操作语音输入法时，才进行录音；应用切换到后台时，应主动停止录音；
+>   - 系统会逐步增加对违反以上约定的行为进行管控和识别，因此未遵守此约定可能会造成业务功能异常。
+
+**禁用列表：**
+
+- [@ohos.ability.featureAbility (FeatureAbility模块)](../reference/apis/js-apis-ability-featureAbility.md)
+- [@ohos.ability.particleAbility (ParticleAbility模块)](../reference/apis/js-apis-ability-particleAbility.md)
+- [@ohos.account.distributedAccount (分布式帐号管理)](../reference/apis/js-apis-distributed-account.md)
+- [@ohos.backgroundTaskManager (后台任务管理)](../reference/apis/js-apis-backgroundTaskManager.md)
+- [@ohos.bluetooth (蓝牙)](../reference/apis/js-apis-bluetooth.md)
+- [@ohos.bluetoothManager (蓝牙)](../reference/apis/js-apis-bluetoothManager.md)
+- [@ohos.connectedTag (有源标签)](../reference/apis/js-apis-connectedTag.md)
+- [@ohos.geolocation (位置服务)](../reference/apis/js-apis-geolocation.md)
+- [@ohos.geoLocationManager (位置服务)](../reference/apis/js-apis-geoLocationManager.md)
+- [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](../reference/apis/js-apis-cardEmulation.md)
+- [@ohos.nfc.controller (标准NFC)](../reference/apis/js-apis-nfcController.md)
+- [@ohos.nfc.tag (标准NFC-Tag)](../reference/apis/js-apis-nfcTag.md)
+- [@ohos.reminderAgent (后台代理提醒)](../reference/apis/js-apis-reminderAgent.md)
+- [@ohos.reminderAgentManager (后台代理提醒)](../reference/apis/js-apis-reminderAgentManager.md)
+- [@ohos.sensor (传感器)](../reference/apis/js-apis-sensor.md)
+- [@ohos.telephony.call (拨打电话)](../reference/apis/js-apis-call.md)
+- [@ohos.telephony.data (蜂窝数据)](../reference/apis/js-apis-telephony-data.md)
+- [@ohos.telephony.observer (observer)](../reference/apis/js-apis-observer.md)
+- [@ohos.telephony.radio (网络搜索)](../reference/apis/js-apis-radio.md)
+- [@ohos.telephony.sim (SIM卡管理)](../reference/apis/js-apis-sim.md)
+- [@ohos.telephony.sms (短信服务)](../reference/apis/js-apis-sms.md)
+- [@ohos.wallpaper (壁纸)](../reference/apis/js-apis-wallpaper.md)
+- [@ohos.wifiext (WLAN扩展接口)](../reference/apis/js-apis-wifiext.md)
+- [@ohos.wifiManager (WLAN)](../reference/apis/js-apis-wifiManager.md)
+- [@ohos.wifiManagerExt (WLAN扩展接口)](../reference/apis/js-apis-wifiManagerExt.md)
+- [@system.geolocation (地理位置)](../reference/apis/js-apis-system-location.md)
+- [nfctech (标准NFC-Tag Nfc 技术)](../reference/apis/js-apis-nfctech.md)
+- [tagSession (标准NFC-Tag TagSession)](../reference/apis/js-apis-tagSession.md)
+
+
 
 ## 相关示例
 
 针对InputMethodExtensionAbility开发，有以下相关示例可供参考：
 
-[Kika输入法](https://gitee.com/openharmony/applications_app_samples/tree/master/CompleteApps/KikaInput)
+- [Kika输入法](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/InputMethod/KikaInput)

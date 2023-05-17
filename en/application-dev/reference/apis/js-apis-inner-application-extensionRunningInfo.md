@@ -7,6 +7,12 @@ The **ExtensionRunningInfo** module encapsulates ExtensionAbility running inform
 >  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >  - This module is marked as @systemapi and not visible to third-party applications.
 
+## Modules to Import
+
+```ts
+import abilityManager from '@ohos.app.ability.abilityManager';
+```
+
 ## Usage
 
 Import the **abilityManager** module and obtain the ExtensionAbility running information by calling the method in the **abilityManager** module.
@@ -32,7 +38,7 @@ import abilityManager from '@ohos.app.ability.abilityManager';
 let upperLimit = 1;
 function getExtensionInfos() {
     abilityManager.getExtensionRunningInfos(upperLimit, (error, data) => {
-        if (error && error.code) {
+        if (error) {
             console.error('getForegroundApplications failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
             return;
         }

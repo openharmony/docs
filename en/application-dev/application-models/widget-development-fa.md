@@ -323,7 +323,7 @@ async function deleteFormInfo(formId: string) {
 // ...
 ```
 
-For details about how to implement persistent data storage, see [Lightweight Data Store Development](../database/database-preference-guidelines.md).
+For details about how to implement persistent data storage, see [Application Data Persistence Overview](../database/app-data-persistence-overview.md).
 
 The **Want** object passed in by the widget host to the widget provider contains a flag that specifies whether the requested widget is normal or temporary.
 
@@ -364,7 +364,7 @@ You can use the web-like paradigm (HML+CSS+JSON) to develop JS widget pages. Thi
 
 > **NOTE**
 >
-> Only the JavaScript-based web-like development paradigm is supported when developing the widget UI.
+> In the FA model, only the JavaScript-based web-like development paradigm is supported when developing the widget UI.
 
 - HML: uses web-like paradigm components to describe the widget page information.
   

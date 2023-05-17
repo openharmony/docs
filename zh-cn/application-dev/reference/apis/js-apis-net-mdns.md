@@ -10,6 +10,7 @@ MDNS即多播DNS（Multicast DNS），提供局域网内的本地服务添加、
 ```js
 import mdns from '@ohos.net.mdns'
 ```
+
 ## mdns.addLocalService
 
 addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void
@@ -22,7 +23,7 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: Async
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-app-ability-uiAbility.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
 | callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | 是        |   回调函数。成功添加error为undefined，data为添加到本地的mdns服务信息。      |
 
@@ -37,28 +38,65 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: Async
 | 2204008 | Service instance duplicated. |
 | 2204010 | Send packet failed. |
 
->**错误码说明：**
+> **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](../errorcodes/errorcode-net-mdns.md)。
 
 **示例：**
 
+FA模型示例：
+
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
 let localServiceInfo = {
-    serviceType: "_print._tcp",
-    serviceName: "servicename",
-    port: 5555,
-    host: {
-        address: "10.14.**.***",
-    },
-    serviceAttribute: [{
-        key: "111",
-        value: [1]
-    }]
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
 mdns.addLocalService(context, localServiceInfo, function (error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
+});
+```
+
+Stage模型示例：
+
+```ts
+// 获取context
+import UIAbility from '@ohos.app.ability.UIAbility';
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    globalThis.context = this.context;
+  }
+}
+let context = globalThis.context;
+
+let localServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
+}
+
+mdns.addLocalService(context, localServiceInfo, function (error, data) {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -74,7 +112,7 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Local
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-app-ability-uiAbility.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
 
 **返回值：**
@@ -94,27 +132,63 @@ addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Local
 | 2204008 | Service instance duplicated. |
 | 2204010 | Send packet failed. |
 
->**错误码说明：**
+> **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](../errorcodes/errorcode-net-mdns.md)。
 
 **示例：**
 
+FA模型示例：
+
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
 let localServiceInfo = {
-    serviceType: "_print._tcp",
-    serviceName: "servicename",
-    port: 5555,
-    host: {
-        address: "10.14.**.***",
-    },
-    serviceAttribute: [{
-        key: "111",
-        value: [1]
-    }]
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
 mdns.addLocalService(context, localServiceInfo).then(function (data) {
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(data));
+});
+```
+
+Stage模型示例：
+
+```ts
+// 获取context
+import UIAbility from '@ohos.app.ability.UIAbility';
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    globalThis.context = this.context;
+  }
+}
+let context = globalThis.context;
+
+let localServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
+}
+
+mdns.addLocalService(context, localServiceInfo).then(function (data) {
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -130,7 +204,7 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-app-ability-uiAbility.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
 | callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | 是        |   回调函数。成功移除error为undefined，data为移除本地的mdns服务信息。      |
 
@@ -145,28 +219,65 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 | 2204008 | Service instance duplicated. |
 | 2204010 | Send packet failed. |
 
->**错误码说明：**
+> **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](../errorcodes/errorcode-net-mdns.md)。
 
 **示例：**
 
+FA模型示例：
+
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
 let localServiceInfo = {
-    serviceType: "_print._tcp",
-    serviceName: "servicename",
-    port: 5555,
-    host: {
-        address: "10.14.**.***",
-    },
-    serviceAttribute: [{
-        key: "111",
-        value: [1]
-    }]
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
 mdns.removeLocalService(context, localServiceInfo, function (error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
+});
+```
+
+Stage模型示例：
+
+```ts
+// 获取context
+import UIAbility from '@ohos.app.ability.UIAbility';
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    globalThis.context = this.context;
+  }
+}
+let context = globalThis.context;
+
+let localServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
+}
+
+mdns.removeLocalService(context, localServiceInfo, function (error, data) {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -182,7 +293,7 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Lo
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|----------------------------------|-----------|-------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-app-ability-uiAbility.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
 
 **返回值：**
@@ -202,27 +313,63 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Lo
 | 2204008 | Service instance duplicated. |
 | 2204010 | Send packet failed. |
 
->**错误码说明：**
+> **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](../errorcodes/errorcode-net-mdns.md)。
 
 **示例：**
 
+FA模型示例：
+
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
 let localServiceInfo = {
-    serviceType: "_print._tcp",
-    serviceName: "servicename",
-    port: 5555,
-    host: {
-        address: "10.14.**.***",
-    },
-    serviceAttribute: [{
-        key: "111",
-        value: [1]
-    }]
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
 mdns.removeLocalService(context, localServiceInfo).then(function (data) {
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(data));
+});
+```
+
+Stage模型示例：
+
+```ts
+// 获取context
+import UIAbility from '@ohos.app.ability.UIAbility';
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    globalThis.context = this.context;
+  }
+}
+let context = globalThis.context;
+
+let localServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
+}
+
+mdns.removeLocalService(context, localServiceInfo).then(function (data) {
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -238,7 +385,7 @@ createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|---------|-----------| ------------------------------------------------------------ |
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-app-ability-uiAbility.md)。 |
 | serviceType | string  | 是       | 需要发现的mDNS服务类型。|
 
 **返回值：**
@@ -247,11 +394,32 @@ createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 | ----------------------------- |---------------------------------|
 | DiscoveryService | 基于指定serviceType和Context的发现服务对象。 |
 
-**Example**
+**示例**
+
+FA模型示例：
 
 ```js
-let serviceType = "_print._tcp";
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
 
+let serviceType = "_print._tcp";
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
+```
+
+Stage模型示例：
+
+```ts
+// 获取context
+import UIAbility from '@ohos.app.ability.UIAbility';
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    globalThis.context = this.context;
+  }
+}
+let context = globalThis.context;
+
+let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 ```
 
@@ -267,7 +435,7 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: A
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|----------------------------------|-----------|-------------------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-app-ability-uiAbility.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
 | callback | AsyncCallback\<[LocalServiceInfo](#localserviceinfo)> | 是        |   回调函数。成功移除error为undefined，data为解析的mdns服务信息。      |
 
@@ -282,28 +450,65 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: A
 | 2204006 | Request timeout.                |
 | 2204010 | Send packet failed.                          |
 
->**错误码说明：**
+> **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](../errorcodes/errorcode-net-mdns.md)。
 
 **示例：**
 
+FA模型示例：
+
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
 let localServiceInfo = {
-    serviceType: "_print._tcp",
-    serviceName: "servicename",
-    port: 5555,
-    host: {
-        address: "10.14.**.***",
-    },
-    serviceAttribute: [{
-        key: "111",
-        value: [1]
-    }]
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
 mdns.resolveLocalService(context, localServiceInfo, function (error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
+});
+```
+
+Stage模型示例：
+
+```ts
+// 获取context
+import UIAbility from '@ohos.app.ability.UIAbility';
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    globalThis.context = this.context;
+  }
+}
+let context = globalThis.context;
+
+let localServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
+}
+
+mdns.resolveLocalService(context, localServiceInfo, function (error, data) {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -319,7 +524,7 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<L
 
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
-| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-inner-application-uiAbilityContext.md)。 |
+| context     | Context                          | 是       | 应用的上下文。<br>FA模型的应用Context定义见[Context](js-apis-inner-app-context.md)。<br>Stage模型的应用Context定义见[Context](js-apis-app-ability-uiAbility.md)。 |
 | serviceInfo | [LocalServiceInfo](#localserviceinfo)                 | 是        |   mDNS服务的信息。      |
 
 **返回值：**
@@ -339,30 +544,65 @@ resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<L
 | 2204006 | Request timeout.                |
 | 2204010 | Send packet failed.                          |
 
->**错误码说明：**
+> **错误码说明：**
 > 以上错误码的详细介绍参见[MDNS错误码](../errorcodes/errorcode-net-mdns.md)。
 
 **示例：**
 
+FA模型示例：
+
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
 let localServiceInfo = {
-    serviceType: "_print._tcp",
-    serviceName: "servicename",
-    port: 5555,
-    host: {
-        address: "10.14.**.***",
-    },
-    serviceAttribute: [{
-        key: "111",
-        value: [1]
-    }]
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
 }
 
-mdns.resolveLocalService(context, localServiceInfo).then(function (data){
-    console.log(JSON.stringify(data));
-})
+mdns.resolveLocalService(context, localServiceInfo).then(function (data) {
+  console.log(JSON.stringify(data));
+});
 ```
 
+Stage模型示例：
+
+```ts
+// 获取context
+import UIAbility from '@ohos.app.ability.UIAbility';
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    globalThis.context = this.context;
+  }
+}
+let context = globalThis.context;
+
+let localServiceInfo = {
+  serviceType: "_print._tcp",
+  serviceName: "servicename",
+  port: 5555,
+  host: {
+    address: "10.14.**.***",
+  },
+  serviceAttribute: [{
+    key: "111",
+    value: [1]
+  }]
+}
+
+mdns.resolveLocalService(context, localServiceInfo).then(function (data) {
+  console.log(JSON.stringify(data));
+});
+```
 ## DiscoveryService
 
 指定服务类型的发现服务对象。
@@ -377,7 +617,29 @@ startSearchingMDNS(): void
 
 **示例：**
 
+FA模型示例：
+
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
+discoveryService.startSearchingMDNS();
+```
+
+Stage模型示例：
+
+```ts
+// 获取context
+import UIAbility from '@ohos.app.ability.UIAbility';
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    globalThis.context = this.context;
+  }
+}
+let context = globalThis.context;
+
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 ```
@@ -392,14 +654,36 @@ stopSearchingMDNS(): void
 
 **示例：**
 
+FA模型示例：
+
 ```js
+// 获取context
+import featureAbility from '@ohos.ability.featureAbility';
+let context = featureAbility.getContext();
+
+let discoveryService = mdns.createDiscoveryService(context, serviceType);
+discoveryService.stopSearchingMDNS();
+```
+
+Stage模型示例：
+
+```ts
+// 获取context
+import UIAbility from '@ohos.app.ability.UIAbility';
+class EntryAbility extends UIAbility {
+  onWindowStageCreate(windowStage){
+    globalThis.context = this.context;
+  }
+}
+let context = globalThis.context;
+
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.stopSearchingMDNS();
 ```
 
 ### on('discoveryStart')
 
-on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MDNS_ERR}>): void
+on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void
 
 订阅开启监听mDNS服务的通知。
 
@@ -410,7 +694,7 @@ on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, er
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | 是       |订阅事件，固定为'discoveryStart'。<br>discoveryStart：开始搜索局域网内的mDNS服务事件。 |
-| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MDNS_ERR](#mdns_err)}>                  | 是        |   mDNS服务的信息和事件错误信息。      |
+| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                  | 是        |   mDNS服务的信息和事件错误信息。      |
 
 **示例：**
 
@@ -420,7 +704,7 @@ let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
 discoveryService.on('discoveryStart', (data) => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 });
 
 discoveryService.stopSearchingMDNS();
@@ -428,7 +712,7 @@ discoveryService.stopSearchingMDNS();
 
 ### on('discoveryStop')
 
-on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MDNS_ERR}>): void
+on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void
 
 订阅停止监听mDNS服务的通知。
 
@@ -439,7 +723,7 @@ on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, err
 | 参数名        | 类型                             | 必填 | 说明                                     |
 |-------------|--------------|-----------|-----------------------------------------------------|
 | type     | string                          | 是       |订阅事件，固定为'discoveryStop'。<br>discoveryStop：停止搜索局域网内的mDNS服务事件。 |
-| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MDNS_ERR](#mdns_err)}>                 | 是        |   mDNS服务的信息和事件错误信息。      |
+| callback | Callback<{serviceInfo: [LocalServiceInfo](#localserviceinfo), errorCode?: [MdnsError](#mdnserror)}>                 | 是        |   mDNS服务的信息和事件错误信息。      |
 
 **示例：**
 
@@ -449,7 +733,7 @@ let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
 discoveryService.on('discoveryStop', (data) => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 });
 
 discoveryService.stopSearchingMDNS();
@@ -457,7 +741,7 @@ discoveryService.stopSearchingMDNS();
 
 ### on('serviceFound')
 
-on(type: 'serviceFound', callback: Callback<[LocalServiceInfo](#localserviceinfo)>): void
+on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
 
 订阅发现mDNS服务的通知。
 
@@ -478,7 +762,7 @@ let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
 discoveryService.on('serviceFound', (data) => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 });
 
 discoveryService.stopSearchingMDNS();
@@ -486,7 +770,7 @@ discoveryService.stopSearchingMDNS();
 
 ### on('serviceLost')
 
-on(type: 'serviceLost', callback: Callback<[LocalServiceInfo](#localserviceinfo)>): void
+on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
 
 订阅移除mDNS服务的通知。
 
@@ -507,7 +791,7 @@ let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 
 discoveryService.on('serviceLost', (data) => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 });
 
 discoveryService.stopSearchingMDNS();
@@ -538,7 +822,7 @@ mDNS服务属性信息
 | key   | string                             |  是 |  mDNS服务属性键值，键值长度应该小于9个字符。  |
 | value | Array\<number>                             |  是 |  mDNS服务属性值。   |
 
-## MDNS_ERR
+## MdnsError
 
 mDNS错误信息。
 
@@ -546,6 +830,6 @@ mDNS错误信息。
 
 | 名称         | 值   | 说明        |
 | --------------- | ---- | ----------- |
-| INTERNAL_ERROR  | 0    | 内部错误导致操作失败。  |
-| ALREADY_ACTIVE      | 1    | 服务已经存在导致操作失败。 |
+| INTERNAL_ERROR  | 0    | 内部错误导致操作失败。（暂不支持）  |
+| ALREADY_ACTIVE      | 1    | 服务已经存在导致操作失败。（暂不支持） |
 | MAX_LIMIT  | 2 | 请求超过最大限制导致操作失败。（暂不支持） |

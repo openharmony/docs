@@ -1,4 +1,4 @@
-# OpenHarmony 1.1.5 LTS
+# OpenHarmony 1.1.5 LTS (停止维护)
 
 
 ## 版本概述
@@ -69,7 +69,7 @@ repo forall -c 'git lfs pull'
 
 ### 芯片及开发板适配
 
-芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
+芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)信息。
 
 
 ## 修复缺陷列表

@@ -9,13 +9,9 @@ Node-API是用于封装JavaScript能力为Native插件的API，独立于底层Ja
 
 Node-API可以去除底层的JavaScript引擎的差异，提供一套稳定的接口。
 
-OpenHarmony的Native API组件对Node-API的接口进行了重新实现，底层对接了ArkJS等引擎。当前支持[Node-API](https://nodejs.org/docs/v14.9.0/api/n-api.html)标准库中的部分接口。
+OpenHarmony的N-API组件对Node-API的接口进行了重新实现，底层对接了ArkJS等引擎。当前支持[Node-API](https://nodejs.org/docs/v14.9.0/api/n-api.html)标准库中的部分接口。
 
-## Native API组件扩展的符号列表
-
-|符号类型|符号名|说明|
-| --- | --- | --- |
-|FUNC|napi_run_script_path|运行JavaScript文件。|
+## N-API组件扩展的符号列表
 
 **标准库中导出的符号列表**
 
@@ -59,6 +55,7 @@ OpenHarmony的Native API组件对Node-API的接口进行了重新实现，底层
 |FUNC|napi_create_double|通过一个C的`double`数据创建js `Number`。|
 |FUNC|napi_create_string_latin1|通过ISO-8859-1编码的C字符串数据创建js `String`。|
 |FUNC|napi_create_string_utf8|通过UTF8编码的C字符串数据创建js `String`。|
+|FUNC|napi_create_string_utf16|通过UTF16编码的C字符串数据创建js `String`。|
 |FUNC|napi_get_array_length|获取array的length。|
 |FUNC|napi_get_arraybuffer_info|获取`ArrayBuffer`的底层data buffer及其长度。|
 |FUNC|napi_get_prototype|获取给定js `Object`的`prototype`。|
@@ -71,6 +68,7 @@ OpenHarmony的Native API组件对Node-API的接口进行了重新实现，底层
 |FUNC|napi_get_value_int64|获取给定js `Number`对应的C int64值。|
 |FUNC|napi_get_value_string_latin1|获取给定js vaule对应的ISO-8859-1编码的字符串。|
 |FUNC|napi_get_value_string_utf8|获取给定js vaule对应的UTF8编码的字符串。|
+|FUNC|napi_get_value_string_utf16|获取给定js vaule对应的UTF16编码的字符串。|
 |FUNC|napi_get_value_uint32|获取给定js `Number`对应的C uint32值。|
 |FUNC|napi_get_boolean|根据给定的C boolean值，获取js bool对象。|
 |FUNC|napi_get_global|获取`global`对象。|
@@ -102,6 +100,8 @@ OpenHarmony的Native API组件对Node-API的接口进行了重新实现，底层
 |FUNC|napi_has_element|若给定`Object`的指定索引处拥有属性，获取该元素。|
 |FUNC|napi_delete_element|尝试删除给定`Object`的指定索引处的元素。|
 |FUNC|napi_define_properties|批量的向给定`Object`中定义属性。|
+|FUNC|napi_type_tag_object|将tag指针的值与`Object`关联。|
+|FUNC|napi_check_object_type_tag|判断给定的tag指针是否被关联到了js `Object`上。|
 |FUNC|napi_call_function|在Native方法中调用js function，即native call js。|
 |FUNC|napi_create_function|创建native方法给js使用，以便于js call native。|
 |FUNC|napi_get_cb_info|从给定的callback info中获取有关调用的详细信息，如参数和this指针。|
@@ -121,5 +121,19 @@ OpenHarmony的Native API组件对Node-API的接口进行了重新实现，底层
 |FUNC|napi_resolve_deferred|resolve与js promise对象关联的延迟函数。|
 |FUNC|napi_reject_deferred|reject与js promise对象关联的延迟函数。|
 |FUNC|napi_is_promise|判断给定js value是否为promise对象。|
-|FUNC|napi_run_script|执行一段js代码。|
 |FUNC|napi_get_uv_event_loop|获取当前libuv loop实例。|
+|FUNC|napi_create_threadsafe_function|创建线程安全函数。|
+|FUNC|napi_get_threadsafe_function_context|获取线程安全函数中的context。|
+|FUNC|napi_call_threadsafe_function|调用线程安全函数。|
+|FUNC|napi_acquire_threadsafe_function|指示线程安全函数可以开始使用。|
+|FUNC|napi_release_threadsafe_function|指示线程安全函数将停止使用。|
+|FUNC|napi_ref_threadsafe_function|指示在主线程上运行的事件循环在线程安全函数被销毁之前不应退出。|
+|FUNC|napi_unref_threadsafe_function|指示在主线程上运行的事件循环可能会在线程安全函数被销毁之前退出。|
+|FUNC|napi_create_date|通过一个C的`double`数据创建js `Date`。|
+|FUNC|napi_get_date_value|获取给定js `Date`对应的C double值。|
+|FUNC|napi_create_bigint_int64|通过一个C的`int64`数据创建js `BigInt`。|
+|FUNC|napi_create_bigint_uint64|通过一个C的`uint64`数据创建js `BigInt`。|
+|FUNC|napi_create_bigint_words|通过一个C的`uint64`数组创建单个js `BigInt`。|
+|FUNC|napi_get_value_bigint_int64|获取给定js `BigInt`对应的C int64值。|
+|FUNC|napi_get_value_bigint_uint64|获取给定js `BigInt`对应的C uint64值。|
+|FUNC|napi_get_value_bigint_words|获取给定js `BigInt`对应的信息，包括符号位、64位小端序数组和数组中的元素个数。|

@@ -2,6 +2,12 @@
 
 The **AppStateData** module defines the application state data, which can be obtained through [getForegroundApplications](js-apis-app-ability-appManager.md#appmanagergetforegroundapplications).
 
+## Modules to Import
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+```
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This module is marked as @systemapi and not visible to third-party applications.
@@ -19,7 +25,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 function getForegroundAppInfos() {
     appManager.getForegroundApplications((error, data) => {
-        if (error && error.code) {
+        if (error) {
             console.log('getForegroundApplications failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
             return;
         }

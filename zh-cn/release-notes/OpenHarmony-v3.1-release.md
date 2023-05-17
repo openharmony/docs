@@ -195,7 +195,7 @@ _[API差异报告](api-diff/v3.1-Release/Readme-CN.md)_
 
 ### 芯片及开发板适配
 
-芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
+芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)信息。
 
 ### Samples & Codelabs
 
@@ -205,23 +205,23 @@ _[API差异报告](api-diff/v3.1-Release/Readme-CN.md)_
 
 | 子系统 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- | -------- |
-| 电话服务 | [短信服务](https://gitee.com/openharmony/app_samples/tree/master/Telephony/Message) | 本示例展示了电话服务中发送短信的功能。 | eTS |
-| 电话服务 | [网络搜索](https://gitee.com/openharmony/app_samples/tree/master/Telephony/RadioTech) | 本示例通过eTS来展示电话服务中网络搜索功能，包含无线接入技术、网络状态、选网模式、ISO国家码、信号强度信息列表及Radio是否打开。 | eTS |
-| 设备管理 | [系统电源管理](https://gitee.com/openharmony/app_samples/tree/master/common/PowerManager) | 本示例展示了关机、重启以及检测亮灭屏状态的功能。 | eTS |
-| 设备管理 | [传感器](https://gitee.com/openharmony/app_samples/tree/master/device/Sensor) | 本示例采用了传感器接口中的方向传感器，实现了指南针的效果。 | eTS |
-| 设备管理 | [设备管理](https://gitee.com/openharmony/app_samples/tree/master/device/DeviceManager) | 本示例展示了在eTS中DeviceManager接口的使用，包括获取授信设备列表，设备扫描，设备认证，设备状态订阅。 | eTS |
-| 帐号管理 | [应用帐号管理](https://gitee.com/openharmony/app_samples/tree/master/Account/AppAccountManager) | 本示例选择应用进行注册/登录，并设置帐号相关信息，简要说明应用帐号管理相关功能。 | eTS |
-| ArkUI | [web](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Web) | 本示例主要展示了web的功能页面。 | eTS |
-| ArkUI | [拖拽](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Drag) | 本示例主要展示了拖拽操作的功能。 | eTS |
-| ArkUI | [动画](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/ArkUIAnimation) | 本示例通过点击按钮触发动画，向用户展示属性动画与显示动画的效果。 | eTS |
-| 数据管理 | [分布式数据库-结果集和谓词查询](https://gitee.com/openharmony/app_samples/tree/master/data/DDMQuery) | 本示例展示了分布式数据管理中，如何通过构建query对象，&nbsp;查询kvstore中的数据，获取结果集。 | eTS |
-| 数据管理 | [关系型数据库](https://gitee.com/openharmony/app_samples/tree/master/data/DistributedRdb) | 本示例展示了在eTS中关系型数据库的使用，包括增、删、改、查等操作。 | eTS |
-| 事件 | [后台代理提醒](https://gitee.com/openharmony/app_samples/tree/master/Notification/AlarmClock) | 本示例通过模拟闹钟来展示后台代理提醒的使用方法。 | eTS |
-| 事件 | [事件通知](https://gitee.com/openharmony/app_samples/tree/master/Notification/Emitter) | 本示例主要展示进程内事件通知，用户通过选择对应商品并提交订单后在订单列表显示所选商品。 | eTS |
-| 通信与连接 | [RPC通信](https://gitee.com/openharmony/app_samples/tree/master/Communication/RPC) | 本示例展示了同一设备中前后台的数据交互，用户前台选择相应的商品与数目，后台计算出结果，回传给前台展示。 | eTS |
-| 通信与连接 | [WLAN](https://gitee.com/openharmony/app_samples/tree/master/Communication/Wlan) | 本示例展示了在eTS中WLAN的基本使用，包括禁用和启用WLAN、WLAN扫描和获取扫描结果、WLAN状态监听、WiFi连接状态监听、获取IP信息、获取国家码、判断设备是否支持WLAN相关特性。 | eTS |
-| 媒体服务 | [录音机Demo](https://gitee.com/openharmony/app_samples/tree/master/media/Recorder) | 本示例展示媒体服务中音频录制和播放功能的使用。 | eTS |
-| 媒体服务 | [多媒体Demo](https://gitee.com/openharmony/app_samples/tree/master/media/MultiMedia) | 本示例展示如何在eTS中调用相机拍照，以及如何使用媒体库接口进行媒体文件的增、删、改、查操作。 | eTS |
+| 电话服务 | [短信服务](https://gitee.com/openharmony/app_samples/tree/master/Telephony/Message) | 本示例展示了电话服务中发送短信的功能。 | ArkTS |
+| 电话服务 | [网络搜索](https://gitee.com/openharmony/app_samples/tree/master/Telephony/RadioTech) | 本示例通过ArkTS来展示电话服务中网络搜索功能，包含无线接入技术、网络状态、选网模式、ISO国家码、信号强度信息列表及Radio是否打开。 | ArkTS |
+| 设备管理 | [系统电源管理](https://gitee.com/openharmony/app_samples/tree/master/common/PowerManager) | 本示例展示了关机、重启以及检测亮灭屏状态的功能。 | ArkTS |
+| 设备管理 | [传感器](https://gitee.com/openharmony/app_samples/tree/master/device/Sensor) | 本示例采用了传感器接口中的方向传感器，实现了指南针的效果。 | ArkTS |
+| 设备管理 | [设备管理](https://gitee.com/openharmony/app_samples/tree/master/device/DeviceManager) | 本示例展示了在ArkTS中DeviceManager接口的使用，包括获取授信设备列表，设备扫描，设备认证，设备状态订阅。 | ArkTS |
+| 帐号管理 | [应用帐号管理](https://gitee.com/openharmony/app_samples/tree/master/Account/AppAccountManager) | 本示例选择应用进行注册/登录，并设置帐号相关信息，简要说明应用帐号管理相关功能。 | ArkTS |
+| ArkUI | [web](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Web) | 本示例主要展示了web的功能页面。 | ArkTS |
+| ArkUI | [拖拽](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/Drag) | 本示例主要展示了拖拽操作的功能。 | ArkTS |
+| ArkUI | [动画](https://gitee.com/openharmony/app_samples/tree/master/ETSUI/ArkUIAnimation) | 本示例通过点击按钮触发动画，向用户展示属性动画与显示动画的效果。 | ArkTS |
+| 数据管理 | [分布式数据库-结果集和谓词查询](https://gitee.com/openharmony/app_samples/tree/master/data/DDMQuery) | 本示例展示了分布式数据管理中，如何通过构建query对象，&nbsp;查询kvstore中的数据，获取结果集。 | ArkTS |
+| 数据管理 | [关系型数据库](https://gitee.com/openharmony/app_samples/tree/master/data/DistributedRdb) | 本示例展示了在ArkTS中关系型数据库的使用，包括增、删、改、查等操作。 | ArkTS |
+| 事件 | [后台代理提醒](https://gitee.com/openharmony/app_samples/tree/master/Notification/AlarmClock) | 本示例通过模拟闹钟来展示后台代理提醒的使用方法。 | ArkTS |
+| 事件 | [事件通知](https://gitee.com/openharmony/app_samples/tree/master/Notification/Emitter) | 本示例主要展示进程内事件通知，用户通过选择对应商品并提交订单后在订单列表显示所选商品。 | ArkTS |
+| 通信与连接 | [RPC通信](https://gitee.com/openharmony/app_samples/tree/master/Communication/RPC) | 本示例展示了同一设备中前后台的数据交互，用户前台选择相应的商品与数目，后台计算出结果，回传给前台展示。 | ArkTS |
+| 通信与连接 | [WLAN](https://gitee.com/openharmony/app_samples/tree/master/Communication/Wlan) | 本示例展示了在ArkTS中WLAN的基本使用，包括禁用和启用WLAN、WLAN扫描和获取扫描结果、WLAN状态监听、WiFi连接状态监听、获取IP信息、获取国家码、判断设备是否支持WLAN相关特性。 | ArkTS |
+| 媒体服务 | [录音机Demo](https://gitee.com/openharmony/app_samples/tree/master/media/Recorder) | 本示例展示媒体服务中音频录制和播放功能的使用。 | ArkTS |
+| 媒体服务 | [多媒体Demo](https://gitee.com/openharmony/app_samples/tree/master/media/MultiMedia) | 本示例展示如何在ArkTS中调用相机拍照，以及如何使用媒体库接口进行媒体文件的增、删、改、查操作。 | ArkTS |
 
 请访问[Samples](https://gitee.com/openharmony/app_samples)仓了解更多信息。
 
@@ -232,13 +232,13 @@ _[API差异报告](api-diff/v3.1-Release/Readme-CN.md)_
 | 项目名称                                                     | 简介                                                         | 开发语言 |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
 | [分布式鉴权](https://gitee.com/openharmony/codelabs/tree/master/Distributed/GameAuthOpenH) | 使用JS开发一个分布式游戏鉴权应用，介绍分布式拉起，设备管理器对象、显示设备属性接口能力的使用。 | JS       |
-| [分布式游戏手柄](https://gitee.com/openharmony/codelabs/tree/master/Distributed/HandleGameApplication) | 使用eTS开发一个手柄游戏，利用分布式能力，一个开发板作为手柄，一个开发板作为游戏端。 | eTS      |
-| [分布式亲子教育](https://gitee.com/openharmony/codelabs/tree/master/Distributed/OpenHarmonyPictureGame) | 使用RPC实现跨设备通讯，以及CommonEvent实现ServiceAbility与FA之间通讯，完成分布式拼图游戏。 | eTS      |
-| [分布式遥控器](https://gitee.com/openharmony/codelabs/tree/master/Distributed/RemoteControllerETS) | 使用eTS开发一个分布式遥控器，利用分布式能力，一个开发板作为TV端，一个开发板作为遥控器端。 | eTS      |
-| [音频录制应用](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS) | 使用媒体组件AudioRecorder收录当前音频、使用AudioPlayer播放录音的方法。 | eTS      |
-| [备忘录](https://gitee.com/openharmony/codelabs/tree/master/Data/NotePad_OH_ETS) | 使用eTS开发一个简易备忘录，支持新建、删除和收藏笔记功能，轻量级数据库持久化存储数据。 | eTS      |
-| [分布式邮件编辑](https://gitee.com/openharmony/codelabs/tree/master/Distributed/OHMailETS) | 使用eTS开发分布式邮件，利用分布式的能力，在相同局域网及帐号下，拉起另一个设备，实现邮件在不同设备下的编辑流转。 | eTS      |
-| [三方库](https://gitee.com/openharmony/codelabs/tree/master/ThirdPartyComponents/VCardDemo) | 介绍openHarmony中三方库vcard库使用：一款写入和读取特定格式的联系人数据(后缀名为vcard的文件)的OpenHarmony组件。 | eTS      |
+| [分布式游戏手柄](https://gitee.com/openharmony/codelabs/tree/master/Distributed/HandleGameApplication) | 使用ArkTS开发一个手柄游戏，利用分布式能力，一个开发板作为手柄，一个开发板作为游戏端。 | ArkTS      |
+| [分布式亲子教育](https://gitee.com/openharmony/codelabs/tree/master/Distributed/OpenHarmonyPictureGame) | 使用RPC实现跨设备通讯，以及CommonEvent实现ServiceAbility与FA之间通讯，完成分布式拼图游戏。 | ArkTS      |
+| [分布式遥控器](https://gitee.com/openharmony/codelabs/tree/master/Distributed/RemoteControllerETS) | 使用ArkTS开发一个分布式遥控器，利用分布式能力，一个开发板作为TV端，一个开发板作为遥控器端。 | ArkTS      |
+| [音频录制应用](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS) | 使用媒体组件AudioRecorder收录当前音频、使用AudioPlayer播放录音的方法。 | ArkTS     |
+| [备忘录](https://gitee.com/openharmony/codelabs/tree/master/Data/NotePad_OH_ETS) | 使用ArkTS开发一个简易备忘录，支持新建、删除和收藏笔记功能，轻量级数据库持久化存储数据。 | ArkTS      |
+| [分布式邮件编辑](https://gitee.com/openharmony/codelabs/tree/master/Distributed/OHMailETS) | 使用ArkTS开发分布式邮件，利用分布式的能力，在相同局域网及帐号下，拉起另一个设备，实现邮件在不同设备下的编辑流转。 | ArkTS     |
+| [三方库](https://gitee.com/openharmony/codelabs/tree/master/ThirdPartyComponents/VCardDemo) | 介绍openHarmony中三方库vcard库使用：一款写入和读取特定格式的联系人数据(后缀名为vcard的文件)的OpenHarmony组件。 | ArkTS      |
 
 
 ## 修复缺陷列表

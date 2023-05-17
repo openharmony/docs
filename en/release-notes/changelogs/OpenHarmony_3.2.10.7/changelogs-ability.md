@@ -1,6 +1,7 @@
 # Ability Framework Changelog
 
 ## cl.ability.1 AreaMode APIs Changed
+
 Duplicate **AreaMode** APIs are deleted.
 
 **Change Impact**
@@ -23,8 +24,6 @@ Use **AreaMode** in **@ohos.app.ability.contextConstant.d.ts**.
 import contextConstant from '@ohos.app.ability.contextConstant';
 let area: contextConstant.AreaMode = contextConstant.AreaMode.EL1;
 ```
-
-
 
 ## cl.ability.2 killProcessesBySelf Renamed
 
@@ -63,8 +62,6 @@ let context: common.UIAbilityContext = globalThis.abilityContext;
 let appContext = context.getApplicationContext();
 appContext.killAllProcesses()
 ```
-
-
 
 ## cl.ability.3 getProcessRunningInformation Renamed
 
@@ -107,9 +104,7 @@ let appContext = context.getApplicationContext();
 appContext.getRunningProcessInformation()
 ```
 
-
-
-## cl.ability.4 WantConstant.Flags API Change
+## cl.ability.4 WantConstant.Flags API Changed
 
 **WantConstant.Flags** has multiple invalid flag definitions. These invalid flags are deleted.
 
@@ -135,9 +130,7 @@ JS APIs in API version 9 are affected. Your application needs to adapt these API
 | @ohos.app.ability.wantConstant.d.ts | wantConstant.Flags  | FLAG_ABILITY_NEW_MISSION | Deleted    |
 | @ohos.app.ability.wantConstant.d.ts | wantConstant.Flags  | FLAG_ABILITY_MISSION_TOP | Deleted    |
 
-
-
-## cl.ability.5 WantConstant.Action API Change
+## cl.ability.5 WantConstant.Action API Changed
 
 **WantConstant.Action** has multiple invalid action definitions. These invalid actions are deleted.
 
@@ -156,8 +149,6 @@ JS APIs in API version 9 are affected. Your application needs to adapt these API
 | @ohos.app.ability.wantConstant.d.ts | wantConstant.Action  | DLP_PARAMS_BUNDLE_NAME | Deleted    |
 | @ohos.app.ability.wantConstant.d.ts | wantConstant.Action  | DLP_PARAMS_MODULE_NAME | Deleted    |
 | @ohos.app.ability.wantConstant.d.ts | wantConstant.Action  | DLP_PARAMS_ABILITY_NAME | Deleted    |
-
-
 
 ## cl.ability.6 Caller APIs Changed
 
@@ -216,8 +207,8 @@ Code before the change:
       try {
         this.callee.on(method, funcCallBack);
       } catch (error) {
-        console.log('Callee.on catch error, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('Callee.on catch error, error.code: ' + error.code +
+          ' error.message: ' + error.message);
       }
     }
   }
@@ -260,9 +251,33 @@ Code after the change:
       try {
         this.callee.on(method, funcCallBack);
       } catch (error) {
-        console.log('Callee.on catch error, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('Callee.on catch error, error.code: ' + error.code +
+          ' error.message: ' + error.message);
       }
     }
   }
+```
+
+## cl.ability.7 WantConstant.Flags API Changed
+
+The **wantConstant** API had two similar enums. Now the two enums are combined into one.
+
+**Change Impact**
+
+JS APIs in API version 9 are affected. Your application needs to adapt these APIs so that it can properly implement features in the SDK environment of the new version.
+
+**Key API/Component Changes**
+
+| Module                             | Class                  | Method/Attribute/Enum/Constant                | Change Type|
+| ----------------------------------- | ---------------------- | ----------------------------------- | -------- |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Parameter | ABILITY_BACK_TO_OTHER_MISSION_STACK | Deleted    |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Params    | ABILITY_BACK_TO_OTHER_MISSION_STACK | Added    |
+
+**Adaptation Guide**
+
+Use **ABILITY_BACK_TO_OTHER_MISSION_STACK** in **@ohos.app.ability.wantConstant.d.ts**.
+
+```ts
+import wantConstant from '@ohos.app.ability.wantConstant';
+let backToOtherMissionStack: wantConstant.Params = wantParam.Params.ABILITY_BACK_TO_OTHER_MISSION_STACK;
 ```

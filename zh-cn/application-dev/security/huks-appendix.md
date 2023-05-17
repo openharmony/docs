@@ -1,70 +1,90 @@
 # 通用密钥库密码算法规格
 
+## 规格实现范围说明
+本文档将说明密钥管理服务规格全景，面向OpenHarmony的厂商适配密钥管理服务规格分为必选规格和可选规格。必选规格为所有厂商均支持的算法规格。而对于可选规格，厂商将基于实际情况决定是否实现，如需使用，请查阅具体厂商提供的说明，确保规格支持再使用。
+**建议开发者使用必选规格开发应用，可保证全平台兼容。**
+
 ## 支持的算法类型及参数组合
 
 ### 导入\生成密钥规格
 
-| 算法  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    | API级别 | 支持的密钥长度     |
-| -------------- | :---------------: | ------------------ |
-| AES    |        8+         | 128、192、256 |
-| RSA    |        8+         | 512、768、1024、2048、3072、4096 |
-| HMAC   |        8+         | 8-1024（含），必须是8的倍数   |
-| ECC    |        8+         | 224、256、384、521 |
-| ED25519 |        8+         | 256    |
-| X25519  |        8+         | 256    |
-| DSA    |        8+         | 8-1024（含），8的倍数    |
-| DH    |        8+         | 2048、3072、4096                |
-| SM2    |        9+         | 256                |
-| SM3    |        9+         | 256                |
-| SM4    |        9+         | 128                |
+| 算法  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    | API级别 | 支持的密钥长度     |是否必选规格|
+| -------------- | :---------------: | ------------------ |:------------------: |
+| AES    |        8+         | 128、192、256 | 是 |
+| RSA    |        8+         | 512、768、1024|否|
+| RSA    |        8+         | 2048、3072、4096 |是|
+| HMAC   |        8+         | 8-1024（含），必须是8的倍数   |是|
+| ECC    |        8+         | 224 |否|
+| ECC    |        8+         | 256、384、521 |是|
+| ED25519 |        8+         | 256    |是|
+| X25519  |        8+         | 256    |是|
+| DSA    |        8+         | 8-1024（含），8的倍数    |否|
+| DH    |        8+         | 2048                |是|
+| DH    |        8+         | 3072、4096                |否|
+| SM2    |        9+         | 256                |是|
+| SM4    |        9+         | 128                |是|
 
-### 加密解密
+### 加密&解密流程算法与分组、填充模式的组合规格
 
-| 算法  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | API级别 | 备注                                                         |
-| ----------------------- | :----: | ---------------- |
-| AES/CBC/NoPadding<br>AES/ECB/NoPadding<br>AES/CTR/NoPadding<br>AES/GCM/NoPadding<br>AES/CBC/PKCS7<br>AES/ECB/PKCS7 | 8+                | 1. CBC\ECB\CTR模式IV参数必选<br>2. GCM模式下Nonce、AAD、AEAD参数必选   |
-| RSA/ECB/NoPadding<br>RSA/ECB/PKCS1_V1_5<br>RSA/ECB/OAEP             | 8+                |    |
-| SM4/CTR/NoPadding<br>SM4/ECB/NoPadding<br>SM4/CBC/NoPadding<br>SM4/ECB/PKCS7<br>SM4/CBC/PKCS7 | 9+                |   |
+| 算法/分组模式/填充模式  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | API级别 | 备注                                                         |是否必选规格|
+| ----------------------- | :----: | ---------------- | :----------------: |
+| AES/ECB/NoPadding<br>AES/ECB/PKCS7 | 8+          |   |否|
+| AES/CBC/NoPadding <br> AES/CBC/PKCS7<br>AES/CTR/NoPadding| 8+  | IV参数必选 |是|
+| AES/GCM/NoPadding | 8+        | Nonce、AAD、AEAD参数必选   |是|
+| RSA/ECB/NoPadding<br>RSA/ECB/PKCS1_V1_5<br>RSA/ECB/OAEP             | 8+                |  OAEP填充模式支持的摘要算法：SHA256/SHA384/SHA512  | 是 |
+| SM4/ECB/NoPadding<br> SM4/ECB/PKCS7<br>SM4/CBC/PKCS7 | 9+ | CBC模式下 IV 参数必选  |否 |
+| SM4/CTR/NoPadding<br>SM4/CBC/NoPadding<br> | 9+  | IV 参数必选  |是 |
 
 
 
-### 签名验签
+### 签名&验签流程算法与摘要算法、填充模式的组合规格
 
 
-| 算法      | API级别 | 备注     |
-| --------- | :----------: | ----------------- |
-| RSA/MD5/PKCS1_V1_5<br>RSA/SHA1/PKCS1_V1_5<br>RSA/SHA224/PKCS1_V1_5<br>RSA/SHA256/PKCS1_V1_5<br>RSA/SHA384/PKCS1_V1_5<br>RSA/SHA512/PKCS1_V1_5<br>RSA/SHA1/PSS<br>RSA/SHA224/PSS<br>RSA/SHA256/PSS<br>RSA/SHA384/PSS | 8+                | | 
-| RSA/NoDigest/PKCS1_V1_5 | 9+                | | 
-| DSA/SHA1<br>DSA/SHA224<br>DSA/SHA256<br>DSA/SHA384<br>DSA/SHA512     |  8+                | |
-| DSA/NoDigest     |  9+                | |
-| ECC/SHA1<br>ECC/SHA224<br>ECC/SHA256<br>ECC/SHA384<br>ECC/SHA512      | 8+                | |
-| ECC/NoDigest     |  9+                | |
-| ED25519/SHA1<br>ED25519/SHA224<br>ED25519/SHA256<br>ED25519/SHA384<br>ED25519/SHA512 |8+                | |
-| ED25519/NoDigest     |  9+                | |
-| SM2/SM3<br>SM2/NoDigest |9+                | |
+| 算法/摘要算法/填充模式      | API级别 | 备注 |是否必选规格|
+| --------- | :----------: | ---------- |  :-----------------: |
+| RSA/MD5/PKCS1_V1_5<br>RSA/SHA1/PKCS1_V1_5<br>RSA/SHA224/PKCS1_V1_5 <br>RSA/SHA224/PSS| 8+                | |否|
+| RSA/SHA256/PKCS1_V1_5<br>RSA/SHA384/PKCS1_V1_5<br>RSA/SHA512/PKCS1_V1_5<br>RSA/SHA256/PSS<br>RSA/SHA384/PSS<br>RSA/SHA512/PSS | 8+                | | 是 
+| RSA/NoDigest/PKCS1_V1_5 | 9+    |NoDigest 需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE |否|
+| DSA/SHA1<br>DSA/SHA224<br>DSA/SHA256<br>DSA/SHA384<br>DSA/SHA512     |  8+                | |否|
+| DSA/NoDigest     |  9+   |NoDigest 需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE|否|
+| ECC/SHA1<br>ECC/SHA224   | 8+      | |否|
+| ECC/SHA256<br>ECC/SHA384<br>ECC/SHA512      | 8+                | |是|
+| ECC/NoDigest     |  9+   |NoDigest 需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE |否|
+| ED25519/NoDigest     |  8+       | NoDigest 需要指定TAG HuksKeyDigest.HUKS_DIGEST_NONE |是|
+| SM2/SM3|9+      | |是|
 
-### 密钥协商
+### 密钥协商算法
 
-| 算法   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   | API级别 | 备注     |
-| ------ | :-----------: | ------------------------------ |
-| ECDH    | 8+   |  协商密钥类型为ECC类型密钥  |
-| DH        | 8+  |             |
-| X25519  | 8+  |             |
+| 算法   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   | API级别 | 备注     | 是否必选规格|
+| ------ | :-----------: | ------------------------------ |:-----------: |
+| ECDH    | 8+   |  协商密钥类型为ECC类型密钥  | 是|
+| DH        | 8+  |             |是|
+| X25519  | 8+  |             |是|
 
-### 密钥派生
+### HMAC 密钥长度与摘要组合规格
+| 摘要  | 密钥长度 | API级别 | 是否必选规格|
+| ------ | :-----------: |:-----------: |:-----------: |
+| SHA256  |192-1024(8的倍数)| 8+   |   是|
+| SHA384  |256-1024(8的倍数) | 8+  |  是|
+| SHA512  |256-1024(8的倍数)| 8+  | 是|
+### 派生算法/摘要组合规格
 
-| 算法 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |API级别         | 派生密钥及长度              | 备注                  |
-| ------------------------- | :-----------: | ------------ | ----------------- |
-| HKDF/SHA256<br>HKDF/SHA384<br>HKDF/SHA512   | 8+ | 算法：AES、HMAC、SM4 长度：256、384、512 | 派生出的密钥可以存储到HUKS或者直接返回明文 |
-| PBKDF2/SHA256<br>PBKDF2/SHA384<br>PBKDF2/SHA512    | 8+ | 算法：AES、HMAC、SM4 长度：256、384、512 | 派生出的密钥可以存储到HUKS或者直接返回明文 |
+| 算法/摘要 &nbsp; |  派生密钥的算法/长度&nbsp;&nbsp;&nbsp;&nbsp;     | 派生结果密钥可用算法/长度              | 备注 |API级别 |是否必选规格|
+| ----------------- |-------------------------------- | ----------------------- | :------------: |:---------: |:--:|
+| HKDF/SHA256   | AES/192-256 | AES/128/192/256<br>HMAC/8-1024<br>SM4/128 | 派生密钥是业务基于三段式得到密钥会话结果，业务可决定派生密钥是否由HUKS管理（即密钥不出TEE）亦或是业务独立管理 |8+|是|
+| HKDF/SHA384  | AES/256 | AES/128/192/256<br>HMAC/8-1024<br>SM4/128 | 派生密钥是业务基于三段式得到密钥会话结果，业务可决定派生密钥是否由HUKS管理（即密钥不出TEE）亦或是业务独立管理 |8+|是|
+|HKDF/SHA512   | AES/256 | AES/128/192/256<br>HMAC/8-1024<br>SM4/128 | 派生密钥是业务基于三段式得到密钥会话结果，业务可决定派生密钥是否由HUKS管理（即密钥不出TEE）亦或是业务独立管理 |8+|是|
+| PBKDF2/SHA256   | AES/192-256 | AES/128/192/256<br>HMAC/8-1024<br>SM4/128 | 派生密钥是业务基于三段式得到密钥会话结果，业务可决定派生密钥是否由HUKS管理（即密钥不出TEE）亦或是业务独立管理 |8+|是|
+| PBKDF2/SHA384   |AES/256  | AES/128/192/256<br>HMAC/8-1024<br>SM4/128 | 派生密钥是业务基于三段式得到密钥会话结果，业务可决定派生密钥是否由HUKS管理（即密钥不出TEE）亦或是业务独立管理 |8+|是|
+| PBKDF2/SHA512    | AES/256 | AES/128/192/256<br>HMAC/8-1024<br>SM4/128 | 派生密钥是业务基于三段式得到密钥会话结果，业务可决定派生密钥是否由HUKS管理（即密钥不出TEE）亦或是业务独立管理 |8+|是|
 
 ### 密钥证明
 
-| 算法 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |API级别	| 备注                                            |
-| ------------------ | :-----: | ------------------------------------------------------------ |
-| RSA | 9+ |  仅支持Padding为PSS的密钥 |
-| ECC                | 9+ |   |
-| X25519             | 9+ |   |
+| 算法 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |API级别	| 备注  | 是否必选规格|
+| ------------------ | :-----: | ----------------------------- | :-------:|
+| RSA | 9+ |  支持Padding为 PSS 与 PKCS1_V1_5的密钥 |是|
+| ECC                | 9+ |   |是|
+| X25519             | 9+ |   |是|
 
 ## 密钥材料格式
 针对不同密码算法的密钥对、公钥、私钥，HUKS定义了一套密钥材料格式。

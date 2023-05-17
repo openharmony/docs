@@ -28,8 +28,7 @@ Constraints on the event domain, event name, and parameter
 
 - Zero or more event names can be defined for one event domain. The event names in the same event domain must be unique.
 
-- Multiple parameters can be defined for one event name. The parameters in the same event name must be unique. There must be only one parameter named **__BASE** in each event name. See Table 1 for the fields of this parameter and Table 2 for the fields of other custom parameters.
-
+- Multiple parameters can be defined for one event name. The parameters in the same event name must be unique. There must be only one parameter named **\__BASE** in each event name. See Table 1 for the fields of this parameter and Table 2 for the fields of other custom parameters.
     **Table 1** Fields in the \__BASE parameter
   
   | Field| Description|
@@ -47,7 +46,9 @@ Constraints on the event domain, event name, and parameter
   | arrsize | Length of the parameter of the array type. This field is optional.<br>Value:<br>1-100|
   | desc | Parameter description. This field is mandatory.<br>Rule:<br>The description contains 3 to 128 characters, including a to z, A to Z, 0 to 9, and underscores (_).|
 
+
 ## How to Develop
+
 
 ### Writing a YAML File
 

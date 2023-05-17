@@ -181,7 +181,7 @@ For details about the API changes, see the following:
 
 ### Chip and Development Board Adaptation
 
-For details about the adaptation status, see [SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard.md).
+For details about the adaptation status, see [SIG_DevBoard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard.md).
 
 
 ### Samples
@@ -193,7 +193,7 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 | ArkUI development framework| [HealthyDiet](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/HealthyDiet)| This sample app helps you keep food records and view food information. After you add food records, including the food type, weight, and meal time, the app can calculate nutrition data (calories, proteins, fats, and carbon water) for the meals and display the data in a bar chart.| ArkTS |
 | ArkUI development framework| [MusicAlbum](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/MusicAlbum)| This sample shows the home page of a music album app. The adaptive layout and responsive layout are used to ensure that the app can be properly displayed on devices irrespective of screen sizes.| ArkTS |
 | Ability framework and file management subsystem| [CustomShare](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/CustomShare) | Using this sample app, you can share texts, links, and images with third-party applications and display them in these applications.| ArkTS |
-| Ability framework| [GalleryForm](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/GalleryForm)| This sample demonstrates the display of **Gallery** images in a widget and periodic update of the widget.| ArkTS |
+| Ability framework| [GalleryForm](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility) | This sample demonstrates the display of **Gallery** images in a widget and periodic update of the widget.| ArkTS |
 | ArkUI development framework| [AppMarket](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/AppMarket) | This sample shows the home page of an application market, which contains the tab bar, banner, featured apps, and featured games.| ArkTS |
 | ArkUI development framework| [Weather](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Weather) | This sample demonstrates one-time development for multi-device deployment by showing how to develop a weather app and deploy it across different devices. The demo app includes the following: home page, **Manage City** page, **Add City** page, and **Update Time** page.| ArkTS |
 | Multimedia subsystem| [MediaCollections](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/MediaCollections) | This sample shows the capabilities of online streaming, audio and video playback control, and volume adjustment.| ArkTS |

@@ -1,6 +1,6 @@
-# @ohos.data.preferences (Preferences)
+# @ohos.data.preferences (User Preferences)
 
-The **Preferences** module provides APIs for processing data in the form of key-value (KV) pairs and supports persistence of the KV pairs when required.
+The **user preferences** module provides APIs for processing data in the form of key-value (KV) pairs and supports persistence of the KV pairs when required.
 
 The key is of the string type, and the value can be a number, a string, a Boolean value, or an array of numbers, strings, or Boolean values.
 
@@ -176,12 +176,12 @@ The deleted **Preferences** instance cannot be used for data operations. Otherwi
 | Name  | Type                                 | Mandatory| Description                                                |
 | -------- | ------------------------------------- | ---- | ---------------------------------------------------- |
 | context  | Context | Yes  | Application context.<br>For details about the application context of the FA model, see [Context](js-apis-inner-app-context.md).<br>For details about the application context of the stage model, see [Context](js-apis-inner-application-uiAbilityContext.md).                                        |
-| name     | string                                | Yes  | Name of the **Preferences** instance to delete.                          |
+| name     | string                                | Yes  | Name of the **Preferences** instance to delete.                             |
 | callback | AsyncCallback&lt;void&gt;             | Yes  | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error code.|
 
 **Error codes**
 
-For details about the following error codes, see [Preference Error Codes](../errorcodes/errorcode-preferences.md).
+For details about the error codes, see [User Preference Error Codes](../errorcodes/errorcode-preferences.md).
 
 | ID| Error Message                      |
 | -------- | ------------------------------|
@@ -213,6 +213,7 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
@@ -257,7 +258,7 @@ The deleted **Preferences** instance cannot be used for data operations. Otherwi
 
 **Error codes**
 
-For details about the following error codes, see [Preference Error Codes](../errorcodes/errorcode-preferences.md).
+For details about the error codes, see [User Preference Error Codes](../errorcodes/errorcode-preferences.md).
 
 | ID| Error Message                      |
 | -------- | ------------------------------|
@@ -288,6 +289,7 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try{
@@ -348,6 +350,7 @@ Stage model:
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
@@ -500,7 +503,7 @@ try {
     promise.then((data) => {
         console.info("Got the value of 'startup'. Data: " + data);
     }).catch((err) => {
-        console.info("Failed to get value of 'startup'. code =" + err.code + ", message =" + err.message);
+        console.info("Failed to obtain the value of 'startup'. code =" + err.code + ", message =" + err.message);
     })
 } catch(err) {
     console.info("Failed to obtain the value of 'startup'. code =" + err.code + ", message =" + err.message);

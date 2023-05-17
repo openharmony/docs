@@ -1,16 +1,18 @@
 # @ohos.util.HashSet (非线性容器HashSet)
 
-> **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 HashSet基于[HashMap](js-apis-hashmap.md)实现。在HashSet中，只对value对象进行处理。
 
 HashSet和[TreeSet](js-apis-treeset.md)相比，HashSet中的数据无序存放，即存放元素的顺序和取出的顺序不一致，而TreeSet是有序存放。它们集合中的元素都不允许重复，但HashSet允许放入null值，TreeSet不允许。
 
 **推荐使用场景：** 可以利用HashSet不重复的特性，当需要不重复的集合或需要去重某个集合的时候使用。
 
-文档中存在泛型的使用,涉及以下泛型标记符:<br>
-- T: Type, 类
+文档中存在泛型的使用，涉及以下泛型标记符：<br>
+- T：Type，类
+
+> **说明：**
+>
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 
 ## 导入模块
 
@@ -125,9 +127,8 @@ has(value: T): boolean
 
 ```ts
 let hashSet = new HashSet();
-let result = hashSet.has("squirrel");
 hashSet.add("squirrel");
-let result1 = hashSet.has("squirrel");
+let result = hashSet.has("squirrel");
 ```
 
 

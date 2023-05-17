@@ -34,14 +34,6 @@
 
 兼容JS的类Web开发范式的方舟开发框架，有以下相关实例可供参考：
 
-- [`AtomicLayout`：原子布局（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/AtomicLayout)
-
-- [`FaModel`：FA示例应用（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/FaModel)
-
-- [`JsShopping`：购物示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsShopping)
-
-- [`Stack`：堆叠容器（JS）（API8）](https://gitee.com/openharmony/app_samples/tree/master/UI/Stack)
-
 - [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)
 
 - [购物应用（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/ShoppingOpenHarmony)

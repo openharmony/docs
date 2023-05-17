@@ -1,4 +1,4 @@
-# OpenHarmony 1.1.5 LTS
+# OpenHarmony 1.1.5 LTS (EOL)
 
 
 ## Version Description
@@ -69,7 +69,7 @@ This version does not involve API updates.
 
 ### Chip and Development Board Adaptation
 
-For details about the adaptation status, see [SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard.md).
+For details about the adaptation status, see [SIG_DevBoard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard.md).
 
 
 ## Resolved Issues

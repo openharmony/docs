@@ -81,7 +81,7 @@ import web_webview from '@ohos.web.webview'
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  msgPort: WebMessagePort[] = null;
+  msgPort: web_webview.WebMessagePort[] = null;
 
   build() {
     Column() {
@@ -214,6 +214,240 @@ struct WebComponent {
 }
 ```
 
+### isExtentionType<sup>10+</sup>
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name        | Type  | Readable| Writable| Description                                             |
+| ------------ | ------ | ---- | ---- | ------------------------------------------------|
+| isExtentionType | boolean | Yes  | No| Whether to use the extended interface when creating a **WebMessagePort** instance.  |
+
+### postMessageEventExt<sup>10+</sup>
+
+postMessageEventExt(message: WebMessageExt): void
+
+Sends a message. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name | Type  | Mandatory| Description          |
+| ------- | ------ | ---- | :------------- |
+| message | [WebMessageExt](#webmessageext10) | Yes  | Message to send.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 17100010 | Can not post message using this port. |
+
+
+### onMessageEventExt<sup>10+</sup>
+
+onMessageEventExt(callback: (result: WebMessageExt) => void): void
+
+Registers a callback to receive messages from the HTML5 side.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name  | Type    | Mandatory| Description                |
+| -------- | -------- | ---- | :------------------- |
+| result | [WebMessageExt](#webmessageext10) | Yes  | Message received.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                       |
+| -------- | ----------------------------------------------- |
+| 17100006 | Can not register message event using this port. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+// Example of sending messages between an application and a web page: Use the init_web_messageport channel to receive messages from the web page on the application side through port 0 and receive messages from the application on the web page side through port 1.
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  ports: web_webview.WebMessagePort[] = null;
+  nativePort: web_webview.WebMessagePort = null;
+  @State msg1:string = "";
+  @State msg2:string = "";
+  message: web_webview.WebMessageExt = new web_webview.WebMessageExt();
+  build() {
+    Column() {
+      Text(this.msg1).fontSize(16)
+      Text(this.msg2).fontSize(16)
+      Button('SendToH5')
+        .onClick(() => {
+          // Use the local port to send messages to HTML5.
+          try {
+              console.log("In eTS side send true start");
+              if (this.nativePort) {
+                  this.message.setString("helloFromEts");
+                  this.nativePort.postMessageEventExt(this.message);
+              }
+          }
+          catch (error) {
+              console.log("In eTS side send message catch error:" + error.code + ", msg:" + error.message);
+          }
+        })
+
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+      .onPageEnd((e)=>{
+        console.log("In eTS side message onPageEnd init mesaage channel");
+        // 1. Create a message port.
+        this.ports = this.controller.createWebMessagePorts(true);
+        // 2. Send port 1 to HTML5.
+        this.controller.postMessage("init_web_messageport", [this.ports[1]], "*");
+        // 3. Save port 0 to the local host.
+        this.nativePort = this.ports[0];
+        // 4. Set the callback.
+        this.nativePort.onMessageEventExt((result) => {
+            console.log("In eTS side got message");
+            try {
+                var type = result.getType();
+                console.log("In eTS side getType:" + type);
+                switch (type) {
+                    case web_webview.WebMessageType.STRING: {
+                        this.msg1 = "result type:" + typeof (result.getString());
+                        this.msg2 = "result getString:" + ((result.getString()));
+                        break;
+                    }
+                    case web_webview.WebMessageType.NUMBER: {
+                        this.msg1 = "result type:" + typeof (result.getNumber());
+                        this.msg2 = "result getNumber:" + ((result.getNumber()));
+                        break;
+                    }
+                    case web_webview.WebMessageType.BOOLEAN: {
+                        this.msg1 = "result type:" + typeof (result.getBoolean());
+                        this.msg2 = "result getBoolean:" + ((result.getBoolean()));
+                        break;
+                    }
+                    case web_webview.WebMessageType.ARRAY_BUFFER: {
+                        this.msg1 = "result type:" + typeof (result.getArrayBuffer());
+                        this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
+                        break;
+                    }
+                    case web_webview.WebMessageType.ARRAY: {
+                        this.msg1 = "result type:" + typeof (result.getArray());
+                        this.msg2 = "result getArray:" + result.getArray();
+                        break;
+                    }
+                    case web_webview.WebMessageType.ERROR: {
+                        this.msg1 = "result type:" + typeof (result.getError());
+                        this.msg2 = "result getError:" + result.getError();
+                        break;
+                    }
+                    default: {
+                        this.msg1 = "default break, type:" + type;
+                        break;
+                    }
+                }
+            }
+            catch (resError) {
+                console.log(`log error code: ${resError.code}, Message: ${resError.message}`);
+            }
+        });
+      })
+    }
+  }
+}
+```
+
+```html
+<!--index.html-->
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+    <title>WebView MessagePort Demo</title>
+</head>
+
+<body>
+<h1>Html5 Send and Receive Message</h1>
+<h3 id="msg">Receive string:</h3>
+<h3 id="msg2">Receive arraybuffer:</h3>
+<div style="font-size: 10pt; text-align: center;">
+    <input type="button" value="Send String" onclick="postStringToApp();" /><br/>
+</div>
+</body>
+<script src="index.js"></script>
+</html>
+```
+
+```js
+//index.js
+var h5Port;
+window.addEventListener('message', function(event) {
+    if (event.data == 'init_web_messageport') {
+        if(event.ports[0] != null) {
+            h5Port = event.ports[0]; // 1. Save the port number sent from the eTS side.
+            h5Port.onmessage = function(event) {
+                console.log("hwd In html got message");
+                // 2. Receive the message sent from the ArkTS side.
+                var result = event.data;
+                console.log("In html got message, typeof: ", typeof(result));
+                console.log("In html got message, result: ", (result));
+                if (typeof(result) == "string") {
+                    console.log("In html got message, String: ", result);
+                    document.getElementById("msg").innerHTML  =  "String:" + result;
+                } else if (typeof(result) == "number") {
+                  console.log("In html side got message, number: ", result);
+                    document.getElementById("msg").innerHTML = "Number:" + result;
+                } else if (typeof(result) == "boolean") {
+                    console.log("In html side got message, boolean: ", result);
+                    document.getElementById("msg").innerHTML = "Boolean:" + result;
+                } else if (typeof(result) == "object") {
+                    if (result instanceof ArrayBuffer) {
+                        document.getElementById("msg2").innerHTML  =  "ArrayBuffer:" + result.byteLength;
+                        console.log("In html got message, byteLength: ", result.byteLength);
+                    } else if (result instanceof Error) {
+                        console.log("In html error message, err:" + (result));
+                        console.log("In html error message, typeof err:" + typeof(result));
+                        document.getElementById("msg2").innerHTML  =  "Error:" + result.name + ", msg:" + result.message;
+                    } else if (result instanceof Array) {
+                        console.log("In html got message, Array");
+                        console.log("In html got message, Array length:" + result.length);
+                        console.log("In html got message, Array[0]:" + (result[0]));
+                        console.log("In html got message, typeof Array[0]:" + typeof(result[0]));
+                        document.getElementById("msg2").innerHTML  =  "Array len:" + result.length + ", value:" + result;
+                    } else {
+                        console.log("In html got message, not any instance of support type");
+                        document.getElementById("msg").innerHTML  = "not any instance of support type";
+                    }
+                } else {
+                    console.log("In html got message, not support type");
+                    document.getElementById("msg").innerHTML  = "not support type";
+                }
+            }
+            h5Port.onmessageerror = (event) => {
+                console.error(`hwd In html Error receiving message: ${event}`);
+            };
+        }
+    }
+})
+
+// Use h5Port to send a message of the string type to the ArkTS side.
+function postStringToApp() {
+    if (h5Port) {
+        console.log("In html send string message");
+        h5Port.postMessage("hello");
+        console.log("In html send string message end");
+    } else {
+        console.error("In html h5port is null, please init first");
+    }
+}
+```
+
 ## WebviewController
 
 Implements a **WebviewController** to control the behavior of the **\<Web>** component. A **WebviewController** can control only one **\<Web>** component, and the APIs (except static APIs) in the **WebviewController** can be invoked only after it has been bound to the target **\<Web>** component.
@@ -257,7 +491,7 @@ Sets how the \<Web> component uses HTTPDNS for DNS resolution.
 
 | Name             | Type   | Mandatory  |  Description|
 | ------------------ | ------- | ---- | ------------- |
-| secureDnsMode         |   [SecureDnsMode](#securednsmode)   | Yes  | Mode in which HTTPDNS is used.|
+| secureDnsMode         |   [SecureDnsMode](#securednsmode10)   | Yes  | Mode in which HTTPDNS is used.|
 | secureDnsConfig       | string | Yes| Information about the HTTPDNS server to use, which must use HTTPS. Only one HTTPDNS server can be configured.|
 
 **Example**
@@ -270,7 +504,6 @@ import web_webview from '@ohos.web.webview';
 export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log("EntryAbility onCreate")
-        web_webview.WebviewController.initializeWebEngine()
         try {
             web_webview.WebviewController.setHttpDns(web_webview.SecureDnsMode.Auto, "https://example1.test")
         } catch(error) {
@@ -422,7 +655,8 @@ struct WebComponent {
 }
 ```
 
-Example of loading local web pages:
+There are three methods for loading local resource files:
+1. Using $rawfile
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
@@ -448,7 +682,7 @@ struct WebComponent {
   }
 }
 ```
-
+2. Using the resources protocol
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
@@ -474,6 +708,8 @@ struct WebComponent {
   }
 }
 ```
+
+3. Using a sandbox path. For details, see the example of loading local resource files in the sandbox in [Web](../arkui-ts/ts-basic-components-web.md#web).
 
 ```html
 <!-- xxx.html -->
@@ -1183,7 +1419,7 @@ Executes a JavaScript script. This API uses a promise to return the script execu
 
 | Type           | Description                                               |
 | --------------- | --------------------------------------------------- |
-| Promise\<string> | Promise used to return the result. Returns **null** if the JavaScript script fails to be executed|
+| Promise\<string> | Promise used to return the result if the operation is successful and null otherwise.|
 
 **Error codes**
 
@@ -1227,6 +1463,232 @@ struct WebComponent {
     }
   }
 }
+```
+
+
+### runJavaScriptExt<sup>10+</sup>
+
+runJavaScriptExt(script: string, callback : AsyncCallback\<JsMessageExt>): void
+
+Executes a JavaScript script. This API uses an asynchronous callback to return the script execution result. **runJavaScriptExt** can be invoked only after **loadUrl** is executed. For example, it can be invoked in **onPageEnd**.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                        |
+| -------- | -------------------- | ---- | ---------------------------- |
+| script   | string                   | Yes  | JavaScript script.                                            |
+| callback | AsyncCallback\<[JsMessageExt](#jsmessageext10)\> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+
+**Example**
+
+```ts
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State msg1: string = ''
+  @State msg2: string = ''
+
+  build() {
+    Column() {
+      Text(this.msg1).fontSize(20)
+      Text(this.msg2).fontSize(20)
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+        .onPageEnd(e => {
+          try {
+            this.controller.runJavaScriptExt(
+              'test()',
+              (error, result) => {
+                if (error) {
+                  console.info(`run JavaScript error: ` + JSON.stringify(error))
+                  return;
+                }
+                if (result) {
+                  try {
+                      var type = result.getType();
+                      switch (type) {
+                          case web_webview.JsMessageType.STRING: {
+                              this.msg1 = "result type:" + typeof (result.getString());
+                              this.msg2 = "result getString:" + ((result.getString()));
+                              break;
+                          }
+                          case web_webview.JsMessageType.NUMBER: {
+                              this.msg1 = "result type:" + typeof (result.getNumber());
+                              this.msg2 = "result getNumber:" + ((result.getNumber()));
+                              break;
+                          }
+                          case web_webview.JsMessageType.BOOLEAN: {
+                              this.msg1 = "result type:" + typeof (result.getBoolean());
+                              this.msg2 = "result getBoolean:" + ((result.getBoolean()));
+                              break;
+                          }
+                          case web_webview.JsMessageType.ARRAY_BUFFER: {
+                              this.msg1 = "result type:" + typeof (result.getArrayBuffer());
+                              this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
+                              break;
+                          }
+                          case web_webview.JsMessageType.ARRAY: {
+                              this.msg1 = "result type:" + typeof (result.getArray());
+                              this.msg2 = "result getArray:" + result.getArray();
+                              break;
+                          }
+                          default: {
+                              this.msg1 = "default break, type:" + type;
+                              break;
+                          }
+                      }
+                  }
+                  catch (resError) {
+                      console.log(`log error code: ${resError.code}, Message: ${resError.message}`);
+                  }
+                }
+              });
+            console.info('url: ', e.url);
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+    }
+  }
+}
+
+//index.html
+<!DOCTYPE html>
+<html lang="en-gb">
+<body>
+<h1>run JavaScript Ext demo</h1>
+</body>
+<script type="text/javascript">
+function test() {
+  return "hello, world";
+}
+</script>
+</html>
+```
+
+### runJavaScriptExt<sup>10+</sup>
+
+runJavaScriptExt(script: string): Promise\<JsMessageExt>
+
+Executes a JavaScript script. This API uses a promise to return the script execution result. **runJavaScriptExt** can be invoked only after **loadUrl** is executed. For example, it can be invoked in **onPageEnd**.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type| Mandatory| Description        |
+| ------ | -------- | ---- | ---------------- |
+| script | string   | Yes  | JavaScript script.|
+
+**Return value**
+
+| Type           | Description                                               |
+| --------------- | --------------------------------------------------- |
+| Promise\<[JsMessageExt](#jsmessageext10)> | Promise used to return the script execution result.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web compoent. |
+
+**Example**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State webResult: string = '';
+  @State msg1: string = ''
+  @State msg2: string = ''
+
+  build() {
+    Column() {
+      Text(this.webResult).fontSize(20)
+      Text(this.msg1).fontSize(20)
+      Text(this.msg2).fontSize(20)
+      Web({ src: $rawfile('index.html'), controller: this.controller })
+        .javaScriptAccess(true)
+        .onPageEnd(e => {
+            this.controller.runJavaScriptExt('test()')
+              .then((result) => {
+                  try {
+                      var type = result.getType();
+                      switch (type) {
+                          case web_webview.JsMessageType.STRING: {
+                              this.msg1 = "result type:" + typeof (result.getString());
+                              this.msg2 = "result getString:" + ((result.getString()));
+                              break;
+                          }
+                          case web_webview.JsMessageType.NUMBER: {
+                              this.msg1 = "result type:" + typeof (result.getNumber());
+                              this.msg2 = "result getNumber:" + ((result.getNumber()));
+                              break;
+                          }
+                          case web_webview.JsMessageType.BOOLEAN: {
+                              this.msg1 = "result type:" + typeof (result.getBoolean());
+                              this.msg2 = "result getBoolean:" + ((result.getBoolean()));
+                              break;
+                          }
+                          case web_webview.JsMessageType.ARRAY_BUFFER: {
+                              this.msg1 = "result type:" + typeof (result.getArrayBuffer());
+                              this.msg2 = "result getArrayBuffer byteLength:" + ((result.getArrayBuffer().byteLength));
+                              break;
+                          }
+                          case web_webview.JsMessageType.ARRAY: {
+                              this.msg1 = "result type:" + typeof (result.getArray());
+                              this.msg2 = "result getArray:" + result.getArray();
+                              break;
+                          }
+                          default: {
+                              this.msg1 = "default break, type:" + type;
+                              break;
+                          }
+                      }
+                  }
+                  catch (resError) {
+                      console.log(`log error code: ${resError.code}, Message: ${resError.message}`);
+                  }
+              })
+              .catch(function (error) {
+                console.error("error: " + error);
+              })
+        })
+    }
+  }
+}
+
+//index.html
+<!DOCTYPE html>
+<html lang="en-gb">
+<body>
+<h1>run JavaScript Ext demo</h1>
+</body>
+<script type="text/javascript">
+function test() {
+  return "hello, world";
+}
+</script>
+</html>
 ```
 
 ### deleteJavaScriptRegister
@@ -1565,11 +2027,17 @@ struct WebComponent {
 
 ### createWebMessagePorts
 
- createWebMessagePorts(): Array\<WebMessagePort>
+createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
-Creates web message ports.
+Creates web message ports. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
 
 **System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type                  | Mandatory| Description                            |
+| ------ | ---------------------- | ---- | :------------------------------|
+| isExtentionType<sup>10+</sup>   | boolean     | No | Whether to use the extended interface. The default value is **false**, indicating that the extended interface is not used.|
 
 **Return value**
 
@@ -1626,8 +2094,8 @@ Sends a web message to an HTML5 window.
 
 | Name| Type                  | Mandatory| Description                            |
 | ------ | ---------------------- | ---- | :------------------------------- |
-| name   | string                 | Yes  | Message to send, including the data and message port.|
-| ports  | Array\<WebMessagePort> | Yes  | Ports for receiving the message.               |
+| name   | string                 | Yes  | Name of the message to send.           |
+| ports  | Array\<WebMessagePort> | Yes  | Message ports for sending the message.           |
 | uri    | string                 | Yes  | URI for receiving the message.               |
 
 **Error codes**
@@ -1739,9 +2207,9 @@ var output = document.querySelector('.output');
 window.addEventListener('message', function (event) {
     if (event.data == '__init_port__') {
         if (event.ports[0] != null) {
-            h5Port = event.ports[0]; // 1. Save the port number sent from the ArkTS side.
+            h5Port = event.ports[0]; // 1. Save the port number sent from the eTS side.
             h5Port.onmessage = function (event) {
-              // 2. Receive the message sent from the ArkTS side.
+              // 2. Receive the message sent from the eTS side.
               var msg = 'Got message from ets:';
               var result = event.data;
               if (typeof(result) == "string") {
@@ -1763,7 +2231,7 @@ window.addEventListener('message', function (event) {
     }
 })
 
-// 3. Use h5Port to send messages to the ArkTS side.
+// 3. Use h5Port to send messages to the eTS side.
 function PostMsgToEts(data) {
     if (h5Port) {
       h5Port.postMessage(data);
@@ -2168,7 +2636,7 @@ Stores this web page. This API uses an asynchronous callback to return the resul
 | Name  | Type             | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | baseName | string                | Yes  | Save path. The value cannot be null.                                |
-| autoName | boolean               | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory.|
+| autoName | boolean               | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value. In this case, **baseName** is regarded as a directory.|
 | callback | AsyncCallback\<string> | Yes  | Callback used to return the save path if the operation is successful and null otherwise.                  |
 
 **Error codes**
@@ -2193,7 +2661,7 @@ struct WebComponent {
 
   build() {
     Column() {
-      Button('saveWebArchive')
+      Button('storeWebArchive')
         .onClick(() => {
           try {
             this.controller.storeWebArchive("/data/storage/el2/base/", true, (error, filename) => {
@@ -2228,7 +2696,7 @@ Stores this web page. This API uses a promise to return the result.
 | Name  | Type| Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | baseName | string   | Yes  | Save path. The value cannot be null.                                |
-| autoName | boolean  | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory.|
+| autoName | boolean  | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value. In this case, **baseName** is regarded as a directory.|
 
 **Return value**
 
@@ -2258,7 +2726,7 @@ struct WebComponent {
 
   build() {
     Column() {
-      Button('saveWebArchive')
+      Button('storeWebArchive')
         .onClick(() => {
           try {
             this.controller.storeWebArchive("/data/storage/el2/base/", true)
@@ -2378,6 +2846,8 @@ struct WebComponent {
 backOrForward(step: number): void
 
 Performs a specific number of steps forward or backward on the current page based on the history stack. No redirection will be performed if the corresponding page does not exist in the history stack.
+
+Because the previously loaded web pages are used for the operation, no page reloading is involved.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3117,10 +3587,11 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 **Example**
 
+1. To perform operations on files, you must import the file management module. For details, see [File Management](./js-apis-file-fs.md).
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 @Entry
 @Component
@@ -3133,11 +3604,13 @@ struct WebComponent {
         .onClick(() => {
           try {
             let state = this.controller.serializeWebState();
-            let path = globalThis.AbilityContext.cacheDir;
+            // Obtain the value of globalThis.cacheDir from MainAbility.ts.
+            let path = globalThis.cacheDir;
             path += '/WebState';
-            let fd = fileio.openSync(path, 0o2 | 0o100, 0o666);
-            fileio.writeSync(fd, state.buffer);
-            fileio.closeSync(fd);
+            // Synchronously open a file.
+            let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+            fs.writeSync(file.fd, state.buffer);
+            fs.closeSync(file.fd);
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -3145,6 +3618,21 @@ struct WebComponent {
       Web({ src: 'www.example.com', controller: this.controller })
     }
   }
+}
+```
+
+2. Modify **MainAbility.ts**.
+Obtain the path of the application cache file.
+```ts
+// xxx.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
+
+export default class MainAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        // Bind cacheDir to the globalThis object to implement data synchronization between the UIAbility component and the page.
+        globalThis.cacheDir = this.context.cacheDir;
+    }
 }
 ```
 
@@ -3172,10 +3660,11 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 **Example**
 
+1. To perform operations on files, you must import the file management module. For details, see [File Management](./js-apis-file-fs.md).
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 @Entry
 @Component
@@ -3187,17 +3676,22 @@ struct WebComponent {
       Button('RestoreWebState')
         .onClick(() => {
           try {
-            let path = globalThis.AbilityContext.cacheDir;
+            // Obtain the value of globalThis.cacheDir from MainAbility.ts.
+            let path = globalThis.cacheDir;
             path += '/WebState';
-            let fd = fileio.openSync(path, 0o002, 0o666);
-            let stat = fileio.fstatSync(fd);
+            // Synchronously open a file.
+            let file = fs.openSync(path, fs.OpenMode.READ_WRITE);
+            let stat = fs.statSync(path);
             let size = stat.size;
             let buf = new ArrayBuffer(size);
-            fileio.read(fd, buf, (err, data) => {
-              if (data) {
-                this.controller.restoreWebState(new Uint8Array(data.buffer));
+            fs.read(file.fd, buf, (err, readLen) => {
+              if (err) {
+                console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+              } else {
+                console.info("read file data succeed");
+                this.controller.restoreWebState(new Uint8Array(buf.slice(0, readLen)));
+                fs.closeSync(file);
               }
-              fileio.closeSync(fd);
             });
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -3206,6 +3700,21 @@ struct WebComponent {
       Web({ src: 'www.example.com', controller: this.controller })
     }
   }
+}
+```
+
+2. Modify **MainAbility.ts**.
+Obtain the path of the application cache file.
+```ts
+// xxx.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
+
+export default class MainAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        // Bind cacheDir to the globalThis object to implement data synchronization between the UIAbility component and the page.
+        globalThis.cacheDir = this.context.cacheDir;
+    }
 }
 ```
 
@@ -3572,7 +4081,7 @@ struct Index {
 }
 ```
 
-### setAudioMuted
+### setAudioMuted<sup>10+</sup>
 
 setAudioMuted(mute: boolean): void
 
@@ -3585,6 +4094,14 @@ Mutes this web page.
 | Name  | Type   | Mandatory| Description                     |
 | -------- | ------- | ---- | -------------------------------------- |
 | mute | boolean | Yes  | Whether to mute the web page. The value **true** means to mute the web page, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17100001 | Init error. The WebviewController must be associated with a Web component. |
 
 **Example**
 
@@ -3618,7 +4135,7 @@ Implements a **WebCookieManager** instance to manage behavior of cookies in **\<
 
 static getCookie(url: string): string
 
-Obtains the cookie value corresponding to the specified URL.
+Obtains the cookie corresponding to the specified URL.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3626,7 +4143,7 @@ Obtains the cookie value corresponding to the specified URL.
 
 | Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | Yes  | URL of the cookie value to obtain. A complete URL is recommended.|
+| url    | string | Yes  | URL of the cookie to obtain. A complete URL is recommended.|
 
 **Return value**
 
@@ -3674,7 +4191,7 @@ struct WebComponent {
 
 static setCookie(url: string, value: string): void
 
-Sets a cookie value for the specified URL.
+Sets a cookie for the specified URL.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3867,7 +4384,7 @@ Checks whether the **WebCookieManager** instance has the permission to send and 
 
 | Type   | Description                            |
 | ------- | -------------------------------- |
-| boolean | Whether the **WebCookieManager** instance has the permission to send and receive cookies.|
+| boolean | Whether the **WebCookieManager** instance has the permission to send and receive cookies. The default value is **true**.|
 
 **Example**
 
@@ -3946,7 +4463,7 @@ Checks whether the **WebCookieManager** instance has the permission to send and 
 
 | Type   | Description                                  |
 | ------- | -------------------------------------- |
-| boolean | Whether the **WebCookieManager** instance has the permission to send and receive third-party cookies.|
+| boolean | Whether the **WebCookieManager** instance has the permission to send and receive third-party cookies. The default value is **false**.|
 
 **Example**
 
@@ -5111,6 +5628,463 @@ Describes the data types supported for [WebMessagePort](#webmessageport).
 | -------- | -------------------------------------- |
 | string   | String type.|
 | ArrayBuffer   | Binary type.|
+
+## JsMessageType<sup>10+</sup>
+
+Describes the type of the returned result of script execution using [runJavaScirptExt](#runjavascriptext10).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name        | Value| Description                             |
+| ------------ | -- |--------------------------------- |
+| NOT_SUPPORT  | 0 |Unsupported data type.|
+| STRING       | 1 |String type.|
+| NUMBER       | 2 |Number type.|
+| BOOLEAN      | 3 |Boolean type.|
+| ARRAY_BUFFER | 4 |Raw binary data buffer.|
+| ARRAY        | 5 |Array type.|
+
+
+## WebMessageType<sup>10+</sup>
+
+Describes the data type supported by the [webMessagePort](#webmessageport) API.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+| Name        | Value| Description                           |
+| ------------ | -- |------------------------------- |
+| NOT_SUPPORT  | 0 |Unsupported data type.|
+| STRING       | 1 |String type.|
+| NUMBER       | 2 |Number type.|
+| BOOLEAN      | 3 |Boolean type.|
+| ARRAY_BUFFER | 4 |Raw binary data buffer.|
+| ARRAY        | 5 |Array type.|
+| ERROR        | 6 |Error object type.|
+
+## JsMessageExt<sup>10+</sup>
+
+Implements the **JsMessageExt** data object that is returned after script execution using the [runJavaScirptExt](#runjavascriptext10) API.
+
+### getType<sup>10+</sup>
+
+getType(): JsMessageType
+
+Obtains the type of the data object.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type          | Description                                                     |
+| --------------| --------------------------------------------------------- |
+| [JsMessageType](#jsmessagetype10) | Type of the data object that is returned after script execution using the [runJavaScirptExt](#runjavascriptext10) API.|
+
+### getString<sup>10+</sup>
+
+getString(): string
+
+Obtains string-type data of the data object. For the complete sample code, see [runJavaScriptExt](#runjavascriptext10).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type          | Description         |
+| --------------| ------------- |
+| string | Data of the string type.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the result. |
+
+
+### getNumber<sup>10+</sup>
+
+getNumber(): number
+
+Obtains number-type data of the data object. For the complete sample code, see [runJavaScriptExt](#runjavascriptext10).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type          | Description         |
+| --------------| ------------- |
+| number | Data of the number type.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the result. |
+
+### getBoolean<sup>10+</sup>
+
+getBoolean(): boolean
+
+Obtains Boolean-type data of the data object. For the complete sample code, see [runJavaScriptExt](#runjavascriptext10).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type          | Description         |
+| --------------| ------------- |
+| boolean | Data of the Boolean type.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the result. |
+
+
+### getArrayBuffer<sup>10+</sup>
+
+getArrayBuffer(): ArrayBuffer
+
+Obtains raw binary data of the data object. For the complete sample code, see [runJavaScriptExt](#runjavascriptext10).
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type          | Description         |
+| --------------| ------------- |
+| ArrayBuffer | Raw binary data.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the result. |
+
+### getArray<sup>10+</sup>
+
+getArray(): Array\<string | number | boolean\>
+
+Obtains array-type data of the data object. For the complete sample code, see [runJavaScriptExt](#runjavascriptext10).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type          | Description         |
+| --------------| ------------- |
+| Array\<string | number | boolean\> | Data of the array type.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the result. |
+
+
+## WebMessageExt<sup>10+</sup>
+
+Data object received and sent by the [webMessagePort](#webmessageport) interface.
+
+### getType<sup>10+</sup>
+
+getType(): WebMessageType
+
+Obtains the type of the data object.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type          | Description                                                     |
+| --------------| --------------------------------------------------------- |
+| [WebMessageType](#webmessagetype10) | Data type supported by the [webMessagePort](#webmessageport) API.|
+
+
+### getString<sup>10+</sup>
+
+getString(): string
+
+Obtains string-type data of the data object. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type          | Description         |
+| --------------| ------------- |
+| string | Data of the string type.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+
+### getNumber<sup>10+</sup>
+
+getNumber(): number
+
+Obtains number-type data of the data object. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type          | Description         |
+| --------------| ------------- |
+| number | Data of the number type.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+
+### getBoolean<sup>10+</sup>
+
+getBoolean(): boolean
+
+Obtains Boolean-type data of the data object. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type          | Description         |
+| --------------| ------------- |
+| boolean | Data of the Boolean type.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+
+### getArrayBuffer<sup>10+</sup>
+
+getArrayBuffer(): ArrayBuffer
+
+Obtains raw binary data of the data object. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type          | Description         |
+| --------------| ------------- |
+| ArrayBuffer | Raw binary data.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+### getArray<sup>10+</sup>
+
+getArray(): Array\<string | number | boolean\>
+
+Obtains array-type data of the data object. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type          | Description         |
+| --------------| ------------- |
+| Array\<string | number | boolean\> | Data of the array type.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+### getError<sup>10+</sup>
+
+getError(): Error
+
+Obtains the error-object-type data of the data object. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Return value**
+
+| Type          | Description         |
+| --------------| ------------- |
+| Error | Data of the error object type.|
+
+**Error codes**
+
+For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+
+### setType<sup>10+</sup>
+
+setType(type: WebMessageType): void
+
+Sets the type for the data object.
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | ---------------------- |
+| type  | [WebMessageType](#webmessagetype10) | Yes  | Data type supported by the [webMessagePort](#webmessageport) API.|
+
+**Error codes**
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+### setString<sup>10+</sup>
+
+setString(message: string): void
+
+Sets the string-type data of the data object. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | -------------------- |
+| message  | string | Yes  | String type.|
+
+**Error codes**
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+### setNumber<sup>10+</sup>
+
+setNumber(message: number): void
+
+Sets the number-type data of the data object. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | -------------------- |
+| message  | number | Yes  | Data of the number type.|
+
+**Error codes**
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+### setBoolean<sup>10+</sup>
+
+setBoolean(message: boolean): void
+
+Sets the Boolean-type data for the data object. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | -------------------- |
+| message  | boolean | Yes  | Data of the Boolean type.|
+
+**Error codes**
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+### setArrayBuffer<sup>10+</sup>
+
+setArrayBuffer(message: ArrayBuffer): void
+
+Sets the raw binary data for the data object. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | -------------------- |
+| message  | ArrayBuffer | Yes  | Raw binary data.|
+
+**Error codes**
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+### setArray<sup>10+</sup>
+
+setArray(message: Array\<string | number | boolean\>): void
+
+Sets the array-type data for the data object. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | -------------------- |
+| message  | Array\<string \| number \| boolean\> | Yes  | Data of the array type.|
+
+**Error codes**
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
+### setError<sup>10+</sup>
+
+setError(message: Error): void
+
+Sets the error-object-type data for the data object. For the complete sample code, see [onMessageEventExt](#onmessageeventext10).
+
+**System capability**: SystemCapability.Web.Webview.Core
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                  |
+| ------ | ------ | ---- | -------------------- |
+| message  | Error | Yes  | Data of the error object type.|
+
+**Error codes**
+
+| ID| Error Message                             |
+| -------- | ------------------------------------- |
+| 17100014 | The type does not match with the value of the web message. |
+
 
 ## WebStorageOrigin
 

@@ -22,7 +22,7 @@ Blank(min?: number&nbsp;|&nbsp;string)
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| min | number&nbsp;\|&nbsp;string | 否 | 空白填充组件在容器主轴上的最小大小。<br/>默认值：0 |
+| min | number&nbsp;\|&nbsp;string | 否 | 空白填充组件在容器主轴上的最小大小。<br/>默认值：0<br/>**说明：** <br/>不支持设置百分比。负值使用默认值。当最小值大于容器可用空间时，使用最小值作为自身大小并超出容器。 |
 
 ## 属性
 
@@ -30,10 +30,14 @@ Blank(min?: number&nbsp;|&nbsp;string)
 
 | 名称 | 参数类型 | 描述 |
 | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 设置空白填充的填充颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| color | [ResourceColor](ts-types.md#resourcecolor) | 设置空白填充的填充颜色。<br/><br/>默认值：Color.Transparent<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
+## 事件
+
+支持[通用事件](ts-universal-events-click.md)。
 
 ## 示例
+
 ### 示例1
 Blank组件在横竖屏占满空余空间效果。
 ```ts

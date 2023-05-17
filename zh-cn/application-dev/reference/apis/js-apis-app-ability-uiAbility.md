@@ -132,6 +132,7 @@ UIAbility生命周期回调，在销毁时回调，执行资源清理等操作�
 
 **示例：**
     
+
   ```ts
   class MyUIAbility extends UIAbility {
       onDestroy() {
@@ -140,6 +141,16 @@ UIAbility生命周期回调，在销毁时回调，执行资源清理等操作�
   }
   ```
 
+在执行完onDestroy生命周期回调后，应用可能会退出，从而可能导致onDestroy中的异步函数未能正确执行，比如异步写入数据库。可以使用异步生命周期，以确保异步onDestroy完成后再继续后续的生命周期。
+
+  ```ts
+class MyUIAbility extends UIAbility {
+    async onDestroy() {
+        console.log('onDestroy');
+        // 调用异步函数...
+    }
+}
+  ```
 
 ## UIAbility.onForeground
 
@@ -300,6 +311,33 @@ class MyUIAbility extends UIAbility {
 }
   ```
 
+## UIAbility.onShare<sup>10+</sup>
+
+onShare(wantParam:{ [key: string]: Object }): void;
+
+ability分享数据。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| wantParam | {[key:&nbsp;string]:&nbsp;Object} | 是 | want相关参数。 |
+
+**示例：**
+    
+  ```ts
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+class MyUIAbility extends UIAbility {
+    onShare(wantParams) {
+        console.log('onShare');
+        wantParams['ohos.extra.param.key.contentTitle'] = {title: "W3"};
+        wantParams['ohos.extra.param.key.shareAbstract'] = {abstract: "communication for huawei employee"};
+        wantParams['ohos.extra.param.key.shareUrl'] = {url: "w3.huawei.com"};
+    }
+}
+  ```
 
 
 ## Caller
@@ -331,7 +369,9 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
+| 16200001 | Caller released. The caller has been released. |
+| 16200002 | Callee invalid. The callee does not exist. |
+| 16000050 | Internal Error. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
@@ -375,10 +415,10 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
             console.log('Caller call() called');
           })
           .catch((callErr) => {
-            console.log('Caller.call catch error, error.code: ${JSON.stringify(callErr.code)}, error.message: ${JSON.stringify(callErr.message)}');
+            console.log('Caller.call catch error, error.code: ${callErr.code}, error.message: ${callErr.message}');
           });
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -410,7 +450,9 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
+| 16200001 | Caller released. The caller has been released. |
+| 16200002 | Callee invalid. The callee does not exist. |
+| 16000050 | Internal Error. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
@@ -456,10 +498,10 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
             data.readParcelable(retmsg);
           })
           .catch((callErr) => {
-            console.log('Caller.callWithResult catch error, error.code: ${JSON.stringify(callErr.code)}, error.message: ${JSON.stringify(callErr.message)}');
+            console.log('Caller.callWithResult catch error, error.code: ${callErr.code}, error.message: ${callErr.message}');
           });
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -478,10 +520,10 @@ release(): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | Invalid input parameter. |
 | 16200001 | Caller released. The caller has been released. |
 | 16200002 | Callee invalid. The callee does not exist. |
-| 16000050 | Internal Error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     
@@ -498,10 +540,10 @@ release(): void;
         try {
           caller.release();
         } catch (releaseErr) {
-          console.log('Caller.release catch error, error.code: ${JSON.stringify(releaseErr.code)}, error.message: ${JSON.stringify(releaseErr.message)}');
+          console.log('Caller.release catch error, error.code: ${releaseErr.code}, error.message: ${releaseErr.message}');
         }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -514,6 +556,14 @@ release(): void;
 注册通用组件服务端Stub（桩）断开监听通知。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16200001 | Caller released. The caller has been released. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **参数：**
 
@@ -538,12 +588,63 @@ release(): void;
                 console.log(' Caller OnRelease CallBack is called ${str}');
             });
           } catch (error) {
-            console.log('Caller.onRelease catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+            console.log('Caller.onRelease catch error, error.code: $error.code}, error.message: ${error.message}');
           }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
+  }
+  ```
+
+  ## Caller.onRemoteStateChange
+
+ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
+
+注册协同场景下跨设备组件状态变化监听通知。
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| callback | [OnRemoteStateChangeCallback](#onremotestatechangecallback) | 是 | 返回onRemoteStateChange回调结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16200001 | Caller released. The caller has been released. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+**示例：**
+    
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+
+  let caller;
+  let dstDeviceId: string;
+  export default class MainAbility extends UIAbility {
+      onWindowStageCreate(windowStage: Window.WindowStage) {
+          this.context.startAbilityByCall({
+              bundleName: 'com.example.myservice',
+              abilityName: 'MainUIAbility',
+              deviceId: dstDeviceId
+          }).then((obj) => {
+              caller = obj;
+              try {
+                  caller.onRemoteStateChange((str) => {
+                      console.log('Remote state changed ' + str);
+                  });
+              } catch (error) {
+                  console.log('Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+              }
+          }).catch((err) => {
+              console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+          })；
+      }
   }
   ```
 
@@ -566,7 +667,7 @@ release(): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
+| 16200001 | Caller released. The caller has been released. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
@@ -587,10 +688,10 @@ release(): void;
                 console.log(' Caller OnRelease CallBack is called ${str}');
             });
           } catch (error) {
-            console.log('Caller.on catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+            console.log('Caller.on catch error, error.code: ${error.code}, error.message: ${error.message}');
           }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -611,13 +712,6 @@ off(type: 'release', callback: OnReleaseCallback): void;
 | type | string | 是 | 监听releaseCall事件，固定为'release'。 |
 | callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回off回调结果。 |
 
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
-
 **示例：**
     
   ```ts
@@ -637,10 +731,10 @@ off(type: 'release', callback: OnReleaseCallback): void;
             caller.on('release', onReleaseCallBack);
             caller.off('release', onReleaseCallBack);
           } catch (error) {
-            console.log('Caller.on or Caller.off catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+            console.log('Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}');
           }
       }).catch((err) => {
-        console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.log('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -659,13 +753,6 @@ off(type: 'release'): void;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听releaseCall事件，固定为'release'。 |
-
-**错误码：**
-
-| 错误码ID | 错误信息 |
-| ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
-其他ID见[元能力子系统错误码](../errorcodes/errorcode-ability.md)
 
 **示例：**
     
@@ -686,10 +773,10 @@ off(type: 'release'): void;
             caller.on('release', onReleaseCallBack);
             caller.off('release');
           } catch (error) {  
-            console.error('Caller.on or Caller.off catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+            console.error('Caller.on or Caller.off catch error, error.code: ${error.code}, error.message: ${error.message}');
           }
       }).catch((err) => {
-        console.error('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
+        console.error('Caller GetCaller error, error.code: ${err.code}, error.message: ${err.message}');
       });
     }
   }
@@ -718,7 +805,8 @@ on(method: string, callback: CalleeCallback): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
+| 16200004 | Method registered. The method has registered. |
+| 16000050 | Internal error. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
@@ -759,7 +847,7 @@ on(method: string, callback: CalleeCallback): void;
       try {
         this.callee.on(method, funcCallBack);
       } catch (error) {
-        console.log('Callee.on catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.log('Callee.on catch error, error.code: ${error.code}, error.message: ${error.message}');
       }
     }
   }
@@ -783,7 +871,8 @@ off(method: string): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
-| 401 | If the input parameter is not valid parameter. |
+| 16200005 | Method not registered. The method has not registered. |
+| 16000050 | Internal error. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
@@ -798,7 +887,7 @@ off(method: string): void;
       try {
         this.callee.off(method);
       } catch (error) {
-        console.log('Callee.off catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.log('Callee.off catch error, error.code: ${error.code}, error.message: ${error.message}');
       }
     }
   }
@@ -813,6 +902,16 @@ off(method: string): void;
 | 名称 | 可读 | 可写 | 类型 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | (msg: string) | 是 | 否 | function | 调用者注册的侦听器函数接口的原型。 |
+
+## OnRemoteStateChangeCallback
+
+(msg: string): void;
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+| 名称 | 可读 | 可写 | 类型 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| (msg: string) | 是 | 否 | function | 调用者注册的协同场景下组件状态变化监听函数接口的原型。 |
 
 ## CalleeCallback
 

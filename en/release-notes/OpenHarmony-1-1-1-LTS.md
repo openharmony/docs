@@ -1,4 +1,4 @@
-# OpenHarmony 1.1.1 LTS \(2021-06-22)
+# OpenHarmony 1.1.1 LTS \(2021-06-22) (EOL)
 
 ## Version Description
 

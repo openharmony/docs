@@ -496,7 +496,7 @@
 
 ## ohos.permission.INSTALL_BUNDLE
 
-允许应用安装、卸载其他应用。
+允许应用安装、卸载其他应用（除了企业InHouse应用）。
 
 **权限级别**：system_core
 
@@ -967,6 +967,26 @@
 ## ohos.permission.ENTERPRISE_SET_BUNDLE_INSTALL_POLICY
 
 允许设备管理员设置包安装管理策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_SET_NETWORK
+
+允许设备管理员设置网络信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
+
+允许设备管理员设置应用运行管理策略。
 
 **权限级别**：system_basic
 
@@ -1486,7 +1506,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 ## ohos.permission.ACCESS_CERT_MANAGER
 
@@ -1628,6 +1648,26 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.CLOUDFILE_SYNC_MANAGER
+
+允许应用获取端云同步管理能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.CLOUDFILE_SYNC
+
+允许应用使用端云同步能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.FILE_ACCESS_MANAGER
 
 允许文件管理类应用通过FAF框架访问公共数据文件。
@@ -1757,3 +1797,103 @@
 **授权方式**：system_grant
 
 **ACL使能**：FALSE
+
+## ohos.permission.INSTALL_ENTERPRISE_BUNDLE
+
+允许应用安装、卸载其他企业InHouse应用。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.PROXY_AUTHORIZATION_URI
+
+允许应用代理授权URI。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.GET_INSTALLED_BUNDLE_LIST
+
+允许应用读取已安装应用列表。
+
+**权限级别**：system_basic
+
+**授权方式**：user_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
+
+允许应用管理系统分布式帐号信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.GET_DISTRIBUTED_ACCOUNTS
+
+允许应用查询系统分布式帐号信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.GET_LOCAL_ACCOUNTS
+
+允许应用查询系统本地帐号信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.READ_HIVIEW_SYSTEM
+
+允许应用访问hiview的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.WRITE_HIVIEW_SYSTEM
+
+允许应用修改hiview的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ACCESS_CAST_ENGINE_MIRROR
+
+允许应用使用镜像投屏能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ACCESS_CAST_ENGINE_STREAM
+
+允许应用调用系统资源投射能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE

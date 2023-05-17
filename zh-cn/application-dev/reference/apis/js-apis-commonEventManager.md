@@ -20,13 +20,11 @@ import CommonEventManager from '@ohos.commonEventManager';
 
 ## CommonEventManager.publish
 
-```ts
 publish(event: string, callback: AsyncCallback<void>): void
-```
 
 发布公共事件，并在发布后执行相应的回调函数。
 
-**系统能力：** `SystemCapability.Notification.CommonEvent`
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -38,6 +36,14 @@ publish(event: string, callback: AsyncCallback<void>): void
 **错误码：**
 
 错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
+| 1500004  | not System services.                |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
+| 1500009  | error obtaining system parameters.  |
 
 **示例：**
 
@@ -61,13 +67,11 @@ try {
 
 ## CommonEventManager.publish
 
-```ts
 publish(event: string, options: CommonEventPublishData, callback: AsyncCallback<void>): void
-```
 
 以回调的形式发布公共事件。
 
-**系统能力：** `SystemCapability.Notification.CommonEvent`
+**系统能力：**SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -80,6 +84,14 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback<
 **错误码：**
 
 错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
+| 1500004  | not System services.                |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
+| 1500009  | error obtaining system parameters.  |
 
 **示例：**
 
@@ -110,13 +122,11 @@ try {
 
 ## CommonEventManager.publishAsUser<sup>
 
-```ts
 publishAsUser(event: string, userId: number, callback: AsyncCallback<void>): void
-```
 
 以回调的形式向指定用户发布公共事件。
 
-**系统能力：** `SystemCapability.Notification.CommonEvent`
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
@@ -131,6 +141,15 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback<void>): voi
 **错误码：**
 
 错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 202  | not system app.                         |
+| 401  | The parameter check failed.             |
+| 1500004  | not System services.                |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
+| 1500009  | error obtaining system parameters.  |
 
 **示例：**
 
@@ -157,13 +176,11 @@ try {
 
 ## CommonEventManager.publishAsUser
 
-```ts
 publishAsUser(event: string, userId: number, options: CommonEventPublishData, callback: AsyncCallback<void>): void
-```
 
 以回调形式向指定用户发布公共事件并指定发布信息。
 
-**系统能力：** `SystemCapability.Notification.CommonEvent`
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
@@ -179,6 +196,15 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 **错误码：**
 
 错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 202  | not system app.                         |
+| 401  | The parameter check failed.             |
+| 1500004  | not System services.                |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
+| 1500009  | error obtaining system parameters.  |
 
 **示例：**
 
@@ -212,13 +238,11 @@ try {
 
 ## CommonEventManager.createSubscriber
 
-```ts
 createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback<CommonEventSubscriber>): void
-```
 
 以回调形式创建订阅者。
 
-**系统能力：** `SystemCapability.Notification.CommonEvent`
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -226,6 +250,14 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallbac
 | ------------- | ------------------------------------------------------------ | ---- | -------------------------- |
 | subscribeInfo | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)        | 是   | 表示订阅信息。             |
 | callback      | AsyncCallback\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | 是   | 表示创建订阅者的回调方法。 |
+
+**错误码：**
+
+错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
 
 **示例：**
 
@@ -258,13 +290,11 @@ try {
 
 ## CommonEventManager.createSubscriber
 
-```ts
 createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise<CommonEventSubscriber>
-```
 
 以Promise形式创建订阅者。
 
-**系统能力：** `SystemCapability.Notification.CommonEvent`
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -276,6 +306,14 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise<CommonEventSu
 | 类型                                                      | 说明             |
 | --------------------------------------------------------- | ---------------- |
 | Promise\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | 返回订阅者对象。 |
+
+**错误码：**
+
+错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
 
 **示例：**
 
@@ -299,13 +337,11 @@ CommonEventManager.createSubscriber(subscribeInfo).then((commonEventSubscriber) 
 
 ## CommonEventManager.subscribe
 
-```ts
 subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback<CommonEventData>): void
-```
 
 以回调形式订阅公共事件。
 
-**系统能力：** `SystemCapability.Notification.CommonEvent`
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -313,6 +349,17 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback<CommonEvent
 | ---------- | ---------------------------------------------------- | ---- | -------------------------------- |
 | subscriber | [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)     | 是   | 表示订阅者对象。                 |
 | callback   | AsyncCallback\<[CommonEventData](./js-apis-inner-commonEvent-commonEventData.md)> | 是   | 表示接收公共事件数据的回调函数。 |
+
+**错误码：**
+
+错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
+| 801  | capability not supported.               |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
 
 **示例：**
 
@@ -360,13 +407,11 @@ try {
 
 ## CommonEventManager.unsubscribe
 
-```ts
 unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback<void>): void
-```
 
 以回调形式取消订阅公共事件。
 
-**系统能力：** `SystemCapability.Notification.CommonEvent`
+**系统能力：** SystemCapability.Notification.CommonEvent
 
 **参数：**
 
@@ -374,6 +419,17 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback<void>): 
 | ---------- | ----------------------------------------------- | ---- | ------------------------ |
 | subscriber | [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md) | 是   | 表示订阅者对象。         |
 | callback   | AsyncCallback\<void>                            | 否   | 表示取消订阅的回调方法。 |
+
+**错误码：**
+
+错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
+| 801  | capability not supported.               |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
 
 **示例：**
 
@@ -428,3 +484,94 @@ try {
     console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
 }
 ```
+
+## CommonEventManager.removeStickyCommonEvent<sup>10+</sup>
+
+removeStickyCommonEvent(event: string, callback: AsyncCallback<void>): void
+
+以回调形式移除粘性公共事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**需要权限**:  ohos.permission.COMMONEVENT_STICKY
+
+**参数：**
+
+| 参数名   | 类型                 | 必填 | 说明                             |
+| -------- | -------------------- | ---- | -------------------------------- |
+| event    | string               | 是   | 表示被移除的粘性公共事件。       |
+| callback | AsyncCallback\<void> | 是   | 表示移除粘性公共事件的回调方法。 |
+
+**错误码：**
+
+错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201  | The application dose not have permission to call the interface. |
+| 202  | not system app.                         |
+| 401  | The parameter check failed.             |
+| 1500004  | not system service.                 |
+| 1500007  | The message send error.             |
+| 1500008  | The CEMS error.                     |
+
+**示例：**
+
+
+```ts
+CommonEventManager.removeStickyCommonEvent("sticky_event", (err) => {
+    if (err) {
+        console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
+        return;
+    }
+    console.info(`Remove sticky event AsyncCallback success`);
+    }
+});
+```
+
+## CommonEventManager.removeStickyCommonEvent<sup>10+</sup>
+
+removeStickyCommonEvent(event: string): Promise<void>
+
+以Promise形式移除粘性公共事件。
+
+**系统能力：** SystemCapability.Notification.CommonEvent
+
+**需要权限**:  ohos.permission.COMMONEVENT_STICKY
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| event  | string | 是   | 表示被移除的粘性公共事件。 |
+
+**返回值：**
+
+| 类型           | 说明                         |
+| -------------- | ---------------------------- |
+| Promise\<void> | 表示移除粘性公共事件的对象。 |
+
+**错误码：**
+
+错误码介绍请参考[@ohos.commonEventManager(事件)](../errorcodes/errorcode-CommonEventService.md)
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 201  | The application dose not have permission to call the interface. |
+| 202  | not system app.                         |
+| 401  | The parameter check failed.             |
+| 1500004  | not system service.                 |
+| 1500007  | The message send error.             |
+| 1500008  | The CEMS error.                     |
+
+**示例：**
+
+
+```ts
+commonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
+    console.info(`Remove sticky event AsyncCallback success`);
+}).catch ((err) => {
+    console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
+});
+```
+

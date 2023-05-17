@@ -16,7 +16,7 @@ import deviceInfo from '@ohos.enterprise.deviceInfo';
 
 getDeviceSerial(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
-获取设备序列号，使用callback形式返回设备序列号。
+指定设备管理员应用获取设备序列号，使用callback形式返回设备序列号。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -28,8 +28,8 @@ getDeviceSerial(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用                  |
-| callback | AsyncCallback&lt;string&gt;            | 是    | callback方式返回设备序列号       |
+| admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
+| callback | AsyncCallback&lt;string&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为设备序列号，否则err为错误对象。       |
 
 **错误码**：
 
@@ -60,7 +60,7 @@ deviceInfo.getDeviceSerial(wantTemp, (error, result) => {
 
 getDeviceSerial(admin: Want): Promise&lt;string&gt;
 
-获取设备序列号，使用callback形式返回设备序列号。
+指定设备管理员应用获取设备序列号，使用Promise形式返回设备序列号。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -72,13 +72,13 @@ getDeviceSerial(admin: Want): Promise&lt;string&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise方式返回设备序列号  |
+| Promise&lt;string&gt; | Promise对象，返回设备序列号。  |
 
 **错误码**：
 
@@ -107,7 +107,7 @@ deviceInfo.getDeviceSerial(wantTemp).then((result) => {
 
 getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void;
 
-获取设备版本号，使用callback形式返回设备版本号。
+指定设备管理员应用获取设备版本号，使用callback形式返回设备版本号。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -119,8 +119,8 @@ getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void;
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理员应用                  |
-| callback | AsyncCallback&lt;string&gt;            | 是    | callback方式返回设备版本号       |
+| admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理员应用。                  |
+| callback | AsyncCallback&lt;string&gt;            | 是    | 回调函数。当接口调用成功，err为null，data为设备版本号，否则err为错误对象。       |
 
 **错误码**：
 
@@ -151,7 +151,7 @@ deviceInfo.getDisplayVersion(wantTemp, (error, result) => {
 
 getDisplayVersion(admin: Want): Promise&lt;string&gt;
 
-获取设备版本号，使用callback形式返回设备版本号。
+指定设备管理员应用获取设备版本号，使用Promise形式返回设备版本号。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -163,13 +163,13 @@ getDisplayVersion(admin: Want): Promise&lt;string&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise方式返回设备版本号  |
+| Promise&lt;string&gt; | Promise对象，返回设备版本号。 |
 
 **错误码**：
 
@@ -198,7 +198,7 @@ deviceInfo.getDisplayVersion(wantTemp).then((result) => {
 
 getDeviceName(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
-获取设备名称，使用callback形式返回设备名称。
+指定设备管理员应用获取设备名称，使用callback形式返回设备名称。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -210,8 +210,8 @@ getDeviceName(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
-| admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理员应用                  |
-| callback | AsyncCallback&lt;string&gt;              | 是    | callback方式返回设备名称       |
+| admin    | [Want](js-apis-app-ability-want.md)      | 是    | 设备管理员应用。                  |
+| callback | AsyncCallback&lt;string&gt;              | 是    | 回调函数。当接口调用成功，err为null，data为设备名称，否则err为错误对象。       |
 
 **错误码**：
 
@@ -242,7 +242,7 @@ deviceInfo.getDeviceName(wantTemp, (error, result) => {
 
 getDeviceName(admin: Want): Promise&lt;string&gt;
 
-获取设备名称，使用callback形式返回设备名称。
+指定设备管理员应用获取设备名称，使用Promise形式返回设备名称。
 
 **需要权限：** ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -254,13 +254,13 @@ getDeviceName(admin: Want): Promise&lt;string&gt;
 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
-| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用 |
+| admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
 
 **返回值：**
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;string&gt; | Promise方式返回设备名称  |
+| Promise&lt;string&gt; | Promise结果，返回设备名称。 |
 
 **错误码**：
 

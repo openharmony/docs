@@ -6,6 +6,12 @@ AbilityDelegator提供添加用于监视指定ability的生命周期状态更改
 > 
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
 
+## 导入模块
+
+```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+```
+
 ## 使用说明
 
 通过AbilityDelegatorRegistry中[getAbilityDelegator](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetabilitydelegator)方法获取。
@@ -30,10 +36,18 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 | monitor  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor) | 是       | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor)实例 |
 | callback | AsyncCallback\<void>                                         | 是       | 表示指定的回调方法                                           |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | AddAbilityMonitor failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback, data: ${JSON.stringify(data)}');
@@ -70,10 +84,18 @@ addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>;
 | -------------- | ------------------- |
 | Promise\<void> | 以Promise形式返回。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | AddAbilityMonitor failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
@@ -105,10 +127,18 @@ removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): v
 | monitor  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor)实例 |
 | callback | AsyncCallback\<void>                                         | 是   | 表示指定的回调方法                                           |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | RemoveAbilityMonitor failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
@@ -145,10 +175,18 @@ removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>;
 | -------------- | ------------------- |
 | Promise\<void> | 以Promise形式返回。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | RemoveAbilityMonitor failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 - 示例
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
@@ -180,10 +218,18 @@ waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>)
 | monitor  | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor) | 是   | [AbilityMonitor](js-apis-inner-application-abilityMonitor.md#AbilityMonitor)实例 |
 | callback | AsyncCallback\<[UIAbility](js-apis-app-ability-uiAbility.md)> | 是   | 表示指定的回调方法                                           |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | WaitAbilityMonitor failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
@@ -196,7 +242,7 @@ let monitor = {
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityMonitor(monitor, (error : any, data : any) => {
-    if (error && error.code !== 0) {
+    if (error) {
         console.error('waitAbilityMonitor fail, error: ${JSON.stringify(error)}');
     } else {
         console.log('waitAbilityMonitor success, data: ${JSON.stringify(data)}');
@@ -220,10 +266,18 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 | timeout  | number                                                       | 否   | 最大等待时间，单位毫秒（ms）                                 |
 | callback | AsyncCallback\<[UIAbility](js-apis-app-ability-uiAbility.md)> | 是   | 表示指定的回调方法                                           |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | WaitAbilityMonitor failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let timeout = 100;
 
 function onAbilityCreateCallback(data) {
@@ -268,10 +322,18 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbilit
 | ----------------------------------------------------------- | -------------------------- |
 | Promise\<[UIAbility](js-apis-app-ability-uiAbility.md)> | 以Promise形式返回Ability。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | WaitAbilityMonitor failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
@@ -305,7 +367,7 @@ getAppContext(): Context;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 let context = abilityDelegator.getAppContext();
@@ -334,7 +396,7 @@ getAbilityState(ability: UIAbility): number;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -360,10 +422,18 @@ getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void;
 | -------- | ------------------------------------------------------------ | ---- | ------------------ |
 | callback | AsyncCallback\<[UIAbility](js-apis-app-ability-uiAbility.md)> | 是   | 表示指定的回调方法 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | GetCurrentTopAbility failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -387,10 +457,18 @@ getCurrentTopAbility(): Promise\<UIAbility>;
 | ----------------------------------------------------------- | -------------------------------------- |
 | Promise\<[UIAbility](js-apis-app-ability-uiAbility.md)> | 以Promise形式返回当前应用顶部ability。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | GetCurrentTopAbility failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -415,10 +493,30 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void;
 | want     | [Want](js-apis-application-want.md) | 是   | 启动Ability参数    |
 | callback | AsyncCallback\<void>                   | 是   | 表示指定的回调方法 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let want = {
     bundleName: 'bundleName',
     abilityName: 'abilityName'
@@ -450,10 +548,30 @@ startAbility(want: Want): Promise\<void>;
 | -------------- | ------------------- |
 | Promise\<void> | 以Promise形式返回。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let want = {
     bundleName: 'bundleName',
     abilityName: 'abilityName'
@@ -480,10 +598,18 @@ doAbilityForeground(ability: UIAbility, callback: AsyncCallback\<void>): void;
 | ability  | UIAbility               | 是   | 指定Ability对象                                         |
 | callback | AsyncCallback\<void>    | 是   | 表示指定的回调方法<br/>\- true：成功<br/>\- false：失败 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | DoAbilityForeground failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -516,10 +642,18 @@ doAbilityForeground(ability: UIAbility): Promise\<void>;
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<boolean> | 以Promise形式返回执行结果。<br/>\- true：成功<br/>\- false：失败 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | DoAbilityForeground failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -547,10 +681,18 @@ doAbilityBackground(ability: UIAbility, callback: AsyncCallback\<void>): void;
 | ability  | UIAbility                 | 是   | 指定Ability对象                                         |
 | callback | AsyncCallback\<void> | 是   | 表示指定的回调方法<br/>\- true：成功<br/>\- false：失败 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | DoAbilityBackground failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -583,10 +725,18 @@ doAbilityBackground(ability: UIAbility): Promise\<void>;
 | ----------------- | ------------------------------------------------------------ |
 | Promise\<boolean> | 以Promise形式返回执行结果。<br/>\- true：成功<br/>\- false：失败 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | DoAbilityBackground failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -616,7 +766,7 @@ printSync(msg: string): void;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -641,7 +791,7 @@ print(msg: string, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -673,7 +823,7 @@ print(msg: string): Promise\<void>;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -700,7 +850,7 @@ executeShellCommand(cmd: string, callback: AsyncCallback\<ShellCmdResult>): void
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -728,7 +878,7 @@ executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<S
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 let timeout = 100;
 
@@ -762,7 +912,7 @@ executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 let timeout = 100;
 
@@ -788,10 +938,18 @@ finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void;
 | code     | number               | 是   | 日志码             |
 | callback | AsyncCallback\<void> | 是   | 表示指定的回调方法 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | FinishTest failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -821,10 +979,18 @@ finishTest(msg: string, code: number): Promise\<void>;
 | -------------- | ------------------- |
 | Promise\<void> | 以Promise形式返回。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | FinishTest failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -848,10 +1014,18 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<vo
 | monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) 实例 |
 | callback | AsyncCallback\<void>                                         | 是       | 表示指定的回调方法                                           |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | AddAbilityStageMonitor failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 let monitor = {
     moduleName: 'moduleName',
@@ -884,10 +1058,18 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
 | -------------- | ------------------- |
 | Promise\<void> | 以Promise形式返回。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | AddAbilityStageMonitor failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 let monitor = {
     moduleName: 'moduleName',
@@ -915,10 +1097,18 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\
 | monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) 实例 |
 | callback | AsyncCallback\<void>                                         | 是       | 表示指定的回调方法                                           |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | RemoveAbilityStageMonitor failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 let monitor = {
     moduleName: 'moduleName',
@@ -951,10 +1141,18 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
 | -------------- | ------------------- |
 | Promise\<void> | 以Promise形式返回。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | RemoveAbilityStageMonitor failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 let monitor = {
     moduleName: 'moduleName',
@@ -982,10 +1180,18 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<A
 | monitor  | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) | 是       | [AbilityStageMonitor](js-apis-inner-application-abilityStageMonitor.md) 实例 |
 | callback | AsyncCallback\<AbilityStage>                                         | 是       | 成功返回AbilityStage对象，失败返回空。             |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | WaitAbilityStageMonitor failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
@@ -1023,10 +1229,18 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise
 | -------------- | ------------------- |
 | Promise\<AbilityStage> | 成功返回AbilityStage对象，失败返回空。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | WaitAbilityStageMonitor failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
@@ -1059,10 +1273,18 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback:
 | timeout | number | 否   | 超时最大等待时间，以毫秒为单位。 |
 | callback | AsyncCallback\<AbilityStage>                                         | 是       | 成功返回AbilityStage对象，失败返回空。                     |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000100 | WaitAbilityStageMonitor failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let timeout = 100;
 
 function onAbilityCreateCallback(data) {

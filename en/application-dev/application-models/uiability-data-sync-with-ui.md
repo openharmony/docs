@@ -80,7 +80,7 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 4. After **event1** is used, you can call [eventHub.off()](../reference/apis/js-apis-inner-application-eventHub.md#eventhuboff) to unsubscribe from the event.
 
    ```ts
-   // context is the ability-level context of the UIAbility instance.
+   // context is the AbilityContext of the UIAbility instance.
    this.context.eventHub.off('event1');
    ```
 
@@ -124,14 +124,14 @@ By binding attributes or methods to **globalThis**, you can implement data synch
 
    ```ts
    let entryAbilityWant;
-   
+
    @Entry
    @Component
    struct Index {
      aboutToAppear() {
        entryAbilityWant = globalThis.entryAbilityWant;
      }
-   
+
      // Page display.
      build() {
        // ...
@@ -161,7 +161,7 @@ To implement data synchronization between two UIAbility components in the same a
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility'
-   
+
    export default class UIAbilityB extends UIAbility {
        onCreate(want, launch) {
            // UIAbilityB reads name from globalThis and outputs it.
@@ -194,7 +194,7 @@ To implement data synchronization between the UIAbility and ExtensionAbility com
 
    ```ts
    import Extension from '@ohos.app.ability.ServiceExtensionAbility'
-   
+
    export default class ServiceExtAbility extends Extension {
        onCreate(want) {
            / / ServiceExtAbility reads name from globalThis and outputs it.
@@ -240,10 +240,6 @@ The following provides an example to describe the object overwritten problem in 
    struct Index {
      onPageShow() {
        let ctx = globalThis.context; // Obtain the context from globalThis and use it.
-       let permissions = ['com.example.permission']
-       ctx.requestPermissionsFromUser(permissions,(result) => {
-          // ...
-       });
      }
      // Page display.
      build() {
@@ -274,10 +270,6 @@ The following provides an example to describe the object overwritten problem in 
    struct Index {
      onPageShow() {
        let ctx = globalThis.context; // Obtain the context from globalThis and use it.
-       let permissions = ['com.example.permission']
-       ctx.requestPermissionsFromUser(permissions,(result) => {
-         console.info('requestPermissionsFromUser result:' + JSON.stringify(result));
-       });
      }
      // Page display.
      build() {
@@ -307,10 +299,6 @@ The following provides an example to describe the object overwritten problem in 
    struct Index {
      onPageShow() {
        let ctx = globalThis.context; // The context in globalThis is the context of UIAbilityB.
-       let permissions=['com.example.permission'];
-       ctx.requestPermissionsFromUser(permissions,(result) => { // Using this object causes a process breakdown.
-          console.info('requestPermissionsFromUser result:' + JSON.stringify(result));
-       });
      }
      // Page display.
      build() {
@@ -321,4 +309,6 @@ The following provides an example to describe the object overwritten problem in 
 
 ## Using AppStorage or LocalStorage for Data Synchronization
 
-ArkUI provides AppStorage and LocalStorage to implement application- and UIAbility-level data synchronization, respectively. Both solutions can be used to manage the application state, enhance application performance, and improve user experience. The AppStorage is a global state manager and is applicable when multiple UIAbilities share the same state data. The LocalStorage is a local state manager that manages state data used inside a single UIAbility. They help you control the application state more flexibly and improve the maintainability and scalability of applications. For details, see [State Management of Application-Level Variables](../quick-start/arkts-state-mgmt-application-level.md).
+ArkUI provides AppStorage and LocalStorage to implement application- and UIAbility-level data synchronization, respectively. Both solutions can be used to manage the application state, enhance application performance, and improve user experience. The AppStorage is a global state manager and is applicable when multiple UIAbilities share the same state data. The LocalStorage is a local state manager that manages state data used inside a single UIAbility. They help you control the application state more flexibly and improve the maintainability and scalability of applications. For details, see [State Management of Application-Level Variables](../quick-start/arkts-application-state-management-overview.md).
+
+ <!--no_check--> 

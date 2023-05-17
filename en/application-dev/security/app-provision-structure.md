@@ -62,7 +62,7 @@ An example of the **HarmonyAppProvision** file is as follows:
 
 ### Internal Structure of the bundle-info Object
 
-**NOTE**<br>The value of **bundle-name** in the **bundle-info** object in the HarmonyAppProvision file must be the same as the value of **bundleName** (in **config.js**/**module.json5**) of the signed application. To prevent a HarmonyAppProvision file from being used for signatures of different applications, the system checks whether the value of **bundleName** in the HAP signature is the same as that in the HAP configuration file during application installation. If they are different, the HAP cannot be installed.
+**NOTE**<br>The value of **bundle-name** in the **bundle-info** object in the HarmonyAppProvision file must be the same as the value of **bundleName** (in **config.json** or **module.json5**) of the signed application. To prevent a HarmonyAppProvision file from being used for signatures of different applications, the system checks whether the value of **bundleName** in the HAP signature is the same as that in the HAP configuration file during application installation. If they are different, the HAP cannot be installed.
 
 | Name                 | Description                           | Data Type| Mandatory| Initial Value Allowed|
 | ------------------------ | ------------------------------- | ------- | -------- | --------- |

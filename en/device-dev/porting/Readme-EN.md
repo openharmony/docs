@@ -1,6 +1,6 @@
 ## Introduction
 
-OpenHarmony has organized a Special Interest Group (SIG) [SIG_DevBoard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard.md) to provide support for third-party development boards.
+OpenHarmony has organized a Special Interest Group (SIG) [SIG_DevBoard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard.md) to provide support for third-party development boards.
 
 Before learning about how to port the code of a development board, take a look at the device classification on OpenHarmony. The porting methods vary according to the device type.
 

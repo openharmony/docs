@@ -135,7 +135,7 @@ To create a widget in the stage model, you need to implement lifecycle callbacks
   | Name   | Description                                                        | Data Type  | Default Value Allowed          |
   | ----------- | ------------------------------------------------------------ | ---------- | -------------------- |
   | name        | Name of the Extension ability. This field must be specified.                | String    | No                  |
-  | srcEntrance | Path of the Extension ability lifecycle code. This field must be specified.| String    | No                  |
+  | srcEntry    | Path of the Extension ability lifecycle code. This field must be specified.| String    | No                  |
   | description | Description of the Extension ability. The value can be a string or a resource index to descriptions in multiple languages.| String    | Yes (initial value: left empty)|
   | icon        | Index of the Extension ability icon file.                  | String    | Yes (initial value: left empty)|
   | label       | Descriptive information about the Extension ability presented externally. The value can be a string or a resource index to the description.| String    | Yes (initial value: left empty)|
@@ -150,7 +150,7 @@ To create a widget in the stage model, you need to implement lifecycle callbacks
      ```json
   "extensionAbilities": [{
       "name": "FormAbility",
-      "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+      "srcEntry": "./ets/FormAbility/FormAbility.ts",
       "label": "$string:form_FormAbility_label",
       "description": "$string:form_FormAbility_desc",
       "type": "form",
@@ -242,7 +242,7 @@ You should override **onDestroy** to implement widget data deletion.
        }
 ```
 
-For details about how to implement persistent data storage, see [Lightweight Data Store Development](../database/database-preference-guidelines.md).
+For details about how to implement persistent data storage, see [Application Data Persistence Overview](../database/app-data-persistence-overview.md).
 
 The **Want** object passed in by the widget host to the widget provider contains a flag that specifies whether the requested widget is normal or temporary.
 
@@ -366,7 +366,7 @@ You can set router and message events for components on a widget. The router eve
 1. Set the **onclick** field in the HML file to **routerEvent** or **messageEvent**, depending on the **actions** settings in the JSON file.
 2. Set the router event.
    - **action**: **"router"**, which indicates a router event.
-   - **abilityName**: target ability name, for example, **EntryAbility**, which is the default UIAbility name in DevEco Studio for the stage model.
+   - **abilityName**: target ability name, for example, **EntryAbility**, which is the default main ability name in DevEco Studio for the stage model.
    - **params**: custom parameters of the target ability. Set them as required. The value can be obtained from **parameters** in **want** used for starting the target ability. For example, in the lifecycle function **onCreate** of the EntryAbility in the stage model, you can obtain **want** and its **parameters** field.
 3. Set the message event.
    - **action**: **"message"**, which indicates a message event.
@@ -413,3 +413,5 @@ The code snippet is as follows:
      }
    }
    ```
+
+ <!--no_check--> 

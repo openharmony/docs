@@ -126,7 +126,11 @@ A grid supports a maximum of six breakpoints: xs, sm, md, lg, xl and xxl, whose 
 
 ## Attributes
 
-The [universal attributes](ts-universal-attributes-size.md) are supported.
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+
+| Name                      | Type                           | Description                                              |
+| ----------------------- | ----------------------------------- | ------------------------------------------- |
+| alignItems<sup>10+</sup>             | [ItemAlign](ts-appendix-enums.md#itemalign) | Alignment mode of the **\<GridCol>** cross axis.<br>Default value: **ItemAlign.Start**<br>**NOTE**<br>In **ItemAlign**, only the enumerated values **Start**, **Center**, **End**, and **Stretch** are supported.<br>The alignment mode of the **\<GridCol>** component can also be set using **alignSelf([ItemAlign](ts-appendix-enums.md#itemalign))**. If both of the preceding methods are used, the setting of **alignSelf(ItemAlign)** prevails.<br>Since API version 10, this API is supported in ArkTS widgets.|
 
 
 ## Events

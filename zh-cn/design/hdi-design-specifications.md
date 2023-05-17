@@ -3,7 +3,7 @@
 ## 总览
 
 硬件设备接口（以下简称为设备接口）作为连通驱动程序和系统服务进行数据流通的桥梁，直接影响着系统的高效性、稳定性、兼容性、可靠性以及数据的正确性、完整性。本文档的目的是规范OpenHarmony设备接口的设计和开发，保证接口的风格一致、功能完备，提升设备接口的设计质量。
-本章程由[Driver SIG](https://gitee.com/openharmony/community/blob/master/sig/sig-driver/sig_driver_cn.md)制定，经[PMC](https://gitee.com/link?target=https%3A%2F%2Fwww.openharmony.cn%2Fcommunity%2Fpmc%2F)批准发布；对本章程的修订必须经由Driver SIG评审后，由PMC批准发布。
+本章程由[Driver SIG](https://gitee.com/openharmony/community/blob/master/sig/sig_driver/sig_driver_cn.md)制定，经[PMC](https://gitee.com/link?target=https%3A%2F%2Fwww.openharmony.cn%2Fcommunity%2Fpmc%2F)批准发布；对本章程的修订必须经由Driver SIG评审后，由PMC批准发布。
 
 **术语和定义：**
 

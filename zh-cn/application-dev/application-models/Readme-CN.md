@@ -1,8 +1,8 @@
 # 应用模型
 
 - 应用模型概述
-  - [OpenHarmony应用模型的构成要素](application-model-composition.md)
-  - [OpenHarmony应用模型解读](application-model-description.md)
+  - [应用模型的构成要素](application-model-composition.md)
+  - [应用模型解读](application-model-description.md)
 - Stage模型开发指导
   - [Stage模型开发概述](stage-model-development-overview.md)
   - Stage模型应用组件
@@ -17,18 +17,44 @@
     - ExtensionAbility组件
       - [ExtensionAbility组件概述](extensionability-overview.md)
       - [ServiceExtensionAbility](serviceextensionability.md)
-      - [FormExtensionAbility（服务卡片）](widget-development-stage.md)
       - [AccessibilityExtensionAbility](accessibilityextensionability.md)
       - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
       - [InputMethodExtensionAbility](inputmethodextentionability.md)
       - [WindowExtensionAbility](windowextensionability.md)
+    - 服务卡片开发指导（Stage模型）
+      - [服务卡片概述](service-widget-overview.md)
+      - 开发基于ArkTS UI的卡片
+        - [ArkTS卡片运行机制](arkts-ui-widget-working-principles.md)
+        - [ArkTS卡片相关模块](arkts-ui-widget-modules.md)
+        - ArkTS卡片开发指导
+          - [创建一个ArkTS卡片](arkts-ui-widget-creation.md)
+          - [配置卡片的配置文件](arkts-ui-widget-configuration.md)
+          - [卡片生命周期管理](arkts-ui-widget-lifecycle.md)
+          - 开发卡片页面
+            - [卡片页面能力说明](arkts-ui-widget-page-overview.md)
+            - [卡片使用动效能力](arkts-ui-widget-page-animation.md)
+            - [卡片使用自定义绘制能力](arkts-ui-widget-page-custom-drawing.md)
+          - 开发卡片事件
+            - [卡片事件能力说明](arkts-ui-widget-event-overview.md)
+            - [使用router事件跳转到指定UIAbility](arkts-ui-widget-event-router.md)
+            - [使用call事件拉起指定UIAbility到后台](arkts-ui-widget-event-call.md)
+            - [通过message事件刷新卡片内容](arkts-ui-widget-event-formextensionability.md)
+            - [通过router或call事件刷新卡片内容](arkts-ui-widget-event-uiability.md)
+          - 卡片数据交互
+            - [卡片数据交互说明](arkts-ui-widget-interaction-overview.md)
+            - [定时刷新和定点刷新](arkts-ui-widget-update-by-time.md)
+            - [刷新本地图片和网络图片](arkts-ui-widget-image-update.md)
+            - [根据卡片状态刷新不同内容](arkts-ui-widget-update-by-status.md)
+            - [使用方刷新卡片内容（仅对系统应用开放）](arkts-ui-widget-content-update.md)
+      - [开发基于JS UI的卡片](js-ui-widget-development.md)
+      - [Stage模型服务卡片相关实例](service-widget-development-samples.md)
     - [AbilityStage组件容器](abilitystage.md)
     - [应用上下文Context](application-context-stage.md)
     - 信息传递载体Want
       - [Want概述](want-overview.md)
       - [显式Want与隐式Want匹配规则](explicit-implicit-want-mappings.md)
       - [常见action与entities](actions-entities.md)
-      - [使用显式Want启动Ability](ability-startup-with-explicit-want.md)
+      - [使用显式Want启动应用组件](ability-startup-with-explicit-want.md)
       - [使用隐式Want打开网址](ability-startup-with-implicit-want.md)
       - [应用间使用Want分享数据](data-share-via-want.md)
     - [组件启动规则（Stage模型）](component-startup-rules.md)
@@ -47,6 +73,7 @@
         - [静态订阅公共事件（仅对系统应用开放）](common-event-static-subscription.md)
         - [取消动态订阅公共事件](common-event-unsubscription.md)
       - [公共事件发布](common-event-publish.md)
+      - [移除粘性公共事件](common-event-remove-sticky.md)
     - [后台服务](background-services.md)
   - 线程间通信
     - [线程模型](thread-model-stage.md)

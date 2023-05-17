@@ -179,15 +179,15 @@ export default {
 ```html
 <!-- xxx.hml-->
 <div class="container">
-  <div class="contentToggle">
-    <toggle class="toggle" for="{{item in togglesList}}" onclick="toggleClick({{$idx}})" checked="{{item.checked}}">{{item.name}}</toggle>
-  </div>
-  <text class="size" style="color: {{color}};">width:{{width}},height:{{height}}</text>
-  <div style="width: {{width}}'px';height: {{height}}px;background:linear-gradient(to right,#FF0000,#0000FF);"></div>
-  <text id="menuId" class="text">change size</text>
-  <menu onselected="select" oncancel="cancel" target="menuId">
-    <option value="{{item.value}}" for="item in optionList">{{item.text}}</option>
-  </menu>
+    <div class="contentToggle">
+        <toggle class="toggle" for="{{item in togglesList}}" onclick="toggleClick({{$idx}})" checked="{{item.checked}}">{{item.name}}</toggle>
+    </div>
+    <text class="size" style="color: {{color}};">width:{{width}},height:{{height}}</text>
+    <div style="width: {{width}}px;height: {{height}}px; background-color: cornflowerblue;"></div>
+    <text id="menuId" class="text">change size</text>
+    <menu onselected="select" oncancel="cancel" target="menuId">
+        <option value="{{item.value}}" for="item in optionList">{{item.text}}</option>
+    </menu>
 </div>
 ```
 
@@ -242,7 +242,6 @@ option{
 
 ```js
 // xxx.js
-import promptAction from '@ohos.promptAction';
 export default {
   data:{
     fresh: false,
@@ -283,4 +282,4 @@ export default {
 
 针对menu开发，有以下相关实例可供参考：
 
-- [`JSMenu`：菜单（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JSMenu)
+- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)

@@ -262,7 +262,7 @@ Describe the class or interface. If there are usage restrictions, describe them 
 
 > *Writing Instructions*
 >
-> Except that level-3 headings are used, other requirements are the same as those in [Attribute](#Attribute).
+> Except that level-3 headings are used, other requirements are the same as those in [Attribute](#attributes).
 
 ### Methods in Classes/Interfaces
 

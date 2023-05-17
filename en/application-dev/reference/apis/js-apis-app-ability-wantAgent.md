@@ -28,31 +28,13 @@ Obtains a **WantAgent** object. This API uses an asynchronous callback to return
 | callback | AsyncCallback\<WantAgent\> | Yes  | Callback used to return the **WantAgent** object.|
 
 **Error codes**
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -125,31 +107,13 @@ Obtains a **WantAgent** object. This API uses a promise to return the result. If
 | Promise\<WantAgent\> | Promise used to return the **WantAgent** object.|
 
 **Error codes**
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -186,10 +150,10 @@ try {
     WantAgent.getWantAgent(wantAgentInfo).then((data) => {
     wantAgent = data;
 }).catch((err) => {
-    console.error('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+    console.error('getWantAgent failed! ${err.code} ${err.message}');
 });
 } catch (err) {
-    console.error('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+    console.error('getWantAgent failed! ${err.code} ${err.message}');
 }
 ```
 
@@ -211,31 +175,13 @@ Obtains the bundle name of a **WantAgent** object. This API uses an asynchronous
 | callback | AsyncCallback\<string\> | Yes  | Callback used to return the bundle name.|
 
 **Error codes**
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -280,7 +226,7 @@ function getWantAgentCallback(err, data) {
     // getBundleName callback
     function getBundleNameCallback(err, data) {
         if(err) {
-            console.error('getBundleName failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+            console.error('getBundleName failed! ${err.code} ${err.message}');
         } else {
             console.info('getBundleName ok! ${JSON.stringify(data)}');
         }
@@ -288,13 +234,13 @@ function getWantAgentCallback(err, data) {
     try {
         WantAgent.getBundleName(wantAgent, getBundleNameCallback);
     } catch(err) {
-        console.error('getBundleName failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+        console.error('getBundleName failed! ${err.code} ${err.message}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+    console.error('getWantAgent failed! ${err.code} ${err.message}');
 }
 ```
 
@@ -321,31 +267,13 @@ Obtains the bundle name of a **WantAgent** object. This API uses a promise to re
 | Promise\<string\> | Promise used to return the bundle name.|
 
 **Error codes**
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -391,16 +319,16 @@ function getWantAgentCallback(err, data) {
         WantAgent.getBundleName(wantAgent).then((data)=>{
             console.info('getBundleName ok! ${JSON.stringify(data)}');
         }).catch((err)=>{
-            console.error('getBundleName failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+            console.error('getBundleName failed! ${err.code} ${err.message}');
         });
     } catch(err){
-        console.error('getBundleName failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+        console.error('getBundleName failed! ${err.code} ${err.message}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+    console.error('getWantAgent failed! ${err.code} ${err.message}');
 }
 ```
 
@@ -422,31 +350,13 @@ Obtains the user ID of a **WantAgent** object. This API uses an asynchronous cal
 | callback | AsyncCallback\<number\> | Yes  | Callback used to return the user ID.|
 
 **Error codes**
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -492,7 +402,7 @@ function getWantAgentCallback(err, data) {
     // getUid callback
     function getUidCallback(err, data) {
         if(err) {
-            console.error('getUid failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+            console.error('getUid failed! ${err.code} ${err.message}');
         } else {
             console.info('getUid ok! ${JSON.stringify(data)}');
         }
@@ -500,13 +410,13 @@ function getWantAgentCallback(err, data) {
     try {
         WantAgent.getUid(wantAgent, getUidCallback);
     } catch(err) {
-        console.error('getUid failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+        console.error('getUid failed! ${err.code} ${err.message}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+    console.error('getWantAgent failed! ${err.code} ${err.message}');
 }
 ```
 
@@ -533,31 +443,13 @@ Obtains the user ID of a **WantAgent** object. This API uses a promise to return
 | Promise\<number\> | Promise used to return the user ID.|
 
 **Error codes**
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -603,16 +495,16 @@ function getWantAgentCallback(err, data) {
         WantAgent.getUid(wantAgent).then((data)=>{
             console.info('getUid ok! ${JSON.stringify(data)}');
         }).catch((err)=>{
-            console.error('getUid failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+            console.error('getUid failed! ${err.code} ${err.message}');
         });
     } catch(err){
-        console.error('getUid failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+        console.error('getUid failed! ${err.code} ${err.message}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+    console.error('getWantAgent failed! ${err.code} ${err.message}');
 }
 ```
 
@@ -635,31 +527,14 @@ Obtains the want in a **WantAgent** object. This API uses an asynchronous callba
 | callback | AsyncCallback\<[Want](js-apis-app-ability-want.md)\> | Yes  | Callback used to return the want.|
 
 **Error codes**
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
+| 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -704,7 +579,7 @@ function getWantAgentCallback(err, data) {
     // getWant callback
     function getWantCallback(err, data) {
         if(err) {
-            console.error('getWant failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+            console.error('getWant failed! ${err.code} ${err.message}');
         } else {
             console.info('getWant ok! ${JSON.stringify(data)}');
         }
@@ -712,13 +587,13 @@ function getWantAgentCallback(err, data) {
     try {
         WantAgent.getWant(wantAgent, getWantCallback);
     } catch(err) {
-        console.error('getWant failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+        console.error('getWant failed! ${err.code} ${err.message}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+    console.error('getWantAgent failed! ${err.code} ${err.message}');
 }
 ```
 
@@ -747,31 +622,14 @@ Obtains the want in a **WantAgent** object. This API uses a promise to return th
 | Promise\<Want\> | Promise used to return the want.|
 
 **Error codes**
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
+| 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -817,16 +675,16 @@ function getWantAgentCallback(err, data) {
         WantAgent.getUid(wantAgent).then((data)=>{
             console.info('getUid ok! ${JSON.stringify(data)}');
         }).catch((err)=>{
-            console.error('getUid failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+            console.error('getUid failed! ${err.code} ${err.message}');
         });
     } catch(err){
-        console.error('getUid failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+        console.error('getUid failed! ${err.code} ${err.message}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+    console.error('getWantAgent failed! ${err.code} ${err.message}}');
 }
 ```
 
@@ -848,31 +706,13 @@ Cancels a **WantAgent** object. This API uses an asynchronous callback to return
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -917,7 +757,7 @@ function getWantAgentCallback(err, data) {
     // cancel callback
     function cancelCallback(err, data) {
         if(err) {
-            console.error('cancel failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+            console.error('cancel failed! ${err.code} ${err.message}');
         } else {
             console.info('cancel ok!');
         }
@@ -925,13 +765,13 @@ function getWantAgentCallback(err, data) {
     try {
         WantAgent.cancel(wantAgent, cancelCallback);
     } catch(err) {
-        console.error('cancel failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+        console.error('cancel failed! ${err.code} ${err.message}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+    console.error('getWantAgent failed! ${err.code} ${err.message}');
 }
 ```
 
@@ -958,31 +798,13 @@ Cancels a **WantAgent** object. This API uses a promise to return the result.
 | Promise\<void\> | Promise used to return the result.|
 
 **Error codes**
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1028,16 +850,16 @@ function getWantAgentCallback(err, data) {
         WantAgent.cancel(wantAgent).then((data)=>{
             console.info('cancel ok!');
         }).catch((err)=>{
-            console.error('cancel failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+            console.error('cancel failed! ${err.code} ${err.message}');
         });
     } catch(err){
-        console.error('cancel failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+        console.error('cancel failed! ${err.code} ${err.message}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+    console.error('getWantAgent failed! ${err.code} ${err.message}');
 }
 ```
 
@@ -1056,33 +878,6 @@ Triggers a **WantAgent** object. This API uses an asynchronous callback to retur
 | agent       | WantAgent                     | Yes  | Target **WantAgent** object.                  |
 | triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                   | Yes  | **TriggerInfo** object.                |
 | callback    | AsyncCallback\<[CompleteData](#completedata)\> | No  | Callback used to return the result.|
-
-**Error codes**
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-| ID   | Error Message           |
-|-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
-| 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
 
 **Example**
 
@@ -1131,7 +926,7 @@ function getWantAgentCallback(err, data) {
     // trigger callback
     function triggerCallback(err, data) {
         if(err) {
-            console.error('getUid failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+            console.error('getUid failed! ${err.code} ${err.message}');
         } else {
             console.info('getUid ok! ${JSON.stringify(data)}');
         }
@@ -1139,13 +934,13 @@ function getWantAgentCallback(err, data) {
     try {
         WantAgent.trigger(wantAgent, triggerInfo, triggerCallback);
     } catch(err) {
-        console.error('getUid failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+        console.error('getUid failed! ${err.code} ${err.message}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+    console.error('getWantAgent failed! ${err.code} ${err.message}');
 }
 ```
 
@@ -1166,33 +961,6 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 | agent      | WantAgent                | Yes  | The first **WantAgent** object.                          |
 | otherAgent | WantAgent                | Yes  | Target **WantAgent** object.                          |
 | callback   | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
-
-**Error codes**
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-| ID   | Error Message           |
-|-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
-| 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
 
 **Example**
 
@@ -1239,7 +1007,7 @@ function getWantAgentCallback(err, data) {
     // equal callback
     function equalCallback(err, data) {
         if(err) {
-            console.error('equal failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+            console.error('equal failed! ${err.code} ${err.message}');
         } else {
             console.info('equal ok! ${JSON.stringify(data)}');
         }
@@ -1247,13 +1015,13 @@ function getWantAgentCallback(err, data) {
     try {
         WantAgent.equal(wantAgent1,wantAgent2,equalCallback);
     } catch(err) {
-        console.error('equal failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+        console.error('equal failed! ${err.code} ${err.message}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+    console.error('getWantAgent failed! ${err.code} ${err.message}');
 }
 ```
 
@@ -1279,33 +1047,6 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<boolean\> | Promise used to return the result.|
-
-**Error codes**
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
-| ID   | Error Message           |
-|-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
-| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
-| 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
 
 **Example**
 
@@ -1353,16 +1094,16 @@ function getWantAgentCallback(err, data) {
         WantAgent.equal(wantAgent1,wantAgent2).then((data)=>{
             console.info('equal ok! ${JSON.stringify(data)}');
         }).catch((err)=>{
-            console.error('equal failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+            console.error('equal failed! ${err.code} ${err.message}');
         })
     } catch(err){
-        console.error('equal failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+        console.error('equal failed! ${err.code} ${err.message}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+    console.error('getWantAgent failed! ${err.code} ${err.message}');
 }
 ```
 
@@ -1382,31 +1123,14 @@ Obtains the operation type of a **WantAgent** object. This API uses an asynchron
 | callback   | AsyncCallback\<number> | Yes  | Callback used to return the operation type.|
 
 **Error codes**
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
+| 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1451,7 +1175,7 @@ function getWantAgentCallback(err, data) {
     // getOperationTypeCallback callback
     function getOperationTypeCallback(err, data) {
         if(err) {
-            console.error('getOperationType failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+            console.error('getOperationType failed! ${err.code} ${err.message}');
         } else {
             console.info('getOperationType ok! ${JSON.stringify(data)}');
         }
@@ -1459,13 +1183,13 @@ function getWantAgentCallback(err, data) {
     try {
         WantAgent.getOperationTypeCallback(wantAgent, getOperationTypeCallback);
     } catch(err) {
-        console.error('getOperationTypeCallback failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+        console.error('getOperationTypeCallback failed! ${err.code} ${err.message}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+    console.error('getWantAgent failed! ${err.code} ${err.message}');
 }
 ```
 
@@ -1490,31 +1214,14 @@ Obtains the operation type of a **WantAgent** object. This API uses a promise to
 | Promise\<number> | Promise used to return the operation type.|
 
 **Error codes**
-For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 | ID   | Error Message           |
 |-----------|--------------------|
-| 16000001   | Input error. The specified ability name does not exist. |
-| 16000002   | Ability type error. The specified ability type is wrong.|
-| 16000003   | Input error. The specified id does not exist.|
-| 16000004   | Visibility verification failed.|
-| 16000006   | Can not cross user operations.|
 | 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
-| 16000008   | Crowdtest App Expiration.|
-| 16000009   | Can not start ability in wukong mode.|
-| 16000010   | Can not operation with continue flag.|
-| 16000011   | Context does not exist.|
-| 16000050   | Internal Error.|
-| 16000051   | Network error. The network is abnormal.|
-| 16000052   | Free install not support. The application does not support free install.|
-| 16000053   | Not top ability. The application is not top ability.|
-| 16000054   | Free install busyness. There are concurrent tasks, waiting for retry.|
-| 16000055   | Free install timeout.|
-| 16000056   | Can not free install other ability.|
-| 16000057   | Not support cross device free install.|
-| 16000101   | execute shell command failed.|
+| 16000015   | Service timeout.|
 | 16000151   | Invalid wantagent object.|
-| 16000152   | wantAgent object not found.|
-| 16000153   | wangAgent object canceled.|
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1560,16 +1267,16 @@ function getWantAgentCallback(err, data) {
         WantAgent.getOperationType(wantAgent).then((data)=>{
             console.info('getOperationType ok! ${JSON.stringify(data)}');
         }).catch((err)=>{
-            console.error('getOperationType failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+            console.error('getOperationType failed! ${err.code} ${err.message}');
         });
     } catch(err){
-        console.error('getOperationType failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+        console.error('getOperationType failed! ${err.code} ${err.message}');
     }
 }
 try {
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err) {
-    console.error('getWantAgent failed! ${JSON.stringify(err.code)} ${JSON.stringify(err.message)}');
+    console.error('getWantAgent failed! ${err.code} ${err.message}');
 }
 ```
 

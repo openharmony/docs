@@ -3,8 +3,8 @@
 该模块提供文件数据安全等级的相关功能：向应用程序提供查询、设置文件数据安全等级的JS接口。
 
 > **说明：**
+>
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块支持对错误码进行处理，错误码及其适配方式[参考文档](../errorcodes/errorcode-filemanagement.md#错误码适配指导)。
 
 ## 导入模块
 
@@ -63,6 +63,21 @@ setSecurityLabel(path:string, type:DataLevel):Promise&lt;void&gt;
   | ------------------- | ---------------- |
   | Promise&lt;void&gt; | Promise实例，用于异步获取结果。本调用将返回空值。|
 
+**错误码：**
+
+以下错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 13900001 | Operation not permitted |
+| 13900007 | Arg list too long |
+| 13900015 | File exists |
+| 13900020 | Invalid argument |
+| 13900025 | No space left on device |
+| 13900037 | No data available |
+| 13900041 | Quota exceeded |
+| 13900042 | Unknown error |
+
 **示例：**
 
   ```js
@@ -89,6 +104,21 @@ setSecurityLabel(path:string, type:DataLevel, callback: AsyncCallback&lt;void&gt
 | path      | string                    | 是   | 文件路径                                     |
 | type      | DataLevel                 | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 是否设置数据标签之后的回调                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 13900001 | Operation not permitted |
+| 13900007 | Arg list too long |
+| 13900015 | File exists |
+| 13900020 | Invalid argument |
+| 13900025 | No space left on device |
+| 13900037 | No data available |
+| 13900041 | Quota exceeded |
+| 13900042 | Unknown error |
 
 **示例：**
 
@@ -118,6 +148,21 @@ setSecurityLabelSync(path:string, type:DataLevel):void
 | path      | string | 是   | 文件路径                                     |
 | type      | DataLevel | 是   | 文件等级属性，只支持"s0","s1","s2","s3","s4" |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 13900001 | Operation not permitted |
+| 13900007 | Arg list too long |
+| 13900015 | File exists |
+| 13900020 | Invalid argument |
+| 13900025 | No space left on device |
+| 13900037 | No data available |
+| 13900041 | Quota exceeded |
+| 13900042 | Unknown error |
+
 **示例：**
 
 ```js
@@ -145,6 +190,21 @@ getSecurityLabel(path:string):Promise&lt;string&gt;
   | --------------------- | ------------ |
   | Promise&lt;string&gt; | 返回数据标签 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 13900001 | Operation not permitted |
+| 13900007 | Arg list too long |
+| 13900015 | File exists |
+| 13900020 | Invalid argument |
+| 13900025 | No space left on device |
+| 13900037 | No data available |
+| 13900041 | Quota exceeded |
+| 13900042 | Unknown error |
+
 **示例：**
 
   ```js
@@ -171,6 +231,21 @@ getSecurityLabel(path:string, callback:AsyncCallback&lt;string&gt;): void
   | path     | string                      | 是   | 文件路径                   |
   | callback | AsyncCallback&lt;string&gt; | 是   | 异步获取数据标签之后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 13900001 | Operation not permitted |
+| 13900007 | Arg list too long |
+| 13900015 | File exists |
+| 13900020 | Invalid argument |
+| 13900025 | No space left on device |
+| 13900037 | No data available |
+| 13900041 | Quota exceeded |
+| 13900042 | Unknown error |
+
 **示例：**
 
   ```js
@@ -183,6 +258,7 @@ getSecurityLabel(path:string, callback:AsyncCallback&lt;string&gt;): void
     }
   });
   ```
+
 ## securityLabel.getSecurityLabelSync
 
 getSecurityLabelSync(path:string):string
@@ -202,6 +278,21 @@ getSecurityLabelSync(path:string):string
 | 类型   | 说明         |
 | ------ | ------------ |
 | string | 返回数据标签 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[基础文件IO错误码](../errorcodes/errorcode-filemanagement.md#基础文件io错误码)。
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 13900001 | Operation not permitted |
+| 13900007 | Arg list too long |
+| 13900015 | File exists |
+| 13900020 | Invalid argument |
+| 13900025 | No space left on device |
+| 13900037 | No data available |
+| 13900041 | Quota exceeded |
+| 13900042 | Unknown error |
 
 **示例：**
 

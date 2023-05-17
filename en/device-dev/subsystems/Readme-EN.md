@@ -38,14 +38,9 @@
     - [Audio/Video Playback Development](subsys-multimedia-video-play-guide.md)
     - [Audio/Video Recording Development](subsys-multimedia-video-record-guide.md)
 - [Utils Development](subsys-utils-guide.md)
-- [AI Framework Development](subsys-ai-aiframework-devguide.md)
-- Data Management
-  - RDB
-    - [RDB Overview](subsys-data-relational-database-overview.md)
-    - [RDB Development](subsys-data-relational-database-guide.md)
-  - Lightweight Data Store
-    - [Lightweight Data Store Overview](subsys-data-storage-overview.md)
-    - [Lightweight Data Store Development](subsys-data-storage-guide.md)
+- AI
+    - [AI Framework Development](subsys-ai-aiframework-devguide.md)
+    - [NNRt Development](subsys-ai-nnrt-guide.md)
 - Sensor
   - [Sensor Overview](subsys-sensor-overview.md)
   - [Sensor Usage Guidelines](subsys-sensor-guide.md)
@@ -90,14 +85,13 @@
   - [HiTraceChain Development](subsys-dfx-hitracechain.md)
   - [HiTraceMeter Development](subsys-dfx-hitracemeter.md)
   - [HiCollie Development](subsys-dfx-hicollie.md)
-  - HiSysEvent Development
+  - HiSysEvent
     - [HiSysEvent Overview](subsys-dfx-hisysevent-overview.md)
     - [HiSysEvent Logging Configuration](subsys-dfx-hisysevent-logging-config.md)
     - [HiSysEvent Logging](subsys-dfx-hisysevent-logging.md)
     - [HiSysEvent Listening](subsys-dfx-hisysevent-listening.md)
     - [HiSysEvent Query](subsys-dfx-hisysevent-query.md)
     - [HiSysEvent Tool Usage](subsys-dfx-hisysevent-tool.md)
-  - [HiDumper Development](subsys-dfx-hidumper.md)
   - [HiChecker Development](subsys-dfx-hichecker.md)
   - [FaultLogger Development](subsys-dfx-faultlogger.md)
   - [Hiview Development](subsys-dfx-hiview.md)
@@ -105,6 +99,26 @@
   - [bytrace](subsys-toolchain-bytrace-guide.md)
   - [hdc](subsys-toolchain-hdc-guide.md)
   - [hiperf](subsys-toolchain-hiperf.md)
-- Power Management
+  - [HiDumper](subsys-dfx-hidumper.md)
+- Power
     - Display Management
         - [System Brightness Customization](subsys-power-brightness-customization.md)
+    - Battery Management
+        - [Battery Level and LED Color Mapping Customization](subsys-power-level-LED-color.md)
+        - [Battery Temperature Protection Customization](subsys-power-temperature-protection.md)
+        - [Battery Level Customization](subsys-power-battery-level-customization.md)
+        - [Charging Current and Voltage Limit Customization](subsys-power-charge-current-voltage-limit.md)
+        - [Charging Type Customization](subsys-power-charge-type-customization.md)
+        - [Power-off Charging Animation Customization](subsys-power-poweroff-charge-animation.md)
+    - Power Consumption Statistics
+        - [Power Consumption Statistics Customization](subsys-power-stats-power-average-customization.md)
+    - Thermal Management
+        - [Charging Idle State Customization](subsys-thermal_charging_idle_state.md)
+        - [Thermal Control Customization](subsys-thermal_control.md)
+        - [Thermal Detection Customization](subsys-thermal_detection.md)
+        - [Thermal Level Customization](subsys-thermal_level.md)
+        - [Thermal Log Customization](subsys-thermal_log.md)
+        - [Thermal Policy Customization](subsys-thermal_policy.md)
+        - [Thermal Scene Customization](subsys-thermal_scene.md)
+    - Power Management
+        - [Power Mode Customization](subsys-power-mode-customization.md)

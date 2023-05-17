@@ -2,7 +2,7 @@
 
 本模块提供HTTP数据请求能力。应用可以通过HTTP发起一个数据请求，支持常见的GET、POST、OPTIONS、HEAD、PUT、DELETE、TRACE、CONNECT方法。
 
->**说明：**
+> **说明：**
 >
 >本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
@@ -24,46 +24,49 @@ let httpRequest = http.createHttp();
 // 用于订阅HTTP响应头，此接口会比request请求先返回。可以根据业务需要订阅此消息
 // 从API 8开始，使用on('headersReceive', Callback)替代on('headerReceive', AsyncCallback)。 8+
 httpRequest.on('headersReceive', (header) => {
-    console.info('header: ' + JSON.stringify(header));
+  console.info('header: ' + JSON.stringify(header));
 });
 httpRequest.request(
-    // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
-    "EXAMPLE_URL",
-    {
-        method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
-        // 开发者根据自身业务需要添加header字段
-        header: {
-            'Content-Type': 'application/json'
-        },
-        // 当使用POST请求时此字段用于传递内容
-        extraData: {
-            "data": "data to send",
-        },
-        expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
-        usingCache: true, // 可选，默认为true
-        priority: 1, // 可选，默认为1
-        connectTimeout: 60000, // 可选，默认为60000ms
-        readTimeout: 60000, // 可选，默认为60000ms
-        usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
-        usingProxy: false, //可选，默认不使用网络代理，自API 10开始支持该属性
-    }, (err, data) => {
-        if (!err) {
-            // data.result为HTTP响应内容，可根据业务需要进行解析
-            console.info('Result:' + JSON.stringify(data.result));
-            console.info('code:' + JSON.stringify(data.responseCode));
-            // data.header为HTTP响应头，可根据业务需要进行解析
-            console.info('header:' + JSON.stringify(data.header));
-            console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
-        } else {
-            console.info('error:' + JSON.stringify(err));
-            // 取消订阅HTTP响应头事件
-            httpRequest.off('headersReceive');
-            // 当该请求使用完毕时，调用destroy方法主动销毁。
-            httpRequest.destroy();
-        }
+  // 填写HTTP请求的URL地址，可以带参数也可以不带参数。URL地址需要开发者自定义。请求的参数可以在extraData中指定
+  "EXAMPLE_URL",
+  {
+    method: http.RequestMethod.POST, // 可选，默认为http.RequestMethod.GET
+    // 开发者根据自身业务需要添加header字段
+    header: {
+      'Content-Type': 'application/json'
+    },
+    // 当使用POST请求时此字段用于传递内容
+    extraData: {
+      "data": "data to send",
+    },
+    expectDataType: http.HttpDataType.STRING, // 可选，指定返回数据的类型
+    usingCache: true, // 可选，默认为true
+    priority: 1, // 可选，默认为1
+    connectTimeout: 60000, // 可选，默认为60000ms
+    readTimeout: 60000, // 可选，默认为60000ms
+    usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
+    usingProxy: false, //可选，默认不使用网络代理，自API 10开始支持该属性
+  }, (err, data) => {
+    if (!err) {
+      // data.result为HTTP响应内容，可根据业务需要进行解析
+      console.info('Result:' + JSON.stringify(data.result));
+      console.info('code:' + JSON.stringify(data.responseCode));
+      // data.header为HTTP响应头，可根据业务需要进行解析
+      console.info('header:' + JSON.stringify(data.header));
+      console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
+    } else {
+      console.info('error:' + JSON.stringify(err));
+      // 取消订阅HTTP响应头事件
+      httpRequest.off('headersReceive');
+      // 当该请求使用完毕时，调用destroy方法主动销毁。
+      httpRequest.destroy();
     }
+  }
 );
 ```
+
+> **说明：**
+> console.info()输出的数据中包含换行符会导致数据出现截断现象。
 
 ## http.createHttp
 
@@ -83,6 +86,7 @@ createHttp(): HttpRequest
 
 ```js
 import http from '@ohos.net.http';
+
 let httpRequest = http.createHttp();
 ```
 
@@ -96,8 +100,8 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>):void
 
 根据URL地址，发起HTTP网络请求，使用callback方式作为异步方法。
 
->**说明：**
->此接口仅支持数据大小为5M以内的数据传输。
+> **说明：**
+> 此接口仅支持数据大小为5M以内的数据接收。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -122,7 +126,7 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>):void
 | 2300052 | Server returned nothing (no headers, no data).        |
 | 2300999 | Unknown Other Error.                                  |
 
->**错误码说明：**
+> **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-net-http.md)。
 > HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
@@ -130,14 +134,14 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>):void
 
 ```js
 httpRequest.request("EXAMPLE_URL", (err, data) => {
-    if (!err) {
-        console.info('Result:' + data.result);
-        console.info('code:' + data.responseCode);
-        console.info('header:' + JSON.stringify(data.header));
-        console.info('cookies:' + data.cookies); // 8+
-    } else {
-        console.info('error:' + JSON.stringify(err));
-    }
+  if (!err) {
+    console.info('Result:' + data.result);
+    console.info('code:' + data.responseCode);
+    console.info('header:' + JSON.stringify(data.header));
+    console.info('cookies:' + data.cookies); // 8+
+  } else {
+    console.info('error:' + JSON.stringify(err));
+  }
 });
 ```
 
@@ -147,8 +151,8 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 
 根据URL地址和相关配置项，发起HTTP网络请求，使用callback方式作为异步方法。
 
->**说明：**
->此接口仅支持数据大小为5M以内的数据传输。
+> **说明：**
+> 此接口仅支持数据大小为5M以内的数据接收。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -198,7 +202,7 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 | 2300094 | An authentication function returned an error.         |
 | 2300999 | Unknown Other Error.                                  |
 
->**错误码说明：**
+> **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-net-http.md)。
 > HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
@@ -206,25 +210,25 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 
 ```js
 httpRequest.request("EXAMPLE_URL",
-{
+  {
     method: http.RequestMethod.GET,
     header: {
-        'Content-Type': 'application/json'
+      'Content-Type': 'application/json'
     },
     readTimeout: 60000,
     connectTimeout: 60000
-}, (err, data) => {
+  }, (err, data) => {
     if (!err) {
-        console.info('Result:' + data.result);
-        console.info('code:' + data.responseCode);
-        console.info('header:' + JSON.stringify(data.header));
-        console.info('cookies:' + data.cookies); // 8+
-        console.info('header.Content-Type:' + data.header['Content-Type']);
-        console.info('header.Status-Line:' + data.header['Status-Line']);
+      console.info('Result:' + data.result);
+      console.info('code:' + data.responseCode);
+      console.info('header:' + JSON.stringify(data.header));
+      console.info('cookies:' + data.cookies); // 8+
+      console.info('header.Content-Type:' + data.header['Content-Type']);
+      console.info('header.Status-Line:' + data.header['Status-Line']);
     } else {
-        console.info('error:' + JSON.stringify(err));
+      console.info('error:' + JSON.stringify(err));
     }
-});
+  });
 ```
 
 ### request
@@ -233,8 +237,8 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
 根据URL地址，发起HTTP网络请求，使用Promise方式作为异步方法。
 
->**说明：**
->此接口仅支持数据大小为5M以内的数据传输。
+> **说明：**
+> 此接口仅支持数据大小为5M以内的数据接收。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -289,30 +293,30 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 | 2300094 | An authentication function returned an error.         |
 | 2300999 | Unknown Other Error.                                  |
 
->**错误码说明：**
+> **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-net-http.md)。
-> HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html) 
+> HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
 **示例：**
 
 ```js
 let promise = httpRequest.request("EXAMPLE_URL", {
-    method: http.RequestMethod.GET,
-    connectTimeout: 60000,
-    readTimeout: 60000,
-    header: {
-        'Content-Type': 'application/json'
-    }
+  method: http.RequestMethod.GET,
+  connectTimeout: 60000,
+  readTimeout: 60000,
+  header: {
+    'Content-Type': 'application/json'
+  }
 });
 promise.then((data) => {
-    console.info('Result:' + data.result);
-    console.info('code:' + data.responseCode);
-    console.info('header:' + JSON.stringify(data.header));
-    console.info('cookies:' + data.cookies); // 8+
-    console.info('header.Content-Type:' + data.header['Content-Type']);
-    console.info('header.Status-Line:' + data.header['Status-Line']);
+  console.info('Result:' + data.result);
+  console.info('code:' + data.responseCode);
+  console.info('header:' + JSON.stringify(data.header));
+  console.info('cookies:' + data.cookies); // 8+
+  console.info('header.Content-Type:' + data.header['Content-Type']);
+  console.info('header.Status-Line:' + data.header['Status-Line']);
 }).catch((err) => {
-    console.info('error:' + JSON.stringify(err));
+  console.info('error:' + JSON.stringify(err));
 });
 ```
 
@@ -334,7 +338,7 @@ httpRequest.destroy();
 
 request2(url: string, callback: AsyncCallback\<number\>): void
 
-根据URL地址和相关配置项，发起HTTP网络请求并返回流式响应，使用callback方式作为异步方法。
+根据URL地址，发起HTTP网络请求并返回流式响应，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -359,7 +363,7 @@ request2(url: string, callback: AsyncCallback\<number\>): void
 | 2300052 | Server returned nothing (no headers, no data).        |
 | 2300999 | Unknown Other Error.                                  |
 
->**错误码说明：**
+> **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-net-http.md)。
 > HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
@@ -367,11 +371,11 @@ request2(url: string, callback: AsyncCallback\<number\>): void
 
 ```js
 httpRequest.request2("EXAMPLE_URL", (err, data) => {
-    if (!err) {
-        console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
-    } else {
-        console.info("request2 ERROR : err = " + JSON.stringify(err));
-    }
+  if (!err) {
+    console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
+  } else {
+    console.info("request2 ERROR : err = " + JSON.stringify(err));
+  }
 })
 ```
 
@@ -429,7 +433,7 @@ request2(url: string, options: HttpRequestOptions, callback: AsyncCallback\<numb
 | 2300094 | An authentication function returned an error.         |
 | 2300999 | Unknown Other Error.                                  |
 
->**错误码说明：**
+> **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-net-http.md)。
 > HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：[curl错误码](https://curl.se/libcurl/c/libcurl-errors.html)
 
@@ -437,21 +441,22 @@ request2(url: string, options: HttpRequestOptions, callback: AsyncCallback\<numb
 
 ```js
 httpRequest.request2("EXAMPLE_URL",
-{
+  {
     method: http.RequestMethod.GET,
     header: {
-        'Content-Type': 'application/json'
+      'Content-Type': 'application/json'
     },
     readTimeout: 60000,
     connectTimeout: 60000
-}, (err, data) => {
+  }, (err, data) => {
     if (!err) {
-        console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
+      console.info("request2 OK! ResponseCode is " + JSON.stringify(data));
     } else {
-        console.info("request2 ERROR : err = " + JSON.stringify(err));
+      console.info("request2 ERROR : err = " + JSON.stringify(err));
     }
-})
+  })
 ```
+
 ### request2<sup>10+</sup>
 
 request2(url: string, options? : HttpRequestOptions): Promise\<number\>
@@ -511,36 +516,36 @@ request2(url: string, options? : HttpRequestOptions): Promise\<number\>
 | 2300094 | An authentication function returned an error.         |
 | 2300999 | Unknown Other Error.                                  |
 
->**错误码说明：**
+> **错误码说明：**
 > 以上错误码的详细介绍参见[HTTP错误码](../errorcodes/errorcode-net-http.md)。
 > HTTP 错误码映射关系：2300000 + curl错误码。更多常用错误码，可参考：
 
 **示例：**
 
 ```js
-let promise = httpRequest.request("EXAMPLE_URL", {
-    method: http.RequestMethod.GET,
-    connectTimeout: 60000,
-    readTimeout: 60000,
-    header: {
-        'Content-Type': 'application/json'
-    }
+let promise = httpRequest.request2("EXAMPLE_URL", {
+  method: http.RequestMethod.GET,
+  connectTimeout: 60000,
+  readTimeout: 60000,
+  header: {
+    'Content-Type': 'application/json'
+  }
 });
 promise.then((data) => {
-    console.info("request2 OK!" + JSON.stringify(data));
+  console.info("request2 OK!" + JSON.stringify(data));
 }).catch((err) => {
-    console.info("request2 ERROR : err = " + JSON.stringify(err));
+  console.info("request2 ERROR : err = " + JSON.stringify(err));
 });
 ```
 
-### on('headerReceive')
+### on('headerReceive')<sup>(deprecated)</sup>
 
 on(type: 'headerReceive', callback: AsyncCallback\<Object\>): void
 
 订阅HTTP Response Header 事件。
 
->**说明：**
->此接口已废弃，建议使用[on('headersReceive')<sup>8+</sup>](#onheadersreceive8)替代。
+> **说明：**
+> 此接口已废弃，建议使用[on('headersReceive')<sup>8+</sup>](#onheadersreceive8)替代。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -555,17 +560,17 @@ on(type: 'headerReceive', callback: AsyncCallback\<Object\>): void
 
 ```js
 httpRequest.on('headerReceive', (data) => {
-    console.info('error:' + JSON.stringify(data));
+  console.info('error:' + JSON.stringify(data));
 });
 ```
 
-### off('headerReceive')
+### off('headerReceive')<sup>(deprecated)</sup>
 
 off(type: 'headerReceive', callback?: AsyncCallback\<Object\>): void
 
 取消订阅HTTP Response Header 事件。
 
->**说明：**
+> **说明：**
 >
 >1. 此接口已废弃，建议使用[off('headersReceive')<sup>8+</sup>](#offheadersreceive8)替代。
 >
@@ -605,7 +610,7 @@ on(type: 'headersReceive', callback: Callback\<Object\>): void
 
 ```js
 httpRequest.on('headersReceive', (header) => {
-    console.info('header: ' + JSON.stringify(header));
+  console.info('header: ' + JSON.stringify(header));
 });
 ```
 
@@ -615,8 +620,8 @@ off(type: 'headersReceive', callback?: Callback\<Object\>): void
 
 取消订阅HTTP Response Header 事件。
 
->**说明：**
->可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -652,9 +657,10 @@ once(type: 'headersReceive', callback: Callback\<Object\>): void
 
 ```js
 httpRequest.once('headersReceive', (header) => {
-    console.info('header: ' + JSON.stringify(header));
+  console.info('header: ' + JSON.stringify(header));
 });
 ```
+
 ### on('dataReceive')<sup>10+</sup>
 
 on(type: 'dataReceive', callback: Callback\<ArrayBuffer\>): void
@@ -674,7 +680,7 @@ on(type: 'dataReceive', callback: Callback\<ArrayBuffer\>): void
 
 ```js
 httpRequest.on('dataReceive', (data) => {
-    console.info('dataReceive length: ' + JSON.stringify(data.byteLength));
+  console.info('dataReceive length: ' + JSON.stringify(data.byteLength));
 });
 ```
 
@@ -684,8 +690,8 @@ off(type: 'dataReceive', callback?: Callback\<ArrayBuffer\>): void
 
 取消订阅HTTP流式响应数据接收事件。
 
->**说明：**
->可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -720,8 +726,8 @@ on(type: 'dataEnd', callback: Callback\<void\>): void
 **示例：**
 
 ```js
-httpRequest.on('dataReceive', () => {
-    console.info('Receive dataEnd！');
+httpRequest.on('dataEnd', () => {
+  console.info('Receive dataEnd !');
 });
 ```
 
@@ -731,8 +737,8 @@ off(type: 'dataEnd', callback?: Callback\<void\>): void
 
 取消订阅HTTP流式响应数据接收完毕事件。
 
->**说明：**
->可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -751,7 +757,7 @@ httpRequest.off('dataEnd');
 
 ### on('dataProgress')<sup>10+</sup>
 
- on(type: 'dataProgress', callback: Callback\<{ receiveSize: number, totalSize: number }\>): void
+on(type: 'dataProgress', callback: AsyncCallback\<{ receiveSize: number, totalSize: number }\>): void
 
 订阅HTTP流式响应数据接收进度事件。
 
@@ -768,7 +774,7 @@ httpRequest.off('dataEnd');
 
 ```js
 httpRequest.on('dataProgress', (data) => {
-    console.info('dataProgress:' + JSON.stringify(data));
+  console.info('dataProgress:' + JSON.stringify(data));
 });
 ```
 
@@ -778,8 +784,8 @@ off(type: 'dataProgress', callback?: Callback\<{ receiveSize: number, totalSize:
 
 取消订阅HTTP流式响应数据接收进度事件。
 
->**说明：**
->可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
@@ -795,6 +801,7 @@ off(type: 'dataProgress', callback?: Callback\<{ receiveSize: number, totalSize:
 ```js
 httpRequest.off('dataProgress');
 ```
+
 ## HttpRequestOptions
 
 发起请求可选参数的类型和取值范围。
@@ -803,13 +810,13 @@ httpRequest.off('dataProgress');
 
 | 名称         | 类型                                          | 必填 | 说明                                                         |
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
-| method         | [RequestMethod](#requestmethod)               | 否   | 请求方式。                                                   |
-| extraData      | string \| Object  \| ArrayBuffer<sup>6+</sup> | 否   | 发送请求的额外数据。<br />- 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content。<br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求的参数补充，参数内容会拼接到URL中进行发送。<sup>6+</sup><br />- 开发者传入string对象，开发者需要自行编码，将编码后的string传入。<sup>6+</sup> |
-| expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | 否   | 指定返回数据的类型。如果设置了此参数，系统将优先返回指定的类型。 |
+| method         | [RequestMethod](#requestmethod)               | 否   | 请求方式，默认为GET。                                                   |
+| extraData      | string<sup>6+</sup> \| Object<sup>6+</sup> \| ArrayBuffer<sup>8+</sup> | 否   | 发送请求的额外数据，默认无此字段。<br />- 当HTTP请求为POST、PUT等方法时，此字段为HTTP请求的content，以UTF-8编码形式作为请求体。当'Content-Type'为'application/x-www-form-urlencoded'时，请求提交的信息主体数据应在key和value进行URL转码后按照键值对"key1=value1&key2=value2&key3=value3"的方式进行编码。<sup>6+</sup><br />- 当HTTP请求为GET、OPTIONS、DELETE、TRACE、CONNECT等方法时，此字段为HTTP请求参数的补充。开发者需传入Encode编码后的string类型参数，Object类型的参数无需预编码，参数内容会拼接到URL中进行发送；ArrayBuffer类型的参数不会做拼接处理。<sup>6+</sup> |
+| expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | 否   | 指定返回数据的类型，默认无此字段。如果设置了此参数，系统将优先返回指定的类型。 |
 | usingCache<sup>9+</sup>      | boolean                         | 否   | 是否使用缓存，默认为true。   |
-| priority<sup>9+</sup>        | number                          | 否   | 优先级，范围\[1,1000]，默认是1。                           |
+| priority<sup>9+</sup>        | number                          | 否   | 优先级，范围[1,1000]，默认是1。                           |
 | header                       | Object                          | 否   | HTTP请求头字段。默认{'Content-Type': 'application/json'}。   |
-| readTimeout                  | number                          | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。              |
+| readTimeout                  | number                          | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。<br />设置为0表示不会出现超时情况。 |
 | connectTimeout               | number                          | 否   | 连接超时时间。单位为毫秒（ms），默认为60000ms。              |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | 否   | 使用协议。默认值由系统自动指定。                             |
 | usingProxy<sup>10+</sup>     | boolean \| Object               | 否   | 是否使用HTTP代理，默认为false，不使用代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理。<br />- 当usingProxy为object类型时，使用指定网络代理。                                |
@@ -883,10 +890,10 @@ request方法回调函数的返回值类型。
 
 | 名称               | 类型                                         | 必填 | 说明                                                         |
 | -------------------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| result               | string \| Object \| ArrayBuffer<sup>6+</sup> | 是   | HTTP请求根据响应头中Content-type类型返回对应的响应格式内容：<br />- application/json：返回JSON格式的字符串，如需HTTP响应具体内容，需开发者自行解析<br />- application/octet-stream：ArrayBuffer<br />- 其他：string |
+| result               | string<sup>6+</sup> \| Object<sup>deprecated 8+</sup> \| ArrayBuffer<sup>8+</sup> | 是   | HTTP请求根据响应头中Content-type类型返回对应的响应格式内容：<br />- application/json：返回JSON格式的字符串，如需HTTP响应具体内容，需开发者自行解析<br />- application/octet-stream：ArrayBuffer<br />- 其他：string |
 | resultType<sup>9+</sup> | [HttpDataType](#httpdatatype9)             | 是   | 返回值类型。                           |
 | responseCode         | [ResponseCode](#responsecode) \| number      | 是   | 回调函数执行成功时，此字段为[ResponseCode](#responsecode)。若执行失败，错误码将会从AsyncCallback中的err字段返回。 |
-| header               | Object                                       | 是   | 发起HTTP请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- Content-Type：header['Content-Type']；<br />- Status-Line：header['Status-Line']；<br />- Date：header.Date/header['Date']；<br />- Server：header.Server/header['Server']； |
+| header               | Object                                       | 是   | 发起HTTP请求返回来的响应头。当前返回的是JSON格式字符串，如需具体字段内容，需开发者自行解析。常见字段及解析方式如下：<br/>- content-type：header['content-type']；<br />- status-line：header['status-line']；<br />- date：header.date/header['date']；<br />- server：header.server/header['server']； |
 | cookies<sup>8+</sup> | string                                       | 是   | 服务器返回的 cookies。                                       |
 
 ## http.createHttpResponseCache<sup>9+</sup>
@@ -913,6 +920,7 @@ createHttpResponseCache(cacheSize?: number): HttpResponseCache
 
 ```js
 import http from '@ohos.net.http';
+
 let httpResponseCache = http.createHttpResponseCache();
 ```
 
@@ -995,6 +1003,7 @@ httpResponseCache.delete(err => {
   console.info('delete success');
 });
 ```
+
 ### delete<sup>9+</sup>
 
 delete(): Promise\<void\>

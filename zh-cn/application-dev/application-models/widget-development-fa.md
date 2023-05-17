@@ -121,48 +121,48 @@ FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片�
    
    ```ts
    export default {
-       onCreate(want) {
-           console.info('FormAbility onCreate');
-           // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
-           let obj = {
-               "title": "titleOnCreate",
-               "detail": "detailOnCreate"
-           };
-           let formData = formBindingData.createFormBindingData(obj);
-           return formData;
-       },
-       onCastToNormal(formId) {
-           // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
-           console.info('FormAbility onCastToNormal');
-       },
-       onUpdate(formId) {
-           // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
-           console.info('FormAbility onUpdate');
-           let obj = {
-               "title": "titleOnUpdate",
-               "detail": "detailOnUpdate"
-           };
-           let formData = formBindingData.createFormBindingData(obj);
-           formProvider.updateForm(formId, formData).catch((error) => {
-               console.info('FormAbility updateForm, error:' + JSON.stringify(error));
-           });
-       },
-       onVisibilityChange(newStatus) {
-           // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
-           console.info('FormAbility onVisibilityChange');
-       },
-       onEvent(formId, message) {
-           // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
-           console.info('FormAbility onEvent');
-       },
-       onDestroy(formId) {
-           // 删除卡片实例数据
-           console.info('FormAbility onDestroy');
-       },
-       onAcquireFormState(want) {
-           console.info('FormAbility onAcquireFormState');
-           return formInfo.FormState.READY;
-       },
+     onCreate(want) {
+       console.info('FormAbility onCreate');
+       // 使用方创建卡片时触发，提供方需要返回卡片数据绑定类
+       let obj = {
+         "title": "titleOnCreate",
+         "detail": "detailOnCreate"
+       };
+       let formData = formBindingData.createFormBindingData(obj);
+       return formData;
+     },
+     onCastToNormal(formId) {
+       // 使用方将临时卡片转换为常态卡片触发，提供方需要做相应的处理
+       console.info('FormAbility onCastToNormal');
+     },
+     onUpdate(formId) {
+       // 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新
+       console.info('FormAbility onUpdate');
+       let obj = {
+         "title": "titleOnUpdate",
+         "detail": "detailOnUpdate"
+       };
+       let formData = formBindingData.createFormBindingData(obj);
+       formProvider.updateForm(formId, formData).catch((error) => {
+         console.info('FormAbility updateForm, error:' + JSON.stringify(error));
+       });
+     },
+     onVisibilityChange(newStatus) {
+       // 使用方发起可见或者不可见通知触发，提供方需要做相应的处理，仅系统应用生效
+       console.info('FormAbility onVisibilityChange');
+     },
+     onEvent(formId, message) {
+       // 若卡片支持触发事件，则需要重写该方法并实现对事件的触发
+       console.info('FormAbility onEvent');
+     },
+     onDestroy(formId) {
+       // 删除卡片实例数据
+       console.info('FormAbility onDestroy');
+     },
+     onAcquireFormState(want) {
+       console.info('FormAbility onAcquireFormState');
+       return formInfo.FormState.READY;
+     },
    }
    ```
 
@@ -186,15 +186,15 @@ FA卡片开发，即基于[FA模型](fa-model-development-overview.md)的卡片�
 
   
   ```json
-     "js": [{
-         "name": "widget",
-         "pages": ["pages/index/index"],
-         "window": {
-             "designWidth": 720,
-             "autoDesignWidth": true
-         },
-         "type": "form"
-     }]
+  "js": [{
+     "name": "widget",
+     "pages": ["pages/index/index"],
+     "window": {
+         "designWidth": 720,
+         "autoDesignWidth": true
+     },
+     "type": "form"
+  }]
   ```
 
 - abilities模块，用于对应卡片的FormAbility，内部字段结构说明：
@@ -273,7 +273,7 @@ async function storeFormInfo(formId: string, formName: string, tempFlag: boolean
     }
 }
 
-// ...
+...
     onCreate(want) {
         console.info('FormAbility onCreate');
 
@@ -291,7 +291,7 @@ async function storeFormInfo(formId: string, formName: string, tempFlag: boolean
         let formData = formBindingData.createFormBindingData(obj);
         return formData;
     }
-// ...
+...
 ```
 
 且需要适配onDestroy卡片删除通知接口，在其中实现卡片实例数据的删除。
@@ -311,17 +311,17 @@ async function deleteFormInfo(formId: string) {
     }
 }
 
-// ...
+...
     onDestroy(formId) {
         console.info('FormAbility onDestroy');
         // 删除之前持久化的卡片实例数据
         // 此接口请根据实际情况实现，具体请参考：FormExtAbility Stage模型卡片实例
         deleteFormInfo(formId);
     }
-// ...
+...
 ```
 
-具体的持久化方法可以参考[轻量级数据存储开发指导](../database/database-preference-guidelines.md)。
+具体的持久化方法可以参考[数据管理开发指导](../database/app-data-persistence-overview.md)。
 
 需要注意的是，卡片使用方在请求卡片时传递给提供方应用的Want数据中存在临时标记字段，表示此次请求的卡片是否为临时卡片：
 
@@ -361,7 +361,7 @@ onUpdate(formId) {
 ![widget-development-fa](figures/widget-development-fa.png)
 
 > **说明：**
-> 当前仅支持JS扩展的类Web开发范式来实现卡片的UI界面。
+> FA模型当前仅支持JS扩展的类Web开发范式来实现卡片的UI。
 
 - HML：使用类Web范式的组件描述卡片的页面信息。
   
@@ -540,11 +540,3 @@ onUpdate(formId) {
     }
   }
   ```
-
-
-## 相关实例
-
-针对FA模型卡片提供方的开发，有以下相关实例可供参考：
-
-
-- [FaModel：FA模型（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/FaModel)

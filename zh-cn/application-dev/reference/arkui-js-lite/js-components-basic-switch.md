@@ -83,14 +83,14 @@
 // xxx.js
 export default {
   data: {
-      title: '开启'
+      title: 'on'
   },
   switchChange(e){
       console.log(e.checked);
       if(e.checked){
-          this.title="开启"
+          this.title="on"
       }else{
-          this.title="关闭"
+          this.title="off"
       }
   }
 }

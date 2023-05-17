@@ -47,7 +47,7 @@ ability支持单实例和多实例两种启动模式。
 
 | 启动模式     | 描述     |说明             |
 | ----------- | -------  |---------------- |
-| standard    | 多实例   | 每次startAbility都会启动一个新的实例。 |
+| standard | 多实例   | 每次startAbility都会启动一个新的实例。 |
 | singleton   | 单实例   | 系统中只存在唯一一个实例，startAbility时，如果已存在，则复用系统中的唯一一个实例。 |
 
 缺省情况下是singleton模式。

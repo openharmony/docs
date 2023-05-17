@@ -54,8 +54,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## TouchType
 
-Since API version 9, this API is supported in ArkTS widgets.
-
 | Name  | Description                          |
 | ------ | ------------------------------ |
 | Down   | A finger is pressed.              |
@@ -64,8 +62,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Cancel | A touch event is canceled.          |
 
 ## MouseButton
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 | Name   | Description            |
 | ------- | ---------------- |
@@ -77,8 +73,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 | None    | No button.        |
 
 ## MouseAction
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 | Name   | Description          |
 | ------- | -------------- |
@@ -109,7 +103,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## AnimationStatus
 
-Since API version 9, this API is supported in ArkTS widgets.
+Since API version 10, this API is supported in ArkTS widgets.
 
 | Name   | Description              |
 | ------- | ------------------ |
@@ -120,7 +114,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## FillMode
 
-Since API version 9, this API is supported in ArkTS widgets.
+Since API version 10, this API is supported in ArkTS widgets.
 
 | Name     | Description                                                        |
 | --------- | ------------------------------------------------------------ |
@@ -142,16 +136,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## KeyType
 
-Since API version 9, this API is supported in ArkTS widgets.
-
 | Name| Description      |
 | ---- | ---------- |
 | Down | The key is pressed.|
 | Up   | The key is released.|
 
 ## KeySource
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 | Name    | Description                |
 | -------- | -------------------- |
@@ -171,8 +161,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 | End      | End position in the horizontal direction.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## Week
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 | Name    | Description                  |
 | -------- | ---------------------- |
@@ -237,12 +225,10 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Name  | Description                                              |
 | ------ | -------------------------------------------------- |
 | All    | The transition takes effect in all scenarios.|
-| Insert | The transition takes effect when a component is inserted.    |
-| Delete | The transition takes effect when a component is deleted.    |
+| Insert | The transition takes effect when a component is inserted or displayed.|
+| Delete | The transition takes effect when a component is deleted or hidden.|
 
 ## RelateType
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Description                             |
 | ------ | ------------------------------- |
@@ -307,12 +293,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name    | Description                                                        |
 | -------- | ------------------------------------------------------------ |
-| Auto     | The default configuration in the flex container is used.                                    |
-| Start    | The elements are in the flex container, top-aligned in the cross-axis direction.                      |
-| Center   | The elements are in the flex container, centered in the cross-axis direction.                      |
-| End      | The elements are in the flex container, bottom-aligned in the cross-axis direction.                      |
-| Stretch  | The elements are in the flex container, stretched and padded in the cross-axis direction. If the size is not set, the elements are stretched to the container size.|
-| Baseline | The elements are in the flex container, text baseline aligned in the cross-axis direction.                  |
+| Auto     | The default configuration of the container (**\<Flex>** or **\<GridRow>**) is used.                                    |
+| Start    | The items in the container (**\<Flex>** or **\<GridRow>**) are aligned with the cross-start edge.                      |
+| Center   | The items in the container (**\<Flex>** or **\<GridRow>**) are centered along the cross axis.                      |
+| End      | The items in the container (**\<Flex>** or **\<GridRow>**) are aligned with the cross-end edge.                      |
+| Stretch  | The items in the container (**\<Flex>** or **\<GridRow>**) are stretched and padded along the cross axis. If the flex container has the **Wrap** attribute set to **FlexWrap.Wrap** or **FlexWrap.WrapReverse**, the items are stretched to the cross size of the widest element on the current row or column. In other cases, the items with no size set are stretched to the container size.|
+| Baseline | The items in the container (**\<Flex>** or **\<GridRow>**) are aligned in such a manner that their text baselines are aligned along the cross axis.                  |
 
 ## FlexDirection
 
@@ -383,8 +369,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 | None        | No gradient.      |
 
 ## SharedTransitionEffectType
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 | Name       | Description      |
 | ----------- | ---------- |
@@ -458,16 +442,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## ResponseType<sup>8+</sup>
 
-Since API version 9, this API is supported in ArkTS widgets.
-
 | Name      | Description                      |
 | ---------- | -------------------------- |
 | LongPress  | The menu is displayed when the component is long-pressed.    |
 | RightClick | The menu is displayed when the component is right-clicked.|
 
 ## HoverEffect<sup>8+</sup>
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 | Name     | Description                        |
 | --------- | ---------------------------- |
@@ -477,8 +457,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 | None      | No effect.                |
 
 ## Placement<sup>8+</sup>
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 | Name         | Description                                                        |
 | ------------- | ------------------------------------------------------------ |
@@ -507,8 +485,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## HitTestMode<sup>9+</sup>
 
-Since API version 9, this API is supported in ArkTS widgets.
-
 | Name       | Description                |
 | ----------- | -------------------- |
 | Default     | Both the node and its child node respond to the hit test of a touch event, but its sibling node is blocked from the hit test.  |
@@ -520,30 +496,30 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 This API is supported in ArkTS widgets.
 
-  | Name| Description|
-  | ------- | ---------- |
-  | Thin   | Thin material.    |
-  | Regular | Regular material. |
-  | Thick   | Thick material.      |
-  | BackgroundThin | Material that creates the minimum depth of field effect.|
-  | BackgroundRegular | Material that creates a medium shallow depth of field effect.|
-  | BackgroundThick | Material that creates a high shallow depth of field effect.|
-  | BackgroundUltraThick | Material that creates the maximum depth of field effect.|
- 
+| Name| Description|
+| ------- | ---------- |
+| Thin   | Thin material.    |
+| Regular | Regular material. |
+| Thick   | Thick material.      |
+| BackgroundThin | Material that creates the minimum depth of field effect.|
+| BackgroundRegular | Material that creates a medium shallow depth of field effect.|
+| BackgroundThick | Material that creates a high shallow depth of field effect.|
+| BackgroundUltraThick | Material that creates the maximum depth of field effect.|
+
 ## ThemeColorMode<sup>10+</sup>
 
-  | Name  | Description     |
-  | ------- | ---------- |
-  | System | Following the system color mode.|
-  | Light | Light color mode.|
-  | Dark | Dark color mode.|
+| Name  | Description     |
+| ------- | ---------- |
+| System | Following the system color mode.|
+| Light | Light color mode.|
+| Dark | Dark color mode.|
 
 ## AdaptiveColor<sup>10+</sup>
 
-  | Name  | Description     |
-  | ------- | ----------- |
-  | Default | Adaptive color mode is not used. The default color is used as the mask color.|
-  | Average | Adaptive color mode is used. The average color value of the color picking area is used as the mask color.|
+| Name  | Description     |
+| ------- | ----------- |
+| Default | Adaptive color mode is not used. The default color is used as the mask color.|
+| Average | Adaptive color mode is used. The average color value of the color picking area is used as the mask color.|
 
 ## TextHeightAdaptivePolicy<sup>10+</sup>
 

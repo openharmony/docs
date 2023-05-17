@@ -18,58 +18,58 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
-| -------- | -------- | -------- | -------- |
-| barPosition | BarPosition | 否 | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start |
-| index | number | 否 | 设置初始页签索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>设置不同值时，默认生效切换动效，可以设置animationDuration为0关闭动画。 |
-| controller | [TabsController](#tabscontroller) | 否 | 设置Tabs控制器。 |
+| 参数名      | 参数类型                          | 必填 | 参数描述                                                     |
+| ----------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| barPosition | BarPosition                       | 否   | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start           |
+| index       | number                            | 否   | 设置初始页签索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>设置不同值时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| controller  | [TabsController](#tabscontroller) | 否   | 设置Tabs控制器。                                             |
 
 ## BarPosition枚举说明
 
-| 名称 | 描述 |
-| -------- | -------- |
+| 名称    | 描述                                       |
+| ----- | ---------------------------------------- |
 | Start | vertical属性方法设置为true时，页签位于容器左侧；vertical属性方法设置为false时，页签位于容器顶部。 |
-| End | vertical属性方法设置为true时，页签位于容器右侧；vertical属性方法设置为false时，页签位于容器底部。 |
+| End   | vertical属性方法设置为true时，页签位于容器右侧；vertical属性方法设置为false时，页签位于容器底部。 |
 
 
 ## 属性
 
 除支持[通用属性](ts-universal-attributes-size.md)外，还支持以下属性：
 
-| 名称 | 参数类型 | 描述 |
-| -------- | -------- | -------- |
-| vertical          | boolean | 设置为false是为横向Tabs，设置为true时为纵向Tabs。<br/>默认值：false |
-| scrollable        | boolean | 设置为true时可以通过滑动页面进行页面切换，为false时不可滑动切换页面。<br/>默认值：true |
-| barMode           | BarMode | TabBar布局模式，具体描述见BarMode枚举说明。<br/>默认值：BarMode.Fixed |
-| barWidth          | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的宽度值。<br/>**说明：** <br/>设置为小于0或大于Tabs宽度值时，按默认值显示。     |
-| barHeight         | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的高度值。<br/>**说明：** <br/>设置为小于0或大于Tabs宽度值时，按默认值显示。     |
-| animationDuration | number | TabContent滑动动画时长。不设置时，点击切换页签无动画，滑动切换有动画；设置时，点击切换和滑动切换都有动画。<br/>默认值：200 <br/>**说明：** <br/>设置为小于0或百分比时，按默认值显示。|
-| divider<sup>10+</sup> |  [DividerStyle](#dividerstyle10对象说明) \| null | 用于设置区分TabBar和TabContent的分割线样式设置分割线样式，默认不显示分割线。<br/> DividerStyle: 分割线的样式；<br/> null: 不显示分割线。 |
-| FadingEdge<sup>10+</sup> | boolean | 设置页签超过容器宽度时是否渐隐消失<br />默认值：true         |
+| 名称                       | 参数类型                                     | 描述                                       |
+| ------------------------ | ---------------------------------------- | ---------------------------------------- |
+| vertical                 | boolean                                  | 设置为false是为横向Tabs，设置为true时为纵向Tabs。<br/>默认值：false |
+| scrollable               | boolean                                  | 设置为true时可以通过滑动页面进行页面切换，为false时不可滑动切换页面。<br/>默认值：true |
+| barMode                  | BarMode                                  | TabBar布局模式，具体描述见BarMode枚举说明。<br/>默认值：BarMode.Fixed |
+| barWidth                 | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的宽度值。<br/>**说明：** <br/>设置为小于0或大于Tabs宽度值时，按默认值显示。 |
+| barHeight                | number&nbsp;\|&nbsp;Length<sup>8+</sup>  | TabBar的高度值。<br/>**说明：** <br/>设置为小于0或大于Tabs宽度值时，按默认值显示。 |
+| animationDuration        | number                                   | TabContent滑动动画时长。不设置时，点击切换页签无动画，滑动切换有动画；设置时，点击切换和滑动切换都有动画。<br/>默认值：300 <br/>**说明：** <br/>设置为小于0或百分比时，按默认值显示。 |
+| divider<sup>10+</sup>    | [DividerStyle](#dividerstyle10对象说明) \| null | 用于设置区分TabBar和TabContent的分割线样式设置分割线样式，默认不显示分割线。<br/> DividerStyle: 分割线的样式；<br/> null: 不显示分割线。 |
+| fadingEdge<sup>10+</sup> | boolean                                  | 设置页签超过容器宽度时是否渐隐消失<br />默认值：true          |
 
 ## DividerStyle<sup>10+</sup>对象说明
 
-| 名称 | 参数类型 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- |
-| strokeWidth | [Length](ts-types.md#length) | 是 | 分割线的线宽。 |
-| color | [ResourceColor](ts-types.md#resourcecolor) | 否 | 分割线的颜色。<br/>默认值：#33182431 |
-| startMargin | [Length](ts-types.md#length) | 否 | 分割线与侧边栏顶端的距离。<br/>默认值：0.0<br/>单位：vp |
-| endMargin | [Length](ts-types.md#length) | 否 | 分割线与侧边栏底端的距离。<br/>默认值：0.0<br/>单位：vp |
+| 名称          | 参数类型                                     | 必填   | 描述                                  |
+| ----------- | ---------------------------------------- | ---- | ----------------------------------- |
+| strokeWidth | [Length](ts-types.md#length)             | 是    | 分割线的线宽。                             |
+| color       | [ResourceColor](ts-types.md#resourcecolor) | 否    | 分割线的颜色。<br/>默认值：#33182431           |
+| startMargin | [Length](ts-types.md#length)             | 否    | 分割线与侧边栏顶端的距离。<br/>默认值：0.0<br/>单位：vp |
+| endMargin   | [Length](ts-types.md#length)             | 否    | 分割线与侧边栏底端的距离。<br/>默认值：0.0<br/>单位：vp |
 
 ## BarMode枚举说明
 
-| 名称 | 描述 |
-| -------- | -------- |
+| 名称         | 描述                                       |
+| ---------- | ---------------------------------------- |
 | Scrollable | 每一个TabBar均使用实际布局宽度，超过总长度（横向Tabs的barWidth，纵向Tabs的barHeight）后可滑动。 |
-| Fixed | 所有TabBar平均分配barWidth宽度（纵向时平均分配barHeight高度）。 |
+| Fixed      | 所有TabBar平均分配barWidth宽度（纵向时平均分配barHeight高度）。 |
 
 ## 事件
 
 除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称 | 功能描述 |
-| -------- | -------- |
-| onChange(event:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void) | Tab页签切换后触发的事件。<br>-&nbsp;index：当前显示的index索引，索引从0开始计算。<br/>触发该事件的条件：<br/>1、TabContent支持滑动时，组件触发滑动时触发。<br/>2、通过[控制器](#tabscontroller)API接口调用。<br/>3、通过[状态变量](../../quick-start/arkts-state-mgmt-page-level.md)构造的属性值进行修改。<br/>4、通过页签处点击触发。 |
+| 名称                                       | 功能描述                                     |
+| ---------------------------------------- | ---------------------------------------- |
+| onChange(event:&nbsp;(index:&nbsp;number)&nbsp;=&gt;&nbsp;void) | Tab页签切换后触发的事件。<br>-&nbsp;index：当前显示的index索引，索引从0开始计算。<br/>触发该事件的条件：<br/>1、TabContent支持滑动时，组件触发滑动时触发。<br/>2、通过[控制器](#tabscontroller)API接口调用。<br/>3、通过[状态变量](../../quick-start/arkts-state.md)构造的属性值进行修改。<br/>4、通过页签处点击触发。 |
 
 ## TabsController
 
@@ -89,9 +89,9 @@ changeIndex(value: number): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述 |
-| -------- | -------- | -------- | -------- |
-| value | number | 是 | 页签在Tabs里的索引值，索引值从0开始。<br/>**说明：** <br/>设置小于0或大于最大数量的值时，该事件失效。 |
+| 参数名   | 参数类型   | 必填   | 参数描述                                     |
+| ----- | ------ | ---- | ---------------------------------------- |
+| value | number | 是    | 页签在Tabs里的索引值，索引值从0开始。<br/>**说明：** <br/>设置小于0或大于最大数量的值时，该事件失效。 |
 
 
 ## 示例

@@ -154,7 +154,7 @@ The basic dependency packages include:
    import featureAbility from '@ohos.ability.featureAbility'
    import ohos_data_ability from '@ohos.data.dataAbility'
    import ohos_data_rdb from '@ohos.data.rdb'
-
+   
    var urivar = "dataability:///com.ix.DataAbility"
    var DAHelper = featureAbility.acquireDataAbilityHelper(
     urivar

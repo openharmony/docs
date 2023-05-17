@@ -57,7 +57,7 @@ Defines a rectangle.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-| Name    | Type  | Readable  | Writable  | Description       |
+| Name    | Type    | Readable  | Writable  | Description       |
 | ------ | ------ | ---- | ---- | --------- |
 | left   | number | Yes   | No   | Left boundary of the rectangle.|
 | top    | number | Yes   | No   | Top boundary of the rectangle.|
@@ -85,14 +85,14 @@ Sets the concerned target bundle. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name        | Type               | Mandatory  | Description      |
+| Name        | Type                 | Mandatory  | Description      |
 | ----------- | ------------------- | ---- | -------- |
 | targetNames | Array&lt;string&gt; | Yes   | Name of the target bundle.|
 
 **Return value**
 
-| Type                    | Description                   |
-| ---------------------- | --------------------- |
+| Type                 | Description              |
+| ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
@@ -120,9 +120,9 @@ Sets the concerned target bundle. This API uses an asynchronous callback to retu
 
 **Parameters**
 
-| Name        | Type               | Mandatory  | Description      |
-| ----------- | ------------------- | ---- | -------- |
-| targetNames | Array&lt;string&gt; | Yes   | Name of the target bundle.|
+| Name        | Type                       | Mandatory  | Description                                      |
+| ----------- | ------------------------- | ---- | ---------------------------------------- |
+| targetNames | Array&lt;string&gt;       | Yes   | Name of the target bundle.                                |
 | callback    | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation fails, **error** that contains data is returned.|
 
 **Example**
@@ -152,7 +152,7 @@ Obtains the focus element. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name                 | Type   | Mandatory  | Description                 |
+| Name                 | Type     | Mandatory  | Description                 |
 | -------------------- | ------- | ---- | ------------------- |
 | isAccessibilityFocus | boolean | No   | Whether the obtained focus element is an accessibility focus. The default value is **false**.|
 
@@ -166,8 +166,8 @@ Obtains the focus element. This API uses a promise to return the result.
 
 For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
 
-| ID| Error Message|
-| ------- | -------------------------------- |
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
 | 9300003 | Do not have accessibility right for this operation. |
 
 **Example**
@@ -196,16 +196,16 @@ Obtains the focus element. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback    | AsyncCallback&lt;AccessibilityElement&gt; | Yes   | Callback used to return the current focus element.|
+| Name     | Type                                      | Mandatory  | Description               |
+| -------- | ---------------------------------------- | ---- | ----------------- |
+| callback | AsyncCallback&lt;AccessibilityElement&gt; | Yes   | Callback used to return the current focus element.|
 
 **Error codes**
 
 For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
 
-| ID| Error Message|
-| ------- | -------------------------------- |
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
 | 9300003 | Do not have accessibility right for this operation. |
 
 **Example**
@@ -236,10 +236,10 @@ Obtains the focus element. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-| Name                 | Type   | Mandatory  | Description                 |
-| -------------------- | ------- | ---- | ------------------- |
-| isAccessibilityFocus | boolean | Yes   | Whether the obtained focus element is an accessibility focus.|
-| callback    | AsyncCallback&lt;AccessibilityElement&gt; | Yes   | Callback used to return the current focus element.|
+| Name                 | Type                                      | Mandatory  | Description               |
+| -------------------- | ---------------------------------------- | ---- | ----------------- |
+| isAccessibilityFocus | boolean                                  | Yes   | Whether the obtained focus element is an accessibility focus.   |
+| callback             | AsyncCallback&lt;AccessibilityElement&gt; | Yes   | Callback used to return the current focus element.|
 
 **Example**
 
@@ -269,8 +269,8 @@ Obtains the root element of a window. This API uses a promise to return the resu
 
 **Parameters**
 
-| Name                 | Type   | Mandatory  | Description                 |
-| -------------------- | ------- | ---- | ------------------- |
+| Name     | Type    | Mandatory  | Description                    |
+| -------- | ------ | ---- | ---------------------- |
 | windowId | number | No   | Window for which you want to obtain the root element. If this parameter is not specified, it indicates the current active window.|
 
 **Return value**
@@ -283,8 +283,8 @@ Obtains the root element of a window. This API uses a promise to return the resu
 
 For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
 
-| ID| Error Message|
-| ------- | -------------------------------- |
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
 | 9300003 | Do not have accessibility right for this operation. |
 
 **Example**
@@ -313,16 +313,16 @@ Obtains the root element of a window. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback    | AsyncCallback&lt;AccessibilityElement&gt; | Yes   | Callback used to return the root element.|
+| Name     | Type                                      | Mandatory  | Description                |
+| -------- | ---------------------------------------- | ---- | ------------------ |
+| callback | AsyncCallback&lt;AccessibilityElement&gt; | Yes   | Callback used to return the root element.|
 
 **Error codes**
 
 For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
 
-| ID| Error Message|
-| ------- | -------------------------------- |
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
 | 9300003 | Do not have accessibility right for this operation. |
 
 **Example**
@@ -353,17 +353,17 @@ Obtains the root element of a window. This API uses an asynchronous callback to 
 
 **Parameters**
 
-| Name                 | Type   | Mandatory  | Description                 |
-| -------------------- | ------- | ---- | ------------------- |
-| windowId | number | Yes   | Window for which you want to obtain the root element. If this parameter is not specified, it indicates the current active window.|
-| callback    | AsyncCallback&lt;AccessibilityElement&gt; | Yes   | Callback used to return the root element.|
+| Name     | Type                                      | Mandatory  | Description                    |
+| -------- | ---------------------------------------- | ---- | ---------------------- |
+| windowId | number                                   | Yes   | Window for which you want to obtain the root element. If this parameter is not specified, it indicates the current active window.|
+| callback | AsyncCallback&lt;AccessibilityElement&gt; | Yes   | Callback used to return the root element.    |
 
 **Error codes**
 
 For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
 
-| ID| Error Message|
-| ------- | -------------------------------- |
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
 | 9300003 | Do not have accessibility right for this operation. |
 
 **Example**
@@ -395,22 +395,22 @@ Obtains the list of windows on a display. This API uses a promise to return the 
 
 **Parameters**
 
-| Name                 | Type   | Mandatory  | Description                 |
-| -------------------- | ------- | ---- | ------------------- |
+| Name      | Type    | Mandatory  | Description                   |
+| --------- | ------ | ---- | --------------------- |
 | displayId | number | No   | ID of the display from which the window information is obtained. If this parameter is not specified, it indicates the default main display.|
 
 **Return value**
 
-| Type                                 | Description                    |
-| ----------------------------------- | ---------------------- |
+| Type                                      | Description                    |
+| ---------------------------------------- | ---------------------- |
 | Promise&lt;Array&lt;AccessibilityElement&gt;&gt; | Promise used to return the window list.|
 
 **Error codes**
 
 For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
 
-| ID| Error Message|
-| ------- | -------------------------------- |
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
 | 9300003 | Do not have accessibility right for this operation. |
 
 **Example**
@@ -439,16 +439,16 @@ Obtains the list of windows on a display. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback    | AsyncCallback&lt;Array&lt;AccessibilityElement&gt;&gt; | Yes   | Callback used to return the window list.|
+| Name     | Type                                      | Mandatory  | Description               |
+| -------- | ---------------------------------------- | ---- | ----------------- |
+| callback | AsyncCallback&lt;Array&lt;AccessibilityElement&gt;&gt; | Yes   | Callback used to return the window list.|
 
 **Error codes**
 
 For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
 
-| ID| Error Message|
-| ------- | -------------------------------- |
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
 | 9300003 | Do not have accessibility right for this operation. |
 
 **Example**
@@ -479,17 +479,17 @@ Obtains the list of windows on a display. This API uses an asynchronous callback
 
 **Parameters**
 
-| Name                 | Type   | Mandatory  | Description                 |
-| -------------------- | ------- | ---- | ------------------- |
-| displayId | number | Yes   | ID of the display from which the window information is obtained. If this parameter is not specified, it indicates the default main display.|
-| callback    | AsyncCallback&lt;Array&lt;AccessibilityElement&gt;&gt; | Yes   | Callback used to return the window list.|
+| Name      | Type                                      | Mandatory  | Description                   |
+| --------- | ---------------------------------------- | ---- | --------------------- |
+| displayId | number                                   | Yes   | ID of the display from which the window information is obtained. If this parameter is not specified, it indicates the default main display.|
+| callback  | AsyncCallback&lt;Array&lt;AccessibilityElement&gt;&gt; | Yes   | Callback used to return the window list.    |
 
 **Error codes**
 
 For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
 
-| ID| Error Message|
-| ------- | -------------------------------- |
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
 | 9300003 | Do not have accessibility right for this operation. |
 
 **Example**
@@ -521,22 +521,22 @@ Inject a gesture. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name        | Type                                    | Mandatory  | Description            |
-| ----------- | ---------------------------------------- | ---- | -------------- |
-| gesturePath | [GesturePath](js-apis-accessibility-GesturePath.md#gesturepath) | Yes   | Path of the gesture to inject.    |
+| Name        | Type                                      | Mandatory  | Description        |
+| ----------- | ---------------------------------------- | ---- | ---------- |
+| gesturePath | [GesturePath](js-apis-accessibility-GesturePath.md#gesturepath) | Yes   | Path of the gesture to inject.|
 
 **Return value**
 
-| Type                                 | Description                    |
-| ----------------------------------- | ---------------------- |
+| Type                 | Description              |
+| ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
 
-| ID| Error Message|
-| ------- | -------------------------------- |
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
 | 9300003 | Do not have accessibility right for this operation. |
 
 **Example**
@@ -569,17 +569,17 @@ Inject a gesture. This API uses an asynchronous callback to return the result.
 
 **Parameters**
 
-| Name        | Type                                    | Mandatory  | Description            |
-| ----------- | ---------------------------------------- | ---- | -------------- |
-| gesturePath | [GesturePath](js-apis-accessibility-GesturePath.md#gesturepath) | Yes   | Path of the gesture to inject.    |
-| callback    | AsyncCallback&lt;void&gt;                  | Yes   | Callback used to return the result.|
+| Name        | Type                                      | Mandatory  | Description                 |
+| ----------- | ---------------------------------------- | ---- | ------------------- |
+| gesturePath | [GesturePath](js-apis-accessibility-GesturePath.md#gesturepath) | Yes   | Path of the gesture to inject.         |
+| callback    | AsyncCallback&lt;void&gt;                | Yes   | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
 
-| ID| Error Message|
-| ------- | -------------------------------- |
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
 | 9300003 | Do not have accessibility right for this operation. |
 
 **Example**
@@ -620,8 +620,8 @@ Obtains all attribute names of this element. This API uses a promise to return t
 
 **Return value**
 
-| Type                                      | Description                      |
-| ---------------------------------------- | ------------------------ |
+| Type                           | Description                      |
+| ----------------------------- | ------------------------ |
 | Promise&lt;Array&lt;T&gt;&gt; | Promise used to return all attribute names of the element.|
 
 **Example**
@@ -646,9 +646,9 @@ Obtains all attribute names of this element. This API uses an asynchronous callb
 
 **Parameters**
 
-| Name        | Type                                    | Mandatory  | Description            |
-| ----------- | ---------------------------------------- | ---- | -------------- |
-| callback    | AsyncCallback&lt;Array&lt;T&gt;&gt;                  | Yes   | Callback used to return all attribute names of the element.|
+| Name     | Type                                 | Mandatory  | Description                 |
+| -------- | ----------------------------------- | ---- | ------------------- |
+| callback | AsyncCallback&lt;Array&lt;T&gt;&gt; | Yes   | Callback used to return all attribute names of the element.|
 
 **Example**
 
@@ -674,22 +674,22 @@ Obtains the attribute value based on an attribute name. This API uses a promise 
 
 **Parameters**
 
-| Name        | Type                                    | Mandatory  | Description            |
-| ----------- | ---------------------------------------- | ---- | -------------- |
-| attributeName | T | Yes   | Attribute name.    |
+| Name          | Type  | Mandatory  | Description      |
+| ------------- | ---- | ---- | -------- |
+| attributeName | T    | Yes   | Attribute name.|
 
 **Return value**
 
-| Type                                      | Description                      |
-| ---------------------------------------- | ------------------------ |
+| Type                                      | Description                         |
+| ---------------------------------------- | --------------------------- |
 | Promise&lt;ElementAttributeValues[T]&gt; | Promise used to return the attribute value.|
 
 **Error codes**
 
 For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
 
-| ID| Error Message|
-| ------- | -------------------------------- |
+| ID  | Error Message                         |
+| ------- | ----------------------------- |
 | 9300004 | This property does not exist. |
 
 **Example**
@@ -720,17 +720,17 @@ Obtains the attribute value based on an attribute name. This API uses an asynchr
 
 **Parameters**
 
-| Name        | Type                                    | Mandatory  | Description            |
-| ----------- | ---------------------------------------- | ---- | -------------- |
-| attributeName | T | Yes   | Attribute name.    |
-| callback    | AsyncCallback&lt;ElementAttributeValues[T]&gt;   | Yes   | Callback used to return the attribute value.|
+| Name          | Type                                      | Mandatory  | Description                    |
+| ------------- | ---------------------------------------- | ---- | ---------------------- |
+| attributeName | T                                        | Yes   | Attribute name.              |
+| callback      | AsyncCallback&lt;ElementAttributeValues[T]&gt; | Yes   | Callback used to return the attribute value.|
 
 **Error codes**
 
 For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
 
-| ID| Error Message|
-| ------- | -------------------------------- |
+| ID  | Error Message                         |
+| ------- | ----------------------------- |
 | 9300004 | This property does not exist. |
 
 **Example**
@@ -762,8 +762,8 @@ Obtains the names of all actions supported by this element. This API uses a prom
 
 **Return value**
 
-| Type                                      | Description                      |
-| ---------------------------------------- | ------------------------ |
+| Type                                | Description                        |
+| ---------------------------------- | -------------------------- |
 | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the names of all actions supported by the element.|
 
 **Example**
@@ -788,9 +788,9 @@ Obtains the names of all actions supported by this element. This API uses an asy
 
 **Parameters**
 
-| Name        | Type                                    | Mandatory  | Description            |
-| ----------- | ---------------------------------------- | ---- | -------------- |
-| callback    | AsyncCallback&lt;Array&lt;string&gt;&gt;   | Yes   | Callback used to return the names of all actions supported by the element.|
+| Name     | Type                                      | Mandatory  | Description                   |
+| -------- | ---------------------------------------- | ---- | --------------------- |
+| callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the names of all actions supported by the element.|
 
 **Example**
 
@@ -818,21 +818,21 @@ Performs an action based on the specified action name. This API uses a promise t
 
 | Name        | Type                                    | Mandatory  | Description            |
 | ----------- | ---------------------------------------- | ---- | -------------- |
-| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).
-| parameters | object | No   | Parameter required for performing the target action.    |
+| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action). |
+| parameters | object | No   | Parameters required for performing the target action. Not supported currently.    |
 
 **Return value**
 
-| Type                                      | Description                      |
-| ---------------------------------------- | ------------------------ |
+| Type                 | Description              |
+| ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
 For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
 
-| ID| Error Message|
-| ------- | -------------------------------- |
+| ID  | Error Message                         |
+| ------- | ----------------------------- |
 | 9300005 | This action is not supported. |
 
 **Example**
@@ -861,15 +861,15 @@ Performs an action based on the specified action name. This API uses an asynchro
 
 | Name        | Type                                    | Mandatory  | Description            |
 | ----------- | ---------------------------------------- | ---- | -------------- |
-| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).
+| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action). |
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
 
 For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
 
-| ID| Error Message|
-| ------- | -------------------------------- |
+| ID  | Error Message                         |
+| ------- | ----------------------------- |
 | 9300005 | This action is not supported. |
 
 **Example**
@@ -898,18 +898,18 @@ Performs an action based on the specified action name. This API uses an asynchro
 
 **Parameters**
 
-| Name        | Type                                    | Mandatory  | Description            |
-| ----------- | ---------------------------------------- | ---- | -------------- |
-| actionName | string | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).|
-| parameters | object | Yes   | Parameter required for performing the target action.    |
-| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
+| Name       | Type                       | Mandatory  | Description                                      |
+| ---------- | ------------------------- | ---- | ---------------------------------------- |
+| actionName | string                    | Yes   | Action name. For details, see [Action](./js-apis-accessibility.md#action).|
+| parameters | object                    | Yes   | Parameters required for performing the target action. Not supported currently.                 |
+| callback   | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.                       |
 
 **Error codes**
 
 For details about the error codes, see [Accessibility Error Codes](../errorcodes/errorcode-accessibility.md).
 
-| ID| Error Message|
-| ------- | -------------------------------- |
+| ID  | Error Message                         |
+| ------- | ----------------------------- |
 | 9300005 | This action is not supported. |
 
 **Example**
@@ -942,15 +942,15 @@ Queries the element information of the **content** type. This API uses a promise
 
 **Parameters**
 
-| Name        | Type                                    | Mandatory  | Description            |
-| ----------- | ---------------------------------------- | ---- | -------------- |
-| type | string | Yes   | Information type. The value is fixed at **'content'**.    |
-| condition | string | Yes   | Search criteria.    |
+| Name      | Type    | Mandatory  | Description                           |
+| --------- | ------ | ---- | ----------------------------- |
+| type      | string | Yes   | Information type. The value is fixed at **'content'**.|
+| condition | string | Yes   | Search criteria.                     |
 
 **Return value**
 
-| Type                                      | Description                      |
-| ---------------------------------------- | ------------------------ |
+| Type                                      | Description                           |
+| ---------------------------------------- | ----------------------------- |
 | Promise&lt;Array&lt;AccessibilityElement&gt;&gt; | Promise used to return the result.|
 
 **Example**
@@ -981,11 +981,11 @@ Queries the element information of the **content** type. This API uses an asynch
 
 **Parameters**
 
-| Name        | Type                                    | Mandatory  | Description            |
-| ----------- | ---------------------------------------- | ---- | -------------- |
-| type | string | Yes   | Information type. The value is fixed at **'content'**.    |
-| condition | string | Yes   | Search criteria.    |
-| callback | AsyncCallback&lt;Array&lt;AccessibilityElement&gt;&gt; | Yes   | Callback used to return the result.|
+| Name      | Type                                      | Mandatory  | Description                          |
+| --------- | ---------------------------------------- | ---- | ---------------------------- |
+| type      | string                                   | Yes   | Information type. The value is fixed at **'content'**.|
+| condition | string                                   | Yes   | Search criteria.                    |
+| callback  | AsyncCallback&lt;Array&lt;AccessibilityElement&gt;&gt; | Yes   | Callback used to return the result.    |
 
 **Example**
 
@@ -1017,15 +1017,15 @@ Queries the element information of the **focusType** type. This API uses a promi
 
 **Parameters**
 
-| Name        | Type                                    | Mandatory  | Description            |
-| ----------- | ---------------------------------------- | ---- | -------------- |
-| type | string | Yes   | Information type. The value is fixed at **'focusType'**.    |
-| condition | [FocusType](#focustype) | Yes   | Enumerates the focus types.    |
+| Name      | Type                     | Mandatory  | Description                                |
+| --------- | ----------------------- | ---- | ---------------------------------- |
+| type      | string                  | Yes   | Information type. The value is fixed at **'focusType'**.|
+| condition | [FocusType](#focustype) | Yes   | Enumerates the focus types.                      |
 
 **Return value**
 
-| Type                                      | Description                      |
-| ---------------------------------------- | ------------------------ |
+| Type                                 | Description                            |
+| ----------------------------------- | ------------------------------ |
 | Promise&lt;AccessibilityElement&gt; | Promise used to return the result.|
 
 **Example**
@@ -1056,11 +1056,11 @@ Queries the element information of the **focusType** type. This API uses an asyn
 
 **Parameters**
 
-| Name        | Type                                    | Mandatory  | Description            |
-| ----------- | ---------------------------------------- | ---- | -------------- |
-| type | string | Yes   | Information type. The value is fixed at **'focusType'**.    |
-| condition | [FocusType](#focustype) | Yes   | Enumerates the focus types.    |
-| callback | AsyncCallback&lt;AccessibilityElement&gt; | Yes   | Callback used to return the result.|
+| Name      | Type                                      | Mandatory  | Description                                |
+| --------- | ---------------------------------------- | ---- | ---------------------------------- |
+| type      | string                                   | Yes   | Information type. The value is fixed at **'focusType'**.|
+| condition | [FocusType](#focustype)                  | Yes   | Enumerates the focus types.                      |
+| callback  | AsyncCallback&lt;AccessibilityElement&gt; | Yes   | Callback used to return the result.         |
 
 **Example**
 
@@ -1092,15 +1092,15 @@ Queries the element information of the **focusDirection** type. This API uses a 
 
 **Parameters**
 
-| Name        | Type                                    | Mandatory  | Description            |
-| ----------- | ---------------------------------------- | ---- | -------------- |
-| type | string | Yes   | Information type. The value is fixed at **'focusDirection'**.    |
-| condition | [FocusDirection](#focusdirection) | Yes   | Enumerates the focus directions.    |
+| Name      | Type                               | Mandatory  | Description                                      |
+| --------- | --------------------------------- | ---- | ---------------------------------------- |
+| type      | string                            | Yes   | Information type. The value is fixed at **'focusDirection'**.|
+| condition | [FocusDirection](#focusdirection) | Yes   | Enumerates the focus directions.                          |
 
 **Return value**
 
-| Type                                      | Description                      |
-| ---------------------------------------- | ------------------------ |
+| Type                                 | Description                              |
+| ----------------------------------- | -------------------------------- |
 | Promise&lt;AccessibilityElement&gt; | Promise used to return the result.|
 
 **Example**
@@ -1131,11 +1131,11 @@ Queries the element information of the **focusDirection** type. This API uses an
 
 **Parameters**
 
-| Name        | Type                                    | Mandatory  | Description            |
-| ----------- | ---------------------------------------- | ---- | -------------- |
-| type | string | Yes   | Information type. The value is fixed at **'focusDirection'**.    |
-| condition | [FocusDirection](#focusdirection) | Yes   | Direction of the next focus element.    |
-| callback | AsyncCallback&lt;AccessibilityElement&gt; | Yes   | Callback used to return the result.|
+| Name      | Type                                      | Mandatory  | Description                                      |
+| --------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| type      | string                                   | Yes   | Information type. The value is fixed at **'focusDirection'**.|
+| condition | [FocusDirection](#focusdirection)        | Yes   | Direction of the next focus element.                          |
+| callback  | AsyncCallback&lt;AccessibilityElement&gt; | Yes   | Callback used to return the result.             |
 
 **Example**
 

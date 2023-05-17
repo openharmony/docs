@@ -15,7 +15,7 @@
 
 *Name the figures after the development board.*
 
-*Reference document: https://gitee.com/openharmony/docs/blob/master/en/device-dev/quick-start/quickstart-lite-introduction-hi3861.md*
+*Reference document: [Hi3861 Development Board](../../device-dev/quick-start/quickstart-appendix-hi3861.md))*
 
 ********
 ## Development Board Specifications

@@ -9,7 +9,7 @@
 | C standard library  | C11 standard library implemented by [libc, libm, and libdl](https://en.cppreference.com/w/c/header).      |
 | C++ standard library ([libc++](https://libcxx.llvm.org/))| An implementation of the C++ standard library.  |
 | Open Sound Library for Embedded Systems ([OpenSL ES](https://www.khronos.org/registry/OpenSL-ES/))| An embedded, cross-platform audio processing library.|
-| [zlib](https://zlib.net/)     | A general data compression library implemented in C/C++.|
+| [zlib](https://zlib.net/)    | A general data compression library implemented in C/C++.|
 | [EGL](https://www.khronos.org/egl/)  | A standard software interface between rendering APIs and the underlying native window system.|
 | Open Graphics Library for Embedded Systems ([OpenGL ES](https://www.khronos.org/opengles/))| A cross-platform software interface for rendering 3D graphics on embedded and mobile systems.|
 
@@ -19,7 +19,9 @@ The C standard library is a C11 standard library implemented by:
 
 - libc: provides thread-related functions and a majority of standard functions.
 
+
 - libm: provides basic mathematical functions.
+
 
 - libdl: provides functions related to dynamic linking, such as **dlopen**.
 
@@ -32,7 +34,7 @@ The C standard library is a C11 standard library implemented by:
 
 C standard library includes a set of header files in accordance with standard C and provides common functions, such as the functions related to input/output (I/O) and string control.
 
-**<font size=5>musl</font>**
+**musl**
 
 [Native API Symbols Not Exported](musl-peculiar-symbol.md)
 
@@ -52,7 +54,11 @@ The C++11 and C++14 standards are supported, and the C++17 and C++20 standards a
 
 ## OpenSL ES
 
-[OpenSL ES](https://www.khronos.org/registry/OpenSL-ES/) is an embedded, cross-platform audio processing library.
+[OpenGL ES](https://www.khronos.org/opengles/) is an embedded, cross-platform audio processing library.
+
+**Capabilities**
+
+[OpenSL ES Interfaces Supported by Native APIs](../third_party_opensles/opensles.md)
 
 ## zlib
 

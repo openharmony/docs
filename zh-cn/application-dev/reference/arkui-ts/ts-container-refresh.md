@@ -18,32 +18,36 @@ Refresh\(value: \{ refreshing: boolean, offset?:  number&nbsp;|&nbsp;string , fr
 
 **参数：**
 
-| 参数 | 参数名 | 必填 | 参数描述 |
-| -------- | -------- | -------- | -------- |
-| refreshing | boolean | 是 | 当前组件是否正在刷新。<br/>该参数支持[$$](../../quick-start/arkts-restrictions-and-extensions.md#变量的双向绑定)双向绑定变量。 |
-| offset | string&nbsp;\|&nbsp;number | 否 | 下拉起点距离组件顶部的距离。<br/>默认值：16，单位vp <br/>**说明：**<br/>不支持百分比，不支持负数 |
-| friction | number&nbsp;\|&nbsp;string | 否 | 下拉摩擦系数，取值范围为0到100。<br/>默认值：62<br/>-&nbsp;0表示下拉刷新容器不跟随手势下拉而下拉。<br/>-&nbsp;100表示下拉刷新容器紧紧跟随手势下拉而下拉。<br/>-&nbsp;数值越大，下拉刷新容器跟随手势下拉的反应越灵敏。 |
-| builder | [CustomBuilder](ts-types.md#custombuilder8)<sup>10+</sup> | 否 | 下拉时，自定义刷新样式的组件。 |
+| 参数         | 参数名                                      | 必填   | 参数描述                                     |
+| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| refreshing | boolean                                  | 是    | 当前组件是否正在刷新。<br/>该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| offset     | string&nbsp;\|&nbsp;number               | 否    | 下拉起点距离组件顶部的距离。<br/>默认值：16，单位vp <br/>**说明：**<br/>不支持百分比，不支持负数 |
+| friction   | number&nbsp;\|&nbsp;string               | 否    | 下拉摩擦系数，取值范围为0到100。<br/>默认值：62<br/>-&nbsp;0表示下拉刷新容器不跟随手势下拉而下拉。<br/>-&nbsp;100表示下拉刷新容器紧紧跟随手势下拉而下拉。<br/>-&nbsp;数值越大，下拉刷新容器跟随手势下拉的反应越灵敏。 |
+| builder    | [CustomBuilder](ts-types.md#custombuilder8)<sup>10+</sup> | 否    | 下拉时，自定义刷新样式的组件。                          |
 
+## 属性
 
+支持[通用属性](ts-universal-attributes-size.md)。
 
 ## 事件
 
+除支持[通用事件](ts-universal-events-click.md)外，还支持以下事件：
 
-| 名称 | 描述 |
-| -------- | -------- |
-| onStateChange(callback: (state: [RefreshStatus](#refreshstatus枚举说明)) => void)| 当前刷新状态变更时，触发回调。<br/>-&nbsp;state：刷新状态。 |
-| onRefreshing(callback: () => void)| 进入刷新状态时触发回调。 |
+
+| 名称                                       | 描述                                     |
+| ---------------------------------------- | -------------------------------------- |
+| onStateChange(callback: (state: [RefreshStatus](#refreshstatus枚举说明)) => void) | 当前刷新状态变更时，触发回调。<br/>-&nbsp;state：刷新状态。 |
+| onRefreshing(callback: () => void)       | 进入刷新状态时触发回调。                           |
 
 ## RefreshStatus枚举说明
 
-| 名称 | 描述 |
-| -------- | -------- |
-| Inactive | 默认未下拉状态。 |
-| Drag | 下拉中，下拉距离小于刷新距离。 |
-| OverDrag | 下拉中，下拉距离超过刷新距离。 |
-| Refresh | 下拉结束，回弹至刷新距离，进入刷新状态。 |
-| Done | 刷新结束，返回初始状态（顶部）。 |
+| 名称       | 描述                   |
+| -------- | -------------------- |
+| Inactive | 默认未下拉状态。             |
+| Drag     | 下拉中，下拉距离小于刷新距离。      |
+| OverDrag | 下拉中，下拉距离超过刷新距离。      |
+| Refresh  | 下拉结束，回弹至刷新距离，进入刷新状态。 |
+| Done     | 刷新结束，返回初始状态（顶部）。     |
 
 
 ## 示例

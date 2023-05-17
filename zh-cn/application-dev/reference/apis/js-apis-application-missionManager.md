@@ -170,7 +170,7 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
   let allMissions=missionManager.getMissionInfos('',10).catch(function(err){console.log(err);});
       missionManager.getMissionInfo('', allMissions[0].missionId, (error, mission) => {
         if (error.code) {
-          console.error('getMissionInfo failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          console.error('getMissionInfo failed, error.code: ${error.code}, error.message: ${error.message}');
           return;
         }
 
@@ -247,7 +247,7 @@ getMissionInfos(deviceId: string, numMax: number, callback: AsyncCallback&lt;Arr
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
       if (error.code) {
-          console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
           return;
       }
       console.log('size = ${missions.length}');
@@ -319,7 +319,7 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
     }
     console.log('size = ${missions.length}');
@@ -328,7 +328,7 @@ getMissionSnapShot(deviceId: string, missionId: number, callback: AsyncCallback&
 
     missionManager.getMissionSnapShot('', id, (error, snapshot) => {
       if (error.code) {
-          console.error('getMissionSnapShot failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          console.error('getMissionSnapShot failed, error.code: ${error.code}, error.message: ${error.message}');
           return;
       }
       console.log('bundleName = ${snapshot.ability.bundleName}');
@@ -408,7 +408,7 @@ lockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
     }
     console.log('size = ${missions.length}');
@@ -492,7 +492,7 @@ unlockMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
     }
     console.log('size = ${missions.length}');
@@ -580,7 +580,7 @@ clearMission(missionId: number, callback: AsyncCallback&lt;void&gt;): void;
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
     }
     console.log('size = ${missions.length}');
@@ -716,7 +716,7 @@ moveMissionToFront(missionId: number, callback: AsyncCallback&lt;void&gt;): void
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
     }
     console.log('size = ${missions.length}');
@@ -757,7 +757,7 @@ moveMissionToFront(missionId: number, options: StartOptions, callback: AsyncCall
 
   missionManager.getMissionInfos('', 10, (error, missions) => {
     if (error.code) {
-        console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+        console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
         return;
     }
     console.log('size = ${missions.length}');

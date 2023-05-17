@@ -213,8 +213,8 @@ Caller相关接口使用RPC废弃的Sequenceable和MessageParcel对象，使用R
       try {
         this.callee.on(method, funcCallBack);
       } catch (error) {
-        console.log('Callee.on catch error, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('Callee.on catch error, error.code: ' + error.code +
+          ' error.message: ' + error.message);
       }
     }
   }
@@ -257,10 +257,35 @@ Caller相关接口使用RPC废弃的Sequenceable和MessageParcel对象，使用R
       try {
         this.callee.on(method, funcCallBack);
       } catch (error) {
-        console.log('Callee.on catch error, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
+        console.log('Callee.on catch error, error.code: ' + error.code +
+          ' error.message: ' + error.message);
       }
     }
   }
 ```
 
+
+
+## cl.ability.7 WantConstant.Flags接口变更
+
+wantConstant接口有两个类似的枚举，合并成一个。
+
+**变更影响**
+
+影响API9版本的JS接口，应用需要进行适配才可以在新版本SDK环境正常实现功能。
+
+**关键的接口/组件变更**
+
+| 模块名                              | 类名                   | 方法/属性/枚举/常量                 | 变更类型 |
+| ----------------------------------- | ---------------------- | ----------------------------------- | -------- |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Parameter | ABILITY_BACK_TO_OTHER_MISSION_STACK | 删除     |
+| @ohos.app.ability.wantConstant.d.ts | wantConstant.Params    | ABILITY_BACK_TO_OTHER_MISSION_STACK | 新增     |
+
+**适配指导**
+
+使用@ohos.app.ability.wantConstant.d.ts中的ABILITY_BACK_TO_OTHER_MISSION_STACK
+
+```ts
+import wantConstant from '@ohos.app.ability.wantConstant';
+let backToOtherMissionStack: wantConstant.Params = wantParam.Params.ABILITY_BACK_TO_OTHER_MISSION_STACK;
+```

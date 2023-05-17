@@ -1,6 +1,6 @@
 # @ohos.inputMethodEngine (Input Method Service)
 
-The **inputMethodEngine** module streamlines the interactions between input methods and applications. By calling APIs of this module, applications can be bound to input method services to accept text input, request the keyboard to display or hide, listen for the input method status, and much more.
+The **inputMethodEngine** module is oriented to input method applications (including system and third-party input method applications). With the APIs of this module, input method applications are able to create soft keyboard windows, insert or delete characters, select text, and listen for physical keyboard events.
 
 > **NOTE**
 >
@@ -56,15 +56,15 @@ Provides the constant values of function keys, edit boxes, and the cursor.
 
 getInputMethodAbility(): InputMethodAbility
 
-Obtains an **InputMethodEngine** instance.
+Obtains an [InputMethodAbility](#inputmethodability) instance for the input method. The input method can use the obtained instance to subscribe to a soft keyboard display/hide request event, create/destroy an input method panel, and the like.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
-| Type                                   | Description        |
-| --------------------------------------- | ------------ |
-| [InputMethodAbility](#inputmethodability) | **InputMethodEngine** instance obtained.|
+| Type                                     | Description              |
+| ----------------------------------------- | ------------------ |
+| [InputMethodAbility](#inputmethodability) | **InputMethodAbility** instance.|
 
 **Example**
 
@@ -76,15 +76,15 @@ let InputMethodAbility = inputMethodEngine.getInputMethodAbility();
 
 getKeyboardDelegate(): KeyboardDelegate
 
-Obtains a **KeyboardDelegate** instance.
+Obtains a [KeyboardDelegate](#keyboarddelegate) instance for the input method. The input method can use the obtained instance to subscribe to a physical keyboard event, text selection change event, and more.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
-| Type                                 | Description            |
-| ------------------------------------- | ---------------- |
-| [KeyboardDelegate](#keyboarddelegate) | **KeyboardDelegate** instance obtained.|
+| Type                                 | Description                    |
+| ------------------------------------- | ------------------------ |
+| [KeyboardDelegate](#keyboarddelegate) | **KeyboardDelegate** instance.|
 
 **Example**
 
@@ -96,7 +96,7 @@ let KeyboardDelegate = inputMethodEngine.getKeyboardDelegate();
 
 getInputMethodEngine(): InputMethodEngine
 
-Obtains an **InputMethodEngine** instance.
+Obtains an [InputMethodEngine](#inputmethodengine-1) instance for the input method. The input method can use the obtained instance to subscribe to a soft keyboard display/hide request event.
 
 > **NOTE**
 >
@@ -106,9 +106,9 @@ Obtains an **InputMethodEngine** instance.
 
 **Return value**
 
-| Type                                   | Description        |
-| --------------------------------------- | ------------ |
-| [InputMethodEngine](#inputmethodengine-1) | **InputMethodEngine** instance obtained.|
+| Type                                     | Description              |
+| ----------------------------------------- | ------------------ |
+| [InputMethodEngine](#inputmethodengine-1) | **InputMethodAbility** instance.|
 
 **Example**
 
@@ -120,7 +120,7 @@ let InputMethodEngine = inputMethodEngine.getInputMethodEngine();
 
 createKeyboardDelegate(): KeyboardDelegate
 
-Obtains a **KeyboardDelegate** instance.
+Obtains a [KeyboardDelegate](#keyboarddelegate) instance for the input method. The input method can use the obtained instance to subscribe to a physical keyboard event, text selection change event, and more.
 
 > **NOTE**
 >
@@ -130,9 +130,9 @@ Obtains a **KeyboardDelegate** instance.
 
 **Return value**
 
-| Type                                 | Description            |
-| ------------------------------------- | ---------------- |
-| [KeyboardDelegate](#keyboarddelegate) | **KeyboardDelegate** instance obtained.|
+| Type                                 | Description                    |
+| ------------------------------------- | ------------------------ |
+| [KeyboardDelegate](#keyboarddelegate) | **KeyboardDelegate** instance.|
 
 **Example**
 
@@ -157,7 +157,7 @@ Enables listening for the input method binding event. This API uses an asynchron
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | Yes  | Listening type.<br>The value **'inputStart'** indicates the input method binding event.|
-| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclient)) => void | Yes| Callback used to return the **KeyboardController** and **TextInputClient** instances.|
+| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclientdeprecated)) => void | Yes| Callback used to return the **KeyboardController** and **TextInputClient** instances.|
 
 **Example**
 
@@ -181,7 +181,7 @@ Cancels listening for the input method binding event.
 | Name  | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
 | type | string                                                       | Yes  | Listening type.<br>The value **'inputStart'** indicates the input method binding event.|
-| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclient)) => void | No| Callback used to return the **KeyboardController** and **TextInputClient** instances.|
+| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclientdeprecated)) => void | No| Callback used to return the **KeyboardController** and **TextInputClient** instances.|
 
 **Example**
 
@@ -195,7 +195,7 @@ inputMethodEngine.getInputMethodEngine().off('inputStart', (kbController, textIn
 
 on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
-Enables listening for a keyboard event. This API uses an asynchronous callback to return the result.
+Enables listening for a keyboard visibility event. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -221,7 +221,7 @@ inputMethodEngine.getInputMethodEngine().on('keyboardHide', () => {
 
 off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
-Disables listening for a keyboard event. This API uses an asynchronous callback to return the result.
+Disables listening for a keyboard visibility event. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -478,6 +478,186 @@ inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
 });
 ```
 
+### createPanel<sup>10+</sup>
+
+createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>): void
+
+Creates an input method panel. This API can be called only by input method applications and system applications with the system_core permission. Only one SOFT_KEYBOARD panel and one STATUS_BAR panel can be created for a single input method application. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type       | Mandatory| Description                    |
+| ------- | ----------- | ---- | ------------------------ |
+| ctx     | [BaseContext](./js-apis-inner-application-baseContext.md) | Yes  | Context of the current input method.|
+| info    | [PanelInfo](#panelinfo10)   | Yes  | Information about the input method panel.|
+| callback | AsyncCallback\<[Panel](#panel10)> | Yes  | Callback used to return the result. If the operation is successful, the created input method panel is returned. |
+
+**Error codes**
+
+| Error Code ID  | Error Message                      |
+| ---------- | ----------------------------- |
+| 12800004   | not an input method extension |
+
+**Example**
+
+```js
+let panelInfo: inputMethodEngine.PanelInfo = {
+  panelType: SOFT_KEYBOARD,
+  panelFlag: FLG_FIXED
+}
+try {
+  inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
+    if (err !== undefined) {
+      console.log('Failed to create panel, err: ' + JSON.stringify(err));
+      return;
+    }
+    console.log('Succeed in creating panel.');
+  })
+} catch(err) {
+  console.log('Failed to create panel, err: ' + JSON.stringify(err));
+}
+```
+
+### createPanel<sup>10+</sup>
+
+createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
+
+Creates an input method panel. This API can be called only by input method applications and system applications with the system_core permission. Only one SOFT_KEYBOARD panel and one STATUS_BAR panel can be created for a single input method application. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type       | Mandatory| Description                    |
+| ------- | ----------- | ---- | ------------------------ |
+| ctx     | [BaseContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-baseContext.md) | Yes  | Context of the current input method.|
+| info    | [PanelInfo](#panelinfo10)   | Yes  | Information about the input method panel.|
+
+**Return value**
+| Type  | Description                                                                |
+| ------- | ------------------------------------------------------------------ |
+| Promise\<[Panel](#panel10)> | Promise used to return the result. If the operation is successful, the created input method panel is returned. |
+
+**Error codes**
+
+| Error Code ID  | Error Message                      |
+| ---------- | ----------------------------- |
+| 12800004   | not an input method extension |
+
+**Example**
+
+```js
+let panelInfo: inputMethodEngine.PanelInfo = {
+  panelType: SOFT_KEYBOARD,
+  panelFlag: FLG_FIXED
+}
+inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo).then((panel) => {
+  console.log('Succeed in creating panel.');
+}).catch((err) => {
+  console.log('Failed to create panel, err: ' + JSON.stringify(err));
+})
+```
+
+### destroyPanel<sup>10+</sup>
+
+destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void;
+
+Destroys an input method panel. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type       | Mandatory| Description                    |
+| ------- | ----------- | ---- | ------------------------ |
+| panel     | [Panel](#panel10) | Yes  | Input method panel to destroy.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object. |
+
+**Example**
+
+```js
+let panelInfo: inputMethodEngine.PanelInfo = {
+  panelType: SOFT_KEYBOARD,
+  panelFlag: FLG_FIXED
+}
+try {
+  inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
+    if (err !== undefined) {
+      console.log('Failed to create panel, err: ' + JSON.stringify(err));
+      return;
+    }
+	globalThis.inputMethodPanel = panel;
+    console.log('Succeed in creating panel.');
+  })
+} catch(err) {
+  console.log('Failed to create panel, err: ' + JSON.stringify(err));
+}
+
+try {
+  inputMethodEngine.getInputMethodAbility().destroyPanel(globalThis.inputMethodPanel, (err) => {
+    if(err !== undefined) {
+      console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
+      return;
+    }
+    console.log('Succeed in destroying panel.');
+  })
+} catch(err) {
+  console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
+}
+```
+
+### destroyPanel<sup>10+</sup>
+
+destroyPanel(panel: Panel): Promise\<void>;
+
+Destroys an input method panel. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type       | Mandatory| Description                    |
+| ---------| ----------- | ---- | ------------------------ |
+| panel    | [Panel](#panel10)       | Yes  | Input method panel to destroy.     |
+
+**Return value**
+| Type   | Description                                                                |
+| ------- | -------------------------------------------------------------------- |
+| Promise\<void> | Promise that returns no value.|
+
+**Example**
+
+```js
+let panelInfo: inputMethodEngine.PanelInfo = {
+  panelType: SOFT_KEYBOARD,
+  panelFlag: FLG_FIXED
+}
+try {
+  inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
+    if (err !== undefined) {
+      console.log('Failed to create panel, err: ' + JSON.stringify(err));
+      return;
+    }
+	globalThis.inputMethodPanel = panel;
+    console.log('Succeed in creating panel.');
+  })
+} catch(err) {
+  console.log('Failed to create panel, err: ' + JSON.stringify(err));
+}
+
+try {
+  inputMethodEngine.getInputMethodAbility().destroyPanel(globalThis.inputMethodPanel).then(() => {
+    console.log('Succeed in destroying panel.');
+  }).catch((err) => {
+    console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
+  });
+} catch (err) {
+  console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
+}
+```
+
 ## KeyboardDelegate
 
 In the following API examples, you must first use **[getKeyboardDelegate](#inputmethodenginegetkeyboarddelegate9)** to obtain a **KeyboardDelegate** instance, and then call the APIs using the obtained instance.
@@ -682,6 +862,455 @@ Cancels listening for text changes. This API uses an asynchronous callback to re
 inputMethodEngine.getKeyboardDelegate().off('textChange', (text) => {
     console.log('delete textChange notification. text:' + text);
 });
+```
+
+## Panel<sup>10+</sup>
+
+In the following API examples, you must first use **[createPanel](#createpanel10)** to obtain a **Panel** instance, and then call the APIs using the obtained instance.
+
+### setUiContent<sup>10+</sup>
+
+setUiContent(path: string, callback: AsyncCallback\<void>): void
+
+Loads content from a page to this panel. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description    |
+| -------- | ---------------------- | ---- | -------- |
+| path | string | Yes  | Path of the page from which the content will be loaded.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Example**
+
+```js
+try {
+  panel.setUiContent('pages/page2/page2', (err) => {
+    if (err) {
+      console.error('Failed to set the content. err:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the content.');
+  });
+} catch (exception) {
+  console.error('Failed to set the content. err:' + JSON.stringify(exception));
+}
+```
+
+### setUiContent<sup>10+</sup>
+
+setUiContent(path: string): Promise\<void>
+
+Loads content from a page to this panel. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description    |
+| -------- | ---------------------- | ---- | -------- |
+| path | string | Yes  | Path of the page from which the content will be loaded.|
+
+**Return value**
+
+| Type  | Description                            |
+| ------- | ------------------------------ |
+| Promise\<void> | Promise that returns no value. |
+
+**Example**
+
+```js
+try {
+  let promise = panel.setUiContent('pages/page2/page2');
+  promise.then(() => {
+    console.info('Succeeded in setting the content.');
+  }).catch((err) =>{
+    console.error('Failed to set the content. err: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to set the content. err: ' + JSON.stringify(exception));
+}
+```
+
+### setUiContent<sup>10+</sup>
+
+setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>): void
+
+Loads content from a page linked to LocalStorage to this panel. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description    |
+| -------- | ---------------------- | ---- | -------- |
+| path | string | Yes  | Path of the page from which the content will be loaded.|
+| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | Yes  | Storage unit that provides storage for mutable and immutable state variables in the application.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Example**
+
+```js
+let storage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp',121);
+try {
+  panel.setUiContent('pages/page2/page2', storage, (err) => {
+    if (err) {
+      console.error('Failed to set the content. err:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in setting the content.');
+  });
+} catch (exception) {
+  console.error('Failed to set the content. err:' + JSON.stringify(exception));
+}
+```
+
+### setUiContent<sup>10+</sup>
+
+setUiContent(path: string, storage: LocalStorage): Promise\<void>
+
+Loads content from a page linked to LocalStorage to this panel. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description    |
+| -------- | ---------------------- | ---- | -------- |
+| path | string | Yes  | Path of the page from which the content will be loaded.|
+| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | Yes  | Storage unit that provides storage for mutable and immutable state variables in the application.|
+
+**Return value**
+
+| Type  | Description                            |
+| ------- | ------------------------------ |
+| Promise\<void> | Promise that returns no value. |
+
+**Example**
+
+```js
+let storage = new LocalStorage();
+storage.setOrCreate('storageSimpleProp',121);
+try {
+  let promise = panel.setUiContent('pages/page2/page2');
+  promise.then(() => {
+    console.info('Succeeded in setting the content.');
+  }).catch((err) =>{
+    console.error('Failed to set the content. err: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to set the content. err: ' + JSON.stringify(exception));
+}
+```
+
+### resize<sup>10+</sup>
+
+resize(width: number, height: number, callback: AsyncCallback\<void>): void
+
+Resizes this panel. This API uses an asynchronous callback to return the result.
+The panel width cannot exceed the screen width, and the panel height cannot be higher than half of the screen height.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description    |
+| -------- | ---------------------- | ---- | -------- |
+| width | number | Yes  | Target width of the panel, in pixels.|
+| height | number | Yes  | Target height of the panel, in pixels.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Example**
+
+```js
+try {
+  panel.resize(500, 1000, (err) => {
+    if (err) {
+      console.error('Failed to change the panel size. Cause:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in changing the panel size.');
+  });
+} catch (exception) {
+  console.error('Failed to change the panel size. Cause:' + JSON.stringify(exception));
+}
+```
+
+### resize<sup>10+</sup>
+
+resize(width: number, height: number): Promise\<void>;
+
+Resizes this panel. This API uses a promise to return the result.
+The panel width cannot exceed the screen width, and the panel height cannot be higher than half of the screen height.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description    |
+| -------- | ---------------------- | ---- | -------- |
+| width | number | Yes  | Target width of the panel, in pixels.|
+| height | number | Yes  | Target height of the panel, in pixels.|
+
+**Return value**
+
+| Type  | Description                            |
+| ------- | ------------------------------ |
+| Promise<void> | Promise that returns no value. |
+
+**Example**
+
+```js
+try {
+  let promise = panel.resize(500, 1000);
+  promise.then(() => {
+    console.info('Succeeded in changing the panel size.');
+  }).catch((err) =>{
+    console.error('Failed to change the panel size. err: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to change the panel size. err: ' + JSON.stringify(exception));
+}
+```
+
+### moveTo<sup>10+</sup>
+
+moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
+
+Moves this panel to the specified position. This API uses an asynchronous callback to return the result. 
+This API does not work on panels in the FLG_FIXED state.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description    |
+| -------- | ---------------------- | ---- | -------- |
+| x | number | Yes  | Distance to move along the x-axis, in px. A positive value indicates moving rightwards.|
+| y | number | Yes  | Distance to move along the y-axis, in pixels. A positive value indicates moving downwards.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Example**
+
+```js
+try {
+  panel.moveTo(300, 300, (err) =>{
+    if (err) {
+      console.error('Failed to move the panel. err:' + JSON.stringify(err));
+      return;
+    }
+    console.info('Succeeded in moving the panel.');
+  });
+} catch (exception) {
+    console.error('Failed to move the panel. err:' + JSON.stringify(exception));
+}
+```
+
+### moveTo<sup>10+</sup>
+
+moveTo(x: number, y: number): Promise\<void>
+
+Moves this panel to the specified position. This API uses a promise to return the result. 
+This API does not work on panels in the FLG_FIXED state.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description    |
+| -------- | ---------------------- | ---- | -------- |
+| x | number | Yes  | Distance to move along the x-axis, in pixels. A positive value indicates moving rightwards.|
+| y | number | Yes  | Distance to move along the y-axis, in pixels. A positive value indicates moving downwards.|
+
+**Return value**
+
+| Type  | Description                            |
+| ------- | ------------------------------ |
+| Promise<void> | Promise that returns no value. |
+
+**Example**
+
+```js
+try {
+  let promise = windowClass.moveTo(300, 300);
+  promise.then(() => {
+    console.info('Succeeded in moving the panel.');
+  }).catch((err) =>{
+    console.error('Failed to move the panel. Cause: ' + JSON.stringify(err));
+  });
+} catch (exception) {
+  console.error('Failed to move the panel. Cause:' + JSON.stringify(exception));
+}
+```
+
+### show<sup>10+</sup>
+
+show(callback: AsyncCallback\<void>): void
+
+Displays this panel. This API uses an asynchronous callback to return the result. 
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description    |
+| -------- | ---------------------- | ---- | -------- |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Example**
+
+```js
+panel.show((err) => {
+  if (err) {
+    console.error('Failed to show the panel. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in showing the panel.');
+});
+```
+
+### show<sup>10+</sup>
+
+show(): Promise\<void>
+
+Displays this panel. This API uses a promise to return the result. 
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type  | Description                            |
+| ------- | ------------------------------ |
+| Promise\<void> | Promise that returns no value. |
+
+**Example**
+
+```js
+let promise = panel.show();
+promise.then(() => {
+  console.info('Succeeded in showing the panel.');
+}).catch((err) =>{
+  console.error('Failed to show the panel. err: ' + JSON.stringify(err));
+});
+```
+
+### hide<sup>10+</sup>
+
+hide(callback: AsyncCallback\<void>): void
+
+Hides this panel. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description    |
+| -------- | ---------------------- | ---- | -------- |
+| callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Example**
+
+```js
+panel.hide((err) => {
+  if (err) {
+    console.error('Failed to hide the panel. Cause: ' + JSON.stringify(err));
+    return;
+  }
+  console.info('Succeeded in hiding the panel.');
+});
+```
+
+### hide<sup>10+</sup>
+
+hide(): Promise\<void>
+
+Hides this panel. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Return value**
+
+| Type  | Description                            |
+| ------- | ------------------------------ |
+| Promise\<void> | Promise that returns no value. |
+
+**Example**
+
+```js
+let promise = panel.hide();
+promise.then(() => {
+  console.info('Succeeded in hiding the panel.');
+}).catch((err) =>{
+  console.error('Failed to hide the panel. err: ' + JSON.stringify(err));
+});
+```
+
+### on<sup>10+</sup>
+
+on(type: 'show' | 'hide', callback: () => void): void
+
+Enables listening for a panel visibility event. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description    |
+| -------- | ---------------------- | ---- | -------- |
+| type | 'show'\|'hide' | Yes| Listening type.<br>- The value **'show'** indicates the panel display event.<br>- The value **'hide'** indicates the panel hiding event.|
+| callback | () => void | Yes  | Callback used to return the result.|
+
+**Example**
+
+```js
+panel.on('show', () => {
+  console.info('Panel is showing.');
+});
+```
+
+### off<sup>10+</sup>
+
+off(type: 'show' | 'hide', callback?: () => void): void
+
+Disables listening for a panel visibility event. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description    |
+| -------- | ---------------------- | ---- | -------- |
+| type | 'show'/'hide' | Yes| Listening type.<br>- The value **'show'** indicates the panel display event.<br>- The value **'hide'** indicates the panel hiding event.|
+| callback | () => void | No  | Callback used to return the result.|
+
+**Example**
+
+```js
+panel.off('show');
+```
+
+### changeFlag<sup>10+</sup>
+
+changeFlag(flag: PanelFlag): void
+
+Changes the panel state type. This API only works for SOFT_KEYBOARD panels.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+**Parameters**
+
+| Name  | Type                  | Mandatory| Description    |
+| -------- | ---------------------- | ---- | -------- |
+| flag | [PanelFlag](#panelflag10) | Yes| State type of the panel to switch to.|
+
+**Example**
+
+```js
+let panelFlag = inputMethodEngine.getInputMethodAbility().PanelFlag.FLG_FIXED;
+panel.changeFlag(panelFlag);
 ```
 
 ## KeyboardController
@@ -1752,6 +2381,39 @@ Describes the attribute of a key.
 | keyCode   | number   | Yes  | No  | Key value.|
 | keyAction | number   | Yes  | No  | Key status.|
 
+## PanelFlag<sup>10+</sup>
+
+Enumerates the state types of the input method panel.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name        | Value| Description              |
+| ------------ | -- | ------------------ |
+| FLG_FIXED  | 0 | Fixed state type.|
+| FLG_FLOATING | 1 | Floating state type.|
+
+## PanelType<sup>10+</sup>
+
+Enumerates the types of the input method panel.
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+| Name        | Value| Description              |
+| ------------ | -- | ------------------ |
+| SOFT_KEYBOARD | 0 | Soft keyboard type.|
+| STATUS_BAR   | 1 | Status bar type.|
+
+## PanelInfo<sup>10+</sup>
+
+**System capability**: SystemCapability.MiscServices.InputMethodFramework
+
+Describes the attributes of the input method panel.
+
+| Name     | Type| Readable| Writable| Description        |
+| --------- | -------- | ---- | ---- | ------------ |
+| type   	| number   | Yes  | Yes  | Type of the panel.|
+| flag	    | number   | Yes  | Yes  | State type of the panel.|
+
 ## TextInputClient<sup>(deprecated)</sup>
 
 > **NOTE**
@@ -2250,3 +2912,4 @@ textInputClient.getEditorAttribute().then((editorAttribute) => {
     console.error('Failed to getEditorAttribute: ' + JSON.stringify(err));
 });
 ```
+<!--no_check-->

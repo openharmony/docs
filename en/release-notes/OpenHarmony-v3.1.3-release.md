@@ -77,7 +77,7 @@ repo forall -c 'git lfs pull'
 | -------- | -------- | -------- | -------- |
 | Full code base (for mini, small, and standard systems)| 3.1.3 Release | [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/code-v3.1.3-Release.tar.gz)| [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/code-v3.1.3-Release.tar.gz.sha256)|
 | Hi3516 standard system solution (binary)| 3.1.3 Release| [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/standard_hi3516.tar.gz)| [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/standard_hi3516.tar.gz.sha256)|
-| RK3568 standard system solution (binary)| 3.1.3 Release| [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/code-v3.1.3-Release.tar.gz)| [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/standard_rk3568.tar.gz.sha256)|
+| RK3568 standard system solution (binary)| 3.1.3 Release| [Download](https://mirrors.huaweicloud.com/harmonyos/os/3.1.3/standard_rk3568.tar.gz)| [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/standard_rk3568.tar.gz.sha256)|
 | Hi3861 mini system solution (binary)| 3.1.3 Release| [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/hispark_pegasus.tar.gz)| [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/hispark_pegasus.tar.gz.sha256)|
 | Hi3516 small system solution - LiteOS (binary)| 3.1.3 Release| [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/hispark_taurus.tar.gz)| [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/hispark_taurus.tar.gz.sha256)|
 | Hi3516 small system solution - Linux (binary)| 3.1.3 Release| [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/hispark_taurus_linux.tar.gz)| [Download](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/hispark_taurus_linux.tar.gz.sha256)|
@@ -101,7 +101,7 @@ This version does not involve API updates.
 
 ### Chip and Development Board Adaptation
 
-For details about the adaptation status, see [SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard.md).
+For details about the adaptation status, see [SIG_DevBoard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard.md).
 
 
 ## Resolved Issues

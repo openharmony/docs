@@ -5664,7 +5664,7 @@ sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3}, functi
         console.error("Operation failed. Error code: " + err.code + ", message: " + err.message);
         return;
     }
-    console.info("Operation successed. Data obtained: " + data);
+    console.info("Operation succeeded. Data obtained: " + data);
     for (var i=0; i < data.length; i++) {
         console.info("transformCoordinateSystem data[ " + i + "] = " + data[i]);
     }
@@ -5700,7 +5700,7 @@ This API is deprecated since API version 9. You are advised to use [sensor.trans
 ```js
 const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3});
     promise.then((data) => {
-        console.info("Operation successed.");
+        console.info("Operation succeeded.");
         for (var i=0; i < data.length; i++) {
             console.info("transformCoordinateSystem data[ " + i + "] = " + data[i]);
         }
@@ -5807,7 +5807,7 @@ This API is deprecated since API version 9. You are advised to use [sensor.getDe
   "Operation failed. Error code: " + err.code + ", message: " + err.message);
           return;
       }
-          console.info("Successed to get getAltitude interface get data: " + data);
+          console.info("Succeeded to get getAltitude interface get data: " + data);
   });
 
   ```
@@ -5874,7 +5874,7 @@ This API is deprecated since API version 9. You are advised to use [sensor.getIn
                         err.message);
           return;
       }
-          console.info("Successed to get getGeomagneticDip interface get data: " + data);
+          console.info("Succeeded to get getGeomagneticDip interface get data: " + data);
   })
 
   ```
@@ -5906,7 +5906,7 @@ This API is deprecated since API version 9. You are advised to use [sensor.getIn
   ```js
   const promise = sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1]);
       promise.then((data) => {
-          console.info('getGeomagneticDip_promise successed', data);
+          console.info('getGeomagneticDip_promise succeeded', data);
       }).catch((err) => {
            console.error("Operation failed");
   })
@@ -5976,7 +5976,7 @@ This API is deprecated since API version 9. You are advised to use [sensor.getAn
   ```js
   const promise = sensor.getAngleModify([1,0,0,0,1,0,0,0,1], [1,0,0,0,0.87,-0.50,0,0.50,0.87]);
       promise.then((data) => {
-          console.info('getAngleModifiy_promise success');
+          console.info('getAngleModify_promise success');
           for (var i=0; i < data.length; i++) {
               console.info("data[" + i + "]: " + data[i]);
           }
@@ -6120,7 +6120,7 @@ This API is deprecated since API version 9. You are advised to use [sensor.getQu
   ```js
   const promise = sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877]);
       promise.then((data) => {
-          console.info('createQuaternion_promise successed');
+          console.info('createQuaternion_promise succeeded');
           for (var i=0; i < data.length; i++) {
               console.info("data[" + i + "]: " + data[i]);
           }
@@ -6157,7 +6157,7 @@ This API is deprecated since API version 9. You are advised to use [sensor.getOr
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get getDirection interface get data: " + data);
+      console.info("SensorJsAPI--->Succeeded to get getDirection interface get data: " + data);
       for (var i = 1; i < data.length; i++) {
           console.info("sensor_getDirection_callback" + data[i]);
       }

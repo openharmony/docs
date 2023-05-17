@@ -41,7 +41,7 @@ To call APIs to access these resources, you must apply for the corresponding per
 - If an application can call an API only after it has obtained a specific permission, the following description is provided for the API: "**Required permissions**: ohos.permission.xxxx"
 - If an application can call an API without any permission, no special description is provided.
 
-To determine whether an application can request a specific permission, see [Permission Application and Use](../../security/accesstoken-overview.md#permission-application-and-use).
+To determine whether an application can request a specific permission, see [Permission Application and Use](../../security/accesstoken-overview.md#applying-for-and-using-a-permission).
 
 ## System Capability Description
 

@@ -173,6 +173,7 @@
   - [@ohos.promptAction (Prompt)](js-apis-promptAction.md)
   - [@ohos.router (Page Routing)](js-apis-router.md)
   - [@ohos.measure (Text Measurement)](js-apis-measure.md)
+  - [@ohos.uiAppearance (UI Appearance)](js-apis-uiappearance.md)
 
 - Graphics 
   - [@ohos.animation.windowAnimationManager (Window Animation Management)](js-apis-windowAnimationManager.md)
@@ -227,17 +228,16 @@
   - [@ohos.data.dataShareResultSet (DataShare Result Set)](js-apis-data-DataShareResultSet.md)
   - [@ohos.data.distributedDataObject (Distributed Data Object)](js-apis-data-distributedobject.md)
   - [@ohos.data.distributedKVStore (Distributed KV Store)](js-apis-distributedKVStore.md) 
-  - [@ohos.data.preferences (Preferences)](js-apis-data-preferences.md)
+  - [@ohos.data.preferences (User Preferences)](js-apis-data-preferences.md)
   - [@ohos.data.relationalStore (RDB Store)](js-apis-data-relationalStore.md)
   - [@ohos.data.ValuesBucket (Value Bucket)](js-apis-data-valuesBucket.md)
-  - data/rdb
-    - [resultSet (Result Set)](js-apis-data-resultset.md)
 
 - File Management
+  - [@ohos.file.cloudSyncManager (Device-Cloud Synchronization Management)](js-apis-file-cloudsyncmanager.md)
   - [@ohos.file.environment (Directory Environment Capability)](js-apis-file-environment.md)
   - [@ohos.file.fileAccess (User File Access and Management)](js-apis-fileAccess.md)
   - [@ohos.file.fileExtensionInfo (User File Extension Information)](js-apis-fileExtensionInfo.md)
-  - [@ohos.file.fileUri (File URI)](js-apis-file-fileUri.md)
+  - [@ohos.file.fileuri (File URI)](js-apis-file-fileuri.md)
   - [@ohos.file.fs (File Management)](js-apis-file-fs.md)
   - [@ohos.file.hash (File Hash Processing)](js-apis-file-hash.md)
   - [@ohos.file.picker (File Picker)](js-apis-file-picker.md)
@@ -268,7 +268,8 @@
   - [@ohos.request (Upload and Download)](js-apis-request.md)
 
 - Connectivity
-  - [@ohos.bluetooth (Bluetooth)](js-apis-bluetooth.md)
+  - [@ohos.bluetooth (Bluetooth)(To Be Deprecated Soon)](js-apis-bluetooth.md)
+  - [@ohos.bluetoothManager (Bluetooth)(js-apis-bluetoothManager.md)
   - [@ohos.connectedTag (Active Tags)](js-apis-connectedTag.md)
   - [@ohos.nfc.cardEmulation (Standard NFC Card Emulation)](js-apis-cardEmulation.md)
   - [@ohos.nfc.controller (Standard NFC)](js-apis-nfcController.md)
@@ -276,8 +277,8 @@
   - [@ohos.rpc (RPC)](js-apis-rpc.md)
   - [@ohos.wifiManager (WLAN)](js-apis-wifiManager.md)
   - [@ohos.wifiManagerExt (WLAN Extension)](js-apis-wifiManagerExt.md)
-  - [@ohos.wifi (To Be Deprecated Soon)](js-apis-wifi.md)
-  - [@ohos.wifiext (To Be Deprecated Soon)](js-apis-wifiext.md)
+  - [@ohos.wifi (WLAN)(To Be Deprecated Soon)](js-apis-wifi.md)
+  - [@ohos.wifiext (WLAN Extension)(To Be Deprecated Soon)](js-apis-wifiext.md)
   - tag
     - [nfctech (Standard NFC Technologies)](js-apis-nfctech.md)
     - [tagSession (Standard NFC Tag Session)](js-apis-tagSession.md)
@@ -342,7 +343,7 @@
   - [@ohos.systemParameterEnhance (System Parameter)](js-apis-system-parameterEnhance.md)
   - [@ohos.thermal (Thermal Management)](js-apis-thermal.md)
   - [@ohos.update (Update)](js-apis-update.md)
-  - [@ohos.usbManager (USB Management)](js-apis-usbManager.md)
+  - [@ohos.usbManager (USB Manager)](js-apis-usbManager.md)
   - [@ohos.vibrator (Vibrator)](js-apis-vibrator.md)
 
 - Account Management
@@ -353,6 +354,7 @@
 - Customization
   - [@ohos.configPolicy (Configuration Policy)](js-apis-configPolicy.md)
   - [@ohos.enterprise.accountManager (Account Management)](js-apis-enterprise-accountManager.md)
+  - [@ohos.enterprise.bundleManager (Bundle Management)](js-apis-enterprise-bundleManager.md)
   - [@ohos.enterprise.adminManager (Enterprise Device Management)](js-apis-enterprise-adminManager.md)
   - [@ohos.enterprise.dateTimeManager (System Time Management)](js-apis-enterprise-dateTimeManager.md)
   - [@ohos.enterprise.deviceControl (Device Control Management)](js-apis-enterprise-deviceControl.md)
@@ -411,7 +413,6 @@
   - [@ohos.systemParameter (System Parameter)](js-apis-system-parameter.md)
   - [@ohos.systemTime (System Time and Time Zone)](js-apis-system-time.md)
   - [@ohos.usb (USB Management)](js-apis-usb-deprecated.md)
-  - [@ohos.usbV9 (USB Management)](js-apis-usb.md)
   - [@system.app (Application Context)](js-apis-system-app.md)
   - [@system.battery (Battery Information)](js-apis-system-battery.md)
   - [@system.bluetooth (Bluetooth)](js-apis-system-bluetooth.md)
@@ -446,3 +447,5 @@
     - [PermissionDef](js-apis-bundle-PermissionDef.md)
     - [remoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)
     - [shortcutInfo](js-apis-bundle-ShortcutInfo.md)
+  - data/rdb
+    - [resultSet (Result Set)](js-apis-data-resultset.md)

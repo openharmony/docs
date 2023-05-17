@@ -11,6 +11,10 @@ The **\<TabContent>** component is used only in the **\<Tabs>** component. It co
 
 This component supports only one child component.
 
+>  **NOTE**
+>
+>  System components and custom components can be built in, and rendering control types ([if/else](../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)) are supported.
+
 
 ## APIs
 
@@ -23,37 +27,95 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| tabBar | string \| Resource \| {<br>icon?: string \| Resource,<br>text?: string \| Resource<br>}<br>\| [CustomBuilder](ts-types.md)<sup>8+</sup> | Content displayed on the tab bar.<br>**CustomBuilder**: builder, to which components can be passed (applicable to API version 8 and later versions).<br>**NOTE**<br>If an icon uses an SVG image, the width and height attributes of the SVG image must be deleted. Otherwise, the icon size will be determined by the width and height attributes of the SVG image. |
-| tabBar<sup>9+</sup> | [SubTabBarStyle](#subtabbarstyle) \| [BottomTabBarStyle](#bottomtabbarstyle) | Content displayed on the tab bar.<br>**SubTabBarStyle**: subtab style. It takes text as its input parameter.<br>**BottomTabBarStyle**: bottom and side tab style. It takes text and images as its input parameters.|
+| tabBar | string \| Resource \| {<br>icon?: string \| Resource,<br>text?: string \| Resource<br>}<br>\| [CustomBuilder](ts-types.md)<sup>8+</sup> | Content displayed on the tab bar.<br>**CustomBuilder**: builder, to which components can be passed (applicable to API version 8 and later versions).<br>**NOTE**<br>If an icon uses an SVG image, the width and height attributes of the SVG image must be deleted. Otherwise, the icon size will be determined by the width and height attributes of the SVG image.<br>If the content set exceeds the space provided by the tab bar, it will be clipped.|
+| tabBar<sup>9+</sup> | [SubTabBarStyle](#subtabbarstyle9) \| [BottomTabBarStyle](#bottomtabbarstyle9) | Content displayed on the tab bar.<br>**SubTabBarStyle**: subtab style. It takes text as its input parameter.<br>**BottomTabBarStyle**: bottom and side tab style. It takes text and images as its input parameters.<br>**NOTE**<br>The bottom tab style does not include an underline.<br>When an icon display error occurs, a gray blank block is displayed.|
 
 >  **NOTE**
-> - The **\<TabContent>** component does not support setting of the common width attribute. By default, its width is the same as that of the parent **\<Tabs>** component.
-> - The **\<TabContent>** component does not support setting of the common height attribute. Its height is determined by the height of the parent **\<Tabs>** component and the **\<TabBar>** component.
-> - **\<TabContent>** does not support page scrolling. If page scrolling is required, consider nesting a list.
+>
+>  - The **\<TabContent>** component does not support setting of the common width attribute. By default, its width is the same as that of the parent **\<Tabs>** component.
+>  - The **\<TabContent>** component does not support setting of the common height attribute. Its height is determined by the height of the parent **\<Tabs>** component and the **\<TabBar>** component.
+>  - If the **vertical** attribute is **false**, the width and height descriptions are swapped in the preceding two restrictions.
+>  - **\<TabContent>** does not support page scrolling. If page scrolling is required, consider nesting a list.
 
 ## SubTabBarStyle<sup>9+</sup>
 
 Implements the subtab style.
 
-### constructor<sup>9+</sup>
+### constructor
 
 constructor(content: string | Resource)
 
-A constructor used to create a **SubTabBarStyle** instance.
+Constructor used to create a **SubTabBarStyle** instance.
 
 **Parameters**
 
 | Name| Type        | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| content | string \| [Resource](ts-types.md#resource) | Yes| Text for the tab.|
+| content | string \| [Resource](ts-types.md#resource) | Yes| Text for the tab. Since API version 10, the type of **content** is **ResourceStr**.|
+
+### of<sup>10+</sup>
+
+static of(content: ResourceStr)
+
+Static constructor used to create a **SubTabBarStyle** instance.
+
+**Parameters**
+
+| Name | Type                                  | Mandatory| Description          |
+| ------- | ------------------------------------------ | ---- | ------------------ |
+| content | [ResourceStr](ts-types.md#resourcestr) | Yes  | Text for the tab.|
+
+### Attributes
+
+The following attributes are supported.
+
+| Name        | Type                                                    | Description                                                        |
+| ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| indicator<sup>10+</sup> | [IndicatorStyle](#indicatorstyle10)| Underline indicator style of the selected subtab. It is valid only in the horizontal layout.<br>               |
+| selectedMode<sup>10+</sup> | [SelectedMode](#selectedmode10)   | Display mode of the selected subtab.<br>Default value: **SelectedMode.INDICATOR**|
+| board<sup>10+</sup> | [BoardStyle](#boardstyle10)   | Board style of the selected subtab.|
+| labelStyle<sup>10+</sup> | [LabelStyle](#labelstyle10) | Label text and font style of the selected subtab.|
+
+## IndicatorStyle<sup>10+</sup>
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------------------------------- |
+| color | [ResourceColor](ts-types.md#resourcecolor) | No| Underline indicator color and board color.<br>Default value: **#FF007DFF**|
+| height | [Length](ts-types.md#length) | No| Height of the underline indicator.<br>Default value: **2.0**<br>Unit: vp|
+| width | [Length](ts-types.md#length) | No| Width of the underline indicator.<br>Default value: **0.0**<br>Unit: vp|
+| borderRadius | [Length](ts-types.md#length) | No| Radius of the rounded corner of the underline indicator.<br>Default value: **0.0**<br>Unit: vp|
+| marginTop | [Length](ts-types.md#length) | No| Spacing between the underline indicator and text.<br>Default value: **8.0**<br>Unit: vp|
+
+## SelectedMode<sup>10+</sup>
+| Name      | Description                    |
+| ---------- | ------------------------ |
+| INDICATOR | Underline indicator mode.    |
+| BOARD   | Board mode.    |
+
+## BoardStyle<sup>10+</sup>
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | ------------------------------------ |
+| borderRadius | [Length](ts-types.md#length) | No| Radius of the rounded corner of the underline indicator.<br>Default value: **8.0**<br>Unit: vp|
+
+## LabelStyle<sup>10+</sup>
+
+| Name                | Type                                                    | Mandatory| Description                                                        |
+| -------------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| overflow             | [TextOverflow](ts-appendix-enums.md#textoverflow)            | No  | Display mode when the label text is too long. By default, an ellipsis (...) is used to represent text overflow.|
+| maxLines             | number                                                       | No  | Maximum number of lines in the label text. If this attribute is specified, the text will not exceed the specified number of lines. You can use **textOverflow** to specify how to represent text overflow. Default value: **1**|
+| minFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | No  | Minimum font size of the label text. For the setting to take effect, this attribute must be used together with **maxFontSize**, **maxLines**, or layout constraint settings. When the adaptive text size is set, **font.size** does not take effect. Default value: **0.0fp**|
+| maxFontSize          | number \| [ResourceStr](ts-types.md#resourcestr)             | No  | Maximum font size of the label text. For the setting to take effect, this attribute must be used together with **minFontSize**, **maxLines**, or layout constraint settings. When the adaptive text size is set, **font.size** does not take effect. Default value: **0.0fp**|
+| heightAdaptivePolicy | [TextHeightAdaptivePolicy](ts-appendix-enums.md#textheightadaptivepolicy10) | No  | How the adaptive height is determined for the label text. By default, the **maxLines** settings are prioritized.                             |
+| font                 | [Font](ts-types.md#font)                                     | No  | Font of the label text. By default, the font size is 16.0fp, the font type is HarmonyOS Sans, the font style is normal, and the font weight is normal.     |
 
 ## BottomTabBarStyle<sup>9+</sup>
 
 Implements the bottom and side tab style.
 
-### constructor<sup>9+</sup>
+### constructor
 
-constructor(icon: string | Resource, text: string | Resource)
+constructor(icon: string | Resource, content: string | Resource)
 
 A constructor used to create a **BottomTabBarStyle** instance.
 
@@ -61,8 +123,20 @@ A constructor used to create a **BottomTabBarStyle** instance.
 
 | Name| Type        | Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| icon | string \| [Resource](ts-types.md#resource) | Yes| Image for the tab.|
-| text | string \| [Resource](ts-types.md#resource) | Yes| Text for the tab.|
+| icon | string \| [Resource](ts-types.md#resource) | Yes| Image for the tab. Since API version 10, the type of **icon** is **ResourceStr**.|
+| text | string \| [Resource](ts-types.md#resource) | Yes| Text for the tab. Since API version 10, the type of **text** is **ResourceStr**.|
+
+### of<sup>10+</sup>
+
+static of(icon: ResourceStr, text: ResourceStr)
+Static constructor used to create a **BottomTabBarStyle** instance.
+
+**Parameters**
+
+| Name| Type        | Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| icon | [ResourceStr](ts-types.md#resourcestr) | Yes| Image for the tab.|
+| text | [ResourceStr](ts-types.md#resourcestr) | Yes| Text for the tab.|
 
 ## Example
 

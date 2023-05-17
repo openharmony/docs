@@ -2,7 +2,7 @@
 
 The **\<Tabs>** component is a container component that allows users to switch between content views through tabs. Each tab page corresponds to a content view.
 
->  **NOTE**<br>
+>  **NOTE**
 >
 >  This component is supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
@@ -18,47 +18,58 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| barPosition | BarPosition | No| Position of the **\<Tabs>** component.<br>Default value: **BarPosition.Start**|
-| index | number | No| Initial tab index.<br>Default value: **0**|
-| controller | [TabsController](#tabscontroller) | No| Tab controller.|
+| Name        | Type                             | Mandatory  | Description                                    |
+| ----------- | --------------------------------- | ---- | ---------------------------------------- |
+| barPosition | BarPosition                       | No   | Position of the **\<Tabs>** component.<br>Default value: **BarPosition.Start**  |
+| index       | number                            | No   | Initial tab index.<br>Default value: **0**<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value ranges from 0 to the number of **\<TabContent>** subnodes minus 1.<br>When this parameter is set to different values, the slide animation for tab switching is enabled by default. To disable the animation, set **animationDuration** to **0**. |
+| controller  | [TabsController](#tabscontroller) | No   | Tab controller.                              |
 
 ## BarPosition
 
-| Name| Description|
-| -------- | -------- |
+| Name   | Description                                      |
+| ----- | ---------------------------------------- |
 | Start | If the **vertical** attribute is set to **true**, the tab is on the left of the container. If the **vertical** attribute is set to **false**, the tab is on the top of the container.|
-| End | If the **vertical** attribute is set to **true**, the tab is on the right of the container. If the **vertical** attribute is set to **false**, the tab is at the bottom of the container.|
+| End   | If the **vertical** attribute is set to **true**, the tab is on the right of the container. If the **vertical** attribute is set to **false**, the tab is at the bottom of the container.|
 
 
 ## Attributes
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| vertical          | boolean | Whether to use vertical tabs. The value **true** means to use vertical tabs, and **false** means to use horizontal tabs.<br>Default value: **false**|
-| scrollable        | boolean | Whether the tabs are scrollable. The value **true** means that the tabs are scrollable, and **false** means the opposite.<br>Default value: **true**|
-| barMode           | BarMode | Tab bar layout mode. For details, see **BarMode**.<br>Default value: **BarMode.Fixed**|
-| barWidth          | number \| Length<sup>8+</sup>  | Width of the tab bar.    |
-| barHeight         | number \| Length<sup>8+</sup>  | Height of the tab bar.    |
-| animationDuration | number | Duration of the slide animation for tab switching. If this parameter is set, the tab switching animation is played when the user switches between tabs by sliding or clicking. If this parameter is not set, the tab switching animation is played only when the user switches between tabs by sliding.<br>Default value: **200**|
+| Name                      | Type                                    | Description                                      |
+| ------------------------ | ---------------------------------------- | ---------------------------------------- |
+| vertical                 | boolean                                  | Whether to use vertical tabs. The value **true** means to use vertical tabs, and **false** means to use horizontal tabs.<br>Default value: **false**|
+| scrollable               | boolean                                  | Whether the tabs are scrollable. The value **true** means that the tabs are scrollable, and **false** means the opposite.<br>Default value: **true**|
+| barMode                  | BarMode                                  | Tab bar layout mode. For details, see **BarMode**.<br>Default value: **BarMode.Fixed**|
+| barWidth                 | number \| Length<sup>8+</sup>  | Width of the tab bar.<br>**NOTE**<br><br>A value less than 0 or greater than the width of the **\<Tabs>** component evaluates to the default value.|
+| barHeight                | number \| Length<sup>8+</sup>  | Height of the tab bar.<br>**NOTE**<br><br>A value less than 0 or greater than the width of the **\<Tabs>** component evaluates to the default value.|
+| animationDuration        | number                                   | Duration of the slide animation for tab switching. If this parameter is set, the tab switching animation is played when the user switches between tabs by sliding or clicking. If this parameter is not set, the tab switching animation is played only when the user switches between tabs by sliding.<br>Default value: **300**<br>**NOTE**<br>A value less than 0 or in percentage evaluates to the default value.|
+| divider<sup>10+</sup>    | [DividerStyle](#dividerstyle10) \| null | Whether the divider is displayed for the **\<TabBar>** and **\<TabContent>** components and the divider style. By default, the divider is not displayed.<br> **DividerStyle**: divider style.<br> **null**: The divider is not displayed.|
+| fadingEdge<sup>10+</sup> | boolean                                  | Whether the tab fades out when it exceeds the container width.<br>Default value: **true**         |
+
+## DividerStyle<sup>10+</sup>
+
+| Name         | Type                                    | Mandatory  | Description                                 |
+| ----------- | ---------------------------------------- | ---- | ----------------------------------- |
+| strokeWidth | [Length](ts-types.md#length)             | Yes   | Width of the divider.                            |
+| color       | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the divider.<br>Default value: **#33182431**          |
+| startMargin | [Length](ts-types.md#length)             | No   | Distance between the divider and the top of the sidebar.<br>Default value: **0.0**<br>Unit: vp|
+| endMargin   | [Length](ts-types.md#length)             | No   | Distance between the divider and the bottom of the sidebar.<br>Default value: **0.0**<br>Unit: vp|
 
 ## BarMode
 
-| Name| Description|
-| -------- | -------- |
+| Name        | Description                                      |
+| ---------- | ---------------------------------------- |
 | Scrollable | The width of each tab is determined by the actual layout. The tabs are scrollable in the following case: In horizontal layout, the total width exceeds the tab bar width; in horizontal layout, the total height exceeds the tab bar height.|
-| Fixed | The width of each tab is determined by equally dividing the number of tabs by the bar width (or the bar height in vertical layout).|
+| Fixed      | The width of each tab is determined by equally dividing the number of tabs by the bar width (or bar height in the vertical layout).|
 
 ## Events
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name| Description|
-| -------- | -------- |
-| onChange(event: (index: number) =&gt; void) | Event triggered when a tab is switched.|
+| Name                                      | Description                                    |
+| ---------------------------------------- | ---------------------------------------- |
+| onChange(event: (index: number) =&gt; void) | Triggered when a tab is switched.<br>- **index**: index of the active tab. The index starts from 0.<br>This event is triggered when any of the following conditions is met:<br>1. The **\<TabContent>** component supports sliding, and the user slides on the tab bar.<br>2. The [Controller](#tabscontroller) API is called.<br>3. The attribute value is updated using a [state variable](../../quick-start/arkts-state.md).<br>4. A tab is clicked.|
 
 ## TabsController
 
@@ -66,9 +77,8 @@ Defines a tab controller, which is used to control switching of tabs. One **Tabs
 
 ### Objects to Import
 
-```
+```ts
 controller: TabsController = new TabsController()
-
 ```
 
 ### changeIndex
@@ -79,9 +89,9 @@ Switches to the specified tab.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| value | number | Yes| Index of the tab. The value starts from 0.|
+| Name  | Type  | Mandatory  | Description                                    |
+| ----- | ------ | ---- | ---------------------------------------- |
+| value | number | Yes   | Index of the tab. The value starts from 0.<br>**NOTE**<br><br>If this parameter is set to a value less than 0 or greater than the maximum number, the event will be invalid.|
 
 
 ## Example
@@ -148,3 +158,4 @@ struct TabsExample {
 ```
 
 ![tabs2](figures/tabs2.gif)
+<!--no_check-->

@@ -62,7 +62,7 @@ The system matches the **action** attribute in the **want** parameter passed by 
 
   **Figure 1** Matching rules of action in the want parameter
 
-  ![want-action](figures/want-action.png)
+  ![want-action](figures/want-action.png)  
 
 
 ### Matching Rules of entities in the want Parameter
@@ -79,18 +79,14 @@ The system matches the **entities** attribute in the **want** parameter passed b
 
 - If **entities** in the passed **want** parameter is specified, and **entities** under **skills** of an ability is specified but does not contain **entities** in the passed **want** parameter, the matching fails.
 
-  Figure 2 Matching rule of entities in the want parameter
+  **Figure 2** Matching rule of entities in the want parameter
 
-  ![want-entities](figures/want-entities.png) 
+  ![want-entities](figures/want-entities.png)  
 
 
 ### Matching Rules of uri and type in the want Parameter
 
 When the **uri** and **type** parameters are specified in the **want** parameter to initiate a component startup request, the system traverses the list of installed components and matches the **uris** array under **skills** of the abilities one by one. If one of the **uris** arrays under **skills** matches the **uri** and **type** in the passed **want**, the matching is successful.
-
-Figure 3 Matching rules when uri and type are specified in the want parameter
-
-![want-uri-type1](figures/want-uri-type1.png) 
 
 There are four combinations of **uri** and **type** settings. The matching rules are as follows:
 
@@ -111,11 +107,17 @@ There are four combinations of **uri** and **type** settings. The matching rules
   - If the **uris** array under **skills** of an ability is unspecified, the matching fails.
   - If the **uris** array under **skills** of an ability contains an element whose [uri is matched](#matching-rules-of-uri) and [type is matched](#matching-rules-of-type), the matching is successful. Otherwise, the matching fails.
 
+Leftmost URI matching: When only **scheme**, a combination of **scheme** and **host**, or a combination of **scheme**, **host**, and **port** is configured in the **uris** array under **skills** of the ability,
+the matching is successful only if the leftmost URI in the passed **want** parameter matches **scheme**, the combination of **scheme** and **host**, or the combination of **scheme**, **host**, and **port**.
+
+**Figure 3** Matching rules when uri and type are specified in the want parameter
+
+  ![want-uri-type1](figures/want-uri-type1.png)  
+
 
 To simplify the description, **uri** and **type** passed in the **want** parameter are called **w_uri** and **w_type**, respectively; the **uris** array under **skills** of an ability to match is called **s_uris**; each element in the array is called **s_uri**. Matching is performed from top to bottom.
 
-
-Figure 4 Matching rules of uri and type in the want parameter
+**Figure 4** Matching rules of uri and type in the want parameter
 
 ![want-uri-type2](figures/want-uri-type2.png)  
 
@@ -128,7 +130,9 @@ To simplify the description, **uri** in the passed **want** parameter is called 
 
 - If **host** of **s_uri** is unspecified and **scheme** of **w_uri** and **scheme** of **s_uri** are the same, the matching is successful. Otherwise, the matching fails.
 
-- If **path**, **pathStartWith**, and **pathRegex** of **s_uri** are unspecified and **w_uri** and **s_uri** are the same, the matching is successful. Otherwise, the matching fails.
+- If **port** of **s_uri** is unspecified and the combination of **scheme** and **host** of **w_uri** is the same as the combination of **scheme** and **host** of **s_uri**, the matching is successful. Otherwise, the matching fails.
+
+- If **path**, **pathStartWith**, and **pathRegex** of **s_uri** are unspecified and the combination of **scheme**, **host**, and **port** of **w_uri** is the same as the combination of **scheme**, **host**, and **port** of **s_uri**, the matching is successful. Otherwise, the matching fails.
 
 - If **path** of **s_uri** is specified and the **full path expressions** of **w_uri** and **s_uri** are the same, the matching is successful. Otherwise, the matching of **pathStartWith** continues.
 
@@ -139,12 +143,17 @@ To simplify the description, **uri** in the passed **want** parameter is called 
 > **NOTE**
 >
 > The **scheme**, **host**, **port**, **path**, **pathStartWith**, and **pathRegex** attributes of **uris** under **skills** of an ability are concatenated. If **path**, **pathStartWith**, and **pathRegex** are declared in sequence, **uris** can be concatenated into the following expressions:
->
+> 
 > - **Full path expression**: `scheme://host:port/path`
->
+> 
 > - **Prefix expression**: `scheme://host:port/pathStartWith`
->
+> 
 > - **Regular expression**: `scheme://host:port/pathRegex`
+>
+> - **Prefix URI expression**: When only **scheme**, a combination of **scheme** and **host**, or a combination of **scheme**, **host**, and **port** is configured in the configuration file, the matching is successful if a URI prefixed with the configuration file is passed in.
+>     * `scheme://`
+>     * `scheme://host`
+>     * `scheme://host:port`
 
 
 ### Matching Rules of type

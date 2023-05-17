@@ -59,7 +59,9 @@ This document gives an overview of the **module.json5** configuration file. To s
         }
       }
     ]
-  }
+  },
+  "targetModuleName": "feature",
+  "targetPriority": 50
 }
 ```
 
@@ -79,7 +81,7 @@ As shown above, the **module.json5** file contains several tags.
 | mainElement | Name of the entry UIAbility or ExtensionAbility of the module. The value is a string with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
 | [deviceTypes](#devicetypes) | Type of the device on which the module can run.| String array| No (can be left empty)|
 | deliveryWithInstall | Whether the HAP file of the module will be installed when the user installs the application.<br>- **true**: The HAP file will be installed when the user installs the application.<br>- **false**: The HAP file will not be installed when the user installs the application.| Boolean| No|
-| installationFree | Whether the module supports the installation-free feature.<br>- **true**: The module supports the installation-free feature and meets installation-free constraints.<br>- **false**: The module does not support the installation-free feature.<br>**NOTE**<br>- If this tag is set to **true** for an entry-type module, it must also be set to **true** for feature-type modules of the same application.<br>- If this tag is set to **false** for an entry-type module, it can be set to **true** or **false** for feature-type modules of the same application based on service requirements.| Boolean| No|
+| installationFree | Whether the module supports the installation-free feature.<br>- **true**: The module supports the installation-free feature and meets installation-free constraints.<br>- **false**: The module does not support the installation-free feature.<br>**NOTE**<br>If this tag is set to **true** for an entry-type module, it must also be set to **true** for feature-type modules of the same application.<br>If this tag is set to **false** for an entry-type module, it can be set to **true** or **false** for feature-type modules of the same application based on service requirements.| Boolean| No|
 | virtualMachine | Type of the target virtual machine (VM) where the module runs. It is used for cloud distribution, such as distribution by the application market and distribution center.<br> If the target VM type is ArkTS engine, the value is **ark**+*version number*.| String| Yes (initial value: automatically inserted when DevEco Studio builds the HAP file)|
 | [pages](#pages)| Profile that represents information about each page in the current module. The value can contain a maximum of 255 bytes.| String| No in the UIAbility scenario|
 | [metadata](#metadata)| Custom metadata of the module. The setting is valid only for the current module, UIAbility, or ExtensionAbility.| Object array| Yes (initial value: left empty)|
@@ -87,7 +89,10 @@ As shown above, the **module.json5** file contains several tags.
 | [extensionAbilities](#extensionabilities) | ExtensionAbility configuration of the module, which is valid only for the current ExtensionAbility component.| Object| Yes (initial value: left empty)|
 | [requestPermissions](#requestpermissions) | A set of permissions that the application needs to request from the system for running correctly.| Object| Yes (initial value: left empty)|
 | [testRunner](#testrunner) | Test runner configuration of the module.| Object| Yes (initial value: left empty)|
-
+| [atomicService](#atomicservice)| Atomic service configuration.| Object| Yes (initial value: left empty) |
+| [dependencies](#dependencies)| List of shared libraries on which the current module depends during running.| Object array| Yes (initial value: left empty) |
+| targetModuleName | Target module of the bundle. The value is a string with a maximum of 31 bytes. It must be unique in the entire application.|String|Yes (if the initial value is used, the target module is not a module with the overlay feature)|
+| targetPriority | Priority of the module. When **targetModuleName** is set, the module is a module with the overlay feature. The value ranges from 1 to 100.|Number|Yes (initial value: **1**)|
 
 ## deviceTypes
 
@@ -131,8 +136,21 @@ The **pages** tag is a profile that represents information about specified pages
 }
 ```
 
-Define the **main_pages.json** file under **resources/base/profile** in the development view. The base name of the file (**main_pages** in this example) can be customized, but must be consistent with the information specified by the **pages** tag. The file lists the page information of the current application.
+Define the **main_pages.json** file under **resources/base/profile** in the development view. The file name (**main_pages** in this example) can be customized, but must be consistent with the information specified by the **pages** tag. The file lists the page information of the current application, including the route information and the window-related configuration.
 
+  **Table 3** Tags in the pages configuration file
+
+| Name| Description| Data Type| Initial Value Allowed|
+| -------- | -------- | -------- | -------- |
+| src | Route information about all pages in the JavaScript module, including the page path and page name. The value is an array, each element of which represents a page and the first element represents the home page.| String array| No|
+| window | Window-related configuration.	 | Object| Yes (initial value: left empty)|
+
+  **Table 4** window tag in the pages configuration file
+
+| Name| Description| Data Type| Initial Value Allowed|
+| -------- | -------- | -------- | -------- |
+| designWidth | Baseline width for page design. The size of an element is scaled by the actual device width.| Number| Yes (initial value: **720px**)|
+| autoDesignWidth | Whether to automatically calculate the baseline width for page design. If it is set to **true**, the **designWidth** attribute becomes invalid. The baseline width is calculated based on the device width and screen density.| Boolean| Yes (initial value: **false**)|
 
 ```json
 {
@@ -141,7 +159,11 @@ Define the **main_pages.json** file under **resources/base/profile** in the deve
     "pages/second/payment",
     "pages/third/shopping_cart",
     "pages/four/owner"
-  ]
+  ],
+  "window": {
+    "designWidth": 720,
+    "autoDesignWidth": false
+  }
 }
 ```
 
@@ -150,7 +172,7 @@ Define the **main_pages.json** file under **resources/base/profile** in the deve
 
 The **metadata** tag represents the custom metadata of the HAP file. The tag value is an array and contains three subtags: **name**, **value**, and **resource**.
 
-**Table 3** metadata
+**Table 5** metadata
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
@@ -165,7 +187,7 @@ The **metadata** tag represents the custom metadata of the HAP file. The tag val
     "metadata": [{
       "name": "module_metadata",
       "value": "a test demo for module metadata",
-      "resource": "$profile:shortcuts_config",
+      "resource": "$profile:shortcuts_config"
     }],
 
     "abilities": [{
@@ -206,10 +228,13 @@ UIAbility configuration of the module, which is valid only for the current UIAbi
 
 The OpenHarmony system imposes a strict rule on the presence of application icons. If no icon is configured in the HAP file of an application, the system uses the icon specified in the **app.json** file as the application icon and displays it on the home screen.
 
-Touching this icon will direct the user to the application details screen in **Settings**.
+Touching this icon will direct the user to the application details screen in **Settings**, as shown in Figure 1.
 
 To hide an application icon from the home screen, you must configure the **AllowAppDesktopIconHide** privilege. For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
 
+**Objectives**:
+
+This requirement on application icons is intended to prevent malicious applications from deliberately configuring no icon to block uninstallation attempts.
 
 **Setting the application icon to be displayed on the home screen**:
 
@@ -231,40 +256,42 @@ Set **icon**, **label**, and **skills** under **abilities** in the **module.json
       }]
     }],
     ...
-    
+
   }
 }
 ```
 
-**Querying an application icon:**
-* The HAP file contains ability configuration.
-  * The application icon is set under **abilities** in the **module.json5** file.
+**Display rules of application icons and labels on the home screen:**
+* The HAP file contains UIAbility configuration.
+  * The application icon on the home screen is set under **abilities** in the **module.json5** file.
     * The application does not have the privilege to hide its icon from the home screen.
-      * The returned home screen icon is the icon configured for the ability.
-      * The returned home screen label is the label configured for the ability. If no label is configured, the bundle name is returned.
-      * The returned component name is the component name of the ability.
-      * When the user touches the home screen icon, the home screen of the ability is displayed.
+      * The application icon displayed on the home screen is the icon configured for the UIAbility.
+      * The application label displayed on the home screen is the label configured for the UIAbility. If no label is configured, the bundle name is returned.
+      * The name of the UIAbility is displayed.
+      * When the user touches the home screen icon, the home screen of the UIAbility is displayed.
     * The application has the privilege to hide its icon from the home screen.
       * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.
-  * The application icon is not set under **abilities** in the **module.json5** file.
+  * The application icon on the home screen is not set under **abilities** in the **module.json5** file.
     * The application does not have the privilege to hide its icon from the home screen.
-      * The returned home screen icon is the icon configured under **app**. (The **icon** parameter in the **app.json** file is mandatory.)
-      * The returned home screen label is the label configured under **app**. (The **label** parameter in the **app.json** file is mandatory.)
-      * The returned component name is the component name displayed on the application details screen (this component is built in the system).
-      * Touching the home screen icon will direct the user to the application details screen.
+      * The application icon displayed on the home screen is the icon specified under **app**. (The **icon** field in the **app.json** file is mandatory.)
+      * The application label displayed on the home screen is the label specified under **app**. (The **label** field in the **app.json** file is mandatory.)
+      * Touching the application icon on the home screen will direct the user to the application details screen shown in Figure 1.
     * The application has the privilege to hide its icon from the home screen.
       * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.
-* The HAP file does not contain ability configuration.
+* The HAP file does not contain UIAbility configuration.
   * The application does not have the privilege to hide its icon from the home screen.
-    * The returned home screen icon is the icon configured under **app**. (The **icon** parameter in the **app.json** file is mandatory.)
-    * The returned home screen label is the label configured under **app**. (The **label** parameter in the **app.json** file is mandatory.)
-    * The returned component name is the component name displayed on the application details screen (this component is built in the system).
-    * Touching the home screen icon will direct the user to the application details screen.
+    * The application icon displayed on the home screen is the icon specified under **app**. (The **icon** field in the **app.json** file is mandatory.)
+    * The application label displayed on the home screen is the label specified under **app**. (The **label** field in the **app.json** file is mandatory.)
+    * Touching the application icon on the home screen will direct the user to the application details screen shown in Figure 1.
   * The application has the privilege to hide its icon from the home screen.
-    * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.
+    * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.<br><br>
+
+**Figure 1** Application details screen
+
+![Application details screen](figures/application_details.jpg)
 
 
-  **Table 4** abilities
+  **Table 6** abilities
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
@@ -285,14 +312,14 @@ Set **icon**, **label**, and **skills** under **abilities** in the **module.json
 | removeMissionAfterTerminate | Whether to remove the relevant task from the task list after the UIAbility component is destroyed.<br>- **true**: Remove the relevant task from the task list after the UIAbility component is destroyed.<br>- **false**: Do not remove the relevant task from the task list after the UIAbility component is destroyed.| Boolean| Yes (initial value: **false**)|
 | orientation | Orientation of the UIAbility component when it is started. The options are as follows:<br>- **unspecified**: automatically determined by the system.<br>- **landscape**: landscape mode.<br>- **portrait**: portrait mode.<br>- **landscape_inverted**: inverted landscape mode.<br>- **portrait_inverted**: inverted portrait mode.<br>- **auto_rotation**: determined by the sensor.<br>- **auto_rotation_landscape**: determined by the sensor in the horizontal direction, including landscape and inverted landscape modes.<br>- **auto_rotation_portrait**: determined by the sensor in the vertical direction, including portrait and inverted portrait modes.<br>- **auto_rotation_restricted**: determined by the sensor when the sensor switch is enabled.<br>- **auto_rotation_landscape_restricted**: determined by the sensor in the horizontal direction, including landscape and inverted landscape modes, when the sensor switch is enabled.<br>- **auto_rotation_portrait_restricted**: determined by the sensor in the vertical direction, including portrait and inverted portrait modes, when the sensor switch is enabled.<br>- **locked**: auto rotation disabled.| String| Yes (initial value: **"unspecified"**)|
 | supportWindowMode | Window mode supported by the UIAbility component. The options are as follows:<br>- **fullscreen**: full-screen mode.<br>- **split**: split-screen mode.<br>- **floating**: floating window mode.| String array| Yes (initial value:<br>["fullscreen", "split", "floating"])|
-| priority | Priority of the UIAbility component. In the case of [implicit query](../application-models/explicit-implicit-want-mappings.md), UIAbility components with a higher priority are at the higher place of the returned list. The value is an integer ranging from 0 to 10. The greater the value, the higher the priority.<br>**NOTE**<br>This tag applies only to system applications and does not take effect for third-party applications.| Number| Yes (initial value: **0**)|
+| priority | Priority of the UIAbility component. In the case of [implicit query](../application-models/explicit-implicit-want-mappings.md), UIAbility components with a higher priority are at the higher place of the returned list. The value is an integer ranging from 0 to 10. The greater the value, the higher the priority.<br>**NOTE**<br>This attribute applies only to system applications and does not take effect for third-party applications.| Number| Yes (initial value: **0**)|
 | maxWindowRatio | Maximum aspect ratio supported by the UIAbility component. The minimum value is 0.| Number| Yes (initial value: maximum aspect ratio supported by the platform)|
 | minWindowRatio | Minimum aspect ratio supported by the UIAbility component. The minimum value is 0.| Number| Yes (initial value: minimum aspect ratio supported by the platform)|
 | maxWindowWidth | Maximum window width supported by the UIAbility component, in vp. The minimum value is 0, and the value cannot be less than the value of **minWindowWidth** or greater than the maximum window width allowed by the platform. For details about the window size, see [Constraints](../windowmanager/window-overview.md#constraints).| Number| Yes (initial value: maximum window width supported by the platform)|
 | minWindowWidth | Minimum window width supported by the UIAbility component, in vp. The minimum value is 0, and the value cannot be less than the minimum window width allowed by the platform or greater than the value of **maxWindowWidth**. For details about the window size, see [Constraints](../windowmanager/window-overview.md#constraints).| Number| Yes (initial value: minimum window width supported by the platform)|
 | maxWindowHeight | Maximum window height supported by the UIAbility component, in vp. The minimum value is 0, and the value cannot be less than the value of **minWindowHeight** or greater than the maximum window height allowed by the platform. For details about the window size, see [Constraints](../windowmanager/window-overview.md#constraints).| Number| Yes (initial value: maximum window height supported by the platform)|
 | minWindowHeight | Minimum window height supported by the UIAbility component, in vp. The minimum value is 0, and the value cannot be less than the minimum window height allowed by the platform or greater than the value of **maxWindowHeight**. For details about the window size, see [Constraints](../windowmanager/window-overview.md#constraints).| Number| Yes (initial value: minimum window height supported by the platform)|
-| excludeFromMissions | Whether the UIAbility component is displayed in the recent task list.<br>- **true**: displayed in the recent task list.<br>- **false**: not displayed in the recent task list.<br>**NOTE**<br>This tag applies only to system applications and does not take effect for third-party applications.| Boolean| Yes (initial value: **false**)|
+| excludeFromMissions | Whether the UIAbility component is displayed in the recent task list.<br>- **true**: displayed in the recent task list.<br>- **false**: not displayed in the recent task list.<br>**NOTE**<br>This attribute applies only to system applications and does not take effect for third-party applications.| Boolean| Yes (initial value: **false**)|
 | recoverable | Whether the application can be recovered to its previous state in case of a detected fault.<br>- **true**: The application can be recovered to its previous state in case of a detected fault.<br>- **false**: The application cannot be recovered to its previous state in case of a detected fault.| Boolean| Yes (initial value: **false**)|
 
 Example of the **abilities** structure:
@@ -348,7 +375,7 @@ Example of the **abilities** structure:
 
 The **skills** tag represents the feature set of [wants](../application-models/want-overview.md) that can be received by the UIAbility or ExtensionAbility component.
 
-  **Table 5** skills
+  **Table 7** skills
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
@@ -356,7 +383,7 @@ The **skills** tag represents the feature set of [wants](../application-models/w
 | entities | [Entities](../application-models/actions-entities.md) of wants that can be received.| String array| Yes (initial value: left empty)|
 |uris | URIs that match the wants.| Object array| Yes (initial value: left empty)|
 
-  **Table 6** uris
+  **Table 8** Internal structure of the uris tag
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
@@ -397,44 +424,11 @@ Example of the **skills** structure:
 }
 ```
 
-**Enhanced implicit query**
-
-URI-level prefix matching is supported.
-When only **scheme** or a combination of **scheme** and **host** or **scheme**, **host**, and **port** are configured in the configuration file, the configuration is successful if a URI prefixed with the configuration file is passed in.
-
-
-  * The query enhancement involves the following APIs:
-    [@ohos.bundle.bundleManager](../reference/apis/js-apis-bundleManager.md#bundlemanagerqueryabilityinfo)<br>
-    1. function queryAbilityInfo(want: Want, abilityFlags: number, callback: AsyncCallback<Array\<AbilityInfo>>): void;<br>
-    2. function queryAbilityInfo(want: Want, abilityFlags: number, userId: number, callback: AsyncCallback<Array\<AbilityInfo>>): void;<br>
-    3. function queryAbilityInfo(want: Want, abilityFlags: number, userId?: number): Promise<Array\<AbilityInfo>>;
-  * Configuration requirements<br>
-    abilities -> skills -> uris object<br>
-    Configuration 1: only **scheme = 'http'**<br>
-    Configuration 2: only **(scheme = 'http') + (host = 'example.com')**<br>
-    Configuration 3: only **(scheme = 'http') + (host = 'example.com') + (port = '8080')**
-  * Prefix match<br>
-    If the value of **uri** under [want](../application-models/want-overview.md) is obtained by calling the **queryAbilityInfo** API:
-    1. uri = 'https://': No matches<br>
-    2. uri = 'http://': Matches configuration 1<br>
-    3. uri = 'https://example.com': No matches<br>
-    4. uri = 'https://exa.com': No matches<br>
-    5. uri = 'http://exa.com': Matches configuration 1<br>
-    6. uri = 'http://example.com': Matches configuration 1 and configuration 2<br>
-    7. uri = 'https://example.com:8080': No matches<br>
-    8. uri = 'http://exampleaa.com:8080': Matches configuration 1<br>
-    9. uri = 'http://example.com:9180': Matches configuration 1 and configuration 2<br>
-    10. uri = 'http://example.com:8080': Matches configuration 1, configuration 2, and configuration 3<br>
-    11. uri = 'https://example.com:9180/path': No matches<br>
-    12. uri = 'http://exampleap.com:8080/path': Matches configuration 1<br>
-    13. uri = 'http://example.com:9180/path': Matches configuration 1 and configuration 2<br>
-    14. uri = 'http://example.com:8080/path': Matches configuration 1, configuration 2, and configuration 3<br>
-
 ## extensionAbilities
 
 The **extensionAbilities** tag represents the configuration of extensionAbilities, which is valid only for the current extensionAbility.
 
-  **Table 7** extensionAbilities
+  **Table 9** extensionAbilities
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
@@ -443,10 +437,10 @@ The **extensionAbilities** tag represents the configuration of extensionAbilitie
 | description | Description of the ExtensionAbility component. The value is a string with a maximum of 255 bytes or a resource index to the description.| String| Yes (initial value: left empty)|
 | icon | Icon of the ExtensionAbility component. The value is an icon resource index. If **ExtensionAbility** is set to **MainElement** of the current module, this attribute is mandatory and its value must be unique in the application.| String| Yes (initial value: left empty)|
 | label | Name of the ExtensionAbility component displayed to users. The value is a string resource index.<br>**NOTE**<br>If **ExtensionAbility** is set to **MainElement** of the current module, this attribute is mandatory and its value must be unique in the application.| String| No|
-| type | Type of the ExtensionAbility component. The options are as follows:<br>- **form**: ExtensionAbility of a widget.<br>- **workScheduler**: ExtensionAbility of a Work Scheduler task.<br>- **inputMethod**: ExtensionAbility of an input method.<br>- **service**: service component running in the background.<br>- **accessibility**: ExtensionAbility of an accessibility feature.<br>- **dataShare**: ExtensionAbility for data sharing.<br>- **fileShare**: ExtensionAbility for file sharing.<br>- **staticSubscriber**: ExtensionAbility for static broadcast.<br>- **wallpaper**: ExtensionAbility of the wallpaper.<br>- **backup**: ExtensionAbility for data backup.<br>- **window**: ExtensionAbility of a window. This type of ExtensionAbility creates a window during startup for which you can develop the GUI. The window is then combined with other application windows through **abilityComponent**.<br>- **thumbnail**: ExtensionAbility for obtaining file thumbnails. You can provide thumbnails for files of customized file types.<br>- **preview**: ExtensionAbility for preview. This type of ExtensionAbility can parse the file and display it in a window. You can combine the window with other application windows.<br>- **print**: ExtensionAbility for the print framework.<br>**NOTE**<br>The **service** and **dataShare** types apply only to system applications and do not take effect for third-party applications.| String| No|
+| type | Type of the ExtensionAbility component. The options are as follows:<br>- **form**: ExtensionAbility of a widget.<br>- **workScheduler**: ExtensionAbility of a Work Scheduler task.<br>- **inputMethod**: ExtensionAbility of an input method.<br>- **service**: service component running in the background.<br>- **accessibility**: ExtensionAbility of an accessibility feature.<br>- **dataShare**: ExtensionAbility for data sharing.<br>- **fileShare**: ExtensionAbility for file sharing.<br>- **staticSubscriber**: ExtensionAbility for static broadcast.<br>- **wallpaper**: ExtensionAbility of the wallpaper.<br>- **backup**: ExtensionAbility for data backup.<br>- **window**: ExtensionAbility of a window. This type of ExtensionAbility creates a window during startup for which you can develop the GUI. The window is then combined with other application windows through **abilityComponent**.<br>- **thumbnail**: ExtensionAbility for obtaining file thumbnails. You can provide thumbnails for files of customized file types.<br>- **preview**: ExtensionAbility for preview. This type of ExtensionAbility can parse the file and display it in a window. You can combine the window with other application windows.<br>- **print**: ExtensionAbility for the print framework.<br>- **driver**: ExtensionAbility for the driver framework.<br>**NOTE**<br>The **service** and **dataShare** types apply only to system applications and do not take effect for third-party applications.| String| No|
 | permissions | Permissions required for another application to access the ExtensionAbility component.<br>The value is generally in the reverse domain name notation and contains a maximum of 255 bytes. It is an array of permission names predefined by the system or customized. The name of a customized permission must be the same as the **name** value of a permission defined in the **defPermissions** attribute.| String array| Yes (initial value: left empty)|
-| uri | Data URI provided by the ExtensionAbility component. The value is a string with a maximum of 255 bytes, in the reverse domain name notation.<br>**NOTE**<br>This attribute is mandatory when the type of the **ExtensionAbility** component is set to **dataShare**. | String| Yes (initial value: left empty)|
-|skills | Feature set of [wants](../application-models/want-overview.md) that can be received by the ExtensionAbility component.<br>Configuration rule: In an entry package, you can configure multiple **skills** attributes with the entry capability. (A **skills** attribute with the entry capability is the one that has **ohos.want.action.home** and **entity.system.home** configured.) The **label** and **icon** in the first ExtensionAbility that has **skills** configured are used as the **label** and **icon** of the entire OpenHarmony service/application.<br>**NOTE**<br>The **skills** attribute with the entry capability can be configured for the feature-type package of an OpenHarmony application, but not for an OpenHarmony service. | Array| Yes (initial value: left empty)|
+| uri | Data URI provided by the ExtensionAbility component. The value is a string with a maximum of 255 bytes, in the reverse domain name notation.<br>**NOTE**<br>This attribute is mandatory when the type of the ExtensionAbility component is set to **dataShare**.| String| Yes (initial value: left empty)|
+|skills | Feature set of [wants](../application-models/want-overview.md) that can be received by the ExtensionAbility component.<br>Configuration rule: In an entry package, you can configure multiple **skills** attributes with the entry capability. (A **skills** attribute with the entry capability is the one that has **ohos.want.action.home** and **entity.system.home** configured.) The **label** and **icon** in the first ExtensionAbility that has **skills** configured are used as the **label** and **icon** of the entire OpenHarmony service/application.<br>**NOTE**<br>The **skills** attribute with the entry capability can be configured for the feature package of an OpenHarmony application, but not for an OpenHarmony service. | Array| Yes (initial value: left empty)|
 | [metadata](#metadata)| Metadata of the ExtensionAbility component.| Object| Yes (initial value: left empty)|
 | exported | Whether the ExtensionAbility component can be called by other applications. <br>- **true**: The ExtensionAbility component can be called by other applications.<br>- **false**: The UIAbility component cannot be called by other applications.| Boolean| Yes (initial value: **false**)|
 
@@ -462,7 +456,7 @@ Example of the **extensionAbilities** structure:
       "icon": "$media:icon",
       "label" : "$string:extension_name",
       "description": "$string:form_description",
-      "type": "form", 
+      "type": "form",
       "permissions": ["ohos.abilitydemo.permission.PROVIDER"],
       "readPermission": "",
       "writePermission": "",
@@ -476,7 +470,7 @@ Example of the **extensionAbilities** structure:
       "metadata": [
         {
           "name": "ohos.extension.form",
-          "resource": "$profile:form_config", 
+          "resource": "$profile:form_config",
         }
       ]
     }
@@ -494,12 +488,12 @@ The **requestPermissions** tag represents a set of permissions that the applicat
 > - The permission settings configured in the **requestPermissions** tag apply to the entire application.
 > - If your application needs to subscribe to an event published by itself and the permissions required for accessing the application are set in the **permissions** tag under **extensionAbilities**, then the application must register the related permissions in the **requestPermissions** tag to receive the event.
 
-**Table 8** requestPermissions
+**Table 10** requestPermissions
 
 | Name| Description| Data Type| Value Range| Default Value|
 | -------- | -------- | -------- | -------- | -------- |
 | name | Permission name. This attribute is mandatory.| String| Custom| –|
-| reason | Reason for requesting the permission. This attribute is mandatory when the permission to request is **user_grant**.<br>**NOTE**<br>If the permission to request is **user_grant**, this attribute is required for the application to be released to the application market, and multi-language adaptation is required.| String| Resource reference of the string type in $string: \*\*\* format| A null value|
+| reason | Reason for requesting the permission. This attribute is mandatory when the permission to request is **user_grant**.<br>**NOTE**<br>If the permission to request is **user_grant**, this attribute is required for the application to be released to the application market. Multi-language adaptation is required.| String| Resource reference of the string type in $string: \*\*\* format| A null value|
 | usedScene | Scene under which the permission is used. It consists of the **abilities** and **when** sub-attributes. Multiple abilities can be configured.<br>**NOTE**<br>This attribute is optional by default. If the permission to request is **user_grant**, the **abilities** sub-attribute is mandatory and **when** is optional.| **abilities**: string array<br>**when**: string| **abilities**: array of names of UIAbility or ExtensionAbility components<br>**when**: **inuse** or **always**| **abilities**: null<br>**when**: null|
 
 Example of the **requestPermissions** structure:
@@ -534,8 +528,10 @@ The **shortcut** information is identified in **metadata**, where:
 - **name** indicates the name of the shortcut, identified by **ohos.ability.shortcuts**.
 
 - **resource** indicates where the resources of the shortcut are stored.
-  
-| Attribute| Description| Data Type | Default Value|
+
+**Table 11** shortcuts
+
+| Name| Description| Data Type | Default Value|
 | -------- | -------- | -------- | -------- |
 | shortcutId | ID of the shortcut. The value is a string with a maximum of 63 bytes.| String| No|
 | label | Label of the shortcut, that is, the text description displayed for the shortcut. The value can be a string or a resource index to the label, with a maximum of 255 bytes.| String| Yes (initial value: left empty)|
@@ -544,7 +540,7 @@ The **shortcut** information is identified in **metadata**, where:
 
 
 1. Configure the **shortcuts_config.json** file in **/resource/base/profile/**.
-   
+
    ```json
    {
      "shortcuts": [
@@ -564,7 +560,7 @@ The **shortcut** information is identified in **metadata**, where:
    ```
 
 2. In the **abilities** tag of the **module.json5** file, configure the **metadata** tag for the UIAbility component to which a shortcut needs to be added so that the shortcut configuration file takes effect for the UIAbility.
-   
+
    ```json
    {
      "module": {
@@ -601,7 +597,7 @@ The **shortcut** information is identified in **metadata**, where:
 
 The **distributionFilter** tag defines the rules for distributing HAP files based on different device specifications, so that precise matching can be performed when the application market distributes applications. Distribution rules cover five factors: API version, screen shape, screen size, screen resolution, and country code. During distribution, a unique HAP is determined based on the mapping between **deviceType** and these five factors. This tag must be configured in the **/resource/profile resource** directory. Its sub-tags are optional.
 
-  **Table 9** distributionFilter
+  **Table 12** distributionFilter
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
@@ -611,28 +607,28 @@ The **distributionFilter** tag defines the rules for distributing HAP files base
 | countryCode | Code of the country or region to which the application is to be distributed. The value is subject to the ISO-3166-1 standard. Enumerated definitions of multiple countries and regions are supported.| Object array| Yes (initial value: left empty)|
 
 
-  **Table 10** screenShape
+  **Table 13** Internal structure of the screenShape tag
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | policy | Rule for the sub-attribute value. Set this attribute to **exclude** or **include**.<br>- **exclude**: Exclude the matches of the sub-attribute value.<br>- **include**: Include the matches of the sub-attribute value.| String| No|
 | value | Screen shapes. The value can be **circle**, **rect**, or both. Example: Different HAP files can be provided for a smart watch with a circular face and that with a rectangular face.| String array| No|
 
-  **Table 11** screenWindow
+  **Table 14** Internal structure of the screenWindow tag
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | policy | Rule for the sub-attribute value. Set this attribute to **exclude** or **include**.<br>- **exclude**: Exclude the matches of the sub-attribute value.<br>- **include**: Include the matches of the sub-attribute value.| String| No|
 | value | Screen width and height, in pixels. The value an array of supported width and height pairs, each in the "width * height" format, for example, **"454 * 454"**.| String array| No|
 
-  **Table 12** screenDensity
+  **Table 15** Internal structure of the screenDensity tag
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | policy | Rule for the sub-attribute value. Set this attribute to **exclude** or **include**.<br>- **exclude**: Exclude the matches of the sub-attribute value.<br>- **include**: Include the matches of the sub-attribute value.| String| No|
 | value | Pixel density of the screen, in DPI.| String array| No|
 
-  **Table 13** countryCode
+  **Table 16** Internal structure of the countryCode tag
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
@@ -699,14 +695,14 @@ Configure **metadata** in the **module** tag in the **module.json5** file.
 
 The **testRunner** tag represents the supported test runner.
 
-**Table 14** testRunner
+**Table 17** Internal structure of the testRunner tag
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | name | Name of the test runner object. The value is a string with a maximum of 255 bytes.| String| No|
 | srcPath | Code path of the test runner. The value is a string with a maximum of 255 bytes.| String| No|
 
-Example of the / structure:
+Example of the **testRunner** structure:
 
 
 ```json
@@ -717,6 +713,87 @@ Example of the / structure:
       "name": "myTestRunnerName",
       "srcPath": "etc/test/TestRunner.ts"
     }
+  }
+}
+```
+
+## atomicService
+
+The **atomicService** tag represents the atomic service configuration. It is available only when **bundleType** is set to **atomicService** in the **app.json** file.
+
+**Table 18** Internal structure of the atomicService tag
+
+| Name| Description| Data Type| Initial Value Allowed|
+| -------- | -------- | -------- | -------- |
+| preloads | List of modules to pre-load.| Object array| Yes (initial value: left empty)|
+
+Example of the **atomicService** structure:
+
+
+```json
+{
+  "module": {
+    "atomicService": {
+      "preloads":[
+        {
+          "moduleName":"feature"
+        }
+      ]
+    }
+  }
+}
+```
+
+## preloads
+
+The **preloads** tag represents a list of modules to pre-load in an atomic service.
+
+**Table 19** Internal structure of the preloads tag
+
+| Name| Description| Data Type| Initial Value Allowed|
+| -------- | -------- | -------- | -------- |
+| moduleName | Name of the module to be preloaded when the current module is loaded in the atomic service.| String| No|
+
+Example of the **preloads** structure:
+
+```json
+{
+  "module": {
+    "atomicService": {
+      "preloads":[
+        {
+          "moduleName":"feature"
+        }
+      ]
+    }
+  }
+}
+```
+
+## dependencies
+
+The **dependencies** tag identifies the list of shared libraries that the module depends on when it is running.
+
+**Table 20** Internal structure of the dependencies tag
+
+| Name   | Description                          | Data Type| Initial Value Allowed|
+| ----------- | ------------------------------ | -------- | ---------- |
+| bundleName  | Name of the shared bundle on which the current module depends. | String  | Yes|
+| moduleName  | Module name of the shared bundle on which the current module depends.| String  | No|
+| versionCode | Version number of the shared bundle.      | Number    | Yes|
+
+Example of the **dependencies** structure:
+
+```json
+{
+  "module": {
+    "dependencies": [
+      {
+        "bundleName":"com.share.library",
+        "moduleName": "library",
+        "versionCode": 10001
+      }
+    ]
   }
 }
 ```

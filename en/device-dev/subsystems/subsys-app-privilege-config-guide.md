@@ -63,6 +63,7 @@ In addition to general application privileges, device vendors can define device-
 | allowAbilityExcludeFromMissions | bool | false| Allows an ability to be hidden in the mission stack.|
 | allowAppUsePrivilegeExtension | bool | false|Allows an application to use ServiceExtension and DataExtension abilities.|
 | allowFormVisibleNotify | bool | false| Allows a widget to be visible on the home screen.|
+| allowAppShareLibrary | bool | false | Allows an application to provide the [inter-application HSP capability](../../application-dev/quick-start/cross-app-hsp.md) for other applications.
 
 ### How to Configure
 
@@ -90,6 +91,7 @@ Configure the required privileges in the [configuration file](https://gitee.com/
             "allowAbilityExcludeFromMissions": true, // Allow the ability to be hidden in the mission stack.
             "allowAppUsePrivilegeExtension": true, // Allow the application to use ServiceExtension and DataExtension abilities.
             "allowFormVisibleNotify": true // Allow a widget to be visible on the home screen.
+            "allowAppShareLibrary": true // Allow the application to provide the inter-application HSP capability.
         },
 }
 ```

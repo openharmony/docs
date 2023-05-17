@@ -1,5 +1,9 @@
 # Telephony Error Codes
 
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
+
 ## 8300001 Input Parameter Value Out of Range
 
 **Error Message**

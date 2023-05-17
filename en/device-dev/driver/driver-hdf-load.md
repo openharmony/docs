@@ -27,4 +27,9 @@ typedef enum {
 
 ### Sequential Loading (Default)
 
-The **priority** field (ranging from 0 to 200) in the configuration file determines the loading sequence of a host and a driver. For the drivers in different hosts, the drivers in the host with a smaller priority value are loaded first. For the drivers in the same host, the driver with a smaller priority value is loaded first.
+The **priority** field (ranging from 0 to 200) in the configuration file determines the loading sequence of a host and a driver. For the drivers in different hosts, the driver with a smaller priority value is loaded first. For the drivers in the same host, the driver with a smaller priority value is loaded first.
+
+### Exception Recovery (User-Mode Driver)
+The policies for restoring from a driver service exception are as follows:
+- If **preload** is set to **0** (**DEVICE_PRELOAD_ENABLE**) or **1** (**DEVICE_PRELOAD_ENABLE_STEP2**) for the driver service, the startup module starts the host and reloads the service.
+- If **preload** is set to **2** (**DEVICE_PRELOAD_DISABLE**), the service module needs to register an HDF service status listener. When receiving a notification on service exit, the service module calls **LoadDevice()** to reload the service.

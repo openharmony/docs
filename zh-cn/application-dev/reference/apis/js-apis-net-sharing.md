@@ -43,8 +43,8 @@ isSharingSupported(callback: AsyncCallback\<boolean>): void
 
 ```js
 sharing.isSharingSupported((error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -79,9 +79,9 @@ isSharingSupported(): Promise\<boolean>
 
 ```js
 sharing.isSharingSupported().then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
@@ -115,8 +115,8 @@ isSharing(callback: AsyncCallback\<boolean>): void
 
 ```js
 sharing.isSharing((error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -150,9 +150,9 @@ isSharing(): Promise\<boolean>
 
 ```js
 sharing.isSharing().then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
@@ -194,9 +194,10 @@ startSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.startSharing(SHARING_WIFI, (error) => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
@@ -243,11 +244,12 @@ startSharing(type: SharingIfaceType): Promise\<void>
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.startSharing(SHARING_WIFI).then(() => {
-    console.log("start wifi sharing successful");
+  console.log("start wifi sharing successful");
 }).catch(error => {
-    console.log("start wifi sharing failed");
+  console.log("start wifi sharing failed");
 });
 ```
 
@@ -287,9 +289,10 @@ stopSharing(type: SharingIfaceType, callback: AsyncCallback\<void>): void
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.stopSharing(SHARING_WIFI, (error) => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
@@ -334,11 +337,12 @@ stopSharing(type: SharingIfaceType): Promise\<void>
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.stopSharing(SHARING_WIFI).then(() => {
-    console.log("stop wifi sharing successful");
+  console.log("stop wifi sharing successful");
 }).catch(error => {
-    console.log("stop wifi sharing failed");
+  console.log("stop wifi sharing failed");
 });
 ```
 
@@ -372,8 +376,8 @@ getStatsRxBytes(callback: AsyncCallback\<number>): void
 
 ```js
 sharing.getStatsRxBytes((error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -407,9 +411,9 @@ getStatsRxBytes(): Promise\<number>
 
 ```js
 sharing.getStatsRxBytes().then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
@@ -443,8 +447,8 @@ getStatsTxBytes(callback: AsyncCallback\<number>): void
 
 ```js
 sharing.getStatsTxBytes((error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -478,9 +482,9 @@ getStatsTxBytes(): Promise\<number>
 
 ```js
 sharing.getStatsTxBytes().then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
@@ -514,8 +518,8 @@ getStatsTotalBytes(callback: AsyncCallback\<number>): void
 
 ```js
 sharing.getStatsTotalBytes((error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -549,9 +553,9 @@ getStatsTotalBytes(): Promise\<number>
 
 ```js
 sharing.getStatsTotalBytes().then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
@@ -588,10 +592,11 @@ getSharingIfaces(state: SharingIfaceState, callback: AsyncCallback\<Array\<strin
 
 ```js
 import SharingIfaceState from '@ohos.net.sharing'
-let SHARING_BLUETOOTH=2;
+
+let SHARING_BLUETOOTH = 2;
 sharing.getSharingIfaces(SHARING_BLUETOOTH, (error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -633,11 +638,12 @@ getSharingIfaces(state: SharingIfaceState): Promise\<Array\<string>>
 
 ```js
 import SharingIfaceState from '@ohos.net.sharing'
-let SHARING_BLUETOOTH=2;
+
+let SHARING_BLUETOOTH = 2;
 sharing.getSharingIfaces(SHARING_BLUETOOTH).then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
@@ -674,10 +680,11 @@ getSharingState(type: SharingIfaceType, callback: AsyncCallback\<SharingIfaceSta
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.getSharingState(SHARING_WIFI, (error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -719,11 +726,12 @@ getSharingState(type: SharingIfaceType): Promise\<SharingIfaceState>
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.getSharingState(SHARING_WIFI).then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
@@ -760,10 +768,11 @@ getSharableRegexes(type: SharingIfaceType, callback: AsyncCallback\<Array\<strin
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.getSharableRegexes(SHARING_WIFI, (error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -805,11 +814,12 @@ getSharableRegexes(type: SharingIfaceType): Promise\<Array\<string>>
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.getSharableRegexes(SHARING_WIFI).then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
@@ -842,8 +852,8 @@ on(type: 'sharingStateChange', callback: Callback\<boolean>): void
 **示例：**
 
 ```js
-   sharing.on('sharingStateChange', (data) => {
-    console.log('on sharingStateChange：' + JSON.stringify(data));
+sharing.on('sharingStateChange', (data) => {
+  console.log('on sharingStateChange: ' + JSON.stringify(data));
 });
 ```
 
@@ -877,13 +887,14 @@ off(type: 'sharingStateChange', callback?: Callback\<boolean>): void
 
 ```js
 sharing.off('sharingStateChange', (data) => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 });
 ```
 
 ## sharing.on('interfaceSharingStateChange')
 
-on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void
+on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state:
+SharingIfaceState }>): void
 
 注册网卡网络共享状态变化事件，使用callback方式作为异步方法。
 
@@ -910,14 +921,15 @@ on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIface
 **示例：**
 
 ```js
- sharing.on('interfaceSharingStateChange', (data) => {
-    console.log('on interfaceSharingStateChange：' + JSON.stringify(data));
+sharing.on('interfaceSharingStateChange', (data) => {
+  console.log('on interfaceSharingStateChange:' + JSON.stringify(data));
 });
 ```
 
 ## sharing.off('interfaceSharingStateChange')
 
-off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void
+off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfaceType, iface: string, state:
+SharingIfaceState }>): void
 
 注销网卡网络共享状态变化事件，使用callback方式作为异步方法。
 
@@ -945,7 +957,7 @@ off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfa
 
 ```js
 sharing.off('interfaceSharingStateChange', (data) => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -978,8 +990,8 @@ on(type: 'sharingUpstreamChange', callback: Callback\<NetHandle>): void
 **示例：**
 
 ```js
-  sharing.on('sharingUpstreamChange', (data) => {
-    console.log('on sharingUpstreamChange：' + JSON.stringify(data));
+sharing.on('sharingUpstreamChange', (data) => {
+  console.log('on sharingUpstreamChange:' + JSON.stringify(data));
 });
 ```
 
@@ -1013,7 +1025,7 @@ off(type: 'sharingUpstreamChange', callback?: Callback\<NetHandle>): void
 
 ```js
 sharing.off('sharingUpstreamChange', (data) => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 });
 ```
 

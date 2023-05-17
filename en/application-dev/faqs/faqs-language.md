@@ -85,8 +85,6 @@ Applicable to: OpenHarmony SDK 3.2.3.5, stage model of API version 9
 
 Objects imported to abilities and pages are packaged into two different closures, that is, two global objects. In this case, a static variable referenced by the abilities is not the same object as that referenced by the pages. Therefore, global variables cannot be defined by defining static variables in the class. You are advised to use AppStorage to manage global variables.
 
-Reference: [State Management with Application-level Variables](../quick-start/arkts-state-mgmt-application-level.md)
-
 ## How do I obtain resources in the stage model?
 
 Applicable to: OpenHarmony SDK 3.2.3.5, stage model of API version 9
@@ -181,7 +179,7 @@ Similar to **new Date().getTime()**, **systemTime.getCurrentTime(false)** return
 
 Applicable to: OpenHarmony SDK 3.2.6.5, stage model of API version 9
 
-If no parameter is passed when assigning a value to the **@BuilderParam** decorated attribute (for example, **content: this.specificParam**), define the type of the attribute as a function without a return value (for example, **@BuilderParam content: () =&gt; voi**). If any parameter is passed when assigning a value to the **@BuilderParam** decorated attribute (for example, **callContent: this.specificParam1("111")**), define the type of the attribute as **any** (for example, **@BuilderParam callContent: any**). For details, see [BuilderParam](../quick-start/arkts-dynamic-ui-elememt-building.md#builderparam8).
+If no parameter is passed when assigning a value to the **@BuilderParam** decorated attribute (for example, **content: this.specificParam**), define the type of the attribute as a function without a return value (for example, **@BuilderParam content: () =&gt; voi**). If any parameter is passed when assigning a value to the **@BuilderParam** decorated attribute (for example, **callContent: this.specificParam1("111")**), define the type of the attribute as **any** (for example, **@BuilderParam callContent: any**).
 
 ## How does ArkTS convert a string into a byte array?
 
@@ -250,8 +248,6 @@ As with **@State**, the callback registered through **@Watch** can be used to li
 Applicable to: OpenHarmony SDK 3.2.5.5, stage model of API version 9
 
 To listen for in-depth changes of **@State** decorated variables, you can use **@Observed** and **@ObjectLink** decorators.
-
-Reference: [@Observed and @ObjectLink](../quick-start/arkts-state-mgmt-page-level.md#observed-and-objectlink)
 
 ## How do I implement character string encoding and decoding?
 

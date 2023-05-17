@@ -16,12 +16,12 @@ Search(options?: { value?: string; placeholder?: ResourceStr; icon?: string; con
 
 **参数:**
 
-| 参数名      | 参数类型         | 必填 | 参数描述                                                     |
-| ----------- | ---------------- | ---- | ------------------------------------------------------------ |
-| value       | string           | 否   | 设置当前显示的搜索文本内容。                                 |
+| 参数名      | 参数类型                                             | 必填 | 参数描述                                                     |
+| ----------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value       | string                                               | 否   | 设置当前显示的搜索文本内容。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | placeholder | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> | 否   | 设置无输入时的提示文本。                                     |
-| icon        | string           | 否   | 设置搜索图标路径，默认使用系统搜索图标，图标支持的图源格式: svg、jpg和png。 |
-| controller  | SearchController | 否   | 设置Search组件控制器。                                                     |
+| icon        | string                                               | 否   | 设置搜索图标路径，默认使用系统搜索图标。<br/>图标所支持的图片类型能力参考[Image](ts-basic-components-image.md)组件。 |
+| controller  | SearchController                                     | 否   | 设置Search组件控制器。                                       |
 
 ## 属性
 

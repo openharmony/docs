@@ -1,8 +1,5 @@
 # @ohos.util.LightWeightMap (非线性容器LightWeightMap)  
 
-> **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 LightWeightMap可用于存储具有关联关系的key-value键值对集合，存储元素中key值唯一，每个key对应一个value。
 
 LightWeightMap依据泛型定义，采用轻量级结构，初始默认容量大小为8，每次扩容大小为原始容量的两倍。
@@ -13,9 +10,14 @@ LightWeightMap和[HashMap](js-apis-hashmap.md)都是用来存储键值对的集�
 
 **推荐使用场景：** 当需要存取key-value键值对时，推荐使用占用内存更小的LightWeightMap。
 
-文档中存在泛型的使用,涉及以下泛型标记符:<br>
-- K: Key, 键<br>
-- V: Value, 值
+文档中存在泛型的使用，涉及以下泛型标记符：<br>
+- K：Key，键<br>
+- V：Value，值
+
+> **说明：**
+>
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 
 ## 导入模块
 
@@ -197,9 +199,8 @@ hasValue(value: V): boolean
 
 ```ts
 let lightWeightMap = new LightWeightMap();
-let result = lightWeightMap.hasValue(123);
 lightWeightMap.set("squirrel", 123);
-let result1 = lightWeightMap.hasValue(123);
+let result = lightWeightMap.hasValue(123);
 ```
 
 

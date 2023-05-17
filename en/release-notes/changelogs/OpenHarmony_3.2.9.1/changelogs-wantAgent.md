@@ -71,7 +71,7 @@ function getWantAgentCallback(err, data) {
     // getUid callback
     function triggerCallback(err, data) {
         if(err) {
-            console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+            console.info('getUid failed!' + err.code + err.message);
         } else {
             console.info('getUid ok!' + JSON.stringify(data));
         }
@@ -79,12 +79,12 @@ function getWantAgentCallback(err, data) {
     try {
         WantAgent.trigger(wantAgent, triggerInfo, triggerCallback);
     } catch(err) {
-        console.info('getUid failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+        console.info('getUid failed!' + err.code + err.message);
     }
 }
 try{
     WantAgent.getWantAgent(wantAgentInfo, getWantAgentCallback);
 } catch(err){
-    console.info('getWantAgent failed!' + JSON.stringify(err.code) + JSON.stringify(err.message));
+    console.info('getWantAgent failed!' + err.code + err.message);
 }
 ```

@@ -7,7 +7,7 @@
 图1 UIAbility对应的任务快照   
 ![](figures/mission-list-recent.png)
 
-也可以使用[UIAbilityContext.setMissionIcon()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionicon)和[UIAbilityContext.setMissionLabel()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel)方法，根据需要自定义任务快照的图标和名称。例如，对于UIAbility的标准实例启动模式，可以根据不同的功能配置相应的任务快照的图标和名称。
+也可以使用[UIAbilityContext.setMissionIcon()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionicon)和[UIAbilityContext.setMissionLabel()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel)方法，根据需要自定义任务快照的图标和名称。例如，对于UIAbility的多实例启动模式，可以根据不同的功能配置相应的任务快照的图标和名称。
 
 本文将从以下两个方面介绍。
 
@@ -20,8 +20,10 @@
 ```ts
 let imagePixelMap: PixelMap = undefined; // 需要获取图片PixelMap信息
 
-this.context.setMissionIcon(imagePixelMap, (err) => {
-  console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
+context.setMissionIcon(imagePixelMap, (err) => {
+  if (err.code) {
+    console.error(`Failed to set mission icon. Code is ${err.code}, message is ${err.message}`);
+  }
 })
 ```
 
@@ -36,9 +38,9 @@ this.context.setMissionIcon(imagePixelMap, (err) => {
 
 ```ts
 this.context.setMissionLabel('test').then(() => {
-  console.info('setMissionLabel succeeded.');
+  console.info('Succeeded in seting mission label.');
 }).catch((err) => {
-  console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to set mission label. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 

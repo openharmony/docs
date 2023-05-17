@@ -22,7 +22,7 @@ SideBarContainer( type?: SideBarContainerType )
 | -------- | -------- | -------- | -------- |
 | type | SideBarContainerType | No| Display type of the sidebar.<br>Default value: **SideBarContainerType.Embed**|
 
-## SideBarContainerType enums
+## SideBarContainerType
 
 | Name| Description|
 | -------- | -------- |

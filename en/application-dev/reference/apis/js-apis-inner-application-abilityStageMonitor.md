@@ -1,6 +1,7 @@
 # AbilityStageMonitor
 
-The **AbilityStageMonitor** module provides conditions for matching **AbilityStage** instances. The most recently matched **AbilityStage** instance is saved in an **AbilityStageMonitor** instance. 
+The **AbilityStageMonitor** module provides conditions for matching **AbilityStage** instances. The most recently matched **AbilityStage** instance is saved in an **AbilityStageMonitor** instance.
+
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -20,7 +21,7 @@ let monitor = {
 
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 abilityDelegator.waitAbilityStageMonitor(monitor, (error, data) => {
-    if (error && error.code !== 0) {
+    if (error) {
         console.error('waitAbilityStageMonitor fail, error: ${JSON.stringify(error)}');
     } else {
         console.log('waitAbilityStageMonitor success, data: ${JSON.stringify(data)}');

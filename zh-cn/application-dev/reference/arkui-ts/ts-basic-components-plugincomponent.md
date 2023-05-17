@@ -30,9 +30,27 @@ PluginComponent(value: { template: PluginComponentTemplate, data: KVObject})
 | ---------- | ------ | --------------------------- |
 | source     | string | 组件模板名。                |
 | bundleName | string | 提供者Ability的bundleName。 |
+## 属性
+支持[通用属性size](ts-universal-attributes-size.md)，且必须设置size。
+
+**说明：**
+
+  模板支持两种提供方式：
+* 1.使用绝对路径进行资源提供：source字段填写模板绝对路径，bundleName不需要填写。仅适用于不需要加载资源的单独模板页面，不建议使用。
+* 2.通过应用包进行资源提供：bundleName字段需要填写应用包名；source字段填写相对hap包的模板相对路径，对于多hap场景，通过相对路径&hap名称的方式进行hap包的确认。
+
+  例如：{source：'ets/pages/plugin.js&plugin', bundleName:'com.example.provider'}
+
+  仅对FA模型支持source字段填写AbilityName进行模板提供。
+
+  例如：{source：'plugin', bundleName:'com.example.provider'}
 
 
 ## 事件
+
+仅支持[手势事件](ts-gesture-settings.md)分发给提供方页面，并在提供方页面内部处理。
+
+除支持[通用事件](ts-universal-events-click.md)，还支持以下事件：
 
 | 名称                                                                                                                | 功能描述                                                               |
 | ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |

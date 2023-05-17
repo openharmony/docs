@@ -27,12 +27,6 @@
 
 - [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)
 
-- [`JsPanel`：内容展示面板（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsPanel)
-
-- [`Popup`：气泡（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/Popup)
-
-- [`JsUserRegistration`：用户注册（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/JsUserRegistration)
-
 - [`MediaCollections`：媒体管理合集（eTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/MediaCollections)
 
 - [rating（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/RatingApplication)

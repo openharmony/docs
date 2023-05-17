@@ -1,8 +1,5 @@
 # @ohos.util.PlainArray (非线性容器PlainArray)  
 
-> **说明：**
-> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-
 PlainArray可用于存储具有关联关系的key-value键值对集合，存储元素中key值唯一，key值类型为number类型，每个key对应一个value。
 
 PlainArray依据泛型定义，采用轻量级结构，集合中key值的查找依赖于二分查找算法，然后映射到其他数组中的value值。
@@ -11,15 +8,19 @@ PlainArray和[LightWeightMap](js-apis-lightweightmap.md)都是用来存储键值
 
 **推荐使用场景：** 当需要存储key值为number类型的键值对时，可以使用PlainArray。
 
-文档中存在泛型的使用,涉及以下泛型标记符:<br>
-- T: Type, 类
+文档中存在泛型的使用，涉及以下泛型标记符：<br>
+- T：Type，类
+
+> **说明：**
+>
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 
 ## 导入模块
 
 ```ts
 import PlainArray from '@ohos.util.PlainArray';  
 ```
-
 
 
 ## PlainArray
@@ -118,9 +119,8 @@ has(key: number): boolean
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.has(1);
 plainArray.add(1, "squirrel");
-let result1 = plainArray.has(1);
+let result = plainArray.has(1);
 ```
 
 

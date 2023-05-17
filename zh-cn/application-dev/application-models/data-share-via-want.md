@@ -2,20 +2,20 @@
 
 在应用使用场景中，用户经常需要将应用内的数据（如文字、图片等）分享至其他应用以供进一步处理。以分享PDF文件为例，本文将介绍如何使用Want来实现应用间的数据分享。
 
-数据分享需要使用两个UIAbility组件（分享方和被分享方）以及一个系统组件（应用选择框）。当分享方使用`startAbility()`方法发起数据分享时，系统会隐式匹配所有支持接收分享数据类型的应用，并将其展示给用户以供选择。用户选择应用后，系统将启动该应用来完成数据分享操作。
+数据分享需要使用两个UIAbility组件（分享方和被分享方）以及一个系统组件（应用分享框）。当分享方使用`startAbility()`方法发起数据分享时，系统会隐式匹配所有支持接收分享数据类型的应用，并将其展示给用户以供选择。用户选择应用后，系统将启动该应用来完成数据分享操作。
 
 在本文中，我们将使用按钮的形式触发分享操作，但实际开发中并不限于此。本文主要介绍如何配置Want以实现数据分享的功能。
 
 本文中涉及的两个Action为：
 
-- `ohos.want.action.select`：用于启动应用选择框。
+- `ohos.want.action.select`：用于启动应用分享框。
 - `ohos.want.action.sendData`：用于发送单个数据记录。此Action用于将数据传递给分享方应用。
 
 ## 分享方
 
-为了实现数据分享功能，分享方需要先拉起应用选择框并将要分享的数据传递给被分享方应用。因此，在分享方的代码中需要嵌套使用两层Want。在第一层中，使用隐式Want和`ohos.want.action.select`的action来启动应用选择框。在第二层Want中，声明要传递给被分享方应用的数据。
+为了实现数据分享功能，分享方需要先拉起应用分享框并将要分享的数据传递给被分享方应用。因此，在分享方的代码中需要嵌套使用两层Want。在第一层中，使用隐式Want和`ohos.want.action.select`的action来启动应用分享框。在第二层Want中，声明要传递给被分享方应用的数据。
 
-具体来说，可以将要分享的数据放在自定义字段`parameters`中，然后将包含`ohos.want.action.sendData`的action和`parameters`字段的Want作为第二层Want传递给应用选择框。被分享方应用可以通过获取参数`parameters`来获取分享的数据。
+具体来说，可以将要分享的数据放在自定义字段`parameters`中，然后将包含`ohos.want.action.sendData`的action和`parameters`字段的Want作为第二层Want传递给应用分享框。被分享方应用可以通过获取参数`parameters`来获取分享的数据。
 
 ```ts
 import common from '@ohos.app.ability.common';
@@ -34,23 +34,23 @@ function implicitStartAbility() {
     // which is intended to add info to application selector.
     parameters: {
       // The MIME type of pdf
-      "ability.picker.type": fileType,
-      "ability.picker.fileNames": [fileName],
-      "ability.picker.fileSizes": [fileSize],
+      'ability.picker.type': fileType,
+      'ability.picker.fileNames': [fileName],
+      'ability.picker.fileSizes': [fileSize],
       // This a nested want which will be directly send to the user selected application.
-      "ability.want.params.INTENT": {
-        "action": "ohos.want.action.sendData",
-        "type": "application/pdf",
-        "parameters": {
-          "keyFd": { "type": "FD", "value": fileFd }
+      'ability.want.params.INTENT': {
+        'action': 'ohos.want.action.sendData',
+        'type': 'application/pdf',
+        'parameters': {
+          'keyFd': { 'type': 'FD', 'value': fileFd }
         }
       }
     }
   }
   context.startAbility(wantInfo).then(() => {
-    // ...
+    ...
   }).catch((err) => {
-    // ...
+    ...
   })
 }
 ```
@@ -76,17 +76,17 @@ function implicitStartAbility() {
 ```json
 {
   "module": {
-    // ...
+    ...
     "abilities": [
       {
-        // ...
+        ...
         "skills": [
           {
-            // ...
+            ...
             "actions": [
               "action.system.home",
               "ohos.want.action.sendData"
-              // ...
+              ...
             ],
             "uris": [
               {
@@ -101,7 +101,7 @@ function implicitStartAbility() {
 }
 ```
 
-当用户选择分享的应用后，嵌套在`ability.want.params.INTENT`字段中的Want参数将会传递给所选应用。被分享方的UIAbility被启动后，可以在其[onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)或者[onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调中获取传入的Want参数信息。
+当用户选择分享的应用后，嵌套在`ability.want.params.INTENT`字段中的Want参数将会传递给所选应用。被分享方的UIAbility被启动后，可以在其[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)或者[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调中获取传入的Want参数信息。
 
 获取到的Want参数信息示例如下，可以使用被分享文件的文件描述符（FD）进行相应操作。
 

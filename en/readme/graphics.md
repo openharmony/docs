@@ -28,11 +28,15 @@ The related modules are described as follows:
 ### Directory Structure
 
 ```
+/foundation/arkui
+├── ui_lite                  # UI module, including UI components, animations, and fonts
+
 /foundation/graphic
-├── surface  # Shared memory
-├── ui       # UI module, including UI components, animations, and fonts
-├── utils    # Basic graphics library and hardware adaptation layer
-└── wms      # Window and input event management
+├── surface_lite  # Shared memory
+├── graphic_utils_lite       # Basic graphics library and hardware adaptation layer
+
+/foundation/window
+└── window_manager_lite      # Window and input event management
 ```
 
 ### Constraints
@@ -48,13 +52,13 @@ For details, see the README and **test** directory of each repository.
 
 **Graphics subsystem**
 
-[graphic\_surface](https://gitee.com/openharmony/graphic_surface)
+[graphic\_surface_lite](https://gitee.com/openharmony/graphic_surface_lite)
 
-[graphic\_ui](https://gitee.com/openharmony/graphic_ui)
+[arkui\_ui_lite](https://gitee.com/openharmony/arkui_ui_lite)
 
-[graphic\_wms](https://gitee.com/openharmony/graphic_wms)
+[window\_window_manager_lite](https://gitee.com/openharmony/window_window_manager_lite)
 
-[graphic\_utils](https://gitee.com/openharmony/graphic_utils)
+[graphic\_graphic_utils_lite](https://gitee.com/openharmony/graphic_graphic_utils_lite)
 
 ## Standard System
 
@@ -123,7 +127,7 @@ For details, see the README and **test** directory of each repository.
 
 **Graphics subsystem**
 
-- [**graphic_graphic_2d**](https://gitee.com/abbuu_openharmony/graphic_graphic_2d)
+- [**graphic_graphic_2d**](https://gitee.com/openharmony/graphic_graphic_2d)
 - [arkui_ace_engine](https://gitee.com/openharmony/arkui_ace_engine)
 - [ability_ability_runtime](https://gitee.com/openharmony/ability_ability_runtime)
 - [multimedia_player_framework](https://gitee.com/openharmony/multimedia_player_framework)

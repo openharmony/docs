@@ -9,6 +9,7 @@ The **ApplicationInfo** module defines the application information. A system app
 ## ApplicationInfo
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
 | Name                      | Type                                                        | Readable| Writable| Description                                                        |
 | -------------------------- | ------------------------------------------------------------ | ---- | ---- | ------------------------------------------------------------ |
 | name                       | string                                                       | Yes  | No  | Application name.                                                |
@@ -32,3 +33,5 @@ The **ApplicationInfo** module defines the application information. A system app
 | appDistributionType       | string                                                       | Yes  | No  | Distribution type of the application signing certificate. The options are **app_gallery**, **enterprise**, **os_integration**, and **crowdtesting**.   |
 | appProvisionType          | string                                                       | Yes  | No  | Type of the application signing certificate file. The options are **debug** and **release**.          |
 | systemApp          | boolean                                                       | Yes  | No  | Whether the application is a system application.          |
+| bundleType                |[BundleType](js-apis-bundleManager.md#bundletype)             | Yes  | No  | Bundle type, which can be **APP** (common application) or **ATOMIC_SERVICE** (atomic service).                               |
+| debug<sup>10+</sup>       | boolean                                | Yes  | No  | Whether the application is in debugging mode. The default value is **false**.       |

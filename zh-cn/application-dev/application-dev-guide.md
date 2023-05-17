@@ -24,15 +24,17 @@
 所有应用都应该在这两个框架的基础之上进行功能的开发。
 
 在此基础上，还提供了如下功能的开发指导：
+
+- [Web](web/web-component-overview.md)
 - [通知](notification/notification-overview.md)
 - [窗口管理](windowmanager/window-overview.md)
 - [WebGL](webgl/webgl-overview.md)
-- [媒体](media/audio-overview.md)
+- [媒体](media/media-application-overview.md)
 - [安全](security/userauth-overview.md)
 - [网络与连接](connectivity/ipc-rpc-overview.md)
 - [电话服务](telephony/telephony-overview.md)
-- [数据管理](database/database-mdds-overview.md)
-- [文件管理](file-management/medialibrary-overview.md)
+- [数据管理](database/data-mgmt-overview.md)
+- [文件管理](file-management/file-management-overview.md)
 - [任务管理](task-management/background-task-overview.md)
 - [设备管理](device/usb-overview.md)
 - [设备使用信息统计](device-usage-statistics/device-usage-statistics-overview.md)

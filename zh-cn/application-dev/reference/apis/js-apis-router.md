@@ -395,7 +395,7 @@ back(options?: RouterOptions ): void
 
 | 参数名  | 类型                            | 必填 | 说明                                                         |
 | ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [RouterOptions](#routeroptions) | 否   | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页，页面栈里面的page不会回收，出栈后会被回收。 |
+| options | [RouterOptions](#routeroptions) | 否   | 返回页面描述信息，其中参数url指路由跳转时会返回到指定url的界面，如果页面栈上没有url页面，则不响应该情况。如果url未设置，则返回上一页，页面不会重新构建，页面栈里面的page不会回收，出栈后会被回收。 |
 
 **示例：**
 
@@ -573,8 +573,8 @@ router.getParams();
 
 | 名称     | 说明                                                         |
 | -------- | ------------------------------------------------------------ |
-| Standard | 标准模式。 <br/>目标页面会被添加到页面路由栈顶，无论栈中是否存在相同url的页面。<br/>**说明：** 不使用路由跳转模式时，按标准模式跳转。 |
-| Single   | 单实例模式。<br/>如果目标页面的url在页面栈中已经存在同url页面，离栈顶最近的页面会被移动到栈顶，移动后的页面为新建页。<br/>如目标页面的url在页面栈中不存在同url页面，按标准模式跳转。 |
+| Standard | 多实例模式，也是默认情况下的跳转模式。 <br/>目标页面会被添加到页面栈顶，无论栈中是否存在相同url的页面。<br/>**说明：** 不使用路由跳转模式时，则按照默认的多实例模式进行跳转。 |
+| Single   | 单实例模式。<br/>如果目标页面的url已经存在于页面栈中，则会将离栈顶最近的同url页面移动到栈顶，该页面成为新建页。<br />如果目标页面的url在页面栈中不存在同url页面，则按照默认的多实例模式进行跳转。 |
 
 ## 完整示例
 
@@ -659,7 +659,7 @@ import router from '@ohos.router'
 struct Second {
   private content: string = "这是第二页"
   @State text: string = router.getParams()['text']
-  @State data: any = router.getParams()['data']
+  @State data: object = router.getParams()['data']
   @State secondData : string = ''
   
   build() {
@@ -670,7 +670,7 @@ struct Second {
       Text(this.text)
         .fontSize(30)
         .onClick(()=>{
-          this.secondData = (this.data.array[1]).toString()
+          this.secondData = (this.data.['array'][1]).toString()
         })
       .margin({top:20})
       Text(`第一页传来的数值:${this.secondData}`)

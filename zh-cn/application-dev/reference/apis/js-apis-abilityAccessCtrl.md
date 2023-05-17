@@ -460,11 +460,11 @@ on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionLi
 **示例：**
 
 ```js
-import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
-import bundle from '@ohos.bundle.bundleManager';
+import {Permissions} from '@ohos.abilityAccessCtrl';
+import bundleManager from '@ohos.bundle.bundleManager';
 
 let atManager = abilityAccessCtrl.createAtManager();
-let appInfo = bundle.getApplicationInfoSync('com.example.myapplication', 0, 100);
+let appInfo = bundleManager.getApplicationInfoSync('com.example.myapplication', 0, 100);
 let tokenIDList: Array<number> = [appInfo.accessTokenId];
 let permissionList: Array<Permissions> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
 try {
@@ -511,11 +511,11 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionL
 **示例：**
 
 ```js
-import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
-import bundle from '@ohos.bundle.bundleManager';
+import {Permissions} from '@ohos.abilityAccessCtrl';
+import bundleManager from '@ohos.bundle.bundleManager';
 
 let atManager = abilityAccessCtrl.createAtManager();
-let appInfo = bundle.getApplicationInfoSync('com.example.myapplication', 0, 100);
+let appInfo = bundleManager.getApplicationInfoSync('com.example.myapplication', 0, 100);
 let tokenIDList: Array<number> = [appInfo.accessTokenId];
 let permissionList: Array<Permissions> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
 try {
@@ -567,7 +567,10 @@ promise.then(data => {
 
 requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;, requestCallback: AsyncCallback&lt;PermissionRequestResult&gt;) : void;
 
-用于拉起弹框请求用户授权。使用callback异步回调。
+用于UIAbility拉起弹框请求用户授权。使用callback异步回调。
+> **说明：**
+>
+> 非UIAbility不支持调用本函数。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -577,7 +580,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | Context | 是 | 请求权限的应用ability上下文context。 |
+| context | Context | 是 | 请求权限的UIAbility的UIAbilityContext。 |
 | permissionList | Array&lt;Permissions&gt; | 是 | 权限名列表，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
 | callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
@@ -609,7 +612,11 @@ try {
 
 requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permissions&gt;) : Promise&lt;PermissionRequestResult&gt;;
 
-用于拉起弹框请求用户授权。使用promise异步回调。
+用于UIAbility拉起弹框请求用户授权。使用promise异步回调。
+
+> **说明：**
+>
+> 非UIAbility不支持调用本函数。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -619,7 +626,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| context | Context | 是 | 请求权限的应用ability上下文context。 |
+| context | Context | 是 | 请求权限的UIAbility的UIAbilityContext。 |
 | permissionList | Array&lt;Permissions&gt; | 是 | 需要校验的权限名称，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
 
 **返回值：**

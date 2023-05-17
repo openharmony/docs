@@ -1,5 +1,8 @@
 # Webview Error Codes
 
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
 
 ## 17100001 WebviewController Not Associated with a Web Component
 
@@ -225,3 +228,41 @@ The related JS database API is not used.
 1. Check whether the JS database API is used.
 
 2. If the JS database API is used, find out the failure cause, for example, check whether **databaseAccess** is enabled.
+
+
+## 17100013 Memory Allocation Failure
+
+**Error Message**
+
+New failed, out of memeory.
+
+**Description**
+
+Memory allocation failed due to insufficient memory.
+
+**Possible Causes**
+
+The data to send is too large.
+
+**Solution**
+
+Check the length of the data to be sent.
+
+
+## 17100014 Type and Value Mismatch
+
+**Error Message**
+
+The type does not match with the value of the message.
+
+**Description**
+
+The type and value of the message do not match.
+
+**Possible Causes**
+
+The value of the obtained message does not match the type of the message.
+
+**Solution**
+
+Call the API based on the message type to obtain the message value. For example, if the type is **BOOLEAN**, call the **GetBoolean** API to obtain the Boolean value.

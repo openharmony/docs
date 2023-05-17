@@ -65,11 +65,13 @@ Indicates that the device's thermal level has changed.
 - Required subscriber permissions: none
 
 
-## COMMON_EVENT_USER_PRESENT
+## COMMON_EVENT_USER_PRESENT<sup>(deprecated)</sup>
 (Reserved, not supported yet) Indicates that the user unlocks the device.
 - Value: **usual.event.USER_PRESENT**
 - Required subscriber permissions: none
-
+> NOTE
+>
+> This API is deprecated since API version 10.
 
 ## COMMON_EVENT_TIME_TICK
 Indicates that the system time has changed as time ticks by.
@@ -928,4 +930,122 @@ Indicates the result of applying a quick fix to the application.
 ## COMMON_EVENT_HTTP_PROXY_CHANGE<sup>10+</sup>
 Indicates that the HTTP proxy configuration has changed.
 - Value: **usual.event.HTTP_PROXY_CHANGE**
+- Required subscriber permissions: none
+
+## COMMON_EVENT_DOMAIN_ACCOUNT_STATUS_CHANGED<sup>10+<sup>
+Indicates that the domain account status has changed.
+- Value: **usual.event.DOMAIN_ACCOUNT_STATUS_CHANGED**
+- Required subscriber permissions: none
+
+## COMMON_EVENT_SIM_STATE_CHANGED<sup>10+<sup>
+Indicates that the SIM card state has changed.
+- Value: **usual.event.SIM_STATE_CHANGED**
+- Required subscriber permissions: none
+
+## COMMON_EVENT_SMS_RECEIVED_COMPLETED<sup>10+<sup>
+Indicates that the SMS message is received.
+- Value: **usual.event.SMS_RECEIVED_COMPLETED**
+- Required subscriber permissions: ohos.permission.RECEIVE_SMS
+
+## COMMON_EVENT_SMS_EMERGENCY_CB_RECEIVE_COMPLETED<sup>10+<sup>
+Indicates that an emergency cell broadcast message is received.
+- Value: **usual.event.SMS_EMERGENCY_CB_RECEIVE_COMPLETED**
+- Required subscriber permissions: ohos.permission.RECEIVE_SMS
+
+## COMMON_EVENT_SMS_CB_RECEIVE_COMPLETED<sup>10+<sup>
+Indicates that a cell broadcast message is received.
+- Value: **usual.event.SMS_CB_RECEIVE_COMPLETED**
+- Required subscriber permissions: ohos.permission.RECEIVE_SMS
+
+## COMMON_EVENT_STK_COMMAND<sup>10+<sup>
+(Reserved, not supported yet) Indicates the STK command.
+- Value: **usual.event.STK_COMMAND**
+- Required subscriber permissions: none
+
+## COMMON_EVENT_STK_SESSION_END<sup>10+<sup>
+(Reserved, not supported yet) Indicates that an STK session ends.
+- Value: **usual.event.STK_SESSION_END**
+- Required subscriber permissions: none
+
+## COMMON_EVENT_STK_CARD_STATE_CHANGED<sup>10+<sup>
+(Reserved, not supported yet) Indicates that the STK card state has changed.
+- Value: **usual.event.STK_CARD_STATE_CHANGED**
+- Required subscriber permissions: ohos.permission
+
+## COMMON_EVENT_STK_ALPHA_IDENTIFIER<sup>10+<sup>
+(Reserved, not supported yet) Indicates the STK alpha indicator.
+- Value: **usual.event.STK_ALPHA_IDENTIFIER**
+- Required subscriber permissions: none
+
+## COMMON_EVENT_SMS_WAPPUSH_RECEIVE_COMPLETED<sup>10+<sup>
+Indicates that a WAP push message is received.
+- Value: **usual.event.SMS_WAPPUSH_RECEIVE_COMPLETED**
+- Required subscriber permissions: ohos.permission.RECEIVE_SMS
+
+## COMMON_EVENT_OPERATOR_CONFIG_CHANGED<sup>10+<sup>
+Indicates that the carrier configuration has been updated.
+- Value: **usual.event.OPERATOR_CONFIG_CHANGED**
+- Required subscriber permissions: none
+
+## COMMON_EVENT_SIM_CARD_DEFAULT_SMS_SUBSCRIPTION_CHANGED<sup>10+<sup>
+Indicates that the default SIM card for the SMS service has changed.
+- Value: **usual.event.DEFAULT_SMS_SUBSCRIPTION_CHANGED**
+- Required subscriber permissions: none
+
+## COMMON_EVENT_SIM_CARD_DEFAULT_DATA_SUBSCRIPTION_CHANGED<sup>10+<sup>
+Indicates that the default SIM card for the mobile data service has changed.
+- Value: **usual.event.DEFAULT_DATA_SUBSCRIPTION_CHANGED**
+- Required subscriber permissions: none
+
+## COMMON_EVENT_SIM_CARD_DEFAULT_MAIN_SUBSCRIPTION_CHANGED<sup>10+<sup>
+Indicates that the default primary SIM card has changed.
+- Value: **usual.event.SIM.DEFAULT_MAIN_SUBSCRIPTION_CHANGED**
+- Required subscriber permissions: none
+
+## COMMON_EVENT_SIM_CARD_DEFAULT_VOICE_SUBSCRIPTION_CHANGED<sup>10+<sup>
+Indicates that the default SIM card for the voice service has changed.
+- Value: **usual.event.DEFAULT_VOICE_SUBSCRIPTION_CHANGED**
+- Required subscriber permissions: none
+
+## COMMON_EVENT_CALL_STATE_CHANGED<sup>10+<sup>
+Indicates that the call state has changed.
+- Value: **usual.event.CALL_STATE_CHANGED**
+- Required subscriber permissions: ohos.permission.GET_TELEPHONY_STATE
+
+## COMMON_EVENT_CELLULAR_DATA_STATE_CHANGED<sup>10+<sup>
+Indicates that the cellular data state has changed.
+- Value: **usual.event.CELLULAR_DATA_STATE_CHANGED**
+- Required subscriber permissions: none
+
+## COMMON_EVENT_NETWORK_STATE_CHANGED<sup>10+<sup>
+Indicates that the network state has changed.
+- Value: **usual.event.NETWORK_STATE_CHANGED**
+- Required subscriber permissions: none
+
+## COMMON_EVENT_SIGNAL_INFO_CHANGED<sup>10+<sup>
+Indicates that the signal information is updated.
+- Value: **usual.event.SIGNAL_INFO_CHANGED**
+- Required subscriber permissions: none
+
+## COMMON_EVENT_INCOMING_CALL_MISSED<sup>10+<sup>
+Indicates a missed call.
+- Value: **usual.event.INCOMING_CALL_MISSED**
+- Required subscriber permissions: ohos.permission.GET_TELEPHONY_STATE
+
+## COMMON_EVENT_RADIO_STATE_CHANGE<sup>10+<sup>
+Indicates that the power-on and power-off status of the modem has changed.
+- Value: **usual.event.RADIO_STATE_CHANGE**
+
+## COMMON_EVENT_SCREEN_LOCKED <sup>10+<sup>
+
+Indicates that the screen is locked.
+
+- Value: **usual.event.SCREEN_LOCKED**
+- Required subscriber permissions: none
+
+## COMMON_EVENT_SCREEN_UNLOCKED<sup>10+<sup>
+
+Indicates that the screen is unlocked.
+
+- Value: **usual.event.SCREEN_UNLOCKED**
 - Required subscriber permissions: none

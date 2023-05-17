@@ -224,6 +224,89 @@ try {
 };
 ```
 
+## screen.stopExpand<sup>10+</sup>
+
+stopExpand(expandScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+停止屏幕的扩展模式，使用callback异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------------ | --------------------------- | --- | -------------------------------------------------------------- |
+| expandScreen | Array&lt;number&gt;         | 是   | 扩展屏幕id集合。                                               |
+| callback     | AsyncCallback&lt;void&gt; | 是   | 回调函数。当停止屏幕扩展模式成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```js
+try {
+    let expandScreenIds = [1, 2, 3];
+    screen.stopExpand(expandScreenIds, (err) => {
+      if (err.code) {
+        console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in stopping expand screens.');
+    });
+} catch (exception) {
+    console.error('Failed to stop expand screens. Code: ' + JSON.stringify(exception));
+};
+```
+
+## screen.stopExpand<sup>10+</sup>
+
+stopExpand(expandScreen:Array&lt;number&gt;): Promise&lt;void&gt;
+
+停止屏幕的扩展模式，使用Promise异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------------ | ------------------- | --- | --------------- |
+| expandScreen | Array&lt;number&gt; | 是   | 扩展屏幕id集合。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --------------------- | ----------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```js
+try {
+    let expandScreenIds = [1, 2, 3];
+    screen.stopExpand(expandScreenIds).then(() => {
+      console.info('Succeeded in stopping expand screens.');
+    }).catch((err) => {
+      console.error('Failed to stop expand screens. Code:' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to stop expand screens. Code:' + JSON.stringify(exception));
+};
+```
+
 ## screen.makeMirror
 
 makeMirror(mainScreen:number, mirrorScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;number&gt;): void
@@ -308,6 +391,89 @@ try {
     });
 } catch (exception) {
     console.error('Failed to set screen mirroring. Code: ' + JSON.stringify(exception));
+};
+```
+
+## screen.stopMirror<sup>10+</sup>
+
+stopMirror(mirrorScreen:Array&lt;number&gt;, callback: AsyncCallback&lt;void&gt;): void
+
+停止屏幕的镜像模式，使用callback异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------------ | --------------------------- | --- | -------------------------------------------------------------- |
+| mirrorScreen | Array&lt;number&gt;         | 是   | 镜像屏幕id集合。                                               |
+| callback     | AsyncCallback&lt;void&gt; | 是   | 回调函数。当停止屏幕镜像模式成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```js
+try {
+    let mirrorScreenIds = [1, 2, 3];
+    screen.stopMirror(mirrorScreenIds, (err) => {
+      if (err.code) {
+        console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in stopping mirror screens.');
+    });
+} catch (exception) {
+    console.error('Failed to stop mirror screens. Code: ' + JSON.stringify(exception));
+};
+```
+
+## screen.stopMirror<sup>10+</sup>
+
+stopMirror(mirrorScreen:Array&lt;number&gt;): Promise&lt;void&gt;
+
+停止屏幕的镜像模式，使用Promise异步回调。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| ------------ | ------------------- | --- | --------------- |
+| mirrorScreen | Array&lt;number&gt; | 是   | 镜像屏幕id集合。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| --------------------- | ----------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[屏幕错误码](../errorcodes/errorcode-display.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ----------------------- |
+| 1400001 | Invalid display or screen. |
+
+**示例：**
+
+```js
+try {
+    let mirrorScreenIds = [1, 2, 3];
+    screen.stopMirror(mirrorScreenIds).then(() => {
+      console.info('Succeeded in stopping mirror screens.');
+    }).catch((err) => {
+      console.error('Failed to stop mirror screens. Code:' + JSON.stringify(err));
+    });
+} catch (exception) {
+    console.error('Failed to stop mirror screens. Code:' + JSON.stringify(exception));
 };
 ```
 
@@ -744,7 +910,7 @@ try {
 | id                | number                                         | 是   | 否   | 屏幕的id。             |
 | parent            | number                                         | 是   | 否   | 屏幕所属群组的id。     |
 | supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | 是   | 否   | 屏幕支持的模式集合。   |
-| activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。 |
+| activeModeIndex   | number                                         | 是   | 否   | 当前屏幕所处模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。 |
 | orientation       | [Orientation](#orientation)                     | 是   | 否   | 屏幕方向。             |
 | sourceMode<sup>10+</sup> | [ScreenSourceMode](#screensourcemode10)            | 是   | 否   | 屏幕来源模式。             |
 
@@ -836,7 +1002,7 @@ setScreenActiveMode(modeIndex: number, callback: AsyncCallback&lt;void&gt;): voi
 
 | 参数名    | 类型                      | 必填 | 说明                                                         |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| modeIndex | number                    | 是   | 模式索引。                                                   |
+| modeIndex | number                    | 是   | 模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。 |
 | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当设置屏幕当前显示模式成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -874,7 +1040,7 @@ setScreenActiveMode(modeIndex: number): Promise&lt;void&gt;
 
 | 参数名    | 类型   | 必填 | 说明       |
 | --------- | ------ | ---- | ---------- |
-| modeIndex | number | 是   | 模式索引。 |
+| modeIndex | number | 是   | 模式索引。模式索引的当前值和值的范围，会根据屏幕当前分辨率、刷新率和设备硬件差异产生变化。 |
 
 **返回值：**
 

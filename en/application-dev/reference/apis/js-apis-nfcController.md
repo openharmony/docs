@@ -66,7 +66,7 @@ Opens NFC.
 
 ## controller.enableNfc<sup>9+</sup>
 
-enableNfc(): boolean
+enableNfc(): void
 
 Enables NFC.
 
@@ -104,7 +104,7 @@ Closes NFC.
 
 ## controller.disableNfc<sup>9+</sup>
 
-disableNfc(): boolean
+disableNfc(): void
 
 Disables NFC.
 

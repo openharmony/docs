@@ -1,21 +1,22 @@
 # Data Management
 
-- Distributed Data Service
-  - [Distributed Data Service Overview](database-mdds-overview.md)
-  - [Distributed Data Service Development](database-mdds-guidelines.md)
-
-- Relational Database
-  - [RDB Overview](database-relational-overview.md)
-  - [RDB Development](database-relational-guidelines.md)
-
-- Preferences
-  - [Preferences Overview](database-preference-overview.md)
-  - [Preferences Development](database-preference-guidelines.md)
-
-- Distributed Data Object
-  - [Distributed Data Object Overview](database-distributedobject-overview.md)
-  - [Distributed Data Object Development](database-distributedobject-guidelines.md)
-
-- Data Share
-  - [DataShare Overview](database-datashare-overview.md)
-  - [DataShare Development](database-datashare-guidelines.md)
+- [Data Management Overview](data-mgmt-overview.md)
+- Application Data Persistence
+  - [Overview of Application Data Persistence](app-data-persistence-overview.md)
+  - [Persisting Preferences Data](data-persistence-by-preferences.md)
+  - [Persisting KV Store Data](data-persistence-by-kv-store.md)
+  - [Persisting RDB Store Data](data-persistence-by-rdb-store.md)
+- Distributed Application Data Synchronization
+  - [Distributed Application Data Synchronization Overview](sync-app-data-across-devices-overview.md)
+  - [Cross-Device Synchronization of KV Stores](data-sync-of-kv-store.md)
+  - [Cross-Device Synchronization of RDB Stores](data-sync-of-rdb-store.md)
+  - [Cross-Device Synchronization of Distributed Data Objects](data-sync-of-distributed-data-object.md)
+- Data Reliability and Security
+  - [Data Reliability and Security Overview](data-reliability-security-overview.md)
+  - [Database Backup and Restoration](data-backup-and-restore.md)
+  - [Database Encryption](data-encryption.md)
+  - [Access Control by Device and Data Level](access-control-by-device-and-data-level.md)
+- Cross-Application Data Sharing (for System Applications Only)
+  - [Cross-Application Data Sharing Overview](share-device-data-across-apps-overview.md)
+  - [Sharing Data Using DataShareExtensionAbility](share-data-by-datashareextensionability.md)
+  - [Sharing Data in Silent Access](share-data-by-silent-access.md)

@@ -16,7 +16,7 @@ import deviceControl from '@ohos.enterprise.deviceControl'
 
 resetFactory(admin: Want, callback: AsyncCallback<void>): void
 
-恢复出厂设置。使用callback异步回调。
+指定设备管理员应用恢复出厂设置。使用callback异步回调。
 
 **需要权限：** ohos.permission.ENTERPRISE_RESET_DEVICE
 
@@ -29,7 +29,7 @@ resetFactory(admin: Want, callback: AsyncCallback<void>): void
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
-| callback | AsyncCallback\<void> | 是 | 回调函数。当系统时间设置成功err为null，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
 
@@ -58,7 +58,7 @@ deviceControl.resetFactory(wantTemp, (error) => {
 
 resetFactory(admin: Want): Promise<void>
 
-恢复出厂设置。使用Promise异步回调。
+恢复出厂设置。使用Promise形式返回设置结果。
 
 **需要权限：** ohos.permission.ENTERPRISE_RESET_DEVICE
 
@@ -76,7 +76,7 @@ resetFactory(admin: Want): Promise<void>
 
 | 类型   | 说明                                  |
 | ----- | ----------------------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | 无返回结果的Promise对象。当恢复出厂设置失败时抛出错误对象。|
 
 **错误码**：
 

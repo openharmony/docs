@@ -690,21 +690,19 @@ Describes the interruption event received by the application when playback is in
 | forceType | [InterruptForceType](#interruptforcetype9) | Yes  | Whether the interruption is taken by the system or to be taken by the application.|
 | hintType  | [InterruptHint](#interrupthint)            | Yes  | Hint provided along the interruption.                          |
 
-## VolumeEvent<sup>8+</sup>
+## VolumeEvent<sup>9+</sup>
 
 Describes the event received by the application when the volume is changed.
-
-**System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
 | Name      | Type                               | Mandatory  | Description                                                    |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
-| volume     | number                              | Yes  | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**.|
-| updateUi   | boolean                             | Yes  | Whether to show the volume change in UI.                                    |
-| volumeGroupId<sup>9+</sup>   | number            | Yes  | Volume group ID. It can be used as an input parameter of **getGroupManager**.                     |
-| networkId<sup>9+</sup>    | string               | Yes  | Network ID.                                               |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                              |
+| volume     | number                              | Yes  | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**.    |
+| updateUi   | boolean                             | Yes  | Whether to show the volume change in UI.                                       |
+| volumeGroupId | number                           | Yes  | Volume group ID. It can be used as an input parameter of **getGroupManager**.<br>This is a system API. |
+| networkId  | string                              | Yes  | Network ID.<br>This is a system API.                            |
 
 ## MicStateChangeEvent<sup>9+</sup>
 
@@ -1112,7 +1110,7 @@ Sets the volume for a stream. This API uses an asynchronous callback to return t
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setVolume](#setvolume9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setVolume](#setvolume9) in **AudioVolumeGroupManager**. The substitute API is available only for system applications.
 
 **Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1148,7 +1146,7 @@ Sets the volume for a stream. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setVolume](#setvolume9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setVolume](#setvolume9) in **AudioVolumeGroupManager**. The substitute API is available only for system applications.
 
 **Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1374,7 +1372,7 @@ Mutes or unmutes a stream. This API uses an asynchronous callback to return the 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [mute](#mute9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [mute](#mute9) in **AudioVolumeGroupManager**. The substitute API is available only for system applications.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -1406,7 +1404,7 @@ Mutes or unmutes a stream. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [mute](#mute9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [mute](#mute9) in **AudioVolumeGroupManager**. The substitute API is available only for system applications.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -1566,7 +1564,7 @@ Sets the ringer mode. This API uses an asynchronous callback to return the resul
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setRingerMode](#setringermode9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setRingerMode](#setringermode9) in **AudioVolumeGroupManager**. The substitute API is available only for system applications.
 
 **Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1601,7 +1599,8 @@ Sets the ringer mode. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setRingerMode](#setringermode9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setRingerMode](#setringermode9) in **AudioVolumeGroupManager**. The substitute API is available only for system applications.
+
 
 **Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -2003,13 +2002,13 @@ audioManager.isMicrophoneMute().then((value) => {
 });
 ```
 
-### on('volumeChange')<sup>(deprecated)</sup>
+### on('volumeChange')<sup>9+</sup>
 
 on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [on](#on9) in **AudioVolumeManager**.
+> You are advised to use [on('volumeChange')](#onvolumechange9) in **AudioVolumeManager**.
 
 Subscribes to system volume change events.
 
@@ -2024,7 +2023,7 @@ Currently, when multiple **AudioManager** instances are used in a single process
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | Yes  | Event type. The value **'volumeChange'** means the system volume change event, which is triggered when a system volume change is detected.|
-| callback | Callback<[VolumeEvent](#volumeevent8)> | Yes  | Callback used to return the system volume change event.                                                  |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | Yes  | Callback used to return the system volume change event.                                                  |
 
 **Example**
 
@@ -2073,7 +2072,7 @@ Subscribes to device change events. When a device is connected or disconnected, 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [on](#on9) in **AudioRoutingManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [on('deviceChange')](#ondevicechange9) in **AudioRoutingManager**.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -2103,7 +2102,7 @@ Unsubscribes from device change events.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [off](#off9) in **AudioRoutingManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [off('deviceChange')](#offdevicechange9) in **AudioRoutingManager**.
 
 **System capability**: SystemCapability.Multimedia.Audio.Device
 
@@ -2122,17 +2121,13 @@ audioManager.off('deviceChange', (deviceChanged) => {
 });
 ```
 
-### on('interrupt')<sup>(deprecated)</sup>
+### on('interrupt')
 
 on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void
 
 Subscribes to audio interruption events. When the application's audio is interrupted by another playback event, the application will receive the callback.
 
 Same as [on('audioInterrupt')](#onaudiointerrupt9), this API is used to listen for focus changes. However, this API is used in scenarios without audio streams (no **AudioRenderer** instance is created), such as frequency modulation (FM) and voice wakeup.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -2164,15 +2159,11 @@ audioManager.on('interrupt', interAudioInterrupt, (InterruptAction) => {
 });
 ```
 
-### off('interrupt')<sup>(deprecated)</sup>
+### off('interrupt')
 
 off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<InterruptAction>): void
 
 Unsubscribes from audio interruption events.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -2338,7 +2329,7 @@ Subscribes to system volume change events. This API uses an asynchronous callbac
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | Yes  | Event type. The value **'volumeChange'** means the system volume change event, which is triggered when the system volume changes.|
-| callback | Callback<[VolumeEvent](#volumeevent8)> | Yes  | Callback used to return the system volume change event.                                                  |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | Yes  | Callback used to return the system volume change event.                                                  |
 
 **Error codes**
 
@@ -3465,7 +3456,7 @@ audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data)
 });
 ```
 
-### on<sup>9+</sup>
+### on('deviceChange')<sup>9+</sup>
 
 on(type: 'deviceChange', deviceFlag: DeviceFlag, callback: Callback<DeviceChangeAction\>): void
 
@@ -3500,7 +3491,7 @@ audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (de
 });
 ```
 
-### off<sup>9+</sup>
+### off('deviceChange')<sup>9+</sup>
 
 off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 
@@ -3934,6 +3925,151 @@ async function selectOutputDeviceByFilter(){
 }
 ```
 
+### getPreferOutputDeviceForRendererInfo<sup>10+</sup>
+
+getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: AsyncCallback&lt;AudioDeviceDescriptors&gt;): void
+
+Obtains the output device with the highest priority based on the audio renderer information. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                      | Type                                                        | Mandatory| Description                     |
+| --------------------------- | ------------------------------------------------------------ | ---- | ------------------------- |
+| rendererInfo                | [AudioRendererInfo](#audiorendererinfo8)                     | Yes  | Audio renderer information.            |
+| callback                    | AsyncCallback&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;  | Yes  | Callback used to return the information about the output device with the highest priority.|
+
+**Example**
+```js
+let rendererInfo = {
+    content : audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags : 0 }
+
+async function getPreferOutputDevice() {
+  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo, (err, desc) => {
+    if (err) {
+      console.error(`Result ERROR: ${err}`);
+    } else {
+      console.info(`device descriptor: ${desc}`);
+    }
+  });
+}
+```
+
+### getPreferOutputDeviceForRendererInfo<sup>10+</sup>
+getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo): Promise&lt;AudioDeviceDescriptors&gt;
+
+Obtains the output device with the highest priority based on the audio renderer information. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name                | Type                                                        | Mandatory| Description                     |
+| ----------------------| ------------------------------------------------------------ | ---- | ------------------------- |
+| rendererInfo          | [AudioRendererInfo](#audiorendererinfo8)                     | Yes  | Audio renderer information.           |
+
+**Return value**
+
+| Type                 | Description                        |
+| --------------------- | --------------------------- |
+| Promise&lt;[AudioDeviceDescriptors](#audiodevicedescriptors)&gt;   | Promise used to return the information about the output device with the highest priority.|
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
+
+**Example**
+
+```js
+let rendererInfo = {
+    content : audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags : 0 }
+
+async function getPreferOutputDevice() {
+  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc) => {
+    console.info(`device descriptor: ${desc}`);
+  }).catch((err) => {
+    console.error(`Result ERROR: ${err}`);
+  })
+}
+```
+
+### on('preferOutputDeviceChangeForRendererInfo')<sup>10+</sup>
+
+on(type: 'preferOutputDeviceChangeForRendererInfo', rendererInfo: AudioRendererInfo, callback: Callback<AudioDeviceDescriptors\>): void
+
+Subscribes to the change of the output device with the highest priority. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name  | Type                                                | Mandatory| Description                                      |
+| :------- | :--------------------------------------------------- | :--- | :----------------------------------------- |
+| type     | string                                               | Yes  | Event type. The value **'preferOutputDeviceChangeForRendererInfo'** means the event triggered when the output device with the highest priority changes.|
+| rendererInfo  | [AudioRendererInfo](#audiorendererinfo8)        | Yes  | Audio renderer information.             |
+| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)\> | Yes  | Callback used to return the information about the output device with the highest priority.                        |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
+
+**Example**
+
+```js
+let rendererInfo = {
+    content : audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags : 0 }
+
+audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc) => {
+  console.info(`device descriptor: ${desc}`);
+});
+```
+
+### off('preferOutputDeviceChangeForRendererInfo')<sup>10+</sup>
+
+off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDeviceDescriptors\>): void
+
+Unsubscribes from the change of the output device with the highest priority.
+
+**System capability**: SystemCapability.Multimedia.Audio.Device
+
+**Parameters**
+
+| Name  | Type                                               | Mandatory| Description                                      |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------ |
+| type     | string                                              | Yes  | Event type. The value **'preferOutputDeviceChangeForRendererInfo'** means the event triggered when the output device with the highest priority changes.|
+| callback | Callback<[AudioDeviceDescriptors](#audiodevicedescriptors)> | No  | Callback used for unsubscription.                        |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID| Error Message|
+| ------- | --------------------------------------------|
+| 6800101 | if input parameter value error              |
+
+**Example**
+
+```js
+audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo', () => {
+  console.info('Should be no callback.');
+});
+```
+
 ## AudioRendererChangeInfoArray<sup>9+</sup>
 
 Defines an **AudioRenderChangeInfo** array, which is read-only.
@@ -3946,17 +4082,17 @@ Describes the audio renderer change event.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-| Name          | Type                                     | Readable | Writable | Description                                                |
-| ------------- | ---------------------------------------- | -------- | -------- | ---------------------------------------------------------- |
-| streamId      | number                                   | Yes      | No       | Unique ID of an audio stream.                              |
-| clientUid     | number                                   | Yes      | No       | UID of the audio renderer client.<br>This is a system API. |
-| rendererInfo  | [AudioRendererInfo](#audiorendererinfo8) | Yes      | No       | Audio renderer information.                                |
-| rendererState | [AudioState](#audiostate)                | Yes      | No       | Audio state.<br>This is a system API.                      |
+| Name              | Type                                              | Readable | Writable | Description                                                |
+| ----------------- | ------------------------------------------------- | -------- | -------- | ---------------------------------------------------------- |
+| streamId          | number                                            | Yes      | No       | Unique ID of an audio stream.                              |
+| clientUid         | number                                            | Yes      | No       | UID of the audio renderer client.<br>This is a system API. |
+| rendererInfo      | [AudioRendererInfo](#audiorendererinfo8)          | Yes      | No       | Audio renderer information.                                |
+| rendererState     | [AudioState](#audiostate)                         | Yes      | No       | Audio state.<br>This is a system API.                      |
+| deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes      | No       | Audio device description.                                  |
 
 **Example**
 
 ```js
-
 import audio from '@ohos.multimedia.audio';
 
 const audioManager = audio.getAudioManager();
@@ -4004,12 +4140,13 @@ Describes the audio capturer change event.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-| Name          | Type                                     | Readable | Writable | Description                                                |
-| ------------- | ---------------------------------------- | -------- | -------- | ---------------------------------------------------------- |
-| streamId      | number                                   | Yes      | No       | Unique ID of an audio stream.                              |
-| clientUid     | number                                   | Yes      | No       | UID of the audio capturer client.<br>This is a system API. |
-| capturerInfo  | [AudioCapturerInfo](#audiocapturerinfo8) | Yes      | No       | Audio capturer information.                                |
-| capturerState | [AudioState](#audiostate)                | Yes      | No       | Audio state.<br>This is a system API.                      |
+| Name              | Type                                              | Readable | Writable | Description                                                |
+| ----------------- | ------------------------------------------------- | -------- | -------- | ---------------------------------------------------------- |
+| streamId          | number                                            | Yes      | No       | Unique ID of an audio stream.                              |
+| clientUid         | number                                            | Yes      | No       | UID of the audio capturer client.<br>This is a system API. |
+| capturerInfo      | [AudioCapturerInfo](#audiocapturerinfo8)          | Yes      | No       | Audio capturer information.                                |
+| capturerState     | [AudioState](#audiostate)                         | Yes      | No       | Audio state.<br>This is a system API.                      |
+| deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes      | No       | Audio device description.                                  |
 
 **Example**
 
@@ -4103,7 +4240,7 @@ Implements filter criteria. Before calling **selectOutputDeviceByFilter**, you m
 
 | Name         | Type                                     | Mandatory | Description                                                  |
 | ------------ | ---------------------------------------- | --------- | ------------------------------------------------------------ |
-| uid          | number                                   | Yes       | Application ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Core |
+| uid          | number                                   | No        | Application ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Core |
 | rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | No        | Audio renderer information.<br> **System capability**: SystemCapability.Multimedia.Audio.Renderer |
 | rendererId   | number                                   | No        | Unique ID of an audio stream.<br> **System capability**: SystemCapability.Multimedia.Audio.Renderer |
 
@@ -4241,6 +4378,7 @@ audioRenderer.getStreamInfo().then((streamInfo) => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
+
 ```
 
 ### getAudioStreamId<sup>9+</sup>
@@ -4263,6 +4401,7 @@ Obtains the stream ID of this **AudioRenderer** instance. This API uses an async
 audioRenderer.getAudioStreamId((err, streamid) => {
   console.info(`Renderer GetStreamId: ${streamid}`);
 });
+
 ```
 
 ### getAudioStreamId<sup>9+</sup>
@@ -4287,6 +4426,7 @@ audioRenderer.getAudioStreamId().then((streamid) => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
+
 ```
 
 ### start<sup>8+</sup>
@@ -4313,6 +4453,7 @@ audioRenderer.start((err) => {
     console.info('Renderer start success.');
   }
 });
+
 ```
 
 ### start<sup>8+</sup>
@@ -4337,6 +4478,7 @@ audioRenderer.start().then(() => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
+
 ```
 
 ### pause<sup>8+</sup>
@@ -4363,6 +4505,7 @@ audioRenderer.pause((err) => {
     console.info('Renderer paused.');
   }
 });
+
 ```
 
 ### pause<sup>8+</sup>
@@ -4387,6 +4530,7 @@ audioRenderer.pause().then(() => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
+
 ```
 
 ### drain<sup>8+</sup>
@@ -4413,6 +4557,7 @@ audioRenderer.drain((err) => {
     console.info('Renderer drained.');
   }
 });
+
 ```
 
 ### drain<sup>8+</sup>
@@ -4437,6 +4582,7 @@ audioRenderer.drain().then(() => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
+
 ```
 
 ### stop<sup>8+</sup>
@@ -4463,6 +4609,7 @@ audioRenderer.stop((err) => {
     console.info('Renderer stopped.');
   }
 });
+
 ```
 
 ### stop<sup>8+</sup>
@@ -4487,6 +4634,7 @@ audioRenderer.stop().then(() => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
+
 ```
 
 ### release<sup>8+</sup>
@@ -4513,6 +4661,7 @@ audioRenderer.release((err) => {
     console.info('Renderer released.');
   }
 });
+
 ```
 
 ### release<sup>8+</sup>
@@ -4537,6 +4686,7 @@ audioRenderer.release().then(() => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
+
 ```
 
 ### write<sup>8+</sup>
@@ -4592,6 +4742,7 @@ for (let i = 0;i < len; i++) {
     })	  
 }
 
+
 ```
 
 ### write<sup>8+</sup>
@@ -4641,6 +4792,7 @@ for (let i = 0;i < len; i++) {
        console.error(`audioRenderer.write err: ${err}`);
     }   
 }
+
 ```
 
 ### getAudioTime<sup>8+</sup>
@@ -4663,6 +4815,7 @@ Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970).
 audioRenderer.getAudioTime((err, timestamp) => {
   console.info(`Current timestamp: ${timestamp}`);
 });
+
 ```
 
 ### getAudioTime<sup>8+</sup>
@@ -4687,6 +4840,7 @@ audioRenderer.getAudioTime().then((timestamp) => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
+
 ```
 
 ### getBufferSize<sup>8+</sup>
@@ -4711,6 +4865,7 @@ let bufferSize = audioRenderer.getBufferSize(async(err, bufferSize) => {
     console.error('getBufferSize error');
   }
 });
+
 ```
 
 ### getBufferSize<sup>8+</sup>
@@ -4737,6 +4892,7 @@ audioRenderer.getBufferSize().then((data) => {
 }).catch((err) => {
   console.error(`AudioFrameworkRenderLog: getBufferSize: ERROR: ${err}`);
 });
+
 ```
 
 ### setRenderRate<sup>8+</sup>
@@ -4764,6 +4920,7 @@ audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL, (err) =>
     console.info('Callback invoked to indicate a successful render rate setting.');
   }
 });
+
 ```
 
 ### setRenderRate<sup>8+</sup>
@@ -4794,6 +4951,7 @@ audioRenderer.setRenderRate(audio.AudioRendererRate.RENDER_RATE_NORMAL).then(() 
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
+
 ```
 
 ### getRenderRate<sup>8+</sup>
@@ -4816,6 +4974,7 @@ Obtains the current render rate. This API uses an asynchronous callback to retur
 audioRenderer.getRenderRate((err, renderrate) => {
   console.info(`getRenderRate: ${renderrate}`);
 });
+
 ```
 
 ### getRenderRate<sup>8+</sup>
@@ -4840,7 +4999,9 @@ audioRenderer.getRenderRate().then((renderRate) => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
+
 ```
+
 ### setInterruptMode<sup>9+</sup>
 
 setInterruptMode(mode: InterruptMode): Promise&lt;void&gt;
@@ -4870,7 +5031,9 @@ audioRenderer.setInterruptMode(mode).then(data=>{
 }).catch((err) => {
   console.error(`setInterruptMode Fail: ${err}`);
 });
+
 ```
+
 ### setInterruptMode<sup>9+</sup>
 
 setInterruptMode(mode: InterruptMode, callback: AsyncCallback\<void>): void
@@ -4896,6 +5059,7 @@ audioRenderer.setInterruptMode(mode, (err, data)=>{
   }
   console.info('setInterruptMode Success!');
 });
+
 ```
 
 ### setVolume<sup>9+</sup>
@@ -4926,7 +5090,9 @@ audioRenderer.setVolume(0.5).then(data=>{
 }).catch((err) => {
   console.error(`setVolume Fail: ${err}`);
 });
+
 ```
+
 ### setVolume<sup>9+</sup>
 
 setVolume(volume: number, callback: AsyncCallback\<void>): void
@@ -4951,24 +5117,25 @@ audioRenderer.setVolume(0.5, (err, data)=>{
   }
   console.info('setVolume Success!');
 });
+
 ```
 
 ### on('audioInterrupt')<sup>9+</sup>
 
 on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
-Subscribes to audio interruption events. This API uses a callback to get interrupt events.
+Subscribes to audio interruption events. This API uses a callback to obtain interrupt events.
 
-Same as [on('interrupt')](#oninterruptdeprecated), this API has obtained the focus before **start**, **pause**, or **stop** of **AudioRenderer** is called. Therefore, you do not need to request the focus.
+Same as [on('interrupt')](#oninterrupt), this API is used to listen for focus changes. The **AudioRenderer** instance proactively gains the focus when the **start** event occurs and releases the focus when the **pause** or **stop** event occurs. Therefore, you do not need to request to gain or release the focus.
 
 **System capability**: SystemCapability.Multimedia.Audio.Interrupt
 
 **Parameters**
 
-| Name     | Type                                         | Mandatory | Description                                                  |
-| -------- | -------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | string                                       | Yes       | Event type. The value **'audioInterrupt'** means the audio interruption event, which is triggered when audio playback is interrupted. |
-| callback | Callback<[InterruptEvent](#interruptevent9)> | Yes       | Callback used to return the audio interruption event.        |
+| Name     | Type                                           | Mandatory | Description                                                  |
+| -------- | ---------------------------------------------- | --------- | ------------------------------------------------------------ |
+| type     | string                                         | Yes       | Event type. The value **'audioInterrupt'** means the audio interruption event, which is triggered when audio rendering is interrupted. |
+| callback | Callback\<[InterruptEvent](#interruptevent9)\> | Yes       | Callback used to return the audio interruption event.        |
 
 **Error codes**
 
@@ -4976,60 +5143,79 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
-| 6800101 | if input parameter value error              |
+| 6800101 | if input parameter value error |
 
 **Example**
 
 ```js
-let isPlay;
-let started;
+let isPlaying; // An identifier specifying whether rendering is in progress.
+let isDucked; // An identifier specifying whether the audio volume is reduced.
 onAudioInterrupt();
 
 async function onAudioInterrupt(){
   audioRenderer.on('audioInterrupt', async(interruptEvent) => {
     if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
+      // The system forcibly interrupts audio rendering. The application must update the status and displayed content accordingly.
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
-          console.info('Force paused. Stop writing');
-          isPlay = false;
+          // The audio stream has been paused and temporarily loses the focus. It will receive the interruptEvent corresponding to resume when it is able to regain the focus.
+          console.info('Force paused. Update playing status and stop writing');
+          isPlaying = false; // A simplified processing indicating several operations for switching the application to the paused state.
           break;
         case audio.InterruptHint.INTERRUPT_HINT_STOP:
-          console.info('Force stopped. Stop writing');
-          isPlay = false;
+          // The audio stream has been stopped and permanently loses the focus. The user must manually trigger the operation to resume rendering.
+          console.info('Force stopped. Update playing status and stop writing');
+          isPlaying = false; // A simplified processing indicating several operations for switching the application to the paused state.
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_DUCK:
+          // The audio stream is rendered at a reduced volume.
+          console.info('Force ducked. Update volume status');
+          isDucked = true; // A simplified processing indicating several operations for updating the volume status.
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
+          // The audio stream is rendered at the normal volume.
+          console.info('Force ducked. Update volume status');
+          isDucked = false; // A simplified processing indicating several operations for updating the volume status.
+          break;
+        default:
+          console.info('Invalid interruptEvent');
           break;
       }
     } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
+      // The application can choose to take action or ignore.
       switch (interruptEvent.hintType) {
         case audio.InterruptHint.INTERRUPT_HINT_RESUME:
+          // It is recommended that the application continue rendering. (The audio stream has been forcibly paused and temporarily lost the focus. It can resume rendering now.)
           console.info('Resume force paused renderer or ignore');
-          await audioRenderer.start().then(async function () {
-            console.info('AudioInterruptMusic: renderInstant started :SUCCESS ');
-            started = true;
-          }).catch((err) => {
-            console.error(`AudioInterruptMusic: renderInstant start :ERROR : ${err}`);
-            started = false;
-          });
-          if (started) {
-            isPlay = true;
-            console.info(`AudioInterruptMusic Renderer started : isPlay : ${isPlay}`);
-          } else {
-            console.error('AudioInterruptMusic Renderer start failed');
-          }
+          // To continue rendering, the application must perform the required operations.
           break;
         case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+          // It is recommended that the application pause rendering.
           console.info('Choose to pause or ignore');
-          if (isPlay == true) {
-            isPlay == false;
-            console.info('AudioInterruptMusic: Media PAUSE : TRUE');
-          } else {
-            isPlay = true;
-            console.info('AudioInterruptMusic: Media PLAY : TRUE');
-          }
+          // To pause rendering, the application must perform the required operations.
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_STOP:
+          // It is recommended that the application stop rendering.
+          console.info('Choose to stop or ignore');
+          // To stop rendering, the application must perform the required operations.
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_DUCK:
+          // It is recommended that the application reduce the volume for rendering.
+          console.info('Choose to duck or ignore');
+          // To decrease the volume for rendering, the application must perform the required operations.
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_UNDUCK:
+          // It is recommended that the application resume rendering at the normal volume.
+          console.info('Choose to unduck or ignore');
+          // To resume rendering at the normal volume, the application must perform the required operations.
+          break;
+        default:
           break;
       }
    }
   });
 }
+
 ```
 
 ### on('markReach')<sup>8+</sup>
@@ -5056,6 +5242,7 @@ audioRenderer.on('markReach', 1000, (position) => {
     console.info('ON Triggered successfully');
   }
 });
+
 ```
 
 
@@ -5077,6 +5264,7 @@ Unsubscribes from mark reached events.
 
 ```js
 audioRenderer.off('markReach');
+
 ```
 
 ### on('periodReach') <sup>8+</sup>
@@ -5103,6 +5291,7 @@ audioRenderer.on('periodReach', 1000, (position) => {
     console.info('ON Triggered successfully');
   }
 });
+
 ```
 
 ### off('periodReach') <sup>8+</sup>
@@ -5123,9 +5312,10 @@ Unsubscribes from period reached events.
 
 ```js
 audioRenderer.off('periodReach')
+
 ```
 
-### on('stateChange') <sup>8+</sup>
+### on('stateChange')<sup>8+</sup>
 
 on(type: 'stateChange', callback: Callback<AudioState\>): void
 
@@ -5151,6 +5341,7 @@ audioRenderer.on('stateChange', (state) => {
     console.info('audio renderer state is: STATE_RUNNING');
   }
 });
+
 ```
 
 ## AudioCapturer<sup>8+</sup>
@@ -5169,6 +5360,7 @@ Provides APIs for audio capture. Before calling any API in **AudioCapturer**, yo
 
 ```js
 let state = audioCapturer.state;
+
 ```
 
 ### getCapturerInfo<sup>8+</sup>
@@ -5197,6 +5389,7 @@ audioCapturer.getCapturerInfo((err, capturerInfo) => {
     console.info(`Capturer flags: ${capturerInfo.capturerFlags}`);
   }
 });
+
 ```
 
 
@@ -5229,6 +5422,7 @@ audioCapturer.getCapturerInfo().then((audioParamsGet) => {
 }).catch((err) => {
   console.error(`AudioFrameworkRecLog: CapturerInfo :ERROR: ${err}`);
 });
+
 ```
 
 ### getStreamInfo<sup>8+</sup>
@@ -5259,6 +5453,7 @@ audioCapturer.getStreamInfo((err, streamInfo) => {
     console.info(`Capturer encoding type: ${streamInfo.encodingType}`);
   }
 });
+
 ```
 
 ### getStreamInfo<sup>8+</sup>
@@ -5287,6 +5482,7 @@ audioCapturer.getStreamInfo().then((audioParamsGet) => {
 }).catch((err) => {
   console.error(`getStreamInfo :ERROR: ${err}`);
 });
+
 ```
 
 ### getAudioStreamId<sup>9+</sup>
@@ -5309,6 +5505,7 @@ Obtains the stream ID of this **AudioCapturer** instance. This API uses an async
 audioCapturer.getAudioStreamId((err, streamid) => {
   console.info(`audioCapturer GetStreamId: ${streamid}`);
 });
+
 ```
 
 ### getAudioStreamId<sup>9+</sup>
@@ -5333,6 +5530,7 @@ audioCapturer.getAudioStreamId().then((streamid) => {
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
+
 ```
 
 ### start<sup>8+</sup>
@@ -5359,6 +5557,7 @@ audioCapturer.start((err) => {
     console.info('Capturer start success.');
   }
 });
+
 ```
 
 
@@ -5390,6 +5589,7 @@ audioCapturer.start().then(() => {
 }).catch((err) => {
   console.info(`AudioFrameworkRecLog: Capturer start :ERROR : ${err}`);
 });
+
 ```
 
 ### stop<sup>8+</sup>
@@ -5416,6 +5616,7 @@ audioCapturer.stop((err) => {
     console.info('Capturer stopped.');
   }
 });
+
 ```
 
 
@@ -5445,6 +5646,7 @@ audioCapturer.stop().then(() => {
 }).catch((err) => {
   console.info(`AudioFrameworkRecLog: Capturer stop: ERROR: ${err}`);
 });
+
 ```
 
 ### release<sup>8+</sup>
@@ -5471,6 +5673,7 @@ audioCapturer.release((err) => {
     console.info('capturer released.');
   }
 });
+
 ```
 
 
@@ -5500,6 +5703,7 @@ audioCapturer.release().then(() => {
 }).catch((err) => {
   console.info(`AudioFrameworkRecLog: Capturer stop: ERROR: ${err}`);
 });
+
 ```
 
 ### read<sup>8+</sup>
@@ -5533,6 +5737,7 @@ audioCapturer.read(bufferSize, true, async(err, buffer) => {
     console.info('Success in reading the buffer data');
   }
 });
+
 ```
 
 ### read<sup>8+</sup>
@@ -5572,6 +5777,7 @@ audioCapturer.read(bufferSize, true).then((buffer) => {
 }).catch((err) => {
   console.info(`ERROR : ${err}`);
 });
+
 ```
 
 ### getAudioTime<sup>8+</sup>
@@ -5594,6 +5800,7 @@ Obtains the number of nanoseconds elapsed from the Unix epoch (January 1, 1970).
 audioCapturer.getAudioTime((err, timestamp) => {
   console.info(`Current timestamp: ${timestamp}`);
 });
+
 ```
 
 ### getAudioTime<sup>8+</sup>
@@ -5618,6 +5825,7 @@ audioCapturer.getAudioTime().then((audioTime) => {
 }).catch((err) => {
   console.info(`AudioFrameworkRecLog: AudioCapturer Created : ERROR : ${err}`);
 });
+
 ```
 
 ### getBufferSize<sup>8+</sup>
@@ -5647,6 +5855,7 @@ audioCapturer.getBufferSize((err, bufferSize) => {
     });
   }
 });
+
 ```
 
 ### getBufferSize<sup>8+</sup>
@@ -5673,7 +5882,86 @@ audioCapturer.getBufferSize().then((data) => {
 }).catch((err) => {
   console.info(`AudioFrameworkRecLog: getBufferSize :ERROR : ${err}`);
 });
+
 ```
+
+### on('audioInterrupt')<sup>10+</sup>
+
+on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
+
+Subscribes to audio interruption events. This API uses a callback to get interrupt events.
+
+Same as [on('interrupt')](#oninterrupt), this API is used to listen for focus changes. The **AudioCapturer** instance proactively gains the focus when the **start** event occurs and releases the focus when the **pause** or **stop** event occurs. Therefore, you do not need to request to gain or release the focus.
+
+**System capability**: SystemCapability.Multimedia.Audio.Interrupt
+
+**Parameters**
+
+| Name     | Type                                           | Mandatory | Description                                                  |
+| -------- | ---------------------------------------------- | --------- | ------------------------------------------------------------ |
+| type     | string                                         | Yes       | Event type. The value **'audioInterrupt'** means the audio interruption event, which is triggered when audio capturing is interrupted. |
+| callback | Callback\<[InterruptEvent](#interruptevent9)\> | Yes       | Callback used to return the audio interruption event.        |
+
+**Error codes**
+
+For details about the error codes, see [Audio Error Codes](../errorcodes/errorcode-audio.md).
+
+| ID      | Error Message                  |
+| ------- | ------------------------------ |
+| 6800101 | if input parameter value error |
+
+**Example**
+
+```js
+let isCapturing; // An identifier specifying whether capturing is in progress.
+onAudioInterrupt();
+
+async function onAudioInterrupt(){
+  audioCapturer.on('audioInterrupt', async(interruptEvent) => {
+    if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_FORCE) {
+      // The system forcibly interrupts audio capturing. The application must update the status and displayed content accordingly.
+      switch (interruptEvent.hintType) {
+        case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+          // The audio stream has been paused and temporarily loses the focus. It will receive the interruptEvent corresponding to resume when it is able to regain the focus.
+          console.info('Force paused. Update capturing status and stop reading');
+          isCapturing = false; // A simplified processing indicating several operations for switching the application to the paused state.
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_STOP:
+          // The audio stream has been stopped and permanently loses the focus. The user must manually trigger the operation to resume capturing.
+          console.info('Force stopped. Update capturing status and stop reading');
+          isCapturing = false; // A simplified processing indicating several operations for switching the application to the paused state.
+          break;
+        default:
+          console.info('Invalid interruptEvent');
+          break;
+      }
+    } else if (interruptEvent.forceType == audio.InterruptForceType.INTERRUPT_SHARE) {
+      // The application can choose to take action or ignore.
+      switch (interruptEvent.hintType) {
+        case audio.InterruptHint.INTERRUPT_HINT_RESUME:
+          // It is recommended that the application continue capturing. (The audio stream has been forcibly paused and temporarily lost the focus. It can resume capturing now.)
+          console.info('Resume force paused renderer or ignore');
+          // To continue capturing, the application must perform the required operations.
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_PAUSE:
+          // It is recommended that the application pause capturing.
+          console.info('Choose to pause or ignore');
+          // To pause capturing, the application must perform the required operations.
+          break;
+        case audio.InterruptHint.INTERRUPT_HINT_STOP:
+          // It is recommended that the application stop capturing.
+          console.info('Choose to stop or ignore');
+          // To stop capturing, the application must perform the required operations.
+          break;
+        default:
+          break;
+      }
+   }
+  });
+}
+
+```
+
 
 ### on('markReach')<sup>8+</sup>
 
@@ -5699,6 +5987,7 @@ audioCapturer.on('markReach', 1000, (position) => {
     console.info('ON Triggered successfully');
   }
 });
+
 ```
 
 ### off('markReach')<sup>8+</sup>
@@ -5719,6 +6008,7 @@ Unsubscribes from mark reached events.
 
 ```js
 audioCapturer.off('markReach');
+
 ```
 
 ### on('periodReach')<sup>8+</sup>
@@ -5745,6 +6035,7 @@ audioCapturer.on('periodReach', 1000, (position) => {
     console.info('ON Triggered successfully');
   }
 });
+
 ```
 
 ### off('periodReach')<sup>8+</sup>
@@ -5765,9 +6056,10 @@ Unsubscribes from period reached events.
 
 ```js
 audioCapturer.off('periodReach')
+
 ```
 
-### on('stateChange') <sup>8+</sup>
+### on('stateChange')<sup>8+</sup>
 
 on(type: 'stateChange', callback: Callback<AudioState\>): void
 
@@ -5793,6 +6085,7 @@ audioCapturer.on('stateChange', (state) => {
     console.info('audio capturer state is: STATE_RUNNING');
   }
 });
+
 ```
 
 ## ToneType<sup>9+</sup>
@@ -5867,6 +6160,7 @@ tonePlayer.load(audio.ToneType.TONE_TYPE_DIAL_5, (err) => {
     console.info('callback call load success');
   }
 });
+
 ```
 
 ### load<sup>9+</sup>
@@ -5899,6 +6193,7 @@ tonePlayer.load(audio.ToneType.TONE_TYPE_DIAL_1).then(() => {
 }).catch(() => {
   console.error('promise call load fail');
 });
+
 ```
 
 ### start<sup>9+</sup>
@@ -5928,6 +6223,7 @@ tonePlayer.start((err) => {
     console.info('callback call start success');
   }
 });
+
 ```
 
 ### start<sup>9+</sup>
@@ -5954,6 +6250,7 @@ tonePlayer.start().then(() => {
 }).catch(() => {
   console.error('promise call start fail');
 });
+
 ```
 
 ### stop<sup>9+</sup>
@@ -5983,6 +6280,7 @@ tonePlayer.stop((err) => {
     console.error('callback call stop success ');
   }
 });
+
 ```
 
 ### stop<sup>9+</sup>
@@ -6009,6 +6307,7 @@ tonePlayer.stop().then(() => {
 }).catch(() => {
   console.error('promise call stop fail');
 });
+
 ```
 
 ### release<sup>9+</sup>
@@ -6038,6 +6337,7 @@ tonePlayer.release((err) => {
     console.info('callback call release success ');
   }
 });
+
 ```
 
 ### release<sup>9+</sup>
@@ -6064,6 +6364,7 @@ tonePlayer.release().then(() => {
 }).catch(() => {
   console.error('promise call release fail');
 });
+
 ```
 
 ## ActiveDeviceType<sup>(deprecated)</sup>
@@ -6118,7 +6419,7 @@ Describes the callback invoked for audio interruption or focus gain events.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [InterruptEvent](#interruptevent9).
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 

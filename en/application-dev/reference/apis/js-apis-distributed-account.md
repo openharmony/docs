@@ -232,7 +232,8 @@ Sets the distributed account information. This API uses a promise to return the 
 | ID| Error Message|
 | -------- | ------------------- |
 | 12300001 | System service exception. |
-| 12300002 | invalid accountInfo. |
+| 12300002 | Invalid accountInfo. |
+| 12300003 | Account not found. |
 
 **Example**
   ```js
@@ -325,4 +326,4 @@ Defines distributed OS account information.
 | event | string | Yes| Login state of the distributed account. The state can be login, logout, token invalid, or logoff, which correspond to the following strings respectively:<br>-&nbsp;Ohos.account.event.LOGIN<br>-&nbsp;Ohos.account.event.LOGOUT<br>-&nbsp;Ohos.account.event.TOKEN_INVALID<br>-&nbsp;Ohos.account.event.LOGOFF |
 | nickname<sup>9+</sup> | string | No| Nickname of the distributed account. It must be a non-null string.|
 | avatar<sup>9+</sup> | string | No| Avatar of the distributed account. It must be a non-null string.|
-| scalableData | object | No| Extended information about the distributed account, passed in key-value (KV) pairs.<br>**NOTE**<br>This parameter is reserved and not used in the setters and getters.|
+| scalableData<sup>8+</sup> | object | No| Extended information about the distributed account, passed in key-value (KV) pairs.<br>**NOTE**<br>This parameter is reserved and not used in the setters and getters.|

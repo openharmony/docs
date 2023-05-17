@@ -33,7 +33,7 @@ The **ContinueDeviceInfo** module defines the parameters required for initiating
 
   distributedMissionManager.continueMission(continueDeviceInfo, continueCallback, (error) => {
       if (error && error.code) {
-          console.error('continueMission failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+          console.error('continueMission failed, error.code: ${error.code}, error.message: ${error.message}');
       }
       console.log('continueMission finished');
   });

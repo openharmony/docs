@@ -23,7 +23,7 @@ OpenHarmony API主要包含了对应用开放的外部API，以及系统实现�
 * OpenHarmony Public API
 * OpenHarmony System API
 
-关于OpenHarmony API的分类，请参见[《 OpenHarmony API治理章程》](https://gitee.com/openharmony/docs/blob/master/zh-cn/design/OpenHarmony-API-governance.md)。
+关于OpenHarmony API的分类，请参见[《OpenHarmony API治理章程》](https://gitee.com/openharmony/docs/blob/master/zh-cn/design/OpenHarmony-API-governance.md)。
 
 ## 接口设计目标
 
@@ -379,7 +379,7 @@ doSomethingThird()
 
 还有一些情况下，大家在做某件事的时候，会本能的以为别人也有同样的背景认识。但事实往往并不是这样。在编程时也是一样。
 
-例如，对于一个描述编程语言的字段，可能会将其命名为`language`。这是因为大家默认认为已经在讨论编程语言了，但是`language`到底是编程语言还是国际化语言？是不是叫做`programmingLanuage`更好一些呢？
+例如，对于一个描述编程语言的字段，可能会将其命名为`language`。这是因为大家默认认为已经在讨论编程语言了，但是`language`到底是编程语言还是国际化语言？是不是叫做`programmingLanguage`更好一些呢？
 
 当然，对于这一条还是要举一个反例，不要走到另外一个极端：如果类名或者namespace名称中已经明确带了一个前缀，在函数中就没必要再重复一遍了。毫无信息量的冗余是没有必要的。
 
@@ -500,7 +500,7 @@ OpenHarmony是为多种不同类型设备设计的统一操作系统。
 * 健康类传感器只在穿戴设备上有
 * 车控类接口只在车机设备上有
 
-这种情况，请参考[《 SysCap使用指南》](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/syscap.md)，来标定API的适用范围。
+这种情况，请参考[《SysCap使用指南》](../application-dev/reference/syscap.md)，来标定API的适用范围。
 
 ### 一致性
 

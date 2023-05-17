@@ -1,13 +1,17 @@
-# Preferences Error Codes
+# User Preference Error Codes
 
-## 15500010 Failed to Delete Preferences
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
+
+## 15500010 Failed to Delete the User Preference Persistence File
 **Error Message**
 
 Failed to delete preferences.
 
 **Description**
 
-Failed to delete the preference.
+The operation of deleting the user preference persistence file failed.
 
 **Possible Causes**
 

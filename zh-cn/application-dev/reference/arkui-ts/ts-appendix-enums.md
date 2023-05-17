@@ -54,8 +54,6 @@
 
 ## TouchType
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 | 名称   | 描述                           |
 | ------ | ------------------------------ |
 | Down   | 手指按下时触发。               |
@@ -64,8 +62,6 @@
 | Cancel | 触摸事件取消时触发。           |
 
 ## MouseButton
-
-从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称    | 描述             |
 | ------- | ---------------- |
@@ -77,8 +73,6 @@
 | None    | 无按键。         |
 
 ## MouseAction
-
-从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称    | 描述           |
 | ------- | -------------- |
@@ -109,7 +103,7 @@
 
 ## AnimationStatus
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 | 名称    | 描述               |
 | ------- | ------------------ |
@@ -120,7 +114,7 @@
 
 ## FillMode
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+从API version 10开始，该接口支持在ArkTS卡片中使用。
 
 | 名称      | 描述                                                         |
 | --------- | ------------------------------------------------------------ |
@@ -142,16 +136,12 @@
 
 ## KeyType
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 | 名称 | 描述       |
 | ---- | ---------- |
 | Down | 按键按下。 |
 | Up   | 按键松开。 |
 
 ## KeySource
-
-从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称     | 描述                 |
 | -------- | -------------------- |
@@ -171,8 +161,6 @@
 | End      | 水平方向末尾位置<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ## Week
-
-从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称     | 描述                   |
 | -------- | ---------------------- |
@@ -242,8 +230,6 @@
 
 ## RelateType
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 | 名称   | 描述                              |
 | ------ | ------------------------------- |
 | FILL    | 缩放当前子组件以填充满父组件      |
@@ -307,12 +293,12 @@
 
 | 名称     | 描述                                                         |
 | -------- | ------------------------------------------------------------ |
-| Auto     | 使用Flex容器中默认配置。                                     |
-| Start    | 元素在Flex容器中，交叉轴方向首部对齐。                       |
-| Center   | 元素在Flex容器中，交叉轴方向居中对齐。                       |
-| End      | 元素在Flex容器中，交叉轴方向底部对齐。                       |
-| Stretch  | 元素在Flex容器中，交叉轴方向拉伸填充。容器为Flex且设置Wrap为FlexWrap.Wrap或FlexWrap.WrapReverse时，元素拉伸到与当前行/列交叉轴长度最长的元素尺寸。其余情况在元素未设置尺寸时，拉伸到容器尺寸。 |
-| Baseline | 元素在Flex容器中，交叉轴方向文本基线对齐。                   |
+| Auto     | 使用Flex、GridRow容器中默认配置。                                     |
+| Start    | 元素在Flex、GridRow容器中，交叉轴方向首部对齐。                       |
+| Center   | 元素在Flex、GridRow容器中，交叉轴方向居中对齐。                       |
+| End      | 元素在Flex、GridRow容器中，交叉轴方向底部对齐。                       |
+| Stretch  | 元素在Flex、GridRow容器中，交叉轴方向拉伸填充。容器为Flex且设置Wrap为FlexWrap.Wrap或FlexWrap.WrapReverse时，元素拉伸到与当前行/列交叉轴长度最长的元素尺寸。其余情况在元素未设置尺寸时，拉伸到容器尺寸。 |
+| Baseline | 元素在Flex、GridRow容器中，交叉轴方向文本基线对齐。                   |
 
 ## FlexDirection
 
@@ -383,8 +369,6 @@
 | None        | 无。       |
 
 ## SharedTransitionEffectType
-
-从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称        | 描述       |
 | ----------- | ---------- |
@@ -458,16 +442,12 @@
 
 ## ResponseType<sup>8+</sup>
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
-
 | 名称       | 描述                       |
 | ---------- | -------------------------- |
 | LongPress  | 通过长按触发菜单弹出。     |
 | RightClick | 通过鼠标右键触发菜单弹出。 |
 
 ## HoverEffect<sup>8+</sup>
-
-从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称      | 描述                         |
 | --------- | ---------------------------- |
@@ -477,8 +457,6 @@
 | None      | 不设置效果。                 |
 
 ## Placement<sup>8+</sup>
-
-从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称          | 描述                                                         |
 | ------------- | ------------------------------------------------------------ |
@@ -506,8 +484,6 @@
 | LocalDevice | 支持设备内复制。 |
 
 ## HitTestMode<sup>9+</sup>
-
-从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 | 名称        | 描述                 |
 | ----------- | -------------------- |
@@ -552,3 +528,11 @@
 | MAX_LINES_FIRST         | 设置文本高度自适应方式为以MaxLines优先。         |
 | MIN_FONT_SIZE_FIRST     | 设置文本高度自适应方式为以缩小字体优先。         |
 | LAYOUT_CONSTRAINT_FIRST | 设置文本高度自适应方式为以布局约束（高度）优先。 |
+
+## TransitionEdge<sup>10+<sup>
+| 名称 | 描述 |
+| -------- | -------- |
+| TOP | 窗口的上边缘 |
+| BOTTOM | 窗口的下边缘 |
+| START | 窗口的左边缘 |
+| END | 窗口的右边缘 |

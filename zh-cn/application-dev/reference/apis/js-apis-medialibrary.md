@@ -708,8 +708,8 @@ startImagePreview(images: Array&lt;string&gt;, index: number, callback: AsyncCal
 
 ```js
 let images = [
-    'datashare:///media/xxxx/2',
-    'datashare:///media/xxxx/3'
+    'file://media/xxxx/2',
+    'file://media/xxxx/3'
 ];
 /* 网络图片使用方式
 let images = [
@@ -751,8 +751,8 @@ startImagePreview(images: Array&lt;string&gt;, callback: AsyncCallback&lt;void&g
 
 ```js
 let images = [
-    'datashare:///media/xxxx/2',
-    'datashare:///media/xxxx/3'
+    'file://media/xxxx/2',
+    'file://media/xxxx/3'
 ];
 /* 网络图片使用方式
 let images = [
@@ -799,8 +799,8 @@ startImagePreview(images: Array&lt;string&gt;, index?: number): Promise&lt;void&
 
 ```js
 let images = [
-    'datashare:///media/xxxx/2',
-    'datashare:///media/xxxx/3'
+    'file://media/xxxx/2',
+    'file://media/xxxx/3'
 ];
 /* 网络图片使用方式
 let images = [
@@ -1041,7 +1041,7 @@ async function example() {
 | 名称                      | 类型                     | 可读 | 可写 | 说明                                                   |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
 | id                        | number                   | 是   | 否   | 文件资源编号                                           |
-| uri                       | string                   | 是   | 否   | 文件资源uri（如：datashare:///media/image/2)         |
+| uri                       | string                   | 是   | 否   | 文件资源uri（如：file://media/image/2)         |
 | mimeType                  | string                   | 是   | 否   | 文件扩展属性                                           |
 | mediaType<sup>8+</sup>    | [MediaType](#mediatype8) | 是   | 否   | 媒体类型                                               |
 | displayName               | string                   | 是   | 是   | 显示文件名，包含后缀名                                 |

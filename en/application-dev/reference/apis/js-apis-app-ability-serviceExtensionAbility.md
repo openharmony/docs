@@ -148,7 +148,7 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
 
 ## ServiceExtensionAbility.onDisconnect
 
-onDisconnect(want: Want): void | Promise<void>;
+onDisconnect(want: Want): void | Promise\<void>;
 
 Called when a client is disconnected from this ServiceExtensionAbility.
 

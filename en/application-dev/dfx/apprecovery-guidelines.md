@@ -9,7 +9,7 @@ Application recovery helps to restore the application state and save temporary d
 
 In API version 9, application recovery is supported only for a single ability of the application developed using the stage model. Application state saving and automatic restart are performed when a JsError occurs.
 
-In API version 10, application recovery is also supported for multiple abilities of the application developed using the stage model. Application state storage and restore are performed when an AppFreeze occurs. If an application is killed in control mode, the application state will be restored upon next startup.
+In API version 10, application recovery is applicable to multiple abilities of an application developed using the stage model. Application state storage and restore are performed when an AppFreeze occurs. If an application is killed in control mode, the application state will be restored upon next startup.
 
 ## Available APIs
 
@@ -37,18 +37,15 @@ No error will be thrown if the preceding APIs are used in the troubleshooting sc
 
 ### Application State Management
 Since API version 10, application recovery is not limited to automatic restart in the case of an exception. Therefore, you need to understand when the application will load the saved state.
-
 If the last exit of an application is not initiated by a user and a saved state is available for recovery, the startup reason is set to **APP_RECOVERY** when the application is started by the user next time, and the recovery state of the application is cleared.
 The application recovery status flag is set when **saveAppState** is actively or passively called. The flag is cleared when the application exits normally or the saved state is consumed. (A normal exit is usually triggered by pressing the back key or clearing recent tasks.)
 
 ![Application recovery status management](./figures/application_recovery_status_management.png)
 
 ### Application State Saving and Restore
-
 API version 10 or later supports saving of the application state when an application is suspended. If a JsError occurs, **onSaveState** is called in the main thread. If an AppFreeze occurs, however, the main thread may be suspended, and therefore **onSaveState** is called in a non-main thread. The following figure shows the main service flow.
 
 ![Application recovery from the freezing state](./figures/application_recovery_from_freezing.png)
-
 When the application is suspended, the callback is not executed in the JS thread. Therefore, you are advised not to use the imported dynamic Native library or access the **thread_local** object created by the main thread in the code of the **onSaveState** callback.
 
 ### Framework Fault Management
@@ -62,13 +59,9 @@ Fault management is an important way for applications to deliver a better user e
 - Fault query is the process of calling APIs of [faultLogger](../reference/apis/js-apis-faultLogger.md) to obtain the fault information.
 
 The figure below does not illustrate the time when [faultLogger](../reference/apis/js-apis-faultLogger.md) is called. You can refer to the [LastExitReason](../reference/apis/js-apis-app-ability-abilityConstant.md#abilityconstantlastexitreason) passed during application initialization to determine whether to call [faultLogger](../reference/apis/js-apis-faultLogger.md) to query information about the previous fault.
-
 ![Fault rectification process](./figures/fault_rectification.png)
-
 It is recommended that you call [errorManager](../reference/apis/js-apis-app-ability-errorManager.md) to handle the exception. After the processing is complete, you can call the **saveAppState** API and restart the application.
-
 If you do not register [ErrorObserver](../reference/apis/js-apis-inner-application-errorObserver.md) or enable application recovery, the application process will exit according to the default processing logic of the system. Users can restart the application from the home screen.
-
 If you have enabled application recovery, the recovery framework first checks whether application state saving is supported and whether the application state saving is enabled. If so, the recovery framework invokes [onSaveState](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonsavestate) of the [Ability](../reference/apis/js-apis-app-ability-uiAbility.md). Finally, the application is restarted.
 
 ### Supported Application Recovery Scenarios
@@ -132,12 +125,12 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 #### Actively Saving the Application State and Restoring Data
 
-- Define and register the [ErrorObserver](../reference/apis/js-apis-inner-application-errorObserver.md) callback. 
+- Define and register the [ErrorObserver](../reference/apis/js-apis-inner-application-errorObserver.md) callback. For details about its usage, see [errorManager](../reference/apis/js-apis-app-ability-errorManager.md).
 
 ```ts
   var registerId = -1;
   var callback = {
-      onUnhandledException: function (errMsg) {
+      onUnhandledException(errMsg) {
           console.log(errMsg);
           appRecovery.saveAppState();
           appRecovery.restartApp();
@@ -149,7 +142,7 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
       console.log("[Demo] EntryAbility onWindowStageCreate")
 
       globalThis.registerObserver = (() => {
-          registerId = errorManager.registerErrorObserver(callback);
+          registerId = errorManager.on('error', callback);
       })
 
       windowStage.loadContent("pages/index", null);
@@ -165,7 +158,7 @@ After the callback triggers **appRecovery.saveAppState()**, **onSaveState(state,
       // Ability has called to save app data
       console.log("[Demo] EntryAbility onSaveState")
       wantParams["myData"] = "my1234567";
-      return AbilityConstant.onSaveResult.ALL_AGREE;
+      return AbilityConstant.OnSaveResult.ALL_AGREE;
   }
 ```
 
@@ -195,8 +188,8 @@ onWindowStageDestroy() {
     console.log("[Demo] EntryAbility onWindowStageDestroy")
 
     globalThis.unRegisterObserver = (() => {
-        errorManager.unregisterErrorObserver(registerId, (result) => {
-            console.log("[Demo] result " + result.code + ";" + result.message)
+        errorManager.off('error', registerId, (err) => {
+            console.error("[Demo] err:", err);
         });
     })
 }
@@ -224,7 +217,24 @@ export default class EntryAbility extends Ability {
         // Ability has called to save app data
         console.log("[Demo] EntryAbility onSaveState")
         wantParams["myData"] = "my1234567";
-        return AbilityConstant.onSaveResult.ALL_AGREE;
+        return AbilityConstant.OnSaveResult.ALL_AGREE;
+    }
+}
+```
+
+#### Restart Flag for the Failed Ability
+
+If the failed ability is restarted again, the [ABILITY_RECOVERY_RESTART](../reference/apis/js-apis-app-ability-wantConstant.md#wantconstantparams) flag will be added as a **parameters** member for the **want** parameter in **onCreate** and its value is **true**.
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import wantConstant from '@ohos.app.ability.wantConstant';
+export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        if (want.parameters[wantConstant.Params.ABILITY_RECOVERY_RESTART] != undefined &&
+            want.parameters[wantConstant.Params.ABILITY_RECOVERY_RESTART] == true) {
+            console.log("This ability need to recovery");
+        }
     }
 }
 ```

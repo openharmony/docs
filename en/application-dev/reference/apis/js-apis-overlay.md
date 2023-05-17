@@ -5,8 +5,6 @@ The **overlay** module provides APIs for installing a [module with the overlay f
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -41,8 +39,8 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700002 | The specified moduleName is not existed. |
-| 17700033 | The specified moduleName is not overlay module. |
+| 17700002 | The specified module name is not found. |
+| 17700033 | The specified module is not an overlay module. |
 
 **Example**
 
@@ -84,8 +82,8 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700002 | The specified moduleName is not existed. |
-| 17700033 | The specified moduleName is not overlay module. |
+| 17700002 | The specified module name is not found. |
+| 17700033 | The specified module is not an overlay module. |
 
 **Example**
 
@@ -116,7 +114,7 @@ Enables or disables a module with the overlay feature in another application. Th
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Overlay
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -138,10 +136,10 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700001 | The specified bundleName is not found.  |
-| 17700002 | The specified moduleName is not existed. |
-| 17700032 | The specified bundleName does not contain any overlay module. |
-| 17700033 | The specified moduleName is not overlay module. |
+| 17700001 | The specified bundleName is not found. |
+| 17700002 | The specified module name is not found. |
+| 17700032 | The specified bundle does not contain any overlay module. |
+| 17700033 | The specified module is not an overlay module. |
 
 **Example**
 
@@ -172,7 +170,7 @@ Enables or disables a module with the overlay feature in another application. Th
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Overlay
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -181,7 +179,7 @@ Enables or disables a module with the overlay feature in another application. Th
 | bundleName  | string | Yes   | Bundle name of the application.                |
 | moduleName  | string | Yes   | HAP name of the module with the overlay feature.   |
 | isEnabled   | boolean  | Yes | Whether to enable the module with the overlay feature. The value **true** means to enable the module, and **false** means to disable the module.|
-| callback    | AsyncCallback\<Want> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the processing result obtained; otherwise, **err** is an error object.                   |
+| callback    | AsyncCallback\<void> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined** and data is the processing result obtained; otherwise, **err** is an error object.                   |
 
 **Error codes**
 
@@ -189,10 +187,10 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700001 | The specified bundleName is not found.  |
-| 17700002 | The specified moduleName is not existed. |
-| 17700032 | The specified bundleName does not contain any overlay module. |
-| 17700033 | The specified moduleName is not overlay module. |
+| 17700001 | The specified bundleName is not found. |
+| 17700002 | The specified module name is not found. |
+| 17700032 | The specified bundle does not contain any overlay module. |
+| 17700033 | The specified module is not an overlay module. |
 
 **Example**
 
@@ -240,8 +238,9 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700002 | The specified moduleName is not existed.  |
-| 17700033 | The specified moduleName is not overlay module. |
+| 17700002 | The specified module name is not found. |
+| 17700032 | The specified bundle does not contain any overlay module. |
+| 17700033 | The specified module is not an overlay module. |
 
 **Example**
 
@@ -271,7 +270,7 @@ Obtains the information about a module with the overlay feature in the current a
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | moduleName | string | Yes   | HAP name of the module with the overlay feature.    |
-| callback    | AsyncCallback\<OverlayModuleInfo> | Yes   | Callback used to return the result, which is an **OverlayModuleInfo** object. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<OverlayModuleInfo> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
 
 **Error codes**
 
@@ -279,8 +278,9 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700002 | The specified moduleName is not existed.  |
-| 17700033 | The specified moduleName is not overlay module. |
+| 17700002 | The specified module name is not found. |
+| 17700032 | he specified bundle does not contain any overlay module. |
+| 17700033 | The specified module is not an overlay module. |
 
 **Example**
 
@@ -325,8 +325,8 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700002 | The specified moduleName is not existed.  |
-| 17700034 | The specified moduleName is overlay module. |
+| 17700002 | The specified module name is not found. |
+| 17700034 | The specified module is an overlay module. |
 
 **Example**
 
@@ -356,7 +356,7 @@ Obtains the information about modules with the overlay feature in the current ap
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetModuleName | string | Yes   | HAP name of the target module specified by modules with the overlay feature.    |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result, which is an array of **OverlayModuleInfo** objects. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
 
 **Error codes**
 
@@ -364,8 +364,8 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700002 | The specified moduleName is not existed.  |
-| 17700034 | The specified moduleName is overlay module. |
+| 17700002 | The specified module name is not found.  |
+| 17700034 | The specified module is an overlay module. |
 
 **Example**
 
@@ -394,7 +394,7 @@ Obtains the information about a module with the overlay feature in another appli
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Overlay
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -415,10 +415,10 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
-| 17700002 | The specified moduleName is not existed. |
-| 17700032 | The specified bundleName does not contain any overlay module. |
-| 17700033 | The specified moduleName is not overlay module. |
+| 17700001 | The specified bundleName is not found. |
+| 17700002 | The specified module name is not found. |
+| 17700032 | The specified bundle does not contain any overlay module. |
+| 17700033 | The specified module is not an overlay module. |
 
 **Example**
 
@@ -446,7 +446,7 @@ Obtains the information about a module with the overlay feature in another appli
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Overlay
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -454,7 +454,7 @@ Obtains the information about a module with the overlay feature in another appli
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName | string | Yes   | Bundle name of the application.                   |
 | moduleName | string | Yes   | HAP name of the module with the overlay feature. If this parameter is not specified, the API obtains the information of all modules with the overlay feature in that application.    |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result, which is an array of **OverlayModuleInfo** objects. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
 
 **Error codes**
 
@@ -462,10 +462,10 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
-| 17700002 | The specified moduleName is not existed. |
-| 17700032 | The specified bundleName does not contain any overlay module. |
-| 17700033 | The specified moduleName is not overlay module. |
+| 17700001 | The specified bundleName is not found. |
+| 17700002 | The specified module name is not found. |
+| 17700032 | The specified bundle does not contain any overlay module. |
+| 17700033 | The specified module is not an overlay module. |
 
 **Example**
 
@@ -496,14 +496,14 @@ Obtains the information about all modules with the overlay feature in another ap
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Overlay
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName | string | Yes   | Bundle name of the application.                   |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result, which is an array of **OverlayModuleInfo** objects. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
 
 **Error codes**
 
@@ -511,10 +511,10 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
-| 17700002 | The specified moduleName is not existed. |
-| 17700032 | The specified bundleName does not contain any overlay module. |
-| 17700033 | The specified moduleName is not overlay module. |
+| 17700001 | The specified bundleName is not found. |
+| 17700002 | The specified module name is not found. |
+| 17700032 | The specified bundle does not contain any overlay module. |
+| 17700033 | The specified module is not an overlay module. |
 
 **Example**
 
@@ -544,7 +544,7 @@ Obtains the information about modules with the overlay feature in another applic
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Overlay
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -565,10 +565,10 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
-| 17700002 | The specified moduleName is not existed. |
-| 17700034 | The specified moduleName is overlay module. |
-| 17700035 | The specified bundleName is overlay bundle. |
+| 17700001 | The specified bundleName is not found. |
+| 17700002 | The specified module name is not found. |
+| 17700034 | The specified module is an overlay module. |
+| 17700035 | The specified bundle is an overlay bundle. |
 
 **Example**
 
@@ -596,15 +596,15 @@ Obtains the information about modules with the overlay feature in another applic
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Overlay
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetBundleName | string | Yes   | Bundle name of the application.                   |
-| moduleName | string | No   | HAP name of the target module, which is **targetModuleName** specified by modules with the overlay feature. If this parameter is not specified, the API obtains the information associated with all modules in that application.    |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result, which is an array of **OverlayModuleInfo** objects. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
+| moduleName | string | Yes   | HAP name of the target module, which is **targetModuleName** specified by modules with the overlay feature. If this parameter is not specified, the API obtains the information associated with all modules in that application.    |
+| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
 
 **Error codes**
 
@@ -612,10 +612,10 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
-| 17700002 | The specified moduleName is not existed. |
-| 17700034 | The specified moduleName is overlay module. |
-| 17700035 | The specified bundleName is overlay bundle. |
+| 17700001 | The specified bundleName is not found. |
+| 17700002 | The specified module name is not found. |
+| 17700034 | The specified module is an overlay module. |
+| 17700035 | The specified bundle is an overlay bundle. |
 
 **Example**
 
@@ -646,14 +646,14 @@ Obtains the information about all modules with the overlay feature in another ap
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Overlay
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 **Parameters**
 
 | Name      | Type    | Mandatory  | Description                                   |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetBundleName | string | Yes   | Bundle name of the application.                   |
-| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result, which is an array of **OverlayModuleInfo** objects. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
+| callback    | AsyncCallback\<Array\<OverlayModuleInfo>> | Yes   | Callback used to return the result. If the operation is successful, **err** is **undefined**; otherwise, **err** is an error object.                  |
 
 **Error codes**
 
@@ -661,10 +661,10 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                               |
 | ------ | -------------------------------------- |
-| 17700001 | The specified bundleName is not found |
-| 17700002 | The specified moduleName is not existed. |
-| 17700034 | The specified moduleName is overlay module. |
-| 17700035 | The specified bundleName is overlay bundle. |
+| 17700001 | The specified bundleName is not found. |
+| 17700002 | The specified module name is not found. |
+| 17700034 | The specified module is an overlay module. |
+| 17700035 | The specified bundle is an overlay bundle. |
 
 **Example**
 

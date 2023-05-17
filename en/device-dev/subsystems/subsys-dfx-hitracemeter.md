@@ -1,8 +1,8 @@
-# HiTraceMeter
+# HiTraceMeter Development
 
 ## Introduction
 
-HiTraceMeter is the OpenHarmony subsystem that provides APIs to implement call chain trace throughout a service process. With HiTraceMeter, you can quickly obtain the run log specific to the call chain of a service process and locate faults in inter-device, inter-process, or inter-thread communications. HiTraceMeter supports event logging in user mode and can collect trace data in user mode and kernel mode for performance tracing and analysis.
+HiTraceMeter is the OpenHarmony subsystem that provides APIs to implement call chain trace throughout a service process. With HiTraceMeter, you can quickly obtain the run log specific to the call chain of a service process and locate faults in inter-device, inter-process, or inter-thread communications. HiTraceMeter supports event logging in user mode and can collect trace data in user mode and kernel mode for performance trace and analysis.
 
 ## Basic Concepts
 
@@ -12,7 +12,7 @@ The HiTraceMeter subsystem consists of three parts:
 - hitrace CLI tool for data collection
 - smartperf tool for graphical data analysis 
 
-Wherein, HiTraceMeter APIs and the hitrace CLI tool run on the device side, and the smartperf tool runs on the PC side. HiTraceMeter APIs are provided in C++ and JS for event logging, which aims to generate the trace data necessary for performance tracing and analysis during the development process.
+Wherein, HiTraceMeter APIs and the hitrace CLI tool run on the device side, and the smartperf tool runs on the PC side. HiTraceMeter APIs are provided in C++ and JS for event logging, which aims to generate the trace data necessary for performance trace and analysis during the development process.
 
 The hitrace CLI tool is used to collect trace data. It captures trace data flows and saves the data as a text file.
 
@@ -348,4 +348,4 @@ You can set **-t** to **60** and **-b** to **204800** to increase the trace time
 
 # Reference
 
-For details about HiTraceMeter, see [hiviewdfx_hitrace: Lightweight Distributed Tracing](https://gitee.com/openharmony/hiviewdfx_hitrace).
+For details about HiTraceMeter, see [hiviewdfx_hitrace: Lightweight Distributed Trace](https://gitee.com/openharmony/hiviewdfx_hitrace).

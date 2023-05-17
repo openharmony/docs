@@ -68,20 +68,20 @@ Describes the target action supported by an accessibility application.
 | -------- | -------- |
 | click | Clicking.|
 | longClick | Long pressing.|
-| scrollForward | Scrolling forward.|
-| scrollBackward | Scrolling backward.|
-| focus | Obtaining focus.|
-| clearFocus | Clearing focus.|
-| clearSelection | Clearing selection.|
-| accessibilityFocus | Obtaining the accessibility focus.|
-| clearAccessibilityFocus | Clearing the accessibility focus.|
-| cut | Cut.|
-| copy | Copy.|
-| paste | Paste.|
-| select | Select.|
-| setText | Setting the text.|
-| delete | Delete.|
-| setSelection | Setting the selection.|
+| scrollForward | Scrolling forward. Not supported currently. |
+| scrollBackward | Scrolling backward. Not supported currently. |
+| focus | Obtaining focus. Not supported currently. |
+| clearFocus | Clearing focus. Not supported currently. |
+| clearSelection | Clearing selection. Not supported currently. |
+| accessibilityFocus | Obtaining the accessibility focus. |
+| clearAccessibilityFocus | Clearing the accessibility focus. |
+| cut | Cut. Not supported currently. |
+| copy | Copy. Not supported currently. |
+| paste | Paste. Not supported currently. |
+| select | Select. Not supported currently. |
+| setText | Setting the text. Not supported currently. |
+| delete | Delete. Not supported currently. |
+| setSelection | Setting the selection. Not supported currently. |
 
 ## Capability
 
@@ -94,7 +94,7 @@ Enumerates the capabilities of an accessibility application.
 | retrieve | Capability to retrieve the window content.|
 | touchGuide | Capability of touch guide mode.|
 | keyEventObserver | Capability to filter key events.|
-| zoom | Capability to control the display zoom level.|
+| zoom | Capability to control the display zoom level. Not supported currently. |
 | gesture | Capability to perform gesture actions.|
 
 ## CaptionsFontEdgeType<sup>8+</sup>
@@ -279,15 +279,15 @@ Describes a GUI change event.
 | bundleName | string | Yes| Yes| Target application name.|
 | componentType | string | Yes| Yes| Type of the event source component, for example, button or chart.|
 | pageId | number | Yes| Yes| Page ID of the event source.|
-| description | string | Yes| Yes| Event description.|
+| description | string | Yes| Yes| Event description. Not supported currently. |
 | triggerAction | [Action](#action) | Yes| Yes| Action that triggers the event.|
-| textMoveUnit | [TextMoveUnit](#textmoveunit) | Yes| Yes| Text movement unit.|
+| textMoveUnit | [TextMoveUnit](#textmoveunit) | Yes| Yes| Text movement unit. Not supported currently. |
 | contents | Array&lt;string&gt; | Yes| Yes| Array of contents.|
 | lastContent | string | Yes| Yes| Latest content.|
-| beginIndex | number | Yes| Yes| Sequence number of the first item displayed on the page.|
-| currentIndex | number | Yes| Yes| Sequence number of the current item.|
-| endIndex | number | Yes| Yes| Sequence number of the last item displayed on the page.|
-| itemCount | number | Yes| Yes| Total number of items.|
+| beginIndex | number | Yes| Yes| Sequence number of the first item displayed on the page. Not supported currently. |
+| currentIndex | number | Yes| Yes| Sequence number of the current item. Not supported currently. |
+| endIndex | number | Yes| Yes| Sequence number of the last item displayed on the page. Not supported currently. |
+| itemCount | number | Yes| Yes| Total number of items. Not supported currently. |
 
 ### constructor
 
@@ -323,13 +323,13 @@ Enumerates accessibility event types.
 | -------- | -------- |
 | click | Event of clicking a component.|
 | longClick | Event of long-pressing a component.|
-| select | Event of selecting a component.|
-| focus | Event indicating that the component obtains the focus.|
-| textUpdate | Event indicating that the component text has been updated.|
-| hoverEnter | Event indicating that the hover enters a component.|
-| hoverExit | Event indicating that the hover exits a component.|
-| scroll | Event of the scroll view.|
-| textSelectionUpdate | Event indicating that the selected text has been updated.|
+| select | Event of selecting a component. Not supported currently. |
+| focus | Event indicating that the component obtains the focus. Not supported currently. |
+| textUpdate | Event indicating that the component text has been updated. Not supported currently. |
+| hoverEnter | Event indicating that the hover enters a component. Not supported currently. |
+| hoverExit | Event indicating that the hover exits a component. Not supported currently. |
+| scroll | Event of the scroll view. Not supported currently. |
+| textSelectionUpdate | Event indicating that the selected text has been updated. Not supported currently. |
 | accessibilityFocus | Event indicating that the accessibility focus has been obtained.|
 | accessibilityFocusClear | Event indicating that the accessibility focus has been cleared.|
 

@@ -62,6 +62,25 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
   | hapModuleQuickFixFiles | Array\<string> | 是 | 快速修复补丁文件（补丁文件需包含有效的文件路径）。 |
   | callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 18500002 | Copy file failed, maybe not exist or inaccessible. |
+| 18500008 | Internal error. |
+
+在打补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEvent-definitions.md#common_event_quick_fix_apply_result9)的参数返回给应用开发者。这部分错误码及错误信息如下：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 18500003 | Deploy hqf failed. |
+| 18500004 | Switch hqf failed. |
+| 18500005 | Delete hqf failed. |
+| 18500006 | Load patch failed. |
+| 18500007 | Unload patch failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 > 说明：调用applyQuickFix接口时，补丁文件所在路径为应用沙箱路径。沙箱路径的获取参考[获取应用的沙箱路径](js-apis-bundle-BundleInstaller.md#获取应用的沙箱路径)，映射到设备上的路径为/proc/&lt;应用进程Id&gt;/root/沙箱路径。
 
 **示例：**
@@ -105,6 +124,25 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
   | -------- | -------- |
   | Promise\<void> | 返回相应结果。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 18500002 | Copy file failed, maybe not exist or inaccessible. |
+| 18500008 | Internal error. |
+
+在打补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEvent-definitions.md#common_event_quick_fix_apply_result9)的参数返回给应用开发者。这部分错误码及错误信息如下：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 18500003 | Deploy hqf failed. |
+| 18500004 | Switch hqf failed. |
+| 18500005 | Delete hqf failed. |
+| 18500006 | Load patch failed. |
+| 18500007 | Unload patch failed. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
@@ -138,6 +176,15 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
 | -------- | -------- | -------- | -------- |
 | bundleName | string | 是 |应用Bundle名称。  |
 | callback | AsyncCallback\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | 是 | 应用的快速修复信息。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 18500001 | The bundle is not exist. |
+| 18500008 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -180,6 +227,15 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
   | -------- | -------- |
   | Promise\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | 返回应用的快速修复信息。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 18500001 | The bundle is not exist. |
+| 18500008 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
   ```ts
@@ -194,3 +250,100 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
     console.error('error: ${paramError.code}, ${paramError.message}');
   }
   ```
+
+## quickFixManager.revokeQuickFix<sup>10+<sup>
+
+revokeQuickFix(bundleName: string, callback: AsyncCallback\<void>): void;
+
+撤销快速修复的接口，使用callback方式返回结果。
+
+**需要权限**：ohos.permission.INSTALL_BUNDLE 与 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.QuickFix
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | bundleName | string | 是 | 需要撤销补丁的应用Bundle名称。 |
+  | callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 18500001 | The bundle is not exist or no patch has applied. |
+| 18500009 | The application has a apply quick fix task that is being processed. |
+
+在撤销补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)的参数返回给应用开发者。这部分错误码及错误信息如下：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 18500004 | Switch hqf failed. |
+| 18500005 | Delete hqf failed. |
+| 18500007 | Unload patch failed. |
+
+**示例：**
+
+```ts
+  let bundleName = "com.example.myapplication";
+  quickFixManager.revokeQuickFix(bundleName, (err) => {
+    console.info("revokeQuickFix " + bundleName + " " + JSON.stringify(err));
+  });
+```
+
+## quickFixManager.revokeQuickFix<sup>10+<sup>
+
+revokeQuickFix(bundleName: string): Promise\<void>;
+
+撤销快速修复的接口，使用Promise方式返回结果。
+
+**需要权限**：ohos.permission.INSTALL_BUNDLE 与 ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.QuickFix
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | bundleName | string | 是 | 需要撤销补丁的应用Bundle名称。 |
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise\<void> | 返回相应结果。 |
+
+**错误码**：
+
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 18500001 | The bundle is not exist or no patch has applied. |
+| 18500009 | The application has a apply quick fix task that is being processed. |
+
+在撤销补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_REVOKE_RESULT](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)的参数返回给应用开发者。这部分错误码及错误信息如下：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 18500004 | Switch hqf failed. |
+| 18500005 | Delete hqf failed. |
+| 18500007 | Unload patch failed. |
+
+**示例：**
+
+```ts
+  let bundleName = "com.example.myapplication";
+  quickFixManager.revokeQuickFix(bundleName).then(() => {
+    console.info("revokeQuickFix " + bundleName +" ok");
+  }).catch((err) => {
+    console.info("revokeQuickFix " + bundleName +" failed, error code is ", JSON.stringify((err)));
+  });
+```

@@ -43,8 +43,8 @@ Checks whether network sharing is supported. This API uses an asynchronous callb
 
 ```js
 sharing.isSharingSupported((error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -79,9 +79,9 @@ Checks whether network sharing is supported. This API uses a promise to return t
 
 ```js
 sharing.isSharingSupported().then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
@@ -115,8 +115,8 @@ Checks whether network sharing is in progress. This API uses an asynchronous cal
 
 ```js
 sharing.isSharing((error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -150,9 +150,9 @@ Checks whether network sharing is in progress. This API uses a promise to return
 
 ```js
 sharing.isSharing().then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
@@ -194,9 +194,10 @@ Starts network sharing of a specified type. This API uses an asynchronous callba
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.startSharing(SHARING_WIFI, (error) => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
@@ -243,11 +244,12 @@ Starts network sharing of a specified type. This API uses a promise to return th
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.startSharing(SHARING_WIFI).then(() => {
-    console.log("start wifi sharing successful");
+  console.log("start wifi sharing successful");
 }).catch(error => {
-    console.log("start wifi sharing failed");
+  console.log("start wifi sharing failed");
 });
 ```
 
@@ -287,9 +289,10 @@ Stops network sharing of a specified type. This API uses an asynchronous callbac
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.stopSharing(SHARING_WIFI, (error) => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
@@ -334,11 +337,12 @@ Stops network sharing of a specified type. This API uses a promise to return the
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.stopSharing(SHARING_WIFI).then(() => {
-    console.log("stop wifi sharing successful");
+  console.log("stop wifi sharing successful");
 }).catch(error => {
-    console.log("stop wifi sharing failed");
+  console.log("stop wifi sharing failed");
 });
 ```
 
@@ -372,8 +376,8 @@ Obtains the volume of mobile data traffic received via network sharing. This API
 
 ```js
 sharing.getStatsRxBytes((error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -407,9 +411,9 @@ Obtains the volume of mobile data traffic received via network sharing. This API
 
 ```js
 sharing.getStatsRxBytes().then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
@@ -443,8 +447,8 @@ Obtains the volume of mobile data traffic sent via network sharing. This API use
 
 ```js
 sharing.getStatsTxBytes((error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -478,9 +482,9 @@ Obtains the volume of mobile data traffic sent via network sharing. This API use
 
 ```js
 sharing.getStatsTxBytes().then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
@@ -514,8 +518,8 @@ Obtains the volume of mobile data traffic sent and received via network sharing.
 
 ```js
 sharing.getStatsTotalBytes((error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -549,9 +553,9 @@ Obtains the volume of mobile data traffic sent and received via network sharing.
 
 ```js
 sharing.getStatsTotalBytes().then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
@@ -588,10 +592,11 @@ Obtains the names of NICs in the specified network sharing state. This API uses 
 
 ```js
 import SharingIfaceState from '@ohos.net.sharing'
-let SHARING_BLUETOOTH=2;
+
+let SHARING_BLUETOOTH = 2;
 sharing.getSharingIfaces(SHARING_BLUETOOTH, (error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -633,11 +638,12 @@ Obtains the names of NICs in the specified network sharing state. This API uses 
 
 ```js
 import SharingIfaceState from '@ohos.net.sharing'
-let SHARING_BLUETOOTH=2;
+
+let SHARING_BLUETOOTH = 2;
 sharing.getSharingIfaces(SHARING_BLUETOOTH).then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
@@ -674,10 +680,11 @@ Obtains the network sharing state of the specified type. This API uses an asynch
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.getSharingState(SHARING_WIFI, (error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -719,11 +726,12 @@ Obtains the network sharing state of the specified type. This API uses a promise
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.getSharingState(SHARING_WIFI).then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
@@ -760,10 +768,11 @@ Obtains regular expressions of NICs of a specified type. This API uses an asynch
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.getSharableRegexes(SHARING_WIFI, (error, data) => {
-    console.log(JSON.stringify(error));
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -805,11 +814,12 @@ Obtains regular expressions of NICs of a specified type. This API uses a promise
 
 ```js
 import SharingIfaceType from '@ohos.net.sharing'
-let SHARING_WIFI=0;
+
+let SHARING_WIFI = 0;
 sharing.getSharableRegexes(SHARING_WIFI).then(data => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 }).catch(error => {
-    console.log(JSON.stringify(error));
+  console.log(JSON.stringify(error));
 });
 ```
 
@@ -842,8 +852,8 @@ Subscribes to network sharing state changes. This API uses an asynchronous callb
 **Example**
 
 ```js
-   sharing.on('sharingStateChange', (data) => {
-    console.log('on sharingStateChange: ' + JSON.stringify(data));
+sharing.on('sharingStateChange', (data) => {
+  console.log('on sharingStateChange: ' + JSON.stringify(data));
 });
 ```
 
@@ -877,13 +887,14 @@ Unsubscribes from network sharing state changes. This API uses an asynchronous c
 
 ```js
 sharing.off('sharingStateChange', (data) => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 });
 ```
 
 ## sharing.on('interfaceSharingStateChange')
 
-on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void
+on(type: 'interfaceSharingStateChange', callback: Callback\<{ type: SharingIfaceType, iface: string, state:
+SharingIfaceState }>): void
 
 Subscribes to network sharing state changes of a specified NIC. This API uses an asynchronous callback to return the result.
 
@@ -910,14 +921,15 @@ Subscribes to network sharing state changes of a specified NIC. This API uses an
 **Example**
 
 ```js
- sharing.on('interfaceSharingStateChange', (data) => {
-    console.log('on interfaceSharingStateChange: ' + JSON.stringify(data));
+sharing.on('interfaceSharingStateChange', (data) => {
+  console.log('on interfaceSharingStateChange:' + JSON.stringify(data));
 });
 ```
 
 ## sharing.off('interfaceSharingStateChange')
 
-off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfaceType, iface: string, state: SharingIfaceState }>): void
+off(type: 'interfaceSharingStateChange', callback?: Callback\<{ type: SharingIfaceType, iface: string, state:
+SharingIfaceState }>): void
 
 Unsubscribes from network sharing status changes of a specified NIC. This API uses an asynchronous callback to return the result.
 
@@ -945,7 +957,7 @@ Unsubscribes from network sharing status changes of a specified NIC. This API us
 
 ```js
 sharing.off('interfaceSharingStateChange', (data) => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 });
 ```
 
@@ -978,8 +990,8 @@ Subscribes to upstream network changes. This API uses an asynchronous callback t
 **Example**
 
 ```js
-  sharing.on('sharingUpstreamChange', (data) => {
-    console.log('on sharingUpstreamChange: ' + JSON.stringify(data));
+sharing.on('sharingUpstreamChange', (data) => {
+  console.log('on sharingUpstreamChange:' + JSON.stringify(data));
 });
 ```
 
@@ -1013,7 +1025,7 @@ Unsubscribes from upstream network changes. This API uses an asynchronous callba
 
 ```js
 sharing.off('sharingUpstreamChange', (data) => {
-    console.log(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 });
 ```
 

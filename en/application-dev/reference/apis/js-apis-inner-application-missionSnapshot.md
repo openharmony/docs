@@ -7,6 +7,12 @@ The **MissionSnapshot** module defines the snapshot of a mission. The snapshot c
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > The APIs of this module are system APIs and cannot be called by third-party applications.
 
+## Modules to Import
+
+```ts
+import missionManager from '@ohos.app.ability.missionManager';
+```
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 | Name| Type| Readable| Writable| Description|
@@ -26,7 +32,7 @@ The mission snapshot information can be obtained by using **getMissionSnapShot**
 
   try {
     missionManager.getMissionInfos('', 10, (error, missions) => {
-      if (error.code) {
+      if (error) {
           console.error('getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
           return;
       }
@@ -35,7 +41,7 @@ The mission snapshot information can be obtained by using **getMissionSnapShot**
       let id = missions[0].missionId;
 
       missionManager.getMissionSnapShot('', id, (err, snapshot) => {
-        if (err.code) {
+        if (err) {
           console.error('getMissionInfos failed, err.code: ${JSON.stringify(err.code)}, err.message: ${JSON.stringify(err.message)}');
           return;
         }

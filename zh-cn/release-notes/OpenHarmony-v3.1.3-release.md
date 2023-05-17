@@ -77,7 +77,7 @@ repo forall -c 'git lfs pull'
 | -------- | -------- | -------- | -------- |
 | 全量代码（标准、轻量和小型系统） | 3.1.3&nbsp;Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/code-v3.1.3-Release.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/code-v3.1.3-Release.tar.gz.sha256) | 
 | Hi3516标准系统解决方案（二进制） | 3.1.3&nbsp;Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/standard_hi3516.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/standard_hi3516.tar.gz.sha256) | 
-| RK3568标准系统解决方案（二进制） | 3.1.3&nbsp;Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/code-v3.1.3-Release.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/standard_rk3568.tar.gz.sha256) | 
+| RK3568标准系统解决方案（二进制） | 3.1.3&nbsp;Release | [站点](https://mirrors.huaweicloud.com/harmonyos/os/3.1.3/standard_rk3568.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/standard_rk3568.tar.gz.sha256) | 
 | Hi3861轻量系统解决方案（二进制） | 3.1.3&nbsp;Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/hispark_pegasus.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/hispark_pegasus.tar.gz.sha256) | 
 | Hi3516小型系统解决方案-LiteOS（二进制） | 3.1.3&nbsp;Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/hispark_taurus.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/hispark_taurus.tar.gz.sha256) | 
 | Hi3516小型系统解决方案-Linux（二进制） | 3.1.3&nbsp;Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/hispark_taurus_linux.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.1.3/hispark_taurus_linux.tar.gz.sha256) | 
@@ -105,7 +105,7 @@ API变更
 
 ### 芯片及开发板适配
 
-芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
+芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)信息。
 
 
 ## 修复缺陷列表

@@ -3,8 +3,9 @@
 该模块提供用户数据管理能力，包括访问、修改用户等用户公共媒体数据信息等常用功能。
 
 > **说明：**
-> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块接口为系统接口。
+>
+> - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块接口为系统接口。
 
 ## 导入模块
 
@@ -22,7 +23,7 @@ getUserFileMgr(context: Context): UserFileManager
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-**参数：** 
+**参数：**
 
 | 参数名  | 类型    | 必填 | 说明                       |
 | ------- | ------- | ---- | -------------------------- |
@@ -48,10 +49,7 @@ let mgr = userFileManager.getUserFileMgr(context);
 
 getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void;
 
-
 获取图片和视频资源，使用callback方式返回结果。
-
-
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
@@ -91,7 +89,6 @@ async function example() {
 }
 ```
 
-
 ### getPhotoAssets
 
 getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;;
@@ -108,7 +105,7 @@ getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 | ------- | ------------------- | ---- | ---------------- |
 | options | [FetchOptions](#fetchoptions)   | 是   | 图片和视频检索选项     |
 
-**返回值**
+**返回值：**
 
 | 类型                        | 说明           |
 | --------------------------- | -------------- |
@@ -140,6 +137,7 @@ async function example() {
   }
 }
 ```
+
 ### createPhotoAsset
 
 createPhotoAsset(displayName: string, albumUri: string, callback: AsyncCallback&lt;FileAsset&gt;): void;
@@ -234,7 +232,7 @@ createPhotoAsset(displayName: string, albumUri?: string): Promise&lt;FileAsset&g
 | displayName  | string        | 是   | 创建的图片或者视频文件名              |
 | albumUri  | string        | 否   | 创建的图片或者视频所在相册的uri              |
 
-**返回值**
+**返回值：**
 
 | 类型                        | 说明           |
 | --------------------------- | -------------- |
@@ -259,7 +257,6 @@ async function example() {
 ### getPhotoAlbums
 
 getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
-
 
 获取相册，使用callback方式返回结果。
 
@@ -319,7 +316,7 @@ getPhotoAlbums(options: AlbumFetchOptions): Promise&lt;FetchResult&lt;Album&gt;&
 | -------- | ------------------------ | ---- | ------------------------- |
 | options  | [AlbumFetchOptions](#albumfetchoptions)        | 是   | 相册检索选项              |
 
-**返回值**
+**返回值：**
 
 | 类型                        | 说明           |
 | --------------------------- | -------------- |
@@ -350,7 +347,6 @@ async function example() {
 ### getPrivateAlbum
 
 getPrivateAlbum(type: PrivateAlbumType, callback: AsyncCallback&lt;FetchResult&lt;PrivateAlbum&gt;&gt;): void;
-
 
 获取系统相册，使用 callback 方式返回系统相册的数组。
 
@@ -398,7 +394,7 @@ getPrivateAlbum(type: PrivateAlbumType): Promise&lt;FetchResult&lt;PrivateAlbum&
 | -------- | ------------------------ | ---- | ------------------------- |
 | type  | [PrivateAlbumType](#privatealbumtype)        | 是   | 系统相册类型              |
 
-**返回值**
+**返回值：**
 
 | 类型                        | 说明           |
 | --------------------------- | -------------- |
@@ -422,7 +418,6 @@ async function example() {
 ### getAudioAssets
 
 getAudioAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void;
-
 
 获取音频文件，使用callback方式返回结果。
 
@@ -468,7 +463,6 @@ async function example() {
 
 getAudioAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;;
 
-
 获取音频文件，使用callback方式返回结果。
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
@@ -481,7 +475,7 @@ getAudioAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 | -------- | ------------------------ | ---- | ------------------------- |
 | options  | [FetchOptions](#fetchoptions)        | 是   | 检索选项              |
 
-**返回值**
+**返回值：**
 
 | 类型                        | 说明           |
 | --------------------------- | -------------- |
@@ -514,6 +508,7 @@ async function example() {
   }
 }
 ```
+
 ### delete
 
 delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
@@ -563,6 +558,7 @@ async function example() {
   });
 }
 ```
+
 ### delete
 
 delete(uri: string): Promise&lt;void&gt;;
@@ -579,7 +575,7 @@ delete(uri: string): Promise&lt;void&gt;;
 | -------- | ------------------------- | ---- | ---------- |
 | uri | string | 是   | 媒体文件uri |
 
-**返回值**：
+**返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
@@ -1092,7 +1088,6 @@ open(mode: string, callback: AsyncCallback&lt;number&gt;): void
 
 **需要权限**：ohos.permission.READ_IMAGEVIDEO 或 ohos.permission.READ_AUDIO 或 ohos.permission.WRITE_IMAGEVIDEO 或 ohos.permission.WRITE_AUDIO
 
-
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
 **参数**
@@ -1482,7 +1477,7 @@ getCount(): number
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-**返回值**：
+**返回值：**
 
 | 类型     | 说明       |
 | ------ | -------- |
@@ -1514,7 +1509,7 @@ isAfterLast(): boolean
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-**返回值**：
+**返回值：**
 
 | 类型      | 说明                                 |
 | ------- | ---------------------------------- |
@@ -1618,7 +1613,7 @@ getFirstObject(): Promise&lt;T&gt;
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-**返回值**：
+**返回值：**
 
 | 类型                                    | 说明                       |
 | --------------------------------------- | -------------------------- |
@@ -1690,7 +1685,7 @@ async function example() {
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-**返回值**：
+**返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
@@ -1762,7 +1757,7 @@ getLastObject(): Promise&lt;T&gt;
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-**返回值**：
+**返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
@@ -1838,7 +1833,7 @@ getPositionObject(index: number): Promise&lt;T&gt;
 | ----- | ------ | ---- | -------------- |
 | index | number | 是    | 要获取的文件的索引，从0开始 |
 
-**返回值**：
+**返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
@@ -1922,6 +1917,7 @@ async function example() {
   });
 }
 ```
+
 ### getPhotoAssets
 
 getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;;
@@ -2015,7 +2011,7 @@ commitModify(): Promise&lt;void&gt;;
 
 **系统能力**：SystemCapability.FileManagement.UserFileManager.Core
 
-**返回值**：
+**返回值：**
 
 | 类型                  | 说明           |
 | ------------------- | ------------ |
@@ -2105,6 +2101,7 @@ async function example() {
 }
 
 ```
+
 ### getPhotoAssets
 
 getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;;
@@ -2121,7 +2118,7 @@ getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&g
 | -------- | ------------------------- | ---- | ---------- |
 | options | [FetchOptions](#fetchoptions) | 是   | 检索选项 |
 
-**返回值**：
+**返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
@@ -2146,6 +2143,7 @@ async function example() {
   console.info('fetchResult.count = ', count);
 }
 ```
+
 ### delete
 
 delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
@@ -2189,6 +2187,7 @@ async function example() {
   });
 }
 ```
+
 ### delete
 
 delete(uri: string): Promise&lt;void&gt;;
@@ -2205,7 +2204,7 @@ delete(uri: string): Promise&lt;void&gt;;
 | -------- | ------------------------- | ---- | ---------- |
 | uri | string | 是   | 相册uri |
 
-**返回值**：
+**返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
@@ -2279,6 +2278,7 @@ async function example() {
   });
 }
 ```
+
 ### recover
 
 recover(uri: string): Promise&lt;void&gt;;
@@ -2295,7 +2295,7 @@ recover(uri: string): Promise&lt;void&gt;;
 | -------- | ------------------------- | ---- | ---------- |
 | uri | string | 是   | 相册uri |
 
-**返回值**：
+**返回值：**
 
 | 类型                                    | 说明              |
 | --------------------------------------- | ----------------- |
@@ -2334,9 +2334,9 @@ async function example() {
 
 | 名称  |  类型 |  可读  |  可写  |  说明  |
 | ----- |  ---- |  ---- |  ---- |  ---- |
-| number |  number | 是 | 是 | number类型 | 
-| string |  string | 是 | 是 | string类型 | 
-| boolean |  boolean | 是 | 是 | boolean类型 | 
+| number |  number | 是 | 是 | number类型 |
+| string |  string | 是 | 是 | string类型 |
+| boolean |  boolean | 是 | 是 | boolean类型 |
 
 ## ChangeEvent
 
@@ -2365,7 +2365,6 @@ async function example() {
 | networkId  | string                     | 是   | 否   | 注册设备的网络ID |
 | isOnline   | boolean                    | 是   | 否   | 是否在线         |
 
-
 ## FileType
 
 枚举，媒体文件类型。
@@ -2388,8 +2387,6 @@ async function example() {
 | -----   |  ----  |   ----  |
 | TYPE_FAVORITE |  0 |  收藏夹相册 |
 | TYPE_TRASH |  1 |  回收站相册 |
-
-
 
 ## AudioKey
 
@@ -2444,7 +2441,6 @@ async function example() {
 | DATE_ADDED    | date_added          | 添加日期（添加文件时间到1970年1月1日的秒数值）             |
 | DATE_MODIFIED | date_modified       | 修改日期（修改文件时间到1970年1月1日的秒数值，修改文件名不会改变此值，当文件内容发生修改时才会更新） |
 
-
 ## FetchOptions
 
 检索条件。
@@ -2465,4 +2461,3 @@ async function example() {
 | 名称                   | 类型                | 可读 | 可写 | 说明                                              |
 | ---------------------- | ------------------- | ---- |---- | ------------------------------------------------ |
 | predicates           | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md) | 是   | 是   | 谓词查询，显示过滤条件 |
-

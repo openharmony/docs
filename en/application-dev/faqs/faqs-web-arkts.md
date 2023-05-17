@@ -76,4 +76,4 @@ Applicable to: OpenHarmony SDK 3.2.7.5, stage model of API version 9
 
 4. Use message port 0 on the application side to send messages to message port 1 on the HTML side.
 
-Reference: [Web](../reference/arkui-ts/ts-basic-components-web.md#postmessage9)
+Reference: [Web](../reference/arkui-ts/ts-basic-components-web.md)

@@ -1,22 +1,28 @@
 # Distributed KV Store Error Codes
 
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
+
 ## 15100001 Subscription Count Reaches the Limit
 
 **Error Message**
 
-Over max subscribe limits.
+Over max limits.
 
 **Description**
 
-The number of subscriptions has reached the limit for **on('dataChange')**.
+The number of subscriptions or the number of opened result sets has reached the limit.
 
 **Possible Causes**
 
-The number of subscriptions has reached the limit for **on('dataChange')**.
+1.  The number of subscriptions made through **on()** reaches 8.
+2.  The number of result sets opened by **getResultSet()** reaches 8.
 
 **Solution**
 
-Unregister unnecessary subscriptions and try again.
+1. Cancel the subscriptions that are not required.
+2. Close the result sets that are no longer required.
 
 ## 15100002 Parameter Configuration Changes
 

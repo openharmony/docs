@@ -1234,9 +1234,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   
   ```
 
-### getPluralString<sup>9+</sup>
+### getPluralStringValue<sup>9+</sup>
 
-getPluralString(resource: Resource, num: number): Promise&lt;string&gt;
+getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
 Obtains the singular-plural string corresponding to the specified resource object based on the specified number. This API uses a promise to return the result.
 
@@ -1273,10 +1273,10 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       id: $r('app.plural.test').id
   };
   try {
-    this.context.resourceManager.getPluralString(resource, 1).then(value => {
+    this.context.resourceManager.getPluralStringValue(resource, 1).then(value => {
         let str = value;
     }).catch(error => {
-        console.log("getPluralString promise error is " + error);
+        console.log("getPluralStringValue promise error is " + error);
     });
   } catch (error) {
     console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`)
@@ -1543,7 +1543,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       
   ```
 
-### closeRawFd<sup>8+</sup>
+### closeRawFd<sup>9+</sup>
 
 closeRawFd(path: string): Promise&lt;void&gt;
 
@@ -2057,6 +2057,47 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   }
   ```
 
+### getStringSync<sup>10+</sup>
+
+getStringSync(resId: number, ...args: Array<string | number>): string
+
+Obtains the string corresponding to the specified resource ID and formats the string based on **args**. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resId | number | Yes   | Resource ID.|
+| args | Array<string \| number> | No   | Arguments for formatting strings.<br> Supported arguments:<br> -%d, %f, %s, and %%<br> Note: **%%** is used to translate **%**.<br>Example: **%%d** is translated into the **%d** string.|
+
+**Return value**
+
+| Type    | Description         |
+| ------ | ---------------------------- |
+| string | Formatted string.|
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ----------------------------------------------- |
+| 9001001  | If the resId invalid.                               |
+| 9001002  | If the resource not found by resId.                 |
+| 9001006  | If the resource re-ref too much.                    |
+| 9001007  | If the resource obtained by resId formatting error. |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getStringSync($r('app.string.test').id, "format string", 10, 98.78);
+  } catch (error) {
+    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
 ### getStringSync<sup>9+</sup>
 
 getStringSync(resource: Resource): string
@@ -2101,6 +2142,52 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   }
   ```
 
+### getStringSync<sup>10+</sup>
+
+getStringSync(resource: Resource, ...args: Array<string | number>): string
+
+Obtains the string corresponding to the specified resource object and formats the string based on **args**. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                    | Mandatory  | Description  |
+| -------- | ---------------------- | ---- | ---- |
+| resource | [Resource](#resource9) | Yes   | Resource object.|
+| args | Array<string \| number> | No   | Arguments for formatting strings.<br> Supported arguments:<br> -%d, %f, %s, and %%<br> Note: **%%** is used to translate **%**.<br>Example: **%%d** is translated into the **%d** string.|
+
+**Return value**
+
+| Type    | Description         |
+| ------ | ---------------------------- |
+| string | Formatted string.|
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+| 9001007  | If the resource obtained by resId formatting error. |
+
+**Example**
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.string.test').id
+  };
+  try {
+    this.context.resourceManager.getStringSync(resource, "format string", 10, 98.78);
+  } catch (error) {
+    console.error(`getStringSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+ ```
+
 ### getStringByNameSync<sup>9+</sup>
 
 getStringByNameSync(resName: string): string
@@ -2139,6 +2226,47 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`)
   }
   ```
+
+### getStringByNameSync<sup>10+</sup>
+
+getStringByNameSync(resName: string, ...args: Array<string | number>): string
+
+Obtains the string corresponding to the specified resource name and formats the string based on **args**. This API returns the result synchronously.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name    | Type    | Mandatory  | Description  |
+| ------- | ------ | ---- | ---- |
+| resName | string | Yes   | Resource name.|
+| args | Array<string \| number> | No   | Arguments for formatting strings.<br> Supported arguments:<br> -%d, %f, %s, and %%<br> Note: **%%** is used to translate **%**.<br>Example: **%%d** is translated into the **%d** string.|
+
+**Return value**
+
+| Type    | Description         |
+| ------ | ---------------------------- |
+| string | Formatted string.|
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+| 9001006  | If the resource re-ref too much.            |
+| 9001008  | If the resource obtained by resName formatting error. |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getStringByNameSync("test", "format string", 10, 98.78);
+  } catch (error) {
+    console.error(`getStringByNameSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+ ```
 
 ### getBoolean<sup>9+</sup>
 
@@ -2278,8 +2406,8 @@ Obtains the integer or float value corresponding to the specified resource ID. T
 **Return value**
 
 | Type    | Description        |
-| ------ | ---------- |
-| number | Integer or float value corresponding to the specified resource ID.|
+| ------ | ---------- | 
+| number | Integer or float value corresponding to the specified resource ID. Wherein, the integer value is the original value, and the float value is the actual pixel value.|
 
 For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
@@ -2294,13 +2422,13 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   try {
-    this.context.resourceManager.getNumber($r('app.integer.integer_test').id);
+    this.context.resourceManager.getNumber($r('app.integer.integer_test').id); // integer refers to the original value.
   } catch (error) {
     console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`)
   }
 
   try {
-    this.context.resourceManager.getNumber($r('app.float.float_test').id);
+    this.context.resourceManager.getNumber($r('app.float.float_test').id); // float refers to the actual pixel value.
   } catch (error) {
     console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -2324,7 +2452,7 @@ Obtains the integer or float value corresponding to the specified resource objec
 
 | Type    | Description             |
 | ------ | --------------- |
-| number | Integer or float value corresponding to the specified resource object.|
+| number | Integer or float value corresponding to the specified resource object. Wherein, the integer value is the original value, and the float value is the actual pixel value.|
 
 For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
@@ -2344,7 +2472,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       id: $r('app.integer.integer_test').id
   };
   try {
-    this.context.resourceManager.getNumber(resource);
+    this.context.resourceManager.getNumber(resource);// integer refers to the original value; float refers to the actual pixel value.
   } catch (error) {
     console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -2399,7 +2527,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getDrawableDescriptor(resId: number, density?: number): DrawableDescriptor;
 
-Obtains the **DrawableDescriptor** object based on the specified resource ID. This API returns the result synchronously.
+Obtains the **DrawableDescriptor** object corresponding to the specified resource ID. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2443,7 +2571,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getDrawableDescriptor(resource: Resource, density?: number): DrawableDescriptor;
 
-Obtains the **DrawableDescriptor** object based on the specified resource. This API returns the result synchronously.
+Obtains the **DrawableDescriptor** object corresponding to the specified resource. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2492,7 +2620,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getDrawableDescriptorByName(resName: string, density?: number): DrawableDescriptor;
 
-Obtains the **DrawableDescriptor** object based on the specified resource name. This API returns the result synchronously.
+Obtains the **DrawableDescriptor** object corresponding to the specified resource name. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2538,7 +2666,7 @@ getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the string corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getStringValue](#getstringvalue9) instead.
+This API is deprecated since API version 9. You are advised to use [getStringValue](#getstringvalue9).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2569,7 +2697,7 @@ getString(resId: number): Promise&lt;string&gt;
 
 Obtains the string corresponding to the specified resource ID. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getStringValue](#getstringvalue9-1) instead.
+This API is deprecated since API version 9. You are advised to use [getStringValue](#getstringvalue9-1).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2603,7 +2731,7 @@ getStringArray(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;
 
 Obtains the string array corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getStringArrayValue](#getstringarrayvalue9) instead.
+This API is deprecated since API version 9. You are advised to use [getStringArrayValue](#getstringarrayvalue9).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2634,7 +2762,7 @@ getStringArray(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 
 Obtains the string array corresponding to the specified resource ID. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getStringArrayValue](#getstringarrayvalue9-1) instead.
+This API is deprecated since API version 9. You are advised to use [getStringArrayValue](#getstringarrayvalue9-1).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2668,7 +2796,7 @@ getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 Obtains the content of the media file corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getMediaContent](#getmediacontent9) instead.
+This API is deprecated since API version 9. You are advised to use [getMediaContent](#getmediacontent9).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2699,7 +2827,7 @@ getMedia(resId: number): Promise&lt;Uint8Array&gt;
 
 Obtains the content of the media file corresponding to the specified resource ID. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getMediaContent](#getmediacontent9-1) instead.
+This API is deprecated since API version 9. You are advised to use [getMediaContent](#getmediacontent9-1).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2733,7 +2861,7 @@ getMediaBase64(resId: number, callback: AsyncCallback&lt;string&gt;): void
 
 Obtains the Base64 code of the image corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getMediaContentBase64](#getmediacontentbase649) instead.
+This API is deprecated since API version 9. You are advised to use [getMediaContentBase64](#getmediacontentbase649).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2764,7 +2892,7 @@ getMediaBase64(resId: number): Promise&lt;string&gt;
 
 Obtains the Base64 code of the image corresponding to the specified resource ID. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getMediaContentBase64](#getmediacontentbase649-1) instead.
+This API is deprecated since API version 9. You are advised to use [getMediaContentBase64](#getmediacontentbase649-1).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2798,7 +2926,7 @@ getPluralString(resId: number, num: number): Promise&lt;string&gt;
 
 Obtains the singular-plural string corresponding to the specified resource ID based on the specified number. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getPluralStringValue](#getpluralstringvalue9) instead.
+This API is deprecated since API version 9. You are advised to use [getPluralStringValue](#getpluralstringvalue9).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2833,7 +2961,7 @@ getPluralString(resId: number, num: number, callback: AsyncCallback&lt;string&gt
 
 Obtains the singular-plural string corresponding to the specified resource ID based on the specified number. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getPluralStringValue](#getpluralstringvalue9-1) instead.
+This API is deprecated since API version 9. You are advised to use [getPluralStringValue](#getpluralstringvalue9-1).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2865,7 +2993,7 @@ getRawFile(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
 Obtains the content of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getRawFileContent](#getrawfilecontent9) instead.
+This API is deprecated since API version 9. You are advised to use [getRawFileContent](#getrawfilecontent9).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2896,7 +3024,7 @@ getRawFile(path: string): Promise&lt;Uint8Array&gt;
 
 Obtains the content of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getRawFileContent](#getrawfilecontent9-1) instead.
+This API is deprecated since API version 9. You are advised to use [getRawFileContent](#getrawfilecontent9-1).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2930,7 +3058,7 @@ getRawFileDescriptor(path: string, callback: AsyncCallback&lt;RawFileDescriptor&
 
 Obtains the descriptor of the raw file in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getRawFd](#getrawfd9) instead.
+This API is deprecated since API version 9. You are advised to use [getRawFd](#getrawfd9).
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2962,7 +3090,7 @@ getRawFileDescriptor(path: string): Promise&lt;RawFileDescriptor&gt;
 
 Obtains the descriptor of the raw file in the **resources/rawfile** directory. This API uses a promise to return the result.
 
-This API is deprecated since API version 9. You are advised to use [getRawFd](#getrawfd9-1) instead.
+This API is deprecated since API version 9. You are advised to use [getRawFd](#getrawfd9-1).
 
 **System capability**: SystemCapability.Global.ResourceManager
 

@@ -1,6 +1,6 @@
 # Menu Control
 
-A menu – a vertical list of items – can be bound to a component and displayed by long-pressing, clicking, or right-clicking the component.
+A context menu – a vertical list of items – can be bound to a component and displayed by long-pressing, clicking, or right-clicking the component.
 
 >  **NOTE**
 >
@@ -10,18 +10,37 @@ A menu – a vertical list of items – can be bound to a component and displaye
 ## Attributes
 
 
-| Name                          | Type                                                       | Description                                                        |
+| Name                        | Type                                                    | Description                                                        |
 | ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| bindMenu                     | Array<[MenuItem](#menuitem)&gt; \| [CustomBuilder](ts-types.md#custombuilder8) | Menu bound to the component, which is displayed when you click the component. Textual and custom menu items are supported.|
-| bindContextMenu<sup>8+</sup> | content: [CustomBuilder](ts-types.md#custombuilder8),<br>responseType: [ResponseType](ts-appendix-enums.md#responsetype8) | Context menu bound to the component, which is displayed when you long-press or right-click the component. Only custom menu items are supported.|
+| bindMenu                     | content: Array<[MenuItem](#menuitem)&gt; \| [CustomBuilder](ts-types.md#custombuilder8),<br>options: [MenuOptions](#menuoptions10) | Menu bound to the component, which is displayed when you click the component. A menu item can be a combination of text and icons or a custom component.<br>**content**: array of menu item text and icons or custom components.<br>**options**: parameters of the context menu. Optional.|
+| bindContextMenu<sup>8+</sup> | content: [CustomBuilder](ts-types.md#custombuilder8),<br>responseType: [ResponseType](ts-appendix-enums.md#responsetype8)<br>options: [ContextMenuOptions](#contextmenuoptions10) | Context menu bound to the component, which is displayed when the user long-presses or right-clicks the component. Only custom menu items are supported.<br>**responseType**: how the context menu triggered, which can be long-press or right-click. Mandatory.  <br>**options**: parameters of the context menu. Optional.|
 
 ## MenuItem
 
-| Name    | Type                     | Description         |
-| ------ | ----------------------- | ----------- |
-| value  | string                  | Menu item text.     |
-| action | () =&gt; void | Action triggered when a menu item is clicked.|
+| Name              | Type                                  | Mandatory| Description                  |
+| ------------------ | -------------------------------------- | ---- | ---------------------- |
+| value              | string                                 | Yes  | Menu item text.          |
+| icon<sup>10+</sup> | [ResourceStr](ts-types.md#resourcestr) | No  | Menu item icon.          |
+| action             | () =&gt; void                | Yes  | Action triggered when a menu item is clicked.|
 
+## MenuOptions<sup>10+</sup>
+
+| Name  | Type                            | Mandatory| Description                                                  |
+| ------ | -------------------------------- | ---- | ------------------------------------------------------ |
+| title  | string                           | No  | Menu title.                                            |
+| offset | [Position](ts-types.md#position8) | No  | Offset for showing the context menu, which should not cause the menu to extend beyond the screen.|
+| placement | [Placement](ts-appendix-enums.md#placement8) | No| Preferred position of the context menu. If the set position is insufficient for holding the component, it will be automatically adjusted.<br>Default value: **Placement.Bottom**|
+| onAppear | () =&gt; void | No| Callback triggered when the menu is displayed.|
+| onDisappear | () =&gt; void | No| Callback triggered when the menu is hidden.|
+
+## ContextMenuOptions<sup>10+</sup>
+
+| Name       | Type                                        | Mandatory| Description                                                        |
+| ----------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| offset      | [Position](ts-types.md#position8)            | No  | Offset for showing the context menu, which should not cause the menu to extend beyond the screen.        |
+| placement   | [Placement](ts-appendix-enums.md#placement8) | No  | Preferred position of the context menu. If the set position is insufficient for holding the component, it will be automatically adjusted.<br>Default value: **Placement.Bottom**|
+| onAppear    | () =&gt; void                      | No  | Callback triggered when the menu is displayed.                                      |
+| onDisappear | () =&gt; void                      | No  | Callback triggered when the menu is hidden.                                      |
 
 ## Example
 

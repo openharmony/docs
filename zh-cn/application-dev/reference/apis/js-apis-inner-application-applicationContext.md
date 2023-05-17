@@ -7,12 +7,18 @@ ApplicationContext模块提供开发者应用级别的的上下文的能力，�
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口仅可在Stage模型下使用。
 
+## 导入模块
+
+```ts
+import common from '@ohos.app.ability.common';
+```
+
 ## 使用说明
 
 在使用ApplicationContext的功能前，需要通过context的实例获取。
 
 ```ts
-let applicationContext = this.context.getApplicationContext();
+let applicationContext: common.ApplicationContext = this.context.getApplicationContext();
 ```
 
 ## ApplicationContext.on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback)
@@ -116,7 +122,7 @@ export default class EntryAbility extends UIAbility {
         let applicationContext = this.context.getApplicationContext();
         console.log('stage applicationContext: ${applicationContext}');
         applicationContext.off('abilityLifecycle', lifecycleId, (error, data) => {
-            if (error && error.code !== 0) {
+            if (error) {
                 console.error('unregisterAbilityLifecycleCallback fail, err: ${JSON.stringify(error)}');    
             } else {
                 console.log('unregisterAbilityLifecycleCallback success, data: ${JSON.stringify(data)}');
@@ -233,7 +239,7 @@ export default class EntryAbility extends UIAbility {
     onDestroy() {
         let applicationContext = this.context.getApplicationContext();
         applicationContext.off('environment', callbackId, (error, data) => {
-            if (error && error.code !== 0) {
+            if (error) {
                 console.error('unregisterEnvironmentCallback fail, err: ${JSON.stringify(error)}');
             } else {
                 console.log('unregisterEnvironmentCallback success, data: ${JSON.stringify(data)}');
@@ -291,6 +297,15 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 | -------- | -------- |
 | Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
@@ -320,12 +335,21 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 | -------- | -------- |
 |AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
 let applicationContext = this.context.getApplicationContext();
 applicationContext.getRunningProcessInformation((err, data) => {
-    if (err.code !== 0) {
+    if (err) {
         console.error('getRunningProcessInformation faile, err: ${JSON.stringify(err)}');
     } else {
         console.log('The process running information is: ${JSON.stringify(data)}');
@@ -346,6 +370,14 @@ killAllProcesses(): Promise\<void\>;
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise\<void\> | 以Promise方式返回杀死应用所在的进程结果。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -368,12 +400,20 @@ killAllProcesses(callback: AsyncCallback\<void\>);
 | -------- | -------- |
 |AsyncCallback\<void\> | 以callback方式返回杀死应用所在的进程结果。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
 let applicationContext = this.context.getApplicationContext();
 applicationContext.killAllProcesses(error => {
-    if (error && error.code !== 0) {
+    if (error) {
         console.error('killAllProcesses fail, error: ${JSON.stringify(error)}');
     }
 });

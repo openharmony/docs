@@ -22,8 +22,7 @@ Obtains the total size (in bytes) of the specified volume in an external storage
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-This is a system API.
+**System API**: This is a system API.
 
 
 **Parameters**
@@ -59,8 +58,7 @@ Obtains the total size (in bytes) of the specified volume in an external storage
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-This is a system API.
+**System API**: This is a system API.
 
 
 **Parameters**
@@ -90,8 +88,7 @@ Obtains the available space (in bytes) of the specified volume in an external st
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-This is a system API.
+**System API**: This is a system API.
 
 
 **Parameters**
@@ -128,8 +125,7 @@ Obtains the available space (in bytes) of the specified volume in an external st
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-This is a system API.
+**System API**: This is a system API.
 
 
 **Parameters**
@@ -159,8 +155,7 @@ Obtains the space (in bytes) of an application. This API uses a promise to retur
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-This is a system API.
+**System API**: This is a system API.
 
 
 **Parameters**
@@ -196,8 +191,7 @@ Obtains the space (in bytes) of an application. This API uses an asynchronous ca
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-This is a system API.
+**System API**: This is a system API.
 
 
 **Parameters**
@@ -263,11 +257,7 @@ Obtains the space (in bytes) of this third-party application. This API uses an a
 
 ## BundleStats<sup>9+</sup>
 
-### Attributes
-
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
-
-
 
 | Name     | Type  | Readable| Writable| Description          |
 | --------- | ------ | --- | ---- | -------------- |
@@ -286,9 +276,7 @@ Obtains the total size (in bytes) of the built-in storage. This API uses a promi
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-This is a system API.
-
+**System API**: This is a system API.
 
 **Return value**
 
@@ -313,9 +301,7 @@ Obtains the total size (in bytes) of the built-in storage. This API uses an asyn
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-This is a system API.
-
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -343,9 +329,7 @@ Obtains the available space (in bytes) of the built-in storage. This API uses a 
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-This is a system API.
-
+**System API**: This is a system API.
 
 **Return value**
 
@@ -371,9 +355,7 @@ Obtains the available space (in bytes) of the built-in storage. This API uses an
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-This is a system API.
-
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -400,8 +382,7 @@ Obtains the system data space, in bytes. This API uses a promise to return the r
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-This is a system API.
+**System API**: This is a system API.
 
 
 **Return value**
@@ -430,9 +411,7 @@ Obtains the system data space, in bytes. This API uses an asynchronous callback 
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-This is a system API.
-
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -459,9 +438,7 @@ Obtains the storage statistics (in bytes) of this user. This API uses a promise 
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-This is a system API.
-
+**System API**: This is a system API.
 
 **Return value**
 
@@ -489,9 +466,7 @@ Obtains the storage statistics (in bytes) of this user. This API uses an asynchr
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-This is a system API.
-
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -515,9 +490,7 @@ Obtains the storage statistics (in bytes) of the specified user. This API uses a
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-This is a system API.
-
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -552,9 +525,7 @@ Obtains the storage statistics (in bytes) of the specified user. This API uses a
 
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-This is a system API.
-
+**System API**: This is a system API.
 
 **Parameters**
 
@@ -576,12 +547,9 @@ This is a system API.
 
 ## StorageStats<sup>9+</sup>
 
-### Attributes
-
 **System capability**: SystemCapability.FileManagement.StorageService.SpatialStatistics
 
-
-This is a system API.
+**System API**: This is a system API.
 
 | Name     | Type  | Readable | Writable | Description          |
 | --------- | ------ | ---- | ----- | -------------- |

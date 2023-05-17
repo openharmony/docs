@@ -24,7 +24,7 @@ HUKS supports key lifecycle management, which covers the following:
 
 - HUKS Core
 
-  A functional module that provides the key management service. This module must run in a secure environment, and the keys in plaintext must be kept inside the HUKS Core module throughout their lifecycle.
+  A functional module that provides the key management service. This module must run in a secure environment, and the keys in plaintext must be kept inside the HUKS Core module throughout the lifecycle.
 
 - TEE
 
@@ -32,15 +32,15 @@ HUKS supports key lifecycle management, which covers the following:
 
 - Init-Update-Finish
 
-  **Init**: initializes data for a key operation.
+   **Init**: initializes data for a key operation.
 
-  **Update**: operates data by segment and returns the result, or appends data.
+   **Update**: operates data by segment and returns the result, or appends data.
 
   **Finish**: finalizes the **Update** operation, and returns the result.
 
 ### Working Principles
 
-The following uses the key generation process as an example to describe communication between the HUKS Service and HUKS Core. Other key operations are similar.
+The following uses the key generation process as an example to describe the communication between the HUKS Service and HUKS Core. Other key operations are similar.
 The upper-layer application invokes the HUKS Service through the key management SDK. The HUKS Service invokes the HUKS Core, which invokes the key management module to generate a key. The HUKS Core uses a work key derived from the root key to encrypt the generated key and sends the encrypted key to the HUKS Service. The HUKS Service stores the encrypted key in a file.
 
 ![](figures/HUKS-GenerateKey1.png)
@@ -84,55 +84,57 @@ The HUKS Core provides KeyStore (KS) capabilities for applications, including ke
 | [HuksHdiGetKeyProperties()](#hukshdigetkeyproperties)        | Obtains key properties.                             |–                           | getKeyProperties(keyAlias: string, options: HuksOptions)|
 | [HuksHdiAttestKey()](#hukshdiattestkey)        | Obtains the key certificate.                             |The output parameter must be in the **certChain** format.                     | attestKey(keyAlias: string, options: HuksOptions)|
 | [HuksHdiExportChipsetPlatformPublicKey()](#hukshdiexportchipsetplatformpublickey)        | Exports the public key of a chipset key pair.    | The output parameters are the raw data of ECC P-256 x-axis and y-axis values, each of which are of 32 bytes.                     | –|
+| [HuksHdiUpgradeKey()](#hukshdiupgradekey)        | Updates the key file.    | –                     | –|
 
 - - -
 
 #### HuksHdiModuleInit
 
-**API description**
+**API Description**
 
 Initializes the HUKS Core, including the lock, encryption algorithm library, authtoken key, and root key.
 
 **Prototype**
 <pre><code>int32_t HuksHdiModuleInit();</code></pre>
+
 <details>
-  <summary><strong>Return value</strong></summary>
+  <summary><strong>Return Value</strong></summary>
 
   - **HKS_SUCCESS**: The operation is successful.
 
-  - Other value: The operation fails.
-    </details>
+  - Other value: The operation failed.
+</details>
 
-  
-
+- - -
 
 #### HuksHdiRefresh
 
-**API description**
+**API Description**
 
 Refreshes the root key.
 
 **Prototype**
 <pre><code>int32_t HuksHdiRefresh();</code></pre>
+
 <details>
-  <summary><strong>Return value</strong></summary>
+  <summary><strong>Return Value</strong></summary>
 
   - **HKS_SUCCESS**: The operation is successful.
 
-  - Other value: The operation fails.
-    </details>
+  - Other value: The operation failed.
+</details>
 
-  
-
+- - -
 
 #### HuksHdiGenerateKey
 
-**API description**
+**API Description**
 
 Generates a key based on **paramSet**.
 
 **Prototype**
 <pre><code>int32_t HuksHdiGenerateKey(const struct HksBlob *keyAlias, const struct HksParamSet *paramSet, const struct HksBlob *keyIn, struct HksBlob *keyOut);</code></pre>
+
 <details>
   <summary><strong>Parameters</strong></summary>
   <pre>
@@ -165,24 +167,24 @@ Generates a key based on **paramSet**.
 <br></br>
 
 <details>
-  <summary><strong>Return value</strong></summary>
+  <summary><strong>Return Value</strong></summary>
 
   - **HKS_SUCCESS**: The operation is successful.
 
-  - Other value: The operation fails.
-    </details>
+  - Other value: The operation failed.
+</details>
 
-  
-
+- - -
 
 #### HuksHdiImportKey
 
-**API description**
+**API Description**
 
 Imports a key in plaintext.
 
 **Prototype**
 <pre><code>int32_t HuksHdiImportKey(const struct HksBlob *keyAlias, const struct HksBlob *key, const struct HksParamSet *paramSet, struct HksBlob *keyOut);</code></pre>
+
 <details>
   <summary><strong>Parameters</strong></summary>
   <pre>
@@ -219,23 +221,24 @@ Imports a key in plaintext.
 <br></br>
 
 <details>
-  <summary><strong>Return value</strong></summary>
+  <summary><strong>Return Value</strong></summary>
 
   - **HKS_SUCCESS**: The operation is successful.
 
-  - Other value: The operation fails.
+  - Other value: The operation failed.
 </details>
 
 - - -
 
 #### HuksHdiImportWrappedKey
 
-**API description**
+**API Description**
 
 Imports an encrypted key.
 
 **Prototype**
 <pre><code>int32_t HuksHdiImportWrappedKey(const struct HksBlob *keyAlias, const struct HksBlob *wrappingUsedkey, const struct HksBlob *wrappedKeyData, const struct HksParamSet *paramSet, struct HksBlob *keyOut);</code></pre>
+
 <details>
   <summary><strong>Parameters</strong></summary>
   <pre>
@@ -277,23 +280,24 @@ Imports an encrypted key.
 <br></br>
 
 <details>
-  <summary><strong>Return value</strong></summary>
+  <summary><strong>Return Value</strong></summary>
 
   - **HKS_SUCCESS**: The operation is successful.
 
-  - Other value: The operation fails.
+  - Other value: The operation failed.
 </details>
 
 - - -
 
 #### HuksHdiExportPublicKey
 
-**API description**
+**API Description**
 
 Exports a public key.
 
 **Prototype**
 <pre><code>int32_t HuksHdiExportPublicKey(const struct HksBlob *key, const struct HksParamSet *paramSet, struct HksBlob *keyOut);</code></pre>
+
 <details>
   <summary><strong>Parameters</strong></summary>
   <pre>
@@ -313,23 +317,24 @@ Exports a public key.
 <br></br>
 
 <details>
-  <summary><strong>Return value</strong></summary>
+  <summary><strong>Return Value</strong></summary>
 
   - **HKS_SUCCESS**: The operation is successful.
 
-  - Other value: The operation fails.
+  - Other value: The operation failed.
 </details>
 
 - - -
 
 #### HuksHdiInit
 
-**API description**
+**API Description**
 
 Initializes data for a key operation. This API is of the Init-Update-Final model.
 
 **Prototype**
 <pre><code>int32_t HuksHdiInit(const struct HksBlob *key, const struct HksParamSet *paramSet, struct HksBlob *handle, struct HksBlob *token);</code></pre>
+
 <details>
   <summary><strong>Parameters</strong></summary>
   <pre>
@@ -352,23 +357,24 @@ Initializes data for a key operation. This API is of the Init-Update-Final model
 <br></br>
 
 <details>
-  <summary><strong>Return value</strong></summary>
+  <summary><strong>Return Value</strong></summary>
 
   - **HKS_SUCCESS**: The operation is successful.
 
-  - Other value: The operation fails.
+  - Other value: The operation failed.
 </details>
 
 - - -
 
 #### HuksHdiUpdate
 
-**API description**
+**API Description**
 
 Operates data by segment or appends data for the key operation. This API is of the Init-Update-Final model.
 
 **Prototype**
 <pre><code>int32_t HuksHdiUpdate(const struct HksBlob *handle, const struct HksParamSet *paramSet, const struct HksBlob *inData, struct HksBlob *outData);</code></pre>
+
 <details>
   <summary><strong>Parameters</strong></summary>
   <pre>
@@ -396,23 +402,24 @@ Operates data by segment or appends data for the key operation. This API is of t
 <br></br>
 
 <details>
-  <summary><strong>Return value</strong></summary>
+  <summary><strong>Return Value</strong></summary>
 
   - **HKS_SUCCESS**: The operation is successful.
 
-  - Other value: The operation fails.
+  - Other value: The operation failed.
 </details>
 
 - - -
 
 #### HuksHdiFinish
 
-**API description**
+**API Description**
 
 Finalizes the key operation. This API is of the Init-Update-Final model.
 
 **Prototype**
 <pre><code>int32_t HuksHdiFinish(const struct HksBlob *handle, const struct HksParamSet *paramSet, const struct HksBlob *inData, struct HksBlob *outData);</code></pre>
+
 <details>
   <summary><strong>Parameters</strong></summary>
   <pre>
@@ -440,23 +447,24 @@ Finalizes the key operation. This API is of the Init-Update-Final model.
 <br></br>
 
 <details>
-  <summary><strong>Return value</strong></summary>
+  <summary><strong>Return Value</strong></summary>
 
   - **HKS_SUCCESS**: The operation is successful.
 
-  - Other value: The operation fails.
+  - Other value: The operation failed.
 </details>
 
 - - -
 
 #### HuksHdiAbort
 
-**API description**
+**API Description**
 
 Aborts Init-Update-Finish. When an error occurs in any of the **Init**, **Update**, and **Finish** operations, call this API to terminate the use of the key.
 
 **Prototype**
 <pre><code>int32_t HuksHdiAbort(const struct HksBlob *handle, const struct HksParamSet *paramSet);</code></pre>
+
 <details>
   <summary><strong>Parameters</strong></summary>
   <pre>
@@ -470,23 +478,24 @@ Aborts Init-Update-Finish. When an error occurs in any of the **Init**, **Update
 <br></br>
 
 <details>
-  <summary><strong>Return value</strong></summary>
+  <summary><strong>Return Value</strong></summary>
 
   - **HKS_SUCCESS**: The operation is successful.
 
-  - Other value: The operation fails.
+  - Other value: The operation failed.
 </details>
 
 - - -
 
 #### HuksHdiGetKeyProperties
 
-**API description**
+**API Description**
 
 Obtains key properties.
 
 **Prototype**
 <pre><code>int32_t HuksHdiGetKeyProperties(const struct HksParamSet *paramSet, const struct HksBlob *key);</code></pre>
+
 <details>
   <summary><strong>Parameters</strong></summary>
   <pre>
@@ -500,23 +509,24 @@ Obtains key properties.
 <br></br>
 
 <details>
-  <summary><strong>Return value</strong></summary>
+  <summary><strong>Return Value</strong></summary>
 
   - **HKS_SUCCESS**: The operation is successful.
 
-  - Other value: The operation fails.
+  - Other value: The operation failed.
 </details>
 
 - - -
 
 #### HuksHdiAttestKey
 
-**API description**
+**API Description**
 
 Obtains the key certificate.
 
 **Prototype**
 <pre><code>int32_t (*HuksHdiAttestKey)(const struct HksBlob *key, const struct HksParamSet *paramSet, struct HksBlob *certChain);</code></pre>
+
 <details>
   <summary><strong>Parameters</strong></summary>
   <pre>
@@ -541,23 +551,24 @@ Obtains the key certificate.
 <br></br>
 
 <details>
-  <summary><strong>Return value</strong></summary>
+  <summary><strong>Return Value</strong></summary>
 
   - **HKS_SUCCESS**: The operation is successful.
 
-  - Other value: The operation fails.
+  - Other value: The operation failed.
 </details>
 
 - - -
 
 #### HuksHdiExportChipsetPlatformPublicKey
 
-**API description**
+**API Description**
 
 Exports the public key of a chipset key pair.
 
 **Prototype**
 <pre><code>int32_t (*HuksHdiExportChipsetPlatformPublicKey)(const struct HksBlob *salt, enum HksChipsetPlatformDecryptScene scene, struct HksBlob *publicKey);</code></pre>
+
 <details>
   <summary><strong>Parameters</strong></summary>
   <pre>
@@ -577,18 +588,51 @@ Exports the public key of a chipset key pair.
   <summary><strong>Constraints</strong></summary>
 
   1. The input parameter **salt** must be of 16 bytes, and the content of the last byte will be ignored and filled by HUKS based on **scene**.
-
-    Currently, the chipset key pairs of HUKS are implemented by software. An ECC P-256 key pair is hard-coded, and the **salt** value is ignored. That is, the derived keys are the same regardless of the **salt**. In the hardware-based implementation of chipset key pairs, **salt** is a factor used to derive the key. That is, the key pair derived varies with the **salt** value.
+  Currently, the chipset key pairs of HUKS are implemented by software. An ECC P-256 key pair is hard-coded, and the **salt** value is ignored. That is, the derived keys are the same regardless of the **salt**. In the hardware-based implementation of chipset key pairs, **salt** is a factor used to derive the key. That is, the key pair derived varies with the **salt** value.
 
 </details>
 <br></br>
 
 <details>
-  <summary><strong>Return value</strong></summary>
+  <summary><strong>Return Value</strong></summary>
 
   - **HKS_SUCCESS**: The operation is successful.
 
-  - Other value: The operation fails.
+  - Other value: The operation failed.
+</details>
+
+- - -
+
+#### HuksHdiUpgradeKey
+
+**API Description**
+
+Updates the key file when the key file version is earlier than the latest version.
+
+**Prototype**
+<pre><code>int32_t (*HuksHdiUpgradeKey)(const struct HksBlob *oldKey, const struct HksParamSet *paramSet, struct HksBlob *newKey);</code></pre>
+
+<details>
+  <summary><strong>Parameters</strong></summary>
+  <pre>
+  <strong>const struct HksBlob *oldKey</strong>
+  Key file data to update.
+  <br></br>
+  <strong>const struct HksParamSet *paramSet</strong>
+  Parameters for updating the key file data.
+  <br></br>
+  <strong>struct HksBlob *newKey</strong>
+  New key file data.
+  </pre>
+</details>
+<br></br>
+
+<details>
+  <summary><strong>Return Value</strong></summary>
+
+  - **HKS_SUCCESS**: The operation is successful.
+
+  - Other value: The operation failed.
 </details>
 
 - - -
@@ -599,15 +643,15 @@ The directory structure is as follows:
 
 ```undefined
 // base/security/user_auth/services/huks_standard/huks_engine/main
-├── BUILD.gn        # Build script
+├── BUILD.gn # Build script
 ├── core_dependency # Dependencies of the implementation
-└── core            # Software implementation of the HUKS Core
-    ├── BUILD.gn    # Build script
+└── core # Software implementation of the HUKS Core
+    ├── BUILD.gn # Build script
     ├── include 
     └── src
         ├── hks_core_interfaces.c # Adaptation of the HDI to the HUKS Core
-        └── hks_core_service.c    # Specific implementation
-        └── ...                   # Other function code
+        └── hks_core_service.c # Specific implementation
+        └── ... # Other function code
 ```
 
 Init-Update-Finish must be used to implement HUKS Core APIs. The following provides the development procedure of Init-Update-Finish and sample code of the HUKS Core. You can refer to the following code to implement all HDI APIs.

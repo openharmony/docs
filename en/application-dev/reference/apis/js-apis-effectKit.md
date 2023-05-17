@@ -29,7 +29,7 @@ Creates a **Filter** instance based on the pixel map.
 
 | Name   | Type              | Mandatory| Description    |
 | ------- | ----------------- | ---- | -------- |
-| source  | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes  | **PixelMap** instance created by the image module.  |
+| source  | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes  | **PixelMap** instance created by the image module. An instance can be obtained by decoding an image or directly created. For details, see [Image Overview](../../media/image-overview.md).  |
 
 **Return value**
 
@@ -61,7 +61,7 @@ Creates a **ColorPicker** instance based on the pixel map. This API uses a promi
 
 | Name    | Type        | Mandatory| Description                      |
 | -------- | ----------- | ---- | -------------------------- |
-| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes  |  **PixelMap** instance created by the image module.|
+| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes  |  **PixelMap** instance created by the image module. An instance can be obtained by decoding an image or directly created. For details, see [Image Overview](../../media/image-overview.md).|
 
 **Return value**
 
@@ -95,7 +95,7 @@ Creates a **ColorPicker** instance based on the pixel map. This API uses an asyn
 
 | Name    | Type               | Mandatory| Description                      |
 | -------- | ------------------ | ---- | -------------------------- |
-| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes |**PixelMap** instance created by the image module. |
+| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes |**PixelMap** instance created by the image module. An instance can be obtained by decoding an image or directly created. For details, see [Image Overview](../../media/image-overview.md). |
 | callback | AsyncCallback\<[ColorPicker](#colorpicker)> | Yes | Callback used to return the **ColorPicker** instance created.|
 
 **Example**
@@ -131,13 +131,13 @@ A class that stores the color picked.
 
 ## ColorPicker
 
-A class used to obtain the main color of an image from its data. Before calling any method of **ColorPicker**, use [createColorPicker](#effectkitcreatecolorpicker) to create a **ColorPicker** instance.
+A class used to obtain the color from an image. Before calling any method of **ColorPicker**, use [createColorPicker](#effectkitcreatecolorpicker) to create a **ColorPicker** instance.
 
 ### getMainColor
 
 getMainColor(): Promise\<Color>
 
-Obtains the main color of the image and writes the result to a **[Color](#color)** instance. This API uses a promise to return the result.
+Obtains the main color from the image and writes the result to a [Color](#color) instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -162,7 +162,7 @@ colorPicker.getMainColor().then(color => {
 
 getMainColorSync(): Color
 
-Obtains the main color of the image and writes the result to a **[Color](#color)** instance. This API returns the result in synchronous mode.
+Obtains the main color from the image and writes the result to a [Color](#color) instance. This API returns the result in synchronous mode.
 
 **System capability**: SystemCapability.Multimedia.Image.Core
 
@@ -179,6 +179,93 @@ let color = colorPicker.getMainColorSync();
 console.log('get main color =' + color);
 ```
 ![en-us_image_Main_Color.png](figures/en-us_image_Main_Color.png)
+
+### getLargestProportionColor<sup>10+</sup>
+
+getLargestProportionColor(): Color
+
+Obtains the color with the largest proportion from the image and writes the result to a [Color](#color) instance. This API returns the result in synchronous mode.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Return value**
+
+| Type          | Description                                           |
+| :------------- | :---------------------------------------------- |
+| [Color](#color)       | Color value of the color with the largest proportion. If the operation fails, **null** is returned.|
+
+**Example**
+
+```js
+let color = colorPicker.getLargestProportionColor();
+console.log('get largest proportion color =' + color);
+```
+![en-us_image_Largest_Proportion_Color.png](figures/en-us_image_Largest_Proportion_Color.png)
+
+### getHighestSaturationColor<sup>10+</sup>
+
+getHighestSaturationColor(): Color
+
+Obtains the color with the highest saturation from the image and writes the result to a [Color](#color) instance. This API returns the result in synchronous mode.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Return value**
+
+| Type          | Description                                           |
+| :------------- | :---------------------------------------------- |
+| [Color](#color)       | Color value of the color with the highest saturation. If the operation fails, **null** is returned.|
+
+**Example**
+
+```js
+let color = colorPicker.getHighestSaturationColor();
+console.log('get highest saturation color =' + color);
+```
+![en-us_image_Highest_Saturation_Color.png](figures/en-us_image_Highest_Saturation_Color.png)
+
+### getAverageColor<sup>10+</sup>
+
+getAverageColor(): Color
+
+Obtains the average color from the image and writes the result to a [Color](#color) instance. This API returns the result in synchronous mode.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Return value**
+
+| Type          | Description                                           |
+| :------------- | :---------------------------------------------- |
+| [Color](#color)       | Average color value. If the operation fails, **null** is returned.|
+
+**Example**
+
+```js
+let color = colorPicker.getAverageColor();
+console.log('get average color =' + color);
+```
+![en-us_image_Average_Color.png](figures/en-us_image_Average_Color.png)
+
+### isBlackOrWhiteOrGrayColor<sup>10+</sup>
+
+isBlackOrWhiteOrGrayColor(color: number): boolean
+
+Checks whether this image is black, white, and gray.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Return value**
+
+| Type          | Description                                           |
+| :------------- | :---------------------------------------------- |
+| boolean              | Returns **true** if the image is black, white, and gray; returns **false** otherwise.|
+
+**Example**
+
+```js
+let bJudge = colorPicker.isBlackOrWhiteOrGrayColor(0xFFFFFFFF);
+console.log('is black or white or gray color[bool](white) =' + bJudge);
+```
 
 ## Filter
 

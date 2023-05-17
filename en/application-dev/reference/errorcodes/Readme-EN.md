@@ -43,7 +43,7 @@
   - [DataShare Error Codes](errorcode-datashare.md)
   - [Distributed Data Object Error Codes](errorcode-distributed-dataObject.md)
   - [Distributed KV Store Error Codes](errorcode-distributedKVStore.md)
-  - [Preferences Error Codes](errorcode-preferences.md)
+  - [User Preference Error Codes](errorcode-preferences.md)
 - File Management
   - [File Management Error Codes](errorcode-filemanagement.md)
 - Telephony Service
@@ -56,11 +56,13 @@
   - [Ethernet Connection Error Codes](errorcode-net-ethernet.md)
   - [Network Sharing Error Codes](errorcode-net-sharing.md)
   - [Policy Management Error Codes](errorcode-net-policy.md)
+  - [mDNS Error Codes](errorcode-net-mdns.md)
 - Connectivity
-  - [Wi-Fi Error Codes](errorcode-wifi.md)
+  - [Bluetooth Error Codes](errorcode-bluetoothManager.md)
+  - [Wi-Fi Error Codes](errorcode-wifi.md)  
   - [NFC Error Codes](errorcode-nfc.md)
   - [RPC Error Codes](errorcode-rpc.md)
-- Basic Features
+ - Basic Features
   - [Accessibility Error Codes](errorcode-accessibility.md)
   - [FaultLogger Error Codes](errorcode-faultlogger.md)
   - [Application Event Logging Error Codes](errorcode-hiappevent.md)

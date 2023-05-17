@@ -1,4 +1,4 @@
-# OpenHarmony v1.1.2 LTS
+# OpenHarmony v1.1.2 LTS (停止维护)
 
 ## 版本概述
 

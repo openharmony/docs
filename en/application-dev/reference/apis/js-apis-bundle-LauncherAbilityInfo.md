@@ -3,7 +3,7 @@
 The **LauncherAbilityInfo** module provides information about the launcher ability, which is obtained through [innerBundleManager.getLauncherAbilityInfos](js-apis-Bundle-InnerBundleManager.md).
 
 > **NOTE**
->
+> 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## LauncherAbilityInfo<sup>(deprecated)<sup>
@@ -12,7 +12,7 @@ The **LauncherAbilityInfo** module provides information about the launcher abili
 
 **System capability**: SystemCapability.BundleManager.BundleFramework
 
-**System API**: This is a system API and cannot be called by third-party applications.
+**System API**: This is a system API.
 
 | Name           | Type                                                | Readable| Writable| Description                                  |
 | --------------- | ---------------------------------------------------- | ---- | ---- | -------------------------------------- |

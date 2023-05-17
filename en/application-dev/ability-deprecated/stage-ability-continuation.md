@@ -6,7 +6,7 @@ Ability continuation is to continue the current mission of an application, inclu
 
 ## Available APIs
 
-The following table lists the APIs used for ability continuation. For details about the APIs, see [Ability](../reference/apis/js-apis-application-ability.md).
+The following table lists the APIs used for ability continuation. For details about the APIs, see [UIAbility](../reference/apis/js-apis-app-ability-uiAbility.md).
 
 **Table 1** Ability continuation APIs
 
@@ -48,96 +48,88 @@ The code snippets provided below are all from [Sample](https://gitee.com/openhar
      }
      ```
      
-
-
-
    - Configure the application startup type.
-
-     If **launchType** is set to **standard** in the **module.json5** file, the application is of the multi-instance launch type. During ability continuation, regardless of whether the application is already open, the target starts the application and restores the UI page. If **launchType** is set to **singleton**, the application is of the singleton launch type. If the application is already open, the target clears the existing page stack and restores the UI page. For more information, see "Launch Type" in [Ability Development](./stage-ability.md).
-     
-     Configure a multi-instance application as follows:
-     
-     ```javascript
-     {
-       "module": {
-         "abilities": [
-           {
-             "launchType": "standard"
-           }
-         ]
-       }
-     }
-     ```
-     
-     Configure a singleton application as follows or retain the default settings of **launchType**:
-     
-     ```javascript
-     {
-       "module": {
-         "abilities": [
-           {
-             "launchType": "singleton"
-           }
-         ]
-       }
-     }
-     ```
-     
-     
-     
-   - Apply for the distributed permissions.
-
-     Declare the **DISTRIBUTED_DATASYNC** permission in the **module.json5** file for the application.
-
-     ```javascript
-     "requestPermissions": [
-            {
-                "name": "ohos.permission.DISTRIBUTED_DATASYNC"
-            },
-     ```
-
-     
-
-     This permission must be granted by the user in a dialog box when the application is started for the first time. To enable the application to display a dialog box to ask for the permission, add the following code to **onWindowStageCreate** of the **Ability** class:
-
-     ```javascript
-        requestPermissions = async () => {
-            let permissions: Array<string> = [
-                "ohos.permission.DISTRIBUTED_DATASYNC"
-            ];
-            let needGrantPermission = false
-            let accessManger = accessControl.createAtManager()
-            Logger.info("app permission get bundle info")
-            let bundleInfo = await bundle.getApplicationInfo(BUNDLE_NAME, 0, 100)
-            Logger.info(`app permission query permission ${bundleInfo.accessTokenId.toString()}`)
-            for (const permission of permissions) {
-                Logger.info(`app permission query grant status ${permission}`)
-                try {
-                    let grantStatus = await accessManger.verifyAccessToken(bundleInfo.accessTokenId, permission)
-                    if (grantStatus === PERMISSION_REJECT) {
-                        needGrantPermission = true
-                        break;
-                    }
-                } catch (err) {
-                    Logger.error(`app permission query grant status error ${permission} ${JSON.stringify(err)}`)
-                    needGrantPermission = true
-                    break;
-                }
-            }
-            if (needGrantPermission) {
-                Logger.info("app permission needGrantPermission")
-                try {
-                    await accessManger.requestPermissionsFromUser(this.context, permissions)
-                } catch (err) {
-                    Logger.error(`app permission ${JSON.stringify(err)}`)
-                }
-            } else {
-                Logger.info("app permission already granted")
-            }
+   
+        If **launchType** is set to **multiton** in the **module.json5** file, the application is of the multi-instance launch type. During ability continuation, regardless of whether the application is already open, the target starts the application and restores the UI page. If **launchType** is set to **singleton**, the application is of the singleton launch type. If the application is already open, the target clears the existing page stack and restores the UI page. For more information, see "Launch Type" in [Ability Development](./stage-ability.md).
+        
+        Configure a multi-instance application as follows:
+        
+        ```javascript
+        {
+          "module": {
+            "abilities": [
+              {
+                "launchType": "multiton"
+              }
+            ]
+          }
         }
-     ```
-
-
+        ```
+        
+        Configure a singleton application as follows or retain the default settings of **launchType**:
+        
+        ```javascript
+        {
+          "module": {
+            "abilities": [
+              {
+                "launchType": "singleton"
+              }
+            ]
+          }
+        }
+        ```
+        
+   - Apply for the distributed permissions.
+     
+        Declare the **DISTRIBUTED_DATASYNC** permission in the **module.json5** file for the application.
+     
+        ```javascript
+        "requestPermissions": [
+               {
+                   "name": "ohos.permission.DISTRIBUTED_DATASYNC"
+               },
+        ```
+     
+        This permission must be granted by the user in a dialog box when the application is started for the first time. To enable the application to display a dialog box to ask for the permission, add the following code to **onWindowStageCreate** of the **Ability** class:
+     
+        ```javascript
+           requestPermissions = async () => {
+               let permissions: Array<string> = [
+                   "ohos.permission.DISTRIBUTED_DATASYNC"
+               ];
+               let needGrantPermission = false
+               let accessManger = accessControl.createAtManager()
+               Logger.info("app permission get bundle info")
+               let bundleInfo = await bundle.getApplicationInfo(BUNDLE_NAME, 0, 100)
+               Logger.info(`app permission query permission ${bundleInfo.accessTokenId.toString()}`)
+               for (const permission of permissions) {
+                   Logger.info(`app permission query grant status ${permission}`)
+                   try {
+                       let grantStatus = await accessManger.verifyAccessToken(bundleInfo.accessTokenId, permission)
+                       if (grantStatus === PERMISSION_REJECT) {
+                           needGrantPermission = true
+                           break;
+                       }
+                   } catch (err) {
+                       Logger.error(`app permission query grant status error ${permission} ${JSON.stringify(err)}`)
+                       needGrantPermission = true
+                       break;
+                   }
+               }
+               if (needGrantPermission) {
+                   Logger.info("app permission needGrantPermission")
+                   try {
+                       await accessManger.requestPermissionsFromUser(this.context, permissions)
+                   } catch (err) {
+                       Logger.error(`app permission ${JSON.stringify(err)}`)
+                   }
+               } else {
+                   Logger.info("app permission already granted")
+               }
+           }
+        ```
+   
 
 
 2. Implement the **onContinue()** API.
@@ -155,7 +147,7 @@ The code snippets provided below are all from [Sample](https://gitee.com/openhar
 
    You can obtain the target device ID (identified by the key **targetDevice**) and the version number (identified by the key **version**) of the application installed on the target device from the **wantParam** parameter of this API. The version number can be used for compatibility check. If the current application version is incompatible with that on the target device, **OnContinueResult.MISMATCH** can be returned to reject the continuation request.
 
-   Example
+   Example:
 
    ```javascript
         onContinue(wantParam : {[key: string]: any}) {
@@ -168,8 +160,6 @@ The code snippets provided below are all from [Sample](https://gitee.com/openhar
         }
    ```
 
-   
-
 3. Implement the continuation logic in the **onCreate()** or **onNewWant()** API.
 
    The **onCreate()** API is called by the target. When the ability is started on the target device, this API is called to instruct the application to synchronize the memory data and UI component state, and triggers page restoration after the synchronization is complete. If the continuation logic is not implemented, the ability will be started in common startup mode and the page cannot be restored.
@@ -178,11 +168,9 @@ The code snippets provided below are all from [Sample](https://gitee.com/openhar
    
    After data restore is complete, call **restoreWindowStage** to trigger page restoration.
    
-   
-
    You can also use **want.parameters.version** in the **want** parameter to obtain the application version number of the initiator.
-   
-   Example
+
+   Example:
    
    ```javascript
     import UIAbility from '@ohos.app.ability.UIAbility';
@@ -190,7 +178,7 @@ The code snippets provided below are all from [Sample](https://gitee.com/openhar
     
     export default class EntryAbility extends UIAbility {
         storage : LocalStorag;
-
+   
         onCreate(want, launchParam) {
             Logger.info(`EntryAbility onCreate ${AbilityConstant.LaunchReason.CONTINUATION}`)
             if (launchParam.launchReason == AbilityConstant.LaunchReason.CONTINUATION) {
@@ -211,7 +199,7 @@ For a singleton ability, use **onNewWant()** to achieve the same implementation.
 
 Use distributed objects.
 
-Distributed objects allow cross-device data synchronization like local variables. For two devices that form a Super Device, when data in the distributed data object of an application is added, deleted, or modified on a device, the data for the same application is also updated on the other device. Both devices can listen for the data changes and online and offline states of the other. For details, see [Distributed Data Object Development](../database/database-distributedobject-guidelines.md).
+Distributed objects allow cross-device data synchronization like local variables. For two devices that form a Super Device, when data in the distributed data object of an application is added, deleted, or modified on a device, the data for the same application is also updated on the other device. Both devices can listen for the data changes and online and offline states of the other. For details, see [Sharing Distributed Data Objects](../database/data-sync-of-distributed-data-object.md).
 
 In the ability continuation scenario, the distributed data object is used to synchronize the memory data from the local device to the target device.
 
@@ -249,8 +237,6 @@ In the ability continuation scenario, the distributed data object is used to syn
         });
   ```
 
-  
-
 - The target device obtains the session ID from **onCreate()**, creates a distributed object, and associates the distributed object with the session ID. In this way, the distributed object can be synchronized. Before calling **restoreWindowStage**, ensure that all distributed objects required for continuation have been associated.
 
   ```javascript
@@ -283,8 +269,6 @@ In the ability continuation scenario, the distributed data object is used to syn
   }
   ```
   
-   
-  
 ### More Information
 
 1. Timeout
@@ -294,15 +278,13 @@ In the ability continuation scenario, the distributed data object is used to syn
 
 2. By default, the system supports page stack information migration, which means that the page stack of the initiator will be automatically migrated to the target device. No adaptation is required.
 
-
-
 ### Restrictions
 
 1.   The continuation must be performed between the same ability, which means the same bundle name, module name, and ability name. For details, see [Application Package Structure Configuration File](../quick-start/module-configuration-file.md).
 2.    Currently, the application can only implement the continuation capability. The continuation action must be initiated by the system.
 
-
-
 ### Best Practice
 
 For better user experience, you are advised to use the **wantParam** parameter to transmit data smaller than 100 KB and use distributed objects to transmit data larger than 100 KB.
+
+ <!--no_check--> 

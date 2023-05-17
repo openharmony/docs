@@ -130,8 +130,6 @@ You can set a USB device as the USB host to connect to other USB devices for dat
     usb.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then(dataLength => {
     if (dataLength >= 0) {
       console.info("usb readData result Length : " + dataLength);
-      let resultStr = this.ab2str(dataUint8Array); // Convert uint8 data into a string.
-      console.info("usb readData buffer : " + resultStr);
     } else {
       console.info("usb readData failed : " + dataLength);
     }
