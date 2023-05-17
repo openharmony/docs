@@ -267,7 +267,6 @@ export default {
 // xxx.js
 var info = null;
 import promptAction from '@ohos.promptAction';
-
 export default {
   data: {
     curYear:'',
