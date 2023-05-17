@@ -49,7 +49,7 @@ struct SnapshotExample {
       // ...Components
       Button("click to generate UI snapshot")
         .onClick(() => {
-          componentSnapshot.get("root", (error: BusinessError, pixmap: image.PixelMap) => {
+          componentSnapshot.get("root", (error: Error, pixmap: image.PixelMap) => {
                  this.pixmap = pixmap
                  // save pixmap to file
                  // ....
@@ -84,6 +84,12 @@ get(id: string): Promise<image.PixelMap>
 | 类型                          | 说明           |
 | ----------------------------- | -------------- |
 | Promise&lt;image.PixelMap&gt; | 截图返回的结果。 |
+
+**错误码：** 
+
+| 错误码ID | 错误信息            |
+| -------- | ------------------- |
+| 100001   | if id is not valid. |
 
 **示例：**
 
@@ -139,9 +145,10 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 
 **示例：**
 
-```js
+```ts
 import componentSnapshot from '@ohos.arkui.componentSnapshot'
 import image from '@ohos.multimedia.image'
+
 @Entry
 @Component
 struct OffscreenSnapshotExample {
@@ -149,7 +156,7 @@ struct OffscreenSnapshotExample {
 
   @Builder
   RandomBuilder() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center,   alignItems: ItemAlign.Center }) {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
       Text('Test menu item 1')
         .fontSize(20)
         .width(100)
@@ -163,16 +170,17 @@ struct OffscreenSnapshotExample {
         .textAlign(TextAlign.Center)
     }.width(100)
   }
+
   build() {
     Column() {
       Button("click to generate offscreen UI snapshot")
-        .onClick(()=> {
-             componentSnapshot.createFromBuilder(this.RandomBuilder.bind(this),
-                        (error: BusinessError, pixmap: image.PixelMap) => {
-                 this.pixmap = pixmap
-                 // save pixmap to file
-                 // ....
-             })
+        .onClick(() => {
+          componentSnapshot.createFromBuilder(this.RandomBuilder.bind(this),
+            (error: Error, pixmap: image.PixelMap) => {
+              this.pixmap = pixmap
+              // save pixmap to file
+              // ....
+            })
         })
     }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
     .border({ color: '#880606', width: 2 })
@@ -200,11 +208,18 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 | ----------------------------- | -------------- |
 | Promise&lt;image.PixelMap&gt; | 截图返回的结果。 |
 
+**错误码：** 
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 100001   | if builder is not a valid build function. |
+
 **示例：**
 
-```js
+```ts
 import componentSnapshot from '@ohos.arkui.componentSnapshot'
 import image from '@ohos.multimedia.image'
+
 @Entry
 @Component
 struct OffscreenSnapshotExample {
@@ -212,7 +227,7 @@ struct OffscreenSnapshotExample {
 
   @Builder
   RandomBuilder() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center,   alignItems: ItemAlign.Center }) {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
       Text('Test menu item 1')
         .fontSize(20)
         .width(100)
@@ -226,16 +241,17 @@ struct OffscreenSnapshotExample {
         .textAlign(TextAlign.Center)
     }.width(100)
   }
+
   build() {
     Column() {
       Button("click to generate offscreen UI snapshot")
-        .onClick(()=> {
-             componentSnapshot.createFromBuilder(this.RandomBuilder.bind(this))
-             .then((pixmap: image.PixelMap) {
-                 this.pixmap = pixmap
-                 // save pixmap to file
-                 // ....
-             })
+        .onClick(() => {
+          componentSnapshot.createFromBuilder(this.RandomBuilder.bind(this))
+            .then((pixmap: image.PixelMap) => {
+              this.pixmap = pixmap
+              // save pixmap to file
+              // ....
+            })
         })
     }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
     .border({ color: '#880606', width: 2 })
