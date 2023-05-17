@@ -83,11 +83,7 @@ import image from '@ohos.multimedia.image';
 @Entry
 @Component
 struct Index {
-  @State text: string = ''
-  @State bool1: boolean = false
-  @State bool2: boolean = false
   @State visible: Visibility = Visibility.Visible
-  @State pixelMap: PixelMap = undefined
   private pixelMapReader = undefined
 
   aboutToAppear() {
@@ -111,7 +107,6 @@ struct Index {
     const promise = image.createPixelMap(color, opts);
     promise.then((data) => {
       console.info('create pixmap has info message: ' + JSON.stringify(data))
-      this.pixelMap = data;
       this.pixelMapReader = data;
     })
   }
@@ -147,8 +142,6 @@ struct Index {
         .visibility(this.visible)
         .onDragStart(() => {                    //启动跨窗口拖拽
           console.info('Text onDrag start')
-          this.bool1 = true
-          this.text = 'TextDrag'
           return { pixelMap: this.pixelMapReader, extraInfo: 'custom extra info.' }
         })
         .onDrop((event: DragEvent, extraParams: string) => {
