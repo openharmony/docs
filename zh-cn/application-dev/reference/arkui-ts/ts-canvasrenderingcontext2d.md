@@ -57,6 +57,8 @@ RenderingContextSettings(antialias?: boolean)
 | [shadowOffsetX](#shadowoffsetx)                       | number                                                       | 设置绘制阴影时和原有对象的水平偏移值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [shadowOffsetY](#shadowoffsety)                       | number                                                       | 设置绘制阴影时和原有对象的垂直偏移值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [imageSmoothingEnabled](#imagesmoothingenabled)       | boolean                                                      | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。 <br/>默认值：true<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [height](#height)                                     | number                                                       | 组件高度。 <br/>单位：vp<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [width](#width)                                       | number                                                       | 组件宽度。 <br/>单位：vp<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 > **说明：**
 >
@@ -650,6 +652,68 @@ struct ImageSmoothingEnabled {
 ```
 
 ![zh-cn_image_0000001238712415](figures/zh-cn_image_0000001238712415.png)
+
+
+### height
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct HeightExample {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width(300)
+        .height(300)
+        .backgroundColor('#ffff00')
+        .onReady(() => {
+          let h = this.context.height
+          let w = this.context.width
+          this.context.fillRect(0, 0, 300, h/2)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_image_canvas_height](figures/zh-cn_image_canvas_height.png)
+
+
+### width
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct WidthExample {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width(300)
+        .height(300)
+        .backgroundColor('#ffff00')
+        .onReady(() => {
+          let h = this.context.height
+          let w = this.context.width
+          this.context.fillRect(0, 0, w/2, 300)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![zh-cn_image_canvas_width](figures/zh-cn_image_canvas_width.png)
 
 
 ## 方法
