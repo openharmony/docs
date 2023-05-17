@@ -913,3 +913,15 @@ Wi-Fi P2P群组信息已更改。
 ## [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT<sup>10+<sup>](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)
 
 指示撤销快速修复的动作。
+
+## [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGIN](./common_event/commonEvent-account.md)
+（预留事件，暂未支持）表示分布式帐号登录成功的动作。
+
+## [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOUT](./common_event/commonEvent-account.md)
+（预留事件，暂未支持）表示分布式帐号登出成功的动作。
+
+## [COMMON_EVENT_DISTRIBUTED_ACCOUNT_TOKEN_INVALID](./common_event/commonEvent-account.md)
+（预留事件，暂未支持）表示分布式帐号token令牌无效的动作。
+
+## [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOFF](./common_event/commonEvent-account.md)
+（预留事件，暂未支持）表示分布式帐号注销的动作。
