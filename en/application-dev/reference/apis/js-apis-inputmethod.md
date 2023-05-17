@@ -1,6 +1,6 @@
 # @ohos.inputMethod (Input Method Framework)
 
-The **inputMethod** module provides an input method framework, which can be used to hide the keyboard, obtain the list of installed input methods, display the dialog box for input method selection, and more.
+The **inputMethod** module is oriented to common foreground applications (third-party applications and system applications such as Notes, Messaging, and Settings). It provides input method control and management capabilities, including displaying or hiding the soft keyboard, switching between input methods, and obtaining the list of all input methods.
 
 > **NOTE**
 >
@@ -102,7 +102,7 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 
 Switches to another input method. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (for system applications only)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -154,21 +154,21 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
 Switches to another input method. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (for system applications only)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  |target |  [InputMethodProperty](#inputmethodproperty8)| Yes| Input method to switch to.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+|target |  [InputMethodProperty](#inputmethodproperty8)| Yes| Input method to switch to.|
 
 **Return value**
 
-  | Type                                     | Description                        |
-  | ----------------------------------------- | ---------------------------- |
-  | Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite.|
+| Type                                     | Description                        |
+| ----------------------------------------- | ---------------------------- |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite.|
 
 **Error codes**
 
@@ -231,7 +231,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 Switches to another subtype of the current input method. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (for system applications only)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -287,7 +287,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 Switches to another subtype of the current input method. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (for system applications only)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -366,7 +366,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 Switches to a specified subtype of a specified input method. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (for system applications only)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -415,7 +415,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 Switches to a specified subtype of a specified input method. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (for system applications only)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -603,7 +603,7 @@ showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 Shows this soft keyboard. This API must be used with the input text box and works only when the input text box is activated. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (for system applications only)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -640,7 +640,7 @@ showSoftKeyboard(): Promise&lt;void&gt;
 
 Shows this soft keyboard. This API must be used with the input text box and works only when the input text box is activated. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (for system applications only)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -675,7 +675,7 @@ hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 Hides this soft keyboard. This API must be used with the input text box and works only when the input text box is activated. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (for system applications only)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -712,7 +712,7 @@ hideSoftKeyboard(): Promise&lt;void&gt;
 
 Hides this soft keyboard. This API must be used with the input text box and works only when the input text box is activated. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (for system applications only)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
