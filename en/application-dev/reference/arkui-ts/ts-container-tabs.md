@@ -18,11 +18,11 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 
 **Parameters**
 
-| Name        | Type                             | Mandatory  | Description                                    |
-| ----------- | --------------------------------- | ---- | ---------------------------------------- |
-| barPosition | BarPosition                       | No   | Position of the **\<Tabs>** component.<br>Default value: **BarPosition.Start**  |
-| index       | number                            | No   | Initial tab index.<br>Default value: **0**<br>**NOTE**<br><br>A value less than 0 evaluates to the default value.<br>The value ranges from 0 to the number of **\<TabContent>** subnodes minus 1.<br>When this parameter is set to different values, the slide animation for tab switching is enabled by default. To disable the animation, set **animationDuration** to **0**.|
-| controller  | [TabsController](#tabscontroller) | No   | Tab controller.                              |
+| Name     | Type                         | Mandatory| Description                                                    |
+| ----------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| barPosition | BarPosition                       | No  | Position of the **\<Tabs>** component.<br>Default value: **BarPosition.Start**          |
+| index       | number                            | No  | Initial tab index.<br>Default value: **0**<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value ranges from 0 to the number of **\<TabContent>** subnodes minus 1.<br>When this parameter is set to different values, the slide animation for tab switching is enabled by default. To disable the animation, set **animationDuration** to **0**. |
+| controller  | [TabsController](#tabscontroller) | No  | Tab controller.                                            |
 
 ## BarPosition
 
@@ -147,4 +147,3 @@ struct TabsExample {
 ```
 
 ![tabs2](figures/tabs2.gif)
-<!--no_check-->

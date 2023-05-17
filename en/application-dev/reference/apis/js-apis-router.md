@@ -380,6 +380,7 @@ router.replaceUrl({
   }
   console.info('replaceUrl success');
 });
+
 ```
 
 ## router.back
@@ -394,7 +395,7 @@ Returns to the previous page or a specified page.
 
 | Name | Type                           | Mandatory| Description                                                        |
 | ------- | ------------------------------- | ---- | ------------------------------------------------------------ |
-| options | [RouterOptions](#routeroptions) | No  | Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If no URL is set, the previous page is returned, and the page in the page stack is not reclaimed. It will be reclaimed after being popped up.|
+| options | [RouterOptions](#routeroptions) | No  | Description of the page. The **url** parameter indicates the URL of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If no URL is set, the application returns to the previous page, and the page is not rebuilt. The page in the page stack is not reclaimed. It will be reclaimed after being popped up.|
 
 **Example**
 
@@ -573,8 +574,8 @@ Enumerates the routing modes.
 
 | Name    | Description                                                        |
 | -------- | ------------------------------------------------------------ |
-| Standard | Standard mode.<br>The target page is added to the top of the page stack, regardless of whether a page with the same URL exists in the stack.<br>**NOTE**<br>If the routing mode is not used, the page is redirected to in standard mode.|
-| Single   | Singleton mode.<br>If the URL of the target page already exists in the page stack, the page closest to the top of the stack is moved as a new page to the top of the stack.<br>If the URL of the target page does not exist in the page stack, the page is redirected to in standard mode.|
+| Standard | Multi-instance mode. It is the default routing mode.<br>The target page is added to the top of the page stack, regardless of whether a page with the same URL exists in the stack.<br>**NOTE**<br>If the routing mode is not used, the page is redirected to in multi-instance mode.|
+| Single   | Singleton mode.<br>If the URL of the target page already exists in the page stack, the page closest to the top of the stack is moved to the top and becomes a new page.<br>If the URL of the target page does not exist in the page stack, the page is redirected to in multi-instance mode.|
 
 ## Examples
 
