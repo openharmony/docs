@@ -1,7 +1,7 @@
 # In-Application HSP Development
 
 An in-application Harmony Shared Package (HSP) is a file used for code and resource sharing within an application (called the host application) and can only be invoked by a HAP or HSP of the same application.
-The in-application HSP is released with the Application Package (App Pack) of the host application and has the same bundle name and lifecycle as the host application.
+The in-application HSP is released with the Application Package (App Pack) of the host application, shares a process with the host application, and has the same bundle name and lifecycle as the host application.
 
 ## Developing an In-Application HSP
 
@@ -150,4 +150,60 @@ struct Index {
     .height('100%')
   }
 }
+```
+
+### Redirecting to a Page in Another Bundle
+
+If you want to add a button in the **entry** module to jump to the menu page (**library/src/main/ets/pages/menu.ets**) in the **library** module, you can write the following code in the **entry/src/main/ets/MainAbility/Index.ets** file of the **entry** module:
+```ts
+import router from '@ohos.router';
+
+@Entry
+@Component
+struct Index {
+    @State message: string = 'Hello World'
+
+    build() {
+    Row() {
+        Column() {
+        Text(this.message)
+            .fontSize(50)
+            .fontWeight(FontWeight.Bold)
+        // Add a button to respond to user clicks.
+        Button() {
+            Text('click to menu')
+            .fontSize(30)
+            .fontWeight(FontWeight.Bold)
+        }
+        .type(ButtonType.Capsule)
+        .margin({
+            top: 20
+        })
+        .backgroundColor('#0D9FFB')
+        .width('40%')
+        .height('5%')
+        // Bind click events.
+        .onClick(() => {
+            router.pushUrl({
+              url: '@bundle:com.example.hmservice/library/ets/pages/menu'
+            }).then(() => {
+              console.log("push page success");
+            }).catch(err => {
+              console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+            })
+        })
+      .width('100%')
+    }
+    .height('100%')
+    }
+  }
+}
+```
+The input parameter **url** of the **router.pushUrl** API is as follows:
+```ets
+'@bundle:com.example.hmservice/library/ets/pages/menu'
+```
+The **url** content template is as follows:
+```ets
+'@bundle:bundle name/module name/path/page file name (without the extension .ets)'
 ```
