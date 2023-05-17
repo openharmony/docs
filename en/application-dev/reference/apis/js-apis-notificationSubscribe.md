@@ -40,9 +40,13 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                      |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.             |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
 
 **Example**
 
@@ -92,9 +96,13 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                      |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.             |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
 
 **Example**
 
@@ -142,9 +150,13 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                      |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.             |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
 
 **Example**
 
@@ -187,6 +199,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                      |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.             |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -234,6 +249,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                      |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.             |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -279,6 +297,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -334,6 +355,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -372,7 +396,7 @@ Removes a specified notification. This API uses an asynchronous callback to retu
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| hashCode | string                | Yes  | Unique notification ID. It is the value of **hashCode** in the [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) object of [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata) in the [onConsume](#onconsume) callback. |
+| hashCode | string                | Yes  | Unique notification ID. It is the value of **hashCode** in the [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) object of [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata) in the [onConsume](#onconsume) callback.|
 | reason   | [RemoveReason](#removereason) | Yes  | Reason for removing the notification.        |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
@@ -382,6 +406,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -428,6 +455,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -468,6 +498,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -513,6 +546,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -555,6 +591,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -594,6 +633,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -639,6 +681,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201  | Permission denied.                           |
+| 202  | Not system application to call the interface. |
+| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -662,7 +707,7 @@ notificationSubscribe.removeAll(userId, removeAllCallback);
 
 ## NotificationSubscriber
 
-Provides callbacks for receiving or removing notifications and serves as the input parameter of [subscribe](#notificationsubscribe).
+Provides callbacks for receiving or removing notifications and serves as the input parameter of [subscribe](#notificationsubscribesubscribe).
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
@@ -670,7 +715,7 @@ Provides callbacks for receiving or removing notifications and serves as the inp
 
 onConsume?: (data: [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)) => void
 
-Callback for receiving notifications.
+Called when a notification is received.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -710,7 +755,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 onCancel?:(data: [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)) => void
 
-Callback for canceling notifications.
+Called when a notification is canceled.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -750,7 +795,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 onUpdate?:(data: [NotificationSortingMap](js-apis-notification.md#notificationsortingmap)) => void
 
-Callback for notification sorting updates.
+Called when the notification sorting list is updated.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -788,7 +833,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 onConnect?:() => void
 
-Callback for subscription.
+Called when subscription is complete.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -820,7 +865,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 onDisconnect?:() => void
 
-Callback for unsubscription.
+Called when unsubscription is complete.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -898,7 +943,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
 
-Callback for DND time setting updates.
+Called when the DND time setting is updated.
 
 **System capability**: SystemCapability.Notification.Notification
 
@@ -935,7 +980,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ### onEnabledNotificationChanged
 
-onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata)) => void
+onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata8)) => void
 
 Listens for the notification enabled status changes. This API uses an asynchronous callback to return the result.
 
@@ -947,7 +992,7 @@ Listens for the notification enabled status changes. This API uses an asynchrono
 
 | Name| Type| Mandatory| Description|
 | ------------ | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<[EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata)\> | Yes| Callback used to return the result.|
+| callback | AsyncCallback\<[EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata8)\> | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -975,7 +1020,7 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
 ### onBadgeChanged<sup>10+</sup>
 
- onBadgeChanged?:(data: [BadgeNumberCallbackData](#badgenumbercallbackdata)) => void
+ onBadgeChanged?:(data: [BadgeNumberCallbackData](#badgenumbercallbackdata10)) => void
 
 Listens for the change of the notification badge number.
 
@@ -987,7 +1032,7 @@ Listens for the change of the notification badge number.
 
 | Name  | Type                                                        | Mandatory| Description                      |
 | -------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<[BadgeNumberCallbackData](#badgenumbercallbackdata)\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[BadgeNumberCallbackData](#badgenumbercallbackdata10)\> | Yes  | Callback used to return the result.|
 
 **Example**
 
