@@ -58,7 +58,7 @@ import privacyManager from '@ohos.privacyManager';
 
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.addPermissionUsedRecord(tokenID, "ohos.permission.PERMISSION_USED_STATS", 1, 0).then(() => {
+    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.PERMISSION_USED_STATS', 1, 0).then(() => {
         console.log('addPermissionUsedRecord success');
     }).catch((err) => {
         console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
@@ -108,7 +108,7 @@ import privacyManager from '@ohos.privacyManager';
 
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.addPermissionUsedRecord(tokenID, "ohos.permission.PERMISSION_USED_STATS", 1, 0, (err, data) => {
+    privacyManager.addPermissionUsedRecord(tokenID, 'ohos.permission.PERMISSION_USED_STATS', 1, 0, (err, data) => {
         if (err) {
             console.log(`addPermissionUsedRecord fail, err->${JSON.stringify(err)}`);
         } else {
@@ -160,14 +160,14 @@ getPermissionUsedRecord(request: PermissionUsedRequest): Promise&lt;PermissionUs
 import privacyManager from '@ohos.privacyManager';
 
 let request = {
-    "tokenId": 1,
-    "isRemote": false,
-    "deviceId": "device",
-    "bundleName": "bundle",
-    "permissionNames": [],
-    "beginTime": 0,
-    "endTime": 1,
-    "flag":privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
+    'tokenId': 1,
+    'isRemote': false,
+    'deviceId': 'device',
+    'bundleName': 'bundle',
+    'permissionNames': [],
+    'beginTime': 0,
+    'endTime': 1,
+    'flag':privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
 try {
     privacyManager.getPermissionUsedRecord(request).then((data) => {
@@ -215,14 +215,14 @@ getPermissionUsedRecord(request: PermissionUsedRequest, callback: AsyncCallback&
 import privacyManager from '@ohos.privacyManager';
 
 let request = {
-    "tokenId": 1,
-    "isRemote": false,
-    "deviceId": "device",
-    "bundleName": "bundle",
-    "permissionNames": [],
-    "beginTime": 0,
-    "endTime": 1,
-    "flag":privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
+    'tokenId': 1,
+    'isRemote': false,
+    'deviceId': 'device',
+    'bundleName': 'bundle',
+    'permissionNames': [],
+    'beginTime': 0,
+    'endTime': 1,
+    'flag':privacyManager.PermissionUsageFlag.FLAG_PERMISSION_USAGE_DETAIL,
 };
 try {
     privacyManager.getPermissionUsedRecord(request, (err, data) => {
@@ -280,7 +280,7 @@ import privacyManager from '@ohos.privacyManager';
 
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.startUsingPermission(tokenID, "ohos.permission.PERMISSION_USED_STATS").then(() => {
+    privacyManager.startUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS').then(() => {
         console.log('startUsingPermission success');
     }).catch((err) => {
         console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
@@ -328,7 +328,7 @@ import privacyManager from '@ohos.privacyManager';
 
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.startUsingPermission(tokenID, "ohos.permission.PERMISSION_USED_STATS", (err, data) => {
+    privacyManager.startUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err, data) => {
         if (err) {
             console.log(`startUsingPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -383,7 +383,7 @@ import privacyManager from '@ohos.privacyManager';
 
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.stopUsingPermission(tokenID, "ohos.permission.PERMISSION_USED_STATS").then(() => {
+    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS').then(() => {
         console.log('stopUsingPermission success');
     }).catch((err) => {
         console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
@@ -431,7 +431,7 @@ import privacyManager from '@ohos.privacyManager';
 
 let tokenID = 0; // 可以通过getApplicationInfo获取accessTokenId
 try {
-    privacyManager.stopUsingPermission(tokenID, "ohos.permission.PERMISSION_USED_STATS", (err, data) => {
+    privacyManager.stopUsingPermission(tokenID, 'ohos.permission.PERMISSION_USED_STATS', (err, data) => {
         if (err) {
             console.log(`stopUsingPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -481,7 +481,7 @@ import privacyManager from '@ohos.privacyManager';
 let permissionList = [];
 try {
     privacyManager.on('activeStateChange', permissionList, (data) => {
-        console.debug("receive permission state change, data:" + JSON.stringify(data));
+        console.debug('receive permission state change, data:' + JSON.stringify(data));
     });
 } catch(err) {
     console.log(`catch err->${JSON.stringify(err)}`);
@@ -513,7 +513,7 @@ off(type: 'activeStateChange', permissionList: Array&lt;Permissions&gt;, callbac
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12100001 | The permissionNames in the list are all invalid, or the list size exceeds 1024 bytes. |
-| 12100004 | The interface is not used together with "on"|
+| 12100004 | The interface is not used together with 'on'|
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
 
