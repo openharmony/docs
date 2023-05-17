@@ -22,11 +22,11 @@ Linear layout is the most frequently used layout in development, built with the 
 
 - Layout child element: element inside the layout container.
 
-- Main axis: axis along which child elements are laid out by default in the linear layout container. The main axis is vertical for the **\<Row>** container and horizontal for the **\<Column>** container.
+- Main axis: axis along which child elements are laid out by default in the linear layout container. The main axis is horizontal for the **\<Row>** container and vertical for the **\<Column>** container.
 
-- Cross axis: axis that runs perpendicular to the main axis. The cross axis is horizontal for the **\<Row>** container and vertical for the **\<Column>** container.
+- Cross axis: axis that runs perpendicular to the main axis. The cross axis is vertical for the **\<Row>** container and horizontal for the **\<Column>** container.
 
-- Spacing: vertical distance between layout child elements.
+- Spacing: vertical distance between child elements.
 
 
 ## Spacing of Layout Child Elements in Arrangement Direction

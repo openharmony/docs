@@ -1,7 +1,7 @@
 # Displaying Images
 
 
-More often than not, you may need to display images in applications, for example, logos in buttons, online images, and local images. To display images in applications, you need to use the **\<Image>** component, which supports multiple image formats, including PNG, JPG, BMP, SVG, and GIF. For details, see [Image](../reference/arkui-ts/ts-basic-components-image.md).
+More often than not, you may need to display images in your application, for example, logos in buttons, online images, and local images. To do so, you need to use the **\<Image>** component, which supports a wide range of image formats, including PNG, JPG, BMP, SVG, and GIF. For details, see [Image](../reference/arkui-ts/ts-basic-components-image.md).
 
 
 You can call the API in the following format to create an image:
@@ -13,43 +13,43 @@ Image(src: string | Resource | media.PixelMap)
 ```
 
 
-Obtains images from the image data source. Local images and online images can be rendered and displayed. In the preceding information, src indicates the data source of the image. For details about how to load the data source, see [Loading Image Resources](#loading-image-resources).
+Obtains a local or online image from the image data source specified by **src**. For details about how to load the data source, see [Loading Image Resources](#loading-image-resources).
 
 
 ## Loading Image Resources
 
-The **\<Image>** component supports two types of images: archived images and multimedia pixel images.
+The **\<Image>** component supports two types of images: archived and pixel map.
 
 
 ### Archived Type Data Source
 
-Data sources of the archived type can be classified into local resources, online resources, Resource objects, media library datashare resources, and Base64 resources.
+Data sources of the archived type can be classified into local resources, online resources, **Resource** objects, media library data share resources, and Base64 resources.
 
 - Local resources
-  Create a folder and place the local image in any position in the ets folder.
+  Create a folder and place a local image in any position in the **ets** folder.
 
-  The **\<Image>** component imports the local image path to display the image. The root directory is the ets folder.
+  In the **\<Image>** component, import the local image path to display the image. The root directory is the **ets** folder.
 
   ```ts
   Image('images/view.jpg')
   .width(200)
   ```
 
-- Network resource
-  To use network images, you need to apply for the ohos.permission.INTERNET permission. For details, see [Applying for Permissions](../security/accesstoken-guidelines.md). In this case, the src parameter of the Image component is the link of the network image.
+- Online resources
+  To use online images, first apply for the **ohos.permission.INTERNET** permission. For details, see [Applying for Permissions](../security/accesstoken-guidelines.md). Under this scenario, the **src** parameter of the **\<Image>** component is the URL of the online image.
 
   ```ts
   Image('https://www.example.com/example.JPG') // Replace the URL with the actual URL.
   ```
 
-- Resource
-  The Resource format can be used to import images across bundles or modules. All images in the **resources** folder can be read and converted to the resource format through **$r**.
+- **Resource** objects
+  **Resource** objects can be used to import images across bundles and modules. All images in the **resources** folder can be read and converted to the **Resource** objects through **$r**.
 
-  **Figure 1** Resouces 
+  **Figure 1** resources folder 
 
   ![image-resource](figures/image-resource.jpg)
 
-  Method:
+  API:
 
   ```
   Image($r('app.media.icon'))
@@ -57,20 +57,20 @@ Data sources of the archived type can be classified into local resources, online
 
   You can also place the images in the **rawfile** folder.
 
-  **Figure 2** rawfile 
+  **Figure 2** rawfile folder
 
  ![image-rawfile](figures/image-rawfile.jpg)
 
-  Method:
+  API:
 
   ```
   Image($rawfile('snap'))
   ```
 
-- media library datashare
-  The value is a string that supports the **datashare://** path prefix, which is used to access the image path provided by the media library.
+- Media library data share resources
+  To display images from the media library, use a path string that starts with **datashare://**.
 
-  1. Call the API in to obtain the photo URL in the gallery.
+  1. Call the API to obtain the image URL in the media library.
       ​    
       ```ts
       import picker from '@ohos.file.picker';
@@ -78,9 +78,9 @@ Data sources of the archived type can be classified into local resources, online
       @Entry
       @Component
       struct Index {
-        private imgDatas: string[] = [];
-        // Obtain the photo URL set.
-        async getAllImg() {
+        @State imgDatas: string[] = [];
+        // Obtain the image URL set.
+        getAllImg() {
           let photoPicker = new picker.PhotoViewPicker();
           let result = new Array<string>();
           try {
@@ -89,33 +89,35 @@ Data sources of the archived type can be classified into local resources, online
             PhotoSelectOptions.maxSelectNumber = 5;
             let photoPicker = new picker.PhotoViewPicker();
             photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult) => {
-              result = PhotoSelectResult.photoUris;
+              this.imgDatas = PhotoSelectResult.photoUris;
+              console.info('PhotoViewPicker.select successfully, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult));
             }).catch((err) => {
               console.error(`PhotoViewPicker.select failed with. Code: ${err.code}, message: ${err.message}`);
             });
           } catch (err) {
             console.error(`PhotoViewPicker failed with. Code: ${err.code}, message: ${err.message}`);    }
-          return result;
         }
 
         // Call the preceding function in aboutToAppear to obtain the URLs of all images in the gallery and store the URLs in imgDatas.
         async aboutToAppear() {
-          this.imgDatas = await this.getAllImg();
+          this.getAllImg();
         }
         // Use the URL of imgDatas to load the image.
         build() {
-          Grid() {
-            ForEach(this.imgDatas, item => {
-              GridItem() {
-                Image(item)
-                  .width(200)
-              }
-            }, item => JSON.stringify(item))
-          }
+          Column() {
+            Grid() {
+              ForEach(this.imgDatas, item => {
+                GridItem() {
+                  Image(item)
+                    .width(200)
+                }
+              }, item => JSON.stringify(item))
+            }
+          }.width('100%').height('100%')
         }
       }
       ```
-  2. The format of the URL obtained from the media library is as follows:
+  2. Check the format of the URL obtained from the media library is as follows:
       ​    
       ```ts
       Image('datashare:///media/5')
@@ -123,32 +125,33 @@ Data sources of the archived type can be classified into local resources, online
       ```
 
 - base64
-  The path format is data:image/[png|jpeg|bmp|webp];base64,[base64 data], in which [base64 data] indicates Base64 string data.
 
-  Base64 character strings can be used to store pixel data of images and are widely used on web pages.
+  As shown above, the URL format is data:image/[png|jpeg|bmp|webp];base64,[base64 data], in which **[base64 data]** indicates Base64 string data.
+
+  Base64 strings are widely used on web pages for storing pixel data of images.
 
 
-### Multimedia Pixel Map
+### Pixel Map
 
-PixelMap is the pixel image after image decoding. For details, see [Image](../media/image.md). In the following example, the data returned by the loaded network image is decoded into the PixelMap format and then displayed on the Image component,
+A pixel map is a pixel image obtained after image decoding. For details, see [Image Development](../media/image-overview.md). In the following example, the data returned by the loaded online image is decoded into a pixel map, which is then displayed on the **\<Image>** component.
 
-1. Creates a PixelMap state variable.
+1. Create a **PixelMap** state variable.
 
    ```ts
    @State image: PixelMap = undefined;
    ```
 
-2. Referencing multimedia.
-   Requests network images and decodes and encodes PixelMap.
+2. Reference multimedia.
+   Request an online image and implement transcoding to generate a pixel map.
 
-   1. Reference the network permission and media library permission.
+   1. Reference the network access permission and media library permission.
        ​    
        ```ts
        import http from '@ohos.net.http';
        import ResponseCode from '@ohos.net.http';
        import image from '@ohos.multimedia.image';
        ```
-   2. Enter the network image address.
+   2. Enter the online image address.
        ​    
        ```ts
        http.createHttp().request("https://www.example.com/xxx.png",
@@ -160,24 +163,24 @@ PixelMap is the pixel image after image decoding. For details, see [Image](../me
          }
        )
        ```
-   3. Encode and transcodes the data returned by the network address to the pixelMap image format.
+   3. Transcode the data returned by the online image address to a pixel map.
        ​    
        ```ts
        let code = data.responseCode;
        if(ResponseCode.ResponseCode.OK === code) {
          let imageSource = image.createImageSource(data.result);
          let options = {
-           alphaType: 0,                     // Alpha type
-           editable: false,                  // Whether the image is editable
-           pixelFormat: 3,                   // Pixel format
-           scaleMode: 1,                     // Scale mode
+           alphaType: 0,                     // Alpha type.
+           editable: false,                  // Whether the image is editable.
+           pixelFormat: 3,                   // Pixel format.
+           scaleMode: 1,                     // Scale mode.
            size: {height: 100, width: 100}
           }  // Image size.
            imageSource.createPixelMap(options).then((pixelMap) => {
            this.image = pixelMap
        })
        ```
-   4. Show pictures
+   4. Display the image.
        ​    
        ```ts
        Button ("Get Online Image")
@@ -188,11 +191,11 @@ PixelMap is the pixel image after image decoding. For details, see [Image](../me
        ```
 
 
-## Display Vector Diagram
+## Display the vector image.
 
-The **\<Image>** component can display vector images in SVG format. The supported SVG labels are svg, rect, circle, ellipse, path, line, polyline, polygon, and animate.
+The **\<Image>** component can display vector images in SVG format. The supported SVG labels are **svg**, **rect**, **circle**, **ellipse**, **path**, **line**, **polyline**, **polygon**, and **animate**.
 
-You can use the fillColor attribute to change the drawing color of an SVG image.
+You can use the **fillColor** attribute to change the fill color of an SVG image.
 
 
 ```ts
@@ -201,20 +204,22 @@ Image($r('app.media.cloud')).width(50)
 ```
 
   **Figure 3** Original image 
+
 ![screenshot_20230223_141141](figures/screenshot_20230223_141141.png)
 
-  **Figure 4** SVG image after the drawing color is set 
+  **Figure 4** SVG image after the fill color is set 
+
 ![screenshot_20230223_141404](figures/screenshot_20230223_141404.png)
 
 
 ## Adding Attributes
 
-Setting attributes for the **\<Image>** component can make the image display more flexible and achieve some customized effects. The following are examples of common attributes. For details about attributes, see [Image](../reference/arkui-ts/ts-basic-components-image.md).
+Setting attributes for the **\<Image>** component can spruce up the image with custom effects. The following are examples of common attributes. For details about all attributes, see [Image](../reference/arkui-ts/ts-basic-components-image.md).
 
 
-### Setting the Image Scale Type
+### Setting the Image Scale Mode
 
-The **objectFit** attribute is used to scale an image to a box whose height and width are determined.
+The **objectFit** attribute is used to scale an image to fit it into a container whose height and width are determined.
 
 
 ```ts
@@ -228,7 +233,7 @@ struct MyComponent {
       Row() {
         Image($r('app.media.img_2')).width(200).height(150)
           .border({ width: 1 })
-          .objectFit(ImageFit.Contain).margin(15) // Zoom out or zoom in the image based on the aspect ratio so that the image is completely displayed within the display boundary.
+          .objectFit(ImageFit.Contain).margin(15) // The image is scaled with its aspect ratio retained to fit within the display boundaries.
           .overlay('Contain', { align: Alignment.Bottom, offset: { x: 0, y: 20 } })
         Image($r('app.media.ic_img_2')).width(200).height(150)
           .border({ width: 1 })
@@ -268,7 +273,7 @@ struct MyComponent {
 
 ### Synchronously Loading Images
 
-Generally, the image loading process is performed asynchronously to avoid blocking the main thread and affecting UI interaction. In certain cases, however, the picture flickers when it is refreshed. In this case, you can use the **syncLoad** attribute to load the picture synchronously to avoid flickering. You are not advised to use this function when the image loading takes a long time. Otherwise, the page cannot respond.
+Generally, the image loading process is performed asynchronously to avoid blocking the main thread and to streamline UI interaction. In certain cases, however, the image may flicker when refreshed. If this occurs, you can use the **syncLoad** attribute to load the image synchronously to avoid flickering. You are not advised to use this attribute when the image loading takes a long time. Otherwise, the page may fail to respond.
 
 
 ```ts
@@ -277,9 +282,9 @@ Image($r('app.media.icon'))
 ```
 
 
-## Invoking Events
+## Adding Events
 
-After the **onComplete** event is bound to the Image component, necessary information about the image can be obtained after the image is successfully loaded. If the image fails to be loaded, you can also bind the onError callback function to obtain the result.
+By binding the **onComplete** event to the **\<Image>** component, you can obtain necessary information about the image after the image is successfully loaded. You can also bind the **onError** event to obtain error information when the image fails to be loaded.
 
 
 ```ts
