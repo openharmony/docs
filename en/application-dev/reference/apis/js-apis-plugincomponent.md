@@ -55,8 +55,8 @@ Sets the parameters to be passed in the **PluginManager.Push** API in the FA mod
 | --------- | ----------------------------------- | ---- | -------------------------------------------------------------- |
 | want      | [Want](js-apis-application-want.md) | Yes  | Ability information of the component user.                                       |
 | name      | string                              | Yes  | Component name.                                                    |
-| data      | [KVObject](#kvobject)               | No  | Component data value.                                                  |
-| extraData | [KVObject](#kvobject)               | No  | Additional data value.                                                  |
+| data      | [KVObject](#kvobject)               | Yes  | Component data value.                                                  |
+| extraData | [KVObject](#kvobject)               | Yes  | Additional data value.                                                  |
 | jsonPath  | string                              | No  | Path to the [external.json](#about-the-externaljson-file) file that stores the template path.|
 
 ### PushParameterForStage
@@ -74,8 +74,8 @@ Sets the parameters to be passed in the **PluginManager.Push** API in the stage 
 | owner     | [Want](js-apis-application-want.md) | Yes  | Ability information of the component provider.                                         |
 | target    | [Want](js-apis-application-want.md) | Yes  | Ability information of the component user.                                         |
 | name      | string                              | Yes  | Component name.                                                      |
-| data      | [KVObject](#kvobject)               | No  | Component data value.                                                    |
-| extraData | [KVObject](#kvobject)               | No  | Additional data value.                                                    |
+| data      | [KVObject](#kvobject)               | Yes  | Component data value.                                                    |
+| extraData | [KVObject](#kvobject)               | Yes  | Additional data value.                                                    |
 | jsonPath  | string                              | No  | Path to the [external.json](#about-the-externaljson-file) file that stores the template path.|
 
 ### RequestParameters
@@ -117,11 +117,11 @@ Provides the result returned after the **PluginManager.Request** API is called.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name             | Type                                                | Mandatory| Description      |
-| ----------------- | ---------------------------------------------------- | ---- | ---------- |
-| componentTemplate | [PluginComponentTemplate](#plugincomponenttemplate)] | Yes  | Component template.|
-| data              | [KVObject](#kvobject)                                | Yes  | Component data.|
-| extraData         | [KVObject](#kvobject)                                | Yes  | Additional data.|
+| Name             | Type                                               | Mandatory| Description      |
+| ----------------- | --------------------------------------------------- | ---- | ---------- |
+| componentTemplate | [PluginComponentTemplate](#plugincomponenttemplate) | Yes  | Component template.|
+| data              | [KVObject](#kvobject)                               | Yes  | Component data.|
+| extraData         | [KVObject](#kvobject)                               | Yes  | Additional data.|
 
 ### RequestEventResult
 
@@ -175,7 +175,7 @@ Registers the listener for the request event.
 | Name     | Type                               | Mandatory| Description                       |
 | --------- | ----------------------------------- | ---- | --------------------------- |
 | source    | [Want](js-apis-application-want.md) | Yes  | Information about the request sender.|
-| data      | [KVObject](#kvobject)               | Yes  | Data.                     |
+| name      | string                              | Yes  | Template name.                 |
 | extraData | [KVObject](#kvobject)               | Yes  | Additional data.                 |
 
 **Example**

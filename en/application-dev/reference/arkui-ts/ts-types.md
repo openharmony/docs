@@ -124,8 +124,8 @@ The **ResourceColor** type is used to describe the color types of resources.
 | Type                                     | Description                                            |
 | ---------------------------------------- | ------------------------------------------------- |
 | [Color](ts-appendix-enums.md#color)      | Color enums.                                      |
-| number                                   | Color in hexadecimal notation. RGB is supported.                                     |
-| string                                   | Color in RGB or ARGB notation.                             |
+| number                                   | Color in hexadecimal notation. RGB is supported. Example: **0xffffff**                                     |
+| string                                   | Color in RGB or ARGB notation. Example: **'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'**                             |
 | [Resource](#resource)                    | Color referenced from system or application resources.|
 
 ## ColoringStrategy
@@ -215,7 +215,7 @@ The **ColorFilter** type is used to create a color filter with a 4 x 5 matrix.
 
 | Name         | Type      | Mandatory  | Description                                      |
 | ----------- | -------- | ---- | ---------------------------------------- |
-| constructor | number[] | Yes   | Constructor for creating a color filter with a 4 x 5 matrix. The input parameter is [m*n], which is the matrix value in row m and column n. The matrix is row-first.|
+| constructor | number[] | Yes   | Constructor for creating a color filter with a 4 x 5 matrix. The input parameter is [m*n], which is the matrix value in row m and column n. The value range is [0, 1]. The matrix is row-first.|
 
 
 ## CustomBuilder<sup>8+</sup>
@@ -224,7 +224,7 @@ The **CustomBuilder** type is used to define custom UI descriptions in component
 
 | Name           | Type                  | Description                                      |
 | ------------- | ---------------------- | ---------------------------------------- |
-| CustomBuilder | () =&gt; any | Must be decorated by **@Builder**. For details, see [@Builder](../../quick-start/arkts-dynamic-ui-elememt-building.md#builder).|
+| CustomBuilder | () =&gt; any | Must be decorated by **@Builder**. For details, see [@Builder](../../quick-start/arkts-builder.md).|
 
 ## PixelStretchEffectOptions<sup>10+</sup>
 
