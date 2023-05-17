@@ -197,7 +197,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
 try {
-    data_preferences.deletePreferences(context, 'mystore', function (err, val) {
+    data_preferences.deletePreferences(context, 'mystore', function (err) {
         if (err) {
             console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
             return;
@@ -216,7 +216,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
-            data_preferences.deletePreferences(this.context, 'mystore', function (err, val) {
+            data_preferences.deletePreferences(this.context, 'mystore', function (err) {
                 if (err) {
                     console.info("Failed to delete preferences. code =" + err.code + ", message =" + err.message);
                     return;
@@ -332,7 +332,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let context = featureAbility.getContext();
 
 try {
-    data_preferences.removePreferencesFromCache(context, 'mystore', function (err, val) {
+    data_preferences.removePreferencesFromCache(context, 'mystore', function (err) {
         if (err) {
             console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
             return;
@@ -351,7 +351,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         try {
-            data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err, val) {
+            data_preferences.removePreferencesFromCache(this.context, 'mystore', function (err) {
                 if (err) {
                     console.info("Failed to remove preferences. code =" + err.code + ", message =" + err.message);
                     return;
