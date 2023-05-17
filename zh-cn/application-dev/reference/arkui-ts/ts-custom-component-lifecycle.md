@@ -127,6 +127,50 @@ onRecycle?(params: { [key: string]: unknown }): void
 | ------ | -------------------------- | -------------------- |
 | params | { [key: string]: unknown } | 自定义组件的构造参数 |
 
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+  @State switch: boolean = true
+
+  build() {
+    Column() {
+      Button(this.message)
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+        .onClick(() => {
+          this.switch = !this.switch
+        })
+      if (this.switch) {
+        Child()
+      }
+    }
+    .height("100%")
+    .width('100%')
+  }
+}
+
+@Recycle
+@Component
+struct Child {
+  onRecycle(params) {
+    console.info("Recycle Child")
+  }
+
+  build() {
+    Column() {
+      Text("Child Component")
+        .fontSize(20)
+    }
+    .borderWidth(2)
+    .height(100)
+  }
+}
+```
+
 ## LayoutChild<sup>9+</sup>
 
 子组件布局信息。
