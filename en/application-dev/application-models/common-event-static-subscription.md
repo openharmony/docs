@@ -22,8 +22,6 @@ A static subscriber is started once it receives a target event published by the 
 
    You can implement service logic in the **onReceiveEvent** callback.
 
-   
-
 2. Project Configuration for a Static Subscriber
 
    After writing the static subscriber code, configure the subscriber in the **module.json5** file. The configuration format is as follows:
@@ -35,12 +33,12 @@ A static subscriber is started once it receives a target event published by the 
        "extensionAbilities": [
          {
            "name": "StaticSubscriber",
-           "srcEntrance": "./ets/StaticSubscriber/StaticSubscriber.ts",
+           "srcEntry": "./ets/StaticSubscriber/StaticSubscriber.ts",
            "description": "$string:StaticSubscriber_desc",
            "icon": "$media:icon",
            "label": "$string:StaticSubscriber_label",
            "type": "staticSubscriber",
-           "visible": true,
+           "exported": true,
            "metadata": [
              {
                "name": "ohos.extension.staticSubscriber",
@@ -56,7 +54,7 @@ A static subscriber is started once it receives a target event published by the 
 
    Pay attention to the following fields in the JSON file:
 
-   - **srcEntrance**: entry file path of the ExtensionAbility, that is, the file path of the static subscriber declared in Step 2.
+   - **srcEntry**: entry file path of the ExtensionAbility, that is, the file path of the static subscriber declared in Step 2.
 
    - **type**: ExtensionAbility type. For a static subscriber, set this field to **staticSubscriber**.
 
