@@ -258,6 +258,386 @@ try {
 }
 ```
 
+## pointer.setHoverScrollState<sup>10+</sup>
+
+setHoverScrollState(state: boolean, callback: AsyncCallback&lt;void&gt;): void
+
+设置鼠标悬停滚动开关状态，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                        | 必填   | 说明                                    |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| state    | boolean                    | 是    | 鼠标悬停滚动开关状态。   |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setHoverScrollState(true, (error) => {
+    if (error) {
+      console.log(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`Set the mouse hover scroll success`);
+  });
+} catch (error) {
+  console.log(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setHoverScrollState<sup>10+</sup>
+
+setHoverScrollState(state: boolean): Promise&lt;void&gt;
+
+设置鼠标悬停滚动开关状态，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| state | boolean | 是    | 鼠标悬停滚动开关状态。 |
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise对象。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setHoverScrollState(true).then(() => {
+    console.log(`Set the mouse hover scroll success`);
+  });
+} catch (error) {
+  console.log(`Set the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getHoverScrollState<sup>10+</sup>
+
+getHoverScrollState(callback: AsyncCallback&lt;boolean&gt;): void
+
+获取鼠标悬停滚动开关状态，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                          | 必填   | 说明             |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | 回调函数，异步返回鼠标悬停滚动开关状态。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getHoverScrollState((error, state) => {
+    console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`Get the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getHoverScrollState<sup>10+</sup>
+
+getHoverScrollState(): Promise&lt;boolean&gt;
+
+获取当前鼠标悬停滚动开关状态，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**返回值**：
+
+| 参数                    | 说明                  |
+| --------------------- | ------------------- |
+| Promise&lt;boolean&gt; | Promise实例，异步返回鼠标悬停滚动开关状态。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getHoverScrollState().then((state) => {
+    console.log(`Get the mouse hover scroll success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`Get the mouse hover scroll failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setMousePrimaryButton<sup>10+</sup>
+
+setMousePrimaryButton(primary: PrimaryButton, callback: AsyncCallback&lt;void&gt;): void
+
+设置鼠标主键，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名    | 类型                      | 必填  | 说明                                    |
+| -------- | ------------------------- | ----  | ------------------------------------- |
+| primary  | [PrimaryButton](#PrimaryButton10)   | 是    | 鼠标主键id。   |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setMousePrimaryButton(pointer.PrimaryButton.RIGHT, (error) => {
+    if (error) {
+      console.log(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`Set mouse primary button success`);
+  });
+} catch (error) {
+  console.log(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setMousePrimaryButton<sup>10+</sup>
+
+setMousePrimaryButton(primary: PrimaryButton): Promise&lt;void&gt;
+
+设置鼠标主键，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| primary | [PrimaryButton](#PrimaryButton10) | 是    | 鼠标主键id。 |
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise对象。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setMousePrimaryButton(pointer.PrimaryButton.RIGHT).then(() => {
+    console.log(`Set mouse primary button success`);
+  });
+} catch (error) {
+  console.log(`Set mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getMousePrimaryButton<sup>10+</sup>
+
+getMousePrimaryButton(callback: AsyncCallback&lt;PrimaryButton&gt;): void
+
+获取鼠标主键，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                          | 必填   | 说明             |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback&lt;[PrimaryButton](#PrimaryButton10)&gt; | 是    | 回调函数，异步返回鼠标主键。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getMousePrimaryButton((error, primary) => {
+    console.log(`Get mouse primary button success, primary: ${JSON.stringify(primary)}`);
+  });
+} catch (error) {
+  console.log(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getMousePrimaryButton<sup>10+</sup>
+
+getMousePrimaryButton(): Promise&lt;PrimaryButton&gt;
+
+获取当前鼠标主键，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**返回值**：
+
+| 参数                    | 说明                  |
+| --------------------- | ------------------- |
+| Promise&lt;[PrimaryButton](#PrimaryButton10)&gt; | Promise实例，异步返回鼠标主键。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getMousePrimaryButton().then((primary) => {
+    console.log(`Get mouse primary button success, primary: ${JSON.stringify(primary)}`);
+  });
+} catch (error) {
+  console.log(`Get mouse primary button failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## PrimaryButton<sup>10+</sup>
+
+鼠标主键类型。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+| 名称                               | 值    | 说明     |
+| -------------------------------- | ---- | ------ |
+| LEFT                          | 0    | 鼠标左键     |
+| RIGHT                             | 1    | 鼠标右键   |
+
+## pointer.setMouseScrollRows<sup>10+</sup>
+
+setMouseScrollRows(rows: number, callback: AsyncCallback&lt;void&gt;): void
+
+设置鼠标滚动行数，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                        | 必填   | 说明                                    |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| rows     | number                    | 是    | 鼠标滚动行数，范围1-100，默认为3。   |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setMouseScrollRows(1, (error) => {
+    if (error) {
+      console.log(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setMouseScrollRows success`);
+  });
+} catch (error) {
+  console.log(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setMouseScrollRows<sup>10+</sup>
+
+setMouseScrollRows(speed: number): Promise&lt;void&gt;
+
+设置鼠标滚动行数，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| rows  | number | 是    | 鼠标滚动行数，范围1-100，默认为3。 |
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise对象。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setMouseScrollRows(20).then(() => {
+    console.log(`setMouseScrollRows success`);
+  });
+} catch (error) {
+  console.log(`setMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getMouseScrollRows<sup>10+</sup>
+
+getMouseScrollRows(callback: AsyncCallback&lt;number&gt;): void
+
+获取鼠标滚动行数，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                          | 必填   | 说明             |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback&lt;number&gt; | 是    | 回调函数，异步返回鼠标滚动行数。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getMouseScrollRows((error, rows) => {
+    console.log(`getMouseScrollRows success, rows: ${JSON.stringify(rows)}`);
+  });
+} catch (error) {
+  console.log(`getMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getMouseScrollRows<sup>10+</sup>
+
+getMouseScrollRows(): Promise&lt;number&gt;
+
+获取当前鼠标滚动行数，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**返回值**：
+
+| 参数                    | 说明                  |
+| --------------------- | ------------------- |
+| Promise&lt;number&gt; | Promise实例，异步返回鼠标滚动行数。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getMouseScrollRows().then((rows) => {
+    console.log(`getMouseScrollRows success, rows: ${JSON.stringify(rows)}`);
+  });
+} catch (error) {
+  console.log(`getMouseScrollRows failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
 ## pointer.getPointerStyle<sup>9+</sup>
 
 getPointerStyle(windowId: number, callback: AsyncCallback&lt;PointerStyle&gt;): void
