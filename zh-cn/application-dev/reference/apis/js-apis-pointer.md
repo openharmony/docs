@@ -395,7 +395,7 @@ setMousePrimaryButton(primary: PrimaryButton, callback: AsyncCallback&lt;void&gt
 
 | 参数名    | 类型                      | 必填  | 说明                                    |
 | -------- | ------------------------- | ----  | ------------------------------------- |
-| primary  | [PrimaryButton](#PrimaryButton10)   | 是    | 鼠标主键id。   |
+| primary  | [PrimaryButton](#PrimaryButton9)   | 是    | 鼠标主键id。   |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
 
 **示例**：
@@ -428,7 +428,7 @@ setMousePrimaryButton(primary: PrimaryButton): Promise&lt;void&gt;
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| primary | [PrimaryButton](#PrimaryButton10) | 是    | 鼠标主键id。 |
+| primary | [PrimaryButton](#PrimaryButton9) | 是    | 鼠标主键id。 |
 
 **返回值**：
 
@@ -462,7 +462,7 @@ getMousePrimaryButton(callback: AsyncCallback&lt;PrimaryButton&gt;): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback&lt;[PrimaryButton](#PrimaryButton10)&gt; | 是    | 回调函数，异步返回鼠标主键。 |
+| callback | AsyncCallback&lt;[PrimaryButton](#PrimaryButton9)&gt; | 是    | 回调函数，异步返回鼠标主键。 |
 
 **示例**：
 
@@ -490,7 +490,7 @@ getMousePrimaryButton(): Promise&lt;PrimaryButton&gt;
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise&lt;[PrimaryButton](#PrimaryButton10)&gt; | Promise实例，异步返回鼠标主键。 |
+| Promise&lt;[PrimaryButton](#PrimaryButton9)&gt; | Promise实例，异步返回鼠标主键。 |
 
 **示例**：
 
