@@ -34,13 +34,13 @@
   |![底部页签](figures/底部页签.png) | ![子页签超出屏幕](figures/子页签超出屏幕.png) | ![标题栏-普通](figures/标题栏-普通.png) |
 | -------- | -------- | -------- |
 |底部[页签](multimodal-bottom-tab.md) | [子页签](multimodal-subtab.md) | [标题栏](multimodal-title-bar.md) | 
- | ![标题栏-普通备份](figures/标题栏-普通备份.png)|  ![步骤导航器-默认](figures/步骤导航器-默认.png) |  ![1_zh-cn_image_0000001568212896.png](figures/1_zh-cn_image_0000001568212896.png) |
+ | ![标题栏-普通备份](figures/标题栏-普通备份.png)|  ![步骤导航器-默认](figures/步骤导航器-默认.png) |  ![2_zh-cn_image_0000001568412869.png](figures/2_zh-cn_image_0000001568412869.png) |
 |[侧边导航栏](multimodal-sidebar.md) | [导航点](multimodal-swiper.md) | [步骤导航器](multimodal-stepper.md) | 
 
 
 ## 展示类
 
-  |![1_zh-cn_image_0000001568212897.png](figures/1_zh-cn_image_0000001568212897.png) | ![1_zh-cn_image_0000001568212898.png](figures/1_zh-cn_image_0000001568212898.png)| ![1_zh-cn_image_0000001568212899.png](figures/1_zh-cn_image_0000001568212899.png) |
+  |![1_zh-cn_image_0000001568093257.png](figures/1_zh-cn_image_0000001568093257.png) | ![1_zh-cn_image_0000001568212898.png](figures/1_zh-cn_image_0000001568212898.png)| ![1_zh-cn_image_0000001568212899.png](figures/1_zh-cn_image_0000001568212899.png) |
 | -------- | -------- | -------- |
 |[分隔器](multimodal-divider.md) |[气泡提示](multimodal-bubble.md) |[进度条](multimodal-progress-bar.md) | 
 |![1_zh-cn_image_0000001517133790.png](figures/1_zh-cn_image_0000001517133790.png)| ![1_zh-cn_image_0000001568093233.png](figures/1_zh-cn_image_0000001568093233.png) |![1_zh-cn_image_0000001577319197.png](figures/1_zh-cn_image_0000001577319197.png) | 
