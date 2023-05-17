@@ -219,54 +219,6 @@ struct MyComponent {
 
 ![flex1](figures/flex1.PNG)
 
-## Setting Width and Height for \<List> Components
-
-When a **\<List>** component is nested within a **\<Scroll>** component, all of its content will be loaded if its width and height is not specified, which may result in performance drop.
-
-```ts
-@Entry
-@Component
-struct MyComponent {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-  build() {
-    Scroll() {
-      List() {
-        ForEach(this.arr, (item) => {
-          ListItem() {
-            Text(`item value: ${item}`).fontSize(30).margin({ left: 10 })
-          }.height(100)
-        }, (item) => item.toString())
-      }
-    }.backgroundColor(Color.Pink)
-  }
-}
-```
-
-Therefore, in the above scenario, you are advised to set the width and height for the **\<List>** component as follows:
-
-```ts
-@Entry
-@Component
-struct MyComponent {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-  build() {
-    Scroll() {
-      List() {
-        ForEach(this.arr, (item) => {
-          ListItem() {
-            Text(`item value: ${item}`).fontSize(30).margin({ left: 10 })
-          }.height(100)
-        }, (item) => item.toString())
-      }.width('100%').height(500)
-    }.backgroundColor(Color.Pink)
-  }
-}
-```
-
-![list1](figures/list1.gif)
-
 ## Minimizing White Blocks During Swiping
 
 To minimize white blocks during swiping, expand the UI loading range by increasing the value of **cachedCount** for the **\<List>** and **\<Grid>** components. **cachedCount** indicates the number of list or grid items preloaded outside of the screen. 
