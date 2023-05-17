@@ -545,7 +545,7 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 
 startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
-发现周边设备。
+发现周边设备。发现状态持续两分钟，超过两分钟，会停止发现，最大发现数量99个。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -589,7 +589,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
-发现周边设备。发现状态持续两分钟，超过两分钟，会停止发现
+发现周边设备。发现状态持续两分钟，超过两分钟，会停止发现，最大发现数量99个。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -598,7 +598,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
   | 参数名            | 类型                       | 必填   | 说明    |
   | ------------- | ------------------------------- | ---- | -----  |
   | subscribeInfo | [SubscribeInfo](#subscribeinfo) | 是   | 发现信息。 |
-  | filterOptions | string                          | 否   | 发现设备过滤信息。可选，默认为undefined，默认发现未上线设备|
+  | filterOptions | string                          | 否   | 发现设备过滤信息。可选，默认为undefined，发现未上线设备|
 
 **错误码：**
 
@@ -677,7 +677,7 @@ stopDeviceDiscovery(subscribeId: number): void
 
 publishDeviceDiscovery(publishInfo: PublishInfo): void
 
-发布设备发现。发布状态持续两分钟，超过两分钟会停止发布
+发布设备发现。发布状态持续两分钟，超过两分钟会停止发布。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
