@@ -308,9 +308,3 @@ URI示例：
     ]
    );
    ```
-
-## 相关实例
-
-针对DataAbility开发，有以下相关实例可供参考：
-
-- [`DataAbility`：DataAbility的创建与访问（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ability/DataAbility)

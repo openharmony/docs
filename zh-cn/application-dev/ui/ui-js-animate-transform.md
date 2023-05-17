@@ -584,10 +584,5 @@ transform可以设置多个值并且多个值可同时设置，下面案例中�
 
 针对transform样式动画开发，有以下相关实例可供参考：
 
-- [`JsAnimation`：动效示例应用（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/JsAnimation)
+- [`JsComponentCollection`：JS组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/UI/JsComponentClollection/JsComponentCollection)
 
-- [`JsAnimationStyle`：动画与自定义字体（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/JsAnimationStyle)
-
-- [`Clock`：时钟（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/common/Clock)
-
-- [`JsAnimator`：动画（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/JsAnimation)
