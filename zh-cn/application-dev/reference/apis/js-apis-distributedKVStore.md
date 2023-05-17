@@ -4560,7 +4560,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 | 参数名    | 类型              | 必填 | 说明                                           |
 | --------- | --------------------- | ---- | ---------------------------------------------- |
-| deviceIds | string[]              | 是   | 同一组网环境下，需要同步的设备的deviceId列表。 |
+| deviceIds | string[]              | 是   | 同一组网环境下，需要同步的设备的networkId列表。 |
 | mode      | [SyncMode](#syncmode) | 是   | 同步模式。                                     |
 | delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒），默认为0。     |
 
@@ -4589,7 +4589,7 @@ deviceManager.createDeviceManager('bundleName', (err, value) => {
     if (devManager != null) {
       var devices = devManager.getTrustedDeviceListSync();
       for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].deviceId;
+        deviceIds[i] = devices[i].networkId;
       }
     }
     try {
@@ -4629,7 +4629,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
 | 参数名    | 类型              | 必填 | 说明                                           |
 | --------- | --------------------- | ---- | ---------------------------------------------- |
-| deviceIds | string[]              | 是   | 同一组网环境下，需要同步的设备的deviceId列表。 |
+| deviceIds | string[]              | 是   | 同一组网环境下，需要同步的设备的networkId列表。 |
 | mode      | [SyncMode](#syncmode) | 是   | 同步模式。                                     |
 | query     | [Query](#query)        | 是   | 表示数据库的查询谓词条件                       |
 | delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒），默认为0。     |
@@ -4659,7 +4659,7 @@ deviceManager.createDeviceManager('bundleName', (err, value) => {
     if (devManager != null) {
       var devices = devManager.getTrustedDeviceListSync();
       for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].deviceId;
+        deviceIds[i] = devices[i].networkId;
       }
     }
     try {
