@@ -36,7 +36,7 @@ console.debug('count:'); // 仅打印message
 
 log(message: string, ...arguments: any[]): void
 
-以格式化输出方式打印日志信息。用法同console.debug()。
+以格式化输出方式打印日志信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -47,11 +47,22 @@ log(message: string, ...arguments: any[]): void
 | message | string | 是    | 表示要打印的文本信息。 |
 | arguments | any | 否    |表示其余要打印的信息或message的替换值。 |
 
+**示例：**
+```js
+const number = 5;
+console.log('count: %d', number);  // 格式化输出替换message中的文本。
+// count: 5 
+console.log('count:', number);  // 打印message以及其余信息
+// count: 5 
+console.log('count:'); // 仅打印message
+// count: 
+```
+
 ## console.info
 
 info(message: string, ...arguments: any[]): void
 
-以格式化输出方式打印日志信息。(console.log()的别名）。用法同console.debug()。
+以格式化输出方式打印日志信息。(console.log()的别名）。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -61,12 +72,23 @@ info(message: string, ...arguments: any[]): void
 | ------- | ------ | ---- | ----------- |
 | message | string | 是    | 表示要打印的文本信息。 |
 | arguments | any | 否    | 表示其余要打印的信息或message的替换值。 |
+
+**示例：**
+```js
+const number = 5;
+console.info('count: %d', number);  // 格式化输出替换message中的文本。
+// count: 5 
+console.info('count:', number);  // 打印message以及其余信息
+// count: 5 
+console.info('count:'); // 仅打印message
+// count: 
+```
 
 ## console.warn
 
 warn(message: string, ...arguments: any[]): void
 
-以格式化输出方式打印警告信息。用法同console.debug()。
+以格式化输出方式打印警告信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -74,14 +96,25 @@ warn(message: string, ...arguments: any[]): void
 
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
-| message | string | 是    | 表示要打印的文本信息。 |
+| message | string | 是    | 表示要打印的警告信息。 |
 | arguments | any | 否    | 表示其余要打印的信息或message的替换值。 |
+
+**示例：**
+```js
+const str = "name should be string";
+console.warn('warn: %d', str);  // 格式化输出替换message中的文本。
+// warn: name should be string
+console.warn('warn:', str);  // 打印message以及其余信息
+// warn: name should be string
+console.warn('warn:'); // 仅打印message
+// warn: 
+```
 
 ## console.error
 
 error(message: string, ...arguments: any[]): void
 
-以格式化输出方式打印错误信息。用法同console.debug()。
+以格式化输出方式打印错误信息。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -89,16 +122,26 @@ error(message: string, ...arguments: any[]): void
 
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
-| message | string | 是    | 表示要打印的文本信息。 |
+| message | string | 是    | 表示要打印的错误信息。 |
 | arguments | any | 否    | 表示其余要打印的信息或message的替换值。 |
 
+
+**示例：**
+```js
+const str = "value is not defined";
+console.error('error: %d', str);  // 格式化输出替换message中的文本。
+// error: value is not defined
+console.error('error:', str);  // 打印message以及其余信息
+// error: value is not defined
+console.error('error:'); // 仅打印message
+// error: 
+```
 
 ## console.assert<sup>10+</sup>
 
 assert(value?: Object, ...arguments: Object[]): void
 
-若value为假(false)或者省略，则console.assert()打印"Assertion failed"这条消息。
-如果 value 为真值(true)，则什么也不会发生。
+断言打印。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -106,13 +149,13 @@ assert(value?: Object, ...arguments: Object[]): void
 
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
-| value | Object | 否    | 语句结果值。省略则打印"Assertion failed"。|
-| arguments | Object | 否    | 错误消息打印。 |
+| value | Object | 否    | 语句结果值。若value为假(false)或者省略，则输出以"Assertion failed"开头。如果 value 为真值(true)，则无打印。|
+| arguments | Object | 否    | value为假(false)的后续错误消息打印。省略则不打印。|
 
 **示例：**
 ```js
-console.assert(true, 'does nothing');
-console.assert(2 % 1 == 0, 'does nothing');  // 表达式结果值为true。
+console.assert(true, 'does nothing');  // 表达式结果值为true, 无打印。
+console.assert(2 % 1 == 0, 'does nothing');  // 表达式结果值为true, 无打印。
 
 console.assert(false, 'console %s work', 'didn\'t');
 // Assertion failed: console didn't work
@@ -120,11 +163,12 @@ console.assert(false, 'console %s work', 'didn\'t');
 console.assert();
 // Assertion failed
 ```
+
 ## console.count<sup>10+</sup>
 
 count(label?: string): void
 
-维护一个内部计数器, 调用时，打印此标签名以及对应的计数次数。
+维护一个内部计数器，调用时，打印此标签名以及对应的计数次数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -203,7 +247,7 @@ console.dir(); // 无打印
 
 dirxml(...arguments: Object[]): void 
 
-此方法调用 console.log() 将接收到的参数传给它。此方法不会产生任何 XML 格式。qi'A使用方法与console.log()一致。
+此方法通过内部调用console.log()实现。此方法不会产生任何 XML 格式。使用方法与console.log()一致。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -212,6 +256,17 @@ dirxml(...arguments: Object[]): void
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
 | arguments | Object | 是    | 要打印的信息。 |
+
+**示例：**
+```js
+const number = 5;
+console.dirxml('count: %d', number);
+// count: 5 
+console.dirxml('count:', number);
+// count: 5 
+console.dirxml('count:');
+// count: 
+```
 
 ## console.group<sup>10+</sup>
 
@@ -246,7 +301,7 @@ console.log("level 2");
 
 groupCollapsed(...arguments: Object[]): void
 
-console.group()的别名。使用方法与console.group()一致。
+使用与功能同console.group()一致。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -255,6 +310,20 @@ console.group()的别名。使用方法与console.group()一致。
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
 | arguments | Object | 否    | 要打印的信息。|
+
+
+**示例：**
+```js
+console.groupCollapsed("outter");
+// outter
+console.groupCollapsed();
+console.log("level 1");
+//   level 1
+console.groupCollapsed("in level1");
+//   in level1
+console.log("level 2");
+//     level 2
+```
 
 ## console.groupEnd<sup>10+</sup>
 
@@ -317,7 +386,7 @@ console.table({ a: [1, 2, 3, 4, 5], b: 5, c: { e: 5 } });
 
 time(label?: string): void
 
-启动可用于计算操作持续时间的计时器。可使用console.timeEnd()关闭计时器并打印结果。
+启动可用于计算操作持续时间的计时器。可使用console.timeEnd()关闭计时器并打印经过的时间(单位：ms)。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -327,11 +396,16 @@ time(label?: string): void
 | ------- | ------ | ---- | ----------- |
 | label | string | 否    | 计时器标识。默认值为'default'。 |
 
+**示例：**
+```js
+console.time('abc');
+```
+
 ## console.timeEnd<sup>10+</sup>
 
 timeEnd(label?: string): void
 
-停止之前通过调用 console.time() 启动的计时器并将结果打印。
+停止之前通过调用 console.time() 启动的计时器并将打印经过的时间(单位：ms)。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -352,7 +426,7 @@ console.timeEnd('abc');
 
 timeLog(label?: string, ...arguments: Object[]): void
 
-对于先前通过调用 console.time() 启动的计时器，打印经过时间和其他 data 参数。
+对于先前通过调用 console.time() 启动的计时器，打印经过时间和其他data参数。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -390,8 +464,8 @@ trace(...arguments: Object[]): void
 ```js
 console.trace();
 // Trace:
-       xxxxxxxxxx(当前堆栈信息)
+//     xxxxxxxxxx(当前堆栈信息)
 console.trace("Show the trace");
 // Trace: Show the trace
-       xxxxxxxxxx(当前堆栈信息)
+//     xxxxxxxxxx(当前堆栈信息)
 ```
