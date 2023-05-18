@@ -39,7 +39,7 @@ startWork(work: WorkInfo): void
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Checking workInfo failed. |
+| 9700004 | Check workInfo failed. |
 | 9700005 | StartWork failed. |
 
 
@@ -91,7 +91,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Checking workInfo failed. |
+| 9700004 | Check workInfo failed. |
 
 **示例**：
 
@@ -141,7 +141,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Checking workInfo failed. |
+| 9700004 | Check workInfo failed. |
 
 **示例**：
 
@@ -189,7 +189,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Checking workInfo failed. |
+| 9700004 | Check workInfo failed. |
 
 **示例**：
 
@@ -346,7 +346,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Checking workInfo failed. |
+| 9700004 | Check workInfo failed. |
 
 **示例**：
 
@@ -392,7 +392,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Checking workInfo failed. |
+| 9700004 | Check workInfo failed. |
 
 **示例**：
 
