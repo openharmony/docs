@@ -10,7 +10,7 @@
 
   belonging：系统资源或者应用资源，相应的取值为'sys'和'app'；
 
-  type：资源类型，支持'color'、'float'、'string'、'media'等；
+  type：资源类型，支持'boolean'、'color'、'float'、'intarray'、'integer'、'pattern'、'plural'、'strarray'、'string'、'media'；
 
   name：资源名称，在资源定义时确定。
 
