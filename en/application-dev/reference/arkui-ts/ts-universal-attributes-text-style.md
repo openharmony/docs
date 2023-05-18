@@ -2,7 +2,7 @@
 
 Universal text attributes include text style attributes applicable to text containers.
 
->  **NOTE**
+> **NOTE**
 >
 > The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
 
