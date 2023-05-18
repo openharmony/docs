@@ -1091,6 +1091,8 @@ setAVQueueItems(items: Array\<AVQueueItem>): Promise<void\>
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名  | 类型                                 | 必填 | 说明                               |
@@ -1114,12 +1116,14 @@ setAVQueueItems(items: Array\<AVQueueItem>): Promise<void\>
 **示例：**
 
 ```js
+let imageSource : imageImageSource = image.createImageSource(value.buffer);
+let imagePixel : image.PixelMap = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
 let queueItemDescription_1 = {
     mediaId: '001',
     title: 'music_name',
     subtitle: 'music_sub_name',
     description: 'music_description',
-    icon: PIXELMAP_OBJECT,
+    icon : imagePixel,
     iconUri: 'http://www.icon.uri.com',
     extras: {'extras':'any'}
 };
@@ -1156,6 +1160,8 @@ setAVQueueItems(items: Array\<AVQueueItem>, callback: AsyncCallback<void\>): voi
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名   | 类型                                  | 必填 | 说明                                                         |
@@ -1174,12 +1180,14 @@ setAVQueueItems(items: Array\<AVQueueItem>, callback: AsyncCallback<void\>): voi
 **示例：**
 
 ```js
+let imageSource : imageImageSource = image.createImageSource(value.buffer);
+let imagePixel : image.PixelMap = await imageSource.createPixelMap({desiredSize:{width: 150, height: 150}});
 let queueItemDescription_1 = {
     mediaId: '001',
     title: 'music_name',
     subtitle: 'music_sub_name',
     description: 'music_description',
-    icon: PIXELMAP_OBJECT,
+    icon: imagePixel,
     iconUri: 'http://www.icon.uri.com',
     extras: {'extras':'any'}
 };
@@ -1217,6 +1225,8 @@ setAVQueueTitle(title: string): Promise\<void>
 设置媒体播放列表名称。结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -1256,6 +1266,8 @@ setAVQueueTitle(title: string, callback: AsyncCallback\<void\>): void
 设置媒体播放列表名称。结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -1434,6 +1446,8 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}): Promise\<voi
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名  | 类型                                          | 必填 | 说明                                                        |
@@ -1478,6 +1492,8 @@ dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: Asy
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名  | 类型                                          | 必填 | 说明                                                        |
@@ -1518,6 +1534,8 @@ setExtras(extras: {[key: string]: Object}): Promise\<void>
 媒体提供方设置键值对形式的自定义媒体数据包, 结果通过Promise异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
@@ -2520,7 +2538,7 @@ session.off('outputDeviceChange');
 
 ### off('commonCommand')<sup>10+</sup>
 
-off(type: 'commonCommand', callback?: (commonCommand: string, args: {[key:string]: Object}) => void): void
+off(type: 'commonCommand', callback?: (command: string, args: {[key:string]: Object}) => void): void
 
 取消监听自定义控制命令的变化。
 
@@ -2533,7 +2551,7 @@ off(type: 'commonCommand', callback?: (commonCommand: string, args: {[key:string
 | 参数名   | 类型                                                         | 必填 | 说明                                                     |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------- |
 | type     | string                                                       | 是   | 取消对应的监听事件，支持事件`'commonCommand'`。    |
-| callback | (commonCommand: string, args: {[key:string]: Object}) => void         | 否   | 回调函数，参数commonCommand是变化的自定义控制命令名，args为自定义控制命令的参数。<br>该参数为可选参数，若不填写该参数，则认为取消所有对commonCommand事件的监听。                      |
+| callback | (command: string, args: {[key:string]: Object}) => void         | 否   | 回调函数，参数command是变化的自定义控制命令名，args为自定义控制命令的参数。<br>该参数为可选参数，若不填写该参数，则认为取消所有对command事件的监听。                      |
 
 **错误码：**
 以下错误码的详细介绍请参见[媒体会话管理错误码](../errorcodes/errorcode-avsession.md)。
@@ -2557,6 +2575,8 @@ session.off('commonCommand');
 ### 属性
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 
 | 名称      | 类型   | 可读 | 可写 | 说明                                    |
@@ -3061,6 +3081,22 @@ getExtras(callback: AsyncCallback\<{[key: string]: Object}>): void
 
 **示例：**
 ```js
+let metadata  = {
+    assetId: "121278",
+    title: "lose yourself",
+    artist: "Eminem",
+    author: "ST",
+    album: "Slim shady",
+    writer: "ST",
+    composer: "ST",
+    duration: 2222,
+    mediaImage: "https://www.example.com/example.jpg",
+    subtitle: "8 Mile",
+    description: "Rap",
+    lyric: "https://www.example.com/example.lrc",
+    previousAssetId: "121277",
+    nextAssetId: "121279",
+};
 controller.getExtras(function (err, extras) {
     if (err) {
         console.info(`getExtras BusinessError: code: ${err.code}, message: ${err.message}`);
@@ -3602,6 +3638,8 @@ sendCommonCommand(command: string, args: {[key: string]: Object}): Promise\<void
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
 
+**系统接口：** 该接口为系统接口
+
 **参数：**
 
 | 参数名    | 类型                                  | 必填 | 说明                           |
@@ -3649,6 +3687,8 @@ sendCommonCommand(command: string, args: {[key: string]: Object}, callback: Asyn
 通过会话控制器发送自定义命令到其对应的会话。结果通过callback异步回调方式返回。
 
 **系统能力：** SystemCapability.Multimedia.AVSession.Core
+
+**系统接口：** 该接口为系统接口
 
 **参数：**
 
