@@ -25,7 +25,7 @@ import pasteboard from '@ohos.pasteboard';
 | MIMETYPE_TEXT_URI<sup>7+</sup>   | string   | 是   | 否   | URI内容的MIME类型定义。               |
 
 
-## pasteboard.createPlainTextData
+## pasteboard.createPlainTextData<sup>6+</sup>
 
 createPlainTextData(text:string): PasteData
 
@@ -356,16 +356,16 @@ record.convertToText((err, data) => {
 ```
 
 
-## PasteData
+## PasteData<sup>6+</sup>
 
 剪贴板内容对象。剪贴板内容包含一个或者多个内容条目（[PasteDataRecord](#pastedatarecord7)）以及属性描述对象（[PasteDataProperty](#pastedataproperty7)）。
 
-在调用PasteData的接口前，需要先通过[createPlainTextData()](#pasteboardcreateplaintextdata)、[createHtmlData()](#pasteboardcreatehtmldata7)、[createUriData()](#pasteboardcreateuridata7)、[createWantData()](#pasteboardcreatewantdata7)或[getPasteData()](#getpastedata)获取一个PasteData对象。
+在调用PasteData的接口前，需要先通过[createPlainTextData()](#pasteboardcreateplaintextdata6)、[createHtmlData()](#pasteboardcreatehtmldata7)、[createUriData()](#pasteboardcreateuridata7)、[createWantData()](#pasteboardcreatewantdata7)或[getPasteData()](#getpastedata)获取一个PasteData对象。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
 
-### getPrimaryText
+### getPrimaryText<sup>6+</sup>
 
 
 getPrimaryText(): string
@@ -820,7 +820,7 @@ var systemPasteboard = pasteboard.getSystemPasteboard();
 ```
 
 
-### setPasteData
+### setPasteData<sup>6+</sup>
 
 setPasteData(data:PasteData, callback:AsyncCallback&lt;void&gt;): void
 
@@ -850,7 +850,7 @@ systemPasteboard.setPasteData(pasteData, (err, data) => {
 ```
 
 
-### setPasteData
+### setPasteData<sup>6+</sup>
 
 setPasteData(data:PasteData): Promise&lt;void&gt;
 
@@ -883,7 +883,7 @@ systemPasteboard.setPasteData(pasteData).then((data) => {
 ```
 
 
-### getPasteData
+### getPasteData<sup>6+</sup>
 
 getPasteData( callback:AsyncCallback&lt;PasteData&gt;): void
 
@@ -911,7 +911,7 @@ systemPasteboard.getPasteData((err, pasteData) => {
 ```
 
 
-### getPasteData
+### getPasteData<sup>6+</sup>
 
 getPasteData(): Promise&lt;PasteData&gt;
 
