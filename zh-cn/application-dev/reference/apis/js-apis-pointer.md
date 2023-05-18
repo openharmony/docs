@@ -550,7 +550,7 @@ try {
 
 ## pointer.setMouseScrollRows<sup>10+</sup>
 
-setMouseScrollRows(speed: number): Promise&lt;void&gt;
+setMouseScrollRows(rows: number): Promise&lt;void&gt;
 
 设置鼠标滚动行数，使用Promise异步方式返回结果。
 
