@@ -19,7 +19,7 @@ import reminderAgentManager from'@ohos.reminderAgentManager';
 ## reminderAgentManager.publishReminder
 
 ```ts
-publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback<number>): void
+publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>): void
 ```
 
 发布一个后台代理提醒，使用回调的方式实现异步调用，该方法需要申请通知弹窗权限[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
@@ -68,7 +68,7 @@ try {
 ## reminderAgentManager.publishReminder
 
 ```ts
-publishReminder(reminderReq: ReminderRequest): Promise<number>
+publishReminder(reminderReq: ReminderRequest): Promise\<number>
 ```
 
 发布一个后台代理提醒，使用`Promise`的方式实现异步调用，该方法需要申请通知弹窗权限[Notification.requestEnableNotification](js-apis-notification.md#notificationrequestenablenotification8)后才能调用。
@@ -118,7 +118,7 @@ try {
 ## reminderAgentManager.cancelReminder
 
 ```ts
-cancelReminder(reminderId: number, callback: AsyncCallback<void>): void
+cancelReminder(reminderId: number, callback: AsyncCallback\<void>): void
 ```
 
 取消指定id的提醒，使用回调的方式实现异步调用。
@@ -161,7 +161,7 @@ try {
 ## reminderAgentManager.cancelReminder
 
 ```ts
-cancelReminder(reminderId: number): Promise<void>
+cancelReminder(reminderId: number): Promise\<void>
 ```
 
 取消指定id的提醒，使用`Promise`方式实现异步调用。
@@ -206,7 +206,7 @@ try {
 ## reminderAgentManager.getValidReminders
 
 ```ts
-getValidReminders(callback: AsyncCallback<Array<ReminderRequest>>): void
+getValidReminders(callback: AsyncCallback\<Array\<ReminderRequest>>): void
 
 ```
 
@@ -268,7 +268,7 @@ try {
 ## reminderAgentManager.getValidReminders
 
 ```ts
-getValidReminders(): Promise<Array<ReminderRequest>>
+getValidReminders(): Promise\<Array\<ReminderRequest>>
 ```
 
 获取当前应用已设置的所有有效（未过期）的提醒，使用Promise方式实现异步调用。
@@ -328,7 +328,7 @@ try {
 ## reminderAgentManager.cancelAllReminders
 
 ```ts
-cancelAllReminders(callback: AsyncCallback<void>): void
+cancelAllReminders(callback: AsyncCallback\<void>): void
 ```
 
 取消当前应用所有的提醒，使用回调的方式实现异步调用。
@@ -369,7 +369,7 @@ try {
 ## reminderAgentManager.cancelAllReminders
 
 ```ts
-cancelAllReminders(): Promise<void>
+cancelAllReminders(): Promise\<void>
 ```
 
 取消当前应用所有的提醒，使用Promise方式实现异步调用。
@@ -408,7 +408,7 @@ try {
 ## reminderAgentManager.addNotificationSlot
 
 ```ts
-addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback<void>): void
+addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback\<void>): void
 ```
 
 添加一个NotificationSlot，使用回调的方式实现异步调用。
@@ -447,7 +447,7 @@ try {
 ## reminderAgentManager.addNotificationSlot
 
 ```ts
-addNotificationSlot(slot: NotificationSlot): Promise<void>
+addNotificationSlot(slot: NotificationSlot): Promise\<void>
 ```
 
 添加一个NotificationSlot，使用Promise方式实现异步调用。
@@ -489,7 +489,7 @@ try {
 ## reminderAgentManager.removeNotificationSlot
 
 ```ts
-removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback<void>): void
+removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback\<void>): void
 ```
 
 删除目标NotificationSlot，使用回调的方式实现异步调用。
@@ -525,7 +525,7 @@ try {
 ## reminderAgentManager.removeNotificationSlot
 
 ```ts
-removeNotificationSlot(slotType: notification.SlotType): Promise<void>
+removeNotificationSlot(slotType: notification.SlotType): Promise\<void>
 ```
 
 删除目标NotificationSlot，使用Promise方式实现异步调用。
@@ -566,6 +566,8 @@ try {
 
 **系统能力**：`SystemCapability.Notification.ReminderAgent`
 
+**系统接口**: ACTION_BUTTON_TYPE_CUSTOM为系统接口，三方应用不支持调用。
+
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | ACTION_BUTTON_TYPE_CLOSE | 0 | 表示关闭提醒的按钮。 |
@@ -590,6 +592,8 @@ try {
 
 用于设置弹出的提醒通知信息上显示的按钮类型和标题。
 
+**系统接口**: wantAgent为系统接口，三方应用不支持调用。
+
 **系统能力**：`SystemCapability.Notification.ReminderAgent`
 
 | 名称 | 类型 | 必填 | 说明 |
@@ -605,11 +609,13 @@ try {
 
 **系统能力**：`SystemCapability.Notification.ReminderAgent`
 
+**系统接口**: uri为系统接口，三方应用不支持调用。
+
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | pkgName | string | 是 | 指明跳转的目标包名。 |
 | abilityName | string | 是 | 指明跳转的目标ability名称。 |
-| uri | string<sup>10+</sup> | 否 | 指明跳转目标的uri信息。（系统接口） |
+| uri<sup>10+</sup> | string | 否 | 指明跳转目标的uri信息。（系统接口） |
 
 
 ## MaxScreenWantAgent
@@ -633,7 +639,7 @@ try {
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | reminderType | [ReminderType](#remindertype) | 是 | 指明提醒类型。 |
-| actionButton | [ActionButton](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮（参数可选。普通应用：最多支持两个按钮，系统应用：API9最多支持两个按钮，API10及以后最多支持三个按钮。）。 |
+| actionButton<sup>10+</sup> | [ActionButton](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮（参数可选。普通应用：最多支持两个按钮，系统应用：API9最多支持两个按钮，API10及以后最多支持三个按钮。）。 |
 | wantAgent | [WantAgent](#wantagent) | 否 | 点击通知后需要跳转的目标ability信息。 |
 | maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时跳转的目标包。如果设备正在使用中，则弹出一个通知框。 |
 | ringDuration | number | 否 | 指明响铃时长（单位：秒），默认1秒。 |
