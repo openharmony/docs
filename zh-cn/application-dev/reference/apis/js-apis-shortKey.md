@@ -1,6 +1,6 @@
 #  @ohos.multimodalInput.shortKey(快捷键)
 
-快捷键拉起Ability模块，用于处理快捷键拉起Ability相关能力
+通过本模块接口，可以设置快捷键拉起Ability的延迟时间，如设置长按快捷键3s后进行截屏等。
 
 > **说明：**
 >
@@ -26,7 +26,7 @@ setKeyDownDuration(businessId: string, delay: number, callback: AsyncCallback&lt
 | 参数名     | 类型                | 必填 | 说明                                                         |
 | ---------- | ------------------- | ---- | ------------------------------------------------------------ |
 | businessId | string              | 是   | 业务在多模侧注册的唯一标识，与ability_launch_config.json中的businessId对应 |
-| delay      | number              | 是   | 如果是按下触发，则这个值有效，表示最终按键按下多长时间时触发快捷键拉起Ability。单位：毫秒（ms） |
+| delay      | number              | 是   | 该值仅支持快捷键按下触发，表示按下快捷键多长时间后拉起Ability，单位是毫秒（ms） |
 | callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 **示例**：
@@ -60,7 +60,7 @@ setKeyDownDuration(businessId: string, delay: number): Promise&lt;void&gt;
 | 参数名     | 类型   | 必填 | 说明                                                         |
 | ---------- | ------ | ---- | ------------------------------------------------------------ |
 | businessId | string | 是   | 业务在多模侧注册的唯一标识，与ability_launch_config.json中的businessId对应 |
-| delay      | number | 是   | 如果是按下触发，则这个值有效，表示最终按键按下多长时间时触发快捷键拉起Ability。单位：毫秒（ms） |
+| delay      | number | 是   | 该值仅支持快捷键按下触发，表示按下快捷键多长时间后拉起Ability，单位是毫秒（ms） |
 
 **返回值**：
 
