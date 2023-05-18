@@ -25,12 +25,11 @@ export default class MyStaticSubscriberExtensionAbility extends StaticSubscriber
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
-启动Ability（callback形式）。
+拉起一个静态订阅所属的同应用的Ability。使用callback异步回调。
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
  - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -45,11 +44,10 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 **错误码：**
 
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | The application does not have permission to call the interface. |
-| 202      | The application is not system-app, can not use system-api.   |
-| 401      | If the input parameter is not valid parameter.               |
 | 16000001 | The specified ability does not exist.                        |
 | 16000002 | Incorrect ability type.                                      |
 | 16000004 | Can not start invisible component.                           |
@@ -94,12 +92,11 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
 startAbility(want: Want): Promise&lt;void&gt;;
 
-启动Ability（promise形式）。
+拉起一个静态订阅所属的同应用的Ability。使用Promise异步回调。
 
 使用规则：
  - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
  - 跨应用场景下，目标Ability的visible属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
- - 组件启动规则详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -119,11 +116,10 @@ startAbility(want: Want): Promise&lt;void&gt;;
 
 **错误码：**
 
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 201      | The application does not have permission to call the interface. |
-| 202      | The application is not system-app, can not use system-api.   |
-| 401      | If the input parameter is not valid parameter.               |
 | 16000001 | The specified ability does not exist.                        |
 | 16000002 | Incorrect ability type.                                      |
 | 16000004 | Can not start invisible component.                           |
