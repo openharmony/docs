@@ -367,7 +367,7 @@ try {
     // 执行正常业务
     console.info('startAbilityForResult succeed');
   });
-} catch (paramError) {
+} catch (err) {
   // 处理入参错误异常
   console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
 }
@@ -785,7 +785,7 @@ try {
       // 处理业务逻辑错误
       console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
     });
-} catch (paramError) {
+} catch (err) {
   // 处理入参错误异常
   console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
 }
@@ -1397,6 +1397,7 @@ let want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'ServiceExtensionAbility'
 };
+let commRemote;
 let options = {
   onConnect(elementName, remote) {
     commRemote = remote;
@@ -1466,6 +1467,7 @@ let want = {
   abilityName: 'ServiceExtensionAbility'
 };
 let accountId = 100;
+let commRemote;
 let options = {
   onConnect(elementName, remote) {
     commRemote = remote;
@@ -1522,6 +1524,7 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
   ```ts
 // connection为connectServiceExtensionAbility中的返回值
 let connection = 1;
+let commRemote;
 
 try {
   this.context.disconnectServiceExtensionAbility(connection, (err) => {
@@ -1570,6 +1573,24 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
   ```ts
 // connection为connectServiceExtensionAbility中的返回值
 let connection = 1;
+let commRemote;
+
+try {
+  this.context.disconnectServiceExtensionAbility(connection, (err) => {
+    commRemote = null;
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('disconnectServiceExtensionAbility succeed');
+  });
+} catch (err) {
+  commRemote = null;
+  // 处理入参错误异常
+  console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+}
 
 try {
   this.context.disconnectServiceExtensionAbility(connection, (err) => {
@@ -1683,11 +1704,11 @@ try {
       // 执行正常业务
       caller = obj;
       console.info('startAbilityByCall succeed');
-    }).catch((error) => {
+    }).catch((err) => {
     // 处理业务逻辑错误
     console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
   });
-} catch (paramError) {
+} catch (err) {
   // 处理入参错误异常
   console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
 }
@@ -2071,6 +2092,8 @@ setMissionIcon(icon: image.PixelMap): Promise\<void>;
 **示例：**
 
   ```ts
+  import image from '@ohos.multimedia.image';
+
   let imagePixelMap;
   let color = new ArrayBuffer(0);
   let initializationOptions = {

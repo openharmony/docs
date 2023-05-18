@@ -2,6 +2,10 @@
 
 表示发起Mission迁移时所需参数的枚举，迁移Mission详见：[continueMission接口](js-apis-distributedMissionManager.md#distributedmissionmanagercontinuemission)。
 
+> **说明：**
+> 
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
 | 名称       | 类型   | 可读   | 可写   | 说明      |

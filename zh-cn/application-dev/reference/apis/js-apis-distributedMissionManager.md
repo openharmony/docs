@@ -360,7 +360,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 
 迁移任务，以回调函数的方式返回。
 
-**需要权限**：ohos.permission.MANAGE_MISSIONS and ohos.permission.DISTRIBUTED_DATASYNC
+**需要权限**：ohos.permission.MANAGE_MISSIONS，ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -418,7 +418,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 
 迁移任务，以promise方式返回执行结果。
 
-**需要权限**：ohos.permission.MANAGE_MISSIONS and ohos.permission.DISTRIBUTED_DATASYNC
+**需要权限**：ohos.permission.MANAGE_MISSIONS，ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
