@@ -209,8 +209,8 @@ removeRight(deviceName: string): boolean
 **示例：**
 
 ```js
-let devicesName="1-1";
-if usb.removeRight(devicesName) {
+let devicesName= "1-1";
+if (usb.removeRight(devicesName)) {
   console.log(`Succeed in removing right`);
 }
 ```
@@ -245,7 +245,7 @@ addRight(bundleName: string, deviceName: string): boolean
 ```js
 let devicesName = "1-1";
 let bundleName = "com.example.hello";
-if usb.addRight(bundleName, devicesName) {
+if (usb.addRight(bundleName, devicesName)) {
   console.log(`Succeed in adding right`);
 }
 ```
@@ -454,7 +454,14 @@ controlTransfer(pipe: USBDevicePipe, controlparam: USBControlParams, timeout ?: 
 **示例：**
 
 ```js
-let param = new usb.USBControlParams();
+let param = {
+  request: 0,
+  reqType: 0,
+  target:0,
+  value: 0,
+  index: 0,
+  data: null
+};
 usb.controlTransfer(devicepipe, param).then((ret) => {
  console.log(`controlTransfer = ${ret}`);
 })
@@ -579,7 +586,7 @@ usbFunctionsToString(funcs: FunctionType): string
 **示例：**
 
 ```js
-let funcs = usb.ACM | usb.ECM;
+let funcs = usb.FunctionType.ACM | usb.FunctionType.ECM;
 let ret = usb.usbFunctionsToString(funcs);
 ```
 
@@ -608,7 +615,7 @@ setCurrentFunctions(funcs: FunctionType): Promise\<void\>
 **示例：**
 
 ```js
-let funcs = usb.HDC;
+let funcs = usb.FunctionType.HDC;
 usb.setCurrentFunctions(funcs).then(() => {
     console.info('usb setCurrentFunctions successfully.');
 }).catch(err => {
