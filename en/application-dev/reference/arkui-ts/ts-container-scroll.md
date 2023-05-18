@@ -61,7 +61,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 ## Scroller
 
-Implements a controller for a scrollable container component. You can bind this component to a container component and use it to control the scrolling of that component. One controller can control only one container component. The supported container components are **\<List>**, **\<Scroll>**, **\<ScrollBar>**, and **\<Grid>**.
+Implements a controller for a scrollable container component. You can bind this component to a container component and use it to control the scrolling of that component. One controller can control only one container component. The supported container components are **\<List>**, **\<Scroll>**, **\<ScrollBar>**, **\<Grid>**, and **\<WaterFlow>**.
 
 
 ### Objects to Import

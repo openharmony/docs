@@ -124,6 +124,7 @@
   - [Swiper](ts-container-swiper.md)
   - [Tabs](ts-container-tabs.md)
   - [TabContent](ts-container-tabcontent.md)
+  - [WaterFlow](ts-container-waterflow.md)
 - Media Components
   - [Video](ts-media-components-video.md)
 - Drawing Components

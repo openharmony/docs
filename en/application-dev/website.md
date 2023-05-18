@@ -737,6 +737,7 @@
       - [Swiper](reference/arkui-ts/ts-container-swiper.md)
       - [Tabs](reference/arkui-ts/ts-container-tabs.md)
       - [TabContent](reference/arkui-ts/ts-container-tabcontent.md)
+      - [WaterFlow](reference/arkui-ts/ts-container-waterflow.md)
     - Media Component
       - [Video](reference/arkui-ts/ts-media-components-video.md)
     - Drawing Components
