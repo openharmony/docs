@@ -1749,14 +1749,14 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 
 | 参数名     | 类型     | 必填   | 说明     |
 | --------- | ------ | ---- | ------ |
-| longitude | number | 是    | 经度, 范围[-180, 179.9),东经取正值,西经取负值 |
-| latitude  | number | 是    | 纬度, 范围[-90, 89.9),北纬取正值,南纬取负值 |
+| longitude | number | 是    | 经度, 范围[-180, 179.9), 东经取正值, 西经取负值 |
+| latitude  | number | 是    | 纬度, 范围[-90, 89.9), 北纬取正值, 南纬取负值 |
 
 **返回值：** 
 
 | 类型       | 说明          |
 | -------- | ----------- |
-| Array | 时区对象的数组 |
+| Array<TimeZone> | 时区对象的数组 |
 
 **示例：** 
   ```ts
