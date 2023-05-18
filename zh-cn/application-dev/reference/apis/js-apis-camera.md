@@ -1755,7 +1755,7 @@ setExposureBias(exposureBias: number): void
 
 | 参数名     | 类型                            | 必填 | 说明                 |
 | -------- | -------------------------------| ---- | ------------------- |
-| exposureBias   | number                   | 是   | 曝光补偿,getExposureBiasRange查询支持的范围,接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode), 如果设置超过支持范围的值，自动匹配到就近临界点 |
+| exposureBias   | number                   | 是   | 曝光补偿，getExposureBiasRange查询支持的范围，接口调用失败会返回相应错误码，错误码类型[CameraErrorCode](#cameraerrorcode)，如果设置超过支持范围的值，自动匹配到就近临界点。 |
 
 **错误码：**
 
@@ -2077,7 +2077,7 @@ setZoomRatio(zoomRatio: number): void
 
 | 参数名       | 类型                  | 必填 | 说明                 |
 | --------- | -------------------- | ---- | ------------------- |
-| zoomRatio | number               | 是   | 可变焦距比,通过getZoomRatioRange获取支持的变焦范围, 如果设置超过支持范围的值，自动匹配到就近临界点 |
+| zoomRatio | number               | 是   | 可变焦距比，通过getZoomRatioRange获取支持的变焦范围，如果设置超过支持范围的值，自动匹配到就近临界点。 |
 
 **返回值：**
 
