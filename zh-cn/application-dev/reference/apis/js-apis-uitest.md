@@ -1394,7 +1394,7 @@ static create(): Driver
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
-| 17000001 | Initialize failed. |
+| 17000001 | if the test framework failed to initialize. |
 
 **示例：**
 
@@ -2748,7 +2748,7 @@ moveTo(x: number, y: number): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
-| 17000005 | This operation is not supported.         |
+| 17000005 | if the action is not supported on this window.         |
 
 **示例：**
 
@@ -2784,7 +2784,7 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
-| 17000005 | This operation is not supported.         |
+| 17000005 | if the action is not supported on this window.         |
 
 **示例：**
 
@@ -2812,7 +2812,7 @@ split(): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
-| 17000005 | This operation is not supported.         |
+| 17000005 | if the action is not supported on this window.         |
 
 **示例：**
 
@@ -2840,7 +2840,7 @@ maximize(): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
-| 17000005 | This operation is not supported.         |
+| 17000005 | if the action is not supported on this window.         |
 
 **示例：**
 
@@ -2868,7 +2868,7 @@ minimize(): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
-| 17000005 | This operation is not supported.         |
+| 17000005 | if the action is not supported on this window.         |
 
 **示例：**
 
@@ -2896,7 +2896,7 @@ resume(): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
-| 17000005 | This operation is not supported.         |
+| 17000005 | if the action is not supported on this window.         |
 
 **示例：**
 
@@ -2924,7 +2924,7 @@ close(): Promise\<void>
 | -------- | ---------------------------------------- |
 | 17000002 | if the async function was not called with await. |
 | 17000004 | if the component is invisible or destroyed.           |
-| 17000005 | This operation is not supported.         |
+| 17000005 | if the action is not supported on this window.         |
 
 **示例：**
 
