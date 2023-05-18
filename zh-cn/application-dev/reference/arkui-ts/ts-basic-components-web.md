@@ -408,7 +408,7 @@ zoomAccess(zoomAccess: boolean)
 
 overviewModeAccess(overviewModeAccess: boolean)
 
-设置是否使用概览模式加载网页，默认使用该方式。
+设置是否使用概览模式加载网页，默认使用该方式。当前仅支持移动设备。
 
 **参数：**
 
@@ -1174,7 +1174,7 @@ webCursiveFont(family: string)
 
 darkMode(mode: WebDarkMode)
 
-设置Web深色模式，默认关闭。当深色模式开启时，Web将启用媒体查询prefer-color-scheme中网页所定义的深色样式，若网页未定义深色样式，则保持原状。如需开启强制深色模式，建议配合[forceDarkAccess](#forcedarkaccess9)使用。
+设置Web深色模式，默认关闭。当深色模式开启时，Web将启用媒体查询prefers-color-scheme中网页所定义的深色样式，若网页未定义深色样式，则保持原状。如需开启强制深色模式，建议配合[forceDarkAccess](#forcedarkaccess9)使用。
 
 **参数：**
 
@@ -2467,7 +2467,6 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
                 event.handler.handleCancel()
               }
             })
-            return true
           })
       }
     }
@@ -2522,7 +2521,6 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
                 event.handler.ignore()
               }
             })
-            return true
           })
       }
     }
