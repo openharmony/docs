@@ -8,7 +8,7 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称 | 类型                    | 可读 | 可写 | 说明       |
+| 名称 | 类型                    | 只读 | 必填 | 说明       |
 | ---- | ---------------------- | ---- | ---- | ---------- |
-| name | string                 | 是   | 是   | 模板名称。 |
-| data | {[key:string]: Object} | 是   | 是   | 模板数据。 |
+| name | string                 | 否   | 是   | 模板名称。 |
+| data | {[key:string]: Object} | 否   | 是   | 模板数据。 |

@@ -40,9 +40,6 @@ subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, c
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201  | Permission denied.                      |
-| 202  | Not system application to call the interface. |
-| 401  | The parameter check failed.             |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -95,9 +92,6 @@ subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>): 
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201  | Permission denied.                      |
-| 202  | Not system application to call the interface. |
-| 401  | The parameter check failed.             |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -148,9 +142,6 @@ subscribe(subscriber: NotificationSubscriber, info?: NotificationSubscribeInfo):
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201  | Permission denied.                      |
-| 202  | Not system application to call the interface. |
-| 401  | The parameter check failed.             |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -196,9 +187,6 @@ unsubscribe(subscriber: NotificationSubscriber, callback: AsyncCallback\<void\>)
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201  | Permission denied.                      |
-| 202  | Not system application to call the interface. |
-| 401  | The parameter check failed.             |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -246,9 +234,6 @@ unsubscribe(subscriber: NotificationSubscriber): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201  | Permission denied.                      |
-| 202  | Not system application to call the interface. |
-| 401  | The parameter check failed.             |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -294,9 +279,6 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201  | Permission denied.                           |
-| 202  | Not system application to call the interface. |
-| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -352,9 +334,6 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201  | Permission denied.                           |
-| 202  | Not system application to call the interface. |
-| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -371,7 +350,7 @@ let notificationKey = {
     id: 0,
     label: "label",
 };
-let reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+let reason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 notificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
 	console.info("remove success");
 });
@@ -393,7 +372,7 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 
 | 参数名     | 类型                  | 必填 | 说明                 |
 | -------- | --------------------- | ---- | -------------------- |
-| hashCode | string                | 是   | 通知唯一ID。可以通过[onConsume](#onconsume)回调的入参[SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)获取其内部[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象中的hashCode。 |
+| hashCode | string                | 是   | 通知唯一ID。可以通过[onConsume](js-apis-notification.md#onconsume)回调的入参[SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)获取其内部[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)对象中的hashCode。 |
 | reason   | [RemoveReason](#removereason) | 是   | 通知删除原因。         |
 | callback | AsyncCallback\<void\> | 是   | 删除指定通知回调函数。 |
 
@@ -403,9 +382,6 @@ remove(hashCode: string, reason: RemoveReason, callback: AsyncCallback\<void\>):
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201  | Permission denied.                           |
-| 202  | Not system application to call the interface. |
-| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -423,7 +399,7 @@ function removeCallback(err) {
         console.info("remove success");
     }
 }
-let reason = NotificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
+let reason = notificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
 notificationSubscribe.remove(hashCode, reason, removeCallback);
 ```
 
@@ -452,9 +428,6 @@ remove(hashCode: string, reason: RemoveReason): Promise\<void\>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201  | Permission denied.                           |
-| 202  | Not system application to call the interface. |
-| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -495,9 +468,6 @@ removeAll(bundle: BundleOption, callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201  | Permission denied.                           |
-| 202  | Not system application to call the interface. |
-| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -516,7 +486,7 @@ function removeAllCallback(err) {
 let bundle = {
     bundle: "bundleName1",
 };
-NotificationSubscribe.removeAll(bundle, removeAllCallback);
+notificationSubscribe.removeAll(bundle, removeAllCallback);
 ```
 
 ## NotificationSubscribe.removeAll
@@ -543,9 +513,6 @@ removeAll(callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201  | Permission denied.                           |
-| 202  | Not system application to call the interface. |
-| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -588,9 +555,6 @@ removeAll(bundle?: BundleOption): Promise\<void\>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 201  | Permission denied.                           |
-| 202  | Not system application to call the interface. |
-| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -630,9 +594,6 @@ removeAll(userId: number, callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201  | Permission denied.                           |
-| 202  | Not system application to call the interface. |
-| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -678,9 +639,6 @@ removeAll(userId: number): Promise\<void>
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 201  | Permission denied.                           |
-| 202  | Not system application to call the interface. |
-| 401  | The parameter check failed.                  |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -700,319 +658,6 @@ function removeAllCallback(err) {
 let userId = 1;
 
 notificationSubscribe.removeAll(userId, removeAllCallback);
-```
-
-## NotificationSubscriber
-
-作为订阅通知接口[subscribe](#notificationsubscribe)的入参，提供订阅者接收到新通知、取消通知等的回调方法。
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-### onConsume
-
-onConsume?: (data: [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)) => void
-
-接收到新通知的回调函数。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**系统接口**: 此接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ------------ | ------------------------ | ---- | -------------------------- |
-| data | [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata) | 是 | 新接收到的通知信息。 |
-
-**示例：**
-
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onConsumeCallback(data) {
-    console.info('===> onConsume in test');
-    let req = data.request;
-    console.info('===> onConsume callback req.id:' + req.id);
-};
-
-let subscriber = {
-    onConsume: onConsumeCallback
-};
-
-notificationSubscribe.subscribe(subscriber, subscribeCallback);
-```
-
-### onCancel
-
-onCancel?:(data: [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)) => void
-
-取消通知的回调函数。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ------------ | ------------------------ | ---- | -------------------------- |
-| data | [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata) | 是 | 需要取消的通知信息。 |
-
-**示例：**
-
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onCancelCallback(data) {
-    console.info('===> onCancel in test');
-    let req = data.request;
-    console.info('===> onCancel callback req.id:' + req.id);
-}
-
-let subscriber = {
-    onCancel: onCancelCallback
-};
-
-notificationSubscribe.subscribe(subscriber, subscribeCallback);
-```
-
-### onUpdate
-
-onUpdate?:(data: [NotificationSortingMap](js-apis-notification.md#notificationsortingmap)) => void
-
-更新通知排序的回调函数。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ------------ | ------------------------ | ---- | -------------------------- |
-| data | [NotificationSortingMap](js-apis-notification.md#notificationsortingmap)) | 是 | 最新的通知排序列表。 |
-
-**示例：**
-
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onUpdateCallback(map) {
-    console.info('===> onUpdateCallback map:' + JSON.stringify(map));
-}
-
-let subscriber = {
-    onUpdate: onUpdateCallback
-};
-
-notificationSubscribe.subscribe(subscriber, subscribeCallback);
-```
-
-### onConnect
-
-onConnect?:() => void
-
-订阅完成的回调函数。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**示例：**
-
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onConnectCallback() {
-    console.info('===> onConnect in test');
-}
-
-let subscriber = {
-    onConnect: onConnectCallback
-};
-
-notificationSubscribe.subscribe(subscriber, subscribeCallback);
-```
-
-### onDisconnect
-
-onDisconnect?:() => void
-
-取消订阅的回调函数。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**示例：**
-
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-function unsubscribeCallback(err) {
-    if (err.code) {
-        console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("unsubscribeCallback");
-    }
-};
-
-function onConnectCallback() {
-    console.info('===> onConnect in test');
-}
-function onDisconnectCallback() {
-    console.info('===> onDisconnect in test');
-}
-
-let subscriber = {
-    onConnect: onConnectCallback,
-    onDisconnect: onDisconnectCallback
-};
-
-// 订阅通知后会收到onConnect回调
-notificationSubscribe.subscribe(subscriber, subscribeCallback);
-// 取消订阅后会收到onDisconnect回调
-notificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
-```
-
-### onDestroy
-
-onDestroy?:() => void
-
-服务失联回调函数。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**示例：**
-
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onDestroyCallback() {
-    console.info('===> onDestroy in test');
-}
-
-let subscriber = {
-    onDestroy: onDestroyCallback
-};
-
-notificationSubscribe.subscribe(subscriber, subscribeCallback);
-```
-
-### onDoNotDisturbDateChange
-
-onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
-
-免打扰时间选项发生变更时的回调函数。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ------------ | ------------------------ | ---- | -------------------------- |
-| mode | notification.[DoNotDisturbDate](js-apis-notificationManager.md#DoNotDisturbDate) | 是 | 回调返回免打扰时间选项变更。 |
-
-**示例：**
-
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onDoNotDisturbDateChangeCallback(mode) {
-    console.info('===> onDoNotDisturbDateChange:' + mode);
-}
-
-let subscriber = {
-    onDoNotDisturbDateChange: onDoNotDisturbDateChangeCallback
-};
-
-notificationSubscribe.subscribe(subscriber, subscribeCallback);
-```
-
-
-### onEnabledNotificationChanged
-
-onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata)) => void
-
-监听应用通知使能变化。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名 | 类型 | 必填 | 说明 |
-| ------------ | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<[EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata)\> | 是 | 回调返回监听到的应用信息。 |
-
-**示例：**
-
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onEnabledNotificationChangedCallback(callbackData) {
-    console.info("bundle: ", callbackData.bundle);
-    console.info("uid: ", callbackData.uid);
-    console.info("enable: ", callbackData.enable);
-};
-
-let subscriber = {
-    onEnabledNotificationChanged: onEnabledNotificationChangedCallback
-};
-
-notificationSubscribe.subscribe(subscriber, subscribeCallback);
 ```
 
 ## RemoveReason
