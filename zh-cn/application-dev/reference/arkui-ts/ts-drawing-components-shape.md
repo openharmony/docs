@@ -21,7 +21,7 @@
 
 Shape(value?: PixelMap)
 
-从API version 9开始，该接口支持在ArkTS卡片中使用。
+从API version 9开始，该接口支持在ArkTS卡片中使用，卡片中不支持使用PixelMap对象。
 
 **参数：**
 
@@ -51,8 +51,6 @@ Shape(value?: PixelMap)
 | mesh<sup>8+</sup> | Array&lt;number&gt;,number,number | [],0,0 | 设置mesh效果。第一个参数为长度（column + 1）* （row + 1）* 2的数组，它记录了扭曲后的位图各个顶点位置，第二个参数为mesh矩阵列数column，第三个参数为mesh矩阵行数row。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 
 ## 示例
-
-### 示例1
 
 ```ts
 // xxx.ets

@@ -28,10 +28,10 @@ Missions are managed by system applications (such as home screen), rather than t
 - Switch a mission to the foreground.
 
 
-A UIAbility instance corresponds to an independent mission. Therefore, when an application calls the **startAbility()** method to start a UIAbility, a mission is created.
+A UIAbility instance corresponds to an independent mission. Therefore, when an application calls **startAbility()** to start a UIAbility, a mission is created.
 
 
-To call [missionManager](../reference/apis/js-apis-application-missionManager.md) to manage missions, the home screen application must request the **ohos.permission.MANAGE_MISSIONS** permission. For details about the configuration, see [Permission Application Guide](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+To call [missionManager](../reference/apis/js-apis-application-missionManager.md) to manage missions, the home screen application must request the **ohos.permission.MANAGE_MISSIONS** permission. For details about the configuration, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
 
 
 You can use **missionManager** to manage missions, for example, listening for mission changes, obtaining mission information or snapshots, and clearing, locking, or unlocking missions. The sample code is as follows:

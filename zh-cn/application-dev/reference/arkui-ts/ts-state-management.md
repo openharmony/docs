@@ -376,6 +376,8 @@ constructor(initializingProperties?: Object)
 
 创建一个新的LocalStorage实例。使用Object.keys(initializingProperties)返回的属性和其数值，初始化LocalStorage实例。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名                    | 类型     | 必填   | 参数描述                                     |
@@ -393,6 +395,8 @@ let storage: LocalStorage = new LocalStorage({ 'PropA': 47 });
 static GetShared(): LocalStorage
 
 获取当前stage共享的LocalStorage实例。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **模型约束：**此接口仅可在Stage模型下使用。
 
@@ -413,6 +417,8 @@ let storage: LocalStorage = LocalStorage.GetShared();
 has(propName: string): boolean
 
 判断propName对应的属性是否在LocalStorage中存在。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -439,6 +445,8 @@ get&lt;T&gt;(propName: string): T | undefined
 
 获取propName在LocalStorage中对应的属性。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名      | 类型     | 必填   | 参数描述               |
@@ -463,6 +471,8 @@ let value: number = storage.get('PropA'); // 47
 set&lt;T&gt;(propName: string, newValue: T): boolean
 
 在LocalStorage中设置propName对应属性的值。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -490,6 +500,8 @@ let res1: boolean = storage.set('PropB', 47); // false
 setOrCreate&lt;T&gt;(propName: string, newValue: T): boolean
 
 propName如果已经在LocalStorage中存在，则设置propName对应是属性的值为newValue。如果不存在，则创建propName属性，初始化为newValue。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -523,6 +535,8 @@ link&lt;T&gt;(propName: string): SubscribedAbstractProperty&lt;T&gt;
 
 如果LocalStorage中不存在propName，则返回undefined。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名      | 类型     | 必填   | 参数描述               |
@@ -549,6 +563,8 @@ linkToPropA1.set(48); // 双向同步: linkToPropA1.get() == linkToPropA2.get() 
 setAndLink&lt;T&gt;(propName: string, defaultValue: T): SubscribedAbstractProperty&lt;T&gt;
 
 与Link接口类似，如果给定的propName在LocalStorage存在，则返回该propName对应的属性的双向绑定数据。如果不存在，则使用defaultValue在LocalStorage创建和初始化propName，返回其双向绑定数据。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -577,6 +593,8 @@ prop&lt;S&gt;(propName: string): SubscribedAbstractProperty&lt;S&gt;
 
 如果给定的propName在LocalStorage存在，则返回与LocalStorage中propName对应属性的单向绑定数据。如果LocalStorage中不存在propName，则返回undefined。单向绑定数据的修改不会被同步回LocalStorage中。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **参数：**
 
 | 参数名      | 类型     | 必填   | 参数描述               |
@@ -603,6 +621,8 @@ prop1.set(1); // one-way sync: prop1.get()=1; but prop2.get() == 47
 setAndProp&lt;S&gt;(propName: string, defaultValue: S): SubscribedAbstractProperty&lt;S&gt;
 
 propName在LocalStorage存在，则返回该propName对应的属性的单向绑定数据。如果不存在，则使用defaultValue在LocalStorage创建和初始化propName对应的属性，返回其单向绑定数据。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -631,6 +651,8 @@ delete(propName: string): boolean
 在LocalStorage中删除propName对应的属性。删除属性的前提是该属性已经没有订阅者，如果有则返回false。删除成功则返回true。
 
 属性的订阅者是link，prop接口绑定的propName，以及\@LocalStorageLink('propName')和\@LocalStorageProp('propName')。如果自定义组件Component中使用或者SubscribedAbstractProperty（link和prop接口的返回类型）依旧有同步关系，则该属性不能从LocalStorage中删除。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **参数：**
 
@@ -661,6 +683,8 @@ keys(): IterableIterator&lt;string&gt;
 
 返回AppStorage中所有的属性名。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **返回值：**
 
 | 类型                             | 描述                   |
@@ -679,6 +703,8 @@ let keys: IterableIterator<string> = storage.keys();
 size(): number
 
 返回LocalStorage中的属性数量。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **返回值：**
 
@@ -700,6 +726,7 @@ clear(): boolean
 
 清除LocalStorage的所有的属性。在LocalStorage中清除所有属性的前提是已经没有任何订阅者。如果有则返回false；清除成功返回true。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **返回值：**
 
@@ -725,6 +752,8 @@ abstract get(): T
 
 读取从AppStorage/LocalStorage同步属性的数据。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **返回值：**
 
 | 类型   | 描述                              |
@@ -743,8 +772,9 @@ prop1.get(); //  prop1.get()=47
 
 abstract set(newValue: T): void
 
-
 设置AppStorage/LocalStorage同步属性的数据。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 
 **参数：**

@@ -27,8 +27,8 @@ AlphabetIndexer(value: {arrayValue: Array&lt;string&gt;, selected: number})
 
 In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
-| Name                 | Type    | Description                                                             |
-| ----------------------- | --------------- | ----------------------------------------------------------- |
+| Name                 | Type    | Description                                                                   |
+| ----------------------- | --------------------| ------------------------------------------------------------------|
 | color                   | [ResourceColor](ts-types.md#resourcecolor)       | Font color.<br>Default value: **0x99000000**                          |
 | selectedColor           | [ResourceColor](ts-types.md#resourcecolor)     | Font color of the selected text.<br>Default value: **0xFF254FF7**                          |
 | popupColor              | [ResourceColor](ts-types.md#resourcecolor)        | Font color of the pop-up text.<br>Default value: **0xFF254FF7**                        |
@@ -38,8 +38,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | selectedFont            | [Font](ts-types.md#font) | Font style of the selected text.<br>Default value:<br>{<br>size:10,<br> style:FontStyle.Normal,<br> weight:FontWeight.Normal,<br> family:'HarmonyOS Sans'<br>}                          |
 | popupFont               | [Font](ts-types.md#font) | Font style of the pop-up text.<br>Default value:<br>{<br>size:10,<br> style:FontStyle.Normal,<br> weight:FontWeight.Normal,<br> family:'HarmonyOS Sans'<br>}                         |
 | font                    | [Font](ts-types.md#font) | Default font style of the alphabetic index bar.<br>Default value:<br>{<br>size:10,<br> style:FontStyle.Normal,<br> weight:FontWeight.Normal,<br> family:'HarmonyOS Sans'<br>}                      |
-| itemSize                | string \| number            | Size of an item in the alphabetic index bar. The item is a square, and the side length needs to be set. This attribute cannot be set to a percentage.<br>Default value: **24.0**      |
-| alignStyle              | IndexerAlign                             | Alignment style of the alphabetic index bar. Left alignment and right alignment are supported.<br>Default value: **IndexerAlign.Right**|
+| itemSize                | string \| number            | Size of an item in the alphabetic index bar. The item is a square, and the side length needs to be set. This attribute cannot be set to a percentage.<br>Default value: **24.0**<br>Unit: vp|
+| alignStyle              | IndexerAlign | Alignment style of the alphabetic index bar. Left alignment and right alignment are supported.<br>Default value: **IndexerAlign.Right** |
 | selected | number | Index of the selected item.<br>Default value: **0**|
 | popupPosition | [Position](ts-types.md#position8) | Position of the pop-up window relative to the center of the indexer bar's top border.<br>Default value: **{x:96.0, y:48.0}**|
 
@@ -52,7 +52,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 ## Events
 
-Only the following events are supported.
+In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
 | Name| Description|
 | -------- | -------- |

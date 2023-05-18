@@ -32,7 +32,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | toolBar        | [object](#object) \| [CustomBuilder](ts-types.md#custombuilder8)<sup>8+</sup> | Content of the toolbar.<br>**items**: items on the toolbar.    |
 | hideToolBar    | boolean                                  | Whether to hide the toolbar.<br>Default value: **false**<br>**true**: Hide the toolbar.<br>**false**: Display the toolbar.|
 | hideTitleBar   | boolean                                  | Whether to hide the title bar.<br>Default value: **false**<br>**true**: Hide the title bar.<br>**false**: Display the title bar.|
-| hideBackButton | boolean                                  | Whether to hide the Back button.<br>Default value: **false**<br>**true**: Hide the Back button.<br>**false**: Display the Back button.|The Back button in the title bar of the **\<NavDestination>** component cannot be hidden.|
+| hideBackButton | boolean                                  | Whether to hide the Back button.<br>Default value: **false**<br>**true**: Hide the Back button.<br>**false**: Display the Back button.<br>The Back button in the title bar of the **\<NavDestination>** component cannot be hidden.|
 | navBarWidth<sup>9+</sup> | [Length](ts-types.md#length)                         | Width of the navigation bar.<br>Default value: **200vp**|
 | navBarPosition<sup>9+</sup> | [NavBarPosition](#navbarposition)             | Position of the navigation bar.<br>Default value: **NavBarPosition.Start**|
 | mode<sup>9+</sup> | [NavigationMode](#navigationmode)                       | Display mode of the navigation bar.<br>Default value: **NavigationMode.Auto**|
@@ -150,7 +150,7 @@ struct NavigationExample {
         .fontSize(14)
         .lineHeight(19)
         .opacity(0.4)
-        .margin({ top: 2 })
+        .margin({ top: 2, bottom: 20 })
     }.alignItems(HorizontalAlign.Start)
   }
 
@@ -195,16 +195,16 @@ struct NavigationExample {
     Column() {
       Navigation() {
         TextInput({ placeholder: 'search...' })
-          .width(336)
+          .width('90%')
           .height(40)
           .backgroundColor('#FFFFFF')
-          .margin({ top: 8, left: 12 })
+          .margin({ top: 8 })
 
         List({ space: 12, initialIndex: 0 }) {
           ForEach(this.arr, (item) => {
             ListItem() {
               Text('' + item)
-                .width(336)
+                .width('90%')
                 .height(72)
                 .backgroundColor('#FFFFFF')
                 .borderRadius(24)
@@ -216,7 +216,7 @@ struct NavigationExample {
         }
         .height(324)
         .width('100%')
-        .margin({ top: 12, left: 12 })
+        .margin({ top: 12, left: '10%' })
       }
       .title(this.NavigationTitle)
       .menus(this.NavigationMenus)

@@ -44,7 +44,7 @@
    }
    ```
 
-4. 根据查询结果的实际情况，调用setMicrophoneMute设置麦克风静音状态，入参输入true为静音，false为非静音。设置成功返回true，否则返回false。
+4. 根据查询结果的实际情况，调用setMicrophoneMute设置麦克风静音状态，入参输入true为静音，false为非静音。
      
    ```ts
    async function setMicrophoneMuteTrue() { //设置麦克风静音，入参为true

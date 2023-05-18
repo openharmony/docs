@@ -5,7 +5,7 @@ The **\<RichText>** component parses and displays HTML text.
 > **NOTE**
 >
 > This component is supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
-
+> Set the height when using this component.
 
 
 ## Child Components

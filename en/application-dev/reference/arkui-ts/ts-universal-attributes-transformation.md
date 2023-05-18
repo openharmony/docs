@@ -9,13 +9,16 @@ Transformation attributes allow you to rotate, translate, scale, or transform a 
 ## Attributes
 
 
-| Name     | Type                                                    | Description                                                        |
-| --------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| rotate    | {<br>x?: number,<br>y?: number,<br>z?: number,<br>angle?: number \| string,<br>centerX?: number \| string,<br>centerY?: number \| string<br>} | Rotation axis. A positive angle indicates a clockwise rotation, and a negative angle indicates a counterclockwise rotation. The default value is **0**. **centerX** and **centerY** are used to set the rotation center point.<br>Default value:<br>{<br>x: 0,<br>y: 0,<br>z: 0,<br>angle: 0,<br>centerX: '50%',<br>centerY: '50%'<br>}<br>Since API version 9, this API is supported in ArkTS widgets.|
-| translate | {<br>x?: number \| string,<br>y?: number \| string,<br>z? : number \| string<br>} | Translation distance along the x-, y-, and z-axis. The translation direction is determined by the positive and negative values. The value cannot be a percentage.<br>Default value:<br>{<br>x: 0,<br>y: 0,<br>z: 0<br>}<br>Since API version 9, this API is supported in ArkTS widgets.|
+| Name       | Type                                    | Description                                      |
+| --------- | ---------------------------------------- | ---------------------------------------- |
+| rotate    | {<br>x?: number,<br>y?: number,<br>z?: number,<br>angle: number \| string,<br>centerX?: number \| string,<br>centerY?: number \| string<br>} | How the component rotates in the coordinate system (as shown below) with the upper left corner of the component as the coordinate origin. (x, y, z) specifies a vector as the axis of rotation.<br>- **angle**: rotation angle. A positive angle indicates a clockwise rotation, and a negative angle indicates a counterclockwise rotation. The value can be of the string type, for example, **'90deg'**.<br>- **centerX** and **centerY** are used to set the center of rotation.<br>The axis and center of rotation are set based on the coordinate system, which remains where it is when the component is moved.<br>Default value:<br>{<br>x: 0,<br>y: 0,<br>z: 0,<br>centerX: '50%',<br>centerY: '50%'<br>}<br>![coordinates](figures/coordinates.png)<br>Since API version 9, this API is supported in ArkTS widgets.|
+| translate | {<br>x?: number \| string,<br>y?: number \| string,<br>z? : number \| string<br>} | How the component is translated in the coordinate system (as shown below) with the upper left corner of the component as the coordinate origin. Values of **x**, **y**, and **z** indicate the translation distance along the respective axis. A positive value indicates a forward movement towards the respective axis, and a negative value indicates a backward movement towards the respective axis. The translation distance can be a number or a string (for example, **'10px'** or **'10%'**).<br>Default value:<br>{<br>x: 0,<br>y: 0,<br>z: 0<br>}<br>![coordinates](figures/coordinates.png)<br>Since API version 9, this API is supported in ArkTS widgets.|
 | scale     | {<br>x?: number,<br>y?: number,<br>z?: number,<br>centerX?: number \| string,<br>centerY?: number \| string<br>} | Scale ratio along the x-, y-, and z-axis. The default value is **1**. **centerX** and **centerY** are used to set the scale center point.<br>Default value:<br>{<br>x: 1,<br>y: 1,<br>z: 1,<br>centerX:'50%',<br>centerY:'50%'<br>}<br>Since API version 9, this API is supported in ArkTS widgets.|
-| transform | [Matrix4Transit](../apis/js-apis-matrix4.md)                 | Transformation matrix of the component.                                    |
+| transform | [Matrix4Transit](../apis/js-apis-matrix4.md) | Transformation matrix of the component.                            |
 
+> **NOTE**
+>
+> If both the **rotate** and **scale** attributes are set for a component, the values of **centerX** and **centerY** conflict. In this case, the one that is set later in time prevails.
 
 ## Example
 

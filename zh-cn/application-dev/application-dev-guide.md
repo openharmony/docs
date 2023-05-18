@@ -1,5 +1,8 @@
 # 应用开发导读
 
+> **说明**：
+> 您当前正在浏览OpenHarmony 3.2 Release版本的配套文档，请获取与该版本[配套的SDK](../release-notes/OpenHarmony-v3.2-release.md#配套关系)开发应用。
+
 应用开发文档用于指导开发者通过OpenHarmony提供的接口完成应用开发。当前应用开发文档提供了在标准系统上开发应用的JS接口。
 
 在应用开发的文档中，您可以获取到如下几方面的内容：
@@ -33,7 +36,7 @@
 - [安全](security/userauth-overview.md)
 - [网络与连接](connectivity/ipc-rpc-overview.md)
 - [电话服务](telephony/telephony-overview.md)
-- [数据管理](database/database-mdds-overview.md)
+- [数据管理](database/data-mgmt-overview.md)
 - [文件管理](file-management/file-management-overview.md)
 - [任务管理](task-management/background-task-overview.md)
 - [设备管理](device/usb-overview.md)

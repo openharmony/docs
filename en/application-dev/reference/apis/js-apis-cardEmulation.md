@@ -118,8 +118,8 @@ if (!hasHceCap) {
 }
 
 var elementName = {
-    "bundleName": "com.test.cardemulation",
-    "abilityName": "com.test.cardemulation.MainAbility",
+    "bundleName": "com.example.myapplication",
+    "abilityName": "EntryAbility",
 };
 var isDefaultService = cardEmulation.isDefaultService(elementName, cardEmulation.CardType.PAYMENT);
 console.log('is the app is default service for this card type: ' + isDefaultService);

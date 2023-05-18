@@ -31,8 +31,8 @@
 2. 设置业务需要的监听事件，监听状态变化及错误上报。
    | 事件类型 | 说明 | 
    | -------- | -------- |
-   | stateChange | 必要事件，监听播放器的state属性改变 | 
-   | error | 必要事件，监听播放器的错误信息 | 
+   | stateChange | 必要事件，监听AVRecorder的state属性改变 | 
+   | error | 必要事件，监听AVRecorder的错误信息 | 
 
      
    ```ts

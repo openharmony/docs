@@ -56,5 +56,5 @@ OpenHarmony提供[用户文件访问框架](#用户文件访问框架)，用于�
 - File Access Framework（用户文件访问框架）的主要功能模块如下：
   - File Access Helper：提供给文件管理器和文件选择器访问用户文件的API接口。
   - File Access ExtensionAbility：提供文件访问框架能力，由内卡文件管理服务UserFileManager和外卡文件管理服务ExternalFileManager组成，实现对应的文件访问功能。
-     - UserFileManager：内卡文件管理服务，基于File Access ExtensionAbility框架实现，用于管理内置存储设备上的文件。
-     - ExternalFileManager：外卡文件管理服务，基于File Access ExtensionAbility框架实现，用于管理外置存储设备上的文件。
+    - UserFileManager：内卡文件管理服务，基于File Access ExtensionAbility框架实现，用于管理内置存储设备上的文件。
+    - ExternalFileManager：外卡文件管理服务，基于File Access ExtensionAbility框架实现，用于管理外置存储设备上的文件。

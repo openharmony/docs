@@ -3,7 +3,7 @@
 提供Lottie动画。
 
 > **说明：**
-> 
+>
 > 从 API Version 8 开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 
@@ -16,9 +16,8 @@ import lottie from '@ohos/lottieETS'
 
 > **说明：**
 >
-> 在Terminal窗口使用 `npm install @ohos/lottieETS` 命令下载Lottie，下载之前需要配置权限。
+> 在第一次使用Lottie之前，需要在Terminal窗口运行 `ohpm install @ohos/lottieETS` 命令下载Lottie。
 >
-> 安装ohos npm 三方包时，需要先执行`npm config set @ohos:registry=https://repo.harmonyos.com/npm/`设置仓库地址。
 
 
 ## lottie.loadAnimation

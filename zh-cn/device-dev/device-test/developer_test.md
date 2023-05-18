@@ -107,7 +107,7 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
     0 upgraded, 0 newly installed, 0 to remove and 11 not upgraded.
     ```
 
-7. 如果设备支持HDC连接，则需要安装HDC工具，安装流程请参考[HDC-OpenHarmony设备连接器](https://gitee.com/openharmony/developtools_hdc_standard/blob/master/README_zh.md)。
+7. 如果设备支持HDC连接，则需要安装HDC工具，安装流程请参考[HDC-OpenHarmony设备连接器](https://gitee.com/openharmony/developtools_hdc/blob/master/README_zh.md)。
 
 
 ### 环境依赖检查
@@ -458,12 +458,12 @@ describe("AppInfoTest", function () {
 
 **Fuzz测试**
 
-[Fuzz用例编写规范](https://gitee.com/openharmony/test_developertest/blob/master/libs/fuzzlib/README_zh.md)
+[Fuzz用例编写规范](https://gitee.com/openharmony/testfwk_developer_test/blob/master/libs/fuzzlib/README_zh.md)
 
 
 **Benchmark测试**
 
-[Benchmark用例编写规范](https://gitee.com/openharmony/test_developertest/blob/master/libs/benchmark/README_zh.md)_
+[Benchmark用例编写规范](https://gitee.com/openharmony/testfwk_developer_test/blob/master/libs/benchmark/README_zh.md)
 
 ## 编译测试用例
 
@@ -683,7 +683,7 @@ ohos_js_unittest("GetAppInfoJsTest") {
         "description": "$string:mainability_description",
         "label": "MyApplication",
         "type": "page",
-        "launchType": "standard"
+        "launchType": "multiton"
       }
     ],
     "js": [

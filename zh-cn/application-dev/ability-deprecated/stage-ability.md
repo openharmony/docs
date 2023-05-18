@@ -12,9 +12,9 @@ Ability支持单实例、多实例和指定实例3种启动模式，在module.js
 
 | 启动模式     | 描述     |说明             |
 | ----------- | -------  |---------------- |
-| standard    | 标准模式   | 每次startAbility都会启动一个新的实例。 |
+| multiton    | 多实例模式 | 每次startAbility都会启动一个新的实例。 |
 | singleton   | 单实例模式   | 系统中只存在唯一一个实例，startAbility时，如果已存在，则复用系统中的唯一一个实例。 |
-| specified   | 指定实例 | 运行时由Ability内部业务决定是否创建多实例。 |
+| specified   | 指定实例模式 | 运行时由Ability内部业务决定是否创建多实例。 |
 
 缺省情况下是singleton模式，module.json5示例如下：
 ```json
@@ -79,29 +79,29 @@ Ability功能如下（Ability类，具体的API详见[接口文档](../reference
     onCreate(want, launchParam) {
         console.log("MainAbility onCreate")
     }
-
+   
     onDestroy() {
         console.log("MainAbility onDestroy")
     }
-
+   
     onWindowStageCreate(windowStage) {
         console.log("MainAbility onWindowStageCreate")
-
+   
         windowStage.loadContent("pages/index").then(() => {
             console.log("MainAbility load content succeed")
         }).catch((error) => {
             console.error("MainAbility load content failed with error: " + JSON.stringify(error))
         })
     }
-
+   
     onWindowStageDestroy() {
         console.log("MainAbility onWindowStageDestroy")
     }
-
+   
     onForeground() {
         console.log("MainAbility onForeground")
     }
-
+   
     onBackground() {
         console.log("MainAbility onBackground")
     }

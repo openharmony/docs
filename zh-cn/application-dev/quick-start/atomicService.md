@@ -44,7 +44,6 @@
     "versionName": "1.0.0",
     "icon": "$media:app_icon",
     "label": "$string:app_name",
-    "distributedNotificationEnabled": true,
     "targetAPIVersion": 9
   }
 }
@@ -78,7 +77,7 @@
   "module": {
     "name": "entry",
     "type": "entry",
-    "srcEntrance": "./ets/Application/MyAbilityStage.ts",
+    "srcEnty": "./ets/Application/MyAbilityStage.ts",
     "description": "$string:entry_desc",
     "mainElement": "MainAbility",
     "deviceTypes": [
@@ -98,13 +97,13 @@
     "abilities": [
       {
         "name": "MainAbility",
-        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "srcEnty": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:MainAbility_desc",
         "icon": "$media:icon",
         "label": "$string:MainAbility_label",
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:white",
-        "visible": true,
+        "exported": true,
         "skills": [
           {
             "entities": [
@@ -200,11 +199,12 @@ struct Index {
             }).catch(err => {
               console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
             })
-        }
-        .width('100%')
+        })
+      .width('100%')
     }
     .height('100%')
     }
+  }
 }
 ```
 

@@ -18,7 +18,7 @@ This subsystem offers various media services covering audio, videos, and cameras
 
 - **Media**: provides playback and recording APIs for applications, and invokes the Gstreamer, Histreamer, or other engines through cross-process calling or direct calling.
   - For the mini system, the media component invokes Histreamer to support audio playback.
-  - For the small system, the media component invokes recorder_lite to support audio/video recording and invokes player_lite by default to support audio/video playback. If the system variable **debug.media_service.histreamer** is set to **1**, the component invokes Histreamer to support audio/video playback. For details, see [syspara Module](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-boot-syspara.md) or [syspara_lite](https://gitee.com/openharmony/startup_syspara_lite).
+  - For the small system, the media component invokes recorder_lite to support audio/video recording and invokes player_lite by default to support audio/video playback. If the system variable **debug.media_service.histreamer** is set to **1**, the component invokes Histreamer to support audio/video playback. For details, see [syspara Module](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-boot-init-sysparam.md) or [syspara_lite](https://gitee.com/openharmony/startup_syspara_lite).
   - For the standard system, the media component invokes Gstreamer to support audio/video playback and recording.
 - **Audio**: supports audio input and output, policy management, and audio focus management.
 - **Camera**: provides camera operation APIs for preview, photographing, and video recording.
@@ -83,7 +83,7 @@ Hardware-based decoding and encoding functions of audio and video data are devic
 
 You can use the APIs in any of the provided classes based on your development requirements.
 
--   For details about how to call media APIs to implement the video recording, preview, and playback, see  [Multimedia Development Guide](https://gitee.com/openharmony/docs/blob/master/en/device-dev/subsystems/subsys-multimedia.md).
+-   For details about how to call media APIs to implement the video recording, preview, and playback, see  [Multimedia Development Guide](../application-dev/media).
 -   For a simple player, use  **Player**  and  **Recorder**  classes to quickly implement the playback and recording features.
 -   The  **CameraKit**  class provides a group of effective methods for controlling a camera, which facilitates the camera development.
 -   You can create a  **CameraKit**  object and register various callbacks to respond to many events in the multimedia module. Then, create a  **Camera**  object to operate camera resources, for example, to start preview, recording, and stream capturing, and set related parameters.

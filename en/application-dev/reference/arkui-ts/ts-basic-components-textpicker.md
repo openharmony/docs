@@ -22,11 +22,13 @@ Creates a text picker based on the selection range specified by **range**.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| range | string[] \| [Resource](ts-types.md#resource)| Yes| Data selection range of the picker.|
+| range | string[] \| [Resource](ts-types.md#resource) | Yes| Data selection range of the picker. This parameter cannot be set to an empty array. If set to an empty array, it will not be displayed. If it is dynamically changed to an empty array, the current value remains displayed.|
 | selected | number | No| Index of the default item in the range.<br>Default value: **0**|
 | value | string | No| Value of the default item in the range. The priority of this parameter is lower than that of **selected**.<br>Default value: value of the first item|
 
 ## Attributes
+
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |

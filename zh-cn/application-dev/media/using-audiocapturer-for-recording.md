@@ -147,7 +147,7 @@ export default class AudioCapturerDemo {
   // 开始一次音频采集
   async start() {
     let stateGroup = [audio.AudioState.STATE_PREPARED, audio.AudioState.STATE_PAUSED, audio.AudioState.STATE_STOPPED];
-    if (stateGroup.indexOf(this.audioCapturer.state) === -1) { // 当且仅当状态为prepared、paused和stopped之一时才能启动采集
+    if (stateGroup.indexOf(this.audioCapturer.state) === -1) { // 当且仅当状态为STATE_PREPARED、STATE_PAUSED和STATE_STOPPED之一时才能启动采集
       console.error(`${TAG}: start failed`);
       return;
     }

@@ -12,21 +12,20 @@
 
 文件URI的格式为：
 
-  格式为file://&lt;bundleName&gt;/&lt;path&gt;/\#networkid=&lt;networkid&gt;
+  格式为file://&lt;bundleName&gt;/&lt;path&gt;
+
 - file：文件URI的标志。
 
 - bundleName：该文件资源的属主。
 
 - path：文件资源在应用沙箱中的路径。
 
-- networkid：为可选项，用于分布式文件系统标志该文件资源所归属的设备；当不需要区分文件位置时，该选项可不填写。
-
 ## 分享文件给其他应用
 
 在分享文件给其他应用前，开发者需要先[获取应用文件路径](../application-models/application-context-stage.md#获取应用开发路径)。
 
 1. 获取文件在应用沙箱中的路径，并转换为文件URI。
-     
+
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
    import fileuri from '@ohos.file.fileuri';
@@ -44,12 +43,12 @@
    ```
 
 2. 设置获取文件的权限以及选择要分享的应用。
-   分享文件给其他应用需要使用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，将获取到的URI填充在want的参数uri中，标注URI的文件类型，type字段可参考[Want属性](../reference/apis/js-apis-app-ability-want.md#属性)，并通过设置want的flag来设置对应的读写权限，action字段配置为wantConstant.Action.ACTION_SEND_DATA表示进行应用文件分享，开发示例如下。
+   分享文件给其他应用需要使用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，将获取到的URI填充在want的参数uri中，标注URI的文件类型，type字段可参考[Want属性](../reference/apis/js-apis-app-ability-want.md#属性)，并通过设置want的flag来设置对应的读写权限，action字段配置为"ohos.want.action.sendData"表示进行应用文件分享，开发示例如下。
 
    > **说明：**
    >
    > 写权限分享时，同时授予读权限。
- 
+
    ```ts
    import fileuri from '@ohos.file.fileuri';
    import window from '@ohos.window';
@@ -118,7 +117,6 @@
 
 通过接口want的参数获取分享文件的URI，获取文件URI后通过fs.open()接口打开文件，获取对应的file对象后，可对文件进行读写操作。
 
-  
 ```ts
 // xxx.ets
 import fs from '@ohos.file.fs';

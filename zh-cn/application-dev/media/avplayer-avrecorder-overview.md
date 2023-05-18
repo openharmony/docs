@@ -35,11 +35,11 @@ AVPlayer提供功能完善一体化播放能力，应用只需要提供流媒体
 
 应用通过调用JS接口层提供的AVPlayer接口实现相应功能时，框架层会通过播放服务（Player Framework）解析成单独的音频数据流和视频数据流，音频数据流经过软件解码后输出至音频服务（Audio Framework），再至硬件接口层的音频HDI，实现音频播放功能。视频数据流经过硬件（推荐）/软件解码后输出至图形渲染服务（Graphic Framework），再输出至硬件接口层的显示HDI，完成图形渲染。
 
-完整的视频播放需要：应用、XCompomemt、Player Framework、Graphic Framework、Audio Framework、显示HDI和音频HDI共同实现。
+完整的视频播放需要：应用、XComponent、Player Framework、Graphic Framework、Audio Framework、显示HDI和音频HDI共同实现。
 
 图2中，数字标注表示需要数据与外部模块的传递。
 
-1. 应用从Xcomponent组件获取窗口SurfaceID，获取方式参考[XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md)。
+1. 应用从XComponent组件获取窗口SurfaceID，获取方式参考[XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md)。
 
 2. 应用把媒体资源、SurfaceID传递给AVPlayer接口。
 
@@ -109,7 +109,7 @@ AVRecorder主要工作是捕获音频信号，接收视频信号，完成音视�
 
 1. 应用通过AVRecorder接口从录制服务获取SurfaceID。
 
-2. 应用将SurfaceID设置给相机服务，相机服务可以通过SurfaceID获取到Surface。相机服务通过视频HDI捕获图像数据送至框架层的媒体服务。
+2. 应用将SurfaceID设置给相机服务，相机服务可以通过SurfaceID获取到Surface。相机服务通过视频HDI捕获图像数据送至框架层的录制服务。
 
 3. 相机服务通过Surface将视频数据传递给录制服务。
 

@@ -1,7 +1,7 @@
 # 音乐专辑页
 
 
-本小节将以音乐专辑页为例，介绍如何使用自适应布局能力和响应式布局能力适配不同尺寸窗口。本示例已经在[OpenHarmony应用示例](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/MultiDeviceAppDev/MusicAlbum)中开源，读者可以根据需要自行下载源码并运行及查看效果。
+本小节将以音乐专辑页为例，介绍如何使用自适应布局能力和响应式布局能力适配不同尺寸窗口。本示例已经在[OpenHarmony应用示例](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SuperFeature/MultiDeviceAppDev/MusicAlbum)中开源，读者可以根据需要自行下载源码并运行及查看效果。
 
 
 ## 页面设计

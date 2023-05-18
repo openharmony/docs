@@ -2736,7 +2736,7 @@ try {
         console.error(`Fail to put Batch.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -2785,7 +2785,7 @@ try {
         });
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`)
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`)
 }
 ```
 
@@ -2841,7 +2841,7 @@ try {
         console.error(`Fail to get data.code is ${err.code},message is ${err.message} `);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`)
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`)
 }
 ```
 
@@ -3267,7 +3267,7 @@ try {
         });
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -3335,7 +3335,7 @@ try {
         console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -3398,7 +3398,7 @@ try {
         });
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -3463,7 +3463,7 @@ try {
         console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }    
 ```
 
@@ -3519,7 +3519,7 @@ try {
         })
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -3576,7 +3576,7 @@ try {
         console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -3609,7 +3609,7 @@ try {
         }
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -3645,7 +3645,7 @@ try {
         console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -3703,7 +3703,7 @@ try {
         });
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -3766,7 +3766,7 @@ try {
         console.error(`Fail to get result size.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -4154,7 +4154,7 @@ try {
         }
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4191,7 +4191,7 @@ try {
         console.error(`Fail to commit.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.ode is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.ode is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4230,7 +4230,7 @@ try {
         }
     });
 }catch(e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4267,7 +4267,7 @@ try {
         console.error(`Fail to rollback.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4299,7 +4299,7 @@ try {
         }
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4334,7 +4334,7 @@ try {
         console.error(`Fail to enable sync.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4369,7 +4369,7 @@ try {
         console.log('Succeeded in setting syncRange');
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4407,7 +4407,7 @@ try {
         console.error(`Fail to set syncRange.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4440,7 +4440,7 @@ try {
         console.log('Succeeded in setting syncParam');
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4476,7 +4476,7 @@ try {
         console.error(`Fail to set syncParam.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4484,7 +4484,7 @@ try {
 
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
-在手动同步方式下，触发数据库同步。关于分布式数据服务的同步方式说明，请见[键值型数据库跨设备数据同步](../../database/data-sync-of-kv-store.md)。
+在手动同步方式下，触发数据库同步。关于键值型数据库的同步方式说明，请见[键值型数据库跨设备数据同步](../../database/data-sync-of-kv-store.md)。
 > **说明：** 
 >
 > 其中deviceIds通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
@@ -4554,7 +4554,7 @@ deviceManager.createDeviceManager('bundleName', (err, value) => {
 
 sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
-在手动同步方式下，触发数据库同步，此方法为同步方法。关于分布式数据服务的同步方式说明，请见[键值型数据库跨设备数据同步](../../database/data-sync-of-kv-store.md)。
+在手动同步方式下，触发数据库同步，此方法为同步方法。关于键值型数据库的同步方式说明，请见[键值型数据库跨设备数据同步](../../database/data-sync-of-kv-store.md)。
 > **说明：** 
 >
 > 其中deviceIds通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
@@ -4658,7 +4658,7 @@ try {
         console.log(`dataChange callback call data: ${data}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4832,7 +4832,7 @@ try {
         console.log('Succeeded in getting securityLevel');
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4869,7 +4869,7 @@ try {
         console.error(`Fail to get SecurityLevel.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -5678,7 +5678,7 @@ try {
         });
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -5746,7 +5746,7 @@ try {
         console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -6060,7 +6060,7 @@ try {
         console.error(`Fail to get resultset.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }    
 ```
 
@@ -6190,7 +6190,7 @@ try {
         })
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -6247,7 +6247,7 @@ try {
         console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -6304,7 +6304,7 @@ try {
         })
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -6361,7 +6361,7 @@ try {
         console.error(`Fail to close resultset.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -6419,7 +6419,7 @@ try {
         });
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 
@@ -6482,7 +6482,7 @@ try {
         console.error(`Fail to get result size.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occured.code is ${e.code},message is ${e.code}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.code}`);
 }
 ```
 

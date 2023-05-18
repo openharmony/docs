@@ -78,13 +78,13 @@
 
 ## 页面开发
 
-天气应用中涉及较多的页面和弹窗，本小节以天气主页为例，简单介绍不同设备下的页面实现思路。天气应用已经在[OpenHarmony应用示例](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/MultiDeviceAppDev/Weather)中开源，感兴趣的读者可以自行下载及了解详细代码实现。
+天气应用中涉及较多的页面和弹窗，本小节以天气主页为例，简单介绍不同设备下的页面实现思路。天气应用已经在[OpenHarmony应用示例](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SuperFeature/MultiDeviceAppDev/Weather)中开源，感兴趣的读者可以自行下载及了解详细代码实现。
 
   观察天气主页在不同设备上的UX设计图，可以进行如下设计：
 - 将天气主页划分为9个基础区域，如：
   ![home_full](figures/home_full.png)
 
-- 基础区域9仅在大设备上显示，基础区域1-8虽然在各设备上始终展示但其尺寸及区域内的布局基本保持不变，可以结合[自适应布局](adaptive-layout.md)能力以[自定义组件](../../quick-start/arkts-basic-ui-description.md)的形式分别实现这9个基础区域。
+- 基础区域9仅在大设备上显示，基础区域1-8虽然在各设备上始终展示但其尺寸及区域内的布局基本保持不变，可以结合[自适应布局](adaptive-layout.md)能力以[自定义组件](../../quick-start/arkts-create-custom-components.md)的形式分别实现这9个基础区域。
     |  | 小设备 | 中设备 | 大设备 | 
   | -------- | -------- | -------- | -------- |
   | 主页 | ![Home_sm](figures/Home_sm.png) | ![Home_md_mark](figures/Home_md_mark.png) | ![Home_lg_mark](figures/Home_lg_mark.png) | 

@@ -41,6 +41,6 @@ FA模型和Stage模型的整体架构和设计思想等更多区别，请见[应
 
 1. 安装最新版[DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio)。
 
-2. 请参考[配置OpenHarmony SDK](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/ohos-setting-up-environment-0000001263160443-V3)，完成**DevEco Studio**的安装和开发环境配置。
+2. 请参考[配置开发环境](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/environment_config-0000001052902427-V3)，完成**DevEco Studio**的安装和开发环境配置。
 
 完成上述操作及基本概念的理解后，可参照[使用ArkTS语言进行开发（Stage模型）](start-with-ets-stage.md)、[使用ArkTS语言开发（FA模型）](start-with-ets-fa.md)、[使用JS语言开发（FA模型）](../quick-start/start-with-js-fa.md)中的任一章节进行下一步体验和学习。

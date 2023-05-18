@@ -17,7 +17,7 @@
 - 数据访问方：由[createDataShareHelper()](../reference/apis/js-apis-data-dataShare.md#datasharecreatedatasharehelper)方法所创建的工具类，利用工具类，便可以访问提供方提供的这些数据。
 
 **图1** 数据共享运作机制  
-  
+
 ![dataShare](figures/dataShare.jpg)
 
 - DataShareExtensionAbility模块为数据提供方，实现跨应用数据共享的相关业务。
@@ -60,7 +60,7 @@
 
 3. 在DataShareExtAbility.ts文件中，导入
 `@ohos.application.DataShareExtensionAbility`模块，开发者可根据应用需求选择性重写其业务实现。例如数据提供方只提供插入、删除和查询服务，则可只重写这些接口，并导入对应的基础依赖模块。
-     
+   
    ```js
    import Extension from '@ohos.application.DataShareExtensionAbility';
    import rdb from '@ohos.data.relationalStore';
@@ -68,7 +68,7 @@
    ```
 
 4. 数据提供方的业务实现由开发者自定义。例如可以通过数据库、读写文件或访问网络等各方式实现数据提供方的数据存储。
-     
+   
    ```js
    const DB_NAME = 'DB00.db';
    const TBL_NAME = 'TBL00';
@@ -137,11 +137,11 @@
 
    **module.json5配置样例：**
 
-     
+   
    ```json
    "extensionAbilities": [
      {
-       "srcEntrance": "./ets/DataShareExtAbility/DataShareExtAbility.ts",
+       "srcEnty": "./ets/DataShareExtAbility/DataShareExtAbility.ts",
        "name": "DataShareExtAbility",
        "icon": "$media:icon",
        "description": "$string:description_datashareextability",
@@ -156,7 +156,7 @@
 ### 数据访问方应用的开发
 
 1. 导入基础依赖包。
-     
+   
    ```js
    import UIAbility from '@ohos.app.ability.UIAbility';
    import dataShare from '@ohos.data.dataShare';
@@ -164,14 +164,14 @@
    ```
 
 2. 定义与数据提供方通信的URI字符串。
-     
+   
    ```js
    // 作为参数传递的URI，与module.json5中定义的URI的区别是多了一个"/"，是因为作为参数传递的URI中，在第二个与第三个"/"中间，存在一个DeviceID的参数
    let dseUri = ('datashare:///com.samples.datasharetest.DataShare');
    ```
 
 3. 创建工具接口类对象。
-     
+   
    ```js
    let dsHelper;
    let abilityContext;
@@ -187,7 +187,7 @@
    ```
 
 4. 获取到接口类对象后，便可利用其提供的接口访问提供方提供的服务，如进行数据的增删改查等。
-     
+   
    ```js
    // 构建一条数据
    let valuesBucket = { 'name': 'ZhangSan', 'age': 21, 'isStudent': false, 'Binary': new Uint8Array([1, 2, 3]) };

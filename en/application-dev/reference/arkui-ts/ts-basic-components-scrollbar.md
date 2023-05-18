@@ -65,7 +65,7 @@ struct ScrollBarExample {
                   .margin({ top: 5 })
               }
             }, item => item)
-          }.margin({ left: 52 })
+          }.margin({ right: 52 })
         }
         .scrollBar(BarState.Off)
         .scrollable(ScrollDirection.Vertical)

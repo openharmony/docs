@@ -88,6 +88,14 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | --------------------- | ---- | ------------------------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示屏幕解锁成功；返回false表示屏幕解锁失败。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[锁屏服务错误码](../errorcodes/errorcode-screenlock.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13200002  | the screenlock management service is abnormal.         |
+
 **示例：** 
 
 ```js
@@ -116,6 +124,14 @@ unlock(): Promise&lt;boolean&gt;
 | ------------------- | ------------------------------------------------------------ |
 | Promise&lt;boolean&gt; | Promise对象。返回true表示屏幕解锁成功；返回false表示屏幕解锁失败。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[锁屏服务错误码](../errorcodes/errorcode-screenlock.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13200002  | the screenlock management service is abnormal.         |
+
 **示例：** 
 
 ```js
@@ -141,6 +157,14 @@ lock(callback: AsyncCallback&lt;boolean&gt;): void
 | 参数名   | 类型          | 必填 | 说明                      |
 | -------- | ---------------------- | ---- | ---------------- |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。返回true表示屏幕锁定成功；返回false表示屏幕锁定失败。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[锁屏服务错误码](../errorcodes/errorcode-screenlock.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 
 
@@ -169,6 +193,14 @@ lock(): Promise&lt;boolean&gt;
 | 类型                   | 说明                                                         |
 | ---------------------- | ------------------------------------------------------------ |
 | Promise&lt;boolean&gt; | Promise对象。返回true表示屏幕锁定成功；返回false表示屏幕锁定失败。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[锁屏服务错误码](../errorcodes/errorcode-screenlock.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 
 
@@ -202,6 +234,14 @@ onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 | ------- | ------------------------------------------------- |
 | boolean | 返回true表示锁屏相关系统事件注册成功；返回false表示锁屏相关系统事件注册失败。 |
 
+**错误码**：
+
+以下错误码的详细介绍请参见[锁屏服务错误码](../errorcodes/errorcode-screenlock.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13200002  | the screenlock management service is abnormal.         |
+
 **示例：** 
 
 ```js
@@ -231,6 +271,14 @@ sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback&lt
 | event     | String                   | 是   | 事件类型，支持如下取值:<br/>- "unlockScreenResult"，表示解锁结果。<br/>- "lockScreenResult"，表示锁屏结果。<br/>- "screenDrawDone"，表示屏幕绘制完成。 |
 | parameter | number                   | 是   | 事件结果。<br/>- parameter为0，表示成功。例如解锁成功或锁屏成功。<br/>- parameter为1，表示失败。例如解锁失败或锁屏失败。<br/>- parameter为2，表示取消。例如锁屏取消或解锁取消。 |
 | callback  | AsyncCallback\<boolean> | 是   | 回调函数。返回true表示发送事件成功；返回false表示发送事件失败。                 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[锁屏服务错误码](../errorcodes/errorcode-screenlock.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13200002  |the screenlock management service is abnormal.         |
 
 **示例：** 
 
@@ -266,6 +314,14 @@ sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
 | 类型               | 说明                                           |
 | ----------------- | ---------------------------------------------- |
 | Promise\<boolean> | Promise对象。返回true表示发送事件成功；返回false表示发送事件失败。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[锁屏服务错误码](../errorcodes/errorcode-screenlock.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 
 

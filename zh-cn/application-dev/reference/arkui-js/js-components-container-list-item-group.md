@@ -1,7 +1,7 @@
 # list-item-group
 
 >  **说明：**
-> 从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  从API version 4开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 &lt;[list](../arkui-js/js-components-container-list.md)&gt;的子组件，用来展示分组，宽度默认充满list组件。
 
@@ -30,7 +30,7 @@
 
 >  **说明：**
 >
-> - 通用属性中的id用来标识一个group。list中相关的函数的入参以及事件的信息皆以此标识一个唯一的group。
+>  - 通用属性中的id用来标识一个group。list中相关的函数的入参以及事件的信息皆以此标识一个唯一的group。
 
 
 ## 样式
@@ -125,48 +125,55 @@
 // xxx.js
 import promptAction from '@ohos.promptAction';
 export default {
-  data: {
-    direction: 'column',
-    list: [],
-    listAdd: []
-  },
-  onInit() {
-    this.list = []
-    this.listAdd = []
-    for (var i = 1; i <= 3; i++) {
-      var dataItem = {
-        value: 'GROUP' + i,
-      };
-      this.list.push(dataItem);
+    data: {
+        direction: 'column',
+        list: [],
+        listAdd: []
+    },
+    onInit() {
+        this.list = []
+        this.listAdd = []
+        for (var i = 1; i <= 3; i++) {
+            var dataItem = {
+                value: 'GROUP' + i,
+            };
+            this.list.push(dataItem);
+        }
+    },
+    collapseOne(e) {
+        this.$element('mylist').collapseGroup({
+            groupid: 'GROUP1'
+        })
+    },
+    expandOne(e) {
+        this.$element('mylist').expandGroup({
+            groupid: 'GROUP1'
+        })
+    },
+    collapseAll(e) {
+        this.$element('mylist').collapseGroup({
+            groupid: ''
+        })
+    },
+    expandAll(e) {
+        this.$element('mylist').expandGroup({
+            groupid: ''
+        })
+    },
+    collapse(e) {
+        promptAction.showToast({
+            message: 'Close ' + e.groupid
+        })
+    },
+    expand(e) {
+        promptAction.showToast({
+            message: 'Open ' + e.groupid
+        })
     }
-  },
-  collapseOne(e) {
-    this.$element('mylist').collapseGroup({
-      groupid: 'GROUP1'
-    })
-  },
-  expandOne(e) {
-    this.$element('mylist').expandGroup({
-      groupid: 'GROUP1'
-    })
-  },
-  collapseAll(e) {
-    this.$element('mylist').collapseGroup()
-  },
-  expandAll(e) {
-    this.$element('mylist').expandGroup()
-  },
-  collapse(e) {
-    promptAction.showToast({
-      message: 'Close ' + e.groupid
-    })
-  },
-  expand(e) {
-    promptAction.showToast({
-      message: 'Open ' + e.groupid
-    })
-  }
 }
+
+
+
 ```
 
 ![zh-cn_image_0000001127284978](figures/zh-cn_image_0000001127284978.gif)

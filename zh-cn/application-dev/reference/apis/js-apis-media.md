@@ -69,7 +69,7 @@ createAVPlayer(): Promise\<AVPlayer>
 
 | 类型                            | 说明                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
-| Promise\<[AVPlayer](#avplayer9)> | Promise对象。异步返回AVPlayer实例，失败时返回null。可用于录制视频媒体。 |
+| Promise\<[AVPlayer](#avplayer9)> | Promise对象。异步返回AVPlayer实例，失败时返回null。可用于音视频播放。 |
 
 **错误码：**
 
@@ -354,7 +354,7 @@ Codec MIME类型枚举。
 
 播放管理类，用于管理和播放媒体资源。在调用AVPlayer的方法前，需要先通过[createAVPlayer()](#mediacreateavplayer9)构建一个AVPlayer实例。
 
-Audio/Video播放demo可参考：[AVPlayer开发指导](../../media/avplayer-playback.md)。
+Audio/Video播放demo可参考：[音频播放开发指导](../../media/using-avplayer-for-playback.md)、[视频播放开发指导](../../media/video-playback.md)。
 
 ### 属性<a name=avplayer_属性></a>
 
@@ -956,7 +956,7 @@ avPlayer.getTrackDescription((error, arrList) => {
 
 getTrackDescription(): Promise\<Array\<MediaDescription>>
 
-通过Promise方式获取音频轨道信息，可以在prepared/playing/paused状态调用。
+通过Promise方式获取音视频轨道信息，可以在prepared/playing/paused状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1013,7 +1013,7 @@ seek(timeMs: number, mode?:SeekMode): void
 | 参数名 | 类型                   | 必填 | 说明                                                         |
 | ------ | ---------------------- | ---- | ------------------------------------------------------------ |
 | timeMs | number                 | 是   | 指定的跳转时间节点，单位毫秒（ms），取值范围为[0, [duration](#avplayer_duration)]。 |
-| mode   | [SeekMode](#seekmode8) | 否   | 基于视频I帧的跳转模式，**仅在视频资源播放时设置**。          |
+| mode   | [SeekMode](#seekmode8) | 否   | 基于视频I帧的跳转模式，默认为SEEK_PREV_SYNC模式，**仅在视频资源播放时设置**。 |
 
 **示例：**
 
@@ -1604,7 +1604,7 @@ avPlayer.off('audioInterrupt')
 
 ## AVPlayerState<sup>9+</sup><a name = avplayerstate></a>
 
-[AVPlayer](#avplayer9)的状态机，可通过state属性主动获取当前状态，也可通过监听[stateChange](#stateChange_on)事件上报当前状态，状态机之间的切换规则，可参考[AVPlayer播放器开发指导](../../media/avplayer-playback.md)。
+[AVPlayer](#avplayer9)的状态机，可通过state属性主动获取当前状态，也可通过监听[stateChange](#stateChange_on)事件上报当前状态，状态机之间的切换规则，可参考[AVPlayer播放器开发指导](../../media/using-avplayer-for-playback.md)。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1699,9 +1699,11 @@ audioPlayer.getTrackDescription((error, arrList) => {
 
 音视频录制管理类，用于音视频媒体录制。在调用AVRecorder的方法前，需要先通过createAVRecorder()构建一个AVRecorder实例。
 
-音视频录制demo可参考：[音视频录制开发指导](../../media/avrecorder.md)
+音视频录制demo可参考：[音频录制开发指导](../../media/using-avrecorder-for-recording.md)、[视频录制开发指导](../../media/video-recording.md)。
 
-*注意：使用相机进行视频录制时，需要与相机模块配合，相机模块接口开放状态以及使用详情见[相机管理](js-apis-camera.md)。
+> **说明：**
+>
+> 使用相机进行视频录制时，需要与相机模块配合，相机模块接口开放状态以及使用详情见[相机管理](js-apis-camera.md)。
 
 ### 属性
 
@@ -2504,8 +2506,8 @@ avRecorder.off('error');
 | videoSourceType | [VideoSourceType](#videosourcetype9)     | 否   | 选择录制的视频源类型。选择视频录制时必填。                   |
 | profile         | [AVRecorderProfile](#avrecorderprofile9) | 是   | 录制的profile，必要参数。                                    |
 | url             | string                                   | 是   | 录制输出URL：fd://xx (fd number) ![img](figures/zh-cn_image_url.png)，必要参数。 |
-| rotation        | number                                   | 否   | 录制的视频旋转角度，仅支持0，90，180，270。                  |
-| location        | [Location](#location)                    | 否   | 录制的地理位置。                                             |
+| rotation        | number                                   | 否   | 录制的视频旋转角度，仅支持0，90，180，270，默认值为0。       |
+| location        | [Location](#location)                    | 否   | 录制的地理位置，默认不记录地理位置信息。                     |
 
 通过audioSourceType和videoSourceType区分纯音频录制、纯视频录制或音视频录制。纯音频录制时，仅需要设置audioSourceType；纯视频录制时，仅需要设置videoSourceType；音视频录制时，audioSourceType和videoSourceType均需要设置。
 
@@ -2578,8 +2580,6 @@ avRecorder.off('error');
 > AVRecorder<sup>9+</sup>发布后停止维护，建议使用[AVRecorder](#avrecorder9)替代。
 
 视频录制管理类，用于录制视频媒体。在调用VideoRecorder的方法前，需要先通过[createVideoRecorder()](#mediacreatevideorecorder9)构建一个[VideoRecorder](#videorecorder9)实例。
-
-视频录制demo可参考：[视频录制开发指导](../../media/video-recorder.md)
 
 ### 属性
 
@@ -3343,9 +3343,9 @@ videoRecorder.on('error', (error) => {                                  // 设�
 | audioSourceType | [AudioSourceType](#audiosourcetype9)           | 是   | 视频录制的音频源类型。                                       |
 | videoSourceType | [VideoSourceType](#videosourcetype9)           | 是   | 视频录制的视频源类型。                                       |
 | profile         | [VideoRecorderProfile](#videorecorderprofile9) | 是   | 视频录制的profile。                                          |
-| rotation        | number                                         | 否   | 录制视频的旋转角度。                                         |
-| location        | [Location](#location)                          | 否   | 录制视频的地理位置。                                         |
-| url             | string                   | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) |
+| rotation        | number                                         | 否   | 录制的视频旋转角度，仅支持0，90，180，270，默认值为0。       |
+| location        | [Location](#location)                          | 否   | 录制视频的地理位置，默认不记录地理位置信息。                 |
+| url             | string                                         | 是   | 视频输出URL：fd://xx&nbsp;(fd&nbsp;number)<br/>![](figures/zh-cn_image_url.png) |
 
 ## VideoRecorderProfile<sup>9+</sup>
 
@@ -3906,8 +3906,6 @@ audioPlayer.setVolume(3);  //设置volume为无效值，触发'error'事件
 
 视频播放管理类，用于管理和播放视频媒体。在调用VideoPlayer的方法前，需要先通过[createVideoPlayer()](#createvideoplayer)构建一个VideoPlayer实例。
 
-视频播放demo可参考：[视频播放开发指导](../../media/video-playback.md)
-
 ### 属性<a name=videoplayer_属性></a>
 
 **系统能力：** SystemCapability.Multimedia.Media.VideoPlayer
@@ -4309,7 +4307,7 @@ seek(timeMs: number, mode?:SeekMode): Promise\<number>
 | 参数名 | 类型                   | 必填 | 说明                                                         |
 | ------ | ---------------------- | ---- | ------------------------------------------------------------ |
 | timeMs | number                 | 是   | 指定的跳转时间节点，单位毫秒（ms），取值范围为[0, duration]。 |
-| mode   | [SeekMode](#seekmode8) | 否   | 跳转模式。                                                   |
+| mode   | [SeekMode](#seekmode8) | 否   | 基于视频I帧的跳转模式，默认为SEEK_PREV_SYNC模式。            |
 
 **返回值：**
 
@@ -4725,8 +4723,6 @@ videoPlayer.url = 'fd://error';  //设置错误的播放地址，触发'error'�
 > 从API version 6开始支持，从API version 9开始废弃，建议使用[AVRecorder](#avrecorder9)替代。
 
 音频录制管理类，用于录制音频媒体。在调用AudioRecorder的方法前，需要先通过[createAudioRecorder()](#mediacreateaudiorecorder) 构建一个AudioRecorder实例。
-
-音频录制demo可参考：[音频录制开发指导](../../media/audio-recorder.md)
 
 ### prepare<a name=audiorecorder_prepare></a>
 

@@ -225,7 +225,7 @@ has(name: string): boolean
 ```js
 let urlObject = Url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 let paramsObject = new Url.URLParams(urlObject.search.slice(1)); 
-paramsObject.has('bard') === true;
+let result = paramsObject.has('bard');
 ```
 
 
@@ -336,7 +336,7 @@ for (var value of searchParams.values()) {
 
 ```js
 const paramsObject = new Url.URLParams('fod=bay&edg=bap');
-for (const [name, value] of paramsObject) {
+for (const [name, value] of paramsObject[Symbol.iterator]()) {
     console.log(name, value); 
 } 
 ```
@@ -460,7 +460,7 @@ URL静态成员函数。
 ```js
 let mm = 'https://username:password@host:8080';
 let url = Url.URL.parseURL(mm); 
-url.toString(); // Output 'https://username:password@host:8080/';
+let result = url.toString(); // Output 'https://username:password@host:8080/'
 ```
 
 ### tostring
@@ -481,7 +481,7 @@ toString(): string
 
 ```js
 const url = Url.URL.parseURL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-url.toString();
+let result = url.toString();
 ```
 
 ### toJSON
@@ -501,7 +501,7 @@ toJSON(): string
 **示例：**
 ```js
 const url = Url.URL.parseURL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-url.toJSON();
+let result = url.toJSON();
 ```
 
 ## URLSearchParams<sup>(deprecated)</sup>

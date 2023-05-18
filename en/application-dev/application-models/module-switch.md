@@ -3,7 +3,7 @@
 
 When switching an application from the FA model to the stage model, you must migrate the configurations under the **module** tag in the **config.json** file to the **module** tag in the **module.json5** file.
 
-**Table 1** module comparison
+###   Table 1 module Comparison
 
 | Field Name in the FA Model| Field Description| Field Name in the Stage Model| Difference|
 | -------- | -------- | -------- | -------- |
@@ -26,7 +26,7 @@ When switching an application from the FA model to the stage model, you must mig
 | commonEvents | Common events.| common_event_config.json| In the stage model, the **common_event_config.json** file is defined in **resources/base/profile** in the development view.|
 | entryTheme | Keyword of an OpenHarmony internal theme.| / | This configuration is not supported in the stage model.|
 
-**Table 2** metaData comparison
+### Table 2 metaData Comparison
 
 | Field Name Under metaData in the FA Model| Field Description| Field Name Under metaData in the Stage Model| Difference|
 | -------- | -------- | -------- | -------- |
@@ -34,7 +34,7 @@ When switching an application from the FA model to the stage model, you must mig
 | results | Metadata of the ability return value.| / | This configuration is not supported in the stage model.|
 | customizeData | Custom metadata of the parent component. **parameters** and **results** cannot be configured in **application**.| metadata | See [Table 3](#table-3-comparison-between-customizedata-under-metadata-in-the-fa-model-and-metadata-in-the-stage-model).|
 
-**Table 3** Comparison between customizeData under metaData in the FA model and metadata in the stage model
+### Table 3 Comparison Between customizeData Under metaData in the FA Model and metadata in the Stage Model
 
 | Field Name Under customizeData in metaData in the FA Model| Field Description| Field Name Under metaData in the Stage Model| Difference|
 | -------- | -------- | -------- | -------- |
@@ -42,14 +42,14 @@ When switching an application from the FA model to the stage model, you must mig
 | value | Value of the data item. The value is a string with a maximum of 255 bytes.| value | None.|
 | extra | Format of the current custom data. The value is the resource value of **extra**.| resource | The field name is changed. For details, see [Table 4](#table-4-metadata-examples).|
 
-**Table 4** metaData examples
+### Table 4 metaData Examples
 
 | Example in the FA Model| Example in the Stage Model|
 | -------- | -------- |
 | "meteData": {<br>    "customizeDate": [{<br>        "name": "label",<br>        "value": "string",<br>        "extra": "$string:label",<br>    }]<br>} | "meteData": [{<br>    "name": "label",<br>    "value": "string",<br>    "resource": "$string:label",<br>}] |
 
 
-**Table 5** abilities comparison
+### Table 5 abilities Comparison
 
 | Field Name Under abilities in the FA Model| Field Description| Field Name Under abilities in the Stage Model| Difference|
 | -------- | -------- | -------- | -------- |

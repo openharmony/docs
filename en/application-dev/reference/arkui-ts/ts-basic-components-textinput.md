@@ -21,7 +21,7 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | Name                    | Type                                    | Mandatory  | Description           |
 | ----------------------- | ---------------------------------------- | ---- | --------------- |
 | placeholder   | [ResourceStr](ts-types.md#resourcestr)       | No   | Placeholder text displayed when there is no input.     |
-| text          | [ResourceStr](ts-types.md#resourcestr)       | No   | Current text input.    |
+| text          | [ResourceStr](ts-types.md#resourcestr)       | No   | Current text input.<br>If the component has [stateStyles](ts-universal-attributes-polymorphic-style.md) or any other attribute that may trigger updating configured, you are advised to bind the state variable to the text in real time through the **onChange** event,<br>so as to prevent display errors when the component is updated.    |
 | controller<sup>8+</sup> | [TextInputController](#textinputcontroller8) | No   | Text input controller.|
 
 
@@ -31,10 +31,10 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                      | Type                                    | Description                                      |
 | ------------------------ | ---------------------------------------- | ---------------------------------------- |
-| type                     | InputType     | Input box type.<br>Default value: **InputType.Normal**       |
+| type                     | [InputType](#inputtype)     | Input box type.<br>Default value: **InputType.Normal**       |
 | placeholderColor         | [ResourceColor](ts-types.md#resourcecolor)     | Placeholder text color.|
 | placeholderFont          | [Font](ts-types.md#font) | Placeholder text font.|
-| enterKeyType             | EnterKeyType | Type of the Enter key. Only the default value is supported.<br>Default value: **EnterKeyType.Done**|
+| enterKeyType             | EnterKeyType | Type of the Enter key. Currently, only the default value is supported.<br>Default value: **EnterKeyType.Done**|
 | caretColor               | [ResourceColor](ts-types.md#resourcecolor)    | Color of the caret in the text box.                              |
 | maxLength                | number                                   | Maximum number of characters in the text input.                           |
 | inputFilter<sup>8+</sup> | {<br>value: [ResourceStr](ts-types.md#resourcestr),<br>error?: (value: string) =&gt; void<br>} | Regular expression for input filtering. Only inputs that comply with the regular expression can be displayed. Other inputs are filtered out. The regular expression can match single characters, but not strings.<br>- **value**: regular expression to set.<br>- **error**: filtered-out content to return when regular expression matching fails.|
@@ -45,7 +45,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 >  **NOTE**
 >
->  The default value of the universal attribute [padding](ts-universal-attributes-size.md) is as follows: <br>{<br> top: 8 vp,<br> right: 16 vp,<br> bottom: 16 vp,<br> left: 8 vp<br> }
+>  The default value of the universal attribute [padding](ts-universal-attributes-size.md) is as follows: { top: 8 vp, right: 16 vp, bottom: 8 vp, left: 16 vp }
 
 ## EnterKeyType
 
@@ -62,8 +62,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name                | Description           |
 | ------------------ | ------------- |
 | Normal   | Normal input mode.<br>The value can contain digits, letters, underscores (_), spaces, and special characters.|
-| Password | Password input mode.      |
-| Email    | Email address input mode.|
+| Password | Password input mode. The value can contain digits, letters, underscores (_), spaces, and special characters. An eye icon is used to show or hide the password, and the password is hidden behind dots by default.|
+| Email    | Email address input mode. The value can contain digits, letters, underscores (_), and at signs (@). Only one at sign (@) is allowed.|
 | Number   | Digit input mode.     |
 | PhoneNumber<sup>9+</sup> | Phone number input mode.<br>The value can contain digits, plus signs (+), hyphens (-), asterisks (*), and number signs (#). The length is not limited.|
 
@@ -78,15 +78,15 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name                                                        | Description                                                    |
+| Name                                                         | Description                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| onChange(callback: (value: string) =&gt; void) | Triggered when the input changes.<br>**value**: text content.|
-| onSubmit(callback: (enterKey: EnterKeyType) =&gt; void) | Triggered when the Enter key on the keyboard is pressed. The return value is the current type of the Enter key.<br>**enterKeyType**: type of the Enter key. For details, see [EnterKeyType](#enterkeytype).|
-| onEditChanged(callback: (isEditing: boolean) =&gt; void)<sup>(deprecated)</sup> | Triggered when the input status changes. Since API version 8, **onEditChange** is recommended.|
-| onEditChange(callback: (isEditing: boolean) =&gt; void)<sup>8+</sup> | Triggered when the input status changes. If the value of **isEditing** is **true**, text input is in progress.   |
-| onCopy(callback:(value: string) =&gt; void)<sup>8+</sup> | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be copied.|
-| onCut(callback:(value: string) =&gt; void)<sup>8+</sup> | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be cut.|
-| onPaste(callback:(value: string) =&gt; void)<sup>8+</sup> | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be pasted.|
+| onChange(callback: (value: string) =&gt; void)               | Triggered when the input changes.<br>**value**: text content.<br>This event is triggered when any of the following conditions is met:<br>1. Keyboard input is received.<br>2. Paste and cut is performed.<br>3. Ctrl+V is pressed. |
+| onSubmit(callback: (enterKey: EnterKeyType) =&gt; void)      | Triggered when the Enter key on the keyboard is pressed. The return value is the current type of the Enter key.<br>**enterKeyType**: type of the Enter key. For details, see [EnterKeyType](#enterkeytype). |
+| onEditChanged(callback: (isEditing: boolean) =&gt; void)<sup>(deprecated)</sup> | Triggered when the input status changes. Since API version 8, **onEditChange** is recommended. |
+| onEditChange(callback: (isEditing: boolean) =&gt; void)<sup>8+</sup> | Triggered when the input status changes. When the cursor is placed in the text box, it is in the editing state. Otherwise, it is in the non-editing state. If the value of **isEditing** is **true**, text input is in progress. |
+| onCopy(callback:(value: string) =&gt; void)<sup>8+</sup>     | Triggered when the copy button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be copied. |
+| onCut(callback:(value: string) =&gt; void)<sup>8+</sup>      | Triggered when the cut button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be cut. |
+| onPaste(callback:(value: string) =&gt; void)<sup>8+</sup>    | Triggered when the paste button on the pasteboard, which displays when the text box is long pressed, is clicked.<br>**value**: text to be pasted. |
 
 ## TextInputController<sup>8+</sup>
 
@@ -129,6 +129,9 @@ struct TextInputExample {
         .margin(20)
         .fontSize(14)
         .fontColor(Color.Black)
+        .inputFilter('[a-z]', (e) => {
+          console.log(JSON.stringify(e))
+        })
         .onChange((value: string) => {
           this.text = value
         })

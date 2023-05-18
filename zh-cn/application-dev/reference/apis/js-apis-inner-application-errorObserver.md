@@ -2,7 +2,13 @@
 
 定义异常监听，可以作为[errorManager.on](js-apis-app-ability-errorManager.md#errormanageron)的入参监听当前应用发生的异常。
 
-## onUnhandledException
+## 导入模块
+
+```ts
+import errorManager from '@ohos.app.ability.errorManager';
+```
+
+## ErrorObserver.onUnhandledException
 
 onUnhandledException(errMsg: string): void;
 

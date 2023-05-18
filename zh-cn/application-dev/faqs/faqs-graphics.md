@@ -1,90 +1,93 @@
 # 图形图像开发常见问题
 
-## 调用window实例的setSystemBarProperties接口时，设置isStatusBarLightIcon和isNavigationBarLightIcon属性不生效
+## 如何获取设备的dpi值
 
-适用于：OpenHarmony SDK 3.2.5.3版本，API9 Stage模型
+适用于：OpenHarmony 3.2 Beta5，API 9 Stage模型
 
-状态栏字体高亮属性的本质就只是让字体变成白色。调用window实例的setSystemBarProperties接口时，如果设置了状态栏内容颜色statusBarContentColor，就以开发者设置的颜色为准，isStatusBarLightIcon状态栏字体高亮属性就不生效；同理，如果设置了导航栏内容颜色navigationBarContentColor，isNavigationBarLightIcon导航栏字体高亮属性就不生效。
+**解决措施**
 
-## 如何设置系统状态栏样式
+导入@ohos.display包，通过getDefaultDisplaySync\(\)方法获取。
 
-适用于：OpenHarmony SDK 3.2.3.5版本，API9 Stage模型
+**代码示例**
 
-导入\@ohos.window模块，开发者可以使用window.setSystemBarProperties()接口设置状态栏样式属性，达到自定义样式的效果。
+```
+import display from '@ohos.display'; 
+let displayClass = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+  console.info('Test densityDPI:' + JSON.stringify(displayClass.densityDPI));
+} catch (exception) {
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+}
+```
 
-## 如何隐藏状态栏，实现沉浸式效果
+## 如何隐藏状态栏实现沉浸式效果
 
-适用于：OpenHarmony SDK 3.2.6.3版本，API9 Stage模型
+适用于：OpenHarmony 3.2 Beta5，API 9 Stage模型  
 
-1. 可以在onWindowStageCreate方法获取windowClass对象。
-     
-   ```
-   onWindowStageCreate(windowStage) {
-     // Main window is created, set main page for this ability
-     console.log("[Demo] MainAbility onWindowStageCreate")
-     windowStage.getMainWindow((err, data) => {
-       if (err.code) {
-         console.error('Failed to obtain the main window.')
-         return;
-       }
-       // 获取到窗口对象
-       globalThis.windowClass = data; 
-     })
-   }
-   ```
+**解决措施**
 
-2. 设置窗口全屏，隐藏状态栏。
-     
-   ```
-    globalThis.windowClass.setFullScreen(isFullScreen, (err, data) => {
-     if (err.code) {
-       console.error('Failed to enable the full-screen mode. Cause:' + JSON.stringify(err));
-       return;
-     }
-       console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
-     });
-   ```
+1.  可以在onWindowStageCreate方法获取windowClass对象。
+
+    ```
+    onWindowStageCreate(windowStage) {
+      // Main window is created, set main page for this ability
+      console.log("[Demo] MainAbility onWindowStageCreate")
+      windowStage.getMainWindow((err, data) => {
+        if (err.code) {
+          console.error('Failed to obtain the main window.')
+          return;
+        }
+        // 获取到窗口对象
+        globalThis.windowClass = data; 
+      })
+    }
+    ```
+
+2.  设置窗口全屏，隐藏状态栏。
+
+    ```
+     globalThis.windowClass.setFullScreen(isFullScreen, (err, data) => {
+      if (err.code) {
+        console.error('Failed to enable the full-screen mode. Cause:' + JSON.stringify(err));
+        return;
+      }
+        console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
+      });
+    ```
+
 
 ## 如何获取窗口的宽高信息
 
-适用于：OpenHarmony SDK 3.2.3.5版本，API9 Stage模型
+适用于：OpenHarmony SDK 3.2 Beta5，API 9 Stage模型  
 
-通过\@ohos.window模块，可以使用getProperties()接口获取窗口属性，然后通过窗口属性的windowRect获取窗口宽高信息
+**解决措施**
 
-示例：
+引入窗口模块@ohos.window，获取指定窗口对象Window后，在该对象上使用getWindowProperties\(\)获取窗口各个属性，在属性windowRect中获取窗口宽高信息。
 
-  
+**代码示例**
+
 ```
-let promise = windowClass.getProperties();
-promise.then((data)=> {
-  console.info('Succeeded in obtaining the window properties. Data: ' + JSON.stringify(data.windowRect));
-}).catch((err)=>{
-  console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(err));
-});
+import window from '@ohos.window';
+let windowClass = null;
+try {    
+    let promise = window.getLastWindow(this.context);
+    promise.then((data)=> {
+        //获取窗口对象
+        windowClass = data;
+        try {
+            //获取窗口属性
+            let properties = windowClass.getWindowProperties();
+            let rect = properties.windowRect;
+            //rect.width: 窗口宽度；rect.height: 窗口高度
+        } catch (exception) {
+             console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(exception));
+        }
+        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+    }).catch((err)=>{
+        console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+    });} catch (exception) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+}
 ```
 
-## 如何设置系统状态栏颜色
-
-适用于：OpenHarmony SDK 3.2.5.5版本，API9 Stage模型
-
-参考如下方式实现，示例：
-
-  
-```
-window.getTopWindow(globalThis.mainContext).then(win => {
-  var systemBarProperties = {
-    statusBarColor: '#19B6FF', // 状态栏背景颜色
-    navigationBarColor: '#19B6FF', // 导航栏背景颜色
-    isStatusBarLightIcon: false, // 状态栏图标是否为高亮状态。
-    isNavigationBarLightIcon: true, // 导航栏图标是否为高亮状态。
-    statusBarContentColor: '#0D0500', // 状态栏文字颜色
-    navigationBarContentColor: '#FFA500' // 导航栏文字颜色
-  };
-  win.setSystemBarProperties(systemBarProperties).catch(err => {
-    INDEX_LOGGER.info(`set System Bar Properties failed:${err}`)
-  })
-})
-.catch(err => {
-  INDEX_LOGGER.info(`get top window failed:${err}`)
-})
-```

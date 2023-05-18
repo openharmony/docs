@@ -31,7 +31,7 @@
 1. 通过AVSessionManager的方法创建并激活媒体会话。
      
    ```ts
-   import AVSessionManager from '@ohos.multimedia.avsession'; //导入AVSession模块
+   import AVSessionManager from '@ohos.multimedia.avsession'; //导入AVSessionManager模块
    
    // 创建session
    async createSession() {
@@ -79,10 +79,10 @@
    ```
 
 3. 设置用于被媒体会话控制方拉起的UIAbility。当用户操作媒体会话控制方的界面时，例如点击播控中心的卡片，可以拉起此处配置的UIAbility。
-   设置UIAbility时通过WantAgent接口实现，更多关于WantAgent的信息请参考[WantAgent](../reference/apis/js-apis-wantAgent.md)。
+   设置UIAbility时通过WantAgent接口实现，更多关于WantAgent的信息请参考[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)。
  
    ```ts
-   import WantAgent from "@ohos.wantAgent";
+   import WantAgent from "@ohos.app.ability.wantAgent";
    ```
 
    ```ts

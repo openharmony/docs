@@ -415,7 +415,9 @@
      - [Utils Overview](subsystems/subsys-utils-overview.md)
      - [Utils Development](subsystems/subsys-utils-guide.md)
      - [Utils FAQ](subsystems/subsys-utils-faqs.md)
-  -  [AI Framework Development](subsystems/subsys-ai-aiframework-devguide.md)
+  - AI
+     - [AI Framework Development](subsys-ai-aiframework-devguide.md)
+     - [NNRt Development](subsys-ai-nnrt-guide.md)
   -  Data Management
      - RDB
        - [RDB Overview](subsystems/subsys-data-relational-database-overview.md)

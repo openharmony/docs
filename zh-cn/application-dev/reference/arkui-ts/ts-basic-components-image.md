@@ -162,7 +162,7 @@ struct ImageExample1 {
 
 ### 网络图片
 
-加载网络图片时，默认网络超时是5分钟，建议使用alt配置加载时的占位图。如果需要更灵活的网络配置，可以使用SDK中提供的[HTTP](../../connectivity/http-request.md)工具包发送网络请求，接着将返回的数据解码为Image组件中的`PixelMap`，图片开发可参考[图片处理](../../media/image.md)。代码如下。
+加载网络图片时，默认网络超时是5分钟，建议使用alt配置加载时的占位图。如果需要更灵活的网络配置，可以使用SDK中提供的[HTTP](../../connectivity/http-request.md)工具包发送网络请求，接着将返回的数据解码为Image组件中的`PixelMap`，图片开发可参考[图片处理](../../media/image-overview.md)。代码如下。
 
 ```tsx
 // @ts-nocheck
@@ -368,7 +368,7 @@ import context from '@ohos.app.ability.common';
 struct LoadImageExample {
   @State resourcesPath: string = ''
   @State sandboxPath: string = ''
-  context: context.UIAbility = getContext(this) as context.UIAbilityContext
+  context: context.UIAbilityContext = getContext(this) as context.UIAbilityContext
 
   build() {
     Column() {
@@ -395,6 +395,12 @@ struct LoadImageExample {
       Image(this.resourcesPath)
         .width(100)
         .height(100)
+        .colorFilter([
+          0.30, 0.59, 0.11, 0, 0,
+          0.30, 0.59, 0.11, 0, 0,
+          0.30, 0.59, 0.11, 0, 0,
+          0, 0, 0, 1.0, 0
+        ])
       Text(`沙箱图片路径:${this.sandboxPath}`)
         .fontSize(20)
         .margin({ bottom: 10 })

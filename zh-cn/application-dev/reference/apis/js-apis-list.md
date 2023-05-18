@@ -161,9 +161,8 @@ has(element: T): boolean
 
 ```ts
 let list = new List();
-let result = list.has("squirrel");
 list.add("squirrel");
-let result1 = list.has("squirrel");
+let result = list.has("squirrel");
 ```
 
 ### get
@@ -289,7 +288,6 @@ list.add(2);
 list.add(1);
 list.add(2);
 list.add(4);
-list.getIndexOf(2);
 let result = list.getIndexOf(2);
 ```
 
@@ -328,14 +326,11 @@ let list = new List();
 list.add(2);
 list.add(4);
 list.add(5);
-list.add(2);
-let obj1 = new List();
-obj1.add(2);
-obj1.add(4);
-obj1.add(5);
-list.equal(obj1);
-let obj2 = {name : "Dylon", age : "13"};
-let result = list.equal(obj2);
+let obj = new List();
+obj.add(2);
+obj.add(4);
+obj.add(5);
+let result = list.equal(obj);
 ```
 
 ### removeByIndex
@@ -458,11 +453,9 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-list.replaceAllElements((value: number, index: number) => {
-  return value = 2 * value;
-});
-list.replaceAllElements((value: number, index: number) => {
-  return value = value - 2;
+list.replaceAllElements((value) => {
+  // 用户操作逻辑根据实际场景进行添加。
+  return value;
 });
 ```
 
@@ -590,9 +583,7 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-let result = list.getSubList(2, 4);
-let result1 = list.getSubList(4, 3);
-let result2 = list.getSubList(2, 6);
+let result = list.getSubList(1, 3);
 ```
 
 ### clear
@@ -660,7 +651,7 @@ list.add(2);
 list.add(4);
 list.add(5);
 list.add(4);
-list.set(2, "b");
+let result = list.set(2, "b");
 ```
 
 ### convertToArray

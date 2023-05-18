@@ -415,7 +415,7 @@ int32_t OH_NativeXComponent_GetTouchPointTiltX (OH_NativeXComponent * component,
 | -------- | -------- |
 | component | 表示指向OH_NativeXComponent实例的指针。 | 
 | pointIndex | 表示触摸点的指针索引。 | 
-| tiltX | 表示指向Y倾斜度的指针。 | 
+| tiltY | 表示指向Y倾斜度的指针。 | 
 
 **返回：**
 

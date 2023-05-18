@@ -13,10 +13,10 @@ The Socket Connection module allows an application to transmit data over a Socke
 
 ## When to Use
 
-Applications transmit data over TCP, UDP, or TLS Socket connections. The main application scenarios are as follows:
+Applications transmit data over TCP, UDP, or TLSSocket connections. The main application scenarios are as follows:
 
-- Implementing data transmission over TCP/UDP Socket connections
-- Implementing encrypted data transmission over TLS Socket connections
+- Implementing data transmission over TCP/UDPSocket connections
+- Implementing encrypted data transmission over TLSSocket connections
 
 ## Available APIs
 
@@ -40,12 +40,12 @@ Socket connection functions are mainly implemented by the **socket** module. The
 | off(type:&nbsp;'close') | Unsubscribes from **close** events of the Socket connection.|
 | on(type:&nbsp;'error') | Subscribes to **error** events of the Socket connection.|
 | off(type:&nbsp;'error') | Unsubscribes from **error** events of the Socket connection.|
-| on(type:&nbsp;'listening') | Subscribes to **listening** events of the UDP Socket connection. |
-| off(type:&nbsp;'listening') | Unsubscribes from **listening** events of the UDP Socket connection. |
-| on(type:&nbsp;'connect') | Subscribes to **connect** events of the TCP Socket connection. |
-| off(type:&nbsp;'connect') | Unsubscribes from **connect** events of the TCP Socket connection.|
+| on(type:&nbsp;'listening') | Subscribes to **listening** events of the UDPSocket connection. |
+| off(type:&nbsp;'listening') | Unsubscribes from **listening** events of the UDPSocket connection. |
+| on(type:&nbsp;'connect') | Subscribes to **connect** events of the TCPSocket connection. |
+| off(type:&nbsp;'connect') | Unsubscribes from **connect** events of the TCPSocket connection.|
 
-TLS Socket connection functions are mainly provided by the **tls_socket** module. The following table describes the related APIs.
+TLSSocket connection functions are mainly provided by the **tls_socket** module. The following table describes the related APIs.
 
 | API| Description|
 | -------- | -------- |
@@ -56,28 +56,28 @@ TLS Socket connection functions are mainly provided by the **tls_socket** module
 | getCertificate() | Obtains an object representing the local certificate.|
 | getCipherSuite() | Obtains a list containing information about the negotiated cipher suite.|
 | getProtocol() | Obtains a string containing the SSL/TLS protocol version negotiated for the current connection.|
-| getRemoteAddress() | Obtains the peer address of the TLS Socket connection.|
+| getRemoteAddress() | Obtains the peer address of the TLSSocket connection.|
 | getRemoteCertificate() | Obtains an object representing a peer certificate.|
 | getSignatureAlgorithms() | Obtains a list containing signature algorithms shared between the server and client, in descending order of priority.|
-| getState() | Obtains the TLS Socket connection status.|
-| off(type:&nbsp;'close') | Unsubscribes from **close** events of the TLS Socket connection.|
-| off(type:&nbsp;'error') | Unsubscribes from **error** events of the TLS Socket connection.|
-| off(type:&nbsp;'message') | Unsubscribes from **message** events of the TLS Socket connection.|
-| on(type:&nbsp;'close') | Subscribes to **close** events of the TLS Socket connection.|
-| on(type:&nbsp;'error') | Subscribes to **error** events of the TLS Socket connection.|
-| on(type:&nbsp;'message') | Subscribes to **message** events of the TLS Socket connection.|
+| getState() | Obtains the TLSSocket connection status.|
+| off(type:&nbsp;'close') | Unsubscribes from **close** events of the TLSSocket connection.|
+| off(type:&nbsp;'error') | Unsubscribes from **error** events of the TLSSocket connection.|
+| off(type:&nbsp;'message') | Unsubscribes from **message** events of the TLSSocket connection.|
+| on(type:&nbsp;'close') | Subscribes to **close** events of the TLSSocket connection.|
+| on(type:&nbsp;'error') | Subscribes to **error** events of the TLSSocket connection.|
+| on(type:&nbsp;'message') | Subscribes to **message** events of the TLSSocket connection.|
 | send() | Sends data.|
-| setExtraOptions() | Sets other properties of the TLS Socket connection.|
+| setExtraOptions() | Sets other properties of the TLSSocket connection.|
 
-## Transmitting Data over TCP/UDP Socket Connections
+## Transmitting Data over TCP/UDPSocket Connections
 
-The implementation is similar for UDP Socket and TCP Socket connections. The following uses data transmission over a TCP Socket connection as an example.
+The implementation is similar for UDPSocket and TCPSocket connections. The following uses data transmission over a TCPSocket connection as an example.
 
 1. Import the required **socket** module.
 
 2. Create a **TCPSocket** object.
 
-3. (Optional) Subscribe to TCP Socket connection events.
+3. (Optional) Subscribe to TCPSocket connection events.
 
 4. Bind the IP address and port number. The port number can be specified or randomly allocated by the system.
 
@@ -85,7 +85,7 @@ The implementation is similar for UDP Socket and TCP Socket connections. The fol
 
 6. Send data.
 
-7. Enable the TCP Socket connection to be automatically closed after use.
+7. Enable the TCPSocket connection to be automatically closed after use.
 
    ```js
    import socket from '@ohos.net.socket'
@@ -93,7 +93,7 @@ The implementation is similar for UDP Socket and TCP Socket connections. The fol
    // Create a TCPSocket object.
    let tcp = socket.constructTCPSocketInstance();
 
-   // Subscribe to TCP Socket connection events.
+   // Subscribe to TCPSocket connection events.
    tcp.on('message', value => {
        console.log("on message")
        let buffer = value.message
@@ -152,7 +152,7 @@ The implementation is similar for UDP Socket and TCP Socket connections. The fol
        });
    });
 
-   // Enable the TCP Socket connection to be automatically closed after use. Then, disable listening for TCP Socket connection events.
+   // Enable the TCPSocket connection to be automatically closed after use. Then, disable listening for TCPSocket connection events.
    setTimeout(() => {
        tcp.close((err) => {
            console.log('close socket.')
@@ -163,11 +163,11 @@ The implementation is similar for UDP Socket and TCP Socket connections. The fol
    }, 30 * 1000);
    ```
 
-## Implementing Encrypted Data Transmission over TLS Socket Connections
+## Implementing encrypted data transmission over TLSSocket connections
 
 ### How to Develop
 
-TLS Socket connection process on the client:
+TLSSocket connection process on the client:
 
 1. Import the required **socket** module.
 
@@ -177,145 +177,143 @@ TLS Socket connection process on the client:
 
 4. Create a **TLSSocket** object.
 
-5. (Optional) Subscribe to TLS Socket connection events.
+5. (Optional) Subscribe to TLSSocket connection events.
 
 6. Send data.
 
-7. Enable the TLS Socket connection to be automatically closed after use.
+7. Enable the TLSSocket connection to be automatically closed after use.
 
 ```js
-   import socket from '@ohos.net.socket'
+// Create a TLSSocket connection (for two-way authentication).
+let tlsTwoWay = socket.constructTLSSocketInstance();
 
-   // Create a TLS Socket connection (for two-way authentication).
-   let tlsTwoWay = socket.constructTLSSocketInstance();
+// Subscribe to TLSSocket connection events.
+tlsTwoWay.on('message', value => {
+  console.log("on message")
+  let buffer = value.message
+  let dataView = new DataView(buffer)
+  let str = ""
+  for (let i = 0; i < dataView.byteLength; ++i) {
+    str += String.fromCharCode(dataView.getUint8(i))
+  }
+  console.log("on connect received:" + str)
+});
+tlsTwoWay.on('connect', () => {
+  console.log("on connect")
+});
+tlsTwoWay.on('close', () => {
+  console.log("on close")
+});
 
-   // Subscribe to TLS Socket connection events.
-   tlsTwoWay.on('message', value => {
-       console.log("on message")
-       let buffer = value.message
-       let dataView = new DataView(buffer)
-       let str = ""
-       for (let i = 0; i < dataView.byteLength; ++i) {
-           str += String.fromCharCode(dataView.getUint8(i))
-       }
-       console.log("on connect received:" + str)
-   });
-   tlsTwoWay.on('connect', () => {
-       console.log("on connect")
-   });
-   tlsTwoWay.on('close', () => {
-       console.log("on close")
-   });
+// Bind the local IP address and port number.
+tlsTwoWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
 
-   // Bind the local IP address and port number.
-   tlsTwoWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
-       if (err) {
-           console.log('bind fail');
-           return;
-       }
-       console.log('bind success');
-   });
+// Set the communication parameters.
+let options = {
+  ALPNProtocols: ["spdy/1", "http/1.1"],
 
-   // Set the communication parameters.
-   let options = {
-       ALPNProtocols: ["spdy/1", "http/1.1"],
+  // Set up a connection to the specified IP address and port number.
+  address: {
+    address: "192.168.xx.xxx",
+    port: xxxx, // Port
+    family: 1,
+  },
 
-       // Set up a connection to the specified IP address and port number.
-       address: {
-           address: "192.168.xx.xxx",
-           port: xxxx, // Port
-           family: 1,
-       },
+  // Set the parameters used for authentication during communication.
+  secureOptions: {
+    key: "xxxx",                            // Key
+    cert: "xxxx",                           // Digital certificate
+    ca: ["xxxx"],                           // CA certificate
+    passwd: "xxxx",                         // Password for generating the key
+    protocols: [socket.Protocol.TLSv12],    // Communication protocol
+    useRemoteCipherPrefer: true,            // Whether to preferentially use the peer cipher suite
+    signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",    // Signature algorithm
+    cipherSuite: "AES256-SHA256",           // Cipher suite
+  },
+};
 
-       // Set the parameters used for authentication during communication.
-       secureOptions: {
-           key: "xxxx",                            // Key
-           cert: "xxxx",                           // Digital certificate
-           ca: ["xxxx"],                           // CA certificate
-           passwd: "xxxx",                         // Password for generating the key
-           protocols: [socket.Protocol.TLSv12],    // Communication protocol
-           useRemoteCipherPrefer: true,            // Whether to preferentially use the peer cipher suite
-           signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",    // Signature algorithm
-           cipherSuite: "AES256-SHA256",           // Cipher suite
-       },
-   };
+// Set up a connection.
+tlsTwoWay.connect(options, (err, data) => {
+  console.error(err);
+  console.log(data);
+});
 
-   // Set up a connection.
-   tlsTwoWay.connect(options, (err, data) => {
-       console.error(err);
-       console.log(data);
-   });
+// Enable the TCPSocket connection to be automatically closed after use. Then, disable listening for TCPSocket connection events.
+tlsTwoWay.close((err) => {
+  if (err) {
+    console.log("close callback error = " + err);
+  } else {
+    console.log("close success");
+  }
+  tlsTwoWay.off('message');
+  tlsTwoWay.off('connect');
+  tlsTwoWay.off('close');
+});
 
-   // Enable the TCP Socket connection to be automatically closed after use. Then, disable listening for TCP Socket connection events.
-   tlsTwoWay.close((err) => {
-       if (err) {
-           console.log("close callback error = " + err);
-       } else {
-           console.log("close success");
-       }
-       tlsTwoWay.off('message');
-       tlsTwoWay.off('connect');
-       tlsTwoWay.off('close');
-   });
+// Create a TLSSocket connection (for one-way authentication).
+let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
 
-   // Create a TLS Socket connection (for one-way authentication).
-   let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
+// Subscribe to TLSSocket connection events.
+tlsTwoWay.on('message', value => {
+  console.log("on message")
+  let buffer = value.message
+  let dataView = new DataView(buffer)
+  let str = ""
+  for (let i = 0; i < dataView.byteLength; ++i) {
+    str += String.fromCharCode(dataView.getUint8(i))
+  }
+  console.log("on connect received:" + str)
+});
+tlsTwoWay.on('connect', () => {
+  console.log("on connect")
+});
+tlsTwoWay.on('close', () => {
+  console.log("on close")
+});
 
-   // Subscribe to TLS Socket connection events.
-   tlsTwoWay.on('message', value => {
-       console.log("on message")
-       let buffer = value.message
-       let dataView = new DataView(buffer)
-       let str = ""
-       for (let i = 0;i < dataView.byteLength; ++i) {
-           str += String.fromCharCode(dataView.getUint8(i))
-       }
-       console.log("on connect received:" + str)
-   });
-   tlsTwoWay.on('connect', () => {
-       console.log("on connect")
-   });
-   tlsTwoWay.on('close', () => {
-       console.log("on close")
-   });
+// Bind the local IP address and port number.
+tlsOneWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
+  if (err) {
+    console.log('bind fail');
+    return;
+  }
+  console.log('bind success');
+});
 
-   // Bind the local IP address and port number.
-   tlsOneWay.bind({address: '192.168.xxx.xxx', port: xxxx, family: 1}, err => {
-       if (err) {
-           console.log('bind fail');
-           return;
-       }
-       console.log('bind success');
-   });
+// Set the communication parameters.
+let oneWayOptions = {
+  address: {
+    address: "192.168.xxx.xxx",
+    port: xxxx,
+    family: 1,
+  },
+  secureOptions: {
+    ca: ["xxxx","xxxx"],            // CA certificate
+    cipherSuite: "AES256-SHA256",   // Cipher suite
+  },
+};
 
-   // Set the communication parameters.
-   let oneWayOptions = {
-       address: {
-           address: "192.168.xxx.xxx",
-           port: xxxx,
-           family: 1,
-       },
-       secureOptions: {
-           ca: ["xxxx","xxxx"],            // CA certificate
-           cipherSuite: "AES256-SHA256",   // Cipher suite
-       },
-   };
+// Set up a connection.
+tlsOneWay.connect(oneWayOptions, (err, data) => {
+  console.error(err);
+  console.log(data);
+});
 
-   // Set up a connection.
-   tlsOneWay.connect(oneWayOptions, (err, data) => {
-       console.error(err);
-       console.log(data);
-   });
-
-   // Enable the TCP Socket connection to be automatically closed after use. Then, disable listening for TCP Socket connection events.
-   tlsTwoWay.close((err) => {
-       if (err) {
-           console.log("close callback error = " + err);
-       } else {
-           console.log("close success");
-       }
-       tlsTwoWay.off('message');
-       tlsTwoWay.off('connect');
-       tlsTwoWay.off('close');
-   });
+// Enable the TCPSocket connection to be automatically closed after use. Then, disable listening for TCPSocket connection events.
+tlsTwoWay.close((err) => {
+  if (err) {
+    console.log("close callback error = " + err);
+  } else {
+    console.log("close success");
+  }
+  tlsTwoWay.off('message');
+  tlsTwoWay.off('connect');
+  tlsTwoWay.off('close');
+});
 ```

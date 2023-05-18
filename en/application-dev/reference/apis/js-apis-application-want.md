@@ -19,7 +19,7 @@ import Want from '@ohos.application.Want';
 | Name       | Type                | Mandatory| Description                                                        |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
 | deviceId    | string               | No  | ID of the device running the ability.                               |
-| bundleName   | string               | No  | Bundle name. If both **bundleName** and **abilityName** are specified in a bWantb, the **Want** can directly match the specified ability.|
+| bundleName   | string               | No  | Bundle name. If both **bundleName** and **abilityName** are specified in a **Want**, the **Want** can directly match the specified ability.|
 | abilityName  | string               | No  | Name of the ability. If both **bundleName** and **abilityName** are specified in a **Want** object, the **Want** object can match a specific ability. The value of **abilityName** must be unique in an application.|
 | uri          | string               | No  | URI information to match. If **uri** is specified in a **Want** object, the **Want** object will match the specified URI information, including **scheme**, **schemeSpecificPart**, **authority**, and **path**.|
 | type         | string               | No  | MIME type, that is, the type of the file to open, for example, **'text/xml'** and **'image/*'**. For details about the MIME type definition, see https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com.  |
@@ -108,10 +108,10 @@ import Want from '@ohos.application.Want';
         ```
     * File descriptor (FD)
         ```ts
-            import fileio from '@ohos.fileio';
+            import fs from '@ohos.file.fs';
             let fd;
             try {
-                fd = fileio.openSync('/data/storage/el2/base/haps/pic.png');
+                fd = fs.openSync('/data/storage/el2/base/haps/pic.png').fd;
             } catch(e) {
                 console.log('openSync fail:' + JSON.stringify(e));
             }

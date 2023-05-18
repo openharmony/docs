@@ -107,7 +107,7 @@ extern "C" __attribute__((constructor)) void RegisterModule(void)
 
 ### 解析XComponent组件的NativeXComponent实例
 
-NativeXComponent为XComponent提供了在native层的实例，可作为js层和native层XComponent绑定的桥梁。XComponent所提供的的NDK接口都依赖于该实例。具体NKD接口可参考[Native XComponent](../reference/native-apis/_o_h___native_x_component.md)。
+NativeXComponent为XComponent提供了在native层的实例，可作为js层和native层XComponent绑定的桥梁。XComponent所提供的的NDK接口都依赖于该实例。具体NDK接口可参考[Native XComponent](../reference/native-apis/_o_h___native_x_component.md)。
 
 
 可以在模块被加载时的回调内（即[Napi模块注册](#napi模块注册)中的Init函数）解析获得NativeXComponent实例
@@ -189,6 +189,7 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
 - id : 与XComponent组件为一一对应关系，不可重复。通常开发者可以在native侧通过OH_NativeXComponent_GetXComponentId接口来获取对应的id从而绑定对应的XComponent。
 
 - libraryname：加载模块的名称，必须与在native侧Napi模块注册时nm_modname的名字一致。
+
   >**说明：**
   >
   >   应用加载模块实现跨语言调用有两种方式：
@@ -210,6 +211,7 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
      ![图片2](figures/图片2.png)
 
 - onDestroy事件
+
   触发时刻：XComponent组件被销毁时触发与一般ArkUI的组件销毁时机一致，其和native侧的OnSurfaceDestroyed的时序如下图：
 
   ![图片3](figures/图片3.png)

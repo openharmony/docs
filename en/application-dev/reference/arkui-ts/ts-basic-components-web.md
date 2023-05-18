@@ -28,7 +28,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 
 | Name       | Type                                    | Mandatory  | Description   |
 | ---------- | ---------------------------------------- | ---- | ------- |
-| src        | [ResourceStr](ts-types.md)               | Yes   | Address of a web page resource. To access local resource files, use the **$rawfile** or **resource** protocol. To load a local resource file in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.|
+| src        | [ResourceStr](ts-types.md)               | Yes   | Address of a web page resource. To load a local resource file in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.|
 | controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | Controller. **WebController** is deprecated since API version 9. You are advised to use **WebviewController** instead.|
 
 **Example**
@@ -68,7 +68,8 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   ```
 
   Example of loading local resource files in the sandbox:
-  1. Use[globalthis](../../application-models/uiability-data-sync-with-ui.md#using-globalthis-between-uiability-and-page) to obtain the path of the sandbox.
+
+  1. Use [globalthis](../../application-models/uiability-data-sync-with-ui.md#using-globalthis-between-uiability-and-page) to obtain the path of the sandbox.
      ```ts
      // xxx.ets
      import web_webview from '@ohos.web.webview'
@@ -518,6 +519,8 @@ multiWindowAccess(multiWindow: boolean)
 
 Sets whether to enable the multi-window permission.
 
+Enabling the multi-window permission requires implementation of the **onWindowNew** event. For the sample code, see [onWindowNew](#onwindownew9).
+
 **Parameters**
 
 | Name        | Type   | Mandatory  | Default Value  | Description        |
@@ -537,7 +540,7 @@ Sets whether to enable the multi-window permission.
     build() {
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
-        .multiWindowAccess(true)
+        .multiWindowAccess(false)
       }
     }
   }
@@ -677,6 +680,40 @@ Sets the cache mode.
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .cacheMode(this.mode)
+      }
+    }
+  }
+  ```
+
+### textZoomAtio<sup>(deprecated)</sup>
+
+textZoomAtio(textZoomAtio: number)
+
+Sets the text zoom ratio of the page. The default value is **100**, which indicates 100%.
+
+This API is deprecated since API version 9. You are advised to use [textZoomRatio<sup>9+</sup>](#textzoomratio9) instead.
+
+**Parameters**
+
+| Name          | Type  | Mandatory  | Default Value | Description           |
+| ------------- | ------ | ---- | ---- | --------------- |
+| textZoomAtio | number | Yes   | 100  | Text zoom ratio to set.|
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    @State atio: number = 150
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .textZoomAtio(this.atio)
       }
     }
   }
@@ -1799,7 +1836,7 @@ Called when loading of the web page is complete. This API is used by an applicat
 | Name        | Type   | Description                                    |
 | ----------- | ------- | ---------------------------------------- |
 | url         | string  | URL to be accessed.                                 |
-| isRefreshed | boolean | Whether the page is reloaded. The value **true** means that the page is reloaded by invoking the [refresh](#refresh) API, and **false** means the opposite.|
+| isRefreshed | boolean | Whether the page is reloaded. The value **true** means that the page is reloaded by invoking the [refresh<sup>9+</sup>](../apis/js-apis-webview.md#refresh) API, and **false** means the opposite.|
 
 **Example**
 
@@ -1984,7 +2021,7 @@ Called when the display ratio of this page changes.
   }
   ```
 
-### onUrlLoadIntercept
+### onUrlLoadIntercept<sup>(deprecated)</sup>
 
 onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
 
@@ -2324,7 +2361,7 @@ Called when a permission request is received.
 
 onContextMenuShow(callback: (event?: { param: WebContextMenuParam, result: WebContextMenuResult }) => boolean)
 
-Shows a context menu after the user clicks the right mouse button or long presses a specific element, such as an image or a link.
+Called when a context menu is displayed after the user clicks the right mouse button or long presses a specific element, such as an image or a link.
 
 **Parameters**
 
@@ -2401,7 +2438,7 @@ Called when the scrollbar of the page scrolls.
 
 onGeolocationShow(callback: (event?: { origin: string, geolocation: JsGeolocation }) => void)
 
-Registers a callback for receiving a request to obtain the geolocation information.
+Called when a request to obtain the geolocation information is received.
 
 **Parameters**
 
@@ -2555,7 +2592,9 @@ Called when the component exits full screen mode.
 
 onWindowNew(callback: (event: {isAlert: boolean, isUserTrigger: boolean, targetUrl: string, handler: ControllerHandler}) => void)
 
-Registers a callback for window creation.
+Called when a new window is created. This API takes effect when **multiWindowAccess** is enabled.
+If the **event.handler.setWebController** API is not called, the render process will be blocked.
+If opening a new window is not needed, set the parameter to **null** when calling the **event.handler.setWebController** API.
 
 **Parameters**
 
@@ -2571,19 +2610,51 @@ Registers a callback for window creation.
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
+  
+  // There are two <Web> components on the same page. When the WebComponent object opens a new window, the NewWebViewComp object is displayed. 
+  @CustomDialog
+  struct NewWebViewComp {
+  controller: CustomDialogController
+  webviewController1: web_webview.WebviewController
+  build() {
+      Column() {
+        Web({ src: "", controller: this.webviewController1 })
+          .javaScriptAccess(true)
+          .multiWindowAccess(false)
+          .onWindowExit(()=> {
+            console.info("NewWebViewComp onWindowExit")
+            this.controller.close()
+          })
+        }
+    }
+  }
+
   @Entry
   @Component
   struct WebComponent {
     controller: web_webview.WebviewController = new web_webview.WebviewController()
+    dialogController: CustomDialogController = null
     build() {
       Column() {
-        Web({ src:'www.example.com', controller: this.controller })
-        .multiWindowAccess(true)
-        .onWindowNew((event) => {
-          console.log("onWindowNew...")
-          var popController: web_webview.WebviewController = new web_webview.WebviewController()
-          event.handler.setWebController(popController)
-        })
+        Web({ src: 'www.example.com', controller: this.controller })
+          .javaScriptAccess(true)
+          // MultiWindowAccess needs to be enabled.
+          .multiWindowAccess(true)
+          .allowWindowOpenMethod(true)
+          .onWindowNew((event) => {
+            if (this.dialogController) {
+              this.dialogController.close()
+            }
+            let popController:web_webview.WebviewController = new web_webview.WebviewController()
+            this.dialogController = new CustomDialogController({
+              builder: NewWebViewComp({webviewController1: popController})
+            })
+            this.dialogController.open()
+            // Return the WebviewController object corresponding to the new window to the <Web> kernel.
+            // If opening a new window is not needed, set the parameter to null when calling the event.handler.setWebController API.
+            // If the event.handler.setWebController API is not called, the render process will be blocked.
+            event.handler.setWebController(popController)
+          })
       }
     }
   }
@@ -2593,13 +2664,13 @@ Registers a callback for window creation.
 
 onWindowExit(callback: () => void)
 
-Registers a callback for window closure.
+Called when this window is closed.
 
 **Parameters**
 
 | Name     | Type      | Description        |
 | -------- | ---------- | ------------ |
-| callback | () => void | Callback invoked when the window closes.|
+| callback | () => void | Callback invoked when the window is closed.|
 
 **Example**
 
@@ -2728,7 +2799,7 @@ Called when the old page is not displayed and the new page is about to be visibl
 
 onInterceptKeyEvent(callback: (event: KeyEvent) => boolean)
 
-Called when the key event is intercepted and before it is consumed by the Webview.
+Called when the key event is intercepted and before it is consumed by the webview.
 
 **Parameters**
 
@@ -2740,7 +2811,7 @@ Called when the key event is intercepted and before it is consumed by the Webvie
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
-| boolean | Whether to continue to transfer the key event to the Webview kernel.|
+| boolean | Whether to continue to transfer the key event to the webview kernel.|
 
 **Example**
 
@@ -2826,9 +2897,37 @@ Called when this web page receives a new favicon.
       Column() {
         Web({ src:'www.example.com', controller: this.controller })
          .onFaviconReceived((event) => {
-          console.log('onFaviconReceived:' + JSON.stringify(event))
+          console.log('onFaviconReceived');
           this.icon = event.favicon;
         })
+      }
+    }
+  }
+  ```
+
+### onRequestSelected
+
+onRequestSelected(callback: () => void)
+
+Called when the **\<Web>** component obtains the focus.
+
+**Example**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onRequestSelected(() => {
+            console.log('onRequestSelected')
+          })
       }
     }
   }
@@ -2888,7 +2987,7 @@ Obtains the path and name of the web page source file.
 
 ## JsResult
 
-Implements the **JsResult** object, which indicates the result returned to the **\<Web>** component to indicate the user operation performed in the dialog box. For the sample code, see [onAlert Event](#onalert).
+Implements the **JsResult** object, which indicates the result returned to the **\<Web>** component to indicate the user operation performed in the dialog box. For the sample code, see [onAlert](#onalert).
 
 ### handleCancel
 
@@ -2932,13 +3031,13 @@ Implements a **WebviewController** object for new **\<Web>** components. For the
 
 setWebController(controller: WebviewController): void
 
-Sets a **WebviewController** object.
+Sets a **WebviewController** object. If opening a new window is not needed, set the parameter to **null**.
 
 **Parameters**
 
 | Name       | Type         | Mandatory  | Default Value | Description                     |
 | ---------- | ------------- | ---- | ---- | ------------------------- |
-| controller | [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | Yes   | -    | **WebviewController** object of the **\<Web>** component.|
+| controller | [WebviewController](../apis/js-apis-webview.md#webviewcontroller) | Yes   | -    | **WebviewController** object of the **\<Web>** component. If opening a new window is not needed, set it to **null**.|
 
 ## WebResourceError
 
@@ -3031,6 +3130,18 @@ Checks whether the resource request is associated with a gesture (for example, a
 | Type     | Description                  |
 | ------- | -------------------- |
 | boolean | Whether the resource request is associated with a gesture (for example, a tap).|
+
+### getRequestMethod<sup>9+</sup>
+
+getRequestMethod(): string
+
+Obtains the request method.
+
+**Return value**
+
+| Type     | Description                  |
+| ------- | -------------------- |
+| string | Request method.|
 
 ## Header
 
@@ -3806,7 +3917,7 @@ Obtains the cookie management object of the **\<Web>** component.
 
 | Type       | Description                                      |
 | --------- | ---------------------------------------- |
-| WebCookie | Cookie management object. For details, see [WebCookie](#webcookie).|
+| WebCookie | Cookie management object. For details, see [WebCookie](#webcookiedeprecated).|
 
 **Example**
 
@@ -4035,7 +4146,7 @@ This API is deprecated since API version 9. You are advised to use [forward<sup>
 
 deleteJavaScriptRegister(name: string)
 
-Deletes a specific application JavaScript object that is registered with the window through **registerJavaScriptProxy**. The deletion takes effect immediately, with no need for invoking the [refresh](#refresh) API.
+Deletes a specific application JavaScript object that is registered with the window through **registerJavaScriptProxy**. The deletion takes effect immediately, with no need for invoking the[refresh](#refreshdeprecated) API.
 
 This API is deprecated since API version 9. You are advised to use [deleteJavaScriptRegister<sup>9+</sup>](../apis/js-apis-webview.md#deletejavascriptregister).
 
@@ -4316,7 +4427,7 @@ This API is deprecated since API version 9. You are advised to use [refresh<sup>
 
 registerJavaScriptProxy(options: { object: object, name: string, methodList: Array\<string\> })
 
-Registers a JavaScript object with the window. APIs of this object can then be invoked in the window. You must invoke the [refresh](#refresh) API for the registration to take effect.
+Registers a JavaScript object with the window. APIs of this object can then be invoked in the window. You must invoke the [refresh](#refreshdeprecated) API for the registration to take effect.
 
 This API is deprecated since API version 9. You are advised to use [registerJavaScriptProxy<sup>9+</sup>](../apis/js-apis-webview.md#registerjavascriptproxy).
 

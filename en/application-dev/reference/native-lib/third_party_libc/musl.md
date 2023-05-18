@@ -17,11 +17,14 @@
 
 The C standard library is a C11 standard library implemented by:
 
-libc: provides thread-related functions and a majority of standard functions.
+- libc: provides thread-related functions and a majority of standard functions.
 
-libm: provides basic mathematical functions.
 
-libdl: provides functions related to dynamic linking, such as **dlopen**.
+- libm: provides basic mathematical functions.
+
+
+- libdl: provides functions related to dynamic linking, such as **dlopen**.
+
 
 **Version**
 
@@ -31,7 +34,7 @@ libdl: provides functions related to dynamic linking, such as **dlopen**.
 
 C standard library includes a set of header files in accordance with standard C and provides common functions, such as the functions related to input/output (I/O) and string control.
 
-**<font size=5>musl</font>**
+**musl**
 
 [Native API Symbols Not Exported](musl-peculiar-symbol.md)
 
@@ -49,7 +52,11 @@ The C++11 and C++14 standards are supported, and the C++17 and C++20 standards a
 
 ## OpenSL ES
 
-[OpenSL ES](https://www.khronos.org/registry/OpenSL-ES/) is an embedded, cross-platform audio processing library.
+[OpenGL ES](https://www.khronos.org/opengles/) is an embedded, cross-platform audio processing library.
+
+**Capabilities**
+
+[OpenSL ES Interfaces Supported by Native APIs](../third_party_opensles/opensles.md)
 
 ## zlib
 

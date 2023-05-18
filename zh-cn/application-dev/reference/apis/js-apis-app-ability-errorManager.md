@@ -26,6 +26,14 @@ on(type: 'error', observer: ErrorObserver): number;
 | type | string | 是 | 调用接口类型 |
 | observer | [ErrorObserver](./js-apis-inner-application-errorObserver.md) | 是 | 返回观察者的数字代码。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000003 | Id does not exist. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
     
 ```js
@@ -56,6 +64,14 @@ off(type: 'error', observerId: number,  callback: AsyncCallback\<void>): void;
 | type | string | 是 | 调用接口类型 |
 | observerId | number | 是 | 返回观察者的数字代码。 |
 | callback | AsyncCallback\<void> | 是 | 表示指定的回调方法。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000003 | Id does not exist. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     
@@ -94,6 +110,14 @@ off(type: 'error', observerId: number): Promise\<void>;
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise\<void> | 返回执行结果。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000003 | Id does not exist. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     

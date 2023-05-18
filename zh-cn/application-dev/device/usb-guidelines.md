@@ -165,4 +165,4 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
 
 针对USB管理开发，有以下相关实例可供参考：
 
-- [`USBManager`：USB管理（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/device/USBManager)
+- [`USBManager`：USB管理（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/DeviceManagement/USBManager)

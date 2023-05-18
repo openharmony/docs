@@ -1,11 +1,11 @@
 # 应用内HSP开发指导
 
 应用内`HSP`指的是专门为某一应用开发的`HSP`，只能被该应用内部其他`HAP`/`HSP`使用，用于应用内部代码、资源的共享。
-应用内`HSP`跟随其宿主应用的APP包一起发布，与该宿主应用具有相同的包名和生命周期。
+应用内`HSP`跟随其宿主应用的APP包一起发布，与宿主应用同进程，具有相同的包名和生命周期。
 
 ## 开发应用内HSP
 
-`HSP`模块可以在`DevEco Studio`中由指定模板创建，我们以创建一个名为`library`的`HSP`模块为例。基本的工程目录结构大致如下：
+通过DevEco Studio创建一个HSP模块，创建方式可[参考](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section7717162312546)，我们以创建一个名为`library`的`HSP`模块为例。基本的工程目录结构大致如下：
 ```
 library
 ├── src
@@ -88,7 +88,7 @@ export { MyTitleBar } from './components/MyTitleBar'
 ### 导出native方法
 在`HSP`中也可以包含`C++`编写的`so`。对于`so`中的`native`方法，`HSP`通过间接的方式导出，以导出`libnative.so`的乘法接口`multi`为例：
 ```ts
-// ibrary/src/main/ets/utils/nativeTest.ts
+// library/src/main/ets/utils/nativeTest.ts
 import native from "libnative.so"
 
 export function nativeMulti(a: number, b: number) {
@@ -103,15 +103,9 @@ export { nativeMulti } from './utils/nativeTest'
 ```
 
 ## 使用应用内HSP
-要使用`HSP`中的接口，首先需要在使用方的`oh-package.json5`中配置对它的依赖。如果应用内`HSP`和使用方在同一工程下，可以直接本地引用，例如：
-```json
-// entry/oh-package.json5
-"dependencies": {
-    "library": "file:../library"
-}
-```
-然后就可以像使用`HAR`一样调用`HSP`的对外接口了。
-例如，上面的`library`已经导出了下面这些接口：
+要使用HSP中的接口，首先需要在使用方的oh-package.json5中配置对它的依赖，配置方式可[参考](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/hsp-0000001521396322-V3#section6161154819195)。
+依赖配置成功后，就可以像使用HAR一样调用HSP的对外接口了。 例如，上面的library已经导出了下面这些接口：
+
 ```ts
 // library/src/main/ets/index.ets
 export { Log, add, minus } from './utils/test'
@@ -150,4 +144,60 @@ struct Index {
     .height('100%')
   }
 }
+```
+
+### 跨包页面路由跳转
+
+若开发者想在entry模块中，添加一个按钮跳转至library模块中的menu页面（路径为：`library/src/main/ets/pages/menu.ets`），那么可以在使用方的代码（entry模块下的Index.ets，路径为：`entry/src/main/ets/MainAbility/Index.ets`）里这样使用：
+```ts
+import router from '@ohos.router';
+
+@Entry
+@Component
+struct Index {
+    @State message: string = 'Hello World'
+
+    build() {
+    Row() {
+        Column() {
+        Text(this.message)
+            .fontSize(50)
+            .fontWeight(FontWeight.Bold)
+        // 添加按钮，以响应用户点击
+        Button() {
+            Text('click to menu')
+            .fontSize(30)
+            .fontWeight(FontWeight.Bold)
+        }
+        .type(ButtonType.Capsule)
+        .margin({
+            top: 20
+        })
+        .backgroundColor('#0D9FFB')
+        .width('40%')
+        .height('5%')
+        // 绑定点击事件
+        .onClick(() => {
+            router.pushUrl({
+              url: '@bundle:com.example.hmservice/library/ets/pages/menu'
+            }).then(() => {
+              console.log("push page success");
+            }).catch(err => {
+              console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+            })
+        })
+      .width('100%')
+    }
+    .height('100%')
+    }
+  }
+}
+```
+其中`router.pushUrl`方法的入参中`url`的内容为：
+```ets
+'@bundle:com.example.hmservice/library/ets/pages/menu'
+```
+`url`内容的模板为：
+```ets
+'@bundle:包名（bundleName）/模块名（moduleName）/路径/页面所在的文件名(不加.ets后缀)'
 ```

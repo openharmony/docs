@@ -24,8 +24,6 @@
       - [HAR](har-package.md)
       - HSP
         - [应用内HSP开发指导](in-app-hsp.md)
-    - 原子化服务
-      - [原子化服务开发指导](atomicService.md)
     - 应用程序包快速修复
       - [快速修复概述](quickfix-principles.md)
       - [快速修复调试指导](quickfix-debug.md)

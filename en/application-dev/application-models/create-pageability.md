@@ -30,7 +30,7 @@ export default {
 ```
 
 
-After the PageAbility is created, its abilities-related configuration items are displayed in the **config.json** file. The following is an example **config.json** file of an ability named EntryAbility:
+After the PageAbility is created, its abilities-related configuration items are displayed in the **config.json** file. The following is an example **config.json** file of an ability named MainAbility:
 
 ```json
 {
@@ -48,13 +48,13 @@ After the PageAbility is created, its abilities-related configuration items are 
       ],
       "orientation": "unspecified",
       "visible": true,
-      "srcPath": "EntryAbility",
-      "name": ".EntryAbility",
+      "srcPath": "MainAbility",
+      "name": ".MainAbility",
       "srcLanguage": "ets",
       "icon": "$media:icon",
-      "description": "$string:EntryAbility_desc",
+      "description": "$string:MainAbility_desc",
       "formsEnabled": false,
-      "label": "$string:EntryAbility_label",
+      "label": "$string:MainAbility_label",
       "type": "page",
       "launchType": "singleton"
     }
@@ -76,22 +76,22 @@ In the FA model, you can call **getContext** of **featureAbility** to obtain the
 The following code snippet shows how to use **getContext()** to obtain the application context and distributed directory:
 
 ```ts
-import featureAbility from '@ohos.ability.featureAbility'
-import fileIo from '@ohos.fileio'
+import featureAbility from '@ohos.ability.featureAbility';
+import fs from '@ohos.file.fs';
 
 (async () => {
-  let dir: string
+  let dir: string;
   try {
-    console.info('Begin to getOrCreateDistributedDir')
-    dir = await featureAbility.getContext().getOrCreateDistributedDir()
+    console.info('Begin to getOrCreateDistributedDir');
+    dir = await featureAbility.getContext().getOrCreateDistributedDir();
     console.info('distribute dir is ' + dir)
   } catch (error) {
-    console.error('getOrCreateDistributedDir failed with ' + error)
+    console.error('getOrCreateDistributedDir failed with ' + error);
   }
 
   let fd: number;
   let path = dir + "/a.txt";
-  fd = fileIo.openSync(path, 0o2 | 0o100, 0o666);
-  fileIo.close(fd);
+  fd = fs.openSync(path, fs.OpenMode.READ_WRITE).fd;
+  fs.close(fd);
 })()
 ```

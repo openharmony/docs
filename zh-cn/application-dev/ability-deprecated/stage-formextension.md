@@ -134,7 +134,7 @@ FormProvider类具体的API介绍详见[接口文档](../reference/apis/js-apis-
   | 属性名称    | 含义                                                         | 数据类型   | 是否可缺省           |
   | ----------- | ------------------------------------------------------------ | ---------- | -------------------- |
   | name        | 表示ExtensionAbility的名字，该标签不可缺省。                 | 字符串     | 否                   |
-  | srcEntrance | 表示ExtensionAbility所对应的生命周期代码的路径，该标签不可缺省。 | 字符串     | 否                   |
+  | srcEnty     | 表示ExtensionAbility所对应的生命周期代码的路径，该标签不可缺省。 | 字符串     | 否                   |
   | description | 表示ExtensionAbility的描述。可以是表示描述内容的字符串，也可以是对描述内容的资源索引以支持多语言。 | 字符串     | 可缺省，缺省值为空。 |
   | icon        | 表示ExtensionAbility的图标资源文件的索引。                   | 字符串     | 可缺省，缺省值为空。 |
   | label       | 表示ExtensionAbility的标签信息，即ExtensionAbility对外显示的文字描述信息。取值可以是描述性内容，也可以是标识label的资源索引。 | 字符串     | 可缺省，缺省值为空。 |
@@ -149,7 +149,7 @@ FormProvider类具体的API介绍详见[接口文档](../reference/apis/js-apis-
      ```json
   "extensionAbilities": [{
       "name": "FormAbility",
-      "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+      "srcEnty": "./ets/FormAbility/FormAbility.ts",
       "label": "$string:form_FormAbility_label",
       "description": "$string:form_FormAbility_desc",
       "type": "form",
@@ -241,7 +241,7 @@ FormProvider类具体的API介绍详见[接口文档](../reference/apis/js-apis-
        }
 ```
 
-具体的持久化方法可以参考[轻量级数据存储开发指导](../database/database-preference-guidelines.md)。
+具体的持久化方法可以参考[轻量级数据存储开发指导](../database/data-persistence-by-preferences.md)。
 
 需要注意的是，卡片使用方在请求卡片时传递给提供方应用的Want数据中存在临时标记字段，表示此次请求的卡片是否为临时卡片：
 
@@ -414,5 +414,4 @@ onUpdate(formId) {
 ## 相关实例
 
 针对Stage模型卡片提供方的开发，有以下相关实例可供参考：
-- [`FormExtAbility`：Stage模型卡片（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ability/FormExtAbility)
-- [`GalleryForm`：图库卡片（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ability/GalleryForm)
+- [`FormExtAbility`：Stage模型卡片（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SuperFeature/Widget/FormExtAbility)

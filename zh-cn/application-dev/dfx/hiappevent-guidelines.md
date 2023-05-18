@@ -144,4 +144,4 @@ HiAppEvent是在系统层面为应用开发者提供的一种事件打点机制�
 
 针对应用事件开发，有以下相关实例可供参考：
 
-- [`JsDotTest`：测试打点（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/DFX/JsDotTest)
+- [`DotTest`：测试打点（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/DFX/DotTest)

@@ -482,8 +482,8 @@ async function createTonePlayerBefore(){
 
 | 名称      |  值       | 说明     |
 | --------- | -------- | -------- |
-| CHANNEL_1 | 0x1 << 0 | 单声道。 |
-| CHANNEL_2 | 0x1 << 1 | 双声道。 |
+| CHANNEL_1 | 0x1 << 0 | 第一声道。 |
+| CHANNEL_2 | 0x1 << 1 | 第二声道。 |
 
 ## AudioSamplingRate<sup>8+</sup>
 

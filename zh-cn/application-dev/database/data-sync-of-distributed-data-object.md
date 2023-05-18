@@ -27,8 +27,8 @@
 
 ## 运作机制
 
-  **图1** 分布式数据对象运作机制 
-   
+**图1** 分布式数据对象运作机制 
+
 ![distributedObject](figures/distributedObject.jpg)
 
 分布式数据对象生长在分布式内存数据库之上，在分布式内存数据库上进行了JS对象型的封装，能像操作本地变量一样操作分布式数据对象，数据的跨设备同步由系统自动完成。
@@ -305,11 +305,3 @@
         console.info('leave all lession.');
     });
     ```
-
-## 相关实例
-
-针对分布式数据对象，有以下相关实例可供参考：
-
-- [`DistributedNote`：分布式备忘录（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/data/DistributedNote)
-
-- [`DistributedObjectDms`：分布式跑马灯（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/data/DistributedObjectDms)

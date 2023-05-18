@@ -177,7 +177,7 @@ _[API差异报告](api-change/v3.2-beta1/Readme-CN.md)_
 
 ### 芯片及开发板适配
 
-芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
+芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)信息。
 
 
 ### Samples
@@ -186,26 +186,19 @@ _[API差异报告](api-change/v3.2-beta1/Readme-CN.md)_
 
 | 子系统 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- | -------- |
-| ArkUI | [MouseEvent](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ETSUI/MouseEvent) | 本示例模拟了简单的扫雷游戏调用了鼠标事件的相关接口 | ArkTS |
-| ArkUI | [Vibrator](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/device/Vibrator) | 本示例模拟倒计时场景，展示振动接口的使用方法。 | ArkTS |
-| DFX | [FaultLogger](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/DFX/FaultLogger) | 本示例展示了在ArkTS中如何获取应用故障相关信息。 | ArkTS |
-| ArkUI | [Gallery](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ETSUI/Gallery) | 本Demo通过不同示例向用户介绍通用事件、通用属性、手势处理等不同组件的功能。 | ArkTS |
-| 图形 | [JsWebGL](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/Graphics/JsWebGL) | 本示例调用GPU资源绘制了五角星和矩形，展示WebGL相关接口的使用方法。 | JS |
-| ArkUI | [Clock](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/Preset/Clock) | 本示例使用ArkTS&nbsp;UI能力实现一个简单的时钟应用。 | ArkTS |
-| 网络管理 | [Http](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/Network/Http) | 本示例仿postman输入API接口地址，获取相应数据，介绍数据请求接口的用法。 | ArkTS |
-| 网络管理 | [Socket](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/Network/Socket) | 本示例主要演示了Socket在网络通信方面的应用，展示了Socket在两端设备的连接验证、聊天通信方面的应用。 | ArkTS |
-| 分布式数据管理 | [DistributedRdb](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/data/DistributedRdb) | 本示例展示了在ArkTS中分布式关系型数据库的使用，在增、删、改、查的基本操作外，还包括分布式数据库的数据同步能力。 | ArkTS |
-| 元能力 | [BackgroundTaskManager](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ResourcesSchedule/BackgroundTaskManager) | 本示例模拟下载功能，将下载任务通过后台任务管理进行处理，实现退出应用后任务仍能够执行，直至任务结束。 | ArkTS |
-| 元能力 | [BringApp](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ETSUI/BringApp) | 本示例使用FeatureAbility接口，通过应用的包名与Ability名，拉起系统应用。 | ArkTS |
-| 媒体 | [VideoPlayer](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/media/VideoPlayer) | 本示例展示了在ArkTS中VideoPlayer如何播放视频，同时提供一个可供其他应用调用播放视频的Ability。 | ArkTS |
-| 元能力 | [DistributeCalc](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/Preset/DistributeCalc) | 本示例使用JS分布式能力实现了一个简单的计算器应用，可以进行简单的数值计算，支持远程拉起另一个计算器FA，两个FA进行协同计算。 | ArkTS |
-| Web | [Browser](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/device/Browser) | 本示例运用OpenHarmony系统提供的Stage模型与相关接口展示了一个简易的浏览器。 | ArkTS |
-| 元能力 | [DeviceUsageStatistics](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/device/DeviceUsageStatistics) | 本示例主要展示了设备使用信息情况。 | ArkTS |
-| ArkUI | [AdaptiveCapabilities](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/MultiDeviceAppDev/AdaptiveCapabilities) | 本示例展示在ArkTS中的多设备自适应能力，包括资源限定词、原子布局和响应式布局。 | ArkTS |
-| ArkUI | [Game2048](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ETSUI/Game2048) | 2048是一款比较流行的数字游戏，此游戏demo是grid组件基础上进行开发完成的。 | ArkTS |
-| 窗口 | [Window](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/Graphics/Window) | 本示例展示了创建新窗口，将应用悬浮在其他界面，及应用分屏等功能 | ArkTS |
-| 分布式数据管理 | [Preference](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/data/Preferences) | 本示例主要展示了首选项在主题切换方面的功能。 | ArkTS |
-| 全球化 | [International](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/common/International) | 本示例展示了i18n，intl，resourceManager在ArkTS中的使用，使用相关api实现系统语言和地区设置、时间和时区设置，展示了区域格式化示例。 | ArkTS |
+| ArkUI | [Vibrator](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/DeviceManagement/Vibrator) | 本示例模拟倒计时场景，展示振动接口的使用方法。 | ArkTS |
+| DFX | [FaultLogger](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/DFX/FaultLogger) | 本示例展示了在ArkTS中如何获取应用故障相关信息。 | ArkTS |
+| ArkUI | [ArkTSClock](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/Solutions/Tools/ArkTSClock) | 本示例使用ArkTS&nbsp;UI能力实现一个简单的时钟应用。 | ArkTS |
+| 网络管理 | [Http](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/Connectivity/Http) | 本示例仿postman输入API接口地址，获取相应数据，介绍数据请求接口的用法。 | ArkTS |
+| 分布式数据管理 | [DistributedRdb](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SuperFeature/DistributedAppDev/DistributedRdb) | 本示例展示了在ArkTS中分布式关系型数据库的使用，在增、删、改、查的基本操作外，还包括分布式数据库的数据同步能力。 | ArkTS |
+| 元能力 | [ArkTSDistributedCalc](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SuperFeature/DistributedAppDev/ArkTSDistributedCalc) | 本示例使用JS分布式能力实现了一个简单的计算器应用，可以进行简单的数值计算，支持远程拉起另一个计算器FA，两个FA进行协同计算。 | ArkTS |
+| Web | [Browser](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/Web/Browser) | 本示例运用OpenHarmony系统提供的Stage模型与相关接口展示了一个简易的浏览器。 | ArkTS |
+| 元能力 | [DeviceUsageStatistics](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/DeviceUsageStatistics/DeviceUsageStatistics) | 本示例主要展示了设备使用信息情况。 | ArkTS |
+| ArkUI | [AdaptiveCapabilities](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities) | 本示例展示在ArkTS中的多设备自适应能力，包括资源限定词、原子布局和响应式布局。 | ArkTS |
+| ArkUI | [Game2048](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/Solutions/Game/Game2048) | 2048是一款比较流行的数字游戏，此游戏demo是grid组件基础上进行开发完成的。 | ArkTS |
+| 窗口 | [WindowManage](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/WindowManagement/WindowManage) | 本示例展示了创建新窗口，将应用悬浮在其他界面，及应用分屏等功能 | ArkTS |
+| 分布式数据管理 | [Preference](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/DataManagement/Preferences) | 本示例主要展示了首选项在主题切换方面的功能。 | ArkTS |
+| 全球化 | [International](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SystemFeature/Internationalnation/International) | 本示例展示了i18n，intl，resourceManager在ArkTS中的使用，使用相关api实现系统语言和地区设置、时间和时区设置，展示了区域格式化示例。 | ArkTS |
 
 请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。
 

@@ -3906,7 +3906,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.AC
 | options  | [Options](#options)                                          | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,function(data){
       console.info('X-coordinate component: ' + data.x);
@@ -3939,7 +3938,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.GR
 | options  | [Options](#options)                                 | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY,function(data){
       console.info('X-coordinate component: ' + data.x);
@@ -3971,7 +3969,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.GY
 | options  | [Options](#options)                                     | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE,function(data){
       console.info('X-coordinate component: ' + data.x);
@@ -4003,7 +4000,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.GY
 | options  | [Options](#options)                                          | No        | Interval at which the callback is invoked to return the sensor data. |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,function(data){
       console.info('X-coordinate component: ' + data.x);
@@ -4036,7 +4032,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.SI
 | options  | [Options](#options)                                          | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,function(data){
       console.info('Scalar data: ' + data.scalar);
@@ -4066,7 +4061,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.PE
 | options  | [Options](#options)                                          | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,function(data){
       console.info('Scalar data: ' + data.scalar);
@@ -4096,7 +4090,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.PE
 | options  | [Options](#options)                                     | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER,function(data){
       console.info('Steps: ' + data.steps);
@@ -4131,7 +4124,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.AM
   },
       {interval: 10000000}
   );
-
   ```
 
 ### MAGNETIC_FIELD<sup>(deprecated)</sup>
@@ -4162,7 +4154,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.MA
   },
       {interval: 10000000}
   );
-
   ```
 
 ### MAGNETIC_FIELD_UNCALIBRATED<sup>(deprecated)</sup>
@@ -4184,7 +4175,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.MA
 | options  | [Options](#options)                                          | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,function(data){
       console.info('X-coordinate component: ' + data.x);
@@ -4196,7 +4186,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.MA
   },
       {interval: 10000000}
   );
-
   ```
 
 ### PROXIMITY<sup>(deprecated)</sup>
@@ -4218,14 +4207,12 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.PR
 | options  | [Options](#options)                                     | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY,function(data){
       console.info('Distance: ' + data.distance);
   },
       {interval: 10000000}
   );
-
   ```
 
 ### HUMIDITY<sup>(deprecated)</sup>
@@ -4254,7 +4241,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.HU
   },
       {interval: 10000000}
   );
-
   ```
 
 ### BAROMETER<sup>(deprecated)</sup>
@@ -4283,7 +4269,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.BA
   },
       {interval: 10000000}
   );
-
   ```
 
 ### HALL<sup>(deprecated)</sup>
@@ -4305,14 +4290,12 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.HA
 | options  | [Options](#options)                           | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL,function(data){
       console.info('Status: ' + data.status);
   },
       {interval: 10000000}
   );
-
   ```
 
 ### AMBIENT_LIGHT<sup>(deprecated)</sup>
@@ -4341,7 +4324,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.AM
   },
       {interval: 10000000}
   );
-
   ```
 
 ### ORIENTATION<sup>(deprecated)</sup>
@@ -4363,7 +4345,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.OR
 | options  | [Options](#options)                                         | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION,function(data){
       console.info('The device rotates at an angle around the X axis: ' + data.beta);
@@ -4372,7 +4353,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.OR
   },
       {interval: 10000000}
   );
-
   ```
 
 ### HEART_RATE<sup>(deprecated)</sup>
@@ -4413,7 +4393,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.RO
 | options  | [Options](#options)                                          | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,function(data){
       console.info('X-coordinate component: ' + data.x);
@@ -4423,7 +4402,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.RO
   },
       {interval: 10000000}
   );
-
   ```
 
 ### WEAR_DETECTION<sup>(deprecated)</sup>
@@ -4445,14 +4423,12 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.WE
 | options  | [Options](#options)                                          | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION,function(data){
       console.info('Wear status: ' + data.value);
   },
       {interval: 10000000}
   );
-
   ```
 
 ## sensor.once<sup>(deprecated)</sup>
@@ -4477,7 +4453,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes       | One-shot callback used to return the acceleration sensor data. The reported data type in the callback is **AccelerometerResponse**. |
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER,function(data){
       console.info('X-coordinate component: ' + data.x);
@@ -4485,7 +4460,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
       console.info('Z-coordinate component: ' + data.z);
     }
   );
-
   ```
 
 ### LINEAR_ACCELERATION<sup>(deprecated)</sup>
@@ -4527,7 +4501,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes       | One-shot callback used to return the uncalibrated acceleration sensor data. The reported data type in the callback is **AccelerometerUncalibratedResponse**. |
 
 **Example**
-
   ```
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, function(data) {
       console.info('X-coordinate component: ' + data.x);
@@ -4538,7 +4511,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
       console.info('Z-coordinate bias: ' + data.biasZ);
     }
   );
-
   ```
 
 ### GRAVITY<sup>(deprecated)</sup>
@@ -4559,7 +4531,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | Yes       | One-shot callback used to return the gravity sensor data. The reported data type in the callback is **GravityResponse**. |
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, function(data) {
       console.info('X-coordinate component: ' + data.x);
@@ -4567,7 +4538,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
       console.info('Z-coordinate component: ' + data.z);
     }
   );
-
   ```
 
 ### GYROSCOPE<sup>(deprecated)</sup>
@@ -4590,7 +4560,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | Yes       | One-shot callback used to return the gyroscope sensor data. The reported data type in the callback is **GyroscopeResponse**. |
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, function(data) {
       console.info('X-coordinate component: ' + data.x);
@@ -4598,7 +4567,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
       console.info('Z-coordinate component: ' + data.z);
     }
   );
-
   ```
 
 ### GYROSCOPE_UNCALIBRATED<sup>(deprecated)</sup>
@@ -4621,7 +4589,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | Yes       | One-shot callback used to return the uncalibrated gyroscope sensor data. The reported data type in the callback is **GyroscopeUncalibratedResponse**. |
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, function(data) {
       console.info('X-coordinate component: ' + data.x);
@@ -4632,7 +4599,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
       console.info('Z-coordinate bias: ' + data.biasZ);
     }
   );
-
   ```
 
 ### SIGNIFICANT_MOTION<sup>(deprecated)</sup>
@@ -4653,13 +4619,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | Yes       | One-shot callback used to return the significant motion sensor data. The reported data type in the callback is **SignificantMotionResponse**. |
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, function(data) {
       console.info('Scalar data: ' + data.scalar);
     }
   );
-
   ```
 
 ### PEDOMETER_DETECTION<sup>(deprecated)</sup>
@@ -4682,13 +4646,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | Yes       | One-shot callback used to return the pedometer detection sensor data. The reported data type in the callback is **PedometerDetectionResponse**. |
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, function(data) {
       console.info('Scalar data: ' + data.scalar);
     }
   );
-
   ```
 
 ### PEDOMETER<sup>(deprecated)</sup>
@@ -4711,13 +4673,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes       | One-shot callback used to return the pedometer sensor data. The reported data type in the callback is **PedometerResponse**. |
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, function(data) {
       console.info('Steps: ' + data.steps);
     }
   );
-
   ```
 
 ### AMBIENT_TEMPERATURE<sup>(deprecated)</sup>
@@ -4738,13 +4698,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | Yes       | One-shot callback used to return the ambient temperature sensor data. The reported data type in the callback is **AmbientTemperatureResponse**. |
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, function(data) {
       console.info('Temperature: ' + data.temperature);
     }
   );
-
   ```
 
 ### MAGNETIC_FIELD<sup>(deprecated)</sup>
@@ -4765,7 +4723,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | Yes       | One-shot callback used to return the magnetic field sensor data. The reported data type in the callback is **MagneticFieldResponse**. |
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, function(data) {
       console.info('X-coordinate component: ' + data.x);
@@ -4773,7 +4730,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
       console.info('Z-coordinate component: ' + data.z);
     }
   );
-
   ```
 
 ### MAGNETIC_FIELD_UNCALIBRATED<sup>(deprecated)</sup>
@@ -4794,7 +4750,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | Yes       | One-shot callback used to return the uncalibrated magnetic field sensor data. The reported data type in the callback is **MagneticFieldUncalibratedResponse**. |
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, function(data) {
       console.info('X-coordinate component: ' + data.x);
@@ -4805,7 +4760,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
       console.info('Z-coordinate bias: ' + data.biasZ);
     }
   );
-
   ```
 
 ### PROXIMITY<sup>(deprecated)</sup>
@@ -4826,13 +4780,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes       | One-shot callback used to return the proximity sensor data. The reported data type in the callback is **ProximityResponse**. |
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, function(data) {
       console.info('Distance: ' + data.distance);
     }
   );
-
   ```
 
 ### HUMIDITY<sup>(deprecated)</sup>
@@ -4853,13 +4805,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | Yes       | One-shot callback used to return the humidity sensor data. The reported data type in the callback is **HumidityResponse**. |
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, function(data) {
       console.info('Humidity: ' + data.humidity);
     }
   );
-
   ```
 
 ### BAROMETER<sup>(deprecated)</sup>
@@ -4880,13 +4830,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | Yes       | One-shot callback used to return the barometer sensor data. The reported data type in the callback is **BarometerResponse**. |
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, function(data) {
       console.info('Atmospheric pressure: ' + data.pressure);
     }
   );
-
   ```
 
 ### HALL<sup>(deprecated)</sup>
@@ -4907,13 +4855,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | Yes       | One-shot callback used to return the Hall effect sensor data. The reported data type in the callback is **HallResponse**. |
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HALL, function(data) {
       console.info('Status: ' + data.status);
     }
   );
-
   ```
 
 ### AMBIENT_LIGHT<sup>(deprecated)</sup>
@@ -4940,7 +4886,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
       console.info(' Illumination: ' + data.intensity);
     }
   );
-
   ```
 
 ### ORIENTATION<sup>(deprecated)</sup>
@@ -4961,7 +4906,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | Yes       | One-shot callback used to return the orientation sensor data. The reported data type in the callback is **OrientationResponse**. |
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, function(data) {
       console.info('The device rotates at an angle around the X axis: ' + data.beta);
@@ -4969,7 +4913,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
       console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
     }
   );
-
   ```
 
 ### ROTATION_VECTOR<sup>(deprecated)</sup>
@@ -4990,7 +4933,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | Yes       | One-shot callback used to return the rotation vector sensor data. The reported data type in the callback is **RotationVectorResponse**. |
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, function(data) {
       console.info('X-coordinate component: ' + data.x);
@@ -4999,7 +4941,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
       console.info('Scalar quantity: ' + data.w);
     }
   );
-
   ```
 
 ### HEART_RATE<sup>(deprecated)</sup>
@@ -5039,13 +4980,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | Yes       | One-shot callback used to return the wear detection sensor data. The reported data type in the callback is **WearDetectionResponse**. |
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, function(data) {
       console.info("Wear status: "+ data.value);
     }
   );
-
   ```
 
 ## sensor.off<sup>(deprecated)</sup>
@@ -5078,7 +5017,6 @@ function callback(data) {
     console.info('Z-coordinate component: ' + data.z);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback);
-
 ```
 
 ### ACCELEROMETER_UNCALIBRATED<sup>(deprecated)</sup>
@@ -5112,7 +5050,6 @@ function callback(data) {
     console.info('Z-coordinate bias: ' + data.biasZ);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback);
-
 ```
 
 ### AMBIENT_LIGHT<sup>(deprecated)</sup>
@@ -5139,7 +5076,6 @@ function callback(data) {
     console.info(' Illumination: ' + data.intensity);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback);
-
 ```
 
 ### AMBIENT_TEMPERATURE<sup>(deprecated)</sup>
@@ -5166,7 +5102,6 @@ function callback(data) {
      console.info('Temperature: ' + data.temperature);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback);
-
 ```
 
 ### BAROMETER<sup>(deprecated)</sup>
@@ -5193,7 +5128,6 @@ function callback(data) {
      console.info('Atmospheric pressure: ' + data.pressure);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback);
-
 ```
 
 ### GRAVITY<sup>(deprecated)</sup>
@@ -5222,7 +5156,6 @@ function callback(data) {
     console.info('Z-coordinate component: ' + data.z);
 }
 sensor.off( sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback);
-
 ```
 
 ### GYROSCOPE<sup>(deprecated)</sup>
@@ -5253,7 +5186,6 @@ function callback(data) {
     console.info('Z-coordinate component: ' + data.z);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback);
-
 ```
 
 ### GYROSCOPE_UNCALIBRATED<sup>(deprecated)</sup>
@@ -5284,7 +5216,6 @@ function callback(data) {
     console.info('Z-coordinate component: ' + data.z);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback);
-
 ```
 
 ### HALL<sup>(deprecated)</sup>
@@ -5311,7 +5242,6 @@ function callback(data) {
     console.info('Status: ' + data.status);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback);
-
 ```
 
 ### HEART_RATE<sup>(deprecated)</sup>
@@ -5357,7 +5287,6 @@ function callback(data) {
     console.info('Humidity: ' + data.humidity);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback);
-
 ```
 
 ### LINEAR_ACCELERATION<sup>(deprecated)</sup>
@@ -5405,7 +5334,6 @@ function callback(data) {
     console.info('Z-coordinate component: ' + data.z);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback);
-
 ```
 
 ### MAGNETIC_FIELD_UNCALIBRATED<sup>(deprecated)</sup>
@@ -5437,7 +5365,6 @@ function callback(data) {
     console.info('Z-coordinate bias: ' + data.biasZ);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback);
-
 ```
 
 ### ORIENTATION<sup>(deprecated)</sup>
@@ -5466,7 +5393,6 @@ function callback(data) {
     console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback);
-
 ```
 
 ### PEDOMETER<sup>(deprecated)</sup>
@@ -5495,7 +5421,6 @@ function callback(data) {
     console.info('Steps: ' + data.steps);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback);
-
 ```
 
 ### PEDOMETER_DETECTION<sup>(deprecated)</sup>
@@ -5524,7 +5449,6 @@ function callback(data) {
     console.info('Scalar data: ' + data.scalar);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback);
-
 ```
 
 ### PROXIMITY<sup>(deprecated)</sup>
@@ -5551,7 +5475,6 @@ function callback(data) {
     console.info('Distance: ' + data.distance);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback);
-
 ```
 
 ### ROTATION_VECTOR<sup>(deprecated)</sup>
@@ -5581,7 +5504,6 @@ function callback(data) {
     console.info('Scalar quantity: ' + data.w);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback);
-
 ```
 
 ### SIGNIFICANT_MOTION<sup>(deprecated)</sup>
@@ -5608,7 +5530,6 @@ function callback(data) {
     console.info('Scalar data: ' + data.scalar);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback);
-
 ```
 
 ### WEAR_DETECTION<sup>(deprecated)</sup>
@@ -5635,7 +5556,6 @@ function accCallback(data) {
     console.info('Wear status: ' + data.value);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, accCallback);
-
 ```
 
 ## sensor.transformCoordinateSystem<sup>(deprecated)</sup>
@@ -5664,14 +5584,12 @@ sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3}, functi
         console.error("Operation failed. Error code: " + err.code + ", message: " + err.message);
         return;
     }
-    console.info("Operation successed. Data obtained: " + data);
+    console.info("Operation succeeded. Data obtained: " + data);
     for (var i=0; i < data.length; i++) {
         console.info("transformCoordinateSystem data[ " + i + "] = " + data[i]);
     }
  })
-
 ```
-
 ## sensor.transformCoordinateSystem<sup>(deprecated)</sup>
 
 transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions): Promise&lt;Array&lt;number&gt;&gt;
@@ -5700,14 +5618,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.trans
 ```js
 const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3});
     promise.then((data) => {
-        console.info("Operation successed.");
+        console.info("Operation succeeded.");
         for (var i=0; i < data.length; i++) {
             console.info("transformCoordinateSystem data[ " + i + "] = " + data[i]);
         }
     }).catch((err) => {
            console.info("Operation failed");
 })
-
 ```
 
 ## sensor.getGeomagneticField<sup>(deprecated)</sup>
@@ -5729,7 +5646,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getGe
 | callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Yes       | Callback used to return the geomagnetic field.               |
 
 **Example**
-
 ```js
 sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000, function(err, data)  {
     if (err) {
@@ -5740,9 +5656,7 @@ sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000
 	             data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
 		     ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
 });
-
 ```
-
 ## sensor.getGeomagneticField<sup>(deprecated)</sup>
 
 getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promise&lt;GeomagneticResponse&gt;
@@ -5767,7 +5681,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getGe
 | Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise used to return the geomagnetic field. |
 
 **Example**
-
   ```js
   const promise = sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000);
       promise.then((data) => {
@@ -5777,7 +5690,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getGe
       }).catch((reason) => {
           console.info('Operation failed.');
   })
-
   ```
 
 ## sensor.getAltitude<sup>(deprecated)</sup>
@@ -5807,9 +5719,8 @@ This API is deprecated since API version 9. You are advised to use [sensor.getDe
   "Operation failed. Error code: " + err.code + ", message: " + err.message);
           return;
       }
-          console.info("Successed to get getAltitude interface get data: " + data);
+          console.info("Succeeded to get getAltitude interface get data: " + data);
   });
-
   ```
 
 ## sensor.getAltitude<sup>(deprecated)</sup>
@@ -5844,7 +5755,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getDe
       }).catch((err) => {
           console.error("Operation failed");
   })
-
   ```
 
 
@@ -5874,9 +5784,8 @@ This API is deprecated since API version 9. You are advised to use [sensor.getIn
                         err.message);
           return;
       }
-          console.info("Successed to get getGeomagneticDip interface get data: " + data);
+          console.info("Succeeded to get getGeomagneticDip interface get data: " + data);
   })
-
   ```
 
 ## sensor.getGeomagneticDip<sup>(deprecated)</sup>
@@ -5906,11 +5815,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.getIn
   ```js
   const promise = sensor.getGeomagneticDip([1, 0, 0, 0, 1, 0, 0, 0, 1]);
       promise.then((data) => {
-          console.info('getGeomagneticDip_promise successed', data);
+          console.info('getGeomagneticDip_promise succeeded', data);
       }).catch((err) => {
            console.error("Operation failed");
   })
-
   ```
 
 ## sensor. getAngleModify<sup>(deprecated)</sup>
@@ -5944,7 +5852,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getAn
           console.info("data[" + i + "]: " + data[i]);
       }
   })
-
   ```
 
 
@@ -5976,14 +5883,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.getAn
   ```js
   const promise = sensor.getAngleModify([1,0,0,0,1,0,0,0,1], [1,0,0,0,0.87,-0.50,0,0.50,0.87]);
       promise.then((data) => {
-          console.info('getAngleModifiy_promise success');
+          console.info('getAngleModify_promise success');
           for (var i=0; i < data.length; i++) {
               console.info("data[" + i + "]: " + data[i]);
           }
       }).catch((reason) => {
           console.info("promise::catch", reason);
   })
-
   ```
 
 
@@ -6017,7 +5923,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
           console.info("data[" + i + "]: " + data[i]);
       }
   })
-
   ```
 
 
@@ -6055,7 +5960,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
       }).catch((reason) => {
           console.info("promise::catch", reason);
   })	
-
   ```
 
 
@@ -6089,7 +5993,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getQu
           console.info("data[" + i + "]: " + data[i]);
       }
   })
-
   ```
 
 
@@ -6120,14 +6023,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.getQu
   ```js
   const promise = sensor.createQuaternion([0.20046076, 0.21907, 0.73978853, 0.60376877]);
       promise.then((data) => {
-          console.info('createQuaternion_promise successed');
+          console.info('createQuaternion_promise succeeded');
           for (var i=0; i < data.length; i++) {
               console.info("data[" + i + "]: " + data[i]);
           }
       }).catch((err) => {
           console.info('promise failed');
   })
-
   ```
 
 
@@ -6157,12 +6059,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.getOr
                         err.message);
           return;
       }
-      console.info("SensorJsAPI--->Successed to get getDirection interface get data: " + data);
+      console.info("SensorJsAPI--->Succeeded to get getDirection interface get data: " + data);
       for (var i = 1; i < data.length; i++) {
           console.info("sensor_getDirection_callback" + data[i]);
       }
   })
-
   ```
 
 

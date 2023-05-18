@@ -73,13 +73,13 @@
 
 应用由一个或多个Ability组成，Ability支持单实例、多实例和指定实例3种[启动模式](../../application-models/uiability-launch-type.md)，启动模式可以在[配置文件（module.json5）](../../quick-start/module-configuration-file.md)中通过launchType字段配置。启动模式对应Ability被启动时的行为，对启动模式的详细说明如下：
 
-  | 启动模式 | 描述 | 说明 | 
-  | -------- | -------- | -------- |
-  | standard | 多实例 | 每次startAbility都会启动一个新的实例。 | 
-  | singleton | 单实例 | 系统中最多只可以存在一个实例，startAbility时，如果系统中已存在相应的Ability实例，则复用该实例。 | 
-  | specified | 指定实例 | 运行时由Ability内部业务决定是否创建多实例。 | 
+| 启动模式 | 描述 | 说明 |
+| -------- | -------- | -------- |
+| multiton | 多实例 | 每次startAbility都会启动一个新的实例。 |
+| singleton | 单实例 | 系统中最多只可以存在一个实例，startAbility时，如果系统中已存在相应的Ability实例，则复用该实例。 |
+| specified | 指定实例 | 运行时由Ability内部业务决定是否创建多实例。 |
 
-默认设备屏幕尺寸较小，采用standard启动模式不仅无法给用户提供便利，反而可能消耗更多系统资源，故通常采用singleton启动模式。平板屏幕尺寸较大且可能支持自由窗口，对于文档编辑、网页浏览等场景，使用standard启动模式可以提升用户体验。
+默认设备屏幕尺寸较小，采用multiton启动模式不仅无法给用户提供便利，反而可能消耗更多系统资源，故通常采用singleton启动模式。平板屏幕尺寸较大且可能支持自由窗口，对于文档编辑、网页浏览等场景，使用multiton启动模式可以提升用户体验。
 
 本文中将默认设备和平板等归为同一泛类，推荐同一泛类的设备共用HAP包，同时本文也介绍了如何通过自适应布局能力和响应式布局能力开发出适配不同设备的页面。这里将补充介绍，如何实现Ability在不同设备上以不同的模式启动。
 

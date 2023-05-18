@@ -18,11 +18,35 @@
       - [ExtensionAbility Component Overview](extensionability-overview.md)
       - [ServiceExtensionAbility](serviceextensionability.md)
       - [DataShareExtensionAbility (for System Applications Only)](datashareextensionability.md)
-      - [FormExtensionAbility (Widget)](widget-development-stage.md)
       - [AccessibilityExtensionAbility](accessibilityextensionability.md)
       - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
       - [InputMethodExtensionAbility](inputmethodextentionability.md)
       - [WindowExtensionAbility](windowextensionability.md)
+    - Service Widget Development in Stage Model
+      - [Service Widget Overview](service-widget-overview.md)
+      - Developing an ArkTS Widget
+        - [ArkTS Widget Working Principles](arkts-ui-widget-working-principles.md)
+        - [ArkTS Widget Related Modules](arkts-ui-widget-modules.md)
+        - ArkTS Widget Development
+          - [Creating an ArkTS Widget](arkts-ui-widget-creation.md)
+          - [Configuring Widget Configuration Files](arkts-ui-widget-configuration.md)
+          - [Widget Lifecycle Management](arkts-ui-widget-lifecycle.md)
+          - Widget Page Development
+            - [Widget Page Capability Overview](arkts-ui-widget-page-overview.md)
+            - [Using Animations in the Widget](arkts-ui-widget-page-animation.md)
+            - [Applying Custom Drawing in the Widget](arkts-ui-widget-page-custom-drawing.md)
+          - Widget Event Development
+            - [Widget Event Capability Overview](arkts-ui-widget-event-overview.md)
+            - [Updating Widget Content Through FormExtensionAbility](arkts-ui-widget-event-formextensionability.md)
+            - [Updating Widget Content Through UIAbility](arkts-ui-widget-event-uiability.md)
+            - [Redirecting to a Specified Page Through the Router Event](arkts-ui-widget-event-router.md)
+          - Widget Data Interaction
+            - [Widget Data Interaction Overview](arkts-ui-widget-interaction-overview.md)
+            - [Configuring a Widget to Update Periodically](arkts-ui-widget-update-by-time.md)
+            - [Updating Local and Online Images in the Widget](arkts-ui-widget-image-update.md)
+            - [Updating Widget Content by State](arkts-ui-widget-update-by-status.md)
+            - [Updating Widget Content by Widget Host (for System Applications Only)](arkts-ui-widget-content-update.md)
+      - [Developing a JS Widget](js-ui-widget-development.md)
     - [AbilityStage Component Container](abilitystage.md)
     - [Context](application-context-stage.md)
     - Want

@@ -14,12 +14,12 @@ Emitter的开发步骤如下：
 
    // 定义一个eventId为1的事件
    let event = {
-       eventId: 1
+     eventId: 1
    };
 
    // 收到eventId为1的事件后执行该回调
    let callback = (eventData) => {
-       console.info('event callback');
+     console.info('event callback');
    };
 
    // 订阅eventId为1的事件
@@ -30,21 +30,21 @@ Emitter的开发步骤如下：
 
    ```ts
    import emitter from "@ohos.events.emitter";
-
+   
    // 定义一个eventId为1的事件，事件优先级为Low
    let event = {
-       eventId: 1,
-       priority: emitter.EventPriority.LOW
+     eventId: 1,
+     priority: emitter.EventPriority.LOW
    };
-
+   
    let eventData = {
-       data: {
-           "content": "c",
-           "id": 1,
-           "isEmpty": false,
-       }
+     data: {
+       "content": "c",
+       "id": 1,
+       "isEmpty": false,
+     }
    };
-
+   
    // 发送eventId为1的事件，事件内容为eventData
    emitter.emit(event, eventData);
    ```

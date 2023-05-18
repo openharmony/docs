@@ -181,7 +181,7 @@ API变更请参考：
 
 ### 芯片及开发板适配
 
-芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
+芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)信息。
 
 
 ### Samples
@@ -190,13 +190,12 @@ API变更请参考：
 
 | 子系统 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- | -------- |
-| ArkUI | [HealthyDiet：健康饮食](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ETSUI/HealthyDiet) | 这是一个记录饮食和查看食物信息的应用，主要用于管理饮食健康。可以添加饮食信息，包括食物的种类、重量以及用餐时间，如早餐、&nbsp;午餐、晚餐和夜宵，并能统计得到相应用餐时间的总热量值、总蛋白质、总脂肪和总碳水值，并且用柱状图的形式展示出来。 | ArkTS |
-| ArkUI | [MusicAlbum：一多音乐专辑主页](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/MultiDeviceAppDev/MusicAlbum) | 本示例展示了音乐专辑主页，使用一次开发多端部署中介绍的自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，保证应用在不同设备或不同窗口尺寸下可以正常显示。 | ArkTS |
-| 元能力、文件管理 | [Share：分享](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/Share/Share) | 分享的主要工作是实现：发送方将文本，链接，图片文件三种类型分享给三方应用,同时能够在三方应用中分别呈现出来。 | ArkTS |
-| 元能力 | [GalleryForm：图库卡片](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ability/GalleryForm) | 本示例是模拟图库卡片，实现对图库中的照片在卡片中显示，定时刷新卡片内容等功能。 | ArkTS |
-| ArkUI | [AppMarket：一多应用市场首页](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/MultiDeviceAppDev/AppMarket) | 本示例展示了应用市场首页，页面中包括Tab栏、运营横幅、精品应用、精品游戏等。 | ArkTS |
-| ArkUI | [Weather：一多天气](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/MultiDeviceAppDev/Weather) | 本示例展示一个天气应用界面，包括首页、城市管理、添加城市、更新时间弹窗，体现一次开发，多端部署的能力。 | ArkTS |
-| 媒体 | [MediaCollections：媒体管理合集](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/media/MediaCollections) | 本示例展示了网络流播放能力、音视频播控能力、音量调节能力等。 | ArkTS |
+| ArkUI | [HealthyDiet：健康饮食](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SuperFeature/MultiDeviceAppDev/HealthyDiet) | 这是一个记录饮食和查看食物信息的应用，主要用于管理饮食健康。可以添加饮食信息，包括食物的种类、重量以及用餐时间，如早餐、&nbsp;午餐、晚餐和夜宵，并能统计得到相应用餐时间的总热量值、总蛋白质、总脂肪和总碳水值，并且用柱状图的形式展示出来。 | ArkTS |
+| ArkUI | [MusicAlbum：一多音乐专辑主页](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SuperFeature/MultiDeviceAppDev/MusicAlbum) | 本示例展示了音乐专辑主页，使用一次开发多端部署中介绍的自适应布局能力和响应式布局能力进行多设备（或多窗口尺寸）适配，保证应用在不同设备或不同窗口尺寸下可以正常显示。 | ArkTS |
+| 元能力、文件管理 | [CustomShare：自定义分享](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/ApplicationModels/CustomShare) | 分享的主要工作是实现：发送方将文本，链接，图片文件三种类型分享给三方应用,同时能够在三方应用中分别呈现出来。 | ArkTS |
+| ArkUI | [AppMarket：一多应用市场首页](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SuperFeature/MultiDeviceAppDev/AppMarket) | 本示例展示了应用市场首页，页面中包括Tab栏、运营横幅、精品应用、精品游戏等。 | ArkTS |
+| ArkUI | [Weather：一多天气](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SuperFeature/MultiDeviceAppDev/Weather) | 本示例展示一个天气应用界面，包括首页、城市管理、添加城市、更新时间弹窗，体现一次开发，多端部署的能力。 | ArkTS |
+| 媒体 | [MediaCollections：媒体管理合集](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/FileManagement/MediaCollections) | 本示例展示了网络流播放能力、音视频播控能力、音量调节能力等。 | ArkTS |
 
 请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。
 

@@ -27,7 +27,7 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If **exported** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -52,11 +52,12 @@ Observe the following when using this API:
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -93,7 +94,7 @@ Starts an ability with the start options specified. This API uses an asynchronou
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If **exported** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -119,11 +120,12 @@ Observe the following when using this API:
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -163,7 +165,7 @@ Starts an ability. This API uses a promise to return the result.
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If **exported** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -194,11 +196,12 @@ Observe the following when using this API:
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -241,7 +244,7 @@ Starts an ability. This API uses an asynchronous callback to return the result w
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If **exported** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -266,11 +269,12 @@ Observe the following when using this API:
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -311,7 +315,7 @@ Starts an ability with the start options specified. This API uses an asynchronou
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If **exported** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -337,11 +341,12 @@ Observe the following when using this API:
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -386,7 +391,7 @@ Starts an ability. This API uses a promise to return the result when the ability
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If **exported** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -418,11 +423,12 @@ Observe the following when using this API:
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -486,11 +492,12 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -556,11 +563,12 @@ Starts an ability with the start options and account ID specified. This API uses
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -634,11 +642,12 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -701,6 +710,8 @@ Starts a ServiceExtensionAbility. This API uses an asynchronous callback to retu
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
   ```ts
@@ -756,6 +767,8 @@ Starts a ServiceExtensionAbility. This API uses a promise to return the result.
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -817,6 +830,8 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses an
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
   ```ts
@@ -877,6 +892,8 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses a 
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
   ```ts
@@ -933,6 +950,8 @@ Stops a ServiceExtensionAbility in the same application. This API uses an asynch
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
   ```ts
@@ -987,6 +1006,8 @@ Stops a ServiceExtensionAbility in the same application. This API uses a promise
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1047,6 +1068,8 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
   ```ts
@@ -1106,6 +1129,8 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 | 16000050 | Internal error. |
 | 16200001 | The caller has been released. |
 
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
   ```ts
@@ -1159,6 +1184,8 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
   ```ts
@@ -1200,6 +1227,8 @@ Terminates this ability. This API uses a promise to return the result.
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
   ```ts
@@ -1239,6 +1268,8 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1304,6 +1335,8 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
   ```ts
@@ -1366,6 +1399,8 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
   ```ts
@@ -1426,6 +1461,8 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
   ```ts
@@ -1475,10 +1512,10 @@ Disconnects a connection. This API uses a promise to return the result.
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000005 | The specified process does not have the permission. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1523,10 +1560,10 @@ Disconnects a connection. This API uses an asynchronous callback to return the r
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 16000001 | The specified ability does not exist. |
-| 16000005 | The specified process does not have the permission. |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1560,7 +1597,7 @@ Starts an ability in the foreground or background and obtains the caller object 
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If **exported** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -1589,14 +1626,11 @@ Observe the following when using this API:
 | 16000005 | The specified process does not have the permission. |
 | 16000006 | Cross-user operations are not allowed. |
 | 16000008 | The crowdtesting application expires. |
-| 16000009 | An ability cannot be started or stopped in Wukong mode. |
-| 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
-| 16000053 | The ability is not on the top of the UI. |
-| 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1698,11 +1732,12 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1767,11 +1802,12 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1838,11 +1874,12 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 | 16000009 | An ability cannot be started or stopped in Wukong mode. |
 | 16000010 | The call with the continuation flag is forbidden. |
 | 16000011 | The context does not exist. |
-| 16000017 | The previous ability is starting, wait start later.        |
 | 16000050 | Internal error. |
 | 16000053 | The ability is not on the top of the UI. |
 | 16000055 | Installation-free timed out. |
 | 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1949,6 +1986,15 @@ Sets a label for this ability in the mission. This API uses an asynchronous call
 | label | string | Yes| Label of the ability to set.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
   ```ts
@@ -1985,6 +2031,8 @@ Sets a label for this ability in the mission. This API uses a promise to return 
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
   ```ts
@@ -2017,6 +2065,8 @@ Sets an icon for this ability in the mission. This API uses an asynchronous call
 | ------- | -------------------------------- |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -2072,6 +2122,8 @@ Sets an icon for this ability in the mission. This API uses a promise to return 
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
   ```ts
@@ -2120,6 +2172,8 @@ Restores the window stage data for this ability.
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
 
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
   ```ts
@@ -2147,6 +2201,8 @@ Checks whether this ability is in the terminating state.
 | ------- | -------------------------------- |
 | 16000011 | The context does not exist. |
 | 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
