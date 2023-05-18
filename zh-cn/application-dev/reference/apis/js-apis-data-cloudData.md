@@ -51,17 +51,17 @@ static enableCloud(accountId: string, switches: {[bundleName: string]: boolean},
 
 ```js
 let account = "test_id";
-let switches = {"test_bundleName1":true, "test_bundleName2":false};
+let switches = { "test_bundleName1": true, "test_bundleName2": false };
 try {
-  await ddm.Config.enableCloud(account, function (err, data) {
-    if (err == undefined) {
-      console.info('Succeeding in enabling cloud');
-    } else {
-      console.error('Failed to enable' + `, error code is ${err.code}, message is ${err.message}`);
-    }
-  });
+    await ddm.Config.enableCloud(account, function (err, data) {
+        if (err == undefined) {
+            console.info('Succeeding in enabling cloud');
+        } else {
+            console.error('Failed to enable' + `, error code is ${err.code}, message is $ { err.message }`);
+        }
+    });
 } catch (e) {
-  console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
+    console.error('An unexpected error occurred' + `, error code is ${e.code}, message is $ { e.message }`);
 }
 ```
 
@@ -90,15 +90,15 @@ static enableCloud(accountId: string, switches: {[bundleName: string]: boolean})
 
 ```js
 let account = "test_id";
-let switches = {"test_bundleName1":true, "test_bundleName2":false};
+let switches = { "test_bundleName1": true, "test_bundleName2": false };
 try {
-  await  ddm.Config.enableCloud(account).then((data) => {
-      console.info('Succeeding in enabling cloud');
-  }).catch((error) => {
-      console.error('Failed to enable' + `, error code is ${error.code}, message is ${error.message}`);
-  });
+    await ddm.Config.enableCloud(account).then((data) => {
+        console.info('Succeeding in enabling cloud');
+    }).catch((error) => {
+        console.error('Failed to enable' + `, error code is ${error.code}, message is $ { error.message }`);
+    });
 } catch (e) {
-  console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
+    console.error('An unexpected error occurred' + `, error code is ${e.code}, message is $ { e.message }`);
 }
 ```
 
@@ -122,15 +122,15 @@ static disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;):void
 ```js
 let account = "test_id";
 try {
-  await ddm.Config.disableCloud(account, function (err, data) {
-    if (err == undefined) {
-      console.info('Succeeding in disabling cloud');
-    } else {
-      console.error('Failed to disableCloud' + `, error code is ${err.code}, message is ${err.message}`);
-    }
-  });
+    await ddm.Config.disableCloud(account, function (err, data) {
+        if (err == undefined) {
+            console.info('Succeeding in disabling cloud');
+        } else {
+            console.error('Failed to disableCloud' + `, error code is ${err.code}, message is ${err.message}`);
+        }
+    });
 } catch (e) {
-  console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
+    console.error('An unexpected error occurred' + `, error code is ${e.code}, message is ${e.message}`);
 }
 ```
 
@@ -158,15 +158,15 @@ static disableCloud(accountId: string): Promise&lt;void&gt;
 
 ```js
 let account = "test_id";
-let switches = {"test_bundleName1":true, "test_bundleName2":false};
+let switches = { "test_bundleName1": true, "test_bundleName2": false };
 try {
-  await  ddm.Config.disableCloud(account).then((data) => {
-      console.info('Succeeding in disabling cloud');
-  }).catch((error) => {
-      console.error('Failed to disableCloud' + `, error code is ${error.code}, message is ${error.message}`);
-  });
+    await  ddm.Config.disableCloud(account).then((data) => {
+        console.info('Succeeding in disabling cloud');
+    }).catch((error) => {
+        console.error('Failed to disableCloud' + `, error code is ${error.code}, message is ${error.message}`);
+    });
 } catch (e) {
-  console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
+    console.error('An unexpected error occurred' + `, error code is ${e.code}, message is ${e.message}`);
 }
 ```
 
@@ -193,15 +193,15 @@ static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean, 
 let account = "test_id";
 let bundleName = "test_bundleName";
 try {
-  await ddm.Config.changeAppCloudSwitch(account, bundleName, true, function (err, data) {
-    if (err == undefined) {
-      console.info('Succeeding in changing App cloud switch');
-    } else {
-      console.error('Failed to change App cloud switch' + `, error code is ${err.code}, message is ${err.message}`);
-    }
-  });
+    await ddm.Config.changeAppCloudSwitch(account, bundleName, true, function (err, data) {
+        if (err == undefined) {
+            console.info('Succeeding in changing App cloud switch');
+        } else {
+            console.error('Failed to change App cloud switch' + `, error code is ${err.code}, message is ${err.message}`);
+        }
+    });
 } catch (e) {
-  console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
+    console.error('An unexpected error occurred' + `, error code is ${e.code}, message is ${e.message}`);
 }
 ```
 
@@ -233,13 +233,13 @@ static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean):
 let account = "test_id";
 let bundleName = "test_bundleName";
 try {
-  await  ddm.Config.changeAppCloudSwitch(account, bundleName, true).then((data) => {
-      console.info('Succeeding in changing App cloud switch');
-  }).catch((error) => {
-      console.error('Failed to change App cloud switch' + `, error code is ${error.code}, message is ${error.message}`);
-  });
+    await  ddm.Config.changeAppCloudSwitch(account, bundleName, true).then((data) => {
+        console.info('Succeeding in changing App cloud switch');
+    }).catch((error) => {
+        console.error('Failed to change App cloud switch' + `, error code is ${error.code}, message is ${error.message}`);
+    });
 } catch (e) {
-  console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
+    console.error('An unexpected error occurred' + `, error code is ${e.code}, message is ${e.message}`);
 }
 ```
 
@@ -262,18 +262,19 @@ static clean(accountId: string, appActions: {[bundleName: string]: Action}, call
 **示例：**
 
 ```js
+let con = ddm.Action;
 let account = "test_id";
-let appActions = {"test_bundleName1": con.CLEAR_CLOUD_INFO, "test_bundleName2": con.CLEAR_CLOUD_DATA_AND_INFO}
+let appActions = { "test_bundleName1": con.CLEAR_CLOUD_INFO, "test_bundleName2": con.CLEAR_CLOUD_DATA_AND_INFO }
 try {
-  await ddm.Config.clean(account, appActions, function (err, data) {
-    if (err == undefined) {
-      console.info('Succeeding in cleaning cloud data');
-    } else {
-      console.error('Failed to clean' + `, error code is ${err.code}, message is ${err.message}`);
-    }
-  });
+    await ddm.Config.clean(account, appActions, function (err, data) {
+        if (err == undefined) {
+            console.info('Succeeding in cleaning cloud data');
+        } else {
+            console.error('Failed to clean' + `, error code is ${err.code}, message is ${err.message}`);
+        }
+    });
 } catch (e) {
-  console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
+    console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
 }
 ```
 
@@ -301,16 +302,17 @@ static clean(accountId: string, appActions: {[bundleName: string]: Action}): Pro
 **示例：**
 
 ```js
+let con = ddm.Action;
 let account = "test_id";
-let appActions = {"test_bundleName1": con.CLEAR_CLOUD_INFO, "test_bundleName2": con.CLEAR_CLOUD_DATA_AND_INFO}
+let appActions = { "test_bundleName1": con.CLEAR_CLOUD_INFO, "test_bundleName2": con.CLEAR_CLOUD_DATA_AND_INFO }
 try {
-  await  ddm.Config.clean(account, appActions).then((data) => {
-      console.info('Succeeding in cleaning cloud data');
-  }).catch((error) => {
-      console.error('Failed to clean' + `, error code is ${error.code}, message is ${error.message}`);
-  });
+    await  ddm.Config.clean(account, appActions).then((data) => {
+        console.info('Succeeding in cleaning cloud data');
+    }).catch((error) => {
+        console.error('Failed to clean' + `, error code is ${error.code}, message is ${error.message}`);
+    });
 } catch (e) {
-  console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
+    console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
 }
 ```
 
@@ -336,15 +338,15 @@ static notifyDataChange(accountId: string,bundleName:string, callback: AsyncCall
 let account = "test_id";
 let bundleName = "test_bundleName";
 try {
-  await ddm.Config.notifyDataChange(account, bundleName, function (err, data) {
-    if (err == undefined) {
-      console.info('Succeeding in notifying the change of data');
-    } else {
-      console.error('Failed to notify the change of data' + `, error code is ${err.code}, message is ${err.message}`);
-    }
-  });
+    await ddm.Config.notifyDataChange(account, bundleName, function (err, data) {
+        if (err == undefined) {
+            console.info('Succeeding in notifying the change of data');
+        } else {
+            console.error('Failed to notify the change of data' + `, error code is ${err.code}, message is ${err.message}`);
+        }
+    });
 } catch (e) {
-  console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
+    console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
 }
 ```
 
@@ -375,13 +377,13 @@ static notifyDataChange(accountId: string,bundleName:string): Promise&lt;void&gt
 let account = "test_id";
 let bundleName = "test_bundleName";
 try {
-  await  ddm.Config.notifyDataChange(account, bundleName).then((data) => {
-      console.info('Succeeding in notifying the change of data');
-  }).catch((error) => {
-      console.error('Failed to notify the change of data' + `, error code is ${error.code}, message is ${error.message}`);
-  });
+    await  ddm.Config.notifyDataChange(account, bundleName).then((data) => {
+        console.info('Succeeding in notifying the change of data');
+    }).catch((error) => {
+        console.error('Failed to notify the change of data' + `, error code is ${error.code}, message is ${error.message}`);
+    });
 } catch (e) {
-  console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
+    console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
 }
 ```
 
