@@ -17,7 +17,7 @@ import shortKey from '@ohos.multimodalInput.shortKey';
 
 setKeyDownDuration(businessId: string, delay: number, callback: AsyncCallback&lt;void&gt;): void
 
-设置快捷键拉起Ability的延时时间，使用AsyncCallback异步方式返回结果。
+设置快捷键拉起Ability的延迟时间，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.ShortKey
 
@@ -51,7 +51,7 @@ try {
 
 setKeyDownDuration(businessId: string, delay: number): Promise&lt;void&gt;
 
-设置快捷键拉起Ability的延时时间，使用Promise异步方式返回结果。
+设置快捷键拉起Ability的延迟时间，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.ShortKey
 
