@@ -1680,7 +1680,7 @@ setMeteringPoint(point: Point): void
 
 | 参数名           | 类型                            | 必填 | 说明                 |
 | ------------- | -------------------------------| ---- | ------------------- |
-| exposurePoint | [Point](#point)                | 是   | 曝光点。 设置范围应在[0,1]之内， 超过范围，如果小于0设置0，大于1设置1             |
+| exposurePoint | [Point](#point)                | 是   | 曝光点，x,y设置范围应在[0,1]之内，超过范围，如果小于0设置0，大于1设置1。             |
 
 **返回值：**
 
@@ -1938,7 +1938,7 @@ setFocusPoint(point: Point): void
 
 | 参数名      | 类型                     | 必填 | 说明                 |
 | -------- | ----------------------- | ---- | ------------------- |
-| Point1    | [Point](#point)         | 是   | 焦点。设置范围应在[0,1]之内， 超过范围，如果小于0设置0，大于1设置1   |
+| Point1    | [Point](#point)         | 是   | 焦点。x,y设置范围应在[0,1]之内，超过范围，如果小于0设置0，大于1设置1。   |
 
 **返回值：**
 
@@ -2737,7 +2737,7 @@ capture(setting?: PhotoCaptureSetting): Promise\<void\>
 
 | 参数名     | 类型                                         | 必填 | 说明      |
 | ------- | ------------------------------------------- | ---- | -------- |
-| setting | [PhotoCaptureSetting](#photocapturesetting) | 否   | 拍照设置, 传入undefined 类型数据按默认无参处理 |
+| setting | [PhotoCaptureSetting](#photocapturesetting) | 否   | 拍照设置，传入undefined类型数据按默认无参处理。 |
 
 **返回值：**
 
