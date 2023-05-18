@@ -1355,7 +1355,7 @@ startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
   }
   ```
 
-## ServiceExtensionContext.startAbilityByCallWithAccount
+## ServiceExtensionContext.startAbilityByCallWithAccount<sup>10+</sup>
 
 startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;;
 
@@ -1386,6 +1386,8 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 
 **错误码：**
 
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 16000001 | Input error. The specified ability name does not exist. |
@@ -1397,8 +1399,6 @@ startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&
 | 16000011 | The context does not exist. |
 | 16000050 | Internal Error. |
 | 16200001 | The caller has been released.        |
-
-以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
