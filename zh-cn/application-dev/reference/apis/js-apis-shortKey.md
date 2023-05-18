@@ -15,7 +15,7 @@ import shortKey from '@ohos.multimodalInput.shortKey';
 
 ##  shortKey.setKeyDownDuration
 
-setKeyDownDuration(businessId: string, delay: number, callback: AsyncCallback<void>): void
+setKeyDownDuration(businessId: string, delay: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置快捷键拉起Ability的延时时间，使用AsyncCallback异步方式返回结果。
 
@@ -27,7 +27,7 @@ setKeyDownDuration(businessId: string, delay: number, callback: AsyncCallback<vo
 | ---------- | ------------------- | ---- | ------------------------------------------------------------ |
 | businessId | string              | 是   | 业务在多模侧注册的唯一标识，与ability_launch_config.json中的businessId对应 |
 | delay      | number              | 是   | 如果是按下触发，则这个值有效，表示最终按键按下多长时间时触发快捷键拉起Ability。单位：毫秒（ms） |
-| callback   | AsyncCallback<void> | 是   | 回调函数。                                                   |
+| callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                                   |
 
 **示例**：
 
@@ -49,7 +49,7 @@ try {
 
 ## shortKey.setKeyDownDuration
 
-setKeyDownDuration(businessId: string, delay: number): Promise<void>
+setKeyDownDuration(businessId: string, delay: number): Promise&lt;void&gt;
 
 设置快捷键拉起Ability的延时时间，使用Promise异步方式返回结果。
 
@@ -66,7 +66,7 @@ setKeyDownDuration(businessId: string, delay: number): Promise<void>
 
 | 参数          | 说明          |
 | ------------- | ------------- |
-| Promise<void> | Promise对象。 |
+| Promise&lt;void&gt; | Promise对象。 |
 
 **示例**：
 
