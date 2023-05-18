@@ -483,9 +483,9 @@ record.convertToText().then((data) => {
 
 ## PasteData
 
-剪贴板内容对象。
+剪贴板内容对象。剪贴板内容包含一个或者多个内容条目（[PasteDataRecord](#pastedatarecord7)）以及属性描述对象（[PasteDataProperty](#pastedataproperty7)）。
 
-在调用PasteData的接口前，需要先获取一个PasteData对象。
+在调用PasteData的接口前，需要先通过[createData()](#pasteboardcreatedata9)或[getData()](#getdata9)获取一个PasteData对象。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -666,8 +666,8 @@ addRecord(mimeType: string, value: ValueType): void
 
   ```js
   let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
-let dataXml = new ArrayBuffer(256);
-pasteData.addRecord('app/xml', dataXml);
+  let dataXml = new ArrayBuffer(256);
+  pasteData.addRecord('app/xml', dataXml);
   ```
 
 ### getMimeTypes<sup>7+</sup>
@@ -1192,10 +1192,10 @@ off(type:  'update', callback?: () =&gt;void ): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明                                                        |
-| -------- | -------- | -------- |-----------------------------------------------------------|
-| type | string | 是 | 取值为'update'，表示系统剪贴板内容变化事件。                                |
-| callback | function | 否 | 剪贴板中内容变化时触发的用户程序的回调。 如果此参数未填，表明清除本应用的所有监听回调，否则表示清除指定监听回调。 |
+| 参数名 | 类型 | 必填 | 说明                                                      |
+| -------- | -------- | -------- |---------------------------------------------------------|
+| type | string | 是 | 取值为'update'，表示系统剪贴板内容变化事件。                              |
+| callback | function | 否 | 剪贴板中内容变化时触发的用户程序的回调。如果此参数未填，表明清除本应用的所有监听回调，否则表示清除指定监听回调。|
 
 **示例：**
 
