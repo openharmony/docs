@@ -26,7 +26,7 @@ import Want from '@ohos.app.ability.Want';
 | entities | Array\<string> | 否 | 表示目标Ability额外的类别信息（如：浏览器、视频播放器）。在隐式Want中是对action字段的补充。在隐式Want中，您可以定义该字段，来过滤匹配Ability类型。 |
 | uri | string | 否 | 表示携带的数据，一般配合type使用，指明待处理的数据类型。如果在Want中指定了uri，则Want将匹配指定的Uri信息，包括`scheme`、`schemeSpecificPart`、`authority`和`path`信息。 |
 | type | string | 否 | 表示MIME type类型描述，打开文件的类型，主要用于文管打开文件。比如：'text/xml' 、 'image/*'等，MIME定义请参见https://www.iana.org/assignments/media-types/media-types.xhtml?utm_source=ld246.com。 |
-| parameters   | {[key: string]: any} | 否   | 表示WantParams描述，由开发者自行决定传入的键值对。默认会携带以下key值：<br />- ohos.aafwk.callerPid：表示拉起方的pid。<br />- ohos.aafwk.param.callerBundleName：表示拉起方的Bundle Name。<br />- ohos.aafwk.param.callerToken：表示拉起方的token。<br />- ohos.aafwk.param.callerUid：表示[BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo-1)中的uid，应用包里应用程序的uid。<br />- component.startup.newRules：表示是否启用新的管控规则。<br />- moduleName：表示拉起方的模块名，该字段的值即使定义成其他字符串，在传递到另一端时会被修改为正确的值。<br />- ohos.dlp.params.sandbox：表示dlp文件才会有。 |
+| parameters   | {[key: string]: any} | 否   | 表示WantParams描述，由开发者自行决定传入的键值对。默认会携带以下key值：<br />- ohos.aafwk.callerPid：表示拉起方的pid。<br />- ohos.aafwk.param.callerBundleName：表示拉起方的Bundle Name。<br />- ohos.aafwk.param.callerToken：表示拉起方的token。<br />- ohos.aafwk.param.callerUid：表示[BundleInfo](js-apis-bundleManager-bundleInfo.md#bundleinfo-1)中的uid，应用包里应用程序的uid。<br />- component.startup.newRules：表示是否启用新的管控规则。<br />- moduleName：表示拉起方的模块名，该字段的值即使定义成其他字符串，在传递到另一端时会被修改为正确的值。<br />- ohos.dlp.params.sandbox：表示dlp文件才会有。<br />- ability.params.backToOtherMissionStack：表示是否支持跨任务链返回。 |
 | [flags](js-apis-ability-wantConstant.md#wantconstantflags) | number | 否 | 表示处理Want的方式。默认传数字。<br />例如通过wantConstant.Flags.FLAG_ABILITY_CONTINUATION表示是否以设备间迁移方式启动Ability。 |
 
 **示例：**
@@ -34,7 +34,8 @@ import Want from '@ohos.app.ability.Want';
 - 基础用法：在UIAbility对象中调用，示例中的context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
   ```ts
-  let context = ...; // UIAbilityContext
+  import common from '@ohos.app.ability.common';
+  let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
   let want = {
     'deviceId': '', // deviceId为空表示本设备
     'bundleName': 'com.example.myapplication',
@@ -52,7 +53,8 @@ import Want from '@ohos.app.ability.Want';
 
     * 字符串（String）
         ```ts
-        let context = ...; // UIAbilityContext
+        import common from '@ohos.app.ability.common';
+        let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want = {
           bundleName: 'com.example.myapplication',
           abilityName: 'FuncAbility',
@@ -67,7 +69,8 @@ import Want from '@ohos.app.ability.Want';
         ```
     * 数字（Number）
         ```ts
-        let context = ...; // UIAbilityContext
+        import common from '@ohos.app.ability.common';
+        let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want = {
           bundleName: 'com.example.myapplication',
           abilityName: 'FuncAbility',
@@ -83,7 +86,8 @@ import Want from '@ohos.app.ability.Want';
         ```
     * 布尔（Boolean）
         ```ts
-        let context = ...; // UIAbilityContext
+        import common from '@ohos.app.ability.common';
+        let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want = {
           bundleName: 'com.example.myapplication',
           abilityName: 'FuncAbility',
@@ -98,7 +102,8 @@ import Want from '@ohos.app.ability.Want';
         ```
     * 对象（Object）
         ```ts
-        let context = ...; // UIAbilityContext
+        import common from '@ohos.app.ability.common';
+        let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want = {
           bundleName: 'com.example.myapplication',
           abilityName: 'FuncAbility',
@@ -118,7 +123,8 @@ import Want from '@ohos.app.ability.Want';
         ```
     * 数组（Array）
         ```ts
-        let context = ...; // UIAbilityContext
+        import common from '@ohos.app.ability.common';
+        let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         let want = {
           bundleName: 'com.example.myapplication',
           abilityName: 'FuncAbility',
@@ -138,7 +144,8 @@ import Want from '@ohos.app.ability.Want';
         ```ts
         import fs from '@ohos.file.fs';
         
-        let context = ...; // UIAbilityContext
+        import common from '@ohos.app.ability.common';
+        let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
         
         let fd;
         try {
@@ -160,3 +167,33 @@ import Want from '@ohos.app.ability.Want';
           console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
         });
         ```
+    - parameter参数用法：以ability.params.backToOtherMissionStack为例，ServiceExtension在拉起UIAbility的时候，可以支持跨任务链返回。
+
+    ```ts
+        // (1) UIAbility1启动一个ServiceExtension
+        let context = getContext(this) as common.UIAbilityContext; // UIAbilityContext
+        let want = {
+          bundleName: 'com.example.myapplication1',
+          abilityName: 'ServiceExtensionAbility',
+        };
+
+        context.startAbility(want, (err) => {
+          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+        });
+
+        // (2) 该ServiceExtension去启动另一个UIAbility2，并在启动的时候携带参数ability.params.backToOtherMissionStack为true
+        let context = ...; // ServiceExtensionContext
+        let want = {
+          bundleName: 'com.example.myapplication2',
+          abilityName: 'MainAbility',
+          parameters: {
+            "ability.params.backToOtherMissionStack": true,
+          },
+        };
+
+        context.startAbility(want, (err) => {
+          console.error(`Failed to startAbility. Code: ${err.code}, message: ${err.message}`);
+        });
+    ```
+
+    说明：上例中，如果ServiceExtension启动UIAbility2时不携带ability.params.backToOtherMissionStack参数，或者携带的ability.params.backToOtherMissionStack参数为false，则UIAbility1和UIAbility2不在同一个任务栈里面，在UIAbility2的界面点back键，不会回到UIAbility1的界面。如果携带的ability.params.backToOtherMissionStack参数为true，则表示支持跨任务链返回，此时在UIAbility2的界面点back键，会回到UIAbility1的界面。

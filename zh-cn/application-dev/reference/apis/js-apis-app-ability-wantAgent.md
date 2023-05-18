@@ -113,10 +113,8 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 
 **示例：**
 
-```js
-import WantAgent from '@ohos.app.ability.wantAgent';
-
-
+```ts
+let wantAgent;
 //WantAgentInfo对象
 let wantAgentInfo = {
     wants: [
@@ -1126,6 +1124,27 @@ let wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+    if (err === undefined) {
+        wantAgent = data;
+    } else {
+        console.error('getWantAgent failed ${JSON.stringify(wantAgent)}');
+    }
+    //getOperationTypeCallback回调
+    function getOperationTypeCallback(err, data) {
+        if(err) {
+            console.error('getOperationType failed! ${err.code} ${err.message}');
+        } else {
+            console.info('getOperationType ok! ${JSON.stringify(data)}');
+        }
+    }
+    try {
+        WantAgent.getOperationType(wantAgent, getOperationTypeCallback);
+    } catch(err) {
+        console.error('getOperationTypeCallback failed! ${err.code} ${err.message}');
+    }
+}
 try {
     WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 	    console.info('==========================>getWantAgentCallback=======================>');

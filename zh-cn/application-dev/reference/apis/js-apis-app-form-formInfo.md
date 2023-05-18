@@ -18,6 +18,8 @@ import formInfo from '@ohos.app.form.formInfo';
 
 **系统能力**：SystemCapability.Ability.Form
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
 | bundleName  | string               | 是    | 否     | 卡片所属包的包名。                           |
@@ -136,5 +138,6 @@ import formInfo from '@ohos.app.form.formInfo';
 
 | 名称        |  值   | 说明         |
 | ----------- | ---- | ------------ |
+| UNKNOWN | 0   | 表示卡片为未知。 |
 | FORM_VISIBLE | 1   | 表示卡片为可见。 |
 | FORM_INVISIBLE   | 2   | 表示卡片为不可见。 |
