@@ -28,7 +28,7 @@ Button('click for Menu')
 
 ## 创建自定义样式的菜单
 
-当默认样式不满足开发需求时，可使用\@CustomBuilder自定义菜单内容。可通过bindContextMenu接口进行菜单的自定义。
+当默认样式不满足开发需求时，可使用\@CustomBuilder自定义菜单内容。可通过bindMenu接口进行菜单的自定义。
 
 
 ### \@Builder开发菜单内的内容
@@ -70,7 +70,7 @@ MyMenu(){
         startIcon: $r("app.media.view_list_filled"),
         content: "菜单选项",
         endIcon: $r("app.media.arrow_right_filled"),
-        builder: this.SubMenu.bind(this)\
+        builder: this.SubMenu.bind(this)
       })
     }
     MenuItem({
@@ -101,7 +101,7 @@ Button('click for Menu')
 通过bindContextMenu接口进行菜单的自定义及菜单弹出的触发方式：右键或长按。使用bindContextMenu弹出的菜单项是在独立子窗口内的，可显示在应用窗口外部。
 
 
-- [@Builder开发菜单内的内容](#builder开发菜单内的内容)与上文写法相同。
+- @Builder开发菜单内的内容与上文写法相同。
 
 - 确认菜单的弹出方式，使用bindContextMenu属性绑定组件。示例中为右键弹出菜单。
 
