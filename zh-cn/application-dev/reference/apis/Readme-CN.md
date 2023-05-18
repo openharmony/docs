@@ -120,6 +120,7 @@
   - [@ohos.events.emitter (Emitter)](js-apis-emitter.md)
   - [@ohos.notificationManager (NotificationManager模块)(推荐)](js-apis-notificationManager.md)
   - [@ohos.notificationSubscribe (NotificationSubscribe模块)(推荐)](js-apis-notificationSubscribe.md)
+  - [@ohos.application.StaticSubscriberExtensionContext (NotificationSubscribe模块)(推荐)](js-apis-application-StaticSubscriberExtensionContext.md)
   - [系统公共事件定义 (待停用)](commonEvent-definitions.md)
   - [@ohos.commonEvent (公共事件模块)(待停用)](js-apis-commonEvent.md)
   - [@ohos.notification (Notification模块)(待停用)](js-apis-notification.md)
