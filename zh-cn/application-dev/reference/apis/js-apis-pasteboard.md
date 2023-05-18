@@ -360,7 +360,7 @@ record.convertToText((err, data) => {
 
 剪贴板内容对象。剪贴板内容包含一个或者多个内容条目（[PasteDataRecord](#pastedatarecord7)）以及属性描述对象（[PasteDataProperty](#pastedataproperty7)）。
 
-在调用PasteData的接口前，需要先通过[createPlainTextData()](#pasteboardcreateplaintextdata7)、[createHtmlData()](#pasteboardcreatehtmldatasup7sup)、[createUriData()](#pasteboardcreateuridatasup7sup)、[createWantData()](#pasteboardcreatewantdatasup7sup)或[getPasteData()](#getpastedata)获取一个PasteData对象。
+在调用PasteData的接口前，需要先通过[createPlainTextData()](#pasteboardcreateplaintextdata7)、[createHtmlData()](#pasteboardcreatehtmldata7)、[createUriData()](#pasteboardcreateuridata7)、[createWantData()](#pasteboardcreatewantdata7)或[getPasteData()](#getpastedata)获取一个PasteData对象。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
