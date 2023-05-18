@@ -579,7 +579,7 @@ commonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
 
 setStaticSubscriberState(enable: boolean, callback: AsyncCallback<void>): void;
 
-以回调形式为当前应用设置静态订阅事件使能或去使能状态。
+方法介绍：为当前应用设置静态订阅事件使能或去使能状态。使用callback异步回调。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -621,7 +621,7 @@ CommonEventManager.setStaticSubscriberState(true, (err) => {
 
 setStaticSubscriberState(enable: boolean): Promise<void>;
 
-以Promise形式为当前应用设置静态订阅事件使能或去使能状态。
+方法介绍：为当前应用设置静态订阅事件使能或去使能状态。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
