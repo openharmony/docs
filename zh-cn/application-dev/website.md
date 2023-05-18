@@ -790,6 +790,7 @@
       - [Swiper](reference/arkui-ts/ts-container-swiper.md)
       - [Tabs](reference/arkui-ts/ts-container-tabs.md)
       - [TabContent](reference/arkui-ts/ts-container-tabcontent.md)
+      - [WaterFlow](reference/arkui-ts/ts-container-waterflow.md)
     - 媒体组件
       - [Video](reference/arkui-ts/ts-media-components-video.md)
     - 绘制组件
