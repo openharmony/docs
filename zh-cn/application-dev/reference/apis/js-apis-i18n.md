@@ -1759,7 +1759,7 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 | Array<TimeZone> | 时区对象的数组 |
 
 **示例：** 
-  ```ts
+  ```js
   let timezoneArray = I18n.TimeZone.getTimezonesByLocation(-118.1, 34.0);
   for (var i = 0; i < timezoneArray.length; i++) {
      let tzId = timezoneArray[i].getID();
