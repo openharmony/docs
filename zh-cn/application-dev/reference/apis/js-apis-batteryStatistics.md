@@ -170,7 +170,7 @@ try {
 
 ## batteryStats.getHardwareUnitPowerValue
 
-getHardwareUnitPowerValue(type: ConsumptionType): number
+getHardwareUnitPowerValue(type: batteryStats.ConsumptionType): number
 
 根据耗电类型获取硬件单元的耗电量。
 
@@ -211,7 +211,7 @@ try {
 
 ## batteryStats.getHardwareUnitPowerPercent
 
-getHardwareUnitPowerPercent(type: ConsumptionType): number
+getHardwareUnitPowerPercent(type: batteryStats.ConsumptionType): number
 
 根据耗电类型获取硬件单元的耗电百分比。
 
