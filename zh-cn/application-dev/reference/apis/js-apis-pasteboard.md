@@ -483,7 +483,7 @@ record.convertToText().then((data) => {
 
 ## PasteData
 
-剪贴板内容对象。剪贴板内容包含一个或者多个内容条目([PasteDataRecord](#pastedatarecord7))以及属性描述对象([PasteDataProperty](#pastedataproperty7))。
+剪贴板内容对象。剪贴板内容包含一个或者多个内容条目（[PasteDataRecord](#pastedatarecord7)）以及属性描述对象（[PasteDataProperty](#pastedataproperty7)）。
 
 在调用PasteData的接口前，需要先获取一个PasteData对象。
 
