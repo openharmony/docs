@@ -110,7 +110,7 @@ let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelpe
 function onChangeNotify() {
     console.info('==========================>onChangeNotify=======================>');
 };
-helper.on(
+DAHelper.on(
     'dataChange',
     'dataability:///com.example.DataAbility',
     onChangeNotify
@@ -143,11 +143,11 @@ let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelpe
 function onChangeNotify() {
     console.info('==========================>onChangeNotify=======================>');
 };
-helper.off(
+DAHelper.off(
     'dataChange',
     'dataability:///com.example.DataAbility',
 );
-helper.off(
+DAHelper.off(
     'dataChange',
     'dataability:///com.example.DataAbility',
     onChangeNotify
@@ -420,7 +420,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
-helper.notifyChange('dataability:///com.example.DataAbility', (err) => {
+DAHelper.notifyChange('dataability:///com.example.DataAbility', (err) => {
     console.info('==========================>Called=======================>');
 });
 ```

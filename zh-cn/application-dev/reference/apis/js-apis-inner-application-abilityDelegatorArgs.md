@@ -32,7 +32,5 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 **示例：**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
-
 let args: AbilityDelegatorRegistry.AbilityDelegatorArgs = AbilityDelegatorRegistry.getArguments();
 ```
