@@ -38,7 +38,7 @@ Assume that your application has two UIAbility components: EntryAbility and Func
            info: 'From the Index page of EntryAbility',
        },
    }
-   // context is the UIAbilityContext of the initiator UIAbility.
+   // context is the AbilityContext of the initiator UIAbility.
    this.context.startAbility(wantInfo).then(() => {
        // ...
    }).catch((err) => {
@@ -65,7 +65,7 @@ Assume that your application has two UIAbility components: EntryAbility and Func
 3. To stop the **UIAbility** instance after the FuncAbility service is complete, call **terminateSelf()** in FuncAbility.
    
    ```ts
-   // context is the UIAbilityContext of the UIAbility instance to stop.
+   // context is the AbilityContext of the UIAbility instance to stop.
    this.context.terminateSelf((err) => {
        // ...
    });
@@ -88,7 +88,7 @@ When starting FuncAbility from EntryAbility, you want the result to be returned 
            info: 'From the Index page of EntryAbility',
        },
    }
-   // context is the UIAbilityContext of the initiator UIAbility.
+   // context is the AbilityContext of the initiator UIAbility.
    this.context.startAbilityForResult(wantInfo).then((data) => {
        // ...
    }).catch((err) => {
@@ -124,7 +124,7 @@ When starting FuncAbility from EntryAbility, you want the result to be returned 
    
    // ...
    
-   // context is the UIAbilityContext of the initiator UIAbility.
+   // context is the AbilityContext of the initiator UIAbility.
    this.context.startAbilityForResult(want).then((data) => {
        if (data?.resultCode === RESULT_CODE) {
            // Parse the information returned by the target UIAbility.
@@ -187,7 +187,7 @@ This section describes how to start the UIAbility of another application through
        entities: ['entity.system.default'],
    }
    
-   // context is the UIAbilityContext of the initiator UIAbility.
+   // context is the AbilityContext of the initiator UIAbility.
    this.context.startAbility(wantInfo).then(() => {
        // ...
    }).catch((err) => {
@@ -251,7 +251,7 @@ If you want to obtain the return result when using implicit Want to start the UI
        entities: ['entity.system.default'],
    }
    
-   // context is the UIAbilityContext of the initiator UIAbility.
+   // context is the AbilityContext of the initiator UIAbility.
    this.context.startAbilityForResult(wantInfo).then((data) => {
        // ...
    }).catch((err) => {
@@ -289,7 +289,7 @@ If you want to obtain the return result when using implicit Want to start the UI
      // Want parameter information.
    };
    
-   // context is the UIAbilityContext of the initiator UIAbility.
+   // context is the AbilityContext of the initiator UIAbility.
    this.context.startAbilityForResult(want).then((data) => {
        if (data?.resultCode === RESULT_CODE) {
            // Parse the information returned by the target UIAbility.
@@ -322,7 +322,7 @@ let wantInfo = {
         router: 'funcA',
     },
 }
-// context is the UIAbilityContext of the initiator UIAbility.
+// context is the AbilityContext of the initiator UIAbility.
 this.context.startAbility(wantInfo).then(() => {
     // ...
 }).catch((err) => {
@@ -500,12 +500,12 @@ For the CalleeAbility, implement the callback to receive data and the methods to
    ```json
    "abilities":[{
      "name": ".CalleeAbility",
-     "srcEntrance": "./ets/CalleeAbility/CalleeAbility.ts",
+     "srcEnty": "./ets/CalleeAbility/CalleeAbility.ts",
      "launchType": "singleton",
      "description": "$string:CalleeAbility_desc",
      "icon": "$media:icon",
      "label": "$string:CalleeAbility_label",
-     "visible": true
+     "exported": true
    }]
    ```
 
@@ -596,7 +596,7 @@ For the CalleeAbility, implement the callback to receive data and the methods to
 
 2. Obtain the caller interface.
 
-   The **UIAbilityContext** attribute implements **startAbilityByCall** to obtain the caller object for communication. The following example uses **this.context** to obtain the **UIAbilityContext**, uses **startAbilityByCall** to start the CalleeAbility, obtain the caller object, and register the **onRelease** listener of the CallerAbility. You need to implement processing based on service requirements.
+   The **context** attribute of the UIAbility implements **startAbilityByCall** to obtain the caller object for communication. The following example uses **this.context** to obtain the **context** attribute of the UIAbility, uses **startAbilityByCall** to start the CalleeAbility, obtain the caller object, and register the **onRelease** listener of the CallerAbility. You need to implement processing based on service requirements.
 
    
    ```ts

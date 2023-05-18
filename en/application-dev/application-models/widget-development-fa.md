@@ -364,7 +364,7 @@ You can use the web-like paradigm (HML+CSS+JSON) to develop JS widget pages. Thi
 
 > **NOTE**
 >
-> Only the JavaScript-based web-like development paradigm is supported when developing the widget UI.
+> In the FA model, only the JavaScript-based web-like development paradigm is supported when developing the widget UI.
 
 - HML: uses web-like paradigm components to describe the widget page information.
   
@@ -452,7 +452,7 @@ You can set router and message events for components on a widget. The router eve
 
 2. Set the router event.
    - **action**: **"router"**, which indicates a router event.
-   - **abilityName**: name of the ability to redirect to (PageAbility component in the FA model and UIAbility component in the stage model). For example, the default MainAbility name created by DevEco Studio in the FA model is com.example.entry.MainAbility.
+   - **abilityName**: name of the ability to redirect to (PageAbility component in the FA model and UIAbility component in the stage model). For example, the default UIAbility name created by DevEco Studio in the FA model is com.example.entry.MainAbility.
    - **params**: custom parameters passed to the target ability. Set them as required. The value can be obtained from **parameters** in **want** used for starting the target ability. For example, in the lifecycle function **onCreate** of the MainAbility in the FA model, **featureAbility.getWant()** can be used to obtain **want** and its **parameters** field.
 
 3. Set the message event.
@@ -543,4 +543,3 @@ The following is an example:
     }
   }
   ```
-

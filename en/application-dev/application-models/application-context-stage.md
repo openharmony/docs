@@ -187,13 +187,13 @@ The base class **Context** provides [createBundleContext(bundleName:string)](../
   > **NOTE**
   >
   > To obtain the context of another application:
-  >
+  > 
   > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
-  >
+  > 
   > - This is a system API and cannot be called by third-party applications.
 
   For example, application information displayed on the home screen includes the application name and icon. The home screen application calls the foregoing method to obtain the context information, so as to obtain the resource information including the application name and icon.
-
+  
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   
@@ -248,7 +248,7 @@ The base class **Context** provides [createBundleContext(bundleName:string)](../
 
 In the DFX statistics scenario of an application, if you need to collect statistics on the stay duration and access frequency of a page, you can subscribe to UIAbility lifecycle changes in a process.
 
-[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext) provides APIs for subscribing to UIAbility lifecycle changes in a process. When the UIAbility lifecycle changes in a process, for example, being created or destroyed, becoming visible or invisible, or gaining or losing focus, the corresponding callback is triggered. Each time the callback is registered, a listener lifecycle ID is returned, with the value incremented by 1 each time. When the number of listeners exceeds the upper limit (2^63-1), **-1** is returned. The following uses [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md) as an example.
+[ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md) provides APIs for subscribing to UIAbility lifecycle changes in a process. When the UIAbility lifecycle changes in a process, for example, being created or destroyed, becoming visible or invisible, or gaining or losing focus, the corresponding callback is triggered. Each time the callback is registered, a listener lifecycle ID is returned, with the value incremented by 1 each time. When the number of listeners exceeds the upper limit (2^63-1), **-1** is returned. The following uses [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md) as an example.
 
 
 ```ts
@@ -308,7 +308,7 @@ export default class EntryAbility extends UIAbility {
     // Obtain the application context.
     let applicationContext = this.context.getApplicationContext();
     // Register the application lifecycle callback.
-    this.lifecycleId = applicationContext.on('Lifecycle', abilityLifecycleCallback);
+    this.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
     console.log(TAG, `register callback number: ${this.lifecycleId}`);
   }
 

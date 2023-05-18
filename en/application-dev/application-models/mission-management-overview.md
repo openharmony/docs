@@ -13,6 +13,7 @@ Before getting started with the development of mission management, be familiar w
 - MissionListManager: system mission management module that maintains all the MissionLists and is consistent with the list in **Recents**.
   
   **Figure 1** Mission management 
+  
   ![mission-list-manager](figures/mission-list-manager.png)
 
 
