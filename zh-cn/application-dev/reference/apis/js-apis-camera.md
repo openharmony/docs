@@ -550,9 +550,9 @@ on(type: 'cameraStatus', callback: AsyncCallback\<CameraStatusInfo\>): void
 **示例：**
 
 ```js
-cameraManager.on('cameraStatus', (cameraStatusInfo) => {
-    console.log(`camera : ${cameraStatusInfo.cameraDevice.GetID()}`);
-    console.log(`status: ${cameraStatusInfo.cameraStatus}`);
+cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
+    console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
+    console.log(`status: ${cameraStatusInfo.status}`);
 })
 ```
 
@@ -2077,7 +2077,7 @@ setZoomRatio(zoomRatio: number): void
 
 | 参数名       | 类型                  | 必填 | 说明                 |
 | --------- | -------------------- | ---- | ------------------- |
-| zoomRatio | number               | 是   | 可变焦距比,通过getZoomRatioRange获取支持的变焦范围 |
+| zoomRatio | number               | 是   | 可变焦距比,通过getZoomRatioRange获取支持的变焦范围, 如果设置超过支持范围的值，自动匹配到就近临界点 |
 
 **返回值：**
 
