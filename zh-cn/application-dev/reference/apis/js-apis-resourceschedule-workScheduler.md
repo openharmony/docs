@@ -80,7 +80,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 | 参数名        | 类型                    | 必填   | 说明         |
 | ---------- | --------------------- | ---- | ---------- |
 | work       | [WorkInfo](#workinfo) | 是    | 指示要停止的工作。  |
-| needCancel | boolean               | 是    | 是否需要取消的工作。 |
+| needCancel | boolean               | 否    | 是否需要取消的工作，默认为不取消。 |
 
 **错误码**：
 
@@ -432,7 +432,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 | isPersisted     | boolean                           | 否    | 是否持久化保存工作        |
 | isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态     |
 | idleWaitTime    | number                            | 否    | 空闲等待时间           |
-| parameters      | {[key: string]: number | string | boolean}              | 否    | 携带参数信息           |
+| parameters      | {[key: string]: number \| string \| boolean}              | 否    | 携带参数信息           |
 
 ## NetworkType
 触发工作的网络类型。
