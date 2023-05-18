@@ -1756,7 +1756,7 @@ static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;Tim
 
 | 类型       | 说明          |
 | -------- | ----------- |
-| Array<TimeZone> | 时区对象的数组 |
+| Array&lt;[TimeZone](#timezone)&gt; | 时区对象的数组 |
 
 **示例：** 
   ```js
