@@ -77,6 +77,25 @@ generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\
 | options  | [HuksOptions](#huksoptions) | 是   | 用于存放生成key所需TAG。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 | callback | AsyncCallback\<void>        | 是   | 回调函数。未捕获error时代表用户指定别名的密钥生成成功，基于密钥不出TEE原则，此接口不会返回密钥材料内容，若捕获error，则为生成阶段出现异常。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000012 | external error. |
+| 12000013 | queried credential does not exist. |
+| 12000014 | memory is insufficient. |
+| 12000015 | call service failed. |
+
 **示例：**
 
 ```js
@@ -131,6 +150,25 @@ generateKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | -------- | --------------------------- | ---- | ------------------------ |
 | keyAlias | string                      | 是   | 密钥别名。               |
 | options  | [HuksOptions](#huksoptions) | 是   | 用于存放生成key所需TAG。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000012 | external error. |
+| 12000013 | queried credential does not exist. |
+| 12000014 | memory is insufficient. |
+| 12000015 | call service failed. |
 
 **示例：**
 
@@ -188,6 +226,20 @@ deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 | options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。                      |
 | callback | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 **示例：**
 
 ```js
@@ -223,6 +275,20 @@ deleteKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名，应为生成key时传入的别名。 |
 | options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **示例：**
 
@@ -291,6 +357,26 @@ importKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<v
 | options  | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的密钥。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 | callback | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000013 | queried credential does not exist. |
+| 12000014 | memory is insufficient. |
+| 12000015 | call service failed. |
+
 **示例：**
 
 ```js
@@ -357,6 +443,26 @@ importKeyItem(keyAlias: string, options: HuksOptions) : Promise\<void>
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | keyAlias | string                      | 是   | 密钥别名。                          |
 | options  | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的密钥。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000013 | queried credential does not exist. |
+| 12000014 | memory is insufficient. |
+| 12000015 | call service failed. |
 
 **示例：**
 
@@ -427,6 +533,25 @@ attestKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 | keyAlias | string                                               | 是   | 密钥别名，存放待获取证书密钥的别名。          |
 | options  | [HuksOptions](#huksoptions)                          | 是   | 用于获取证书时指定所需参数与数据。            |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 201 | check permission failed. |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **示例：**
 
@@ -555,6 +680,25 @@ attestKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 | ---------------------------------------------- | --------------------------------------------- |
 | Promise<[HuksReturnResult](#huksreturnresult9)> | Promise对象。不返回err值时表示接口使用成功，其他时为错误。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 201 | check permission failed. |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 **示例：**
 
 ```js
@@ -677,6 +821,26 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 | wrappingKeyAlias | string                      | 是   | 密钥别名，对应密钥用于解密加密的密钥数据。    |
 | options          | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的加密的密钥数据。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 | callback         | AsyncCallback\<void>        | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000013 | queried credential does not exist. |
+| 12000014 | memory is insufficient. |
+| 12000015 | call service failed. |
 
 **示例：**
 
@@ -893,6 +1057,26 @@ importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOp
 | wrappingKeyAlias | string                      | 是   | 密钥别名，对应密钥用于解密加密的密钥数据。    |
 | options          | [HuksOptions](#huksoptions) | 是   | 用于导入时所需TAG和需要导入的加密的密钥数据。其中密钥使用的算法、密钥用途、密钥长度为必选参数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000013 | queried credential does not exist. |
+| 12000014 | memory is insufficient. |
+| 12000015 | call service failed. |
+
 **示例：**
 
 ```js
@@ -927,6 +1111,24 @@ exportKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<H
 | keyAlias | string                                               | 是   | 密钥别名，应与所用密钥生成时使用的别名相同。                 |
 | options  | [HuksOptions](#huksoptions)                          | 是   | 空对象（此处传空即可）。                                     |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。outData：返回从密钥中导出的公钥。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **示例：**
 
@@ -970,6 +1172,24 @@ exportKeyItem(keyAlias: string, options: HuksOptions) : Promise\<HuksReturnResul
 | ---------------------------------------------- | ------------------------------------------------------------ |
 | Promise<[HuksReturnResult](#huksreturnresult9)> | Promise对象。不返回err值时表示接口使用成功，其他时为错误。outData：返回从密钥中导出的公钥。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 **示例：**
 
 ```js
@@ -1006,6 +1226,24 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions, callback: AsyncCall
 | keyAlias | string                                               | 是   | 密钥别名，应与所用密钥生成时使用的别名相同。                 |
 | options  | [HuksOptions](#huksoptions)                          | 是   | 空对象（此处传空即可）。                                     |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。不返回err值时表示接口使用成功，其他时为错误。properties：返回值为生成密钥时所需参数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **示例：**
 
@@ -1049,6 +1287,24 @@ getKeyItemProperties(keyAlias: string, options: HuksOptions) : Promise\<HuksRetu
 | ----------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<[HuksReturnResult](#huksreturnresult9)> | Promise对象。不返回err值时表示接口使用成功，其他时为错误。properties：返回值为生成密钥时所需参数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 **示例：**
 
 ```js
@@ -1085,6 +1341,22 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 | keyAlias | string                      | 是   | 所需查找的密钥的别名。                  |
 | options  | [HuksOptions](#huksoptions) | 是   | 空对象（此处传空即可）。                |
 | callback | AsyncCallback\<boolean>     | 是   | 回调函数。若密钥存在，data为true，若密钥不存在，则error中会输出密钥不存在的error code。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **示例：**
 
@@ -1132,6 +1404,22 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 | ----------------- | --------------------------------------- |
 | Promise\<boolean> | Promise对象。密钥存在时，可通过then进行密钥存在后的相关处理，若不存在，可通过error处理密钥不存在后的相关业务操作。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 **示例：**
 
 ```js
@@ -1171,6 +1459,25 @@ initSession操作密钥接口，使用Callback回调异步返回结果。huks.in
 | options  | [HuksOptions](#huksoptions)                             | 是   | initSession操作的参数集合。                                 |
 | callback | AsyncCallback\<[HuksSessionHandle](#hukssessionhandle9)> | 是   | 回调函数。将initSession操作返回的handle添加到密钥管理系统的回调。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000010 | the number of sessions has reached limit. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 ## huks.initSession<sup>9+</sup>
 
 initSession(keyAlias: string, options: HuksOptions) : Promise\<HuksSessionHandle>
@@ -1192,6 +1499,25 @@ initSession操作密钥接口，使用Promise方式异步返回结果。huks.ini
 | ----------------------------------- | -------------------------------------------------- |
 | Promise\<[HuksSessionHandle](#hukssessionhandle9)> | Promise对象。将initSession操作返回的handle添加到密钥管理系统的回调。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000010 | the number of sessions has reached limit. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 ## huks.updateSession<sup>9+</sup>
 
 updateSession(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void
@@ -1208,6 +1534,26 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | options  | [HuksOptions](#huksoptions)                          | 是   | updateSession的参数集合。                           |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。将updateSession操作的结果添加到密钥管理系统的回调。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000007 | this credential is already invalidated permanently. |
+| 12000008 | verify authtoken failed. |
+| 12000009 | authtoken is already timeout. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 ## huks.updateSession<sup>9+</sup>
 
@@ -1225,6 +1571,27 @@ updateSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | options  | [HuksOptions](#huksoptions)                          | 是   | updateSession操作的参数集合。                       |
 | token    | Uint8Array                                           | 是   | updateSession操作的token。                          |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。将updateSession操作的结果添加到密钥管理系统的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000007 | this credential is already invalidated permanently. |
+| 12000008 | verify authtoken failed. |
+| 12000009 | authtoken is already timeout. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 ## huks.updateSession<sup>9+</sup>
 
@@ -1248,6 +1615,27 @@ updateSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 | ----------------------------------- | -------------------------------------------------- |
 | Promise<[HuksReturnResult](#huksreturnresult9)> | Promise对象。将updateSession操作的结果添加到密钥管理系统的回调。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000007 | this credential is already invalidated permanently. |
+| 12000008 | verify authtoken failed. |
+| 12000009 | authtoken is already timeout. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 ## huks.finishSession<sup>9+</sup>
 
 finishSession(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void
@@ -1265,6 +1653,27 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | token    | Uint8Array                                           | 是   | finishSession操作的token。                          |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。将finishSession操作的结果添加到密钥管理系统的回调。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000007 | this credential is already invalidated permanently. |
+| 12000008 | verify authtoken failed. |
+| 12000009 | authtoken is already timeout. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 ## huks.finishSession<sup>9+</sup>
 
 finishSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void
@@ -1281,6 +1690,27 @@ finishSession操作密钥接口，使用Callback回调异步返回结果。huks.
 | options  | [HuksOptions](#huksoptions)                           | 是   | finishSession的参数集合。                           |
 | token    | Uint8Array                                            | 是   | finishSession操作的token。                          |
 | callback | AsyncCallback\<[HuksReturnResult](#huksreturnresult9)> | 是   | 回调函数。将finishSession操作的结果添加到密钥管理系统的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000007 | this credential is already invalidated permanently. |
+| 12000008 | verify authtoken failed. |
+| 12000009 | authtoken is already timeout. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 ## huks.finishSession<sup>9+</sup>
 
@@ -1304,6 +1734,27 @@ finishSession操作密钥接口，使用Promise方式异步返回结果。huks.i
 | ----------------------------------- | -------------------------------------------------- |
 | Promise\<[HuksReturnResult](#huksreturnresult9)> | Promise对象，用于获取异步返回结果。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000007 | this credential is already invalidated permanently. |
+| 12000008 | verify authtoken failed. |
+| 12000009 | authtoken is already timeout. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 ## huks.abortSession<sup>9+</sup>
 
 abortSession(handle: number, options: HuksOptions, callback: AsyncCallback\<void>) : void
@@ -1319,6 +1770,20 @@ abortSession操作密钥接口，使用Callback回调异步返回结果 。
 | handle   | number                      | 是   | abortSession操作的handle。                         |
 | options  | [HuksOptions](#huksoptions) | 是   | abortSession操作的参数集合。                       |
 | callback | AsyncCallback\<void>        | 是   | 回调函数。将abortSession操作的结果添加到密钥管理系统的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **示例：**
 
@@ -1469,6 +1934,20 @@ abortSession操作密钥接口，使用Promise方式异步返回结果。
 | 类型                                | 说明                                               |
 | ----------------------------------- | -------------------------------------------------- |
 | Promise\<void>             | Promise对象。将abortSession操作的结果添加到密钥管理系统的回调。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[HUKS错误码](../errorcodes/errorcode-huks.md)。
+
+| 错误码ID | 错误信息      |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **示例：**
 
