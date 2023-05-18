@@ -30,7 +30,7 @@ Obtains the list of USB devices connected to the host. If no device is connected
 
 ```js
 let devicesList = usb.getDevices();
-cconsole.log(`devicesList = ${devicesList}`);
+console.log(`devicesList = ${devicesList}`);
 // devicesList is a list of USB devices.
 // A simple example of devicesList is provided as follows:
 [
@@ -210,7 +210,7 @@ Removes the permission for the application to access a USB device.
 
 ```js
 let devicesName="1-1";
-if usb.removeRight(devicesName) {
+if (usb.removeRight(devicesName)) {
   console.log(`Succeed in removing right`);
 }
 ```
@@ -245,7 +245,7 @@ Adds the permission for the application to access a USB device.
 ```js
 let devicesName = "1-1";
 let bundleName = "com.example.hello";
-if usb.addRight(bundleName, devicesName) {
+if (usb.addRight(bundleName, devicesName)) {
   console.log(`Succeed in adding right`);
 }
 ```
@@ -454,7 +454,14 @@ Before you do this, call [usb.getDevices](#usbgetdevices) to obtain the USB devi
 **Example**
 
 ```js
-let param = new usb.USBControlParams();
+let param = {
+  request: 0,
+  reqType: 0,
+  target:0,
+  value: 0,
+  index: 0,
+  data: null
+};
 usb.controlTransfer(devicepipe, param).then((ret) => {
  console.log(`controlTransfer = ${ret}`);
 })
@@ -579,7 +586,7 @@ Converts the USB function list in the numeric mask format to a string in Device 
 **Example**
 
 ```js
-let funcs = usb.ACM | usb.ECM;
+let funcs = usb.FunctionType.ACM | usb.FunctionType.ECM;
 let ret = usb.usbFunctionsToString(funcs);
 ```
 
@@ -608,7 +615,7 @@ Sets the current USB function list in Device mode.
 **Example**
 
 ```js
-let funcs = usb.HDC;
+let funcs = usb.FunctionType.HDC;
 usb.setCurrentFunctions(funcs).then(() => {
     console.info('usb setCurrentFunctions successfully.');
 }).catch(err => {
