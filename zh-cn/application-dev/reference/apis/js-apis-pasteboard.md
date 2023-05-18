@@ -25,7 +25,7 @@ import pasteboard from '@ohos.pasteboard';
 | MIMETYPE_TEXT_URI<sup>7+</sup>   | string   | 是   | 否   | URI内容的MIME类型定义。               |
 
 
-## pasteboard.createPlainTextData
+## pasteboard.createPlainTextData<sup>7+</sup>
 
 createPlainTextData(text:string): PasteData
 
