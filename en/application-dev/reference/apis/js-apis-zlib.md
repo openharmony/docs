@@ -1,23 +1,22 @@
-# @ohos.zlib (Zip)
-
-The **Zip** module provides APIs for file compression and decompression.
+# Zip
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+## Constraints
+
+None.
 ## Modules to Import
 
 ```javascript
 import zlib from '@ohos.zlib';
 ```
 
-## zlib.zipFile<sup>(deprecated)</sup>
-zipFile(inFile: string, outFile: string, options: Options): Promise&lt;void&gt;
+## zlib.zipFile
+zipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 Zips a file. This API uses a promise to return the result.
-
-> This API is deprecated since API version 9. You are advised to use [zlib.compressFile](#zlibcompressfile9) instead.
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
@@ -25,65 +24,63 @@ Zips a file. This API uses a promise to return the result.
 
 | Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | Yes  | Path of the folder or file to zip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
+| inFile  | string              | Yes  | Path of the folder or file to zip. For details about the path, see [FA Model](js-apis-Context.md) and [Stage Model](js-apis-application-context.md).|
 | outFile | string              | Yes  | Path of the zipped file. The file name extension is .zip.                 |
-| options | [Options](#options) | Yes  | Optional parameters for the zip operation.                                            |
+| options | [Options](#options) | No  | Optional parameters for the zip operation.                                              |
 
 **Return value**
 
-| Type          | Description                                                        |
-| -------------- | ------------------------------------------------------------ |
-| Promise\<void> | Returns [ERROR_CODE_OK](#ziperrorcode) if the operation is successful.<br>Returns [ERROR_CODE_ERRNO](#ziperrorcode) if the operation fails.|
+| Type          | Description                                                |
+| -------------- | ---------------------------------------------------- |
+| Promise\<void> | Returns **ERROR_CODE_OK** if the operation is successful; returns **ERROR_CODE_ERRNO** otherwise.|
 
 **Example 1**
 
-```typescript
+```javascript
+
 // Zip a file.
-// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
-import zlib from '@ohos.zlib';
-let inFile = '/xxx/filename.xxx';
-let outFile = '/xxx/xxx.zip';
-let options = {
+import zlib from '@ohos.zlib'
+var inFile = "/xxx/filename.xxx";
+var outFile = "/xxx/xxx.zip";
+var options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
 
 zlib.zipFile(inFile, outFile, options).then((data) => {
-    console.log('zipFile result is ' + JSON.stringify(data));
-}).catch((err) => {
-    console.log('error is ' + JSON.stringify(err));
+    console.log("zipFile result: " + data);
+}).catch((err)=>{
+    console.log("catch((err)=>" + JSON.stringify(err));
 });
+
 ```
 
 **Example 2**
 
-```typescript
+```
 // Zip a folder.
-// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
-import zlib from '@ohos.zlib';
-let inFile = '/xxx/xxx';
-let outFile = '/xxx/xxx.zip';
-let options = {
+import zlib from '@ohos.zlib'
+var inFile = "/xxx/xxx";
+var outFile = "/xxx/xxx.zip";
+var options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
   memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
 
 zlib.zipFile(inFile , outFile, options).then((data) => {
-    console.log('zipFile result is ' + JSON.stringify(data));
+    console.log("zipFile result: " + JSON.stringify(data));
 }).catch((err)=>{
-    console.log('error is ' + JSON.stringify(err));
+    console.log("catch((err)=>" + JSON.stringify(err));
 });
 ```
 
-## zlib.unzipFile<sup>(deprecated)</sup>
+## zlib.unzipFile
 
 unzipFile(inFile:string, outFile:string, options: Options): Promise&lt;void&gt;
 
 Unzips a file. This API uses a promise to return the result.
-
-> This API is deprecated since API version 9. You are advised to use [zlib.decompressFile](#zlibdecompressfile9) instead.
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
@@ -91,24 +88,23 @@ Unzips a file. This API uses a promise to return the result.
 
 | Name | Type               | Mandatory| Description                                                        |
 | ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | Yes  | Path of the file to unzip. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
-| outFile | string              | Yes  | Path of the unzipped file.                                        |
-| options | [Options](#options) | Yes  | Optional parameters for the unzip operation.                                            |
+| inFile  | string              | Yes  | Path of the folder or file to unzip. For details about the path, see [FA Model](js-apis-Context.md) and [Stage Model](js-apis-application-context.md).|
+| outFile | string              | Yes  | Path of the unzipped file.                                          |
+| options | [Options](#options) | No  | Optional parameters for the unzip operation.                                              |
 
 **Return value**
 
 | Type          | Description                                                        |
 | -------------- | ------------------------------------------------------------ |
-| Promise\<void> | Returns [ERROR_CODE_OK](#ziperrorcode) if the operation is successful.<br>Returns [ERROR_CODE_ERRNO](#ziperrorcode) if the operation fails.|
+| Promise\<void> | Returns **ERROR_CODE_OK** if the operation is successful; returns **ERROR_CODE_ERRNO** otherwise.|
 
 **Example**
 
-```typescript
+```javascript
 // Unzip a file.
-// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
-import zlib from '@ohos.zlib';
-let inFile = '/xx/xxx.zip';
-let outFile = '/xxx';
+import zlib from '@ohos.zlib'
+var inFile = "/xx/xxx.zip";
+var outFile = "/xxx";
 
 let options = {
   level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
@@ -116,220 +112,32 @@ let options = {
   strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
 };
 zlib.unzipFile(inFile, outFile, options).then((data) => {
-    console.log('unzipFile result is ' + JSON.stringify(data));
+    console.log("unzipFile result: " + JSON.stringify(data));
 }).catch((err)=>{
-    console.log('error is ' + JSON.stringify(err));
+    console.log("catch((err)=>" + JSON.stringify(err));
 })
-```
-
-## zlib.compressFile<sup>9+</sup>
-
-compressFile(inFile: string, outFile: string, options: Options, callback: AsyncCallback\<void>): void;
-
-Compresses a file. This API uses an asynchronous callback to return the result.  
-
-**System capability**: SystemCapability.BundleManager.Zlib
-
-**Parameters**
-
-| Name                 | Type               | Mandatory| Description                                                        |
-| ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile                  | string              | Yes  | Path of the folder or file to compress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
-| outFile                 | string              | Yes  | Path of the compressed file.                                          |
-| options                 | [Options](#options) | Yes  | Compression parameters.                                              |
-| AsyncCallback<**void**> | callback            | No  | Callback used to return the result. If the operation is successful, **null** is returned; otherwise, a specific error code is returned.                                            |
-
-**Error codes**
-
-For details about the error codes, see [zlib Error Codes](../errorcodes/errorcode-zlib.md).
-| ID| Error Message                              |
-| -------- | --------------------------------------|
-| 900001   | The input source file is invalid.      |
-| 900002   | The input destination file is invalid. |
-
-**Example**
-
-```typescript
-// Compress a file.
-// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
-import zlib from '@ohos.zlib';
-let inFile = '/xxx/filename.xxx';
-let outFile = '/xxx/xxx.zip';
-let options = {
-  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
-  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
-  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
-};
-
-try {
-    zlib.compressFile(inFile, outFile, options, (errData) => {
-        if (errData !== null) {
-            console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
-        }
-    })
-} catch(errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
-}
-```
-
-## zlib.compressFile<sup>9+</sup>
-
-compressFile(inFile: string, outFile: string, options: Options): Promise\<void>;
-
-Compresses a file. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.BundleManager.Zlib
-
-**Parameters**
-
-| Name | Type               | Mandatory| Description                                                        |
-| ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | Yes  | Path of the folder or file to compress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
-| outFile | string              | Yes  | Path of the compressed file.                                          |
-| options | [Options](#options) | Yes  | Compression parameters.                                              |
-
-**Error codes**
-
-For details about the error codes, see [zlib Error Codes](../errorcodes/errorcode-zlib.md).
-
-| ID| Error Message                              |
-| -------- | ------------------------------------- |
-| 900001   | The input source file is invalid.      |
-| 900002   | The input destination file is invalid. |
-
-```typescript
-// Compress a file.
-// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
-import zlib from '@ohos.zlib';
-let inFile = '/xxx/filename.xxx';
-let outFile = '/xxx/xxx.zip';
-let options = {
-  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
-  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
-  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
-};
-
-try {
-    zlib.compressFile(inFile, outFile, options).then((data) => {
-        console.info('compressFile success');
-    }).catch((errData) => {
-        console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-} catch(errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
-}
-```
-
-
-
-## zlib.decompressFile<sup>9+</sup>
-
-decompressFile(inFile: string, outFile: string, options: Options, callback: AsyncCallback\<void>): void;
-
-Decompresses a file. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.BundleManager.Zlib
-
-**Parameters**
-
-| Name                 | Type               | Mandatory| Description                                                        |
-| ----------------------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile                  | string              | Yes  | Path of the file to decompress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
-| outFile                 | string              | Yes  | Path of the decompressed file. The path must exist in the system. Otherwise, the decompression fails. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
-| options                 | [Options](#options) | Yes  | Decompression parameters.                                            |
-| AsyncCallback<**void**> | callback            | No  | Callback used to return the result. If the operation is successful, **null** is returned; otherwise, a specific error code is returned.                                            |
-
-**Error codes**
-
-For details about the error codes, see [zlib Error Codes](../errorcodes/errorcode-zlib.md).
-
-| ID| Error Message
-| -------- | --------------------------------------|
-| 900001   | The input source file is invalid.      |
-| 900002   | The input destination file is invalid. |
-
-**Example**
-
-```typescript
-// Decompress a file.
-// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
-import zlib from '@ohos.zlib';
-let inFile = '/xx/xxx.zip';
-let outFileDir = '/xxx';
-let options = {
-  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
-  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
-  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
-};
-
-try {
-    zlib.decompressFile(inFile, outFileDir, options, (errData) => {
-        if (errData !== null) {
-            console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
-        }
-    })
-} catch(errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
-}
-```
-
-## zlib.decompressFile<sup>9+</sup>
-
-decompressFile(inFile: string, outFile: string, options: Options): Promise\<void>;
-
-Decompresses a file. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.BundleManager.Zlib
-
-**Parameters**
-
-| Name | Type               | Mandatory| Description                                                        |
-| ------- | ------------------- | ---- | ------------------------------------------------------------ |
-| inFile  | string              | Yes  | Path of the file to decompress. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
-| outFile | string              | Yes  | Path of the decompressed file. The path must exist in the system. Otherwise, the decompression fails. The path must be an application sandbox path, which can be obtained from the context. For details about the context, see [FA Model](js-apis-inner-app-context.md) and [Stage Model](js-apis-inner-application-context.md).|
-| options | [Options](#options) | Yes  | Decompression parameters.                                          |
-
-**Error codes**
-
-For details about the error codes, see [zlib Error Codes](../errorcodes/errorcode-zlib.md).
-
-| ID| Error Message                              |
-| ------ | ------------------------------------- |
-| 900001 | The input source file is invalid.      |
-| 900002 | The input destination file is invalid. |
-
-```typescript
-// Decompress a file.
-// The path used in the code must be an application sandbox path, for example, /data/storage/el2/base/haps. You can obtain the path through the context.
-import zlib from '@ohos.zlib';
-let inFile = '/xx/xxx.zip';
-let outFileDir = '/xxx';
-let options = {
-  level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
-  memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
-  strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
-};
-
-try {
-    zlib.decompressFile(inFile, outFileDir, options).then((data) => {
-        console.info('decompressFile success');
-    }).catch((errData) => {
-        console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
-    })
-} catch(errData) {
-    console.log(`errData is errCode:${errData.code}  message:${errData.message}`);
-}
+	
 ```
 
 ## Options
 
 **System capability**: SystemCapability.BundleManager.Zlib
 
-| Name    | Type            | Readable| Writable| Description                                                      |
-| -------- | ---------------- | ---- | ---- | ---------------------------------------------------------- |
-| level    | CompressLevel     | Yes  | No  | See [zip.CompressLevel](#zipcompresslevel).      |
-| memLevel | MemLevel         | Yes  | No  | See [zip.MemLevel](#zipmemlevel).                |
-| strategy | CompressStrategy | Yes  | No  | See [zip.CompressStrategy](#zipcompressstrategy).|
+| Name  | Type            | Mandatory| Description                                                     |
+| -------- | ---------------- | ---- | --------------------------------------------------------- |
+| level    | CompressLeve     | No  | See [zip.CompressLevel](#zipcompresslevel).      |
+| memLevel | MemLevel         | No  | See [zip.MemLevel](#zipmemlevel).                |
+| strategy | CompressStrategy | No  | See [zip.CompressStrategy](#zipcompressstrategy).|
+
+## zip.MemLevel
+
+**System capability**: SystemCapability.BundleManager.Zlib
+
+| Name             | Value  | Description                            |
+| ----------------- | ---- | -------------------------------- |
+| MEM_LEVEL_MIN     | 1    | Minimum memory used by the **zip** API during compression.|
+| MEM_LEVEL_MAX     | 9    | Maximum memory used by the **zip** API during compression.|
+| MEM_LEVEL_DEFAULT | 8    | Default memory used by the **zip** API during compression.|
 
 ## zip.CompressLevel
 
@@ -341,16 +149,6 @@ try {
 | COMPRESS_LEVEL_BEST_SPEED          | 1    | Compression level 1 that gives the best speed. |
 | COMPRESS_LEVEL_BEST_COMPRESSION    | 9    | Compression level 9 that gives the best compression.     |
 | COMPRESS_LEVEL_DEFAULT_COMPRESSION | -1   | Default compression level.     |
-
-## zip.MemLevel
-
-**System capability**: SystemCapability.BundleManager.Zlib
-
-| Name             | Value  | Description                            |
-| ----------------- | ---- | -------------------------------- |
-| MEM_LEVEL_MIN     | 1    | Minimum memory used by the **zip** API during compression.|
-| MEM_LEVEL_MAX     | 9    | Maximum memory used by the **zip** API during compression.|
-| MEM_LEVEL_DEFAULT | 8    | Default memory used by the **zip** API during compression.|
 
 ## zip.CompressStrategy
 
