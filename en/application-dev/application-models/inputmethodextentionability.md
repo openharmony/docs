@@ -54,7 +54,7 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
 
 1. **InputMethodService.ts** file:
 
-   In this file, add the dependency package for importing InputMethodExtensionAbility. Customize a class that inherits from InputMethodExtensionAbility and add the required lifecycle callbacks.
+   In the **InputMethodService.ts** file, add the dependency package for importing InputMethodExtensionAbility. Customize a class that inherits from InputMethodExtensionAbility and add the required lifecycle callbacks.
 
    ```ts
    import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
@@ -233,7 +233,7 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
 
    Add the path to this file to the **src** field in the **resources/base/profile/main_pages.json** file.
 
-   ```ets
+   ```ts
    import { numberSourceListData, sourceListType } from './keyboardKeyData'
    
    @Component
@@ -342,7 +342,7 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
    }
    ```
 
-   Register the InputMethodExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) corresponding to the target module. Set **type** to **"inputMethod"** and **srcEntrance** to the code path of the InputMethodExtensionAbility component.
+   Register the InputMethodExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) corresponding to the target module. Set **type** to **"inputMethod"** and **srcEntry** to the code path of the InputMethodExtensionAbility component.
 
    ```ts
    {
@@ -353,9 +353,9 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
            "description": "inputMethod",
            "icon": "$media:icon",
            "name": "InputMethodExtAbility",
-           "srcEntrance": "./ets/inputmethodextability/InputMethodService.ts",
+           "srcEntry": "./ets/inputmethodextability/InputMethodService.ts",
            "type": "inputMethod",
-           "visible": true,
+           "exported": true,
          }
        ]
      }

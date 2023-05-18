@@ -2,6 +2,10 @@
 
 定义Ability状态信息，可以通过[registerApplicationStateObserver](js-apis-application-appManager.md#appmanagerregisterapplicationstateobserver8)注册生命周期变化监听后，通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)的onAbilityStateChanged生命周期回调获取。
 
+> **说明：**
+> 
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
+
 ## 导入模块
 
 ```ts
@@ -12,13 +16,13 @@ import appManager from '@ohos.application.appManager';
 
 | 名称                     | 类型     | 可读 | 可写 | 说明                       |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |
-| pid<sup>8+</sup>                     | number   | 是   | 否   | 进程ID。                    |
-| bundleName<sup>8+</sup>              | string   | 是   | 否  | 应用Bundle名称。          |
-| abilityName<sup>8+</sup>             | string   | 是   | 否   | Ability名称。               |
-| uid<sup>8+</sup>                     | number   | 是   | 否   | 用户ID。                  |
-| state<sup>8+</sup>                   | number   | 是   | 否   | [Ability状态](#ability状态)。                |
+| pid                     | number   | 是   | 否   | 进程ID。                    |
+| bundleName              | string   | 是   | 否  | 应用Bundle名称。          |
+| abilityName            | string   | 是   | 否   | Ability名称。               |
+| uid                    | number   | 是   | 否   | 用户ID。                  |
+| state                   | number   | 是   | 否   | [Ability状态](#ability状态)。                |
 | moduleName<sup>9+</sup> | string   | 是   | 否   | Ability所属的HAP的名称。    |
-| abilityType<sup>8+</sup> | number | 是   | 否   | [Ability类型](#ability类型)：页面或服务等。 |
+| abilityType | number | 是   | 否   | [Ability类型](#ability类型)：页面或服务等。 |
 
 #### Ability状态
 

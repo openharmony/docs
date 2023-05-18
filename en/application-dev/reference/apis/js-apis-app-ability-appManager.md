@@ -40,7 +40,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.isRunningInStabilityTest((err, flag) => {
-    if (err && err.code !== 0) {
+    if (err) {
         console.error('isRunningInStabilityTest fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('The result of isRunningInStabilityTest is: ${JSON.stringify(flag)}');
@@ -146,7 +146,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.isRamConstrainedDevice((err, data) => {
-    if (err && err.code !== 0) {
+    if (err) {
         console.error('isRamConstrainedDevice fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('The result of isRamConstrainedDevice is: ${JSON.stringify(data)}');
@@ -216,7 +216,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.getAppMemorySize((err, data) => {
-    if (err && err.code !== 0) {
+    if (err) {
         console.error('getAppMemorySize fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('The size of app memory is: ${JSON.stringify(data)}');
@@ -290,7 +290,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 import appManager from '@ohos.app.ability.appManager';
 
 appManager.getRunningProcessInformation((err, data) => {
-    if (err && err.code !== 0) {
+    if (err) {
         console.error('getRunningProcessInformation fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('The process running information is: ${JSON.stringify(data)}');
@@ -489,7 +489,7 @@ try {
 
 // 2. Deregister the application state observer.
 function unregisterApplicationStateObserverCallback(err) {
-    if (err && err.code !== 0) {
+    if (err) {
         console.error('unregisterApplicationStateObserverCallback fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('unregisterApplicationStateObserverCallback success.');
@@ -612,7 +612,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 import appManager from '@ohos.app.ability.appManager';
 
 function getForegroundApplicationsCallback(err, data) {
-    if (err && err.code !== 0) {
+    if (err) {
         console.error('getForegroundApplicationsCallback fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('getForegroundApplicationsCallback success, data: ${JSON.stringify(data)}');
@@ -745,7 +745,7 @@ import appManager from '@ohos.app.ability.appManager';
 let bundleName = 'bundleName';
 let accountId = 0;
 function killProcessWithAccountCallback(err, data) {
-    if (err && err.code !== 0) {
+    if (err) {
         console.error('killProcessWithAccountCallback fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('killProcessWithAccountCallback success.');
@@ -788,7 +788,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 let bundleName = 'bundleName';
 function killProcessesByBundleNameCallback(err, data) {
-    if (err && err.code !== 0) {
+    if (err) {
         console.error('killProcessesByBundleNameCallback fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('killProcessesByBundleNameCallback success.');
@@ -884,7 +884,7 @@ import appManager from '@ohos.app.ability.appManager';
 
 let bundleName = 'bundleName';
 function clearUpApplicationDataCallback(err, data) {
-    if (err && err.code !== 0) {
+    if (err) {
         console.error('clearUpApplicationDataCallback fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('clearUpApplicationDataCallback success.');

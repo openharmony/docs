@@ -152,14 +152,14 @@
        let appInfo: bundleManager.ApplicationInfo = bundleInfo.appInfo;
        tokenId = appInfo.accessTokenId;
      } catch (err) {
-       console.error(`getBundleInfoForSelf failed, code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to get bundle info for self. Code is ${err.code}, message is ${err.message}`);
      }
    
      // 校验应用是否被授予权限
      try {
        grantStatus = await atManager.checkAccessToken(tokenId, permission);
      } catch (err) {
-       console.error(`checkAccessToken failed, code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to check access token. Code is ${err.code}, message is ${err.message}`);
      }
    
      return grantStatus;
@@ -214,8 +214,7 @@
          }
          // 授权成功
        }).catch((err) => {
-         console.error(`requestPermissionsFromUser failed, code is ${err.code}, message is ${err.message}`);
-       })
+         console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
    
        // ...
      }
@@ -249,7 +248,7 @@
          }
          // 授权成功
        }).catch((err) => {
-         console.error(`requestPermissionsFromUser failed, code is ${err.code}, message is ${err.message}`);
+         console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
        })
      }
    

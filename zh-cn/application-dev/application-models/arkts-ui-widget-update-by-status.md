@@ -166,6 +166,7 @@
   ```
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
+>
 > 通过本地数据库进行卡片信息的持久化时，建议先在[**onAddForm**](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform)生命周期中通过[**TEMPORARY_KEY**](../reference/apis/js-apis-app-form-formInfo.md#formparam)判断当前添加的卡片是否为常态卡片：如果是常态卡片，则直接进行卡片信息持久化；如果为临时卡片，则可以在卡片转为常态卡片(**[onCastToNormalForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#oncasttonormalform)**)时进行持久化；同时需要在卡片销毁(**[onRemoveForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onremoveform)**)时删除当前卡片存储的持久化信息，避免反复添加删除卡片导致数据库文件持续变大。
 

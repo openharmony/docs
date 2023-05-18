@@ -23,7 +23,7 @@ import distributedKVStore from '@ohos.data.distributedKVStore';
 
 ## KVManagerConfig
 
-Defines the **KVManager** instance configuration, including the bundle name of the invoker and the application context.
+Provides the **KVManager** instance configuration, including the bundle name of the invoker and the application context.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
@@ -127,7 +127,7 @@ Enumerates the distributed KV store types.
 
 | Name                | Description                                                        |
 | -------------------- | ------------------------------------------------------------ |
-| DEVICE_COLLABORATION | Device KV store.<br>The device KV store manages data by device, which eliminates conflicts. Data can be queried by device.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore |
+| DEVICE_COLLABORATION | Device KV store.<br>The device KV store manages data by device, which eliminates conflicts. Data can be queried by device.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
 | SINGLE_VERSION       | Single KV store.<br>The single KV store does not differentiate data by device. If entries with the same key are modified on different devices, the value will be overwritten.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
 
 ## SecurityLevel
@@ -136,7 +136,7 @@ Enumerates the KV store security levels.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
-| Name | Description                                                  |
+| Name       | Description                                                        |
 | ---: | ------------------------------------------------------------ |
 |   S1 | Low security level. Disclosure, tampering, corruption, or loss of the data may cause minor impact on an individual or group.<br>Examples: gender and nationality information, and user application records |
 |   S2 | Medium security level. Disclosure, tampering, corruption, or loss of the data may cause major impact on an individual or group.<br>Examples: mailing addresses and nicknames of individuals |
@@ -2028,7 +2028,7 @@ try {
 deviceId(deviceId:string):Query
 
 Creates a **Query** object with the device ID as the key prefix.
-> **NOTE**<br/>
+> **NOTE**
 >
 > **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -2817,7 +2817,7 @@ try {
 removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 
 Deletes data of a device. This API uses an asynchronous callback to return the result.
-> **NOTE**<br/>
+> **NOTE**
 >
 > **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -2869,7 +2869,7 @@ try {
 removeDeviceData(deviceId: string): Promise&lt;void&gt;
 
 Deletes data of a device. This API uses a promise to return the result.
-> **NOTE**<br/>
+> **NOTE**
 >
 > **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -4548,7 +4548,7 @@ try {
 sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 Synchronizes the KV store manually. For details about the synchronization modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
-> **NOTE**<br/>
+> **NOTE**
 >
 > The value of **deviceIds** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
@@ -4617,7 +4617,7 @@ deviceManager.createDeviceManager('bundleName', (err, value) => {
 sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 
 Synchronizes the KV store manually. This API returns the result synchronously. For details about the synchronization modes of KV stores, see [Cross-Device Synchronization of KV Stores](../../database/data-sync-of-kv-store.md).
-> **NOTE**<br/>
+> **NOTE**
 >
 > The value of **deviceIds** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
@@ -4735,7 +4735,7 @@ Subscribes to synchronization complete events.
 | Name      | Type                                     | Mandatory| Description                                                  |
 | ------------ | --------------------------------------------- | ---- | ------------------------------------------------------ |
 | event        | string                                        | Yes  | Event to subscribe to. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return the synchronization complete event. |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to return the synchronization complete event.|
 
 **Example**
 
@@ -4769,7 +4769,7 @@ Unsubscribes from data changes.
 | Name  | Type                                                 | Mandatory| Description                                                    |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
 | event    | string                                                    | Yes  | Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.|
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback for data changes.                           |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback for the data change event.                                              |
 
 **Error codes**
 
@@ -5044,7 +5044,7 @@ try {
 get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Array&gt;): void
 
 Obtains a string value that matches the specified device ID and key. This API uses an asynchronous callback to return the result.
-> **NOTE**<br/>
+> **NOTE**
 >
 > **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -5099,7 +5099,7 @@ try {
 get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 
 Obtains a string value that matches the specified device ID and key. This API uses a promise to return the result.
-> **NOTE**<br/>
+> **NOTE**
 >
 > **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -5279,7 +5279,7 @@ try {
 getEntries(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 Obtains all KV pairs that match the specified device ID and key prefix. This API uses an asynchronous callback to return the result.
-> **NOTE**<br/>
+> **NOTE**
 >
 > **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -5346,7 +5346,7 @@ try {
 getEntries(deviceId: string, keyPrefix: string): Promise&lt;Entry[]&gt;
 
 Obtains all KV pairs that match the specified device ID and key prefix. This API uses a promise to return the result.
-> **NOTE**<br/>
+> **NOTE**
 >
 > **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -5542,7 +5542,7 @@ try {
 getEntries(deviceId: string, query: Query, callback: AsyncCallback&lt;Entry[]&gt;): void
 
 Obtains the KV pairs that match the specified device ID and **Query** object. This API uses an asynchronous callback to return the result.
-> **NOTE**<br/>
+> **NOTE**
 >
 > **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -5614,7 +5614,7 @@ try {
 getEntries(deviceId: string, query: Query): Promise&lt;Entry[]&gt;
 
 Obtains the KV pairs that match the specified device ID and **Query** object. This API uses a promise to return the result.
-> **NOTE**<br/>
+> **NOTE**
 >
 > **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -5822,7 +5822,7 @@ try {
 getResultSet(deviceId: string, keyPrefix: string, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 Obtains a **KVStoreResultSet** object that matches the specified device ID and key prefix. This API uses an asynchronous callback to return the result.
-> **NOTE**<br/>
+> **NOTE**
 >
 > **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -5877,7 +5877,7 @@ try {
 getResultSet(deviceId: string, keyPrefix: string): Promise&lt;KVStoreResultSet&gt;
 
 Obtains a **KVStoreResultSet** object that matches the specified device ID and key prefix. This API uses a promise to return the result.
-> **NOTE**<br/>
+> **NOTE**
 >
 > **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -5933,7 +5933,7 @@ try {
 getResultSet(deviceId: string, query: Query, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 Obtains a **KVStoreResultSet** object that matches the specified device ID and **Query** object. This API uses an asynchronous callback to return the result.
-> **NOTE**<br/>
+> **NOTE**
 >
 > **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -6009,7 +6009,7 @@ try {
 getResultSet(deviceId: string, query: Query): Promise&lt;KVStoreResultSet&gt;
 
 Obtains a **KVStoreResultSet** object that matches the specified device ID and **Query** object. This API uses a promise to return the result.
-> **NOTE**<br/>
+> **NOTE**
 >
 > **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -6152,7 +6152,7 @@ try {
 getResultSet(query: Query, callback:AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 Obtains a **KVStoreResultSet** object that matches the specified **Query** object for this device. This API uses an asynchronous callback to return the result.
-> **NOTE**<br/>
+> **NOTE**
 >
 > **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -6341,7 +6341,7 @@ try {
 getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicates, callback: AsyncCallback&lt;KVStoreResultSet&gt;): void
 
 Obtains a **KVStoreResultSet** object that matches the specified predicate object and device ID. This API uses an asynchronous callback to return the result.
-> **NOTE**<br/>
+> **NOTE**
 >
 > **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -6402,7 +6402,7 @@ try {
 getResultSet(deviceId: string, predicates: dataSharePredicates.DataSharePredicates): Promise&lt;KVStoreResultSet&gt;
 
 Obtains a **KVStoreResultSet** object that matches the specified predicate object and device ID. This API uses a promise to return the result.
-> **NOTE**<br/>
+> **NOTE**
 >
 > **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -6583,7 +6583,7 @@ try {
 getResultSize(deviceId: string, query: Query, callback: AsyncCallback&lt;number&gt;): void;
 
 Obtains the number of results that matches the specified device ID and **Query** object. This API uses an asynchronous callback to return the result.
-> **NOTE**<br/>
+> **NOTE**
 >
 > **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -6650,7 +6650,7 @@ try {
 getResultSize(deviceId: string, query: Query): Promise&lt;number&gt;
 
 Obtains the number of results that matches the specified device ID and **Query** object. This API uses a promise to return the result.
-> **NOTE**<br/>
+> **NOTE**
 >
 > **deviceId** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 > For details about how to obtain **deviceId**, see [sync()](#sync).
@@ -6712,4 +6712,3 @@ try {
     console.error(`Failed to get resultSize.code is ${e.code},message is ${e.message}`);
 }
 ```
-<!--no_check-->

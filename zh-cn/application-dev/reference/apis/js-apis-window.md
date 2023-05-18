@@ -2701,7 +2701,7 @@ try {
 
 ### off('avoidAreaChange')<sup>9+</sup>
 
-off(type: 'avoidAreaChange', callback: Callback&lt;{AvoidAreaType, AvoidArea}&gt;): void
+off(type: 'avoidAreaChange', callback?: Callback&lt;{AvoidAreaType, AvoidArea}&gt;): void
 
 关闭系统规避区变化的监听。
 
@@ -3471,7 +3471,7 @@ let colorSpace = windowClass.getWindowColorSpace();
 
 setWindowBackgroundColor(color: string): void
 
-设置窗口的背景色。Stage模型下，该接口需要在[loadContent](#loadcontent9)之后使用。
+设置窗口的背景色。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3505,6 +3505,8 @@ try {
 setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置屏幕亮度值，使用callback异步回调。
+
+当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -3546,6 +3548,8 @@ try {
 setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
 设置屏幕亮度值，使用Promise异步回调。
+
+当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
@@ -6024,7 +6028,7 @@ promise.then((data)=> {
 
 setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
-设置窗口的背景色，使用callback异步回调。Stage模型下，该接口需要在[loadContent](#loadcontent9)或[setUIContent()](#setuicontent9)之后使用。
+设置窗口的背景色，使用callback异步回调。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 > **说明：**
 >
@@ -6056,7 +6060,7 @@ windowClass.setBackgroundColor(color, (err) => {
 
 setBackgroundColor(color: string): Promise&lt;void&gt;
 
-设置窗口的背景色，使用Promise异步回调。Stage模型下，该接口需要在[loadContent](#loadcontent9)或[setUIContent()](#setuicontent9)之后使用。
+设置窗口的背景色，使用Promise异步回调。Stage模型下，该接口需要在[loadContent()](#loadcontent9)或[setUIContent()](#setuicontent9)调用生效后使用。
 
 > **说明：**
 >
@@ -6094,6 +6098,8 @@ setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置屏幕亮度值，使用callback异步回调。
 
+当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
+
 > **说明：**
 >
 > 从 API version 6开始支持，从API version 9开始废弃，推荐使用[setWindowBrightness()](#setwindowbrightness9)。
@@ -6125,6 +6131,8 @@ windowClass.setBrightness(brightness, (err) => {
 setBrightness(brightness: number): Promise&lt;void&gt;
 
 设置屏幕亮度值，使用Promise异步回调。
+
+当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
 
 > **说明：**
 >

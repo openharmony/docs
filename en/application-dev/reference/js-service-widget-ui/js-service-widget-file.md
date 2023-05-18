@@ -59,6 +59,6 @@ Application resources can be accessed via an absolute or relative path. In this 
 
 ## Configuration Files
 
-If you are developing a widget in the FA model, configure the **config.json** file.
+If you are developing a widget in the FA model, configure the **config.json** file. For details, see [Configuring the Widget Configuration File in FA Model](../../application-models/widget-development-fa.md#configuring-the-widget-configuration-file).
 
-If you are developing a widget in the stage model, configure **ExtensionAbility** under **extensionAbilities** in the **module.json5** file.
+If you are developing a widget in the stage model, configure **ExtensionAbility** under **extensionAbilities** in the **module.json5** file. For details, see [Configuring the Widget Configuration File in Stage Model](../../application-models/js-ui-widget-development.md#configuring-the-widget-configuration-files).

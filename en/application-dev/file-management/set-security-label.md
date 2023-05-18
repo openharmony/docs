@@ -1,6 +1,6 @@
 # Setting the Security Level of a Distributed File
 
-The security capabilities vary with devices. For example, small embedded devices provide fewer security capabilities than tablets. The security requirements also vary with data. For example, personal health information and bank card information are not expected to be accessed by devices of lower security levels. OpenHarmony provides a complete set of standards for data and device classification and custom data transfer policies for different devices. For details, see [Data and Device Security Classification](../database/access-control-by-device-and-data-level.md).
+The security capabilities vary with devices. For example, small embedded devices provide fewer security capabilities than tablets. The security requirements also vary with data. For example, personal health information and bank card information are not expected to be accessed by devices of lower security levels. OpenHarmony provides a complete set of standards for data and device classification and custom data transfer policies for different devices. For details, see [Data Security Labels and Device Security Levels](../database/access-control-by-device-and-data-level.md).
 
 ## Available APIs
 
@@ -39,4 +39,3 @@ securityLabel.setSecurityLabel(filePath, 's0').then(() => {
   console.error(`Failed to setSecurityLabel. Code: ${err.code}, message: ${err.message}`);
 });
 ```
-<!--no_check-->

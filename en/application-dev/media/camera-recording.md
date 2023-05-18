@@ -1,4 +1,4 @@
-# Video Recording
+# Camera Recording
 
 Video recording is also an important function of the camera application. Video recording is the process of cyclic capturing of frames. To smooth videos, you can follow step 4 in [Camera Photographing](camera-shooting.md) to set the resolution, flash, focal length, photo quality, and rotation angle.
 

@@ -123,7 +123,7 @@ off(activity: ActivityType, event: ActivityEvent, callback?: Callback&lt;Activit
 | -------------------- | -------------------------------------------------- | ---- | ---------------------------- |
 | activity  | [ActivityType](#activitytype)  | 是   | 设备状态能力类型。              |
 | event  | [ActivityEvent](#activityevent)  | 是   | 事件类型。              |
-| callback             | Callback<[ActivityResponse](#activityresponse)\>  | 否   | 回调函数，接收上报状态变化事件。    |
+| callback | Callback<[ActivityResponse](#activityresponse)\>  | 否   | 回调函数，接收上报状态变化事件，如果没有传递callback参数，会移除该进程下订阅该类型得所有callback。  |
 
 **示例：**
 

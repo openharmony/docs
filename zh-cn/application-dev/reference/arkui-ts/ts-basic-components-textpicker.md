@@ -23,8 +23,8 @@ TextPicker(options?: {range: string[]|Resource|TextPickerRangeContent[], selecte
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
 | range | string[]&nbsp;\|&nbsp;[Resource](ts-types.md#resource类型)\|[TextPickerRangeContent](#textpickerrangecontent10类型说明)[]<sup>10+</sup> | 是 | 选择器的数据选择列表。不可设置为空数组，若设置为空数组，则不显示；若动态变化为空数组，则保持当前正常值显示。 |
-| selected | number | 否 | 设置默认选中项在数组中的索引值。<br/>默认值：0 |
-| value | string | 否 | 设置默认选中项的值，优先级低于selected。<br/>默认值：第一个元素值<br/>**说明**：只有显示文本列表时该值有效。显示图片或图片加文本的列表时，该值无效。 |
+| selected | number | 否 | 设置默认选中项在数组中的索引值。<br/>默认值：0<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| value | string | 否 | 设置默认选中项的值，优先级低于selected。<br/>默认值：第一个元素值<br/>**说明**：只有显示文本列表时该值有效。显示图片或图片加文本的列表时，该值无效。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 
 ## TextPickerRangeContent<sup>10+</sup>类型说明
 
@@ -50,6 +50,8 @@ TextPicker(options?: {range: string[]|Resource|TextPickerRangeContent[], selecte
 
 | 名称 | 描述 |
 | -------- | -------- |
+| onAccept(callback: (value: string, index: number) => void) | 点击弹窗中的“确定”按钮时触发该回调。<br/><br/>-&nbsp;value:&nbsp;当前选中项的文本。<br/>-&nbsp;index:&nbsp;当前选中项的索引值。<br/>**说明：** <br/>该事件仅在[文本滑动选择器弹窗](ts-methods-textpicker-dialog.md)中生效。 |
+| onCancel(callback: () => void) | 点击弹窗中的“取消”按钮时触发该回调。<br/>**说明：** <br/>该事件仅在[文本滑动选择器弹窗](ts-methods-textpicker-dialog.md)中生效。 |
 | onChange(callback:&nbsp;(value:&nbsp;string,&nbsp;index:&nbsp;number)&nbsp;=&gt;&nbsp;void) | 滑动选中TextPicker文本内容后，触发该回调。<br/>-&nbsp;value:&nbsp;当前选中项的文本。<br/>**说明**：当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。<br/>-&nbsp;index:&nbsp;当前选中项的索引值。 |
 
 

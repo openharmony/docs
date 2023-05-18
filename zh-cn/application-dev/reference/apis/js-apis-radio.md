@@ -32,7 +32,7 @@ getRadioTech\(slotId: number, callback: AsyncCallback<\{psRadioTech: RadioTechno
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -77,7 +77,7 @@ getRadioTech\(slotId: number\): Promise<\{psRadioTech: RadioTechnology, csRadioT
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -103,7 +103,7 @@ promise.then(data => {
 
 ## radio.getNetworkState
 
-getNetworkState\(callback: AsyncCallback<NetworkState\>\): void
+getNetworkState\(callback: AsyncCallback\<NetworkState\>\): void
 
 获取网络状态。使用callback异步回调。
 
@@ -119,7 +119,7 @@ getNetworkState\(callback: AsyncCallback<NetworkState\>\): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -141,7 +141,7 @@ radio.getNetworkState((err, data) => {
 
 ## radio.getNetworkState
 
-getNetworkState\(slotId: number, callback: AsyncCallback<NetworkState\>\): void
+getNetworkState\(slotId: number, callback: AsyncCallback\<NetworkState\>\): void
 
 获取网络状态。使用callback异步回调。
 
@@ -158,7 +158,7 @@ getNetworkState\(slotId: number, callback: AsyncCallback<NetworkState\>\): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -181,7 +181,7 @@ radio.getNetworkState(slotId, (err, data) => {
 
 ## radio.getNetworkState
 
-getNetworkState\(slotId?: number\): Promise<NetworkState\>
+getNetworkState\(slotId?: number\): Promise\<NetworkState\>
 
 获取网络状态。使用Promise异步回调。
 
@@ -203,7 +203,7 @@ getNetworkState\(slotId?: number\): Promise<NetworkState\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -229,7 +229,7 @@ promise.then(data => {
 
 ## radio.getNetworkSelectionMode
 
-getNetworkSelectionMode\(slotId: number, callback: AsyncCallback<NetworkSelectionMode\>\): void
+getNetworkSelectionMode\(slotId: number, callback: AsyncCallback\<NetworkSelectionMode\>\): void
 
 获取当前选网模式。使用callback异步回调。
 
@@ -244,7 +244,7 @@ getNetworkSelectionMode\(slotId: number, callback: AsyncCallback<NetworkSelectio
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -266,7 +266,7 @@ radio.getNetworkSelectionMode(slotId, (err, data) => {
 
 ## radio.getNetworkSelectionMode
 
-getNetworkSelectionMode\(slotId: number\): Promise<NetworkSelectionMode\>
+getNetworkSelectionMode\(slotId: number\): Promise\<NetworkSelectionMode\>
 
 获取当前选网模式。使用Promise异步回调。
 
@@ -286,7 +286,7 @@ getNetworkSelectionMode\(slotId: number\): Promise<NetworkSelectionMode\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -311,7 +311,7 @@ promise.then(data => {
 
 ## radio.getISOCountryCodeForNetwork<sup>7+</sup>
 
-getISOCountryCodeForNetwork\(slotId: number, callback: AsyncCallback<string\>\): void
+getISOCountryCodeForNetwork\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 获取注册网络所在国家的ISO国家码。使用callback异步回调。
 
@@ -326,7 +326,7 @@ getISOCountryCodeForNetwork\(slotId: number, callback: AsyncCallback<string\>\):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -348,7 +348,7 @@ radio.getISOCountryCodeForNetwork(slotId, (err, data) => {
 
 ## radio.getISOCountryCodeForNetwork<sup>7+</sup>
 
-getISOCountryCodeForNetwork\(slotId: number\): Promise<string\>
+getISOCountryCodeForNetwork\(slotId: number\): Promise\<string\>
 
 获取注册网络所在国家的ISO国家码。使用Promise异步回调。
 
@@ -368,7 +368,7 @@ getISOCountryCodeForNetwork\(slotId: number\): Promise<string\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -407,7 +407,7 @@ getPrimarySlotId\(callback: AsyncCallback\<number\>\): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -441,11 +441,10 @@ getPrimarySlotId\(\): Promise\<number\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 | 8300999  | Unknown error code.                          |
@@ -464,7 +463,7 @@ promise.then(data => {
 
 ## radio.getSignalInformation<sup>7+</sup>
 
-getSignalInformation\(slotId: number, callback: AsyncCallback<Array<SignalInformation\>\>\): void
+getSignalInformation\(slotId: number, callback: AsyncCallback\<Array\<SignalInformation\>\>\): void
 
 获取指定SIM卡槽对应的注册网络信号强度信息列表。使用callback异步回调。
 
@@ -479,7 +478,7 @@ getSignalInformation\(slotId: number, callback: AsyncCallback<Array<SignalInform
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -501,7 +500,7 @@ radio.getSignalInformation(slotId, (err, data) => {
 
 ## radio.getSignalInformation<sup>7+</sup>
 
-getSignalInformation\(slotId: number\): Promise<Array<SignalInformation\>\>
+getSignalInformation\(slotId: number\): Promise\<Array\<SignalInformation\>\>
 
 获取指定SIM卡槽对应的注册网络信号强度信息列表。使用Promise异步回调。
 
@@ -521,7 +520,7 @@ getSignalInformation\(slotId: number\): Promise<Array<SignalInformation\>\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -654,7 +653,7 @@ console.log("Result: "+ result);
 
 ## radio.isRadioOn<sup>7+</sup>
 
-isRadioOn\(callback: AsyncCallback<boolean\>\): void
+isRadioOn\(callback: AsyncCallback\<boolean\>\): void
 
 判断主卡的Radio是否打开。使用callback异步回调。
 
@@ -670,7 +669,7 @@ isRadioOn\(callback: AsyncCallback<boolean\>\): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -692,7 +691,7 @@ radio.isRadioOn((err, data) => {
 
 ## radio.isRadioOn<sup>7+</sup>
 
-isRadioOn\(slotId: number, callback: AsyncCallback<boolean\>\): void
+isRadioOn\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 
 判断指定卡槽位的Radio是否打开。使用callback异步回调。
 
@@ -709,7 +708,7 @@ isRadioOn\(slotId: number, callback: AsyncCallback<boolean\>\): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -732,7 +731,7 @@ radio.isRadioOn(slotId, (err, data) => {
 
 ## radio.isRadioOn<sup>7+</sup>
 
-isRadioOn\(slotId?: number\): Promise<boolean\>
+isRadioOn\(slotId?: number\): Promise\<boolean\>
 
 判断Radio是否打开。使用Promise异步回调。
 
@@ -754,7 +753,7 @@ isRadioOn\(slotId?: number\): Promise<boolean\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -780,7 +779,7 @@ promise.then(data => {
 
 ## radio.getOperatorName<sup>7+</sup>
 
-getOperatorName\(slotId: number, callback: AsyncCallback<string\>\): void
+getOperatorName\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 获取运营商名称。使用callback异步回调。
 
@@ -795,7 +794,7 @@ getOperatorName\(slotId: number, callback: AsyncCallback<string\>\): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -817,7 +816,7 @@ radio.getOperatorName(slotId, (err, data) => {
 
 ## radio.getOperatorName<sup>7+</sup>
 
-getOperatorName\(slotId: number\): Promise<string\>
+getOperatorName\(slotId: number\): Promise\<string\>
 
 获取运营商名称。使用Promise异步回调。
 
@@ -837,7 +836,7 @@ getOperatorName\(slotId: number\): Promise<string\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -861,7 +860,7 @@ promise.then(data => {
 
 ## radio.setPrimarySlotId<sup>8+</sup>
 
-setPrimarySlotId(slotId: number, callback: AsyncCallback<void\>): void
+setPrimarySlotId\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 设置主卡所在卡槽的索引号。使用callback异步回调。
 
@@ -880,11 +879,12 @@ setPrimarySlotId(slotId: number, callback: AsyncCallback<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -928,11 +928,12 @@ setPrimarySlotId\(slotId: number\): Promise\<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -954,7 +955,7 @@ promise.then(() => {
 
 ## radio.getIMEI<sup>8+</sup>
 
-getIMEI(callback: AsyncCallback<string\>): void
+getIMEI\(callback: AsyncCallback\<string\>\): void
 
 获取设备的指定卡槽的IMEI。使用callback异步回调。
 
@@ -972,11 +973,12 @@ getIMEI(callback: AsyncCallback<string\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -994,7 +996,7 @@ radio.getIMEI((err, data) => {
 
 ## radio.getIMEI<sup>8+</sup>
 
-getIMEI(slotId: number, callback: AsyncCallback<string\>): void
+getIMEI\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 获取设备的指定卡槽的IMEI。使用callback异步回调。
 
@@ -1013,11 +1015,12 @@ getIMEI(slotId: number, callback: AsyncCallback<string\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1036,7 +1039,7 @@ radio.getIMEI(slotId, (err, data) => {
 
 ## radio.getIMEI<sup>8+</sup>
 
-getIMEI(slotId?: number): Promise<string\>
+getIMEI\(slotId?: number\): Promise\<string\>
 
 获取设备的指定卡槽的IMEI。使用Promise异步回调。
 
@@ -1060,11 +1063,12 @@ getIMEI(slotId?: number): Promise<string\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1085,7 +1089,7 @@ promise.then(data => {
 
 ## radio.getMEID<sup>8+</sup>
 
-getMEID(callback: AsyncCallback<string\>): void
+getMEID\(callback: AsyncCallback\<string\>\): void
 
 获取设备的指定卡槽的MEID。使用callback异步回调。
 
@@ -1103,11 +1107,12 @@ getMEID(callback: AsyncCallback<string\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1125,7 +1130,7 @@ radio.getMEID((err, data) => {
 
 ## radio.getMEID<sup>8+</sup>
 
-getMEID(slotId: number, callback: AsyncCallback<string\>): void
+getMEID\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 获取设备的指定卡槽的MEID。使用callback异步回调。
 
@@ -1144,11 +1149,12 @@ getMEID(slotId: number, callback: AsyncCallback<string\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1167,7 +1173,7 @@ radio.getMEID(slotId, (err, data) => {
 
 ## radio.getMEID<sup>8+</sup>
 
-getMEID(slotId?: number): Promise<string\>
+getMEID\(slotId?: number\): Promise\<string\>
 
 获取设备的指定卡槽的MEID。使用Promise异步回调。
 
@@ -1191,11 +1197,12 @@ getMEID(slotId?: number): Promise<string\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1216,7 +1223,7 @@ promise.then(data => {
 
 ## radio.getUniqueDeviceId<sup>8+</sup>
 
-getUniqueDeviceId(callback: AsyncCallback<string\>): void
+getUniqueDeviceId\(callback: AsyncCallback\<string\>\): void
 
 获取设备的指定卡槽的唯一设备ID。使用callback异步回调。
 
@@ -1234,11 +1241,12 @@ getUniqueDeviceId(callback: AsyncCallback<string\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1256,7 +1264,7 @@ radio.getUniqueDeviceId((err, data) => {
 
 ## radio.getUniqueDeviceId<sup>8+</sup>
 
-getUniqueDeviceId(slotId: number, callback: AsyncCallback<string\>): void
+getUniqueDeviceId\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 获取设备的指定卡槽的唯一设备ID。使用callback异步回调。
 
@@ -1275,11 +1283,12 @@ getUniqueDeviceId(slotId: number, callback: AsyncCallback<string\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1298,7 +1307,7 @@ radio.getUniqueDeviceId(slotId, (err, data) => {
 
 ## radio.getUniqueDeviceId<sup>8+</sup>
 
-getUniqueDeviceId(slotId?: number): Promise<string\>
+getUniqueDeviceId\(slotId?: number\): Promise\<string\>
 
 获取设备的指定卡槽的唯一设备ID。使用Promise异步回调。
 
@@ -1322,11 +1331,12 @@ getUniqueDeviceId(slotId?: number): Promise<string\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1347,7 +1357,7 @@ promise.then(data => {
 
 ## radio.sendUpdateCellLocationRequest<sup>8+</sup>
 
-sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
+sendUpdateCellLocationRequest\(callback: AsyncCallback\<void\>\): void
 
 发送更新小区位置请求。使用callback异步回调。
 
@@ -1365,11 +1375,12 @@ sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1386,7 +1397,7 @@ radio.sendUpdateCellLocationRequest((err) => {
 
 ## radio.sendUpdateCellLocationRequest<sup>8+</sup>
 
-sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\): void
+sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 发送更新小区位置请求。使用callback异步回调。
 
@@ -1405,11 +1416,12 @@ sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\):
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1427,7 +1439,7 @@ radio.sendUpdateCellLocationRequest(slotId, (err) => {
 
 ## radio.sendUpdateCellLocationRequest<sup>8+</sup>
 
-sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
+sendUpdateCellLocationRequest\(slotId?: number\): Promise\<void\>
 
 发送更新小区位置请求。使用Promise异步回调。
 
@@ -1451,11 +1463,12 @@ sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1475,7 +1488,7 @@ radio.sendUpdateCellLocationRequest(slotId).then(() => {
 
 ## radio.getCellInformation<sup>8+</sup>
 
-getCellInformation(callback: AsyncCallback<Array<CellInformation\>>): void
+getCellInformation\(callback: AsyncCallback\<Array\<CellInformation\>\>\): void
 
 获取小区信息。使用callback异步回调。
 
@@ -1493,11 +1506,12 @@ getCellInformation(callback: AsyncCallback<Array<CellInformation\>>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1515,7 +1529,7 @@ radio.getCellInformation((err, data) => {
 
 ## radio.getCellInformation<sup>8+</sup>
 
-getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation\>\>): void
+getCellInformation\(slotId: number, callback: AsyncCallback\<Array\<CellInformation\>\>\): void
 
 获取小区信息。使用callback异步回调。
 
@@ -1534,11 +1548,12 @@ getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1557,7 +1572,7 @@ radio.getCellInformation(slotId, (err, data) => {
 
 ## radio.getCellInformation<sup>8+</sup>
 
-getCellInformation(slotId?: number): Promise<Array<CellInformation\>\>
+getCellInformation\(slotId?: number\): Promise\<Array\<CellInformation\>\>
 
 获取小区信息。使用Promise异步回调。
 
@@ -1581,11 +1596,12 @@ getCellInformation(slotId?: number): Promise<Array<CellInformation\>\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1606,7 +1622,7 @@ promise.then(data => {
 
 ## radio.setNetworkSelectionMode
 
-setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCallback<void\>\): void
+setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCallback\<void\>\): void
 
 设置网络选择模式。使用callback异步回调。
 
@@ -1625,11 +1641,12 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCa
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1658,7 +1675,7 @@ radio.setNetworkSelectionMode(networkSelectionModeOptions, (err) => {
 
 ## radio.setNetworkSelectionMode
 
-setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise<void\>
+setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise\<void\>
 
 设置网络选择模式。使用Promise异步回调。
 
@@ -1682,11 +1699,12 @@ setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1718,7 +1736,7 @@ promise.then(() => {
 
 ## radio.getNetworkSearchInformation
 
-getNetworkSearchInformation\(slotId: number, callback: AsyncCallback<NetworkSearchResult\>\): void
+getNetworkSearchInformation\(slotId: number, callback: AsyncCallback\<NetworkSearchResult\>\): void
 
 获取网络搜索信息。使用callback异步回调。
 
@@ -1737,11 +1755,12 @@ getNetworkSearchInformation\(slotId: number, callback: AsyncCallback<NetworkSear
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1758,7 +1777,7 @@ radio.getNetworkSearchInformation(0, (err, data) => {
 
 ## radio.getNetworkSearchInformation
 
-getNetworkSearchInformation\(slotId: number\): Promise<NetworkSearchResult\>
+getNetworkSearchInformation\(slotId: number\): Promise\<NetworkSearchResult\>
 
 获取网络搜索信息。使用Promise异步回调。
 
@@ -1782,11 +1801,12 @@ getNetworkSearchInformation\(slotId: number\): Promise<NetworkSearchResult\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1806,7 +1826,7 @@ promise.then(data => {
 
 ## radio.getNrOptionMode<sup>8+</sup>
 
-getNrOptionMode(callback: AsyncCallback<NrOptionMode\>): void
+getNrOptionMode\(callback: AsyncCallback\<NrOptionMode\>\): void
 
 获取Nr选项模式 。使用callback异步回调。
 
@@ -1822,10 +1842,11 @@ getNrOptionMode(callback: AsyncCallback<NrOptionMode\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1843,7 +1864,7 @@ radio.getNrOptionMode((err, data) => {
 
 ## radio.getNrOptionMode<sup>8+</sup>
 
-getNrOptionMode(slotId: number, callback: AsyncCallback<NrOptionMode\>): void
+getNrOptionMode\(slotId: number, callback: AsyncCallback\<NrOptionMode\>\): void
 
 获取Nr选项模式 。使用callback异步回调。
 
@@ -1860,10 +1881,11 @@ getNrOptionMode(slotId: number, callback: AsyncCallback<NrOptionMode\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1882,7 +1904,7 @@ radio.getNrOptionMode(slotId, (err, data) => {
 
 ## radio.getNrOptionMode<sup>8+</sup>
 
-getNrOptionMode(slotId?: number): Promise<NrOptionMode\>
+getNrOptionMode\(slotId?: number\): Promise\<NrOptionMode\>
 
 获取Nr选项模式 。使用Promise异步回调。
 
@@ -1904,10 +1926,11 @@ getNrOptionMode(slotId?: number): Promise<NrOptionMode\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1928,7 +1951,7 @@ promise.then(data => {
 
 ## radio.turnOnRadio<sup>7+</sup>
 
-turnOnRadio(callback: AsyncCallback<void\>): void
+turnOnRadio\(callback: AsyncCallback\<void\>\): void
 
 打开Radio。使用callback异步回调。
 
@@ -1946,11 +1969,12 @@ turnOnRadio(callback: AsyncCallback<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1968,7 +1992,7 @@ radio.turnOnRadio((err) => {
 
 ## radio.turnOnRadio<sup>7+</sup>
 
-turnOnRadio(slotId: number, callback: AsyncCallback<void\>): void
+turnOnRadio\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 打开Radio。使用callback异步回调。
 
@@ -1987,11 +2011,12 @@ turnOnRadio(slotId: number, callback: AsyncCallback<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2010,7 +2035,7 @@ radio.turnOnRadio(slotId, (err) => {
 
 ## radio.turnOnRadio<sup>7+</sup>
 
-turnOnRadio(slotId?: number): Promise<void\>
+turnOnRadio(slotId?: number): Promise\<void\>
 
 打开Radio。使用Promise异步回调。
 
@@ -2034,11 +2059,12 @@ turnOnRadio(slotId?: number): Promise<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2058,7 +2084,7 @@ radio.turnOnRadio(slotId).then(() => {
 
 ## radio.turnOffRadio<sup>7+</sup>
 
-turnOffRadio(callback: AsyncCallback<void\>): void
+turnOffRadio\(callback: AsyncCallback\<void\>\): void
 
 关闭Radio。使用callback异步回调。
 
@@ -2076,11 +2102,12 @@ turnOffRadio(callback: AsyncCallback<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2098,7 +2125,7 @@ radio.turnOffRadio((err) => {
 
 ## radio.turnOffRadio<sup>7+</sup>
 
-turnOffRadio(slotId: number, callback: AsyncCallback<void\>): void
+turnOffRadio\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 关闭Radio。使用callback异步回调。
 
@@ -2117,11 +2144,12 @@ turnOffRadio(slotId: number, callback: AsyncCallback<void\>): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2140,7 +2168,7 @@ radio.turnOffRadio(slotId, (err) => {
 
 ## radio.turnOffRadio<sup>7+</sup>
 
-turnOffRadio(slotId?: number): Promise<void\>
+turnOffRadio\(slotId?: number\): Promise\<void\>
 
 关闭Radio。使用Promise异步回调。
 
@@ -2164,11 +2192,12 @@ turnOffRadio(slotId?: number): Promise<void\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2188,7 +2217,7 @@ radio.turnOffRadio(slotId).then(() => {
 
 ## radio.setPreferredNetwork<sup>8+</sup>
 
-setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback: AsyncCallback<void\>\): void
+setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback: AsyncCallback\<void\>\): void
 
 设置首选网络。使用callback异步回调。
 
@@ -2208,11 +2237,12 @@ setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2230,7 +2260,7 @@ radio.setPreferredNetwork(slotId, radio.PreferredNetworkMode.PREFERRED_NETWORK_M
 
 ## radio.setPreferredNetwork<sup>8+</sup>
 
-setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<void\>
+setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode\): Promise\<void\>
 
 设置首选网络。使用Promise异步回调。
 
@@ -2255,11 +2285,12 @@ setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                     |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2279,7 +2310,7 @@ radio.setPreferredNetwork(slotId, radio.PreferredNetworkMode.PREFERRED_NETWORK_M
 
 ## radio.getPreferredNetwork<sup>8+</sup>
 
-getPreferredNetwork\(slotId: number, callback: AsyncCallback<PreferredNetworkMode\>\): void
+getPreferredNetwork\(slotId: number, callback: AsyncCallback\<PreferredNetworkMode\>\): void
 
 获取首选网络。使用callback异步回调。
 
@@ -2298,11 +2329,12 @@ getPreferredNetwork\(slotId: number, callback: AsyncCallback<PreferredNetworkMod
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2319,7 +2351,7 @@ radio.getPreferredNetwork(0, (err, data) => {
 
 ## radio.getPreferredNetwork<sup>8+</sup>
 
-getPreferredNetwork(slotId: number): Promise<PreferredNetworkMode\>
+getPreferredNetwork\(slotId: number\): Promise\<PreferredNetworkMode\>
 
 获取首选网络。使用Promise异步回调。
 
@@ -2343,11 +2375,12 @@ getPreferredNetwork(slotId: number): Promise<PreferredNetworkMode\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2367,7 +2400,7 @@ promise.then(data => {
 
 ## radio.getImsRegInfo<sup>9+</sup>
 
-getImsRegInfo(slotId: number, imsType: ImsServiceType, callback: AsyncCallback<ImsRegInfo\>): void
+getImsRegInfo\(slotId: number, imsType: ImsServiceType, callback: AsyncCallback\<ImsRegInfo\>\): void
 
 获取特定IMS服务类型的IMS注册状态信息。使用callback异步回调。
 
@@ -2387,11 +2420,12 @@ getImsRegInfo(slotId: number, imsType: ImsServiceType, callback: AsyncCallback<I
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2408,7 +2442,7 @@ radio.getImsRegInfo(0, radio.ImsServiceType.TYPE_VIDEO, (err, data) => {
 
 ## radio.getImsRegInfo<sup>9+</sup>
 
-getImsRegInfo(slotId: number, imsType: ImsServiceType): Promise<ImsRegInfo\>
+getImsRegInfo\(slotId: number, imsType: ImsServiceType\): Promise\<ImsRegInfo\>
 
 获取特定IMS服务类型的IMS注册状态信息。使用Promise异步回调。
 
@@ -2433,11 +2467,12 @@ getImsRegInfo(slotId: number, imsType: ImsServiceType): Promise<ImsRegInfo\>
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2457,7 +2492,7 @@ promise.then(data => {
 
 ## radio.on('imsRegStateChange')<sup>9+</sup>
 
-on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback: Callback<ImsRegInfo\>): void
+on\(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback: Callback\<ImsRegInfo\>\): void
 
 订阅imsRegStateChange事件，使用callback异步回调。
 
@@ -2478,11 +2513,12 @@ on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback:
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2499,7 +2535,7 @@ radio.on('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 ## radio.off('imsRegStateChange')<sup>9+</sup>
 
-off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback?: Callback<ImsRegInfo\>): void
+off\(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback?: Callback\<ImsRegInfo\>\): void
 
 取消订阅imsRegStateChange事件，使用callback异步回调。
 
@@ -2520,11 +2556,12 @@ off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2538,6 +2575,101 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
+
+
+## radio.getBasebandVersion<sup>10+</sup>
+
+getBasebandVersion\(slotId: number, callback: AsyncCallback\<string\>\): void
+
+获取设备的基带版本号。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                    | 必填 | 说明                                   |
+| -------- | ----------------------- | ---- | ------------------------------------- |
+| slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| callback | AsyncCallback\<string\> | 是   | 回调函数。获取的基带版本号。            |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let slotId = 0;
+radio.getBasebandVersion(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getBasebandVersion<sup>10+</sup>
+
+getBasebandVersion\(slotId: number\): Promise\<string\>
+
+获取设备的基带版本号。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.GET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                     | 必填 | 说明                                  |
+| -------- | ----------------------- | ---- | ------------------------------------- |
+| slotId   | number                  | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型              | 说明                                    |
+| ----------------- | -------------------------------------- |
+| Promise\<string\> | 以Promise形式返回设备的基带版本号。      |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let slotId = 0;
+let promise = radio.getBasebandVersion(slotId);
+promise.then(data => {
+    console.log(`getBasebandVersion success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getBasebandVersion failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
 
 ## RadioTechnology
 

@@ -12,6 +12,14 @@ StaticSubscriberExtensionAbility模块提供静态订阅者ExtensionAbility的�
 import StaticSubscriberExtensionAbility from '@ohos.application.StaticSubscriberExtensionAbility';
 ```
 
+## 属性
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.AbilityCore
+
+| 名称    | 类型                                                         | 可读 | 可写 | 说明     |
+| ------- | ------------------------------------------------------------ | ---- | ---- | -------- |
+| context | [StaticSubscriberExtensionContext](js-apis-application-StaticSubscriberExtensionContext.md) | 是   | 否   | 上下文。 |
+
 ## StaticSubscriberExtensionAbility.onReceiveEvent
 
 onReceiveEvent(event: CommonEventData): void;

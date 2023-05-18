@@ -83,7 +83,7 @@ struct Index {
   @State message: string = 'Hello World'
 
   build() {
-    // ...
+    ...
     Button("startAbility")
       .onClick(() => {
         featureAbility.startAbility({
@@ -98,7 +98,7 @@ struct Index {
           console.info("startAbility failed errcode:" + err.code)
         })
       })
-    // ...
+    ...
     Button("page2")
       .onClick(() => {
         featureAbility.startAbility({
@@ -113,7 +113,7 @@ struct Index {
           console.info("startAbility failed errcode:" + err.code)
         })
       })
-    // ...
+    ...
   }
 }
 ```
@@ -136,7 +136,7 @@ export default {
     })
   },
   onDestroy() {
-    // ...
+    ...
   },
 }
 ```

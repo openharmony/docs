@@ -412,7 +412,7 @@ acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Obje
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
 
-abilityManager.acquireShareData(1, (err, wantParam) => { 
+abilityManager.acquireShareData(1, (err, data) => { 
     if (err) {
         console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
     } else {
@@ -449,7 +449,7 @@ acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
 try {
-    abilityManager.acquireShareData(1).then((wantParam) => {
+    abilityManager.acquireShareData(1).then((data) => {
     console.log(`acquireShareData success, data: ${JSON.stringify(data)}`);
     }).catch((err) => {
     console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);

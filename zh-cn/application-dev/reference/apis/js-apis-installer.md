@@ -121,7 +121,9 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700036 | Failed to install the HSP because lacks appropriate permissions. |
 | 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
 | 17700041 | Failed to install because enterprise device management disallow install. |
-| 17700044 | Failed to install because the isolationMode does not match the system. |
+| 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
+| 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
+| 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 
 **示例：**
 
@@ -185,7 +187,9 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 | 17700036 | Failed to install the HSP because lacks appropriate permissions. |
 | 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
 | 17700041 | Failed to install because enterprise device management disallow install. |
-| 17700044 | Failed to install because the isolationMode does not match the system. |
+| 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
+| 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
+| 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 
 **示例：**
 
@@ -253,7 +257,9 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 | 17700036 | Failed to install the HSP because lacks appropriate permissions. |
 | 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
 | 17700041 | Failed to install because enterprise device management disallow install. |
-| 17700044 | Failed to install because the isolationMode does not match the system. |
+| 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
+| 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
+| 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
 
 **示例：**
 
@@ -312,6 +318,7 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 | 17700004 | The specified user ID is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
+| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
 
 **示例：**
 
@@ -369,6 +376,7 @@ uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
 | 17700001 | The specified bundle name is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
+| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
 
 **示例：**
 
@@ -427,6 +435,7 @@ uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
 | 17700004 | The specified user ID is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
+| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
 
 **示例：**
 ```ts

@@ -118,6 +118,7 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 **示例：**
 
 ```ts
+let wantAgent;
 //WantAgentInfo对象
 let wantAgentInfo = {
     wants: [
@@ -1181,7 +1182,7 @@ function getWantAgentCallback(err, data) {
         }
     }
     try {
-        WantAgent.getOperationTypeCallback(wantAgent, getOperationTypeCallback);
+        WantAgent.getOperationType(wantAgent, getOperationTypeCallback);
     } catch(err) {
         console.error('getOperationTypeCallback failed! ${err.code} ${err.message}');
     }

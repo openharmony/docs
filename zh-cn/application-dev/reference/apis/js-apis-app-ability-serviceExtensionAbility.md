@@ -145,6 +145,29 @@ Extension生命周期回调，如果是connectAbility拉起的服务，会在onC
   }
   ```
 
+如果生成返回值RemoteObject依赖一个异步接口，可以使用异步生命周期：
+
+  ```ts
+import rpc from '@ohos.rpc';
+class StubTest extends rpc.RemoteObject{
+    constructor(des) {
+        super(des);
+    }
+    onConnect(code, data, reply, option) {
+    }
+}
+async function getDescriptor() {
+    // 调用异步函数...
+    return "asyncTest"
+}
+class ServiceExt extends ServiceExtension {
+  async onConnect(want) {
+    console.log(`onConnect , want: ${want.abilityName}`);
+    let descriptor = await getDescriptor();
+    return new StubTest(descriptor);
+  }
+}
+  ```
 
 ## ServiceExtensionAbility.onDisconnect
 
@@ -170,6 +193,17 @@ Extension的生命周期回调，客户端执行断开连接服务时回调。
       console.log('onDisconnect, want: ${want.abilityName}');
     }
   }
+  ```
+
+在执行完onDisconnect生命周期回调后，应用可能会退出，从而可能导致onDisconnect中的异步函数未能正确执行，比如异步写入数据库。可以使用异步生命周期，以确保异步onDisconnect完成后再继续后续的生命周期。
+
+  ```ts
+class ServiceExt extends ServiceExtension {
+  async onDisconnect(want) {
+    console.log('onDisconnect, want: ${want.abilityName}');
+    // 调用异步函数...
+  }
+}
   ```
 
 ## ServiceExtensionAbility.onReconnect

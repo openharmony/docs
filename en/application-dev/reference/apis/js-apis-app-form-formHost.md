@@ -34,7 +34,14 @@ Deletes a widget. After this API is called, the application can no longer use th
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 202 | The application is not a system application. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -83,7 +90,14 @@ Deletes a widget. After this API is called, the application can no longer use th
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Parameters**
@@ -124,7 +138,14 @@ Releases a widget. After this API is called, the application can no longer use t
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -166,7 +187,14 @@ Releases a widget. After this API is called, the application can no longer use t
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -201,7 +229,7 @@ Releases a widget. After this API is called, the application can no longer use t
 | Name        | Type    | Mandatory| Description       |
 | -------------- | ------  | ---- | ----------- |
 | formId         | string  | Yes  | Widget ID.    |
-| isReleaseCache | boolean | No  | Whether to release the cache.|
+| isReleaseCache | boolean | No  | Whether to release the cache. The default value is **false**. |
 
 **Return value**
 
@@ -213,7 +241,14 @@ Releases a widget. After this API is called, the application can no longer use t
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -254,7 +289,14 @@ Requests a widget update. This API uses an asynchronous callback to return the r
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -300,7 +342,14 @@ Requests a widget update. This API uses a promise to return the result.
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -342,7 +391,14 @@ Converts a temporary widget to a normal one. This API uses an asynchronous callb
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501002 | The number of forms exceeds upper bound. |
+| 16501003 | The form can not be operated by the current application. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -388,7 +444,14 @@ Converts a temporary widget to a normal one. This API uses a promise to return t
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501002 | The number of forms exceeds upper bound. |
+| 16501003 | The form can not be operated by the current application. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -429,7 +492,12 @@ Instructs the widget framework to make a widget visible. After this API is calle
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -475,7 +543,12 @@ Instructs the widget framework to make a widget visible. After this API is calle
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -516,7 +589,12 @@ Instructs the widget framework to make a widget invisible. After this API is cal
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -562,7 +640,12 @@ Instructs the widget framework to make a widget invisible. After this API is cal
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -603,7 +686,13 @@ Instructs the widget framework to make a widget updatable. After this API is cal
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
+| 16501003 | The form can not be operated by the current application. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -649,7 +738,13 @@ Instructs the widget framework to make a widget updatable. After this API is cal
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
+| 16501003 | The form can not be operated by the current application. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -690,7 +785,14 @@ Instructs the widget framework to make a widget not updatable. After this API is
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -736,7 +838,14 @@ Instructs the widget framework to make a widget not updatable. After this API is
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -770,6 +879,14 @@ Checks whether the system is ready. This API uses an asynchronous callback to re
 | ------ | ------ | ---- | ------- |
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the check is successful, **error** is undefined; otherwise, **error** is an error object.|
 
+**Error codes**
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 202 | The application is not a system application.   |
+| 401 | If the input parameter is not valid parameter. |
+|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
 **Example**
 
 ```ts
@@ -800,6 +917,13 @@ Checks whether the system is ready. This API uses a promise to return the result
 | -------- | -------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 202 | The application is not a system application.   |
+|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
 **Example**
 
 ```ts
@@ -825,6 +949,18 @@ Obtains the widget information provided by all applications on the device. This 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **System capability**: SystemCapability.Ability.Form
+
+**Error codes**
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
+|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Parameters**
 
@@ -859,6 +995,17 @@ Obtains the widget information provided by all applications on the device. This 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **System capability**: SystemCapability.Ability.Form
+
+**Error codes**
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
+|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Return value**
 
@@ -903,7 +1050,13 @@ Obtains the widget information provided by a given application on the device. Th
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -946,7 +1099,13 @@ Obtains the widget information provided by a given application on the device. Th
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -982,7 +1141,7 @@ Obtains the widget information provided by a given application on the device. Th
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
 | bundleName | string | Yes| Bundle name of the application.|
-| moduleName | string | No|  Module name.|
+| moduleName | string | No|  Module name. By default, no value is passed.|
 
 **Return value**
 
@@ -994,7 +1153,13 @@ Obtains the widget information provided by a given application on the device. Th
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -1029,6 +1194,18 @@ Deletes invalid widgets from the list. This API uses an asynchronous callback to
 | ------ | ------ | ---- | ------- |
 | formIds | Array&lt;string&gt; | Yes  | List of valid widget IDs.|
 | callback | AsyncCallback&lt;number&gt; | Yes| Callback used to return the result. If the invalid widgets are deleted, **error** is undefined and **data** is the number of widgets deleted; otherwise, **error** is an error object.|
+
+**Error codes**
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
+|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
@@ -1071,6 +1248,18 @@ Deletes invalid widgets from the list. This API uses a promise to return the res
 | :------------ | :---------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the number of widgets deleted.|
 
+**Error codes**
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
+|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
 **Example**
 
 ```ts
@@ -1109,7 +1298,13 @@ Obtains the widget state. This API uses an asynchronous callback to return the r
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -1166,7 +1361,13 @@ Obtains the widget state. This API uses a promise to return the result.
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -1210,6 +1411,14 @@ Subscribes to widget uninstall events. This API uses an asynchronous callback to
 | type | string | Yes  | Event type. The value **'formUninstall'** indicates a widget uninstallation event.|
 | callback | Callback&lt;string&gt; | Yes| Callback used to return the widget ID.|
 
+**Error codes**
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
 **Example**
 
 ```ts
@@ -1235,6 +1444,14 @@ Unsubscribes from widget uninstall events. This API uses an asynchronous callbac
 | ------ | ------ | ---- | ------- |
 | type | string | Yes  | Event type. The value **'formUninstall'** indicates a widget uninstallation event.|
 | callback | Callback&lt;string&gt; | No| Callback used to return the widget ID. If it is left unspecified, it indicates the callback for all the events that have been subscribed.<br> The value must be the same as that in **on('formUninstall')**.|
+
+**Error codes**
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 
@@ -1269,7 +1486,13 @@ Instructs the widgets to make themselves visible. This API uses an asynchronous 
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
+| 16501003 | The form can not be operated by the current application. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -1316,7 +1539,13 @@ Instructs the widgets to make themselves visible. This API uses a promise to ret
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
+| 16501003 | The form can not be operated by the current application. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -1358,7 +1587,13 @@ Instructs the widgets to enable or disable updates. This API uses an asynchronou
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
+| 16501003 | The form can not be operated by the current application. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -1405,7 +1640,13 @@ Instructs the widgets to enable or disable updates. This API uses a promise to r
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
+| 16501003 | The form can not be operated by the current application. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -1446,7 +1687,13 @@ Shares a specified widget with a remote device. This API uses an asynchronous ca
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -1494,7 +1741,13 @@ Shares a specified widget with a remote device. This API uses a promise to retur
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
 |For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
@@ -1535,9 +1788,14 @@ Notifies that the privacy protection status of the specified widgets changes. Th
 
 **Error codes**
 
-| Error Code ID                                                    | Error Message          |
-| ------------------------------------------------------------ | ------------------ |
-| 401                                                          | Incorrect input parameter.|
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
 | For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|                    |
 
 **Example**
@@ -1582,9 +1840,14 @@ Notifies that the privacy protection status of the specified widgets changes. Th
 
 **Error codes**
 
-| Error Code ID                                                    | Error Message          |
-| ------------------------------------------------------------ | ------------------ |
-| 401                                                          | Incorrect input parameter.|
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16501000 | An internal functional error occurred. |
 | For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|                    |
 
 ```ts
@@ -1594,6 +1857,100 @@ let formIds = new Array('12400633174999288', '12400633174999289');
 try {
   formHost.notifyFormsPrivacyProtected(formIds, true).then(() => {
     console.log('formHost notifyFormsPrivacyProtected success');
+  }).catch((error) => {
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
+  });
+} catch(error) {
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## acquireFormData<sup>10+</sup>
+
+acquireFormData(formId: string, callback: AsyncCallback\<void>): void
+
+Requests data from the widget provider. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| formId | string | Yes  | Widget ID.|
+
+**Error codes**
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+**Example**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+
+let formId = '12400633174999288';
+try {
+  formHost.acquireFormData(formId, (error) => {
+    if (error) {
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
+    }
+  });
+} catch(error) {
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## acquireFormData<sup>10+</sup>
+
+function acquireFormData(formId: string): Promise\<void\>;
+
+Requests data from the widget provider. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name     | Type           | Mandatory| Description                            |
+| ----------- | --------------- | ---- | -------------------------------- |
+| formId | string | Yes  | Widget ID.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+**Example**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+
+let formId = '12400633174999288';
+try {
+  formHost.acquireFormData(formId).then(() => {
+    console.log('formHost acquireFormData success');
   }).catch((error) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });

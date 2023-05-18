@@ -199,7 +199,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | 名称        | 类型                   | 必填   | 说明         |
 | --------- | -------------------- | ---- | ---------- |
 | authType  | number               | 是    | 认证类型。      |
-| extraInfo | {[key:string]&nbsp;:&nbsp;any} | 否    | 认证参数可扩展字段。 |
+| extraInfo | {[key:string]&nbsp;:&nbsp;any} | 否    | 认证参数可扩展字段。可选，默认为undefined。 |
 
 ## AuthInfo
 
@@ -211,7 +211,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | --------- | -------------------- | ---- | ---------- |
 | authType  | number               | 是    | 认证类型。      |
 | token     | number               | 是    | 认证Token。   |
-| extraInfo | {[key:string]&nbsp;:&nbsp;any} | 否    | 认证信息可扩展字段。 |
+| extraInfo | {[key:string]&nbsp;:&nbsp;any} | 否    | 认证信息可扩展字段。可选，默认为undefined。 |
 
 ## PublishInfo<sup>9+</sup>
 
@@ -487,6 +487,8 @@ getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
   ```js
   try {
+    // 设备网络标识，可以从可信设备列表中获取
+    let networkId = "xxxxxxx"
     dmInstance.getDeviceInfo(networkId, (err, data) => {
     if (err) {
       console.error("getDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
@@ -530,6 +532,8 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 **示例：**
 
   ```js
+  // 设备网络标识，可以从可信设备列表中获取
+  let networkId = "xxxxxxx"
   dmInstance.getDeviceInfo(networkId).then((data) => {
     console.log('get device info: ' + JSON.stringify(data));
   }).catch((err) => {
@@ -541,7 +545,7 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 
 startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
-发现周边设备。
+发现周边设备。发现状态持续两分钟，超过两分钟，会停止发现，最大发现数量99个。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -585,7 +589,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
 startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
-发现周边设备。
+发现周边设备。发现状态持续两分钟，超过两分钟，会停止发现，最大发现数量99个。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -594,7 +598,7 @@ startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
   | 参数名            | 类型                       | 必填   | 说明    |
   | ------------- | ------------------------------- | ---- | -----  |
   | subscribeInfo | [SubscribeInfo](#subscribeinfo) | 是   | 发现信息。 |
-  | filterOptions | string                          | 否   | 发现设备过滤信息。|
+  | filterOptions | string                          | 否   | 发现设备过滤信息。可选，默认为undefined，发现未上线设备。|
 
 **错误码：**
 
@@ -673,7 +677,7 @@ stopDeviceDiscovery(subscribeId: number): void
 
 publishDeviceDiscovery(publishInfo: PublishInfo): void
 
-发布设备发现。
+发布设备发现。发布状态持续两分钟，超过两分钟会停止发布。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -944,11 +948,11 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
     "userId" : "123"
   }
   try {
-    dmClass.requestCredentialRegisterInfo(credentialInfo, (data) => {
+    dmInstance.requestCredentialRegisterInfo(credentialInfo, (data) => {
       if (data) {
           console.info("requestCredentialRegisterInfo result:" + JSON.stringify(data));
       } else {
-          console.info.push("requestCredentialRegisterInfo result: data is null");
+          console.info("requestCredentialRegisterInfo result: data is null");
       }
     });
   } catch (err) {
@@ -995,11 +999,11 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
     ]
   }
   try {
-    dmClass.importCredential(credentialInfo, (data) => {
+    dmInstance.importCredential(credentialInfo, (data) => {
       if (data) {
           console.info("importCredential result:" + JSON.stringify(data));
       } else {
-          console.info.push("importCredential result: data is null");
+          console.info("importCredential result: data is null");
       }
     });
   } catch (err) {
@@ -1031,11 +1035,11 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
     "userId" : "123"
   }
   try {
-    dmClass.deleteCredential(queryInfo, (data) => {
+    dmInstance.deleteCredential(queryInfo, (data) => {
       if (data) {
           console.info("deleteCredential result:" + JSON.stringify(data));
       } else {
-          console.info.push("deleteCredential result: data is null");
+          console.info("deleteCredential result: data is null");
       }
     });
   } catch (err) {

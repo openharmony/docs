@@ -22,11 +22,11 @@ PageAbility作为可见Ability，可以通过startAbility启动有界面的且�
 ```ts
 {
   "module": {
-    // ...
+    ...
     "abilities": [
       {
         "visible": "true",
-        // ...
+        ...
       }
     ]
   }

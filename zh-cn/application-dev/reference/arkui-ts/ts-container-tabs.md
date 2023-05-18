@@ -18,11 +18,11 @@ Tabs(value?: {barPosition?: BarPosition, index?: number, controller?: [TabsContr
 
 **参数：**
 
-| 参数名         | 参数类型                              | 必填   | 参数描述                                     |
-| ----------- | --------------------------------- | ---- | ---------------------------------------- |
-| barPosition | BarPosition                       | 否    | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start   |
-| index       | number                            | 否    | 设置初始页签索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>设置不同值时，默认生效切换动效，可以设置animationDuration为0关闭动画。 |
-| controller  | [TabsController](#tabscontroller) | 否    | 设置Tabs控制器。                               |
+| 参数名      | 参数类型                          | 必填 | 参数描述                                                     |
+| ----------- | --------------------------------- | ---- | ------------------------------------------------------------ |
+| barPosition | BarPosition                       | 否   | 设置Tabs的页签位置。<br/>默认值：BarPosition.Start           |
+| index       | number                            | 否   | 设置初始页签索引。<br/>默认值：0<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>可选值为[0, TabContent子节点数量-1]。<br/>设置不同值时，默认生效切换动效，可以设置animationDuration为0关闭动画。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| controller  | [TabsController](#tabscontroller) | 否   | 设置Tabs控制器。                                             |
 
 ## BarPosition枚举说明
 

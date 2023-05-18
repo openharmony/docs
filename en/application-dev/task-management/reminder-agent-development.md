@@ -7,14 +7,14 @@ The agent-powered reminder feature provides APIs for publishing background remin
 
 **Table 1** Major APIs in reminderAgentManager
 
-| API                                                          | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&gt;): void<br>publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt; | Publishes a scheduled reminder.<br>The maximum number of valid notifications (excluding expired ones that will not pop up again) is 30 for one application and 2000 for the entire system. |
-| cancelReminder(reminderId: number, callback: AsyncCallback&lt;void&gt;): void<br>cancelReminder(reminderId: number): Promise&lt;void&gt; | Cancels a specified reminder. (The value of **reminderId** is obtained from the return value of **publishReminder**.) |
-| getValidReminders(callback: AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;): void<br>getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt; | Obtains all valid reminders set by the current application.  |
-| cancelAllReminders(callback: AsyncCallback&lt;void&gt;): void<br>cancelAllReminders(): Promise&lt;void&gt; | Cancels all reminders set by the current application.        |
-| addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback&lt;void&gt;): void<br>addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt; | Registers a **NotificationSlot** instance to be used by the reminder. |
-| removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback&lt;void&gt;): void<br>removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt; | Removes a **NotificationSlot** instance of a specified type. |
+| API                                     | Description                                      |
+| ---------------------------------------- | ---------------------------------------- |
+| publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback&lt;number&gt;): void<br>publishReminder(reminderReq: ReminderRequest): Promise&lt;number&gt; | Publishes a scheduled reminder.<br>The maximum number of valid notifications (excluding expired ones that will not pop up again) is 30 for one application<br>and 2000 for the entire system.|
+| cancelReminder(reminderId: number, callback: AsyncCallback&lt;void&gt;): void<br>cancelReminder(reminderId: number): Promise&lt;void&gt; | Cancels a specified reminder. (The value of **reminderId** is obtained from the return value of **publishReminder**.)|
+| getValidReminders(callback: AsyncCallback&lt;Array&lt;ReminderRequest&gt;&gt;): void<br>getValidReminders(): Promise&lt;Array&lt;ReminderRequest&gt;&gt; | Obtains all valid reminders set by the current application.                       |
+| cancelAllReminders(callback: AsyncCallback&lt;void&gt;): void<br>cancelAllReminders(): Promise&lt;void&gt; | Cancels all reminders set by the current application.                          |
+| addNotificationSlot(slot: NotificationSlot, callback: AsyncCallback&lt;void&gt;): void<br>addNotificationSlot(slot: NotificationSlot): Promise&lt;void&gt; | Registers a **NotificationSlot** instance to be used by the reminder.           |
+| removeNotificationSlot(slotType: notification.SlotType, callback: AsyncCallback&lt;void&gt;): void<br>removeNotificationSlot(slotType: notification.SlotType): Promise&lt;void&gt; | Removes a **NotificationSlot** instance of a specified type.                |
 
 
 ## How to Develop
@@ -37,7 +37,7 @@ The agent-powered reminder feature provides APIs for publishing background remin
       let targetReminderAgent: reminderAgentManager.ReminderRequestTimer = {
         reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_TIMER, // The reminder type is countdown timer.
         triggerTimeInSeconds: 10,
-        actionButton: [ // Set the button type and title displayed in the reminder notification. The Close and Snooze types are supported, and the Snooze type must be used together with the snoozeTimes and timeInterval parameters.
+        actionButton: [ // Set the button type and title displayed for the reminder in the notification panel.
           {
             title: 'close',
             type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
@@ -73,7 +73,7 @@ The agent-powered reminder feature provides APIs for publishing background remin
         },
         repeatMonths: [1], // Month in which the reminder repeats.
         repeatDays: [1], // Date on which the reminder repeats.
-        actionButton: [ // Set the button type and title displayed in the reminder notification. The Close and Snooze types are supported, and the Snooze type must be used together with the snoozeTimes and timeInterval parameters.
+        actionButton: [ // Set the button type and title displayed for the reminder in the notification panel.
           {
             title: 'close',
             type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
@@ -93,7 +93,7 @@ The agent-powered reminder feature provides APIs for publishing background remin
         },
         ringDuration: 5, // Ringing duration, in seconds.
         snoozeTimes: 2, // Number of reminder snooze times.
-        timeInterval: 5, // Reminder snooze interval, in seconds.
+        timeInterval: 300, // Reminder snooze interval, in seconds.
         title: 'this is title', // Reminder title.
         content: 'this is content', // Reminder content.
         expiredContent: 'this reminder has expired', // Content to be displayed after the reminder expires.
@@ -110,7 +110,7 @@ The agent-powered reminder feature provides APIs for publishing background remin
         hour: 23, // Hour portion of the reminder time.
         minute: 9, // Minute portion of the reminder time.
         daysOfWeek: [2], // Days of a week when the reminder repeats..
-        actionButton: [ // Set the button type and title displayed in the reminder notification. The Close and Snooze types are supported, and the Snooze type must be used together with the snoozeTimes and timeInterval parameters.
+        actionButton: [ // Set the button type and title displayed for the reminder in the notification panel.
           {
             title: 'close',
             type: reminderAgentManager.ActionButtonType.ACTION_BUTTON_TYPE_CLOSE
@@ -130,7 +130,7 @@ The agent-powered reminder feature provides APIs for publishing background remin
         },
         ringDuration: 5, // Ringing duration, in seconds.
         snoozeTimes: 2, // Number of reminder snooze times.
-        timeInterval: 5, // Reminder snooze interval, in seconds.
+        timeInterval: 300, // Reminder snooze interval, in seconds.
         title: 'this is title', // Reminder title.
         content: 'this is content', // Reminder content.
         expiredContent: 'this reminder has expired', // Content to be displayed after the reminder expires.

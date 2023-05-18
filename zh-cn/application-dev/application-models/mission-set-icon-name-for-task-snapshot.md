@@ -20,8 +20,10 @@
 ```ts
 let imagePixelMap: PixelMap = undefined; // 需要获取图片PixelMap信息
 
-this.context.setMissionIcon(imagePixelMap, (err) => {
-  console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
+context.setMissionIcon(imagePixelMap, (err) => {
+  if (err.code) {
+    console.error(`Failed to set mission icon. Code is ${err.code}, message is ${err.message}`);
+  }
 })
 ```
 
@@ -36,9 +38,9 @@ this.context.setMissionIcon(imagePixelMap, (err) => {
 
 ```ts
 this.context.setMissionLabel('test').then(() => {
-  console.info('setMissionLabel succeeded.');
+  console.info('Succeeded in seting mission label.');
 }).catch((err) => {
-  console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to set mission label. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
