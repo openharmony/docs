@@ -13,7 +13,7 @@
 
 - 显示当前正在进行的事件，如下载等。
 
-OpenHarmony通过ANS（Advanced Notification Service，通知系统服务）对通知类型的消息进行管理，支持多种通知类型，如基础类型通知、进度条类型通知、后台代理提醒。
+OpenHarmony通过ANS（Advanced Notification Service，通知系统服务）对通知类型的消息进行管理，支持多种通知类型，例如基础类型通知、进度条类型通知、后台代理提醒。
 
 
 ## 通知业务流程
@@ -24,6 +24,7 @@ OpenHarmony通过ANS（Advanced Notification Service，通知系统服务）对�
 
 系统应用还支持通知相关配置，如使能开关、配置参数由系统配置发起请求，发送到通知子系统存储到内存和数据库。
 
+**图1** 通知业务流程  
 ![zh-cn_image_0000001466582017](figures/zh-cn_image_0000001466582017.png)
 
 ## 相关实例
