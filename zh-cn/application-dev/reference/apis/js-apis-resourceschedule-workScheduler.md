@@ -253,7 +253,7 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 ```
 
 ## workScheduler.obtainAllWorks
-obtainAllWorks(): Promise<Array\<WorkInfo>>
+obtainAllWorks(): Promise\<Array\<WorkInfo>>
 
 获取与当前应用程序关联的所有工作，使用Promise形式返回。
 
