@@ -636,7 +636,7 @@ removeCandidateConfig(networkId: number): Promise&lt;void&gt;
 
 	try {
 		let networkId = 0;
-		wifiManager.addCandidateConfig(networkId).then(result => {
+		wifiManager.removeCandidateConfig(networkId).then(result => {
 			console.info("result:" + JSON.stringify(result));
 		});	
 	}catch(error){
@@ -675,7 +675,7 @@ removeCandidateConfig(networkId: number, callback: AsyncCallback&lt;void&gt;): v
 
 	try {
 		let networkId = 0;
-		wifiManager.addCandidateConfig(networkId,(error,result) => {
+		wifiManager.removeCandidateConfig(networkId,(error,result) => {
 		console.info("result:" + JSON.stringify(result));
 		});	
 	}catch(error){
@@ -1568,7 +1568,7 @@ removeAllDeviceConfigs(): void
 	import wifi from '@ohos.wifiManager';
 
 	try {
-		wifiManager.removeAllNetwork();		
+		wifiManager.removeAllDeviceConfigs();		
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -1873,7 +1873,7 @@ setHotspotConfig(config: HotspotConfig): void
 			preSharedKey: "****",
 			maxConn: 0
 		}
-		let ret = wifiManager.isHotspotActive();
+		let ret = wifiManager.setHotspotConfig();
 		console.info("result:" + ret);		
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
@@ -1966,7 +1966,7 @@ getHotspotStations(): &nbsp;Array&lt;[StationInfo](#stationinfo9)&gt;
 	import wifi from '@ohos.wifiManager';
 
 	try {
-		let stations = wifiManager.getStations();
+		let stations = wifiManager.getHotspotStations();
 		console.info("result:" + JSON.stringify(stations));		
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
@@ -2132,7 +2132,7 @@ getCurrentP2pGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
 		console.info("get current P2P group: " + JSON.stringify(data));
 	});
 
-	wifi.getP2pLinkedInfo().then(data => {
+	wifi.getCurrentP2pGroup().then(data => {
 		console.info("get current P2P group: " + JSON.stringify(data));
 	});
 ```
@@ -2197,7 +2197,7 @@ getP2pPeerDevices(callback: AsyncCallback&lt;WifiP2pDevice[]&gt;): void
 		console.info("get P2P peer devices: " + JSON.stringify(data));
 	});
 
-	wifi.getP2pLinkedInfo().then(data => {
+	wifi.getP2pPeerDevices().then(data => {
 		console.info("get P2P peer devices: " + JSON.stringify(data));
 	});
 ```
@@ -2288,7 +2288,7 @@ getP2pLocalDevice(callback: AsyncCallback&lt;WifiP2pDevice&gt;): void
 		console.info("get P2P local device: " + JSON.stringify(data));
 	});
 
-	wifi.getP2pLinkedInfo().then(data => {
+	wifi.getP2pLocalDevice().then(data => {
 		console.info("get P2P local device: " + JSON.stringify(data));
 	});
 ```
@@ -2565,7 +2565,7 @@ stopDiscoverP2pDevices(): void
 	import wifi from '@ohos.wifiManager';
 
 	try {
-		wifiManager.stopDiscoverDevices();	
+		wifiManager.stopDiscoverP2pDevices();	
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -2731,7 +2731,7 @@ setP2pDeviceName(devName: string): void
 
 	try {
 		let name = "****";
-		wifiManager.setDeviceName(netId);	
+		wifiManager.setP2pDeviceName(netId);	
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
@@ -2787,7 +2787,7 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiStateChange"字符串。 |
-  | callback | Callback&lt;number&gt; | 否 | 需要取消订阅的回调函数。若无此函数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **错误码：**
 
@@ -2860,7 +2860,7 @@ off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiConnectionChange"字符串。 |
-  | callback | Callback&lt;number&gt; | 否 |  需要取消订阅的回调函数。若无此函数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;number&gt; | 否 | 连接状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **错误码：**
 
@@ -2917,7 +2917,7 @@ off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 固定填"wifiScanStateChange"字符串。 |
-| callback | Callback&lt;number&gt; | 否 |  需要取消订阅的回调函数。若无此函数，则取消当前类型的所有订阅。 |
+| callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **错误码：**
 
@@ -2967,7 +2967,7 @@ off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiRssiChange"字符串。 |
-  | callback | Callback&lt;number&gt; | 否 |  需要取消订阅的回调函数。若无此函数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **错误码：**
 
@@ -3026,7 +3026,7 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"hotspotStateChange"字符串。 |
-  | callback | Callback&lt;number&gt; | 否 |  需要取消订阅的回调函数。若无此函数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **错误码：**
 
@@ -3086,7 +3086,7 @@ off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pStateChange"字符串。 |
-  | callback | Callback&lt;number&gt; | 否 |  需要取消订阅的回调函数。若无此函数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **错误码：**
 
@@ -3136,7 +3136,7 @@ off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pConnectionChange"字符串。 |
-  | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | 否 |  需要取消订阅的回调函数。若无此函数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo9)&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **错误码：**
 
@@ -3186,7 +3186,7 @@ off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pDeviceChange"字符串。 |
-  | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | 否 |  需要取消订阅的回调函数。若无此函数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **错误码：**
 
@@ -3236,7 +3236,7 @@ off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pPeerDeviceChange"字符串。 |
-  | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | 否 |  需要取消订阅的回调函数。若无此函数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice9)&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **错误码：**
 
@@ -3286,7 +3286,7 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pPersistentGroupChange"字符串。 |
-  | callback | Callback&lt;void&gt; | 否 |  需要取消订阅的回调函数。若无此函数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;void&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **错误码：**
 
@@ -3343,7 +3343,7 @@ off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pDiscoveryChange"字符串。 |
-  | callback | Callback&lt;number&gt; | 否 |  需要取消订阅的回调函数。若无此函数，则取消当前类型的所有订阅。 |
+  | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **错误码：**
 
