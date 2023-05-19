@@ -1,6 +1,8 @@
 # @ohos.deviceAttest (设备证明)
 
-该模块提供设备证明结果的查询接口。
+为了支撑南北向生态统一，设备信息会通过云端校验机制保持统一。
+通过本模块接口，可查询设备硬件和软件信息的端云校验结果。
+设备信息详情请看[OpenHarmony兼容性平台](https://www.openharmony.cn/certification/document/pcs)。
 
 > **说明：**
 >
@@ -16,11 +18,9 @@ import deviceAttest from '@ohos.deviceAttest';
 
 ## deviceAttest.getAttestStatus
 
-getAttestStatus(callback: AsyncCallback&lt;BatteryStatsInfo&gt;) : void
+getAttestStatus(callback: AsyncCallback&lt;AttestResultInfo&gt;) : void
 
-获取设备证明结果详细信息。使用callback异步回调。
-
-**系统接口：** 此接口为系统接口。
+获取端云校验结果的详细信息。使用callback异步回调。
 
 **系统能力：** SystemCapability.XTS.DeviceAttest
 
@@ -28,15 +28,13 @@ getAttestStatus(callback: AsyncCallback&lt;BatteryStatsInfo&gt;) : void
 
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<[AttestResultInfo](#AttestResultInfo)> | 是   | 回调函数。当获取设备证明结果详细信息成功，error为undefined，result为获取到的[AttestResultInfo](#AttestResultInfo)>；否则为错误对象。 |
+| callback | AsyncCallback&lt;[AttestResultInfo](#AttestResultInfo)&gt; | 是   | 回调函数。当获取端云校验结果的详细信息成功，error为undefined，result为获取到的[AttestResultInfo](#AttestResultInfo)；否则为错误对象。 |
 
 **错误码：**
 
-| 错误码ID  | 错误信息       |
-|----------|----------------|
-| 202      | 应用为非系统应用 |
-| 401      | 入参检查失败     |
-| 20000001 | 获取设备证明结果失败。 |
+| 错误码ID  | 错误信息             |
+|----------|----------------------|
+| 20000001 | system service exception |
 
 **示例：**
 
@@ -63,9 +61,7 @@ try {
 
 getAttestStatus() : Promise&lt;AttestResultInfo&gt;
 
-获取设备证明结果详细信息。使用Promise异步回调。
-
-**系统接口：** 此接口为系统接口。
+获取端云校验结果的详细信息。使用Promise异步回调。
 
 **系统能力：** SystemCapability.XTS.DeviceAttest
 
@@ -73,15 +69,13 @@ getAttestStatus() : Promise&lt;AttestResultInfo&gt;
 
 | 类型                                                  | 说明                            |
 | ----------------------------------------------------- | ------------------------------- |
-| Promise<[AttestResultInfo](#AttestResultInfo)> | Promise对象，返回设备证明结果详细信息。 |
+| Promise&lt;[AttestResultInfo](#AttestResultInfo)&gt; | Promise对象，返回端云校验结果的详细信息。 |
 
 **错误码：**
 
-| 错误码ID  | 错误信息       |
-|----------|----------------|
-| 202      | 应用为非系统应用 |
-| 401      | 入参检查失败     |
-| 20000001 | 获取设备证明结果失败。 |
+| 错误码ID  | 错误信息             |
+|----------|----------------------|
+| 20000001 | system service exception |
 
 **示例：**
 
@@ -106,9 +100,7 @@ try {
 
 getAttestStatusSync() : AttestResultInfo
 
-获取设备证明结果详细信息。使用同步调用。
-
-**系统接口：** 此接口为系统接口。
+以同步方式获取端云校验结果的详细信息。
 
 **系统能力：** SystemCapability.XTS.DeviceAttest
 
@@ -116,15 +108,13 @@ getAttestStatusSync() : AttestResultInfo
 
 | 类型                                                  | 说明                            |
 | ----------------------------------------------------- | ------------------------------- |
-| [AttestResultInfo](#AttestResultInfo) | 返回设备证明结果详细信息。 |
+| [AttestResultInfo](#AttestResultInfo) | 返回端云校验结果的详细信息。 |
 
 **错误码：**
 
-| 错误码ID  | 错误信息       |
-|----------|----------------|
-| 202      | 应用为非系统应用 |
-| 401      | 入参检查失败     |
-| 20000001 | 获取设备证明结果失败。 |
+| 错误码ID  | 错误信息             |
+|----------|----------------------|
+| 20000001 | system service exception |
 
 **示例：**
 
@@ -144,9 +134,7 @@ try {
 
 ## AttestResultInfo
 
-设备证明结果详细信息。
-
-**系统接口：** 此接口为系统接口。
+端云校验结果的详细信息。
 
 **系统能力：** SystemCapability.XTS.DeviceAttest
 
@@ -156,22 +144,13 @@ try {
 | --------------------- | --------------------- | ---- | ---- | ---------------------- |
 | authResult            | number               | 是   | 否   | 设备硬件信息校验结果。    |
 | softwareResult        | number               | 是   | 否   | 设备软件信息校验结果。    |
-| softwareResultDetail  | Array&lt;number&gt;  | 是   | 否   | 设备软件信息校验结果详细说明  |
-| ticket                | string               | 是   | 否   | 耗电的值，单位毫安时。 |
+| softwareResultDetail  | Array&lt;number&gt;  | 是   | 否   | 设备软件信息校验结果详细说明</br>softwareResultDetail[0]:版本Id的校验结果</br>softwareResultDetail[1]:安全补丁标签的校验结果</br>softwareResultDetail[2]:版本Hash的校验结果</br>softwareResultDetail[3]:系统能力集合的校验结果</br>softwareResultDetail[4]:保留位  |
+| ticket                | string               | 是   | 否   | 云侧下发的软证书。</br>设备硬件信息校验结果通过后有值；校验结果失败，该值为空        |
 
-## softwareResultDetail
-
-表示设备软件信息校验结果的详细说明。
-
-**系统接口：** 此接口为系统接口。
-
-**系统能力：** SystemCapability.XTS.DeviceAttest
-
-| 名称                         | 说明                        |
-| --------------------------  | --------------------------- |
-| softwareResultDetail[0]     | 版本Id的校验结果。        |
-| softwareResultDetail[1]     | 安全补丁标签的校验结果。      |
-| softwareResultDetail[2]     | 版本Hash的校验结果。      |
-| softwareResultDetail[3]     | 系统能力集合的校验结果。 |
-| softwareResultDetail[4]     | 保留位  |
+> **说明：**
+>
+> - 类型为number的校验结果，其值代表含义相同。
+>-2：未认证；
+>-1：认证失败；
+> 0：认证通过；
 
