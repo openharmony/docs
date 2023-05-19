@@ -130,7 +130,7 @@ GridRow(option?: {columns?: number | GridRowColumnOption, gutter?: Length | Gutt
 
 | 名称                       | 参数类型                            | 描述                                               |
 | ----------------------- | ----------------------------------- | ------------------------------------------- |
-| alignItems<sup>10+</sup>             | ItemAlign | 设置GridRow中的GridCol垂直主轴方向对齐方式，默认值：ItemAlign.Start<br/>说明：<br/>在ItemAlign中，实际支持的参数枚举值仅为Start、Center、End、Stretch。<br/>GridCol本身也可通过alignSelf([ItemAlign](ts-appendix-enums.md#itemalign))设置自身对齐方式。当上述两种对齐方式都设置时，以GridCol自身设置为准。<br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
+| alignItems<sup>10+</sup>             | ItemAlign | 设置GridRow中的GridCol垂直主轴方向对齐方式，默认值：ItemAlign.Start<br/>**说明**：<br/>ItemAlign支持的枚举：ItemAlign.Start、ItemAlign.Center、ItemAlign.End、ItemAlign.Stretch。<br/>GridCol本身也可通过alignSelf([ItemAlign](ts-appendix-enums.md#itemalign))设置自身对齐方式。当上述两种对齐方式都设置时，以GridCol自身设置为准。<br/>从API version 10开始，该接口支持在ArkTS卡片中使用。 |
 
 
 ## 事件
