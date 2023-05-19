@@ -118,7 +118,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
   }
 ```
 
-## workScheduler.getWorkStatus:callback
+## workScheduler.getWorkStatus
 getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 获取工作的最新状态，使用Callback形式返回。
@@ -161,7 +161,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
   }
 ```
 
-## workScheduler.getWorkStatus:promise
+## workScheduler.getWorkStatus
 getWorkStatus(workId: number): Promise\<WorkInfo>
 
 获取工作的最新状态，使用Promise形式返回。
@@ -207,7 +207,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
   }
 ```
 
-## workScheduler.obtainAllWorks:callback
+## workScheduler.obtainAllWorks
 obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
 获取与当前应用程序关联的所有工作，使用Callback形式返回。
@@ -252,7 +252,7 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
   }
 ```
 
-## workScheduler.obtainAllWorks:promise
+## workScheduler.obtainAllWorks
 obtainAllWorks(): Promise\<Array\<WorkInfo>>
 
 获取与当前应用程序关联的所有工作，使用Promise形式返回。
@@ -317,7 +317,7 @@ stopAndClearWorks(): void
   }
 ```
 
-## workScheduler.isLastWorkTimeOut:callback
+## workScheduler.isLastWorkTimeOut
 isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
 检查指定工作的最后一次执行是否为超时操作，使用Callback形式返回。
@@ -364,7 +364,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
   }
 ```
 
-## workScheduler.isLastWorkTimeOut:promise
+## workScheduler.isLastWorkTimeOut
 isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 检查指定工作的最后一次执行是否为超时操作，使用Promise形式返回。
