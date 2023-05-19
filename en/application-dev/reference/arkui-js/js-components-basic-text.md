@@ -137,4 +137,4 @@ The [universal methods](../arkui-js/js-components-common-methods.md) are support
 ```
 
 
-![en-us_image_0000001167823076](figures/text.png)
+![en-us_image_0000001167823076](figures/js-text.png)
