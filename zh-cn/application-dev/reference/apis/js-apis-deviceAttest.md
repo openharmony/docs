@@ -1,8 +1,7 @@
 # @ohos.deviceAttest (设备证明)
 
-为了支撑南北向生态统一，设备信息会通过云端校验机制保持统一。
-通过本模块接口，可查询设备硬件和软件信息的端云校验结果。
-设备信息详情请看[OpenHarmony兼容性平台](https://www.openharmony.cn/certification/document/pcs)。
+为了证明设备是OpenHarmony生态中的合法设备，设备证明模块会把设备信息通过云端进行一致性合法校验。
+通过本模块接口，可查询设备在云端校验的结果。
 
 > **说明：**
 >
@@ -144,13 +143,9 @@ try {
 | --------------------- | --------------------- | ---- | ---- | ---------------------- |
 | authResult            | number               | 是   | 否   | 设备硬件信息校验结果。    |
 | softwareResult        | number               | 是   | 否   | 设备软件信息校验结果。    |
-| softwareResultDetail  | Array&lt;number&gt;  | 是   | 否   | 设备软件信息校验结果详细说明</br>softwareResultDetail[0]:版本Id的校验结果</br>softwareResultDetail[1]:安全补丁标签的校验结果</br>softwareResultDetail[2]:版本Hash的校验结果</br>softwareResultDetail[3]:系统能力集合的校验结果</br>softwareResultDetail[4]:保留位  |
-| ticket                | string               | 是   | 否   | 云侧下发的软证书。</br>设备硬件信息校验结果通过后有值；校验结果失败，该值为空        |
+| softwareResultDetail  | Array&lt;number&gt;  | 是   | 否   | 设备软件信息校验结果详细说明<br/> - softwareResultDetail[0]:版本Id的校验结果；<br/>- softwareResultDetail[1]:安全补丁标签的校验结果；<br/>- softwareResultDetail[2]:版本Hash的校验结果；<br/>- softwareResultDetail[3]:系统能力集合的校验结果；<br/>- softwareResultDetail[4]:保留位。  |
+| ticket                | string               | 是   | 否   | 云侧下发的软证书。<br/>设备硬件信息校验结果通过后有值；校验结果失败，该值为空        |
 
 > **说明：**
 >
-> - 类型为number的校验结果，其值代表含义相同。
->-2：未认证；
->-1：认证失败；
-> 0：认证通过；
-
+> - 设备硬件信息和设备软件信息的校验结果返回值有-2、-1、0。-2表示未认证，-1表示认证失败，0表示认证通过。
