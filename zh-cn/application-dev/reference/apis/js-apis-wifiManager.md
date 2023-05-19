@@ -257,6 +257,37 @@ WLAN热点信息。
 | WIFI_SEC_TYPE_WAPI_PSK<sup>9+</sup> | 9 | WAPI-PSK加密类型。 |
 
 
+## WifiBandType<sup>10+</sup>
+
+表示WIFI频段类型的枚举。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| **名称** | **值** | **说明** |
+| -------- | -------- | -------- |
+| WIFI_BAND_NONE | 0 | 无效频段类型。 |
+| WIFI_BAND_2G | 1 | 2.4G频段类型。 |
+| WIFI_BAND_5G | 2 | 5G频段类型。 |
+| WIFI_BAND_6G | 3 | 6G频段类型。 |
+| WIFI_BAND_60G | 4 | 60G频段类型。 |
+
+## WifiStandard<sup>10+</sup>
+
+表示WIFI标准的枚举。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| **名称** | **值** | **说明** |
+| -------- | -------- | -------- |
+| WIFI_STANDARD_UNDEFINED | 0 | 无效WIFI标准类型。 |
+| WIFI_STANDARD_11A | 1 | 802.11a WiFi标准类型。 |
+| WIFI_STANDARD_11B | 2 | 802.11b WiFi标准类型。 |
+| WIFI_STANDARD_11G | 3 | 802.11g WiFi标准类型。 |
+| WIFI_STANDARD_11N | 4 | 802.11n WiFi标准类型。 |
+| WIFI_STANDARD_11AC | 5 | 802.11ac WiFi标准类型。 |
+| WIFI_STANDARD_11AX | 6 | 802.11ax WiFi标准类型。 |
+| WIFI_STANDARD_11AD | 7 | 802.11ad WiFi标准类型。 |
+
 ## WifiInfoElem<sup>9+</sup>
 
 WLAN热点信息。
