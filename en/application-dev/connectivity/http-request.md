@@ -158,5 +158,4 @@ httpRequest.request2(
     httpRequest.destroy();
   }
 );
-
 ```

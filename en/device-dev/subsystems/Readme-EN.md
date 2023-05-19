@@ -74,6 +74,7 @@
       - [Plug-in Management](subsys-boot-init-plugin.md)
       - [Component-based Startup](subsys-boot-init-sub-unit.md)
       - [init Run Log Standardization](subsys-boot-init-log.md)
+      - [Seccomp Policy Development](subsys-boot-init-seccomp.md)
   - [appspawn Module](subsys-boot-appspawn.md)
   - [bootstrap Module](subsys-boot-bootstrap.md)
   - [FAQs](subsys-boot-faqs.md)
