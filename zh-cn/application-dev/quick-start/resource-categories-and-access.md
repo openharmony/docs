@@ -246,7 +246,7 @@ plural.json文件的内容如下：
 >
 > `$r`返回值为Resource对象，可通过[getStringValue](../reference/apis/js-apis-resource-manager.md#getstringvalue9) 方法获取对应的字符串。
 
-在xxx.ets文件中，可以使用在resources目录中定义的资源。结合[资源组目录](#资源组目录)中的“资源文件示例”，资源使用示例如下：
+在xxx.ets文件中，可以使用在resources目录中定义的资源。资源分类中[资源组目录](#资源组目录)下的“资源文件示例”显示了.json文件内容，包含color.json文件、string.json文件和plural.json文件。资源的具体使用方法如下：
 
 ```ts
 Text($r('app.string.string_hello'))
@@ -257,13 +257,14 @@ Text($r('app.string.string_world'))
   .fontColor($r('app.color.color_world'))
   .fontSize($r('app.float.font_world'))
 
-// 引用string.json资源，$r的第二个参数用于替换%s，value为"We will arrive at five of the clock"。
+// 引用string.json资源。Text中$r的第一个参数指定string资源，第二个参数用于替换string.json文件中的%s。
+//如下示例代码value为"We will arrive at five of the clock"。
 Text($r('app.string.message_arrive', "five of the clock"))
   .fontColor($r('app.color.color_hello'))
   .fontSize($r('app.float.font_hello'))
 
-// 引用plural$资源，第一个指定plural资源，第二个参数指定单复数的数量quantity，此处第三个数字为对%d的替换
-// 单数下value为"5 apple"，复数下value为"5 apples"。
+// 引用plural$资源。Text中$r的第一个指定plural资源，第二个参数用于指定单复数（在中文，单复数均使用other。在英文，one：代表单数，取值为1；other：代表复数，取值为大于等于1的整数），第三个参数用于替换%d
+// 如下示例代码为复数，value为"5 apples"。
 Text($r('app.plural.eat_apple', 5, 5))
   .fontColor($r('app.color.color_world'))
   .fontSize($r('app.float.font_world'))
