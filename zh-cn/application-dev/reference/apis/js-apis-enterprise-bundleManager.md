@@ -470,7 +470,7 @@ let wantTemp = {
 };
 let appIds = ["com.example.myapplication"];
 
-bundleManager.AddDisallowedInstallBundles(wantTemp, appIds, (error) => {
+bundleManager.addDisallowedInstallBundles(wantTemp, appIds, (error) => {
     if (error != null) {
         console.log("error code:" + error.code + " error message:" + error.message);
     }
@@ -516,7 +516,7 @@ let wantTemp = {
 };
 let appIds = ["com.example.myapplication"];
 
-bundleManager.AddDisallowedInstallBundles(wantTemp, appIds, 100, (error) => {
+bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100, (error) => {
     if (error != null) {
         console.log("error code:" + error.code + " error message:" + error.message);
     }
