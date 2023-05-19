@@ -89,7 +89,7 @@ getSetting(): InputMethodSetting
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800007 | Input method settings extension error. |
+| 12800007 |  settings extension error. |
 
 **示例：**
 
