@@ -18,8 +18,6 @@
     - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](js-apis-app-form-formExtensionAbility.md)
     - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)](js-apis-application-dataShareExtensionAbility.md)
     - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](js-apis-application-staticSubscriberExtensionAbility.md)
-  - Stage模型能力的接口(待停用)
-    - [@ohos.application.EnvironmentCallback (EnvironmentCallback)](js-apis-application-environmentCallback.md)
   - FA模型能力的接口
     - [@ohos.ability.ability (Ability)](js-apis-ability-ability.md)
     - [@ohos.ability.featureAbility (FeatureAbility模块)](js-apis-ability-featureAbility.md)
@@ -336,6 +334,7 @@
   - [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](js-apis-mouseevent.md)
   - [@ohos.multimodalInput.pointer (鼠标指针)](js-apis-pointer.md)
   - [@ohos.multimodalInput.touchEvent (触摸输入事件)](js-apis-touchevent.md)
+  - [@ohos.multimodalInput.shortKey (快捷键)](js-apis-shortKey.md)
   - [@ohos.power (系统电源管理)](js-apis-power.md)
   - [@ohos.runningLock (Runninglock锁)](js-apis-runninglock.md)
   - [@ohos.sensor (传感器)](js-apis-sensor.md)
