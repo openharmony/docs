@@ -16,6 +16,7 @@
   服务被首次创建时触发该回调，开发者可以在此进行一些初始化的操作，例如注册公共事件监听等。
 
   > **说明：**
+  >
   > 如果服务已创建，再次启动该InputMethodExtensionAbility不会触发onCreate()回调。
 
 - **onDestroy**

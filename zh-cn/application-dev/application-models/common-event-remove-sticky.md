@@ -1,4 +1,4 @@
-# 移除粘性公共事件
+# 移除粘性公共事件（仅对系统应用开放）
 
 
 ## 场景介绍
@@ -16,13 +16,19 @@
 
 ## 开发步骤
 
-1. 导入模块。
-   
+1. 需要申请`ohos.permission.COMMONEVENT_STICKY`权限，配置方式请参见[配置文件权限声明](typora://app/security/accesstoken-guidelines.md#配置文件权限声明)。
+
+2. 导入模块。
+
    ```ts
    import commonEventManager from '@ohos.commonEventManager';
    ```
 
-2. 移除的粘性公共事件，必须是本应用之前已发布的粘性公共事件，发布粘性公共事件参考[公共事件发布](common-event-publish.md)章节。
+3. 调用[`removeStickyCommonEvent()`](/reference/apis/js-apis-commonEventManager.md#commoneventmanagerremovestickycommonevent10)方法移除对应的粘性公共事件。
+
+   > **说明：**
+   >
+   > 移除的粘性公共事件，必须是本应用之前已发布的粘性公共事件，发布粘性公共事件参考[公共事件发布](common-event-publish.md)章节。
 
    ```ts
    commonEventManager.removeStickyCommonEvent("sticky_event", (err) => { // sticky_event粘性公共事件名
