@@ -16,7 +16,7 @@
 
 跨端迁移流程如下图所示。
 
-  **图1** 跨端迁移流程图  
+**图1** 跨端迁移流程图  
 ![hop-cross-device-migration](figures/hop-cross-device-migration.png)
 
 
@@ -47,60 +47,38 @@
 
 ## 开发步骤
 
-1. 在module.json5配置数据同步权限，示例代码如下。
-   
+1. 需要申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
+
+2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/accesstoken-guidelines.md#向用户申请授权)。
+
+3. 在配置文件中配置跨端迁移相关标签字段。
+
+   配置应用支持迁移
+   在module.json5中配置continuable标签：true表示支持迁移，false表示不支持，默认为false。配置为false的UIAbility将被系统识别为无法迁移。
+
+
    ```json
    {
      "module": {
-       "requestPermissions":[  
-         {  
-           "name" : "ohos.permission.DISTRIBUTED_DATASYNC",
+       ...
+       "abilities": [
+         {
+           ...
+           "continuable": true,
          }
        ]
      }
    }
    ```
 
-2. 在配置文件中配置跨端迁移相关标签字段。
-   - 配置应用支持迁移
-      在module.json5中配置continuable标签：true表示支持迁移，false表示不支持，默认为false。配置为false的UIAbility将被系统识别为无法迁移。
-
-      
-      ```json
-      {
-        "module": {
-          // ...
-          "abilities": [
-            {
-              // ...
-              "continuable": true,
-            }
-          ]
-        }
-      }
-      ```
-   - 根据需要配置应用启动模式类型，配置详情请参照[UIAbility组件启动模式](uiability-launch-type.md)。
-
-3. 申请数据同步权限，弹框示例代码。
-   
-   ```ts
-   requestPermission() {   
-       let context = this.context
-       let permissions: Array<string> = ['ohos.permission.DISTRIBUTED_DATASYNC']   
-       context.requestPermissionsFromUser(permissions).then((data) => {   
-           console.info("Succeed to request permission from user with data: "+ JSON.stringify(data))
-       }).catch((error) => {       
-           console.info("Failed to request permission from user with error: "+ JSON.stringify(error))   
-       }) 
-   }
-   ```
+   根据需要配置应用启动模式类型，配置详情请参照[UIAbility组件启动模式](uiability-launch-type.md)。
 
 4. 在发起端UIAbility中实现[onContinue()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue)接口。
-     当应用触发迁移时，[onContinue()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue)接口在发起端被调用，开发者可以在该接口中保存迁移数据，实现应用兼容性检测，决定是否支持此次迁移。
+   当应用触发迁移时，[onContinue()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncontinue)接口在发起端被调用，开发者可以在该接口中保存迁移数据，实现应用兼容性检测，决定是否支持此次迁移。
    - 保存迁移数据：开发者可以将要迁移的数据通过键值对的方式保存在wantParam中。
-   
+
    - 应用兼容性检测：开发者可以通过从wantParam中获取目标应用的版本号与本应用版本号做兼容性校验。
-   
+
    - 迁移决策：开发者可以通过onContinue接口的返回值决定是否支持此次迁移，返回值信息见[接口说明](#接口说明)。
 
      示例如下：
