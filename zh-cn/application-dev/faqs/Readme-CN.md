@@ -7,7 +7,7 @@
   - [ArkTS语法使用常见问题](faqs-arkui-arkts.md)
   - [ArkUI组件开发常见问题(ArkTS)](faqs-arkui-component.md)
   - [ArkUI布局开发常见问题(ArkTS)](faqs-arkui-layout.md)
-  - [ArkUI路由/导航开发常见问题(ArkTS)](faqs-faqs-arkui-route-nav.md)
+  - [ArkUI路由/导航开发常见问题(ArkTS)](faqs-arkui-route-nav.md)
   - [ArkUI动画/交互事件开发常见问题(ArkTS)](faqs-arkui-animation-interactive-event.md)
  -[ArkUI框架开发常见问题(JS)](faqs-arkui-js.md)
 - [Web开发常见问题](faqs-arkui-web.md)
