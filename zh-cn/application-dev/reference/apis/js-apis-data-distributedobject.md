@@ -135,7 +135,7 @@ setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 15400001 | 创建内存数据库失败。|
+  | 15400001 | Create table failed.|
 
 **示例：**
 
@@ -168,7 +168,7 @@ setSessionId(callback: AsyncCallback&lt;void&gt;): void
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 15400001 | 创建内存数据库失败。|
+  | 15400001 | Create table failed.|
 
 **示例：**
 
@@ -211,7 +211,7 @@ setSessionId(sessionId?: string): Promise&lt;void&gt;
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 15400001 | 创建内存数据库失败。|
+  | 15400001 | Create table failed.|
 
 **示例：**
 
