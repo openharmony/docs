@@ -79,9 +79,9 @@
     - [线程模型概述](thread-model-stage.md)
     - [使用Emitter进行线程间通信](itc-with-emitter.md)
     - [使用Worker进行线程间通信](itc-with-worker.md)
-  - 任务管理
-    - [任务管理场景介绍](mission-management-overview.md)
-    - [任务管理与启动模式](mission-management-launch-type.md)
+  - 任务（Mission）管理
+    - [任务（Mission）管理场景介绍](mission-management-overview.md)
+    - [任务（Mission）与启动模式](mission-management-launch-type.md)
     - [页面栈及任务链](page-mission-stack.md)
     - [设置任务快照的图标和名称](mission-set-icon-name-for-task-snapshot.md)
   - [Stage模型应用配置文件](config-file-stage.md)
