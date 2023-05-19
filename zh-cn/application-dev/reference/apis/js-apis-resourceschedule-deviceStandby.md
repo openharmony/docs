@@ -1,20 +1,12 @@
 # @ohos.resourceschedule.deviceStandby（设备待机空闲部件功能）
 本模块提供设备待机空闲部件管理功能
-<br>
 API使用场景：
-<br>
 如果用户长时间没有主动使用设备，且屏幕已关闭，则系统会使设备进入待机低功耗续航模式。待机续航模式会延迟应用后台CPU和网络活动，从而延长电池续航时间。 包括：
-<br>
-1、应用限网：通过iptable防火墙限制后台应用访问网络
-<br>
+1、应用限网：限制后台应用访问网络
 2、Work待机任务：延迟应用的work任务响应
-<br>
 3、running_lock锁：临时释放应用的background running_lock锁
-<br>
 4、Timer响应：延迟应用的timer响应
-<br>
 5、待规划：停止wifi扫描、停止蓝牙扫描、云同步账户等
-
 >  **说明：**
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -24,11 +16,8 @@ import deviceStandby from '@ohos.resourceschedule.deviceStandby';
 ```
 ## deviceStandby.isDeviceInStandby
 function isDeviceInStandby(callback: AsyncCallback<boolean>): void;
-<br>
 当前设备是否进入待机低功耗续航模式
-<br>
-**系统能力:** SystemCapability.ResourceSchedule.DeviceStandby.Idle
-
+**系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
 **参数**：
 
 | 参数名      | 类型                   | 必填   | 说明                             |
@@ -36,7 +25,6 @@ function isDeviceInStandby(callback: AsyncCallback<boolean>): void;
 | callback | Callback&lt;void&gt; | 是    | 延迟即将超时的回调函数，一般在超时前6秒通过此回调通知应用。 |
 
 **错误码**：
-
 以下错误码的详细介绍请参见[@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](../errorcodes/errorcode-backgroundTaskMgr.md)错误码。
 
 | 错误码ID  | 错误信息             |
@@ -45,17 +33,14 @@ function isDeviceInStandby(callback: AsyncCallback<boolean>): void;
 | 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | IPC failed. |
 | 9800004 | System service operation failed. |
 | 18700001 | Caller information verification failed when applying for efficiency resources. |
 
 ## deviceStandby.isDeviceInStandby
 function isDeviceInStandby(): Promise&lt;boolean&gt;
-<br>
 当前设备是否进入待机低功耗续航模式
-<br>
-**系统能力:** SystemCapability.ResourceSchedule.DeviceStandby.Idle
-
+**系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
 **返回值**：
 
 | 类型                    | 说明                                       |
@@ -71,17 +56,14 @@ function isDeviceInStandby(): Promise&lt;boolean&gt;
 | 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | IPC failed. |
 | 9800004 | System service operation failed. |
 | 18700001 | Caller information verification failed when applying for efficiency resources. |
 
-## deviceStandby.getExemptionListApps
-function getExemptionListApps(resourceTypes: number, callback: AsyncCallback<Array&lt;ExemptionAppInfo&gt;>): void;
-<br>
+## deviceStandby.getExemptedApps
+function getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;ExemptedAppInfo&gt;>): void;
 返回豁免应用名单
-<br>
-**系统能力:** SystemCapability.ResourceSchedule.DeviceStandby.Exemption
-<br>
+**系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
 **系统API:** 此接口为系统接口。
 
 **参数**：
@@ -89,7 +71,7 @@ function getExemptionListApps(resourceTypes: number, callback: AsyncCallback<Arr
 | 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
 | resourceTypes |number | 是    | 资源类型，具体结构见文末枚举 |
-| callback | AsyncCallback<Array&lt;ExemptionAppInfo&gt;> | 是    | 回调函数，具体结构见文末 |
+| callback | AsyncCallback<Array&lt;ExemptedAppInfo&gt;> | 是    | 回调函数，具体结构见文末 |
 
 **错误码**：
 
@@ -102,18 +84,14 @@ function getExemptionListApps(resourceTypes: number, callback: AsyncCallback<Arr
 | 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | IPC failed. |
 | 9800004 | System service operation failed. |
 | 18700001 | Caller information verification failed when applying for efficiency resources. |
-## deviceStandby.getExemptionListApps
-function getExemptionListApps(resourceTypes: number): Promise<Array&lt;ExemptionAppInfo&gt;>;
-<br>
+## deviceStandby.getExemptedApps
+function getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
 返回豁免应用名单
-<br>
-**系统能力:** SystemCapability.ResourceSchedule.DeviceStandby.Exemption
-<br>
+**系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
 **系统API:** 此接口为系统接口。
-
 **参数**：
 
 | 参数名      | 类型                   | 必填   | 说明                             |
@@ -124,7 +102,7 @@ function getExemptionListApps(resourceTypes: number): Promise<Array&lt;Exemption
 
 | 类型                    | 说明                                       |
 | --------------------- | ---------------------------------------- |
-| Promise<Array&lt;ExemptionAppInfo&gt;> | 指定的Promise回调方法。返回豁免应用名单，具体结构见文末|
+| Promise<Array&lt;ExemptedAppInfo&gt;> | 指定的Promise回调方法。返回豁免应用名单，具体结构见文末|
 
 **错误码**：
 
@@ -137,19 +115,15 @@ function getExemptionListApps(resourceTypes: number): Promise<Array&lt;Exemption
 | 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | IPC failed. |
 | 9800004 | System service operation failed. |
 | 18700001 | Caller information verification failed when applying for efficiency resources. |
 
-## deviceStandby.applyExemptionAppResource
-function applyExemptionAppResource(request: ResourceRequest): void;
-<br>
+## deviceStandby.requestExemptionResource
+function requestExemptionResource(request: ResourceRequest): void;
 订阅申请豁免
-<br>
 **系统能力:** SystemCapability.ResourceSchedule.DeviceStandby.Exemption
-<br>
 **系统API:** 此接口为系统接口。
-
 **参数**：
 
 | 参数名      | 类型                   | 必填   | 说明                             |
@@ -167,17 +141,14 @@ function applyExemptionAppResource(request: ResourceRequest): void;
 | 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | IPC failed. |
 | 9800004 | System service operation failed. |
 | 18700001 | Caller information verification failed when applying for efficiency resources. |
 
-## deviceStandby.unapplyExemptionAppResource
-function unapplyExemptionAppResource(request: ResourceRequest): void;
-<br>
+## deviceStandby.releaseExemptionResource
+function releaseExemptionResource(request: ResourceRequest): void;
 去除订阅申请豁免
-<br>
 **系统能力:** SystemCapability.ResourceSchedule.DeviceStandby.Exemption
-<br>
 **系统API:** 此接口为系统接口。
 
 **参数**：
@@ -197,7 +168,7 @@ function unapplyExemptionAppResource(request: ResourceRequest): void;
 | 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | IPC failed. |
 | 9800004 | System service operation failed. |
 | 18700001 | Caller information verification failed when applying for efficiency resources. |
 
@@ -216,7 +187,7 @@ The resource type of exemption application.
 |PUSH     |1 << 5   |The resource for non-standby pushkit.|
 |FREEZE       |1 << 6   |The resource for non-standby freezing application.|
 
-### ExemptionAppInfo
+### ExemptedAppInfo 
 The information of exemption application.
 <br>
 
