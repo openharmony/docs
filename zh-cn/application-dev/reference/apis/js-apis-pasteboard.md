@@ -346,11 +346,11 @@ convertToText(callback: AsyncCallback&lt;string&gt;): void
 
 ```js
 var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1/user.txt");
-record.convertToText((err, data) => {    
-    if (err) {        
-        console.error('Failed to convert to text. Cause: ' + JSON.stringify(err));        
-        return;   
-      }
+record.convertToText((err, data) => {
+    if (err) {
+        console.error('Failed to convert to text. Cause: ' + JSON.stringify(err));
+        return;
+    }
     console.info('Succeeded in converting to text. Data: ' + JSON.stringify(data));
 });
 ```
@@ -358,9 +358,9 @@ record.convertToText((err, data) => {
 
 ## PasteData
 
-剪贴板内容对象。
+剪贴板内容对象。剪贴板内容包含一个或者多个内容条目（[PasteDataRecord](#pastedatarecord7)）以及属性描述对象（[PasteDataProperty](#pastedataproperty7)）。
 
-在调用PasteData的接口前，需要先获取一个PasteData对象。
+在调用PasteData的接口前，需要先通过[createPlainTextData()](#pasteboardcreateplaintextdata)、[createHtmlData()](#pasteboardcreatehtmldata7)、[createUriData()](#pasteboardcreateuridata7)、[createWantData()](#pasteboardcreatewantdata7)或[getPasteData()](#getpastedata)获取一个PasteData对象。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -430,8 +430,8 @@ getPrimaryWant(): Want
 **示例：**
 
 ```js
-var object = { 
-    bundleName: "com.example.aafwk.test",    
+var object = {
+    bundleName: "com.example.aafwk.test",
     abilityName: "com.example.aafwk.test.TwoAbility"
 };
 var pasteData = pasteboard.createWantData(object);
@@ -530,8 +530,8 @@ addWantRecord(want: Want): void
 
 ```js
 var pasteData = pasteboard.createPlainTextData("hello");
-var object = { 
-    bundleName: "com.example.aafwk.test",    
+var object = {
+    bundleName: "com.example.aafwk.test",
     abilityName: "com.example.aafwk.test.TwoAbility"
 };
 pasteData.addWantRecord(object);
@@ -811,7 +811,7 @@ var isReplace = pasteData.replaceRecordAt(0, record);
 
 ## SystemPasteboard
 
-系统剪贴板对象。  
+系统剪贴板对象。
 
 在调用SystemPasteboard的接口前，需要先通过[getSystemPasteboard](#pasteboardgetsystempasteboard)获取系统剪贴板。
 
@@ -1084,9 +1084,9 @@ clear():  Promise&lt;void&gt;
 **示例：**
 
 ```js
-systemPasteboard.clear().then((data) => { 
+systemPasteboard.clear().then((data) => {
     console.info('Succeeded in clearing the PasteData.');
-}).catch((err) => {    
+}).catch((err) => {
     console.error('Failed to clear the PasteData. Cause: ' + JSON.stringify(err));
 });
 ```
