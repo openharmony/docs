@@ -280,7 +280,7 @@ Swiper(this.swiperController) {
 
 ## Child Components Per Page
 
-You can set the number of child components per page for the \<Swiper> component through its [displayCount](../reference/arkui-ts/ts-container-swiper.md#attributes) attribute.
+You can set the number of child components per page for the **\<Swiper>** component through its [displayCount](../reference/arkui-ts/ts-container-swiper.md#attributes) attribute.
 
   To display two child components per page:
 
