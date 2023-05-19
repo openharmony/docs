@@ -1646,18 +1646,18 @@ compareTo(other: ScopeComparable): boolean;
 
 ```js
 class Temperature{
-    constructor(value){
-       // 当使用ts语言开发时，需要补充以下代码：
-       // private readonly _temp: Temperature;
+    // 当使用ArkTS语言开发时，需要补充以下代码：
+    // private readonly _temp: Temperature;
+    constructor(value) {
        this._temp = value;
     }
-    compareTo(value){
+    compareTo(value) {
        return this._temp >= value.getTemp();
     }
-    getTemp(){
+    getTemp() {
        return this._temp;
     }
-    toString(){
+    toString() {
        return this._temp.toString();
     }
 }
