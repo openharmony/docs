@@ -20,7 +20,7 @@ HiLog is the log system of OpenHarmony that provides logging for the system fram
 | #define OH_LOG_FATAL(type, ...) ((void)OH_LOG_Print((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, \_*VA*ARGS__)) | Outputs FATAL logs. This is a function-like macro.| 
 | bool OH_LOG_IsLoggable(unsigned int domain, const char *tag, LogLevel level) | Checks whether logs of the specified service domain, tag, and level can be printed.<br>Input arguments: See [Parameter Description](#parameter-description).<br>Output arguments: none<br>Return value: **true** if the specified logs can be printed; **false** otherwise.|
 
-## Parameter Parsing
+## Parameter Description
 
 | Name| Type  | Mandatory| Description                                                        |
 | ------ | ------ | ---- | ------------------------------------------------------------ |

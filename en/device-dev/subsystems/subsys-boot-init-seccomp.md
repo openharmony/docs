@@ -175,7 +175,7 @@ If the basic Seccomp policy has been enabled for a product, you can customize Se
     ./build.sh --product-name *product name* --ccache --build-target xxxx_seccomp_filter --target-cpu *specified CPU*
     ```
 
-    If an error message that contains the following information is reported, the process needs to use the system calls in the baseline blocklist. In such a case, you need to declare the corresponding system call in **privileged_process.seccomp.policy**. For details, see [How to Write a Privileged Process Policy File](#how-to-write-a-privileged-policy-file). After the declaration is done, try again until the build is successful.
+    If an error message that contains the following information is reported, the process needs to use the system calls in the baseline blocklist. In such a case, you need to declare the corresponding system call in **privileged_process.seccomp.policy**. For details, see [How to Write a Privileged Process Policy File](#how-to-write-a-privileged-process-policy-file). After the declaration is done, try again until the build is successful.
     ```shell
     xx of allow list is in block list
     ```
@@ -192,7 +192,7 @@ If the basic Seccomp policy has been enabled for a product, you can customize Se
 
 ### Debugging and Verification
 
-1. If Seccomp is not enabled for the target process, [check the Seccomp status](#commissioning-and-verification) of the target process.
+1. If Seccomp is not enabled for the target process, [check the Seccomp status](#debugging-and-verification) of the target process.
 2. If the process is terminated and audit log information is present in the kernel logs, the Seccomp policy is enabled but the policy list is incomplete. You can find an example audit log in [Audit Statistics](#audit-statistics).
 3. If the process is not terminated, comment out the system calls (for example, **setuid**) related to the specified uid in the Seccomp policy file. Rebuild the dynamic policy library, push the library to the image, and restart the process. Then, check whether the process is terminated by Seccomp. If the process is terminated, Seccomp has been enabled.
 
