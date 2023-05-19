@@ -272,7 +272,7 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 | 参数名            | 类型                                | 必填 | 说明                 |
 | --------------- |   ----------------------------------| ---- | -------------------- |
 | bundle          | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)       | 是   | 指定应用的包信息。           |
-| notificationKey | [NotificationKey](js-apis-notification.md#notificationkey) | 是   | 通知键值。             |
+| notificationKey | [NotificationKey](#notificationkey) | 是   | 通知键值。             |
 | reason          | [RemoveReason](#removereason)      | 是   | 通知删除原因。         |
 | callback        | AsyncCallback\<void\>               | 是   | 删除指定通知回调函数。 |
 
@@ -328,7 +328,7 @@ remove(bundle: BundleOption, notificationKey: NotificationKey, reason: RemoveRea
 | 参数名            | 类型            | 必填 | 说明       |
 | --------------- | --------------- | ---- | ---------- |
 | bundle          | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)    | 是   | 指定应用的包信息。 |
-| notificationKey | [NotificationKey]((js-apis-notification.md#notificationkey)) | 是   | 通知键值。   |
+| notificationKey | [NotificationKey](#notificationkey) | 是   | 通知键值。   |
 | reason          | [RemoveReason](#removereason) | 是   | 通知删除原因。         |
 
 **错误码：**
@@ -618,7 +618,7 @@ let userId = 1;
 notificationSubscribe.removeAll(userId, removeAllCallback);
 ```
 
-## Notification.removeAll
+## NotificationSubscribe.removeAll
 
 removeAll(userId: number): Promise\<void>
 
@@ -662,6 +662,15 @@ let userId = 1;
 
 notificationSubscribe.removeAll(userId, removeAllCallback);
 ```
+
+## NotificationKey
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
+
+| 名称  | 类型   | 只读 | 必填 | 说明     |
+| ----- | ------ | ---- | --- | -------- |
+| id    | number | 否  | 是  | 通知ID。   |
+| label | string | 否  | 否  | 通知标签。 |
 
 ## RemoveReason
 

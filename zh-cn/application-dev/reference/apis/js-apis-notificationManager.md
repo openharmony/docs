@@ -3859,6 +3859,87 @@ notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data) => 
 });
 ```
 
+## notificationManager.on<sup>10+</sup>
+
+on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void;
+
+注册通知监听回调。通知服务将通知信息回调给校验程序，校验程序返回校验结果决定该通知是否发布，如营销类通知发布频率控制等。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+**参数：**
+
+| 参数名 | 类型                          | 必填 | 说明           |
+| ------ | ----------------------------- | ---- | -------------- |
+| type | string | 是   | 回调函数类型名，固定为'checkNotification'。   |
+| callback | (checkInfo: [NotificationCheckInfo]) => [NotificationCheckResult] | 是   | 消息验证函数指针。   |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+
+**示例：**
+
+```ts
+try{
+    notificationManager.on("checkNotification", OnCheckNotification);
+} catch (error){
+    console.info(`notificationManager.on error: ${JSON.stringify(error)}`);
+}
+function OnCheckNotification(info : notificationManager.NotificationCheckInfo) {
+    console.info(`====>OnCheckNotification info: ${JSON.stringify(info)}`);
+    if(info.notificationId == 1){
+        return { code: 1, message: "testMsg1"}
+    } else {
+        return { code: 0, message: "testMsg0"}
+    }
+}
+```
+
+## notificationManager.off<sup>10+</sup>
+
+off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void;
+
+取消通知监听回调。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+**参数：**
+
+| 参数名 | 类型                          | 必填 | 说明           |
+| ------ | ----------------------------- | ---- | -------------- |
+| type | string | 是   | 回调函数类型名，固定为'checkNotification'。   |
+| callback | (checkInfo: [NotificationCheckInfo]) => [NotificationCheckResult] | 是   | 消息验证函数指针。   |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+
+**示例：**
+
+```ts
+try{
+    notificationManager.off("checkNotification");
+} catch (error){
+    console.info(`notificationManager.off error: ${JSON.stringify(error)}`);
+}
+```
 
 ## DoNotDisturbDate
 
@@ -3866,11 +3947,11 @@ notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data) => 
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-| 名称  | 类型                                  | 可读 | 可写 | 说明                   |
+| 名称  | 类型                                  | 只读 | 必填 | 说明                   |
 | ----- | ------------------------------------- | ---- | ---- | ---------------------- |
-| type  | [DoNotDisturbType](#donotdisturbtype) | 是   | 是   | 免打扰设置的时间类型。 |
-| begin | Date                                  | 是   | 是   | 免打扰设置的起点时间。 |
-| end   | Date                                  | 是   | 是   | 免打扰设置的终点时间。 |
+| type  | [DoNotDisturbType](#donotdisturbtype) | 否   | 是   | 免打扰设置的时间类型。 |
+| begin | Date                                  | 否   | 是   | 免打扰设置的起点时间。 |
+| end   | Date                                  | 否   | 是   | 免打扰设置的终点时间。 |
 
 ## DoNotDisturbType
 
@@ -3951,3 +4032,30 @@ notificationManager.getSyncNotificationEnabledWithoutApp(userId).then((data) => 
 | TYPE_NORMAL          | 0   | 一般通知。            |
 | TYPE_CONTINUOUS      | 1   | 连续通知。            |
 | TYPE_TIMER           | 2   | 计划通知。            |
+
+## NotificationCheckInfo<sup>10+</sup>
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+| 名称  | 类型                                  | 只读 | 必填 | 说明                   |
+| ----- | ------------------------------------- | ---- | ---- | ---------------------- |
+| bundleName  | string                          | 否   | 是   | bundle名称。 |
+| notificationId | number                       | 否   | 是   | 通知Id。     |
+| contentType   | [ContentType](#contenttype)   | 否   | 是   | 通知类型。   |
+
+## NotificationCheckResult<sup>10+</sup>
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+| 名称  | 类型                                  | 只读 | 必填 | 说明                   |
+| ----- | ------------------------------------- | ---- | ---- | ---------------------- |
+| code  | number                          | 否   | 是   | 0-display, 1-no display。 |
+| message | string                       | 否   | 是   | 结果信息。    |
