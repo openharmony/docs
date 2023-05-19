@@ -254,7 +254,7 @@ DevEco Studio默认下载是public-sdk。
 
 **解决措施**
 
-三方应用不支持开发ServiceExtensionAbility和DataShareExtensionAbility。若开发系统应用，请[下载full-sdk](../quick-start/full-sdk-switch-guide.md)。
+三方应用不支持开发ServiceExtensionAbility和DataShareExtensionAbility。若开发系统应用，请[下载full-sdk](../faqs/full-sdk-switch-guide.md)。
 
 ## 如何获取应用级别的temp路径和files路径
 
