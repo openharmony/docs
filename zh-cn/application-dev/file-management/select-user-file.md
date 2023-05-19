@@ -37,7 +37,7 @@
    文件选择成功后，返回[PhotoSelectResult](../reference/apis/js-apis-file-picker.md#photoselectresult)结果集，可以根据结果集中URI进行文件读取等操作。
 
    ```ts
-   let uri;
+   let uri = null;
    const photoPicker = new picker.PhotoViewPicker();
    photoPicker.select(photoSelectOptions).then((photoSelectResult) => {
      uri = photoSelectResult.photoUris[0];
@@ -46,14 +46,14 @@
    })
    ```
 
-5. 待界面从FilePicker返回后再使用文件管理的接口[fs.openSync](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md#fsopensync)根据目的文件的uri打开这个文件得到fd。
+5. 待界面从FilePicker返回后，在其他函数中使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。
 
    ```ts
    let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
    console.info('file fd: ' + file.fd);
    ```
 
-6. 通过fd使用[fs.writeSync](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
+6. 通过fd使用[fs.writeSync](../reference/apis/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
 
    ```ts
    let writeLen = fs.writeSync(file.fd, 'hello, world');
@@ -86,7 +86,7 @@
    > 目前DocumentSelectOptions不支持参数配置，默认可以选择所有类型的用户文件。
 
    ```ts
-   let uri;
+   let uri = null;
    const documentViewPicker = new picker.DocumentViewPicker(); // 创建文件选择器实例
    documentViewPicker.select(documentSelectOptions).then((documentSelectResult) => {
      uri = documentSelectResult[0];
@@ -121,18 +121,20 @@
    }
    ```
 
-4. 待界面从FilePicker返回后再使用文件管理的接口[fs.openSync](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md#fsopensync)根据目的文件的uri打开这个文件得到fd。
+4. 待界面从FilePicker返回后，在其他函数中使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。
 
    ```ts
    let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
    console.info('file fd: ' + file.fd);
    ```
 
-5. 通过fd使用[fs.writeSync](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
+5. 通过fd使用[fs.readSync](../reference/apis/js-apis-file-fs.md#readsync)接口对这个文件进行读取数据，读取完成后关闭fd。
 
    ```ts
-   let writeLen = fs.writeSync(file.fd, 'hello, world');
-   console.info('write data to file succeed and size is:' + writeLen);
+   let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
+   let buf = new ArrayBuffer(4096);
+   let num = fs.readSync(file.fd, buf);
+   console.info('read data to file succeed and size is:' + num);
    fs.closeSync(file);
    ```
 
@@ -162,7 +164,7 @@
    > 目前AudioSelectOptions不支持参数配置，默认可以选择所有类型的用户文件。
 
    ```ts
-   let uri;
+   let uri = null;
    const audioViewPicker = new picker.AudioViewPicker();
    audioViewPicker.select(audioSelectOptions).then(audioSelectResult => {
      uri = audioSelectOptions[0];
@@ -171,14 +173,14 @@
    })
    ```
 
-4. 待界面从FilePicker返回后再使用文件管理的接口[fs.openSync](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md#fsopensync)根据目的文件的uri打开这个文件得到fd。
+4. 待界面从FilePicker返回后，在其他函数中使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。
 
    ```ts
    let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
    console.info('file fd: ' + file.fd);
    ```
 
-5. 通过fd使用[fs.writeSync](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
+5. 通过fd使用[fs.writeSync](../reference/apis/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
 
    ```ts
    let writeLen = fs.writeSync(file.fd, 'hello, world');
