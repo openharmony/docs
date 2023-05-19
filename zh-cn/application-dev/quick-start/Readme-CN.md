@@ -40,7 +40,7 @@
     - [app对象内部结构](app-structure.md)
     - [deviceConfig内部结构](deviceconfig-structure.md)
     - [module对象内部结构](module-structure.md)
-  - [资源分类与访问](resource-categories-and-access.md)
+- [资源分类与访问](resource-categories-and-access.md)
 - 学习ArkTS语言
   - [初识ArkTS语言](arkts-get-started.md)
   - 基本语法
