@@ -25,14 +25,14 @@
 
 ## 相关实例
 
-[OpenHarmony应用示例](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/MultiDeviceAppDev)中提供了如下一多示例，感兴趣的开发者可以自行下载、运行及查看效果。
+[OpenHarmony应用示例](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SuperFeature/MultiDeviceAppDev)中提供了如下一多示例，感兴趣的开发者可以自行下载、运行及查看效果。
 
 | 示例名称                                                     | 开发范式       | 简介                                                         |
 | ------------------------------------------------------------ | -------------- | ------------------------------------------------------------ |
-| [页面开发一多能力](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/MultiDeviceAppDev/AdaptiveCapabilities) | 声明式开发范式 | 本章配套的示例代码，包括自适应布局、响应式布局、典型布局场景以及资源文件使用等。 |
-| [页面开发一多能力](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/MultiDeviceAppDev/JsAdaptiveCapabilities) | 类Web开发范式  | 本章配套的示例代码，包括自适应布局、响应式布局及资源文件使用等。 |
-| [天气](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/MultiDeviceAppDev/Weather) | 声明式开发范式 | 一多示例应用，以天气应用为例，演示如何使用一多能力实现包含多个页面的应用。 |
-| [应用市场首页](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/MultiDeviceAppDev/AppMarket) | 声明式开发范式 | 本章配套的示例代码，以应用市场首页为例，演示如何使用一多能力适配多设备（或多窗口尺寸）。 |
-| [音乐专辑页](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/MultiDeviceAppDev/MusicAlbum) | 声明式开发范式 | 本章配套的示例代码，以音乐专辑页为例，演示如何使用一多能力适配多设备（或多窗口尺寸）。 |
+| [页面开发一多能力](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SuperFeature/MultiDeviceAppDev/AdaptiveCapabilities) | 声明式开发范式 | 本章配套的示例代码，包括自适应布局、响应式布局、典型布局场景以及资源文件使用等。 |
+| [页面开发一多能力](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SuperFeature/MultiDeviceAppDev/JsAdaptiveCapabilities) | 类Web开发范式  | 本章配套的示例代码，包括自适应布局、响应式布局及资源文件使用等。 |
+| [天气](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SuperFeature/MultiDeviceAppDev/Weather) | 声明式开发范式 | 一多示例应用，以天气应用为例，演示如何使用一多能力实现包含多个页面的应用。 |
+| [应用市场首页](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SuperFeature/MultiDeviceAppDev/AppMarket) | 声明式开发范式 | 本章配套的示例代码，以应用市场首页为例，演示如何使用一多能力适配多设备（或多窗口尺寸）。 |
+| [音乐专辑页](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SuperFeature/MultiDeviceAppDev/MusicAlbum) | 声明式开发范式 | 本章配套的示例代码，以音乐专辑页为例，演示如何使用一多能力适配多设备（或多窗口尺寸）。 |
 
 

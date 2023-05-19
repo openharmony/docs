@@ -447,7 +447,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 let im = inputMethod.getCurrentInputMethod();
 let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
-    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, imSubType).then((result) => {
+    inputMethod.switchCurrentInputMethodAndSubtype(im, imSubType).then((result) => {
         if (result) {
             console.info('Succeeded in switching currentInputMethodAndSubtype.');
         } else {

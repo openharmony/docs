@@ -16,9 +16,10 @@ import request from '@ohos.request';
 
 
 ## Constraints
-The download server must support the HTTP HEAD method so that the size of the data to download can be obtained through **Content-length**. Otherwise, the download task fails. If this is the case, you can check the failure cause through [on('fail')<sup>7+</sup>](#onfail7).
 
 Only HTTP requests are supported. HTTPS requests are not supported.
+
+The download server must support the HTTP HEAD method so that the size of the data to download can be obtained through **Content-length**. Otherwise, the download task fails. If this is the case, you can check the failure cause through [on('fail')<sup>7+</sup>](#onfail7).
 
 ## Constants
 
@@ -79,7 +80,7 @@ The table below lists the download task status codes that may be returned by [ge
 
 uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt;
 
-Uploads files. This API uses a promise to return the result.
+Uploads files. This API uses a promise to return the result. You can use [on('complete'|'fail')<sup>9+</sup>](#oncomplete--fail9) to obtain the upload error information.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -133,7 +134,7 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
 
-Uploads files. This API uses an asynchronous callback to return the result.
+Uploads files. This API uses an asynchronous callback to return the result. You can use [on('complete'|'fail')<sup>9+</sup>](#oncomplete--fail9) to obtain the upload error information.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -272,6 +273,8 @@ Uploads files. This API uses an asynchronous callback to return the result.
 
 Implements file uploads. Before using any APIs of this class, you must obtain an **UploadTask** object.
 
+
+
 ### on('progress')
 
 on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; void): void
@@ -289,7 +292,7 @@ Subscribes to an upload event. This API uses an asynchronous callback to return 
 | type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (upload progress).|
 | callback | function | Yes| Callback for the upload progress event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -323,7 +326,7 @@ Subscribes to an upload event. This API uses an asynchronous callback to return 
 | type | string | Yes| Type of the event to subscribe to. The value is **'headerReceive'** (response header).|
 | callback | function | Yes| Callback for the HTTP Response Header event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -356,7 +359,7 @@ Subscribes to an upload event. This API uses an asynchronous callback to return 
 | type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
 | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | Yes| Callback used to return the result.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -398,7 +401,7 @@ Unsubscribes from an upload event. This API uses an asynchronous callback to ret
 | type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (upload progress).|
 | callback | function | No| Callback for the upload progress event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -432,7 +435,7 @@ Unsubscribes from an upload event. This API uses an asynchronous callback to ret
 | type | string | Yes| Type of the event to unsubscribe from. The value is **'headerReceive'** (response header).|
 | callback | function | No| Callback for the HTTP Response Header event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -464,7 +467,7 @@ Unsubscribes from an upload event. This API uses an asynchronous callback to ret
 | type | string | Yes| Type of the event to subscribe to. The value **'complete'** means the upload completion event, and **'fail'** means the upload failure event.|
 | callback | Callback&lt;Array&lt;TaskState&gt;&gt; | No| Callback used to return the result.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -623,6 +626,7 @@ Removes this upload task. This API uses an asynchronous callback to return the r
   ```
 
 ## UploadConfig
+Describes the configuration for an upload task.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -637,6 +641,7 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 | data | Array&lt;[RequestData](#requestdata)&gt; | Yes| Form data in the request body.|
 
 ## TaskState<sup>9+</sup>
+Implements a **TaskState** object, which is the callback parameter of the [on('complete' | 'fail')<sup>9+</sup>](#oncomplete--fail9) and [off('complete' | 'fail')<sup>9+</sup>](#offcomplete--fail9) APIs.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -649,6 +654,7 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 | message | string | Yes| Description of the upload task result.|
 
 ## File
+Describes the list of files in [UploadConfig](#uploadconfig).
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -663,6 +669,7 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 
 
 ## RequestData
+Describes the form data in [UploadConfig](#uploadconfig).
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -677,7 +684,8 @@ Removes this upload task. This API uses an asynchronous callback to return the r
 
 downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadTask&gt;
 
-Downloads files. This API uses a promise to return the result.
+Downloads files. This API uses a promise to return the result. You can use [on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7) to obtain the download task state, which can be completed, paused, or removed. You can also use [on('fail')<sup>7+</sup>](#onfail7) to obtain the task download error information.
+
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -725,7 +733,8 @@ For details about the error codes, see [Upload and Download Error Codes](../erro
 
 downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): void;
 
-Downloads files. This API uses an asynchronous callback to return the result.
+Downloads files. This API uses an asynchronous callback to return the result. You can use [on('complete'|'pause'|'remove')<sup>7+</sup>](#oncompletepauseremove7) to obtain the download task state, which can be completed, paused, or removed. You can also use [on('fail')<sup>7+</sup>](#onfail7) to obtain the task download error information.
+
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -845,7 +854,7 @@ Downloads files. This API uses an asynchronous callback to return the result.
 
 ## DownloadTask
 
-Implements file downloads. Before using any APIs of this class, you must obtain a **DownloadTask** object.
+Implements file downloads.
 
 
 ### on('progress')
@@ -865,12 +874,12 @@ Subscribes to a download event. This API uses an asynchronous callback to return
 | type | string | Yes| Type of the event to subscribe to. The value is **'progress'** (download progress).|
 | callback | function | Yes| Callback for the download progress event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| receivedSize | number | Yes| Size of the downloaded files, in bits. |
-| totalSize | number | Yes| Total size of the files to download, in bits. |
+| receivedSize | number | Yes| Size of the downloaded files, in bits.|
+| totalSize | number | Yes| Total size of the files to download, in bits.|
 
 **Example**
 
@@ -899,12 +908,12 @@ Unsubscribes from a download event. This API uses an asynchronous callback to re
 | type | string | Yes| Type of the event to unsubscribe from. The value is **'progress'** (download progress).|
 | callback | function | No| Callback for the download progress event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| receivedSize | number | Yes| Size of the downloaded files, in bits. |
-| totalSize | number | Yes| Total size of the files to download, in bits. |
+| receivedSize | number | Yes| Size of the downloaded files, in bits.|
+| totalSize | number | Yes| Total size of the files to download, in bits.|
 
 **Example**
 
@@ -987,7 +996,7 @@ Subscribes to the download task failure event. This API uses an asynchronous cal
 | type | string | Yes| Type of the event to subscribe to. The value is **'fail'** (download failure).|
 | callback | function | Yes| Callback for the download task failure event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -1020,7 +1029,7 @@ Unsubscribes from the download task failure event. This API uses an asynchronous
 | type | string | Yes| Type of the event to unsubscribe from. The value is **'fail'** (download failure).|
 | callback | function | No| Callback for the download task failure event.|
 
-Parameters of the callback function
+  Parameters of the callback function
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -1080,7 +1089,7 @@ Deletes this download task. This API uses an asynchronous callback to return the
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task deletion result. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the task deletion result.|
 
 **Example**
 
@@ -1687,6 +1696,7 @@ Resumes this download task. This API uses an asynchronous callback to return the
 
 
 ## DownloadConfig
+Defines the download task configuration.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -1696,16 +1706,17 @@ Resumes this download task. This API uses an asynchronous callback to return the
 | -------- | -------- | -------- | -------- |
 | url | string | Yes| Resource URL.|
 | header | Object | No| HTTPS flag header to be included in the download request.<br>The **X-TLS-Version** parameter in **header** specifies the TLS version to be used. If this parameter is not set, the CURL_SSLVERSION_TLSv1_2 version is used. Available options are as follows:<br>CURL_SSLVERSION_TLSv1_0<br>CURL_SSLVERSION_TLSv1_1<br>CURL_SSLVERSION_TLSv1_2<br>CURL_SSLVERSION_TLSv1_3<br>The **X-Cipher-List** parameter in **header** specifies the cipher suite list to be used. If this parameter is not specified, the secure cipher suite list is used. Available options are as follows:<br>- The TLS 1.2 cipher suite list includes the following ciphers:<br>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,<br>TLS_DHE_DSS_WITH_AES_128_GCM_SHA256,TLS_DSS_RSA_WITH_AES_256_GCM_SHA384,<br>TLS_PSK_WITH_AES_256_GCM_SHA384,TLS_DHE_PSK_WITH_AES_128_GCM_SHA256,<br>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384,TLS_DHE_PSK_WITH_CHACHA20_POLY1305_SHA256,<br>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,<br>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,<br>TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256,<br>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256,TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384,<br>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_CCM,<br>TLS_DHE_RSA_WITH_AES_256_CCM,TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256,<br>TLS_PSK_WITH_AES_256_CCM,TLS_DHE_PSK_WITH_AES_128_CCM,<br>TLS_DHE_PSK_WITH_AES_256_CCM,TLS_ECDHE_ECDSA_WITH_AES_128_CCM,<br>TLS_ECDHE_ECDSA_WITH_AES_256_CCM,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256<br>- The TLS 1.3 cipher suite list includes the following ciphers:<br>TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384,TLS_CHACHA20_POLY1305_SHA256,TLS_AES_128_CCM_SHA256<br>- The TLS 1.3 cipher suite list adds the Chinese national cryptographic algorithm:<br>TLS_SM4_GCM_SM3,TLS_SM4_CCM_SM3 |
-| enableMetered | boolean | No| Whether download is allowed on a metered connection.<br>- **true**: allowed<br>- **false**: not allowed |
-| enableRoaming | boolean | No| Whether download is allowed on a roaming network.<br>- **true**: allowed<br>- **false**: not allowed |
+| enableMetered | boolean | No| Whether download is allowed on a metered connection.<br>- **true**: allowed<br>- **false**: not allowed|
+| enableRoaming | boolean | No| Whether download is allowed on a roaming network.<br>- **true**: allowed<br>- **false**: not allowed|
 | description | string | No| Description of the download session.|
-| filePath<sup>7+</sup> | string | No| Path where the downloaded file is stored.<br>- filePath:'/data/storage/el2/base/haps/entry/files/test.txt': Save the file to an absolute path.<br>- In the FA model, use [context](js-apis-inner-app-context.md#contextgetcachedir) to obtain the cache directory of the application, for example, **'${featureAbility.getContext().getFilesDir()}/test.txt'**, and store the file in this directory.<br>- In the stage model, use [AbilityContext](js-apis-inner-application-context.md) to obtain the fie path, for example, **'${globalThis.abilityContext.tempDir}/test.txt'**, and store the file in this path.|
+| filePath<sup>7+</sup> | string | No| Path where the downloaded file is stored.<br>- filePath:'/data/storage/el2/base/haps/entry/files/test.txt': Save the file to an absolute path.<br>- In the FA model, use [context](js-apis-inner-app-context.md#contextgetcachedir) to obtain the cache directory of the application, for example, **\${featureAbility.getContext().getFilesDir()}/test.txt\**, and store the file in this directory.<br>- In the stage model, use [AbilityContext](js-apis-inner-application-context.md) to obtain the file path, for example, **\${globalThis.abilityContext.tempDir}/test.txt\**, and store the file in this path.|
 | networkType | number | No| Network type allowed for download.<br>- NETWORK_MOBILE: 0x00000001<br>- NETWORK_WIFI: 0x00010000|
 | title | string | No| Download task name.|
 | background<sup>9+</sup> | boolean | No| Whether to enable the background task notification. When this parameter is enabled, the download status is displayed in the notification panel.|
 
 
 ## DownloadInfo<sup>7+</sup>
+Defines the download task information, which is the callback parameter of the [query<sup>(deprecated)</sup>](#querydeprecated-1) API.
 
 **Required permissions**: ohos.permission.INTERNET
 

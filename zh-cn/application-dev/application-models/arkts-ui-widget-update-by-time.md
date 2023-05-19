@@ -9,7 +9,7 @@
   
   > **说明：**
   >
-  > 当配置了updateDuration（定时刷新）后，该设置会优先于scheduledUpdateTime（定点刷新）生效，即使同时配置了两者，定点刷新也会被忽略。
+  > 当配置了`updateDuration`（定时刷新）后，该设置会优先于`scheduledUpdateTime`（定点刷新）生效，即使同时配置了两者，定点刷新也会被忽略。
   
   ```json
   {
@@ -35,11 +35,11 @@
   }
   ```
   
-- 定点刷新：表示在每天的某个特定时间点自动刷新卡片内容。可以在form_config.jso配置文件中的[scheduledUpdateTime](arkts-ui-widget-configuration.md)字段中进行设置。例如，可以将刷新时间设置为每天的上午10点30分。
+- 定点刷新：表示在每天的某个特定时间点自动刷新卡片内容。可以在form_config.json配置文件中的[`scheduledUpdateTime`](arkts-ui-widget-configuration.md)字段中进行设置。例如，可以将刷新时间设置为每天的上午10点30分。
   
   > **说明：**
   >
-  > 当同时配置了定时刷新（updateDuration）和定点刷新（scheduledUpdateTime)时，定时刷新的优先级更高。如果想要配置定点刷新，则需要将updateDuration配置为0。
+  > 当同时配置了定时刷新（`updateDuration`）和定点刷新（`scheduledUpdateTime`)时，定时刷新的优先级更高。如果想要配置定点刷新，则需要将`updateDuration`配置为0。
   
   
   ```json
@@ -88,11 +88,11 @@
   ```
 
 
-在触发定时、定点或主动刷新后，系统会调用FormExtensionAbility的[onUpdateForm()](../reference/apis/js-apis-app-form-formExtensionAbility.md#onupdateform)生命周期回调，在回调中，可以使用[updateForm()](../reference/apis/js-apis-app-form-formProvider.md#updateform)进行提供方刷新卡片。onUpdateForm()生命周期回调参考[通过FormExtensionAbility刷新卡片内容](arkts-ui-widget-event-formextensionability.md)。
+在触发定时、定点或下次刷新后，系统会调用FormExtensionAbility的[`onUpdateForm()`](../reference/apis/js-apis-app-form-formExtensionAbility.md#onupdateform)生命周期回调，在回调中，可以使用[`updateForm()`](../reference/apis/js-apis-app-form-formProvider.md#updateform)进行提供方刷新卡片。`onUpdateForm()`生命周期回调的使用请参见[通过FormExtensionAbility刷新卡片内容](arkts-ui-widget-event-formextensionability.md)。
 
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-> 1. 定时刷新有配额限制，每张卡片每天最多通过定时方式触发刷新50次，定时刷新包含[卡片配置项updateDuration](arkts-ui-widget-configuration.md)和调用[setFormNextRefreshTime()](../reference/apis/js-apis-app-form-formProvider.md#setformnextrefreshtime)方法两种方式，当达到50次配额后，无法通过定时方式再次触发刷新，刷新次数会在每天的0点重置。
+> **说明：**
+> 1. 定时刷新有配额限制，每张卡片每天最多通过定时方式触发刷新50次，定时刷新包含[卡片配置项updateDuration](arkts-ui-widget-configuration.md)和调用[`setFormNextRefreshTime()`](../reference/apis/js-apis-app-form-formProvider.md#setformnextrefreshtime)方法两种方式，当达到50次配额后，无法通过定时方式再次触发刷新，刷新次数会在每天的0点重置。
 > 
 > 2. 当前定时刷新使用同一个计时器进行计时，因此卡片定时刷新的第一次刷新会有最多30分钟的偏差。比如第一张卡片A（每隔半小时刷新一次）在3点20分添加成功，定时器启动并每隔半小时触发一次事件，第二张卡片B(每隔半小时刷新一次)在3点40分添加成功，在3点50分定时器事件触发时，卡片A触发定时刷新，卡片B会在下次事件（4点20分）中才会触发。
 > 

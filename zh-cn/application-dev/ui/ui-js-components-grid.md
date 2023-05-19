@@ -215,7 +215,7 @@ text{
 
 ```js
 // index.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     list:[
@@ -226,7 +226,7 @@ export default {
     fresh:false
   },
   refresh(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'refreshing'
     })
     var that = this;
@@ -234,7 +234,7 @@ export default {
     setTimeout(function () {
       that.fresh = false;
       that.list.unshift({src: 'common/images/4.png',id:'4'});
-      prompt.showToast({
+      promptAction.showToast({
         message: 'succeed'
       })
     }, 2000)
@@ -244,9 +244,3 @@ export default {
 
 
 ![zh-cn_image_0000001263160403](figures/zh-cn_image_0000001263160403.gif)
-
-## 相关实例
-
-针对Grid开发，有以下相关实例可供参考：
-
-- [`JsGrid`：栅格组件（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/JsGrid)

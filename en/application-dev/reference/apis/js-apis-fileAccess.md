@@ -1,12 +1,11 @@
 # @ohos.file.fileAccess (User File Access and Management)
 
-The **fileAccess** module is a framework for accessing and operating user files based on the Extension ability mechanism. This module interacts with diverse file management services, such as the media library and external storage management service, and provides a set of file access and management APIs for system applications. The media library service allows access to user files on local devices and distributed devices. The external storage management service allows access to the user files stored on devices such as shared disks, USB flash drives, and SD cards.
+The **fileAccess** module provides a framework for accessing and operating user files based on the ExtensionAbility mechanism. This module interacts with file management services, such as the media library and external storage management service, and provides a set of unified interfaces for system applications to access and manage files. The media library service allows access to user files on local and distributed devices. The external storage management service allows access to the user files stored on devices, such as shared disks, USB flash drives, and SD cards.
 
 >**NOTE**
 >
->- The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->- The APIs provided by this module are system APIs and cannot be called by third-party applications. Currently, the APIs can be called only by **FilePicker** and **Files**.
->- The APIs of this module support processing of error codes. For details, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are system APIs and cannot be called by third-party applications. Currently, the APIs can be called only by **FilePicker** and **FileManager**.
 
 ## Modules to Import
 
@@ -16,9 +15,11 @@ import fileAccess from '@ohos.file.fileAccess';
 
 ## fileAccess.getFileAccessAbilityInfo
 
-getFileAccessAbilityInfo( ) : Promise&lt;Array&lt;Want&gt;&gt;
+getFileAccessAbilityInfo() : Promise&lt;Array&lt;Want&gt;&gt;
 
-Obtains information about all wants with **extension** set to **fileAccess** in the system. A want is a basic communication component used to start services. This API uses a promise to return the result.
+Obtains information about all Wants with **extension** set to **fileAccess** in the system. A Want contains information for starting an ability. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -26,9 +27,13 @@ Obtains information about all wants with **extension** set to **fileAccess** in 
 
 **Return value**
 
-| Type| Description|
-| --- | -- |
-| Promise&lt;Array&lt;Want&gt;&gt; | Promise used to return the **want** information obtained.|
+  | Type| Description|
+  | --- | -- |
+  | Promise&lt;Array&lt;[Want](js-apis-app-ability-want.md)&gt;&gt; | Promise used to return the Want information obtained.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -46,9 +51,11 @@ Obtains information about all wants with **extension** set to **fileAccess** in 
 
 ## fileAccess.getFileAccessAbilityInfo
 
-getFileAccessAbilityInfo(callback: AsyncCallback&lt;Array&lt;Want&gt;&gt;): void;
+getFileAccessAbilityInfo(callback: AsyncCallback&lt;Array&lt;Want&gt;&gt;): void
 
-Obtains information about all wants with **extension** set to **fileAccess** in the system. A want is a basic communication component used to start services. This API uses an asynchronous callback to return the result.
+Obtains information about all Wants with **extension** set to **fileAccess** in the system. A Want contains information for starting an ability. This API uses an asynchronous callback to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -56,9 +63,13 @@ Obtains information about all wants with **extension** set to **fileAccess** in 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| --- | --- | --- | -- |
-| callback | AsyncCallback&lt;Array&lt;Want&gt;&gt; | Yes| Promise used to return the **want** information obtained.|
+  | Name| Type| Mandatory| Description|
+  | --- | --- | --- | -- |
+  | callback | AsyncCallback&lt;Array&lt;[Want](js-apis-app-ability-want.md)&gt;&gt; | Yes| Promise used to return the Want information obtained.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -84,22 +95,28 @@ createFileAccessHelper(context: Context, wants: Array&lt;Want&gt;) : FileAccessH
 
 Synchronously creates a **Helper** object to connect to the specified wants. The **Helper** object provides file access and management capabilities.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System capability**: SystemCapability.FileManagement.UserFileService
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| --- | --- | --- | -- |
-| context | Context | Yes| Context of the ability.|
-| wants | Array&lt;Want&gt; | Yes| Wants to connect.|
+  | Name| Type| Mandatory| Description|
+  | --- | --- | --- | -- |
+  | context | [Context](js-apis-inner-application-context.md) | Yes| Context of the ability.|
+  | wants | Array&lt;[Want](js-apis-app-ability-want.md)&gt; | Yes| Wants to connect.|
 
 **Return value**
 
-| Type| Description|
-| --- | -- |
-| FileAccessHelper | **Helper** object created.|
+  | Type| Description|
+  | --- | -- |
+  | [FileAccessHelper](#fileaccesshelper) | **Helper** object created.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -131,21 +148,27 @@ createFileAccessHelper(context: Context) : FileAccessHelper
 
 Synchronously creates a **Helper** object to connect to all file management services in the system.
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System capability**: SystemCapability.FileManagement.UserFileService
 
 **Required permissions**: ohos.permission.FILE_ACCESS_MANAGER and ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| --- | --- | --- | -- |
-| context | Context | Yes| Context of the ability.|
+  | Name| Type| Mandatory| Description|
+  | --- | --- | --- | -- |
+  | context | [Context](js-apis-inner-application-context.md) | Yes| Context of the ability.|
 
 **Return value**
 
-| Type| Description|
-| --- | -- |
-| FileAccessHelper | **Helper** object created.|
+  | Type| Description|
+  | --- | -- |
+  | [FileAccessHelper](#fileaccesshelper) | **Helper** object created.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -164,11 +187,156 @@ Synchronously creates a **Helper** object to connect to all file management serv
   }
   ```
 
-## FileAccessHelper.getRoots
+## FileInfo
 
-getRoots( ) : Promise&lt;RootIterator&gt;
+Provides the file or directory attribute information and APIs.
 
-Obtains information about the device root nodes of the file management service type connected to the **Helper** object. This API uses a promise to return a **RootIterator** object, which returns [RootInfo](#rootinfo) by using [next()](#rootiteratornext).
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+### Attributes
+
+| Name| Type  | Readable| Writable| Description    |
+| ------ | ------ | -------- | ------ | -------- |
+| uri | string | Yes| No| URI of the file or directory.|
+| fileName | string | Yes| No| Name of the file or directory.|
+| mode | number | Yes| No| Permissions on the file or directory.|
+| size | number | Yes| No|  Size of the file or directory.|
+| mtime | number | Yes| No|  Time when the file or directory was last modified.|
+| mimeType | string | Yes| No|  Multipurpose Internet Mail Extensions (MIME) type of the file or directory.|
+
+### listFile
+
+listFile(filter?: Filter) : FileIterator
+
+Synchronously obtains a **FileIterator** object that lists the next-level files (directories) matching the conditions of the filter from a directory and returns [FileInfo](#fileinfo) using [next()](#next). Currently, only built-in storage devices support the file filter.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | --- | --- | -- | -- |
+  | filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object. |
+
+**Return value**
+
+  | Type| Description|
+  | --- | -- |
+  | [FileIterator](#fileiterator) | **FileIterator** object obtained.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+**Example**
+
+  ```js
+  // fileInfoDir indicates information about a directory.
+  // let filter = { suffix : [".txt", ".jpg", ".xlsx"] };
+  let fileInfoDir = fileInfos[0];
+  let subfileInfos = [];
+  let isDone = false;
+  try {
+    let fileIterator = fileInfoDir.listFile();
+    // listFile() with the filter implementation.
+    // let fileIterator = rootInfo.listFile(filter);
+    if (!fileIterator) {
+      console.error("listFile interface returns an undefined object");
+      return;
+    }
+    while (!isDone) {
+      let result = fileIterator.next();
+      console.log("next result = " + JSON.stringify(result));
+      isDone = result.done;
+      if (!isDone)
+        subfileInfos.push(result.value);
+    }
+  } catch (error) {
+    console.error("listFile failed, errCode:" + error.code + ", errMessage:" + error.message);
+  }
+  ```
+
+### scanFile
+
+scanFile(filter?: Filter) : FileIterator
+
+Synchronously obtains a **FileIterator** object that recursively retrieves the files matching the conditions of the filter from a directory and returns [FileInfo](#fileinfo) using [next()](#next). Currently, this API supports only built-in storage devices.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | --- | --- | -- | -- |
+  | filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object. |
+
+**Return value**
+
+  | Type| Description|
+  | --- | -- |
+  | [FileIterator](#fileiterator) | **FileIterator** object obtained.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+**Example**
+
+  ```js
+  // fileInfoDir indicates information about a directory.
+  // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
+  let fileInfoDir = fileInfos[0];
+  let subfileInfos = [];
+  let isDone = false;
+  try {
+    let fileIterator = fileInfoDir.scanFile();
+    // scanFile() with the filter implementation.
+    // let fileIterator = rootInfo.scanFile(filter);
+    if (!fileIterator) {
+      console.error("scanFile interface returns an undefined object");
+      return;
+    }
+    while (!isDone) {
+      let result = fileIterator.next();
+      console.log("next result = " + JSON.stringify(result));
+      isDone = result.done;
+      if (!isDone)
+        subfileInfos.push(result.value);
+    }
+  } catch (error) {
+    console.error("scanFile failed, errCode:" + error.code + ", errMessage:" + error.message);
+  }
+  ```
+
+## FileIterator
+
+Provides the **FileIterator** object.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+### next
+
+next() : { value: FileInfo, done: boolean }
+
+Obtains information about the next-level files or directories.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -178,7 +346,207 @@ Obtains information about the device root nodes of the file management service t
 
 | Type| Description|
 | --- | -- |
-| Promise&lt;RootIterator&gt; | Promise used to return the **RootIterator** object obtained.|
+| {value: [FileInfo](#fileinfo), done: boolean} | File or directory information obtained. This method traverses the specified directory until **true** is returned. The **value** field contains the file or directory information obtained.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+## RootInfo
+
+Provides the device's root attribute information and APIs.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+### Attributes
+
+| Name| Type  | Readable| Writable| Description    |
+| ------ | ------ | -------- | ------ | -------- |
+| deviceType | number | Yes| No|Type of the device.|
+| uri | string | Yes| No| Root directory URI of the device.|
+| displayName | string | Yes| No| Device name.|
+| deviceFlags | number | Yes| No| Capabilities supported by the device.|
+
+### listFile
+
+listFile(filter?: Filter) : FileIterator
+
+Synchronously obtains a **FileIterator** object that lists the first-level files (directories) matching the conditions of the filter from the device root directory and returns [FileInfo](#fileinfo) using [next()](#next). Currently, only built-in storage devices support the file filter.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | --- | --- | -- | -- |
+  | filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object. |
+
+**Return value**
+
+  | Type| Description|
+  | --- | -- |
+  | [FileIterator](#fileiterator) | **FileIterator** object obtained.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+**Example**
+
+  ```js
+  // Obtain rootInfos by using getRoots().
+  // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
+  let rootInfo = rootinfos[0];
+  let fileInfos = [];
+  let isDone = false;
+  try {
+    let fileIterator = rootInfo.listFile();
+    // listFile() with the filter implementation.
+    // let fileIterator = rootInfo.listFile(filter);
+    if (!fileIterator) {
+      console.error("listFile interface returns an undefined object");
+      return;
+    }
+    while (!isDone) {
+      let result = fileIterator.next();
+      console.log("next result = " + JSON.stringify(result));
+      isDone = result.done;
+      if (!isDone)
+        fileInfos.push(result.value);
+    }
+  } catch (error) {
+    console.error("listFile failed, errCode:" + error.code + ", errMessage:" + error.message);
+  }
+  ```
+
+### scanFile
+
+scanFile(filter?: Filter) : FileIterator
+
+Synchronously obtains a **FileIterator** object that recursively retrieves the files matching the conditions of the filter from the device root directory and returns [FileInfo](#fileinfo)using [next()](#next). Currently, this API supports only built-in storage devices.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | --- | --- | -- | -- |
+  | filter | [Filter](js-apis-file-fs.md#filter) | No| **Filter** object. |
+
+**Return value**
+
+  | Type| Description|
+  | --- | -- |
+  | [FileIterator](#fileiterator) | **FileIterator** object obtained.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+**Example**
+
+  ```js
+  // Obtain rootInfos by using getRoots().
+  // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
+  let rootInfo = rootInfos[0];
+  let fileInfos = [];
+  let isDone = false;
+  try {
+    let fileIterator = rootInfo.scanFile();
+    // scanFile with the filter implementation.
+    // let fileIterator = rootInfo.scanFile(filter);
+    if (!fileIterator) {
+      console.error("scanFile interface returns undefined object");
+      return;
+    }
+    while (!isDone) {
+      let result = fileIterator.next();
+      console.log("next result = " + JSON.stringify(result));
+      isDone = result.done;
+      if (!isDone)
+        fileInfos.push(result.value);
+    }
+  } catch (error) {
+    console.error("scanFile failed, errCode:" + error.code + ", errMessage:" + error.message);
+  }
+  ```
+
+## RootIterator
+
+Provides an iterator object of the device root directory.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+### next
+
+next() : { value: RootInfo, done: boolean }
+
+Obtains the root directory of the next-level device.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+**Return value**
+
+| Type| Description|
+| --- | -- |
+| {value: [RootInfo](#rootinfo), done: boolean} | Root directory information obtained. This method traverses the directory until **true** is returned. The **value** field contains the root directory information.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+## FileAccessHelper
+
+Provides a **FileAccessHelper** object.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+### getRoots
+
+getRoots() : Promise&lt;RootIterator&gt;
+
+Obtains information about the device root nodes of the file management service connected to the **Helper** object. This API uses a promise to return a **RootIterator** object,
+which returns [RootInfo](#rootinfo) by using [next](#next-1).
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.FileManagement.UserFileService
+
+**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
+
+**Return value**
+
+| Type| Description|
+| --- | -- |
+| Promise&lt;[RootIterator](#rootiterator)&gt; | Promise used to return the **RootIterator** object obtained.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -207,13 +575,14 @@ Obtains information about the device root nodes of the file management service t
   }
   ```
 
-## FileAccessHelper.getRoots
+### getRoots
 
-getRoots(callback:AsyncCallback&lt;RootIterator&gt;) : void;
+getRoots(callback:AsyncCallback&lt;RootIterator&gt;) : void
 
-Obtains information about the device root nodes of the file management service type connected to the **Helper** object. This API uses an asynchronous callback to return the result.
+Obtains information about the device root nodes of the file management service connected to the **Helper** object. This API uses an asynchronous callback to return a **RootIterator** object,
+which returns [RootInfo](#rootinfo) by using [next](#next-1).
 
-The callback has a **RootIterator** object, which returns [RootInfo](#rootinfo) through [next()](#rootiteratornext).
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -223,7 +592,11 @@ The callback has a **RootIterator** object, which returns [RootInfo](#rootinfo) 
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
-| callback | AsyncCallback&lt;RootIterator&gt; | Yes| Promise used to return the **RootIterator** object obtained.|
+| callback | AsyncCallback&lt;[RootIterator](#rootiterator)&gt; | Yes| Callback invoked to return the **RootIterator** object obtained.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -252,213 +625,13 @@ The callback has a **RootIterator** object, which returns [RootInfo](#rootinfo) 
   }
   ```
 
-## RootInfo.listfile
-
-listFile(filter?: Filter) : FileIterator
-
-Synchronously obtains the **FileIterator** object of the first-level files (directory) matching the conditions of the filter from the device root node. The **FileIterator** object then returns [FileInfo](#fileinfo) by using [next()](#fileiteratornext).
-
-**System capability**: SystemCapability.FileManagement.UserFileService
-
-**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| --- | --- | -- | -- |
-| filter | Filter | No| **Filter** object. |
-
-
-**Return value**
-
-| Type| Description|
-| --- | -- |
-| FileIterator | **FileIterator** object obtained.|
-
-**Example**
-
-  ```js
-  // Obtain rootInfos by using getRoots().
-  // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
-  let rootInfo = rootinfos[0];
-  let fileInfos = [];
-  let isDone = false;
-  try {
-    let fileIterator = rootInfo.listFile();
-    // listFile contains the filter implementation.
-    // let fileIterator = rootInfo.listFile(filter);
-    if (!fileIterator) {
-      console.error("listFile interface returns an undefined object");
-      return;
-    }
-    while (!isDone) {
-      let result = fileIterator.next();
-      console.log("next result = " + JSON.stringify(result));
-      isDone = result.done;
-      if (!isDone)
-        fileInfos.push(result.value);
-    }
-  } catch (error) {
-    console.error("listFile failed, errCode:" + error.code + ", errMessage:" + error.message);
-  }
-  ```
-
-## RootInfo.scanFile
-
-scanFile(filter?: Filter) : FileIterator
-
-Recursively obtains the **FileIterator** object of the files matching the conditions of the filter from the device root node synchronously. The **FileIterator** object then returns [FileInfo](#fileinfo) by using [next()](#fileiteratornext).
-
-**System capability**: SystemCapability.FileManagement.UserFileService
-
-**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| --- | --- | -- | -- |
-| filter | Filter | No| **Filter** object. |
-
-**Return value**
-
-| Type| Description|
-| --- | -- |
-| FileIterator | **FileIterator** object obtained.|
-
-**Example**
-
-  ```js
-  // Obtain rootInfos by using getRoots().
-  // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
-  let rootInfo = rootInfos[0];
-  let fileInfos = [];
-  let isDone = false;
-  try {
-    let fileIterator = rootInfo.scanFile();
-    // scanFile contains the filter implementation.
-    // let fileIterator = rootInfo.scanFile(filter);
-    if (!fileIterator) {
-      console.error("scanFile interface returns undefined object");
-      return;
-    }
-    while (!isDone) {
-      let result = fileIterator.next();
-      console.log("next result = " + JSON.stringify(result));
-      isDone = result.done;
-      if (!isDone)
-        fileInfos.push(result.value);
-    }
-  } catch (error) {
-    console.error("scanFile failed, errCode:" + error.code + ", errMessage:" + error.message);
-  }
-  ```
-
-## FileInfo.listfile
-
-listFile(filter?: Filter) : FileIterator
-
-Synchronously obtains the **FileIterator** object of the next-level files (directories) matching the conditions of the filter from a directory. The **FileIterator** object then returns [FileInfo](#fileinfo) by using [next()](#fileiteratornext).
-
-**System capability**: SystemCapability.FileManagement.UserFileService
-
-**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| --- | --- | -- | -- |
-| filter | Filter | No| **Filter** object. |
-
-**Return value**
-
-| Type| Description|
-| --- | -- |
-| FileIterator | **FileIterator** object obtained.|
-
-**Example**
-
-  ```js
-  // fileInfoDir specifies the target directory.
-  // let filter = { suffix : [".txt", ".jpg", ".xlsx"] };
-  let fileInfoDir = fileInfos[0];
-  let subfileInfos = [];
-  let isDone = false;
-  try {
-    let fileIterator = fileInfoDir.listFile();
-    // listFile contains the filter implementation.
-    // let fileIterator = rootInfo.listFile(filter);
-    if (!fileIterator) {
-      console.error("listFile interface returns an undefined object");
-      return;
-    }
-    while (!isDone) {
-      let result = fileIterator.next();
-      console.log("next result = " + JSON.stringify(result));
-      isDone = result.done;
-      if (!isDone)
-        subfileInfos.push(result.value);
-    }
-  } catch (error) {
-    console.error("listFile failed, errCode:" + error.code + ", errMessage:" + error.message);
-  }
-  ```
-
-## FileInfo.scanfile
-
-scanFile(filter?: Filter) : FileIterator;
-
-Recursively obtains the **FileIterator** object of the files matching the conditions of the filter from a directory synchronously. The **FileIterator** object then returns [FileInfo](#fileinfo) by using [next()](#fileiteratornext).
-
-**System capability**: SystemCapability.FileManagement.UserFileService
-
-**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| --- | --- | -- | -- |
-| filter | Filter | No| **Filter** object. |
-
-
-**Return value**
-
-| Type| Description|
-| --- | -- |
-| FileIterator | **FileIterator** object obtained.|
-
-**Example**
-
-  ```js
-  // fileInfoDir specifies the target directory.
-  // let filter = {suffix : [".txt", ".jpg", ".xlsx"]};
-  let fileInfoDir = fileInfos[0];
-  let subfileInfos = [];
-  let isDone = false;
-  try {
-    let fileIterator = fileInfoDir.scanFile();
-    // scanFile contains the filter implementation.
-    // let fileIterator = rootInfo.scanFile(filter);
-    if (!fileIterator) {
-      console.error("scanFile interface returns an undefined object");
-      return;
-    }
-    while (!isDone) {
-      let result = fileIterator.next();
-      console.log("next result = " + JSON.stringify(result));
-      isDone = result.done;
-      if (!isDone)
-        subfileInfos.push(result.value);
-    }
-  } catch (error) {
-    console.error("scanFile failed, errCode:" + error.code + ", errMessage:" + error.message);
-  }
-  ```
-
-## FileAccessHelper.createFile
+### createFile
 
 createFile(uri: string, displayName: string) : Promise&lt;string&gt;
 
 Creates a file in a directory. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -468,7 +641,7 @@ Creates a file in a directory. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
-| uri | string | Yes| URI of the parent directory for the file to create.|
+| uri | string | Yes| URI of the destination directory for the file to create.|
 | displayName | string | Yes| Name of the file to create. By default, the name of a local file must contain the file name extension.|
 
 **Return value**
@@ -476,6 +649,10 @@ Creates a file in a directory. This API uses a promise to return the result.
 | Type| Description|
 | --- | -- |
 | Promise&lt;string&gt; | Promise used to return the URI of the file created.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -499,11 +676,13 @@ Creates a file in a directory. This API uses a promise to return the result.
   };
   ```
 
-## FileAccessHelper.createFile
+### createFile
 
-createFile(uri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) : void;
+createFile(uri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) : void
 
 Creates a file in a directory. This API uses an asynchronous callback to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -513,9 +692,13 @@ Creates a file in a directory. This API uses an asynchronous callback to return 
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
-| uri | string | Yes| URI of the parent directory for the file to create.|
+| uri | string | Yes| URI of the destination directory for the file to create.|
 | displayName | string | Yes| Name of the file to create. By default, the name of a local file must contain the file name extension.|
-| callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the file created.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the URI of the file created.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -539,11 +722,13 @@ Creates a file in a directory. This API uses an asynchronous callback to return 
   };
   ```
 
-## FileAccessHelper.mkDir
+### mkDir
 
 mkDir(parentUri: string, displayName: string) : Promise&lt;string&gt;
 
 Creates a directory. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -553,7 +738,7 @@ Creates a directory. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
-| parentUri | string | Yes| URI of the parent directory for the directory to create.|
+| parentUri | string | Yes| URI of the destination directory for the directory to create.|
 | displayName | string | Yes| Name of the directory to create.|
 
 **Return value**
@@ -561,6 +746,10 @@ Creates a directory. This API uses a promise to return the result.
 | Type| Description|
 | --- | -- |
 | Promise&lt;string&gt; | Promise used to return the URI of the directory created.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -584,11 +773,13 @@ Creates a directory. This API uses a promise to return the result.
   };
   ```
 
-## FileAccessHelper.mkDir
+### mkDir
 
-mkDir(parentUri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) : void;
+mkDir(parentUri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) : void
 
 Creates a directory. This API uses an asynchronous callback to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -598,9 +789,13 @@ Creates a directory. This API uses an asynchronous callback to return the result
 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
-| parentUri | string | Yes| URI of the parent directory for the directory to create.|
+| parentUri | string | Yes| URI of the destination directory for the directory to create.|
 | displayName | string | Yes| Name of the directory to create.|
-| callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the directory created.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the URI of the directory created.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -624,11 +819,13 @@ Creates a directory. This API uses an asynchronous callback to return the result
   };
   ```
 
-## FileAccessHelper.openFile
+### openFile
 
 openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;
 
 Opens a file. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -645,7 +842,11 @@ Opens a file. This API uses a promise to return the result.
 
 | Type| Description|
 | --- | -- |
-| Promise&lt;number&gt; | Promise used to return the file descriptor of the file opened.|
+| Promise&lt;number&gt; | Promise used to return the file descriptor (FD) of the file opened.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -662,11 +863,13 @@ Opens a file. This API uses a promise to return the result.
   };
   ```
 
-## FileAccessHelper.openFile
+### openFile
 
-openFile(uri: string, flags: OPENFLAGS, callback: AsyncCallback&lt;number&gt;) : void;
+openFile(uri: string, flags: OPENFLAGS, callback: AsyncCallback&lt;number&gt;) : void
 
 Opens a file. This API uses an asynchronous callback to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -678,7 +881,11 @@ Opens a file. This API uses an asynchronous callback to return the result.
 | --- | --- | --- | -- |
 | uri | string | Yes| URI of the file to open.|
 | flags | [OPENFLAGS](#openflags) | Yes| File open mode.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the file descriptor of the file opened.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the FD of the file opened.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -701,11 +908,13 @@ Opens a file. This API uses an asynchronous callback to return the result.
   };
   ```
 
-## FileAccessHelper.delete
+### delete
 
 delete(uri: string) : Promise&lt;number&gt;
 
 Deletes a file or directory. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -722,6 +931,10 @@ Deletes a file or directory. This API uses a promise to return the result.
 | Type| Description|
 | --- | -- |
 | Promise&lt;number&gt | Promise used to return the result.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -740,11 +953,13 @@ Deletes a file or directory. This API uses a promise to return the result.
   };
   ```
 
-## FileAccessHelper.delete
+### delete
 
-delete(uri: string, callback: AsyncCallback&lt;number&gt;) : void;
+delete(uri: string, callback: AsyncCallback&lt;number&gt;) : void
 
 Deletes a file or directory. This API uses an asynchronous callback to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -755,7 +970,11 @@ Deletes a file or directory. This API uses an asynchronous callback to return th
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
 | uri | string | Yes| URI of the file or directory to delete.|
-| callback | AsyncCallback&lt;number&gt; | Yes| Promise used to return the result.|
+| callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -778,11 +997,13 @@ Deletes a file or directory. This API uses an asynchronous callback to return th
   };
   ```
 
-## FileAccessHelper.move
+### move
 
 move(sourceFile: string, destFile: string) : Promise&lt;string&gt;
 
-Moves a file or directory. This API uses a promise to return the result.
+Moves a file or directory. This API uses a promise to return the result. Currently, this API does not support move of files or directories across devices.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -793,13 +1014,17 @@ Moves a file or directory. This API uses a promise to return the result.
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
 | sourceFile | string | Yes| URI of the file or directory to move.|
-| destFile | string | Yes| URI of the directory, to which the file or directory will be moved.|
+| destFile | string | Yes| URI of the destination directory, to which the file or directory will be moved.|
 
 **Return value**
 
 | Type| Description|
 | ----- | ------ |
 | Promise&lt;string&gt; | Promise used to return the URI of the file or directory in the destination directory.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -818,11 +1043,13 @@ Moves a file or directory. This API uses a promise to return the result.
   };
   ```
 
-## FileAccessHelper.move
+### move
 
-move(sourceFile: string, destFile: string, callback: AsyncCallback&lt;string&gt;) : void;
+move(sourceFile: string, destFile: string, callback: AsyncCallback&lt;string&gt;) : void
 
-Moves a file or directory. This API uses an asynchronous callback to return the result.
+Moves a file or directory. This API uses an asynchronous callback to return the result. Currently, this API does not support move of files or directories across devices.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -833,8 +1060,12 @@ Moves a file or directory. This API uses an asynchronous callback to return the 
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
 | sourceFile | string | Yes| URI of the file or directory to move.|
-| destFile | string | Yes| URI of the  directory, to which the file or  directory will be moved.|
-| callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the file or directory in the destination directory.|
+| destFile | string | Yes| URI of the destination directory, to which the file or directory will be moved.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the URI of the file or directory in the destination directory.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -858,11 +1089,13 @@ Moves a file or directory. This API uses an asynchronous callback to return the 
   };
   ```
 
-## FileAccessHelper.rename
+### rename
 
 rename(uri: string, displayName: string) : Promise&lt;string&gt;
 
 Renames a file or directory. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -881,6 +1114,10 @@ Renames a file or directory. This API uses a promise to return the result.
 | --- | -- |
 | Promise&lt;string&gt; | Promise used to return the URI of the renamed file or directory.|
 
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
 **Example**
 
   ```js
@@ -897,11 +1134,13 @@ Renames a file or directory. This API uses a promise to return the result.
   };
   ```
 
-## FileAccessHelper.rename
+### rename
 
-rename(uri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) : void;
+rename(uri: string, displayName: string, callback: AsyncCallback&lt;string&gt;) : void
 
 Renames a file or directory. This API uses an asynchronous callback to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -913,7 +1152,11 @@ Renames a file or directory. This API uses an asynchronous callback to return th
 | --- | --- | --- | -- |
 | uri | string | Yes| URI of the file or directory to rename.|
 | displayName | string | Yes| New name of the file or directory, which can contain the file name extension.|
-| callback | AsyncCallback&lt;string&gt; | Yes| Promise used to return the URI of the renamed file or directory.|
+| callback | AsyncCallback&lt;string&gt; | Yes| Callback invoked to return the URI of the renamed file or directory.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -936,11 +1179,13 @@ Renames a file or directory. This API uses an asynchronous callback to return th
   };
   ```
 
-## FileAccessHelper.access
+### access
 
 access(sourceFileUri: string) : Promise&lt;boolean&gt;
 
 Checks whether a file or directory exists. This API uses a promise to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -957,6 +1202,10 @@ Checks whether a file or directory exists. This API uses a promise to return the
 | Type| Description|
 | --- | -- |
 | Promise&lt;boolean&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -977,11 +1226,13 @@ Checks whether a file or directory exists. This API uses a promise to return the
   };
   ```
 
-## FileAccessHelper.access
+### access
 
-access(sourceFileUri: string, callback: AsyncCallback&lt;boolean&gt;) : void;
+access(sourceFileUri: string, callback: AsyncCallback&lt;boolean&gt;) : void
 
 Checks whether a file or directory exists. This API uses an asynchronous callback to return the result.
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System capability**: SystemCapability.FileManagement.UserFileService
 
@@ -992,7 +1243,11 @@ Checks whether a file or directory exists. This API uses an asynchronous callbac
 | Name| Type| Mandatory| Description|
 | --- | --- | --- | -- |
 | sourceFileUri | string | Yes| URI of the file or directory.|
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Promise used to return the result.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result.|
+
+**Error codes**
+
+For details about error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 **Example**
 
@@ -1017,74 +1272,6 @@ Checks whether a file or directory exists. This API uses an asynchronous callbac
     console.error("access failed, errCode:" + error.code + ", errMessage:" + error.message);
   };
   ```
-
-## RootIterator.next
-
-next( ) : { value: RootInfo, done: boolean }
-
-Obtains the next-level device root directory. **RootIterator** is an iterator object of the device root directory.
-
-**System capability**: SystemCapability.FileManagement.UserFileService
-
-**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
-
-**Return value**
-
-| Type| Description|
-| --- | -- |
-| {value: RootInfo, done: boolean} | Root directory information obtained. This API traverses the directory until **done** returns **true**. The **value** field contains the root directory information.|
-
-## FileIterator.next
-
-next( ) : { value: FileInfo, done: boolean }
-
-Obtains the information about the next-level file or directory. **FileIterator** is an iterator object of a directory.
-
-**System capability**: SystemCapability.FileManagement.UserFileService
-
-**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
-
-**Return value**
-
-| Type| Description|
-| --- | -- |
-| {value: FileInfo, done: boolean} | File or directory information obtained. This API traverses the specified directory until **done** returns **true**. The **value** field contains the file or directory information obtained.|
-
-## RootInfo
-
-Represents the root attribute information and interface capabilities of a device.
-
-**System capability**: SystemCapability.FileManagement.UserFileService
-
-**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
-
-### Attributes
-
-| Name| Type  | Readable| Writable| Description    |
-| ------ | ------ | -------- | ------ | -------- |
-| deviceType | number | Yes| No|Device type.|
-| uri | string | Yes| No| Root directory URI of the device.|
-| displayName | string | Yes| No| Device name.|
-| deviceFlags | number | Yes| No| Capabilities supported by the device.|
-
-## FileInfo
-
-Represents the file or directory attribute information and interface capabilities.
-
-**System capability**: SystemCapability.FileManagement.UserFileService
-
-**Required permissions**: ohos.permission.FILE_ACCESS_MANAGER
-
-### Attributes
-
-| Name| Type  | Readable| Writable| Description    |
-| ------ | ------ | -------- | ------ | -------- |
-| uri | string | Yes| No| URI of the file or directory.|
-| fileName | string | Yes| No| Name of a file or directory.|
-| mode | number | Yes| No| Permissions on the file or directory.|
-| size | number | Yes| No|  Size of the file or directory.|
-| mtime | number | Yes| No|  Time when the file or directory was last modified.|
-| mimeType | string | Yes| No|  MIME type of the file or directory.|
 
 ## OPENFLAGS
 

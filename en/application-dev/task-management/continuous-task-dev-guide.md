@@ -293,7 +293,7 @@ For details about the stage model, see [Stage Model Development Overview](../app
 3. If a continuous task needs to be executed in the background for another application or on another device, you can create and run an ability in the background in Call mode. For details, see [Using Call to Implement UIAbility Interaction (intra-device)](../application-models/uiability-intra-device-interaction.md#using-call-to-implement-uiability-interaction-for-system-applications-only) and [Using Cross-Device Call (inter-device)](../application-models/hop-multi-device-collaboration.md#using-cross-device-call).
 
    ```ts
-   import Ability from '@ohos.application.Ability'
+   import UIAbility from '@ohos.app.ability.UIAbility';
    import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';  
    import wantAgent from '@ohos.wantAgent';
    

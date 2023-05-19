@@ -48,9 +48,9 @@ function implicitStartAbility() {
     }
   }
   context.startAbility(wantInfo).then(() => {
-    // ...
+    ...
   }).catch((err) => {
-    // ...
+    ...
   })
 }
 ```
@@ -67,7 +67,7 @@ function implicitStartAbility() {
 - `ability.picker.fileNames`和`ability.picker.fileSizes`是数组，两者一一对应。
 
 效果示意如下图所示。   
-![stage-want2](figures/stage-want2.png)
+![](figures/ability-startup-with-implicit-want2.png)
 
 ## 被分享方
 
@@ -76,17 +76,17 @@ function implicitStartAbility() {
 ```json
 {
   "module": {
-    // ...
+    ...
     "abilities": [
       {
-        // ...
+        ...
         "skills": [
           {
-            // ...
+            ...
             "actions": [
               "action.system.home",
               "ohos.want.action.sendData"
-              // ...
+              ...
             ],
             "uris": [
               {
@@ -101,7 +101,7 @@ function implicitStartAbility() {
 }
 ```
 
-当用户选择分享的应用后，嵌套在`ability.want.params.INTENT`字段中的Want参数将会传递给所选应用。被分享方的UIAbility被启动后，可以在其[onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)或者[onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调中获取传入的Want参数信息。
+当用户选择分享的应用后，嵌套在`ability.want.params.INTENT`字段中的Want参数将会传递给所选应用。被分享方的UIAbility被启动后，可以在其[`onCreate()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate)或者[`onNewWant()`](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant)回调中获取传入的Want参数信息。
 
 获取到的Want参数信息示例如下，可以使用被分享文件的文件描述符（FD）进行相应操作。
 
@@ -129,4 +129,4 @@ function implicitStartAbility() {
     },
     "entities": []
 }
-```   
+```

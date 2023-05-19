@@ -1234,9 +1234,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   
   ```
 
-### getPluralString<sup>9+</sup>
+### getPluralStringValue<sup>9+</sup>
 
-getPluralString(resource: Resource, num: number): Promise&lt;string&gt;
+getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
 Obtains the singular-plural string corresponding to the specified resource object based on the specified number. This API uses a promise to return the result.
 
@@ -1273,10 +1273,10 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       id: $r('app.plural.test').id
   };
   try {
-    this.context.resourceManager.getPluralString(resource, 1).then(value => {
+    this.context.resourceManager.getPluralStringValue(resource, 1).then(value => {
         let str = value;
     }).catch(error => {
-        console.log("getPluralString promise error is " + error);
+        console.log("getPluralStringValue promise error is " + error);
     });
   } catch (error) {
     console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`)
@@ -2278,8 +2278,8 @@ Obtains the integer or float value corresponding to the specified resource ID. T
 **Return value**
 
 | Type    | Description        |
-| ------ | ---------- |
-| number | Integer or float value corresponding to the specified resource ID.|
+| ------ | ---------- | 
+| number | Integer or float value corresponding to the specified resource ID. Wherein, the integer value is the original value, and the float value is the actual pixel value. For details, see the sample code.|
 
 For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
@@ -2294,13 +2294,13 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   try {
-    this.context.resourceManager.getNumber($r('app.integer.integer_test').id);
+    this.context.resourceManager.getNumber($r('app.integer.integer_test').id); // integer refers to the original value.
   } catch (error) {
     console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`)
   }
 
   try {
-    this.context.resourceManager.getNumber($r('app.float.float_test').id);
+    this.context.resourceManager.getNumber($r('app.float.float_test').id); // float refers to the actual pixel value.
   } catch (error) {
     console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -2324,7 +2324,7 @@ Obtains the integer or float value corresponding to the specified resource objec
 
 | Type    | Description             |
 | ------ | --------------- |
-| number | Integer or float value corresponding to the specified resource object.|
+| number | Integer or float value corresponding to the specified resource object. Wherein, the integer value is the original value, and the float value is the actual pixel value. For details, see the sample code.|
 
 For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
@@ -2344,7 +2344,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       id: $r('app.integer.integer_test').id
   };
   try {
-    this.context.resourceManager.getNumber(resource);
+    this.context.resourceManager.getNumber(resource);// integer refers to the original value; float refers to the actual pixel value.
   } catch (error) {
     console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`)
   }

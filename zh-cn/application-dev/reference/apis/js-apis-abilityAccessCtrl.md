@@ -460,7 +460,7 @@ on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionLi
 **示例：**
 
 ```js
-import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
+import {Permissions} from '@ohos.abilityAccessCtrl';
 import bundleManager from '@ohos.bundle.bundleManager';
 
 let atManager = abilityAccessCtrl.createAtManager();
@@ -511,7 +511,7 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionL
 **示例：**
 
 ```js
-import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
+import {Permissions} from '@ohos.abilityAccessCtrl';
 import bundleManager from '@ohos.bundle.bundleManager';
 
 let atManager = abilityAccessCtrl.createAtManager();

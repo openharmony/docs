@@ -35,9 +35,9 @@
 
 ![zh-cn_image_0000001364054489](figures/zh-cn_image_0000001364054489.png)
 
-- **AppStore > app.json5**：应用的全局配置信息。
+- **AppScope > app.json5**：应用的全局配置信息。
 - **entry**：OpenHarmony工程模块，编译构建生成一个[HAP](../../glossary.md#hap)包。
-  - **oh_modules**：用于存放三方库依赖信息。关于原npm工程适配ohpm操作，请参考[历史工程手动迁移](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/project_overview-0000001053822398-V3#section108143331212)。
+- **oh_modules**：用于存放三方库依赖信息。关于原npm工程适配ohpm操作，请参考[历史工程手动迁移](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/project_overview-0000001053822398-V3#section108143331212)。
   - **src &gt; main &gt; ets**：用于存放ArkTS源码。
   - **src &gt; main &gt; ets &gt; entryability**：应用/服务的入口。
   - **src &gt; main &gt; ets &gt; pages**：应用/服务包含的页面。

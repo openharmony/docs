@@ -69,6 +69,12 @@
 - [Swiper](ts-container-swiper.md)
 
     A container that is able to display child components in looping mode.
+- [WaterFlow](ts-container-waterflow.md)
+
+    A container that consists of cells formed by rows and columns and arranges items of different sizes from top to bottom according to the preset rules.
+- [FlowItem](ts-container-flowitem.md)
+
+    A child component of the **\<WaterFlow>** container that is used to display specific items in the container layout.
 
 
 ## Navigation

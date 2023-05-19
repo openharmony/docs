@@ -9,37 +9,7 @@
 
 在config.json声明需要的权限，在module下添加"reqPermissions"，并写入对应权限。
 
+例如申请访问日历权限：
 
-如申请访问日历权限，需要申请`ohos.permission.READ_CALENDAR`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md#stage模型)。
-
-
-  对应config.json文件的示例代码如下所示：
-
-```json
-{
-  "module": {
-    // ...
-    "reqPermissions": [
-      {
-        "name": "ohos.permission.READ_CALENDAR"
-        // ...
-      }
-    ]
-  }
-}
-```
-
-
-通过动态弹窗向用户申请授权：
-
-```ts
-import featureAbility from '@ohos.ability.featureAbility';
-
-let context = featureAbility.getContext();  
-let permissions: Array<string> = ['ohos.permission.READ_CALENDAR']
-context.requestPermissionsFromUser(permissions, 1).then((data) => {    
-    console.info("Succeed to request permission from user with data: " + JSON.stringify(data))
-}).catch((error) => {    
-    console.info("Failed to request permission from user with error: " + JSON.stringify(error))
-})
-```
+1. 需要申请`ohos.permission.DISTRIBUTED_DATASYNC`权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
+2. 同时需要在应用首次启动时弹窗向用户申请授权，使用方式请参见[向用户申请授权](../security/accesstoken-guidelines.md#向用户申请授权)。

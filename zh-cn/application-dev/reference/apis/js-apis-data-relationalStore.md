@@ -64,7 +64,7 @@ const STORE_CONFIG = {
 relationalStore.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
   store = rdbStore;
   if (err) {
-    console.error(`Get RdbStore failed, err: ${err}`);
+    console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Get RdbStore successfully.`);
@@ -87,7 +87,7 @@ class EntryAbility extends UIAbility {
     relationalStore.getRdbStore(this.context, STORE_CONFIG, function (err, rdbStore) {
       store = rdbStore;
       if (err) {
-        console.error(`Get RdbStore failed, err: ${err}`);
+        console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
       }
       console.info(`Get RdbStore successfully.`);
@@ -148,7 +148,7 @@ promise.then(async (rdbStore) => {
   store = rdbStore;
   console.info(`Get RdbStore successfully.`);
 }).catch((err) => {
-  console.error(`Get RdbStore failed, err: ${err}`);
+  console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -170,7 +170,7 @@ class EntryAbility extends UIAbility {
       store = rdbStore;
       console.info(`Get RdbStore successfully.`)
     }).catch((err) => {
-      console.error(`Get RdbStore failed, err: ${err}`);
+      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
   }
 }
@@ -212,7 +212,7 @@ let context = featureAbility.getContext()
 
 relationalStore.deleteRdbStore(context, "RdbTest.db", function (err) {
   if (err) {
-    console.error(`Delete RdbStore failed, err: ${err}`);
+    console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Delete RdbStore successfully.`);
@@ -228,7 +228,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage){
     relationalStore.deleteRdbStore(this.context, "RdbTest.db", function (err) {
       if (err) {
-        console.error(`Delete RdbStore failed, err: ${err}`);
+        console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
       }
       console.info(`Delete RdbStore successfully.`);
@@ -280,7 +280,7 @@ let promise = relationalStore.deleteRdbStore(context, "RdbTest.db");
 promise.then(()=>{
   console.info(`Delete RdbStore successfully.`);
 }).catch((err) => {
-  console.error(`Delete RdbStore failed, err: ${err}`);
+  console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -295,7 +295,7 @@ class EntryAbility extends UIAbility {
     promise.then(()=>{
       console.info(`Delete RdbStore successfully.`);
     }).catch((err) => {
-      console.error(`Delete RdbStore failed, err: ${err}`);
+      console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
   }
 }
@@ -311,7 +311,7 @@ class EntryAbility extends UIAbility {
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | name          | string        | 是   | 数据库文件名。                                            |
 | securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别                                        |
-| encrypt       | boolean       | 否   | 指定数据库是否加密。<br/> true:加密。<br/> false:非加密。 |
+| encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。 |
 
 ## SecurityLevel
 
@@ -1264,7 +1264,7 @@ const valueBucket = {
 };
 store.insert("EMPLOYEE", valueBucket, function (err, rowId) {
   if (err) {
-    console.error(`Insert is failed, err: ${err}`);
+    console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Insert is successful, rowId = ${rowId}`);
@@ -1306,7 +1306,7 @@ let promise = store.insert("EMPLOYEE", valueBucket);
 promise.then((rowId) => {
   console.info(`Insert is successful, rowId = ${rowId}`);
 }).catch((err) => {
-  console.error(`Insert is failed, err: ${err}`);
+  console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1352,7 +1352,7 @@ const valueBucket3 = {
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
 store.batchInsert("EMPLOYEE", valueBuckets, function(err, insertNum) {
   if (err) {
-    console.error(`batchInsert is failed, err: ${err}`);
+    console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
@@ -1407,7 +1407,7 @@ let promise = store.batchInsert("EMPLOYEE", valueBuckets);
 promise.then((insertNum) => {
   console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
 }).catch((err) => {
-  console.error(`batchInsert is failed, err: ${err}`);
+  console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1440,7 +1440,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 store.update(valueBucket, predicates, function (err, rows) {
   if (err) {
-    console.error(`Updated failed, err: ${err}`);
+    console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Updated row count: ${rows}`);
@@ -1484,7 +1484,7 @@ let promise = store.update(valueBucket, predicates);
 promise.then(async (rows) => {
   console.info(`Updated row count: ${rows}`);
 }).catch((err) => {
-  console.error(`Updated failed, err: ${err}`);
+  console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1496,6 +1496,8 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 根据DataSharePredicates的指定实例对象更新数据库中的数据，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1522,7 +1524,7 @@ let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 store.update("EMPLOYEE", valueBucket, predicates, function (err, rows) {
   if (err) {
-    console.error(`Updated failed, err: ${err}`);
+    console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Updated row count: ${rows}`);
@@ -1536,6 +1538,8 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 根据DataSharePredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1569,7 +1573,7 @@ let promise = store.update("EMPLOYEE", valueBucket, predicates);
 promise.then(async (rows) => {
   console.info(`Updated row count: ${rows}`);
 }).catch((err) => {
-  console.error(`Updated failed, err: ${err}`);
+  console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1595,7 +1599,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 store.delete(predicates, function (err, rows) {
   if (err) {
-    console.error(`Delete failed, err: ${err}`);
+    console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Delete rows: ${rows}`);
@@ -1631,7 +1635,7 @@ let promise = store.delete(predicates);
 promise.then((rows) => {
   console.info(`Delete rows: ${rows}`);
 }).catch((err) => {
-  console.error(`Delete failed, err: ${err}`);
+  console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1642,6 +1646,8 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callb
 根据DataSharePredicates的指定实例对象从数据库中删除数据，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1661,7 +1667,7 @@ let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 store.delete("EMPLOYEE", predicates, function (err, rows) {
   if (err) {
-    console.error(`Delete failed, err: ${err}`);
+    console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Delete rows: ${rows}`);
@@ -1675,6 +1681,8 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promi
 根据DataSharePredicates的指定实例对象从数据库中删除数据，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1701,7 +1709,7 @@ let promise = store.delete("EMPLOYEE", predicates);
 promise.then((rows) => {
   console.info(`Delete rows: ${rows}`);
 }).catch((err) => {
-  console.error(`Delete failed, err: ${err}`);
+  console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1728,7 +1736,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
   if (err) {
-    console.error(`Query failed, err: ${err}`);
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
@@ -1767,7 +1775,7 @@ promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
   console.info(`ResultSet column count: ${resultSet.columnCount}`);
 }).catch((err) => {
-  console.error(`Query failed, err: ${err}`);
+  console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
   ```
 
@@ -1778,6 +1786,8 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 根据指定条件查询数据库中的数据，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1798,7 +1808,7 @@ let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
 store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
   if (err) {
-    console.error(`Query failed, err: ${err}`);
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
@@ -1813,6 +1823,8 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 根据指定条件查询数据库中的数据，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1841,7 +1853,7 @@ promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
   console.info(`ResultSet column count: ${resultSet.columnCount}`);
 }).catch((err) => {
-  console.error(`Query failed, err: ${err}`);
+  console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1889,7 +1901,7 @@ predicates.greaterThan("id", 0);
 store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
   function(err, resultSet) {
     if (err) {
-      console.error(`Failed to remoteQuery, err: ${err}`);
+      console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info(`ResultSet column names: ${resultSet.columnNames}`);
@@ -1949,7 +1961,7 @@ promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
   console.info(`ResultSet column count: ${resultSet.columnCount}`);
 }).catch((err) => {
-  console.error(`Failed to remoteQuery, err: ${err}`);
+  console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1974,7 +1986,7 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 ```js
 store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], function (err, resultSet) {
   if (err) {
-    console.error(`Query failed, err: ${err}`);
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
@@ -2011,7 +2023,7 @@ promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
   console.info(`ResultSet column count: ${resultSet.columnCount}`);
 }).catch((err) => {
-  console.error(`Query failed, err: ${err}`);
+  console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -2037,7 +2049,7 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = ?"
 store.executeSql(SQL_DELETE_TABLE, ['zhangsan'], function(err) {
   if (err) {
-    console.error(`ExecuteSql failed, err: ${err}`);
+    console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Delete table done.`);
@@ -2073,7 +2085,7 @@ let promise = store.executeSql(SQL_DELETE_TABLE);
 promise.then(() => {
     console.info(`Delete table done.`);
 }).catch((err) => {
-    console.error(`ExecuteSql failed, err: ${err}`);
+    console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -2096,7 +2108,7 @@ const STORE_CONFIG = {
 };
 relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, store) {
   if (err) {
-    console.error(`GetRdbStore failed, err: ${err}`);
+    console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   store.beginTransaction();
@@ -2130,7 +2142,7 @@ const STORE_CONFIG = {
 };
 relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, store) {
   if (err) {
-     console.error(`GetRdbStore failed, err: ${err}`);
+     console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
      return;
   }
   store.beginTransaction();
@@ -2164,7 +2176,7 @@ const STORE_CONFIG = {
 };
 relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, store) {
   if (err) {
-    console.error(`GetRdbStore failed, err: ${err}`);
+    console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   try {
@@ -2179,7 +2191,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, store) {
 	await store.insert("test", valueBucket);
     store.commit();
   } catch (err) {
-    console.error(`Transaction failed, err: ${err}`);
+    console.error(`Transaction failed, code is ${err.code},message is ${err.message}`);
     store.rollBack();
   }
 })
@@ -2205,7 +2217,7 @@ backup(destName:string, callback: AsyncCallback&lt;void&gt;):void
 ```js
 store.backup("dbBackup.db", function(err) {
   if (err) {
-    console.error(`Backup failed, err: ${err}`);
+    console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Backup success.`);
@@ -2239,7 +2251,7 @@ let promiseBackup = store.backup("dbBackup.db");
 promiseBackup.then(()=>{
   console.info(`Backup success.`);
 }).catch((err)=>{
-  console.error(`Backup failed, err: ${err}`);
+  console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -2263,7 +2275,7 @@ restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void
 ```js
 store.restore("dbBackup.db", function(err) {
   if (err) {
-    console.error(`Restore failed, err: ${err}`);
+    console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Restore success.`);
@@ -2297,7 +2309,7 @@ let promiseRestore = store.restore("dbBackup.db");
 promiseRestore.then(()=>{
   console.info(`Restore success.`);
 }).catch((err)=>{
-  console.error(`Restore failed, err: ${err}`);
+  console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -2323,7 +2335,7 @@ setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 ```js
 store.setDistributedTables(["EMPLOYEE"], function (err) {
   if (err) {
-    console.error(`SetDistributedTables failed, err: ${err}`);
+    console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`SetDistributedTables successfully.`);
@@ -2359,7 +2371,7 @@ let promise = store.setDistributedTables(["EMPLOYEE"]);
 promise.then(() => {
   console.info(`SetDistributedTables successfully.`);
 }).catch((err) => {
-  console.error(`SetDistributedTables failed, err: ${err}`);
+  console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -2404,7 +2416,7 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
 
 store.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
     if (err) {
-        console.error(`ObtainDistributedTableName failed, err: ${err}`);
+        console.error(`ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`);
         return;
     }
     console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
@@ -2459,7 +2471,7 @@ let promise = store.obtainDistributedTableName(deviceId, "EMPLOYEE");
 promise.then((tableName) => {
   console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
 }).catch((err) => {
-  console.error(`ObtainDistributedTableName failed, err: ${err}`);
+  console.error(`ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -2504,7 +2516,7 @@ let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
 store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
   if (err) {
-    console.error(`Sync failed, err: ${err}`);
+    console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Sync done.`);
@@ -2565,7 +2577,7 @@ promise.then((result) =>{
     console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
   }
 }).catch((err) => {
-  console.error(`Sync failed, err: ${err}`);
+  console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -2583,7 +2595,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)    | 是   | 订阅类型。 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; | 是   | 指分布式数据库中数据更改事件的观察者。      |
+| observer | Callback&lt;Array&lt;string&gt;&gt; | 是   | 指分布式数据库中数据更改事件的观察者。Array&lt;string>为数据库中的数据发生改变的对端设备ID。 |
 
 **示例：**
 
@@ -2596,7 +2608,7 @@ function storeObserver(devices) {
 try {
   store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
 } catch (err) {
-  console.error(`Register observer failed, err: ${err}`);
+  console.error(`Register observer failed, code is ${err.code},message is ${err.message}`);
 }
 ```
 
@@ -2614,7 +2626,7 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)     | 是   | 订阅类型。                                 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; | 是   | 指已注册的数据更改观察者。                  |
+| observer | Callback&lt;Array&lt;string&gt;&gt; | 是   | 指已注册的数据更改观察者。Array&lt;string>为数据库中的数据发生改变的对端设备ID。 |
 
 **示例：**
 
@@ -2627,7 +2639,7 @@ function storeObserver(devices) {
 try {
   store.off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
 } catch (err) {
-  console.error(`Unregister observer failed, err: ${err}`);
+  console.error(`Unregister observer failed, code is ${err.code},message is ${err.message}`);
 }
 ```
 
@@ -2778,7 +2790,7 @@ promise.then((resultSet) => {
   resultSet.goTo(1);
   resultSet.close();
 }).catch((err) => {
-  console.error(`query failed, err: ${err}`);
+  console.error(`query failed, code is ${err.code},message is ${err.message}`);
 });
   ```
 
@@ -2819,7 +2831,7 @@ promise.then((resultSet) => {
   resultSet.goToRow(5);
   resultSet.close();
 }).catch((err) => {
-  console.error(`query failed, err: ${err}`);
+  console.error(`query failed, code is ${err.code},message is ${err.message}`);
 });
   ```
 
@@ -2855,7 +2867,7 @@ promise.then((resultSet) => {
   resultSet.goToFirstRow();
   resultSet.close();
 }).catch((err) => {
-  console.error(`query failed, err: ${err}`);
+  console.error(`query failed, code is ${err.code},message is ${err.message}`);
 });
   ```
 
@@ -2890,7 +2902,7 @@ promise.then((resultSet) => {
   resultSet.goToLastRow();
   resultSet.close();
 }).catch((err) => {
-  console.error(`query failed, err: ${err}`);
+  console.error(`query failed, code is ${err.code},message is ${err.message}`);
 });
   ```
 
@@ -2925,7 +2937,7 @@ promise.then((resultSet) => {
   resultSet.goToNextRow();
   resultSet.close();
 }).catch((err) => {
-  console.error(`query failed, err: ${err}`);
+  console.error(`query failed, code is ${err.code},message is ${err.message}`);
 });
   ```
 
@@ -2960,7 +2972,7 @@ promise.then((resultSet) => {
   resultSet.goToPreviousRow();
   resultSet.close();
 }).catch((err) => {
-  console.error(`query failed, err: ${err}`);
+  console.error(`query failed, code is ${err.code},message is ${err.message}`);
 });
   ```
 
@@ -3150,7 +3162,7 @@ let promiseClose = store.query(predicatesClose, ["ID", "NAME", "AGE", "SALARY", 
 promiseClose.then((resultSet) => {
   resultSet.close();
 }).catch((err) => {
-  console.error(`resultset close failed, err: ${err}`);
+  console.error(`resultset close failed, code is ${err.code},message is ${err.message}`);
 });
   ```
 

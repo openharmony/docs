@@ -403,9 +403,3 @@ export default {
 
 ![zh-cn_image_0000001189249862](figures/zh-cn_image_0000001189249862.gif)
 
-
-## 相关实例
-
-针对stepper开发，有以下相关实例可供参考：
-
-- [`StepNavigator`：步骤导航器（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/StepNavigator)

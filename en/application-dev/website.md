@@ -26,6 +26,8 @@
         - [HAR](quick-start/har-package.md)
         - HSP
           - [In-Application HSP Development](quick-start/in-app-hsp.md)
+      - Atomic Service
+        - [Atomic Service Development](quick-start/atomicService.md)
       - Quick Fix
         - [Quick Fix Overview](quick-start/quickfix-principles.md)
         - [CLI-based Quick Fix Development](quick-start/quickfix-debug.md)
@@ -41,15 +43,40 @@
     - [Resource Categories and Access](quick-start/resource-categories-and-access.md)
     - Learning ArkTS
       - [Getting Started with ArkTS](quick-start/arkts-get-started.md)
-      - ArkTS Syntax (Declarative UI)
-        - [Basic UI Description](quick-start/arkts-basic-ui-description.md)
-        - State Management
-          - [Basic Concepts](quick-start/arkts-state-mgmt-concepts.md)
-          - [State Management with Page-level Variables](quick-start/arkts-state-mgmt-page-level.md)
-          - [State Management with Application-level Variables](quick-start/arkts-state-mgmt-application-level.md)
-        - [Dynamic UI Element Building](quick-start/arkts-dynamic-ui-elememt-building.md)
-        - [Rendering Control](quick-start/arkts-rendering-control.md)
-        - [Restrictions and Extensions](quick-start/arkts-restrictions-and-extensions.md)
+    - Basic Syntax
+      - [Basic Syntax Overview](quick-start/arkts-basic-syntax-overview.md)
+      - [Declarative UI Description](quick-start/arkts-declarative-ui-description.md)
+      - Custom Component
+        - [Creating a Custom Component](quick-start/arkts-create-custom-components.md)
+        - [Page and Custom Component Lifecycle](quick-start/arkts-page-custom-components-lifecycle.md)
+      - [\@Builder: Custom Builder Function](quick-start/arkts-builder.md)
+      - [\@BuilderParam: @Builder Function Reference](quick-start/arkts-builderparam.md)
+      - [\@Styles: Definition of Resusable Styles](quick-start/arkts-style.md)
+      - [\@Extend: Extension of Built-in Components](quick-start/arkts-extend.md)
+      - [stateStyles: Polymorphic Style](quick-start/arkts-statestyles.md)
+    - State Management
+      - [State Management Overview](quick-start/arkts-state-management-overview.md)
+      - Component State Management
+        - [\@State: State Owned by Component](quick-start/arkts-state.md)
+        - [\@Prop: One-Way Synchronization from Parent to Child Components](quick-start/arkts-prop.md)
+        - [\@Link: Two-Way Synchronization Between Parent and Child Components](quick-start/arkts-link.md)
+        - [\@Provide and \@Consume: Two-Way Synchronization with Descendant Components](quick-start/arkts-provide-and-consume.md)
+        - [\@Observed and \@ObjectLink: Observing Attribute Changes in Nested Class Objects](quick-start/arkts-observed-and-objectlink.md)
+      - Application State Management
+        - [Application State Management Overview](quick-start/arkts-application-state-management-overview.md)
+        - [LocalStorage: UI State Storage](quick-start/arkts-localstorage.md)
+        - [AppStorage: Application-wide UI State Storage](quick-start/arkts-appstorage.md)
+        - [PersistentStorage: Application State Persistence](quick-start/arkts-persiststorage.md)
+        - [Environment: Device Environment Query](quick-start/arkts-environment.md)
+      - Other State Management Features
+        - [Overview of Other State Management Features](quick-start/arkts-other-state-mgmt-functions-overview.md)
+        - [\@Watch: Getting Notified of State Variable Changes](quick-start/arkts-watch.md)
+        - [$$ Syntax: Two-Way Synchronization of Built-in Components](quick-start/arkts-two-way-sync.md)
+    - Rendering Control
+      - [Rendering Control Overview](quick-start/arkts-rendering-control-overview.md)
+      - [if/else: Conditional Rendering](quick-start/arkts-rendering-control-ifelse.md)
+      - [ForEach: Rendering of Repeated Content](quick-start/arkts-rendering-control-foreach.md)
+      - [LazyForEach: Lazy Data Loading](quick-start/arkts-rendering-control-lazyforeach.md)
 - Development
   - Application Models
     - Application Model Overview
@@ -70,11 +97,35 @@
           - [ExtensionAbility Component Overview](application-models/extensionability-overview.md)
           - [ServiceExtensionAbility](application-models/serviceextensionability.md)
           - [DataShareExtensionAbility (for System Applications Only)](application-models/datashareextensionability.md)
-          - [FormExtensionAbility (Widget)](application-models/widget-development-stage.md)
           - [AccessibilityExtensionAbility](application-models/accessibilityextensionability.md)
           - [EnterpriseAdminExtensionAbility](application-models/enterprise-extensionAbility.md)
           - [InputMethodExtensionAbility](application-models/inputmethodextentionability.md)
           - [WindowExtensionAbility](application-models/windowextensionability.md)
+        - Service Widget Development in Stage Model
+          - [Service Widget Overview](application-models/service-widget-overview.md)
+          - Developing an ArkTS Widget
+            - [ArkTS Widget Working Principles](application-models/arkts-ui-widget-working-principles.md)
+            - [ArkTS Widget Related Modules](application-models/arkts-ui-widget-modules.md)
+            - ArkTS Widget Development
+              - [Creating an ArkTS Widget](application-models/arkts-ui-widget-creation.md)
+              - [Configuring Widget Configuration Files](application-models/arkts-ui-widget-configuration.md)
+              - [Widget Lifecycle Management](application-models/arkts-ui-widget-lifecycle.md)
+              - Widget Page Development
+                - [Widget Page Capability Overview](application-models/arkts-ui-widget-page-overview.md)
+                - [Using Animations in the Widget](application-models/arkts-ui-widget-page-animation.md)
+                - [Applying Custom Drawing in the Widget](application-models/arkts-ui-widget-page-custom-drawing.md)
+              - Widget Event Development
+                - [Widget Event Capability Overview](application-models/arkts-ui-widget-event-overview.md)
+                - [Updating Widget Content Through FormExtensionAbility](application-models/arkts-ui-widget-event-formextensionability.md)
+                - [Updating Widget Content Through UIAbility](application-models/arkts-ui-widget-event-uiability.md)
+                - [Redirecting to a Specified Page Through the Router Event](application-models/arkts-ui-widget-event-router.md)
+              - Widget Data Interaction
+                - [Widget Data Interaction Overview](application-models/arkts-ui-widget-interaction-overview.md)
+                - [Configuring a Widget to Update Periodically](application-models/arkts-ui-widget-update-by-time.md)
+                - [Updating Local and Online Images in the Widget](application-models/arkts-ui-widget-image-update.md)
+                - [Updating Widget Content by State](application-models/arkts-ui-widget-update-by-status.md)
+                - [Updating Widget Content by Widget Host (for System Applications Only)](application-models/arkts-ui-widget-content-update.md)
+          - [Developing a JS Widget](application-models/js-ui-widget-development.md)
         - [AbilityStage Component Container](application-models/abilitystage.md)
         - [Context](application-models/application-context-stage.md)
         - Want
@@ -187,35 +238,67 @@
         - [Storage Switching](application-models/storage-switch.md)
   - UI Development
     - [ArkUI Overview](ui/arkui-overview.md)
-    - ArkTS-based Declarative Development Paradigm
-      - [Overview](ui/ui-ts-overview.md)
-      - [Declarative UI Development Guidelines](ui/ui-ts-developing-intro.md)
-      - Declarative UI Development Examples
-        - [Creating a Simple Page](ui/ui-ts-creating-simple-page.md)
-        - Building a Comprehensive Example
-          - [Building a Food Data Model](ui/ui-ts-building-data-model.md)
-          - [Building a Food Category List Layout](ui/ui-ts-building-category-list-layout.md)
-          - [Building a Food Category Grid Layout](ui/ui-ts-building-category-grid-layout.md)
-          - [Implementing Page Redirection and Data Transmission](ui/ui-ts-page-redirection-data-transmission.md)
-        - Adding a  Splash Screen Animation
-          - [Using the Drawing Feature](ui/ui-ts-drawing-feature.md)
-          - [Using the Animation Feature](ui/ui-ts-animation-feature.md)
-      - [Common Components](ui/ui-ts-components-intro.md)
-      - Common Layout Development
-        - Adaptive Layouts
-          - [Linear Layout](ui/ui-ts-layout-linear.md)
-          - [Statck Layout](ui/ui-ts-layout-stack.md)
-          - [Flex Layout](ui/ui-ts-layout-flex.md)
-          - [Grid Layout](ui/ui-ts-layout-grid.md)
-        - Responsive Layouts
-          - [Grid Layout](ui/ui-ts-layout-grid-container-new.md)
-          - [Media Query](ui/ui-ts-layout-mediaquery.md)
-      - [Custom Component Lifecycle Callbacks](ui/ui-ts-custom-component-lifecycle-callbacks.md)
-      - [Web Component Development](ui/ui-ts-components-web.md)
-      - [Recommendations for Improving Performance](ui/ui-ts-performance-improvement-recommendation.md)
-    - UI Development with JavaScript-compatible Web-like Development Paradigm
-      - [Overview](ui/ui-js-overview.md)
-      - Framework
+    - UI Development (ArkTS-based Declarative Development Paradigm)
+      - [UI Development (ArkTS-based Declarative Development Paradigm) Overview](ui/arkts-ui-development-overview.md)
+      - Layout Development
+        - [Layout Overview](ui/arkts-layout-development-overview.md)
+        - Building a Layout
+          - [Linear Layout](ui/arkts-layout-development-linear.md)
+          - [Stack Layout](ui/arkts-layout-development-stack-layout.md)
+          - [Flex Layout](ui/arkts-layout-development-flex-layout.md)
+          - [Relative Layout](ui/arkts-layout-development-relative-layout.md)
+          - [Responsive Grid Layout](ui/arkts-layout-development-grid-layout.md)
+          - [Media Query](ui/arkts-layout-development-media-query.md)
+          - [Creating a List](ui/arkts-layout-development-create-list.md)
+          - [Creating a Grid](ui/arkts-layout-development-create-grid.md)
+          - [Creating a Swiper](ui/arkts-layout-development-create-looping.md)
+        - [Improving Layout Performance](ui/arkts-layout-development-performance-boost.md)
+      - Adding a Component
+        - Adding a Common Component
+          - [Button](ui/arkts-common-components-button.md)
+          - [Radio Button](ui/arkts-common-components-radio-button.md)
+          - [Toggle](ui/arkts-common-components-switch.md)
+          - [Progress Indicator](ui/arkts-common-components-progress-indicator.md)
+          - [Text Display](ui/arkts-common-components-text-display.md)
+          - [Text Input](ui/arkts-common-components-text-input.md)
+          - [Custom Dialog Box](ui/arkts-common-components-custom-dialog.md)
+          - [Video Playback](ui/arkts-common-components-video-player.md)
+          - [XComponent](ui/arkts-common-components-xcomponent.md)
+        - Adding a Bubble and Menu
+          - [Bubble](ui/arkts-popup-and-menu-components-popup.md)
+          - [Menu](ui/arkts-popup-and-menu-components-menu.md)
+      - Setting Page Routing and Component Navigation
+        - [Page Routing](ui/arkts-routing.md)
+        - Component Navigation
+          - [Navigation](ui/arkts-navigation-navigation.md)
+          - [Tabs](ui/arkts-navigation-tabs.md)
+      - Using Graphics
+        - [Displaying Images](ui/arkts-graphics-display.md)
+        - [Drawing Geometric Shapes](ui/arkts-geometric-shape-drawing.md)
+        - [Drawing Custom Graphics on the Canvas](ui/arkts-drawing-customization-on-canvas.md)
+      - Using Animation
+        - [Animation Overview](ui/arkts-animation-overview.md)
+        - Animation Within a Page
+          - [Layout Update Animation](ui/arkts-layout-update-animation.md)
+          - [Transition Animation Within a Component](ui/arkts-transition-animation-within-component.md)
+          - [Spring Curve Animation](ui/arkts-spring-animation.md)
+        - Animation Between Pages
+          - [Zoom Animation](ui/arkts-zoom-animation.md)
+          - [Page Transition Animation](ui/arkts-page-transition-animation.md)
+      - Using Interaction Events
+        - [Interaction Event Overview](ui/arkts-event-overview.md)
+        - Universal Events
+          - [Touchscreen Event](ui/arkts-common-events-touch-screen-event.md)
+          - [Keyboard and Mouse Event](ui/arkts-common-events-device-input-event.md)
+          - [Focus Event](ui/arkts-common-events-focus-event.md)
+        - Gesture Events
+          - [Gesture Binding](ui/arkts-gesture-events-binding.md)
+          - [Single Gesture](ui/arkts-gesture-events-single-gesture.md)
+          - [Combined Gestures](ui/arkts-gesture-events-combined-gestures.md)
+      - [Recommendations for Improving Performance](ui/arkts-performance-improvement-recommendation.md)
+    - UI Development (JavaScript-compatible Web-like Development Paradigm)
+      - [UI Development (JavaScript-compatible Web-like Development Paradigm) Overview](ui/ui-js-overview.md)
+      - Framework Overview
         - [File Organization](ui/js-framework-file.md)
         - ["js" Tag](ui/js-framework-js-tag.md)
         - [app.js](ui/js-framework-js-file.md)
@@ -285,6 +368,22 @@
             - [Animation Effect](ui/ui-js-animate-dynamic-effects.md)
             - [Animation Frame](ui/ui-js-animate-frame.md)
       - [Custom Components](ui/ui-js-custom-components.md)
+  - Web
+    - [Web Component Overview](web/web-component-overview.md)
+    - [Loading Pages by Using the Web Component](web/web-page-loading-with-web-components.md)
+    - Setting Basic Attributes and Events
+      - [Setting the Dark Mode](web/web-set-dark-mode.md)
+      - [Uploading Files](web/web-file-upload.md)
+      - [Opening Pages in a New Window](web/web-open-in-new-window.md)
+      - [Managing Location Permissions](web/web-geolocation-permission.md)
+    - Using Frontend Page JavaScript Code on the Application
+      - [Invoking Frontend Page Functions on the Application](web/web-in-app-frontend-page-function-invoking.md)
+      - [Invoking Application Functions on the Frontend Page](web/web-in-page-app-function-invoking.md)
+      - [Establishing a Data Channel Between the Application and the Frontend Page](web/web-app-page-data-channel.md)
+    - [Managing Page Redirection and Browsing History Navigation](web/web-redirection-and-browsing-history-mgmt.md)
+    - [Managing Cookies and Data Storage](web/web-cookie-and-data-storage-mgmt.md)
+    - [Customizing Page Request Responses](web/web-resource-interception-request-mgmt.md)
+    - [Debugging Frontend Pages by Using DevTools](web/web-debugging-with-devtools.md)
   - Notification
     - [Notification Overview](notification/notification-overview.md)
     - [Notification Subscription (for System Applications Only)](notification/notification-subscription.md)
@@ -302,30 +401,64 @@
     - [WebGL Overview](webgl/webgl-overview.md)
     - [WebGL Development](webgl/webgl-guidelines.md)
   - Media
+    - [Media Application Overview](media/media-application-overview.md)
     - Audio and Video
-      - [Audio Overview](media/audio-overview.md)
-      - [Audio Rendering Development](media/audio-renderer.md)
-      - [Audio Stream Management Development](media/audio-stream-manager.md)
-      - [Audio Capture Development](media/audio-capturer.md)
-      - [OpenSL ES Audio Playback Development](media/opensles-playback.md)
-      - [OpenSL ES Audio Recording Development](media/opensles-capture.md)
-      - [Audio Interruption Mode Development](media/audio-interruptmode.md)
-      - [Volume Management Development](media/audio-volume-manager.md)
-      - [Audio Routing and Device Management Development](media/audio-routing-manager.md)
-      - [AVPlayer Development (Recommended)](media/avplayer-playback.md)
-      - [AVRecorder Development (Recommended)](media/avrecorder.md)
-      - [Audio Playback Development (To Be Deprecated Soon)](media/audio-playback.md)
-      - [Audio Recording Development (To Be Deprecated Soon)](media/audio-recorder.md)
-      - [Video Playback Development (To Be Deprecated Soon)](media/video-playback.md)
-      - [Video Recording Development (To Be Deprecated Soon)](media/video-recorder.md)
-    - AVSession
+      - [Audio and Video Overview](media/av-overview.md)
+      - [AVPlayer and AVRecorder](media/avplayer-avrecorder-overview.md)
+      - Audio Playback
+        - [Audio Playback Overview](media/audio-playback-overview.md)
+        - [Using AVPlayer for Audio Playback](media/using-avplayer-for-playback.md)
+        - [Using AudioRenderer for Audio Playback](media/using-audiorenderer-for-playback.md)
+        - [Using OpenSL ES for Audio Playback](media/using-opensl-es-for-playback.md)
+        - [Using TonePlayer for Audio Playback (for System Applications Only)](media/using-toneplayer-for-playback.md)
+        - [Audio Playback Concurrency Policy](media/audio-playback-concurrency.md)
+        - [Volume Management](media/volume-management.md)
+        - [Audio Playback Stream Management](media/audio-playback-stream-management.md)
+        - [Audio Output Device Management](media/audio-output-device-management.md)
+        - [Distributed Audio Playback (for System Applications Only)](media/distributed-audio-playback.md)
+      - Audio Recording
+        - [Audio Recording Overview](media/audio-recording-overview.md)
+        - [Using AVRecorder for Audio Recording](media/using-avrecorder-for-recording.md)
+        - [Using AudioCapturer for Audio Recording](media/using-audiocapturer-for-recording.md)
+        - [Using OpenSL ES for Audio Recording](media/using-opensl-es-for-recording.md)
+        - [Microphone Management](media/mic-management.md)
+        - [Audio Recording Stream Management](media/audio-recording-stream-management.md)
+        - [Audio Input Device Management](media/audio-input-device-management.md)
+      - Audio Call
+        - [Audio Call Overview](media/audio-call-overview.md)
+        - [Developing Audio Call](media/audio-call-development.md)
+      - [Video Playback](media/video-playback.md)
+      - [Video Recording](media/video-recording.md)
+    - AVSession (for System Applications Only)
       - [AVSession Overview](media/avsession-overview.md)
-      - [AVSession Development](media/avsession-guidelines.md)
+      - Local AVSession
+        - [Local AVSession Overview](media/local-avsession-overview.md)
+        - [AVSession Provider](media/using-avsession-developer.md)
+        - [AVSession Controller](media/using-avsession-controller.md)
+      - Distributed AVSession
+        - [Distributed AVSession Overview](media/distributed-avsession-overview.md)
+        - [Using Distributed AVSession](media/using-distributed-avsession.md)
+    - Camera (for System Applications Only)
+      - [Camera Overview](media/camera-overview.md)
+      - Camera Development
+        - [Camera Development Preparations](media/camera-preparation.md)
+        - [Device Input Management](media/camera-device-input.md)
+        - [Session Management](media/camera-session-management.md)
+        - [Camera Preview](media/camera-preview.md)
+        - [Camera Photographing](media/camera-shooting.md)
+        - [Camera Recording](media/camera-recording.md)
+        - [Camera Metadata](media/camera-metadata.md)
+      - Best Practices
+        - [Camera Photographing Sample](media/camera-shooting-case.md)
+        - [Camera Recording Sample](media/camera-recording-case.md)
     - Image
-      - [Image Development](media/image.md)
-    - Camera
-      - [Camera Development](media/camera.md)
-      - [Distributed Camera Development](media/remote-camera.md)
+      - [Image Overview](media/image-overview.md)
+      - [Image Decoding](media/image-decoding.md)
+      - Image Processing
+        - [Image Transformation](media/image-transformation.md)
+        - [Pixel Map Operation](media/image-pixelmap-operation.md)
+      - [Image Encoding](media/image-encoding.md)
+      - [Image Tool](media/image-tool.md)
   - Security
     - Access Control
       - [Access Control Overview](security/accesstoken-overview.md)
@@ -364,32 +497,50 @@
     - [Redirecting to the Dial Screen](telephony/jumping-to-the-dial-screen.md)
     - [Obtaining Current Cellular Network Signal Information](telephony/cellular-network-signal-info.md)
   - Data Management 
-    - Distributed Data Service
-      - [Distributed Data Service Overview](database/database-mdds-overview.md)
-      - [Distributed Data Service Development](database/database-mdds-guidelines.md)
-    - Relational Database
-      - [RDB Overview](database/database-relational-overview.md)
-      - [RDB Development](database/database-relational-guidelines.md)
-    - Preferences
-      - [Preferences Overview](database/database-preference-overview.md)
-      - [Preferences Development](database/database-preference-guidelines.md)
-    - Distributed Data Object
-      - [Distributed Data Object Overview](database/database-distributedobject-overview.md)
-      - [Distributed Data Object Development](database/database-distributedobject-guidelines.md)
-    - Data Share
-      - [DataShare Overview](database/database-datashare-overview.md)
-      - [DataShare Development](database/database-datashare-guidelines.md)
+    - [Data Management Overview](database/data-mgmt-overview.md)
+    - Application Data Persistence
+      - [Overview of Application Data Persistence](database/app-data-persistence-overview.md)
+      - [Persisting Preferences Data](database/data-persistence-by-preferences.md)
+      - [Persisting KV Store Data](database/data-persistence-by-kv-store.md)
+      - [Persisting RDB Store Data](database/data-persistence-by-rdb-store.md)
+    - Distributed Application Data Synchronization
+      - [Distributed Application Data Synchronization Overview](database/sync-app-data-across-devices-overview.md)
+      - [Cross-Device Synchronization of KV Stores](database/data-sync-of-kv-store.md)
+      - [Cross-Device Synchronization of RDB Stores](database/data-sync-of-rdb-store.md)
+      - [Cross-Device Synchronization of Distributed Data Objects](database/data-sync-of-distributed-data-object.md)
+    - Data Reliability and Security
+      - [Data Reliability and Security Overview](database/data-reliability-security-overview.md)
+      - [Database Backup and Restoration](database/data-backup-and-restore.md)
+      - [Database Encryption](database/data-encryption.md)
+      - [Access Control by Device and Data Level](database/access-control-by-device-and-data-level.md)
+    - Cross-Application Data Sharing (for System Applications Only)
+      - [Cross-Application Data Sharing Overview](database/share-device-data-across-apps-overview.md)
+      - [Sharing Data Using DataShareExtensionAbility](database/share-data-by-datashareextensionability.md)
+      - [Sharing Data in Silent Access](database/share-data-by-silent-access.md)
   - File Management
-    - MediaLibrary
-      - [MediaLibrary Development Overview](file-management/medialibrary-overview.md)
-      - [Media Asset Management](file-management/medialibrary-resource-guidelines.md)
-      - [File Path Management](file-management/medialibrary-filepath-guidelines.md)
-      - [Album Management](file-management/medialibrary-album-guidelines.md)
-    - File Access Framework
-      - [File Access Framework Overview](file-management/file-access-framework-overview.md)
-    - [FilePicker Guide](file-management/filepicker-guidelines.md)
-  - Task Management
-    - Background Task Management
+    - [File Management Overview](file-management/file-management-overview.md)
+    - Application File
+      - [Application File Overview](file-management/app-file-overview.md)
+      - [Application Sandbox Directory](file-management/app-sandbox-directory.md)
+      - Application File Access and Management
+        - [Accessing Application Files](file-management/app-file-access.md)
+        - [Uploading and Downloading Application Files](file-management/app-file-upload-download.md)
+        - [Obtaining Application and File System Space Statistics](file-management/app-fs-space-statistics.md)
+      - [Sending Files to an Application Sandbox](file-management/send-file-to-app-sandbox.md)
+      - [Sharing an Application File](file-management/share-app-file.md)
+    - User File
+      - [User File Overview](file-management/user-file-overview.md)
+      - Selecting and Saving User Files (FilePicker)
+        - [Selecting User Files](file-management/select-user-file.md)
+        - [Saving User Files](file-management/save-user-file.md)
+      - [Developing a FileManager Application (Available Only for System Applications)](file-management/dev-user-file-manager.md)
+      - [Managing External Storage Devices (Available Only for System Applications)](file-management/manage-external-storage.md)
+    - Distributed File System
+      - [Distributed File System Overview](file-management/distributed-fs-overview.md)
+      - [Setting the Security Level of a Distributed File](file-management/set-security-label.md)
+      - [Accessing Files Across Devices](file-management/file-access-across-devices.md)
+  - Background Task Management
+    - Background Task
       - [Background Task Management Overview](task-management/background-task-overview.md)
       - [Transient Task Development](task-management/transient-task-dev-guide.md)
       - [Continuous Task Development](task-management/continuous-task-dev-guide.md)
@@ -586,6 +737,7 @@
       - [Swiper](reference/arkui-ts/ts-container-swiper.md)
       - [Tabs](reference/arkui-ts/ts-container-tabs.md)
       - [TabContent](reference/arkui-ts/ts-container-tabcontent.md)
+      - [WaterFlow](reference/arkui-ts/ts-container-waterflow.md)
     - Media Component
       - [Video](reference/arkui-ts/ts-media-components-video.md)
     - Drawing Components
@@ -623,6 +775,7 @@
         - [Time Picker Dialog Box](reference/arkui-ts/ts-methods-timepicker-dialog.md)
         - [Text Picker Dialog Box](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [Menu](reference/arkui-ts/ts-methods-menu.md)
+    - [Custom Component Lifecycle](reference/arkui-ts/ts-custom-component-lifecycle.md)
     - [State Management with Application-level Variables](reference/arkui-ts/ts-state-management.md)
     - [Pixel Units](reference/arkui-ts/ts-pixel-units.md)
     - [Built-in Enums](reference/arkui-ts/ts-appendix-enums.md)
@@ -938,7 +1091,6 @@
       - [@ohos.promptAction (Prompt)](reference/apis/js-apis-promptAction.md)
       - [@ohos.router (Page Routing)](reference/apis/js-apis-router.md)
       - [@ohos.measure (Text Measurement)](reference/apis/js-apis-measure.md)
-      - [@ohos.uiAppearance (UI Appearance)](reference/apis/js-apis-uiappearance.md)
     - Graphics
       - [@ohos.animation.windowAnimationManager (Window Animation Management)](reference/apis/js-apis-windowAnimationManager.md)
       - [@ohos.application.WindowExtensionAbility (WindowExtensionAbility)](reference/apis/js-apis-application-windowExtensionAbility.md)
@@ -1377,26 +1529,17 @@
       - Appendix
         - [Native API Symbols Not Exported](reference/native-lib/third_party_libc/musl-peculiar-symbol.md)
         - [EGL Symbols Exported from Native APIs](reference/native-lib/third_party_opengl/egl-symbol.md)
-        - [OpenGL ES 3.0 Symbols Exported from Native APIs](reference/native-lib/third_party_opengl/openglesv3-symbol.md)  
+        - [OpenGL ES 3.0 Symbols Exported from Native APIs](reference/native-lib/third_party_opengl/openglesv3-symbol.md) 
+        - [OpenSL ES Interfaces Supported by Native APIs](reference/native-lib/third_party_opensles/opensles.md)
 - FAQs
   - [Full SDK Compilation Guide](quick-start/full-sdk-compile-guide.md)
   - [Guide to Switching to Full SDK](quick-start/full-sdk-switch-guide.md)
-  - [Programming Languages](faqs/faqs-language.md)
   - [Ability Framework Development](faqs/faqs-ability.md)
-  - [Bundle Management Development](faqs/faqs-bundle.md)
-  - [ArkUI (ArkTS) Development](faqs/faqs-ui-ets.md)
-  - [ArkUI Web Component (ArkTS) Development](faqs/faqs-web-arkts.md)
-  - [ArkUI (JavaScript) Development](faqs/faqs-ui-js.md)
+  - [Resource Management Development](faqs/faqs-globalization.md)
   - [Common Event and Notification Development](faqs/faqs-event-notification.md)
   - [Graphics and Image Development](faqs/faqs-graphics.md)
   - [File Management Development](faqs/faqs-file-management.md)
-  - [Media Development](faqs/faqs-media.md)
-  - [Network and Connection Development](faqs/faqs-connectivity.md)
-  - [Device Management Development](faqs/faqs-data-management.md)
-  - [Device Management Development](faqs/faqs-device-management.md)
+  - [Network Management Development](faqs/faqs-network-management.md)
   - [DFX Development](faqs/faqs-dfx.md)
-  - [Intl Development](faqs/faqs-international.md)
-  - [Native API Usage](faqs/faqs-native.md)
-  - [Usage of Third- and Fourth-Party Libraries](faqs/faqs-third-party-library.md)
-  - [IDE Usage](faqs/faqs-ide.md)
-  - [Development Board](faqs/faqs-development-board.md)
+  - [Startup Development](faqs/faqs-startup.md)
+  - [Usage of Third- and Fourth-Party Libraries](faqs/faqs-third-fourth-party-library.md)

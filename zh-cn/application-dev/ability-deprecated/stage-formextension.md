@@ -241,7 +241,7 @@ FormProvider类具体的API介绍详见[接口文档](../reference/apis/js-apis-
        }
 ```
 
-具体的持久化方法可以参考[轻量级数据存储开发指导](../database/database-preference-guidelines.md)。
+具体的持久化方法可以参考[轻量级数据存储开发指导](../database/data-persistence-by-preferences.md)。
 
 需要注意的是，卡片使用方在请求卡片时传递给提供方应用的Want数据中存在临时标记字段，表示此次请求的卡片是否为临时卡片：
 
@@ -414,5 +414,4 @@ onUpdate(formId) {
 ## 相关实例
 
 针对Stage模型卡片提供方的开发，有以下相关实例可供参考：
-- [`FormExtAbility`：Stage模型卡片（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ability/FormExtAbility)
-- [`GalleryForm`：图库卡片（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ability/GalleryForm)
+- [`FormExtAbility`：Stage模型卡片（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SuperFeature/Widget/FormExtAbility)

@@ -221,8 +221,3 @@ export default {
   },
 }
 ```
-## 相关实例
-
-针对PageAbility开发，有以下相关实例可供参考：
-
-- [`DMS`：分布式Demo（ArkTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ability/DMS)

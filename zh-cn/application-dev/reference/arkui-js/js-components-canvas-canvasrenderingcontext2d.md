@@ -864,8 +864,8 @@ moveTo(x: number, y: number): void
 
 | 参数   | 类型     | 描述        |
 | ---- | ------ | --------- |
-| x    | number | 指定位置的x坐标。 |
-| y    | number | 指定位置的y坐标。 |
+| x    | number | 指定位置的x坐标。<br>单位：vp |
+| y    | number | 指定位置的y坐标。<br>单位：vp |
 
 **示例：** 
   ```html
@@ -901,8 +901,8 @@ lineTo(x: number, y: number): void
 
 | 参数   | 类型     | 描述        |
 | ---- | ------ | --------- |
-| x    | number | 指定位置的x坐标。 |
-| y    | number | 指定位置的y坐标。 |
+| x    | number | 指定位置的x坐标。<br>单位：vp |
+| y    | number | 指定位置的y坐标。<br>单位：vp |
 
 **示例：** 
   ```html

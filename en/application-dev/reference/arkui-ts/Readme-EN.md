@@ -124,6 +124,7 @@
   - [Swiper](ts-container-swiper.md)
   - [Tabs](ts-container-tabs.md)
   - [TabContent](ts-container-tabcontent.md)
+  - [WaterFlow](ts-container-waterflow.md)
 - Media Components
   - [Video](ts-media-components-video.md)
 - Drawing Components
@@ -161,6 +162,7 @@
     - [Time Picker Dialog Box](ts-methods-timepicker-dialog.md)
     - [Text Picker Dialog Box](ts-methods-textpicker-dialog.md)
   - [Menu](ts-methods-menu.md)
+- [Custom Component Lifecycle](ts-custom-component-lifecycle.md)
 - [State Management with Application-level Variables](ts-state-management.md)
 - [Pixel Units](ts-pixel-units.md)
 - [Enums](ts-appendix-enums.md)

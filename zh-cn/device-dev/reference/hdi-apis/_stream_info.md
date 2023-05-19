@@ -17,16 +17,16 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [streamId_](#streamid) | 流的ID，用于在设备内唯一标识一条流。 | 
-| [width_](#width) | 图像宽度。 | 
-| [height_](#height) | 图像高度。 | 
-| [format_](#format) | 图像格式。 | 
-| [dataspace_](#dataspace) | 图像颜色空间。 | 
-| [intent_](#intent) | 流类型。 | 
-| [tunneledMode_](#tunneledmode) | 隧道模式，值为true时开启，false关闭。 | 
-| [bufferQueue_](#bufferqueue) | 图形提供的生产者句柄。 | 
-| [minFrameDuration_](#minframeduration) | 最小帧间隔。 | 
-| [encodeType_](#encodetype) | 编码类型。 | 
+| [streamId_](#streamid_) | 流的ID，用于在设备内唯一标识一条流。 | 
+| [width_](#width_) | 图像宽度。 | 
+| [height_](#height_) | 图像高度。 | 
+| [format_](#format_) | 图像格式。 | 
+| [dataspace_](#dataspace_) | 图像颜色空间。 | 
+| [intent_](#intent_) | 流类型。 | 
+| [tunneledMode_](#tunneledmode_) | 隧道模式，值为true时开启，false关闭。 | 
+| [bufferQueue_](#bufferqueue_) | 图形提供的生产者句柄。 | 
+| [minFrameDuration_](#minframeduration_) | 最小帧间隔。 | 
+| [encodeType_](#encodetype_) | 编码类型。 | 
 
 
 ## **类成员变量说明**

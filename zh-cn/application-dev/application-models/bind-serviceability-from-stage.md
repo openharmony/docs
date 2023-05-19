@@ -12,15 +12,15 @@ UIAbility关联访问ServiceAbility和UIAbility关联访问ServiceExtensionAbili
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 
-export default class MainAbility extends UIAbility {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
-        console.info("MainAbility onCreate");
+        console.info("EntryAbility onCreate");
     }
     onDestroy() {
-        console.info("MainAbility onDestroy")
+        console.info("EntryAbility onDestroy")
     }
     onWindowStageCreate(windowStage) {
-        console.info("MainAbility onWindowStageCreate")
+        console.info("EntryAbility onWindowStageCreate")
         let want = {
             bundleName: "com.ohos.fa",
             abilityName: "ServiceAbility",
@@ -40,13 +40,13 @@ export default class MainAbility extends UIAbility {
         let connectionId = this.context.connectServiceExtensionAbility(want, options);
     }
     onWindowStageDestroy() {
-        console.info("MainAbility onWindowStageDestroy")
+        console.info("EntryAbility onWindowStageDestroy")
     }
     onForeground() {
-        console.info("MainAbility onForeground")
+        console.info("EntryAbility onForeground")
     }
     onBackground() {
-        console.info("MainAbility onBackground")
+        console.info("EntryAbility onBackground")
     }
 }
 ```

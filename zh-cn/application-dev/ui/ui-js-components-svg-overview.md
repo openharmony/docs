@@ -82,9 +82,3 @@ svg{
 >
 > - viewBox的宽高和svg的宽高不一致，会以中心对齐进行缩放。
 
-
-## 相关实例
-
-针对Svg开发，有以下相关实例可供参考：
-
-- [`JsSvg`：可缩放矢量图形（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/JsSvg)

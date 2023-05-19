@@ -30,14 +30,14 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
    }
    ```
    
-4. 在[module.json5配置文件](../quick-start/module-configuration-file.md)中`srcEntry`参数中配置Module所对应的代码路径。
+4. 在[module.json5配置文件](../quick-start/module-configuration-file.md)中，通过配置 `srcEntry` 参数来指定模块对应的代码路径，以作为HAP加载的入口。
    ```json
    {
      "module": {
        "name": "entry",
        "type": "entry",
        "srcEntry": "./ets/myabilitystage/MyAbilityStage.ts",
-       // ...
+       ...
      }
    }
    ```
@@ -45,7 +45,7 @@ DevEco Studio默认工程中未自动生成AbilityStage，如需要使用Ability
 [AbilityStage](../reference/apis/js-apis-app-ability-abilityStage.md)拥有[`onCreate()`](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageoncreate)生命周期回调和[`onAcceptWant()`](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)、[`onConfigurationUpdated()`](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate)、[`onMemoryLevel()`](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonmemorylevel)事件回调。
 
 
-- [`onCreate()`](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageoncreate)生命周期回调：在开始加载对应Module的第一个UIAbility实例之前会先创建AbilityStage，并在AbilityStage创建完成之后执行其onCreate()生命周期回调。AbilityStage模块提供在Module加载的时候，通知开发者，可以在此进行该Module的初始化（如资源预加载，线程创建等）能力。
+- [`onCreate()`](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageoncreate)生命周期回调：在开始加载对应Module的第一个UIAbility实例之前会先创建AbilityStage，并在AbilityStage创建完成之后执行其`onCreate()`生命周期回调。AbilityStage模块提供在Module加载的时候，通知开发者，可以在此进行该Module的初始化（如资源预加载，线程创建等）能力。
 
 - [`onAcceptWant()`](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)事件回调：UIAbility[指定实例模式（specified）](uiability-launch-type.md#specified启动模式)启动时候触发的事件回调，具体使用请参见[UIAbility启动模式综述](uiability-launch-type.md)。
 

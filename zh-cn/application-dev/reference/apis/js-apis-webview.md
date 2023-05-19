@@ -1606,24 +1606,24 @@ struct WebComponent {
             this.ports = this.controller.createWebMessagePorts();
             // 2、在应用侧的消息端口(如端口1)上注册回调事件。
             this.ports[1].onMessageEvent((result: web_webview.WebMessage) => {
-                let msg = 'Got msg from HTML:';
-                if (typeof(result) == "string") {
-                  console.log("received string message from html5, string is:" + result);
-                  msg = msg + result;
-                } else if (typeof(result) == "object") {
-                  if (result instanceof ArrayBuffer) {
-                    console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                    msg = msg + "lenght is " + result.byteLength;
-                  } else {
-                    console.log("not support");
-                  }
+              let msg = 'Got msg from HTML:';
+              if (typeof(result) == "string") {
+                console.log("received string message from html5, string is:" + result);
+                msg = msg + result;
+              } else if (typeof(result) == "object") {
+                if (result instanceof ArrayBuffer) {
+                  console.log("received arraybuffer from html5, length is:" + result.byteLength);
+                  msg = msg + "lenght is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
-                this.receivedFromHtml = msg;
-              })
-              // 3、将另一个消息端口(如端口0)发送到HTML侧，由HTML侧保存并使用。
-              this.controller.postMessage('__init_port__', [this.ports[0]], '*');
+              } else {
+                console.log("not support");
+              }
+              this.receivedFromHtml = msg;
+            })
+            // 3、将另一个消息端口(如端口0)发送到HTML侧，由HTML侧保存并使用。
+            this.controller.postMessage('__init_port__', [this.ports[0]], '*');
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -1987,6 +1987,37 @@ struct WebComponent {
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+支持开发者基于默认的UserAgent去定制UserAgent。
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State ua: string = ""
+
+  aboutToAppear():void {
+    web_webview.once('webInited', () => {
+      try {
+        // 应用侧用法示例，定制UserAgent。
+        this.ua = this.controller.getUserAgent() + 'xxx';
+      } catch(error) {
+        console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+      }
+    })
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .userAgent(this.ua)
     }
   }
 }
@@ -2660,7 +2691,7 @@ import image from "@ohos.multimedia.image"
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-    @State pixelmap: image.PixelMap = undefined;
+  @State pixelmap: image.PixelMap = undefined;
 
   build() {
     Column() {
@@ -2766,12 +2797,12 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.controller.hasImage((error, data) => {
-                if (error) {
-                  console.info(`hasImage error: ` + JSON.stringify(error))
-                  return;
-                }
-                console.info("hasImage: " + data);
-              });
+              if (error) {
+                console.info(`hasImage error: ` + JSON.stringify(error))
+                return;
+              }
+              console.info("hasImage: " + data);
+            });
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -2821,11 +2852,11 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.controller.hasImage().then((data) => {
-                console.info('hasImage: ' + data);
-              })
-              .catch(function (error) {
-                console.error("error: " + error);
-              })
+              console.info('hasImage: ' + data);
+            })
+            .catch(function (error) {
+              console.error("error: " + error);
+            })
           } catch (error) {
             console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
           }
@@ -3240,7 +3271,7 @@ struct WebComponent {
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookieManager实例。
 
-###  getCookie
+### getCookie
 
 static getCookie(url: string): string
 
@@ -3296,7 +3327,7 @@ struct WebComponent {
 }
 ```
 
-###  setCookie
+### setCookie
 
 static setCookie(url: string, value: string): void
 
@@ -3347,7 +3378,7 @@ struct WebComponent {
 }
 ```
 
-###  saveCookieAsync
+### saveCookieAsync
 
 static saveCookieAsync(callback: AsyncCallback\<void>): void
 
@@ -3359,7 +3390,7 @@ static saveCookieAsync(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                   | 必填 | 说明                                               |
 | -------- | ---------------------- | ---- | :------------------------------------------------- |
-| callback | AsyncCallback\<void> | 是   | 返回cookie是否成功保存的布尔值作为回调函数的入参。 |
+| callback | AsyncCallback\<void> | 是   | callback回调，用于获取cookie是否成功保存。 |
 
 
 **示例：**
@@ -3393,7 +3424,7 @@ struct WebComponent {
 }
 ```
 
-###  saveCookieAsync
+### saveCookieAsync
 
 static saveCookieAsync(): Promise\<void>
 
@@ -3440,7 +3471,7 @@ struct WebComponent {
 }
 ```
 
-###  putAcceptCookieEnabled
+### putAcceptCookieEnabled
 
 static putAcceptCookieEnabled(accept: boolean): void
 
@@ -3481,7 +3512,7 @@ struct WebComponent {
 }
 ```
 
-###  isCookieAllowed
+### isCookieAllowed
 
 static isCookieAllowed(): boolean
 
@@ -3519,7 +3550,7 @@ struct WebComponent {
 }
 ```
 
-###  putAcceptThirdPartyCookieEnabled
+### putAcceptThirdPartyCookieEnabled
 
 static putAcceptThirdPartyCookieEnabled(accept: boolean): void
 
@@ -3560,7 +3591,7 @@ struct WebComponent {
 }
 ```
 
-###  isThirdPartyCookieAllowed
+### isThirdPartyCookieAllowed
 
 static isThirdPartyCookieAllowed(): boolean
 
@@ -3598,7 +3629,7 @@ struct WebComponent {
 }
 ```
 
-###  existCookie
+### existCookie
 
 static existCookie(): boolean
 
@@ -3636,7 +3667,7 @@ struct WebComponent {
 }
 ```
 
-###  deleteEntireCookie
+### deleteEntireCookie
 
 static deleteEntireCookie(): void
 
@@ -3667,7 +3698,7 @@ struct WebComponent {
 }
 ```
 
-###  deleteSessionCookie
+### deleteSessionCookie
 
 static deleteSessionCookie(): void
 

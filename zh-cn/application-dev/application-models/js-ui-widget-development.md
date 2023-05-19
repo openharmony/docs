@@ -81,7 +81,7 @@ Stage卡片开发，即基于[Stage模型](stage-model-development-overview.md)�
 
 - [配置卡片配置文件](#配置卡片配置文件)：配置应用配置文件module.json5和profile配置文件。
 
-- [卡片数据交互](#卡片数据交互)：对卡片信息进行持久化管理。
+- [卡片信息的持久化](#卡片数据交互)：对卡片信息进行持久化管理。
 
 - [卡片数据交互](#卡片数据交互)：通过updateForm更新卡片显示的信息。
 
@@ -174,7 +174,7 @@ Stage卡片开发，即基于[Stage模型](stage-model-development-overview.md)�
        "extensionAbilities": [
          {
            "name": "EntryFormAbility",
-           "srcEnty": "./ets/entryformability/EntryFormAbility.ts",
+           "srcEntry": "./ets/entryformability/EntryFormAbility.ts",
            "label": "$string:EntryFormAbility_label",
            "description": "$string:EntryFormAbility_desc",
            "type": "form",
