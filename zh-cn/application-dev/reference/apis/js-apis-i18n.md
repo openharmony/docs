@@ -46,7 +46,7 @@ static getDisplayCountry(country: string, locale: string, sentenceCase?: boolean
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -85,7 +85,7 @@ static getDisplayLanguage(language: string, locale: string, sentenceCase?: boole
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -116,7 +116,7 @@ static getSystemLanguages(): Array&lt;string&gt;
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -153,7 +153,7 @@ static getSystemCountries(language: string): Array&lt;string&gt;
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -191,7 +191,7 @@ static isSuggested(language: string, region?: string): boolean
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -222,7 +222,7 @@ static getSystemLanguage(): string
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -257,7 +257,7 @@ static setSystemLanguage(language: string): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -288,7 +288,7 @@ static getSystemRegion(): string
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -323,7 +323,7 @@ static setSystemRegion(region: string): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -354,7 +354,7 @@ static getSystemLocale(): string
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -389,7 +389,7 @@ static setSystemLocale(locale: string): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -420,7 +420,7 @@ static is24HourClock(): boolean
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -455,7 +455,7 @@ static set24HourClock(option: boolean): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -492,7 +492,7 @@ static addPreferredLanguage(language: string, index?: number): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -530,7 +530,7 @@ static removePreferredLanguage(index: number): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -563,7 +563,7 @@ static getPreferredLanguageList(): Array&lt;string&gt;
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -594,7 +594,7 @@ static getFirstPreferredLanguage(): string
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -625,7 +625,7 @@ static getAppPreferredLanguage(): string
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```js
@@ -660,7 +660,7 @@ static setUsingLocalDigit(flag: boolean): void
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```ts
@@ -691,7 +691,7 @@ static getUsingLocalDigit(): boolean
 
 | 错误码ID  | 错误信息                   |
 | ------ | ---------------------- |
-| 890001 | Unspported para value. |
+| 890001 | param value not valid |
 
 **示例：** 
   ```ts
