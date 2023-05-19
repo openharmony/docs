@@ -331,7 +331,7 @@ networkManager.isNetworkInterfaceDisabled(wantTemp, "eth0", (error, result) => {
         console.log("error code:" + error.code + " error message:" + error.message);
         return;
     }
-    console.log(result);
+    console.log("result:" + result);
 });
 ```
 
@@ -377,7 +377,7 @@ let wantTemp = {
     abilityName: "EntryAbility",
 };
 networkManager.isNetworkInterfaceDisabled(wantTemp, "eth0").then((result) => {
-    console.log(result);
+    console.log("result:" + result);
 }).catch(error => {
     console.log("error code:" + error.code + " error message:" + error.message);
 });
