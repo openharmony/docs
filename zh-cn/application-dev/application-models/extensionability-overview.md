@@ -17,11 +17,11 @@ ExtensionAbility组件是基于特定场景（例如服务卡片、输入法等�
 
 - [AccessibilityExtensionAbility](../reference/apis/js-apis-application-accessibilityExtensionAbility.md)：ACCESSIBILITY类型的ExtensionAbility组件，用于提供辅助功能业务的能力。
 
-- [DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md)：DATA_SHARE类型的ExtensionAbility组件，用于提供支持数据共享业务的能力。
+- [DataShareExtensionAbility（仅对系统应用开放）](../reference/apis/js-apis-application-dataShareExtensionAbility.md)：DATA_SHARE类型的ExtensionAbility组件，用于提供支持数据共享业务的能力。
 
 - [StaticSubscriberExtensionAbility](../reference/apis/js-apis-application-staticSubscriberExtensionAbility.md)：STATIC_SUBSCRIBER类型的ExtensionAbility组件，用于提供静态广播的能力。
 
-- [WindowExtensionAbility](../reference/apis/js-apis-application-windowExtensionAbility.md)：WINDOW类型的ExtensionAbility组件，用于提供界面组合扩展能力，允许系统应用进行跨应用的界面拉起和嵌入。
+- [WindowExtensionAbility（仅对系统应用开放）](../reference/apis/js-apis-application-windowExtensionAbility.md)：WINDOW类型的ExtensionAbility组件，用于提供界面组合扩展能力，允许系统应用进行跨应用的界面拉起和嵌入。
 
 - [EnterpriseAdminExtensionAbility](../reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)：ENTERPRISE_ADMIN类型的ExtensionAbility组件，用于提供企业管理时处理管理事件的能力，比如设备上应用安装事件、锁屏密码输入错误次数过多事件等。
 
