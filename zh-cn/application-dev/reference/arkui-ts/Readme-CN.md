@@ -12,6 +12,7 @@
     - [鼠标事件](ts-universal-mouse-key.md)
     - [组件区域变化事件](ts-universal-component-area-change-event.md)
     - [组件可见区域变化事件](ts-universal-component-visible-area-change-event.md)
+    - [组件快捷键事件](ts-universal-events-keyboardshortcut.md)
   - 通用属性
     - [尺寸设置](ts-universal-attributes-size.md)
     - [位置设置](ts-universal-attributes-location.md)
@@ -69,6 +70,7 @@
   - [Gauge](ts-basic-components-gauge.md)
   - [Image](ts-basic-components-image.md)
   - [ImageAnimator](ts-basic-components-imageanimator.md)
+  - [ImageSpan](ts-basic-components-imagespan.md)
   - [LoadingProgress](ts-basic-components-loadingprogress.md)
   - [Marquee](ts-basic-components-marquee.md)
   - [Menu](ts-basic-components-menu.md)
