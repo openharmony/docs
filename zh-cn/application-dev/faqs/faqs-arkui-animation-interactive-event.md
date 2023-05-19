@@ -22,7 +22,7 @@
 
 可以通过onScrollFrameBegin事件和scrollBy方法实现容器嵌套滚动。
 
-可参考：[容器嵌套滚动样例](../reference/arkui-ts/ts-container-scroll.md#%E7%A4%BA%E4%BE%8B2)
+可参考：[容器嵌套滚动样例](../reference/arkui-ts/ts-container-scroll.md#示例2)
 
 ## 如何实现一个组件不停地旋转
 
