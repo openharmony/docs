@@ -46,7 +46,7 @@ ArkTS API新增支持错误码的上报，帮助开发者快速捕捉异常，�
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2 Beta4 | NA |
 | Public SDK | Ohos_sdk_public 3.2.9.2 (API Version 9 Beta4) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 |
-| Full SDK | Ohos_sdk_full 3.2.9.2 (API Version 9 Beta4) | 面向OEM厂商提供，包含了需要使用系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/full-sdk-switch-guide.md)。 |
+| Full SDK | Ohos_sdk_full 3.2.9.2 (API Version 9 Beta4) | 面向OEM厂商提供，包含了需要使用系统权限的系统接口。使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](../application-dev/faqs/full-sdk-switch-guide.md)。 |
 | HUAWEI DevEco Studio（可选） | 3.1 Canary1 | OpenHarmony应用开发推荐使用。 |
 | HUAWEI DevEco Device Tool（可选） | 3.1 Beta1 | OpenHarmony智能设备集成开发环境推荐使用。 |
 

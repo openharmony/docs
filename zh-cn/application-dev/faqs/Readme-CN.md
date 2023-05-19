@@ -1,7 +1,10 @@
 # 常见问题
 
+- [如何编译full-SDK](full-sdk-compile-guide.md)
+- [如何替换full-SDK](full-sdk-switch-guide.md)
 - [Ability开发常见问题](faqs-ability.md)
 - [ArkUI框架开发常见问题](faqs-arkui.md)
+- [ArkUI开发框架开发-ArkTS语法常见问题](faqs-arkui-arkts.md)
 - [Web开发常见问题](faqs-arkui-web.md)
 - [包管理开发常见问题](faqs-bundle-management.md)
 - [资源管理开发常见问题](faqs-globalization.md)
@@ -19,4 +22,5 @@
 - [启动恢复开发常见问题](faqs-startup.md)
 - [分布式DeviceProfrofile开发常见问题](faqs-distributed-device-profile.md)
 - [SDK使用常见问题](faqs-sdk.md)
+- [语言编译运行时常见问题](faqs-compiler-runtime.md)
 - [三四方库使用常见问题](faqs-third-fourth-party-library.md)

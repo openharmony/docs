@@ -149,3 +149,64 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 **参考链接**
 
 [使用EventHub进行数据](../application-models/uiability-data-sync-with-ui.md#使用eventhub进行数据通信)
+
+## 如何实现点击Notification通知打开App功能
+
+适用于：OpenHarmony 3.1 Beta5 API 9
+
+**解决措施**
+
+通过配置Notification.publish发布通知接口的参数NotificationRequest中wantAgent属性实现
+
+**代码示例**
+
+```
+import notificationManager from '@ohos.notificationManager';
+import WantAgent from '@ohos.app.ability.wantAgent';
+
+async function publishNotification() {
+  let wantAgentInfo = {
+    wants: [
+      {
+        bundleName: "com.example.webuseragent", // 自己应用的bundleName
+        abilityName: "EntryAbility",
+      }
+    ],
+    operationType: WantAgent.OperationType.START_ABILITIES,
+    requestCode: 1,
+  }
+  const wantAgent = await WantAgent.getWantAgent(wantAgentInfo)
+  let contentType = notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT;
+  await notificationManager.publish({
+    content: {
+      contentType: contentType,
+      normal: {
+        title: "测试标题",
+        text: "测试内容",
+      }
+    },
+    id: 1,
+    wantAgent: wantAgent
+  })
+}
+```
+
+**参考链接**
+
+[Notification](../reference/apis/js-apis-notificationManager.md)、[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)
+
+## 调用notificationManager.publish发布通知失败
+
+适用于：OpenHarmony 3.2 Beta5
+
+**问题现象**
+
+发布通知后，无错误日志信息，通知栏没有通知显示
+
+**解决措施**
+
+发布通知时，需要在真机端系统设置中，开启对应应用的通知开关，然后才能在通知栏中看到发布的通知。
+
+手动开启步骤：设置 \> 通知和状态栏 \> 应用名称 \> 允许通知。
+
+也可通过接口notificationManager.requestEnableNotification\(\)来弹窗让用户授权（仅弹一次）。
