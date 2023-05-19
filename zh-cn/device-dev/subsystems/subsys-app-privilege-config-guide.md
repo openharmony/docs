@@ -20,6 +20,7 @@ OpenHarmony提供通用的应用特权和可由设备厂商针对不同设备单
 | AllowAppDesktopIconHide | 是否允许隐藏桌面图标。 |
 | AllowAbilityPriorityQueried | 是否允许Ability配置查询优先级。    |
 | AllowAbilityExcludeFromMissions | 是否允许Ability不在任务栈中显示。 |
+| AllowAppShareLibrary | 是否允许为其它应用提供[应用间`HSP`](../../application-dev/quick-start/cross-app-hsp.md)能力。 |
 
 ### 配置方式
 
