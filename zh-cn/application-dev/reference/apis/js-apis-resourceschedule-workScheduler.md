@@ -39,7 +39,7 @@ startWork(work: WorkInfo): void
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Checking workInfo failed. |
+| 9700004 | Check workInfo failed. |
 | 9700005 | StartWork failed. |
 
 
@@ -91,7 +91,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Checking workInfo failed. |
+| 9700004 | Check workInfo failed. |
 
 **示例**：
 
@@ -118,7 +118,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
   }
 ```
 
-## workScheduler.getWorkStatus:callback
+## workScheduler.getWorkStatus
 getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 获取工作的最新状态，使用Callback形式返回。
@@ -141,7 +141,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Checking workInfo failed. |
+| 9700004 | Check workInfo failed. |
 
 **示例**：
 
@@ -161,7 +161,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
   }
 ```
 
-## workScheduler.getWorkStatus:promise
+## workScheduler.getWorkStatus
 getWorkStatus(workId: number): Promise\<WorkInfo>
 
 获取工作的最新状态，使用Promise形式返回。
@@ -189,7 +189,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Checking workInfo failed. |
+| 9700004 | Check workInfo failed. |
 
 **示例**：
 
@@ -207,7 +207,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
   }
 ```
 
-## workScheduler.obtainAllWorks:callback
+## workScheduler.obtainAllWorks
 obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
 获取与当前应用程序关联的所有工作，使用Callback形式返回。
@@ -252,8 +252,8 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
   }
 ```
 
-## workScheduler.obtainAllWorks:promise
-obtainAllWorks(): Promise<Array\<WorkInfo>>
+## workScheduler.obtainAllWorks
+obtainAllWorks(): Promise\<Array\<WorkInfo>>
 
 获取与当前应用程序关联的所有工作，使用Promise形式返回。
 
@@ -317,7 +317,7 @@ stopAndClearWorks(): void
   }
 ```
 
-## workScheduler.isLastWorkTimeOut:callback
+## workScheduler.isLastWorkTimeOut
 isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
 检查指定工作的最后一次执行是否为超时操作，使用Callback形式返回。
@@ -346,7 +346,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Checking workInfo failed. |
+| 9700004 | Check workInfo failed. |
 
 **示例**：
 
@@ -364,7 +364,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
   }
 ```
 
-## workScheduler.isLastWorkTimeOut:promise
+## workScheduler.isLastWorkTimeOut
 isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 检查指定工作的最后一次执行是否为超时操作，使用Promise形式返回。
@@ -392,7 +392,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 | 9700001 | Memory operation failed. |
 | 9700002 | Parcel operation failed. |
 | 9700003 | System service operation failed. |
-| 9700004 | Checking workInfo failed. |
+| 9700004 | Check workInfo failed. |
 
 **示例**：
 
