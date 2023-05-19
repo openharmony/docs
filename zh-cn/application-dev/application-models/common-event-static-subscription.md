@@ -32,7 +32,7 @@
 
 2. 静态订阅者工程配置。
 
-   在完成静态订阅者的代码实现后，需要将该订阅者配置到系统的module.json5中，配置形式如下：
+   在完成静态订阅者的代码实现后，需要在[module.json5配置文件](../quick-start/module-configuration-file.md)中进行配置订阅者信息。
 
    ```ts
    {
@@ -41,7 +41,7 @@
        "extensionAbilities": [
          {
            "name": "StaticSubscriber",
-           "srcEntry": "./ets/StaticSubscriber/StaticSubscriber.ts",
+           "srcEntry": "./ets/staticsubscriber/StaticSubscriber.ts",
            "description": "$string:StaticSubscriber_desc",
            "icon": "$media:icon",
            "label": "$string:StaticSubscriber_label",
@@ -60,19 +60,20 @@
    }
    ```
 
-   上述json文件主要关注以下字段：
+   其中部分字段解释如下：
 
-   - srcEntry : 表示ExtensionAbility的入口文件路径，即步骤2中声明的静态订阅者所在的文件路径
+   - srcEntry：表示ExtensionAbility的入口文件路径，即步骤2中声明的静态订阅者所在的文件路径。
 
-   - type: 表示ExtensionAbility的类型，对于静态订阅者需要声明为“staticSubscriber”
+   - type：表示ExtensionAbility的类型，对于静态订阅者需要声明为`staticSubscriber`。
 
-   - metadata: 表示ExtensionAbility的二级配置文件信息。由于不同的ExtensionAbility类型其配置信息不尽相同，因此需要使用不同的config文件表示其具体配置信息。
-        - name：表示ExtensionAbility的类型名称，对于静态订阅类型，name必须声明为“ohos.extension.staticSubscriber”，否则无法识别为静态订阅者；
-        - resource: 字段表示ExtensionAbility的配置信息路径，由开发者自行定义，在本例中表示路径为“resources/base/profile/subscribe.json"。
+   - metadata：表示ExtensionAbility的二级配置文件信息。由于不同的ExtensionAbility类型其配置信息不尽相同，因此需要使用不同的config文件表示其具体配置信息。
+        - name：表示ExtensionAbility的类型名称，对于静态订阅类型，name必须声明为`ohos.extension.staticSubscriber`，否则无法识别为静态订阅者。
+        - resource：字段表示ExtensionAbility的配置信息路径，由开发者自行定义，在本例中表示路径为`resources/base/profile/subscribe.json`。
 
-   metadata指向的二级配置文件的通常形式如下：
 
-   ```ts
+3. 配置metadata指向的二级配置文件。
+
+   ```json
    {
      "commonEvents": [
        {
@@ -86,27 +87,30 @@
    }
    ```
 
-   需要注意二级配置文件必须按照此形式进行声明，否则会无法正确识别。下面对字段进行介绍：
+   需要注意二级配置文件必须按照此形式进行声明，否则会无法正确识别。部分字段解释如下：
 
-   - name: 静态订阅ExtensionAbility的名称，需要和module.json5中声明的ExtensionAbility的name一致
+   - name: 静态订阅ExtensionAbility的名称，需要和module.json5中声明的ExtensionAbility的name一致。
+   - permission：订阅者要求的发布者需要具备的权限，对于发布了目标事件但不具备permission中声明的权限的发布者将被视为非法事件不予发布。
+   - events：订阅的目标事件列表。
 
-   - permission：订阅者要求的发布者需要具备的权限，对于发布了目标事件但不具备permission中声明的权限的发布者将被视为非法事件不予发布
+4. 修改设备的[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json)。[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json)在设备上的路径为`/system/etc/app/install_list_permission.json`，设备开机启动时会读取该配置文件，在应用安装会对在文件中配置的`allowCommonEvent`公共事件类型进行授权。预授权配置文件字段内容包括`bundleName`、`app_signature`和`allowCommonEvent`。
 
-   - events: 订阅的目标事件列表
+   - `bundleName`字段配置为应用的Bundle名称。
+   - `app_signature`字段配置为应用的指纹信息。指纹信息的配置参见[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md#install_list_capabilityjson中配置)。
+   - `allowCommonEvent`字段配置为允许静态广播拉起的公共事件项。
 
-3. 修改设备系统配置文件
-
-   修改设备系统配置文件 **/system/etc/app/install_list_capability.json**，将静态订阅应用者的包名添加至该json文件中即可。
+   > **说明**：当前仅支持预置应用配置该文件。
 
    ```json
-   {
-    "install_list": [
-            {
-                "bundleName": "ohos.extension.staticSubscriber",
-                "allowCommonEvent": ["usual.event.A", "usual.event.B"],
-            }
-        ]
-    }
+   [
+     ...
+     {
+       "bundleName": "com.example.myapplication", // Bundle名称
+       "app_signature": ["****"], // 指纹信息
+       "allowCommonEvent": ["usual.event.A", "usual.event.B"], // 允许静态广播拉起的公共事件项
+       ]
+     }
+   ]
    ```
 
 ## 相关示例
