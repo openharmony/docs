@@ -268,6 +268,56 @@ DevEco Studio默认下载是public-sdk。
 
 [获取应用开发路径](../application-models/application-context-stage.md#获取应用开发路径)
 
+## terminateSelf方法销毁当前应用之后并没有在后台任务列表中删除
+
+适用于：OpenHarmony 3.2 Beta5
+
+**解决措施**
+
+在当前应用对应UIAbility的module.json5配置文件中，配置abilities标签的removeMissionAfterTerminate字段，设置为true即为销毁应用的同时删除应用快照记录，缺省值为false。
+
+**参考链接**
+
+[module.json5配置文件](../quick-start/module-configuration-file.md)
+
+## Stage模型下开发的应用如何拉起 FA 模型开发的应用
+
+适用于：OpenHarmony 3.2 Beta 5，API 9
+
+**问题现象**
+
+已在stage模型下的应用如何拉起FA模型
+
+**解决措施**
+
+该功能目前已支持，具体实现可参考如下代码：
+
+示例：
+
+```
+let want = {
+    deviceId: "", // deviceId为空表示本设备
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility",
+    moduleName: "Module1", // moduleName非必选
+    parameters: { // 自定义信息
+    },
+}
+// context为意图拉起的FA模型的AbilityContext
+context.startAbility(want).then(() => {
+    ...
+}).catch((err) => {
+    ...
+})
+```
+
+## 原子化服务是否可以全程使用js实现
+
+适用于：Openharmony 3.2 Beta5 API 9
+
+**解决措施**
+
+目前新建的卡片的目录结构都是css+hml+json，不能完全靠js实现，事件的触发和参数的传递都可以在json文件里面处理。
 
 ## FA卡片上架后在用户的服务中心展示时可否触发生命周期，从而实现用户没有打开过FA应用的情况下获取到用户的登录信息  
 
@@ -279,7 +329,44 @@ FA卡片的生命周期以及信息显示
 
 **解决措施**
 
-服务卡片在添加卡片后就触发了oncreat（）生命周期，在不启用app的情况下也可以显示相关的用户信息-静默登录，但服务卡片目前要在app安装之后手动添加。
+服务卡片在添加卡片后就触发了oncreat\(\)生命周期，在不启用app的情况下也可以显示相关的用户信息-静默登录，但服务卡片目前要在app安装之后手动添加。
+
+## JS/ArkTS跳转到其他应用时报错“\[c4d4d3492eb8531, 0, 0\] ContextDeal::startAbility fetchAbilities failed”
+
+适用于：OpenHarmony 3.2 Beta5 API 9
+
+**问题现象**
+
+JS/ArkTS跳转时, startAbility报错
+
+**解决措施**
+
+一般用startAbility，实现如下：
+
+```
+import featureAbility from '@ohos.ability.featureAbility'
+function onStartRemoteAbility() {
+console.info('onStartRemoteAbility begin');
+let params;
+let wantValue = {
+    bundleName: 'ohos.samples.etsDemo',
+    abilityName: 'ohos.samples.etsDemo.RemoteAbility',
+    deviceId: getRemoteDeviceId(),
+    parameters: params
+};
+console.info('onStartRemoteAbility want=' + JSON.stringify(wantValue));
+featureAbility.startAbility({
+    want: wantValue
+}).then((data) => {
+console.info('onStartRemoteAbility finished, ' + JSON.stringify(data));
+});
+console.info('onStartRemoteAbility end');
+}
+```
+
+**参考链接**
+
+可参考[启动本地PageAbility](../application-models/start-local-pageability.md)。
 
 ## 如何通过卡片点击实现业务登录场景
 
@@ -332,30 +419,28 @@ this.context.startAbility(
 **代码示例**
 
 ```
-import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
 
-let UIAbilityContext = UIAbility.context;
-let ApplicationContext = UIAbility.context.getApplicationContext();
 @Entry
 @Component
 struct AbilityContextTest {
   // abilityContext
-  @State UIabilityInfo: string = '获取 abilityInfo'
-  UIabilityContext: UIAbilityContext
+  @State UIAbilityInfo: string = '获取 abilityInfo'
+  UIAbilityContext: common.UIAbilityContext
 
   aboutToAppear() {
-    // getContext获取Context，转为abilityContext 
-    this.UIabilityContext = getContext(this) as UIAbilityContext
+    // getContext获取Context，转为abilityContext
+    this.UIAbilityContext = getContext(this) as common.UIAbilityContext
   }
 
   build() {
     Row() {
       Column({ space: 20 }) {
-        Text(this.abilityInfo)
+        Text(this.UIAbilityInfo)
           .fontSize(20)
-          .onClick(()=>{
-            this.UIabilityInfo = JSON.stringify(this.UIabilityContext.UIabilityInfo)
-            console.log(`ContextDemo abilityInfo= ${this.UIabilityInfo}`)
+          .onClick(() => {
+            this.UIAbilityInfo = JSON.stringify(this.UIAbilityContext.abilityInfo)
+            console.log(`ContextDemo abilityInfo = ${this.UIAbilityInfo}`)
           })
       }
       .width('100%')
@@ -364,3 +449,51 @@ struct AbilityContextTest {
   }
 }
 ```
+
+## 后台长时任务启动失败
+
+适用于：OpenHarmony 3.2 Release API9
+
+**问题现象**
+
+调用featureAbility.startAbility\(\)接口启动ServiceAbility，在ServiceAbility中启动后台长时任务报错，错误信息：\{"code":201,"message":"BussinessError 201: Permission denied."\}
+
+**解决措施**
+
+启动后台长时任务需要在module.json5文件中配置长时任务权限ohos.permission.KEEP\_BACKGROUND\_RUNNING、同时为需要使用长时任务的ability声明相应的后台模式类型。
+
+```
+"module": {
+    "abilities": [
+        {
+            "backgroundModes": [
+            "dataTransfer",
+            "location"
+            ], // 后台模式类型
+        }
+    ],
+    "requestPermissions": [
+        {
+            "name": "ohos.permission.KEEP_BACKGROUND_RUNNING"  // 长时任务权限
+        }
+    ]
+}
+```
+
+**参考链接**
+
+[ServiceAbility组件配置-后台模式类型](../application-models/serviceability-configuration.md)
+
+[长时任务权限](../security/permission-list.md#ohospermissionkeepbackgroundrunning)
+
+[长时任务开发指导](../task-management/continuous-task-dev-guide.md#基于stage模型)
+
+## FA卡片如何进行数据交互
+
+适用于：OpenHarmony SDK 3.2 Beta 5 API9
+
+卡片通过postCardAction接口触发和提供方的交互，在提供方中通过updateForm方法更新数据。
+
+**参考链接**
+
+[服务卡片开发指导](../application-models/widget-development-fa.md)
