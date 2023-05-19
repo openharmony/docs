@@ -17,7 +17,7 @@
   - ExtensionAbility组件是一种面向特定场景的应用组件。开发者并不直接从ExtensionAbility派生，而是需要使用ExtensionAbility的派生类。目前ExtensionAbility有用于卡片场景的FormExtensionAbility，用于输入法场景的InputMethodExtensionAbility，用于闲时任务场景的WorkSchedulerExtensionAbility等多种派生类，这些派生类都是基于特定场景提供的。例如，用户在桌面创建应用的卡片，需要应用开发者从FormExtensionAbility派生，实现其中的回调函数，并在配置文件中配置该能力。ExtensionAbility派生类实例由用户触发创建，并由系统管理生命周期。在Stage模型上，普通应用开发者不能开发自定义服务，而需要根据自身的业务场景通过ExtensionAbility的派生类来实现。
 - [WindowStage](../windowmanager/application-window-stage.md)
 
-  每个UIAbility类实例都会与一个WindowStage类实例绑定，该类提供了应用进程内窗口管理器的作用。它包含一个主窗口（Window）。也就是说UIAbility通过WindowStage持有了一个主窗口，该主窗口为ArkUI提供了绘制区域。
+  每个UIAbility类实例都会与一个WindowStage类实例绑定，该类提供了应用进程内窗口管理器的作用。它包含一个主窗口。也就是说UIAbility通过WindowStage持有了一个主窗口，该主窗口为ArkUI提供了绘制区域。
 
 - [Context](application-context-stage.md)
 

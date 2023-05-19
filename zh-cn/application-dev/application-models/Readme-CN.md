@@ -20,7 +20,7 @@
       - [AccessibilityExtensionAbility](accessibilityextensionability.md)
       - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
       - [InputMethodExtensionAbility](inputmethodextentionability.md)
-      - [WindowExtensionAbility](windowextensionability.md)
+      - [WindowExtensionAbility（仅对系统应用开放）](windowextensionability.md)
     - 服务卡片开发指导（Stage模型）
       - [服务卡片概述](service-widget-overview.md)
       - 开发基于ArkTS UI的卡片
@@ -73,6 +73,7 @@
         - [静态订阅公共事件（仅对系统应用开放）](common-event-static-subscription.md)
         - [取消动态订阅公共事件](common-event-unsubscription.md)
       - [公共事件发布](common-event-publish.md)
+      - [移除粘性公共事件（仅对系统应用开放）](common-event-remove-sticky.md)
     - [后台服务](background-services.md)
   - 了解线程模型
     - [线程模型概述](thread-model-stage.md)
