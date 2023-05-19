@@ -107,4 +107,4 @@ fs的具体使用可以参考：[@ohos.file.fs](../reference/apis/js-apis-file-f
 
 此类文件是保存在/storage/media/100/local/files目录下，具体位置与文件类型和来源有关。知道文件名时，可在此目录下通过如下命令查找：find . -name \[filename\]
 
-[应用文件上传下载](../file-management/app-file-upload-download.md/)
+[应用文件上传下载](../file-management/app-file-upload-download.md)

@@ -140,6 +140,12 @@
     - [NotificationSlot](js-apis-inner-notification-notificationSlot.md)
     - [NotificationTemplate](js-apis-inner-notification-notificationTemplate.md)
     - [NotificationUserInput](js-apis-inner-notification-notificationUserInput.md)
+  - 公共事件定义
+    - [元能力子系统公共事件定义](commonEvent-ability.md)
+    - [包管理子系统公共事件定义](commonEvent-bundleManager.md)
+    - [通知服务公共事件定义](commonEvent-ans.md)
+    - [资源调度子系统公共事件定义](commonEvent-resourceschedule.md)
+    - [电话服务子系统公共事件定义](commonEvent-telephony.md)
 - 包管理
   - [@ohos.bundle.appControl (appControl模块)](js-apis-appControl.md)
   - [@ohos.bundle.bundleManager (bundleManager模块)](js-apis-bundleManager.md)

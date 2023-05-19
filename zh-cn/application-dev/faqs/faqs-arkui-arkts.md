@@ -167,7 +167,7 @@ ForEach(this.nums,(item) => {
 
 **参考链接**
 
-[@Link](../ui/ts-component-states-link.md)
+[@Link](../quick-start/arkts-link.md)
 
 ## 父组件如何与孙子组件进行状态同步
 
@@ -760,7 +760,7 @@ systemTime.getCurrentTime\(false\)和new Date\(\).getTime\(\)一样，都是返�
 
 适用于：OpenHarmony SDK3.2.5.5, API9 Stage模型
 
-该功能在ArkTS中使用@Build和@BuilderParam方式来实现，具体可参考文档：[@BuilderParam：引用@Builder函数](../quick-start/arkts-builderparam.md/)
+该功能在ArkTS中使用@Build和@BuilderParam方式来实现，具体可参考文档：[@BuilderParam：引用@Builder函数](../quick-start/arkts-builderparam.md)
 
 ## 加上lineHeight，Text垂直不居中的原因
 

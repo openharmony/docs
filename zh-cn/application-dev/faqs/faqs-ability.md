@@ -484,7 +484,7 @@ struct AbilityContextTest {
 
 [ServiceAbility组件配置-后台模式类型](../application-models/serviceability-configuration.md)
 
-[长时任务权限](../security/permission-list.md#ohospermissionkeepbackgroundrunning)
+[长时任务权限](../security/permission-list.md#ohospermissionkeep_background_running)
 
 [长时任务开发指导](../task-management/continuous-task-dev-guide.md#基于stage模型)
 
