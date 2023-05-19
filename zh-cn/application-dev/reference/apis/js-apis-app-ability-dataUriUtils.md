@@ -22,7 +22,7 @@ getId(uri: string): number
 
 **参数：**
 
-| 名称 | 类型   | 必填 | 描述                        |
+| 参数名 | 类型   | 必填 | 说明                        |
 | ---- | ------ | ---- | --------------------------- |
 | uri  | string | 是   | 表示uri对象。 |
 
@@ -43,6 +43,8 @@ try {
 }
 ```
 
+
+
 ## dataUriUtils.attachId
 
 attachId(uri: string, id: number): string
@@ -53,7 +55,7 @@ attachId(uri: string, id: number): string
 
 **参数：**
 
-| 名称 | 类型   | 必填 | 描述                        |
+| 参数名 | 类型   | 必填 | 说明                        |
 | ---- | ------ | ---- | --------------------------- |
 | uri  | string | 是   | 表示uri对象。 |
 | id   | number | 是   | 表示要附加的ID。            |
@@ -80,6 +82,8 @@ try {
 
 ```
 
+
+
 ## dataUriUtils.deleteId
 
 deleteId(uri: string): string
@@ -90,7 +94,7 @@ deleteId(uri: string): string
 
 **参数：**
 
-| 名称 | 类型   | 必填 | 描述                        |
+| 参数名 | 类型   | 必填 | 说明                        |
 | ---- | ------ | ---- | --------------------------- |
 | uri  | string | 是   | 表示要从中删除ID的uri对象。 |
 
@@ -112,6 +116,8 @@ try {
 
 ```
 
+
+
 ## dataUriUtils.updateId
 
 updateId(uri: string, id: number): string
@@ -122,7 +128,7 @@ updateId(uri: string, id: number): string
 
 **参数：**
 
-| 名称 | 类型   | 必填 | 描述                |
+| 参数名 | 类型   | 必填 | 说明                |
 | ---- | ------ | ---- | ------------------- |
 | uri  | string | 是   | 表示uri对象 |
 | id   | number | 是   | 表示要更新的ID            |

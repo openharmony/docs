@@ -2,6 +2,10 @@
 
 定义异常监听，可以作为[errorManager.on](js-apis-app-ability-errorManager.md#errormanageron)的入参监听当前应用发生的异常。
 
+> **说明：**
+> 
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
+
 ## 导入模块
 
 ```ts
@@ -28,9 +32,15 @@ onUnhandledException(errMsg: string): void;
 import errorManager from '@ohos.app.ability.errorManager';
 
 let observer = {
-    onUnhandledException(errorMsg) {
-        console.log('onUnhandledException, errorMsg: ' + JSON.stringify(errorMsg));
-    }
+  onUnhandledException(errorMsg) {
+    console.error('onUnhandledException, errorMsg: ', errorMsg);
+  }
 };
-errorManager.on('error',observer);
+
+try {
+    errorManager.on('error', observer);
+} catch (error) {
+    console.error('registerErrorObserver failed, error.code: ${error.code}, error.message: ${error.message}');
+}
+```
 ```

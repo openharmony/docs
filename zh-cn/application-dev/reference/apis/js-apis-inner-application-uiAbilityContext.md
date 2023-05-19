@@ -366,23 +366,20 @@ startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback
     windowMode: 0,
   };
 
-  try {
-    this.context.startAbilityForResult(want, options, (error, result) => {
-      if (error.code) {
-        // 处理业务逻辑错误
-        console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
-        return;
-      }
-      // 执行正常业务
-      console.log('startAbilityForResult succeed, result.resultCode = ' +
-        result.resultCode)
-    });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.startAbilityForResult(want, options, (err, result) => {
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('startAbilityForResult succeed');
+  });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 
@@ -785,22 +782,20 @@ startServiceExtensionAbility(want: Want): Promise\<void>;
     abilityName: 'MainAbility'
   };
 
-  try {
-    this.context.startServiceExtensionAbility(want)
-      .then((data) => {
-        // 执行正常业务
-        console.log('startServiceExtensionAbility succeed');
-      })
-      .catch((error) => {
-        // 处理业务逻辑错误
-        console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
-      });
-  } catch (paramError) {
-    // 处理入参错误异常
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.startServiceExtensionAbility(want)
+    .then(() => {
+      // 执行正常业务
+      console.info('startServiceExtensionAbility succeed');
+    })
+    .catch((err) => {
+      // 处理业务逻辑错误
+      console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+    });
+} catch (err) {
+  // 处理入参错误异常
+  console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 ## UIAbilityContext.startServiceExtensionAbilityWithAccount
@@ -1410,15 +1405,22 @@ connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 **示例：**
 
   ```ts
-  let want = {
-    deviceId: '',
-    bundleName: 'com.extreme.test',
-    abilityName: 'MainAbility'
-  };
-  let options = {
-    onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
-    onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
-    onFailed(code) { console.log('----------- onFailed -----------') }
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'ServiceExtensionAbility'
+};
+let commRemote;
+let options = {
+  onConnect(elementName, remote) {
+    commRemote = remote;
+    console.info('onConnect...')
+  },
+  onDisconnect(elementName) {
+    console.info('onDisconnect...')
+  },
+  onFailed(code) {
+    console.info('onFailed...')
   }
 
   let connection = null;
@@ -1472,16 +1474,23 @@ connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options
 **示例：**
 
   ```ts
-  let want = {
-    deviceId: '',
-    bundleName: 'com.extreme.test',
-    abilityName: 'MainAbility'
-  };
-  let accountId = 100;
-  let options = {
-    onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
-    onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
-    onFailed(code) { console.log('----------- onFailed -----------') }
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'ServiceExtensionAbility'
+};
+let accountId = 100;
+let commRemote;
+let options = {
+  onConnect(elementName, remote) {
+    commRemote = remote;
+    console.info('onConnect...')
+  },
+  onDisconnect(elementName) {
+    console.info('onDisconnect...')
+  },
+  onFailed(code) {
+    console.info('onFailed...')
   }
 
   let connection = null;
@@ -1526,8 +1535,8 @@ disconnectServiceExtensionAbility(connection: number): Promise\<void>;
 **示例：**
 
   ```ts
-  // connection为connectServiceExtensionAbility中的返回值
-  let connection = 1;
+// connection为connectServiceExtensionAbility中的返回值
+let connection = 1;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection)
@@ -1574,8 +1583,26 @@ disconnectServiceExtensionAbility(connection: number, callback:AsyncCallback\<vo
 **示例：**
 
   ```ts
-  // connection为connectServiceExtensionAbility中的返回值
-  let connection = 1;
+// connection为connectServiceExtensionAbility中的返回值
+let connection = 1;
+let commRemote;
+
+try {
+  this.context.disconnectServiceExtensionAbility(connection, (err) => {
+    commRemote = null;
+    if (err.code) {
+      // 处理业务逻辑错误
+      console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // 执行正常业务
+    console.info('disconnectServiceExtensionAbility succeed');
+  });
+} catch (err) {
+  commRemote = null;
+  // 处理入参错误异常
+  console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+}
 
   try {
     this.context.disconnectServiceExtensionAbility(connection, (error) => {
@@ -1931,7 +1958,7 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;, requestCallback: As
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | permissions | Array&lt;string&gt; | 是 | 权限列表。 |
-| callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionRequestResult.md)&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
+| callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | 是 | 回调函数，返回接口调用是否成功的结果。 |
 
 **示例：**
 
@@ -1962,7 +1989,7 @@ requestPermissionsFromUser(permissions: Array&lt;string&gt;) : Promise&lt;Permis
 
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise&lt;[PermissionRequestResult](js-apis-permissionRequestResult.md)&gt; | 返回一个Promise，包含接口的结果。 |
+| Promise&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | 返回一个Promise，包含接口的结果。 |
 
 **示例：**
 

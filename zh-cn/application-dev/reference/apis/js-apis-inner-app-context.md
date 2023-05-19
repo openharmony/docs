@@ -106,7 +106,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 import bundle from '@ohos.bundle.bundleManager';
 let context: featureAbility.Context = featureAbility.getContext();
 bundle.getBundleInfo('com.context.test', 1, (err, datainfo) =>{
-    context.verifyPermission('com.example.permission', {uid:datainfo.uid}, (err, data) =>{
+    context.verifyPermission('com.example.permission', {uid:datainfo.appInfo.uid}, (err, data) =>{
         console.info('verifyPermission err: ' + JSON.stringify(err) + 'data: ' + JSON.stringify(data));
     });
 });
