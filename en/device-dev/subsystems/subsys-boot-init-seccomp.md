@@ -8,17 +8,19 @@ Secure computing mode (Seccomp) is a security mechanism provided by the Linux ke
 
 ### Operating Mechanism
 
-1. Basic mechanism
+- Basic mechanism
 
-    Seccomp policies exist in the form of policy files. During compilation and building, a policy file is parsed to generate a source file that contains the BPF instruction policies, and then the source file is compiled into a dynamic policy library. During startup of a user-mode process, Seccomp system calls are invoked to load the BPF instruction policies into the kernel through the dynamic policy library.
+  Seccomp policies exist in the form of policy files. During compilation and building, a policy file is parsed to generate a source file that contains the BPF instruction policies, and then the source file is compiled into a dynamic policy library. During startup of a user-mode process, Seccomp system calls are invoked to load the BPF instruction policies into the kernel through the dynamic policy library.
 
-2. Basic features
-    - A child process inherits the Seccomp policies of its parent process.
-    - After a Seccomp policy is loaded to the kernel during process running, the policy exists in the memory as a singly linked list and cannot be modified.
-    - Seccomp policies can be set for a process for multiple times. When a process executes a system call, the kernel traverses the policies specified for the nodes in the singly linked list, and then compares the policies to obtain the policy with the highest priority.
+- Basic features
+
+  - A child process inherits the Seccomp policies of its parent process.
+  - After a Seccomp policy is loaded to the kernel during process running, the policy exists in the memory as a singly linked list and cannot be modified.
+  - Seccomp policies can be set for a process for multiple times. When a process executes a system call, the kernel traverses the policies specified for the nodes in the singly linked list, and then compares the policies to obtain the policy with the highest priority.
 
 
 ### Constraints
+
 - System restrictions
 
   The system used must be a standard system, and the options listed below must be enabled in the kernel. You can find the kernel option configuration file of the product in **//kernel/linux/config/{linux_version}/arch/{target_cpu}/configs/**.
@@ -30,6 +32,7 @@ Secure computing mode (Seccomp) is a security mechanism provided by the Linux ke
     ```
 
 - Feature restrictions
+
     - The Seccomp policy for non-privileged processes complies with the baseline blocklist mechanism.
     - If a process needs to use system calls in the baseline blocklist, the system calls must be declared in the privileged process policy file.
     - The same Seccomp policy is enabled for all application processes.
@@ -105,7 +108,7 @@ Check whether Seccomp is enabled for application processes and system service pr
     **Table 1** Description of the Seccomp status
     |  Parameter |  Description |
     |  ---  |  ---  |
-    |  Seccomp  |  - **0**: disabled.<br>- **1**: enabled with the strict mode. Only the read, write, exit, and sigreturn system calls are allowed.<br>- **2**: enabled with the filter mode. The customized policies can be enabled by loading BPF instruction sets. |
+    |  Seccomp  | Whether Seccomp is enabled.<br>- **0**: disabled.<br>- **1**: enabled with the strict mode. Only the read, write, exit, and sigreturn system calls are allowed.<br>- **2**: enabled with the filter mode. The customized policies can be enabled by loading BPF instruction sets. |
     |  Seccomp_filters  |  Number of Seccomp policies set for a process. |
 
 ## Customizing Seccomp Policies for a Process
@@ -140,7 +143,7 @@ If the basic Seccomp policy has been enabled for a product, you can customize Se
         |  install_enable  |  Option specifying whether to install the policy file to the image, mandatory. Set the value to **true**. |
         |  install_images  |  Installation location in the image, mandatory. |
     
-        Example
+        For example:
         ```python
         #Import the template file.
         import("//base/startup/init/services/modules/seccomp/scripts/seccomp_policy_fixer.gni")
@@ -258,6 +261,7 @@ base/startup/init/services/modules/seccomp
 ### Policy File Overview
 
 - Location
+
   Basic policy files are stored in **//base/startup/init/services/modules/seccomp/seccomp_policy**.
 
 - Basic policy files
@@ -368,7 +372,7 @@ swapon;all
 
 > **Disclaimer: Using Third-Party Software or Websites**
 > 
-> We may recommend software, information, products, or websites owned or operated by third parties. A recommendation is usually provided via a hyperlink or other methods to help you access third-party resources.<br>
+> We may recommend software, information, products, or websites owned or operated by third parties. Such recommendations are usually provided via hyperlinks or other methods to help you access third-party resources.<br>
 > We strive to direct you to useful and trusted resources, but it is beyond our reach to guarantee the software, information, products, or services provided by or at third-party resources, or to track changes in these resources. Therefore, we are unable to assume the responsibility for the compliance, accuracy, and completeness of the content or results of any third-party resources, nor for any loss or damage caused by the use or failure of products or services provided by third-party resources.
 
 #### Static Analysis

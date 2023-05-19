@@ -5,6 +5,7 @@
 Application freeze (appfreeze) means that an application does not respond to user operations (for example, clicking) within a given period of time. OpenHarmony provides a mechanism for detecting appfreeze faults and generates appfreeze logs for fault analysis.
 
 > NOTE
+> 
 > This guide applies only to applications in the stage model.
 > Before using this guide, you must have basic knowledge about the JS applications, C++ program stacks, and application-related subsystems.
 
