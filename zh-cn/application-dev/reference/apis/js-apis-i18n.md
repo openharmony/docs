@@ -1737,6 +1737,35 @@ static getTimezoneFromCity(cityID: string): TimeZone
   let timezone = I18n.TimeZone.getTimezoneFromCity("Shanghai");
   ```
 
+### getTimezonesByLocation<sup>10+</sup>
+
+static getTimezonesByLocation(longitude: number, latitude: number): Array&lt;TimeZone&gt;
+
+创建某经纬度对应的时区对象数组。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：** 
+
+| 参数名     | 类型     | 必填   | 说明     |
+| --------- | ------ | ---- | ------ |
+| longitude | number | 是    | 经度, 范围[-180, 179.9), 东经取正值, 西经取负值 |
+| latitude  | number | 是    | 纬度, 范围[-90, 89.9), 北纬取正值, 南纬取负值 |
+
+**返回值：** 
+
+| 类型       | 说明          |
+| -------- | ----------- |
+| Array&lt;[TimeZone](#timezone)&gt; | 时区对象的数组 |
+
+**示例：** 
+  ```js
+  let timezoneArray = I18n.TimeZone.getTimezonesByLocation(-118.1, 34.0);
+  for (var i = 0; i < timezoneArray.length; i++) {
+     let tzId = timezoneArray[i].getID();
+  }
+  ```
+
 
 ## Transliterator<sup>9+</sup>
 
