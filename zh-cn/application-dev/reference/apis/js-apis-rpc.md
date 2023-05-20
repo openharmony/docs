@@ -6821,8 +6821,8 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
   }
   let deathRecipient = new MyDeathRecipient();
   try {
-      proxy.registerDeathRecippient(deathRecipient, 0);
-      proxy.unregisterDeathRecippient(deathRecipient, 0);
+      proxy.registerDeathRecipient(deathRecipient, 0);
+      proxy.unregisterDeathRecipient(deathRecipient, 0);
   } catch(error) {
       console.info("proxy register deathRecipient fail, errorCode " + error.code);
       console.info("proxy register deathRecipient fail, errorMessage " + error.message);
@@ -6893,7 +6893,7 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
       }
   }
   let deathRecipient = new MyDeathRecipient();
-  proxy.addDeathRecippient(deathRecipient, 0);
+  proxy.addDeathRecipient(deathRecipient, 0);
   proxy.removeDeathRecipient(deathRecipient, 0);
   ```
 
