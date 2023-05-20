@@ -88,7 +88,7 @@ To enable an audio and video application to access the AVSession service as a pr
    ```ts
    // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
    let session: AVSessionManager.AVSession = ALLREADY_CREATE_A_SESSION;
-   let wantAgentInfo: {
+   let wantAgentInfo = {
        wants: [
            {
                bundleName: "com.example.musicdemo",

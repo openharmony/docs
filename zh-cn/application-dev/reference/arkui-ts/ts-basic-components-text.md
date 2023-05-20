@@ -113,7 +113,7 @@ struct TextExample1 {
       Text('TextOverflow+maxLines').fontSize(9).fontColor(0xCCCCCC)
       // 超出maxLines截断内容展示
       Text('This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content. This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content.')
-        .textOverflow({ overflow: TextOverflow.None })
+        .textOverflow({ overflow: TextOverflow.Clip })
         .maxLines(1)
         .fontSize(12)
         .border({ width: 1 })

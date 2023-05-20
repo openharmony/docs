@@ -3875,8 +3875,8 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
-| type | string | 是   | 回调函数类型名，固定为'checkNotification'。   |
-| callback | (checkInfo: [NotificationCheckInfo]) => [NotificationCheckResult] | 是   | 消息验证函数指针。   |
+| type | string | 是   | 回调函数类型名，固定为'checkNotification'。 |
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo)) =>  [NotificationCheckResult](#notificationcheckresult)    | 是   | 消息验证函数指针。 |
 
 **错误码：**
 
@@ -3920,8 +3920,8 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 
 | 参数名 | 类型                          | 必填 | 说明           |
 | ------ | ----------------------------- | ---- | -------------- |
-| type | string | 是   | 回调函数类型名，固定为'checkNotification'。   |
-| callback | (checkInfo: [NotificationCheckInfo]) => [NotificationCheckResult] | 是   | 消息验证函数指针。   |
+| type | string                                                       | 是   | 回调函数类型名，固定为'checkNotification'。 |
+| callback | (checkInfo: [NotificationCheckInfo](#notificationcheckinfo)) =>  [NotificationCheckResult](#notificationcheckresult)  | 否   | 消息验证函数指针。 |
 
 **错误码：**
 

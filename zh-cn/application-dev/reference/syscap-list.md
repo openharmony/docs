@@ -1013,14 +1013,6 @@ TS/JS语言基础库
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 是     | 是   | 否   | 是     | 否           | 否     |
 
-## SystemCapability.UserIAM.UserAuth.FingerprintAuth
-
-指纹认证
-
-| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
-| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| 是      | 否     | 否     | 是   | 否   | 否     | 否           | 否     |
-
 ## SystemCapability.MiscServices.InputMethodFramework
 
 输入法框架

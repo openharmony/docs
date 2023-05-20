@@ -145,7 +145,7 @@ setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: b
 
 ```ts
 var bundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature"
+var moduleName = "feature";
 var isEnabled = false;
 
 try {
@@ -196,7 +196,7 @@ setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: b
 
 ```ts
 var bundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature"
+var moduleName = "feature";
 var isEnabled = false;
 
 try {
@@ -245,7 +245,7 @@ getOverlayModuleInfo(moduleName: string): Promise\<OverlayModuleInfo>;
 **示例：**
 
 ```ts
-var moduleName = "feature"
+var moduleName = "feature";
 
 (async() => {
     try {
@@ -285,7 +285,7 @@ getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleI
 **示例：**
 
 ```ts
-var moduleName = "feature"
+var moduleName = "feature";
 try {
     overlay.getOverlayModuleInfo(moduleName, (err, data) => {
         if (err) {
@@ -331,7 +331,7 @@ getTargetOverlayModuleInfos(targetModuleName: string): Promise\<Array\<OverlayMo
 **示例：**
 
 ```ts
-var targetModuleName = "feature"
+var targetModuleName = "feature";
 
 (async() => {
     try {
@@ -370,7 +370,7 @@ getTargetOverlayModuleInfos(targetModuleName: string, callback: AsyncCallback\<A
 **示例：**
 
 ```ts
-var targetModuleName = "feature"
+var targetModuleName = "feature";
 try {
     overlay.getTargetOverlayModuleInfos(targetModuleName, (err, data) => {
         if (err) {
@@ -424,7 +424,7 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName?: string): Promi
 
 ```ts
 var bundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature"
+var moduleName = "feature";
 
 (async() => {
     try {
@@ -471,7 +471,7 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName: string, callbac
 
 ```ts
 var bundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature"
+var moduleName = "feature";
 
 try {
     overlay.getOverlayModuleInfoByBundleName(bundleName, moduleName, (err, data) => {
@@ -572,7 +572,7 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName?: s
 
 ```ts
 var targetBundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature"
+var moduleName = "feature";
 
 (async() => {
     try {
@@ -619,7 +619,7 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: st
 
 ```ts
 var targetBundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature"
+var moduleName = "feature";
 
 try {
     overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, moduleName, (err, data) => {

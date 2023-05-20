@@ -15,10 +15,7 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 
 ## 属性
 
-
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |

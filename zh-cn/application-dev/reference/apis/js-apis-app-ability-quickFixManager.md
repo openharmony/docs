@@ -66,7 +66,7 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>, callback: AsyncCallback\<v
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 18500002 | Copy file failed, maybe not exist or inaccessible. |
+| 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
 | 18500008 | Internal error. |
 
 在打补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEvent-definitions.md#common_event_quick_fix_apply_result9)的参数返回给应用开发者。这部分错误码及错误信息如下：
@@ -128,7 +128,7 @@ applyQuickFix(hapModuleQuickFixFiles: Array\<string>): Promise\<void>;
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 18500002 | Copy file failed, maybe not exist or inaccessible. |
+| 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
 | 18500008 | Internal error. |
 
 在打补丁过程中发生的错误，其错误码及错误信息通过公共事件[COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEvent-definitions.md#common_event_quick_fix_apply_result9)的参数返回给应用开发者。这部分错误码及错误信息如下：
@@ -181,7 +181,7 @@ getApplicationQuickFixInfo(bundleName: string, callback: AsyncCallback\<Applicat
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 18500001 | The bundle is not exist. |
+| 18500001 | The specified bundleName is invalid. |
 | 18500008 | Internal error. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
@@ -231,7 +231,7 @@ getApplicationQuickFixInfo(bundleName: string): Promise\<ApplicationQuickFixInfo
 
 | 错误码ID | 错误信息 |
 | ------- | -------- |
-| 18500001 | The bundle is not exist. |
+| 18500001 | The specified bundleName is invalid. |
 | 18500008 | Internal error. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。

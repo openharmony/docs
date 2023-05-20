@@ -5,6 +5,7 @@
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块接口需激活为[设备管理员应用](js-apis-enterprise-adminManager.md#adminmanagerenableadmin)后才能调用，实现相应功能。
 
 ## 导入模块
 
@@ -48,9 +49,9 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
-bundleManager.AddAllowedInstallBundles(wantTemp, appIds, (error) => {
+bundleManager.addAllowedInstallBundles(wantTemp, appIds, (error) => {
     if (error != null) {
         console.log("error code:" + error.code + " error message:" + error.message);
     }
@@ -94,9 +95,9 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
-bundleManager.AddAllowedInstallBundles(wantTemp, appIds, 100, (error) => {
+bundleManager.addAllowedInstallBundles(wantTemp, appIds, 100, (error) => {
     if (error != null) {
         console.log("error code:" + error.code + " error message:" + error.message);
     }
@@ -145,7 +146,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
 bundleManager.addAllowedInstallBundles(wantTemp, appIds, 100).then(() => {
     console.log("success");
@@ -190,7 +191,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
 bundleManager.removeAllowedInstallBundles(wantTemp, appIds, (error) => {
     if (error != null) {
@@ -236,7 +237,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
 bundleManager.removeAllowedInstallBundles(wantTemp, appIds, 100, (error) => {
     if (error != null) {
@@ -287,7 +288,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
 bundleManager.removeAllowedInstallBundles(wantTemp, appIds, 100).then(() => {
     console.log("success");
@@ -467,9 +468,9 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
-bundleManager.AddDisallowedInstallBundles(wantTemp, appIds, (error) => {
+bundleManager.addDisallowedInstallBundles(wantTemp, appIds, (error) => {
     if (error != null) {
         console.log("error code:" + error.code + " error message:" + error.message);
     }
@@ -513,9 +514,9 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
-bundleManager.AddDisallowedInstallBundles(wantTemp, appIds, 100, (error) => {
+bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100, (error) => {
     if (error != null) {
         console.log("error code:" + error.code + " error message:" + error.message);
     }
@@ -564,7 +565,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
 bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100).then(() => {
     console.log("success");
@@ -609,7 +610,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
 bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, (error) => {
     if (error != null) {
@@ -655,7 +656,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
 bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, 100, (error) => {
     if (error != null) {
@@ -706,7 +707,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
 bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, 100).then(() => {
     console.log("success");

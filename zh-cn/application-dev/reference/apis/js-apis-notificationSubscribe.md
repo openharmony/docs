@@ -12,8 +12,6 @@
 import notificationSubscribe from '@ohos.notificationSubscribe';
 ```
 
-
-
 ## NotificationSubscribe.subscribe
 
 subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, callback: AsyncCallback\<void\>): void

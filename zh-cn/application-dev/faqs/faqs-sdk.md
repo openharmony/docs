@@ -39,3 +39,39 @@ target_link_libraries(entry PUBLIC
 )
 ```
 
+## 在Native代码中使用OH\_LOG\_Print打印日志报错
+
+适用于：OpenHarmony 3.1 Beta5  API 9
+
+**问题现象**
+
+在Native代码中使用OH\_LOG\_Print打印日志，上报错误：undefined symbol: OH\_LOG\_Print
+
+**原因分析**
+
+缺少链接库文件。
+
+**解决措施**
+
+打开CMakeLists.txt文件，在target\_link\_libraries最后追加libhilog\_ndk.z.so。
+
+```
+set(NATIVERENDER_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(entry PUBLIC
+    libace_napi.z.so
+    libhilog_ndk.z.so
+)
+```
+
+## 如何遍历rawfiles中的文件
+
+适用于：OpenHarmony 3.1 Beta5  API 9
+
+**解决方案：**
+
+使用Native API中的OH\_ResourceManager\_OpenRawDir\(\)方法获取到rawfile的根目录，然后对其进行遍历。
+
+**参考文档：**
+
+[Native开发指导](../reference/native-apis/rawfile.md)
+

@@ -3520,6 +3520,7 @@ let inputAudioDeviceDescriptor = [{
     networkId : audio.LOCAL_NETWORK_ID,
     interruptGroupId : 1,
     volumeGroupId : 1,
+    displayName : "",
 }];
 
 async function selectInputDevice(){
@@ -3569,6 +3570,7 @@ let inputAudioDeviceDescriptor = [{
     networkId : audio.LOCAL_NETWORK_ID,
     interruptGroupId : 1,
     volumeGroupId : 1,
+    displayName : "",
 }];
 
 async function getRoutingManager(){
@@ -3723,6 +3725,7 @@ let outputAudioDeviceDescriptor = [{
     networkId : audio.LOCAL_NETWORK_ID,
     interruptGroupId : 1,
     volumeGroupId : 1,
+    displayName : "",
 }];
 
 async function selectOutputDevice(){
@@ -3772,6 +3775,7 @@ let outputAudioDeviceDescriptor = [{
     networkId : audio.LOCAL_NETWORK_ID,
     interruptGroupId : 1,
     volumeGroupId : 1,
+    displayName : "",
 }];
 
 async function selectOutputDevice(){
@@ -3823,6 +3827,7 @@ let outputAudioDeviceDescriptor = [{
     networkId : audio.LOCAL_NETWORK_ID,
     interruptGroupId : 1,
     volumeGroupId : 1,
+    displayName : "",
 }];
 
 async function selectOutputDeviceByFilter(){
@@ -3881,6 +3886,7 @@ let outputAudioDeviceDescriptor = [{
     networkId : audio.LOCAL_NETWORK_ID,
     interruptGroupId : 1,
     volumeGroupId : 1,
+    displayName : "",
 }];
 
 async function selectOutputDeviceByFilter(){
