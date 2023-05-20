@@ -421,7 +421,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
   ```js
   let headerCallback = (header) => {
-      console.info('Upload delete headerReceive notification.' + 'header: ${JSON.stringify(header)}');
+      console.info(`Upload delete headerReceive notification. header: ${JSON.stringify(header)}`);
   };
   uploadTask.off('headerReceive', headerCallback);
   ```
@@ -1010,7 +1010,7 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 
   ```js
   let failCallback = (err) => {
-      console.info('Download delete fail notification.' + 'err: ${err.message}');
+      console.info(`Download delete fail notification. err: ${err.message}`);
   };
   downloadTask.off('fail', failCallback);
   ```
