@@ -20,8 +20,9 @@ import fileio from '@ohos.fileio';
 **Stage模型**
 
  ```js
-import Ability from '@ohos.application.Ability';
-class MainAbility extends Ability {
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         let context = this.context;
         let pathDir = context.filesDir;
@@ -29,19 +30,18 @@ class MainAbility extends Ability {
 }
  ```
 
- Stage模型context的具体获取方法参见[Stage模型](js-apis-inner-application-uiAbilityContext.md)。
-
 **FA模型**
 
  ```js
  import featureAbility from '@ohos.ability.featureAbility';
+ 
  let context = featureAbility.getContext();
  context.getFilesDir().then((data) => {
       let pathDir = data;
  })
  ```
- 
- FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.md#Context模块)。
+
+FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.md#Context模块)。
 
 ## fileio.stat
 
