@@ -360,7 +360,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
         console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
     }
   };
-  uploadTask.on('complete', upComplete);
+  uploadTask.on('complete', upCompleteCallback);
 
   let upFailCallback = (taskStates) => {
     for (let i = 0; i < taskStates.length; i++ ) {
@@ -391,6 +391,9 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 **示例：**
 
   ```js
+  let upProgressCallback = (uploadedSize, totalSize) => {
+      console.info('Upload delete progress notification.' + 'totalSize:' + totalSize + 'uploadedSize:' + uploadedSize);
+  };
   uploadTask.off('progress', upProgressCallback);
   ```
 
@@ -415,6 +418,9 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 **示例：**
 
   ```js
+  let headerCallback = (header) => {
+      console.info(`Upload delete headerReceive notification. header: ${JSON.stringify(header)}`);
+  };
   uploadTask.off('headerReceive', headerCallback);
   ```
 
@@ -438,8 +444,20 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 **示例：**
 
   ```js
+  let upCompleteCallback = (taskStates) => {
+    console.info('Upload delete complete notification.');
+    for (let i = 0; i < taskStates.length; i++ ) {
+        console.info('taskState:' + JSON.stringify(taskStates[i]));
+    }
+  };
   uploadTask.off('complete', upCompleteCallback);
 
+  let upFailCallback = (taskStates) => {
+    console.info('Upload delete fail notification.');
+    for (let i = 0; i < taskStates.length; i++ ) {
+      console.info('taskState:' + JSON.stringify(taskStates[i]));
+    }
+  };
   uploadTask.off('fail', upFailCallback);
   ```
 
@@ -827,10 +845,10 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 **示例：**
 
   ```js
-  let progresCallbanck = (receivedSize, totalSize) => {
+  let progresCallback = (receivedSize, totalSize) => {
       console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
   };
-  downloadTask.on('progress', progresCallbanck);
+  downloadTask.on('progress', progresCallback);
   ```
 
 
@@ -854,7 +872,10 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 **示例：**
 
   ```js
-  downloadTask .off('progress',progresCallbanck);
+  let progresCallback = (receivedSize, totalSize) => {
+      console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
+  };
+  downloadTask.off('progress', progresCallback);
   ```
 
 
@@ -882,6 +903,16 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
       console.info('Download task completed.');
   };
   downloadTask.on('complete', completeCallback);
+
+  let pauseCallback = () => {
+      console.info('Download task pause.');
+  };
+  downloadTask.on('pause', pauseCallback);
+
+  let removeCallback = () => {
+      console.info('Download task remove.');
+  };
+  downloadTask.on('remove', removeCallback);
   ```
 
 
@@ -905,7 +936,20 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 **示例：**
 
   ```js
+  let completeCallback = () => {
+      console.info('Download delete complete notification.');
+  };
   downloadTask.off('complete', completeCallback);
+
+  let pauseCallback = () => {
+      console.info('Download delete pause notification.');
+  };
+  downloadTask.off('pause', pauseCallback);
+
+  let removeCallback = () => {
+      console.info('Download delete remove notification.');
+  };
+  downloadTask.off('remove', removeCallback);
   ```
 
 
@@ -962,6 +1006,9 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 **示例：**
 
   ```js
+  let failCallback = (err) => {
+      console.info(`Download delete fail notification. err: ${err.message}`);
+  };
   downloadTask.off('fail', failCallback);
   ```
 
