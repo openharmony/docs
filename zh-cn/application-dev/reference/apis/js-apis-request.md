@@ -906,6 +906,16 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
       console.info('Download task completed.');
   };
   downloadTask.on('complete', completeCallback);
+
+  let pauseCallback = () => {
+      console.info('Download task pause.');
+  };
+  downloadTask.on('pause', pauseCallback);
+
+  let removeCallback = () => {
+      console.info('Download task remove.');
+  };
+  downloadTask.on('remove', removeCallback);
   ```
 
 
@@ -933,6 +943,16 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
       console.info('Download delete complete notification.');
   };
   downloadTask.off('complete', completeCallback);
+
+  let pauseCallback = () => {
+      console.info('Download delete pause notification.');
+  };
+  downloadTask.off('pause', pauseCallback);
+
+  let removeCallback = () => {
+      console.info('Download delete remove notification.');
+  };
+  downloadTask.off('remove', removeCallback);
   ```
 
 
