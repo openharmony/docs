@@ -15,7 +15,7 @@ import connection from '@ohos.net.connection'
 
 createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection
 
-Creates a **NetConnection** object. **netSpecifier** specifies the network, and **timeout** specifies the timeout interval in ms. **timeout** is configurable only when **netSpecifier** is specified. If neither of them is present, the default network is used.
+Creates a **NetConnection** object. **netSpecifier** specifies the network, and **timeout** specifies the timeout duration in ms. **timeout** is configurable only when **netSpecifier** is specified. If neither of them is present, the default network is used.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -23,8 +23,8 @@ Creates a **NetConnection** object. **netSpecifier** specifies the network, and 
 
 | Name      | Type                         | Mandatory| Description                                                        |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| netSpecifier | [NetSpecifier](#netspecifier) | No  | Network specifier. If this parameter is not set, the default network is used.                  |
-| timeout      | number                        | No  | Timeout interval for obtaining the network specified by **netSpecifier**. This parameter is valid only when **netSpecifier** is set.|
+| netSpecifier | [NetSpecifier](#netspecifier) | No  | Network specifier, which specifies the characteristics of a network. If this parameter is not set or is set to **undefined**, the default network is used.                  |
+| timeout      | number                        | No  | Timeout duration for obtaining the network specified by **netSpecifier**. This parameter is valid only when **netSpecifier** is specified. The default value is **0** if **netSpecifier** is **undefined**.|
 
 **Return value**
 
@@ -1840,7 +1840,7 @@ Defines the global HTTP proxy configuration of the network.
 | ------ | ------ | --- |------------------------- |
 | host  | string | No |  Host name of the proxy server.|
 | port  | number | No |  Host port.|
-| exclusionList  | Array<string> | No |  List of hosts that do not use the proxy server.|
+| exclusionList  | Array<string> | No |  Exclusion list of hosts that do not use the proxy server. The length of the combined elements in the list cannot exceed 96 bytes.<br>For example, the length of **baidu.com,zhihu.com** is 20 bytes.|
 
 ## NetSpecifier
 

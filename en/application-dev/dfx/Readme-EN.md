@@ -7,3 +7,6 @@
 - Error Management
   - [Development of Error Manager](errormanager-guidelines.md)
   - [Development of Application Recovery](apprecovery-guidelines.md)
+- Log Management
+  - [Application Freeze (appfreeze) Log Analysis](appfreeze-guidelines.md)
+  - [Process Crash (cppcrash) Log Analysis](cppcrash-guidelines.md)
