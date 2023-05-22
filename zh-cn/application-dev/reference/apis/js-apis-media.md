@@ -1045,7 +1045,7 @@ avPlayer.deselectTrack(index)
 
 getCurrentTrack(trackType: MediaType, callback: AsyncCallback\<number>): void;
 
-通过回调方式获取当前生效的轨道信息，可以在prepared/playing/paused状态调用。
+通过回调方式获取当前生效的轨道信息，只能在prepared/playing/paused/complete状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1084,7 +1084,7 @@ avPlayer.getCurrentTrack(mediaType  (err, index) => {
 
 getCurrentTrack(trackType: MediaType): Promise\<number>;
 
-通过Promise方式获取当前生效的轨道信息，可以在prepared/playing/paused状态调用。
+通过Promise方式获取当前生效的轨道信息，只能在prepared/playing/paused/complete状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
