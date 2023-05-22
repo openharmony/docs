@@ -43,7 +43,7 @@
 
 - Anti-aliasing enabled
 
-  ![screenshot-8](figures/screenshot-8.png)
+  ![en-us_image_0000001127125162](figures/en-us_image_0000001127125162.png)
 
 
 ## Attributes
@@ -558,7 +558,7 @@ export default {
 }
 ```
 
-![smoothoff](figures/smoothoff.png)
+![en-us_image_0000001167952236](figures/en-us_image_0000001167952236.png)
 
 
 
@@ -865,8 +865,8 @@ Moves a drawing path to a target position on the canvas.
 
 | Name  | Type    | Description       |
 | ---- | ------ | --------- |
-| x    | number | X-coordinate of the target position.|
-| y    | number | Y-coordinate of the target position.|
+| x    | number | X-coordinate of the target position.<br>Unit: vp|
+| y    | number | Y-coordinate of the target position.<br>Unit: vp|
 
 **Example**
   ```html
@@ -902,8 +902,8 @@ Connects the current point to a target position using a straight line.
 
 | Name  | Type    | Description       |
 | ---- | ------ | --------- |
-| x    | number | X-coordinate of the target position.|
-| y    | number | Y-coordinate of the target position.|
+| x    | number | X-coordinate of the target position.<br>Unit: vp|
+| y    | number | Y-coordinate of the target position.<br>Unit: vp|
 
 **Example**
   ```html
@@ -1026,7 +1026,7 @@ Draws a cubic bezier curve on the canvas.
   ```html
   <!-- xxx.hml -->
   <div>
-    <canvas ref="canvas" style="width: 200px; height: 150px; background-color: #ffff00;"></canvas>
+    <canvas ref="canvas" style="width: 200px; height: 150px;"></canvas>
   </div>
   ```
 
@@ -1204,7 +1204,7 @@ Draws an ellipse in the specified rectangular region on the canvas.
   }
   ```
 
-  ![ellipse](figures/ellipse.png)
+  ![en-us_image_0000001214823665](figures/en-us_image_0000001214823665.png)
 
 
 ### rect
