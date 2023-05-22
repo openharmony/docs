@@ -63,7 +63,7 @@ onFileReady : AsyncCallback&lt;File&gt;
 
 > **说明：**
 >
-> AsyncCallback回调中返回的File 所属file.backup.[File](#file)类型，返回的文件归备份服务所有，一旦文件关闭，备份服务将选择合适的实际去清理，但客户端必须关闭文件句柄。
+> AsyncCallback回调中返回的File 所属file.backup.[File](#file)类型，返回的文件归备份服务所有，一旦文件关闭，备份服务将选择合适的时机去清理，但客户端必须关闭文件句柄。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
