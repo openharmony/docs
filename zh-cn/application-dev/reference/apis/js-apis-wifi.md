@@ -1706,6 +1706,24 @@ createGroup(config: WifiP2PConfig): boolean
   | -------- | -------- |
   | boolean | true:创建群组操作执行成功，&nbsp;false:创建群组操作执行失败。 |
 
+**示例：**
+```
+	import wifi from '@ohos.wifi';
+
+	try {
+		let config = {
+			deviceAddress: "****",
+			netId: 0,
+			passphrase: "*****",
+			groupName: "****",
+			goBand: 0
+		}
+		wifi.createGroup(config);	
+		
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
 
 ## WifiP2PConfig<sup>8+</sup>
 
@@ -1751,6 +1769,16 @@ removeGroup(): boolean
   | -------- | -------- |
   | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
 
+**示例：**
+```
+	import wifi from '@ohos.wifi';
+
+	try {
+		wifi.removeGroup();	
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
 
 ## wifi.p2pConnect<sup>8+</sup>
 
@@ -1859,6 +1887,16 @@ p2pCancelConnect(): boolean
   | -------- | -------- |
   | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
 
+**示例：**
+```
+	import wifi from '@ohos.wifi';
+
+	try {
+		wifi.p2pCancelConnect();	
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
 
 ## wifi.startDiscoverDevices<sup>8+</sup>
 
@@ -1876,6 +1914,16 @@ startDiscoverDevices(): boolean
   | -------- | -------- |
   | boolean | true:操作执行成功，&nbsp;false:操作执行失败。 |
 
+**示例：**
+```
+	import wifi from '@ohos.wifi';
+
+	try {
+		wifi.startDiscoverDevices();	
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
 
 ## wifi.stopDiscoverDevices<sup>8+</sup>
 
@@ -1893,6 +1941,16 @@ stopDiscoverDevices(): boolean
   | -------- | -------- |
   | boolean | true:操作执行成功，操作执行失败。 |
 
+**示例：**
+```
+	import wifi from '@ohos.wifi';
+
+	try {
+		wifi.stopDiscoverDevices();	
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
 
 ## wifi.deletePersistentGroup<sup>8+</sup>
 
@@ -1919,6 +1977,17 @@ deletePersistentGroup(netId: number): boolean
   | -------- | -------- |
   | boolean | true:操作执行成功，操作执行失败。 |
 
+**示例：**
+```
+	import wifi from '@ohos.wifi';
+
+	try {
+		let netId = 0;
+		wifi.deletePersistentGroup(netId);	
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
 
 ## WifiP2pGroupInfo<sup>8+</sup>
 
@@ -1963,6 +2032,17 @@ setDeviceName(devName: string): boolean
   | -------- | -------- |
   | boolean | true:操作成功，&nbsp;false:操作失败。 |
 
+**示例：**
+```
+	import wifi from '@ohos.wifi';
+
+	try {
+		let name = "****";
+		wifi.setDeviceName(netId);	
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
 
 ## wifi.on('wifiStateChange')<sup>7+</sup>
 
@@ -2006,7 +2086,7 @@ off(type: "wifiStateChange", callback?: Callback&lt;number&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiStateChange"字符串。 |
-  | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
+  | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 **示例：**
   ```js
@@ -2064,9 +2144,23 @@ off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiConnectionChange"字符串。 |
-  | callback | Callback&lt;number&gt; | 否 | 连接状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
+  | callback | Callback&lt;number&gt; | 否 | 连接状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
-
+**示例：**
+  ```js
+  import wifi from '@ohos.wifi';
+  
+  var recvWifiConnectionChangeFunc = result => {
+      console.info("Receive wifi connection change event: " + result);
+  }
+  
+  // Register event
+  wifi.on("wifiConnectionChange", recvWifiConnectionChangeFunc);
+  
+  // Unregister event
+  wifi.off("wifiConnectionChange", recvWifiConnectionChangeFunc);
+  ```
+  
 ## wifi.on('wifiScanStateChange')<sup>7+</sup>
 
 on(type: "wifiScanStateChange", callback: Callback&lt;number&gt;): void
@@ -2107,9 +2201,23 @@ off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
 | **参数名** | **类型** | **必填** | **说明** |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 固定填"wifiScanStateChange"字符串。 |
-| callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
+| callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
-
+**示例：**
+  ```js
+  import wifi from '@ohos.wifi';
+  
+  var recvWifiScanStateChangeFunc = result => {
+      console.info("Receive Wifi scan state change event: " + result);
+  }
+  
+  // Register event
+  wifi.on("wifiScanStateChange", recvWifiScanStateChangeFunc);
+  
+  // Unregister event
+  wifi.off("wifiScanStateChange", recvWifiScanStateChangeFunc);
+  ```
+  
 ## wifi.on('wifiRssiChange')<sup>7+</sup>
 
 on(type: "wifiRssiChange", callback: Callback&lt;number&gt;): void
@@ -2143,9 +2251,23 @@ off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"wifiRssiChange"字符串。 |
-  | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
+  | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
-
+**示例：**
+  ```js
+  import wifi from '@ohos.wifi';
+  
+  var recvWifiRssiChangeFunc = result => {
+      console.info("Receive wifi rssi change event: " + result);
+  }
+  
+  // Register event
+  wifi.on("wifiRssiChange", recvWifiRssiChangeFunc);
+  
+  // Unregister event
+  wifi.off("wifiRssiChange", recvWifiRssiChangeFunc);
+  ```
+  
 ## wifi.on('hotspotStateChange')<sup>7+</sup>
 
 on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
@@ -2172,6 +2294,21 @@ on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
 | 2 | 激活中。 |
 | 3 | 去激活中。 |
 
+**示例：**
+  ```js
+  import wifi from '@ohos.wifi';
+  
+  var recvHotspotStateChangeFunc = result => {
+      console.info("Receive hotspot state change event: " + result);
+  }
+  
+  // Register event
+  wifi.on("hotspotStateChange", recvHotspotStateChangeFunc);
+  
+  // Unregister event
+  wifi.off("hotspotStateChange", recvHotspotStateChangeFunc);
+  ```
+
 
 ## wifi.off('hotspotStateChange')<sup>7+</sup>
 
@@ -2188,7 +2325,7 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"hotspotStateChange"字符串。 |
-  | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
+  | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
 
 ## wifi.on('p2pStateChange')<sup>8+</sup>
@@ -2233,8 +2370,22 @@ off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pStateChange"字符串。 |
-  | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
-
+  | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
+  
+**示例：**
+  ```js
+  import wifi from '@ohos.wifi';
+  
+  var recvP2pStateChangeFunc = result => {
+      console.info("Receive p2p state change event: " + result);
+  }
+  
+  // Register event
+  wifi.on("p2pStateChange", recvP2pStateChangeFunc);
+  
+  // Unregister event
+  wifi.off("p2pStateChange", recvP2pStateChangeFunc);
+  ```
 
   ## wifi.on('p2pConnectionChange')<sup>8+</sup>
 
@@ -2269,9 +2420,23 @@ off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pConnectionChange"字符串。 |
-  | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
+  | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
-
+**示例：**
+  ```js
+  import wifi from '@ohos.wifi';
+  
+  var recvP2pConnectionChangeFunc = result => {
+      console.info("Receive p2p connection change event: " + result);
+  }
+  
+  // Register event
+  wifi.on("p2pConnectionChange", recvP2pConnectionChangeFunc);
+  
+  // Unregister event
+  wifi.off("p2pConnectionChange", recvP2pConnectionChangeFunc);
+  ```
+  
 ## wifi.on('p2pDeviceChange')<sup>8+</sup>
 
 on(type: "p2pDeviceChange", callback: Callback&lt;WifiP2pDevice&gt;): void
@@ -2305,9 +2470,23 @@ off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pDeviceChange"字符串。 |
-  | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
+  | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
-
+**示例：**
+  ```js
+  import wifi from '@ohos.wifi';
+  
+  var recvP2pDeviceChangeFunc = result => {
+      console.info("Receive recv p2p device change event: " + result);
+  }
+  
+  // Register event
+  wifi.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
+  
+  // Unregister event
+  wifi.off("p2pDeviceChange", recvP2pDeviceChangeFunc);
+  ```
+  
 ## wifi.on('p2pPeerDeviceChange')<sup>8+</sup>
 
 on(type: "p2pPeerDeviceChange", callback: Callback&lt;WifiP2pDevice[]&gt;): void
@@ -2341,8 +2520,22 @@ off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pPeerDeviceChange"字符串。 |
-  | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
+  | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
+**示例：**
+  ```js
+  import wifi from '@ohos.wifi';
+  
+  var recvP2pPeerDeviceChangeFunc = result => {
+      console.info("Receive recv p2p peer device change event: " + result);
+  }
+  
+  // Register event
+  wifi.on("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
+  
+  // Unregister event
+  wifi.off("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
+  ```
 
 ## wifi.on('p2pPersistentGroupChange')<sup>8+</sup>
 
@@ -2377,8 +2570,23 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pPersistentGroupChange"字符串。 |
-  | callback | Callback&lt;void&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
-
+  | callback | Callback&lt;void&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
+  
+**示例：**
+  ```js
+  import wifi from '@ohos.wifi';
+  
+  var recvP2pPersistentGroupChangeFunc = result => {
+      console.info("Receive recv p2p persistent group change event: " + result);
+  }
+  
+  // Register event
+  wifi.on("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);
+  
+  // Unregister event
+  wifi.off("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);
+  
+  ```
 
 ## wifi.on('p2pDiscoveryChange')<sup>8+</sup>
 
@@ -2420,5 +2628,19 @@ off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
   | **参数名** | **类型** | **必填** | **说明** |
   | -------- | -------- | -------- | -------- |
   | type | string | 是 | 固定填"p2pDiscoveryChange"字符串。 |
-  | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将去注册该事件关联的所有回调函数。 |
+  | callback | Callback&lt;number&gt; | 否 | 状态改变回调函数。如果callback不填，将取消注册该事件关联的所有回调函数。 |
 
+**示例：**
+  ```js
+  import wifi from '@ohos.wifi';
+  
+  var recvP2pDiscoveryChangeFunc = result => {
+      console.info("Receive recv p2p discovery change event: " + result);
+  }
+  
+  // Register event
+  wifi.on("p2pDiscoveryChange", recvP2pDiscoveryChangeFunc);
+  
+  // Unregister event
+  wifi.off("p2pDiscoveryChange", recvP2pDiscoveryChangeFunc);
+  ```

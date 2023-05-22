@@ -2901,6 +2901,21 @@ off(type: "wifiConnectionChange", callback?: Callback&lt;number&gt;): void
   | -------- | -------- |
 | 2501000  | Operation failed.|
 
+**示例：**
+  ```js
+  import wifi from '@ohos.wifi';
+  
+  var recvWifiConnectionChangeFunc = result => {
+      console.info("Receive wifi connection change event: " + result);
+  }
+  
+  // Register event
+  wifi.on("wifiConnectionChange", recvWifiConnectionChangeFunc);
+  
+  // Unregister event
+  wifi.off("wifiConnectionChange", recvWifiConnectionChangeFunc);
+  ```
+
 ## wifi.on('wifiScanStateChange')<sup>9+</sup>
 
 on(type: "wifiScanStateChange", callback: Callback&lt;number&gt;): void
@@ -2958,6 +2973,21 @@ off(type: "wifiScanStateChange", callback?: Callback&lt;number&gt;): void
   | -------- | -------- |
 | 2501000  | Operation failed.|
 
+**示例：**
+  ```js
+  import wifi from '@ohos.wifi';
+  
+  var recvWifiScanStateChangeFunc = result => {
+      console.info("Receive Wifi scan state change event: " + result);
+  }
+  
+  // Register event
+  wifi.on("wifiScanStateChange", recvWifiScanStateChangeFunc);
+  
+  // Unregister event
+  wifi.off("wifiScanStateChange", recvWifiScanStateChangeFunc);
+  ```
+
 ## wifi.on('wifiRssiChange')<sup>9+</sup>
 
 on(type: "wifiRssiChange", callback: Callback&lt;number&gt;): void
@@ -3007,6 +3037,21 @@ off(type: "wifiRssiChange", callback?: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2501000  | Operation failed.|
+
+**示例：**
+  ```js
+  import wifi from '@ohos.wifiManager';
+  
+  var recvWifiRssiChangeFunc = result => {
+      console.info("Receive wifi rssi change event: " + result);
+  }
+  
+  // Register event
+  wifiManager.on("wifiRssiChange", recvWifiRssiChangeFunc);
+  
+  // Unregister event
+  wifiManager.off("wifiRssiChange", recvWifiRssiChangeFunc);
+  ```
 
 ## wifi.on('hotspotStateChange')<sup>9+</sup>
 
@@ -3066,6 +3111,21 @@ off(type: "hotspotStateChange", callback?: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2601000  | Operation failed.|
+
+**示例：**
+  ```js
+  import wifi from '@ohos.wifiManager';
+  
+  var recvHotspotStateChangeFunc = result => {
+      console.info("Receive hotspot state change event: " + result);
+  }
+  
+  // Register event
+  wifiManager.on("hotspotStateChange", recvHotspotStateChangeFunc);
+  
+  // Unregister event
+  wifiManager.off("hotspotStateChange", recvHotspotStateChangeFunc);
+  ```
 
 ## wifi.on('p2pStateChange')<sup>9+</sup>
 
@@ -3127,6 +3187,21 @@ off(type: "p2pStateChange", callback?: Callback&lt;number&gt;): void
   | -------- | -------- |
 | 2801000  | Operation failed.|
 
+**示例：**
+  ```js
+  import wifi from '@ohos.wifiManager';
+  
+  var recvP2pStateChangeFunc = result => {
+      console.info("Receive p2p state change event: " + result);
+  }
+  
+  // Register event
+  wifiManager.on("p2pStateChange", recvP2pStateChangeFunc);
+  
+  // Unregister event
+  wifiManager.off("p2pStateChange", recvP2pStateChangeFunc);
+  ```
+
   ## wifi.on('p2pConnectionChange')<sup>9+</sup>
 
 on(type: "p2pConnectionChange", callback: Callback&lt;WifiP2pLinkedInfo&gt;): void
@@ -3176,6 +3251,21 @@ off(type: "p2pConnectionChange", callback?: Callback&lt;WifiP2pLinkedInfo&gt;): 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2801000  | Operation failed.|
+
+**示例：**
+  ```js
+  import wifi from '@ohos.wifiManager';
+  
+  var recvP2pConnectionChangeFunc = result => {
+      console.info("Receive p2p connection change event: " + result);
+  }
+  
+  // Register event
+  wifiManager.on("p2pConnectionChange", recvP2pConnectionChangeFunc);
+  
+  // Unregister event
+  wifiManager.off("p2pConnectionChange", recvP2pConnectionChangeFunc);
+  ```
 
 ## wifi.on('p2pDeviceChange')<sup>9+</sup>
 
@@ -3227,6 +3317,21 @@ off(type: "p2pDeviceChange", callback?: Callback&lt;WifiP2pDevice&gt;): void
   | -------- | -------- |
 | 2801000  | Operation failed.|
 
+**示例：**
+  ```js
+  import wifi from '@ohos.wifiManager';
+  
+  var recvP2pDeviceChangeFunc = result => {
+      console.info("Receive recv p2p device change event: " + result);
+  }
+  
+  // Register event
+  wifiManager.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
+  
+  // Unregister event
+  wifiManager.off("p2pDeviceChange", recvP2pDeviceChangeFunc);
+  ```
+
 ## wifi.on('p2pPeerDeviceChange')<sup>9+</sup>
 
 on(type: "p2pPeerDeviceChange", callback: Callback&lt;WifiP2pDevice[]&gt;): void
@@ -3277,6 +3382,21 @@ off(type: "p2pPeerDeviceChange", callback?: Callback&lt;WifiP2pDevice[]&gt;): vo
   | -------- | -------- |
 | 2801000  | Operation failed.|
 
+**示例：**
+  ```js
+  import wifi from '@ohos.wifiManager';
+  
+  var recvP2pPeerDeviceChangeFunc = result => {
+      console.info("Receive recv p2p peer device change event: " + result);
+  }
+  
+  // Register event
+  wifiManager.on("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
+  
+  // Unregister event
+  wifiManager.off("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
+  ```
+
 ## wifi.on('p2pPersistentGroupChange')<sup>9+</sup>
 
 on(type: "p2pPersistentGroupChange", callback: Callback&lt;void&gt;): void
@@ -3326,6 +3446,21 @@ off(type: "p2pPersistentGroupChange", callback?: Callback&lt;void&gt;): void
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2801000  | Operation failed.|
+
+**示例：**
+  ```js
+  import wifi from '@ohos.wifiManager';
+  
+  var recvP2pPersistentGroupChangeFunc = result => {
+      console.info("Receive recv p2p persistent group change event: " + result);
+  }
+  
+  // Register event
+  wifiManager.on("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);
+  
+  // Unregister event
+  wifiManager.off("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);
+  ```
 
 ## wifi.on('p2pDiscoveryChange')<sup>9+</sup>
 
@@ -3383,3 +3518,18 @@ off(type: "p2pDiscoveryChange", callback?: Callback&lt;number&gt;): void
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2801000  | Operation failed.|
+
+**示例：**
+  ```js
+  import wifi from '@ohos.wifiManager';
+  
+  var recvP2pDiscoveryChangeFunc = result => {
+      console.info("Receive recv p2p discovery change event: " + result);
+  }
+  
+  // Register event
+  wifiManager.on("p2pDiscoveryChange", recvP2pDiscoveryChangeFunc);
+  
+  // Unregister event
+  wifiManager.off("p2pDiscoveryChange", recvP2pDiscoveryChangeFunc);
+  ```
