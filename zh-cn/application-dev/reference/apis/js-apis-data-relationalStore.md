@@ -344,7 +344,7 @@ class EntryAbility extends UIAbility {
 
 ## ValuesBucket
 
-用于存储键值对的类型。
+用于存储键值对的类型。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -377,7 +377,7 @@ class EntryAbility extends UIAbility {
 
 ## RdbPredicates
 
-表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。
+表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
 
 ### constructor
 
