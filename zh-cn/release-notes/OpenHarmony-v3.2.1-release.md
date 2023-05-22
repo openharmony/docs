@@ -49,38 +49,22 @@
 
 通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
 
-- 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
-   ```
-   repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.2.1-Release --no-repo-verify
-   repo sync -c
-   repo forall -c 'git lfs pull'
-   ```
-   
-- 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
-   ```
-   repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v3.2.1-Release --no-repo-verify
-   repo sync -c
-   repo forall -c 'git lfs pull'
-   ```
+ ```
+ repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v3.2.1-Release --no-repo-verify
+ repo sync -c
+ repo forall -c 'git lfs pull'
+ ```
 
 **方式二**
 
 通过repo + https 下载。
-
-- 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
-   ```
-   repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony-3.2.1-Release --no-repo-verify
-   repo sync -c
-   repo forall -c 'git lfs pull'
-   ```
    
-- 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
-   ```
-   repo init -u https://gitee.com/openharmony/manifest -b refs/tags/OpenHarmony-v3.2.1-Release --no-repo-verify
-   repo sync -c
-   repo forall -c 'git lfs pull'
-   ```
-
+从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
+ ```
+ repo init -u https://gitee.com/openharmony/manifest -b refs/tags/OpenHarmony-v3.2.1-Release --no-repo-verify
+ repo sync -c
+ repo forall -c 'git lfs pull'
+ ```
 
 ### 从镜像站点获取
 
@@ -88,18 +72,16 @@
 
 | 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             | **软件包容量** |
 | --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
-| 全量代码（标准、轻量和小型系统）        | 3.2.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1-Release/code-v3.2.1-Release.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1-Release/code-v3.2.1-Release.tar.gz.sha256) | 21.8 GB |
-| Hi3861解决方案（二进制）        | 3.2.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1-Release/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1-Release/hispark_pegasus.tar.gz.sha256) | 22.9 MB |
-| Hi3516解决方案-LiteOS（二进制） | 3.2.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1-Release/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1-Release/hispark_taurus_LiteOS.tar.gz.sha256) | 294.3 MB |
-| Hi3516解决方案-Linux（二进制）  | 3.2.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1-Release/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1-Release/hispark_taurus_Linux.tar.gz.sha256) | 174.3 MB |
-| RK3568标准系统解决方案（二进制）        | 3.2.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1-Release/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1-Release/dayu200_standard_arm32.tar.gz.sha256) | 3.9 GB |
-| 标准系统Public SDK包（Mac）             | 3.2.12.3      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1-Release/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1-Release/ohos-sdk-mac-public.tar.gz.sha256) | 712.7 MB |
-| 标准系统Public SDK包（Mac-M1）             | 3.2.12.3      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1-Release/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 671.1 MB |
-| 标准系统Public SDK包（Windows/Linux）   | 3.2.12.3      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1-Release/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1-Release/ohos-sdk-windows_linux-public.tar.gz.sha256) | 1.6 GB |
+| 全量代码（标准、轻量和小型系统）        | 3.2.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1/code-v3.2.1-Release.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1/code-v3.2.1-Release.tar.gz.sha256) | 21.8 GB |
+| Hi3861解决方案（二进制）        | 3.2.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1/hispark_pegasus.tar.gz.sha256) | 22.9 MB |
+| Hi3516解决方案-LiteOS（二进制） | 3.2.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1/hispark_taurus_LiteOS.tar.gz.sha256) | 293.3 MB |
+| Hi3516解决方案-Linux（二进制）  | 3.2.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1/hispark_taurus_Linux.tar.gz.sha256) | 174.6 MB |
+| RK3568标准系统解决方案（二进制）        | 3.2.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1/dayu200_standard_arm32.tar.gz.sha256) | 3.9 GB |
+| 标准系统Public SDK包（Mac）             | 3.2.12.3      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1/ohos-sdk-mac-public.tar.gz.sha256) | 664.5 MB |
+| 标准系统Public SDK包（Mac-M1）             | 3.2.12.3      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 623.3 MB |
+| 标准系统Public SDK包（Windows/Linux）   | 3.2.12.3      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1/ohos-sdk-windows_linux-public.tar.gz.sha256) | 1.6 GB |
 
 ## 更新说明
-
-本版本在OpenHarmony 3.2 Beta5的基础上有如下变更:
 
 ### API 
 
@@ -162,3 +144,6 @@
 | I72P5I | 反复进入某相册的图片宫格浏览界面，导致libace.z.so出现内存泄露 | 进入某相册的图片宫格浏览界面后返回，ArkUI每次泄露19kb，在应用上点击返回后，泄露问题消失。影响可控。 | 2023年6月30日 |
 | I76N0Y | 反复在dock栏添加/移除应用，导致libace.z.so出现内存泄露 | 移动卡片到合法区域，ArkUI每次泄露99kb，非常用场景，应用重启可泄露问题消失。影响可控。 | 2023年6月30日 |
 | I6XHE7 | NAPIRemoteObject模块内存泄露 | JS应用调用IPC需要建立NAPIRemoteObject对象进程通信，创建一次可以循环使用，建立一次后泄露1.2kb，应用不需要反复创建新对象，泄露量可控，应用进程退出会释放掉内存。 | 2023年6月30日 |
+
+
+<!--no_check-->
