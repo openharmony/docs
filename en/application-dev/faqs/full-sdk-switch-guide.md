@@ -1,4 +1,4 @@
-# Guide to Switching to Full SDK
+# Switching to Full SDK
 
 Both the public SDK and full SDK are toolkits for application development. <br>The public SDK is intended for application developers and provided as standard in DevEco Studio. It does not contain system APIs – APIs required by system applications.
 
