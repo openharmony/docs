@@ -5,7 +5,6 @@ You are welcome to make contributions to OpenHarmony documentation, in any of th
 Excellent contributors will be awarded and the contributions will be publicized in the developer community.
 
 -   [Contribution Methods](#contribution-methods)
--   [Writing Instructions](writing-instructions.md)
 
 ## Content Copyright
 
@@ -15,7 +14,7 @@ OpenHarmony has the right to modify the adopted content according to the communi
 
 ## License
 
-[Creative Commons License version 4.0](https://creativecommons.org/licenses/by/4.0/legalcode)
+Creative Commons License version 4.0
 
 ## Contribution Methods
 
@@ -27,9 +26,9 @@ Your feedback matters. Submit issues and leave as detailed information as possib
 2.  Click **New** to submit the issue. The Docs team will confirm the issue.
 
 > **NOTE**
->
-> **How can I provide a high-quality issue?**  
 > 
+> **How can I provide a high-quality issue?**  
+>
 > -   Provide a clear description of the issue, including the missing, outdated, incorrect, or to-be-improved content.
 > -   Explain the impact of this issue on users.
 > -   Limit the scope of the given issue to a specific task. If multiple fields are involved, break the issue down into smaller ones. For example, "Documents need to be optimized" is a broad issue, whereas "XX development guide lacks introduction to step XXX" is specific and operable.
