@@ -18,7 +18,7 @@ import componentSnapshot from "@ohos.arkui.componentSnapshot";
 
 get(id: string, callback: AsyncCallback<image.PixelMap>): void
 
-获取已加载的组件的截图，传入组件的[ID 标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过回调返回结果。
+获取已加载的组件的截图，传入组件的[组件标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过回调返回结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -45,8 +45,8 @@ struct SnapshotExample {
       Image(this.pixmap)
         .width(300).height(300)
       // ...Component
-      // ...Components
-      // ...Components
+      // ...Component
+      // ...Component
       Button("click to generate UI snapshot")
         .onClick(() => {
           componentSnapshot.get("root", (error: Error, pixmap: image.PixelMap) => {
