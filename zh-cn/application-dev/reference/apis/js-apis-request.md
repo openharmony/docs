@@ -98,7 +98,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 13400002 | Bad file path. |
+  | 13400002 | bad file path. |
 
 **示例：**
 
@@ -146,7 +146,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 13400002 | Bad file path. |
+  | 13400002 | bad file path. |
 
 **示例：**
 
@@ -677,9 +677,9 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 13400001 | File operation error. |
-  | 13400002 | Bad file path. |
-  | 13400003 | Task manager service error. |
+  | 13400001 | file operation error. |
+  | 13400002 | bad file path. |
+  | 13400003 | task manager service error. |
 
 **示例：**
 
@@ -721,9 +721,9 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 13400001 | File operation error. |
-  | 13400002 | Bad file path. |
-  | 13400003 | Task manager service error. |
+  | 13400001 | file operation error. |
+  | 13400002 | bad file path. |
+  | 13400003 | task manager service error. |
 
 **示例：**
 
@@ -1673,17 +1673,17 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-| 名称 | 类型 | 说明 |
+| 名称 | 类型 |必填 |  说明 |
 | -------- | ------ |---------------- |
-| downloadId | number | 下载任务ID。 |
-| failedReason | number | 下载失败原因，可以是任何[下载任务的错误码](#下载任务的错误码)常量。 |
-| fileName | string | 下载的文件名。 |
-| filePath | string | 存储文件的URI。 |
-| pausedReason | number | 会话暂停的原因，可以是任何[下载任务暂停原因](#下载任务暂停原因)常量。 |
-| status | number | 下载状态码，可以是任何[下载任务状态码](#下载任务状态码)常量。 |
-| targetURI | string | 下载文件的URI。 |
-| downloadTitle | string | 下载任务名称。 |
-| downloadTotalBytes | number | 下载的文件的总大小（int&nbsp;bytes）。 |
-| description | string | 待下载任务的描述信息。 |
-| downloadedBytes | number | 实时下载大小（int&nbsp;&nbsp;bytes）。 |
+| downloadId | number |是 | 下载任务ID。 |
+| failedReason | number|是 | 下载失败原因，可以是任何[下载任务的错误码](#下载任务的错误码)常量。 |
+| fileName | string |是| 下载的文件名。 |
+| filePath | string |是| 存储文件的URI。 |
+| pausedReason | number |是| 会话暂停的原因，可以是任何[下载任务暂停原因](#下载任务暂停原因)常量。 |
+| status | number |是| 下载状态码，可以是任何[下载任务状态码](#下载任务状态码)常量。 |
+| targetURI | string |是| 下载文件的URI。 |
+| downloadTitle | string |是| 下载任务名称。 |
+| downloadTotalBytes | number |是| 下载的文件的总大小（int&nbsp;bytes）。 |
+| description | string |是| 待下载任务的描述信息。 |
+| downloadedBytes | number |是| 实时下载大小（int&nbsp;&nbsp;bytes）。 |
 <!--no_check-->
