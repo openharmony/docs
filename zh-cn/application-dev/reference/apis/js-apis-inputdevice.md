@@ -494,10 +494,10 @@ try {
 
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
-| touchmajor  | string | 是 | 否 | 表示touchmajor轴。  |
-| touchminor  | string | 是 | 否 | 表示touchminor轴。  |
-| toolminor   | string | 是 | 否 | 表示toolminor轴。   |
-| toolmajor   | string | 是 | 否 | 表示toolmajor轴。   |
+| touchMajor  | string | 是 | 否 | 表示touchMajor轴。  |
+| touchMinor  | string | 是 | 否 | 表示touchMinor轴。  |
+| toolMinor   | string | 是 | 否 | 表示toolMinor轴。   |
+| toolMajor   | string | 是 | 否 | 表示toolMajor轴。   |
 | orientation | string | 是 | 否 | 表示orientation轴。 |
 | pressure    | string | 是 | 否 | 表示pressure轴。    |
 | x           | string | 是 | 否 | 表示x轴。           |

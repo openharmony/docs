@@ -496,10 +496,10 @@ Defines the axis type of an input device.
 
 | Name       | Type  | Readable  | Writable  | Description     |
 | --------- | ------ | ---- | ---- | ------- |
-| touchmajor  | string | Yes| No| touchmajor axis. |
-| touchminor  | string | Yes| No| touchminor axis. |
-| toolminor   | string | Yes| No| toolminor axis.  |
-| toolmajor   | string | Yes| No| toolmajor axis.  |
+| touchMajor  | string | Yes| No| touchMajor axis. |
+| touchMinor  | string | Yes| No| touchMinor axis. |
+| toolMinor   | string | Yes| No| toolMinor axis.  |
+| toolMajor   | string | Yes| No| toolMajor axis.  |
 | orientation | string | Yes| No| Orientation axis.|
 | pressure    | string | Yes| No| Pressure axis.   |
 | x           | string | Yes| No| X axis.          |
