@@ -14,7 +14,7 @@
 | 软件 | 版本 | 备注 |
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2.1 Release | NA |
-| Public SDK | Ohos_sdk_public 3.2.12.3 (API Version 9 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 |
+| Public SDK | Ohos_sdk_public 3.2.12.5 (API Version 9 Release) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 |
 | HUAWEI DevEco Studio（可选） | 3.1 Release | OpenHarmony应用开发推荐使用。<br />[点击此处获取](https://developer.harmonyos.com/cn/develop/deveco-studio#download) |
 | HUAWEI DevEco Device Tool（可选） | 3.1 Release | OpenHarmony智能设备集成开发环境推荐使用。<br />[点击此处获取](https://device.harmonyos.com/cn/develop/ide/) |
 
@@ -77,9 +77,9 @@
 | Hi3516解决方案-LiteOS（二进制） | 3.2.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1/hispark_taurus_LiteOS.tar.gz.sha256) | 293.3 MB |
 | Hi3516解决方案-Linux（二进制）  | 3.2.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1/hispark_taurus_Linux.tar.gz.sha256) | 174.6 MB |
 | RK3568标准系统解决方案（二进制）        | 3.2.1 Release    | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1/dayu200_standard_arm32.tar.gz.sha256) | 3.9 GB |
-| 标准系统Public SDK包（Mac）             | 3.2.12.3      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1/ohos-sdk-mac-public.tar.gz.sha256) | 664.5 MB |
-| 标准系统Public SDK包（Mac-M1）             | 3.2.12.3      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 623.3 MB |
-| 标准系统Public SDK包（Windows/Linux）   | 3.2.12.3      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1/ohos-sdk-windows_linux-public.tar.gz.sha256) | 1.6 GB |
+| 标准系统Public SDK包（Mac）             | 3.2.12.5      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1/ohos-sdk-mac-public.tar.gz.sha256) | 664.5 MB |
+| 标准系统Public SDK包（Mac-M1）             | 3.2.12.5      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 623.3 MB |
+| 标准系统Public SDK包（Windows/Linux）   | 3.2.12.5      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.1/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.1/ohos-sdk-windows_linux-public.tar.gz.sha256) | 1.6 GB |
 
 ## 更新说明
 
