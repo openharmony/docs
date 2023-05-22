@@ -32,8 +32,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name                           | Parameter  | Description                  |
 | ----------------------------- | ---- | -------------------- |
-| onReady(event: () => void) | -   | Triggered when a canvas is ready. When this event is triggered, the width and height of the canvas can be obtained, and you can use the canvas APIs to draw images.<br>Since API version 9, this API is supported in ArkTS widgets.|
-
+| onReady(event: () => void) | -   | Triggered when a canvas is ready or its size changes. When this event is triggered, the canvas is cleared. The width and height of the canvas can then be obtained, and you can use the canvas APIs to draw images. If the canvas is merely relocated, the **onAreaChange** event is triggered, but the **onReady** event is not.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 **Example**
 

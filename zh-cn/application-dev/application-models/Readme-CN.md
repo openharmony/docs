@@ -20,7 +20,7 @@
       - [AccessibilityExtensionAbility](accessibilityextensionability.md)
       - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
       - [InputMethodExtensionAbility](inputmethodextentionability.md)
-      - [WindowExtensionAbility](windowextensionability.md)
+      - [WindowExtensionAbility（仅对系统应用开放）](windowextensionability.md)
     - 服务卡片开发指导（Stage模型）
       - [服务卡片概述](service-widget-overview.md)
       - 开发基于ArkTS UI的卡片
@@ -73,15 +73,15 @@
         - [静态订阅公共事件（仅对系统应用开放）](common-event-static-subscription.md)
         - [取消动态订阅公共事件](common-event-unsubscription.md)
       - [公共事件发布](common-event-publish.md)
-      - [移除粘性公共事件](common-event-remove-sticky.md)
+      - [移除粘性公共事件（仅对系统应用开放）](common-event-remove-sticky.md)
     - [后台服务](background-services.md)
   - 了解线程模型
     - [线程模型概述](thread-model-stage.md)
     - [使用Emitter进行线程间通信](itc-with-emitter.md)
     - [使用Worker进行线程间通信](itc-with-worker.md)
-  - 任务管理
-    - [任务管理场景介绍](mission-management-overview.md)
-    - [任务管理与启动模式](mission-management-launch-type.md)
+  - 任务（Mission）管理
+    - [任务（Mission）管理场景介绍](mission-management-overview.md)
+    - [任务（Mission）与启动模式](mission-management-launch-type.md)
     - [页面栈及任务链](page-mission-stack.md)
     - [设置任务快照的图标和名称](mission-set-icon-name-for-task-snapshot.md)
   - [Stage模型应用配置文件](config-file-stage.md)

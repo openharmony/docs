@@ -36,7 +36,7 @@ getBatteryStats(): Promise<Array&lt;BatteryStatsInfo&gt;>
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4600101 | 连接服务失败。 |
+| 4600101 | If connecting to the service failed. |
 
 **示例：**
 
@@ -72,7 +72,7 @@ getBatteryStats(callback: AsyncCallback<Array&lt;BatteryStatsInfo&gt;>): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4600101 | 连接服务失败。 |
+| 4600101 | If connecting to the service failed. |
 
 **示例：**
 
@@ -114,7 +114,7 @@ getAppPowerValue(uid: number): number
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4600101 | 连接服务失败。 |
+| 4600101 | If connecting to the service failed. |
 
 **示例：**
 
@@ -155,7 +155,7 @@ getAppPowerPercent(uid: number): number
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4600101 | 连接服务失败。 |
+| 4600101 | If connecting to the service failed. |
 
 **示例：**
 
@@ -196,13 +196,13 @@ getHardwareUnitPowerValue(type: ConsumptionType): number
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4600101 | 连接服务失败。 |
+| 4600101 | If connecting to the service failed. |
 
 **示例：**
 
 ```js
 try {
-    var value = batteryStats.getHardwareUnitPowerValue(ConsumptionType.CONSUMPTION_TYPE_SCREEN);
+    var value = batteryStats.getHardwareUnitPowerValue(batteryStats.ConsumptionType.CONSUMPTION_TYPE_SCREEN);
     console.info('battery statistics value of hardware is: ' + value);
 } catch(err) {
     console.error('get battery statistics percent of hardware failed, err: ' + err);
@@ -237,13 +237,13 @@ getHardwareUnitPowerPercent(type: ConsumptionType): number
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4600101 | 连接服务失败。 |
+| 4600101 | If connecting to the service failed. |
 
 **示例：**
 
 ```js
 try {
-    var percent = batteryStats.getHardwareUnitPowerPercent(ConsumptionType.CONSUMPTION_TYPE_SCREEN);
+    var percent = batteryStats.getHardwareUnitPowerPercent(batteryStats.ConsumptionType.CONSUMPTION_TYPE_SCREEN);
     console.info('battery statistics percent of hardware is: ' + percent);
 } catch(err) {
     console.error('get battery statistics percent of hardware failed, err: ' + err);

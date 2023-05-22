@@ -85,7 +85,6 @@
         - ExtensionAbility组件
           - [ExtensionAbility组件概述](application-models/extensionability-overview.md)
           - [ServiceExtensionAbility](application-models/serviceextensionability.md)
-          - [DataShareExtensionAbility（仅对系统应用开放）](application-models/datashareextensionability.md)
           - [FormExtensionAbility（服务卡片）](application-models/widget-development-stage.md)
           - [AccessibilityExtensionAbility](application-models/accessibilityextensionability.md)
           - [InputMethodExtensionAbility](application-models/inputmethodextentionability.md)

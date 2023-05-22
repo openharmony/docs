@@ -36,7 +36,7 @@ shutdown(reason: string): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | 连接服务失败。 |
+| 4900101 | If connecting to the service failed. |
 
 **示例：**
 
@@ -72,7 +72,7 @@ reboot(reason: string): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | 连接服务失败。 |
+| 4900101 | If connecting to the service failed. |
 
 **示例：**
 
@@ -98,7 +98,7 @@ isActive(): boolean
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | 连接服务失败。 |
+| 4900101 | If connecting to the service failed. |
 
 **示例：**
 
@@ -133,7 +133,7 @@ wakeup(detail: string): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | 连接服务失败。 |
+| 4900101 | If connecting to the service failed. |
 
 **示例：**
 
@@ -161,7 +161,7 @@ suspend(): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | 连接服务失败。 |
+| 4900101 | If connecting to the service failed. |
 
 **示例：**
 
@@ -193,7 +193,7 @@ getPowerMode(): DevicePowerMode
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | 连接服务失败。 |
+| 4900101 | If connecting to the service failed. |
 
 **示例：**
 
@@ -231,7 +231,7 @@ setPowerMode(mode: DevicePowerMode, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | 连接服务失败。 |
+| 4900101 | If connecting to the service failed. |
 
 **示例：**
 
@@ -275,7 +275,7 @@ setPowerMode(mode: DevicePowerMode): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | 链接服务失败。 |
+| 4900101 | If connecting to the service failed. |
 
 **示例：**
 

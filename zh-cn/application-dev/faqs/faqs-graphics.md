@@ -23,7 +23,7 @@ try {
 
 ## 如何隐藏状态栏实现沉浸式效果
 
-适用于：OpenHarmony 3.2 Beta5，API 9 Stage模型  
+适用于：OpenHarmony 3.2 Beta5，API 9  
 
 **解决措施**
 
@@ -59,7 +59,7 @@ try {
 
 ## 如何获取窗口的宽高信息
 
-适用于：OpenHarmony SDK 3.2 Beta5，API 9 Stage模型  
+适用于：OpenHarmony 3.2 Beta5，API 9 Stage模型  
 
 **解决措施**
 
@@ -90,4 +90,33 @@ try {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
 }
 ```
+
+## 如何对图片进行高斯模糊处理
+
+适用于：OpenHarmony 3.2 Beta5，API 9
+
+**解决措施**
+
+导入图像处理（@ohos.multimedia.image）和图像效果（@ohos.effectKit）模块，对图像进行处理并添加模糊效果。
+
+**代码示例**
+
+```
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+  const color = new ArrayBuffer(96);
+  let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
+  image.createPixelMap(color, opts).then((pixelMap) => {
+    let radius = 5;  
+    let headFilter = effectKit.createEffect(pixelMap);  
+    if (headFilter != null) {
+      headFilter.blur(radius);
+    }
+  })
+```
+
+**参考链接：**
+
+[图片添加模糊效果](../reference/apis/js-apis-effectKit.md#blur)
 

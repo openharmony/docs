@@ -739,6 +739,11 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 | baseUrl    | string | 否   | 指定的一个URL路径（“http”/“https”/"data"协议），并由Web组件赋值给window.origin。 |
 | historyUrl | string | 否   | 用作历史记录所使用的URL。非空时，历史记录以此URL进行管理。当baseUrl为空时，此属性无效。 |
 
+> **说明：**
+> 
+> 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
+> 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
+
 **错误码：**
 
 以下错误码的详细介绍请参见[webview错误码](../errorcodes/errorcode-webview.md)。

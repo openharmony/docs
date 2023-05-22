@@ -16,19 +16,19 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 
 **Parameters**
 
-| Name                   | Type                                    | Mandatory                 | Description                  |
-| ---------------------- | ---------------------------------------- | ------------------------- | ---------------------- |
-| builder                | [CustomDialog](../../quick-start/arkts-dynamic-ui-elememt-building.md#customdialog) | Yes    | Constructor of the custom dialog box content.           |
-| cancel                 | () =&gt; void                            | No             | Callback invoked when the dialog box is closed after the overlay exits.          |
-| autoCancel             | boolean                                            | No             | Whether to allow users to click the overlay to exit.<br>Default value: **true**          |
-| alignment              | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment)           | No             | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**       |
-| offset                 | [Offset](ts-types.md#offset) | No   | Offset of the dialog box relative to the alignment position.|
-| customStyle            | boolean                                  | No                   | Whether to use a custom style for the dialog box.<br>Default value: **false**, which means that the dialog box automatically adapts its width to the grid system and its height to the child components; the maximum height is 90% of the container height; the rounded corner is 24 vp.          |
-| gridCount<sup>8+</sup> | number                                   | No                   | Number of [grid columns](../../ui/ui-ts-layout-grid-container-new.md) occupied by the dialog box.<br>The default value is 4, and the maximum value is the maximum number of columns supported by the system. If this parameter is set to an invalid value, the default value is used.|
-| maskColor<sup>10+</sup>     | [ResourceColor](ts-types.md#resourcecolor)  | No  | Custom mask color.<br>Default value: **0x33000000**                                                                                                 |
-| openAnimation<sup>10+</sup> | [AnimateParam](ts-explicit-animation.md#animateparam)     | No  | Parameters for defining the open animation of the dialog box.<br>**NOTE**<br>If **iterations** is set to an odd number and **playMode** is set to **Reverse**, the dialog box will not be displayed when the animation ends.     |
-| closeAniamtion<sup>10+</sup>| [AnimateParam](ts-explicit-animation.md#animateparam)     | No  | Parameters for defining the close animation of the dialog box.     |
-| showInSubWindow<sup>10+</sup>| boolean     | No  | Whether to display a dialog box in a subwindow.<br>Default value: **false**, indicating that the dialog box is not displayed in the subwindow<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.     |
+| Name                          | Type                                    | Mandatory  | Description                                    |
+| ----------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| builder                       | CustomDialog                             | Yes   | Constructor of the custom dialog box content.                             |
+| cancel                        | () =&gt; void                  | No   | Callback invoked when the dialog box is closed after the overlay exits.                            |
+| autoCancel                    | boolean                                  | No   | Whether to allow users to click the overlay to exit.<br>Default value: **true**                |
+| alignment                     | [DialogAlignment](ts-methods-alert-dialog-box.md#dialogalignment) | No   | Alignment mode of the dialog box in the vertical direction.<br>Default value: **DialogAlignment.Default**|
+| offset                        | [Offset](ts-types.md#offset)             | No   | Offset of the dialog box relative to the alignment position.                  |
+| customStyle                   | boolean                                  | No   | Whether to use a custom style for the dialog box.<br>Default value: **false**, which means that the dialog box automatically adapts its width to the grid system and its height to the child components; the maximum height is 90% of the container height; the rounded corner is 24 vp.|
+| gridCount<sup>8+</sup>        | number                                   | No   | Number of [grid columns](../../ui/arkts-layout-development-grid-layout.md) occupied by the dialog box.<br>The default value is 4, and the maximum value is the maximum number of columns supported by the system. If this parameter is set to an invalid value, the default value is used.|
+| maskColor<sup>10+</sup>       | [ResourceColor](ts-types.md#resourcecolor) | No   | Custom mask color.<br>Default value: **0x33000000**             |
+| openAnimation<sup>10+</sup>   | [AnimateParam](ts-explicit-animation.md#animateparam) | No   | Parameters for defining the open animation of the dialog box.<br>**NOTE**<br>If **iterations** is set to an odd number and **playMode** is set to **Reverse**, the dialog box will not be displayed when the animation ends.|
+| closeAniamtion<sup>10+</sup>  | [AnimateParam](ts-explicit-animation.md#animateparam) | No   | Parameters for defining the close animation of the dialog box.                     |
+| showInSubWindow<sup>10+</sup> | boolean                                  | No   | Whether to display a dialog box in a subwindow.<br>Default value: **false**, indicating that the dialog box is not displayed in the subwindow<br>**NOTE**<br>A dialog box whose **showInSubWindow** attribute is **true** cannot trigger the display of another dialog box whose **showInSubWindow** attribute is also **true**.|
 
 ## CustomDialogController
 
@@ -38,7 +38,7 @@ CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, aut
 dialogController : CustomDialogController = new CustomDialogController(value:{builder: CustomDialog, cancel?: () => void, autoCancel?: boolean})
 ```
 > **NOTE**
-> 
+>
 > **CustomDialogController** is valid only when it is a member variable of the **@CustomDialog** and **@Component** decorated struct and is defined in the **@Component** decorated struct. For details, see the following example.
 
 ### open()

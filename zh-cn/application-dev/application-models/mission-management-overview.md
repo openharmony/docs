@@ -1,7 +1,7 @@
-# 任务管理场景介绍
+# 任务（Mission）管理场景介绍
 
 
-任务管理相关的基本概念如下：
+任务（Mission）管理相关的基本概念如下：
 
 
 - AbilityRecord：系统服务侧管理一个UIAbility实例的最小单元，对应一个应用侧的UIAbility组件实例。系统服务侧管理UIAbility实例数量上限为512个。

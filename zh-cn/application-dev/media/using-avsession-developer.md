@@ -143,7 +143,7 @@
    ```ts
    // 假设已经创建了一个session，如何创建session可以参考之前的案例
    let session: AVSessionManager.AVSession = ALREADY_CREATE_A_SESSION;
-   let wantAgentInfo: {
+   let wantAgentInfo = {
        wants: [
            {
                bundleName: 'com.example.musicdemo',
