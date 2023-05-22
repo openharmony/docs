@@ -1587,7 +1587,7 @@ FA卡片的使用信息的属性集合。
 
 | 参数名                            | 类型                                       | 必填   | 说明             |
 | ------------------------------ | ---------------------------------------- | ---- | -------------- |
-| [key: string]: BundleStatsInfo | [key: string]: [BundleStatsInfo](#bundlestatsinfo) | 是    | 不同应用的使用时长统计信息。 |
+| [key: string] | [BundleStatsInfo](#bundlestatsinfo) | 是    | 不同应用的使用时长统计信息。 |
 
 ## DeviceEventStats
 
