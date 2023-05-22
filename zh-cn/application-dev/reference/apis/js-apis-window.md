@@ -151,7 +151,7 @@ import window from '@ohos.window';
 | isLayoutFullScreen<sup>7+</sup> | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。              |
 | focusable<sup>7+</sup>          | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。                 |
 | touchable<sup>7+</sup>          | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。                 |
-| brightness                      | number                    | 是   | 是   | 屏幕亮度， 取值范围为0~1，1表示最大亮度值。  |
+| brightness                      | number                    | 是   | 是   | 屏幕亮度，可设置的亮度范围为0~1，其中1表示最大亮度值。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1。  |
 | dimBehindValue<sup>7+</sup>     | number                    | 是   | 是   | 靠后窗口的暗度值，取值范围为0~1，1表示最暗。|
 | isKeepScreenOn                  | boolean                   | 是   | 是   | 屏幕是否常亮，默认为false。                  |
 | isPrivacyMode<sup>7+</sup>      | boolean                   | 是   | 是   | 隐私模式，默认为false。                      |
@@ -1715,6 +1715,8 @@ setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
 设置屏幕亮度值，使用callback异步回调。
 
+当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
+
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
 **参数：** 
@@ -1742,6 +1744,8 @@ windowClass.setBrightness(brightness, (err, data) => {
 setBrightness(brightness: number): Promise&lt;void&gt;
 
 设置屏幕亮度值，使用Promise异步回调。
+
+当前屏幕亮度规格：窗口设置屏幕亮度生效时，控制中心不可以调整系统屏幕亮度，窗口恢复默认系统亮度之后，控制中心可以调整系统屏幕亮度。
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
