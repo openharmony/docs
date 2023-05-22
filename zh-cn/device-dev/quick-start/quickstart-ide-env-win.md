@@ -10,7 +10,10 @@
 
 - Windows 10 64位系统，推荐内存8GB及以上，硬盘100GB及以上。
 
-- Windows和Ubuntu系统上安装的DevEco Device Tool为最新版本，且版本号需相同。
+- 建议Windows和Ubuntu系统上安装的DevEco Device Tool为最新版本，且版本号需相同。
+
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+  > 下面以3.1 Release版本的IDE进行说明，不同版本的IDE在支持的特性和操作上略有差别，具体情况可参考[该工具的使用指南](https://device.harmonyos.com/cn/docs/documentation/guide/service_introduction-0000001050166905)。
 
 
 ## 操作步骤
