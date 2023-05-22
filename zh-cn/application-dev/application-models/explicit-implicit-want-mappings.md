@@ -52,6 +52,8 @@
 
 将调用方传入的want参数的action与待匹配应用组件的skills配置中的actions进行匹配。
 
+- 调用方传入的want参数的action为空，待匹配Ability的skills配置中的actions为空，则action匹配失败。
+
 - 调用方传入的want参数的action不为空，待匹配应用组件的skills配置中的actions为空，则action匹配失败。
 
 - 调用方传入的want参数的action为空，待匹配应用组件的skills配置中的actions不为空，则action匹配成功。
