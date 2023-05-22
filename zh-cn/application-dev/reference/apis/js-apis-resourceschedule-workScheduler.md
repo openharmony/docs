@@ -253,7 +253,7 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 ```
 
 ## workScheduler.obtainAllWorks
-obtainAllWorks(): Promise<Array\<WorkInfo>>
+obtainAllWorks(): Promise\<Array\<WorkInfo>>
 
 获取与当前应用程序关联的所有工作，使用Promise形式返回。
 
@@ -432,7 +432,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 | isPersisted     | boolean                           | 否    | 是否持久化保存工作        |
 | isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态     |
 | idleWaitTime    | number                            | 否    | 空闲等待时间           |
-| parameters      | {[key: string]: number | string | boolean}              | 否    | 携带参数信息           |
+| parameters      | {[key: string]: number \| string \| boolean}              | 否    | 携带参数信息           |
 
 ## NetworkType
 触发工作的网络类型。
