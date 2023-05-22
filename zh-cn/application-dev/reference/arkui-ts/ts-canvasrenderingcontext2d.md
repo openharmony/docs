@@ -46,7 +46,7 @@ RenderingContextSettings(antialias?: boolean)
 | [lineCap](#linecap)                                   | CanvasLineCap                                                | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>默认值：'butt'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [lineJoin](#linejoin)                                 | CanvasLineJoin                                               | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>默认值：'miter'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [miterLimit](#miterlimit)                             | number                                                       | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。  <br/>默认值：10<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [font](#font)                                         | string                                                       | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。<br/>默认值：'normal normal 14px sans-serif'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [font](#font)                                         | string                                                       | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px、vp。使用时需要添加单位。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。<br/>默认值：'normal normal 14px sans-serif'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [textAlign](#textalign)                               | CanvasTextAlign                                              | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致·。<br/>默认值：'left'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [textBaseline](#textbaseline)                         | CanvasTextBaseline                                           | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic基线不需要考虑下行字母。<br/>默认值：'alphabetic'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [globalAlpha](#globalalpha)                           | number                                                       | 设置透明度，0.0为完全透明，1.0为完全不透明。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
@@ -2206,9 +2206,9 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
 ### putImageData
 
-putImageData(imageData: ImageData, dx: number, dy: number): void
+putImageData(imageData: ImageData, dx: number | string, dy: number | string): void
 
-putImageData(imageData: ImageData, dx: number, dy: number, dirtyX: number, dirtyY: number, dirtyWidth: number, dirtyHeight: number): void
+putImageData(imageData: ImageData, dx: number | string, dy: number | string, dirtyX: number | string, dirtyY: number | string, dirtyWidth: number | string, dirtyHeight: number | string): void
 
 使用[ImageData](ts-components-canvas-imagedata.md)数据填充新的矩形区域。
 
@@ -2216,15 +2216,15 @@ putImageData(imageData: ImageData, dx: number, dy: number, dirtyX: number, dirty
 
 **参数：**
 
-| 参数          | 类型                                       | 必填   | 默认值          | 描述                            |
-| ----------- | ---------------------------------------- | ---- | ------------ | ----------------------------- |
-| imagedata   | [ImageData](ts-components-canvas-imagedata.md) | 是    | null         | 包含像素值的ImageData对象。            |
-| dx          | number                                   | 是    | 0            | 填充区域在x轴方向的偏移量。                |
-| dy          | number                                   | 是    | 0            | 填充区域在y轴方向的偏移量。                |
-| dirtyX      | number                                   | 否    | 0            | 源图像数据矩形裁切范围左上角距离源图像左上角的x轴偏移量。 |
-| dirtyY      | number                                   | 否    | 0            | 源图像数据矩形裁切范围左上角距离源图像左上角的y轴偏移量。 |
-| dirtyWidth  | number                                   | 否    | imagedata的宽度 | 源图像数据矩形裁切范围的宽度。               |
-| dirtyHeight | number                                   | 否    | imagedata的高度 | 源图像数据矩形裁切范围的高度。               |
+| 参数        | 类型                                           | 必填 | 默认值          | 描述                                                      |
+| ----------- | ---------------------------------------------- | ---- | --------------- | --------------------------------------------------------- |
+| imagedata   | [ImageData](ts-components-canvas-imagedata.md) | 是   | null            | 包含像素值的ImageData对象。                               |
+| dx          | number&nbsp;\|&nbsp;string<sup>10+</sup>       | 是   | 0               | 填充区域在x轴方向的偏移量。                               |
+| dy          | number&nbsp;\|&nbsp;string<sup>10+</sup>       | 是   | 0               | 填充区域在y轴方向的偏移量。                               |
+| dirtyX      | number&nbsp;\|&nbsp;string<sup>10+</sup>       | 否   | 0               | 源图像数据矩形裁切范围左上角距离源图像左上角的x轴偏移量。 |
+| dirtyY      | number&nbsp;\|&nbsp;string<sup>10+</sup>       | 否   | 0               | 源图像数据矩形裁切范围左上角距离源图像左上角的y轴偏移量。 |
+| dirtyWidth  | number&nbsp;\|&nbsp;string<sup>10+</sup>       | 否   | imagedata的宽度 | 源图像数据矩形裁切范围的宽度。                            |
+| dirtyHeight | number&nbsp;\|&nbsp;string<sup>10+</sup>       | 否   | imagedata的高度 | 源图像数据矩形裁切范围的高度。                            |
 
 **示例：**
 
