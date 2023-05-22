@@ -2573,7 +2573,7 @@ close(callback: AsyncCallback&lt;void&gt;): void
     if (err) {
       console.info("close stream failed with error message: " + err.message + ", error code: " + err.code);
     } else {
-      console.info("close stream success"):
+      console.info("close stream success");
     }
   });
   ```
