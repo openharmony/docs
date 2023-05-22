@@ -4550,7 +4550,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 在手动同步方式下，触发数据库同步。关于键值型数据库的同步方式说明，请见[键值型数据库跨设备数据同步](../../database/data-sync-of-kv-store.md)。
 > **说明：** 
 >
-> 其中deviceIds为[DeviceInfo](js-apis-device-manager.md#DeviceInfo)中的networkId, 通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceIds为[DeviceInfo](js-apis-device-manager.md#deviceInfo)中的networkId, 通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
 
 **需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
 
@@ -4619,7 +4619,7 @@ sync(deviceIds: string[], query: Query, mode: SyncMode, delayMs?: number): void
 在手动同步方式下，触发数据库同步，此方法为同步方法。关于键值型数据库的同步方式说明，请见[键值型数据库跨设备数据同步](../../database/data-sync-of-kv-store.md)。
 > **说明：** 
 >
-> 其中deviceIds为[DeviceInfo](js-apis-device-manager.md#DeviceInfo)中的networkId, 通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceIds为[DeviceInfo](js-apis-device-manager.md#deviceInfo)中的networkId, 通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
 
 **需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
 
