@@ -3768,7 +3768,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 在手动同步方式下，触发数据库同步。
 > **说明：** 
 >
-> 其中deviceIds通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceIds为[DeviceInfo](js-apis-device-manager.md#DeviceInfo)中的networkId, 通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
 
 **需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
 
@@ -3778,7 +3778,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 | 参数名    | 类型                  | 必填 | 说明                                           |
 | --------- | --------------------- | ---- | ---------------------------------------------- |
-| deviceIds | string[]              | 是   | 同一组网环境下，需要同步的设备的deviceId列表。 |
+| deviceIds | string[]              | 是   | 同一组网环境下，需要同步的设备的networkId列表。 |
 | mode      | [SyncMode](#syncmode) | 是   | 同步模式。                                     |
 | delayMs   | number                | 否   | 可选参数，允许延时时间，单位：ms（毫秒），默认为0。     |
 
@@ -3799,7 +3799,7 @@ deviceManager.createDeviceManager('bundleName', (err, value) => {
     if (devManager != null) {
       var devices = devManager.getTrustedDeviceListSync();
       for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].deviceId;
+        deviceIds[i] = devices[i].networkId;
       }
     }
     try {
@@ -5246,7 +5246,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 > **说明：**
 >
-> 其中deviceIds通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
+> 其中deviceIds为[DeviceInfo](js-apis-device-manager.md#DeviceInfo)中的networkId, 通过调用[deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync)方法得到。deviceManager模块的接口均为系统接口，仅系统应用可用。
 
 **需要权限**： ohos.permission.DISTRIBUTED_DATASYNC。
 
@@ -5256,7 +5256,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 
 | 参数名  | 类型 | 必填  | 说明                    |
 | -----  | ------   | ----  | ----------------------- |
-| deviceIds    |string[]               | 是    |需要同步DeviceKvStore数据库的设备ID列表。 |
+| deviceIds    |string[]               | 是    |需要同步DeviceKvStore数据库的设备networkId列表。 |
 | mode            |[SyncMode](#syncmode)  | 是    |同步模式。  |
 | delayMs  |number                 | 否    |可选参数，允许延时时间，单位：ms（毫秒），默认为0。  |
 
@@ -5277,7 +5277,7 @@ deviceManager.createDeviceManager('bundleName', (err, value) => {
     if (devManager != null) {
       var devices = devManager.getTrustedDeviceListSync();
       for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].deviceId;
+        deviceIds[i] = devices[i].networkId;
       }
     }
     try {
