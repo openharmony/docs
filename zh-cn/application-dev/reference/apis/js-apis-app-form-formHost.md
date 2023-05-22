@@ -2218,7 +2218,7 @@ try {
 
 ## getRunningFormInfosByFilter<sup>10+</sup>
 
-function getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
+getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
 
 根据提供方信息查询卡片已有的使用方列表信息。使用Promise异步回调。
 
@@ -2269,7 +2269,7 @@ try {
 
 ## getRunningFormInfosByFilter<sup>10+</sup>
 
-function getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
+getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
 
 根据提供方信息查询卡片已有的使用方列表信息。使用callback异步回调。
 
@@ -2317,7 +2317,7 @@ try {
 
 ## getRunningFormInfoById<sup>10+</sup>
 
-function getRunningFormInfoById(formId: string): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
+getRunningFormInfoById(formId: string): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
 
 根据formId查询卡片已有的使用方列表信息。使用Promise异步回调。
 
@@ -2362,7 +2362,7 @@ try {
 
 ## getRunningFormInfoById<sup>10+</sup>
 
-function getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
+getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
 
 根据提供方信息查询卡片已有的使用方列表信息。使用callback异步回调。
 
