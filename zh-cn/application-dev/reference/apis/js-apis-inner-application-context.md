@@ -122,16 +122,12 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 **示例：**
 
 ```ts
-<<<<<<< HEAD
-let moduleContext = this.context.createModuleContext('com.example.test', 'entry');
-=======
 let moduleContext: common.Context;
 try {
     moduleContext = this.context.createModuleContext('com.example.test', 'entry');
 } catch (error) {
     console.error('createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}');
 }
->>>>>>> 48a75c8e72 (Modify the secondary import module of ability)
 ```
 
 ## Context.getApplicationContext
@@ -151,16 +147,12 @@ getApplicationContext(): ApplicationContext;
 **示例：**
 
 ```ts
-<<<<<<< HEAD
-let applicationContext = this.context.getApplicationContext();
-=======
 let applicationContext: common.Context;
 try {
     applicationContext = this.context.getApplicationContext();
 } catch (error) {
     console.error('getApplicationContext failed, error.code: ${error.code}, error.message: ${error.message}');
 }
->>>>>>> 48a75c8e72 (Modify the secondary import module of ability)
 ```
 
 ## AreaMode

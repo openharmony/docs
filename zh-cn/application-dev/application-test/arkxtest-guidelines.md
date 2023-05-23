@@ -58,7 +58,7 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 ## 新建测试脚本
 
 1. 在DevEco Studio中新建应用开发工程，其中ohos目录即为测试脚本所在的目录。
-2. 在工程目录下打开待测试模块下的ets文件，将光标置于代码中任意位置，单击**右键 > Show Context Actions** **> Create Ohos Test**或快捷键**Alt+enter** **> Create Ohos Test**创建测试类，更多指导请参考DevEco Studio中[指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-openharmony-test-framework-0000001267284568)。
+2. 在工程目录下打开待测试模块下的ets文件，将光标置于代码中任意位置，单击**右键 > Show Context Actions** **> Create Ohos Test**或快捷键**Alt+enter** **> Create Ohos Test**创建测试类，更多指导请参考DevEco Studio中[指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section13366184061415)。
 
 ## 编写单元测试脚本
 
@@ -256,7 +256,7 @@ UI测试用例执行失败，查看hilog日志发现日志中有“uitest-api do
 
 1.检查用例实现，异步接口增加await语法糖调用。
 
-2.避免多进程执行UI测试用例。
+2.避免多进程执行UI的测试用例。
 
 **3、失败日志有“dose not exist on current UI! Check if the UI has changed after you got the widget object”错误信息**
 

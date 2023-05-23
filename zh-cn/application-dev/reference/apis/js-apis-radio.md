@@ -2516,7 +2516,7 @@ off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback
 | type     | string                               | 是   | 取消监听IMS注册状态的变化。     |
 | slotId   | number                               | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | imsType  | [ImsServiceType](#imsservicetype9)   | 是   | IMS服务类型。                          |
-| callback | Callback<[ImsRegInfo](#imsreginfo9)> | 否   | 回调函数。                             |
+| callback | Callback<[ImsRegInfo](#imsreginfo9)> | 否   | 回调函数。不填该参数不影响取消订阅。 |
 
 **错误码：**
 

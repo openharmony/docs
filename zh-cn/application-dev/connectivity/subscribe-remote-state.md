@@ -1,6 +1,6 @@
 # 远端状态订阅开发实例
 
-IPC/RPC提供对远端Stub对象状态的订阅机制， 在远端Stub对象消亡时，可触发消亡通知告诉本地Proxy对象。这种状态通知订阅需要调用特定接口完成，当不再需要订阅时也需要调用特定接口取消。使用这种订阅机制的用户，需要实现消亡通知接口DeathRecipient并实现onRemoteDied方法清理资源。该方法会在远端Stub对象所在进程消亡或所在设备离开组网时被回调。值得注意的是，调用这些接口有一定的顺序。首先，需要Proxy订阅Stub消亡通知，若在订阅期间Stub状态正常，则在不再需要时取消订阅；若在订阅期间Stub所在进程退出或者所在设备退出组网，则会自动触发Proxy自定义的后续操作。
+IPC/RPC提供对远端Stub对象状态的订阅机制，在远端Stub对象消亡时，可触发消亡通知告诉本地Proxy对象。这种状态通知订阅需要调用特定接口完成，当不再需要订阅时也需要调用特定接口取消。使用这种订阅机制的用户，需要实现消亡通知接口DeathRecipient并实现onRemoteDied方法清理资源。该方法会在远端Stub对象所在进程消亡或所在设备离开组网时被回调。值得注意的是，调用这些接口有一定的顺序。首先，需要Proxy订阅Stub消亡通知，若在订阅期间Stub状态正常，则在不再需要时取消订阅；若在订阅期间Stub所在进程退出或者所在设备退出组网，则会自动触发Proxy自定义的后续操作。
 
 ## 使用场景
 
@@ -20,7 +20,6 @@ IPC/RPC提供对远端Stub对象状态的订阅机制， 在远端Stub对象消�
 ```C++
 #include "iremote_broker.h"
 #include "iremote_stub.h"
-
 
 //定义消息码
 enum {
@@ -61,9 +60,6 @@ int TestServiceProxy::TestPingAbility(const std::u16string &dummy){
 }
 ```
 
-
-
-
 ```c++
 #include "iremote_object.h"
 
@@ -86,16 +82,52 @@ result = object->RemoveDeathRecipient(deathRecipient); // 移除消亡通知
 
 ## JS侧接口
 
-| 接口名               | 返回值类型 | 功能描述                                                     |
-| -------------------- | ---------- | ------------------------------------------------------------ |
-| addDeathRecippient   | boolean    | 注册用于接收远程对象消亡通知的回调，增加proxy对象上的消亡通知。 |
-| removeDeathRecipient | boolean    | 注销用于接收远程对象消亡通知的回调。                         |
-| onRemoteDied         | void       | 在成功添加死亡通知订阅后，当远端对象死亡时，将自动调用本方法。 |
+| 接口名                   | 返回值类型 | 功能描述                                                          |
+| ------------------------ | ---------- | ----------------------------------------------------------------- |
+| registerDeathRecipient   | void       | 注册用于接收远程对象消亡通知的回调，增加 proxy 对象上的消亡通知。 |
+| unregisterDeathRecipient | void       | 注销用于接收远程对象消亡通知的回调。                              |
+| onRemoteDied             | void       | 在成功添加死亡通知订阅后，当远端对象死亡时，将自动调用本方法。    |
+
+### 获取context
+
+Stage模型在连接服务前需要先获取context
+
+```ts
+import Ability from "@ohos.app.ability.UIAbility";
+
+export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        console.log("[Demo] MainAbility onCreate");
+        globalThis.context = this.context;
+    }
+    onDestroy() {
+        console.log("[Demo] MainAbility onDestroy");
+    }
+    onWindowStageCreate(windowStage) {
+        // Main window is created, set main page for this ability
+        console.log("[Demo] MainAbility onWindowStageCreate");
+    }
+    onWindowStageDestroy() {
+        // Main window is destroyed, release UI related resources
+        console.log("[Demo] MainAbility onWindowStageDestroy");
+    }
+    onForeground() {
+        // Ability has brought to foreground
+        console.log("[Demo] MainAbility onForeground");
+    }
+    onBackground() {
+        // Ability has back to background
+        console.log("[Demo] MainAbility onBackground");
+    }
+}
+```
 
 ### 参考代码
 
 ```ts
-import FA from "@ohos.ability.featureAbility";
+// 仅FA模型需要导入@ohos.ability.featureAbility
+// import FA from "@ohos.ability.featureAbility";
+
 let proxy;
 let connect = {
     onConnect: function(elementName, remoteProxy) {
@@ -113,15 +145,19 @@ let want = {
     "bundleName": "com.ohos.server",
     "abilityName": "com.ohos.server.MainAbility",
 };
-FA.connectAbility(want, connect);
+// FA模型通过此方法连接服务
+// FA.connectAbility(want, connect);
+
+globalThis.context.connectServiceExtensionAbility(want, connect);
+
 class MyDeathRecipient {
     onRemoteDied() {
         console.log("server died");
     }
 }
 let deathRecipient = new MyDeathRecipient();
-proxy.addDeathRecippient(deathRecipient, 0);
-proxy.removeDeathRecipient(deathRecipient, 0);
+proxy.registerDeathRecippient(deathRecipient, 0);
+proxy.unregisterDeathRecipient(deathRecipient, 0);
 ```
 
 ## Stub感知Proxy消亡（匿名Stub的使用）

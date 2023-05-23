@@ -63,7 +63,11 @@ The **FilePicker** provides the following interfaces by file type:
    ```
 
 3. Create a **documentViewPicker** instance, and call [**select()**](../reference/apis/js-apis-file-picker.md#select-3) to open the **FilePicker** page for the user to select documents.
+
      After the documents are selected successfully, a result set containing the file URIs is returned. Further operations can be performed on the documents based on the file URIs.
+
+   For example, you can use [file management APIs](../reference/apis/js-apis-file-fs.md) to obtain file attribute information, such as the file size, access time, and last modification time, based on the URI. If you need to obtain the file name, use [startAbilityForResult](../../application-dev/application-models/uiability-intra-device-interaction.md).
+
    > **NOTE**
    >
    > Currently, **DocumentSelectOptions** is not configurable. By default, all types of user files are selected.
@@ -78,6 +82,32 @@ The **FilePicker** provides the following interfaces by file type:
      .catch((err) => {
        console.error(`Invoke documentPicker.select failed, code is ${err.code}, message is ${err.message}`);
      })
+   ```
+
+   > **NOTE**
+   >
+   > Currently, **DocumentSelectOptions** does not provide the method for obtaining the file name. To obtain the file name, use **startAbilityForResult()**.
+
+   ```ts
+   let config = {
+     action: 'ohos.want.action.OPEN_FILE',
+     parameters: {
+       startMode: 'choose',
+     }
+   }
+   try {
+     let result = await context.startAbilityForResult(config, {windowMode: 1});
+     if (result.resultCode !== 0) {
+       console.error(`DocumentPicker.select failed, code is ${result.resultCode}, message is ${result.want.parameters.message}`);
+       return;
+     }
+     // Obtain the URI of the document.
+     let select_item_list = result.want.parameters.select_item_list;
+     // Obtain the name of the document.
+     let file_name_list = result.want.parameters.file_name_list;
+   } catch (err) {
+     console.error(`Invoke documentPicker.select failed, code is ${err.code}, message is ${err.message}`);
+   }
    ```
 
 ## Selecting an Audio File

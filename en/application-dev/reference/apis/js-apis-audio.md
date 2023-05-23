@@ -483,8 +483,8 @@ Enumerates the audio channels.
 
 | Name     |  Value      | Description    |
 | --------- | -------- | -------- |
-| CHANNEL_1 | 0x1 << 0 | Mono.|
-| CHANNEL_2 | 0x1 << 1 | Dual-channel.|
+| CHANNEL_1 | 0x1 << 0 | Channel 1. |
+| CHANNEL_2 | 0x1 << 1 | Channel 2. |
 
 ## AudioSamplingRate<sup>8+</sup>
 

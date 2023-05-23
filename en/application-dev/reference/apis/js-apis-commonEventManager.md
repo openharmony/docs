@@ -36,12 +36,13 @@ Publishes a common event. This API uses an asynchronous callback to return the r
 **Error codes**
 For details about the error codes, see [Event Error Codes](../errorcodes/errorcode-CommonEventService.md).
 
-|ID   |Error Message           |
-|-----------|--------------------|
-|1500004    |not System services or System app|
-|1500007    |message send error|
-|1500008    |CEMS error|
-|1500009    |system error|
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
+| 1500004  | not System services.                |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
+| 1500009  | error obtaining system parameters.  |
 
 **Example**
 
@@ -80,16 +81,15 @@ Publishes a common event with given attributes. This API uses an asynchronous ca
 | callback | syncCallback\<void>   | Yes  | Callback used to return the result. |
 
 **Error codes**
-|ID   |Error Message           |
-|-----------|--------------------|
-|1500004    |not System services or System app|
-|1500007    |message send error|
-|1500008    |CEMS error|
-|1500009    |system error|
-
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
+| 1500004  | not System services.                |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
+| 1500009  | error obtaining system parameters.  |
 
 **Example**
-
 
 ```ts
 // Attributes of a common event.
@@ -137,12 +137,14 @@ Publishes a common event to a specific user. This API uses an asynchronous callb
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result.            |
 
 **Error codes**
-|ID   |Error Message           |
-|-----------|--------------------|
-|1500004    |not System services or System app|
-|1500007    |message send error|
-|1500008    |CEMS error|
-|1500009    |system error|
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 202  | not system app.                         |
+| 401  | The parameter check failed.             |
+| 1500004  | not System services.                |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
+| 1500009  | error obtaining system parameters.  |
 
 **Example**
 
@@ -189,15 +191,16 @@ Publishes a common event with given attributes to a specific user. This API uses
 | callback | AsyncCallback\<void>   | Yes  | Callback used to return the result. |
 
 **Error codes**
-|ID   |Error Message           |
-|-----------|--------------------|
-|1500004    |not System services or System app|
-|1500007    |message send error|
-|1500008    |CEMS error|
-|1500009    |system error|
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 202  | not system app.                         |
+| 401  | The parameter check failed.             |
+| 1500004  | not System services.                |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
+| 1500009  | error obtaining system parameters.  |
 
 **Example**
-
 
 ```ts
 // Attributes of a common event.
@@ -242,6 +245,14 @@ Creates a subscriber. This API uses an asynchronous callback to return the resul
 | ------------- | ------------------------------------------------------------ | ---- | -------------------------- |
 | subscribeInfo | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)        | Yes  | Subscriber information.            |
 | callback      | AsyncCallback\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+ For details about the error codes, see [Event Error Codes](../errorcodes/errorcode-CommonEventService.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
 
 **Example**
 
@@ -293,6 +304,14 @@ Creates a subscriber. This API uses a promise to return the result.
 | --------------------------------------------------------- | ---------------- |
 | Promise\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | Promise used to return the subscriber object.|
 
+**Error codes**
+
+ For details about the error codes, see [Event Error Codes](../errorcodes/errorcode-CommonEventService.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
+
 **Example**
 
 ```ts
@@ -333,6 +352,17 @@ Subscribes to common events. This API uses an asynchronous callback to return th
 | ---------- | ---------------------------------------------------- | ---- | -------------------------------- |
 | subscriber | [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)     | Yes  | Subscriber object.                |
 | callback   | AsyncCallback\<[CommonEventData](./js-apis-inner-commonEvent-commonEventData.md)> | Yes  | Callback used to return the result.|
+
+**Error codes**
+
+ For details about the error codes, see [Event Error Codes](../errorcodes/errorcode-CommonEventService.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
+| 801  | capability not supported.               |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
 
 **Example**
 
@@ -394,6 +424,17 @@ Unsubscribes from common events. This API uses an asynchronous callback to retur
 | ---------- | ----------------------------------------------- | ---- | ------------------------ |
 | subscriber | [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md) | Yes  | Subscriber object.        |
 | callback   | AsyncCallback\<void>                            | No  | Callback used to return the result.|
+
+**Error codes**
+
+ For details about the error codes, see [Event Error Codes](../errorcodes/errorcode-CommonEventService.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 401  | The parameter check failed.             |
+| 801  | capability not supported.               |
+| 1500007  | error sending message to Common Event Service. |
+| 1500008  | Common Event Service does not complete initialization. |
 
 **Example**
 
@@ -465,6 +506,19 @@ Obtains the result code of this common event. This API uses an asynchronous call
 | -------- | ---------------------- | ---- | ------------------ |
 | callback | AsyncCallback\<number> | Yes  | Callback used to return the result.|
 
+**Error codes**
+
+ For details about the error codes, see [Event Error Codes](../errorcodes/errorcode-CommonEventService.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 201  | The application dose not have permission to call the interface. |
+| 202  | not system app.                         |
+| 401  | The parameter check failed.             |
+| 1500004  | not system service.                 |
+| 1500007  | The message send error.             |
+| 1500008  | The CEMS error.                     |
+
 **Example**
 
 ```ts
@@ -494,6 +548,19 @@ Obtains the result code of this common event. This API uses a promise to return 
 | Type            | Description                |
 | ---------------- | -------------------- |
 | Promise\<number> | Promise used to return the result.|
+
+**Error codes**
+
+ For details about the error codes, see [Event Error Codes](../errorcodes/errorcode-CommonEventService.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 201  | The application dose not have permission to call the interface. |
+| 202  | not system app.                         |
+| 401  | The parameter check failed.             |
+| 1500004  | not system service.                 |
+| 1500007  | The message send error.             |
+| 1500008  | The CEMS error.                     |
 
 **Example**
 

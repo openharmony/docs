@@ -564,7 +564,7 @@ try {
 
 用于设置弹出的提醒通知信息上显示的按钮类型和标题。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.ReminderAgent
+**系统能力**：`SystemCapability.Notification.ReminderAgent`
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
@@ -580,8 +580,9 @@ try {
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| pkgName | string | 是 | 指明点击提醒通知栏后跳转的目标hap包名。 |
-| abilityName | string | 是 | 指明点击提醒通知栏后跳转的目标ability名称。 |
+| pkgName | string | 是 | 指明跳转的目标包名。 |
+| abilityName | string | 是 | 指明跳转的目标ability名称。 |
+| uri | string | 否 | 指明跳转目标的uri信息。（系统接口） |
 
 
 ## MaxScreenWantAgent

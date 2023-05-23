@@ -25,7 +25,6 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 **示例：**
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 

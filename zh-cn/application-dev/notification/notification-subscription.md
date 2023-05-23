@@ -20,64 +20,64 @@
 
 **表2** 通知订阅回调接口介绍
 
-| | |
-| -------- | -------- |
 | **接口名** | **描述** |
-| onConsume?:(data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void | 通知回调。 |
-| onCancel?:(data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void | 通知取消回调。 |
-| onUpdate?:(data:&nbsp;NotificationSortingMap)&nbsp;=&gt;&nbsp;void | 通知排序更新回调。 |
-| onConnect?:()&nbsp;=&gt;&nbsp;void; | 订阅成功回调。 |
-| onDisconnect?:()&nbsp;=&gt;&nbsp;void; | 取消订阅回调。 |
-| onDestroy?:()&nbsp;=&gt;&nbsp;void | 与通知子系统断开回调。 |
+| -------- | -------- |
+| onConsume?:(data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void | 通知回调。               |
+| onCancel?:(data:&nbsp;SubscribeCallbackData)&nbsp;=&gt;&nbsp;void | 通知取消回调。           |
+| onUpdate?:(data:&nbsp;NotificationSortingMap)&nbsp;=&gt;&nbsp;void | 通知排序更新回调。       |
+| onConnect?:()&nbsp;=&gt;&nbsp;void;                          | 订阅成功回调。           |
+| onDisconnect?:()&nbsp;=&gt;&nbsp;void;                       | 取消订阅回调。           |
+| onDestroy?:()&nbsp;=&gt;&nbsp;void                           | 与通知子系统断开回调。   |
 | onDoNotDisturbDateChange?:(mode:&nbsp;notification.DoNotDisturbDate)&nbsp;=&gt;&nbsp;void | 免打扰时间选项变更回调。 |
-| onEnabledNotificationChanged?:(callbackData:&nbsp;EnabledNotificationCallbackData)&nbsp;=&gt;&nbsp;void | 通知开关变更回调。 |
+| onEnabledNotificationChanged?:(callbackData:&nbsp;EnabledNotificationCallbackData)&nbsp;=&gt;&nbsp;void | 通知开关变更回调。       |
 
 
 ## 开发步骤
 
-1. 申请`ohos.permission.NOTIFICATION_CONTROLLER`权限，配置方式请参阅[访问控制授权申请指导](../security/accesstoken-guidelines.md)。
+1. 申请`ohos.permission.NOTIFICATION_CONTROLLER`权限，配置方式请参见[访问控制授权申请](../security/accesstoken-guidelines.md#配置文件权限声明)。
 
 2. 导入通知订阅模块。
    
    ```ts
-   import NotificationSubscribe from '@ohos.notificationSubscribe';
+   import notificationSubscribe from '@ohos.notificationSubscribe';
    ```
 
 3. 创建订阅者对象。
    
    ```ts
    let subscriber = {
-       onConsume: function (data) {
-           let req = data.request;
-           console.info('[ANS] onConsume callback req.id: ' + req.id);
-       },
-       onCancel: function (data) {
-           let req = data.request;
-           console.info('[ANS] onCancel callback req.id: : ' + req.id);
-       },
-       onUpdate: function (data) {
-           console.info('[ANS] onUpdate in test');
-       },
-       onConnect: function () {
-           console.info('[ANS] onConnect in test');
-       },
-       onDisconnect: function () {
-           console.info('[ANS] onDisConnect in test');
-       },
-       onDestroy: function () {
-           console.info('[ANS] onDestroy in test');
-       },
+     onConsume: function (data) {
+       let req = data.request;
+       console.info(`onConsume callback. req.id: ${req.id}`);
+     },
+     onCancel: function (data) {
+       let req = data.request;
+       console.info(`onCancel callback. req.id: ${req.id}`);
+     },
+     onUpdate: function (data) {
+       let req = data.request;
+       console.info(`onUpdate callback. req.id: ${req.id}`);
+     },
+     onConnect: function () {
+       console.info(`onConnect callback.}`);
+     },
+     onDisconnect: function () {
+       console.info(`onDisconnect callback.}`);
+     },
+     onDestroy: function () {
+       console.info(`onDestroy callback.}`);
+     },
    };
    ```
-
+   
 4. 发起通知订阅。
    
    ```ts
-   NotificationSubscribe.subscribe(subscriber, (err, data) => { // callback形式调用异步接口
+   notificationSubscribe.subscribe(subscriber, (err, data) => { // callback形式调用异步接口
      if (err) {
-       console.error(`[ANS] failed to subscribe, error[${err}]`);
+       console.error(`Failed to subscribe notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info(`[ANS] subscribeTest success : + ${data}`);
+     console.info(`Succeeded in subscribing to notification. Data: ${data}`);
    });
    ```

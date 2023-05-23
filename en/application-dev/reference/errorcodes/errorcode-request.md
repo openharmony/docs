@@ -34,7 +34,7 @@ This error code is reported when a file path error occurs in invoking the **uplo
 
 **Possible Causes**
 
-The file path is incorrect.
+The file path is incorrect or the file aready exists in the path.
 
 **Solution**
 

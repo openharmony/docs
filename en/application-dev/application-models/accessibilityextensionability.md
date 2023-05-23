@@ -12,10 +12,13 @@ The **AccessibilityExtensionAbility** module provides accessibility extension ca
 
 This document is organized as follows:
 
-- [Creating an AccessibilityExtAbility File](#creating-an-accessibility-extension-service)
-- [Processing an Accessibility Event](#processing-an-accessibility-event)
-- [Declaring Capabilities of Accessibility Extension Services](#declaring-capabilities-of-accessibility-extension-services)
-- [Enabling a Custom Accessibility Extension Service](#enabling-a-custom-accessibility-extension-service)
+- [AccessibilityExtensionAbility Development](#accessibilityextensionability-development)
+  - [Creating an Accessibility Extension Service](#creating-an-accessibility-extension-service)
+    - [Creating a Project](#creating-a-project)
+    - [Creating an AccessibilityExtAbility File](#creating-an-accessibilityextability-file)
+  - [Processing an Accessibility Event](#processing-an-accessibility-event)
+  - [Declaring Capabilities of Accessibility Extension Services](#declaring-capabilities-of-accessibility-extension-services)
+  - [Enabling a Custom Accessibility Extension Service](#enabling-a-custom-accessibility-extension-service)
 
 ## Creating an Accessibility Extension Service
 
@@ -79,13 +82,13 @@ You can also process physical key events in the accessibility extension service.
 
 ## Declaring Capabilities of Accessibility Extension Services
 
-After developing the custom logic for an accessibility extension service, you must add the configuration information of the service to the corresponding module-level **module.json5** file in the project directory. In the file, the **srcEntrance** tag indicates the path to the accessibility extension service. Make sure the value of the **type** tag is fixed at **accessibility**. Otherwise, the connection to the service will fail.
+After developing the custom logic for an accessibility extension service, you must add the configuration information of the service to the corresponding module-level **module.json5** file in the project directory. In the file, the **srcEntry** tag indicates the path to the accessibility extension service. Make sure the value of the **type** tag is fixed at **accessibility**. Otherwise, the connection to the service will fail.
 
 ```json
 "extensionAbilities": [
   {
     "name": "AccessibilityExtAbility",
-    "srcEntrance": "./ets/AccessibilityExtAbility/AccessibilityExtAbility.ts",
+    "srcEntry": "./ets/AccessibilityExtAbility/AccessibilityExtAbility.ts",
     "label": "$string:MainAbility_label",
     "description": "$string:MainAbility_desc",
     "type": "accessibility",

@@ -58,7 +58,7 @@ DevEco Studio的基本使用，请参考[DevEco Studio使用指南](../../quick-
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
 > - 在一个工程中同一个设备类型只支持一个Entry类型的模块。
 > 
-> - 当前的DevEco Studio（3.0 Beta3版本）在创建工程时，设备类型仅能选择dafault和tablet，默认该模块已经选择了entry类型，那么在创建wearable这个模块，只能选择feature类型。
+> - 当前的DevEco Studio（3.0 Beta3版本）在创建工程时，设备类型仅能选择default和tablet，默认该模块已经选择了entry类型，那么在创建wearable这个模块，只能选择feature类型。
 > 
 > - 在下一个小节，我们将介绍如何修改Module的配置，包括Module的类型以及其支持的设备类型等。
 

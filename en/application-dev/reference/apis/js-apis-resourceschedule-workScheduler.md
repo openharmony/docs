@@ -130,7 +130,7 @@ Obtains the latest task status. This API uses an asynchronous callback to return
 | Name     | Type                                   | Mandatory  | Description                                      |
 | -------- | ------------------------------------- | ---- | ---------------------------------------- |
 | workId   | number                                | Yes   | Task ID.                                |
-| callback | AsyncCallback\<[WorkInfo](#workinfo)> | Yes   | Callback used to return the result. Returns the task status obtained from the **WorkSchedulerService** if the specified task ID is valid; returns **null** otherwise.|
+| callback | AsyncCallback\<[WorkInfo](#workinfo)> | Yes   | Callback used to return the result. Returns the task status obtained from the **WorkSchedulerService** if the specified task ID is valid; throws an exception otherwise. |
 
 **Error codes**
 
@@ -178,7 +178,7 @@ Obtains the latest task status. This API uses a promise to return the result.
 
 | Type                             | Description                                      |
 | ------------------------------- | ---------------------------------------- |
-| Promise\<[WorkInfo](#workinfo)> | Promise used to return the result. Returns the task status obtained from the **WorkSchedulerService** if the specified task ID is valid; returns **null** otherwise.|
+| Promise\<[WorkInfo](#workinfo)> | Promise used to return the result. Returns the task status obtained from the **WorkSchedulerService** if the specified task ID is valid; throws an exception otherwise. |
 
 **Error codes**
 

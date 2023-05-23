@@ -427,7 +427,7 @@ try {
 
 getKeyboardType(deviceId: number): Promise&lt;KeyboardType&gt;
 
-获取输入设备的键盘类型，使用AsyncCallback异步方式返回结果。
+获取输入设备的键盘类型，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 

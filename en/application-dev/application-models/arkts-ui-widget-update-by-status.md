@@ -74,7 +74,7 @@ Multiple widgets of the same application can be configured to implement differen
         }
   
         Row() {// Content that is updated only in state A
-          Text('状态A: ')
+          Text('State A: ')
           Text(this.textA)
         }
   

@@ -62,6 +62,25 @@ Applies a quick fix patch. This API uses an asynchronous callback to return the 
 | hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 18500002 | Copy file failed, maybe not exist or inaccessible. |
+| 18500008 | Internal error. |
+
+If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEvent-definitions.md#common_event_quick_fix_apply_result9). The table below lists the possible error codes and messages.
+
+| ID| Error Message|
+| ------- | -------- |
+| 18500003 | Deploy hqf failed. |
+| 18500004 | Switch hqf failed. |
+| 18500005 | Delete hqf failed. |
+| 18500006 | Load patch failed. |
+| 18500007 | Unload patch failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 > **NOTE**
 >
 > The file path passed in the API must be an application sandbox path. For details about how to obtain the sandbox path, see [Obtaining the Sandbox Path](js-apis-bundle-BundleInstaller.md#obtaining-the-sandbox-path). The path mapped to the device is **/proc/<*applicationProcessId*>/root/*sandboxPath***.
@@ -109,6 +128,25 @@ Applies a quick fix patch. This API uses a promise to return the result.
 | -------- | -------- |
 | Promise\<void> | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 18500002 | Copy file failed, maybe not exist or inaccessible. |
+| 18500008 | Internal error. |
+
+If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEvent-definitions.md#common_event_quick_fix_apply_result9). The table below lists the possible error codes and messages.
+
+| ID| Error Message|
+| ------- | -------- |
+| 18500003 | Deploy hqf failed. |
+| 18500004 | Switch hqf failed. |
+| 18500005 | Delete hqf failed. |
+| 18500006 | Load patch failed. |
+| 18500007 | Unload patch failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
@@ -144,6 +182,15 @@ Obtains the quick fix information of the application. This API uses an asynchron
 | -------- | -------- | -------- | -------- |
 | bundleName | string | Yes|Bundle name. |
 | callback | AsyncCallback\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | Yes| Callback used to return the quick fix information.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 18500001 | The bundle is not exist. |
+| 18500008 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -187,6 +234,15 @@ Obtains the quick fix information of the application. This API uses a promise to
 | Type| Description|
 | -------- | -------- |
 | Promise\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | Promise used to return the quick fix information.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 18500001 | The bundle is not exist. |
+| 18500008 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
     

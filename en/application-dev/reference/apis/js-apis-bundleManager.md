@@ -389,7 +389,6 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified user ID is not found.    |
 | 17700026 | The specified bundle is disabled.      |
 
 **Example**
@@ -575,7 +574,6 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | ID| Error Message                            |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **Example**
@@ -725,14 +723,6 @@ Obtains the information about all bundles based on the given bundle flags. This 
 | bundleFlags | [number](#bundleflag) | Yes  | Type of the bundle information to obtain.  |
 | callback | AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of bundle information obtained. Otherwise, **err** is an error object.|
 
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
-
-| ID| Error Message                        |
-| -------- | ---------------------------------- |
-| 17700004 | The specified user ID is not found. |
-
 **Example**
 
 ```ts
@@ -871,14 +861,6 @@ Obtains the information about all applications based on the given application fl
 | -------- | ------ | ---- | ----------------------------------------------------------- |
 | appFlags | [number](#applicationflag) | Yes  | Type of the application information to obtain.                      |
 | callback | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of application information obtained. Otherwise, **err** is an error object.|
-
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
-
-| ID| Error Message                        |
-| -------- | ---------------------------------- |
-| 17700004 | The specified user ID is not found. |
 
 **Example**
 
@@ -1038,7 +1020,6 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | -------- | -------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
 | 17700003 | The specified ability is not found.    |
-| 17700004 | The specified userId is invalid.       |
 | 17700026 | The specified bundle is disabled.      |
 | 17700029 | The specified ability is disabled.     |
 
@@ -1235,7 +1216,6 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | -------- | -------------------------------------------- |
 | 17700001 | The specified bundleName is not found.       |
 | 17700003 | The specified extensionAbility is not found. |
-| 17700004 | The specified userId is invalid.       |
 | 17700026 | The specified bundle is disabled.            |
 
 **Example**
@@ -2159,7 +2139,6 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | ID| Error Message                            |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **Example**

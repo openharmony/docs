@@ -1,6 +1,6 @@
 # @ohos.inputMethodEngine (Input Method Service)
 
-The **inputMethodEngine** module streamlines the interactions between input methods and applications. By calling APIs of this module, applications can be bound to input method services to accept text input, request the keyboard to display or hide, listen for the input method status, and much more.
+The **inputMethodEngine** module is oriented to input method applications (including system and third-party input method applications). With the APIs of this module, input method applications are able to create soft keyboard windows, insert or delete characters, select text, and listen for physical keyboard events.
 
 > **NOTE**
 >
@@ -56,7 +56,7 @@ Provides the constant values of function keys, edit boxes, and the cursor.
 
 getInputMethodAbility(): InputMethodAbility
 
-Obtains an **InputMethodEngine** instance.
+Obtains an [InputMethodAbility](#inputmethodability) instance for the input method. The input method can use the obtained instance to subscribe to a soft keyboard display/hide request event, create/destroy an input method panel, and the like.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -64,7 +64,7 @@ Obtains an **InputMethodEngine** instance.
 
 | Type                                   | Description        |
 | --------------------------------------- | ------------ |
-| [InputMethodAbility](#inputmethodability) | **InputMethodEngine** instance obtained.|
+| [InputMethodAbility](#inputmethodability) | **InputMethodAbility** instance.|
 
 **Example**
 
@@ -76,7 +76,7 @@ let InputMethodAbility = inputMethodEngine.getInputMethodAbility();
 
 getKeyboardDelegate(): KeyboardDelegate
 
-Obtains a **KeyboardDelegate** instance.
+Obtains a [KeyboardDelegate](#keyboarddelegate) instance for the input method. The input method can use the obtained instance to subscribe to a physical keyboard event, text selection change event, and more.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -84,7 +84,7 @@ Obtains a **KeyboardDelegate** instance.
 
 | Type                                 | Description            |
 | ------------------------------------- | ---------------- |
-| [KeyboardDelegate](#keyboarddelegate) | **KeyboardDelegate** instance obtained.|
+| [KeyboardDelegate](#keyboarddelegate) | **KeyboardDelegate** instance.|
 
 **Example**
 
@@ -96,7 +96,7 @@ let KeyboardDelegate = inputMethodEngine.getKeyboardDelegate();
 
 getInputMethodEngine(): InputMethodEngine
 
-Obtains an **InputMethodEngine** instance.
+Obtains an [InputMethodEngine](#inputmethodengine) instance for the input method. The input method can use the obtained instance to subscribe to a soft keyboard display/hide request event.
 
 > **NOTE**
 >
@@ -108,7 +108,7 @@ Obtains an **InputMethodEngine** instance.
 
 | Type                                   | Description        |
 | --------------------------------------- | ------------ |
-| [InputMethodEngine](#inputmethodengine-1) | **InputMethodEngine** instance obtained.|
+| [InputMethodEngine](#inputmethodengine) | **InputMethodAbility** instance.|
 
 **Example**
 
@@ -120,7 +120,7 @@ let InputMethodEngine = inputMethodEngine.getInputMethodEngine();
 
 createKeyboardDelegate(): KeyboardDelegate
 
-Obtains a **KeyboardDelegate** instance.
+Obtains a [KeyboardDelegate](#keyboarddelegate) instance for the input method. The input method can use the obtained instance to subscribe to a physical keyboard event, text selection change event, and more.
 
 > **NOTE**
 >
@@ -132,7 +132,7 @@ Obtains a **KeyboardDelegate** instance.
 
 | Type                                 | Description            |
 | ------------------------------------- | ---------------- |
-| [KeyboardDelegate](#keyboarddelegate) | **KeyboardDelegate** instance obtained.|
+| [KeyboardDelegate](#keyboarddelegate) | **KeyboardDelegate** instance.|
 
 **Example**
 
@@ -157,7 +157,7 @@ Enables listening for the input method binding event. This API uses an asynchron
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | Yes  | Listening type.<br>The value **'inputStart'** indicates the input method binding event.|
-| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclient)) => void | Yes| Callback used to return the **KeyboardController** and **TextInputClient** instances.|
+| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclientdeprecated)) => void | Yes| Callback used to return the **KeyboardController** and **TextInputClient** instances.|
 
 **Example**
 
@@ -181,7 +181,7 @@ Cancels listening for the input method binding event.
 | Name  | Type                | Mandatory| Description                    |
 | -------- | -------------------- | ---- | ------------------------ |
 | type | string                                                       | Yes  | Listening type.<br>The value **'inputStart'** indicates the input method binding event.|
-| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclient)) => void | No| Callback used to return the **KeyboardController** and **TextInputClient** instances.|
+| callback | (kbController: [KeyboardController](#keyboardcontroller), textInputClient: [TextInputClient](#textinputclientdeprecated)) => void | No| Callback used to return the **KeyboardController** and **TextInputClient** instances.|
 
 **Example**
 
@@ -195,7 +195,7 @@ inputMethodEngine.getInputMethodEngine().off('inputStart', (kbController, textIn
 
 on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
-Enables listening for a keyboard event. This API uses an asynchronous callback to return the result.
+Enables listening for a keyboard visibility event. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -221,7 +221,7 @@ inputMethodEngine.getInputMethodEngine().on('keyboardHide', () => {
 
 off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
-Disables listening for a keyboard event. This API uses an asynchronous callback to return the result.
+Disables listening for a keyboard visibility event. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 

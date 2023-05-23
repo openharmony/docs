@@ -37,8 +37,6 @@ Ability监听器
 **示例：**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
-
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
 }

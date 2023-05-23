@@ -1,9 +1,9 @@
-# 通过UIAbility刷新卡片内容
+# 通过router或call事件刷新卡片内容
 
 
 在卡片页面中可以通过**postCardAction**接口触发router事件或者call事件拉起UIAbility，然后由UIAbility刷新卡片内容，下面是这种刷新方式的简单示例。
 
-## 通过postCardAction接口触发router事件
+## 通过router事件刷新卡片内容
 
 - 在卡片页面通过注册Button的onClick点击事件回调，并在回调中调用**postCardAction**接口触发router事件至FormExtensionAbility。
   
@@ -86,10 +86,10 @@
   }
   ```
 
-## 通过postCardAction接口触发call事件
+## 通过call事件刷新卡片内容
 
 - 在使用**postCardAction**接口的call事件时，需要在FormExtensionAbility中的onAddForm生命周期回调中更新formId。
-  
+   
    ```ts
    import formBindingData from '@ohos.app.form.formBindingData';
    import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
@@ -117,7 +117,7 @@
   struct WidgetCard {
     @LocalStorageProp('detail') detail: string = 'init';
     @LocalStorageProp('formId') formId: string = '0';
-  
+
     build() {
       Column() {
         Button('拉至后台')
@@ -150,8 +150,8 @@
   import formProvider from '@ohos.app.form.formProvider';
   import formInfo from '@ohos.app.form.formInfo';
   
-  const MSG_SEND_METHOD: string = 'funA';
-  
+  const MSG_SEND_METHOD: string = 'funA'
+
   // 在收到call事件后会触发callee监听的方法
   function FunACall(data) {
     // 获取call事件中传递的所有参数
@@ -180,7 +180,7 @@
          // 监听call事件所需的方法
         this.callee.on(MSG_SEND_METHOD, FunACall);
       } catch (error) {
-        console.info(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`)
+        console.log(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`)
       }
     }
     ...

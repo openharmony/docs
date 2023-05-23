@@ -33,6 +33,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect service.                |
@@ -88,6 +89,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect service.                |
@@ -142,6 +145,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
+| 202      | Not system application to call the interface.   |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect service.                |
@@ -203,6 +208,8 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
+| 201      | Permission denied.                        |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect service.                |
@@ -256,6 +263,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -298,6 +306,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -334,6 +343,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -369,6 +379,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -409,6 +420,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -448,6 +460,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -496,6 +511,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -535,6 +553,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -575,6 +594,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -614,6 +634,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -666,6 +689,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -709,6 +735,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -756,6 +783,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -791,6 +819,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -831,6 +860,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -866,6 +896,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -907,6 +938,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -942,6 +974,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -975,6 +1008,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1015,6 +1049,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1063,6 +1100,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1106,6 +1146,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1159,6 +1202,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1201,6 +1247,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1251,6 +1300,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1292,6 +1344,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1340,6 +1395,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1383,6 +1441,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1436,6 +1497,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1452,9 +1516,7 @@ Notification.isBadgeDisplayed(bundle).then((data) => {
 });
 ```
 
-
-
-## Notification.setSlotByBundle
+## notificationManager.setSlotByBundle
 
 setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
@@ -1480,6 +1542,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1533,6 +1598,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1579,6 +1647,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1632,6 +1703,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1675,6 +1749,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1728,6 +1805,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -1771,6 +1851,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1815,6 +1898,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1849,6 +1935,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1889,6 +1976,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1923,6 +2011,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1963,6 +2052,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -1998,6 +2088,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2040,6 +2131,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2081,6 +2173,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -2130,6 +2225,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -2172,6 +2270,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2222,6 +2323,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2266,6 +2370,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2320,6 +2427,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2366,6 +2476,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2410,6 +2523,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2448,6 +2564,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2501,6 +2620,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2541,6 +2663,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2585,6 +2710,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2620,6 +2748,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2668,6 +2797,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2705,6 +2835,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2739,6 +2870,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2778,6 +2910,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2825,6 +2960,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2861,6 +2999,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2902,6 +3041,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 401      | The parameter check failed.         |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -2933,7 +3073,7 @@ Sets whether a specified application supports distributed notifications. This AP
 
 | Name  | Type                    | Mandatory| Description                      |
 | -------- | ------------------------ | ---- | -------------------------- |
-| bundle   | [BundleOption](#bundleoption)             | Yes  | Bundle information of the application.                  |
+| bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)             | Yes  | Bundle information of the application.                  |
 | enable   | boolean                  | Yes  | Whether the application supports distributed notifications.                      |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
@@ -2943,6 +3083,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -2996,6 +3139,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3041,6 +3187,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3097,6 +3246,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3140,6 +3292,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -3184,6 +3339,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -3224,6 +3382,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect service.                |
@@ -3290,6 +3451,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                           |
 | 1600002  | Marshalling or unmarshalling error.       |
 | 1600003  | Failed to connect service.                |
@@ -3352,6 +3516,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -3405,6 +3572,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -3451,6 +3621,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3501,6 +3674,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3544,6 +3720,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3598,6 +3777,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
@@ -3640,6 +3822,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -3694,6 +3879,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -3738,6 +3926,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
@@ -3790,6 +3981,9 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
+| 201      | Permission denied.                        |
+| 202      | Not system application to call the interface. |
+| 401      | The parameter check failed.               |
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |

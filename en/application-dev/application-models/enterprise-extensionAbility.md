@@ -2,12 +2,11 @@
 
 ## Introduction to EnterpriseAdminExtensionAbility
 
-EnterpriseAdminExtensionAbility is a mandatory component for Mobile Device Management (MDM) applications. When developing MDM applications for enterprises, you need to inherit EnterpriseAdminExtensionAbility and implement MDM service logic in the EnterpriseAdminExtensionAbility instance. EnterpriseAdminExtensionAbility implements notifications of system management status changes and defines the callbacks when a device administrator application is enabled or disabled or an application is installed or uninstalled.
+EnterpriseAdminExtensionAbility is a mandatory component for Mobile Device Management (MDM) applications. When developing MDM applications for enterprises, you need to inherit EnterpriseAdminExtensionAbility and implement MDM service logic in the EnterpriseAdminExtensionAbility instance. EnterpriseAdminExtensionAbility implements notifications of system management status changes and defines the callbacks for when a device administrator application is enabled or disabled or an application is installed or uninstalled.
 
 ## Constraints
 
-  EnterpriseAdminExtensionAbility is applicable only to enterprise administrator applications.
-  
+EnterpriseAdminExtensionAbility is applicable only to enterprise administrator applications.
 
 ## Observing Activation/Deactivation of a Device Administrator Application and Installation/Removal of an Application
 
@@ -24,59 +23,59 @@ EnterpriseAdminExtensionAbility is a mandatory component for Mobile Device Manag
 ### Available APIs
 
 | Class                           | API                                 | Description                        |
-| :------------------------------ | ----------------------------------------- | ---------------------------- |
+| ------------------------------ | ----------------------------------------- | ---------------------------- |
+| EnterpriseAdminExtensionAbility | onAdminEnabled(): void                    | Called when a device administrator application is activated.  |
 | EnterpriseAdminExtensionAbility | onAdminDisabled(): void                   | Called when a device administrator application is deactivated.|
 | EnterpriseAdminExtensionAbility | onBundleAdded(bundleName: string): void   | Called when an application is installed on a device.            |
-| EnterpriseAdminExtensionAbility | onAdminEnabled(): void                    | Called when a device administrator application is activated.  |
 | EnterpriseAdminExtensionAbility | onBundleRemoved(bundleName: string): void | Called when an application is removed from a device.            |
 
 ### How to Develop
 
 To implement EnterpriseAdminExtensionAbility, you need to activate the device administrator application and create **ExtensionAbility** in the code directory of the device administrator application. The procedure is as follows:
 
-1. In the **ets** directory of the **Module** project, right-click and choose **New > Directory** to create a directory named **EnterpriseExtAbility**.
+1. In the **ets** directory of the target module, right-click and choose **New > Directory** to create a directory named **EnterpriseExtAbility**.
 2. Right-click the **EnterpriseExtAbility** directory, and choose **New > TypeScript File** to create a file named **EnterpriseExtAbility.ts**.
 3. Open the **EnterpriseExtAbility.ts** file and import the **EnterpriseAdminExtensionAbility** module. Inherit the **EnterpriseAdminExtensionAbility** module to the custom class and add application notification callbacks, such as **onAdminEnabled()** and **onAdminDisabled()**. When the device administrator application is activated or deactivated, the device administrator can receive notifications.
 
-```ts
-import EnterpriseAdminExtensionAbility from '@ohos.enterprise.EnterpriseAdminExtensionAbility';
+   ```ts
+   import EnterpriseAdminExtensionAbility from '@ohos.enterprise.EnterpriseAdminExtensionAbility';
 
-export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
+   export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
 
-    onAdminEnabled() {
-        console.info("onAdminEnabled");
-    }
+       onAdminEnabled() {
+           console.info("onAdminEnabled");
+       }
 
-    onAdminDisabled() {
-        console.info("onAdminDisabled");
-    }
-    
-    onBundleAdded(bundleName: string) {
-        console.info("EnterpriseAdminAbility onBundleAdded bundleName:" + bundleName)
-    }
+       onAdminDisabled() {
+           console.info("onAdminDisabled");
+       }
+       
+       onBundleAdded(bundleName: string) {
+           console.info("EnterpriseAdminAbility onBundleAdded bundleName:" + bundleName)
+       }
 
-    onBundleRemoved(bundleName: string) {
-        console.info("EnterpriseAdminAbility onBundleRemoved bundleName" + bundleName)
-    }
-};
-```
+       onBundleRemoved(bundleName: string) {
+           console.info("EnterpriseAdminAbility onBundleRemoved bundleName" + bundleName)
+       }
+   };
+   ```
 
-​	4. Register **ServiceExtensionAbility** in the [**module.json5**](../quick-start/module-configuration-file.md) file corresponding to the project module. Set **type** to **enterpriseAdmin** and **srcEntrance** to the path of the ExtensionAbility code.
+4. Register **ServiceExtensionAbility** in the [**module.json5**](../quick-start/module-configuration-file.md) file corresponding to the project module. Set **type** to **enterpriseAdmin** and **srcEntry** to the path of the ExtensionAbility code.
 
-```ts
-"extensionAbilities": [
-      {
-        "name": "ohos.samples.enterprise_admin_ext_ability",
-        "type": "enterpriseAdmin",
-        "visible": true,
-        "srcEntrance": "./ets/enterpriseextability/EnterpriseAdminAbility.ts"
-      }
-    ]
-```
+   ```ts
+   "extensionAbilities": [
+         {
+           "name": "ohos.samples.enterprise_admin_ext_ability",
+           "type": "enterpriseAdmin",
+           "exported": true,
+           "srcEntry": "./ets/enterpriseextability/EnterpriseAdminAbility.ts"
+         }
+       ]
+   ```
 
 ## Example
 
-Use **subscribeManagedEvent()** and **unsubscribeManagedEvent()** in the @ohos.enterprise.adminManager module to subscribe to application installation and removal events. When an application is installed or removed, the MDM application is notified of the event. Then, the MDM application reports the event in the callback to notify the enterprise administrator.
+Use **subscribeManagedEvent** in the **@ohos.enterprise.adminManager** module to subscribe to application installation and removal events. When an application is installed or removed, the MDM application is notified of the event. Then, the MDM application reports the event in the callback to notify the enterprise administrator. To unsubscribe from events, use **unsubscribeManagedEvent**.
 
 ```ts
   @State managedEvents: Array<adminManager.ManagedEvent> = [0,1]
@@ -105,3 +104,4 @@ Use **subscribeManagedEvent()** and **unsubscribeManagedEvent()** in the @ohos.e
     })
   }
 ```
+

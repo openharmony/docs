@@ -26,8 +26,6 @@
         - [HAR](quick-start/har-package.md)
         - HSP
           - [应用内HSP开发指导](quick-start/in-app-hsp.md)
-      - 原子化服务
-        - [原子化服务开发指导](quick-start/atomicService.md)
       - 应用程序包快速修复
         - [快速修复概述](quick-start/quickfix-principles.md)
         - [快速修复调试指导](quick-start/quickfix-debug.md)
@@ -141,8 +139,8 @@
           - [流转概述](application-models/inter-device-interaction-hop-overview.md)
           - [跨端迁移（仅对系统应用开放）](application-models/hop-cross-device-migration.md)
           - [多端协同（仅对系统应用开放）](application-models/hop-multi-device-collaboration.md)
-      - 进程间通信
-        - [进程模型](application-models/process-model-stage.md)
+      - 了解进程模型
+        - [进程模型概述](application-models/process-model-stage.md)
         - 公共事件
           - [公共事件简介](application-models/common-event-overview.md)
           - 公共事件订阅
@@ -152,8 +150,8 @@
             - [取消动态订阅公共事件](application-models/common-event-unsubscription.md)
           - [公共事件发布](application-models/common-event-publish.md)
         - [后台服务](application-models/background-services.md)
-      - 线程间通信
-        - [线程模型](application-models/thread-model-stage.md)
+      - 了解线程模型
+        - [线程模型概述](application-models/thread-model-stage.md)
         - [使用Emitter进行线程间通信](application-models/itc-with-emitter.md)
         - [使用Worker进行线程间通信](application-models/itc-with-worker.md)
       - 任务管理
@@ -196,12 +194,12 @@
         - [FA模型的Context](application-models/application-context-fa.md)
         - [信息传递载体Want](application-models/want-fa.md)
         - [组件启动规则（FA模型）](application-models/component-startup-rules-fa.md)
-      - 进程间通信
-        - [进程模型](application-models/process-model-fa.md)
+      - 了解进程模型
+        - [进程模型概述](application-models/process-model-fa.md)
         - [公共事件](application-models/common-event-fa.md)
         - [后台服务](application-models/rpc.md)
-      - 线程间通信
-        - [线程模型](application-models/thread-model-fa.md)
+      - 了解线程模型
+        - [线程模型概述](application-models/thread-model-fa.md)
         - [线程间通信](application-models/itc-fa-overview.md)
       - [任务管理](application-models/mission-management-fa.md)
     - FA模型与Stage模型应用组件互通指导
@@ -659,6 +657,7 @@
     - [cem工具](tools/cem-tool.md)
     - [anm工具](tools/anm-tool.md)
 - 示例教程
+  - [开发案例](https://gitee.com/openharmony/docs/blob/master/zh-cn/third-party-cases/Readme-CN.md)
   - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-3.2-Release/README_zh.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
@@ -789,6 +788,7 @@
       - [Swiper](reference/arkui-ts/ts-container-swiper.md)
       - [Tabs](reference/arkui-ts/ts-container-tabs.md)
       - [TabContent](reference/arkui-ts/ts-container-tabcontent.md)
+      - [WaterFlow](reference/arkui-ts/ts-container-waterflow.md)
     - 媒体组件
       - [Video](reference/arkui-ts/ts-media-components-video.md)
     - 绘制组件

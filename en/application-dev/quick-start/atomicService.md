@@ -77,7 +77,7 @@ Pre-loading is triggered after the first frame of the newly accessed module is r
   "module": {
     "name": "entry",
     "type": "entry",
-    "srcEnty": "./ets/Application/MyAbilityStage.ts",
+    "srcEntry": "./ets/Application/MyAbilityStage.ts",
     "description": "$string:entry_desc",
     "mainElement": "MainAbility",
     "deviceTypes": [
@@ -97,7 +97,7 @@ Pre-loading is triggered after the first frame of the newly accessed module is r
     "abilities": [
       {
         "name": "MainAbility",
-        "srcEnty": "./ets/MainAbility/MainAbility.ts",
+        "srcEntry": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:MainAbility_desc",
         "icon": "$media:icon",
         "label": "$string:MainAbility_label",
@@ -169,7 +169,7 @@ import router from '@ohos.router';
 @Entry
 @Component
 struct Index {
-    @State message: string = 'Hello World'
+    @State message: string = 'Hello World';
 
     build() {
     Row() {
@@ -209,10 +209,10 @@ struct Index {
 ```
 
 The input parameter **url** of the **router.pushUrl** API is as follows:
-```ets
+```ts
 '@bundle:com.example.hmservice/library/ets/pages/menu'
 ```
 The **url** content template is as follows:
-```ets
+```ts
 '@bundle:bundle name/module name/path/page file name (without the extension .ets)'
 ```

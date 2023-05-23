@@ -32,7 +32,7 @@ registerThermalLevelCallback(callback: Callback&lt;ThermalLevel&gt;): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4800101 | 连接服务失败。 |
+| 4800101 | If connecting to the service failed. |
 
 **示例：**
 
@@ -67,7 +67,7 @@ unregisterThermalLevelCallback(callback?: Callback\<void>): void
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4800101 | 连接服务失败。 |
+| 4800101 | If connecting to the service failed. |
 
 **示例：**
 
@@ -102,7 +102,7 @@ getLevel(): ThermalLevel
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4800101 | 连接服务失败。 |
+| 4800101 | If connecting to the service failed. |
 
 **示例：**
 

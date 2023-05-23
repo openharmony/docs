@@ -196,9 +196,8 @@ The following samples written in ArkTS are added.
 
 | Subsystem | Name| Introduction|
 | -------- | -------- | -------- |
-| Common event and notification subsystem| [Emitter: Prcessing In-Process Events](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/Notification/Emitter) | This sample shows the in-process event notification. After a user selects an offering and submits an order, the selected offering is displayed in the order list.|
-| Resource scheduler subsystem| [AlarmClock: Agent-Powered Scheduled Reminder](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/Notification/AlarmClock)| This sample uses agent-powered scheduled reminder to create an alarm clock. Agent-powered scheduled reminder ensures that the timing and pop-up notification functions will be performed by the system service agent in the background when the application is frozen or exits. |
-| Window manager| [Window](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/Graphics/Window)| This sample shows how to create a window and display an app in a floating window or split-screen mode.|
+| Common event and notification subsystem| [CustomEmitter: Prcessing In-Process Events](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/Notification/CustomEmitter) | This sample shows the in-process event notification. After a user selects an offering and submits an order, the selected offering is displayed in the order list.|
+| Window manager| [WindowManage](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/WindowManagement/WindowManage)| This sample shows how to create a window and display an app in a floating window or split-screen mode.|
 
 For more information, visit [Samples](https://gitee.com/openharmony/applications_app_samples).
 

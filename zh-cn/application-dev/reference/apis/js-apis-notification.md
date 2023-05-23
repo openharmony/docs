@@ -588,7 +588,7 @@ Notification.getSlot(slotType).then((data) => {
 
 ## Notification.getSlots
 
-getSlots(callback: AsyncCallback<Array\<NotificationSlot\>>): void
+getSlots(callback: AsyncCallback\<Array\<NotificationSlot>>): void
 
 获取此应用程序的所有通知通道（callback形式）。
 
@@ -598,7 +598,7 @@ getSlots(callback: AsyncCallback<Array\<NotificationSlot\>>): void
 
 | 参数名     | 类型                              | 必填 | 说明                 |
 | -------- | --------------------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<Array\<[NotificationSlot](#notificationslot)\>\> | 是   | 以callback形式返回获取此应用程序的所有通知通道的结果。 |
+| callback | AsyncCallback\<Array\<[NotificationSlot](#notificationslot)>> | 是   | 以callback形式返回获取此应用程序的所有通知通道的结果。 |
 
 **示例：**
 
@@ -1372,7 +1372,7 @@ Notification.setSlotByBundle(bundle, notificationSlot).then(() => {
 
 ## Notification.getSlotsByBundle
 
-getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array\<NotificationSlot\>>): void
+getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<NotificationSlot>>): void
 
 获取指定应用的所有通知通道（Callback形式）。
 
@@ -1387,7 +1387,7 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array\<Notificati
 | 参数名     | 类型                                     | 必填 | 说明                 |
 | -------- | ---------------------------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](#bundleoption)                             | 是   | 指定应用的包信息。           |
-| callback | AsyncCallback<Array\<[NotificationSlot](#notificationslot)\>> | 是   | 获取通知通道回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationSlot](#notificationslot)>> | 是   | 获取通知通道回调函数。 |
 
 **示例：**
 
@@ -1409,7 +1409,7 @@ Notification.getSlotsByBundle(bundle, getSlotsByBundleCallback);
 
 ## Notification.getSlotsByBundle
 
-getSlotsByBundle(bundle: BundleOption): Promise<Array\<NotificationSlot\>>
+getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 
 获取指定应用的所有通知通道（Promise形式）。
 
@@ -1429,7 +1429,7 @@ getSlotsByBundle(bundle: BundleOption): Promise<Array\<NotificationSlot\>>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise<Array\<[NotificationSlot](#notificationslot)\>> | 以Promise形式返回获取指定应用的通知通道。 |
+| Promise\<Array\<[NotificationSlot](#notificationslot)>> | 以Promise形式返回获取指定应用的通知通道。 |
 
 **示例：**
 
@@ -1831,7 +1831,7 @@ Notification.removeAll(userId).then(() => {
 
 ## Notification.getAllActiveNotifications
 
-getAllActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>): void
+getAllActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): void
 
 获取当前未删除的所有通知（Callback形式）。
 
@@ -1845,7 +1845,7 @@ getAllActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>)
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | -------- | ------------------------------------------------------------ | ---- | -------------------- |
-| callback | AsyncCallback<Array\<[NotificationRequest](#notificationrequest)\>> | 是   | 获取活动通知回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationRequest](#notificationrequest)>> | 是   | 获取活动通知回调函数。 |
 
 **示例：**
 
@@ -1865,7 +1865,7 @@ Notification.getAllActiveNotifications(getAllActiveNotificationsCallback);
 
 ## Notification.getAllActiveNotifications
 
-getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](#notificationrequest)\>\>
+getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](#notificationrequest)>>
 
 获取当前未删除的所有通知（Promise形式）。
 
@@ -1879,7 +1879,7 @@ getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](#notification
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationRequest](#notificationrequest)\>\> | 以Promise形式返回获取活动通知。 |
+| Promise\<Array\<[NotificationRequest](#notificationrequest)>> | 以Promise形式返回获取活动通知。 |
 
 **示例：**
 
@@ -2913,476 +2913,6 @@ Notification.getDeviceRemindType().then((data) => {
 });
 ```
 
-
-## Notification.publishAsBundle<sup>9+</sup>
-
-publishAsBundle(request: NotificationRequest, representativeBundle: string, userId: number, callback: AsyncCallback\<void\>): void
-
-发布代理通知（callback形式）。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名               | 类型                                        | 必填 | 说明                                     |
-| -------------------- | ------------------------------------------- | ---- | ---------------------------------------- |
-| request              | [NotificationRequest](#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
-| representativeBundle | string                                      | 是   | 被代理应用的包名。                       |
-| userId               | number                                      | 是   | 用户ID。                                 |
-| callback             | AsyncCallback                               | 是   | 发布代理通知的回调方法。                 |
-
-**示例：**
-
-```js
-// publishAsBundle回调
-function callback(err) {
-    if (err.code) {
-        console.info("publishAsBundle failed " + JSON.stringify(err));
-    } else {
-        console.info("publishAsBundle success");
-    }
-}
-// 被代理应用的包名
-let representativeBundle = "com.example.demo";
-// 用户ID
-let userId = 100;
-// NotificationRequest对象
-let request = {
-    id: 1,
-    content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
-        normal: {
-            title: "test_title",
-            text: "test_text",
-            additionalText: "test_additionalText"
-        }
-    }
-};
-
-Notification.publishAsBundle(request, representativeBundle, userId, callback);
-```
-
-## Notification.publishAsBundle<sup>9+</sup>
-
-publishAsBundle(request: NotificationRequest, representativeBundle: string, userId: number): Promise\<void\>
-
-发布代理通知（Promise形式）。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-
-| 参数名               | 类型                                        | 必填 | 说明                                          |
-| -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
-| request              | [NotificationRequest](#notificationrequest) | 是   | 用于设置要发布通知的内容和相关配置信息。 |
-| representativeBundle | string                                      | 是   | 被代理应用的包名。                            |
-| userId               | number                                      | 是   | 用户ID。                            |
-
-**示例：**
-
-```js
-// 被代理应用的包名
-let representativeBundle = "com.example.demo";
-// 用户ID
-let userId = 100;
-// NotificationRequest对象
-let request = {
-    id: 1,
-    content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
-        normal: {
-            title: "test_title",
-            text: "test_text",
-            additionalText: "test_additionalText"
-        }
-    }
-};
-
-Notification.publishAsBundle(request, representativeBundle, userId).then(() => {
-	console.info("publishAsBundle success");
-});
-```
-
-## Notification.cancelAsBundle<sup>9+</sup>
-
-cancelAsBundle(id: number, representativeBundle: string, userId: number, callback: AsyncCallback\<void\>): void
-
-取消代理通知（callback形式）。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名               | 类型          | 必填 | 说明                     |
-| -------------------- | ------------- | ---- | ------------------------ |
-| id                   | number        | 是   | 通知ID。                 |
-| representativeBundle | string        | 是   | 被代理应用的包名。       |
-| userId               | number        | 是   | 用户ID。       |
-| callback             | AsyncCallback | 是   | 取消代理通知的回调方法。 |
-
-**示例：**
-
-```js
-// cancelAsBundle
-function cancelAsBundleCallback(err) {
-    if (err.code) {
-        console.info("cancelAsBundle failed " + JSON.stringify(err));
-    } else {
-        console.info("cancelAsBundle success");
-    }
-}
-// 被代理应用的包名
-let representativeBundle = "com.example.demo";
-// 用户ID
-let userId = 100;
-
-Notification.cancelAsBundle(0, representativeBundle, userId, cancelAsBundleCallback);
-```
-
-## Notification.cancelAsBundle<sup>9+</sup>
-
-cancelAsBundle(id: number, representativeBundle: string, userId: number): Promise\<void\>
-
-取消代理通知（Promise形式）。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER，ohos.permission.NOTIFICATION_AGENT_CONTROLLER
-
-**系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**参数：**
-
-| 参数名               | 类型   | 必填 | 说明               |
-| -------------------- | ------ | ---- | ------------------ |
-| id                   | number | 是   | 通知ID。           |
-| representativeBundle | string | 是   | 被代理应用的包名。 |
-| userId               | number | 是   | 用户ID。 |
-
-**示例：**
-
-```js
-// 被代理应用的包名
-let representativeBundle = "com.example.demo";
-// 用户ID
-let userId = 100;
-
-Notification.cancelAsBundle(0, representativeBundle, userId).then(() => {
-	console.info("cancelAsBundle success");
-});
-```
-
-## Notification.enableNotificationSlot <sup>9+</sup>
-
-enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback\<void>): void
-
-设置指定应用的指定渠道类型的使能状态（Callback形式）。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
-
-**参数：**
-
-| 参数名   | 类型                          | 必填 | 说明                   |
-| -------- | ----------------------------- | ---- | ---------------------- |
-| bundle   | [BundleOption](#bundleoption) | 是   | 应用的包信息。           |
-| type     | [SlotType](#slottype)         | 是   | 指定渠道类型。         |
-| enable   | boolean                       | 是   | 使能状态。             |
-| callback | AsyncCallback\<void\>         | 是   | 设置渠道使能回调函数。 |
-
-**示例：**
-
-```js
-// enableNotificationSlot
-function enableSlotCallback(err) {
-    if (err.code) {
-        console.info("enableNotificationSlot failed " + JSON.stringify(err));
-    } else {
-        console.info("enableNotificationSlot success");
-    }
-};
-
-Notification.enableNotificationSlot(
-    { bundle: "ohos.samples.notification", },
-    Notification.SlotType.SOCIAL_COMMUNICATION,
-    true,
-    enableSlotCallback);
-```
-
-## Notification.enableNotificationSlot <sup>9+</sup>
-
-enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean): Promise\<void> 
-
-设置指定应用的指定渠道类型的使能状态（Promise形式）。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
-
-**参数：**
-
-| 参数名 | 类型                          | 必填 | 说明           |
-| ------ | ----------------------------- | ---- | -------------- |
-| bundle | [BundleOption](#bundleoption) | 是   | 应用的包信息。   |
-| type   | [SlotType](#slottype)         | 是   | 渠道类型。 |
-| enable | boolean                       | 是   | 使能状态。     |
-
-**示例：**
-
-```js
-// enableNotificationSlot
-Notification.enableNotificationSlot({ bundle: "ohos.samples.notification", },
-    Notification.SlotType.SOCIAL_COMMUNICATION,true).then(() => {
-    console.info("enableNotificationSlot success");
-});
-```
-
-## Notification.isNotificationSlotEnabled <sup>9+</sup>
-
-isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncCallback\<boolean\>): void
-
-获取指定应用的指定渠道类型的使能状态（Callback形式）。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
-
-**参数：**
-
-| 参数名   | 类型                          | 必填 | 说明                   |
-| -------- | ----------------------------- | ---- | ---------------------- |
-| bundle   | [BundleOption](#bundleoption) | 是   | 应用的包信息。           |
-| type     | [SlotType](#slottype)         | 是   | 渠道类型。         |
-| callback | AsyncCallback\<boolean\>         | 是   | 获取渠道使能状态回调函数。 |
-
-**示例：**
-
-```js
-// isNotificationSlotEnabled
-function getEnableSlotCallback(err, data) {
-    if (err.code) {
-        console.info("isNotificationSlotEnabled failed " + JSON.stringify(err));
-    } else {
-        console.info("isNotificationSlotEnabled success");
-    }
-};
-
-Notification.isNotificationSlotEnabled(
-    { bundle: "ohos.samples.notification", },
-    Notification.SlotType.SOCIAL_COMMUNICATION,
-    getEnableSlotCallback);
-```
-
-## Notification.isNotificationSlotEnabled <sup>9+</sup>
-
-isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolean\>  
-
-获取指定应用的指定渠道类型的使能状态（Promise形式）。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
-
-**参数：**
-
-| 参数名 | 类型                          | 必填 | 说明           |
-| ------ | ----------------------------- | ---- | -------------- |
-| bundle | [BundleOption](#bundleoption) | 是   | 应用的包信息。   |
-| type   | [SlotType](#slottype)         | 是   | 渠道类型。 |
-
-**返回值：**
-
-| 类型               | 说明                            |
-| ------------------ | ------------------------------- |
-| Promise\<boolean\> | 以Promise形式返回渠道使能状态。 |
-
-**示例：**
-
-```js
-// isNotificationSlotEnabled
-Notification.isNotificationSlotEnabled({ bundle: "ohos.samples.notification", },
-    Notification.SlotType.SOCIAL_COMMUNICATION).then((data) => {
-    console.info("isNotificationSlotEnabled success, data: " + JSON.stringify(data));
-});
-```
-
-
-## Notification.setSyncNotificationEnabledWithoutApp<sup>9+</sup>
-
-setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: AsyncCallback\<void\>): void
-
-设置是否将通知同步到未安装应用程序的设备(callback形式)。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
-
-**参数：** 
-
-| 参数名 | 类型                          | 必填 | 说明           |
-| ------ | ----------------------------- | ---- | -------------- |
-| userId | number | 是   | 用户ID。   |
-| enable | boolean | 是   | 是否启用。   |
-| callback | AsyncCallback\<void\>    | 是   | 设置是否将通知同步到未安装应用程序的设备的回调函数。 |
-
-**示例：**
-
-```js
-let userId = 100;
-let enable = true;
-
-function callback(err) {
-    if (err.code) {
-        console.info("setSyncNotificationEnabledWithoutApp failed " + JSON.stringify(err));
-    } else {
-        console.info("setSyncNotificationEnabledWithoutApp success");
-    }
-}
-
-Notification.setSyncNotificationEnabledWithoutApp(userId, enable, callback);
-```
-
-
-## Notification.setSyncNotificationEnabledWithoutApp<sup>9+</sup>
-
-setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<void>
-
-设置是否将通知同步到未安装应用程序的设备(Promise形式)。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
-
-**参数：**
-
-| 参数名 | 类型                          | 必填 | 说明           |
-| ------ | ----------------------------- | ---- | -------------- |
-| userId | number | 是   | 用户ID。   |
-| enable | boolean | 是   | 是否启用。   |
-
-**返回值：**
-
-| 类型                                                        | 说明                                                         |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<void\> | 以Promise形式返回设置是否将通知同步到未安装应用程序的设备的结果。 |
-
-**示例：**
-
-```js
-let userId = 100;
-let enable = true;
-
-Notification.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
-    console.info('setSyncNotificationEnabledWithoutApp success');
-}).catch((err) => {
-    console.info('setSyncNotificationEnabledWithoutApp, err:' + JSON.stringify(err));
-});
-```
-
-
-## Notification.getSyncNotificationEnabledWithoutApp<sup>9+</sup>
-
-getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<boolean>): void
-
-获取同步通知到未安装应用程序设备的开关是否开启(callback形式)。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
-
-**参数：**
-
-| 参数名 | 类型                          | 必填 | 说明           |
-| ------ | ----------------------------- | ---- | -------------- |
-| userId | number | 是   | 用户ID。   |
-| callback | AsyncCallback\<boolean\>         | 是   | 获取同步通知到未安装应用程序设备的开关是否开启的回调函数。 |
-
-**示例：**
-
-```js
-let userId = 100;
-
-function getSyncNotificationEnabledWithoutAppCallback(err, data) {
-    if (err) {
-        console.info('getSyncNotificationEnabledWithoutAppCallback, err:' + err);
-    } else {
-        console.info('getSyncNotificationEnabledWithoutAppCallback, data:' + data);
-    }
-}
-
-Notification.getSyncNotificationEnabledWithoutApp(userId, getSyncNotificationEnabledWithoutAppCallback);
-```
-
-
-## Notification.getSyncNotificationEnabledWithoutApp<sup>9+</sup>
-
-getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
-
-获取同步通知到未安装应用程序设备的开关是否开启(Promise形式)。
-
-**系统能力**：SystemCapability.Notification.Notification
-
-**系统API**：此接口为系统接口，三方应用不支持调用。
-
-**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER
-
-**参数：**
-
-| 参数名 | 类型                          | 必填 | 说明           |
-| ------ | ----------------------------- | ---- | -------------- |
-| userId | number | 是   | 用户ID。   |
-
-**返回值：**
-
-| 类型               | 说明                                                         |
-| ------------------ | ------------------------------------------------------------ |
-| Promise\<boolean\> | 以Promise形式返回获取同步通知到未安装应用程序设备的开关是否开启的结果。 |
-
-**示例：**
-
-```js
-let userId = 100;
-Notification.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
-    console.info('getSyncNotificationEnabledWithoutApp, data:' + data);
-}).catch((err) => {
-    console.info('getSyncNotificationEnabledWithoutApp, err:' + err);
-});
-```
-
-
-
 ## NotificationSubscriber
 
 作为订阅通知接口[subscribe](#notificationsubscribe)的入参，提供订阅者接收到新通知、取消通知等的回调方法。
@@ -4121,5 +3651,5 @@ Notification.enableNotification(bundle, false).then(() => {
 
 | 名称                 | 值  | 说明                  |
 | -------------------- | --- | -------------------- |
-| CLICK_REASON_REMOVE  | 1   | 点击通知后删除通知。    |
-| CANCEL_REASON_REMOVE | 2   | 用户删除通知。         |
+| CLICK_REASON_REMOVE<sup>9+</sup>  | 1   | 点击通知后删除通知。    |
+| CANCEL_REASON_REMOVE<sup>9+</sup> | 2   | 用户删除通知。         |

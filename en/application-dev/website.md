@@ -26,8 +26,6 @@
         - [HAR](quick-start/har-package.md)
         - HSP
           - [In-Application HSP Development](quick-start/in-app-hsp.md)
-      - Atomic Service
-        - [Atomic Service Development](quick-start/atomicService.md)
       - Quick Fix
         - [Quick Fix Overview](quick-start/quickfix-principles.md)
         - [CLI-based Quick Fix Development](quick-start/quickfix-debug.md)
@@ -737,6 +735,7 @@
       - [Swiper](reference/arkui-ts/ts-container-swiper.md)
       - [Tabs](reference/arkui-ts/ts-container-tabs.md)
       - [TabContent](reference/arkui-ts/ts-container-tabcontent.md)
+      - [WaterFlow](reference/arkui-ts/ts-container-waterflow.md)
     - Media Component
       - [Video](reference/arkui-ts/ts-media-components-video.md)
     - Drawing Components
@@ -1533,12 +1532,20 @@
 - FAQs
   - [Full SDK Compilation Guide](quick-start/full-sdk-compile-guide.md)
   - [Guide to Switching to Full SDK](quick-start/full-sdk-switch-guide.md)
-  - [Ability Framework Development](faqs/faqs-ability.md)
-  - [Resource Management Development](faqs/faqs-globalization.md)
+  - [Ability Development](faqs/faqs-ability.md)
+  - [Bundle Management Development](faqs/faqs-bundle-management.md)
+  - [Resource Manager Development](faqs/faqs-globalization.md)
   - [Common Event and Notification Development](faqs/faqs-event-notification.md)
-  - [Graphics and Image Development](faqs/faqs-graphics.md)
+  - [Graphics Development](faqs/faqs-graphics.md)
+  - [Window Management Development](faqs/faqs-window-manager.md)
+  - [Multimedia Development](faqs/faqs-multimedia.md)
+  - [Basic Security Capability Development](faqs/faqs-security.md)
+  - [Ability Access Control Development](faqs/faqs-ability-access-control.md)
+  - [Data Management Development](faqs/faqs-distributed-data-management.md)
   - [File Management Development](faqs/faqs-file-management.md)
   - [Network Management Development](faqs/faqs-network-management.md)
   - [DFX Development](faqs/faqs-dfx.md)
+  - [Pan-Sensor Development](faqs/faqs-sensor.md)
   - [Startup Development](faqs/faqs-startup.md)
+  - [Distributed Device Development](faqs/faqs-distributed-device-profile.md)
   - [Usage of Third- and Fourth-Party Libraries](faqs/faqs-third-fourth-party-library.md)

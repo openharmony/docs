@@ -61,7 +61,7 @@ Scroll(scroller?: Scroller)
 
 ## Scroller
 
-可滚动容器组件的控制器，可以将此组件绑定至容器组件，然后通过它控制容器组件的滚动，同一个控制器不可以控制多个容器组件，目前支持绑定到List、Scroll、ScrollBar、Grid上。
+可滚动容器组件的控制器，可以将此组件绑定至容器组件，然后通过它控制容器组件的滚动，同一个控制器不可以控制多个容器组件，目前支持绑定到List、Scroll、ScrollBar、Grid、WaterFlow上。
 
 
 ### 导入对象
@@ -139,7 +139,7 @@ scrollToIndex(value: number): void
 
 >  **说明：**
 >
->  仅支持Grid、List组件。
+>  仅支持Grid、List、WaterFlow组件。
 
 **参数：**
 

@@ -8,16 +8,19 @@ The following describes how the mission list manager manages the UIAbility insta
 - **singleton**: Only one UIAbility instance exists for an application.
   
   **Figure 1** Missions and singleton mode
+  
   ![mission-and-singleton](figures/mission-and-singleton.png)
   
-- **standard**: Each time **startAbility()** is called, a UIAbility instance is created in the application process.
+- **multiton**: Each time **startAbility()** is called, a **UIAbility** instance is created in the application process.
   
-  **Figure 2** Missions and standard mode
-  ![mission-and-standard](figures/mission-and-standard.png)
+  **Figure 2** Missions and multiton mode
   
-- **specified**: The ([onAcceptWant](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)) method of [AbilityStage](abilitystage.md) determines whether to create an instance.
+  ![mission-and-multiton](figures/mission-and-standard.png)
+  
+- **specified**: The ([onAcceptWant()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant)) method of [AbilityStage](abilitystage.md) determines whether to create an instance.
   
   **Figure 3** Missions and specified mode
+  
   ![mission-and-specified](figures/mission-and-specified.png)
 
 
