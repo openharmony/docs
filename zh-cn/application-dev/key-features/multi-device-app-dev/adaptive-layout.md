@@ -479,7 +479,7 @@ struct ScaleCapabilitySample {
 @Component
 struct ExtensionCapabilitySample1 {
   @State rate: number = 0.60
-  const appList: number [] = [0, 1, 2, 3, 4, 5, 6, 7]
+  readonly appList: number [] = [0, 1, 2, 3, 4, 5, 6, 7]
 
   // 底部滑块，可以通过拖拽滑块改变容器尺寸
   @Builder slider() {
