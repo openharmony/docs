@@ -285,7 +285,7 @@ export default class EntryAbility extends UIAbility {
 
    > **说明：**
    >
-   > 虽然悬浮窗具备始终在前台显示的能力，但如果创建悬浮窗的应用任务被系统回收，仍然会导致悬浮窗从界面移除。如果想要保持悬浮窗口始终在前台显示，请申请[长时任务](../task-management/background-task-overview.md)。
+   > 虽然悬浮窗具备始终在前台显示的能力，但如果创建悬浮窗的应用任务被系统回收，仍然会导致悬浮窗从界面移除。如果想要保持悬浮窗口始终在前台显示，请申请[长时任务](../task-management/continuous-task-dev-guide.md)。
    
    ```json
    {
