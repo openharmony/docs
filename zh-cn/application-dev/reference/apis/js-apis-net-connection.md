@@ -1202,7 +1202,7 @@ register(callback: AsyncCallback\<void>): void
 | 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
-| 2101008 | The callback is not found.      |
+| 2101008 | The same callback exists.     |
 | 2101022 | The number of requests exceeded the maximum. |
 
 **示例：**
@@ -1235,7 +1235,7 @@ unregister(callback: AsyncCallback\<void>): void
 | 401 | Parameter error.         |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
-| 2100207 | Remote is null.      |
+| 2101007 | The callback is not exists.      |
 
 **示例：**
 
