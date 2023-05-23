@@ -156,9 +156,8 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```ts
 let deque = new Deque();
-let result = deque.has("squirrel");
 deque.insertFront("squirrel");
-let result1 = deque.has("squirrel");
+let result = deque.has("squirrel");
 ```
 
 ### popFirst

@@ -81,7 +81,7 @@ For the complete list of APIs and example code, see [Network Connection Manageme
 6. Call **conn.unregister()** to unsubscribe from the network status changes if required.
 
 ```js
-   // Import the connection namespace.
+// Import the connection namespace.
 import connection from '@ohos.net.connection'
 
 let netCap = {
@@ -128,7 +128,7 @@ conn.unregister((err, data) => {
 2. Call **getAllNets** to obtain the list of all connected networks.
 
 ```js
-   // Import the connection namespace.
+// Import the connection namespace.
 import connection from '@ohos.net.connection'
 
 // Obtain the list of all connected networks.
@@ -154,7 +154,7 @@ connection.getAllNets((err, data) => {
 4. Call **getConnectionProperties** to obtain the connection information of the data network specified by **NetHandle**.
 
 ```js
-   // Import the connection namespace.
+// Import the connection namespace.
 import connection from '@ohos.net.connection'
 
 // Call getDefaultNet to obtain the default data network specified by **NetHandle**.

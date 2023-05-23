@@ -1,6 +1,6 @@
 # Blank
 
-空白填充组件，在容器主轴方向上，空白填充组件具有自动填充容器空余部分的能力。仅当父组件为Row/Column时生效。
+空白填充组件，在容器主轴方向上，空白填充组件具有自动填充容器空余部分的能力。仅当父组件为Row/Column/Flex时生效。
 
 >  **说明：**
 >
@@ -50,7 +50,7 @@ struct BlankExample {
       Row() {
         Text('Bluetooth').fontSize(18)
         Blank()
-        Toggle({ type: ToggleType.Switch })
+        Toggle({ type: ToggleType.Switch }).margin({ top: 14, bottom: 14, left: 6, right: 6 })
       }.width('100%').backgroundColor(0xFFFFFF).borderRadius(15).padding({ left: 12 })
     }.backgroundColor(0xEFEFEF).padding(20)
   }
@@ -80,16 +80,16 @@ struct BlankExample {
       Row() {
         Text('Bluetooth').fontSize(18)
         Blank().color(Color.Yellow)
-        Toggle({ type: ToggleType.Switch })
+        Toggle({ type: ToggleType.Switch }).margin({ top: 14, bottom: 14, left: 6, right: 6 })
       }.backgroundColor(0xFFFFFF).borderRadius(15).padding({ left: 12 })
 
       Row() {
         Text('Bluetooth').fontSize(18)
         // 设置最小宽度为160
         Blank('160').color(Color.Yellow)
-        Toggle({ type: ToggleType.Switch })
+        Toggle({ type: ToggleType.Switch }).margin({ top: 14, bottom: 14, left: 6, right: 6 })
       }.backgroundColor(0xFFFFFF).borderRadius(15).padding({ left: 12 })
-      
+
     }.backgroundColor(0xEFEFEF).padding(20).width('100%')
   }
 }

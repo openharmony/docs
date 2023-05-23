@@ -11,7 +11,7 @@
 import ethernet from '@ohos.net.ethernet'
 ```
 
-## ethernet.setIfaceConfig
+## ethernet.setIfaceConfig<sup>9+</sup>
 
 setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallback\<void>): void
 
@@ -36,13 +36,15 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallbac
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
-| 2201005 | The device information does not exist.  |
-| 2201006 | Device disconnected.                    |
-| 2201007 | Failed to write the user configuration.    |
+| 2201004 | Invalid Ethernet profile.  |
+| 2201005 | Device information does not exist.  |
+| 2201006 | Ethernet device not connected.                    |
+| 2201007 | Ethernet failed to write user configuration information.    |
 
 **示例：**
 
@@ -64,7 +66,7 @@ ethernet.setIfaceConfig("eth0", {
 });
 ```
 
-## ethernet.setIfaceConfig
+## ethernet.setIfaceConfig<sup>9+</sup>
 
 setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 
@@ -94,13 +96,15 @@ setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
-| 2201005 | The device information does not exist.  |
-| 2201006 | Device disconnected.                   |
-| 2201007 | Failed to write the user configuration.    |
+| 2201004 | Invalid Ethernet profile.  |
+| 2201005 | Device information does not exist.  |
+| 2201006 | Ethernet device not connected.                    |
+| 2201007 | Ethernet failed to write user configuration information.    |
 
 **示例：**
 
@@ -120,7 +124,7 @@ ethernet.setIfaceConfig("eth0", {
 });
 ```
 
-## ethernet.getIfaceConfig
+## ethernet.getIfaceConfig<sup>9+</sup>
 
 getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>): void
 
@@ -144,11 +148,12 @@ getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>):
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
-| 2201005 | The device information does not exist.  |
+| 2201005 | Device information does not exist.  |
 
 **示例：**
 
@@ -168,7 +173,7 @@ ethernet.getIfaceConfig("eth0", (error, value) => {
 });
 ```
 
-## ethernet.getIfaceConfig
+## ethernet.getIfaceConfig<sup>9+</sup>
 
 getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 
@@ -197,11 +202,12 @@ getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
-| 2201005 | The device information does not exist.  |
+| 2201005 | Device information does not exist.  |
 
 **示例：**
 
@@ -219,7 +225,7 @@ ethernet.getIfaceConfig("eth0").then((data) => {
 });
 ```
 
-## ethernet.isIfaceActive
+## ethernet.isIfaceActive<sup>9+</sup>
 
 isIfaceActive(iface: string, callback: AsyncCallback\<number>): void
 
@@ -243,11 +249,12 @@ isIfaceActive(iface: string, callback: AsyncCallback\<number>): void
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
-| 2201005 | The device information does not exist.  |
+| 2201005 | Device information does not exist.  |
 
 **示例：**
 
@@ -261,7 +268,7 @@ ethernet.isIfaceActive("eth0", (error, value) => {
 });
 ```
 
-## ethernet.isIfaceActive
+## ethernet.isIfaceActive<sup>9+</sup>
 
 isIfaceActive(iface: string): Promise\<number>
 
@@ -290,11 +297,12 @@ isIfaceActive(iface: string): Promise\<number>
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
-| 2201005 | The device information does not exist.  |
+| 2201005 | Device information does not exist.  |
 
 **示例：**
 
@@ -306,7 +314,7 @@ ethernet.isIfaceActive("eth0").then((data) => {
 });
 ```
 
-## ethernet.getAllActiveIfaces
+## ethernet.getAllActiveIfaces<sup>9+</sup>
 
 getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void
 
@@ -329,6 +337,7 @@ getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
 
@@ -347,7 +356,7 @@ ethernet.getAllActiveIfaces((error, value) => {
 });
 ```
 
-## ethernet.getAllActiveIfaces
+## ethernet.getAllActiveIfaces<sup>9+</sup>
 
 getAllActiveIfaces(): Promise\<Array\<string>>
 
@@ -370,6 +379,7 @@ getAllActiveIfaces(): Promise\<Array\<string>>
 | 错误码ID | 错误信息                                 |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
 
@@ -403,21 +413,19 @@ on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: bo
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
 | type     | string                  | 是   | 订阅的事件类型，'interfaceStateChange'。 |
-| callback | Callback\<{ iface: string, active: boolean }\> | 是   | 回调函数。<br>iface：网卡名称。<br>active：是否处于激活状态（true：激活；false：未激活） |
+| callback | AsyncCallback\<{ iface: string, active: boolean }\> | 是   | 回调函数。<br>iface：网卡名称。<br>active：是否处于激活状态（true：激活；false：未激活） |
 
 **错误码：**
 
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
-| 201     | Permission denied.                           |
-| 202     | Applicable only to system applications.      |
-| 401     | Parameter error.                             |
+| 202     | Non-system applications use system APIs.                      |
 
 **示例：**
 
 ```js
-ethernet.on('interfaceStateChange', (data) => {
-  console.log('on interfaceSharingStateChange：' + JSON.stringify(data.iface) + JSON.stringify(data.active));
+ ethernet.on('interfaceStateChange', (data) => {
+  console.log('on interfaceSharingStateChange：' + JSON.stringify(data));
 });
 ```
 
@@ -438,15 +446,13 @@ off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: 
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
 | type     | string                  | 是   | 订阅的事件类型，'interfaceStateChange'。 |
-| callback | Callback\<{ iface: string, active: boolean }> | 否   | 回调函数。<br>iface：网卡名称。<br>active：是否处于激活状态（true：激活；false：未激活） |
+| callback | AsyncCallback\<{ iface: string, active: boolean }> | 否   | 回调函数。<br>iface：网卡名称。<br>active：是否处于激活状态（true：激活；false：未激活） |
 
 **错误码：**
 
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
-| 201     | Permission denied.                           |
-| 202     | Applicable only to system applications.                           |
-| 401     | Parameter error.                             |
+| 202     | Non-system applications use system APIs.                      |
 
 **示例：**
 
@@ -454,7 +460,7 @@ off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: 
 ethernet.off('interfaceStateChange');
 ```
 
-## InterfaceConfiguration
+## InterfaceConfiguration<sup>9+</sup>
 
 以太网连接配置网络信息。
 
@@ -471,7 +477,7 @@ ethernet.off('interfaceStateChange');
 | netMask      | string                  | 是 | 以太网连接配置子网掩码，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）。 |
 | dnsServers   | string                  | 是 | 以太网连接配置dns服务地址，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）多地址间用“,”隔开。 |
 
-## IPSetMode
+## IPSetMode<sup>9+</sup>
 
 以太网连接模式。
 

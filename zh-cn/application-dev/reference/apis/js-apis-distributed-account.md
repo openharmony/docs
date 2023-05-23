@@ -62,12 +62,14 @@ getOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): voi
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   try {
     accountAbility.getOsAccountDistributedInfo((err, data) => {
-      console.log("getOsAccountDistributedInfo err: " + JSON.stringify(err));
-      console.log('Query account info name: ' + data.name);
-      console.log('Query account info id: ' + data.id);
+      if (err) {
+        console.log('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+      } else {
+        console.log('distributed information: ' + JSON.stringify(data));
+      }
     });
-  } catch (e) {
-    console.log("getOsAccountDistributedInfo exception: " + JSON.stringify(e));
+  } catch (err) {
+    console.log('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -98,15 +100,96 @@ getOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   try {
     accountAbility.getOsAccountDistributedInfo().then((data) => {
-        console.log('Query account info name: ' + data.name);
-        console.log('Query account info id: ' + data.id);
+        console.log('distributed information: ' + JSON.stringify(data));
     }).catch((err) => {
-        console.log("getOsAccountDistributedInfo err: "  + JSON.stringify(err));
+        console.log('getOsAccountDistributedInfo exception: '  + JSON.stringify(err));
     });
-  } catch (e) {
-    console.log("getOsAccountDistributedInfo exception: " + JSON.stringify(e));
+  } catch (err) {
+    console.log('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
   }
   ```
+
+### getOsAccountDistributedInfoByLocalId<sup>10+</sup>
+
+getOsAccountDistributedInfoByLocalId(localId: number, callback: AsyncCallback&lt;DistributedInfo&gt;): void
+
+获取指定系统账号的分布式信息。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | localId | number | 是 | 系统帐号ID。 |
+  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | 是 | 回调参数。当获取分布式帐号信息成功，err为undefined，data为获取到的分布式帐号信息对象；否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息|
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+
+**示例：**
+  ```js
+  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  try {
+    accountAbility.getOsAccountDistributedInfoByLocalId(100, (err, data) => {
+      if (err) {
+        console.log('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+      } else {
+        console.log('distributed information: ' + JSON.stringify(data));
+      }
+    });
+  } catch (err) {
+    console.log('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### getOsAccountDistributedInfoByLocalId<sup>10+</sup>
+
+getOsAccountDistributedInfoByLocalId(localId: number): Promise&lt;DistributedInfo&gt;
+
+获取指定系统账号的分布式信息。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS 或 ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise对象，返回分布式帐号信息对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息|
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+
+**示例：**
+  ```js
+  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  try {
+    accountAbility.getOsAccountDistributedInfoByLocalId(100).then((data) => {
+        console.log('distributed information: ' + JSON.stringify(data));
+    }).catch((err) => {
+        console.log('getOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
+    });
+  } catch (err) {
+      console.log('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+  }
+  ```
+
 ### queryOsAccountDistributedInfo<sup>(deprecated)</sup>
 
 queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): void
@@ -130,9 +213,11 @@ queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): v
   ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo((err, data) => {
-      console.log("queryOsAccountDistributedInfo err: " + JSON.stringify(err));
-      console.log('Query account info name: ' + data.name);
-      console.log('Query account info id: ' + data.id);
+    if (err) {
+      console.log('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+    } else {
+      console.log('distributed information: ' + JSON.stringify(data));
+    }
   });
   ```
 
@@ -160,10 +245,9 @@ queryOsAccountDistributedInfo(): Promise&lt;DistributedInfo&gt;
   ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo().then((data) => {
-      console.log('Query account info name: ' + data.name);
-      console.log('Query account info id: ' + data.id);
+      console.log('distributed information: ' + JSON.stringify(data));
   }).catch((err) => {
-      console.log("queryOsAccountDistributedInfoerr: "  + JSON.stringify(err));
+      console.log('queryOsAccountDistributedInfo exception: '  + JSON.stringify(err));
   });
   ```
 
@@ -198,10 +282,14 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallbac
   let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
     accountAbility.setOsAccountDistributedInfo(accountInfo, (err) => {
-        console.log("setOsAccountDistributedInfo err: " + JSON.stringify(err));
+      if (err) {
+        console.log('setOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+      } else {
+        console.log('setOsAccountDistributedInfo successfully');
+      }
     });
-  } catch (e) {
-    console.log("setOsAccountDistributedInfo exception: " + JSON.stringify(e));
+  } catch (err) {
+      console.log('setOsAccountDistributedInfo exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -241,14 +329,109 @@ setOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt;
   let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
     accountAbility.setOsAccountDistributedInfo(accountInfo).then(() => {
-        console.log('setOsAccountDistributedInfo Success');
+        console.log('setOsAccountDistributedInfo successfully');
     }).catch((err) => {
-        console.log("setOsAccountDistributedInfo err: "  + JSON.stringify(err));
+        console.log('setOsAccountDistributedInfo exception: '  + JSON.stringify(err));
     });
-  } catch (e) {
-    console.log("setOsAccountDistributedInfo exception: " + JSON.stringify(e));
+  } catch (err) {
+      console.log('setOsAccountDistributedInfo exception: ' + JSON.stringify(err));
   }
   ```
+### setOsAccountDistributedInfoByLocalId<sup>10+</sup>
+
+setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: DistributedInfo, callback: AsyncCallback&lt;void&gt;): void
+
+设置指定系统帐号的分布式信息。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | localId | number | 是 | 系统帐号ID。 |
+  | accountInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式帐号信息。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当设置指定系统帐号的分布式信息成功时，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息|
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid distributedInfo. |
+| 12300003 | Account identified by localId or by distributedInfo not found. |
+| 12300008 | Restricted OS account. |
+
+**示例：**
+  ```js
+  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
+  try {
+    accountAbility.setOsAccountDistributedInfoByLocalId(100, accountInfo, (err) => {
+      if (err) {
+        console.log('setOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+      } else {
+        console.log('setOsAccountDistributedInfoByLocalId successfully');
+      }
+    });
+  } catch (err) {
+      console.log('setOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### setOsAccountDistributedInfoByLocalId<sup>10+</sup>
+
+setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: DistributedInfo): Promise&lt;void&gt;
+
+设置指定系统帐号的分布式信息。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力：** SystemCapability.Account.OsAccount
+
+**需要权限：** ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | localId | number | 是 | 系统帐号ID。 |
+  | distributedInfo | [DistributedInfo](#distributedinfo) | 是 | 分布式帐户信息。 |
+
+**返回值：**
+
+  | 类型 | 说明 |
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise对象，无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息|
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid distributedInfo. |
+| 12300003 | Account identified by localId or by distributedInfo not found. |
+| 12300008 | Restricted OS account. |
+
+**示例：**
+  ```js
+  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
+  try {
+    accountAbility.setOsAccountDistributedInfoByLocalId(100, accountInfo).then(() => {
+        console.log('setOsAccountDistributedInfoByLocalId successfully');
+    }).catch((err) => {
+        console.log('setOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
+    });
+  } catch (err) {
+      console.log('setOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+  }
+  ```
+
 ### updateOsAccountDistributedInfo<sup>(deprecated)</sup>
 
 updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallback&lt;void&gt;): void
@@ -275,7 +458,11 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCall
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo, (err) => {
-      console.log("queryOsAccountDistributedInfo err: " + JSON.stringify(err));
+    if (err) {
+      console.log('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+    } else {
+      console.log('queryOsAccountDistributedInfo successfully');
+    }
   });
   ```
 
@@ -308,22 +495,34 @@ updateOsAccountDistributedInfo(accountInfo: DistributedInfo): Promise&lt;void&gt
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo).then(() => {
-      console.log('updateOsAccountDistributedInfo Success');
+      console.log('updateOsAccountDistributedInfo successfully');
    }).catch((err) => {
-      console.log("updateOsAccountDistributedInfo err: "  + JSON.stringify(err));
+      console.log('updateOsAccountDistributedInfo exception: '  + JSON.stringify(err));
   });
   ```
 ## DistributedInfo
 
-提供操作系统帐户的分布式信息。
+提供操作系统帐号的分布式信息。
 
 **系统能力：** SystemCapability.Account.OsAccount
 
-| 名称 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| name | string | 是 | 分布式帐号名称，非空字符串。 |
-| id | string | 是 | 分布式帐号UID，非空字符串。 |
-| event | string | 是 | 分布式帐号登录状态，包括登录、登出、Token失效和注销，分别对应以下字符串：<br/>-&nbsp;Ohos.account.event.LOGIN<br/>-&nbsp;Ohos.account.event.LOGOUT<br/>-&nbsp;Ohos.account.event.TOKEN_INVALID<br/>-&nbsp;Ohos.account.event.LOGOFF |
-| nickname<sup>9+</sup> | string | 否 | 分布式帐号的昵称，非空字符串。 |
-| avatar<sup>9+</sup> | string | 否 | 分布式帐号的头像，非空字符串。 |
-| scalableData<sup>8+</sup> | object | 否 | 分布式帐号扩展信息，根据业务所需，以k-v形式传递定制化信息。<br/>说明：该参数是预留的可选项，目前查询和更新的方法实现中未使用。 |
+| 名称 | 类型 | 只读 | 必填 | 说明 |
+| -------- | -------- | -------- |-------- | -------- |
+| name | string | 否 |是 | 分布式帐号名称，非空字符串。 |
+| id | string | 否 |是 | 分布式帐号UID，非空字符串。 |
+| event | string | 否 |是 | 分布式帐号登录状态，包括登录、登出、Token失效和注销，分别对应以下字符串：<br/>-&nbsp;Ohos.account.event.LOGIN<br/>-&nbsp;Ohos.account.event.LOGOUT<br/>-&nbsp;Ohos.account.event.TOKEN_INVALID<br/>-&nbsp;Ohos.account.event.LOGOFF |
+| nickname<sup>9+</sup> | string | 否 |否 | 分布式帐号的昵称，默认为空。 |
+| avatar<sup>9+</sup> | string | 否 |否 | 分布式帐号的头像，默认为空。 |
+| status<sup>10+</sup> | [DistributedAccountStatus](#distributedaccountstatus10) | 是 |否 | 分布式帐号的状态，枚举类型，默认为未登录状态。 |
+| scalableData<sup>8+</sup> | object | 否 |否 | 分布式帐号扩展信息，根据业务所需，以k-v形式传递定制化信息，默认为空。|
+
+## DistributedAccountStatus<sup>10+</sup>
+
+表示分布式帐号状态枚举。
+
+**系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
+
+| 名称  | 值 | 说明        |
+| ---- | ------ | ----------- |
+| NOT_LOGGED_IN   | 0  | 未登录状态。 |
+| LOGGED_IN  | 1  | 已登录状态。 |

@@ -55,7 +55,7 @@
   - [网络连接管理错误码](errorcode-net-connection.md)
   - [以太网连接错误码](errorcode-net-ethernet.md)
   - [网络共享错误码](errorcode-net-sharing.md)
-  - [策略管理错误码](errorcode-net-policy.md)
+  - [MDNS错误码](errorcode-net-mdns.md)
 - 通信与连接
   - [Bluetooth错误码](errorcode-bluetoothManager.md)
   - [WIFI错误码](errorcode-wifi.md)
@@ -82,7 +82,8 @@
   - [热管理错误码](errorcode-thermal.md)
   - [设备管理错误码](errorcode-device-manager.md)
   - [位置服务子系统错误码](errorcode-geoLocationManager.md)
-  - [键鼠穿越管理错误码](errorcode-multimodalinput.md)
+  - [键鼠穿越管理错误码](errorcode-devicestatus.md)
+  - [键鼠穿越管理错误码 (待停用)](errorcode-multimodalinput.md)
   - [传感器错误码](errorcode-sensor.md)
   - [振动错误码](errorcode-vibrator.md)
   - [系统参数错误码](errorcode-system-parameterV9.md)

@@ -203,7 +203,7 @@ Curves.responsiveSpringMotion() // Create a responsive spring animation curve wi
 ```
 
 
-##  Curves.interpolatingSpringCurve<sup>10+</sup>
+##  Curves.interpolatingSpring<sup>10+</sup>
 
 interpolatingSpring(velocity: number, mass: number, stiffness: number, damping: number): ICurve
 

@@ -1,8 +1,5 @@
 # @ohos.util.Queue (Linear Container Queue)
 
-> **NOTE**
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 **Queue** follows the principle of First In First Out (FIFO). It supports insertion of elements at the end and removal from the front of the queue. **Queue** is implemented based on the queue data structure.
 
 Unlike **[Deque](js-apis-deque.md)**, which supports insertion and removal at both the ends, **Queue** supports insertion at one end and removal at the other end.
@@ -11,6 +8,11 @@ Unlike **[Deque](js-apis-deque.md)**, which supports insertion and removal at bo
 
 This topic uses the following to identify the use of generics:
 - T: Type
+
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 
 ## Modules to Import
 

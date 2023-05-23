@@ -384,25 +384,25 @@
 
    ```js
    // xxx.js
-   import prompt from '@system.prompt';
+   import promptAction from '@ohos.promptAction';
    export default {
      pinchstart(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: 'pinchstart!!!'
        })
      },
      pinchupdate(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: 'Two-finger pinch update'
        })
      },
      pinchend(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: 'Finished with two fingers pinching'
        })
      },
      pinchcancel(e){
-       prompt.showToast({
+       promptAction.showToast({
          message: 'Finger pinching is interrupted'
        })
      }
