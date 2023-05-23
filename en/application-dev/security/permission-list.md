@@ -2,7 +2,7 @@
 
 Before applying for required permissions, read and understand the [permission workflows](accesstoken-overview.md#permission-workflows). Then, determine the permissions required for your application.
 
-For details about how to apply for required permissions, see [Permission Application Guide](accesstoken-guidelines.md).
+For details about how to apply for required permissions, see [Applying for Permissions](accesstoken-guidelines.md).
 
 ## ohos.permission.USE_BLUETOOTH
 
@@ -66,7 +66,7 @@ Allows an application to access the notification policy on the device.
 
 ## ohos.permission.GET_TELEPHONY_STATE
 
-Allows an application to read telephony information.
+Allows an application to read telephony information. 
 
 **Permission level**: system_basic
 
@@ -166,7 +166,7 @@ Allows an application to set the system time zone.
 
 ## ohos.permission.DOWNLOAD_SESSION_MANAGER
 
-Allows an application to manage download sessions.
+Allows an application to manage the download sessions.
 
 **Permission level**: system_core
 
@@ -1571,6 +1571,36 @@ Allows a file management application to access user data files through the FAF.
 ## ohos.permission.MANAGE_AUDIO_CONFIG
 
 Allows an application to to mute microphones globally.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
+
+Allows an application to manage distributed account information.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.GET_DISTRIBUTED_ACCOUNTS
+
+Allows an application to obtain distributed account information.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.GET_LOCAL_ACCOUNTS
+
+Allows an application to obtain local account information.
 
 **Permission level**: system_basic
 
