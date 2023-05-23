@@ -1559,3 +1559,84 @@ try {
   console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
 }
   ```
+
+## ServiceExtensionContext.startAbilityByCallWithAccount<sup>10+</sup>
+
+startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;;
+
+根据accountId对指定的Ability进行call调用，并且可以使用返回的Caller通信接口与被调用方进行通信。
+
+使用规则：
+ - 跨用户场景下，Call调用目标Ability时，调用方应用需同时申请`ohos.permission.ABILITY_BACKGROUND_COMMUNICATION`与`ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS`权限
+ - 调用方应用位于后台时，使用该接口启动Ability需申请`ohos.permission.START_ABILITIES_FROM_BACKGROUND`权限
+ - 跨应用场景下，目标Ability的exported属性若配置为false，调用方应用需申请`ohos.permission.START_INVISIBLE_ABILITY`权限
+ - 同设备与跨设备场景下，该接口的使用规则存在差异，详见：[组件启动规则（Stage模型）](../../application-models/component-startup-rules.md)
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | 是 | 传入需要启动的Ability的信息，包含abilityName、moduleName、bundleName、deviceId(可选)、parameters(可选)，其中deviceId缺省或为空表示启动本地Ability，parameters缺省或为空表示后台启动Ability。 |
+| accountId | number | 是 | 系统帐号的帐号ID，-1表示当前活动用户，详情参考[getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess)。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;Caller&gt; | 获取要通讯的caller对象。 |
+
+**错误码：**
+
+以下错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Visibility verification failed. |
+| 16000005 | Static permission denied. The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | Crowdtest App Expiration. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal Error. |
+| 16200001 | The caller has been released.        |
+
+**示例：**
+
+  ```ts
+  let caller;
+
+  // 系统账号的账号ID, -1表示当前激活用户
+  let accountId = -1;
+
+  // 指定启动的Ability
+  let want = {
+      bundleName: 'com.acts.actscalleeabilityrely',
+      moduleName: 'entry',
+      abilityName: 'EntryAbility'
+      deviceId: ''
+      parameters: {
+        // 'ohos.aafwk.param.callAbilityToForeground' 值设置为true时为前台启动, 设置false或不设置为后台启动
+        'ohos.aafwk.param.callAbilityToForeground': true
+      }
+  };
+
+  try {
+    this.context.startAbilityByCallWithAccount(want, accountId)
+      .then((obj) => {
+        // 执行正常业务
+        caller = obj;
+        console.log('startAbilityByCallWithAccount succeed');
+      }).catch((error) => {
+        // 处理业务逻辑错误
+        console.error('startAbilityByCallWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+      });
+  } catch (paramError) {
+    // 处理入参错误异常
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+  }
+  ```
