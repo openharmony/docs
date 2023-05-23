@@ -1,6 +1,6 @@
 # 时钟开发
 ## 场景介绍
-常见的时钟呈现方式有两种，一种是钟表方式，一种是数字方式。用户可根据个人喜好在两种形式间进行切换。本例即为大家讲解如何开发上述两种钟表样式，以供参考。
+常见的时钟呈现方式有两种，一种是表盘方式，一种是数字方式。用户可根据个人喜好在两种形式间进行切换。本例即为大家讲解如何开发上述两种钟表样式，以供参考。
 ## 效果呈现
 本例最终效果如下：
 
@@ -11,11 +11,11 @@
 - IDE: DevEco Studio 3.1 Beta2
 - SDK: Ohos_sdk_public 3.2.11.9 (API Version 9 Release)
 ## 实现思路
-- 时钟方式的展示：通过Canvas组件提供画布;在画布上，通过CanvasRenderingContext2D对象使用RenderingContext在Canvas组件上进行绘制，绘制时钟上的数字、时针、分针、秒针。时钟上数字的分布使用fillText绘制填充类文本并确定其在画布上位置;时钟上时针的运动通过theta的角度决定时针的移动;分针和秒针同上。
+- 表盘方式的展示：通过Canvas组件提供画布;在画布上，通过CanvasRenderingContext2D对象使用RenderingContext在Canvas组件上进行绘制，绘制表盘上的数字、时针、分针、秒针。表盘上数字的分布使用fillText绘制填充类文本并确定其在画布上位置；表盘上时针的运动通过theta的角度决定时针的移动；分针和秒针同上。
 - 数字时间方式的展示：使用TextClock组件通过文本将系统时间显示在设备上。
 ## 开发步骤
-根据上述思路,具体实现步骤如下：
-1. 时钟方式：通过CanvasRenderingContext2D对象使用RenderingContext在Canvas组件上进行绘制，绘制时钟上的数字、时针、分针、秒针。
+根据上述思路，具体实现步骤如下：
+1. 表盘方式：通过CanvasRenderingContext2D对象使用RenderingContext在Canvas组件上进行绘制，绘制表盘上的数字、时针、分针、秒针。
     首先，创建画布，具体代码如下：
     ```ts
     // clock ets
@@ -51,7 +51,7 @@
     let hour = hours + minutes / 60;
     let minute = minutes + seconds / 60;
     ```
-    使用fillText方法绘制时钟数字并确定其位置
+    使用fillText方法绘制表盘数字并确定其位置
     ```ts
     // clock ets
     ...
@@ -64,7 +64,7 @@
       let theta = (n - 2) * (Math.PI * 2) / 12;
       let x = clockRadius * 0.7 * Math.cos(theta);
       let y = clockRadius * 0.7 * Math.sin(theta);
-      this.ctx.fillText(`${n + 1}`, x, y);  // 时钟数字所在的位置
+      this.ctx.fillText(`${n + 1}`, x, y);  // 表盘数字所在的位置
     ...
     ```
     时针的移动路径，具体代码如下：
@@ -122,7 +122,7 @@
     ...
     ```
 2. 时钟方式的转换：通过Button组件中的onClick事件进行切换页面。
-    从时钟方式往数字方式转换，具体代码如下：
+    从表盘方式往数字方式转换，具体代码如下：
     ```ts
     // clock.ets
     ...
@@ -142,7 +142,7 @@
     })
     ...
     ```
-    从数字时间方式往时钟方式转换，具体代码如下：
+    从数字时间方式往表盘方式转换，具体代码如下：
     ```ts
     // TextClock.ets
     ...
@@ -162,7 +162,7 @@
     })
     ...
     ```
-3. 数字时间方式:使用TextClock组件通过文本将当前系统时间显示在设备上。
+3. 数字时间方式：使用TextClock组件通过文本将当前系统时间显示在设备上。
     具体代码如下：
     ```ts
     // TextClock.ets
@@ -229,7 +229,7 @@ struct Test10 {
       let theta = (n - 2) * (Math.PI * 2) / 12;
       let x = clockRadius * 0.7 * Math.cos(theta);
       let y = clockRadius * 0.7 * Math.sin(theta);
-      this.ctx.fillText(`${n + 1}`, x, y);  // 时钟数字所在的位置
+      this.ctx.fillText(`${n + 1}`, x, y);  // 表盘数字所在的位置
     }
 
     // 绘制时针
