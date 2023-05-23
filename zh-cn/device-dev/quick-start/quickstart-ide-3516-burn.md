@@ -60,7 +60,9 @@ Hi3516DV300开发板小型系统的烧录方式包括USB烧录、网口烧录两
 
    ![zh-cn_image_0000001275835836](figures/zh-cn_image_0000001275835836.png)
 
-7. 在终端窗口显示如下提示信息时，请在15秒内，按住Update键，插拔USB线，最后松开Update键启动烧录。
+7. 在终端窗口显示如下提示信息时，请在15秒内，按住Update键（位置如下图），插拔USB线，最后松开Update键启动烧录。
+
+   ![3516_button](figures/3516_button.png)
 
    ![zh-cn_image_0000001326412233](figures/zh-cn_image_0000001326412233.png)
 
