@@ -10,7 +10,7 @@
 
 ## 接口
 
-CanvasRenderingContext2D(setting: RenderingContextSetting)
+CanvasRenderingContext2D(settings?: RenderingContextSettings)
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -18,7 +18,7 @@ CanvasRenderingContext2D(setting: RenderingContextSetting)
 
 | 参数名     | 参数类型                                     | 必填   | 参数描述                                     |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| setting | [RenderingContextSettings](#renderingcontextsettings) | 是    | 见[RenderingContextSettings](#renderingcontextsettings)。 |
+| setting | [RenderingContextSettings](#renderingcontextsettings) | 否    | 见[RenderingContextSettings](#renderingcontextsettings)。 |
 
 
 ### RenderingContextSettings
