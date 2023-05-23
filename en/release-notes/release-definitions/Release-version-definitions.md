@@ -25,7 +25,7 @@ Beta is a branch pulled from Master in the OpenHarmony community irregularly. Th
 
 A tag version is a stable and reliable version created by applying patches to an LTS or a Release branch, with the purpose of fixing individual bugs, security vulnerabilities, and other necessary adaptation modifications.
 
-The release versions are available in the [**Release Notes** folder](../release-notes).
+The release versions are available in the [**Release Notes** folder](../).
 
 ## Lifecycle Policies
 
