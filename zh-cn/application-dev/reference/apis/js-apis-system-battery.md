@@ -27,7 +27,7 @@ getStatus(options?: GetStatusOptions): void;
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [GetStatusOptions](#getstatusoptions) | 否 | 包含接口调用结果的对象。 |
+| options | [GetStatusOptions](#getstatusoptions) | 否 | 包含接口调用结果的对象。可选，默认为空。 |
 
 **示例：**
 
