@@ -1,13 +1,13 @@
 # Tabs
 
 
-When there is a large amount of page information, to enable the user to focus on the currently displayed content, the page content needs to be classified to improve the page space utilization. The [Tabs](../reference/arkui-ts/ts-container-tabs.md) component can quickly switch between views on a page, improving information search efficiency and reducing the amount of information that users can obtain at a time.
+When there is a large amount of page information, to enable the user to focus on the currently displayed content, the page content needs to be classified to improve the page space utilization. The [\<Tabs>](../reference/arkui-ts/ts-container-tabs.md) component can quickly switch between views on a page, improving information search efficiency and reducing the amount of information that users can obtain at a time.
 
 
 ## Basic Layout
 
-  The Tabs component consists of two parts: TabContent and TabBar. TabContent is the content page, and TabBar is the navigation tab bar. The following figure shows the page structure. The layout varies according to the navigation type. TabContent can be classified into bottom navigation, top navigation, and side navigation. The navigation bar is located at the bottom, top, and side, respectively.
-  Figure 1 Tabs component layout 
+  The **\<Tabs>** component consists of two parts: **\<TabContent>** and **\<TabBar>**. **\<TabContent>** is the content page, and **\<TabBar>** is the navigation tab bar. The following figure shows the page structure. The layout varies according to the navigation type. In bottom navigation, top navigation, and side navigation, the navigation tab bar is located at the bottom, top, and edge, respectively.
+  **Figure 1** \<Tabs> component layout 
 
 ![tabs-layout](figures/tabs-layout.png)
 
@@ -19,71 +19,69 @@ When there is a large amount of page information, to enable the user to focus on
 > - The **\<TabContent>** component does not support setting of the common height attribute. Its height is determined by the height of the parent **\<Tabs>** component and the **\<TabBar>** component.
 
 
-Tabs use braces to enclose TabContent, as shown in Figure 2. TabContent displays the corresponding content page.
+**\<Tabs>** use braces to enclose the tab content, as shown in Figure 2.
 
 
-  Figure 2 Using Tabs and TabContent 
+  **Figure 2** Using \<Tabs> and \<TabContent> 
 
 ![tabs-tabscontent](figures/tabs-tabscontent.png)
 
 
-The content corresponding to each TabContent must have a tab page, which can be configured through the tabBar attribute of TabContent. You can set the tabBar attribute on the TabContent component to set the content on the corresponding tab page. The tabBar functions as the content tab page.
+Each **\<TabContent>** component should be mapped to a tab page, which can be configured through the **tabBar** attribute. The following is an example.
 
 
 
 ```ts
  TabContent() {
-   Text('Homepage content').fontSize(30)
+   Text('Content of the Home tab').fontSize(30)
  }
 .tabBar ('Home')
 ```
 
 
-When setting multiple contents, place them in sequence in Tabs.
-
-
+When setting multiple **\<TabContent>** components, place them in sequence in the **\<Tabs>** component.
 
 ```ts
 Tabs() {
   TabContent() {
-    Text('Homepage content').fontSize(30)
+    Text('Content of the Home tab').fontSize(30)
   }
   .tabBar ('Home')
 
   TabContent() {
-    Text('Recommendation').fontSize(30)
+    Text('Content of the Recommended tab').fontSize(30)
   }
-  .tabBar ('Recommend')
+  .tabBar ('Recommended')
 
   TabContent() {
-    Text ('Discovered content').fontSize (30)
+    Text ('Content of the Discover tab').fontSize (30)
   }
-  .tabBar ('Discovery')
+  .tabBar ('Discover')
   
   TabContent() {
-    Text ('My Content').fontSize (30)
+    Text ('Content of the Me tab').fontSize (30)
   }
-  .tabBar ("My")
+  .tabBar ("Me")
 }
 ```
 
 
-## Bottom navigation
+## Bottom Navigation
 
-Bottom navigation is the most common navigation mode in applications. The bottom navigation is located at the bottom of the level-1 page of the application. When the user opens the application, the function classification of the entire application and the content corresponding to the tab can be distinguished. In addition, the bottom navigation is located at the bottom of the application, which facilitates one-hand operations of the user. The bottom navigation generally exists as a main navigation form of an application, and a function of the bottom navigation is to classify content that a user cares about according to a function, cater to a use habit of the user, and facilitate content switching between different modules.
-
-
-  Figure 3 Navigation bar at the bottom 
-
-![Bottom Navigation](figures/Bottom Navigation.gif)
+Bottom navigation is the most common navigation mode in applications. The bottom navigation bar is located at the bottom of the level-1 page of the application. It enables the user to quickly have a picture of the feature categories the moment they open the application. In addition, it facilitates one-hand operations of the user. Bottom navigation generally exists as a main navigation form of an application, in that it provides convenient access to primary destinations anywhere in the application.
 
 
-The barPosition parameter of Tabs is used to set the position of the navigation bar. By default, the navigation bar is on the top, and the default value of the barPosition parameter is Start. To set the bottom navigation, you need to transfer parameters in Tabs. Set barPosition to End.
+  **Figure 3** Bottom navigation bar 
+
+![bottom-navigation](figures/bottom-navigation.gif)
+
+
+You set the position of the navigation bar through the **barPosition** parameter of the **\<Tabs>** component. The default value of this parameter is **Start**, which means that the navigation bar is located on the top. To set the navigation bar to the bottom, set **barPosition** to **End**.
 
 
 ```ts
 Tabs({ barPosition: BarPosition.End }) {
-  // TabContent: home page, discovery, recommendation, and my
+  // TabContent: Home, Discover, Recommended, and Me
   ...
 }
 ```
@@ -91,18 +89,18 @@ Tabs({ barPosition: BarPosition.End }) {
 
 ## Top Navigation
 
-When there are many content categories, the probability that users browse different content is similar, and users need to quickly switch between different content categories, the top navigation mode is generally used to further divide the bottom navigation content. Common information applications classify content into attention, video, and digital, alternatively, in a theme application, a theme is further divided into a picture, a video, a font, and the like.
+Top navigation comes in handy when there are many content categories and users need to frequently switch between them. It is usually a further subdivision of the categories in the bottom navigation bar. For example, a theme application may provide a top navigation bar that classifies themes into image, video, and font.
 
-  Figure 4 Navigation bar on the top 
+  **Figure 4** Top navigation bar 
 
-![Top Navigation](figures/Top Navigation.gif)
+![top-navigation](figures/top-navigation.gif)
 
 The default barPosition parameter of the Tabs component is Start, indicating the top navigation mode.
 
 
 ```ts
 Tabs({ barPosition: BarPosition.Start }) {
-  // TabContent: follow, video, game, digital, technology, sports, and movie
+  // TabContent: Following, Video, Game, Digital, Technology, Sports, Movie
   ...
 }
 ```
@@ -110,21 +108,21 @@ Tabs({ barPosition: BarPosition.Start }) {
 
 ## Side Navigation
 
-Side navigation is a navigation mode that is seldom used by applications. It is more applicable to landscape screens and is used to perform navigation operations on applications. Because the visual habit of the user is from left to right, the side navigation bar is the left sidebar by default.
+Side navigation is seldom used in applications. It is more applicable to landscape screens and is used to perform navigation operations on applications. Because the natural eye movement pattern is from left to right, the side navigation bar is located on the left side by default.
 
 
-  Figure 5 Side navigation bar 
+  **Figure 5** Side navigation bar 
 
-![Side Navigation](figures/Side Navigation.png)
+![side-navigation](figures/side-navigation.png)
 
 
-To implement the side navigation bar, you need to set the vertical attribute of Tabs to true. In the bottom navigation and top navigation implementations, the default value is false, indicating that the content page and navigation bar are arranged vertically.
+To implement the side navigation bar, set the **vertical** attribute of the **\<Tabs>** component to **true**. In the bottom navigation and top navigation implementations, the default value **false** of the **vertical** attribute is used, indicating that the content page and navigation bar are aligned vertically.
 
 
 
 ```ts
 Tabs({ barPosition: BarPosition.Start }) {
-  // TabContent: home page, discovery, recommendation, and my
+  // TabContent: Home, Discover, Recommended, and Me
   ...
 }
 .vertical(true)
@@ -135,20 +133,21 @@ Tabs({ barPosition: BarPosition.Start }) {
 
 >**NOTE**
 >
-> - When vertical is set to true, the tabbar width fully occupies the screen width by default. You need to set barWidth to a proper value.
+> - When the **vertical** attribute is set to **true**, the tab bar takes up the whole screen width by default. You need to set **barWidth** to a proper value.
 >
-> - If vertical is set to true, the tabbar height is the actual content height by default. You need to set barHeight to a proper value.
+> - When the **vertical** attribute is set to **true**, the tab bar takes up the actual content height by default. You need to set **barWidth** to a proper value.
 
 
-## Restricting the Slide Switch of the Navigation Bar
+## Restricting the Scrolling of the Navigation Bar
 
-  By default, the navigation bar supports sliding. On some pages that require multi-level classification of content information, for example, when the bottom navigation and top navigation are supported, the sliding effect of the bottom navigation bar conflicts with that of the top navigation. In this case, the sliding of the bottom navigation bar needs to be restricted, this prevents poor user experience.
-  Figure 6 Restricting the sliding of the navigation bar at the bottom 
+By default, the navigation bar is scrollable. On some pages that require multi-level classification of content, for example, when both bottom navigation and top navigation are used, the scroll effect of the bottom navigation bar may conflict with that of the top navigation bar. In this case, the scrolling of the bottom navigation bar needs to be restricted to improve user experience.
 
-![Restricted Navigation](figures/Restricted Navigation.gif)
+  **Figure 6** Restricting the scrolling of the bottom navigation bar 
+
+![restricted-navigation](figures/restricted-navigation.gif)
 
 
-The attribute that controls the sliding switch is scrollable. The default value is true, indicating that the sliding switch is allowed. To restrict the sliding switch, set this parameter to false.
+The attribute that enables or disables the scrolling is **scrollable**. Its default value is **true**, indicating that scrolling is enabled. To disable the scrolling, set the attribute to **false**.
 
 
 
@@ -157,7 +156,7 @@ Tabs({ barPosition: BarPosition.End }) {
   TabContent(){
     Column(){
       Tabs(){
-        //Content on the top navigation bar
+        // Content on the top navigation bar
         ...
       }
     }
@@ -166,47 +165,47 @@ Tabs({ barPosition: BarPosition.End }) {
   }
   .tabBar ('Home')
 
-  //Other TabContent content: Discover, Recommend, and My
+  // Other TabContent content: Discover, Recommended, and Me
   ...
 }
 .scrollable(false)
 ```
 
 
-## Fixed navigation bar
+## Fixed Navigation Bar
 
-When the content categories are relatively fixed and not scalable, for example, the bottom navigation content categories are generally fixed, and the number of categories ranges from 3 to 5, the fixed navigation bar is used. The fixed navigation bar cannot be scrolled or dragged. The content is evenly divided into the width of the tab bar.
-
-
-  Figure 7 Fixed navigation bar
-
-![Fixed Navigation](figures/Fixed Navigation.gif)
+When the content categories are relatively fixed and not scalable, a fixed navigation bar can be used. For example, it can be used for the bottom navigation bar, which generally contains 3 to 5 categories. The fixed navigation bar cannot be scrolled or dragged. The tab bar width is evenly distributed among the categories.
 
 
-The barMode attribute of Tabs specifies whether the navigation bar can be scrolled. The default value is Fixed.
+  **Figure 7** Fixed navigation bar
+
+![fixed-navigation](figures/fixed-navigation.gif)
+
+
+To use a fixed navigation bar, set the **barMode** attribute of the **\<Tabs>** component to **Fixed** (default).
 
 
 
 ```ts
 Tabs({ barPosition: BarPosition.End }) {
-  // TabContent: home page, discovery, recommendation, and my
+  // TabContent: Home, Discover, Recommended, and Me
   ...
 }
 .barMode(BarMode.Fixed)
 ```
 
 
-## Scrolling Navigation Bar
+## Scrollable Navigation Bar
 
-The scrolling navigation bar can be used to set the top navigation bar or side navigation bar. If there are many content categories and the screen width cannot accommodate all category tabs, a scrollable navigation bar is required. Users can tap and slide to load hidden tab content.
-
-
-  Figure 8 Scrollable navigation bar 
-
-![Scrolling Navigation](figures/Scrolling Navigation.gif)
+The top navigation bar or side navigation bar can be set to be scrollable if the screen width cannot fully accommodate all the tabs. With a scrollable navigation bar, users can reveal tabs beyond the visible area by touching or swiping on the navigation bar.
 
 
-To scroll the navigation bar, you need to set the barMode attribute of the Tabs component. The default value is Fixed, indicating that the navigation bar is fixed. To scroll the navigation bar, set the barMode attribute to Scrollable.
+  **Figure 8** Scrollable navigation bar 
+
+![scrollable-navigation](figures/scrollable-navigation.gif)
+
+
+To use a scrollable navigation bar, set the **barMode** attribute of the **\<Tabs>** component to **Scrollable**.
 
 
 
@@ -221,18 +220,18 @@ Tabs({ barPosition: BarPosition.Start }) {
 
 ## Customizing the Navigation Bar
 
-The navigation bar at the bottom is generally used as the main page of the application. For better user experience, text and corresponding semantic icons are combined to indicate the tab content. In this case, you need to customize the style of the navigation tab.
+The bottom navigation bar is generally used on the home page of an application. To deliver a more vibrant experience, you can customize the style of the navigation bar, combining use of text and icons to signify the tab content.
 
 
-  Figure 9 Customizing the navigation bar 
+  **Figure 9** Custom navigation bar 
 
 ![custom-navigation-bar](figures/custom-navigation-bar.png)
 
 
-By default, the system uses underscores (_) to mark active tabs. The customized navigation bar needs to implement the corresponding style to distinguish active tabs from inactive tabs.
+By default, the system uses an underscore (_) to indicate the active tab. For a custom navigation bar, you need to implement the corresponding style to distinguish active tabs from inactive tabs.
 
 
-To customize the navigation bar, you need to use the tabBar parameters and transfer the customized function component style in CustomBuilder mode supported by the tabBar. For example, declare the customized function component of the TabBuilder. The input parameters include the tab text title, corresponding position index, and image resources in the selected and unselected states. The UI display style is determined based on whether the active currentIndex matches the targetIndex corresponding to the tab.
+To customize the navigation bar, use the **tabBar** parameter and pass in to it custom function component styles in **CustomBuilder** mode. In this example, a custom function component **TabBuilder** is declared, and the input parameters include **title** (tab title), **targetIndex** (target index of the tab), **selectedImg** (image for the selected state), and **normalImg** (image for the unselected state). The UI display style is determined based on whether the value of **currentIndex** (index of the active tab) matches that of **targetIndex** (target index of the tab).
 
 
 
@@ -251,34 +250,34 @@ To customize the navigation bar, you need to use the tabBar parameters and trans
 ```
 
 
-Transfer the customized function component to the tabBar attribute corresponding to TabContent and transfer the corresponding parameters.
+Pass the custom function component to the **tabBar** attribute corresponding to the tab content and transfer the corresponding parameters.
 
 
 
 ```ts
 TabContent() {
   Column(){
-    Text('My Content') 
+    Text('Content of the Me tab') 
   }
   .width('100%')
   .height('100%')
   .backgroundColor('#007DFF')
 }
-.tabBar(this.TabBuilder('My', 0, $r('app.media.mine_selected'), $r('app.media.mine_normal')))
+.tabBar(this.TabBuilder('Me', 0, $r('app.media.mine_selected'), $r('app.media.mine_normal')))
 ```
 
 
-## Switch to a specified tab page.
+## Switching to a Specified Tab
 
-If the customized navigation bar is not used, the default tabs implement the switching logic. After the customized navigation bar is used, the logic for switching tab pages needs to be manually implemented. That is, when the user taps a corresponding tab, the screen needs to display a corresponding content page.
-
-
-  Figure 10 Using the customized navigation bar to switch to a specified tab page 
-
-![Switching to a Specified Tab Page](figures/Switching to a Specified Tab Page.gif)
+Non-custom navigation bars follow the default system switching logic. If you are using a custom navigation bar, you must manually implement the logic for switching tabs so that when the user touches a tab, the application displays the corresponding tab page.
 
 
-To switch a specified tab page, you need to use the TabsController. The TabsController is the controller of the Tabs component and is used to control the Tabs component to switch tab pages. The changeIndex method of TabsController is used to jump to the TabContent content corresponding to a specified index value.
+  **Figure 10** Switching to a specified tab in a custom navigation bar 
+
+![switching-to-a-specified-tab](figures/switching-to-a-specified-tab.gif)
+
+
+To switch to a specified tab page, use **TabsController**, which is the controller of the **\<Tabs>** component. By using the **changeIndex** API of **TabsController**, you can set your application to display the tab content corresponding to the specified index.
 
 
 
@@ -300,7 +299,7 @@ private tabsController : TabsController = new TabsController()
 ```
 
 
-When using the customized navigation bar, transfer the corresponding \@Builder in the tabBar attribute and transfer the corresponding parameters.
+When using a custom navigation bar, pass the corresponding \@Builder in the **tabBar** attribute and transfer the corresponding parameters.
 
 
 
@@ -312,31 +311,31 @@ Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
 
   TabContent(){
     ...
-  }.tabBar (this.TabBuilder ('Found', 1))
+  }.tabBar (this.TabBuilder ('Discover', 1))
 
   TabContent(){
     ...
-  }.tabBar (this.TabBuilder ('recommend', 2))
+  }.tabBar (this.TabBuilder ('Recommended', 2))
 
   TabContent(){
     ...
   }
-  .tabBar (this.TabBuilder (' My',3))
+  .tabBar (this.TabBuilder ('Me',3))
 }
 ```
 
 
-## Swipe to switch the navigation bar.
+## Swiping to Switch Between Tabs
 
-If the customized navigation bar is not used, the Tabs implements the switchover association between the TabBar and TabContent by default. However, after the customized navigation bar is used, the TabsController can be used to implement the association between the clicked tab and the page content, but cannot implement the association between the page content and the tab when the page is sliding. That is, when a subscriber swipes on the screen to switch page content, the tab bar needs to be switched to the tab corresponding to the content.
-
-
-  Figure 11 Tab page content is not associated when you slide to switch between tab pages 
-
-![Final effect 11] (figures / Final effect 11.gif)
+For non-custom navigation bars, tabs and tab content are linked by default. For custom navigation bars, however, tabs and tab content are linked when tab switching is initiated by **TabsController**, but not when tab switching is initiated by a swipe gesture. This means that, when the user swipes on the screen to switch between tab content, the tabs do not switch automatically. In this case, manual switching is required.
 
 
-In this case, you need to use the onChange event method provided by Tabs to listen to the index change and transfer the active index value to currentIndex to switch the tab content.
+  **Figure 11** Lack of linkage between tabs and tab content 
+
+![lack-of-linkage](figures /lack-of-linkage.gif)
+
+
+To manually switch between the tabs, use the **onChange** API provided by the **\<Tabs>** component to listen for the index change and pass the index of the active tab to **currentIndex**.
 
 
 
@@ -353,26 +352,18 @@ Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
 
   TabContent() {
     ...
-  }.tabBar (this.TabBuilder ('Recommend', 2))
+  }.tabBar (this.TabBuilder ('Recommended', 2))
 
   TabContent() {
     ...
   }
-  .tabBar (this.TabBuilder ('My', 3))
+  .tabBar (this.TabBuilder ('Me', 3))
 }.onChange((index) => {
   this.currentIndex = index
 })
 ```
 
 
-  Figure 12 Linkage between content and tabs
+  **Figure 12** Linkage between tabs and tab content
 
-![Final Effect] (figures / Final Effect.gif)
-
-## Samples
-
-For details about the implementation of tabs, see the following example:
-
-- [Healthy Life] (https://gitee.com/openharmony/codelabs/tree/master/ETSUI/Healthy_life)
-
-- [Common Components and Layout] (https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ArkTSComponents)
+![final-effect](figures/final-effect.gif)
