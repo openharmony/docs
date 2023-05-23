@@ -30,7 +30,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: Async
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用运行的黑名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
@@ -76,7 +76,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number,
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用运行的黑名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
@@ -122,7 +122,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用运行的黑名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 
 **返回值：**
@@ -173,7 +173,7 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: As
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用运行的黑名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
@@ -218,7 +218,7 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: numb
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用运行的黑名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
@@ -264,7 +264,7 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: num
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用运行的黑名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 
 **返回值：**
