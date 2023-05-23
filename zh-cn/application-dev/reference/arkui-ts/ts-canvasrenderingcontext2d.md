@@ -10,13 +10,13 @@
 
 ## 接口
 
-CanvasRenderingContext2D(setting: RenderingContextSetting)
+CanvasRenderingContext2D(settings?: RenderingContextSettings)
 
 **参数：**
 
 | 参数名     | 参数类型                                     | 必填   | 默认值  | 参数描述                                     |
 | ------- | ---------------------------------------- | ---- | ---- | ---------------------------------------- |
-| setting | [RenderingContextSettings](#renderingcontextsettings) | 是    | -    | 见[RenderingContextSettings](#renderingcontextsettings)。 |
+| setting | [RenderingContextSettings](#renderingcontextsettings) | 否    | -    | 见[RenderingContextSettings](#renderingcontextsettings)。 |
 
 
 ### RenderingContextSettings
