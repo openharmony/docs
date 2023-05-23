@@ -55,7 +55,6 @@
   - [Network Connection Management Error Codes](errorcode-net-connection.md)
   - [Ethernet Connection Management Error Codes](errorcode-net-ethernet.md)
   - [Network Sharing Error Codes](errorcode-net-sharing.md)
-  - [Network Policy Management Error Codes](errorcode-net-policy.md)
 - Connectivity
   - [NFC Error Codes](errorcode-nfc.md)
   - [RPC Error Codes](errorcode-rpc.md)

@@ -77,7 +77,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
   ```
 
 
-## backgroundTaskManager.getRemainingDelayTime:callback
+## backgroundTaskManager.getRemainingDelayTime
 
 getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;): void
 
@@ -126,7 +126,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
   ```
 
 
-## backgroundTaskManager.getRemainingDelayTime:promise
+## backgroundTaskManager.getRemainingDelayTime
 
 getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
@@ -220,7 +220,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
   ```
 
 
-## backgroundTaskManager.startBackgroundRunning:callback
+## backgroundTaskManager.startBackgroundRunning
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void
 
@@ -298,7 +298,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## backgroundTaskManager.startBackgroundRunning:promise
+## backgroundTaskManager.startBackgroundRunning
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
@@ -377,7 +377,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## backgroundTaskManager.stopBackgroundRunning:callback
+## backgroundTaskManager.stopBackgroundRunning
 
 stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void
 
@@ -431,7 +431,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## backgroundTaskManager.stopBackgroundRunning:promise
+## backgroundTaskManager.stopBackgroundRunning
 
 stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 

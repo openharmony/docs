@@ -1,8 +1,9 @@
-# @ohos.runningLock (Runninglock)
+# @ohos.runningLock (Running Lock)
 
 The **runningLock** module provides APIs for creating, querying, holding, and releasing running locks.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -15,7 +16,7 @@ import runningLock from '@ohos.runningLock';
 
 isSupported(type: RunningLockType): boolean;
 
-Checks whether a specified type of **RunningLock** is supported.
+Checks whether the specified type of **RunningLock** is supported. This API uses an asynchronous callback to return the result.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
 
@@ -25,7 +26,7 @@ Checks whether a specified type of **RunningLock** is supported.
 | ------ | ----------------------------------- | ---- | -------------------- |
 | type   | [RunningLockType](#runninglocktype) | Yes  | Type of the **RunningLock** object.|
 
-**Return value**
+**Return Value**
 
 | Type   | Description                                   |
 | ------- | --------------------------------------- |
@@ -35,9 +36,9 @@ Checks whether a specified type of **RunningLock** is supported.
 
 For details about the error codes, see [RunningLock Error Codes](../errorcodes/errorcode-runninglock.md).
 
-| Code  | Error Message   |
+| ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -72,9 +73,9 @@ Creates a **RunningLock** object.
 
 For details about the error codes, see [RunningLock Error Codes](../errorcodes/errorcode-runninglock.md).
 
-| Code  | Error Message    |
+| ID  | Error Message    |
 |---------|----------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -105,7 +106,7 @@ Creates a **RunningLock** object.
 | name   | string                              | Yes  | Name of the **RunningLock** object.        |
 | type   | [RunningLockType](#runninglocktype) | Yes  | Type of the **RunningLock** object to be created.|
 
-**Return value**
+**Return Value**
 
 | Type                                      | Description                                |
 | ------------------------------------------ | ------------------------------------ |
@@ -115,9 +116,9 @@ Creates a **RunningLock** object.
 
 For details about the error codes, see [RunningLock Error Codes](../errorcodes/errorcode-runninglock.md).
 
-| Code  | Error Message    |
+| ID  | Error Message    |
 |---------|----------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -135,10 +136,9 @@ runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND)
 
 isRunningLockTypeSupported(type: RunningLockType, callback: AsyncCallback&lt;boolean&gt;): void
 
-> NOTE<br>
-> This API is deprecated since API version 9. You are advised to use [runningLock.isSupported](#runninglockissupported9) instead.
+> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [runningLock.isSupported](#runninglockissupported9).
 
-Checks whether a specified type of **RunningLock** is supported. This API uses an asynchronous callback to return the result.
+Checks whether the specified type of **RunningLock** is supported. This API uses an asynchronous callback to return the result. This API uses an asynchronous callback to return the result.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
 
@@ -147,7 +147,7 @@ Checks whether a specified type of **RunningLock** is supported. This API uses a
 | Name  | Type                               | Mandatory| Description                                                        |
 | -------- | ----------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | [RunningLockType](#runninglocktype) | Yes  | Type of the **RunningLock** object.                                        |
-| callback | AsyncCallback&lt;boolean&gt;        | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the query result obtained, where the value **true** indicates that **RunningLock** is supported and **false** indicates the opposite. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;boolean&gt;        | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the query result obtained, where the value **true** indicates that the specified type of **RunningLock** is supported and **false** indicates the opposite. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -165,10 +165,9 @@ runningLock.isRunningLockTypeSupported(runningLock.RunningLockType.BACKGROUND, (
 
 isRunningLockTypeSupported(type: RunningLockType): Promise&lt;boolean>
 
-> NOTE<br>
-> This API is deprecated since API version 9. You are advised to use [runningLock.isSupported](#runninglockissupported9) instead.
+> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [runningLock.isSupported](#runninglockissupported9).
 
-Checks whether a specified type of **RunningLock** is supported. This API uses a promise to return the result.
+Checks whether the specified type of **RunningLock** is supported. This API uses an asynchronous callback to return the result. This API uses a promise to return the result.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
 
@@ -178,7 +177,7 @@ Checks whether a specified type of **RunningLock** is supported. This API uses a
 | ------ | ----------------------------------- | ---- | -------------------- |
 | type   | [RunningLockType](#runninglocktype) | Yes  | Type of the **RunningLock** object.|
 
-**Return value**
+**Return Value**
 
 | Type                  | Description                                                |
 | ---------------------- | ---------------------------------------------------- |
@@ -200,8 +199,7 @@ runningLock.isRunningLockTypeSupported(runningLock.RunningLockType.BACKGROUND)
 
 createRunningLock(name: string, type: RunningLockType, callback: AsyncCallback&lt;RunningLock&gt;): void
 
-> NOTE<br>
-> This API is deprecated since API version 9. You are advised to use [runningLock.create](#runninglockcreate9) instead.
+> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [runningLock.create](#runninglockcreate9).
 
 Creates a **RunningLock** object.
 
@@ -233,8 +231,7 @@ runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.B
 
 createRunningLock(name: string, type: RunningLockType): Promise&lt;RunningLock&gt;
 
-> NOTE<br>
-> This API is deprecated since API version 9. You are advised to use [runningLock.create](#runninglockcreate9) instead.
+> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [runningLock.create](#runninglockcreate9).
 
 Creates a **RunningLock** object.
 
@@ -249,7 +246,7 @@ Creates a **RunningLock** object.
 | name   | string                              | Yes  | Name of the **RunningLock** object.        |
 | type   | [RunningLockType](#runninglocktype) | Yes  | Type of the **RunningLock** object to be created.|
 
-**Return value**
+**Return Value**
 
 | Type                                      | Description                                |
 | ------------------------------------------ | ------------------------------------ |
@@ -269,7 +266,7 @@ runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.B
 
 ## RunningLock
 
-Represents a **RunningLock** object.
+Defines a **RunningLock** object.
 
 ### hold<sup>9+</sup>
 
@@ -291,9 +288,9 @@ Locks and holds a **RunningLock** object.
 
 For details about the error codes, see [RunningLock Error Codes](../errorcodes/errorcode-runninglock.md).
 
-| Code  | Error Message    |
+| ID  | Error Message    |
 |---------|----------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -327,9 +324,9 @@ Releases a **RunningLock** object.
 
 For details about the error codes, see [RunningLock Error Codes](../errorcodes/errorcode-runninglock.md).
 
-| Code  | Error Message    |
+| ID  | Error Message    |
 |---------|----------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -357,7 +354,7 @@ Checks the hold status of the **Runninglock** object.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
 
-**Return value**
+**Return Value**
 
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
@@ -367,9 +364,9 @@ Checks the hold status of the **Runninglock** object.
 
 For details about the error codes, see [RunningLock Error Codes](../errorcodes/errorcode-runninglock.md).
 
-| Code  | Error Message   |
+| ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -393,8 +390,7 @@ runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND)
 
 lock(timeout: number): void
 
-> NOTE<br>
-> This API is deprecated since API version 9. You are advised to use [RunningLock.hold](#hold9) instead.
+> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [RunningLock.hold](#hold9).
 
 Locks and holds a **RunningLock** object.
 
@@ -425,8 +421,7 @@ runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.B
 
 unlock(): void
 
-> NOTE<br>
-> This API is deprecated since API version 9. You are advised to use [RunningLock.unhold](#unhold9) instead.
+> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [RunningLock.unhold](#unhold9).
 
 Releases a **RunningLock** object.
 
@@ -451,14 +446,13 @@ runningLock.createRunningLock('running_lock_test', runningLock.RunningLockType.B
 
 isUsed(): boolean
 
-> NOTE<br>
-> This API is deprecated since API version 9. You are advised to use [RunningLock.isHolding](#isholding9) instead.
+> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [RunningLock.isHolding](#isholding9).
 
 Checks the hold status of the **Runninglock** object.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
 
-**Return value**
+**Return Value**
 | Type   | Description                                                        |
 | ------- | ------------------------------------------------------------ |
 | boolean | The value **true** indicates that the **Runninglock** object is held; and the value **false** indicates that the **Runninglock** object is released.|
@@ -482,7 +476,7 @@ Enumerates the types of **RunningLock** objects.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
 
-| Name                    | Value  | Description                                  |
-| ------------------------ | ---- | -------------------------------------- |
-| BACKGROUND               | 1    | A lock that prevents the system from hibernating when the screen is off.                    |
-| PROXIMITY_SCREEN_CONTROL | 2    | A lock that determines whether to turn on or off the screen based on the distance away from the screen.|
+| Name                             | Value  | Description                                                        |
+| --------------------------------- | ---- | ------------------------------------------------------------ |
+| BACKGROUND<sup>(deprecated)</sup> | 1    | A lock that prevents the system from hibernating when the screen is off.<br>**NOTE**<br>This parameter is supported since API version 7 and deprecated since API version 10.|
+| PROXIMITY_SCREEN_CONTROL          | 2    | A lock that determines whether to turn on or off the screen based on the distance away from the screen.                      |

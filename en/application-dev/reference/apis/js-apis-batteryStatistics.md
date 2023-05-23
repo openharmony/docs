@@ -18,7 +18,7 @@ import batteryStats from '@ohos.batteryStatistics';
 
 getBatteryStats(): Promise<Array&lt;BatteryStatsInfo&gt;>
 
-Obtains the power consumption information list, using a promise to return the result.
+Obtains the power consumption information list. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -34,9 +34,9 @@ Obtains the power consumption information list, using a promise to return the re
 
 For details about the error codes, see [Thermal Manager Error Codes](../errorcodes/errorcode-batteryStatistics.md).
 
-| Code| Error Message      |
-| -------- | -------------- |
-| 4600101  | Operation failed. Cannot connect to service.|
+| Code  | Error Message   |
+|---------|---------|
+| 4600101 | If connecting to the service failed. |
 
 **Example**
 
@@ -64,15 +64,15 @@ Obtains the power consumption information list. This API uses an asynchronous ca
 
 | Name  | Type                                                       | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback<Array<[BatteryStatsInfo](#batterystatsinfo)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the array of power consumption information obtained. If the operation failed, **err** is an error object.|
+| callback | AsyncCallback<Array<[BatteryStatsInfo](#batterystatsinfo)>> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the array of power consumption information obtained (that is, **Array<[BatteryStatsInfo](#batterystatsinfo)>>**). If the operation failed, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [Thermal Manager Error Codes](../errorcodes/errorcode-batteryStatistics.md).
 
-| Code| Error Message      |
-| -------- | -------------- |
-| 4600101  | Operation failed. Cannot connect to service.|
+| Code  | Error Message   |
+|---------|---------|
+| 4600101 | If connecting to the service failed. |
 
 **Example**
 
@@ -112,9 +112,9 @@ Obtains the power consumption of an application.
 
 For details about the error codes, see [Thermal Manager Error Codes](../errorcodes/errorcode-batteryStatistics.md).
 
-| Code| Error Message      |
-| -------- | -------------- |
-| 4600101  | Operation failed. Cannot connect to service.|
+| Code  | Error Message   |
+|---------|---------|
+| 4600101 | If connecting to the service failed. |
 
 **Example**
 
@@ -153,9 +153,9 @@ Obtains the proportion of the power consumption of an application.
 
 For details about the error codes, see [Thermal Manager Error Codes](../errorcodes/errorcode-batteryStatistics.md).
 
-| Code| Error Message      |
-| -------- | -------------- |
-| 4600101  | Operation failed. Cannot connect to service.|
+| Code  | Error Message   |
+|---------|---------|
+| 4600101 | If connecting to the service failed. |
 
 **Example**
 
@@ -194,15 +194,15 @@ Obtains the power consumption of a hardware unit according to the consumption ty
 
 For details about the error codes, see [Thermal Manager Error Codes](../errorcodes/errorcode-batteryStatistics.md).
 
-| Code| Error Message      |
-| -------- | -------------- |
-| 4600101  | Operation failed. Cannot connect to service.|
+| Code  | Error Message   |
+|---------|---------|
+| 4600101 | If connecting to the service failed. |
 
 **Example**
 
 ```js
 try {
-    var value = batteryStats.getHardwareUnitPowerValue(ConsumptionType.CONSUMPTION_TYPE_SCREEN);
+    var value = batteryStats.getHardwareUnitPowerValue(batteryStats.ConsumptionType.CONSUMPTION_TYPE_SCREEN);
     console.info('battery statistics value of hardware is: ' + value);
 } catch(err) {
     console.error('get battery statistics percent of hardware failed, err: ' + err);
@@ -235,15 +235,15 @@ Obtains the proportion of the power consumption of a hardware unit according to 
 
 For details about the error codes, see [Thermal Manager Error Codes](../errorcodes/errorcode-batteryStatistics.md).
 
-| Code| Error Message      |
-| -------- | -------------- |
-| 4600101  | Operation failed. Cannot connect to service.|
+| Code  | Error Message   |
+|---------|---------|
+| 4600101 | If connecting to the service failed. |
 
 **Example**
 
 ```js
 try {
-    var percent = batteryStats.getHardwareUnitPowerPercent(ConsumptionType.CONSUMPTION_TYPE_SCREEN);
+    var percent = batteryStats.getHardwareUnitPowerPercent(batteryStats.ConsumptionType.CONSUMPTION_TYPE_SCREEN);
     console.info('battery statistics percent of hardware is: ' + percent);
 } catch(err) {
     console.error('get battery statistics percent of hardware failed, err: ' + err);
