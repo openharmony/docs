@@ -32,7 +32,7 @@ publish(event: string, callback: AsyncCallback\<void>): void
 
 **参数：**
 
-| 名称     | 类型                 | 必填 | 说明                   |
+| 参数名     | 类型                 | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
 | event    | string               | 是   | 表示要发送的公共事件。 |
 | callback | AsyncCallback\<void> | 是   | 表示被指定的回调方法。 |
@@ -66,7 +66,7 @@ publish(event: string, options: CommonEventPublishData, callback: AsyncCallback\
 
 **参数：**
 
-| 名称     | 类型                   | 必填 | 说明                   |
+| 参数名     | 类型                   | 必填 | 说明                   |
 | -------- | ---------------------- | ---- | ---------------------- |
 | event    | string                 | 是   | 表示要发布的公共事件。  |
 | options  | [CommonEventPublishData](./js-apis-inner-commonEvent-commonEventPublishData.md) | 是   | 表示发布公共事件的属性。 |
@@ -111,7 +111,7 @@ publishAsUser(event: string, userId: number, callback: AsyncCallback\<void>): vo
 
 **参数：**
 
-| 名称     | 类型                 | 必填 | 说明                               |
+| 参数名     | 类型                 | 必填 | 说明                               |
 | -------- | -------------------- | ---- | ---------------------------------- |
 | event    | string               | 是   | 表示要发送的公共事件。             |
 | userId   | number               | 是   | 表示指定向该用户ID发送此公共事件。 |
@@ -151,7 +151,7 @@ publishAsUser(event: string, userId: number, options: CommonEventPublishData, ca
 
 **参数：**
 
-| 名称     | 类型                   | 必填 | 说明                   |
+| 参数名     | 类型                   | 必填 | 说明                   |
 | -------- | ---------------------- | ---- | ---------------------- |
 | event    | string                 | 是   | 表示要发布的公共事件。  |
 | userId   | number | 是 | 表示指定向该用户ID发送此公共事件。 |
@@ -197,7 +197,7 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallbac
 
 **参数：**
 
-| 名称          | 类型                                                         | 必填 | 说明                       |
+| 参数名          | 类型                                                         | 必填 | 说明                       |
 | ------------- | ------------------------------------------------------------ | ---- | -------------------------- |
 | subscribeInfo | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md)        | 是   | 表示订阅信息。             |
 | callback      | AsyncCallback\<[CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)> | 是   | 表示创建订阅者的回调方法。 |
@@ -240,7 +240,7 @@ createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise<CommonEventSu
 
 **参数：**
 
-| 名称          | 类型                                                  | 必填 | 说明           |
+| 参数名          | 类型                                                  | 必填 | 说明           |
 | ------------- | ----------------------------------------------------- | ---- | -------------- |
 | subscribeInfo | [CommonEventSubscribeInfo](./js-apis-inner-commonEvent-commonEventSubscribeInfo.md) | 是   | 表示订阅信息。 |
 
@@ -281,7 +281,7 @@ subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback<CommonEvent
 
 **参数：**
 
-| 名称       | 类型                                                | 必填 | 说明                             |
+| 参数名       | 类型                                                | 必填 | 说明                             |
 | ---------- | ---------------------------------------------------- | ---- | -------------------------------- |
 | subscriber | [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md)     | 是   | 表示订阅者对象。                 |
 | callback   | AsyncCallback\<[CommonEventData](./js-apis-inner-commonEvent-commonEventData.md)> | 是   | 表示接收公共事件数据的回调函数。 |
@@ -334,7 +334,7 @@ unsubscribe(subscriber: CommonEventSubscriber, callback?: AsyncCallback\<void>):
 
 **参数：**
 
-| 名称       | 类型                                             | 必填 | 说明                     |
+| 参数名       | 类型                                             | 必填 | 说明                     |
 | ---------- | ----------------------------------------------- | ---- | ------------------------ |
 | subscriber | [CommonEventSubscriber](./js-apis-inner-commonEvent-commonEventSubscriber.md) | 是   | 表示订阅者对象。         |
 | callback   | AsyncCallback\<void>                            | 否   | 表示取消订阅的回调方法。 |

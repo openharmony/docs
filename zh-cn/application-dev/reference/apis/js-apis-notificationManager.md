@@ -3869,7 +3869,7 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER and ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
 **参数：**
 
@@ -3882,9 +3882,9 @@ on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => No
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
-| 错误码ID | 错误信息        |
-| -------- | --------------- |
-| 1600001  | Internal error. |
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
 
 **示例：**
 
@@ -3914,7 +3914,7 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER and ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
 **参数：**
 
@@ -3927,9 +3927,9 @@ off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => 
 
 错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
 
-| 错误码ID | 错误信息        |
-| -------- | --------------- |
-| 1600001  | Internal error. |
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
 
 **示例：**
 
@@ -3947,11 +3947,11 @@ try{
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-| 名称  | 类型                                  | 可读 | 可写 | 说明                   |
+| 名称  | 类型                                  | 只读 | 必填 | 说明                   |
 | ----- | ------------------------------------- | ---- | ---- | ---------------------- |
-| type  | [DoNotDisturbType](#donotdisturbtype) | 是   | 是   | 免打扰设置的时间类型。 |
-| begin | Date                                  | 是   | 是   | 免打扰设置的起点时间。 |
-| end   | Date                                  | 是   | 是   | 免打扰设置的终点时间。 |
+| type  | [DoNotDisturbType](#donotdisturbtype) | 否   | 是   | 免打扰设置的时间类型。 |
+| begin | Date                                  | 否   | 是   | 免打扰设置的起点时间。 |
+| end   | Date                                  | 否   | 是   | 免打扰设置的终点时间。 |
 
 ## DoNotDisturbType
 
@@ -4033,22 +4033,29 @@ try{
 | TYPE_CONTINUOUS      | 1   | 连续通知。            |
 | TYPE_TIMER           | 2   | 计划通知。            |
 
-## NotificationCheckInfo
+## NotificationCheckInfo<sup>10+</sup>
 
-用于校验通知的参数。
+**系统能力**：SystemCapability.Notification.Notification
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
-| 名称                 | 类型       | 可读   | 可写   | 说明     |
-| -------------------- | -------- | ---------- | ---------- | ---------- |
-| bundleName         | string | 是 | 否 | bundle名称。 |
-| notificationId | number | 是 | 否 | 通知Id。 |
-| contentType  | [ContentType](#contenttype) | 是 | 否 | 通知类型。 |
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-## NotificationCheckResult
+| 名称  | 类型                                  | 只读 | 必填 | 说明                   |
+| ----- | ------------------------------------- | ---- | ---- | ---------------------- |
+| bundleName  | string                          | 否   | 是   | bundle名称。 |
+| notificationId | number                       | 否   | 是   | 通知Id。     |
+| contentType   | [ContentType](#contenttype)   | 否   | 是   | 通知类型。   |
 
-通知校验结果。
+## NotificationCheckResult<sup>10+</sup>
 
-| 名称                 | 类型       | 可读     | 可写     | 说明       |
-| -------------------- | -------- | ---------- | ---------- | ---------- |
-| code         | number | 是 | 否 | 0-display, 1-no display。 |
-| message | string | 是 | 否 | 结果信息。 |
+**系统能力**：SystemCapability.Notification.Notification
+
+**系统API**：此接口为系统接口，三方应用不支持调用。
+
+**需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
+
+| 名称  | 类型                                  | 只读 | 必填 | 说明                   |
+| ----- | ------------------------------------- | ---- | ---- | ---------------------- |
+| code  | number                          | 否   | 是   | 0-display, 1-no display。 |
+| message | string                       | 否   | 是   | 结果信息。    |

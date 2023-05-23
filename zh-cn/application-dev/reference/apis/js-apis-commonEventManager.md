@@ -549,19 +549,20 @@ CommonEventManager.removeStickyCommonEvent("sticky_event").then(() => {
 
 ## CommonEventManager.setStaticSubscriberState<sup>10+</sup>
 
-setStaticSubscriberState(enable: boolean, callback: AsyncCallback<void>): void;
+setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void;
 
 方法介绍：为当前应用设置静态订阅事件使能或去使能状态。使用callback异步回调。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
-| 参数名   | 类型                 | 必填 | 说明                             |
-| -------- | -------------------- | ---- | -------------------------------- |
-| enable    | bool               | 是   | 表示静态订阅事件使能状态。 true:使能  false：去使能      |
-| callback | AsyncCallback\<void> | 是   | 表示设置静态订阅事件使能状态的回调方法。 |
+| 参数名 | 类型   | 必填 | 说明                       |
+| ------ | ------ | ---- | -------------------------- |
+| enable  | boolean | 是   | 表示静态订阅事件使能状态。 true:使能 false：去使能。 |
+| callback  | AsyncCallback<void> | 是   | 表示设置静态订阅事件使能状态的回调方法。 |
 
 **错误码：**
 
@@ -569,8 +570,8 @@ setStaticSubscriberState(enable: boolean, callback: AsyncCallback<void>): void;
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 1500007  | The message send error.             |
-| 1500008  | The CEMS error.                     |
+| 1500007  | error sending message to Common Event Service.             |
+| 1500008  | Common Event Service does not complete initialization.     |
 
 **示例：**
 
@@ -591,18 +592,19 @@ CommonEventManager.setStaticSubscriberState(true, (err) => {
 
 ## CommonEventManager.setStaticSubscriberState<sup>10+</sup>
 
-setStaticSubscriberState(enable: boolean): Promise<void>;
+setStaticSubscriberState(enable: boolean): Promise\<void>;
 
 方法介绍：为当前应用设置静态订阅事件使能或去使能状态。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
+**系统API**：此接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| enable  | bool | 是   | 表示静态订阅事件使能状态。true:使能  false：去使能 |
+| enable  | boolean | 是   | 表示静态订阅事件使能状态。 true:使能 false：去使能。 |
 
 **返回值：**
 
@@ -616,8 +618,8 @@ setStaticSubscriberState(enable: boolean): Promise<void>;
 
 | 错误码ID | 错误信息                            |
 | -------- | ----------------------------------- |
-| 1500007  | The message send error.             |
-| 1500008  | The CEMS error.                     |
+| 1500007  | error sending message to Common Event Service.             |
+| 1500008  | Common Event Service does not complete initialization.     |
 
 **示例：**
 
