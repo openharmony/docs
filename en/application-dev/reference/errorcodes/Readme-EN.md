@@ -55,7 +55,6 @@
   - [Network Connection Management Error Codes](errorcode-net-connection.md)
   - [Ethernet Connection Management Error Codes](errorcode-net-ethernet.md)
   - [Network Sharing Error Codes](errorcode-net-sharing.md)
-  - [Network Policy Management Error Codes](errorcode-net-policy.md)
 - Connectivity
   - [NFC Error Codes](errorcode-nfc.md)
   - [RPC Error Codes](errorcode-rpc.md)
@@ -68,6 +67,7 @@
   - [HiDebug Error Codes](errorcode-hiviewdfx-hidebug.md)
   - [Input Method Framework Error Codes](errorcode-inputmethod-framework.md)
   - [Pasteboard Error Codes](errorcode-pasteboard.md)
+  - [Screen Lock Management Error Codes](errorcode-screenlock.md)
   - [Time and Time Zone Service Error Codes](errorcode-time.md)
   - [Webview Error Codes](errorcode-webview.md)
 - Account Management
