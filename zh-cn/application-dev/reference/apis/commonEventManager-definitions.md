@@ -1,7 +1,7 @@
 # 系统公共事件定义
 
 本文档提供OpenHarmony系统所定义的公共事件类型的索引。
-公共事件类型定义在[ohos.commonEvent模块的Support枚举](./js-apis-commonEventManager.md#support)中。
+公共事件类型定义在[ohos.commonEventManager模块的Support枚举](./js-apis-commonEventManager.md#support)中。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
