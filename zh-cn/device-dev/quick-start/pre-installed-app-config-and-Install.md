@@ -57,4 +57,4 @@ hdc_std file recv /system/etc/app/install_list.json .
     hdc_std shell reboot
 ```
 
-如果应用之前已经安装过，这时继续推送新的hap到/system/app/的路径下，则需要保证应用的版本号，分为[Stage模型的版本号（versionCode）](https://gitee.com/openharmony/docs/blob/5ed63aa268e4a16aefe6fb569000735d7cf1e888b1/zh-cn/application-dev/qucik-start/app-configuration-file.md)，[FA模型的版本号（code）](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/app-structure.md#version对象内部结构)比之前的大。 这时执行方法二的命令，重启后应用同样可以正常安装。需要注意的是方法二命令，不需要反复执行， 重启之后依然生效。
+如果应用之前已经安装过，这时继续推送新的hap到/system/app/的路径下，则需要保证应用的版本号，分为[Stage模型的版本号（versionCode）](../../application-dev/qucik-start/app-configuration-file.md)，[FA模型的版本号（code）](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/quick-start/app-structure.md#version对象内部结构)比之前的大。 这时执行方法二的命令，重启后应用同样可以正常安装。需要注意的是方法二命令，不需要反复执行， 重启之后依然生效。
