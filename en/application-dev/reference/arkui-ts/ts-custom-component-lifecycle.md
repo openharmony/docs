@@ -43,7 +43,7 @@ Invoked when a page is hidden. This callback is used in the routing process or s
 
 onBackPress?(): void
 
-Invoked when a user clicks the back button. It works only for the custom components decorated by **@Entry**. The value **true** is returned if the page processes the return logic instead of performing page routing. The value **false** is returned if the default return logic is used. If the return value is not set, the value **false** is used.
+Invoked when a user clicks the back button. It works only for the custom components decorated by **@Entry**.
 
 
 ```ts

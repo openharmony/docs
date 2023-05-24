@@ -2268,7 +2268,7 @@ Draws the input [PixelMap](../apis/js-apis-image.md#pixelmap7) object on the can
 
  **Parameters**
 
-| Parameters  | Type    | Mandatory  | Default Value | Description             |
+| Name  | Type    | Mandatory  | Default Value | Description             |
 | ---- | ------ | ---- | ---- | --------------- |
 | sx   | number | Yes   | 0    | X-coordinate of the upper left corner of the output area.|
 | sy   | number | Yes   | 0    | Y-coordinate of the upper left corner of the output area.|

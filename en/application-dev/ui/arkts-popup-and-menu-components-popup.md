@@ -1,17 +1,17 @@
-# Bubble
+# Popup
 
 
-You can bind the **Popup** attribute to a component, specifying its content, interaction logic, and display status. It is mainly used for screen recording and message pop-up notification.
+You can bind the **Popup** attribute to a component to create a popup, specifying its content and interaction logic, and display state. It is mainly used for screen recording and message notification.
 
 
-Bubbles are classified into two types: built-in bubbles with [PopupOptions](../reference/arkui-ts/ts-universal-attributes-popup.md#popupoptions) and custom bubbles with [CustomPopupOptions](../reference/arkui-ts/ts-universal-attributes-popup.md#custompopupoptions8). For PopupOptions, you can set primaryButton and secondaryButton to set bubbles with buttons. CustomPopupOptions sets the customized bubble by configuring the [builder](../quick-start/arkts-builder.md) parameter.
+Popups can be defined with [PopupOptions](../reference/arkui-ts/ts-universal-attributes-popup.md#popupoptions) or [CustomPopupOptions](../reference/arkui-ts/ts-universal-attributes-popup.md#custompopupoptions8). In **PopupOptions**, you can set **primaryButton** and **secondaryButton** to include buttons in the popup. In **CustomPopupOptions**, you can create a custom popup through the [builder](../quick-start/arkts-builder.md) parameter.
 
 
-## Text prompt bubble
+## Text Popup
 
-Text pop-up messages are usually used to display only text messages without any interaction. The Popup attribute needs to be bound to a component. When the show parameter in the bindPopup attribute is set to true, a pop-up message is displayed.
+Text popups are usually used to display text only and do not allow for user interactions. Bind the **Popup** attribute to a component. When the **show** parameter in the **bindPopup** attribute is set to **true**, a popup is displayed.
 
-Bind the Popup attribute to the Button component. Each time the Button button is clicked, handlePopup switches the Boolean value. When handlePopup is set to true, bindPopup pops up.
+If you bind the **Popup** attribute to a **\<Button>** component, each time the **\<Button>** button is clicked, the Boolean value of **handlePopup** changes. When it changes to **true**, the popup is displayed.
 
 
 
@@ -39,9 +39,9 @@ struct PopupExample {
 ![en-us_image_0000001511740524](figures/en-us_image_0000001511740524.png)
 
 
-## Bubble with a button
+## Popup with a Button
 
-A maximum of two buttons can be set for a bubble through the primaryButton and secondaryButton attributes for simple interaction. Developers can set the action parameter to specify the operation to be triggered.
+You can add a maximum of two buttons to a popup through the **primaryButton** and **secondaryButton** attributes. For each of the buttons, you can set the **action** parameter to specify the operation to be triggered.
 
 
 
@@ -81,9 +81,9 @@ struct PopupExample22 {
 ![en-us_other_0000001500740342](figures/en-us_other_0000001500740342.jpeg)
 
 
-## Custom Bubbles
+## Custom Popup
 
-Developers can use the builder CustomPopupOptions to create customized bubbles. \@Builder can store customized content. In addition, parameters such as popupColor can be used to control the bubble style.
+You can create a custom popup with **CustomPopupOptions**, defining custom content in \@Builder. In addition, you can use parameters such as **popupColor** to control the popup style.
 
 
 
@@ -92,7 +92,7 @@ Developers can use the builder CustomPopupOptions to create customized bubbles. 
 @Component
 struct Index {
   @State customPopup: boolean = false
-  // The popup constructor defines the dialog box content.
+  // Define the popup content in the popup builder.
   @Builder popupBuilder() {
     Row({ space: 2 }) {
       Image($r("app.media.icon")).width(24).height(24).margin({ left: 5 })
@@ -107,9 +107,9 @@ struct Index {
           this.customPopup = !this.customPopup
         })
         .bindPopup(this.customPopup, {
-          builder: this.popupBuilder, // Content of the bubble
-          placement:Placement.Bottom, // Pop-up position of the bubble
-          popupColor:Color.Pink // Background color of the bubble
+          builder: this.popupBuilder, // Content of the popup.
+          placement:Placement.Bottom, // Position of the popup.
+          popupColor:Color.Pink // Background color of the popup.
         })
     }
     .height('100%')
@@ -118,7 +118,7 @@ struct Index {
 ```
 
 
-You can set the placement parameter to place the pop-up bubble in the required position. The pop-up window constructor triggers a pop-up message to guide the user to complete the operation, providing better UI experience for the user.
+To place the popup in a specific position, set the **placement** parameter. The popup builder triggers a popup message to instruct the user to complete the operation.
 
 
 ![en-us_other_0000001500900234](figures/en-us_other_0000001500900234.jpeg)
@@ -130,19 +130,19 @@ You can set the placement parameter to place the pop-up bubble in the required p
 @Component
 struct Index {
   @State customPopup: boolean = false
-  // The popup constructor defines the dialog box content.
+  // Define the popup content in the popup builder.
   @Builder popupBuilder() {
     Row({ space: 2 }) {
       Image('/images/shengWhite.png').width(30).objectFit(ImageFit.Contain)
       Column(){
-        Text('Control Life') .fontSize(14).fontWeight(900).fontColor(Color.White).width('100%')
-        Text('When you want to sing, tens of millions of songs can be selected and the voice can be adjusted.').fontSize(12).fontColor('#ffeeeeee').width('100%')
+        Text('Savor Life').fontSize(14).fontWeight(900).fontColor(Color.White).width('100%')
+        Text('A treasure trove of sing-along songs').fontSize(12).fontColor('#ffeeeeee').width('100%')
       }
     }.width(230).height(80).padding(5)
   }
   build() {
     Row() {
-      Text ('I would like to sing a song')
+      Text ('Sing along')
       Image('/images/sheng.png').width(35).objectFit(ImageFit.Contain)
         .onClick(() => {
           this.customPopup = !this.customPopup
