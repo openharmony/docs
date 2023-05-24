@@ -208,17 +208,17 @@ LCD驱动模型属于驱动基础适配模块，第三方需要适配OpenHarmony
 
      ```c++
      struct PanelInfo {
-         uint32_t width;
-         uint32_t height;
-         uint32_t hbp;
-         uint32_t hfp;
-         uint32_t hsw;
-         uint32_t vbp;
-         uint32_t vfp;
-         uint32_t vsw;
-         uint32_t frameRate;
-         enum LcdIntfType intfType;
-         enum IntfSync intfSync;
+         uint32_t width;	     // 水平尺寸
+         uint32_t height;	     // 垂直尺寸
+         uint32_t hbp;		     // 水平同步信号的后肩
+         uint32_t hfp;		     // 水平同步信号的前肩
+         uint32_t hsw;		     // 水平同步信号的脉宽
+         uint32_t vbp;		     // 垂直同步信号的后肩
+         uint32_t vfp;		     // 垂直同步信号的前肩
+         uint32_t vsw;		     // 垂直同步信号的脉宽
+         uint32_t frameRate;	     // 帧率
+         enum LcdIntfType intfType;  // LCD接口类型
+         enum IntfSync intfSync;     // 用户时序参数
          struct MipiDsiDesc mipi;
          struct BlkDesc blk;
          struct PwmCfg pwm;
@@ -263,11 +263,13 @@ LCD驱动模型属于驱动基础适配模块，第三方需要适配OpenHarmony
      static int32_t LcdResetOn(void)
      {
          int32_t ret;
+	 /*设置管脚方向*/
          ret = GpioSetDir(RESET_GPIO, GPIO_DIR_OUT);
          if (ret != HDF_SUCCESS) {
              HDF_LOGE("GpioSetDir failure, ret:%d", ret);
              return HDF_FAILURE;
          }
+	 /*写入管脚*/
          ret = GpioWrite(RESET_GPIO, GPIO_VAL_HIGH);
          if (ret != HDF_SUCCESS) {
              HDF_LOGE("GpioWrite failure, ret:%d", ret);
@@ -282,6 +284,7 @@ LCD驱动模型属于驱动基础适配模块，第三方需要适配OpenHarmony
    - 器件驱动入口函数
 
      ```c++
+     /*初始化入口函数*/
      int32_t SampleEntryInit(struct HdfDeviceObject *object)
      {
          HDF_LOGI("%s: enter", __func__);
@@ -297,6 +300,7 @@ LCD驱动模型属于驱动基础适配模块，第三方需要适配OpenHarmony
          return HDF_SUCCESS;
      }
      
+     /*实现驱动*/
      struct HdfDriverEntry g_sampleDevEntry = {
          .moduleVersion = 1,
          .moduleName = "LCD_SAMPLE",
