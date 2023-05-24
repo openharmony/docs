@@ -41,32 +41,71 @@ Obtains the request information from Want.
    import rpc from '@ohos.rpc';
    import dialogRequest from '@ohos.app.ability.dialogRequest';
 
-   export default class ServiceExtAbility extends ServiceExtensionAbility {
-     onCreate(want) {
-       console.info(TAG, `onCreate, want: ${want.abilityName}`);
-     }
+    const REQUEST_VALUE = 1;
 
-     onRequest(want, startId) {
-       console.info(TAG, `onRequest, want: ${want.abilityName}`);
-       try {
-            var requestInfo = dialogRequest.getRequestInfo(want);
-        } catch(err) {
-            console.error('getRequestInfo err= ${JSON.stringify(err)}');
+    class StubTest extends rpc.RemoteObject {
+      constructor(des) {
+        super(des);
+      }
+
+      onRemoteRequest(code, data, reply, option) {
+        if (code === REQUEST_VALUE) {
+          let optFir = data.readInt();
+          let optSec = data.readInt();
+          reply.writeInt(optFir + optSec);
         }
-     }
+        return true;
+      }
 
-     onConnect(want) {
-       console.info(TAG, `onConnect, want: ${want.abilityName}`);
-     }
+      queryLocallInterface(descriptor) {
+        return null;
+      }
 
-     onDisconnect(want) {
-       console.info(TAG, `onDisconnect, want: ${want.abilityName}`);
-     }
+      getInterfaceDescriptor() {
+        return "";
+      }
 
-     onDestroy() {
-       console.info(TAG, `onDestroy`);
-     }
-   }
+      getCallingPid() {
+        return REQUEST_VALUE;
+      }
+
+      getCallingUid() {
+        return REQUEST_VALUE;
+      }
+
+      attachLocalInterface(localInterface, descriptor) {
+      }
+    }
+
+    let TAG = "getRequestInfoTest";
+
+    export default class ServiceExtAbility extends ServiceExtensionAbility {
+      onCreate(want) {
+        console.info(TAG, `onCreate, want: ${want.abilityName}`);
+      }
+
+      onRequest(want, startId) {
+        console.info(TAG, `onRequest, want: ${want.abilityName}`);
+        try {
+          var requestInfo = dialogRequest.getRequestInfo(want);
+        } catch (err) {
+          console.error('getRequestInfo err= ${JSON.stringify(err)}');
+        }
+      }
+
+      onConnect(want) {
+        console.info(TAG, `onConnect, want: ${want.abilityName}`);
+        return new StubTest("test");
+      }
+
+      onDisconnect(want) {
+        console.info(TAG, `onDisconnect, want: ${want.abilityName}`);
+      }
+
+      onDestroy() {
+        console.info(TAG, `onDestroy`);
+      }
+    }
    ```
 
 ## dialogRequest.getRequestCallback
@@ -95,6 +134,44 @@ Obtains the request callback from Want.
    import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
    import rpc from '@ohos.rpc';
    import dialogRequest from '@ohos.app.ability.dialogRequest';
+   
+   let TAG = "getRequestCallbackTest";
+
+   const REQUEST_VALUE = 1;
+
+    class StubTest extends rpc.RemoteObject {
+      constructor(des) {
+        super(des);
+      }
+
+      onRemoteRequest(code, data, reply, option) {
+        if (code === REQUEST_VALUE) {
+          let optFir = data.readInt();
+          let optSec = data.readInt();
+          reply.writeInt(optFir + optSec);
+        }
+        return true;
+      }
+
+      queryLocallInterface(descriptor) {
+        return null;
+      }
+
+      getInterfaceDescriptor() {
+        return "";
+      }
+
+      getCallingPid() {
+        return REQUEST_VALUE;
+      }
+
+      getCallingUid() {
+        return REQUEST_VALUE;
+      }
+
+      attachLocalInterface(localInterface, descriptor) {
+      }
+    }
 
    export default class ServiceExtAbility extends ServiceExtensionAbility {
      onCreate(want) {
@@ -112,6 +189,7 @@ Obtains the request callback from Want.
 
      onConnect(want) {
        console.info(TAG, `onConnect, want: ${want.abilityName}`);
+       return new StubTest("test");
      }
 
      onDisconnect(want) {
@@ -127,8 +205,7 @@ Obtains the request callback from Want.
 ## RequestInfo
 
 Defines the request information, which is used as an input parameter for binding the modal dialog box.
-
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Example**
 
@@ -137,6 +214,44 @@ Defines the request information, which is used as an input parameter for binding
    import rpc from '@ohos.rpc';
    import dialogRequest from '@ohos.app.ability.dialogRequest';
    import window from '@ohos.window';
+   
+   let TAG = "RequestInfoTest";
+
+   const REQUEST_VALUE = 1;
+
+    class StubTest extends rpc.RemoteObject {
+      constructor(des) {
+        super(des);
+      }
+
+      onRemoteRequest(code, data, reply, option) {
+        if (code === REQUEST_VALUE) {
+          let optFir = data.readInt();
+          let optSec = data.readInt();
+          reply.writeInt(optFir + optSec);
+        }
+        return true;
+      }
+
+      queryLocallInterface(descriptor) {
+        return null;
+      }
+
+      getInterfaceDescriptor() {
+        return "";
+      }
+
+      getCallingPid() {
+        return REQUEST_VALUE;
+      }
+
+      getCallingUid() {
+        return REQUEST_VALUE;
+      }
+
+      attachLocalInterface(localInterface, descriptor) {
+      }
+    }
 
    export default class ServiceExtAbility extends ServiceExtensionAbility {
      onCreate(want) {
@@ -163,6 +278,8 @@ Defines the request information, which is used as an input parameter for binding
 
      onConnect(want) {
        console.info(TAG, `onConnect, want: ${want.abilityName}`);
+        return new StubTest("test");
+
      }
 
      onDisconnect(want) {
@@ -179,7 +296,7 @@ Defines the request information, which is used as an input parameter for binding
 
 Enumerates the result codes of the request for the modal dialog box.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name     | Value         | Description    |
 | ------------ | ------------------ | ---------------------- |
@@ -191,7 +308,7 @@ Defines the result of the request for the modal dialog box. Only the result code
 
 ## Attributes
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
@@ -207,7 +324,7 @@ setRequestResult(result: RequestResult): void;
 
 Sets the result of the request for the modal dialog box.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **Parameters**
 
@@ -229,6 +346,44 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
    import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
    import rpc from '@ohos.rpc';
    import dialogRequest from '@ohos.app.ability.dialogRequest';
+   
+   let TAG = "setRequestResultTest";
+
+      const REQUEST_VALUE = 1;
+
+    class StubTest extends rpc.RemoteObject {
+      constructor(des) {
+        super(des);
+      }
+
+      onRemoteRequest(code, data, reply, option) {
+        if (code === REQUEST_VALUE) {
+          let optFir = data.readInt();
+          let optSec = data.readInt();
+          reply.writeInt(optFir + optSec);
+        }
+        return true;
+      }
+
+      queryLocallInterface(descriptor) {
+        return null;
+      }
+
+      getInterfaceDescriptor() {
+        return "";
+      }
+
+      getCallingPid() {
+        return REQUEST_VALUE;
+      }
+
+      getCallingUid() {
+        return REQUEST_VALUE;
+      }
+
+      attachLocalInterface(localInterface, descriptor) {
+      }
+    }
 
    export default class ServiceExtAbility extends ServiceExtensionAbility {
      onCreate(want) {
@@ -250,6 +405,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
      onConnect(want) {
        console.info(TAG, `onConnect, want: ${want.abilityName}`);
+        return new StubTest("test");
      }
 
      onDisconnect(want) {

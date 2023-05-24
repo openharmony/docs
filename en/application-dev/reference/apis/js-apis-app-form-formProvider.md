@@ -1,4 +1,4 @@
-# @ohos.app.form.formProvider (formProvider)
+# @ohos.app.form.formProvider (FormProvider)
 
 The **FormProvider** module provides APIs related to the widget provider. You can use the APIs to update a widget, set the next refresh time for a widget, obtain widget information, and request a widget release.
 
@@ -39,7 +39,8 @@ Sets the next refresh time for a widget. This API uses an asynchronous callback 
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501002 | The number of forms exceeds upper bound. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).||
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -91,7 +92,8 @@ Sets the next refresh time for a widget. This API uses a promise to return the r
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501002 | The number of forms exceeds upper bound. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).||
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -135,12 +137,14 @@ Updates a widget. This API uses an asynchronous callback to return the result.
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).||
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
 ```ts
-import formBindingData from '@ohos.application.formBindingData';
+import formBindingData from '@ohos.app.form.formBindingData';
+
 var formId = '12400633174999288';
 try {
   let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
@@ -188,14 +192,16 @@ Updates a widget. This API uses a promise to return the result.
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).||
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
 ```ts
-import formBindingData from '@ohos.application.formBindingData';
-var formId = '12400633174999288';
-let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
+import formBindingData from '@ohos.app.form.formBindingData';
+
+let formId = '12400633174999288';
+let obj = formBindingData.createFormBindingData({ temperature: '22c', time: '22:00' });
 try {
   formProvider.updateForm(formId, obj).then(() => {
       console.log('formProvider updateForm success');
@@ -228,7 +234,8 @@ Obtains the application's widget information on the device. This API uses an asy
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).||
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 
 **Example**
@@ -269,7 +276,8 @@ Obtains the application's widget information that meets a filter criterion on th
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).||
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -305,7 +313,7 @@ Obtains the application's widget information on the device. This API uses a prom
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md#forminfofilter) | No| Filter criterion. |
+| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md#forminfofilter) | No| Filter criterion.|
 
 **Return value**
 
@@ -321,7 +329,8 @@ Obtains the application's widget information on the device. This API uses a prom
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).||
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -358,7 +367,7 @@ Requests to publish a widget carrying data to the widget host. This API uses an 
 | Name| Type                                                                   | Mandatory| Description            |
 | ------ | ---------------------------------------------------------------------- | ---- | ---------------- |
 | want | [Want](js-apis-application-want.md)                           | Yes  | Request used for publishing. The following fields must be included:<br>Information about the target widget.<br>**abilityName**: ability of the target widget.<br>**parameters**:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
-| formBindingData.FormBindingData | [FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata)  | Yes  | Data used for creating the widget.|
+| formBindingData.FormBindingData | [FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | Yes  | Data used for creating the widget.|
 | callback | AsyncCallback&lt;string&gt; | Yes| Callback used to return the widget ID.|
 
 **Error codes**
@@ -370,13 +379,15 @@ Requests to publish a widget carrying data to the widget host. This API uses an 
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).||
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
 ```ts
-import formBindingData from '@ohos.application.formBindingData';
-var want = {
+import formBindingData from '@ohos.app.form.formBindingData';
+
+let want = {
   abilityName: 'FormAbility',
   parameters: {
     'ohos.extra.param.key.form_dimension': 2,
@@ -424,12 +435,13 @@ Requests to publish a widget to the widget host. This API uses an asynchronous c
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).||
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
 ```ts
-var want = {
+let want = {
   abilityName: 'FormAbility',
   parameters: {
     'ohos.extra.param.key.form_dimension': 2,
@@ -466,7 +478,7 @@ Requests to publish a widget to the widget host. This API uses a promise to retu
 | Name         | Type                                                        | Mandatory| Description                                                        |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want            | [Want](js-apis-application-want.md)                          | Yes  | Request used for publishing. The following fields must be included:<br>Information about the target widget.<br>**abilityName**: ability of the target widget.<br>**parameters**:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
-| formBindingData.FormBindingData | [FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | No  | Data used for creating the widget. By default, no value is passed, indicating that no data is provided.                                     |
+| formBindingData.FormBindingData | [FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | No  | Data used for creating the widget.                                          |
 
 **Return value**
 
@@ -483,12 +495,13 @@ Requests to publish a widget to the widget host. This API uses a promise to retu
 | 16500050 | An IPC connection error happened. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).||
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
 ```ts
-var want = {
+let want = {
   abilityName: 'FormAbility',
   parameters: {
     'ohos.extra.param.key.form_dimension': 2,
@@ -531,7 +544,8 @@ Checks whether a widget can be published to the widget host. This API uses an as
 | 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16501000 | An internal functional error occurred. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).||
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -593,7 +607,8 @@ Checks whether a widget can be published to the widget host. This API uses a pro
 | 202 | The application is not a system application. |
 | 16500050 | An IPC connection error happened. |
 | 16501000 | An internal functional error occurred. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).||
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
