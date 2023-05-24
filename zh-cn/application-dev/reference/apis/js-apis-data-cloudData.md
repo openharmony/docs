@@ -37,6 +37,12 @@ static enableCloud(accountId: string, switches: {[bundleName: string]: boolean},
 
 打开端云协同，使用callback异步回调。
 
+使用规则：
+
+- 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.CLOUDDATA_CONFIG`权限。
+
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
 
 **参数：**
@@ -53,7 +59,7 @@ static enableCloud(accountId: string, switches: {[bundleName: string]: boolean},
 let account = "test_id";
 let switches = { "test_bundleName1": true, "test_bundleName2": false };
 try {
-    await ddm.Config.enableCloud(account, function (err, data) {
+    await ddm.Config.enableCloud(account, switches, function (err, data) {
         if (err == undefined) {
             console.info('Succeeding in enabling cloud');
         } else {
@@ -70,6 +76,12 @@ try {
 static enableCloud(accountId: string, switches: {[bundleName: string]: boolean}): Promise&lt;void&gt;
 
 打开端云协同，使用Promise异步回调。
+
+使用规则：
+
+- 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.CLOUDDATA_CONFIG`权限。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
 
@@ -92,7 +104,7 @@ static enableCloud(accountId: string, switches: {[bundleName: string]: boolean})
 let account = "test_id";
 let switches = { "test_bundleName1": true, "test_bundleName2": false };
 try {
-    await ddm.Config.enableCloud(account).then((data) => {
+    await ddm.Config.enableCloud(account, switches).then((data) => {
         console.info('Succeeding in enabling cloud');
     }).catch((error) => {
         console.error('Failed to enable' + `, error code is ${error.code}, message is $ { error.message }`);
@@ -107,6 +119,12 @@ try {
 static disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;):void
 
 关闭端云协同，使用callback异步回调。
+
+使用规则：
+
+- 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.CLOUDDATA_CONFIG`权限。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
 
@@ -139,6 +157,12 @@ try {
 static disableCloud(accountId: string): Promise&lt;void&gt;
 
 关闭端云协同，使用Promise异步回调。
+
+使用规则：
+
+- 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.CLOUDDATA_CONFIG`权限。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
 
@@ -176,6 +200,12 @@ static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean, 
 
 修改单个应用端云协同开关，使用callback异步回调。
 
+使用规则：
+
+- 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.CLOUDDATA_CONFIG`权限。
+
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
 
 **参数：**
@@ -211,6 +241,12 @@ static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean):
 
 修改单个应用端云协同开关，使用Promise异步回调。
 
+使用规则：
+
+- 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.CLOUDDATA_CONFIG`权限。
+
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
 
 **参数：**
@@ -243,84 +279,17 @@ try {
 }
 ```
 
-### clean
-
-static clean(accountId: string, appActions: {[bundleName: string]: Action}, callback: AsyncCallback&lt;void&gt;):void
-
-清除本地数据中云信息，使用callback异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
-
-**参数：**
-
-| 参数名     | 类型                                      | 必填 | 说明                 |
-| ---------- | ----------------------------------------- | ---- | -------------------- |
-| accountId  | string                                    | 是   | 具体打开的云ID。     |
-| appActions | {[bundleName: string]: [Action](#Action)} | 是   | 要清除数据的应用信息 |
-| callback   | AsyncCallback&lt;void&gt;                 | 是   | 回调函数。           |
-
-**示例：**
-
-```js
-let con = ddm.Action;
-let account = "test_id";
-let appActions = { "test_bundleName1": con.CLEAR_CLOUD_INFO, "test_bundleName2": con.CLEAR_CLOUD_DATA_AND_INFO }
-try {
-    await ddm.Config.clean(account, appActions, function (err, data) {
-        if (err == undefined) {
-            console.info('Succeeding in cleaning cloud data');
-        } else {
-            console.error('Failed to clean' + `, error code is ${err.code}, message is ${err.message}`);
-        }
-    });
-} catch (e) {
-    console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
-}
-```
-
-### clean
-
-static clean(accountId: string, appActions: {[bundleName: string]: Action}): Promise&lt;void&gt;
-
-清除本地数据中云信息，使用Promise异步回调。
-
-**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
-
-**参数：**
-
-| 参数名     | 类型                                      | 必填 | 说明                 |
-| ---------- | ----------------------------------------- | ---- | -------------------- |
-| accountId  | string                                    | 是   | 具体打开的云ID。     |
-| appActions | {[bundleName: string]: [Action](#Action)} | 是   | 要清除数据的应用信息 |
-
-**返回值：**
-
-| 类型                | 说明                      |
-| ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**示例：**
-
-```js
-let con = ddm.Action;
-let account = "test_id";
-let appActions = { "test_bundleName1": con.CLEAR_CLOUD_INFO, "test_bundleName2": con.CLEAR_CLOUD_DATA_AND_INFO }
-try {
-    await  ddm.Config.clean(account, appActions).then((data) => {
-        console.info('Succeeding in cleaning cloud data');
-    }).catch((error) => {
-        console.error('Failed to clean' + `, error code is ${error.code}, message is ${error.message}`);
-    });
-} catch (e) {
-    console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
-}
-```
-
 ### notifyDataChange
 
 static notifyDataChange(accountId: string,bundleName:string, callback: AsyncCallback&lt;void&gt;):void
 
 通知云端的数据变更，使用callback异步回调。
+
+使用规则：
+
+- 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.CLOUDDATA_CONFIG`权限。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -355,6 +324,12 @@ try {
 static notifyDataChange(accountId: string,bundleName:string): Promise&lt;void&gt;
 
 通知云端的数据变更，使用Promise异步回调。
+
+使用规则：
+
+- 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.CLOUDDATA_CONFIG`权限。
+
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
