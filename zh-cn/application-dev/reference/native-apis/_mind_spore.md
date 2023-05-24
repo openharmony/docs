@@ -60,7 +60,7 @@
 | [OH_AI_Status](#oh_ai_status-1) | Minspore的状态码。 |
 | [OH_AI_TensorHandle](#oh_ai_tensorhandle) | 指向张量对象句柄。 |
 | [OH_AI_ModelType](#oh_ai_modeltype-1) | 模型文件的类型。 |
-| [OH_AI_DeviceType](#oh_ai_devicetype-1) | 设备类型，该信息。 |
+| [OH_AI_DeviceType](#oh_ai_devicetype-1) | 设备类型信息，包含了目前支持的设备类型。 |
 
 
 ### 枚举
