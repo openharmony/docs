@@ -44,8 +44,6 @@ Obtains an [AbilityDelegator](js-apis-inner-application-abilityDelegator.md) obj
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
 let want = {
@@ -78,8 +76,6 @@ Obtains an [AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-
 let args = AbilityDelegatorRegistry.getArguments();
 console.info('getArguments bundleName:' + args.bundleName);
 console.info('getArguments parameters:' + JSON.stringify(args.parameters));
