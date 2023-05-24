@@ -64,6 +64,9 @@ httpRequest.request(
 );
 ```
 
+> **NOTE**
+> If the data in **console.info()** contains a newline character, the data will be truncated.
+
 ## http.createHttp
 
 createHttp(): HttpRequest
@@ -97,7 +100,7 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>):void
 Initiates an HTTP request to a given URL. This API uses an asynchronous callback to return the result. 
 
 > **NOTE**
-> This API supports only transfer of data not greater than 5 MB.
+> This API supports only receiving of data not greater than 5 MB.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -148,7 +151,7 @@ request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpR
 Initiates an HTTP request containing specified options to a given URL. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> This API supports only transfer of data not greater than 5 MB.
+> This API supports only receiving of data not greater than 5 MB.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -234,7 +237,7 @@ request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 Initiates an HTTP request containing specified options to a given URL. This API uses a promise to return the result. 
 
 > **NOTE**
-> This API supports only transfer of data not greater than 5 MB.
+> This API supports only receiving of data not greater than 5 MB.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -330,7 +333,7 @@ Destroys an HTTP request.
 httpRequest.destroy();
 ```
 
-### on('headerReceive')
+### on('headerReceive')<sup>(deprecated)</sup>
 
 on(type: 'headerReceive', callback: AsyncCallback\<Object\>): void
 
@@ -356,7 +359,7 @@ httpRequest.on('headerReceive', (data) => {
 });
 ```
 
-### off('headerReceive')
+### off('headerReceive')<sup>(deprecated)</sup>
 
 off(type: 'headerReceive', callback?: AsyncCallback\<Object\>): void
 
@@ -462,12 +465,12 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | Name        | Type                                         | Mandatory| Description                                                        |
 | -------------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
 | method         | [RequestMethod](#requestmethod)               | No  | Request method. The default value is **GET**.                                                  |
-| extraData      | string<sup>6+</sup> \| Object<sup>6+</sup> \| ArrayBuffer<sup>8+</sup>  | No  | Additional data for sending a request. This parameter is not used by default.<br>- If the HTTP request uses a POST or PUT method, this parameter serves as the content of the HTTP request and is encoded in UTF-8 format.<sup>6+</sup><br>- If the HTTP request uses the GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter serves as a supplement to HTTP request parameters. Parameters of the string type need to be encoded before being passed to the HTTP request. Parameters of the object type do not need to be precoded and will be directly concatenated to the URL. Parameters of the ArrayBuffer type will not be concatenated to the URL.<sup>6+</sup> |
+| extraData      | string<sup>6+</sup> \| Object<sup>6+</sup> \| ArrayBuffer<sup>8+</sup>  | No  | Additional data for sending a request. This parameter is not used by default.<br>- If the HTTP request uses a POST or PUT method, this parameter serves as the content of the HTTP request and is encoded in UTF-8 format. If **'Content-Type'** is **'application/x-www-form-urlencoded'**, the data in the request body must be encoded in the format of **key1=value1&key2=value2&key3=value3** after URL transcoding.<sup>6+</sup><br>- If the HTTP request uses the GET, OPTIONS, DELETE, TRACE, or CONNECT method, this parameter serves as a supplement to HTTP request parameters. Parameters of the string type need to be encoded before being passed to the HTTP request. Parameters of the object type do not need to be precoded and will be directly concatenated to the URL. Parameters of the ArrayBuffer type will not be concatenated to the URL.<sup>6+</sup> |
 | expectDataType<sup>9+</sup>  | [HttpDataType](#httpdatatype9)  | No  | Type of the returned data. This parameter is not used by default. If this parameter is set, the system returns the specified type of data preferentially.|
 | usingCache<sup>9+</sup>      | boolean                         | No  | Whether to use the cache. The default value is **true**.  |
-| priority<sup>9+</sup>        | number                          | No  | Priority. The value range is \[0, 1000]. The default value is **0**.                          |
+| priority<sup>9+</sup>        | number                          | No  | Priority. The value range is [1,1000]. The default value is **1**.                          |
 | header                       | Object                          | No  | HTTP request header. The default value is **{'Content-Type': 'application/json'}**.  |
-| readTimeout                  | number                          | No  | Read timeout duration. The default value is **60000**, in ms.             |
+| readTimeout                  | number                          | No  | Read timeout duration. The default value is **60000**, in ms.<br>The value **0** indicates no timeout.|
 | connectTimeout               | number                          | No  | Connection timeout interval. The default value is **60000**, in ms.             |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | No  | Protocol. The default value is automatically specified by the system.                            |
 

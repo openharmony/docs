@@ -36,7 +36,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -72,7 +72,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -88,7 +88,7 @@ try {
 
 isActive(): boolean
 
-Checks whether the current device is active.
+Checks whether the current device is active. In the active state, the screen is on if the device has a screen and the device is not in sleep state if the device does not have a screen.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
 
@@ -98,7 +98,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -133,7 +133,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -161,7 +161,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -193,7 +193,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -231,7 +231,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -275,7 +275,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
