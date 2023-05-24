@@ -16,7 +16,7 @@ AppStorage is a singleton LocalStorage object that is created by the UI framewor
 
 UI components synchronize application state attributes with the AppStorage. Implementation of application business logic can access AppStorage as well.
 
-Selected state attributes of AppStorage can be synched with different data sources or data sinks. Those data sources and sinks can be on a local or remote device, and have different capabilities, such as data persistence (see [PersistentStorage](arkts-persiststorage.md)). These data sources and sinks are implemented in the business logic, separate from the UI. Link those AppStorage attributes to [@StorageProp](#storageprop) and [@StorageLink](#storagelink) whose values should be kept until application re-start.
+Selected state attributes of AppStorage can be synced with different data sources or data sinks. Those data sources and sinks can be on a local or remote device, and have different capabilities, such as data persistence (see [PersistentStorage](arkts-persiststorage.md)). These data sources and sinks are implemented in the business logic, separate from the UI. Link those AppStorage attributes to [@StorageProp](#storageprop) and [@StorageLink](#storagelink) whose values should be kept until application re-start.
 
 
 ## \@StorageProp

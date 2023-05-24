@@ -29,7 +29,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 | Name       | Type                                    | Mandatory  | Description   |
 | ---------- | ---------------------------------------- | ---- | ------- |
 | src        | [ResourceStr](ts-types.md)               | Yes   | Address of a web page resource. To load a local resource file in the sandbox outside of the application package, use **file://** to specify the path of the sandbox.|
-| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | Controller. **WebController** is deprecated since API version 9. You are advised to use **WebviewController** instead.|
+| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
 
 **Example**
 
@@ -225,7 +225,7 @@ Registers a JavaScript object with the window. APIs of this object can then be i
 | object     | object                                   | Yes   | -    | Object to be registered. Methods can be declared, but attributes cannot.   |
 | name       | string                                   | Yes   | -    | Name of the object to be registered, which is the same as that invoked in the window.|
 | methodList | Array\<string\>                          | Yes   | -    | Methods of the JavaScript object to be registered at the application side. |
-| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | -    | Controller. **WebController** is deprecated since API version 9. You are advised to use **WebviewController** instead.|
+| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | Yes   | -    | Controller. This API is deprecated since API version 9. You are advised to use **WebviewController** instead.|
 
 **Example**
 
@@ -518,7 +518,6 @@ Sets whether video playback must be started by user gestures. This API is not ap
 multiWindowAccess(multiWindow: boolean)
 
 Sets whether to enable the multi-window permission.
-
 Enabling the multi-window permission requires implementation of the **onWindowNew** event. For the sample code, see [onWindowNew](#onwindownew9).
 
 **Parameters**
@@ -652,7 +651,6 @@ Sets whether to display the vertical scrollbar, including the default system scr
   </html>
   ```
 
-
 ### cacheMode
 
 cacheMode(cacheMode: CacheMode)
@@ -703,8 +701,6 @@ This API is deprecated since API version 9. You are advised to use [textZoomRati
 
   ```ts
   // xxx.ets
-  import web_webview from '@ohos.web.webview'
-
   @Entry
   @Component
   struct WebComponent {
@@ -1288,8 +1284,10 @@ Called when **alert()** is invoked to display an alert dialog box on the web pag
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile("xxx.html"), controller: this.controller })
           .onAlert((event) => {
+            console.log("event.url:" + event.url)
+            console.log("event.message:" + event.message)
             AlertDialog.show({
               title: 'onAlert',
               message: 'text',
@@ -1314,6 +1312,25 @@ Called when **alert()** is invoked to display an alert dialog box on the web pag
       }
     }
   }
+  ```
+
+  ```
+  <!--xxx.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  </head>
+  <body>
+    <h1>WebView onAlert Demo</h1>
+    <button onclick="myFunction()">Click here</button>
+    <script>
+      function myFunction() {
+        alert("Hello World");
+      }
+    </script>
+  </body>
+  </html>
   ```
 
 ### onBeforeUnload
@@ -1349,7 +1366,7 @@ Called when this page is about to exit after the user refreshes or closes the pa
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile("xxx.html"), controller: this.controller })
           .onBeforeUnload((event) => {
             console.log("event.url:" + event.url)
             console.log("event.message:" + event.message)
@@ -1377,6 +1394,25 @@ Called when this page is about to exit after the user refreshes or closes the pa
       }
     }
   }
+  ```
+
+  ```
+  <!--xxx.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  </head>
+  <body onbeforeunload="return myFunction()">
+    <h1>WebView onBeforeUnload Demo</h1>
+    <a href="https://www.example.com">Click here</a>
+    <script>
+      function myFunction() {
+        return "onBeforeUnload Event";
+      }
+    </script>
+  </body>
+  </html>
   ```
 
 ### onConfirm
@@ -1412,11 +1448,10 @@ Called when **confirm()** is invoked by the web page.
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile("xxx.html"), controller: this.controller })
           .onConfirm((event) => {
             console.log("event.url:" + event.url)
             console.log("event.message:" + event.message)
-            console.log("event.result:" + event.result)
             AlertDialog.show({
               title: 'onConfirm',
               message: 'text',
@@ -1441,6 +1476,34 @@ Called when **confirm()** is invoked by the web page.
       }
     }
   }
+  ```
+
+  ```
+  <!--xxx.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  </head>
+
+  <body>
+    <h1>WebView onConfirm Demo</h1>
+    <button onclick="myFunction()">Click here</button>
+    <p id="demo"></p>
+    <script>
+      function myFunction() {
+        let x;
+        let r = confirm("click button!");
+        if (r == true) {
+          x = "ok";
+        } else {
+          x = "cancel";
+        }
+        document.getElementById("demo").innerHTML = x;
+      }
+    </script>
+  </body>
+  </html>
   ```
 
 ### onPrompt<sup>9+</sup>
@@ -1474,7 +1537,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile("xxx.html"), controller: this.controller })
           .onPrompt((event) => {
             console.log("url:" + event.url)
             console.log("message:" + event.message)
@@ -1491,7 +1554,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
               secondaryButton: {
                 value: 'ok',
                 action: () => {
-                  event.result.handleConfirm()
+                  event.result.handlePromptConfirm(event.value)
                 }
               },
               cancel: () => {
@@ -1503,6 +1566,30 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
       }
     }
   }
+  ```
+
+  ```
+  <!--xxx.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  </head>
+
+  <body>
+    <h1>WebView onPrompt Demo</h1>
+    <button onclick="myFunction()">Click here</button>
+    <p id="demo"></p>
+    <script>
+      function myFunction() {
+        let message = prompt("Message info", "Hello World");
+        if (message != null && message != "") {
+          document.getElementById("demo").innerHTML = message;
+        }
+      }
+    </script>
+  </body>
+  </html>
   ```
 
 ### onConsole
@@ -1558,6 +1645,7 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
 | Name               | Type         | Description                               |
 | ------------------ | ------------- | ----------------------------------- |
 | url                | string        | URL for the download task.                          |
+| userAgent          | string        | User agent used for download.                          |
 | contentDisposition | string        | Content-Disposition response header returned by the server, which may be empty.|
 | mimetype           | string        | MIME type of the content returned by the server.               |
 | contentLength      | contentLength | Length of the content returned by the server.                        |
@@ -2021,7 +2109,7 @@ Called when the display ratio of this page changes.
   }
   ```
 
-### onUrlLoadIntercept<sup>(deprecated)</sup>
+### onUrlLoadIntercept
 
 onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
 
@@ -2640,7 +2728,6 @@ If opening a new window is not needed, set the parameter to **null** when callin
           .javaScriptAccess(true)
           // MultiWindowAccess needs to be enabled.
           .multiWindowAccess(true)
-          .allowWindowOpenMethod(true)
           .onWindowNew((event) => {
             if (this.dialogController) {
               this.dialogController.close()
@@ -3868,7 +3955,7 @@ Resends the web form data.
   }
   ```
 
-###  cancel<sup>9+</sup>
+### cancel<sup>9+</sup>
 
 cancel(): void
 
@@ -3899,7 +3986,7 @@ Cancels the resending of web form data.
 
 Implements a **WebController** to control the behavior of the **\<Web>** component. A **WebController** can control only one **\<Web>** component, and the APIs in the **WebController** can be invoked only after it has been bound to the target **\<Web>** component.
 
-This API is deprecated since API version 9. You are advised to use [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller).
+This API is deprecated since API version 9. You are advised to use [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) instead.
 
 ### Creating an Object
 
@@ -3946,7 +4033,7 @@ requestFocus()
 
 Requests focus for this web page.
 
-This API is deprecated since API version 9. You are advised to use [requestFocus<sup>9+</sup>](../apis/js-apis-webview.md#requestfocus).
+This API is deprecated since API version 9. You are advised to use [requestFocus<sup>9+</sup>](../apis/js-apis-webview.md#requestfocus) instead.
 
 **Example**
 
@@ -3975,7 +4062,7 @@ accessBackward(): boolean
 
 Checks whether going to the previous page can be performed on the current page.
 
-This API is deprecated since API version 9. You are advised to use [accessBackward<sup>9+</sup>](../apis/js-apis-webview.md#accessbackward).
+This API is deprecated since API version 9. You are advised to use [accessBackward<sup>9+</sup>](../apis/js-apis-webview.md#accessbackward) instead.
 
 **Return value**
 
@@ -4011,7 +4098,7 @@ accessForward(): boolean
 
 Checks whether going to the next page can be performed on the current page.
 
-This API is deprecated since API version 9. You are advised to use [accessForward<sup>9+</sup>](../apis/js-apis-webview.md#accessforward).
+This API is deprecated since API version 9. You are advised to use [accessForward<sup>9+</sup>](../apis/js-apis-webview.md#accessforward) instead.
 
 **Return value**
 
@@ -4047,7 +4134,7 @@ accessStep(step: number): boolean
 
 Performs a specific number of steps forward or backward from the current page.
 
-This API is deprecated since API version 9. You are advised to use [accessStep<sup>9+</sup>](../apis/js-apis-webview.md#accessstep).
+This API is deprecated since API version 9. You are advised to use [accessStep<sup>9+</sup>](../apis/js-apis-webview.md#accessstep) instead.
 
 **Parameters**
 
@@ -4090,7 +4177,7 @@ backward(): void
 
 Goes to the previous page based on the history stack. This API is generally used together with **accessBackward**.
 
-This API is deprecated since API version 9. You are advised to use [backward<sup>9+</sup>](../apis/js-apis-webview.md#backward).
+This API is deprecated since API version 9. You are advised to use [backward<sup>9+</sup>](../apis/js-apis-webview.md#backward) instead.
 
 **Example**
 
@@ -4119,7 +4206,7 @@ forward(): void
 
 Goes to the next page based on the history stack. This API is generally used together with **accessForward**.
 
-This API is deprecated since API version 9. You are advised to use [forward<sup>9+</sup>](../apis/js-apis-webview.md#forward).
+This API is deprecated since API version 9. You are advised to use [forward<sup>9+</sup>](../apis/js-apis-webview.md#forward) instead.
 
 **Example**
 
@@ -4148,7 +4235,7 @@ deleteJavaScriptRegister(name: string)
 
 Deletes a specific application JavaScript object that is registered with the window through **registerJavaScriptProxy**. The deletion takes effect immediately, with no need for invoking the[refresh](#refreshdeprecated) API.
 
-This API is deprecated since API version 9. You are advised to use [deleteJavaScriptRegister<sup>9+</sup>](../apis/js-apis-webview.md#deletejavascriptregister).
+This API is deprecated since API version 9. You are advised to use [deleteJavaScriptRegister<sup>9+</sup>](../apis/js-apis-webview.md#deletejavascriptregister) instead.
 
 **Parameters**
 
@@ -4184,7 +4271,7 @@ getHitTest(): HitTestType
 
 Obtains the element type of the area being clicked.
 
-This API is deprecated since API version 9. You are advised to use [getHitTest<sup>9+</sup>](../apis/js-apis-webview.md#gethittest).
+This API is deprecated since API version 9. You are advised to use [getHitTest<sup>9+</sup>](../apis/js-apis-webview.md#gethittest) instead.
 
 **Return value**
 
@@ -4224,7 +4311,7 @@ If **baseUrl** is set to a data URL, the encoded string will be loaded by the **
 
 If **baseUrl** is set to an HTTP or HTTPS URL, the encoded string will be processed by the **\<Web>** component as a non-encoded string in a manner similar to **loadUrl**.
 
-This API is deprecated since API version 9. You are advised to use [loadData<sup>9+</sup>](../apis/js-apis-webview.md#loaddata).
+This API is deprecated since API version 9. You are advised to use [loadData<sup>9+</sup>](../apis/js-apis-webview.md#loaddata) instead.
 
 **Parameters**
 
@@ -4271,7 +4358,7 @@ The object injected through **loadUrl** is valid only in the current document. I
 
 The object injected through **registerJavaScriptProxy** is still valid on a new page redirected through **loadUrl**.
 
-This API is deprecated since API version 9. You are advised to use [loadUrl<sup>9+</sup>](../apis/js-apis-webview.md#loadurl).
+This API is deprecated since API version 9. You are advised to use [loadUrl<sup>9+</sup>](../apis/js-apis-webview.md#loadurl) instead.
 
 **Parameters**
 
@@ -4307,7 +4394,7 @@ onActive(): void
 
 Called when the **\<Web>** component enters the active state.
 
-This API is deprecated since API version 9. You are advised to use [onActive<sup>9+</sup>](../apis/js-apis-webview.md#onactive).
+This API is deprecated since API version 9. You are advised to use [onActive<sup>9+</sup>](../apis/js-apis-webview.md#onactive) instead.
 
 **Example**
 
@@ -4336,7 +4423,7 @@ onInactive(): void
 
 Called when the **\<Web>** component enters the inactive state.
 
-This API is deprecated since API version 9. You are advised to use [onInactive<sup>9+</sup>](../apis/js-apis-webview.md#oninactive).
+This API is deprecated since API version 9. You are advised to use [onInactive<sup>9+</sup>](../apis/js-apis-webview.md#oninactive) instead.
 
 **Example**
 
@@ -4364,7 +4451,7 @@ zoom(factor: number): void
 
 Sets a zoom factor for the current web page.
 
-This API is deprecated since API version 9. You are advised to use [zoom<sup>9+</sup>](../apis/js-apis-webview.md#zoom).
+This API is deprecated since API version 9. You are advised to use [zoom<sup>9+</sup>](../apis/js-apis-webview.md#zoom) instead.
 
 **Parameters**
 
@@ -4400,7 +4487,7 @@ refresh()
 
 Called when the **\<Web>** component refreshes the web page.
 
-This API is deprecated since API version 9. You are advised to use [refresh<sup>9+</sup>](../apis/js-apis-webview.md#refresh).
+This API is deprecated since API version 9. You are advised to use [refresh<sup>9+</sup>](../apis/js-apis-webview.md#refresh) instead.
 
 **Example**
 
@@ -4429,7 +4516,7 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
 
 Registers a JavaScript object with the window. APIs of this object can then be invoked in the window. You must invoke the [refresh](#refreshdeprecated) API for the registration to take effect.
 
-This API is deprecated since API version 9. You are advised to use [registerJavaScriptProxy<sup>9+</sup>](../apis/js-apis-webview.md#registerjavascriptproxy).
+This API is deprecated since API version 9. You are advised to use [registerJavaScriptProxy<sup>9+</sup>](../apis/js-apis-webview.md#registerjavascriptproxy) instead.
 
 **Parameters**
 
@@ -4497,7 +4584,7 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
 
 Executes a JavaScript script. This API uses an asynchronous callback to return the script execution result. **runJavaScript** can be invoked only after **loadUrl** is executed. For example, it can be invoked in **onPageEnd**.
 
-This API is deprecated since API version 9. You are advised to use [runJavaScript<sup>9+</sup>](../apis/js-apis-webview.md#runjavascript).
+This API is deprecated since API version 9. You are advised to use [runJavaScript<sup>9+</sup>](../apis/js-apis-webview.md#runjavascript) instead.
 
 **Parameters**
 
@@ -4558,7 +4645,7 @@ stop()
 
 Stops page loading.
 
-This API is deprecated since API version 9. You are advised to use [stop<sup>9+</sup>](../apis/js-apis-webview.md#stop).
+This API is deprecated since API version 9. You are advised to use [stop<sup>9+</sup>](../apis/js-apis-webview.md#stop) instead.
 
 **Example**
 
@@ -4587,7 +4674,7 @@ clearHistory(): void
 
 Clears the browsing history.
 
-This API is deprecated since API version 9. You are advised to use [clearHistory<sup>9+</sup>](../apis/js-apis-webview.md#clearhistory).
+This API is deprecated since API version 9. You are advised to use [clearHistory<sup>9+</sup>](../apis/js-apis-webview.md#clearhistory) instead.
 
 **Example**
 

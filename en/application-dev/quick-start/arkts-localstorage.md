@@ -35,7 +35,8 @@ LocalStorage provides two decorators based on the synchronization type of the co
 
 ## Restrictions
 
-Once created, the type of a named attribute cannot be changed. Subsequent calls to **Set** must set a value of same type.
+- Once created, the type of a named attribute cannot be changed. Subsequent calls to **Set** must set a value of same type.
+- LocalStorage provides page-level storage. The [GetShared](../reference/arkui-ts/ts-state-management.md#getshared9) API can only obtain the LocalStorage instance transferred through [windowStage.loadContent](../reference/apis/js-apis-window.md#loadcontent9) in the current stage. Otherwise, **undefined** is returned. Example: [Sharing a LocalStorage Instance from UIAbility to One or More Pages](#sharing-a-localstorage-instance-from-uiability-to-one-or-more-pages).
 
 
 ## \@LocalStorageProp
@@ -51,7 +52,7 @@ When a custom component is initialized, the \@LocalStorageProp(key)/\@LocalStora
 > Since API version 9, this decorator is supported in ArkTS widgets.
 
 
-By decorating a variable with \@LocalStorageProp(key), a one-way data synchronization is established with the attribute with the given key in LocalStorage. A local change can be made, but it will not besynchronized to LocalStorage. An update to the attribute with the given key in LocalStorage will overwrite local changes.
+By decorating a variable with \@LocalStorageProp(key), a one-way data synchronization is established with the attribute with the given key in LocalStorage. A local change can be made, but it will not be synchronized to LocalStorage. An update to the attribute with the given key in LocalStorage will overwrite local changes.
 
 
 ### Rules of Use
@@ -127,7 +128,7 @@ By decorating a variable with \@LocalStorageProp(key), a one-way data synchroniz
 | Transfer/Access     | Description                                      |
 | ---------- | ---------------------------------------- |
 | Initialization and update from the parent component| Forbidden.|
-| Subnode initialization    | Supported; can be used to initialize a n \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
+| Subnode initialization    | Supported; can be used to initialize an \@State, \@Link, \@Prop, or \@Provide decorated variable in the child component.|
 | Access | None.                                      |
 
 
@@ -423,3 +424,5 @@ struct CompA {
 > **NOTE**
 >
 > It is good practice to always create a LocalStorage instance with meaningful default values, which serve as a backup when execution exceptions occur and are also useful for unit testing of pages.
+
+<!--no_check-->
