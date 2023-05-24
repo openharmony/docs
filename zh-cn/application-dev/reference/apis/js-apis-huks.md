@@ -1361,6 +1361,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<
 **示例：**
 
 ```js
+import huks from '@ohos.security.huks';
 import promptAction from '@ohos.promptAction';
 
 /* 此处options选择emptyOptions来传空 */
@@ -1424,6 +1425,7 @@ isKeyItemExist(keyAlias: string, options: HuksOptions) : Promise\<boolean>
 
 ```js
 import huks from '@ohos.security.huks';
+import promptAction from '@ohos.promptAction';
 
 /* 此处options选择emptyOptions来传空 */
 let keyAlias = 'keyAlias';
