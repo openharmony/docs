@@ -15,7 +15,7 @@ This module provides APIs for accessing UIAbility-specific resources. You can us
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| abilityInfo | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes| No| Ability information.|
+| abilityInfo | [AbilityInfo](js-apis-bundleManager-abilityInfo.md) | Yes| No| UIAbility information.|
 | currentHapModuleInfo | [HapModuleInfo](js-apis-bundleManager-hapModuleInfo.md) | Yes| No| Information about the current HAP.|
 | config | [Configuration](js-apis-app-ability-configuration.md) | Yes| No| Configuration information.|
 
@@ -23,11 +23,11 @@ This module provides APIs for accessing UIAbility-specific resources. You can us
 
 startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void;
 
-Starts an ability. This API uses an asynchronous callback to return the result.
+Starts a UIAbility. This API uses an asynchronous callback to return the result.
 
 Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If an application running in the background needs to call this API to start a UIAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **visible** of the target UIAbility is **false**, the initiator UIAbility must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -36,7 +36,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -94,11 +94,11 @@ Observe the following when using this API:
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void;
 
-Starts an ability with the start options specified. This API uses an asynchronous callback to return the result.
+Starts a UIAbility with the start options specified. This API uses an asynchronous callback to return the result.
 
 Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If an application running in the background needs to call this API to start a UIAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **visible** of the target UIAbility is **false**, the initiator UIAbility must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -107,8 +107,8 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target ability.|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
+| want | [Want](js-apis-application-want.md)  | Yes| Want information about the target UIAbility.|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the UIAbility.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -169,11 +169,11 @@ Observe the following when using this API:
 
 startAbility(want: Want, options?: StartOptions): Promise&lt;void&gt;;
 
-Starts an ability. This API uses a promise to return the result.
+Starts a UIAbility. This API uses a promise to return the result.
 
 Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If an application running in the background needs to call this API to start a UIAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **visible** of the target UIAbility is **false**, the initiator UIAbility must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -182,8 +182,8 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility.|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the UIAbility.|
 
 **Return value**
 
@@ -249,14 +249,14 @@ Observe the following when using this API:
 
 startAbilityForResult(want: Want, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-Starts an ability. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
- - Normally, you can call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
- - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
- - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an error message, in which **resultCode** is **-1**, is returned to others.
+Starts a UIAbility. This API uses an asynchronous callback to return the result when the UIAbility is terminated. The following situations may be possible for a started UIAbility:
+ - Normally, you can call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the UIAbility. The result is returned to the initiator UIAbility.
+ - If an exception occurs, for example, the UIAbility is killed, an error message, in which **resultCode** is **-1**, is returned to the initiator UIAbility.
+ - If different applications call this API to start a UIAbility that uses the singleton mode and then call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the UIAbility, the normal result is returned to the last initiator UIAbility, and an error message, in which **resultCode** is **-1**, is returned to others.
 
 Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If an application running in the background needs to call this API to start a UIAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **visible** of the target UIAbility is **false**, the initiator UIAbility must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -265,7 +265,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want |[Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility.|
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -324,14 +324,14 @@ Observe the following when using this API:
 
 startAbilityForResult(want: Want, options: StartOptions, callback: AsyncCallback&lt;AbilityResult&gt;): void;
 
-Starts an ability with the start options specified. This API uses an asynchronous callback to return the result when the ability is terminated. The following situations may be possible for a started ability:
- - Normally, you can call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
- - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
- - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an error message, in which **resultCode** is **-1**, is returned to others.
+Starts a UIAbility with the start options specified. This API uses an asynchronous callback to return the result when the UIAbility is terminated. The following situations may be possible for a started UIAbility:
+ - Normally, you can call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the UIAbility. The result is returned to the initiator UIAbility.
+ - If an exception occurs, for example, the UIAbility is killed, an error message, in which **resultCode** is **-1**, is returned to the initiator UIAbility.
+ - If different applications call this API to start a UIAbility that uses the singleton mode and then call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the UIAbility, the normal result is returned to the last initiator UIAbility, and an error message, in which **resultCode** is **-1**, is returned to others.
 
 Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If an application running in the background needs to call this API to start a UIAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **visible** of the target UIAbility is **false**, the initiator UIAbility must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -340,8 +340,8 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want |[Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
+| want |[Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility.|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the UIAbility.|
 | callback | AsyncCallback&lt;[AbilityResult](js-apis-inner-ability-abilityResult.md)&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -404,14 +404,14 @@ Observe the following when using this API:
 
 startAbilityForResult(want: Want, options?: StartOptions): Promise&lt;AbilityResult&gt;;
 
-Starts an ability. This API uses a promise to return the result when the ability is terminated. The following situations may be possible to an ability after it is started:
- - Normally, you can call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the ability. The result is returned to the caller.
- - If an exception occurs, for example, the ability is killed, an error message, in which **resultCode** is **-1**, is returned to the caller.
- - If different applications call this API to start an ability that uses the singleton mode and then call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the ability, the normal result is returned to the last caller, and an error message, in which **resultCode** is **-1**, is returned to others.
+Starts a UIAbility. This API uses a promise to return the result when the UIAbility is terminated. The following situations may be possible for a started UIAbility:
+ - Normally, you can call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the UIAbility. The result is returned to the initiator UIAbility.
+ - If an exception occurs, for example, the UIAbility is killed, an error message, in which **resultCode** is **-1**, is returned to the initiator UIAbility.
+ - If different applications call this API to start a UIAbility that uses the singleton mode and then call [terminateSelfWithResult](#uiabilitycontextterminateselfwithresult) to terminate the UIAbility, the normal result is returned to the last initiator UIAbility, and an error message, in which **resultCode** is **-1**, is returned to others.
 
 Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If an application running in the background needs to call this API to start a UIAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **visible** of the target UIAbility is **false**, the initiator UIAbility must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -420,8 +420,8 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility.|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the UIAbility.|
 
 
 **Return value**
@@ -487,7 +487,7 @@ Observe the following when using this API:
 
 startAbilityForResultWithAccount(want: Want, accountId: number, callback: AsyncCallback\<AbilityResult>): void;
 
-Starts an ability with the account ID specified. This API uses an asynchronous callback to return the result when the ability is terminated.
+Starts a UIAbility with the account ID specified. This API uses an asynchronous callback to return the result when the UIAbility is terminated.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -499,7 +499,7 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | callback | AsyncCallback\<AbilityResult\> | Yes| Callback used to return the result.|
 
@@ -562,7 +562,7 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
 
-Starts an ability with the start options and account ID specified. This API uses an asynchronous callback to return the result when the ability is terminated.
+Starts a UIAbility with the start options and account ID specified. This API uses an asynchronous callback to return the result when the UIAbility is terminated.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -574,9 +574,9 @@ Starts an ability with the start options and account ID specified. This API uses
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the UIAbility.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -641,7 +641,7 @@ Starts an ability with the start options and account ID specified. This API uses
 
 startAbilityForResultWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<AbilityResult\>;
 
-Starts an ability with the account ID specified. This API uses a promise to return the result when the ability is terminated.
+Starts a UIAbility with the account ID specified. This API uses a promise to return the result when the UIAbility is terminated.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -653,9 +653,9 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the UIAbility.|
 
 **Return value**
 
@@ -733,7 +733,7 @@ Starts a ServiceExtensionAbility. This API uses an asynchronous callback to retu
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -794,7 +794,7 @@ Starts a ServiceExtensionAbility. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility.|
 
 **Error codes**
 
@@ -856,7 +856,7 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses an
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
@@ -918,7 +918,7 @@ Starts a ServiceExtensionAbility with the account ID specified. This API uses a 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 
 **Error codes**
@@ -980,7 +980,7 @@ Stops a ServiceExtensionAbility in the same application. This API uses an asynch
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1038,7 +1038,7 @@ Stops a ServiceExtensionAbility in the same application. This API uses a promise
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility.|
 
 **Error codes**
 
@@ -1097,7 +1097,7 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
@@ -1160,7 +1160,7 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 
 **Error codes**
@@ -1210,7 +1210,7 @@ Stops a ServiceExtensionAbility with the account ID specified in the same applic
 
 terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
-Terminates this ability. This API uses an asynchronous callback to return the result.
+Terminates this UIAbility. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1251,7 +1251,7 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 terminateSelf(): Promise&lt;void&gt;;
 
-Terminates this ability. This API uses a promise to return the result.
+Terminates this UIAbility. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1290,7 +1290,7 @@ Terminates this ability. This API uses a promise to return the result.
 
 terminateSelfWithResult(parameter: AbilityResult, callback: AsyncCallback&lt;void&gt;): void;
 
-Terminates this ability. If the ability is started by calling [startAbilityForResult](#uiabilitycontextstartabilityforresult), the result is returned to the caller in the form of an asynchronous callback when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
+Terminates this UIAbility. If the UIAbility is started by calling [startAbilityForResult](#uiabilitycontextstartabilityforresult), the result is returned to the initiator UIAbility in the form of an asynchronous callback when **terminateSelfWithResult** is called. Otherwise, no result is returned to the initiator UIAbility when **terminateSelfWithResult** is called.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1298,7 +1298,7 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes| Information returned to the caller.|
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes| Information returned to the initiator UIAbility.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1320,7 +1320,7 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
     abilityName: 'SecondAbility'
   }
   let resultCode = 100;
-  // AbilityResult information returned to the caller.
+  // AbilityResult information returned to the initiator UIAbility.
   let abilityResult = {
     want,
     resultCode
@@ -1349,7 +1349,7 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 
 terminateSelfWithResult(parameter: AbilityResult): Promise&lt;void&gt;;
 
-Terminates this ability. If the ability is started by calling [startAbilityForResult](#uiabilitycontextstartabilityforresult), the result is returned to the caller in the form of a promise when **terminateSelfWithResult** is called. Otherwise, no result is returned to the caller when **terminateSelfWithResult** is called.
+Terminates this UIAbility. If the UIAbility is started by calling [startAbilityForResult](#uiabilitycontextstartabilityforresult), the result is returned to the initiator UIAbility in the form of a promise when **terminateSelfWithResult** is called. Otherwise, no result is returned to the initiator UIAbility when **terminateSelfWithResult** is called.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1357,7 +1357,7 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes| Information returned to the caller.|
+| parameter | [AbilityResult](js-apis-inner-ability-abilityResult.md) | Yes| Information returned to the initiator UIAbility.|
 
 **Return value**
 
@@ -1385,7 +1385,7 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
     abilityName: 'SecondAbility'
   }
   let resultCode = 100;
-  // AbilityResult information returned to the caller.
+  // AbilityResult information returned to the initiator UIAbility.
   let abilityResult = {
     want,
     resultCode
@@ -1413,7 +1413,7 @@ Terminates this ability. If the ability is started by calling [startAbilityForRe
 
 connectServiceExtensionAbility(want: Want, options: ConnectOptions): number;
 
-Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERVICE** template.
+Connects this UIAbility to a UIAbility that uses the **AbilityInfo.AbilityType.SERVICE** template.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -1421,14 +1421,14 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility.|
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | No| Parameters for the connection.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | Result code of the ability connection.|
+| number | Result code of the UIAbility connection.|
 
 **Error codes**
 
@@ -1471,7 +1471,7 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 
 connectServiceExtensionAbilityWithAccount(want: Want, accountId: number, options: ConnectOptions): number;
 
-Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERVICE** template, with the account ID specified.
+Connects this UIAbility to a UIAbility that uses the **AbilityInfo.AbilityType.SERVICE** template, with the account ID specified.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1483,7 +1483,7 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | options | [ConnectOptions](js-apis-inner-ability-connectOptions.md) | No| Parameters for the connection.|
 
@@ -1491,7 +1491,7 @@ Connects this ability to an ability that uses the **AbilityInfo.AbilityType.SERV
 
 | Type| Description|
 | -------- | -------- |
-| number | Result code of the ability connection.|
+| number | Result code of the UIAbility connection.|
 
 **Error codes**
 
@@ -1545,7 +1545,7 @@ Disconnects a connection. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| connection | number | Yes| Result code of the ability connection.|
+| connection | number | Yes| Result code of the UIAbility connection.|
 
 **Return value**
 
@@ -1602,7 +1602,7 @@ Disconnects a connection. This API uses an asynchronous callback to return the r
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| connection | number | Yes| Result code of the ability connection.|
+| connection | number | Yes| Result code of the UIAbility connection.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1644,11 +1644,11 @@ Disconnects a connection. This API uses an asynchronous callback to return the r
 
 startAbilityByCall(want: Want): Promise&lt;Caller&gt;;
 
-Starts an ability in the foreground or background and obtains the caller object for communicating with the ability.
+Starts a UIAbility in the foreground or background and obtains the caller object for communicating with the UIAbility.
 
 Observe the following when using this API:
- - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false**, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If an application running in the background needs to call this API to start a UIAbility, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **visible** of the target UIAbility is **false**, the initiator UIAbility must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -1657,7 +1657,7 @@ Observe the following when using this API:
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
+| want | [Want](js-apis-application-want.md) | Yes| Information about the UIAbility to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local UIAbility is started. If **parameters** is left blank or null, the UIAbility is started in the background.|
 
 **Return value**
 
@@ -1667,12 +1667,12 @@ Observe the following when using this API:
 
 **Example**
 
-  Start an ability in the background.
+  Start a UIAbility in the background.
 
   ```ts
   let caller = undefined;
 
-  // Start an ability in the background by not passing parameters.
+  // Start a UIAbility in the background by not passing parameters.
   let wantBackground = {
       bundleName: 'com.example.myservice',
       moduleName: 'entry',
@@ -1698,12 +1698,12 @@ Observe the following when using this API:
   }
   ```
 
-  Start an ability in the foreground.
+  Start a UIAbility in the foreground.
 
   ```ts
   let caller = undefined;
 
-  // Start an ability in the foreground with 'ohos.aafwk.param.callAbilityToForeground' in parameters set to true.
+  // Start a UIAbility in the foreground with ohos.aafwk.param.callAbilityToForeground in parameters set to true.
   let wantForeground = {
       bundleName: 'com.example.myservice',
       moduleName: 'entry',
@@ -1736,7 +1736,7 @@ Observe the following when using this API:
 
 startAbilityWithAccount(want: Want, accountId: number, callback: AsyncCallback\<void\>): void;
 
-Starts an ability with the account ID specified. This API uses an asynchronous callback to return the result.
+Starts a UIAbility with the account ID specified. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1748,7 +1748,7 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
@@ -1810,7 +1810,7 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 
 startAbilityWithAccount(want: Want, accountId: number, options: StartOptions, callback: AsyncCallback\<void\>): void;
 
-Starts an ability with the account ID specified. This API uses an asynchronous callback to return the result.
+Starts a UIAbility with the start options and account ID specified. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1822,9 +1822,9 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the UIAbility.|
 | callback | AsyncCallback\<void\> | Yes| Callback used to return the result.|
 
 **Error codes**
@@ -1888,7 +1888,7 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 
 startAbilityWithAccount(want: Want, accountId: number, options?: StartOptions): Promise\<void\>;
 
-Starts an ability with the account ID specified. This API uses a promise to return the result.
+Starts a UIAbility with the account ID specified. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -1900,9 +1900,9 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target UIAbility.|
 | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
-| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the UIAbility.|
 
 **Error codes**
 
@@ -2023,7 +2023,7 @@ Requests permissions from the user by displaying a dialog box. This API uses a p
 
 setMissionLabel(label: string, callback:AsyncCallback&lt;void&gt;): void;
 
-Sets a label for this ability in the mission. This API uses an asynchronous callback to return the result.
+Sets a label for this UIAbility in the mission. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2031,7 +2031,7 @@ Sets a label for this ability in the mission. This API uses an asynchronous call
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| label | string | Yes| Label of the ability to set.|
+| label | string | Yes| Label of the UIAbility to set.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
@@ -2047,7 +2047,7 @@ Sets a label for this ability in the mission. This API uses an asynchronous call
 
 setMissionLabel(label: string): Promise&lt;void&gt;;
 
-Sets a label for this ability in the mission. This API uses a promise to return the result.
+Sets a label for this UIAbility in the mission. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2055,7 +2055,7 @@ Sets a label for this ability in the mission. This API uses a promise to return 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| label | string | Yes| Label of the ability to set.|
+| label | string | Yes| Label of the UIAbility to set.|
 
 **Return value**
 
@@ -2076,7 +2076,7 @@ Sets a label for this ability in the mission. This API uses a promise to return 
 
 setMissionIcon(icon: image.PixelMap, callback:AsyncCallback\<void>): void;
 
-Sets an icon for this ability in the mission. This API uses an asynchronous callback to return the result.
+Sets an icon for this UIAbility in the mission. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2086,7 +2086,7 @@ Sets an icon for this ability in the mission. This API uses an asynchronous call
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| icon | image.PixelMap | Yes| Icon of the ability to set.|
+| icon | image.PixelMap | Yes| Icon of the UIAbility to set.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
 
 **Example**
@@ -2118,7 +2118,7 @@ Sets an icon for this ability in the mission. This API uses an asynchronous call
 
 setMissionIcon(icon: image.PixelMap): Promise\<void>;
 
-Sets an icon for this ability in the mission. This API uses a promise to return the result.
+Sets an icon for this UIAbility in the mission. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2128,7 +2128,7 @@ Sets an icon for this ability in the mission. This API uses a promise to return 
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| icon | image.PixelMap | Yes| Icon of the ability to set.|
+| icon | image.PixelMap | Yes| Icon of the UIAbility to set.|
 
 **Return value**
 
@@ -2167,7 +2167,7 @@ Sets an icon for this ability in the mission. This API uses a promise to return 
 
 restoreWindowStage(localStorage: LocalStorage) : void;
 
-Restores the window stage data for this ability.
+Restores the window stage data for this UIAbility.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -2188,7 +2188,7 @@ Restores the window stage data for this ability.
 
 isTerminating(): boolean;
 
-Checks whether this ability is in the terminating state.
+Checks whether this UIAbility is in the terminating state.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
