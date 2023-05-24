@@ -1186,7 +1186,7 @@ panel.show((err) => {
 
 show(): Promise\<void>
 
-显示当前面板，使用callback异步回调。
+显示当前面板，使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1237,7 +1237,7 @@ panel.hide((err) => {
 
 hide(): Promise\<void>
 
-隐藏当前面板，使用callback异步回调。
+隐藏当前面板，使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1905,7 +1905,7 @@ try {
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
 
-删除光标后固定长度的文本。使用callback异步回调。
+删除光标后固定长度的文本。使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2814,7 +2814,7 @@ textInputClient.deleteBackward(length, (err, result) => {
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
 
-删除光标后固定长度的文本。使用callback异步回调。
+删除光标后固定长度的文本。使用promise异步回调。
 
 > **说明：**
 >
