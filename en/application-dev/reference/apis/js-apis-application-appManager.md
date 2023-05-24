@@ -400,7 +400,11 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
 Kills a process by bundle name and account ID. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS (required only when the account ID is not the current user) and ohos.permission.CLEAN_BACKGROUND_PROCESSES
+> **NOTE**
+>
+> The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
+
+**Required permissions**: ohos.permission.CLEAN_BACKGROUND_PROCESSES and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -434,11 +438,15 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 
 Kills a process by bundle name and account ID. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> The **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permission is not required when **accountId** specifies the current user.
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API and cannot be called by third-party applications.
 
-**Required permissions**: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS (required only when the account ID is not the current user) and ohos.permission.CLEAN_BACKGROUND_PROCESSES
+**Required permissions**: ohos.permission.CLEAN_BACKGROUND_PROCESSES and ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **Parameters**
 
