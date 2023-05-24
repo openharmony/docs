@@ -332,6 +332,8 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 | ------- | -------------------------------- |
 | 1300001 | Repeated operation. |
 | 1300006 | This window context is abnormal. |
+| 1300008 | The operation is on invalid display. |
+| 1300009 | The parent window is invalid. |
 
 **示例：**
 
@@ -381,6 +383,8 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 | ------- | -------------------------------- |
 | 1300001 | Repeated operation. |
 | 1300006 | This window context is abnormal. |
+| 1300008 | The operation is on invalid display. |
+| 1300009 | The parent window is invalid. |
 
 **示例：**
 
@@ -419,6 +423,14 @@ findWindow(name: string): Window
 | 类型 | 说明 |
 | ----------------- | ------------------- |
 | [Window](#window) | 当前查找的窗口对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 1300002 | This window state is abnormal. |
 
 **示例：**
 
