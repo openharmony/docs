@@ -24,15 +24,28 @@
      用户选择目标文件夹，用户选择与文件类型相对应的文件夹，即可完成文件保存操作。保存成功后，返回保存文档的URI。
 
    ```ts
+   let uri = null;
    const photoViewPicker = new picker.PhotoViewPicker();
-   photoViewPicker.save(photoSaveOptions)
-     .then(async (photoSaveResult) => {
-       let uri = photoSaveResult[0];
-       // 获取到到图片或者视频文件的URI后进行文件读取等操作
-     })
-     .catch((err) => {
-       console.error(`Invoke documentPicker.select failed, code is ${err.code}, message is ${err.message}`);
-     })
+   photoViewPicker.save(photoSaveOptions).then((photoSaveResult) => {
+     uri = photoSaveResult[0];
+   }).catch((err) => {
+     console.error(`Invoke documentPicker.select failed, code is ${err.code}, message is ${err.message}`);
+   })
+   ```
+
+4. 待界面从FilePicker返回后，在其他函数中使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。
+
+   ```ts
+   let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
+   console.info('file fd: ' + file.fd);
+   ```
+
+5. 通过fd使用[fs.writeSync](../reference/apis/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
+
+   ```ts
+   let writeLen = fs.writeSync(file.fd, 'hello, world');
+   console.info('write data to file succeed and size is:' + writeLen);
+   fs.closeSync(file);
    ```
 
 ## 保存文档类文件
@@ -58,15 +71,28 @@
    > 目前DocumentSelectOptions不支持参数配置，默认可以选择所有类型的用户文件。
 
    ```ts
+   let uri = null;
    const documentViewPicker = new picker.DocumentViewPicker(); // 创建文件选择器实例
-   documentViewPicker.save(documentSaveOptions)
-     .then(async (documentSaveResult) => {
-       let uri = documentSaveResult[0];
-       // 例如，可以根据获取的URI进行文件写入等操作
-     })
-     .catch((err) => {
-       console.error(`Invoke documentPicker.save failed, code is ${err.code}, message is ${err.message}`);
-     })
+   documentViewPicker.save(documentSaveOptions).then((documentSaveResult) => {
+     uri = documentSaveResult[0];
+   }).catch((err) => {
+     console.error(`Invoke documentPicker.save failed, code is ${err.code}, message is ${err.message}`);
+   })
+   ```
+
+4. 待界面从FilePicker返回后，在其他函数中使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。
+
+   ```ts
+   let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
+   console.info('file fd: ' + file.fd);
+   ```
+
+5. 通过fd使用[fs.writeSync](../reference/apis/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
+
+   ```ts
+   let writeLen = fs.writeSync(file.fd, 'hello, world');
+   console.info('write data to file succeed and size is:' + writeLen);
+   fs.closeSync(file);
    ```
 
 ## 保存音频类文件
@@ -91,13 +117,27 @@
    > 目前AudioSelectOptions不支持参数配置，默认可以选择所有类型的用户文件。
 
    ```ts
+   let uri = null;
    const audioViewPicker = new picker.AudioViewPicker();
-   audioViewPicker.save(audioSaveOptions)
-     .then((audioSelectResult) => {
-       let uri = audioSelectResult[0];
-       // 获取到到音频文件的URI后进行文件读取等操作
-     })
-     .catch((err) => {
-       console.error(`Invoke audioPicker.select failed, code is ${err.code}, message is ${err.message}`);
-     })
+   audioViewPicker.save(audioSaveOptions).then((audioSelectResult) => {
+     uri = audioSelectResult[0];
+   }).catch((err) => {
+     console.error(`Invoke audioPicker.select failed, code is ${err.code}, message is ${err.message}`);
+   })
    ```
+
+4. 待界面从FilePicker返回后，在其他函数中使用[fs.openSync](../reference/apis/js-apis-file-fs.md#fsopensync)接口，通过uri打开这个文件得到fd。
+
+   ```ts
+   let file = fs.openSync(uri, fs.OpenMode.READ_WRITE);
+   console.info('file fd: ' + file.fd);
+   ```
+
+5. 通过fd使用[fs.writeSync](../reference/apis/js-apis-file-fs.md#writesync)接口对这个文件进行编辑修改，编辑修改完成后关闭fd。
+
+   ```ts
+   let writeLen = fs.writeSync(file.fd, 'hello, world');
+   console.info('write data to file succeed and size is:' + writeLen);
+   fs.closeSync(file);
+   ```
+   
