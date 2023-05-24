@@ -1,4 +1,4 @@
-# System Common Events
+# System Common Events (To Be Deprecated Soon)
 
 This document provides indexes for system common events defined in OpenHarmony.
 For details about the definition of a system common event, see [Support in @ohos.commonEvent (Common Event)](./js-apis-commonEvent.md#support).
