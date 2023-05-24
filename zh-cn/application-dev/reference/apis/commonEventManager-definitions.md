@@ -664,33 +664,33 @@ Wi-Fi P2P群组信息已更改。
 
 ## COMMON_EVENT_USB_STATE<sup>9+</sup>
 表示USB设备状态发生变化的公共事件。
-- 值： usual.event.hardware.usb.action.USB_STATE
-- 订阅者所需权限： 无
 
-## COMMON_EVENT_USB_PORT_CHANGED<sup>9+</sup>
+具体查看[USB公共事件](common_event/commonEvent-usb.md)。
+
+## **COMMON_EVENT_USB_PORT_CHANGED**<sup>9+</sup>
 表示用户设备的USB端口状态发生改变的公共事件。
-- 值： usual.event.hardware.usb.action.USB_PORT_CHANGED
-- 订阅者所需权限： 无
+
+具体查看[USB公共事件](common_event/commonEvent-usb.md)。
 
 ## COMMON_EVENT_USB_DEVICE_ATTACHED
 当用户设备作为USB主机时，USB设备已挂载的公共事件的动作。
-- 值： usual.event.hardware.usb.action.USB_DEVICE_ATTACHED
-- 订阅者所需权限： 无
+
+具体查看[USB公共事件](common_event/commonEvent-usb.md)。
 
 ## COMMON_EVENT_USB_DEVICE_DETACHED
 当用户设备作为USB主机时，USB设备被卸载的公共事件的动作。
-- 值： usual.event.hardware.usb.action.USB_DEVICE_DETACHED
-- 订阅者所需权限： 无
+
+具体查看[USB公共事件](common_event/commonEvent-usb.md)。
 
 ## COMMON_EVENT_USB_ACCESSORY_ATTACHED
 （预留事件，暂未支持）表示已连接USB附件的公共事件的动作。
-- 值： usual.event.hardware.usb.action.USB_ACCESSORY_ATTACHED
-- 订阅者所需权限： 无
+
+具体查看[USB公共事件](common_event/commonEvent-usb.md)。
 
 ## COMMON_EVENT_USB_ACCESSORY_DETACHED
 （预留事件，暂未支持）表示USB附件被卸载的公共事件的动作。
-- 值： usual.event.data.DISK_MOUNTED
-- 订阅者所需权限： 无
+
+具体查看[USB公共事件](common_event/commonEvent-usb.md)。
 
 ## COMMON_EVENT_DISK_REMOVED
 （预留事件，暂未支持）外部存储设备状态变更为移除时发送此公共事件。
