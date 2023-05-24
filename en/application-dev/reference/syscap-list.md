@@ -64,14 +64,6 @@ Distributed scheduler
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
 
-## SystemCapability.BundleManager.BundleTool
-
-Bundle manager CLI tool
-
-| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
-| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
-
 ## SystemCapability.BundleManager.Zlib
 
 zlib compression and decompression tool
@@ -79,14 +71,6 @@ zlib compression and decompression tool
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
-
-## SystemCapability.BundleManager.PackingTool
-
-Packing and unpacking tools for bundle management
-
-| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
-| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| Yes     | Yes    | Yes    | Yes  | Yes  | Yes    | Yes          | No    |
 
 ## SystemCapability.Graphic.Graphic2D.WebGL
 

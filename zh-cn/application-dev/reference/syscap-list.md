@@ -62,14 +62,6 @@ libuv功能
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
 
-## SystemCapability.BundleManager.BundleTool
-
-包管理命令行工具
-
-| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
-| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
-
 ## SystemCapability.BundleManager.Zlib
 
 Zlib压缩、解压缩工具
@@ -77,14 +69,6 @@ Zlib压缩、解压缩工具
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
-
-## SystemCapability.BundleManager.PackingTool
-
-包管理打包、拆包工具
-
-| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
-| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| 是      | 是     | 是     | 是   | 是   | 是     | 是           | 否     |
 
 ## SystemCapability.Graphic.Graphic2D.WebGL
 
