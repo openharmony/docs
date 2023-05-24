@@ -1907,3 +1907,13 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+## ohos.permission.CLOUDDATA_CONFIG
+
+允许应用获取配置数据库端云信息能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
