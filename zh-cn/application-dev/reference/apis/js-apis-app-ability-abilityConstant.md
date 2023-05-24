@@ -66,6 +66,12 @@ Ability上次退出原因，该类型为枚举，可配合[Ability](js-apis-app-
 | UNKNOWN          | 0    | 未知原因。 |
 | ABILITY_NOT_RESPONDING          | 1    | ability未响应。 |
 | NORMAL | 2    | 正常退出。 |
+| CPP_CRASH<sup>10+</sup>  | 3    | CPP崩溃。 |
+| JS_ERROR<sup>10+</sup>  | 4    | JS错误。 |
+| APP_FREEZE<sup>10+</sup>  | 5    | watchdog检测到App主线程无响应。 |
+| PERFORMANCE_CONTROL<sup>10+</sup>  | 6    | 性能管控。 |
+| RESOURCE_CONTROL<sup>10+</sup>  | 7    | 资源管控。 |
+| UPGRADE_OR_UNINSTALL<sup>10+</sup>  | 8    | 升级或卸载应用。 |
 
 **示例：**
 
