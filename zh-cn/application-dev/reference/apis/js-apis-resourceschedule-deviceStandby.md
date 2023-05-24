@@ -73,8 +73,8 @@ getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;Exempted
 
 | 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
-| resourceTypes |number | 是    | [ResourceType](#ResourceType) |
-| callback | AsyncCallback<Array&lt;ExemptedAppInfo&gt;> | 是    | [ExemptedAppInfo ](#ExemptedAppInfo)|
+| resourceTypes |number | 是    | [ResourceType](#resourceType) |
+| callback | AsyncCallback<Array&lt;ExemptedAppInfo&gt;> | 是    | [ExemptedAppInfo ](#exemptedAppInfo)|
 
 **错误码**：
 
@@ -101,13 +101,13 @@ getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
 
 | 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
-| resourceTypes |number | 是    | [ResourceType](#ResourceType) |
+| resourceTypes |number | 是    | [ResourceType](#resourceType) |
 
 **返回值**：
 
 | 类型                    | 说明                                       |
 | --------------------- | ---------------------------------------- |
-| Promise<Array&lt;ExemptedAppInfo&gt;> |  [ExemptedAppInfo ](#ExemptedAppInfo)|
+| Promise<Array&lt;ExemptedAppInfo&gt;> |  [ExemptedAppInfo ](#exemptedAppInfo)|
 
 **错误码**：
 
@@ -137,7 +137,7 @@ requestExemptionResource(request: ResourceRequest): void;
 
 | 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
-| request |ResourceRequest | 是    | [ResourceRequest ](#ResourceRequest) |
+| request |ResourceRequest | 是    | [ResourceRequest ](#resourceRequest) |
 
 **错误码**：
 
@@ -164,7 +164,7 @@ releaseExemptionResource(request: ResourceRequest): void;
 
 | 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
-| request |ResourceRequest | 是    | [ResourceRequest ](#ResourceRequest) |
+| request |ResourceRequest | 是    | [ResourceRequest ](#resourceRequest) |
 
 **错误码**：
 
