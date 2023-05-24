@@ -1,6 +1,8 @@
 # FAQs
 
 - [Ability Development](faqs-ability.md)
+- [ArkUI Development](faqs-arkui.md)
+- [Web Development](faqs-arkui-web.md)
 - [Bundle Management Development](faqs-bundle-management.md)
 - [Resource Manager Development](faqs-globalization.md)
 - [Common Event and Notification Development](faqs-event-notification.md)
@@ -16,4 +18,5 @@
 - [Pan-Sensor Development](faqs-sensor.md)
 - [Startup Development](faqs-startup.md)
 - [Distributed Device Development](faqs-distributed-device-profile.md)
+- [SDK Usage](faqs-sdk.md)
 - [Usage of Third- and Fourth-Party Libraries](faqs-third-fourth-party-library.md)

@@ -1,4 +1,4 @@
-# Full SDK Compilation Guide
+# Full SDK Compilation
 
 The full SDK provides a full set of APIs available in OpenHarmony, including system APIs required by system applications. Vendors can leverage this SDK to develop applications.
 
