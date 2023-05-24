@@ -2,6 +2,16 @@
 
 The **MissionInfo** module defines detailed information about a mission. The information can be obtained through [getMissionInfo](js-apis-app-ability-missionManager.md#missionmanagergetmissioninfo).
 
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+## Modules to Import
+
+```ts
+import missionManager from '@ohos.app.ability.missionManager';
+```
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 **System API**: This is a system API and cannot be called by third-party applications.

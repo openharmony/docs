@@ -2,6 +2,16 @@
 
 The **WantAgentInfo** module defines the information required for triggering a **WantAgent** object. The information can be used as an input parameter in [getWantAgent](js-apis-app-ability-wantAgent.md#wantagentgetwantagent) to obtain a specified **WantAgent** object.
 
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+## Modules to Import
+
+```ts
+import wantAgent from '@ohos.app.ability.wantAgent';
+```
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name          | Type                           | Mandatory| Description                  |

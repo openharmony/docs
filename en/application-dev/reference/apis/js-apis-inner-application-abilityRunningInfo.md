@@ -6,6 +6,12 @@ The **AbilityRunningInfo** module defines the running information and state of a
 > 
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+## Modules to Import
+
+```ts
+import abilitymanager from '@ohos.app.ability.abilityManager';
+```
+
 ## Usage
 
 The ability running information is obtained by calling [getAbilityRunningInfos](js-apis-app-ability-abilityManager.md#getabilityrunninginfos) in **abilityManager**.

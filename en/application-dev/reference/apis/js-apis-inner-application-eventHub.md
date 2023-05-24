@@ -3,9 +3,15 @@
 The **EventHub** module provides APIs to subscribe to, unsubscribe from, and trigger events.
 
 > **NOTE**
->
->  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
->  - The APIs of this module can be used only in the stage model.
+> 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs of this module can be used only in the stage model.
+
+## Modules to Import
+
+```ts
+import common from '@ohos.app.ability.common';
+```
 
 ## Usage
 
@@ -65,7 +71,7 @@ Subscribes to an event.
 
 off(event: string, callback?: Function): void;
 
-Unsubscribes from an event. 
+Unsubscribes from an event. If **callback** is specified, this API unsubscribes from the specified callback. If **callback** is not specified, this API unsubscribes from all callbacks in the event.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -84,10 +90,10 @@ Unsubscribes from an event.
   export default class MainAbility extends Ability {
       onForeground() {
           this.context.eventHub.on('123', this.func1);
-          this.context.eventHub.off('123', this.func1); // Unsubscribe from the myEvent event with the callback eventFunc1.
+          this.context.eventHub.off('123', this.func1); // Unsubscribe from func1.
           this.context.eventHub.on('123', this.func1);
           this.context.eventHub.on('123', this.func2);
-          this.context.eventHub.off('123');  // Unsubscribe from the myEvent event with all the callbacks (eventFunc1 and eventFunc2).
+          this.context.eventHub.off('123'); // Unsubscribe from func1 and func2.
       }
       func1() {
           console.log('func1 is called');
