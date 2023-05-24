@@ -21,8 +21,8 @@
 
 | 类型定义名称 | 描述 |
 | -------- | -------- |
-| [OH_AI_ModelType](_mind_spore.md#oh_ai_modeltype-1) | 模型文件的类型。 |
-| [OH_AI_DeviceType](_mind_spore.md#oh_ai_devicetype-1) | 设备类型信息，包含了目前支持的设备类型。 |
+| [OH_AI_ModelType](_mind_spore.md#oh_ai_modeltype) | 模型文件的类型。 |
+| [OH_AI_DeviceType](_mind_spore.md#oh_ai_devicetype) | 设备类型信息，包含了目前支持的设备类型。 |
 
 
 ### 枚举
@@ -30,4 +30,4 @@
 | 枚举名称 | 描述 |
 | -------- | -------- |
 | [OH_AI_ModelType](_mind_spore.md#oh_ai_modeltype-1) { <br/>OH_AI_MODELTYPE_MINDIR = 0, <br/>OH_AI_MODELTYPE_INVALID = 0xFFFFFFFF } | 模型文件的类型。 |
-| [OH_AI_DeviceType](_mind_spore.md#oh_ai_devicetype-1) { <br/>OH_AI_DEVICETYPE_CPU = 0, <br/>OH_AI_DEVICETYPE_KIRIN_GPU, <br/>OH_AI_DEVICETYPE_KIRIN_NPU, <br/>OH_AI_DEVICETYPE_NNRT = 60, <br/>OH_AI_DEVICETYPE_INVALID = 100 } | 设备类型信息，包含了目前支持的设备类型。 |
+| [OH_AI_DeviceType](_mind_spore.md#oh_ai_devicetype-1) { <br/>OH_AI_DEVICETYPE_CPU = 0, <br/>OH_AI_DEVICETYPE_GPU, <br/>OH_AI_DEVICETYPE_KIRIN_NPU, <br/>OH_AI_DEVICETYPE_NNRT = 60, <br/>OH_AI_DEVICETYPE_INVALID = 100 } | 设备类型信息，包含了目前支持的设备类型。 |
