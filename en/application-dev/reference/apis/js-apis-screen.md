@@ -742,7 +742,7 @@ Before calling any API in **Screen**, you must use **[getAllScreens()](#screenge
 | id                | number                                         | Yes  | No  | Screen ID.            |
 | parent            | number                                         | Yes  | No  | ID of the group to which a screen belongs.    |
 | supportedModeInfo | Array&lt;[ScreenModeInfo](#screenmodeinfo)&gt; | Yes  | No  | Mode set supported by the screen.  |
-| activeModeIndex   | number                                         | Yes  | No  | Index of the active screen mode.|
+| activeModeIndex   | number                                         | Yes  | No  | Index of the active screen mode. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware.|
 | orientation       | [Orientation](#orientation)                     | Yes  | No  | Screen orientation.            |
 
 ### setOrientation
@@ -833,7 +833,7 @@ Sets the active mode of the screen. This API uses an asynchronous callback to re
 
 | Name   | Type                     | Mandatory| Description                                                        |
 | --------- | ------------------------- | ---- | ------------------------------------------------------------ |
-| modeIndex | number                    | Yes  | Index of the mode to set.                                                  |
+| modeIndex | number                    | Yes  | Index of the mode to set. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware.|
 | callback  | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result. If the active mode is successfully set, **err** is **undefined**; otherwise, **err** is an error object.|
 
 **Error codes**
@@ -871,7 +871,7 @@ Sets the active mode of the screen. This API uses a promise to return the result
 
 | Name   | Type  | Mandatory| Description      |
 | --------- | ------ | ---- | ---------- |
-| modeIndex | number | Yes  | Index of the mode to set.|
+| modeIndex | number | Yes  | Index of the mode to set. The current value and value range of this parameter vary according to the screen resolution, refresh rate, and device hardware.|
 
 **Return value**
 
