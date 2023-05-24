@@ -1053,7 +1053,7 @@ OH_AI_API OH_AI_TensorHandle OH_AI_ModelGetOutputByTensorName (const OH_AI_Model
 | 名称 | 描述 |
 | -------- | -------- |
 | model | 模型对象指针。 |
-| tensor_名称 | 张量名称。 |
+| tensor_name | 张量名称。 |
 
 **返回:**
 
@@ -1170,7 +1170,7 @@ OH_AI_API OH_AI_TensorHandle OH_AI_TensorCreate (const char *name, OH_AI_DataTyp
 
 | 名称 | 描述 |
 | -------- | -------- |
-| 名称 | 张量名称 |
+| name | 张量名称 |
 | type | 张量的数据类型 |
 | shape | 张量的维度数组。 |
 | shape_num | 张量维度数组长度。 |
