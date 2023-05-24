@@ -4,8 +4,14 @@ The **Context** module provides context for abilities or applications. It allows
 
 > **NOTE**
 >
->  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->  - The APIs of this module can be used only in the stage model.
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs of this module can be used only in the stage model.
+
+## Modules to Import
+
+```ts
+import common from '@ohos.app.ability.common';
+```
 
 ## Attributes
 
@@ -20,7 +26,7 @@ The **Context** module provides context for abilities or applications. It allows
 | filesDir | string | Yes   | No   | File directory.|
 | databaseDir | string | Yes   | No   | Database directory.|
 | preferencesDir | string | Yes   | No   | Preferences directory.|
-| bundleCodeDir | string | Yes   | No   | Bundle code directory. A resource file cannot be accessed by combining paths. Use [Resource Manager](js-apis-resource-manager.md) to access it. |
+| bundleCodeDir | string | Yes   | No   | Bundle code directory. Do not access resource files by concatenating paths. Use the [resourceManager API](js-apis-resource-manager.md) instead.|
 | distributedFilesDir | string | Yes   | No   | Distributed file directory.|
 | eventHub | [EventHub](js-apis-inner-application-eventHub.md) | Yes   | No   | Event hub that implements event subscription, unsubscription, and triggering.|
 | area | [AreaMode](#areamode) | Yes   | No   | Area in which the file to be access is located.|
@@ -49,7 +55,12 @@ Creates the context based on the bundle name.
 **Example**
 
 ```ts
-let bundleContext = this.context.createBundleContext('com.example.test');
+let bundleContext: common.Context;
+try {
+    bundleContext = this.context.createBundleContext('com.example.test');
+} catch (error) {
+    console.error('createBundleContext failed, error.code: ${error.code}, error.message: ${error.message}');
+}
 ```
 
 ## Context.createModuleContext
@@ -75,7 +86,12 @@ Creates the context based on the module name.
 **Example**
 
 ```ts
-let moduleContext = this.context.createModuleContext('entry');
+let moduleContext: common.Context;
+try {
+    moduleContext = this.context.createModuleContext('entry');
+} catch (error) {
+    console.error('createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}');
+}
 ```
 
 ## Context.createModuleContext
@@ -102,14 +118,19 @@ Creates the context based on the bundle name and module name.
 **Example**
 
 ```ts
-let moduleContext = this.context.createModuleContext('com.example.test', 'entry');
+let moduleContext: common.Context;
+try {
+    moduleContext = this.context.createModuleContext('com.example.test', 'entry');
+} catch (error) {
+    console.error('createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}');
+}
 ```
 
 ## Context.getApplicationContext
 
 getApplicationContext(): ApplicationContext;
 
-Obtains the context of this application.
+Obtains the application context.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -122,16 +143,21 @@ Obtains the context of this application.
 **Example**
 
 ```ts
-let applicationContext = this.context.getApplicationContext();
+let applicationContext: common.Context;
+try {
+    applicationContext = this.context.getApplicationContext();
+} catch (error) {
+    console.error('getApplicationContext failed, error.code: ${error.code}, error.message: ${error.message}');
+}
 ```
 
 ## AreaMode
 
-Enumerates the areas in which the file to be access can be located.
+Enumerates the encryption levels of directories.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name| Value| Description|
 | -------- | -------- | -------- |
-| EL1 | 0 | Device-level encryption area, which is accessible after the device is powered on.|
-| EL2 | 1 | User-level encryption area, which is accessible only after the device is powered on and the password is entered (for the first time).|
+| EL1 | 0 | Device-level encryption. Directories with this encryption level are accessible after the device is powered on.|
+| EL2 | 1 | User-level encryption. Directories with this encryption level are accessible only after the device is powered on and the password is entered (for the first time).|

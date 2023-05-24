@@ -9,6 +9,12 @@ You can use the APIs of this module to start, terminate, connect, and disconnect
 >  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >  - The APIs of this module can be used only in the stage model.
 
+## Modules to Import
+
+```ts
+import common from '@ohos.app.ability.common';
+```
+
 ## Usage
 
 Before using the **ServiceExtensionContext** module, you must define a child class that inherits from **ServiceExtensionAbility**.
