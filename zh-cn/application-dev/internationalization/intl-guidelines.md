@@ -322,6 +322,6 @@
 
 针对Intl开发，有以下相关实例可供参考：
 
--[`International`：国际化（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/UI/International)
+- [`International`：国际化（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/UI/International)
 
--[`International`：国际化（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/common/International)
+- [`International`：国际化（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/common/International)

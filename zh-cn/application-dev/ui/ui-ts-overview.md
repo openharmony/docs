@@ -79,14 +79,8 @@
 
 - [`Lottie`：Lottie（eTS）（API8）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/ETSUI/Lottie)
 
-- [极简声明式UI范式（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SimpleGalleryEts)
+- [CustomComponent:组件化（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/ETSUI/CustomComponent)
 
 - [购物应用（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts)
 
-- [转场动画的使用（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TransitionAnimtaionEts)
-
-- [基础组件Slider的使用（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SliderApplicationEts)
-
 - [弹窗（eTS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialogEts)
-
-- [CustomComponent:组件化（eTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/samples_monthly_0730/ETSUI/CustomComponent)
