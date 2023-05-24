@@ -76,7 +76,6 @@ The [universal methods](../arkui-js/js-components-common-methods.md) are support
 
 
 ## Example
-1. 
 ```html
 <!-- xxx.hml -->
 <div class="container">
