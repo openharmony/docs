@@ -1450,7 +1450,7 @@ OH_AI_API void OH_AI_TensorSetName (OH_AI_TensorHandle tensor, const char *name 
 | 名称 | 描述 |
 | -------- | -------- |
 | tensor | 张量对象句柄。 |
-| 名称 | 张量名称。 |
+| name | 张量名称。 |
 
 
 ### OH_AI_TensorSetShape()
