@@ -390,4 +390,4 @@
 
 针对Intl开发，有以下相关实例可供参考：
 
--[`International`：国际化（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SystemFeature/Internationalnation/International)
+- [`International`：国际化（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SystemFeature/Internationalnation/International)
