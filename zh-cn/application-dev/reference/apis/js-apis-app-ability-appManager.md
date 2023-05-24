@@ -298,6 +298,82 @@ appManager.getRunningProcessInformation((err, data) => {
 });
 ```
 
+## appManager.isSharedBundleRunning
+
+isSharedBundleRunning(bundleName: string, versionCode: number): Promise\<boolean>;
+
+检查共享库是否正在使用。使用Promise异步回调。
+
+**需要权限**：ohos.permission.GET_RUNNING_INFO
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**：此接口为系统接口。
+
+**参数**：
+
+| 参数名        | 类型                                       | 必填   | 说明             |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| bundleName    | string   | 是    | 表示要查询的共享库包名。 |
+| versionCode   | number   | 是    | 表示要查询的共享库版本号。      |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<boolean> | Promise对象。返回true表示共享库正在使用，返回false表示共享库不在使用。 |
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+appManager.isSharedBundleRunning(bundleName, versionCode).then((data) => {
+    console.log('The shared bundle running is: ${JSON.stringify(data)}');
+}).catch((error) => {
+    console.error('error: ${JSON.stringify(error)}');
+});
+```
+
+## appManager.isSharedBundleRunning
+
+isSharedBundleRunning(bundleName: string, versionCode: number, callback: AsyncCallback\<boolean>): void;
+
+检查共享库是否正在使用。使用callback异步回调。
+
+**需要权限**：ohos.permission.GET_RUNNING_INFO
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**：此接口为系统接口。
+
+**参数**：
+
+| 参数名        | 类型                                       | 必填   | 说明             |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| bundleName    | string   | 是    | 表示要查询的共享库包名。 |
+| versionCode   | number   | 是    | 表示要查询的共享库版本号。      |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+|AsyncCallback\<boolean>> | 回调函数。返回true表示共享库正在使用，返回false表示共享库不在使用。 |
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+appManager.isSharedBundleRunning(bundleName, versionCode, (err, data) => {
+    if (err) {
+        console.error('err: ${JSON.stringify(err)}');
+    } else {
+        console.log('The shared bundle running is: ${JSON.stringify(data)}');
+    }
+});
+```
+
 ## appManager.on
 
 on(type: 'applicationState', observer: ApplicationStateObserver): number;
