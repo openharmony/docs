@@ -95,7 +95,7 @@
   - [@ohos.i18n](js-apis-i18n.md)
   - [@ohos.intl](js-apis-intl.md)
   - [@ohos.resourceManager](js-apis-resource-manager.md)
-- Resource Scheduling 
+- Background Task
 
   - [@ohos.backgroundTaskManager](js-apis-backgroundTaskManager.md)
   - [@ohos.workScheduler](js-apis-workScheduler.md)
