@@ -1267,10 +1267,10 @@ rejectCall\(callId?: number, options?: RejectMessageOptions\): Promise\<void\>
 let rejectMessageOptions={
     messageContent: "拦截陌生号码"
 }
-call.reject(1, rejectMessageOptions).then(() => {
-    console.log(`reject success.`);
+call.rejectCall(1, rejectMessageOptions).then(() => {
+    console.log(`rejectCall success.`);
 }).catch((err) => {
-    console.error(`reject fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`rejectCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 

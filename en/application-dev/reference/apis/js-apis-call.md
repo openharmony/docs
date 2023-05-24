@@ -1253,10 +1253,10 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 let rejectMessageOptions={
     messageContent: "Unknown number blocked"
 }
-call.reject(1, rejectMessageOptions).then(() => {
-    console.log(`reject success.`);
+call.rejectCall(1, rejectMessageOptions).then(() => {
+    console.log(`rejectCall success.`);
 }).catch((err) => {
-    console.error(`reject fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`rejectCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
