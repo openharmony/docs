@@ -6,6 +6,12 @@ The **ProcessRunningInfo** module defines the running information of a process.
 > - The APIs provided by this module are deprecated since API version 9. You are advised to use [ProcessInformation<sup>9+</sup>](js-apis-inner-application-processInformation.md) instead.
 > - The initial APIs of this module are supported since API version 8.
 
+## Modules to Import
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+```
+
 ## Attributes
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
