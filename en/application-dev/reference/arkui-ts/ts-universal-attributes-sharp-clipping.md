@@ -105,7 +105,7 @@ struct ClipAndMaskExample {
 ```ts
 @Entry
 @Component
-struct ProgressMask {
+struct ProgressMaskExample {
   @State progressflag1: boolean = true;
   @State color: Color = 0x01006CDE;
   @State value: number = 10.0;
