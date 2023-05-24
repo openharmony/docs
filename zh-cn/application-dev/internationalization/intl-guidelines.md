@@ -111,7 +111,7 @@
    let dateTimeFormat = new Intl.DateTimeFormat();
    ```
 
-     另一种方法是使用开发者提供的Locale和格式化参数来创建日期时间格式化对象。其中，格式化参数是可选的，完整的格式化参数列表见[DateTimeOptions](../reference/apis/js-apis-intl.md#datetimeoptions9)。
+     另一种方法是使用开发者提供的Locale和格式化参数来创建日期时间格式化对象。其中，格式化参数是可选的，完整的格式化参数列表见[DateTimeOptions](../reference/apis/js-apis-intl.md#datetimeoptions6)。
    
    ```js
    let options = {dateStyle: "full", timeStyle: "full"};
@@ -181,7 +181,7 @@
    let numberFormat = new Intl.NumberFormat();
    ```
 
-     另一种方法是使用开发者提供的Locale和格式化参数来创建数字格式化对象。其中，格式化参数是可选的，完整的格式化参数列表参见[NumberOptions](../reference/apis/js-apis-intl.md#numberoptions9)。
+     另一种方法是使用开发者提供的Locale和格式化参数来创建数字格式化对象。其中，格式化参数是可选的，完整的格式化参数列表参见[NumberOptions](../reference/apis/js-apis-intl.md#numberoptions6)。
    
    ```js
    let options = {compactDisplay: "short", notation: "compact"};
@@ -240,7 +240,7 @@
    let collator = new Intl.Collator();
    ```
 
-     另一种方法是使用开发者提供的Locale和其他相关参数来创建Collator对象，完整的参数列表参见[CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions9)。
+     另一种方法是使用开发者提供的Locale和其他相关参数来创建Collator对象，完整的参数列表参见[CollatorOptions](../reference/apis/js-apis-intl.md#collatoroptions8)。
      其中，sensitivity参数用于控制哪些级别的差异会被用于比较两个字符串。取值"base"表示，仅比较字符本身，不考虑重音符号、大小写差异。例如，'a' != 'b'，'a' == 'á'，'a' == 'A'。取值"accent"表示考虑重音符号，不考虑大小写的差异。例如，'a' != 'b'，'a' != 'á'，'a' == 'A'。取值"case"表示考虑大小写的差异，不考虑重音符号的差异。例如，'a' != 'b'，'a' == 'á'，'a' != 'A'。取值"variant"表示考虑重音符号、大小写等方面差异。例如'a' != 'b'，'a' != 'á'，'a' != 'A'。
    
    ```js
@@ -301,7 +301,7 @@
    let pluralRules = new Intl.PluralRules();
    ```
 
-     另一种方法是使用开发者提供的Locale和其他相关参数来创建单复数对象。完整的参数列表参见[PluralRulesOptions](../reference/apis/js-apis-intl.md#pluralrulesoptions9)。
+     另一种方法是使用开发者提供的Locale和其他相关参数来创建单复数对象。完整的参数列表参见[PluralRulesOptions](../reference/apis/js-apis-intl.md#pluralrulesoptions8)。
    
    ```js
    let pluralRules = new Intl.PluralRules("zh-CN", {localeMatcher: "best fit", type: "cardinal"});
@@ -349,7 +349,7 @@
    let relativeTimeFormat = new Intl.RelativeTimeFormat();
    ```
 
-     另一种方法是使用开发者提供的Locale和格式化参数来创建相对时间格式化对象。其中，格式化参数是可选的，完整的参数列表参见[ RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions9)。
+     另一种方法是使用开发者提供的Locale和格式化参数来创建相对时间格式化对象。其中，格式化参数是可选的，完整的参数列表参见[ RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions8)。
    
    ```js
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
