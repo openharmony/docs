@@ -608,4 +608,1346 @@ Minspore的状态码。
 | OH_AI_STATUS_LITE_INFER_INVALID       | Mindspore Lite 无效的形状推理的状态码。   |
 | OH_AI_STATUS_LITE_INPUT_PARAM_INVALID | Mindspore Lite 用户输入的参数无效状态码。 |
 
+## 函数说明
 
+
+### OH_AI_ContextAddDeviceInfo()
+
+
+```
+OH_AI_API void OH_AI_ContextAddDeviceInfo (OH_AI_ContextHandle context, OH_AI_DeviceInfoHandle device_info )
+```
+
+**描述：**
+
+添加运行设备信息。
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| context     | 指向上下文信息实例的[OH_AI_ContextHandle](#oh_ai_contexthandle)。 |
+| device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
+
+
+### OH_AI_ContextCreate()
+
+
+```
+OH_AI_API OH_AI_ContextHandle OH_AI_ContextCreate ()
+```
+
+**描述：**
+
+创建一个上下文的对象。
+
+**返回:**
+
+指向上下文信息的[OH_AI_ContextHandle](#oh_ai_contexthandle)。
+
+
+### OH_AI_ContextDestroy()
+
+
+```
+OH_AI_API void OH_AI_ContextDestroy (OH_AI_ContextHandle * context)
+```
+
+**描述：**
+
+释放上下文对象。
+
+**参数:**
+
+| 名称    | 描述                                                         |
+| ------- | ------------------------------------------------------------ |
+| context | 指向[OH_AI_ContextHandle](#oh_ai_contexthandle)的二级指针，上下文销毁后会对context置为空指针。 |
+
+
+### OH_AI_ContextGetEnableParallel()
+
+
+```
+OH_AI_API bool OH_AI_ContextGetEnableParallel (const OH_AI_ContextHandle context)
+```
+
+**描述：**
+
+获取是否支持算子间并行。
+
+**参数:**
+
+| 名称    | 描述                                                         |
+| ------- | ------------------------------------------------------------ |
+| context | 指向上下文信息实例的[OH_AI_ContextHandle](#oh_ai_contexthandle)。 |
+
+**返回:**
+
+是否支持并行。true 为支持并行, false 为不支持并行。
+
+
+### OH_AI_ContextGetThreadAffinityCoreList()
+
+
+```
+OH_AI_API const int32_t* OH_AI_ContextGetThreadAffinityCoreList (const OH_AI_ContextHandle context, size_t * core_num )
+```
+
+**描述：**
+
+获取CPU绑核列表。
+
+**参数:**
+
+| 名称     | 描述                                                         |
+| -------- | ------------------------------------------------------------ |
+| context  | 指向上下文信息实例的[OH_AI_ContextHandle](#oh_ai_contexthandle)。 |
+| core_num | 该参数是输出参数，表示核的数量。                             |
+
+**返回:**
+
+CPU绑核列表。
+
+
+### OH_AI_ContextGetThreadAffinityMode()
+
+
+```
+OH_AI_API int OH_AI_ContextGetThreadAffinityMode (const OH_AI_ContextHandle context)
+```
+
+**描述：**
+
+获取运行时线程绑定CPU核心的策略。
+
+**参数:**
+
+| 名称    | 描述                                                         |
+| ------- | ------------------------------------------------------------ |
+| context | 指向上下文信息实例的[OH_AI_ContextHandle](#oh_ai_contexthandle)。 |
+
+**返回:**
+
+绑核策略。一共有三种策略，0为不绑核, 1为大核优先, 2为中核优先。
+
+
+### OH_AI_ContextGetThreadNum()
+
+
+```
+OH_AI_API int32_t OH_AI_ContextGetThreadNum (const OH_AI_ContextHandle context)
+```
+
+**描述：**
+
+获取线程数量。
+
+**参数:**
+
+| 名称    | 描述                                                         |
+| ------- | ------------------------------------------------------------ |
+| context | 指向上下文信息实例的[OH_AI_ContextHandle](#oh_ai_contexthandle)。 |
+
+**返回:**
+
+当前的线程数量。
+
+
+### OH_AI_ContextSetEnableParallel()
+
+
+```
+OH_AI_API void OH_AI_ContextSetEnableParallel (OH_AI_ContextHandle context, bool is_parallel )
+```
+
+**描述：**
+
+设置运行时是否支持并行。
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| context     | 指向上下文信息实例的[OH_AI_ContextHandle](#oh_ai_contexthandle)。 |
+| is_parallel | 是否支持并行。true 为支持并行, false 为不支持并行。          |
+
+
+### OH_AI_ContextSetThreadAffinityCoreList()
+
+
+```
+OH_AI_API void OH_AI_ContextSetThreadAffinityCoreList (OH_AI_ContextHandle context, const int32_t * core_list, size_t core_num )
+```
+
+**描述：**
+
+设置运行时线程绑定CPU核心的列表。
+
+例如：当core_list=[2,6,8]时，则线程会在CPU的第2,6,8个核心上运行。 如果对于同一个上下文对象，调用了[OH_AI_ContextSetThreadAffinityMode](#oh_ai_contextsetthreadaffinitymode)和[OH_AI_ContextSetThreadAffinityCoreList](#oh_ai_contextsetthreadaffinitycorelist) 这两个函数，则仅[OH_AI_ContextSetThreadAffinityCoreList](#oh_ai_contextsetthreadaffinitycorelist)的core_list参数生效，而[OH_AI_ContextSetThreadAffinityMode](#oh_ai_contextsetthreadaffinitymode)的 mode参数不生效。
+
+**参数:**
+
+| 名称      | 描述                                                         |
+| --------- | ------------------------------------------------------------ |
+| context   | 指向上下文信息实例的[OH_AI_ContextHandle](#oh_ai_contexthandle)。 |
+| core_list | CPU绑核的列表。                                              |
+| core_num  | 核的数量，它就代表**core_list**的长度。                      |
+
+
+### OH_AI_ContextSetThreadAffinityMode()
+
+
+```
+OH_AI_API void OH_AI_ContextSetThreadAffinityMode (OH_AI_ContextHandle context, int mode )
+```
+
+**描述：**
+
+设置运行时线程绑定CPU核心的策略，按照CPU物理核频率分为大、中、小三种类型的核心，并且仅需绑大核或者绑中核，不需要绑小核。
+
+**参数:**
+
+| 名称    | 描述                                                         |
+| ------- | ------------------------------------------------------------ |
+| context | 指向上下文信息实例的[OH_AI_ContextHandle](#oh_ai_contexthandle)。 |
+| mode    | 绑核策略。一共有三种策略，0为不绑核, 1为大核优先, 2为中核优先。 |
+
+
+### OH_AI_ContextSetThreadNum()
+
+
+```
+OH_AI_API void OH_AI_ContextSetThreadNum (OH_AI_ContextHandle context, int32_t thread_num )
+```
+
+**描述：**
+
+设置运行时的线程数量。
+
+**参数:**
+
+| 名称       | 描述                                                         |
+| ---------- | ------------------------------------------------------------ |
+| context    | 指向上下文信息实例的[OH_AI_ContextHandle](#oh_ai_contexthandle) |
+| thread_num | 运行时的线程数量。                                           |
+
+
+### OH_AI_CreateNNRTDeviceInfoByName()
+
+
+```
+OH_AI_API OH_AI_DeviceInfoHandle OH_AI_CreateNNRTDeviceInfoByName (const char * name)
+```
+
+**描述：**
+
+查找指定名称的NNRT设备，根据找到的第一个设备信息，创建NNRT设备信息。
+
+**参数:**
+
+| 名称 | 描述             |
+| ---- | ---------------- |
+| name | 目标NNRT设备名。 |
+
+**返回:**
+
+指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。
+
+**起始版本：**
+
+10
+
+
+### OH_AI_CreateNNRTDeviceInfoByType()
+
+
+```
+OH_AI_API OH_AI_DeviceInfoHandle OH_AI_CreateNNRTDeviceInfoByType (OH_AI_NNRTDeviceType type)
+```
+
+**描述：**
+
+查找指定类型的NNRT设备，根据找到的第一个设备信息，创建NNRT设备信息。
+
+**参数:**
+
+| 名称 | 描述                                                         |
+| ---- | ------------------------------------------------------------ |
+| type | [OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype) 目标NNRT设备类型。 |
+
+**返回:**
+
+指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。
+
+**起始版本：**
+
+10
+
+
+### OH_AI_DestroyAllNNRTDeviceDescs()
+
+
+```
+OH_AI_API void OH_AI_DestroyAllNNRTDeviceDescs (NNRTDeviceDesc ** desc)
+```
+
+**描述：**
+
+销毁从[OH_AI_GetAllNNRTDeviceDescs](#oh_ai_getallnnrtdevicedescs)获取的NNRT描写信息实例数组。
+
+**参数:**
+
+| 名称 | 描述                                                         |
+| ---- | ------------------------------------------------------------ |
+| desc | 指向NNRT设备描述信息实例数组的二重指针。销毁结束，desc指向内容会被置为NULL。 |
+
+**起始版本：**
+
+10
+
+
+### OH_AI_DeviceInfoCreate()
+
+
+```
+OH_AI_API OH_AI_DeviceInfoHandle OH_AI_DeviceInfoCreate (OH_AI_DeviceType device_type)
+```
+
+**描述：**
+
+创建一个设备信息对象。
+
+**参数:**
+
+| 名称        | 描述                                                    |
+| ----------- | ------------------------------------------------------- |
+| device_type | 设备类型, 具体见[OH_AI_DeviceType](#oh_ai_devicetype)。 |
+
+**返回:**
+
+指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。
+
+
+### OH_AI_DeviceInfoDestroy()
+
+
+```
+OH_AI_API void OH_AI_DeviceInfoDestroy (OH_AI_DeviceInfoHandle * device_info)
+```
+
+**描述：**
+
+释放设备信息实例。
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
+
+
+### OH_AI_DeviceInfoGetDeviceId()
+
+
+```
+OH_AI_API size_t OH_AI_DeviceInfoGetDeviceId (const OH_AI_DeviceInfoHandle device_info)
+```
+
+**描述：**
+
+获取NNRT设备ID，仅NNRT设备可用。
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
+
+**返回:**
+
+NNRT设备ID。
+
+**起始版本：**
+
+10
+
+
+### OH_AI_DeviceInfoGetDeviceType()
+
+
+```
+OH_AI_API OH_AI_DeviceType OH_AI_DeviceInfoGetDeviceType (const OH_AI_DeviceInfoHandle device_info)
+```
+
+**描述：**
+
+获取设备的类型。
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
+
+**返回:**
+
+生产商设备类型。
+
+
+### OH_AI_DeviceInfoGetEnableFP16()
+
+
+```
+OH_AI_API bool OH_AI_DeviceInfoGetEnableFP16 (const OH_AI_DeviceInfoHandle device_info)
+```
+
+**描述：**
+
+获取是否开启float16推理模式, 仅CPU/GPU设备可用。
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
+
+**返回:**
+
+设置是否开启float16推理模式。
+
+
+### OH_AI_DeviceInfoGetFrequency()
+
+
+```
+OH_AI_API int OH_AI_DeviceInfoGetFrequency (const OH_AI_DeviceInfoHandle device_info)
+```
+
+**描述：**
+
+获取NPU的频率类型，仅NPU设备可用。
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
+
+**返回:**
+
+NPU的频率类型。取值范围为0-4，1表示低功耗，2表示平衡，3表示高性能，4表示超高性能。
+
+
+### OH_AI_DeviceInfoGetPerformanceMode()
+
+
+```
+OH_AI_API OH_AI_PerformanceMode OH_AI_DeviceInfoGetPerformanceMode (const OH_AI_DeviceInfoHandle device_info)
+```
+
+**描述：**
+
+获取NNRT性能模式，仅NNRT设备可用。
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
+
+**返回:**
+
+[OH_AI_PerformanceMode](#oh_ai_performancemode) NNRT性能模式。
+
+**起始版本：**
+
+10
+
+
+### OH_AI_DeviceInfoGetPriority()
+
+
+```
+OH_AI_API OH_AI_Priority OH_AI_DeviceInfoGetPriority (const OH_AI_DeviceInfoHandle device_info)
+```
+
+**描述：**
+
+获取NNRT任务优先级，仅NNRT设备可用。
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
+
+**返回:**
+
+[OH_AI_Priority](#oh_ai_priority) NNRT任务优先级。
+
+**起始版本：**
+
+10
+
+
+### OH_AI_DeviceInfoGetProvider()
+
+
+```
+OH_AI_API const char* OH_AI_DeviceInfoGetProvider (const OH_AI_DeviceInfoHandle device_info)
+```
+
+**描述：**
+
+获取生产商的名称。
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
+
+**返回:**
+
+生产商的名称。
+
+
+### OH_AI_DeviceInfoGetProviderDevice()
+
+
+```
+OH_AI_API const char* OH_AI_DeviceInfoGetProviderDevice (const OH_AI_DeviceInfoHandle device_info)
+```
+
+**描述：**
+
+获取生产商设备的名称。
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
+
+**返回:**
+
+生产商设备的名称。
+
+
+### OH_AI_DeviceInfoSetDeviceId()
+
+
+```
+OH_AI_API void OH_AI_DeviceInfoSetDeviceId (OH_AI_DeviceInfoHandle device_info, size_t device_id )
+```
+
+**描述：**
+
+设置NNRT设备ID，仅NNRT设备可用。
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
+| device_id   | NNRT设备ID。                                                 |
+
+**起始版本：**
+
+10
+
+
+### OH_AI_DeviceInfoSetEnableFP16()
+
+
+```
+OH_AI_API void OH_AI_DeviceInfoSetEnableFP16 (OH_AI_DeviceInfoHandle device_info, bool is_fp16 )
+```
+
+**描述：**
+
+设置是否开启float16推理模式，仅CPU/GPU设备可用。
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
+| is_fp16     | 是否开启float16推理模式。                                    |
+
+
+### OH_AI_DeviceInfoSetFrequency()
+
+
+```
+OH_AI_API void OH_AI_DeviceInfoSetFrequency (OH_AI_DeviceInfoHandle device_info, int frequency )
+```
+
+**描述：**
+
+设置NPU的频率，仅NPU设备可用。
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
+| frequency   | 频率类型，取值范围为0-4，默认是3。1表示低功耗，2表示平衡，3表示高性能，4表示超高性能。 |
+
+
+### OH_AI_DeviceInfoSetPerformanceMode()
+
+
+```
+OH_AI_API void OH_AI_DeviceInfoSetPerformanceMode (OH_AI_DeviceInfoHandle device_info, OH_AI_PerformanceMode mode )
+```
+
+**描述：**
+
+设置NNRT性能模式，仅NNRT设备可用。
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
+| mode        | [OH_AI_PerformanceMode](#oh_ai_performancemode) NNRT性能模式。 |
+
+**起始版本**：
+
+10
+
+
+### OH_AI_DeviceInfoSetPriority()
+
+
+```
+OH_AI_API void OH_AI_DeviceInfoSetPriority (OH_AI_DeviceInfoHandle device_info, OH_AI_Priority priority )
+```
+
+**描述：**
+
+设置NNRT任务优先级，仅NNRT设备可用。
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
+| priority    | [OH_AI_Priority](#oh_ai_priority) NNRT任务优先级。           |
+
+**起始版本：**
+
+10
+
+
+### OH_AI_DeviceInfoSetProvider()
+
+
+```
+OH_AI_API void OH_AI_DeviceInfoSetProvider (OH_AI_DeviceInfoHandle device_info, const char * provider )
+```
+
+**描述：**
+
+设置供应商的名称。
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
+| provider    | 供应商的名称。                                               |
+
+
+### OH_AI_DeviceInfoSetProviderDevice()
+
+
+```
+OH_AI_API void OH_AI_DeviceInfoSetProviderDevice (OH_AI_DeviceInfoHandle device_info, const char * device )
+```
+
+**描述：**
+
+设置生产商设备的名称。
+
+**参数:**
+
+| 名称        | 描述                                                         |
+| ----------- | ------------------------------------------------------------ |
+| device_info | 指向设备信息实例的[OH_AI_DeviceInfoHandle](#oh_ai_deviceinfohandle)。 |
+| device      | 生产商设备名称。例如: CPU。                                  |
+
+
+### OH_AI_GetAllNNRTDeviceDescs()
+
+
+```
+OH_AI_API NNRTDeviceDesc* OH_AI_GetAllNNRTDeviceDescs (size_t * num)
+```
+
+**描述：**
+
+获取系统中所有NNRT硬件设备的描述信息。
+
+**参数:**
+
+| 名称 | 描述                     |
+| ---- | ------------------------ |
+| num  | 输出参数，返回设备数量。 |
+
+**返回:**
+
+指向NNRT设备描述信息实例数组的指针。当获取失败时，返回NULL。
+
+**起始版本：**
+
+10
+
+
+### OH_AI_GetDeviceIdFromNNRTDeviceDesc()
+
+
+```
+OH_AI_API size_t OH_AI_GetDeviceIdFromNNRTDeviceDesc (const NNRTDeviceDesc * desc)
+```
+
+**描述：**
+
+从特定的NNRT设备描述信息实例获取NNRT设备ID。注意，此ID只对NNRT有效。
+
+**参数:**
+
+| 名称 | 描述                             |
+| ---- | -------------------------------- |
+| desc | 指向NNRT设备描述信息实例的指针。 |
+
+**返回:**
+
+NNRT设备ID。
+
+**起始版本：**
+
+10
+
+
+### OH_AI_GetNameFromNNRTDeviceDesc()
+
+
+```
+OH_AI_API const char* OH_AI_GetNameFromNNRTDeviceDesc (const NNRTDeviceDesc * desc)
+```
+
+**描述：**
+
+从特定的NNRT设备描述信息实例获取NNRT设备名称。
+
+**参数:**
+
+| 名称 | 描述                             |
+| ---- | -------------------------------- |
+| desc | 指向NNRT设备描述信息实例的指针。 |
+
+**返回:**
+
+NNRT设备名称，指向一个常量字符串的指针，该常量字符串由desc持有，调用者无需单独释放此指针。
+
+**起始版本：**
+
+10
+
+
+### OH_AI_GetTypeFromNNRTDeviceDesc()
+
+
+```
+OH_AI_API OH_AI_NNRTDeviceType OH_AI_GetTypeFromNNRTDeviceDesc (const NNRTDeviceDesc * desc)
+```
+
+**描述：**
+
+从特定的NNRT设备描述信息实例获取NNRT设备类型。
+
+**参数:**
+
+| 名称 | 描述                             |
+| ---- | -------------------------------- |
+| desc | 指向NNRT设备描述信息实例的指针。 |
+
+**返回:**
+
+[OH_AI_NNRTDeviceType](#oh_ai_nnrtdevicetype) NNRT设备类型。
+
+**起始版本：**
+
+10
+
+
+### OH_AI_ModelBuild()
+
+
+```
+OH_AI_API OH_AI_Status OH_AI_ModelBuild (OH_AI_ModelHandle model, const void * model_data, size_t data_size, OH_AI_ModelType model_type, const OH_AI_ContextHandle model_context )
+```
+
+**描述：**
+
+从内存缓冲区加载并编译MindSpore模型。
+
+注意，同一个[OH_AI_ContextHandle](#oh_ai_contexthandle)对象仅能传递给[OH_AI_ModelBuild](#oh_ai_modelbuild)或者[OH_AI_ModelBuildFromFile](#oh_ai_modelbuildfromfile)一次， 如果多次调用该函数需要创建多个不同的[OH_AI_ContextHandle](#oh_ai_contexthandle)。
+
+**参数:**
+
+| 名称          | 描述                                                         |
+| ------------- | ------------------------------------------------------------ |
+| model         | 模型对象指针。                                               |
+| model_data    | 内存中已经加载的模型数据地址。                               |
+| data_size     | 模型数据的长度。                                             |
+| model_type    | 模型文件类型，具体见[OH_AI_ModelType](#oh_ai_modeltype)。    |
+| model_context | 模型运行时的上下文环境，具体见 [OH_AI_ContextHandle](#oh_ai_contexthandle)。 |
+
+**返回:**
+
+枚举类型的状态码[OH_AI_Status](#oh_ai_status-1)，若返回MSStatus::kMSStatusSuccess则证明创建成功。
+
+
+### OH_AI_ModelBuildFromFile()
+
+
+```
+OH_AI_API OH_AI_Status OH_AI_ModelBuildFromFile (OH_AI_ModelHandle model, const char * model_path, OH_AI_ModelType model_type, const OH_AI_ContextHandle model_context )
+```
+
+**描述：**
+
+通过模型文件加载并编译MindSpore模型。
+
+注意，同一个[OH_AI_ContextHandle](#oh_ai_contexthandle)对象仅能传递给[OH_AI_ModelBuild](#oh_ai_modelbuild)或者[OH_AI_ModelBuildFromFile](#oh_ai_modelbuildfromfile)一次， 如果多次调用该函数需要创建多个不同的[OH_AI_ContextHandle](#oh_ai_contexthandle)。
+
+**参数:**
+
+| 名称          | 描述                                                         |
+| ------------- | ------------------------------------------------------------ |
+| model         | 模型对象指针。                                               |
+| model_path    | 模型文件路径。                                               |
+| model_type    | 模型文件类型，具体见[OH_AI_ModelType](#oh_ai_modeltype)。    |
+| model_context | 模型运行时的上下文环境，具体见 [OH_AI_ContextHandle](#oh_ai_contexthandle)。 |
+
+**返回:**
+
+枚举类型的状态码[OH_AI_Status](#oh_ai_status-1)，若返回MSStatus::kMSStatusSuccess则证明创建成功。
+
+
+### OH_AI_ModelCreate()
+
+
+```
+OH_AI_API OH_AI_ModelHandle OH_AI_ModelCreate ()
+```
+
+**描述：**
+
+创建一个模型对象。
+
+**返回:**
+
+模型对象指针。
+
+
+### OH_AI_ModelDestroy()
+
+
+```
+OH_AI_API void OH_AI_ModelDestroy (OH_AI_ModelHandle * model)
+```
+
+**描述：**
+
+释放一个模型对象。
+
+**参数:**
+
+| 名称  | 描述           |
+| ----- | -------------- |
+| model | 模型对象指针。 |
+
+
+### OH_AI_ModelGetInputByTensorName()
+
+
+```
+OH_AI_API OH_AI_TensorHandle OH_AI_ModelGetInputByTensorName (const OH_AI_ModelHandle model, const char * tensor_name )
+```
+
+**描述：**
+
+通过张量名获取模型的输入张量。
+
+**参数:**
+
+| 名称        | 描述           |
+| ----------- | -------------- |
+| model       | 模型对象指针。 |
+| tensor_name | 张量名称。     |
+
+**返回:**
+
+tensor_name所对应的输入张量的张量指针，如果输入中没有该张量则返回空。
+
+
+### OH_AI_ModelGetInputs()
+
+
+```
+OH_AI_API OH_AI_TensorHandleArray OH_AI_ModelGetInputs (const OH_AI_ModelHandle model)
+```
+
+**描述：**
+
+获取模型的输入张量数组结构体。
+
+**参数:**
+
+| 名称  | 描述           |
+| ----- | -------------- |
+| model | 模型对象指针。 |
+
+**返回:**
+
+模型输入对应的张量数组结构体。
+
+
+### OH_AI_ModelGetOutputByTensorName()
+
+
+```
+OH_AI_API OH_AI_TensorHandle OH_AI_ModelGetOutputByTensorName (const OH_AI_ModelHandle model, const char * tensor_name )
+```
+
+**描述：**
+
+通过张量名获取模型的输出张量。
+
+**参数:**
+
+| 名称        | 描述           |
+| ----------- | -------------- |
+| model       | 模型对象指针。 |
+| tensor_name | 张量名称。     |
+
+**返回:**
+
+tensor_name所对应的输入张量的张量指针，如果输出中没有该张量则返回空。
+
+
+### OH_AI_ModelGetOutputs()
+
+
+```
+OH_AI_API OH_AI_TensorHandleArray OH_AI_ModelGetOutputs (const OH_AI_ModelHandle model)
+```
+
+**描述：**
+
+获取模型的输出张量数组结构体。
+
+**参数:**
+
+| 名称  | 描述           |
+| ----- | -------------- |
+| model | 模型对象指针。 |
+
+**返回:**
+
+模型输出对应的张量数组结构体。
+
+
+### OH_AI_ModelPredict()
+
+
+```
+OH_AI_API OH_AI_Status OH_AI_ModelPredict (OH_AI_ModelHandle model, const OH_AI_TensorHandleArray inputs, OH_AI_TensorHandleArray * outputs, const OH_AI_KernelCallBack before, const OH_AI_KernelCallBack after )
+```
+
+**描述：**
+
+执行模型推理。
+
+**参数:**
+
+| 名称    | 描述                                 |
+| ------- | ------------------------------------ |
+| model   | 模型对象指针。                       |
+| inputs  | 模型输入对应的张量数组结构体。       |
+| outputs | 模型输出对应的张量数组结构体的指针。 |
+| before  | 模型推理前执行的回调函数。           |
+| after   | 模型推理后执行的回调函数。           |
+
+**返回:**
+
+枚举类型的状态码[OH_AI_Status](#oh_ai_status-1)，若返回MSStatus::kMSStatusSuccess则证明创建成功。
+
+
+### OH_AI_ModelResize()
+
+
+```
+OH_AI_API OH_AI_Status OH_AI_ModelResize (OH_AI_ModelHandle model, const OH_AI_TensorHandleArray inputs, OH_AI_ShapeInfo * shape_infos, size_t shape_info_num )
+```
+
+**描述：**
+
+调整已编译模型的输入形状。
+
+**参数:**
+
+| 名称           | 描述                                                         |
+| -------------- | ------------------------------------------------------------ |
+| model          | 模型对象指针。                                               |
+| inputs         | 模型输入对应的张量数组结构体。                               |
+| shape_infos    | 输入形状信息数组，按模型输入顺序排列的由形状信息组成的数组，模型会按顺序依次调整张量形状。 |
+| shape_info_num | 形状信息数组的长度。                                         |
+
+**返回:**
+
+枚举类型的状态码[OH_AI_Status](#oh_ai_status-1)，若返回MSStatus::kMSStatusSuccess则证明创建成功。
+
+
+### OH_AI_TensorClone()
+
+
+```
+OH_AI_API OH_AI_TensorHandle OH_AI_TensorClone (OH_AI_TensorHandle tensor)
+```
+
+**描述：**
+
+深拷贝一个张量。
+
+**参数:**
+
+| 名称   | 描述               |
+| ------ | ------------------ |
+| tensor | 待拷贝张量的指针。 |
+
+**返回:**
+
+指向新张量对象句柄。
+
+
+### OH_AI_TensorCreate()
+
+
+```
+OH_AI_API OH_AI_TensorHandle OH_AI_TensorCreate (const char * name, OH_AI_DataType type, const int64_t * shape, size_t shape_num, const void * data, size_t data_len )
+```
+
+**描述：**
+
+创建一个张量对象。
+
+**参数:**
+
+| 名称      | 描述               |
+| --------- | ------------------ |
+| name      | 张量名称           |
+| type      | 张量的数据类型     |
+| shape     | 张量的维度数组。   |
+| shape_num | 张量维度数组长度。 |
+| data      | 指向数据的指针。   |
+| data_len  | 数据的长度。       |
+
+**返回:**
+
+指向张量对象句柄。
+
+
+### OH_AI_TensorDestroy()
+
+
+```
+OH_AI_API void OH_AI_TensorDestroy (OH_AI_TensorHandle * tensor)
+```
+
+**描述：**
+
+释放张量对象。
+
+**参数:**
+
+| 名称   | 描述                     |
+| ------ | ------------------------ |
+| tensor | 指向张量句柄的二级指针。 |
+
+
+### OH_AI_TensorGetData()
+
+
+```
+OH_AI_API const void* OH_AI_TensorGetData (const OH_AI_TensorHandle tensor)
+```
+
+**描述：**
+
+获取张量数据的指针。
+
+**参数:**
+
+| 名称   | 描述           |
+| ------ | -------------- |
+| tensor | 张量对象句柄。 |
+
+**返回:**
+
+张量数据的指针。
+
+
+### OH_AI_TensorGetDataSize()
+
+
+```
+OH_AI_API size_t OH_AI_TensorGetDataSize (const OH_AI_TensorHandle tensor)
+```
+
+**描述：**
+
+获取张量中的数据的字节数大小。
+
+**参数:**
+
+| 名称   | 描述           |
+| ------ | -------------- |
+| tensor | 张量对象句柄。 |
+
+**返回:**
+
+张量数据的字节数大小。
+
+
+### OH_AI_TensorGetDataType()
+
+
+```
+OH_AI_API OH_AI_DataType OH_AI_TensorGetDataType (const OH_AI_TensorHandle tensor)
+```
+
+**描述：**
+
+获取张量类型。
+
+**参数:**
+
+| 名称   | 描述           |
+| ------ | -------------- |
+| tensor | 张量对象句柄。 |
+
+**返回:**
+
+张量的数据类型。
+
+
+### OH_AI_TensorGetElementNum()
+
+
+```
+OH_AI_API int64_t OH_AI_TensorGetElementNum (const OH_AI_TensorHandle tensor)
+```
+
+**描述：**
+
+获取张量元素数量。
+
+**参数:**
+
+| 名称   | 描述           |
+| ------ | -------------- |
+| tensor | 张量对象句柄。 |
+
+**返回:**
+
+张量的元素数量。
+
+
+### OH_AI_TensorGetFormat()
+
+
+```
+OH_AI_API OH_AI_Format OH_AI_TensorGetFormat (const OH_AI_TensorHandle tensor)
+```
+
+**描述：**
+
+获取张量数据的排列方式。
+
+**参数:**
+
+| 名称   | 描述           |
+| ------ | -------------- |
+| tensor | 张量对象句柄。 |
+
+**返回:**
+
+张量数据的排列方式。
+
+
+### OH_AI_TensorGetMutableData()
+
+
+```
+OH_AI_API void* OH_AI_TensorGetMutableData (const OH_AI_TensorHandle tensor)
+```
+
+**描述：**
+
+获取可变的张量数据指针。如果数据为空则会开辟内存。
+
+**参数:**
+
+| 名称   | 描述           |
+| ------ | -------------- |
+| tensor | 张量对象句柄。 |
+
+**返回:**
+
+张量数据的指针。
+
+
+### OH_AI_TensorGetName()
+
+
+```
+OH_AI_API const char* OH_AI_TensorGetName (const OH_AI_TensorHandle tensor)
+```
+
+**描述：**
+
+获取张量的名称。
+
+**参数:**
+
+| 名称   | 描述           |
+| ------ | -------------- |
+| tensor | 张量对象句柄。 |
+
+**返回:**
+
+张量的名称。
+
+
+### OH_AI_TensorGetShape()
+
+
+```
+OH_AI_API const int64_t* OH_AI_TensorGetShape (const OH_AI_TensorHandle tensor, size_t * shape_num )
+```
+
+**描述：**
+
+获取张量的形状。
+
+**参数:**
+
+| 名称      | 描述                                           |
+| --------- | ---------------------------------------------- |
+| tensor    | 张量对象句柄。                                 |
+| shape_num | 该参数是输出参数，形状数组的长度会写入该变量。 |
+
+**返回:**
+
+形状数组。
+
+
+### OH_AI_TensorSetData()
+
+
+```
+OH_AI_API void OH_AI_TensorSetData (OH_AI_TensorHandle tensor, void * data )
+```
+
+**描述：**
+
+设置张量的数据。
+
+**参数:**
+
+| 名称   | 描述             |
+| ------ | ---------------- |
+| tensor | 张量对象句柄。   |
+| data   | 指向数据的指针。 |
+
+
+### OH_AI_TensorSetDataType()
+
+
+```
+OH_AI_API void OH_AI_TensorSetDataType (OH_AI_TensorHandle tensor, OH_AI_DataType type )
+```
+
+**描述：**
+
+设置张量的数据类型。
+
+**参数:**
+
+| 名称   | 描述                                                |
+| ------ | --------------------------------------------------- |
+| tensor | 张量对象句柄。                                      |
+| type   | 数据类型，具体见[OH_AI_DataType](#oh_ai_datatype)。 |
+
+
+### OH_AI_TensorSetFormat()
+
+
+```
+OH_AI_API void OH_AI_TensorSetFormat (OH_AI_TensorHandle tensor, OH_AI_Format format )
+```
+
+**描述：**
+
+设置张量数据的排列方式。
+
+**参数:**
+
+| 名称   | 描述               |
+| ------ | ------------------ |
+| tensor | 张量对象句柄。     |
+| format | 张量数据排列方式。 |
+
+
+### OH_AI_TensorSetName()
+
+
+```
+OH_AI_API void OH_AI_TensorSetName (OH_AI_TensorHandle tensor, const char *name )
+```
+
+**描述：**
+
+设置张量的名称。
+
+**参数:**
+
+| 名称   | 描述           |
+| ------ | -------------- |
+| tensor | 张量对象句柄。 |
+| name   | 张量名称。     |
+
+
+### OH_AI_TensorSetShape()
+
+
+```
+OH_AI_API void OH_AI_TensorSetShape (OH_AI_TensorHandle tensor, const int64_t * shape, size_t shape_num )
+```
+
+**描述：**
+
+设置张量的形状。
+
+**参数:**
+
+| 名称      | 描述               |
+| --------- | ------------------ |
+| tensor    | 张量对象句柄。     |
+| shape     | 形状数组。         |
+| shape_num | 张量形状数组长度。 |
