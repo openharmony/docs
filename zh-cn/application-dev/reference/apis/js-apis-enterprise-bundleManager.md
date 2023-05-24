@@ -30,7 +30,7 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCal
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 允许安装包的白名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
@@ -75,7 +75,7 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, ca
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 允许安装包的白名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
@@ -121,7 +121,7 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): 
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 允许安装包的白名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 
 **返回值：**
@@ -172,7 +172,7 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: Async
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 移除允许安装包的白名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
@@ -217,7 +217,7 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number,
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 允许安装包的白名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
@@ -263,7 +263,7 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array\&lt;string&gt;                | 是    | 允许安装包的白名单。                  |
+| appIds    | Array\&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 
 **返回值：**
@@ -449,7 +449,7 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: Async
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 不允许安装包的黑名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
@@ -494,7 +494,7 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number,
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 不允许安装包的黑名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
@@ -540,7 +540,7 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 不允许安装包的黑名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 
 **返回值：**
@@ -591,7 +591,7 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: As
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 移除不允许安装包的黑名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
@@ -636,7 +636,7 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number,
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 不允许安装包的黑名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
@@ -682,7 +682,7 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: num
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array\&lt;string&gt;                | 是    | 不允许安装包的黑名单。                  |
+| appIds    | Array\&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 
 **返回值：**
