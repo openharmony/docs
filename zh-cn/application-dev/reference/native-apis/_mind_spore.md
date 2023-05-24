@@ -575,7 +575,7 @@ OH_AI_API int OH_AI_ContextGetThreadAffinityMode (const OH_AI_ContextHandle cont
 
 **返回:**
 
-绑核策略。一共有三种策略，0为不绑核, 1为大核优先, 2为小核优先。
+绑核策略。一共有三种策略，0为不绑核, 1为大核优先, 2为中核优先。
 
 
 ### OH_AI_ContextGetThreadNum()
