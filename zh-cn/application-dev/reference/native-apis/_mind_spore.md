@@ -1053,7 +1053,7 @@ OH_AI_API OH_AI_TensorHandle OH_AI_ModelGetOutputByTensorName (const OH_AI_Model
 | 名称 | 描述 |
 | -------- | -------- |
 | model | 模型对象指针。 |
-| tensor_名称 | 张量名称。 |
+| tensor_name | 张量名称。 |
 
 **返回:**
 
