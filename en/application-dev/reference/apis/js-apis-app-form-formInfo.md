@@ -18,6 +18,8 @@ Describes widget information.
 
 **System capability**: SystemCapability.Ability.Form
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 | Name       | Type                | Readable   | Writable   | Description                                                        |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
 | bundleName  | string               | Yes   | No    | Name of the bundle to which the widget belongs.                  |
@@ -100,8 +102,10 @@ Enumerates the widget parameters.
 | HEIGHT_KEY         | 'ohos.extra.param.key.form_height'   | Widget height.  |
 | TEMPORARY_KEY          | 'ohos.extra.param.key.form_temporary'   | Temporary widget.  |
 | ABILITY_NAME_KEY   | 'ohos.extra.param.key.ability_name'   | Ability name. |
-| DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id'   | Device ID.  |
+| DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id' <br>**System API**: This is a system API and cannot be called by third-party applications. | Device ID.  |
 | BUNDLE_NAME_KEY    | 'ohos.extra.param.key.bundle_name'   | Key that specifies the target bundle name.|
+| LAUNCH_REASON_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_launch_reason'   | Reason for creating the widget.  |
+| PARAM_FORM_CUSTOMIZE_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_customize'   | Custom data.  |
 
 ##  FormDimension
 
@@ -136,5 +140,47 @@ Enumerates the visibility types of the widget.
 
 | Name       |  Value  | Description        |
 | ----------- | ---- | ------------ |
+| UNKNOWN | 0   | The visibility type of the widget is unknown.|
 | FORM_VISIBLE | 1   | The widget is visible.|
 | FORM_INVISIBLE   | 2   | The widget is invisible.|
+
+## RunningFormInfo<sup>10+</sup>
+
+Defines the information about the widget host.
+
+**System capability**: SystemCapability.Ability.Form
+
+| Name       | Type                | Readable   | Writable   | Description                                                        |
+| ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
+| formId  | string               | Yes   | No    | Widget ID.                  |
+| bundleName  | string               | Yes   | No    | Name of the bundle to which the widget provider belongs.                  |
+| hostBundleName  | string               | Yes   | No    | Name of the bundle to which the widget host belongs.                  |
+| visibilityType  | [VisibilityType](#visibilitytype)               | Yes   | No    | Visibility types of the widget.                  |
+| moduleName  | string               | Yes   | No    | Name of the module to which the widget belongs.                     |
+| abilityName | string               | Yes   | No    | Name of the ability to which the widget belongs.                      |
+| formName        | string               | Yes   | No    | Widget name.                                |
+| dimension | number               | Yes   | No    | Widget specifications.  |
+
+## formProviderFilter<sup>10+</sup>
+
+Defines the information about the widget provider.
+
+**System capability**: SystemCapability.Ability.Form
+
+| Name       | Type                | Readable   | Writable   | Description                                                        |
+| ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
+| bundleName  | string               | Yes   | No    | Name of the bundle to which the widget provider belongs.                  |
+| formName        | string               | Yes   | No    | Widget name.                                |
+| moduleName  | string               | Yes   | No    | Name of the module to which the widget belongs.                     |
+| abilityName | string               | Yes   | No    | Name of the ability to which the widget belongs.                      |
+
+## LaunchReason<sup>10+</sup>
+
+Enumerates the reasons for creating a widget.
+
+**System capability**: SystemCapability.Ability.Form
+
+| Name       |  Value  | Description        |
+| ----------- | ---- | ------------ |
+| FORM_DEFAULT | 1   | The widget is created by default.|
+| FORM_SHARE   | 2   | The widget is created for sharing.|

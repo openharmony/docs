@@ -39,7 +39,7 @@ Enumerates the types of business abilities.
 
 Describes the criteria for filtering business abilities.
 
-**System capability**: SystemCapability.BundleManager.BundleFrameWork.FreeInstall
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 **System API**: This is a system API.
 

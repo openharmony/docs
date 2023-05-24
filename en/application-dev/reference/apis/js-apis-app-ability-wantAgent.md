@@ -118,6 +118,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
+let wantAgent;
 // WantAgentInfo object
 let wantAgentInfo = {
     wants: [
@@ -1181,7 +1182,7 @@ function getWantAgentCallback(err, data) {
         }
     }
     try {
-        WantAgent.getOperationTypeCallback(wantAgent, getOperationTypeCallback);
+        WantAgent.getOperationType(wantAgent, getOperationTypeCallback);
     } catch(err) {
         console.error('getOperationTypeCallback failed! ${err.code} ${err.message}');
     }

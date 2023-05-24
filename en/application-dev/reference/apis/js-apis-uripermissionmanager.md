@@ -11,7 +11,7 @@ The **uriPermissionManager** module provides APIs for granting permissions on a 
 
   
 ```js
-import UriPermissionManager from '@ohos.application.uriPermissionManager';
+import uriPermissionManager from '@ohos.application.uriPermissionManager';
 ```
 
 
