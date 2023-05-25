@@ -33,7 +33,7 @@ PC端以Smartperf-Host网站的形式进行发布，内部分为Trace Streamer�
 ```
 ## 功能介绍
 ### 网页加载trace
-使用Smartperf-Host加载保存在本地的trace文件（htrace、ftrace等）并显示数据到泳道图中，trace数据分析详见《[网页加载trace说明](https://gitee.com/openharmony-sig/smartperf/blob/master/README_zh.md#/openharmony-sig/smartperf/blob/master/host/ide/src/doc/md/quickstart_systemtrace.md)》。
+使用Smartperf-Host加载保存在本地的trace文件（htrace、ftrace等）并显示数据到泳道图中，trace数据分析详见《[网页加载trace说明](https://gitee.com/openharmony-sig/smartperf/blob/master/host/ide/src/doc/md/quickstart_systemtrace.md)》。
 ### 网页抓取trace
 使用Smartperf-Host在线抓取trace，可以自定义抓取内容、抓取时长、trace保存路径，详见《[网页抓取trace说明](https://gitee.com/openharmony-sig/smartperf/blob/master/host/ide/src/doc/md/quickstart_web_record.md)》。
 ### 设备抓取trace
@@ -41,7 +41,7 @@ PC端以Smartperf-Host网站的形式进行发布，内部分为Trace Streamer�
 ### Ability Monitor抓取
 使用Smartperf-Host抓取应用的CPU、内存、磁盘IO和网络的使用情况，详见《[Ability Monitor抓取和展示说明](https://gitee.com/openharmony-sig/smartperf/blob/master/host/ide/src/doc/md/quickstart_ability_monitor.md)》。
 ### Native Memory抓取
-使用Smartperf-Host抓取应用的Native Memory（C和C++部分）的分配和释放情况，详见《[Native Memory抓取和展示说明](https://gitee.com/openharmony-sig/smartperf/blob/master/README_zh.md#/openharmony-sig/smartperf/blob/master/host/ide/src/doc/md/quickstart_native_memory.md)》。
+使用Smartperf-Host抓取应用的Native Memory（C和C++部分）的分配和释放情况，详见《[Native Memory抓取和展示说明](https://gitee.com/openharmony-sig/smartperf/blob/master/host/ide/src/doc/md/quickstart_native_memory.md)》。
 ### Hiperf抓取
 使用Smartperf-Host抓取应用的cpu使用量、方法的调用栈等，详见《[HiPerf的抓取和展示说明](https://gitee.com/openharmony-sig/smartperf/blob/master/host/ide/src/doc/md/quickstart_hiperf.md)》。
 ### HiSystemEvent抓取
