@@ -32,8 +32,8 @@ show(options?: TextPickerDialogOptions)
 
 | 名称 | 类型 | 描述 |
 | -------- | -------- | -------- |
-| value | string | 选中项的文本内容。<br/>**说明**：当显示文本或图片加文本列表时，value值为选中项中的文本值，<br/>当显示图片列表时，value值为空。 |
-| index | number | 选中项在选择范围数组中的索引值。 |
+| value | string \| string []<sup>10+</sup> | 选中项的文本内容。<br/>**说明**：当显示文本或图片加文本列表时，value值为选中项中的文本值。（多列的情况，value为数组类型。）<br/>当显示图片列表时，value值为空。 |
+| index | number \| number []<sup>10+</sup> | 选中项在选择范围数组中的索引值。（多列的情况，index为数组类型。） |
 
 ## 示例
 
