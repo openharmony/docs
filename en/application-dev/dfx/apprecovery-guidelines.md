@@ -40,7 +40,9 @@ Fault management is an important way for applications to deliver a better user e
 - Fault query is the process of calling APIs of [faultLogger](../reference/apis/js-apis-faultLogger.md) to obtain the fault information.
 
 The figure below does not illustrate the time when [faultLogger](../reference/apis/js-apis-faultLogger.md) is called. You can refer to the [LastExitReason](../reference/apis/js-apis-app-ability-abilityConstant.md#abilityconstantlastexitreason) passed during application initialization to determine whether to call [faultLogger](../reference/apis/js-apis-faultLogger.md) to query information about the previous fault.
+
 ![Fault rectification process](./figures/fault_rectification.png)
+
 It is recommended that you call [errorManager](../reference/apis/js-apis-app-ability-errorManager.md) to handle the exception. After the processing is complete, you can call the **saveAppState** API and restart the application.
 If you do not register [ErrorObserver](../reference/apis/js-apis-inner-application-errorObserver.md) or enable application recovery, the application process will exit according to the default processing logic of the system. Users can restart the application from the home screen.
 If you have enabled application recovery, the recovery framework first checks whether application state saving is supported and whether the application state saving is enabled. If so, the recovery framework invokes [onSaveState](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonsavestate) of the [Ability](../reference/apis/js-apis-app-ability-uiAbility.md). Finally, the application is restarted.

@@ -9,6 +9,12 @@ This module provides APIs for accessing UIAbility-specific resources. You can us
 >  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >  - The APIs of this module can be used only in the stage model.
 
+## Modules to Import
+
+```ts
+import common from '@ohos.app.ability.common';
+```
+
 ## Attributes
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -360,23 +366,20 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
     windowMode: 0,
   };
 
-  try {
-    this.context.startAbilityForResult(want, options, (error, result) => {
-      if (error.code) {
-        // Process service logic errors.
-        console.log('startAbilityForResult failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
-        return;
-      }
-      // Carry out normal service processing.
-      console.log('startAbilityForResult succeed, result.resultCode = ' +
-        result.resultCode)
-    });
-  } catch (paramError) {
-    // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.startAbilityForResult(want, options, (err, result) => {
+    if (err.code) {
+      // Process service logic errors.
+      console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // Carry out normal service processing.
+    console.info('startAbilityForResult succeed');
+  });
+} catch (err) {
+  // Process input parameter errors.
+  console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 
@@ -779,22 +782,20 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
     abilityName: 'MainAbility'
   };
 
-  try {
-    this.context.startServiceExtensionAbility(want)
-      .then((data) => {
-        // Carry out normal service processing.
-        console.log('startServiceExtensionAbility succeed');
-      })
-      .catch((error) => {
-        // Process service logic errors.
-        console.log('startServiceExtensionAbility failed, error.code: ' + JSON.stringify(error.code) +
-          ' error.message: ' + JSON.stringify(error.message));
-      });
-  } catch (paramError) {
-    // Process input parameter errors.
-    console.log('error.code: ' + JSON.stringify(paramError.code) +
-      ' error.message: ' + JSON.stringify(paramError.message));
-  }
+try {
+  this.context.startServiceExtensionAbility(want)
+    .then(() => {
+      // Carry out normal service processing.
+      console.info('startServiceExtensionAbility succeed');
+    })
+    .catch((err) => {
+      // Process service logic errors.
+      console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+    });
+} catch (err) {
+  // Process input parameter errors.
+  console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+}
   ```
 
 ## UIAbilityContext.startServiceExtensionAbilityWithAccount
@@ -1404,15 +1405,22 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  let want = {
-    deviceId: '',
-    bundleName: 'com.extreme.test',
-    abilityName: 'MainAbility'
-  };
-  let options = {
-    onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
-    onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
-    onFailed(code) { console.log('----------- onFailed -----------') }
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'ServiceExtensionAbility'
+};
+let commRemote;
+let options = {
+  onConnect(elementName, remote) {
+    commRemote = remote;
+    console.info('onConnect...')
+  },
+  onDisconnect(elementName) {
+    console.info('onDisconnect...')
+  },
+  onFailed(code) {
+    console.info('onFailed...')
   }
 
   let connection = null;
@@ -1466,16 +1474,23 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  let want = {
-    deviceId: '',
-    bundleName: 'com.extreme.test',
-    abilityName: 'MainAbility'
-  };
-  let accountId = 100;
-  let options = {
-    onConnect(elementName, remote) { console.log('----------- onConnect -----------') },
-    onDisconnect(elementName) { console.log('----------- onDisconnect -----------') },
-    onFailed(code) { console.log('----------- onFailed -----------') }
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'ServiceExtensionAbility'
+};
+let accountId = 100;
+let commRemote;
+let options = {
+  onConnect(elementName, remote) {
+    commRemote = remote;
+    console.info('onConnect...')
+  },
+  onDisconnect(elementName) {
+    console.info('onDisconnect...')
+  },
+  onFailed(code) {
+    console.info('onFailed...')
   }
 
   let connection = null;
@@ -1520,8 +1535,8 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  // connection is the return value of connectServiceExtensionAbility.
-  let connection = 1;
+// connection is the return value of connectServiceExtensionAbility.
+let connection = 1;
 
   try {
     this.context.disconnectServiceExtensionAbility(connection)
@@ -1568,8 +1583,26 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
-  // connection is the return value of connectServiceExtensionAbility.
-  let connection = 1;
+// connection is the return value of connectServiceExtensionAbility.
+let connection = 1;
+let commRemote;
+
+try {
+  this.context.disconnectServiceExtensionAbility(connection, (err) => {
+    commRemote = null;
+    if (err.code) {
+      // Process service logic errors.
+      console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // Carry out normal service processing.
+    console.info('disconnectServiceExtensionAbility succeed');
+  });
+} catch (err) {
+  commRemote = null;
+  // Process input parameter errors.
+  console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+}
 
   try {
     this.context.disconnectServiceExtensionAbility(connection, (error) => {
@@ -1925,7 +1958,7 @@ Requests permissions from the user by displaying a dialog box. This API uses an 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | permissions | Array&lt;string&gt; | Yes| Permissions to request.|
-| callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionRequestResult.md)&gt; | Yes| Callback used to return the result.|
+| callback | AsyncCallback&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -1956,7 +1989,7 @@ Requests permissions from the user by displaying a dialog box. This API uses a p
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;[PermissionRequestResult](js-apis-permissionRequestResult.md)&gt; | Promise used to return the result.|
+| Promise&lt;[PermissionRequestResult](js-apis-permissionrequestresult.md)&gt; | Promise used to return the result.|
 
 **Example**
 

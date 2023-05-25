@@ -416,7 +416,7 @@ Registers an observer for NIC hot swap events. This API uses an asynchronous cal
 **Example**
 
 ```js
- ethernet.on('interfaceStateChange', (data) => {
+ethernet.on('interfaceStateChange', (data) => {
   console.log('on interfaceSharingStateChange: ' + JSON.stringify(data));
 });
 ```

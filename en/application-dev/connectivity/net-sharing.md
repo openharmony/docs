@@ -60,7 +60,7 @@ For the complete list of APIs and example code, see [Network Sharing](../referen
 4. Return the callback for successfully starting network sharing.
 
 ```js
-   // Import the sharing namespace from @ohos.net.sharing.
+// Import the sharing namespace from @ohos.net.sharing.
 import sharing from '@ohos.net.sharing'
 
 // Subscribe to network sharing state changes.
@@ -85,7 +85,7 @@ sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
 4. Return the callback for successfully stopping network sharing.
 
 ```js
-   // Import the sharing namespace from @ohos.net.sharing.
+// Import the sharing namespace from @ohos.net.sharing.
 import sharing from '@ohos.net.sharing'
 
 // Subscribe to network sharing state changes.
@@ -110,7 +110,7 @@ sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
 4. Call **stopSharing** to stop network sharing of the specified type and clear the data volume of network sharing.
 
 ```js
-   // Import the sharing namespace from @ohos.net.sharing.
+// Import the sharing namespace from @ohos.net.sharing.
 import sharing from '@ohos.net.sharing'
 
 // Call startSharing to start network sharing of the specified type.

@@ -16,7 +16,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 
 An **AbilityDelegator** object is obtained by calling [getAbilityDelegator](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetabilitydelegator) in **AbilityDelegatorRegistry**.
 ```ts
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 ```
 
 ## AbilityDelegator
@@ -163,7 +163,7 @@ abilityDelegator.removeAbilityMonitor(monitor, (err : any) => {
 
 removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>;
 
-删除已经添加的AbilityMonitor实例（promise形式）
+Removes an **AbilityMonitor** instance. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

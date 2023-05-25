@@ -60,7 +60,7 @@
 | [OH_AI_Status](#oh_ai_status-1) | Minspore的状态码。 |
 | [OH_AI_TensorHandle](#oh_ai_tensorhandle) | 指向张量对象句柄。 |
 | [OH_AI_ModelType](#oh_ai_modeltype-1) | 模型文件的类型。 |
-| [OH_AI_DeviceType](#oh_ai_devicetype-1) | 设备类型，该信息。 |
+| [OH_AI_DeviceType](#oh_ai_devicetype-1) | 设备类型信息，包含了目前支持的设备类型。 |
 
 
 ### 枚举
@@ -575,7 +575,7 @@ OH_AI_API int OH_AI_ContextGetThreadAffinityMode (const OH_AI_ContextHandle cont
 
 **返回:**
 
-绑核策略。一共有三种策略，0为不绑核, 1为大核优先, 2为小核优先。
+绑核策略。一共有三种策略，0为不绑核, 1为大核优先, 2为中核优先。
 
 
 ### OH_AI_ContextGetThreadNum()
@@ -1053,7 +1053,7 @@ OH_AI_API OH_AI_TensorHandle OH_AI_ModelGetOutputByTensorName (const OH_AI_Model
 | 名称 | 描述 |
 | -------- | -------- |
 | model | 模型对象指针。 |
-| tensor_名称 | 张量名称。 |
+| tensor_name | 张量名称。 |
 
 **返回:**
 
@@ -1170,7 +1170,7 @@ OH_AI_API OH_AI_TensorHandle OH_AI_TensorCreate (const char *name, OH_AI_DataTyp
 
 | 名称 | 描述 |
 | -------- | -------- |
-| 名称 | 张量名称 |
+| name | 张量名称 |
 | type | 张量的数据类型 |
 | shape | 张量的维度数组。 |
 | shape_num | 张量维度数组长度。 |
@@ -1450,7 +1450,7 @@ OH_AI_API void OH_AI_TensorSetName (OH_AI_TensorHandle tensor, const char *name 
 | 名称 | 描述 |
 | -------- | -------- |
 | tensor | 张量对象句柄。 |
-| 名称 | 张量名称。 |
+| name | 张量名称。 |
 
 
 ### OH_AI_TensorSetShape()

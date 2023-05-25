@@ -6,6 +6,12 @@ The **AbilityMonitor** module provides monitors for abilities that meet specifie
 > 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 
+## Modules to Import
+
+```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+```
+
 ## Usage
 
 **AbilityMonitor** can be used as an input parameter of [addAbilityMonitor](js-apis-inner-application-abilityDelegator.md#addabilitymonitor9) in **abilityDelegator** to listen for lifecycle changes of an ability.
@@ -31,8 +37,6 @@ Describes an ability monitor.
 **Example**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
-
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
 }
@@ -43,9 +47,11 @@ let monitor = {
     onAbilityCreate: onAbilityCreateCallback
 };
 
-let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-abilityDelegator.addAbilityMonitor(monitor, (err : any) => {
-    console.info('addAbilityMonitor callback');
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+abilityDelegator.addAbilityMonitor(monitor, (error : any) => {
+    if (error && error.code !== 0) {
+        console.error('addAbilityMonitor fail, error: ${JSON.stringify(error)}');
+    }
 });
 ```
 

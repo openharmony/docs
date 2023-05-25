@@ -975,7 +975,7 @@ getForward(length:number): Promise&lt;string&gt;
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
 | 12800003 | input method client error.     |
-| 12800006 | input method controller error. |
+| 12800006 | Input method controller error. |
 
 **示例：**
 
@@ -1014,7 +1014,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
 | 12800003 | input method client error.     |
-| 12800006 | input method controller error. |
+| 12800006 | Input method controller error. |
 
 **示例：**
 
@@ -1060,7 +1060,7 @@ getBackward(length:number): Promise&lt;string&gt;
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
 | 12800003 | input method client error.     |
-| 12800006 | input method controller error. |
+| 12800006 | Input method controller error. |
 
 **示例：**
 
@@ -1148,7 +1148,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800002 | input method engine error. |
+| 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
 **示例：**
@@ -1191,7 +1191,7 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800002 | input method engine error. |
+| 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
 **示例：**
@@ -1219,7 +1219,7 @@ try {
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
 
-删除光标后固定长度的文本。使用callback异步回调。
+删除光标后固定长度的文本。使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1241,7 +1241,7 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800002 | input method engine error. |
+| 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
 **示例：**
@@ -1280,7 +1280,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800002 | input method engine error. |
+| 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
 **示例：**
@@ -1325,7 +1325,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                 |
 | -------- | -------------------------- |
-| 12800002 | input method engine error. |
+| 12800002 | Input method engine error. |
 | 12800003 | input method client error. |
 
 **示例：**

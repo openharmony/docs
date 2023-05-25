@@ -2,6 +2,12 @@
 
 The **AppStateData** module defines the application state data, which can be obtained through [getForegroundApplications](js-apis-app-ability-appManager.md#appmanagergetforegroundapplications).
 
+## Modules to Import
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+```
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API and cannot be called by third-party applications.
@@ -9,7 +15,7 @@ The **AppStateData** module defines the application state data, which can be obt
 | Name                     | Type  | Mandatory | Description      |
 | ------------------------- | ------ | ---- | --------- |
 | bundleName<sup>8+</sup>   | string | No  | Bundle name.|
-| uid<sup>8+</sup>          | number | No  | UID of the application.  |
+| uid<sup>8+</sup>          | number | No  | User ID.  |
 | state<sup>8+</sup>        | number | No  | Application state.|
 
 **Example**
@@ -25,3 +31,4 @@ appManager.getForegroundApplications((error, data) => {
     }
 });
 ```
+

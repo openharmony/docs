@@ -40,6 +40,8 @@ createBundleContext(bundleName: string): Context;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
 | 名称       | 类型                     | 必填   | 说明            |
@@ -86,16 +88,12 @@ createModuleContext(moduleName: string): Context;
 **示例：**
 
 ```ts
-<<<<<<< HEAD
-let moduleContext = this.context.createModuleContext('entry');
-=======
 let moduleContext: common.Context;
 try {
     moduleContext = this.context.createModuleContext('entry');
 } catch (error) {
     console.error('createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}');
 }
->>>>>>> 48a75c8e72 (Modify the secondary import module of ability)
 ```
 
 ## Context.createModuleContext
@@ -105,6 +103,8 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 根据包名和模块名创建上下文Context。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 

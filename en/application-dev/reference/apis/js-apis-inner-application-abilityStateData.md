@@ -2,17 +2,27 @@
 
 The **AbilityStateData** module defines the ability state information, which can be obtained through the **onAbilityStateChanged** lifecycle callback of [ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md). The callback can be invoked after a lifecycle change listener is registered through [registerApplicationStateObserver](js-apis-application-appManager.md#appmanagerregisterapplicationstateobserver8).
 
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+
+## Modules to Import
+
+```ts
+import appManager from '@ohos.application.appManager';
+```
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name                    | Type    | Readable| Writable| Description                      |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |
-| pid<sup>8+</sup>                     | number   | Yes  | No  | Process ID.                   |
-| bundleName<sup>8+</sup>              | string   | Yes  | No | Bundle name.         |
-| abilityName<sup>8+</sup>             | string   | Yes  | No  | Ability name.              |
-| uid<sup>8+</sup>                     | number   | Yes  | No  | User ID.                 |
-| state<sup>8+</sup>                   | number   | Yes  | No  | [Ability state](#ability-states).               |
+| pid                     | number   | Yes  | No  | Process ID.                   |
+| bundleName              | string   | Yes  | No | Bundle name.         |
+| abilityName            | string   | Yes  | No  | Ability name.              |
+| uid                    | number   | Yes  | No  | User ID.                 |
+| state                   | number   | Yes  | No  | [Ability state](#ability-states).               |
 | moduleName<sup>9+</sup> | string   | Yes  | No  | Name of the HAP file to which the ability belongs.   |
-| abilityType<sup>8+</sup> | number | Yes  | No  | [Ability type](#ability-types), which can be **page** or **service**.|
+| abilityType | number | Yes  | No  | [Ability type](#ability-types), which can be **page** or **service**.|
 
 #### Ability States
 
@@ -29,7 +39,7 @@ The **AbilityStateData** module defines the ability state information, which can
 
 #### Ability Types
 
-| Value  | Status   | Description                 |
+| Value  | State   | Description                 |
 | ---- | ------- | --------------------- |
 | 0    | UNKNOWN | Unknown type.             |
 | 1    | PAGE    | Ability that has the UI.  |

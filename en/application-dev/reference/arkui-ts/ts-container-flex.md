@@ -240,7 +240,7 @@ struct FlexExample4 {
 }
 ```
 
-![en-us_image_0000001174422904](figures/en-us_image_0000001174422904.jpg)
+![en-us_image_0000001174422904](figures/en-us_image_0000001174422904.png)
 
 ```ts
 // xxx.ets

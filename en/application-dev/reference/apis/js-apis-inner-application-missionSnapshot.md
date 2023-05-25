@@ -7,6 +7,12 @@ The **MissionSnapshot** module defines the snapshot of a mission. The snapshot c
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > The APIs of this module are system APIs and cannot be called by third-party applications.
 
+## Modules to Import
+
+```ts
+import missionManager from '@ohos.app.ability.missionManager';
+```
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Mission
 
 | Name| Type| Readable| Writable| Description|

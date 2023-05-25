@@ -24,7 +24,7 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import formBindingData from '@ohos.app.form.formBindingData';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
     onAddForm() {
-        let formContext = this.context; // ªÒ»°FormExtensionContext
+        let formContext = this.context; // Obtain a FormExtensionContext instance.
         // ...
         let dataObj1 = {
             temperature:'11c',

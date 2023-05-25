@@ -113,10 +113,8 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 **Example**
 
-```js
-import WantAgent from '@ohos.app.ability.wantAgent';
-
-
+```ts
+let wantAgent;
 // WantAgentInfo object
 let wantAgentInfo = {
     wants: [
@@ -1126,6 +1124,27 @@ let wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
+// getWantAgent callback
+function getWantAgentCallback(err, data) {
+    if (err === undefined) {
+        wantAgent = data;
+    } else {
+        console.error('getWantAgent failed ${JSON.stringify(wantAgent)}');
+    }
+    // getOperationTypeCallback callback
+    function getOperationTypeCallback(err, data) {
+        if(err) {
+            console.error('getOperationType failed! ${err.code} ${err.message}');
+        } else {
+            console.info('getOperationType ok! ${JSON.stringify(data)}');
+        }
+    }
+    try {
+        WantAgent.getOperationType(wantAgent, getOperationTypeCallback);
+    } catch(err) {
+        console.error('getOperationTypeCallback failed! ${err.code} ${err.message}');
+    }
+}
 try {
     WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 	    console.info('==========================>getWantAgentCallback=======================>');

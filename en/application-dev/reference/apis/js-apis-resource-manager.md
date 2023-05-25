@@ -1,6 +1,6 @@
 # @ohos.resourceManager (Resource Manager)
 
-The Resource Manager module provides APIs to obtain information about application resources based on the current configuration, including the language, region, screen direction, MCC/MNC, as well as device capability and density.
+The **resourceManager** module provides APIs to obtain information about application resources based on the current configuration, including the language, region, screen direction, MCC/MNC, as well as device capability and density.
 
 > **NOTE**
 >
@@ -13,7 +13,7 @@ The Resource Manager module provides APIs to obtain information about applicatio
 import resourceManager from '@ohos.resourceManager';
 ```
 
-## Instruction
+## How to Use
 
 Since API version 9, the stage model allows an application to obtain a **ResourceManager** object based on **context** and call its resource management APIs without first importing the required bundle. This approach, however, is not applicable to the FA model. For the FA model, you need to import the required bundle and then call the [getResourceManager](#resourcemanagergetresourcemanager) API to obtain a **ResourceManager** object.
 For details about how to reference context in the stage model, see [Context in the Stage Model](../..//application-models/application-context-stage.md).
@@ -171,12 +171,12 @@ Enumerates the device types.
 
 | Name                  | Value | Description  |
 | -------------------- | ---- | ---- |
-| DEVICE_TYPE_PHONE    | 0x00 | Phone  |
-| DEVICE_TYPE_TABLET   | 0x01 | Tablet  |
-| DEVICE_TYPE_CAR      | 0x02 | Head unit  |
-| DEVICE_TYPE_PC       | 0x03 | PC  |
-| DEVICE_TYPE_TV       | 0x04 | TV  |
-| DEVICE_TYPE_WEARABLE | 0x06 | Wearable  |
+| DEVICE_TYPE_PHONE    | 0x00 | Phone.  |
+| DEVICE_TYPE_TABLET   | 0x01 | Tablet.  |
+| DEVICE_TYPE_CAR      | 0x02 | Head unit.  |
+| DEVICE_TYPE_PC       | 0x03 | PC.  |
+| DEVICE_TYPE_TV       | 0x04 | TV.  |
+| DEVICE_TYPE_WEARABLE | 0x06 | Wearable.  |
 
 
 ## ScreenDensity
@@ -278,7 +278,7 @@ Defines the capability of accessing application resources.
 
 > **NOTE**
 >
-> - The APIs involved in **ResourceManager** are applicable only to the TypeScript-based declarative development paradigm.
+> - The methods involved in **ResourceManager** are applicable only to the TypeScript-based declarative development paradigm.
 >
 > - Resource files are defined in the **resources** directory of the project. You can obtain the resource ID using **$r(resource address).id**, for example, **$r('app.string.test').id**.
 
@@ -1658,7 +1658,7 @@ Obtains the string corresponding to the specified resource name. This API uses a
 
 | Type                   | Description        |
 | --------------------- | ---------- |
-| Promise&lt;string&gt; | String corresponding to the resource name.|
+| Promise&lt;string&gt; | Promise used to return the result.|
 
 For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
@@ -2036,7 +2036,7 @@ Obtains the string corresponding to the specified resource ID. This API returns 
 
 | Type    | Description         |
 | ------ | ----------- |
-| string | Promise used to return the result.|
+| string | String corresponding to the specified resource ID.|
 
 For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
@@ -2075,7 +2075,7 @@ Obtains the string corresponding to the specified resource object. This API retu
 
 | Type    | Description              |
 | ------ | ---------------- |
-| string | Promise used to return the result.|
+| string | String corresponding to the specified resource object.|
 
 For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 

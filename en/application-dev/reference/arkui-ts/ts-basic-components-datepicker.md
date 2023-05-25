@@ -28,12 +28,16 @@ Creates a date picker in the given date range.
 
 ## Attributes
 
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+
 | Name   | Type       | Description           |
 | ------| -------------- | -------- |
 | lunar | boolean  | Whether to display the lunar calendar.<br>- **true**: Display the lunar calendar.<br>- **false**: Do not display the lunar calendar.<br>Default value: **false**|
 
 
 ## Events
+
+In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
 | Name| Description|
 | -------- | -------- |
@@ -62,7 +66,7 @@ struct DatePickerExample {
   build() {
     Column() {
       Button('Switch Calendar')
-        .margin({ top: 30 })
+        .margin({ top: 30, bottom: 30 })
         .onClick(() => {
           this.isLunar = !this.isLunar
         })

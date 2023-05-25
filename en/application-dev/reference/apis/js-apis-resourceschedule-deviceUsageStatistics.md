@@ -1547,10 +1547,10 @@ Provides the usage duration information of an application.
 
 | Name                     | Type    | Mandatory  | Description                                      |
 | ------------------------ | ------ | ---- | ---------------------------------------- |
-| bundleName               | string | Yes   | Bundle name of the application.                                   |
-| abilityPrevAccessTime    | number | Yes   | Last time when the application was used.                            |
-| abilityInFgTotalTime     | number | Yes   | Total time that the application runs in the foreground.                            |
-| id                       | number | No   | User ID.|
+| bundleName               | string | No   | Bundle name of the application.                                   |
+| abilityPrevAccessTime    | number | No   | Last time when the application was used.                            |
+| abilityInFgTotalTime     | number | No  | Total time that the application runs in the foreground.                            |
+| id                       | number | Yes   | User ID.|
 | abilityPrevSeenTime      | number | No   | Last time when the application was visible in the foreground.|
 | abilitySeenTotalTime     | number | No   | Total time that the application is visible in the foreground.|
 | fgAbilityAccessTotalTime | number | No   | Total time that the application accesses the foreground.|
