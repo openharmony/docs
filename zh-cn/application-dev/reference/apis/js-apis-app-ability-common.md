@@ -26,7 +26,7 @@ import common from '@ohos.app.ability.common';
 | FormExtensionContext   | [FormExtensionContext](js-apis-inner-application-formExtensionContext.md)               | FormExtensionContext二级模块。 |
 | ServiceExtensionContext | [ServiceExtensionContext](js-apis-inner-application-serviceExtensionContext.md) | ServiceExtensionContext二级模块。 |
 | EventHub   | [EventHub](js-apis-inner-application-eventHub.md)               | EventHub二级模块。 |
-| PacMap   | [PacMap](js-apis-inner-application-pacMap.md)               | PacMap二级模块。 |
+| PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md/#pacmap)               | PacMap二级模块。 |
 | AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | AbilityResult二级模块。 |
 | ConnectOptions   | [ConnectOptions](js-apis-inner-ability-connectOptions.md)               | ConnectOptions二级模块。 |
 

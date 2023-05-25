@@ -865,8 +865,8 @@ call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCa
 | uri        | string                 | 是   | 指示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'           |
 | method    | string                  | 是   | 指示被调用的方法名。   |
 | arg      | string                   | 是   | 指示需传入的参数。      |
-| extras   | [PacMap](js-apis-inner-application-pacMap.md)        | 是   | 指示扩展的键值对参数。       |
-| callback | AsyncCallback\<[PacMap](js-apis-inner-application-pacMap.md)> | 是 | 指示数据操作的回调方法，返回操作结果。     |
+| extras   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md/#pacmap)        | 是   | 指示扩展的键值对参数。       |
+| callback | AsyncCallback\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md/#pacmap)> | 是 | 指示数据操作的回调方法，返回操作结果。     |
 
 **示例：**
 
@@ -901,13 +901,13 @@ call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>
 | uri        | string                 | 是   | 指示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'           |
 | method    | string                  | 是   | 指示被调用的方法名。   |
 | arg      | string                   | 是   | 指示需传入的参数。      |
-| extras   | [PacMap](js-apis-inner-application-pacMap.md)        | 是   | 指示扩展的键值对参数。       |
+| extras   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md/#pacmap)        | 是   | 指示扩展的键值对参数。       |
 
 **返回值：**
 
 | 类型 | 说明 |
 |------ | ------- |
-|Promise\<[PacMap](js-apis-inner-application-pacMap.md)> | 返回操作结果。 |
+|Promise\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md/#pacmap)> | 返回操作结果。 |
 
 **示例：**
 
