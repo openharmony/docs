@@ -67,6 +67,7 @@
   - [应用事件打点错误码](errorcode-hiappevent.md)
   - [系统事件错误码](errorcode-hisysevent.md)
   - [Hidebug错误码](errorcode-hiviewdfx-hidebug.md)
+  - [维测日志错误码](errorcode-loglibrary.md)
   - [输入法框架错误码](errorcode-inputmethod-framework.md)
   - [剪贴板错误码](errorcode-pasteboard.md)
   - [锁屏服务错误码](errorcode-screenlock.md)
