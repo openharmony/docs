@@ -67,7 +67,7 @@ try {
         }
     });
 } catch (error) {
-    console.error('An unexpected error occurred.' + `Code: ${error.code}, message: ${error.message}`);
+    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
