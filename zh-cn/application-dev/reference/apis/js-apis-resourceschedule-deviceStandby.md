@@ -1,9 +1,5 @@
 # @ohos.resourceschedule.deviceStandby（设备待机模块）
-本模块提供设备待机空闲部件管理功能
-
-API使用场景：
-当设备长时间未被使用或通过按键，可以使设备进入待机模式。待机模式不影响应用使用，还可以延长电池续航时间。
-通过本模块接口，可查询设备是否为待机模式，以及使应用灵活申请开启或关闭待机模式。
+本模块提供设备待机空闲部件管理功能。当设备长时间未被使用或通过按键，可以使设备进入待机模式。待机模式不影响应用使用，还可以延长电池续航时间。通过本模块接口，可查询设备是否为待机模式，以及使应用灵活申请开启或关闭待机模式。
 
 >  **说明：**
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -26,6 +22,7 @@ isDeviceInStandby(callback: AsyncCallback<boolean>): void;
 | callback | Callback&lt;boolean&gt; | 是    | 延迟即将超时的回调函数，一般在超时前6秒通过此回调通知应用。 |
 
 **错误码**：
+
 以下错误码的详细介绍请参见[后台任务错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
@@ -73,8 +70,8 @@ getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;Exempted
 
 | 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
-| resourceTypes |number | 是    | [ResourceType](#resourcetype) |
-| callback | AsyncCallback<Array&lt;ExemptedAppInfo&gt;> | 是    | [ExemptedAppInfo ](#exemptedappinfo)|
+| [ResourceType](#resourcetype)|number | 是    | 资源类型 |
+| callback | AsyncCallback<Array&lt;[ExemptedAppInfo](#exemptedappinfo)&gt;> | 是    |豁免应用信息 |
 
 **错误码**：
 
@@ -101,13 +98,13 @@ getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
 
 | 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
-| resourceTypes |number | 是    | [ResourceType](#resourcetype) |
+| [ResourceType](#resourcetype)|number | 是    |资源类型|
 
 **返回值**：
 
 | 类型                    | 说明                                       |
 | --------------------- | ---------------------------------------- |
-| Promise<Array&lt;ExemptedAppInfo&gt;> |  [ExemptedAppInfo ](#exemptedappinfo)|
+| Promise<Array&lt;[ExemptedAppInfo](#exemptedappinfo)&gt;> | 豁免应用信息 |
 
 **错误码**：
 
@@ -127,7 +124,7 @@ getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
 ## deviceStandby.requestExemptionResource
 requestExemptionResource(request: ResourceRequest): void;
 
-订阅申请豁免。
+订阅申请豁免，为应用申请临时不进入待机管控能力。
 
 **系统能力:** SystemCapability.ResourceSchedule.DeviceStandby.Exemption
 
@@ -137,7 +134,7 @@ requestExemptionResource(request: ResourceRequest): void;
 
 | 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
-| request |ResourceRequest | 是    | [ResourceRequest ](#resourcerequest) |
+| request |[ResourceRequest](#resourcerequest)| 是    | 资源请求 |
 
 **错误码**：
 
@@ -154,7 +151,7 @@ requestExemptionResource(request: ResourceRequest): void;
 ## deviceStandby.releaseExemptionResource
 releaseExemptionResource(request: ResourceRequest): void;
 
-去除订阅申请豁免。
+去除订阅申请豁免，去除应用暂时不进入待机管控的能力。
 
 **系统能力:** SystemCapability.ResourceSchedule.DeviceStandby.Exemption
 
@@ -164,7 +161,7 @@ releaseExemptionResource(request: ResourceRequest): void;
 
 | 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
-| request |ResourceRequest | 是    | [ResourceRequest ](#resourcerequest) |
+| request |[ResourceRequest](#resourcerequest)| 是    | 资源请求 |
 
 **错误码**：
 
@@ -178,9 +175,8 @@ releaseExemptionResource(request: ResourceRequest): void;
 | 9800004 | System service operation failed. |
 | 18700001 | Caller information verification failed when applying for efficiency resources. |
 
-## 枚举类和请求体
-### ResourceType
-豁免应用资源枚举
+## ResourceType
+应用资源枚举。
 <br>
 
 |名称   |值   |说明|
@@ -193,10 +189,8 @@ releaseExemptionResource(request: ResourceRequest): void;
 |PUSH     |32   | 非待机pushkit资源|
 |FREEZE       |64   | 非待机冻结应用资源|
 
-### ExemptedAppInfo 
-豁免应用信息
-..
-
+## ExemptedAppInfo 
+豁免应用信息，不进入待机管控的应用信息。
 <br>
 
 |名称  |类型   |说明   |
@@ -205,8 +199,8 @@ releaseExemptionResource(request: ResourceRequest): void;
 |name   |string   |  应用名  |
 |duration   | number  | 豁免时长 |
 
-### ResourceRequest
-待机资源请求体
+## ResourceRequest
+待机资源请求体。
 <br>
 
 |名称   |类型   |说明   |

@@ -1,14 +1,7 @@
-# 设备待机续航部件开发指南
-## 场景介绍
-当前设备在灭屏进入待机睡眠前，应用不会被冻结、Work任务不会被延迟、Timer时间不会变慢、CPU锁不会释放、应用网络访问不会停止，导致设备灭屏功耗大，影响整机续航。
-因此，在进入待机空闲状态下，需要限制后台应用使用资源，降低整机功耗。<br>
-解决以下场景<br>
-一、采集系统设备进入待机空闲特征，进入待机时机，退出待机条件<br>
-二、检测设备进入浅睡眠状态和深睡眠状态<br>
-三、设备每隔一段时间暂停睡眠，进入维护状态<br>
-四、检测到设备进入待机空闲状态，触发资源管控
+# 设备待机模块开发指南
+## 设备待机模块概述
+为提高设备续航，降低设备功耗，在设备进入待机空闲状态时，限制后台应用使用资源。开发者可以根据自身情况，为自己的应用申请纳入待机资源管控或者暂时不被待机资源管控。
 
-本文档旨在帮助开发者理解设备待机空闲下的相关功能和资源使用规范。
 ## 待机低续航模式介绍
 待机低续航模式会延迟应用后台cpu和网络活动，从而延长电池续航时间。
 <br>包括：
@@ -17,9 +10,12 @@
 <br>3.running_lock锁：释放应用申请的cpu running_lock锁
 <br>4.Timer响应：延迟应用的timer响应
 ## 接口说明
-一、应用查询待机空闲状态接口<br>
-isDeviceInStandby
-二、应用申请待机空闲状态正常使用资源的接口<br>
-getExemptedApps
-requestExemptionResource
-releaseExemptionResource
+[设备待机模块接口api开发文档](https://gitee.com/openharmony/docs/blob/4b89700885537543d26e2dfc96b4dee15a544229/zh-cn/application-dev/reference/apis/js-apis-resourceschedule-deviceStandby.md)
+
+主要接口
+| 接口                       | 说明 |
+|--------------------------|----|
+| isDeviceInStandby        |  查询应用是否处于待机空闲状态，如果处于空闲状态，该应用可能被纳入资源管控。  |
+| getExemptedApps          | 获取不会被纳入待机资源管控的应用列表   |
+| requestExemptionResource |  为应用申请暂时不会被纳入待机资源管控的能力  |
+| releaseExemptionResource |  取消应用暂时不会被纳入待机资源管控能力  |
