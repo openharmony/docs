@@ -114,8 +114,7 @@ ethernet.setIfaceConfig("eth0", {
   route: "192.168.xx.xxx",
   gateway: "192.168.xx.xxx",
   netMask: "255.255.255.0",
-  dnsServers: "1.1.1.1",
-  domain: "2.2.2.2"
+  dnsServers: "1.1.1.1"
 }).then(() => {
   console.log("setIfaceConfig promise ok ");
 }).catch(error => {
@@ -167,7 +166,6 @@ ethernet.getIfaceConfig("eth0", (error, value) => {
     console.log("getIfaceConfig callback gateway = " + JSON.stringify(value.gateway));
     console.log("getIfaceConfig callback netMask = " + JSON.stringify(value.netMask));
     console.log("getIfaceConfig callback dnsServers = " + JSON.stringify(value.dnsServers));
-    console.log("getIfaceConfig callback domain = " + JSON.stringify(value.domain));
   }
 });
 ```
@@ -218,7 +216,6 @@ ethernet.getIfaceConfig("eth0").then((data) => {
   console.log("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
   console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
   console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
-  console.log("getIfaceConfig promise domain = " + JSON.stringify(data.domain));
 }).catch(error => {
   console.log("getIfaceConfig promise error = " + JSON.stringify(error));
 });
