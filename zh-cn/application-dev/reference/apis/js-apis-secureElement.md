@@ -206,7 +206,7 @@ import secureElement from '@ohos.secureElement';
 
 try {
     // 有效this.nfcSEService,获取方式参考newService
-	this.nfcSEService.shutdown();
+    this.nfcSEService.shutdown();
     this.result = "shutdown成功";
 } catch (e) {
     this.result = "shutdown异常：" + e.message;
@@ -282,7 +282,7 @@ import secureElement from '@ohos.secureElement';
 
 try {
     // this.nfcOmaReader有效的Reader，获取方式参考SEService.getReaders
-	this.result = this.nfcOmaReader.getName();
+    this.result = this.nfcOmaReader.getName();
 } catch (e) {
     this.result = "getName异常：" + e.message;
 }
@@ -501,7 +501,7 @@ import secureElement from '@ohos.secureElement';
 
 try {
     // this.nfcOmaSession:有效的Session，获取方式参考Reader.openSession
-	let ret = this.nfcOmaSession.getATR();
+    let ret = this.nfcOmaSession.getATR();
     if (ret) {
        this.result = "getATR结果:[";
        for (let i = 0; i < ret.length; ++i) {
@@ -552,7 +552,7 @@ import secureElement from '@ohos.secureElement';
 
 try {
     // this.nfcOmaSession:有效的Session，获取方式参考Reader.openSession
-	this.nfcOmaSession.close();
+    this.nfcOmaSession.close();
     this.result = "session close 成功";
 } catch (e) {
     this.result = "session close 异常:" + e.message;
@@ -590,7 +590,7 @@ import secureElement from '@ohos.secureElement';
 
 try {
     // this.nfcOmaSession:有效的Session，获取方式参考Reader.openSession
-	let ret = this.nfcOmaSession.isClosed();
+    let ret = this.nfcOmaSession.isClosed();
     if (ret) {
        this.result = "session状态：closed";
     } else {
