@@ -457,7 +457,7 @@ try {
         kvStore = store;
         kvStore = null;
         store = null;
-        kvManager.closeKVStore('appId', 'storeId', function (err, data) {
+        kvManager.closeKVStore('appId', 'storeId', function (err) {
             if (err != undefined) {
                 console.error(`Failed to close KVStore.code is ${err.code},message is ${err.message}`);
                 return;
@@ -568,7 +568,7 @@ try {
         kvStore = store;
         kvStore = null;
         store = null;
-        kvManager.deleteKVStore('appId', 'storeId', function (err, data) {
+        kvManager.deleteKVStore('appId', 'storeId', function (err) {
             if (err != undefined) {
                 console.error(`Failed to delete KVStore.code is ${err.code},message is ${err.message}`);
                 return;
@@ -2128,7 +2128,7 @@ put(key: string, value: Uint8Array | string | number | boolean, callback: AsyncC
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err, data) {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err) {
         if (err != undefined) {
             console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
             return;
@@ -2239,7 +2239,7 @@ try {
         entries.push(entry);
     }
     console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries, async function (err, data) {
+    kvStore.putBatch(entries, async function (err) {
         if (err != undefined) {
             console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
             return;
@@ -2372,7 +2372,7 @@ try {
     v8Arr.push(vb1);
     v8Arr.push(vb2);
     v8Arr.push(vb3);
-    kvStore.putBatch(v8Arr, async function (err, data) {
+    kvStore.putBatch(v8Arr, async function (err) {
         if (err != undefined) {
             console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
             return;
@@ -2480,13 +2480,13 @@ delete(key: string, callback: AsyncCallback&lt;void&gt;): void
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err, data) {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err) {
         if (err != undefined) {
             console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
             return;
         }
         console.info('Succeeded in putting');
-        kvStore.delete(KEY_TEST_STRING_ELEMENT, function (err, data) {
+        kvStore.delete(KEY_TEST_STRING_ELEMENT, function (err) {
             if (err != undefined) {
                 console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
                 return;
@@ -2595,13 +2595,13 @@ try {
     let predicates = new dataSharePredicates.DataSharePredicates();
     let arr = ["name"];
     predicates.inKeys(arr);
-    kvStore.put("name", "bob", function (err, data) {
+    kvStore.put("name", "bob", function (err) {
         if (err != undefined) {
             console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
             return;
         }
         console.info("Succeeded in putting");
-        kvStore.delete(predicates, function (err, data) {
+        kvStore.delete(predicates, function (err) {
             if (err == undefined) {
                 console.info('Succeeded in deleting');
             } else {
@@ -2724,13 +2724,13 @@ try {
         keys.push(key + i);
     }
     console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries, async function (err, data) {
+    kvStore.putBatch(entries, async function (err) {
         if (err != undefined) {
             console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
             return;
         }
         console.info('Succeeded in putting Batch');
-        kvStore.deleteBatch(keys, async function (err, data) {
+        kvStore.deleteBatch(keys, async function (err) {
             if (err != undefined) {
                 console.error(`Failed to delete Batch.code is ${err.code},message is ${err.message}`);
                 return;
@@ -2845,10 +2845,10 @@ removeDeviceData(deviceId: string, callback: AsyncCallback&lt;void&gt;): void
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err, data) {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err) {
         console.info('Succeeded in putting data');
         const deviceid = 'no_exist_device_id';
-        kvStore.removeDeviceData(deviceid, async function (err, data) {
+        kvStore.removeDeviceData(deviceid, async function (err) {
             if (err == undefined) {
                 console.info('succeeded in removing device data');
             } else {
@@ -3673,7 +3673,7 @@ closeResultSet(resultSet: KVStoreResultSet, callback: AsyncCallback&lt;void&gt;)
 ```js
 try {
     let resultSet = null;
-    kvStore.closeResultSet(resultSet, function (err, data) {
+    kvStore.closeResultSet(resultSet, function (err) {
         if (err == undefined) {
             console.info('Succeeded in closing result set');
         } else {
@@ -3867,7 +3867,7 @@ backup(file:string, callback: AsyncCallback&lt;void&gt;):void
 ```js
 let file = "BK001";
 try {
-    kvStore.backup(file, (err, data) => {
+    kvStore.backup(file, function(err) => {
         if (err) {
             console.error(`Failed to backup.code is ${err.code},message is ${err.message} `);
         } else {
@@ -3950,7 +3950,7 @@ restore(file:string, callback: AsyncCallback&lt;void&gt;):void
 ```js
 let file = "BK001";
 try {
-    kvStore.restore(file, (err, data) => {
+    kvStore.restore(file, (err) => {
         if (err) {
             console.error(`Failed to restore.code is ${err.code},message is ${err.message}`);
         } else {
@@ -4124,7 +4124,7 @@ try {
         console.info(`startTransaction 0 ${data}`);
         count++;
     });
-    kvStore.startTransaction(async function (err, data) {
+    kvStore.startTransaction(async function (err) {
         if (err != undefined) {
             console.error(`Failed to start Transaction.code is ${err.code},message is ${err.message}`);
             return;
@@ -4132,7 +4132,7 @@ try {
         console.info('Succeeded in starting Transaction');
         let entries = putBatchString(10, 'batch_test_string_key');
         console.info(`entries: ${entries}`);
-        kvStore.putBatch(entries, async function (err, data) {
+        kvStore.putBatch(entries, async function (err) {
             if (err != undefined) {
                 console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
                 return;
@@ -4218,7 +4218,7 @@ commit(callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 try {
-    kvStore.commit(function (err, data) {
+    kvStore.commit(function (err) {
         if (err == undefined) {
             console.info('Succeeded in committing');
         } else {
@@ -4292,7 +4292,7 @@ rollback(callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 try {
-    kvStore.rollback(function (err,data) {
+    kvStore.rollback(function (err) {
         if (err == undefined) {
             console.info('Succeeded in rolling back');
         } else {
@@ -4359,7 +4359,7 @@ enableSync(enabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 try {
-    kvStore.enableSync(true, function (err, data) {
+    kvStore.enableSync(true, function (err) {
         if (err == undefined) {
             console.info('Succeeded in enabling sync');
         } else {
@@ -4427,7 +4427,7 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[], callback: Asy
 try {
     const localLabels = ['A', 'B'];
     const remoteSupportLabels = ['C', 'D'];
-    kvStore.setSyncRange(localLabels, remoteSupportLabels, function (err, data) {
+    kvStore.setSyncRange(localLabels, remoteSupportLabels, function (err) {
         if (err != undefined) {
             console.error(`Failed to set syncRange.code is ${err.code},message is ${err.message}`);
             return;
@@ -4496,7 +4496,7 @@ setSyncParam(defaultAllowedDelayMs: number, callback: AsyncCallback&lt;void&gt;)
 ```js
 try {
     const defaultAllowedDelayMs = 500;
-    kvStore.setSyncParam(defaultAllowedDelayMs, function (err, data) {
+    kvStore.setSyncParam(defaultAllowedDelayMs, function (err) {
         if (err != undefined) {
             console.error(`Failed to set syncParam.code is ${err.code},message is ${err.message}`);
             return;
