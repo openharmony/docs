@@ -27,7 +27,7 @@ getAttestStatus(callback: AsyncCallback&lt;AttestResultInfo&gt;) : void
 
 | 参数名   | 类型                                                        | 必填 | 说明                                                         |
 | -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;[AttestResultInfo](#AttestResultInfo)&gt; | 是   | 回调函数。当获取端云校验结果的详细信息成功，error为undefined，result为获取到的[AttestResultInfo](#AttestResultInfo)；否则为错误对象。 |
+| callback | AsyncCallback&lt;[AttestResultInfo](#attestresultinfo)&gt; | 是   | 回调函数。当获取端云校验结果的详细信息成功，error为undefined，result为获取到的[AttestResultInfo](#attestresultinfo)；否则为错误对象。 |
 
 **错误码：**
 
@@ -68,7 +68,7 @@ getAttestStatus() : Promise&lt;AttestResultInfo&gt;
 
 | 类型                                                  | 说明                            |
 | ----------------------------------------------------- | ------------------------------- |
-| Promise&lt;[AttestResultInfo](#AttestResultInfo)&gt; | Promise对象，返回端云校验结果的详细信息。 |
+| Promise&lt;[AttestResultInfo](#attestresultinfo)&gt; | Promise对象，返回端云校验结果的详细信息。 |
 
 **错误码：**
 
@@ -107,7 +107,7 @@ getAttestStatusSync() : AttestResultInfo
 
 | 类型                                                  | 说明                            |
 | ----------------------------------------------------- | ------------------------------- |
-| [AttestResultInfo](#AttestResultInfo) | 返回端云校验结果的详细信息。 |
+| [AttestResultInfo](#attestresultinfo) | 返回端云校验结果的详细信息。 |
 
 **错误码：**
 
@@ -131,7 +131,7 @@ try {
 }
 ```
 
-## AttestResultInfo<a id="AttestResultInfo"></a>
+## AttestResultInfo
 
 端云校验结果的详细信息。
 
