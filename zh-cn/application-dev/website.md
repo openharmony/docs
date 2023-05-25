@@ -1296,7 +1296,7 @@
       - [@ohos.systemTimer (系统定时器)](reference/apis/js-apis-system-timer.md)
       - [@ohos.wallpaper (壁纸)](reference/apis/js-apis-wallpaper.md)
       - [@ohos.web.webview (Webview)](reference/apis/js-apis-webview.md)
-      - [console (日志打印)](reference/apis/js-apis-logs.md)
+      - [console (控制台)](reference/apis/js-apis-logs.md)
       - [Timer (定时器)](reference/apis/js-apis-timer.md)
       - application
         - [AccessibilityExtensionContext (辅助功能扩展上下文)](reference/apis/js-apis-inner-application-accessibilityExtensionContext.md)
