@@ -1251,7 +1251,6 @@
       - [@ohos.net.connection (网络连接管理)](reference/apis/js-apis-net-connection.md)
       - [@ohos.net.ethernet (以太网连接管理)](reference/apis/js-apis-net-ethernet.md)
       - [@ohos.net.http (数据请求)](reference/apis/js-apis-http.md)
-      - [@ohos.net.policy (网络策略管理)](reference/apis/js-apis-net-policy.md)
       - [@ohos.net.sharing (网络共享管理)](reference/apis/js-apis-net-sharing.md)
       - [@ohos.net.socket (Socket连接)](reference/apis/js-apis-socket.md)
       - [@ohos.net.webSocket (WebSocket连接)](reference/apis/js-apis-webSocket.md)
@@ -1478,7 +1477,6 @@
       - [网络连接管理错误码](reference/errorcodes/errorcode-net-connection.md)
       - [以太网连接错误码](reference/errorcodes/errorcode-net-ethernet.md)
       - [网络共享错误码](reference/errorcodes/errorcode-net-sharing.md)
-      - [策略管理错误码](reference/errorcodes/errorcode-net-policy.md)
     - 通信与连接
       - [NFC错误码](reference/errorcodes/errorcode-nfc.md)
       - [RPC错误码](reference/errorcodes/errorcode-rpc.md)
