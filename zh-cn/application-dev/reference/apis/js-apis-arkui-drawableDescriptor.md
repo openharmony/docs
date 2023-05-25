@@ -1,4 +1,4 @@
-#@ohos.arkui.drawableDescriptor(DrawableDescriptor)
+# @ohos.arkui.drawableDescriptor (DrawableDescriptor)
 
 本模块提供获取pixelMap的能力，包括前景、背景、蒙版和分层图标。
 

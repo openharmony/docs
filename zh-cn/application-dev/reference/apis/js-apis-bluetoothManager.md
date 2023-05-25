@@ -694,7 +694,7 @@ try {
 ```
 
 
-## bluetoothManager.setDevicePinCode<sup>10+</sup><a name="setDevicePinCode"></a>
+## bluetoothManager.setDevicePinCode<sup>10+</sup><a name="setDevicePinCode-1"></a>
 
 setDevicePinCode(device: string, code: string): Promise&lt;void&gt;
 

@@ -1702,7 +1702,7 @@ let delayTimes = imageSourceApi.getDelayTime();
 
 ### getFrameCount<sup>10+</sup>
 
-getFrameCount(callback: AsyncCallback<number>): void;
+getFrameCount(callback: AsyncCallback\<number>): void;
 
 获取图像帧数，使用callback形式返回结果。
 
