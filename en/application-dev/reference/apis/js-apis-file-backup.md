@@ -19,9 +19,9 @@ Defines a file metadata object, which includes the application name and file URI
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
-| Name      | Type  | Mandatory| Description   |
-| ---------- | ------ | ---- | ------------------------- |
-| bundleName | string | Yes  | Bundle name of the application, which can be obtained by using the method provided by [bundle.BundleInfo](js-apis-bundle-BundleInfo.md).                 |
+| Name      | Type  | Mandatory| Description                                                                                          |
+| ---------- | ------ | ---- | ---------------------------------------------------------------------------------------------- |
+| bundleName | string | Yes  | Bundle name of the application, which can be obtained by using the method provided by [bundle.BundleInfo](js-apis-bundle-BundleInfo.md).         |
 | uri        | string | Yes  | Name of the file in the application sandbox.<br>Currently, the URI has not been upgraded to the standard format. It can consist of digits (0–9), letters (a–z and A–Z), underscores (_), and period (.) only.|
 
 ## FileData
@@ -63,21 +63,22 @@ Called when the server sends a file to the client. If the file is sent successfu
 
 > **NOTE**
 >
-> The **File** returned by **AsyncCallback** is the file.backup.[File](#file). The returned file belongs to the backup service. Once the file is closed, the backup service shall clear the resources used by the file. However, the client must close the file handle first.
+> The **File** returned by **AsyncCallback** is the file.backup.[File](#file). The returned file belongs to the backup service. Once the file is closed, the backup service shall clear the resources used by the file at the proper time. However, the client must close the file handle first.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
 **Error codes**
 
 For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
-| ID                    | Error Message       |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
-| 13900005 | I/O error |
-| 13900011 | Out of memory |
-| 13900020 | Invalid argument |
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
 | 13900025 | No space left on device |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error           |
 
 **Example**
 
@@ -103,14 +104,15 @@ onBundleBegin : AsyncCallback&lt;string&gt;
 **Error codes**
 
 For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
-| ID                    | Error Message       |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
-| 13900005 | I/O error |
-| 13900011 | Out of memory |
-| 13900020 | Invalid argument |
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
 | 13900025 | No space left on device |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error           |
 
 **Example**
 
@@ -134,14 +136,15 @@ Called when the backup or restoration of an application ends. If the backup or r
 **Error codes**
 
 For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
-| ID                    | Error Message       |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
-| 13900005 | I/O error |
-| 13900011 | Out of memory |
-| 13900020 | Invalid argument |
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
 | 13900025 | No space left on device |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error           |
 
 **Example**
 
@@ -165,14 +168,15 @@ Called when the backup or restoration of all bundles ends. If the backup or rest
 **Error codes**
 
 For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
-| ID                    | Error Message       |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
-| 13900005 | I/O error |
-| 13900011 | Out of memory |
-| 13900020 | Invalid argument |
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
 | 13900025 | No space left on device |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error           |
 
 **Example**
 
@@ -213,20 +217,21 @@ Obtains a JSON file that describes local capabilities. This API uses an asynchro
 
 **Parameters**
 
-| Name  | Type                  | Mandatory| Description                 |
-| -------- | ------------------------- | ---- | --------------------- |
+| Name  | Type                                      | Mandatory| Description                                                  |
+| -------- | ------------------------------------------ | ---- | ------------------------------------------------------ |
 | callback | AsyncCallback&lt;[FileData](#filedata)&gt; | Yes  | Callback invoked to return the result. If the file is obtained, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
 For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
-| ID                    | Error Message       |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
-| 13900005 | I/O error |
-| 13900011 | Out of memory |
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
 | 13900025 | No space left on device |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error           |
 
 **Example**
 
@@ -275,31 +280,34 @@ Obtains a JSON file that describes local capabilities. This API uses a promise t
 
 **Return value**
 
-| Type            | Description                    |
-| -------------------- | ------------------ |
+| Type                                | Description                                               |
+| ------------------------------------ | --------------------------------------------------- |
 | Promise&lt;[FileData](#filedata)&gt; | Promise used to return the **FileData** of the JSON file obtained.|
 
 **Error codes**
 
 For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
-| ID                    | Error Message       |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
-| 13900005 | I/O error |
-| 13900011 | Out of memory |
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
 | 13900025 | No space left on device |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error           |
 
 **Example**
 
   ```js
   import fs from '@ohos.file.fs';
-  try {
-    let fileData = await backup.getLocalCapabilities();
-    console.info('getLocalCapabilities success');
-    fs.closeSync(fileData.fd);
-  } catch (err) {
-    console.error('getLocalCapabilities failed with err: ' + err);
+  async function getLocalCapabilities() {
+    try {
+      let fileData = await backup.getLocalCapabilities();
+      console.info('getLocalCapabilities success');
+      fs.closeSync(fileData.fd);
+    } catch (err) {
+      console.error('getLocalCapabilities failed with err: ' + err);
+    }
   }
   ```
 
@@ -345,6 +353,75 @@ A constructor used to create a **SessionBackup** instance.
 
   ```js
   import fs from '@ohos.file.fs';
+  let generalCallbacks = backup.GeneralCallbacks({
+    onFileReady: (err, file) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + err);
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleBegin failed with err: ' + err);
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleEnd failed with err: ' + err);
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + err);
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    }
+  });
+  let sessionBackup = new backup.SessionBackup(generalCallbacks);
+  ```
+
+### appendBundles
+
+appendBundles(bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): void
+
+Appends the applications whose data needs to be backed up. Currently, the obtained **SessionBackup** instance can be called only once in the entire backup process. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.BACKUP
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Parameters**
+
+| Name         | Type                     | Mandatory| Description                                                          |
+| --------------- | ------------------------- | ---- | -------------------------------------------------------------- |
+| bundlesToBackup | string[]                  | Yes  | Array of the application names to append.                                     |
+| callback        | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the applications are appended successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900001 | Operation not permitted |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
+| 13900025 | No space left on device |
+| 13900042 | Unknown error           |
+
+**Example**
+
+
+  ```js
+  import fs from '@ohos.file.fs';
   let sessionBackup = new backup.SessionBackup({
     onFileReady: (err, file) => {
       if (err) {
@@ -375,41 +452,6 @@ A constructor used to create a **SessionBackup** instance.
       console.info('service died');
     }
   });
-  ```
-
-### appendBundles
-
-appendBundles(bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): void
-
-Appends the applications whose data needs to be backed up. Currently, the obtained **SessionBackup** instance can be called only once in the entire backup process. This API uses an asynchronous callback to return the result.
-
-**Required permissions**: ohos.permission.BACKUP
-
-**System capability**: SystemCapability.FileManagement.StorageService.Backup
-
-**Parameters**
-
-| Name         | Type                     | Mandatory| Description                                                          |
-| --------------- | ------------------------- | ---- | -------------------------------------------------------------- |
-| bundlesToBackup | string[]                  | Yes  | Array of the application names to append.                                     |
-| callback        | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the applications are appended successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
-
-**Error codes**
-
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
-| ID                    | Error Message       |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
-| 13900001 | Operation not permitted |
-| 13900005 | I/O error |
-| 13900011 | Out of memory |
-| 13900020 | Invalid argument |
-| 13900025 | No space left on device |
-| 13900042 | Unknown error |
-
-**Example**
-
-  ```js
   try {
     sessionBackup.appendBundles(['com.example.hiworld'], (err) => {
       if (err) {
@@ -447,24 +489,58 @@ Appends the applications whose data needs to be backed up. Currently, the obtain
 **Error codes**
 
 For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
-| ID                    | Error Message       |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
 | 13900001 | Operation not permitted |
-| 13900005 | I/O error |
-| 13900011 | Out of memory |
-| 13900020 | Invalid argument |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
 | 13900025 | No space left on device |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error           |
 
 **Example**
 
   ```js
-  try {
-    await sessionBackup.appendBundles(['com.example.hiworld']);
-    console.info('appendBundles success');
-  } catch (err) {
+  import fs from '@ohos.file.fs';
+  let sessionBackup = new backup.SessionBackup({
+    onFileReady: (err, file) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + err);
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleBegin failed with err: ' + err);
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleEnd failed with err: ' + err);
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + err);
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    }
+  });
+  async function appendBundles() {
+    try {
+      await sessionBackup.appendBundles(['com.example.hiworld']);
+      console.info('appendBundles success');
+    } catch (err) {
     console.error('appendBundles failed with err: ' + err);
+    }
   }
   ```
 
@@ -487,6 +563,80 @@ A constructor used to create a **SessionRestore** instance.
 | Name  | Type                                 | Mandatory| Description                |
 | -------- | ------------------------------------- | ---- | -------------------- |
 | callback | [GeneralCallbacks](#generalcallbacks) | Yes  | Callbacks to be invoked during the data restoration process.|
+
+**Example**
+
+  ```js
+  import fs from '@ohos.file.fs';
+  let generalCallbacks = backup.GeneralCallbacks({
+    onFileReady: (err, file) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + err);
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleBegin failed with err: ' + err);
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleEnd failed with err: ' + err);
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + err);
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    }
+  });
+  let sessionRestore = new backup.SessionRestore(generalCallbacks);
+  ```
+
+### appendBundles
+
+appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): void
+
+Appends the applications whose data needs to be restored. Currently, the obtained **SessionRestore** instance can be called only once in the entire restoration process. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> - During the data restoration, the capability file needs to be verified.
+> - Therefore, **remoteCapabilitiesFd** can be obtained by using the [getLocalCapabilities](#backupgetlocalcapabilities) API provided by the backup service. You can modify the parameters based on the actual situation of your application. You can also use the JSON file example provided by **getLocalCapabilities** to generate a capability file.
+
+**Required permissions**: ohos.permission.BACKUP
+
+**System capability**: SystemCapability.FileManagement.StorageService.Backup
+
+**Parameters**
+
+| Name              | Type                     | Mandatory| Description                                                          |
+| -------------------- | ------------------------- | ---- | -------------------------------------------------------------- |
+| remoteCapabilitiesFd | number                    | Yes  | FD of the file containing the capabilities to be restored.                            |
+| bundlesToBackup      | string[]                  | Yes  | Array of the application names to append.                                    |
+| callback             | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the applications are appended successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900001 | Operation not permitted |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
+| 13900025 | No space left on device |
+| 13900042 | Unknown error           |
 
 **Example**
 
@@ -518,62 +668,23 @@ A constructor used to create a **SessionRestore** instance.
       }
       console.info('onAllBundlesEnd success');
     },
-    onRestoreServiceDied: () => {
+    onBackupServiceDied: () => {
       console.info('service died');
     }
   });
-  ```
-
-### appendBundles
-
-appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): void
-
-Appends the applications whose data needs to be restored. Currently, the obtained **SessionRestore** instance can be called only once in the entire restoration process. This API uses an asynchronous callback to return the result.
-
-> **NOTE**
->
-> - During the data restoration, the capability file needs to be verified.
-> - Therefore, **remoteCapabilitiesFd** can be obtained by using the [getLocalCapabilities](#backupgetlocalcapabilities) API provided by the backup service. You can modify the parameters based on the actual situation of your application. You can also use the JSON file example provided by **getLocalCapabilities** to generate a capability file.
-
-**Required permissions**: ohos.permission.BACKUP
-
-**System capability**: SystemCapability.FileManagement.StorageService.Backup
-
-**Parameters**
-
-| Name              | Type                     | Mandatory| Description                                                          |
-| -------------------- | ------------------------- | ---- | -------------------------------------------------------------- |
-| remoteCapabilitiesFd | number                    | Yes  | FD of the file containing the capabilities to be restored.                            |
-| bundlesToBackup      | string[]                  | Yes  | Array of the application names to append.                                    |
-| callback             | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result. If the applications are appended successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
-
-**Error codes**
-
-For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
-| ID                    | Error Message       |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
-| 13900001 | Operation not permitted |
-| 13900005 | I/O error |
-| 13900011 | Out of memory |
-| 13900020 | Invalid argument |
-| 13900025 | No space left on device |
-| 13900042 | Unknown error |
-
-**Example**
-
-  ```js
-  try {
-    let fileData = await backup.getLocalCapabilities();
-    console.info('getLocalCapabilities success');
-    sessionRestore.appendBundles(fileData.fd, ['com.example.hiworld'], (err) => {
+  async function appendBundles() {
+    try {
+      let fileData = await backup.getLocalCapabilities();
+      console.info('getLocalCapabilities success');
+      sessionRestore.appendBundles(fileData.fd, ['com.example.hiworld'], (err) => {
       if (err) {
         console.error('appendBundles failed with err: ' + err);
       }
       console.info('appendBundles success');
     });
-  } catch (err) {
-    console.error('appendBundles failed with err: ' + err);
+    } catch (err) {
+      console.error('getLocalCapabilities failed with err: ' + err);
+    }
   }
   ```
 
@@ -608,26 +719,60 @@ Appends the applications whose data needs to be restored. Currently, the obtaine
 **Error codes**
 
 For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
-| ID                    | Error Message       |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
 | 13900001 | Operation not permitted |
-| 13900005 | I/O error |
-| 13900011 | Out of memory |
-| 13900020 | Invalid argument |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
 | 13900025 | No space left on device |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error           |
 
 **Example**
 
   ```js
-  try {
-    let fileData = await backup.getLocalCapabilities();
-    console.info('getLocalCapabilities success');
-    await sessionRestore.appendBundles(fileData.fd, ['com.example.hiworld']);
-    console.info('appendBundles success');
-  } catch (err) {
-    console.error('appendBundles failed with err: ' + err);
+  import fs from '@ohos.file.fs';
+  let sessionRestore = new backup.SessionRestore({
+    onFileReady: (err, file) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + err);
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleBegin failed with err: ' + err);
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleEnd failed with err: ' + err);
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + err);
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    }
+  });
+  async function appendBundles() {
+    try {
+      let fileData = await backup.getLocalCapabilities();
+      console.info('getLocalCapabilities success');
+      await sessionRestore.appendBundles(fileData.fd, ['com.example.hiworld']);
+      console.info('appendBundles success');
+    } catch (err) {
+      console.error('getLocalCapabilities failed with err: ' + err);
+    }
   }
   ```
 
@@ -658,18 +803,49 @@ Obtains the handle of the shared file from the service. This API uses an asynchr
 **Error codes**
 
 For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
-| ID                    | Error Message       |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
 | 13900001 | Operation not permitted |
-| 13900020 | Invalid argument |
-| 13900042 | Unknown error |
+| 13900020 | Invalid argument        |
+| 13900042 | Unknown error           |
 
 **Example**
 
   ```js
-  try {
-    sessionRestore.getFileHandle({
+  import fs from '@ohos.file.fs';
+  let sessionRestore = new backup.SessionRestore({
+    onFileReady: (err, file) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + err);
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleBegin failed with err: ' + err);
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleEnd failed with err: ' + err);
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + err);
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    }
+  });
+  sessionRestore.getFileHandle({
       bundleName: "com.example.hiworld",
       uri: "test.txt"
       }, (err, file) => {
@@ -678,9 +854,6 @@ For details about the error codes, see [File Management Error Codes](../errorcod
       }
       console.info('getFileHandle success');
     });
-  } catch (err) {
-    console.error('getFileHandle failed with err: ' + err);
-  }
   ```
 
 ### getFileHandle
@@ -715,24 +888,58 @@ Obtains the handle of the shared file from the service. This API uses a promise 
 **Error codes**
 
 For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
-| ID                    | Error Message       |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
 | 13900001 | Operation not permitted |
-| 13900020 | Invalid argument |
-| 13900042 | Unknown error |
+| 13900020 | Invalid argument        |
+| 13900042 | Unknown error           |
 
 **Example**
 
   ```js
-  try {
-    await sessionRestore.getFileHandle({
-      bundleName: "com.example.hiworld",
-      uri: "test.txt"
+  import fs from '@ohos.file.fs';
+  let sessionRestore = new backup.SessionRestore({
+    onFileReady: (err, file) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + err);
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleBegin failed with err: ' + err);
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleEnd failed with err: ' + err);
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + err);
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    }
+  });
+  async function getFileHandle() {
+    try {
+      await sessionRestore.getFileHandle({
+        bundleName: "com.example.hiworld",
+        uri: "test.txt"
       });
-    console.info('getFileHandle success');
-  } catch (err) {
-    console.error('getFileHandle failed with err: ' + err);
+      console.info('getFileHandle success');
+    } catch (err) {
+      console.error('getFileHandle failed with err: ' + err);
+    }
   }
   ```
 
@@ -762,36 +969,62 @@ Publishes **FileMeta** to the backup service to indicate that the file content i
 **Error codes**
 
 For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
-| ID                    | Error Message       |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
 | 13900001 | Operation not permitted |
-| 13900020 | Invalid argument |
-| 13900042 | Unknown error |
+| 13900020 | Invalid argument        |
+| 13900042 | Unknown error           |
 
 **Example**
 
   ```js
-  try {
-    onFileReady: (err, file) => {
-      if (err) {
-        console.error('onFileReady failed with err: ' + err);
-      }
-      console.info('onFileReady success');
-      fs.closeSync(file.fd);
-      sessionRestore.publishFile({
-      bundleName: file.bundleName,
-      uri: file.uri
-      }, (err) => {
+  import fs from '@ohos.file.fs';
+  let g_session;
+  function createSessionRestore() {
+    let sessionRestore = new backup.SessionRestore({
+      onFileReady: (err, file) => {
         if (err) {
-          console.error('publishFile failed with err: ' + err);
+          console.error('onFileReady failed with err: ' + err);
         }
-        console.info('publishFile success');
-      });
-    }
-  } catch (err) {
-    console.error('publishFile failed with err: ' + err);
+        console.info('onFileReady success');
+        fs.closeSync(file.fd);
+        g_session.publishFile({
+          bundleName: file.bundleName,
+          uri: file.uri
+        }, (err) => {
+          if (err) {
+            console.error('publishFile failed with err: ' + err);
+          }
+          console.info('publishFile success');
+        });
+      },
+      onBundleBegin: (err, bundleName) => {
+        if (err) {
+          console.error('onBundleBegin failed with err: ' + err);
+        }
+        console.info('onBundleBegin success');
+      },
+      onBundleEnd: (err, bundleName) => {
+        if (err) {
+          console.error('onBundleEnd failed with err: ' + err);
+        }
+        console.info('onBundleEnd success');
+      },
+      onAllBundlesEnd: (err) => {
+        if (err) {
+          console.error('onAllBundlesEnd failed with err: ' + err);
+        }
+        console.info('onAllBundlesEnd success');
+      },
+      onBackupServiceDied: () => {
+        console.info('service died');
+      }
+    });
+    return sessionRestore;
   }
+  g_session = createSessionRestore();
   ```
 
 ### publishFile
@@ -825,30 +1058,60 @@ Publishes **FileMeta** to the backup service to indicate that the file content i
 **Error codes**
 
 For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
-| ID                    | Error Message       |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
+
+| ID| Error Message               |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
 | 13900001 | Operation not permitted |
-| 13900020 | Invalid argument |
-| 13900042 | Unknown error |
+| 13900020 | Invalid argument        |
+| 13900042 | Unknown error           |
 
 **Example**
 
   ```js
-  try {
-    onFileReady: (err, file) => {
-      if (err) {
-        console.error('onFileReady failed with err: ' + err);
-      }
-      console.info('onFileReady success');
-      fs.closeSync(file.fd);
-      await sessionRestore.publishFile({
+  import fs from '@ohos.file.fs';
+  let g_session;
+  async function publishFile(file)
+  {
+    await g_session.publishFile({
       bundleName: file.bundleName,
       uri: file.uri
-      });
-      console.info('publishFile success');
-    },
-  } catch (err) {
-    console.error('publishFile failed with err: ' + err);
+    });
   }
+  function createSessionRestore() {
+    let sessionRestore = new backup.SessionRestore({
+      onFileReady: (err, file) => {
+        if (err) {
+          console.error('onFileReady failed with err: ' + err);
+        }
+        console.info('onFileReady success');
+        fs.closeSync(file.fd);
+        publishFile(file);
+        console.info('publishFile success');
+      },
+      onBundleBegin: (err, bundleName) => {
+        if (err) {
+          console.error('onBundleBegin failed with err: ' + err);
+        }
+        console.info('onBundleBegin success');
+      },
+      onBundleEnd: (err, bundleName) => {
+        if (err) {
+          console.error('onBundleEnd failed with err: ' + err);
+        }
+        console.info('onBundleEnd success');
+      },
+      onAllBundlesEnd: (err) => {
+        if (err) {
+          console.error('onAllBundlesEnd failed with err: ' + err);
+        }
+        console.info('onAllBundlesEnd success');
+      },
+      onBackupServiceDied: () => {
+        console.info('service died');
+      }
+    });
+    return sessionRestore;
+  }
+  g_session = createSessionRestore();
   ```
