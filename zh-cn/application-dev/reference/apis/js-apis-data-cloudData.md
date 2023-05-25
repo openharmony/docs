@@ -56,14 +56,14 @@ static enableCloud(accountId: string, switches: {[bundleName: string]: boolean},
 **示例：**
 
 ```js
-let account = "test_id";
-let switches = { "test_bundleName1": true, "test_bundleName2": false };
+let account = 'test_id';
+let switches = { 'test_bundleName1': true, 'test_bundleName2': false };
 try {
     cloudData.Config.enableCloud(account, switches, function (err) {
         if (err === undefined) {
             console.info('Succeeded in enabling cloud');
         } else {
-            console.error('Failed to enable.' + `Code: ${err.code}, message: ${err.message}`);
+            console.error(`Failed to enable.Code: ${err.code}, message: ${err.message}`);
         }
     });
 } catch (error) {
@@ -99,13 +99,13 @@ static enableCloud(accountId: string, switches: {[bundleName: string]: boolean})
 **示例：**
 
 ```js
-let account = "test_id";
-let switches = { "test_bundleName1": true, "test_bundleName2": false };
+let account = 'test_id';
+let switches = { 'test_bundleName1': true, 'test_bundleName2': false };
 try {
     cloudData.Config.enableCloud(account, switches).then(() => {
         console.info('Succeeded in enabling cloud');
     }).catch((err) => {
-        console.error('Failed to enable.' + `Code: ${err.code}, message: ${err.message}`);
+        console.error(`Failed to enable.Code: ${err.code}, message: ${err.message}`);
     });
 } catch (error) {
     console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
@@ -134,13 +134,13 @@ static disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;):void
 **示例：**
 
 ```js
-let account = "test_id";
+let account = 'test_id';
 try {
     cloudData.Config.disableCloud(account, function (err) {
         if (err === undefined) {
             console.info('Succeeded in disabling cloud');
         } else {
-            console.error('Failed to disableCloud.' + `Code: ${err.code}, message: ${err.message}`);
+            console.error(`Failed to disableCloud. Code: ${err.code}, message: ${err.message}`);
         }
     });
 } catch (error) {
@@ -175,13 +175,12 @@ static disableCloud(accountId: string): Promise&lt;void&gt;
 **示例：**
 
 ```js
-let account = "test_id";
-let switches = { "test_bundleName1": true, "test_bundleName2": false };
+let account = 'test_id';
 try {
     cloudData.Config.disableCloud(account).then(() => {
         console.info('Succeeded in disabling cloud');
     }).catch((err) => {
-        console.error('Failed to disableCloud.' + `Code: ${err.code}, message: ${err.message}`);
+        console.error(`Failed to disableCloud. Code: ${err.code}, message: ${err.message}`);
     });
 } catch (error) {
     console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
@@ -212,14 +211,14 @@ static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean, 
 **示例：**
 
 ```js
-let account = "test_id";
-let bundleName = "test_bundleName";
+let account = 'test_id';
+let bundleName = 'test_bundleName';
 try {
     cloudData.Config.changeAppCloudSwitch(account, bundleName, true, function (err) {
         if (err === undefined) {
             console.info('Succeeded in changing App cloud switch');
         } else {
-            console.error('Failed to change App cloud switch.' + `Code: ${err.code}, message: ${err.message}`);
+            console.error(`Failed to change App cloud switch. Code: ${err.code}, message: ${err.message}`);
         }
     });
 } catch (error) {
@@ -256,13 +255,13 @@ static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean):
 **示例：**
 
 ```js
-let account = "test_id";
-let bundleName = "test_bundleName";
+let account = 'test_id';
+let bundleName = 'test_bundleName';
 try {
     cloudData.Config.changeAppCloudSwitch(account, bundleName, true).then(() => {
         console.info('Succeeded in changing App cloud switch');
     }).catch((err) => {
-        console.error('Failed to change App cloud switch.' + `Code is ${err.code}, message is ${err.message}`);
+        console.error(`Failed to change App cloud switch. Code is ${err.code}, message is ${err.message}`);
     });
 } catch (error) {
     console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
@@ -292,14 +291,14 @@ static notifyDataChange(accountId: string,bundleName:string, callback: AsyncCall
 **示例：**
 
 ```js
-let account = "test_id";
-let bundleName = "test_bundleName";
+let account = 'test_id';
+let bundleName = 'test_bundleName';
 try {
     cloudData.Config.notifyDataChange(account, bundleName, function (err) {
         if (err === undefined) {
             console.info('Succeeded in notifying the change of data');
         } else {
-            console.error('Failed to notify the change of data.' + `Code: ${err.code}, message: ${err.message}`);
+            console.error(`Failed to notify the change of data. Code: ${err.code}, message: ${err.message}`);
         }
     });
 } catch (error) {
@@ -335,13 +334,13 @@ static notifyDataChange(accountId: string,bundleName:string): Promise&lt;void&gt
 **示例：**
 
 ```js
-let account = "test_id";
-let bundleName = "test_bundleName";
+let account = 'test_id';
+let bundleName = 'test_bundleName';
 try {
     cloudData.Config.notifyDataChange(account, bundleName).then(() => {
         console.info('Succeeded in notifying the change of data');
     }).catch((err) => {
-        console.error('Failed to notify the change of data.' + `Code: ${err.code}, message: ${err.message}`);
+        console.error(`Failed to notify the change of data. Code: ${err.code}, message: ${err.message}`);
     });
 } catch (error) {
     console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
