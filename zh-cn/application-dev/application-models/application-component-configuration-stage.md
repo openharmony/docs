@@ -66,7 +66,7 @@
 
   如果应用确需隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。详细的入口图标及入口标签的显示规则如下。
 
-  * HAP中包含UIAbility
+  1.HAP中包含UIAbility
     * 在module.json5配置文件的abilities标签中设置了入口图标
       * 该应用没有隐藏图标的特权
         * 系统将使用该UIAbility配置的icon作为入口图标，并显示在桌面上。用户点击该图标，页面跳转到该UIAbility首页。
@@ -79,7 +79,8 @@
         * 系统将使用app.json5中的label作为入口标签，并显示在桌面上。
       * 该应用具有隐藏图标的特权
         * 桌面应用查询时不返回应用信息，不会在桌面上显示对应的入口图标和标签。
-  * HAP中不包含UIAbility
+
+  2.HAP中不包含UIAbility
     * 该应用没有隐藏图标的特权
       * 系统将使用app.json5中的icon作为入口图标，并显示在桌面上。用户点击该图标，页面跳转到应用管理中对应的应用详情页面，如下图所示。
       * 系统将使用app.json5中的label作为入口标签，并显示在桌面上。
