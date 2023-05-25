@@ -265,7 +265,7 @@
   - [@ohos.file.storageStatistics (应用空间统计)](js-apis-file-storage-statistics.md)
   - [@ohos.file.volumeManager (卷管理)](js-apis-file-volumemanager.md)
   - [@ohos.filemanagement.userFileManager (用户数据管理)](js-apis-userFileManager.md)
-  - [@ohos.fileShare (文件分享)](js-apis-fileShare.md)
+  - [@ohos.fileshare (文件分享)](js-apis-fileShare.md)
 
 - 电话服务
   - [@ohos.contact (联系人)](js-apis-contact.md)
