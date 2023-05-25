@@ -1214,7 +1214,7 @@
     - UI界面
       - [@ohos.animator (动画)](reference/apis/js-apis-animator.md)
       - [@ohos.arkui.componentSnapshot（组件截图）](reference/apis/js-apis-arkui-componentSnapshot.md)
-      - [@ohos.arkui.drawableDescriptor(DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
+      - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
       - [@ohos.curves (插值计算)](reference/apis/js-apis-curve.md)
       - [@ohos.matrix4 (矩阵变换)](reference/apis/js-apis-matrix4.md)
       - [@ohos.mediaquery (媒体查询)](reference/apis/js-apis-mediaquery.md)
