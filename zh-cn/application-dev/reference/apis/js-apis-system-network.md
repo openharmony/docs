@@ -22,13 +22,10 @@ ohos.permission.GET_NETWORK_INFO
 ## network.getType<sup>3+</sup>
 
 getType(options?: {<br>
-
 &nbsp;&nbsp;success?: (data: NetworkResponse) => void;<br>
-
 &nbsp;&nbsp;fail?: (data: any, code: number) => void;<br>
-
 &nbsp;&nbsp;complete?: () => void;<br>
-}): void<br>
+}): void
 
 获取当前设备的网络类型。
 
@@ -69,11 +66,9 @@ export default {
 ## network.subscribe<sup>3+</sup>
 
 subscribe(options?:{<br>
-
 &nbsp;&nbsp;success?: (data: NetworkResponse) => void;<br>
-
 &nbsp;&nbsp;fail?: (data: any, code: number) => void;<br>
-  }): void<br>
+  }): void
 
 订阅当前设备的网络连接状态。如果多次调用，会覆盖前一次调用。
 
