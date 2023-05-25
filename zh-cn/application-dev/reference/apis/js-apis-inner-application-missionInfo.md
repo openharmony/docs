@@ -26,6 +26,7 @@ import missionManager from '@ohos.app.ability.missionManager';
 | label | string | 是 | 是 | 表示任务的标签。 |
 | iconPath | string | 是 | 是 | 表示任务的图标路径。 |
 | continuable | boolean | 是 | 是 | 表示任务是否可以迁移。 |
+| unclearable | boolean | 是 | 是 | 表示任务是否可以被用户手动删除。 |
 
 **示例：**
 ```ts
@@ -47,6 +48,7 @@ try {
     console.log('getMissionInfo label is: ${JSON.stringify(data.label)}');
     console.log('getMissionInfo iconPath is: ${JSON.stringify(data.iconPath)}');
     console.log('getMissionInfo continuable is: ${JSON.stringify(data.continuable)}');
+    console.log('getMissionInfo unclearable is: ${JSON.stringify(data.unclearable)}');
     });
 } catch (paramError) {
     console.error('error: ${paramError.code}, ${paramError.message}');
