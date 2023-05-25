@@ -16,7 +16,7 @@ import secureElement from '@ohos.secureElement';
 
 定义不同的SE 服务状态值。
 
-**系统能力：** SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 | 名称         | 值   | 说明               |
 | ------------ | ---- | ------------------ |
@@ -25,7 +25,7 @@ import secureElement from '@ohos.secureElement';
 
 ## secureElement.newSEService
 
-newSEService(**type**: 'serviceState', callback: Callback<[ServiceState](#ServiceState)>): [SEService](#SEService)
+newSEService(type: 'serviceState', callback: Callback<[ServiceState](#ServiceState)>): [SEService](#SEService)
 
 建立一个可用于连接到系统中所有可用SE的新连接（服务）。连接过程可能很长，所以它是以异步方式进行的。仅当
 
@@ -86,7 +86,7 @@ getReaders(): [Reader](#Reader)[]
 > **说明：**
 > 从 API version 10
 
-**系统能力：** SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **返回值：**
 
@@ -141,7 +141,7 @@ isConnected(): boolean
 
 检查SE服务是否已连接
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **返回值：**
 
@@ -184,7 +184,7 @@ shutdown(): void
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：** SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **返回值：**
 
@@ -222,7 +222,7 @@ getVersion(): string
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **返回值：**
 
@@ -260,7 +260,7 @@ getName(): string
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **返回值：**
 
@@ -297,7 +297,7 @@ isSecureElementPresent(): boolean
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **返回值：**
 
@@ -342,7 +342,7 @@ try {
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **返回值：**
 
@@ -383,14 +383,14 @@ try {
 
 ## Reader.closeSessions
 
- closeSessions(): **void**
+ closeSessions(): void
 
 关闭在此reader上打开的所有session。所有这些session打开的所有channel都将关闭。
 
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **返回值：**
 
@@ -432,7 +432,7 @@ getReader(): [Reader](#Reader)
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **返回值：**
 
@@ -468,14 +468,14 @@ try {
 
 ## Session.getATR
 
-getATR(): **number**[]
+getATR(): number[]
 
 获取该SE的ATR。如果该SE的ATR不可用，则应返回空数组。
 
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **返回值：**
 
@@ -519,14 +519,14 @@ try {
 
 ## Session.close
 
-close(): **void**
+close(): void
 
 关闭与SE的连接。这将关闭此应用程序与此SE打开的所有channel。
 
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **返回值：**
 
@@ -568,7 +568,7 @@ isClosed(): boolean
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **返回值：**
 
@@ -610,7 +610,7 @@ closeChannels(): void
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **返回值：**
 
@@ -645,14 +645,14 @@ try {
 
 ## Session.openBasicChannel
 
-openBasicChannel(aid: **number**[]): Promise<[Channel](#Channel)>
+openBasicChannel(aid: number[]): Promise<[Channel](#Channel)>
 
 获取基本channel，参考[ISO 7816-4](https://www.iso.org/standard/77180.html)协议，返回[Channel](#Channel)实例对象
 
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **参数：**
 
@@ -702,14 +702,14 @@ try {
 
 ## Session.openBasicChannel
 
- openBasicChannel(aid: **number**[], callback: AsyncCallback<[Channel](#Channel)>): **void**;
+ openBasicChannel(aid: number[], callback: AsyncCallback<[Channel](#Channel)>): void
 
 获取基本channel，参考[ISO 7816-4](https://www.iso.org/standard/77180.html)协议，返回channel实例对象
 
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **参数：**
 
@@ -763,14 +763,14 @@ try {
 
 ## Session.openBasicChannel
 
-openBasicChannel(aid: **number**[], p2: **number**): Promise<[Channel](#Channel)>
+openBasicChannel(aid: number[], p2: number): Promise<[Channel](#Channel)>
 
 获取基本channel，参考[ISO 7816-4](https://www.iso.org/standard/77180.html)协议，返回[Channel](#Channel)实例对象
 
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **参数：**
 
@@ -823,14 +823,14 @@ try {
 
 ## Session.openBasicChannel
 
-openBasicChannel(aid: **number**[], p2: **number**, callback: AsyncCallback<[Channel](#Channel)>): **void**
+openBasicChannel(aid: number[], p2:number, callback: AsyncCallback<[Channel](#Channel)>): void
 
 获取基本channel，参考[ISO 7816-4](https://www.iso.org/standard/77180.html)协议，返回channel实例对象
 
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **参数：**
 
@@ -885,14 +885,14 @@ try {
 
 ## Session.openLogicalChannel
 
-openLogicalChannel(aid: **number**[]): Promise<[Channel](#Channel)>
+openLogicalChannel(aid: number[]): Promise<[Channel](#Channel)>
 
 打开指定SE的逻辑[Channel](#Channel)对象
 
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **参数：**
 
@@ -943,14 +943,14 @@ try {
 
 ## Session.openLogicalChannel
 
- openLogicalChannel(aid: **number**[], callback: AsyncCallback<[Channel](#Channel)>): void
+ openLogicalChannel(aid:number[], callback: AsyncCallback<[Channel](#Channel)>): void
 
 打开指定SE的逻辑[Channel](#Channel)对象
 
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **参数：**
 
@@ -1016,7 +1016,7 @@ P2通常为0x00。设备应允许P2的任何值，并且应允许以下值： 0x
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **参数：**
 
@@ -1070,7 +1070,7 @@ if (this.nfcOmaSession) {
 
 ## Session.openLogicalChannel
 
-openLogicalChannel(aid: **number**[], p2: **number**, callback: AsyncCallback<[Channel](#Channel)>): **void**
+openLogicalChannel(aid: number[], p2: number, callback: AsyncCallback<[Channel](#Channel)>):void
 
 使用SE打开逻辑通道，选择由给定AID数组（AID非null且长度不为0）表示的applet.
 
@@ -1083,7 +1083,7 @@ P2通常为0x00。设备应允许P2的任何值，并且应允许以下值： 0x
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **参数：**
 
@@ -1145,7 +1145,7 @@ try {
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **返回值：**
 
@@ -1188,7 +1188,7 @@ close(): void
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **返回值：**
 
@@ -1228,7 +1228,7 @@ isBasicChannel(): boolean
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **返回值：**
 
@@ -1270,7 +1270,7 @@ isClosed(): boolean
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **返回值：**
 
@@ -1305,14 +1305,14 @@ try {
 
 ## Channel. getSelectResponse
 
-getSelectResponse(): **number**[]
+getSelectResponse():number[]
 
 返回从应用程序选择命令接收的数据，包括在applet选择时接收的状态字。
 
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **返回值：**
 
@@ -1352,14 +1352,14 @@ try {
 
 ## Channel. transmit
 
-transmit(command: **number**[]): Promise<**number**[]>
+transmit(command: number[]): Promise<number[]>
 
 向SE发送APDU命令（根据ISO/IEC 7816）
 
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **参数：**
 
@@ -1412,21 +1412,21 @@ try {
 
 ## Channel. transmit
 
-transmit(command: **number**[], callback: AsyncCallback<**number**[]>): **void**
+transmit(command: number[], callback: AsyncCallback<number[]>): void
 
 向SE发送APDU命令（根据ISO/IEC 7816）
 
 > **说明：**
 > 从 API version 10 开始支持。
 
-**系统能力：**SystemCapability.Communication.SecureElement
+**系统能力：**  SystemCapability.Communication.SecureElement
 
 **参数：**
 
-| **参数名** | **类型**                    | **说明**                              |
-| ---------- | --------------------------- | ------------------------------------- |
-| command    | number[]                    | 在该Channel上被选择的applet AID数组。 |
-| callback   | AsyncCallback<**number**[]> | 返回接收到的响应的回调，number数组    |
+| **参数名** | **类型**                | **说明**                              |
+| ---------- | ----------------------- | ------------------------------------- |
+| command    | number[]                | 在该Channel上被选择的applet AID数组。 |
+| callback   | AsyncCallback<number[]> | 返回接收到的响应的回调，number数组    |
 
 **返回值：**
 
