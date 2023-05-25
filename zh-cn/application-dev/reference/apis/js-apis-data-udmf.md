@@ -14,26 +14,29 @@ import UDMF from '@ohos.data.UDMF';
 
 ## UnifiedDataType
 
-[UnifiedData](#unifieddata)中各[UnifiedRecord](#unifiedrecord)的数据类型。
+[统一数据对象](#unifieddata)中各[数据记录](#unifiedrecord)的数据类型。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
-| 名称                     | 值                           | 说明             |
-| ------------------------ | ---------------------------- | ---------------- |
-| TEXT                     | "Text"                       | 文本类型         |
-| PLAIN_TEXT               | "Text.PlainText"             | 纯文本类型       |
-| HYPER_LINK               | "Text.HyperLink"             | 超链接类型       |
-| HTML                     | "Text.HTML"                  | 富文本类型       |
-| IMAGE                    | "File.Media.Image"           | 图片类型         |
-| VIDEO                    | "File.Media.Video"           | 视频类型         |
-| SYSTEM_DEFINED_RECORD    | "SystemDefinedType"          | 系统服务数据类型 |
-| SYSTEM_DEFINED_FORM      | "SystemDefinedType.Form"     | 卡片类型         |
-| SYSTEM_DEFINED_APP_ITEM  | "SystemDefinedType.AppItem"  | 图标类型         |
-| SYSTEM_DEFINED_PIXEL_MAP | "SystemDefinedType.PixelMap" | 二进制图片类型   |
+| 名称                         | 值                            | 说明        |
+|----------------------------|------------------------------|-----------|
+| TEXT                       | 'Text'                       | 文本类型。     |
+| PLAIN_TEXT                 | 'Text.PlainText'             | 纯文本类型。    |
+| HYPERLINK                  | 'Text.HyperLink'             | 超链接类型。    |
+| HTML                       | 'Text.HTML'                  | 富文本类型。    |
+| FILE                       | 'File'                       | 文件类型。     |
+| IMAGE                      | 'File.Media.Image'           | 图片类型。     |
+| VIDEO                      | 'File.Media.Video'           | 视频类型。     |
+| FOLDER                     | 'File.Folder'                | 文件夹类型。    |
+| SYSTEM_DEFINED_RECORD      | 'SystemDefinedType'          | 系统服务数据类型。 |
+| SYSTEM_DEFINED_FORM        | 'SystemDefinedType.Form'     | 卡片类型。     |
+| SYSTEM_DEFINED_APP_ITEM    | 'SystemDefinedType.AppItem'  | 图标类型。     |
+| SYSTEM_DEFINED_PIXEL_MAP   | 'SystemDefinedType.PixelMap' | 二进制图片类型。  |
+| APPLICATION_DEFINED_RECORD | 'ApplicationDefinedType'     | 应用自定义类型。  |
 
 ## UnifiedData
 
-表示UDMF数据对象，提供封装一组数据记录的方法。
+表示UDMF统一数据对象，提供封装一组数据记录的方法。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -41,29 +44,37 @@ import UDMF from '@ohos.data.UDMF';
 
 constructor(record: UnifiedRecord)
 
-用于创建带有一条数据记录的UnifiedData对象。此处数据记录应为UnifiedRecord子类对象。
+用于创建带有一条数据记录的统一数据对象。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 **参数：**
 
-| 参数名 | 类型                            | 必填 | 说明                            |
-| ------ | ------------------------------- | ---- | ------------------------------- |
-| record | [UnifiedRecord](#unifiedrecord) | 是   | 要添加到UnifiedData中的数据记录 |
+| 参数名 | 类型                            | 必填 | 说明                                      |
+| ------ | ------------------------------- | ---- |-----------------------------------------|
+| record | [UnifiedRecord](#unifiedrecord) | 是   | 要添加到统一数据对象中的数据记录，该记录为UnifiedRecord子类对象。 |
+
+**示例：**
+
+```js
+let text = new UDMF.PlainText();
+text.textContent = 'this is textContent of text';
+let unifiedData = new UDMF.UnifiedData(text);
+```
 
 ### addRecord
 
 addRecord(record: UnifiedRecord): void
 
-在当前UnifiedData对象中添加一条数据记录。此处数据记录应为UnifiedRecord子类对象。
+在当前统一数据对象中添加一条数据记录。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
 **参数：**
 
-| 参数名 | 类型                            | 必填 | 说明                            |
-| ------ | ------------------------------- | ---- | ------------------------------- |
-| record | [UnifiedRecord](#unifiedrecord) | 是   | 要添加到UnifiedData中的数据记录 |
+| 参数名 | 类型                            | 必填 | 说明                                          |
+| ------ | ------------------------------- | ---- |---------------------------------------------|
+| record | [UnifiedRecord](#unifiedrecord) | 是   | 要添加到统一数据对象中的数据记录，该记录为UnifiedRecord子类对象。|
 
 **示例：**
 
@@ -81,35 +92,50 @@ unifiedData.addRecord(text2);
 
 getRecords(): Array\<UnifiedRecord\>
 
-将当前UnifiedData对象中的所有数据记录取出。通过本接口取出的数据为UnifiedRecord类型，需通过[getType](#gettype)获取数据类型后转为子类再使用。
+将当前统一数据对象中的所有数据记录取出。通过本接口取出的数据为UnifiedRecord类型，需通过[getType](#gettype)获取数据类型后转为子类再使用。
 
 **系统能力** ：SystemCapability.DistributedDataManager.UDMF.Core
 
 **返回值：**
 
-| 类型                                     | 说明                              |
-| ---------------------------------------- | --------------------------------- |
-| Array\<[UnifiedRecord](#unifiedrecord)\> | 当前UnifiedData对象内所添加的记录 |
+| 类型                                     | 说明                      |
+| ---------------------------------------- |-------------------------|
+| Array\<[UnifiedRecord](#unifiedrecord)\> | 当前统一数据对象内所添加的记录。 |
 
 **示例：**
 
 ```js
+let text = new UDMF.PlainText();
+text.textContent = 'this is textContent of text';
+let unifiedData = new UDMF.UnifiedData(text);
+
+let link = new UDMF.HyperLink();
+link.url = 'www.XXX.com';
+unifiedData.addRecord(link);
+
 let records = unifiedData.getRecords();
-for (let i = 0; i < records.length; i ++) {
+for (let i = 0; i < records.length; i++) {
   let record = records[i];
+  if (record.getType() == UDMF.UnifiedDataType.PLAIN_TEXT) {
+    let plainText = <UDMF.PlainText> (record);
+    console.info(`textContent: ${plainText.textContent}`);
+  } else if (record.getType() == UDMF.UnifiedDataType.HYPERLINK) {
+    let hyperLink = <UDMF.HYPERLINK> (record);
+    console.info(`linkUrl: ${hyperLink.url}`);
+  }
 }
 ```
 
 ## Summary
 
-描述某一UnifiedData对象的数据摘要，包括所含数据类型及大小。
+描述某一统一数据对象的数据摘要，包括所含数据类型及大小。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
-| 名称      | 类型                      | 可读 | 可写 | 说明                                                         |
-| --------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| summary   | { [key: string]: number } | 是   | 否   | 是一个字典类型对象，key表示数据类型（见[UnifiedDataType](#unifieddatatype)），value为UnifiedData对象中该类型记录数据量总和（当前文件类型记录仅记录uri大小，非文件大小） |
-| totalSize | number                    | 是   | 否   | UnifiedData对象内记录总大小                                  |
+| 名称      | 类型                      | 可读 | 可写 | 说明                                                                                |
+| --------- | ------------------------- | ---- | ---- |-----------------------------------------------------------------------------------|
+| summary   | { [key: string]: number } | 是   | 否   | 是一个字典类型对象，key表示数据类型（见[UnifiedDataType](#unifieddatatype)），value为统一数据对象中该类型记录大小总和（单位：Byte）。 |
+| totalSize | number                    | 是   | 否   | 统一数据对象内记录总大小（单位：Byte）。                                                                     |
 
 **示例：**
 
@@ -123,23 +149,23 @@ getSummaryCallback(data, err) {
 
 ## UnifiedRecord
 
-对UDMF数据支持的数据内容的抽象定义，称为记录，一个统一数据对象内包含一条或多条记录，例如一条文本记录，一条图片记录，一条HTML记录等。
+对UDMF数据支持的数据内容的抽象定义，称为数据记录。一个统一数据对象内包含一条或多条数据记录，例如一条文本记录、一条图片记录、一条HTML记录等。
 
-UnifiedRecord是一个抽象父类，无法保存具体数据内容，应用在使用时，不能将其添加到UnifiedData中，而应该创建带有数据内容的具体子类，如Text、Image等。
+UnifiedRecord是一个抽象父类，无法保存具体数据内容，应用在使用时，不能将其添加到统一数据对象中，而应该创建带有数据内容的具体子类，如Text、Image等。
 
 ### getType
 
 getType(): string
 
-获取当前UnifiedRecord的类型。由于从UnifiedData中调用[getRecords](#getrecords)所取出的数据是UnifiedRecord对象，因此需要通过本接口查询此记录的具体类型，再将该UnifiedRecord对象转换为其子类，调用子类接口。
+获取当前数据记录的类型。由于从统一数据对象中调用[getRecords](#getrecords)所取出的数据是UnifiedRecord对象，因此需要通过本接口查询此记录的具体类型，再将该UnifiedRecord对象转换为其子类，调用子类接口。
 
 **系统能力** ：SystemCapability.DistributedDataManager.UDMF.Core
 
 **返回值：**
 
-| 类型   | 说明                                                         |
-| ------ | ------------------------------------------------------------ |
-| string | 当前数据记录对应的具体数据类型，见[UnifiedDataType](#UnifiedDataType) |
+| 类型   | 说明                                                   |
+| ------ |------------------------------------------------------|
+| string | 当前数据记录对应的具体数据类型，见[UnifiedDataType](#UnifiedDataType)。|
 
 **示例：**
 
@@ -161,9 +187,9 @@ if (records[0].getType() == UDMF.UnifiedDataType.PLAIN_TEXT) {
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
-| 名称    | 类型                      | 可读 | 可写 | 说明                                                         |
-| ------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| details | { [key: string]: string } | 是   | 是   | 是一个字典类型对象，key和value都是string类型，用于描述文本内容，例如，可生成一个details内容为<br />{<br />"title":"标题",<br />"content":"内容"<br />}<br />的数据对象，用于描述一篇文章。 |
+| 名称    | 类型                      | 可读 | 可写 | 说明                                                                                                                                                  |
+| ------- | ------------------------- | ---- | ---- |-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| details | { [key: string]: string } | 是   | 是   | 是一个字典类型对象，key和value都是string类型，用于描述文本内容。例如，可生成一个details内容为<br />{<br />"title":"标题",<br />"content":"内容"<br />}<br />的数据对象，用于描述一篇文章。非必填字段，默认值为空字典对象。 |
 
 **示例：**
 
@@ -182,16 +208,17 @@ let unifiedData = new UDMF.UnifiedData(text);
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
-| 名称        | 类型   | 可读 | 可写 | 说明                   |
-| ----------- | ------ | ---- | ---- | ---------------------- |
-| textContent | string | 是   | 是   | 纯文本内容             |
-| abstract    | string | 是   | 是   | 纯文本摘要，非必填字段 |
+| 名称        | 类型   | 可读 | 可写 | 说明                    |
+| ----------- | ------ | ---- | ---- |-----------------------|
+| textContent | string | 是   | 是   | 纯文本内容。                |
+| abstract    | string | 是   | 是   | 纯文本摘要，非必填字段，默认值为空字符串。 |
 
 **示例：**
 
 ```js
 let text = new UDMF.PlainText();
 text.textContent = 'this is textContent';
+text.abstract = 'this is abstract';
 ```
 
 ## HyperLink
@@ -200,16 +227,17 @@ text.textContent = 'this is textContent';
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
-| 名称        | 类型   | 可读 | 可写 | 说明                     |
-| ----------- | ------ | ---- | ---- | ------------------------ |
-| url         | string | 是   | 是   | 链接url                  |
-| description | string | 是   | 是   | 链接内容描述，非必填字段 |
+| 名称        | 类型   | 可读 | 可写 | 说明           |
+| ----------- | ------ | ---- | ---- |--------------|
+| url         | string | 是   | 是   | 链接url。       |
+| description | string | 是   | 是   | 链接内容描述，非必填字段，默认值为空字符串。 |
 
 **示例：**
 
 ```js
 let link = new UDMF.HyperLink();
 link.url = 'www.XXX.com';
+link.description = 'this is description';
 ```
 
 ## HTML
@@ -218,16 +246,17 @@ HTML类型数据，是[Text](#text)的子类，用于描述超文本标记语言
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
-| 名称         | 类型   | 可读 | 可写 | 说明                                   |
-| ------------ | ------ | ---- | ---- | -------------------------------------- |
-| htmlContent  | string | 是   | 是   | html格式内容                           |
-| plainContent | string | 是   | 是   | 去除html标签后的纯文本内容，非必填字段 |
+| 名称         | 类型   | 可读 | 可写 | 说明                    |
+| ------------ | ------ | ---- | ---- |-----------------------|
+| htmlContent  | string | 是   | 是   | html格式内容。             |
+| plainContent | string | 是   | 是   | 去除html标签后的纯文本内容，非必填字段，默认值为空字符串。 |
 
 **示例：**
 
 ```js
 let html = new UDMF.HTML();
 html.htmlContent = '<div><p>标题</p></div>';
+html.plainContent = 'this is plainContent';
 ```
 
 ## Image
@@ -236,9 +265,9 @@ html.htmlContent = '<div><p>标题</p></div>';
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
-| 名称     | 类型   | 可读 | 可写 | 说明        |
-| -------- | ------ | ---- | ---- | ----------- |
-| imageUri | string | 是   | 是   | 图片数据uri |
+| 名称     | 类型   | 可读 | 可写 | 说明       |
+| -------- | ------ | ---- | ---- |----------|
+| imageUri | string | 是   | 是   | 图片数据uri。 |
 
 **示例：**
 
@@ -253,9 +282,9 @@ image.imageUri = 'schema://com.samples.test/files/test.jpg';
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
-| 名称     | 类型   | 可读 | 可写 | 说明        |
-| -------- | ------ | ---- | ---- | ----------- |
-| videoUri | string | 是   | 是   | 视频数据uri |
+| 名称     | 类型   | 可读 | 可写 | 说明       |
+| -------- | ------ | ---- | ---- |----------|
+| videoUri | string | 是   | 是   | 视频数据uri。 |
 
 **示例：**
 
@@ -266,13 +295,13 @@ video.videoUri = 'schema://com.samples.test/files/test.mp4';
 
 ## SystemDefinedRecord
 
-SystemDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是OpenHarmony平台上系统侧定义的数据类型的基类，用于描述文本类数据，推荐开发者优先使用SystemDefinedRecord的子类描述数据。
+SystemDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是OpenHarmony平台上系统侧定义的数据类型的基类。
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
-| 名称    | 类型                                              | 可读 | 可写 | 说明                                                         |
-| ------- | ------------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| details | { [key: string]: number \| string \| Uint8Array } | 是   | 是   | 是一个字典类型对象，key是string类型，value可以写入number（数值类型），string（字符串类型），Uint8Array（二进制字节数组）类型数据。 |
+| 名称    | 类型                        | 可读 | 可写 | 说明                                                         |
+| ------- |---------------------------| ---- | ---- | ------------------------------------------------------------ |
+| details | { [key: string]: number \ | string \| Uint8Array } | 是   | 是   | 是一个字典类型对象，key是string类型，value可以写入number（数值类型）、string（字符串类型）、Uint8Array（二进制字节数组）类型数据。非必填字段，默认值为空字典对象。|
 
 **示例：**
 
@@ -293,13 +322,13 @@ let unifiedData = new UDMF.UnifiedData(sdr);
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
-| 名称        | 类型   | 可读 | 可写 | 说明              |
-| ----------- | ------ | ---- | ---- | ----------------- |
-| formId      | number | 是   | 是   | 卡片id            |
-| formName    | string | 是   | 是   | 卡片名称          |
-| bundleName  | string | 是   | 是   | 卡片所属bundle名  |
-| abilityName | string | 是   | 是   | 卡片对应ability名 |
-| module      | string | 是   | 是   | 卡片所属module名  |
+| 名称        | 类型   | 可读 | 可写 | 说明             |
+| ----------- | ------ | ---- | ---- |----------------|
+| formId      | number | 是   | 是   | 卡片id。          |
+| formName    | string | 是   | 是   | 卡片名称。          |
+| bundleName  | string | 是   | 是   | 卡片所属的bundle名。   |
+| abilityName | string | 是   | 是   | 卡片对应的ability名。 |
+| module      | string | 是   | 是   | 卡片所属的module名。   |
 
 **示例：**
 
@@ -325,14 +354,14 @@ let unifiedData = new UDMF.UnifiedData(form);
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
-| 名称        | 类型   | 可读 | 可写 | 说明                  |
-| ----------- | ------ | ---- | ---- | --------------------- |
-| appId       | string | 是   | 是   | 图标对应应用id        |
-| appName     | string | 是   | 是   | 图标对应应用名        |
-| appIconId   | string | 是   | 是   | 图标图片id            |
-| appLabelId  | string | 是   | 是   | 图标标签id            |
-| bundleName  | string | 是   | 是   | 图标对应应用bundle名  |
-| abilityName | string | 是   | 是   | 图标对应应用ability名 |
+| 名称        | 类型   | 可读 | 可写 | 说明              |
+| ----------- | ------ | ---- | ---- |-----------------|
+| appId       | string | 是   | 是   | 图标对应的应用id。      |
+| appName     | string | 是   | 是   | 图标对应的应用名。        |
+| appIconId   | string | 是   | 是   | 图标的图片id。         |
+| appLabelId  | string | 是   | 是   | 图标的标签id。         |
+| bundleName  | string | 是   | 是   | 图标对应的应用bundle名。  |
+| abilityName | string | 是   | 是   | 图标对应的应用ability名。 |
 
 **示例：**
 
@@ -359,9 +388,9 @@ let unifiedData = new UDMF.UnifiedData(appItem);
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
-| 名称    | 类型       | 可读 | 可写 | 说明                     |
-| ------- | ---------- | ---- | ---- | ------------------------ |
-| rawData | Uint8Array | 是   | 是   | PixelMap对象的二进制数据 |
+| 名称    | 类型       | 可读 | 可写 | 说明                |
+| ------- | ---------- | ---- | ---- |-------------------|
+| rawData | Uint8Array | 是   | 是   | PixelMap对象的二进制数据。 |
 
 **示例：**
 
@@ -375,5 +404,3 @@ let sdpixel = new UDMF.SystemDefinedPixelMap();
 sdpixel.rawData = u8Array;
 let unifiedData = new UDMF.UnifiedData(sdpixel);
 ```
-
-
