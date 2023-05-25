@@ -1239,7 +1239,7 @@
       - [@ohos.file.storageStatistics (应用空间统计)](reference/apis/js-apis-file-storage-statistics.md)
       - [@ohos.file.volumeManager (卷管理)](reference/apis/js-apis-file-volumemanager.md)
       - [@ohos.filemanagement.userFileManager (用户数据管理)](reference/apis/js-apis-userFileManager.md)
-      - [@ohos.fileShare (文件分享)](reference/apis/js-apis-fileShare.md)
+      - [@ohos.fileshare (文件分享)](reference/apis/js-apis-fileShare.md)
     - 电话服务
       - [@ohos.contact (联系人)](reference/apis/js-apis-contact.md)
       - [@ohos.telephony.call (拨打电话)](reference/apis/js-apis-call.md)

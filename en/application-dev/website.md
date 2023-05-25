@@ -1151,7 +1151,7 @@
       - [@ohos.file.storageStatistics (Application Storage Statistics)](reference/apis/js-apis-file-storage-statistics.md)
       - [@ohos.file.volumeManager (Volume Management)](reference/apis/js-apis-file-volumemanager.md)
       - [@ohos.filemanagement.userFileManager (User Data Management)](reference/apis/js-apis-userFileManager.md)
-      - [@ohos.fileShare (File Sharing)](reference/apis/js-apis-fileShare.md)
+      - [@ohos.fileshare (File Sharing)](reference/apis/js-apis-fileShare.md)
     - Telephony Service
       - [@ohos.contact (Contacts)](reference/apis/js-apis-contact.md)
       - [@ohos.telephony.call (Call)](reference/apis/js-apis-call.md)
