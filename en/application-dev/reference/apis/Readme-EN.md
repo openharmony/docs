@@ -249,7 +249,7 @@
   - [@ohos.file.storageStatistics (Application Storage Statistics)](js-apis-file-storage-statistics.md)
   - [@ohos.file.volumeManager (Volume Management)](js-apis-file-volumemanager.md)
   - [@ohos.filemanagement.userFileManager (User Data Management)](js-apis-userFileManager.md)
-  - [@ohos.fileShare (File Sharing)](js-apis-fileShare.md)
+  - [@ohos.fileshare (File Sharing)](js-apis-fileShare.md)
 
 - Telephony Service
   - [@ohos.contact (Contacts)](js-apis-contact.md)

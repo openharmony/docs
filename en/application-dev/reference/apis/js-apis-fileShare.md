@@ -1,4 +1,4 @@
-# @ohos.fileShare (File Sharing)
+# @ohos.fileshare (File Sharing)
 
 The **fileShare** module provides APIs for granting the access permissions on a user file to another application by the Uniform Resource Identifier (URI). Then, the authorized application can access the file by using the APIs provided by [@ohos.file.fs](js-apis-file-fs.md).
 
@@ -9,7 +9,7 @@ The **fileShare** module provides APIs for granting the access permissions on a 
 ## Modules to Import
 
 ```js
-import fileShare from '@ohos.fileShare';
+import fileShare from '@ohos.fileshare';
 ```
 
 ## fileShare.grantUriPermission
