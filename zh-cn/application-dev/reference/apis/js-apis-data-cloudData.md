@@ -20,6 +20,8 @@ import ddm from '@ohos.data.cloudData';
 
 清除本地数据云信息的行为枚举。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
 
 | 名称      | 说明                         |
