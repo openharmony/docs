@@ -240,6 +240,7 @@
     - [PermissionRequestResult](js-apis-permissionrequestresult.md)
 
 - 数据管理
+  - [@ohos.data.cloudData（端云协同）](js-apis-data-cloudData.md)
   - [@ohos.data.dataAbility (DataAbility谓词)](js-apis-data-ability.md)
   - [@ohos.data.dataShare (数据共享)](js-apis-data-dataShare.md)
   - [@ohos.data.dataSharePredicates (数据共享谓词)](js-apis-data-dataSharePredicates.md)
