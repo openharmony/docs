@@ -10,7 +10,7 @@
 
 ## 接口
 
-OffscreenCanvasRenderingContext2D(width: number, height: number, setting: RenderingContextSettings)
+OffscreenCanvasRenderingContext2D(width: number, height: number, settings?: RenderingContextSettings)
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -20,7 +20,7 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, setting: Render
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------ |
 | width   | number                                                       | 是   | 离屏画布的宽度                       |
 | height  | number                                                       | 是   | 离屏画布的高度                       |
-| setting | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 是   | 见RenderingContextSettings接口描述。 |
+| setting | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 否   | 见RenderingContextSettings接口描述。 |
 
 
 ## 属性
