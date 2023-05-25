@@ -214,4 +214,4 @@ struct ListItemExample3 {
 }
 
 ```
-![listItem](figures/deleteListItem.gif)
+![deleteListItem](figures/deleteListItem.gif)
