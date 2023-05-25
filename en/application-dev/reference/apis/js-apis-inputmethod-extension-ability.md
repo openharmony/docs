@@ -38,9 +38,9 @@ Called when the **InputMethodExtension** ability is started to implement initial
 
 ```js
 class InputMethodExt extends InputMethodExtensionAbility {
-    onCreate(want) {
-        console.log('onCreate, want:' + want.abilityName);
-    }
+  onCreate(want) {
+    console.log('onCreate, want:' + want.abilityName);
+  }
 }
 ```
 
@@ -56,8 +56,8 @@ Called when this **InputMethodExtension** ability is destroyed to clear resource
 
 ```js
 class InputMethodExt extends InputMethodExtensionAbility {
-    onDestroy() {
-        console.log('onDestroy');
-    }
+  onDestroy() {
+    console.log('onDestroy');
+  }
 }
 ```
