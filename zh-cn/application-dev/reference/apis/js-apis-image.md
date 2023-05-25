@@ -1599,10 +1599,10 @@ let decodeOpts = {
     editable: true,
     desiredSize: { width: 198, height: 202 },
     rotate: 0,
-    desiredPixelFormat: RGBA_8888,
+    desiredPixelFormat: 3,
     index: 0,
 };
-let pixelmaplist = await imageSourceApi.createPixelMapList(decodeOpts);
+let pixelmaplist = imageSourceApi.createPixelMapList(decodeOpts);
 ```
 
 ### createPixelMapList<sup>10+</sup>
@@ -1650,7 +1650,7 @@ let decodeOpts = {
     editable: true,
     desiredSize: { width: 198, height: 202 },
     rotate: 0,
-    desiredPixelFormat: RGBA_8888,
+    desiredPixelFormat: 3,
     index: 0,
 };
 imageSourceApi.createPixelMap(decodeOpts, pixelmaplist => { 
@@ -1697,7 +1697,7 @@ getDelayTime(): Promise<Array\<number>>;
 **示例：**
 
 ```js
-let delayTimes = await imageSourceApi.getDelayTime();
+let delayTimes = imageSourceApi.getDelayTime();
 ```
 
 ### getFrameCount<sup>10+</sup>
@@ -1739,7 +1739,7 @@ getFrameCount(): Promise\<number>;
 **示例：**
 
 ```js
-let frameCount = await imageSourceApi.getFrameCount();
+let frameCount = imageSourceApi.getFrameCount();
 ```
 
 ### release
