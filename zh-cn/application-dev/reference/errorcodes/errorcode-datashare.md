@@ -8,7 +8,7 @@
 
 **错误信息**
 
-The dataShareHelper is not initialized successfully.
+The DataShareHelper is not initialized successfully.
 
 **错误描述**
 
