@@ -203,7 +203,6 @@ struct ListItemExample3 {
           })
         }, item => item)
       }
-
       Text(this.enterEndDeleteAreaString).fontSize(20)
       Text(this.exitEndDeleteAreaString).fontSize(20)
     }
