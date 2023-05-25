@@ -20,6 +20,7 @@
 - [如何实现列表的二级联动](interact-lists.md)
 - [时钟开发示例](time-styles-shift.md)
 - [弹簧动画开发](how-to-develop-spring-animation.md)
+- [水波纹动画开发](water-wave-animation.md)
 ### 网络管理
 - [如何请求并加载网络图片](how-to-load-images-from-internet.md)
 
