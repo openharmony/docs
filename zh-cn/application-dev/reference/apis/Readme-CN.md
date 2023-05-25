@@ -138,6 +138,10 @@
     - [NotificationFlags](js-apis-inner-notification-notificationFlags.md)
     - [NotificationRequest](js-apis-inner-notification-notificationRequest.md)
     - [NotificationSlot](js-apis-inner-notification-notificationSlot.md)
+    - [NotificationSorting](js-apis-inner-notification-notificationSorting.md)
+    - [NotificationSortingMap](js-apis-inner-notification-notificationSortingMap.md)
+    - [NotificationSubscribeInfo](js-apis-inner-notification-notificationSubscribeInfo.md)
+    - [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md)
     - [NotificationTemplate](js-apis-inner-notification-notificationTemplate.md)
     - [NotificationUserInput](js-apis-inner-notification-notificationUserInput.md)
   - 公共事件定义
@@ -317,6 +321,7 @@
   - [@ohos.InputMethodExtensionAbility (InputMethodExtensionAbility)](js-apis-inputmethod-extension-ability.md)
   - [@ohos.InputMethodExtensionContext (InputMethodExtensionContext)](js-apis-inputmethod-extension-context.md)
   - [@ohos.InputMethodSubtype (输入法子类型)](js-apis-inputmethod-subtype.md)
+  - [@ohos.logLibrary (维测日志获取)](js-apis-loglibrary.md)
   - [@ohos.pasteboard (剪贴板)](js-apis-pasteboard.md)
   - [@ohos.screenLock (锁屏管理)](js-apis-screen-lock.md)
   - [@ohos.systemDateTime (系统时间、时区)](js-apis-system-date-time.md)
