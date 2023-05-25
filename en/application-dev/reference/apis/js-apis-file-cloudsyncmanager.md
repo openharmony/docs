@@ -3,10 +3,8 @@
 The **cloudSyncManager** module provides APIs for changing the cloud and device service status and notifying the data changes. 
 
 > **NOTE**
->
 > - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The APIs of this module are system APIs and cannot be called by third-party applications.
-> - The APIs of this module support processing of error codes. For details, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 ## Modules to Import
 
@@ -35,6 +33,15 @@ Changes the device-cloud file synchronization switch for an application. This AP
 | Type                 | Description            |
 | --------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
 
 **Example**
 
@@ -65,6 +72,15 @@ Changes the device-cloud file synchronization switch for an application. This AP
 | status | boolean | Yes  | State of the cloud-device file synchronization switch to set. The value **true** means to enable this function; the value **false** means the opposite.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+
 **Example**
 
   ```js
@@ -78,6 +94,7 @@ Changes the device-cloud file synchronization switch for an application. This AP
     }
   });
   ```
+
 ## cloudSyncManager.notifyDataChange
 
 notifyDataChange(accountId: string, bundleName: string): Promise&lt;void&gt;;
@@ -98,6 +115,15 @@ Notifies the cloud and device services of the application data change in the clo
 | Type                 | Description            |
 | --------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise used to return the application data change in the cloud.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
 
 **Example**
 
@@ -126,6 +152,15 @@ Notifies the cloud and device services of the application data change in the clo
 | accountId | string | Yes  | Account ID.|
 | bundleName | string | Yes  | Bundle name of the application.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the application data change in the cloud.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
 
 **Example**
 
