@@ -4631,14 +4631,16 @@ try {
 
 拨打电话的可选参数。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力**：SystemCapability.Telephony.CallManager
 
-|        名称              | 类型                               | 必填 | 说明                                                         |
-| ------------------------ | ---------------------------------- | ---- | ----------------------------------------------------------- |
-| accountId <sup>9+</sup>  | number                             | 否   | 帐户Id。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>。此接口为系统接口。|
-| videoState <sup>9+</sup> | [VideoStateType](#videostatetype7) | 否   | 视频状态类型。此接口为系统接口。                              |
-| dialScene <sup>9+</sup>  | [DialScene](#dialscene8)           | 否   | 拨号场景。此接口为系统接口。                                  |
-| dialType <sup>9+</sup>   | [DialType](#dialtype8)             | 否   | 拨号类型。此接口为系统接口。                                  |
+|        名称              | 类型                               | 必填 | 说明                                         |
+| ------------------------ | ---------------------------------- | ---- | ------------------------------------------- |
+| accountId <sup>9+</sup>  | number                             | 否   | 帐户Id。<br/>- 0：卡槽1<br/>- 1：卡槽2<br/>。|
+| videoState <sup>9+</sup> | [VideoStateType](#videostatetype7) | 否   | 视频状态类型。                               |
+| dialScene <sup>9+</sup>  | [DialScene](#dialscene8)           | 否   | 拨号场景。                                   |
+| dialType <sup>9+</sup>   | [DialType](#dialtype8)             | 否   | 拨号类型。                                   |
 
 ## CallState
 
@@ -4741,11 +4743,11 @@ IP多媒体系统调用模式。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
-|                名称               |                 类型                 | 必填 |             说明                 |
-| --------------------------------- | ------------------------------------ | ---- | ------------------------------- |
-| audioDeviceList <sup>10+</sup>    | [Array\<AudioDevice\>](#audiodevice8) | 是   | 音频设备列表。此接口为系统接口。  |
-| currentAudioDevice <sup>10+</sup> | [AudioDevice](#audiodevice8)        | 是   | 音频设备类型。此接口为系统接口。  |
-| isMuted <sup>10+</sup>            | boolean                              | 是   | 是否静音。此接口为系统接口。      |
+|                名称               |                  类型                 | 必填  |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| audioDeviceList <sup>10+</sup>    | [Array\<AudioDevice\>](#audiodevice8) | 是   | 音频设备列表。    |
+| currentAudioDevice <sup>10+</sup> | [AudioDevice](#audiodevice8)          | 是   | 音频设备类型。    |
+| isMuted <sup>10+</sup>            | boolean                               | 是   | 是否静音。        |
 
 
 ## CallRestrictionType<sup>8+</sup>
