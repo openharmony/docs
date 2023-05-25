@@ -55,7 +55,7 @@ ethernet.setIfaceConfig("eth0", {
   route: "192.168.xx.xxx",
   gateway: "192.168.xx.xxx",
   netMask: "255.255.255.0",
-  dnsServers: "1.1.1.1",
+  dnsServers: "1.1.1.1"
 }, (error) => {
   if (error) {
     console.log("setIfaceConfig callback error = " + JSON.stringify(error));
