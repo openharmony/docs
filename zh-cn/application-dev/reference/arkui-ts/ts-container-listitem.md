@@ -155,9 +155,9 @@ struct ListItemExample3 {
   @State exitEndDeleteAreaString: string = "not exitEndDeleteArea"
 
   @Builder itemEnd(value: number) {
-    Row () {
-      Button("Del").margin("4vp")
-        .onClick( ()=> {
+    Row() {
+      Button("Delete").margin("4vp")
+        .onClick(() => {
           animateTo({ duration: 1000 }, () => {
             let index = this.arr.indexOf(value)
             this.arr.splice(index, 1)
@@ -169,7 +169,7 @@ struct ListItemExample3 {
 
   build() {
     Column() {
-      List({space:10}) {
+      List({ space: 10 }) {
         ForEach(this.arr, (item) => {
           ListItem() {
             Text("item" + item)
@@ -181,21 +181,21 @@ struct ListItemExample3 {
               .backgroundColor(0xFFFFFF)
           }
           .transition({ type: TransitionType.Delete, opacity: 0 })
-          .swipeAction({end:{
-            builder:this.itemEnd.bind(this, item),
-            useDefaultDeleteAnimation:true,
-            onDelete:()=>{
+          .swipeAction({ end: {
+            builder: this.itemEnd.bind(this, item),
+            useDefaultDeleteAnimation: true,
+            onDelete: () => {
               animateTo({ duration: 1000 }, () => {
                 let index = this.arr.indexOf(item)
                 this.arr.splice(index, 1)
               })
             },
-            deleteAreaDistance:80,
-            onEnterDeleteArea:()=>{
+            deleteAreaDistance: 80,
+            onEnterDeleteArea: () => {
               this.enterEndDeleteAreaString = "enterEndDeleteArea"
               this.exitEndDeleteAreaString = "not exitEndDeleteArea"
             },
-            onExitDeleteArea:()=>{
+            onExitDeleteArea: () => {
               this.enterEndDeleteAreaString = "not enterEndDeleteArea"
               this.exitEndDeleteAreaString = "exitEndDeleteArea"
             }
@@ -203,6 +203,7 @@ struct ListItemExample3 {
           })
         }, item => item)
       }
+
       Text(this.enterEndDeleteAreaString).fontSize(20)
       Text(this.exitEndDeleteAreaString).fontSize(20)
     }
@@ -212,6 +213,5 @@ struct ListItemExample3 {
     .height('100%')
   }
 }
-
 ```
 ![deleteListItem](figures/deleteListItem.gif)
