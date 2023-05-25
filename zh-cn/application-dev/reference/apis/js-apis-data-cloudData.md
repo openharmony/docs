@@ -63,11 +63,11 @@ try {
         if (err === undefined) {
             console.info('Succeeded in enabling cloud');
         } else {
-            console.error('Failed to enable.' + `Code: ${err.code}, message: ${ err.message }`);
+            console.error('Failed to enable.' + `Code: ${err.code}, message: ${err.message}`);
         }
     });
 } catch (error) {
-    console.error('An unexpected error occurred.' + `Code: ${error.code}, message: ${ error.message }`);
+    console.error('An unexpected error occurred.' + `Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -105,10 +105,10 @@ try {
     cloudData.Config.enableCloud(account, switches).then(() => {
         console.info('Succeeded in enabling cloud');
     }).catch((err) => {
-        console.error('Failed to enable.' + `Code: ${err.code}, message: ${ err.message }`);
+        console.error('Failed to enable.' + `Code: ${err.code}, message: ${err.message}`);
     });
 } catch (error) {
-    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${ error.message }`);
+    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -184,7 +184,7 @@ try {
         console.error('Failed to disableCloud.' + `Code: ${err.code}, message: ${err.message}`);
     });
 } catch (error) {
-    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${ error.message }`);
+    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -223,7 +223,7 @@ try {
         }
     });
 } catch (error) {
-    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${ error.message }`);
+    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -265,7 +265,7 @@ try {
         console.error('Failed to change App cloud switch.' + `Code is ${err.code}, message is ${err.message}`);
     });
 } catch (error) {
-    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${ error.message }`);
+    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -303,7 +303,7 @@ try {
         }
     });
 } catch (error) {
-    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${ error.message }`);
+    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -344,7 +344,7 @@ try {
         console.error('Failed to notify the change of data.' + `Code: ${err.code}, message: ${err.message}`);
     });
 } catch (error) {
-    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${ error.message }`);
+    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
