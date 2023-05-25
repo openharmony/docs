@@ -1,7 +1,7 @@
-# 趣味动画-水波纹动画
+# 水波纹动画开发
 
 ## 场景介绍
-在日常应用中，水波纹的效果比较常见，例如听曲识歌，附近搜索等等，本文就以数字按键为例介绍水波纹动效的实现。
+在日常应用场景中，水波纹的效果比较常见，例如数字键盘按键效果、听歌识曲、附近搜索雷达动效等等，本文就以数字按键为例介绍水波纹动效的实现。
 
 ## 效果呈现
 本例最终效果图如下：
@@ -15,7 +15,7 @@
 ## 实现思路
 本实例涉及到的主要特性及其实现方案如下：
 * UI框架：使用Grid，GuidItem等容器组件组建UI框架。
-* 按钮渲染：通过自定义pwdBtn组件（含Column、Button、Stack、Text等关键组件以及visibility属性），进行数字按钮的渲染。
+* 按钮渲染：通过自定义numBtn组件（含Column、Button、Stack、Text等关键组件以及visibility属性），进行数字按钮的渲染。
 * 按钮状态变化：设置状态变量unPressed，控制按钮的当前状态，向Column组件添加onTouch事件，监听按钮的当前状态。
   * 默认状态为按钮放开状态（unPressed为true）。
   * 当按钮按下时，更新按钮的状态（unPressed：true -> false）。
@@ -25,16 +25,16 @@
   * 当按钮放开时， 使用组件内转场加载动画：渲染放开时的Row组件，同时加载水波的扩散效果。
 ## 开发步骤
 针对实现思路中所提到的内容，具体关键开发步骤如下：
-1. 先通过Grid，GuidItem等容器组件将UI框架搭建起来，在GuidItem中引用步骤2中的自定义数字按钮pwdBtn构建出数字栅格。
+1. 先通过Grid，GuidItem等容器组件将UI框架搭建起来，在GuidItem中引用步骤2中的自定义数字按钮numBtn构建出数字栅格。
 
     具体代码如下:
 
     ```ts
-      private pwdGrid: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, -1, 0, -1] 
+      private numGrid: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, -1, 0, -1] 
       ...
         Column() {
           Grid() {
-            ForEach(this.pwdGrid, (item: number, index: number) => {
+            ForEach(this.numGrid, (item: number, index: number) => {
               GridItem() {
                 ...
               }
@@ -49,13 +49,13 @@
         }.width('100%').height('100%')
     ```
 
-2. 通过Column、Button、Stack、Text等关键组件以及visibility属性构建自定义数字按钮pwdBtn。
+2. 通过Column、Button、Stack、Text等关键组件以及visibility属性构建自定义数字按钮numBtn。
 
     具体代码如下：
 
     ```ts
     @Component
-    struct pwdBtn {
+    struct numBtn {
       ···
       build() {
         Column() {
@@ -167,14 +167,14 @@
 @Entry
 @Component
 export default struct dragFire {
-  private pwdGrid: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, -1, 0, -1]
+  private numGrid: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, -1, 0, -1]
 
   build() {
     Column() {
       Grid() {
-        ForEach(this.pwdGrid, (item: number, index: number) => {
+        ForEach(this.numGrid, (item: number, index: number) => {
           GridItem() {
-            pwdBtn({ item: item, index: index })
+            numBtn({ item: item, index: index })
           }
         }, item => item)
       }
@@ -190,7 +190,7 @@ export default struct dragFire {
 
 
 @Component
-struct pwdBtn {
+struct numBtn {
   private currIndex: number = -1
   //状态变量unPressed，用于控制按钮的状态
   @State unPressed: boolean = true
