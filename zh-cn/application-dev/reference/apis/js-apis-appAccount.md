@@ -132,7 +132,7 @@ createAccount(name: string, options?: CreateAccountOptions): Promise&lt;void&gt;
 | 参数名       | 类型     | 必填   | 说明                                       |
 | --------- | ------ | ---- | ---------------------------------------- |
 | name      | string | 是    | 应用帐号的名称。                              |
-| options | [CreateAccountOptions](#createaccountoptions9) | 否    | 创建应用帐号的选项，可提供自定义数据，但不建议包含敏感数据（如密码、Token等）。不填无影响。 |
+| options | [CreateAccountOptions](#createaccountoptions9) | 否    | 创建应用帐号的选项，可提供自定义数据，但不建议包含敏感数据（如密码、Token等）。不填无影响，默认为空，表示创建的该帐号无额外信息需要添加。 |
 
 **返回值：**
 
@@ -1256,7 +1256,7 @@ on(type: 'accountChange', owners: Array&lt;string&gt;, callback: Callback&lt;Arr
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | type     | 'accountChange'                          | 是    | 事件回调类型，支持的事件为'accountChange'，当目标应用更新帐号信息时，触发该事件。 |
 | owners   | Array&lt;string&gt;                      | 是    | 应用帐号所有者的包名列表。                      |
-| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 回调函数，返回信息发生变更的应用帐号列表。           |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 需要注册的回调函数，返回信息为发生变更的应用帐号列表。           |
 
 **错误码：**
 
@@ -1292,7 +1292,7 @@ off(type: 'accountChange', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt
 | 参数名      | 类型                               | 必填   | 说明           |
 | -------- | -------------------------------- | ---- | ------------ |
 | type     | 'accountChange'                         | 是    | 事件回调类型，支持的事件为'accountChange'，当帐号所有者更新帐号信息时，触发该事件。    |
-| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 否    | 回调函数，返回信息发生变更的应用帐号列表。 |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 否    | 需要注销的回调函数，默认为空，表示取消该类型事件所有的回调。 |
 
 **错误码：**
 
@@ -2780,7 +2780,7 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 | 参数名       | 类型     | 必填   | 说明                                       |
 | --------- | ------ | ---- | ---------------------------------------- |
 | name      | string | 是    | 应用帐号的名称。                            |
-| extraInfo | string | 否    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用帐号密码、token等）。 |
+| extraInfo | string | 否    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用帐号密码、token等），默认为空，表示创建的该帐号无额外信息需要添加。 |
 
 **返回值：**
 
@@ -3700,7 +3700,7 @@ on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;A
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | type     | 'change'                                 | 是    | 事件回调类型，支持的事件为'change'，当帐号所有者更新帐号信息时，触发该事件。 |
 | owners   | Array&lt;string&gt;                      | 是    | 应用帐号所有者的包名列表。                      |
-| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 回调函数，返回信息发生变更的应用帐号列表。           |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 需要注册的回调函数，返回信息发生变更的应用帐号列表。           |
 
 **示例：**
 
@@ -3733,7 +3733,7 @@ off(type: 'change', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): voi
 | 参数名      | 类型                               | 必填   | 说明           |
 | -------- | -------------------------------- | ---- | ------------ |
 | type     | 'change'                         | 是    | 事件回调类型，支持的事件为'change'，当帐号所有者更新帐号信息时，触发该事件。    |
-| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 否    | 回调函数，返回信息发生变更的应用帐号列表。 |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 否    | 需要注销的回调函数，默认为空，表示取消该类型事件的所有回调。 |
 
 **示例：**
 
@@ -4431,7 +4431,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 | -------------------- | -------------- | ----- | ---------------- |
 | authType<sup>9+</sup>             | string         | 是    | 令牌的鉴权类型。   |
 | token<sup>9+</sup>                | string         | 是    | 令牌的取值。       |
-| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的帐号信息。|
+| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的帐号信息，默认为空。|
 
 ## OAuthTokenInfo<sup>(deprecated)</sup>
 
@@ -4447,7 +4447,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 | -------------------- | -------------- | ----- | ---------------- |
 | authType             | string         | 是    | 令牌的鉴权类型。   |
 | token                | string         | 是    | 令牌的取值。       |
-| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的帐号信息。|
+| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的帐号信息，默认为空。|
 
 ## AuthenticatorInfo<sup>8+</sup>
 
@@ -4469,8 +4469,8 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称     | 类型     | 必填   | 说明         |
 | ------- | ------ | ---- | ---------- |
-| account   | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的帐号信息。 |
-| tokenInfo  | [AuthTokenInfo](#authtokeninfo9) | 否    | 令牌信息。  |
+| account   | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的帐号信息，默认为空。 |
+| tokenInfo  | [AuthTokenInfo](#authtokeninfo9) | 否    | 令牌信息，默认为空。  |
 
 ## CreateAccountOptions<sup>9+</sup>
 
@@ -4480,7 +4480,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称     | 类型     | 必填   | 说明         |
 | ------- | ------ | ---- | ---------- |
-| customData   | {[key: string]: string} | 否    | 自定义数据。 |
+| customData   | {[key: string]: string} | 否    | 自定义数据，默认为空。 |
 
 ## CreateAccountImplicitlyOptions<sup>9+</sup>
 
@@ -4490,9 +4490,9 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称     | 类型     | 必填   | 说明         |
 | ------- | ------ | ---- | ---------- |
-| requiredLabels   | Array&lt;string&gt; | 否    | 必须的标签。 |
-| authType   | string | 否    | 鉴权类型。 |
-| parameters   | {[key: string]: Object} | 否    | 自定义参数对象。 |
+| requiredLabels   | Array&lt;string&gt; | 否    | 所需的标签，默认为空。 |
+| authType   | string | 否    | 鉴权类型，默认为空。 |
+| parameters   | {[key: string]: Object} | 否    | 自定义参数对象，默认为空。 |
 ## SelectAccountsOptions<sup>9+</sup>
 
 表示用于选择帐号的选项。
@@ -4501,9 +4501,9 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称          | 类型                         | 必填  | 说明                |
 | --------------- | --------------------------- | ----- | ------------------- |
-| allowedAccounts | Array&lt;[AppAccountInfo](#appaccountinfo)&gt; | 否    | 允许的帐号数组。      |
-| allowedOwners   | Array&lt;string&gt;         | 否    | 允许的帐号所有者数组。 |
-| requiredLabels  | Array&lt;string&gt;         | 否    | 认证器的标签标识。    |
+| allowedAccounts | Array&lt;[AppAccountInfo](#appaccountinfo)&gt; | 否    | 允许的帐号数组，默认为空。     |
+| allowedOwners   | Array&lt;string&gt;         | 否    | 允许的帐号所有者数组，默认为空。 |
+| requiredLabels  | Array&lt;string&gt;         | 否    | 认证器的标签标识，默认为空。  |
 
 ## VerifyCredentialOptions<sup>9+</sup>
 
@@ -4513,9 +4513,9 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称          | 类型                   | 必填  | 说明           |
 | -------------- | ---------------------- | ----- | -------------- |
-| credentialType | string                 | 否    | 凭据类型。      |
-| credential     | string                 | 否    | 凭据取值。      |
-| parameters     | {[key: string]: Object} | 否    | 自定义参数对象。 |
+| credentialType | string                 | 否    | 凭据类型，默认为空。      |
+| credential     | string                 | 否    | 凭据取值，默认为空。      |
+| parameters     | {[key: string]: Object} | 否    | 自定义参数对象，默认为空。 |
 
 
 ## SetPropertiesOptions<sup>9+</sup>
@@ -4526,8 +4526,8 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称     | 类型                    | 必填  | 说明           |
 | ---------- | ---------------------- | ----- | -------------- |
-| properties | {[key: string]: Object} | 否    | 属性对象。      |
-| parameters | {[key: string]: Object} | 否    | 自定义参数对象。 |
+| properties | {[key: string]: Object} | 否    | 属性对象，默认为空。      |
+| parameters | {[key: string]: Object} | 否    | 自定义参数对象，默认为空。 |
 
 ## Constants<sup>8+</sup>
 
@@ -4603,7 +4603,7 @@ onResult: (code: number, result?: AuthResult) =&gt; void
 | 参数名    | 类型                   | 必填   | 说明     |
 | ------ | -------------------- | ---- | ------ |
 | code   | number               | 是    | 鉴权结果码。 |
-| result | [AuthResult](#authresult9) | 否    | 鉴权结果。  |
+| result | [AuthResult](#authresult9) | 否    | 鉴权结果，默认为空，表示不接收认证结果信息。  |
 
 **示例：**
 
