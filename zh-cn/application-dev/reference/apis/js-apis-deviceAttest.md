@@ -131,7 +131,7 @@ try {
 }
 ```
 
-## AttestResultInfo
+## AttestResultInfo<a id="AttestResultInfo"></a>
 
 端云校验结果的详细信息。
 
