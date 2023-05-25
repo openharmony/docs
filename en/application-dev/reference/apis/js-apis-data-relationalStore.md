@@ -374,7 +374,6 @@ Defines the subscription type.
 | Name                 | Value  | Description              |
 | --------------------- | ---- | ------------------ |
 | SUBSCRIBE_TYPE_REMOTE | 0    | Subscribe to remote data changes.|
-| SUBSCRIBE_TYPE_CLOUD | 1    | Subscribe to cloud data changes.|
 
 ## ConflictResolution<sup>10+</sup>
 
