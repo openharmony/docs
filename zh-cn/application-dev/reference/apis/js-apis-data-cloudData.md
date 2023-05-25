@@ -13,7 +13,7 @@
 ## 导入模块
 
 ```js
-import ddm from '@ohos.data.cloudData';
+import cloudData from '@ohos.data.cloudData';
 ```
 
 ##   Action
@@ -39,21 +39,19 @@ static enableCloud(accountId: string, switches: {[bundleName: string]: boolean},
 
 打开端云协同，使用callback异步回调。
 
-使用规则：
-
-- 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.CLOUDDATA_CONFIG`权限。
-
 **系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
 
 **参数：**
 
-| 参数名    | 类型                            | 必填 | 说明                       |
-| --------- | ------------------------------- | ---- | -------------------------- |
-| accountId | string                          | 是   | 具体打开的云ID。           |
-| switches  | {[bundleName: string]: boolean} | 是   | 各应用的端云协同开关信息。 |
-| callback  | AsyncCallback&lt;void&gt;       | 是   | 回调函数。                 |
+| 参数名    | 类型                            | 必填 | 说明                                                         |
+| --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| accountId | string                          | 是   | 具体打开的云ID。                                             |
+| switches  | {[bundleName: string]: boolean} | 是   | 各应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
+| callback  | AsyncCallback&lt;void&gt;       | 是   | 回调函数。                                                   |
 
 **示例：**
 
@@ -61,15 +59,15 @@ static enableCloud(accountId: string, switches: {[bundleName: string]: boolean},
 let account = "test_id";
 let switches = { "test_bundleName1": true, "test_bundleName2": false };
 try {
-    await ddm.Config.enableCloud(account, switches, function (err, data) {
-        if (err == undefined) {
-            console.info('Succeeding in enabling cloud');
+    cloudData.Config.enableCloud(account, switches, function (err) {
+        if (err === undefined) {
+            console.info('Succeeded in enabling cloud');
         } else {
-            console.error('Failed to enable' + `, error code is ${err.code}, message is $ { err.message }`);
+            console.error('Failed to enable.' + `Code: ${err.code}, message: ${ err.message }`);
         }
     });
-} catch (e) {
-    console.error('An unexpected error occurred' + `, error code is ${e.code}, message is $ { e.message }`);
+} catch (error) {
+    console.error('An unexpected error occurred.' + `Code: ${error.code}, message: ${ error.message }`);
 }
 ```
 
@@ -79,20 +77,18 @@ static enableCloud(accountId: string, switches: {[bundleName: string]: boolean})
 
 打开端云协同，使用Promise异步回调。
 
-使用规则：
-
-- 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.CLOUDDATA_CONFIG`权限。
-
 **系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
 
 **参数：**
 
-| 参数名    | 类型                            | 必填 | 说明                       |
-| --------- | ------------------------------- | ---- | -------------------------- |
-| accountId | string                          | 是   | 具体打开的云ID。           |
-| switches  | {[bundleName: string]: boolean} | 是   | 各应用的端云协同开关信息。 |
+| 参数名    | 类型                            | 必填 | 说明                                                         |
+| --------- | ------------------------------- | ---- | ------------------------------------------------------------ |
+| accountId | string                          | 是   | 具体打开的云ID。                                             |
+| switches  | {[bundleName: string]: boolean} | 是   | 各应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
 
 **返回值：**
 
@@ -106,13 +102,13 @@ static enableCloud(accountId: string, switches: {[bundleName: string]: boolean})
 let account = "test_id";
 let switches = { "test_bundleName1": true, "test_bundleName2": false };
 try {
-    await ddm.Config.enableCloud(account, switches).then((data) => {
-        console.info('Succeeding in enabling cloud');
-    }).catch((error) => {
-        console.error('Failed to enable' + `, error code is ${error.code}, message is $ { error.message }`);
+    cloudData.Config.enableCloud(account, switches).then(() => {
+        console.info('Succeeded in enabling cloud');
+    }).catch((err) => {
+        console.error('Failed to enable.' + `Code: ${err.code}, message: ${ err.message }`);
     });
-} catch (e) {
-    console.error('An unexpected error occurred' + `, error code is ${e.code}, message is $ { e.message }`);
+} catch (error) {
+    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${ error.message }`);
 }
 ```
 
@@ -122,11 +118,9 @@ static disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;):void
 
 关闭端云协同，使用callback异步回调。
 
-使用规则：
-
-- 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.CLOUDDATA_CONFIG`权限。
-
 **系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
 
@@ -142,15 +136,15 @@ static disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;):void
 ```js
 let account = "test_id";
 try {
-    await ddm.Config.disableCloud(account, function (err, data) {
-        if (err == undefined) {
-            console.info('Succeeding in disabling cloud');
+    cloudData.Config.disableCloud(account, function (err) {
+        if (err === undefined) {
+            console.info('Succeeded in disabling cloud');
         } else {
-            console.error('Failed to disableCloud' + `, error code is ${err.code}, message is ${err.message}`);
+            console.error('Failed to disableCloud.' + `Code: ${err.code}, message: ${err.message}`);
         }
     });
-} catch (e) {
-    console.error('An unexpected error occurred' + `, error code is ${e.code}, message is ${e.message}`);
+} catch (error) {
+    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${error.message}`);
 }
 ```
 
@@ -160,11 +154,9 @@ static disableCloud(accountId: string): Promise&lt;void&gt;
 
 关闭端云协同，使用Promise异步回调。
 
-使用规则：
-
-- 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.CLOUDDATA_CONFIG`权限。
-
 **系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
 
@@ -186,13 +178,13 @@ static disableCloud(accountId: string): Promise&lt;void&gt;
 let account = "test_id";
 let switches = { "test_bundleName1": true, "test_bundleName2": false };
 try {
-    await  ddm.Config.disableCloud(account).then((data) => {
-        console.info('Succeeding in disabling cloud');
-    }).catch((error) => {
-        console.error('Failed to disableCloud' + `, error code is ${error.code}, message is ${error.message}`);
+    cloudData.Config.disableCloud(account).then(() => {
+        console.info('Succeeded in disabling cloud');
+    }).catch((err) => {
+        console.error('Failed to disableCloud.' + `Code: ${err.code}, message: ${err.message}`);
     });
-} catch (e) {
-    console.error('An unexpected error occurred' + `, error code is ${e.code}, message is ${e.message}`);
+} catch (error) {
+    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${ error.message }`);
 }
 ```
 
@@ -202,11 +194,9 @@ static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean, 
 
 修改单个应用端云协同开关，使用callback异步回调。
 
-使用规则：
-
-- 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.CLOUDDATA_CONFIG`权限。
-
 **系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
 
@@ -216,7 +206,7 @@ static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean, 
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | accountId | string                          | 是   | 具体打开的云ID。 |
 | bundleName| string                         | 是   | 应用名 |
-| status    | boolean                        | 是   | 应用的端云协同开关状态信息。 |
+| status    | boolean                        | 是   | 应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
 | callback  | AsyncCallback&lt;void&gt;       | 是   | 回调函数。                   |
 
 **示例：**
@@ -225,15 +215,15 @@ static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean, 
 let account = "test_id";
 let bundleName = "test_bundleName";
 try {
-    await ddm.Config.changeAppCloudSwitch(account, bundleName, true, function (err, data) {
-        if (err == undefined) {
-            console.info('Succeeding in changing App cloud switch');
+    cloudData.Config.changeAppCloudSwitch(account, bundleName, true, function (err) {
+        if (err === undefined) {
+            console.info('Succeeded in changing App cloud switch');
         } else {
-            console.error('Failed to change App cloud switch' + `, error code is ${err.code}, message is ${err.message}`);
+            console.error('Failed to change App cloud switch.' + `Code: ${err.code}, message: ${err.message}`);
         }
     });
-} catch (e) {
-    console.error('An unexpected error occurred' + `, error code is ${e.code}, message is ${e.message}`);
+} catch (error) {
+    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${ error.message }`);
 }
 ```
 
@@ -243,11 +233,9 @@ static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean):
 
 修改单个应用端云协同开关，使用Promise异步回调。
 
-使用规则：
-
-- 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.CLOUDDATA_CONFIG`权限。
-
 **系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Config
 
@@ -257,7 +245,7 @@ static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean):
 | --------- | ------------------------------- | ---- | ---------------------------- |
 | accountId | string                          | 是   | 具体打开的云ID。 |
 | bundleName| string                         | 是   | 应用名 |
-| status    | boolean                        | 是   | 应用的端云协同开关状态信息。 |
+| status    | boolean                        | 是   | 应用的端云协同开关信息，true为打开该应用端云开关，false为关闭该应用端云开关。 |
 
 **返回值：**
 
@@ -271,13 +259,13 @@ static changeAppCloudSwitch(accountId: string,bundleName:string,status:boolean):
 let account = "test_id";
 let bundleName = "test_bundleName";
 try {
-    await  ddm.Config.changeAppCloudSwitch(account, bundleName, true).then((data) => {
-        console.info('Succeeding in changing App cloud switch');
-    }).catch((error) => {
-        console.error('Failed to change App cloud switch' + `, error code is ${error.code}, message is ${error.message}`);
+    cloudData.Config.changeAppCloudSwitch(account, bundleName, true).then(() => {
+        console.info('Succeeded in changing App cloud switch');
+    }).catch((err) => {
+        console.error('Failed to change App cloud switch.' + `Code is ${err.code}, message is ${err.message}`);
     });
-} catch (e) {
-    console.error('An unexpected error occurred' + `, error code is ${e.code}, message is ${e.message}`);
+} catch (error) {
+    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${ error.message }`);
 }
 ```
 
@@ -287,11 +275,9 @@ static notifyDataChange(accountId: string,bundleName:string, callback: AsyncCall
 
 通知云端的数据变更，使用callback异步回调。
 
-使用规则：
-
-- 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.CLOUDDATA_CONFIG`权限。
-
 **系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -309,15 +295,15 @@ static notifyDataChange(accountId: string,bundleName:string, callback: AsyncCall
 let account = "test_id";
 let bundleName = "test_bundleName";
 try {
-    await ddm.Config.notifyDataChange(account, bundleName, function (err, data) {
-        if (err == undefined) {
-            console.info('Succeeding in notifying the change of data');
+    cloudData.Config.notifyDataChange(account, bundleName, function (err) {
+        if (err === undefined) {
+            console.info('Succeeded in notifying the change of data');
         } else {
-            console.error('Failed to notify the change of data' + `, error code is ${err.code}, message is ${err.message}`);
+            console.error('Failed to notify the change of data.' + `Code: ${err.code}, message: ${err.message}`);
         }
     });
-} catch (e) {
-    console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
+} catch (error) {
+    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${ error.message }`);
 }
 ```
 
@@ -327,11 +313,9 @@ static notifyDataChange(accountId: string,bundleName:string): Promise&lt;void&gt
 
 通知云端的数据变更，使用Promise异步回调。
 
-使用规则：
-
-- 调用方应用位于后台时，使用该接口访问DataShareExtension需申请`ohos.permission.CLOUDDATA_CONFIG`权限。
-
 **系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.CLOUDDATA_CONFIG
 
 **系统能力：** SystemCapability.DistributedDataManager.CloudSync.Server
 
@@ -354,13 +338,13 @@ static notifyDataChange(accountId: string,bundleName:string): Promise&lt;void&gt
 let account = "test_id";
 let bundleName = "test_bundleName";
 try {
-    await  ddm.Config.notifyDataChange(account, bundleName).then((data) => {
-        console.info('Succeeding in notifying the change of data');
-    }).catch((error) => {
-        console.error('Failed to notify the change of data' + `, error code is ${error.code}, message is ${error.message}`);
+    cloudData.Config.notifyDataChange(account, bundleName).then(() => {
+        console.info('Succeeded in notifying the change of data');
+    }).catch((err) => {
+        console.error('Failed to notify the change of data.' + `Code: ${err.code}, message: ${err.message}`);
     });
-} catch (e) {
-    console.error('An unexpected error occurred.' + `, error code is ${e.code}, message is ${e.message}`);
+} catch (error) {
+    console.error(`An unexpected error occurred. Code: ${error.code}, message: ${ error.message }`);
 }
 ```
 
