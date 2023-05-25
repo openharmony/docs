@@ -82,7 +82,7 @@ According to the data transfer mode and synchronization type, decorators can als
 - Decorators that allow for two-way (mutable) transfer
 
 
-The following figure illustrates the decorators. For details, see [Managing State by a Component](arkts-state.md) and [Managing State by an Application](arkts-application-state-management-overview.md). You can use these decorators at your disposal to implement linkage between data and the UI.
+The following figure illustrates the decorators. For details, see [Component State Management](arkts-state.md) and [Application State Management](arkts-application-state-management-overview.md). You can use these decorators at your disposal to implement linkage between data and the UI.
 
 
 ![en-us_image_0000001502704640](figures/en-us_image_0000001502704640.png)
@@ -105,6 +105,10 @@ Decorators for [managing the state owned by a component](arkts-state.md):
 - \@Observed: \@Observed is a class decorator. In scenarios involving multiple levels of nested objects or arrays in a class, the class must be decorated with the @Observed decorator. Note that decorating a class with \@Observed alone has no effect. Combined use with \@ObjectLink for two-way synchronization or with \@Prop for one-way synchronization is required.
 
 - \@ObjectLink: An \@ObjectLink decorated variable, when used with an \@Observed decorated class of the parent component, is for two-way data synchronization in scenarios involving multiple levels of nested objects or arrays in the class.
+
+> **NOTE**
+>
+> Only [\@Observed/\@ObjectLink](arkts-observed-and-objectlink.md) can observe changes of nested attributes. Other decorators can only observe changes of attributes at the first layer. For details, see the "Observed Changes and Behavior" part in each decorator section.
 
 
 Decorators for [managing the state owned by an application](arkts-state.md):
