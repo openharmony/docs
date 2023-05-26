@@ -275,8 +275,8 @@ File类型数据，是[UnifiedRecord](#unifiedrecord)的子类，也是文件类
 ```js
 let file = new UDMF.File();
 file.details = {
-    name: 'fileName',
-    type: 'fileType',
+    name: 'test',
+    type: 'txt',
 };
 file.uri = 'schema://com.samples.test/files/test.txt';
 ```
