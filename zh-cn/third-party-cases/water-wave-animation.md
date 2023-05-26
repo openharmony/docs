@@ -14,18 +14,18 @@
 - SDK: Ohos_sdk_public 3.2.11.9(API Version 9 Release)
 ## 实现思路
 本实例涉及到的主要特性及其实现方案如下：
-* UI框架：使用Grid，GuidItem等容器组件组建UI框架。
+* UI框架：使用Grid，GridItem等容器组件组建UI框架。
 * 按钮渲染：通过自定义numBtn组件（含Column、Button、Stack、Text等关键组件以及visibility属性），进行数字按钮的渲染。
 * 按钮状态变化：设置状态变量unPressed，控制按钮的当前状态，向Column组件添加onTouch事件，监听按钮的当前状态。
   * 默认状态为按钮放开状态（unPressed为true）。
   * 当按钮按下时，更新按钮的状态（unPressed：true -> false）。
   * 当按钮放开时，更新按钮的状态（unPressed：false -> true）。
-* 按钮动画展示：使用 属性动画以及组件内转场动画 绘制按钮不同状态下的动画。
-  * 当按钮按下时， 使用显式动画（animateTo）加载动画：渲染按下时的Row组件，同时加载水波的聚拢效果。
-  * 当按钮放开时， 使用组件内转场加载动画：渲染放开时的Row组件，同时加载水波的扩散效果。
+* 按钮动画展示：使用属性动画以及组件内转场动画绘制按钮不同状态下的动画。
+  * 当按钮按下时， 使用显式动画（animateTo）加载动画：插入按下时的Row组件，同时加载水波的聚拢效果。
+  * 当按钮放开时， 使用组件内转场加载动画：插入放开时的Row组件，同时加载水波的扩散效果。
 ## 开发步骤
 针对实现思路中所提到的内容，具体关键开发步骤如下：
-1. 先通过Grid，GuidItem等容器组件将UI框架搭建起来，在GuidItem中引用步骤2中的自定义数字按钮numBtn构建出数字栅格。
+1. 先通过Grid，GridItem等容器组件将UI框架搭建起来，在GuidItem中引用步骤2中的自定义数字按钮numBtn构建出数字栅格。
 
     具体代码如下:
 
