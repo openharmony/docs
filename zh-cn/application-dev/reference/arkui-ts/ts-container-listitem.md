@@ -164,9 +164,10 @@ struct ListItemExample3 {
           })
         })
       Button("Set").margin("4vp")
-    }.padding("4vp").justifyContent(FlexAlign.SpaceEvenly)
+    }
+    .padding("4vp")
+    .justifyContent(FlexAlign.SpaceEvenly)
   }
-
   build() {
     Column() {
       List({ space: 10 }) {
