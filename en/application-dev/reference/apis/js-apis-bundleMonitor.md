@@ -81,7 +81,7 @@ Unsubscribes from bundle installation, uninstall, and update events.
 | Name                      | Type    | Mandatory| Description                                                      |
 | ---------------------------- | -------- | ---- | ---------------------------------------------------------- |
 | type| BundleChangedEvent| Yes  | Type of the event to unsubscribe from.                                        |
-| callback | callback\<BundleChangedInfo>| No  | Callback used for the unsubscription. If this parameter is left empty, all callbacks of the current event are unsubscribed from.|
+| callback | callback\<BundleChangedInfo>| No  | Callback used for the unsubscription. By default, no value is passed, and all callbacks of the current event are unsubscribed from.|
 
 **Example**
 
