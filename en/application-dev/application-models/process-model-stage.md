@@ -1,4 +1,4 @@
-# Process Model (Stage Model)
+# Process Model Overview (Stage Model)
 
 
 The OpenHarmony process model is shown below.
