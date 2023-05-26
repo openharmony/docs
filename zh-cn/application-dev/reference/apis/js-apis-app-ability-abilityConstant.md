@@ -64,7 +64,7 @@ Ability上次退出原因，该类型为枚举，可配合[Ability](js-apis-app-
 | 名称                          | 值   | 说明                                                         |
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | 未知原因。 |
-| ABILITY_NOT_RESPONDING          | 1    | ability未响应。 |
+| ABILITY_NOT_RESPONDING          | 1    | ability未响应。从API version 9 开始支持，从API version 10 开始废弃，建议使用APP_FREEZE替代。 |
 | NORMAL | 2    | 正常退出。 |
 | CPP_CRASH<sup>10+</sup>  | 3    | CPP崩溃。 |
 | JS_ERROR<sup>10+</sup>  | 4    | JS错误。 |
