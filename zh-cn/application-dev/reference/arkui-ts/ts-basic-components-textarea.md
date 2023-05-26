@@ -81,7 +81,7 @@ caretPosition(value: number): void
 
 setTextSelection(selectionStart: number, selectionEnd: number): void
 
-组件在获焦状态下，调用该接口设置文本选择区域并高亮显示。<br/>只有在selectionStart小于selectionEnd时，文字才会被选取、高亮显示。<br/>
+组件在获焦状态下，调用该接口设置文本选择区域并高亮显示，且只有在selectionStart小于selectionEnd时，文字才会被选取、高亮显示。
 
 **参数：**
 
