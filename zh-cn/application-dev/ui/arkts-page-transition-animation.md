@@ -157,7 +157,7 @@ pageTransition() {
 
 
 ```ts
-// page A
+// PageTransitionSrc1
 import router from '@ohos.router';
 @Entry
 @Component
@@ -209,7 +209,7 @@ struct PageTransitionSrc1 {
 
 
 ```ts
-// page B
+// PageTransitionDst1
 import router from '@ohos.router';
 @Entry
 @Component
@@ -267,7 +267,7 @@ struct PageTransitionDst1 {
 
 
 ```ts
-// page A
+// PageTransitionSrc2
 import router from '@ohos.router';
 @Entry
 @Component
@@ -313,7 +313,7 @@ struct PageTransitionSrc2 {
 
 
 ```ts
-// page B
+// PageTransitionDst2
 import router from '@ohos.router';
 @Entry
 @Component
