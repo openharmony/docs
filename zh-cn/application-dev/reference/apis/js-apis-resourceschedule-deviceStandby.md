@@ -1,5 +1,5 @@
 # @ohos.resourceschedule.deviceStandby（设备待机模块）
-本模块提供设备待机空闲部件管理功能。当设备长时间未被使用或通过按键，可以使设备进入待机模式。待机模式不影响应用使用，还可以延长电池续航时间。通过本模块接口，可查询设备是否为待机模式，以及使应用灵活申请开启或关闭待机模式。
+当设备长时间未被使用或通过按键，可以使设备进入待机模式。待机模式不影响应用使用，还可以延长电池续航时间。通过本模块接口，可查询设备是否为待机模式，以及使应用灵活申请开启或关闭待机模式。
 
 >  **说明：**
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -9,7 +9,7 @@
 import deviceStandby from '@ohos.resourceschedule.deviceStandby';
 ```
 ## deviceStandby.isDeviceInStandby
-isDeviceInStandby(callback: AsyncCallback<boolean>): void;
+isDeviceInStandby(callback: AsyncCallback&lt;boolean&gt;): void;
 
 当前设备是否进入待机低功耗续航模式，使用Callback异步回调。
 
@@ -19,7 +19,7 @@ isDeviceInStandby(callback: AsyncCallback<boolean>): void;
 
 | 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
-| callback | Callback&lt;boolean&gt; | 是    | 延迟即将超时的回调函数，一般在超时前6秒通过此回调通知应用。 |
+| callback | AsyncCallback&lt;boolean&gt; | 是    | 延迟即将超时的回调函数，一般在超时前6秒通过此回调通知应用。 |
 
 **错误码**：
 
@@ -47,6 +47,7 @@ isDeviceInStandby(): Promise&lt;boolean&gt;
 | Promise&lt;boolean&gt; | 指定的Promise回调方法。返回是否进入待机低功耗续航模式。|
 
 **错误码**：
+
 以下错误码的详细介绍请参见[后台任务错误码](../errorcodes/errorcode-backgroundTaskMgr.md)。
 
 | 错误码ID  | 错误信息             |
@@ -176,18 +177,18 @@ releaseExemptionResource(request: ResourceRequest): void;
 | 18700001 | Caller information verification failed when applying for efficiency resources. |
 
 ## ResourceType
-应用资源枚举。
+非待机应用资源枚举。
 <br>
 
 |名称   |值   |说明|
 | ------------ | ------------ |--------------|
-|NETWORK    |1   |非待机网络访问资源|
-|RUNNING_LOCK    |2   |非待机cpu-runninglock资源|
-|TIMER     |4   | 非待机timer任务资源|
-|WORK_SCHEDULER     |8   | 非待机work任务资源|
-|AUTO_SYNC      |16   | 非待机自动同步的资源 |
-|PUSH     |32   | 非待机pushkit资源|
-|FREEZE       |64   | 非待机冻结应用资源|
+|NETWORK    |1   |网络访问资源|
+|RUNNING_LOCK    |2   |cpu-runninglock资源|
+|TIMER     |4   | timer任务资源|
+|WORK_SCHEDULER     |8   | work任务资源|
+|AUTO_SYNC      |16   | 自动同步的资源 |
+|PUSH     |32   | pushkit资源|
+|FREEZE       |64   | 冻结应用资源|
 
 ## ExemptedAppInfo 
 豁免应用信息，不进入待机管控的应用信息。
