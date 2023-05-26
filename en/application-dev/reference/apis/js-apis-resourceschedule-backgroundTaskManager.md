@@ -51,10 +51,10 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed for a transient task. |
-| 9900002 | Transient task verification failed. |
+| 9900001 | Caller information verification failed. |
+| 9900002 | Background task verification failed. |
 
 **Example**
 
@@ -76,7 +76,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
   ```
 
 
-## backgroundTaskManager.getRemainingDelayTime:callback
+## backgroundTaskManager.getRemainingDelayTime
 
 getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;): void
 
@@ -99,10 +99,10 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed.  |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed for a transient task. |
-| 9900002 | Transient task verification failed. |
+| 9900001 | Caller information verification failed. |
+| 9900002 | Background task verification failed. |
 
 
 **Example**
@@ -125,7 +125,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
   ```
 
 
-## backgroundTaskManager.getRemainingDelayTime:promise
+## backgroundTaskManager.getRemainingDelayTime
 
 getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 
@@ -155,10 +155,10 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed for a transient task. |
-| 9900002 | Transient task verification failed. |
+| 9900001 | Caller information verification failed. |
+| 9900002 | Background task verification failed. |
 
 **Example**
 
@@ -200,10 +200,10 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed for a transient task. |
-| 9900002 | Transient task verification failed. |
+| 9900001 | Caller information verification failed. |
+| 9900002 | Background task verification failed. |
 
 **Example**
 
@@ -219,7 +219,7 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
   ```
 
 
-## backgroundTaskManager.startBackgroundRunning:callback
+## backgroundTaskManager.startBackgroundRunning
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent, callback: AsyncCallback&lt;void&gt;): void
 
@@ -246,9 +246,9 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Continuous task verification failed. |
+| 9800005 | Background task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -297,7 +297,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## backgroundTaskManager.startBackgroundRunning:promise
+## backgroundTaskManager.startBackgroundRunning
 
 startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: WantAgent): Promise&lt;void&gt;
 
@@ -329,9 +329,9 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Continuous task verification failed. |
+| 9800005 | Background task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -376,7 +376,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## backgroundTaskManager.stopBackgroundRunning:callback
+## backgroundTaskManager.stopBackgroundRunning
 
 stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): void
 
@@ -399,9 +399,9 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Continuous task verification failed. |
+| 9800005 | Background task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -430,7 +430,7 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-## backgroundTaskManager.stopBackgroundRunning:promise
+## backgroundTaskManager.stopBackgroundRunning
 
 stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 
@@ -460,9 +460,9 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Continuous task verification failed. |
+| 9800005 | Background task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -513,9 +513,9 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed when applying for efficiency resources. |
+| 18700001 | Caller information verification failed. |
 
 **Example**
 
@@ -556,9 +556,9 @@ For details about the error codes, see [backgroundTaskManager Error Codes](../er
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed when applying for efficiency resources. |
+| 18700001 | Caller information verification failed. |
 
 **Example**
 
