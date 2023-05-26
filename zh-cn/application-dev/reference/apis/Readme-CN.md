@@ -138,6 +138,10 @@
     - [NotificationFlags](js-apis-inner-notification-notificationFlags.md)
     - [NotificationRequest](js-apis-inner-notification-notificationRequest.md)
     - [NotificationSlot](js-apis-inner-notification-notificationSlot.md)
+    - [NotificationSorting](js-apis-inner-notification-notificationSorting.md)
+    - [NotificationSortingMap](js-apis-inner-notification-notificationSortingMap.md)
+    - [NotificationSubscribeInfo](js-apis-inner-notification-notificationSubscribeInfo.md)
+    - [NotificationSubscriber](js-apis-inner-notification-notificationSubscriber.md)
     - [NotificationTemplate](js-apis-inner-notification-notificationTemplate.md)
     - [NotificationUserInput](js-apis-inner-notification-notificationUserInput.md)
   - 公共事件定义
@@ -179,8 +183,9 @@
 - UI界面
   - [@ohos.animator (动画)](js-apis-animator.md)
   - [@ohos.arkui.componentSnapshot（组件截图）](js-apis-arkui-componentSnapshot.md)
-  - [@ohos.arkui.drawableDescriptor(DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
+  - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
   - [@ohos.curves (插值计算)](js-apis-curve.md)
+  - [@ohos.font(注册自定义字体)](js-apis-font.md)
   - [@ohos.matrix4 (矩阵变换)](js-apis-matrix4.md)
   - [@ohos.mediaquery (媒体查询)](js-apis-mediaquery.md)
   - [@ohos.pluginComponent(PluginComponentManager)](js-apis-plugincomponent.md)
@@ -188,7 +193,7 @@
   - [@ohos.router (页面路由)](js-apis-router.md)
   - [@ohos.measure (文本计算)](js-apis-measure.md)
   - [@ohos.uiAppearance(用户界面外观)](js-apis-uiappearance.md)
-
+  
 - 图形图像
   - [@ohos.animation.windowAnimationManager (窗口动画管理)](js-apis-windowAnimationManager.md)
   - [@ohos.application.WindowExtensionAbility (窗口扩展能力)](js-apis-application-windowExtensionAbility.md)
@@ -236,6 +241,7 @@
     - [PermissionRequestResult](js-apis-permissionrequestresult.md)
 
 - 数据管理
+  - [@ohos.data.cloudData（端云协同）](js-apis-data-cloudData.md)
   - [@ohos.data.dataAbility (DataAbility谓词)](js-apis-data-ability.md)
   - [@ohos.data.dataShare (数据共享)](js-apis-data-dataShare.md)
   - [@ohos.data.dataSharePredicates (数据共享谓词)](js-apis-data-dataSharePredicates.md)
@@ -261,7 +267,7 @@
   - [@ohos.file.storageStatistics (应用空间统计)](js-apis-file-storage-statistics.md)
   - [@ohos.file.volumeManager (卷管理)](js-apis-file-volumemanager.md)
   - [@ohos.filemanagement.userFileManager (用户数据管理)](js-apis-userFileManager.md)
-  - [@ohos.fileShare (文件分享)](js-apis-fileShare.md)
+  - [@ohos.fileshare (文件分享)](js-apis-fileShare.md)
 
 - 电话服务
   - [@ohos.contact (联系人)](js-apis-contact.md)
@@ -317,13 +323,14 @@
   - [@ohos.InputMethodExtensionAbility (InputMethodExtensionAbility)](js-apis-inputmethod-extension-ability.md)
   - [@ohos.InputMethodExtensionContext (InputMethodExtensionContext)](js-apis-inputmethod-extension-context.md)
   - [@ohos.InputMethodSubtype (输入法子类型)](js-apis-inputmethod-subtype.md)
+  - [@ohos.logLibrary (维测日志获取)](js-apis-loglibrary.md)
   - [@ohos.pasteboard (剪贴板)](js-apis-pasteboard.md)
   - [@ohos.screenLock (锁屏管理)](js-apis-screen-lock.md)
   - [@ohos.systemDateTime (系统时间、时区)](js-apis-system-date-time.md)
   - [@ohos.systemTimer (系统定时器)](js-apis-system-timer.md)
   - [@ohos.wallpaper (壁纸)](js-apis-wallpaper.md)
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
-  - [console (日志打印)](js-apis-logs.md)
+  - [console (控制台)](js-apis-logs.md)
   - [Timer (定时器)](js-apis-timer.md)
   - application
     - [AccessibilityExtensionContext (辅助功能扩展上下文)](js-apis-inner-application-accessibilityExtensionContext.md)

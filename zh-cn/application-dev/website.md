@@ -1169,6 +1169,10 @@
         - [NotificationFlags](reference/apis/js-apis-inner-notification-notificationFlags.md)
         - [NotificationRequest](reference/apis/js-apis-inner-notification-notificationRequest.md)
         - [NotificationSlot](reference/apis/js-apis-inner-notification-notificationSlot.md)
+        - [NotificationSorting](reference/apis/js-apis-inner-notification-notificationSorting.md)
+        - [NotificationSortingMap](reference/apis/js-apis-inner-notification-notificationSortingMap.md)
+        - [NotificationSubscribeInfo](reference/apis/js-apis-inner-notification-notificationSubscribeInfo.md)
+        - [NotificationSubscriber](reference/apis/js-apis-inner-notification-notificationSubscriber.md)
         - [NotificationTemplate](reference/apis/js-apis-inner-notification-notificationTemplate.md)
         - [NotificationUserInput](reference/apis/js-apis-inner-notification-notificationUserInput.md)
       - 公共事件定义
@@ -1177,6 +1181,7 @@
         - [通知服务公共事件定义](reference/apis/common_event/commonEvent-ans.md)
         - [资源调度子系统公共事件定义](reference/apis/common_event/commonEvent-resourceschedule.md)
         - [电话服务子系统公共事件定义](reference/apis/common_event/commonEvent-telephony.md)
+        - [USB子系统公共事件定义](reference/apis/common_event/commonEvent-usb.md)
     - 包管理
       - [@ohos.bundle.appControl (appControl模块)](reference/apis/js-apis-appControl.md)
       - [@ohos.bundle.bundleManager (bundleManager模块)](reference/apis/js-apis-bundleManager.md)
@@ -1209,7 +1214,7 @@
     - UI界面
       - [@ohos.animator (动画)](reference/apis/js-apis-animator.md)
       - [@ohos.arkui.componentSnapshot（组件截图）](reference/apis/js-apis-arkui-componentSnapshot.md)
-      - [@ohos.arkui.drawableDescriptor(DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
+      - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
       - [@ohos.curves (插值计算)](reference/apis/js-apis-curve.md)
       - [@ohos.font(注册自定义字体)](reference/apis/js-apis-font.md)
       - [@ohos.matrix4 (矩阵变换)](reference/apis/js-apis-matrix4.md)
@@ -1261,6 +1266,7 @@
       - security
         - [PermissionRequestResult](reference/apis/js-apis-permissionrequestresult.md)
     - 数据管理
+      - [@ohos.data.cloudData（端云协同）](reference/apis/js-apis-data-cloudData.md)
       - [@ohos.data.dataAbility (DataAbility谓词)](reference/apis/js-apis-data-ability.md)
       - [@ohos.data.dataShare (数据共享)](reference/apis/js-apis-data-dataShare.md)
       - [@ohos.data.dataSharePredicates (数据共享谓词)](reference/apis/js-apis-data-dataSharePredicates.md)
@@ -1285,7 +1291,7 @@
       - [@ohos.file.storageStatistics (应用空间统计)](reference/apis/js-apis-file-storage-statistics.md)
       - [@ohos.file.volumeManager (卷管理)](reference/apis/js-apis-file-volumemanager.md)
       - [@ohos.filemanagement.userFileManager (用户数据管理)](reference/apis/js-apis-userFileManager.md)
-      - [@ohos.fileShare (文件分享)](reference/apis/js-apis-fileShare.md)
+      - [@ohos.fileshare (文件分享)](reference/apis/js-apis-fileShare.md)
     - 电话服务
       - [@ohos.contact (联系人)](reference/apis/js-apis-contact.md)
       - [@ohos.telephony.call (拨打电话)](reference/apis/js-apis-call.md)
@@ -1337,6 +1343,7 @@
       - [@ohos.InputMethodExtensionAbility (InputMethodExtensionAbility)](reference/apis/js-apis-inputmethod-extension-ability.md)
       - [@ohos.InputMethodExtensionContext (InputMethodExtensionContext)](reference/apis/js-apis-inputmethod-extension-context.md)
       - [@ohos.InputMethodSubtype (输入法子类型)](reference/apis/js-apis-inputmethod-subtype.md)
+      - [@ohos.logLibrary (维测日志获取)](reference/apis/js-apis-loglibrary.md)
       - [@ohos.pasteboard (剪贴板)](reference/apis/js-apis-pasteboard.md)
       - [@ohos.screenLock (锁屏管理)](reference/apis/js-apis-screen-lock.md)
       - [@ohos.systemDateTime (系统时间、时区)](reference/apis/js-apis-system-date-time.md)
@@ -1547,6 +1554,7 @@
       - [应用事件打点错误码](reference/errorcodes/errorcode-hiappevent.md)
       - [系统事件错误码](reference/errorcodes/errorcode-hisysevent.md)
       - [Hidebug错误码](reference/errorcodes/errorcode-hiviewdfx-hidebug.md)
+      - [维测日志错误码](reference/errorcodes/errorcode-loglibrary.md)
       - [输入法框架错误码](reference/errorcodes/errorcode-inputmethod-framework.md)
       - [剪贴板错误码](reference/errorcodes/errorcode-pasteboard.md)
       - [锁屏服务错误码](reference/errorcodes/errorcode-screenlock.md)
@@ -1674,16 +1682,16 @@
       - [OH_Huks_ParamSet](reference/native-apis/_o_h___huks___param_set.md)
       - [OH_Huks_PubKeyInfo](reference/native-apis/_o_h___huks___pub_key_info.md)
       - [OH_Huks_Result](reference/native-apis/_o_h___huks___result.md)
-  - 标准库
-    - [Node_API](reference/native-lib/third_party_napi/napi.md)
-    - [libuv](reference/native-lib/third_party_libuv/libuv.md)
-    - [支持的标准库介绍](reference/native-lib/third_party_libc/musl.md)
-    - 附录
-      - [Native api中没有导出的符号列表](reference/native-lib/third_party_libc/musl-peculiar-symbol.md)
-      - [Native api中由于权限管控可能调用失败的符号列表](reference/native-lib/third_party_libc/musl-permission-control-symbol.md)
-      - [Native api中导出的EGL符号列表](reference/native-lib/third_party_opengl/egl-symbol.md)
-      - [Native api中导出的OpenGL ES 3.0符号列表](reference/native-lib/third_party_opengl/openglesv3-symbol.md)
-      - [Native api中支持的OpenSL ES接口列表](reference/native-lib/third_party_opensles/opensles.md)
+    - 标准库
+      - [Node_API](reference/native-lib/third_party_napi/napi.md)
+      - [libuv](reference/native-lib/third_party_libuv/libuv.md)
+      - [支持的标准库介绍](reference/native-lib/third_party_libc/musl.md)
+      - 附录
+        - [Native api中没有导出的符号列表](reference/native-lib/third_party_libc/musl-peculiar-symbol.md)
+        - [Native api中由于权限管控可能调用失败的符号列表](reference/native-lib/third_party_libc/musl-permission-control-symbol.md)
+        - [Native api中导出的EGL符号列表](reference/native-lib/third_party_opengl/egl-symbol.md)
+        - [Native api中导出的OpenGL ES 3.0符号列表](reference/native-lib/third_party_opengl/openglesv3-symbol.md)
+        - [Native api中支持的OpenSL ES接口列表](reference/native-lib/third_party_opensles/opensles.md)
 - 常见问题
   - [如何编译full-SDK](faqs/full-sdk-compile-guide.md)
   - [如何替换full-SDK](faqs/full-sdk-switch-guide.md)
@@ -1694,7 +1702,11 @@
     - [ArkUI布局开发常见问题(ArkTS)](faqs/faqs-arkui-layout.md)
     - [ArkUI路由/导航开发常见问题(ArkTS)](faqs/faqs-arkui-route-nav.md)
     - [ArkUI动画/交互事件开发常见问题(ArkTS)](faqs/faqs-arkui-animation-interactive-event.md)
+<<<<<<< HEAD
        -[ArkUI框架开发常见问题(JS)](faqs/faqs-arkui-js.md)
+=======
+  - [ArkUI框架开发常见问题(JS)](faqs/faqs-arkui-js.md)
+>>>>>>> 1d7a46f7f65ba41d8821f53b227aed9f7a657cbb
   - [Web开发常见问题](faqs/faqs-arkui-web.md)
   - [包管理开发常见问题](faqs/faqs-bundle-management.md)
   - [资源管理开发常见问题](faqs/faqs-globalization.md)
