@@ -39,7 +39,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name                                        | Description                                                    |
 | -------------------------------------------- | ------------------------------------------------------------ |
-| onChange(callback: (value: boolean) => void) | Triggered when the selected status of the check box changes due to a manual operation.<br>- The value **true** means that the check box is selected.<br>- The value **false** means that the check box is not selected.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onChange(callback: (value: boolean) => void) | Triggered when the selected status of the check box changes.<br>- The value **true** means that the check box is selected.<br>- The value **false** means that the check box is not selected.<br>Since API version 9, this API is supported in ArkTS widgets. |
 
 ## Example
 
