@@ -1,4 +1,4 @@
-# Thread Model (FA Model)
+# Thread Model Overview (FA Model)
 
 
 There are three types of threads in the FA model:
