@@ -374,7 +374,7 @@ class EntryAbility extends UIAbility {
 | 名称                  | 值   | 说明               |
 | --------------------- | ---- | ------------------ |
 | SUBSCRIBE_TYPE_REMOTE | 0    | 订阅远程数据更改。 |
-| SUBSCRIBE_TYPE_CLOUD | 1    | 订阅云端数据更改。 |
+| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | 1    | 订阅云端数据更改。 |
 
 ## ConflictResolution<sup>10+</sup>
 
