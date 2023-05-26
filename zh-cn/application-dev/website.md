@@ -1170,6 +1170,7 @@
     - UI界面
       - [@ohos.animator (动画)](reference/apis/js-apis-animator.md)
       - [@ohos.curves (插值计算)](reference/apis/js-apis-curve.md)
+      - [@ohos.font(注册自定义字体)](reference/apis/js-apis-font.md)
       - [@ohos.matrix4 (矩阵变换)](reference/apis/js-apis-matrix4.md)
       - [@ohos.mediaquery (媒体查询)](reference/apis/js-apis-mediaquery.md)
       - [@ohos.pluginComponent(PluginComponentManager)](reference/apis/js-apis-plugincomponent.md)
