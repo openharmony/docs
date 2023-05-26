@@ -54,7 +54,7 @@ let enterpriseInfo = {
     name: "enterprise name",
     description: "enterprise description"
 }
-adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, error => {
+adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_SUPER, error => {
     if (error != null) {
         console.log("error occurs" + error);
         return;
@@ -955,5 +955,5 @@ Enumerates the system management events that can be subscribed to.
 | -------------------------- | ---- | ------------- |
 | MANAGED_EVENT_BUNDLE_ADDED | 0    | Bundle added.|
 | MANAGED_EVENT_BUNDLE_REMOVED | 1  | Bundle removed.|
-| MANAGED_EVENT_APP_START | 2    | Application started.|
-| MANAGED_EVENT_APP_STOP | 3  | Application stopped.|
+| MANAGED_EVENT_APP_START<sup>10+</sup> | 2    | Application started.|
+| MANAGED_EVENT_APP_STOP<sup>10+</sup> | 3  | Application stopped.|
