@@ -103,11 +103,10 @@
 
    ```json
    [
-     // ...
      {
-       "bundleName": "com.example.myapplication", // Bundle名称
-       "app_signature": ["****"], // 指纹信息
-       "allowCommonEvent": ["usual.event.A", "usual.event.B"], // 允许静态广播拉起的公共事件项
+       "bundleName": "com.example.myapplication", 
+       "app_signature": ["****"], 
+       "allowCommonEvent": ["usual.event.A", "usual.event.B"]
      }
    ]
    ```
