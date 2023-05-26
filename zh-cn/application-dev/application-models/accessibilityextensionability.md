@@ -12,11 +12,26 @@ AccessibilityExtensionAbility基于ExtensionAbility框架，提供无障碍扩�
 
 本文档将从以下场景来介绍AccessibilityExtensionAbility的基本开发：
 
+- [AccessibilityExtensionAbility概述](#accessibilityextensionability概述)
 - [如何创建一个无障碍扩展服务](#如何创建一个无障碍扩展服务)
 - [如何处理一个无障碍事件](#如何处理一个无障碍事件)
 - [如何声明无障碍扩展服务具备的能力](#如何声明无障碍扩展服务具备的能力)
 - [如何开启自定义的无障碍扩展服务](#如何开启自定义的无障碍扩展服务)
 - [相关示例](#相关示例)
+
+## AccessibilityExtensionAbility概述
+
+“信息无障碍”译自“Accessibility”，是指任何人在任何情况下都能平等、方便地获取信息并利用信息。其目的是缩小全社会不同阶层、不同地区、不同年龄、不同健康状况的人群在信息理解、信息交互、信息利用方面的数字鸿沟，使其更加方便地参与社会生活，享受数字发展带来的便利。
+
+AccessibilityExtensionAbility为无障碍扩展服务框架，允许三方开发自己的扩展服务，提供在应用程序和扩展服务之间交换信息的标准机制，以便为各种障碍人群和障碍场景提供辅助能力，增强用户的无障碍使用体验。例如在使用微信时，利用辅助应用旁白，用户可以“听见”当前屏幕内容。
+
+![AccessibilityFramework](figures/AccessibilityFramework.png)
+
+1. Accessibility App：开发者基于无障碍扩展服务框架扩展出来的扩展服务应用，如视障用户使用的读屏App。
+2. Tartget App：被Accessibility App辅助的目标应用。
+3. AccessibilityAbilityManagerService（AAMS）：无障碍扩展服务框架主服务，用于对Accessibility App生命周期进行管理，同时为Accessibility App和Target App提供信息交互的桥梁。
+4. AccessibilityAbility（AAkit）：Accessibility App利用AAkit构建扩展服务Ability运行环境，并为Accessibility App提供可查询和操作Target App的接口，如查询节点信息、对节点执行点击/长按操作等。
+5. AccessibilitySystemAbilityClient（ASACkit）：Target App通过ASACkit向AAMS发送无障碍事件，如内容变化事件等，同时响应Accessibility App通过AAMS请求的指令，如查询节点信息、对节点执行点击/长按操作等。
 
 ## 如何创建一个无障碍扩展服务
 
