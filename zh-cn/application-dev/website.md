@@ -242,7 +242,7 @@
         - [window接口切换](application-models/window-switch.md)
         - [Storage接口切换](application-models/storage-switch.md)
   - UI开发
-    - [方舟开发框架概述](ui/arkui-overview.md)
+    - [方舟开发框架（ArkUI）概述](ui/arkui-overview.md)
     - UI开发（ArkTS声明式开发范式）
       - [UI开发（ArkTS声明式开发范式）概述](ui/arkts-ui-development-overview.md)
       - 开发布局
@@ -858,7 +858,7 @@
     - [类型说明](reference/arkui-ts/ts-types.md)
     - 已停止维护的组件
       - [GridContainer](reference/arkui-ts/ts-container-gridcontainer.md)
-  - 组件参考（兼容JS的类Web开发范式）
+  - 组件参考（兼容JS的类Web开发范式-ArkUI.Full）
     - 组件通用信息
       - [通用属性](reference/arkui-js/js-components-common-attributes.md)
       - [通用样式](reference/arkui-js/js-components-common-styles.md)
@@ -995,7 +995,7 @@
       - [canvas组件](reference/arkui-js-lite/js-components-canvas-canvas.md)
       - [CanvasRenderingContext2D对象](reference/arkui-js-lite/js-components-canvas-canvasrenderingcontext2d.md)
   - JS服务卡片UI组件参考
-    - JS服务卡片UI框架说明
+    - 框架说明
       - [文件组织](reference/js-service-widget-ui/js-service-widget-file.md)
       - 语法
         - [HML语法参考](reference/js-service-widget-ui/js-service-widget-syntax-hml.md)
@@ -1003,34 +1003,33 @@
       - [多语言支持](reference/js-service-widget-ui/js-service-widget-multiple-languages.md)
       - [版本兼容适配](reference/js-service-widget-ui/js-service-widget-version-compatibility.md)
       - [设置主题样式](reference/js-service-widget-ui/js-service-widget-theme.md)
-    - 组件
-      - 通用
-        - [通用属性](reference/js-service-widget-ui/js-service-widget-common-attributes.md)
-        - [通用样式](reference/js-service-widget-ui/js-service-widget-common-styles.md)
-        - [通用事件](reference/js-service-widget-ui/js-service-widget-common-events.md)
-        - [渐变样式](reference/js-service-widget-ui/js-service-widget-common-gradient.md)
-        - [媒体查询](reference/js-service-widget-ui/js-service-widget-common-mediaquery.md)
-        - [自定义字体样式](reference/js-service-widget-ui/js-service-widget-common-customizing-font.md)
-        - [无障碍](reference/js-service-widget-ui/js-service-widget-common-accessibility.md)
-        - [原子布局](reference/js-service-widget-ui/js-service-widget-common-atomic-layout.md)
-      - 容器组件
-        - [badge](reference/js-service-widget-ui/js-service-widget-container-badge.md)
-        - [div](reference/js-service-widget-ui/js-service-widget-container-div.md)
-        - [list](reference/js-service-widget-ui/js-service-widget-container-list.md)
-        - [list-item](reference/js-service-widget-ui/js-service-widget-container-list-item.md)
-        - [stack](reference/js-service-widget-ui/js-service-widget-container-stack.md)
-        - [swiper](reference/js-service-widget-ui/js-service-widget-container-swiper.md)
-      - 基础组件
-        - [button](reference/js-service-widget-ui/js-service-widget-basic-button.md)
-        - [calendar](reference/js-service-widget-ui/js-service-widget-basic-calendar.md)
-        - [chart](reference/js-service-widget-ui/js-service-widget-basic-chart.md)
-        - [clock](reference/js-service-widget-ui/js-service-widget-basic-clock.md)
-        - [divider](reference/js-service-widget-ui/js-service-widget-basic-divider.md)
-        - [image](reference/js-service-widget-ui/js-service-widget-basic-image.md)
-        - [input](reference/js-service-widget-ui/js-service-widget-basic-input.md)
-        - [progress](reference/js-service-widget-ui/js-service-widget-basic-progress.md)
-        - [span](reference/js-service-widget-ui/js-service-widget-basic-span.md)
-        - [text](reference/js-service-widget-ui/js-service-widget-basic-text.md)
+    - 组件通用信息
+      - [通用属性](reference/js-service-widget-ui/js-service-widget-common-attributes.md)
+      - [通用样式](reference/js-service-widget-ui/js-service-widget-common-styles.md)
+      - [通用事件](reference/js-service-widget-ui/js-service-widget-common-events.md)
+      - [渐变样式](reference/js-service-widget-ui/js-service-widget-common-gradient.md)
+      - [媒体查询](reference/js-service-widget-ui/js-service-widget-common-mediaquery.md)
+      - [自定义字体样式](reference/js-service-widget-ui/js-service-widget-common-customizing-font.md)
+      - [无障碍](reference/js-service-widget-ui/js-service-widget-common-accessibility.md)
+      - [原子布局](reference/js-service-widget-ui/js-service-widget-common-atomic-layout.md)
+    - 容器组件
+      - [badge](reference/js-service-widget-ui/js-service-widget-container-badge.md)
+      - [div](reference/js-service-widget-ui/js-service-widget-container-div.md)
+      - [list](reference/js-service-widget-ui/js-service-widget-container-list.md)
+      - [list-item](reference/js-service-widget-ui/js-service-widget-container-list-item.md)
+      - [stack](reference/js-service-widget-ui/js-service-widget-container-stack.md)
+      - [swiper](reference/js-service-widget-ui/js-service-widget-container-swiper.md)
+    - 基础组件
+      - [button](reference/js-service-widget-ui/js-service-widget-basic-button.md)
+      - [calendar](reference/js-service-widget-ui/js-service-widget-basic-calendar.md)
+      - [chart](reference/js-service-widget-ui/js-service-widget-basic-chart.md)
+      - [clock](reference/js-service-widget-ui/js-service-widget-basic-clock.md)
+      - [divider](reference/js-service-widget-ui/js-service-widget-basic-divider.md)
+      - [image](reference/js-service-widget-ui/js-service-widget-basic-image.md)
+      - [input](reference/js-service-widget-ui/js-service-widget-basic-input.md)
+      - [progress](reference/js-service-widget-ui/js-service-widget-basic-progress.md)
+      - [span](reference/js-service-widget-ui/js-service-widget-basic-span.md)
+      - [text](reference/js-service-widget-ui/js-service-widget-basic-text.md)
     - [自定义组件使用说明](reference/js-service-widget-ui/js-service-widget-custom-basic-usage.md)
     - [数据类型说明](reference/js-service-widget-ui/js-service-widget-appendix-types.md)
   - 接口参考（ArkTS及JS API）
@@ -1217,6 +1216,7 @@
       - [@ohos.arkui.componentSnapshot（组件截图）](reference/apis/js-apis-arkui-componentSnapshot.md)
       - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
       - [@ohos.curves (插值计算)](reference/apis/js-apis-curve.md)
+      - [@ohos.font(注册自定义字体)](reference/apis/js-apis-font.md)
       - [@ohos.matrix4 (矩阵变换)](reference/apis/js-apis-matrix4.md)
       - [@ohos.mediaquery (媒体查询)](reference/apis/js-apis-mediaquery.md)
       - [@ohos.pluginComponent(PluginComponentManager)](reference/apis/js-apis-plugincomponent.md)
