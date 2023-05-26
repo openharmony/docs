@@ -17,7 +17,6 @@
     - ExtensionAbility Component
       - [ExtensionAbility Component Overview](extensionability-overview.md)
       - [ServiceExtensionAbility](serviceextensionability.md)
-      - [DataShareExtensionAbility (for System Applications Only)](datashareextensionability.md)
       - [AccessibilityExtensionAbility](accessibilityextensionability.md)
       - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
       - [InputMethodExtensionAbility](inputmethodextentionability.md)
@@ -37,9 +36,9 @@
             - [Applying Custom Drawing in the Widget](arkts-ui-widget-page-custom-drawing.md)
           - Widget Event Development
             - [Widget Event Capability Overview](arkts-ui-widget-event-overview.md)
+            - [Redirecting to a Specified Page Through the Router Event](arkts-ui-widget-event-router.md)
             - [Updating Widget Content Through FormExtensionAbility](arkts-ui-widget-event-formextensionability.md)
             - [Updating Widget Content Through UIAbility](arkts-ui-widget-event-uiability.md)
-            - [Redirecting to a Specified Page Through the Router Event](arkts-ui-widget-event-router.md)
           - Widget Data Interaction
             - [Widget Data Interaction Overview](arkts-ui-widget-interaction-overview.md)
             - [Configuring a Widget to Update Periodically](arkts-ui-widget-update-by-time.md)
@@ -62,8 +61,8 @@
       - [Cross-Device Migration (for System Applications Only)](hop-cross-device-migration.md)
       - [Multi-device Collaboration (for System Applications Only)](hop-multi-device-collaboration.md)
     - [Subscribing to System Environment Variable Changes](subscribe-system-environment-variable-changes.md)
-  - IPC
-    - [Process Model](process-model-stage.md)
+  - Process Model
+    - [Process Model Overview](process-model-stage.md)
     - Common Events
       - [Introduction to Common Events](common-event-overview.md)
       - Common Event Subscription
@@ -74,13 +73,13 @@
       - [Publishing Common Events](common-event-publish.md)
       - [Removing Sticky Common Events](common-event-remove-sticky.md)
     - [Background Services](background-services.md)
-  - Inter-Thread Communication
-    - [Thread Model](thread-model-stage.md)
+  - Thread Model
+    - [Thread Model Overview](thread-model-stage.md)
     - [Using Emitter for Inter-Thread Communication](itc-with-emitter.md)
     - [Using Worker for Inter-Thread Communication](itc-with-worker.md)
   - Mission Management
     - [Mission Management Scenarios](mission-management-overview.md)
-    - [Mission Management and Launch Type](mission-management-launch-type.md)
+    - [Mission and Launch Type](mission-management-launch-type.md)
     - [Page Stack and MissionList](page-mission-stack.md)
     - [Setting the Icon and Name of a Mission Snapshot](mission-set-icon-name-for-task-snapshot.md)
   - [Application Configuration File](config-file-stage.md)
@@ -120,12 +119,12 @@
     - [Context](application-context-fa.md)
     - [Want](want-fa.md)
     - [Component Startup Rules](component-startup-rules-fa.md)
-  - IPC
-    - [Process Model](process-model-fa.md)
+  - Process Model
+    - [Process Model Overview](process-model-fa.md)
     - [Common Events](common-event-fa.md)
     - [Background Services](rpc.md)
-  - Inter-Thread Communication
-    - [Thread Model](thread-model-fa.md)
+  - Thread Model
+    - [Thread Model Overview](thread-model-fa.md)
     - [Inter-Thread Communication](itc-fa-overview.md)
   - [Mission Management](mission-management-fa.md)
   - [Application Configuration File](config-file-fa.md)

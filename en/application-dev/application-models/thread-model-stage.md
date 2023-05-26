@@ -1,4 +1,4 @@
-# Thread Model (Stage Model)
+# Thread Model Overview (Stage Model)
 
 For an OpenHarmony application, each process has a main thread to provide the following functionalities:
 
