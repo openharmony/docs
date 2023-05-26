@@ -1,17 +1,5 @@
 # ServiceExtensionAbility
 
-- [概述](#概述)
-- [生命周期](#生命周期)
-- [实现一个后台服务（仅对系统应用开放）](#实现一个后台服务仅对系统应用开放)
-  - [开发准备](#开发准备)
-  - [定义IDL接口](#定义idl接口)
-  - [创建ServiceExtensionAbility](#创建serviceextensionability)
-- [启动一个后台服务（仅对系统应用开放）](#启动一个后台服务仅对系统应用开放)
-- [连接一个后台服务](#连接一个后台服务)
-- [客户端与服务端通信](#客户端与服务端通信)
-- [服务端对客户端身份校验](#服务端对客户端身份校验)
-- [相关示例](#相关示例)
-
 ## 概述
 
 [ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md)是SERVICE类型的ExtensionAbility组件，提供后台服务能力，其内部持有了一个[ServiceExtensionContext](../reference/apis/js-apis-inner-application-serviceExtensionContext.md)，通过[ServiceExtensionContext](../reference/apis/js-apis-inner-application-serviceExtensionContext.md)提供了丰富的接口供外部使用。
