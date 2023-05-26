@@ -63,6 +63,7 @@
       - [跨端迁移（仅对系统应用开放）](hop-cross-device-migration.md)
       - [多端协同（仅对系统应用开放）](hop-multi-device-collaboration.md)
     - [订阅系统环境变量的变化](subscribe-system-environment-variable-changes.md)
+    - [原子化服务支持分享](atomic-services-support-sharing.md)
   - 了解进程模型
     - [进程模型概述](process-model-stage.md)
     - 公共事件
