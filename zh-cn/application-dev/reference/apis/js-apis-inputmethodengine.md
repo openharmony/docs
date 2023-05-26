@@ -1067,7 +1067,7 @@ resize(width: number, height: number): Promise\<void>;
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise<void> | 无返回结果的Promise对象。  |
+| Promise\<void> | 无返回结果的Promise对象。  |
 
 **示例：**
 
@@ -1139,7 +1139,7 @@ moveTo(x: number, y: number): Promise\<void>
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise<void> | 无返回结果的Promise对象。  |
+| Promise\<void> | 无返回结果的Promise对象。  |
 
 **示例：**
 

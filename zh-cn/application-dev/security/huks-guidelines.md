@@ -5,18 +5,13 @@
 
 HUKS提供为业务安全随机生成密钥的能力。通过HUKS生成的密钥，密钥的全生命周期明文不会出安全环境，能保证任何人都无法接触获取到密钥的明文。即使生成密钥的业务自身，后续也只能通过HUKS提供的接口请求执行密钥操作，获取操作结果，但无法接触到密钥自身。
 
-
-**<font size=5>开发步骤</font>**
+**开发步骤**
 
 生成密钥时使用[huks.generateKeyItem(keyAlias,options,callback)](../reference/apis/js-apis-huks.md#huksgeneratekeyitem9)方法，传入keyAlias作为密钥别名，传入options包含该密钥的属性集，传入callback用于回调异步结果。关于接口的具体信息，可在[API参考文档](../reference/apis/js-apis-huks.md)中查看。
-
-
 
 1. 确定密钥别名；
 2. 初始化密钥属性集：通过[HuksParam](../reference/apis/js-apis-huks.md#huksparam)封装密钥属性，搭配Array组成密钥属性集，并赋值给[HuksOptions](../reference/apis/js-apis-huks.md#huksoptions)（properties字段），其中必须包含[HuksKeyAlg](../reference/apis/js-apis-huks.md#hukskeyalg),[HuksKeySize](../reference/apis/js-apis-huks.md#hukskeysize),[HuksKeyPurpose](../reference/apis/js-apis-huks.md#hukskeypurpose)属性；
 3. 将密钥别名与密钥参数集作为参数传入，生成密钥。
-
-
 
 > **说明**
 >
@@ -227,9 +222,9 @@ try {
 | 接口名                      | 描述                 |
 | -------------------------------------- | ----------------------------|
 |generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void| 生成新密钥|
-|exportKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback<HuksReturnResult>) : void| 导出密钥对的公钥|
-|importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions, callback: AsyncCallback<void>) : void|导入加密密钥|
-|deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback<void>) : void|删除密钥|
+|exportKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void| 导出密钥对的公钥|
+|importWrappedKeyItem(keyAlias: string, wrappingKeyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void|导入加密密钥|
+|deleteKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void|删除密钥|
 
 需要注意的是，导出密钥接口返回的公钥明文材料是按照**X.509**格式封装，导入加密密钥接口中的密钥材料需满足**Length<sub>Data</sub>-Data** 的格式封装。具体，应用需要申请一个Uint8Array按照以下表格中的顺序依次封装。
 

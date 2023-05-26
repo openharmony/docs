@@ -186,7 +186,7 @@ CommonEvent.publishAsUser("event", userId, options, publishCB);
 
 ## CommonEvent.createSubscriber<sup>(deprecated)</sup>
 
-createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback<CommonEventSubscriber>): void
+createSubscriber(subscribeInfo: CommonEventSubscribeInfo, callback: AsyncCallback\<CommonEventSubscriber>): void
 
 以回调形式创建订阅者。
 
@@ -229,7 +229,7 @@ CommonEvent.createSubscriber(subscribeInfo, createCB);
 
 ## CommonEvent.createSubscriber<sup>(deprecated)</sup>
 
-createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise<CommonEventSubscriber>
+createSubscriber(subscribeInfo: CommonEventSubscribeInfo): Promise\<CommonEventSubscriber>
 
 以Promise形式创建订阅者。
 
@@ -270,7 +270,7 @@ CommonEvent.createSubscriber(subscribeInfo).then((commonEventSubscriber) => {
 
 ## CommonEvent.subscribe<sup>(deprecated)</sup>
 
-subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback<CommonEventData>): void
+subscribe(subscriber: CommonEventSubscriber, callback: AsyncCallback\<CommonEventData>): void
 
 以回调形式订阅公共事件。
 

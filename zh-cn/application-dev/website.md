@@ -1182,6 +1182,7 @@
         - [通知服务公共事件定义](reference/apis/common_event/commonEvent-ans.md)
         - [资源调度子系统公共事件定义](reference/apis/common_event/commonEvent-resourceschedule.md)
         - [电话服务子系统公共事件定义](reference/apis/common_event/commonEvent-telephony.md)
+        - [USB子系统公共事件定义](reference/apis/common_event/commonEvent-usb.md)
     - 包管理
       - [@ohos.bundle.appControl (appControl模块)](reference/apis/js-apis-appControl.md)
       - [@ohos.bundle.bundleManager (bundleManager模块)](reference/apis/js-apis-bundleManager.md)
@@ -1214,7 +1215,7 @@
     - UI界面
       - [@ohos.animator (动画)](reference/apis/js-apis-animator.md)
       - [@ohos.arkui.componentSnapshot（组件截图）](reference/apis/js-apis-arkui-componentSnapshot.md)
-      - [@ohos.arkui.drawableDescriptor(DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
+      - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
       - [@ohos.curves (插值计算)](reference/apis/js-apis-curve.md)
       - [@ohos.matrix4 (矩阵变换)](reference/apis/js-apis-matrix4.md)
       - [@ohos.mediaquery (媒体查询)](reference/apis/js-apis-mediaquery.md)
@@ -1681,16 +1682,16 @@
       - [OH_Huks_ParamSet](reference/native-apis/_o_h___huks___param_set.md)
       - [OH_Huks_PubKeyInfo](reference/native-apis/_o_h___huks___pub_key_info.md)
       - [OH_Huks_Result](reference/native-apis/_o_h___huks___result.md)
-  - 标准库
-    - [Node_API](reference/native-lib/third_party_napi/napi.md)
-    - [libuv](reference/native-lib/third_party_libuv/libuv.md)
-    - [支持的标准库介绍](reference/native-lib/third_party_libc/musl.md)
-    - 附录
-      - [Native api中没有导出的符号列表](reference/native-lib/third_party_libc/musl-peculiar-symbol.md)
-      - [Native api中由于权限管控可能调用失败的符号列表](reference/native-lib/third_party_libc/musl-permission-control-symbol.md)
-      - [Native api中导出的EGL符号列表](reference/native-lib/third_party_opengl/egl-symbol.md)
-      - [Native api中导出的OpenGL ES 3.0符号列表](reference/native-lib/third_party_opengl/openglesv3-symbol.md)
-      - [Native api中支持的OpenSL ES接口列表](reference/native-lib/third_party_opensles/opensles.md)
+    - 标准库
+      - [Node_API](reference/native-lib/third_party_napi/napi.md)
+      - [libuv](reference/native-lib/third_party_libuv/libuv.md)
+      - [支持的标准库介绍](reference/native-lib/third_party_libc/musl.md)
+      - 附录
+        - [Native api中没有导出的符号列表](reference/native-lib/third_party_libc/musl-peculiar-symbol.md)
+        - [Native api中由于权限管控可能调用失败的符号列表](reference/native-lib/third_party_libc/musl-permission-control-symbol.md)
+        - [Native api中导出的EGL符号列表](reference/native-lib/third_party_opengl/egl-symbol.md)
+        - [Native api中导出的OpenGL ES 3.0符号列表](reference/native-lib/third_party_opengl/openglesv3-symbol.md)
+        - [Native api中支持的OpenSL ES接口列表](reference/native-lib/third_party_opensles/opensles.md)
 - 常见问题
   - [如何编译full-SDK](faqs/full-sdk-compile-guide.md)
   - [如何替换full-SDK](faqs/full-sdk-switch-guide.md)
@@ -1701,7 +1702,7 @@
     - [ArkUI布局开发常见问题(ArkTS)](faqs/faqs-arkui-layout.md)
     - [ArkUI路由/导航开发常见问题(ArkTS)](faqs/faqs-arkui-route-nav.md)
     - [ArkUI动画/交互事件开发常见问题(ArkTS)](faqs/faqs-arkui-animation-interactive-event.md)
-   -[ArkUI框架开发常见问题(JS)](faqs/faqs-arkui-js.md)
+  - [ArkUI框架开发常见问题(JS)](faqs/faqs-arkui-js.md)
   - [Web开发常见问题](faqs/faqs-arkui-web.md)
   - [包管理开发常见问题](faqs/faqs-bundle-management.md)
   - [资源管理开发常见问题](faqs/faqs-globalization.md)
