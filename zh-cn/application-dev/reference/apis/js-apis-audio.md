@@ -2083,9 +2083,7 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 **示例：**
 
 ```js
-audioManager.off('deviceChange', (deviceChanged) => {
-  console.info('Should be no callback.');
-});
+audioManager.off('deviceChange');
 ```
 
 ### on('interrupt')
@@ -3484,9 +3482,7 @@ off(type: 'deviceChange', callback?: Callback<DeviceChangeAction\>): void
 **示例：**
 
 ```js
-audioRoutingManager.off('deviceChange', (deviceChanged) => {
-  console.info('Should be no callback.');
-});
+audioRoutingManager.off('deviceChange');
 ```
 
 ### selectInputDevice<sup>9+</sup>
@@ -4038,9 +4034,7 @@ off(type: 'preferOutputDeviceChangeForRendererInfo', callback?: Callback<AudioDe
 **示例：**
 
 ```js
-audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo', () => {
-  console.info('Should be no callback.');
-});
+audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
 ```
 
 ## AudioRendererChangeInfoArray<sup>9+</sup>
