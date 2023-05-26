@@ -10,7 +10,7 @@ API的详细介绍请参见[ohos.file.statvfs](../reference/apis/js-apis-file-st
 
 | 模块 | 接口名 | 功能 | 
 | -------- | -------- | -------- |
-| \@ohos.file.storageStatistic | getCurrentBundleStats | 获取当前应用的存储空间大小（单位为Byte）。 | 
+| \@ohos.file.storageStatistics | getCurrentBundleStats | 获取当前应用的存储空间大小（单位为Byte）。 | 
 | \@ohos.file.statvfs | getFreeSize | 获取指定文件系统的剩余空间大小（单位为Byte）。 | 
 | \@ohos.file.statvfs | getTotalSize | 获取指定文件系统的总空间大小（单位为Byte）。 | 
 
