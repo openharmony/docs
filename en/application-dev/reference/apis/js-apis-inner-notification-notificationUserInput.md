@@ -8,6 +8,6 @@ The **NotificationUserInput** module provides the notification user input.
 
 **System capability**: SystemCapability.Notification.Notification
 
-| Name    | Type  | Readable| Writable| Description                         |
+| Name    | Type  | Read-only| Mandatory| Description                         |
 | -------- | ------ | --- | ---- | ----------------------------- |
-| inputKey | string | Yes | Yes | Key to identify the user input.|
+| inputKey | string | No | Yes | Key to identify the user input.|

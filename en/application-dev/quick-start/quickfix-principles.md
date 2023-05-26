@@ -10,7 +10,7 @@ Quick fix is a technical means provided by the OpenHarmony system for developers
 * The bundle name and application version number configured in the quick fix package must be the same as those of the installed application. Otherwise, the deployment will fail.
 * Make sure the version of the quick fix package to deploy is later than that of the one previously deployed. Otherwise, the deployment will fail.
 * The signature information of the quick fix package must be the same as that of the application to be fixed. Otherwise, the deployment will fail.
-* Installing an application update will delete quick fix package.
+* Installing an application update will delete the quick fix package.
 
 ## Structure of the Quick Fix Package
 
