@@ -865,8 +865,8 @@ Calls an extended API of the DataAbility. This API uses an asynchronous callback
 | uri        | string                 | Yes  | URI of the DataAbility. Example: 'dataability:///com.example.xxx.xxxx'.          |
 | method    | string                  | Yes  | Name of the API to call.  |
 | arg      | string                   | Yes  | Parameter to pass in.     |
-| extras   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md/#pacmap)        | Yes  | Key-value pair parameter.      |
-| callback | AsyncCallback\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md/#pacmap)> | Yes| Callback used to return the result.    |
+| extras   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)        | Yes  | Key-value pair parameter.      |
+| callback | AsyncCallback\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | Yes| Callback used to return the result.    |
 
 **Example**
 
@@ -901,13 +901,13 @@ Calls an extended API of the DataAbility. This API uses a promise to return the 
 | uri        | string                 | Yes  | URI of the DataAbility. Example: 'dataability:///com.example.xxx.xxxx'.          |
 | method    | string                  | Yes  | Name of the API to call.  |
 | arg      | string                   | Yes  | Parameter to pass in.     |
-| extras   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md/#pacmap)        | Yes  | Key-value pair parameter.      |
+| extras   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)        | Yes  | Key-value pair parameter.      |
 
 **Return value**
 
 | Type| Description|
 |------ | ------- |
-|Promise\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md/#pacmap)> | Promise used to return the result.|
+|Promise\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | Promise used to return the result.|
 
 **Example**
 
@@ -998,3 +998,13 @@ dataAbilityHelper.executeBatch('dataability:///com.example.jsapidemo.UserDataAbi
 });
 
 ```
+
+## PacMap
+
+[key: string]: number | string | boolean | Array\<string | number | boolean> | null;
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
+
+| Name| Type| Mandatory| Description|
+| ------ | ------ | ------ | ------ |
+| [key: string] | number \| string \| boolean \| Array\<string \| number \| boolean\> \| null | Yes| Data stored in key-value pairs.|

@@ -18,7 +18,7 @@ import ability from '@ohos.ability.ability';
 | Name        | Type                | Description                                                        |
 | ----------- | -------------------- | ------------------------------------------------------------ |
 | DataAbilityHelper    | [DataAbilityHelper](js-apis-inner-ability-dataAbilityHelper.md)               | Level-2 module **DataAbilityHelper**.                               |
-| PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md/#pacmap)               | Level-2 module **PacMap**.|
+| PacMap   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)               | Level-2 module **PacMap**.|
 | DataAbilityOperation   | [DataAbilityOperation](js-apis-inner-ability-dataAbilityOperation.md)               | Level-2 module **DataAbilityOperation**.|
 | DataAbilityResult   | [DataAbilityResult](js-apis-inner-ability-dataAbilityResult.md)               | Level-2 module **DataAbilityResult**.|
 | AbilityResult   | [AbilityResult](js-apis-inner-ability-abilityResult.md)               | Level-2 module **AbilityResult**.|
