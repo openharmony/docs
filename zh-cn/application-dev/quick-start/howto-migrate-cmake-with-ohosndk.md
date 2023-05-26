@@ -5,12 +5,12 @@
 
 ## 2. 如何下载Native API开发包（NDK)
 
-1）**推荐OHOS正式发布的SDK包** ，下载链接可以从OHOS正式发布版本的[release-notes](https://gitee.com/openharmony/docs/tree/master/zh-cn/release-notes#/openharmony/docs/blob/master/zh-cn/release-notes/OpenHarmony-v3.2-release.md)中获取，点击release notes中的如下链接下载。
+1）推荐OHOS正式发布的SDK包 ，下载链接可以从OHOS正式发布版本的[release-notes](https://gitee.com/openharmony/docs/tree/master/zh-cn/release-notes#/openharmony/docs/blob/master/zh-cn/release-notes/OpenHarmony-v3.2-release.md)中获取，点击release notes中的如下链接下载。
 
 
-2）**IDE OpenHarmony SDK Manager中下载**
+2）IDE OpenHarmony SDK Manager中下载
 
-3）**从每日构建中下载**，下载地址 http://ci.openharmony.cn/dailys/dailybuilds ，形态组件选择ohos-sdk
+3）从每日构建中下载，下载地址 http://ci.openharmony.cn/dailys/dailybuilds ，形态组件选择ohos-sdk
 ![输入图片说明](figures/ci_download.png)
 
 ## 3 解压Native API开发包
