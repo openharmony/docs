@@ -46,18 +46,18 @@ DataPanel(options:{values: number[], max?: number, type?: DataPanelType})
 
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
-| closeEffect | boolean | 是 | 关闭数据占比图表旋转动效。<br/>默认值：false |
+| closeEffect | boolean | 是 | 关闭数据占比图表旋转动效和投影效果。<br/>默认值：false <br/>**说明：** <br/> 若未设置trackShadow属性，则该属性控制投影效果的开关，开启投影的效果为投影的默认效果。<br/> 若设置trackShadow属性，则由trackShadow属性值控制投影效果的开关。|
 | valueColors<sup>10+</sup>   | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10对象说明)> | 是 | 各数据段颜色，ResourceColor为纯色，LinearGradient为渐变色。|
 | trackBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 是 | 底板颜色。<br/>默认值：'#081824' |
 | strokeWidth<sup>10+</sup> | [Length](ts-types.md#Length) | 是 | 圆环粗细。<br/>默认值：24<br/>单位：vp<br/>**说明：** <br/>设置小于0的值时，按默认值显示。<br/>数据面板的类型为DataPanelType.Line时该属性不生效。 |
-| trackShadow<sup>10+</sup> | [DataPanelShadowOption](#datapanelshadowoption10对象说明) | 是 | 投影样式，不设置为不开启投影。|
+| trackShadow<sup>10+</sup> | [DataPanelShadowOption](#datapanelshadowoption10对象说明) | 是 | 投影样式。<br/>**说明：** <br/>设置null为不开启投影。|
 
 
 ## DataPanelShadowOption<sup>10+</sup>对象说明
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
-| radius | number \| [Resource](ts-types.md#resource类型) | 否 | 阴影模糊半径。 <br/>默认值：5<br/>单位：vp |
-| colors | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10对象说明)> | 否 | 各数据段阴影的颜色。 <br/>默认值：与valueColors值相同 |
+| radius | number \| [Resource](ts-types.md#resource类型) | 否 | 投影模糊半径。 <br/>默认值：5<br/>单位：vp <br/>**说明：** <br/>设置小于等于0的值时，按默认值显示。|
+| colors | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10对象说明)> | 否 | 各数据段投影的颜色。 <br/>默认值：与valueColors值相同 <br/>**说明：** <br/>若设置的投影颜色的个数少于数据段个数时，则显示的投影颜色的个数和设置的投影颜色个数一致。<br/>若设置的投影颜色的个数多于数据段个数时，则显示的投影颜色的个数和数据段个数一致。|
 | offsetX | number \| [Resource](ts-types.md#resource类型) | 否 | X轴的偏移量。 <br/>默认值：5<br/>单位：vp |
 | offsetY | number \| [Resource](ts-types.md#resource类型) | 否 | Y轴的偏移量。 <br/>默认值：5<br/>单位：vp |
 
