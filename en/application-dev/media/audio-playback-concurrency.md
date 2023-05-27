@@ -14,7 +14,7 @@ The audio interruption policy determines the operations (for example, pause, res
 
 Two audio interruption modes, specified by [InterruptMode](../reference/apis/js-apis-audio.md#interruptmode9), are preset in the audio interruption policy:
 
-- **SHARED_MODE**: Multiple audio streams created by an application share one audio focus. The concurrency rules between these audio streams are determined by the application, without the use of the audio interruption policy. However, if another application needs to play audio while one of these audio streams is being played, the audio interruption policy is triggered.
+- **SHARE_MODE**: Multiple audio streams created by an application share one audio focus. The concurrency rules between these audio streams are determined by the application, without the use of the audio interruption policy. However, if another application needs to play audio while one of these audio streams is being played, the audio interruption policy is triggered.
 
 - **INDEPENDENT_MODE**: Each audio stream created by an application has an independent audio focus. When multiple audio streams are played concurrently, the audio interruption policy is triggered.
 
