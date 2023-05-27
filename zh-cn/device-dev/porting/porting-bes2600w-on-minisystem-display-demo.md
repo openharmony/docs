@@ -1230,10 +1230,10 @@ HiviewRegisterHilogProc(HilogProc_Impl);
     {
       "component": "histreamer",
       "features": [
-        "multimedia_histreamer_enable_plugin_hdi_adapter = true",
-        "multimedia_histreamer_enable_plugin_minimp3_adapter = true",
-        "multimedia_histreamer_enable_plugin_ffmpeg_adapter = false",
-        "config_ohos_multimedia_histreamer_stack_size = 65536"
+        "histreamer_enable_plugin_hdi_adapter = true",
+        "histreamer_enable_plugin_minimp3_adapter = true",
+        "histreamer_enable_plugin_ffmpeg_adapter = false",
+        "config_ohos_histreamer_stack_size = 65536"
       ]
     }
   ]
@@ -1242,12 +1242,12 @@ HiviewRegisterHilogProc(HilogProc_Impl);
 
 `histreamer`部件配置项说明如下：
 
-| 配置项                                              | 说明                            |
-| --------------------------------------------------- | ------------------------------- |
-| multimedia_histreamer_enable_plugin_hdi_adapter     | 是否使能histreamer对接到hdi接口 |
-| multimedia_histreamer_enable_plugin_minimp3_adapter | 是否使能插件适配minimp3         |
-| multimedia_histreamer_enable_plugin_ffmpeg_adapter  | 是否使能插件适配FFmpeg          |
-| config_ohos_multimedia_histreamer_stack_size        | histreamer栈大小设置            |
+| 配置项                                   | 说明                            |
+| ---------------------------------------- | ------------------------------- |
+| histreamer_enable_plugin_hdi_adapter     | 是否使能histreamer对接到hdi接口 |
+| histreamer_enable_plugin_minimp3_adapter | 是否使能插件适配minimp3         |
+| histreamer_enable_plugin_ffmpeg_adapter  | 是否使能插件适配FFmpeg          |
+| config_ohos_histreamer_stack_size        | histreamer栈大小设置            |
 
 #### 公共基础库子系统适配
 
