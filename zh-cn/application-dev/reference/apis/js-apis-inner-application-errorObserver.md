@@ -2,6 +2,10 @@
 
 定义异常监听，可以作为[ErrorManager.on](js-apis-app-ability-errorManager.md#errormanageron)的入参监听当前应用发生的异常。
 
+> **说明：**
+> 
+> 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
+
 ## 导入模块
 
 ```ts
@@ -40,7 +44,7 @@ try {
 }
 ```
 
-## ErrorObserver.onException
+## ErrorObserver.onException<sup>10+</sup>
 
 onException?(errObject: Error): void;
 

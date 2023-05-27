@@ -377,7 +377,7 @@ off(type: 'setCallingWindow', callback: (wid:number) => void): void
 **示例：**
 
 ```js
-inputMethodEngine.getInputMethodAbility().off('setCallingWindow', () => {
+inputMethodEngine.getInputMethodAbility().off('setCallingWindow', (wid) => {
   console.log('inputMethodAbility delete setCallingWindow notification.');
 });
 ```
@@ -1067,7 +1067,7 @@ resize(width: number, height: number): Promise\<void>;
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise<void> | 无返回结果的Promise对象。  |
+| Promise\<void> | 无返回结果的Promise对象。  |
 
 **示例：**
 
@@ -1122,7 +1122,7 @@ try {
 
 moveTo(x: number, y: number): Promise\<void>
 
-移动面板位置，使用callback异步回调。
+移动面板位置。使用promise异步回调。
 
 对FLG_FIXED状态的panel不产生实际移动效果。
 
@@ -1139,7 +1139,7 @@ moveTo(x: number, y: number): Promise\<void>
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise<void> | 无返回结果的Promise对象。  |
+| Promise\<void> | 无返回结果的Promise对象。  |
 
 **示例：**
 
@@ -1186,7 +1186,7 @@ panel.show((err) => {
 
 show(): Promise\<void>
 
-显示当前面板，使用callback异步回调。
+显示当前面板，使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1237,7 +1237,7 @@ panel.hide((err) => {
 
 hide(): Promise\<void>
 
-隐藏当前面板，使用callback异步回调。
+隐藏当前面板，使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1905,7 +1905,7 @@ try {
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
 
-删除光标后固定长度的文本。使用callback异步回调。
+删除光标后固定长度的文本。使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2814,7 +2814,7 @@ textInputClient.deleteBackward(length, (err, result) => {
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
 
-删除光标后固定长度的文本。使用callback异步回调。
+删除光标后固定长度的文本。使用promise异步回调。
 
 > **说明：**
 >

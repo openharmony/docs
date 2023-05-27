@@ -17,7 +17,7 @@ import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawa
 ## DrawableDescriptor.constructor
 constructor()
 
-Creates a **DrawableDescriptor** or **LayeredDrawableDescriptor** object. The globalization API [getDrawableDescriptor](js-apis-resource-manager.md##getdrawabledescriptor) or [getDrawableDescriptorByName](js-apis-resource-manager.md##getdrawabledescriptorbyname) is required for object construction.
+Creates a **DrawableDescriptor** or **LayeredDrawableDescriptor** object. The globalization API [getDrawableDescriptor](js-apis-resource-manager.md#getdrawabledescriptor10) or [getDrawableDescriptorByName](js-apis-resource-manager.md#getdrawabledescriptorbyname10) is required for object construction.
 
 **System API**: This is a system API.
 
@@ -32,16 +32,25 @@ Creates a **DrawableDescriptor** object when the passed resource ID or name belo
 Creates a **LayeredDrawableDescriptor** object when the passed resource ID or name belongs to a JSON file that contains foreground and background resources.
 
 **Example**
-```js
+```ts
+// xxx.ets
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
+
 @Entry
 @Component
 struct Index {
   private resManager = getContext().resourceManager
-  let drawable1 = resManager.getDrawableDescriptor($r('app.media.icon').id)
-  let drawable2 = resManager.getDrawableDescriptorByName(icon)
-  let layeredDrawable1 = resManager.getDrawableDescriptor($r('app.media.file').id)
-  let layeredDrawable1 = resManager.getDrawableDescriptor(file)
- }
+
+  build() {
+    Row() {
+      Column() {
+        Image((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon').id))))
+        Image(((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
+          .id))).getForeground()).getPixelMap())
+      }.height('50%')
+    }.width('50%')
+  }
+}
 ```
 
 ## DrawableDescriptor.getPixelMap
@@ -53,13 +62,13 @@ Obtains this **pixelMap** object.
 
 **Return value**
 
-| Type                             | Description             |
-| --------------------------------- | ---------------- |
+| Type                                      | Description      |
+| ---------------------------------------- | -------- |
 | [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | **pixelMap** object.|
 
 **Example**
-  ```js
-  @State pixmap: PixelMap = drawable1.getPixelMap();
+  ```ts
+pixmap: PixelMap = drawable1.getPixelMap();
   ```
 
 ## LayeredDrawableDescriptor.getPixelMap
@@ -71,13 +80,13 @@ Obtains the **pixelMap** object where the foreground, background, and mask are b
 
 **Return value**
 
-| Type                             | Description             |
-| --------------------------------- | ---------------- |
+| Type                                      | Description      |
+| ---------------------------------------- | -------- |
 | [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | **pixelMap** object.|
 
 **Example**
-  ```js
-  @State pixmap: PixelMap = layeredDrawable1.getPixelMap();
+  ```ts
+pixmap: PixelMap = layeredDrawable1.getPixelMap();
   ```
 
 ## LayeredDrawableDescriptor.getForeground
@@ -89,13 +98,13 @@ Obtains the **DrawableDescriptor** object of the foreground.
 
 **Return value**
 
-| Type                             | Description             |
-| --------------------------------- | ---------------- |
+| Type                                      | Description                  |
+| ---------------------------------------- | -------------------- |
 | [DrawableDescriptor](#drawabledescriptor) | **DrawableDescriptor** object.|
 
 **Example**
-  ```js
-  @State drawable: DrawableDescriptor = layeredDrawable1.getForeground();
+  ```ts
+drawable: DrawableDescriptor = layeredDrawable1.getForeground();
   ```
 
 ## LayeredDrawableDescriptor.getBackground
@@ -107,13 +116,13 @@ Obtains the **DrawableDescriptor** object of the background.
 
 **Return value**
 
-| Type                             | Description             |
-| --------------------------------- | ---------------- |
+| Type                                      | Description                  |
+| ---------------------------------------- | -------------------- |
 | [DrawableDescriptor](#drawabledescriptor) | **DrawableDescriptor** object.|
 
 **Example**
-  ```js
-  @State drawable: DrawableDescriptor = layeredDrawable1.getBackground();
+  ```ts
+drawable: DrawableDescriptor = layeredDrawable1.getBackground();
   ```
 
 ## LayeredDrawableDescriptor.getMask
@@ -125,12 +134,11 @@ Obtains the **DrawableDescriptor** object of the mask.
 
 **Return value**
 
-| Type                             | Description             |
-| --------------------------------- | ---------------- |
+| Type                                      | Description                  |
+| ---------------------------------------- | -------------------- |
 | [DrawableDescriptor](#drawabledescriptor) | **DrawableDescriptor** object.|
 
 **Example**
-  ```js
-  @State drawable: DrawableDescriptor = layeredDrawable1.getMask();
+  ```ts
+drawable: DrawableDescriptor = layeredDrawable1.getMask();
   ```
-<!--no_check-->

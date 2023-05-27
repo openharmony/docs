@@ -7,6 +7,12 @@ The **DataAbilityResult** module defines the operation result on DataAbilities. 
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > The APIs of this module can be used only in the FA model.
 
+## Modules to Import
+
+```ts
+import ability from '@ohos.ability.ability';
+```
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.FAModel
 
 | Name      | Type |     Mandatory   |       Description  |
@@ -22,7 +28,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 // Perform database operations in batches.
 function executeBatchOperation() {
     let dataAbilityUri = ('dataability:///com.example.myapplication.TestDataAbility');
-    let DAHelper;
+    let DAHelper: ability.DataAbilityHelper;
     try {
         DAHelper = featureAbility.acquireDataAbilityHelper(dataAbilityUri);
         if (DAHelper === null) {
@@ -61,7 +67,7 @@ function executeBatchOperation() {
     try {
         DAHelper.executeBatch(dataAbilityUri, operations).then((data) => {
             for (let i = 0; i < data.length; i++) {
-                let dataAbilityResult = data[i];
+                let dataAbilityResult: ability.DataAbilityResult = data[i];
                 console.log('dataAbilityResult.uri: ${dataAbilityResult.uri}');
                 console.log('dataAbilityResult.count: ${dataAbilityResult.count}');
             }

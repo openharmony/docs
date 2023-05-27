@@ -8,7 +8,7 @@
 
 当应用在前台时，使用[requestSuspendDelay()](../reference/apis/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerrequestsuspenddelay)方法，不会影响应用的短时任务配额。
 
-根据需要调用[getRemainingDelayTime()](../reference/apis/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagergetremainingdelaytimecallback)接口获取应用程序进入挂起状态前的剩余时间。由于每个应用每天的短时任务配额时间有限，当执行完耗时任务后，应当及时调用[cancelSuspendDelay()](../reference/apis/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagercancelsuspenddelay)接口取消延迟挂起的申请。
+根据需要调用[getRemainingDelayTime()](../reference/apis/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagergetremainingdelaytime)接口获取应用程序进入挂起状态前的剩余时间。由于每个应用每天的短时任务配额时间有限，当执行完耗时任务后，应当及时调用[cancelSuspendDelay()](../reference/apis/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagercancelsuspenddelay)接口取消延迟挂起的申请。
 
 一些典型的耗时任务，例如保存一些状态数据到本地数据库、打开和处理一个大型文件、同步一些数据到应用的云端服务器等。
 
@@ -91,3 +91,9 @@ async function performingLongRunningTask() {
   cancelSuspendDelay();
 }
 ```
+
+## 相关实例
+
+针对短时任务开发，有以下相关实例可供参考：
+
+- [短时任务（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/TransientTask)

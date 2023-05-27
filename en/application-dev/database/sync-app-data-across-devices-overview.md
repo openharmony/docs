@@ -36,14 +36,4 @@ Strong consistency has high requirements on distributed data management and may 
 
 ## Access Control Mechanism in Cross-Device Synchronization
 
-In the application data synchronization across devices, data access is controlled based on the device level and [data security label](access-control-by-device-and-data-level.md#data-security-labels). In principle, data can be synchronized only to the devices whose data security labels are not higher than the device's security level. The access control matrix is as follows:
-
-|Device Security Level|Data Security Labels of the Synchornizable Device|
-|---|---|
-|SL1|S1|
-|SL2|S1 to S2|
-|SL3|S1 to S3|
-|SL4|S1 to S4|
-|SL5|S1 to S4| 
-
-For example, the security level of development boards RK3568 and Hi3516 is SL1. The database with data security label S1 can be synchronized with RK3568 and Hi3516, but the database with database labels S2-S4 cannot.
+When data is synchronized across devices, access control is performed based on the device level and data security label. For details, see [Access Control Mechanism in Cross-Device Synchronization](access-control-by-device-and-data-level.md#access-control-mechanism-in-cross-device-synchronization).

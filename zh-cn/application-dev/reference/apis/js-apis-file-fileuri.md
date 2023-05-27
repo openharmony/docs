@@ -14,6 +14,8 @@ import fileuri from "@ohos.file.fileuri";
 
 使用该功能模块前，需要先获取其应用沙箱路径，开发示例如下：
 
+**Stage模型**
+
  ```js
 import UIAbility from '@ohos.app.ability.UIAbility';
 
@@ -24,6 +26,19 @@ export default class EntryAbility extends UIAbility {
     }
 }
  ```
+
+**FA模型**
+
+ ```js
+ import featureAbility from '@ohos.ability.featureAbility';
+ 
+ let context = featureAbility.getContext();
+ context.getFilesDir().then((data) => {
+      let pathDir = data;
+ })
+ ```
+
+FA模型context的具体获取方法参见[FA模型](js-apis-inner-app-context.md#Context模块)。
 
 ## fileUri.getUriFromPath
 

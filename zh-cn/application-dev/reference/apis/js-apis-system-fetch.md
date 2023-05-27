@@ -16,7 +16,16 @@ import fetch from '@system.fetch';
 
 ## fetch.fetch<sup>3+</sup>
 
-fetch(Object): void
+fetch(options:{ <br>
+&nbsp;&nbsp;url: string;<br>
+&nbsp;&nbsp;data?: string | object;<br>
+&nbsp;&nbsp;header?: Object;<br>
+&nbsp;&nbsp;method?: string;<br>
+&nbsp;&nbsp;responseType?: string;<br>
+&nbsp;&nbsp;success?: (data: FetchResponse) => void;<br>
+&nbsp;&nbsp;fail?: (data: any, code: number) => void;<br>
+&nbsp;&nbsp;complete?: () => void;<br>
+  } ): void
 
 通过网络获取数据。
 
@@ -43,7 +52,9 @@ fetch(Object): void
 | Object | 不设置 | Content-Type默认为application/x-www-form-urlencoded，data按照资源地址规则进行encode拼接作为请求的body。 |
 | Object | application/x-www-form-urlencoded | data按照资源地址规则进行encode拼接作为请求的body。 |
 
-## FetchResponse
+## FetchResponse<sup>3+</sup>
+
+**系统能力：** SystemCapability.Communication.NetStack 
 
 | 名称 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |

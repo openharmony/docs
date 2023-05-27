@@ -124,6 +124,7 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
+| 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 
 **示例：**
 
@@ -190,6 +191,7 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
+| 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 
 **示例：**
 
@@ -260,6 +262,7 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
+| 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 
 **示例：**
 
@@ -318,6 +321,7 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 | 17700004 | The specified user ID is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
+| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
 
 **示例：**
 
@@ -375,6 +379,7 @@ uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
 | 17700001 | The specified bundle name is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
+| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
 
 **示例：**
 
@@ -433,6 +438,7 @@ uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
 | 17700004 | The specified user ID is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
+| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
 
 **示例：**
 ```ts

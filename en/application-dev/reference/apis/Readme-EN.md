@@ -152,6 +152,7 @@
   - bundleManager
     - [abilityInfo](js-apis-bundleManager-abilityInfo.md)
     - [applicationInfo](js-apis-bundleManager-applicationInfo.md)
+    - [AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)
     - [bundleInfo](js-apis-bundleManager-bundleInfo.md)
     - [BundlePackInfo](js-apis-bundleManager-BundlePackInfo.md)
     - [dispatchInfo](js-apis-bundleManager-dispatchInfo.md)
@@ -166,6 +167,7 @@
 
 - UI Page
   - [@ohos.animator (Animator)](js-apis-animator.md)
+  - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
   - [@ohos.curves (Interpolation Calculation)](js-apis-curve.md)
   - [@ohos.matrix4 (Matrix Transformation)](js-apis-matrix4.md)
   - [@ohos.mediaquery (Media Query)](js-apis-mediaquery.md)
@@ -233,6 +235,7 @@
   - [@ohos.data.ValuesBucket (Value Bucket)](js-apis-data-valuesBucket.md)
 
 - File Management
+  - [@ohos.file.backup (Backup and Restoration)](js-apis-file-backup.md)
   - [@ohos.file.cloudSyncManager (Device-Cloud Synchronization Management)](js-apis-file-cloudsyncmanager.md)
   - [@ohos.file.environment (Directory Environment Capability)](js-apis-file-environment.md)
   - [@ohos.file.fileAccess (User File Access and Management)](js-apis-fileAccess.md)
@@ -246,7 +249,7 @@
   - [@ohos.file.storageStatistics (Application Storage Statistics)](js-apis-file-storage-statistics.md)
   - [@ohos.file.volumeManager (Volume Management)](js-apis-file-volumemanager.md)
   - [@ohos.filemanagement.userFileManager (User Data Management)](js-apis-userFileManager.md)
-  - [@ohos.fileShare (File Sharing)](js-apis-fileShare.md)
+  - [@ohos.fileshare (File Sharing)](js-apis-fileShare.md)
 
 - Telephony Service
   - [@ohos.contact (Contacts)](js-apis-contact.md)
@@ -312,8 +315,6 @@
   - [Timer](js-apis-timer.md)
   - application
     - [AccessibilityExtensionContext (Accessibility Extension Context)](js-apis-inner-application-accessibilityExtensionContext.md)
-  - imf
-    - [InputMethodCommon](js-apis-inputmethod-InputMethodCommon.md)
 
 - Device Management
   - [@ohos.batteryInfo (Battery Information)](js-apis-battery-info.md)
@@ -354,8 +355,8 @@
 - Customization
   - [@ohos.configPolicy (Configuration Policy)](js-apis-configPolicy.md)
   - [@ohos.enterprise.accountManager (Account Management)](js-apis-enterprise-accountManager.md)
-  - [@ohos.enterprise.bundleManager (Bundle Management)](js-apis-enterprise-bundleManager.md)
   - [@ohos.enterprise.adminManager (Enterprise Device Management)](js-apis-enterprise-adminManager.md)
+  - [@ohos.enterprise.bundleManager (Bundle Management)](js-apis-enterprise-bundleManager.md)
   - [@ohos.enterprise.dateTimeManager (System Time Management)](js-apis-enterprise-dateTimeManager.md)
   - [@ohos.enterprise.deviceControl (Device Control Management)](js-apis-enterprise-deviceControl.md)
   - [@ohos.enterprise.deviceInfo (Device Information Management)](js-apis-enterprise-deviceInfo.md)

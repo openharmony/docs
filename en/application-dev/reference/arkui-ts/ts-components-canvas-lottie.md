@@ -3,7 +3,7 @@
 **Lottie** allows you to implement animation-specific operations.
 
 > **NOTE**
-> 
+>
 > The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 
 
@@ -16,9 +16,7 @@ import lottie from '@ohos/lottieETS'
 
 > **NOTE**
 >
-> In the **Terminal** window, run the `npm install @ohos/lottieETS` command to download Lottie. The download requires the related permission.
->
-> To install an OpenHarmony npm third-party package, run the `npm config set @ohos:registry=https://repo.harmonyos.com/npm/` command to set the repository address.
+> To use **Lottie**, download it first by running the **ohpm install @ohos/lottieETS** command in the Terminal window.
 
 
 ## lottie.loadAnimation
@@ -31,15 +29,15 @@ Loads an animation. Before calling this API, declare the **Animator('__lottie_et
 
 **Parameters**
 
-| Name          | Type                       | Mandatory| Description                                                        |
-| -------------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| path           | string                      | Yes  | Path of the animation resource file in the HAP file. The resource file must be in JSON format. Example: **path: "common/lottie/data.json"**|
-| container      | object                      | Yes  | Canvas drawing context. A **CanvasRenderingContext2D** object must be declared in advance.|
-| render         | string                      | Yes  | Rendering type. The value can only be **"canvas"**.                                  |
-| loop           | boolean \| number | No  | If the value is of the Boolean type, this parameter indicates whether to repeat the animation cyclically after the animation ends; the default value is **true**. If the value is of the number type and is greater than or equal to 1, this parameter indicates the number of times the animation plays.|
-| autoplay       | boolean                     | No   | Whether to automatically play the animation.<br>Default value: **true**                          |
-| name           | string                      | No   | Custom animation name. In later versions, the name can be used to reference and control the animation.<br/>Default value: null |
-| initialSegment | [number, number]            | No   | Start frame and end frame of the animation, respectively.            |
+| Name            | Type                         | Mandatory  | Description                                      |
+| -------------- | --------------------------- | ---- | ---------------------------------------- |
+| path           | string                      | Yes   | Path of the animation resource file in the HAP file. The resource file must be in JSON format. Example: **path: "common/lottie/data.json"**|
+| container      | object                      | Yes   | Canvas drawing context. A **CanvasRenderingContext2D** object must be declared in advance.|
+| render         | string                      | Yes   | Rendering type. The value can only be **"canvas"**.                       |
+| loop           | boolean \| number | No   | If the value is of the Boolean type, this parameter indicates whether to repeat the animation cyclically after the animation ends. If the value is of the number type and is greater than or equal to 1, this parameter indicates the number of times the animation plays.<br>Default value: **true**|
+| autoplay       | boolean                     | No   | Whether to automatically play the animation<br>Default value: **true**                       |
+| name           | string                      | No   | Custom animation name. In later versions, the name can be used to reference and control the animation. <br>Default value: **""**       |
+| initialSegment | [number, number]       | No   | Start frame and end frame of the animation, respectively.                |
 
 
 ## lottie.destroy
@@ -52,10 +50,9 @@ Destroys the animation. This API must be called when a page exits. This API can 
 
 | Name  | Type    | Mandatory  | Description                                      |
 | ---- | ------ | ---- | ---------------------------------------- |
-| name | string | Yes   | Name of the animation to destroy, which is the same as the **name** in the **loadAnimation** API. By default, all animations are destroyed. |
+| name | string | Yes   | Name of the animation to destroy, which is the same as the **name** in the **loadAnimation** API. By default, all animations are destroyed.|
 
 **Example** 
-
   ```ts
   // xxx.ets
   import lottie from '@ohos/lottieETS'
@@ -134,7 +131,7 @@ Plays a specified animation.
 
 | Name  | Type    | Mandatory  | Description                                      |
 | ---- | ------ | ---- | ---------------------------------------- |
-| name | string | Yes   | Name of the animation to play, which is the same as the **name** in the **loadAnimation** API. By default, all animations are played. |
+| name | string | Yes   | Name of the animation to play, which is the same as the **name** in the **loadAnimation** API. By default, all animations are played.|
 
 **Example**
 
@@ -153,7 +150,7 @@ Pauses a specified animation. The next time **lottie.play()** is called, the ani
 
 | Name  | Type    | Mandatory  | Description                                      |
 | ---- | ------ | ---- | ---------------------------------------- |
-| name | string | Yes   | Name of the animation to pause, which is the same as the **name** in the **loadAnimation** API. By default, all animations are paused. |
+| name | string | Yes   | Name of the animation to pause, which is the same as the **name** in the **loadAnimation** API. By default, all animations are paused.|
 
 **Example**
 
@@ -172,7 +169,7 @@ Pauses or plays a specified animation. This API is equivalent to the switching b
 
 | Name  | Type    | Mandatory  | Description                                      |
 | ---- | ------ | ---- | ---------------------------------------- |
-| name | string | Yes   | Name of the target animation, which is the same as the **name** in the **loadAnimation** API. By default, all animations are paused or played. |
+| name | string | Yes   | Name of the target animation, which is the same as the **name** in the **loadAnimation** API. By default, all animations are paused or played.|
 
 **Example**
 
@@ -191,7 +188,7 @@ Stops the specified animation. The next time **lottie.play()** is called, the an
 
 | Name  | Type    | Mandatory  | Description                                      |
 | ---- | ------ | ---- | ---------------------------------------- |
-| name | string | Yes   | Name of the target animation, which is the same as the **name** in the **loadAnimation** API. By default, all animations are stopped. |
+| name | string | Yes   | Name of the target animation, which is the same as the **name** in the **loadAnimation** API. By default, all animations are stopped.|
 
 **Example**
 
@@ -210,8 +207,8 @@ Sets the playback speed of the specified animation.
 
 | Name   | Type    | Mandatory  | Description                                      |
 | ----- | ------ | ---- | ---------------------------------------- |
-| speed | number | Yes   | Playback speed. The value is a floating-point number. If the value is greater than 0, the animation plays in forward direction. If the value is less than 0, the animation plays in reversed direction. If the value is **0**, the animation is paused. If the value is **1.0** or **-1.0**, the animation plays at the normal speed. |
-| name  | string | Yes   | Name of the target animation, which is the same as the **name** in the **loadAnimation** API. By default, all animations are set. |
+| speed | number | Yes   | Playback speed. The value is a floating-point number. If the value is greater than 0, the animation plays in forward direction. If the value is less than 0, the animation plays in reversed direction. If the value is **0**, the animation is paused. If the value is **1.0** or **-1.0**, the animation plays at the normal speed.|
+| name  | string | Yes   | Name of the target animation, which is the same as the **name** in the **loadAnimation** API. By default, all animations are set.|
 
 **Example**
 
@@ -231,7 +228,7 @@ Sets the direction in which the specified animation plays.
 | Name       | Type                | Mandatory  | Description                                      |
 | --------- | ------------------ | ---- | ---------------------------------------- |
 | direction | AnimationDirection | Yes   | Direction in which the animation plays. **1**: forwards; **-1**: backwards. When set to play backwards, the animation plays from the current playback progress to the first frame. When this setting is combined with **loop** being set to **true**, the animation plays backwards continuously. When the value of **speed** is less than 0, the animation also plays backwards.<br>AnimationDirection: 1 \| -1 |
-| name      | string             | Yes   | Name of the target animation, which is the same as the **name** in the **loadAnimation** API. By default, all animations are set. |
+| name      | string             | Yes   | Name of the target animation, which is the same as the **name** in the **loadAnimation** API. By default, all animations are set.|
 
 **Example**
 
@@ -254,18 +251,18 @@ Defines an **AnimationItem** object, which is returned by the **loadAnimation** 
 | totalFrames       | number                                   | Total number of frames in the animation segment that is being played.                             |
 | frameRate         | number                                   | Frame rate (frame/s).                      |
 | frameMult         | number                                   | Frame rate (frame/ms).                     |
-| playSpeed         | number                                   | Playback speed. The value is a floating-point number. If the value is greater than 0, the animation plays forward. If the value is less than 0, the animation plays backward. If the value is **0**, the animation is paused. If the value is **1.0** or **-1.0**, the animation plays at the normal speed. |
-| playDirection     | number                                   | Playback direction.<br>**1**: forward.<br/>**-1**: backward. |
+| playSpeed         | number                                   | Playback speed. The value is a floating-point number. If the value is greater than 0, the animation plays forward. If the value is less than 0, the animation plays backward. If the value is **0**, the animation is paused. If the value is **1.0** or **-1.0**, the animation plays at the normal speed.|
+| playDirection     | number                                   | Playback direction.<br>**1**: forward.<br/>**-1**: backward.            |
 | playCount         | number                                   | Number of times the animation plays.                              |
 | isPaused          | boolean                                  | Whether the current animation is paused. The value **true** means that the animation is paused.            |
-| autoplay          | boolean                                  | Whether to automatically play the animation upon completion of the loading. The value **false** means that the **play()** API needs to be called to start playing. |
-| loop              | boolean \| number                        | If the value is of the Boolean type, this parameter indicates whether to repeat the animation cyclically after the animation ends. If the value is of the number type and is greater than or equal to 1, this parameter indicates the number of times the animation plays. |
+| autoplay          | boolean                                  | Whether to automatically play the animation upon completion of the loading. The value **false** means that the **play()** API needs to be called to start playing.|
+| loop              | boolean \| number              | If the value is of the Boolean type, this parameter indicates whether to repeat the animation cyclically after the animation ends. If the value is of the number type and is greater than or equal to 1, this parameter indicates the number of times the animation plays. |
 | renderer          | any                                      | Animation rendering object, which depends on the rendering type.                  |
 | animationID       | string                                   | Animation ID.                                   |
 | timeCompleted     | number                                   | Number of frames that are played for an animation sequence. The value is affected by the setting of **AnimationSegment** and is the same as the value of **totalFrames**.|
 | segmentPos        | number                                   | ID of the current animation segment. The value is a positive integer greater than or equal to 0.            |
 | isSubframeEnabled | boolean                                  | Whether the precision of **currentFrame** is a floating point number.               |
-| segments          | AnimationSegment \| AnimationSegment[]   | Current segment of the animation.                              |
+| segments          | AnimationSegment \| AnimationSegment[] | Current segment of the animation.                              |
 
 
 ## AnimationItem.play
@@ -278,7 +275,7 @@ Plays an animation.
 
 | Name  | Type    | Mandatory  | Description             |
 | ---- | ------ | ---- | --------------- |
-| name | string | No   | Name of the target animation. By default, the value is null.|
+| name | string | No   | Name of the target animation.<br>Default value: **""** |
 
 **Example**
 
@@ -373,7 +370,7 @@ Sets the playback speed of an animation.
 
 | Name   | Type    | Mandatory  | Description                                      |
 | ----- | ------ | ---- | ---------------------------------------- |
-| speed | number | Yes   | Playback speed. The value is a floating-point number. If the value is greater than 0, the animation plays forward. If the value is less than 0, the animation plays backward. If the value is **0**, the animation is paused. If the value is **1.0** or **-1.0**, the animation plays at the normal speed. |
+| speed | number | Yes   | Playback speed. The value is a floating-point number. If the value is greater than 0, the animation plays forward. If the value is less than 0, the animation plays backward. If the value is 0, the animation is paused. If the value is **1.0** or **-1.0**, the animation plays at the normal speed.|
 
 **Example**
 
@@ -412,8 +409,8 @@ Sets the animation to stop at the specified frame or time.
 | Name     | Type     | Mandatory  | Description                                      |
 | ------- | ------- | ---- | ---------------------------------------- |
 | value   | number  | Yes   | Frame ID (greater than or equal to 0) or time progress (ms) at which the animation will stop.                    |
-| isFrame | boolean | No    | Whether to set the animation to stop at the specified frame. The value **true** means to set the animation to stop at the specified frame, and **false** means to set the animation to stop at the specified time progress.<br/>Default value: **false** |
-| name    | string  | No    | Name of the target animation. By default, the value is null.                         |
+| isFrame | boolean | No   | Whether to set the animation to stop at the specified frame. The value **true** means to set the animation to stop at the specified frame, and **false** means to set the animation to stop at the specified time progress.<br>Default value: **false**|
+| name    | string  | No   | Name of the target animation. By default, the value is null.                         |
 
 **Example**
 
@@ -436,8 +433,8 @@ Sets the animation to start from the specified frame or time progress.
 | Name     | Type     | Mandatory  | Description                                      |
 | ------- | ------- | ---- | ---------------------------------------- |
 | value   | number  | Yes   | Frame ID (greater than or equal to 0) or time progress (ms) at which the animation will start.                     |
-| isFrame | boolean | Yes   | Whether to set the animation to start from the specified frame. The value **true** means to set the animation to start from the specified frame, and **false** means to set the animation to start from the specified time progress.<br/>Default value: **false** |
-| name    | string  | No    | Name of the target animation.<br/>Default value: null      |
+| isFrame | boolean | Yes   | Whether to set the animation to start from the specified frame. The value **true** means to set the animation to start from the specified frame, and **false** means to set the animation to start from the specified time progress.<br>Default value: **false**|
+| name    | string  | No   | Name of the target animation.<br>Default value: **""**                     |
 
 **Example**
 
@@ -460,7 +457,7 @@ Sets the animation to play only the specified segment.
 | Name       | Type                                      | Mandatory  | Description                                      |
 | --------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | segments  | AnimationSegment = [number, number] \| AnimationSegment[] | Yes   | Segment or segment list.<br>If all segments in the segment list are played, only the last segment is played in the next cycle.|
-| forceFlag | boolean                                                   | Yes   | Whether the settings take effect immediately. The value **true** means the settings take effect immediately, and **false** means the settings take effect until the current cycle of playback is completed.          |
+| forceFlag | boolean                                  | Yes   | Whether the settings take effect immediately. The value **true** means the settings take effect immediately, and **false** means the settings take effect until the current cycle of playback is completed.          |
 
 **Example**
 
@@ -533,7 +530,7 @@ Obtains the duration (irrelevant to the playback speed) or number of frames for 
 
 | Name      | Type     | Mandatory  | Description                                      |
 | -------- | ------- | ---- | ---------------------------------------- |
-| inFrames | boolean | No   | Whether to obtain the duration or number of frames.<br>**true**: number of frames.<br>**false**: duration, in ms.<br/>Default value: **false** |
+| inFrames | boolean | No   | Whether to obtain the duration or number of frames.<br>**true**: number of frames.<br>**false**: duration, in ms.<br>Default value: **false**|
 
 **Example**
 
@@ -579,7 +576,7 @@ Removes an event listener.
 | Name      | Type                             | Mandatory  | Description                                      |
 | -------- | ------------------------------- | ---- | ---------------------------------------- |
 | name     | AnimationEventName              | Yes   | Animation event type. The available options are as follows:<br>'enterFrame', 'loopComplete', 'complete', 'segmentStart', 'destroy', 'config_ready', 'data_ready', 'DOMLoaded', 'error', 'data_failed', 'loaded_images'|
-| callback | AnimationEventCallback&lt;T&gt; | No    | Custom callback. By default, the value is null, meaning that all callbacks of the event will be removed.           |
+| callback | AnimationEventCallback&lt;T&gt; | No   | Custom callback. By default, the value is null, meaning that all callbacks of the event will be removed.           |
 
 **Example**
 

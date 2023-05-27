@@ -16,7 +16,7 @@ import dateTimeManager from '@ohos.enterprise.dateTimeManager'
 
 setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
-Sets the system time. This API uses an asynchronous callback to return the result.
+Configures a device administrator application to set the system time. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -59,7 +59,7 @@ dateTimeManager.setDateTime(wantTemp, 1526003846000, (error) => {
 
 setDateTime(admin: Want, time: number): Promise\<void>
 
-Sets the system time. This API uses a promise to return the result.
+Configures a device administrator application to set the system time. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -106,7 +106,7 @@ dateTimeManager.setDateTime(wantTemp, 1526003846000).then(() => {
 
 disallowModifyDateTime(admin: Want, disallow: boolean, callback: AsyncCallback\<void>): void
 
-Disables modification of the system time. This API uses an asynchronous callback to return the result.
+Configures a device administrator application to disable modification of the system time. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -149,7 +149,7 @@ dateTimeManager.disallowModifyDateTime(wantTemp, true, (error) => {
 
 disallowModifyDateTime(admin: Want, disallow: boolean): Promise\<void>
 
-Disables modification of the system time. This API uses a promise to return the result.
+Configures a device administrator application to disable modification of the system time. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -196,7 +196,7 @@ dateTimeManager.disallowModifyDateTime(wantTemp, true).then(() => {
 
 isModifyDateTimeDisallowed(admin: Want, callback: AsyncCallback\<boolean>): void
 
-Checks whether modification of the system time is disabled. This API uses an asynchronous callback to return the result.
+Configures a device administrator application to check whether modification of the system time is disabled. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -238,7 +238,7 @@ dateTimeManager.isModifyDateTimeDisallowed(wantTemp, (error) => {
 
 isModifyDateTimeDisallowed(admin: Want): Promise\<boolean>
 
-Checks whether modification of the system time is disabled. This API uses a promise to return the result.
+Configures a device administrator application to check whether modification of the system time is disabled. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -256,7 +256,7 @@ Checks whether modification of the system time is disabled. This API uses a prom
 
 | Type  | Description                                 |
 | ----- | ----------------------------------- |
-| Promise\<boolean> | Promise Promise used to return the result. The value **true** means that modification of the system time is disabled, and **false** means the opposite.|
+| Promise\<boolean> | Promise used to return the result. The value **true** means that modification of the system time is disabled, and **false** means the opposite.|
 
 **Error codes**
 

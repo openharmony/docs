@@ -2215,7 +2215,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
  **Parameters**
 
-| Parameters  | Type    | Mandatory  | Default Value  | Description           |
+| Name  | Type    | Mandatory  | Default Value  | Description           |
 | ---- | ------ | ---- | ---- | ------------- |
 | sw   | number | Yes   | 0    | Width of the **ImageData** object.|
 | sh   | number | Yes   | 0    | Height of the **ImageData** object.|

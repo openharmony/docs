@@ -20,7 +20,7 @@ UiTest提供模拟UI操作的能力，供开发者在测试场景使用，主要
 ## 导入模块 
 
 ```js
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton} from '@ohos.UiTest';
+import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver} from '@ohos.UiTest';
 ```
 
 ## MatchPattern
@@ -140,6 +140,18 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 | MOUSE_BUTTON_LEFT   | 0    | 鼠标左键。   |
 | MOUSE_BUTTON_RIGHT  | 1    | 鼠标右键。   |
 | MOUSE_BUTTON_MIDDLE | 2    | 鼠标中间键。 |
+
+## UIElementInfo<sup>10+</sup>
+
+UI事件的相关信息。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+| 名称       | 类型   | 可读 | 可写 | 说明                  |
+| ---------- | ------ | ---- | ---- | --------------------- |
+| bundleName | string | 是   | 否   | 归属应用的包名。      |
+| type       | string | 是   | 否   | 控件/窗口类型。       |
+| text       | string | 是   | 否   | 控件/窗口的文本信息。 |
 
 ## On<sup>9+</sup>
 
@@ -564,8 +576,8 @@ click(): Promise\<void>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -591,8 +603,8 @@ doubleClick(): Promise\<void>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -618,8 +630,8 @@ longClick(): Promise\<void>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -651,8 +663,8 @@ getId(): Promise\<string>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -684,8 +696,8 @@ getText(): Promise\<string>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -717,8 +729,8 @@ getType(): Promise\<string>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -750,8 +762,8 @@ getBounds(): Promise\<Rect>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -783,8 +795,8 @@ getBoundsCenter(): Promise\<Point>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -816,8 +828,8 @@ isClickable(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -853,8 +865,8 @@ isLongClickable(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -890,8 +902,8 @@ isChecked(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -899,7 +911,7 @@ isChecked(): Promise\<boolean>
 async function demo() {
     let driver = Driver.create();
     let checkBox = await driver.findComponent(ON.type('Checkbox'));
-    if(await checkBox.isChecked) {
+    if(await checkBox.isChecked()) {
         console.info('This checkBox is checked');
     } else {
         console.info('This checkBox is not checked');
@@ -927,8 +939,8 @@ isCheckable(): Promise\<boolean>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -936,7 +948,7 @@ isCheckable(): Promise\<boolean>
 async function demo() {
     let driver = Driver.create();
     let checkBox = await driver.findComponent(ON.type('Checkbox'));
-    if(await checkBox.isCheckable) {
+    if(await checkBox.isCheckable()) {
         console.info('This checkBox is checkable');
     } else {
         console.info('This checkBox is not checkable');
@@ -964,8 +976,8 @@ isScrollable(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1002,8 +1014,8 @@ isEnabled(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1040,8 +1052,8 @@ isFocused(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1077,8 +1089,8 @@ isSelected(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1114,8 +1126,8 @@ inputText(text: string): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1139,8 +1151,8 @@ clearText(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1178,8 +1190,8 @@ scrollSearch(on: On): Promise\<Component>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1211,8 +1223,8 @@ scrollToTop(speed?: number): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1244,8 +1256,8 @@ scrollToBottom(speed?: number): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1277,8 +1289,8 @@ dragTo(target: Component): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1311,8 +1323,8 @@ pinchOut(scale: number): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1344,8 +1356,8 @@ pinchIn(scale: number): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **示例：**
 
@@ -1382,7 +1394,7 @@ static create(): Driver
 
 | 错误码ID | 错误信息           |
 | -------- | ------------------ |
-| 17000001 | Initialize failed. |
+| 17000001 | if the test framework failed to initialize. |
 
 **示例：**
 
@@ -1412,7 +1424,7 @@ Driver对象在给定的时间内延时。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -1449,7 +1461,7 @@ findComponent(on: On): Promise\<Component>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -1486,7 +1498,7 @@ findComponents(on: On): Promise\<Array\<Component>>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -1523,7 +1535,7 @@ findWindow(filter: WindowFilter): Promise\<UiWindow>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -1561,7 +1573,7 @@ waitForComponent(on: On, time: number): Promise\<Component>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -1592,8 +1604,8 @@ assertComponentExist(on: On): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000003 | Component existence assertion failed.    |
+| 17000002 | if the async function was not called with await. |
+| 17000003 | if the assertion failed.    |
 
 **示例：**
 
@@ -1618,7 +1630,7 @@ Driver对象进行点击BACK键的操作。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -1649,7 +1661,7 @@ Driver对象采取如下操作：传入key值实现模拟点击对应按键的�
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -1682,7 +1694,7 @@ Driver对象通过给定的key值，找到对应组合键并点击。例如，Ke
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -1715,7 +1727,7 @@ Driver对象采取如下操作：在目标坐标点单击。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -1747,7 +1759,7 @@ Driver对象采取如下操作：在目标坐标点双击。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -1779,7 +1791,7 @@ Driver对象采取如下操作：在目标坐标点长按。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -1814,7 +1826,7 @@ Driver对象采取如下操作：从起始坐标点滑向目的坐标点。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -1849,7 +1861,7 @@ Driver对象采取如下操作：从起始坐标点拖拽至目的坐标点。
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -1886,7 +1898,7 @@ Driver对象采取如下操作：捕获当前屏幕，并保存为PNG格式的�
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -1917,7 +1929,7 @@ setDisplayRotation(rotation: DisplayRotation): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -1948,7 +1960,7 @@ getDisplayRotation(): Promise\<DisplayRotation>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -1979,7 +1991,7 @@ setDisplayRotationEnabled(enabled: boolean): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -2010,7 +2022,7 @@ getDisplaySize(): Promise\<Point>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -2041,7 +2053,7 @@ getDisplayDensity(): Promise\<Point>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -2066,7 +2078,7 @@ wakeUpDisplay(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -2091,7 +2103,7 @@ pressHome(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -2129,7 +2141,7 @@ waitForIdle(idleTime: number, timeout: number): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -2163,7 +2175,7 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -2201,7 +2213,7 @@ injectMultiPointerAction(pointers: PointerMatrix, speed?: number): Promise\<bool
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -2221,7 +2233,7 @@ async function demo() {
 
 ### fling<sup>10+</sup>
 
-fling(direction: UiDirection, speed: number): Promise<void>;
+fling(direction: UiDirection, speed: number): Promise\<void>;
 
 指定方向和速度，模拟手指滑动后脱离屏幕的快速滑动操作。
 
@@ -2240,7 +2252,7 @@ fling(direction: UiDirection, speed: number): Promise<void>;
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -2253,7 +2265,7 @@ async function demo() {
 
 ### screenCapture<sup>10+</sup>
 
-screenCapture(savePath: string, rect?: Rect): Promise<boolean>;
+screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
 捕获当前屏幕的指定区域，并保存为PNG格式的图片至给出的保存路径中。
 
@@ -2278,7 +2290,7 @@ screenCapture(savePath: string, rect?: Rect): Promise<boolean>;
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -2291,7 +2303,7 @@ async function demo() {
 
 ### mouseClick<sup>10+</sup>
 
-mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise<void>;
+mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\<void>;
 
 在指定坐标点注入鼠标点击动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标点击动作。
 
@@ -2303,7 +2315,7 @@ mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise<
 | ------ | ----------------------------- | ---- | ------------------- |
 | p      | [Point](#point9)              | 是   | 鼠标点击的坐标。    |
 | btnId  | [MouseButton](#mousebutton10) | 是   | 按下的鼠标按钮。    |
-| key1   | number                        | 是   | 指定的第一个key值。 |
+| key1   | number                        | 否   | 指定的第一个key值。 |
 | key2   | number                        | 否   | 指定的第二个key值。 |
 
 **错误码：**
@@ -2312,7 +2324,7 @@ mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise<
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -2325,7 +2337,7 @@ async function demo() {
 
 ### mouseScroll<sup>10+</sup>
 
-mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): Promise<void>;
+mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): Promise\<void>;
 
 在指定坐标点注入鼠标滚轮滑动动作，支持同时按下对应键盘组合键。例如，Key值为2072时，按下ctrl并进行鼠标滚轮滑动动作。
 
@@ -2338,7 +2350,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 | p      | [Point](#point9) | 是   | 鼠标点击的坐标。                                    |
 | down   | boolean          | 是   | 滚轮滑动方向是否向下。                              |
 | d      | number           | 是   | 鼠标滚轮滚动的格数，每格对应目标点位移120个像素点。 |
-| key1   | number           | 是   | 指定的第一个key值。                                 |
+| key1   | number           | 否   | 指定的第一个key值。                                 |
 | key2   | number           | 否   | 指定的第二个key值。                                 |
 
 **错误码：**
@@ -2347,7 +2359,7 @@ mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): P
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -2360,7 +2372,7 @@ async function demo() {
 
 ### mouseMoveTo<sup>10+</sup>
 
-mouseMoveTo(p: Point): Promise<void>;
+mouseMoveTo(p: Point): Promise\<void>;
 
 将鼠标光标移到目标点。
 
@@ -2378,7 +2390,7 @@ mouseMoveTo(p: Point): Promise<void>;
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **示例：**
 
@@ -2386,6 +2398,37 @@ mouseMoveTo(p: Point): Promise<void>;
 async function demo() {
     let driver = Driver.create();
     await driver.mouseMoveTo({x:100, y:100})
+}
+```
+
+### createUIEventObserver<sup>10+</sup>
+
+createUIEventObserver(): UIEventObserver;
+
+创建一个UI事件监听器。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**返回值：**
+
+| 类型                                            | 说明                                  |
+| ----------------------------------------------- | ------------------------------------- |
+| Promise\<[UIEventObserver](#uieventobserver10)> | 以Promise形式返回找到的目标窗口对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[uitest测试框架错误码](../errorcodes/errorcode-uitest.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 17000002 | if the async function was not called with await. |
+
+**示例：**
+
+```js
+async function demo() {
+    let driver = Driver.create();
+    let obeserver = await driver.createUiEventObserve();
 }
 ```
 
@@ -2477,8 +2520,8 @@ getBundleName(): Promise\<string>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.           |
 
 **示例：**
 
@@ -2510,8 +2553,8 @@ getBounds(): Promise\<Rect>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.           |
 
 **示例：**
 
@@ -2543,8 +2586,8 @@ getTitle(): Promise\<string>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.           |
 
 **示例：**
 
@@ -2576,8 +2619,8 @@ getWindowMode(): Promise\<WindowMode>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.          |
 
 **示例：**
 
@@ -2609,8 +2652,8 @@ isFocused(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.           |
 
 **示例：**
 
@@ -2642,8 +2685,8 @@ isActived(): Promise\<boolean>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.           |
 
 **示例：**
 
@@ -2669,8 +2712,8 @@ focus(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.           |
 
 **示例：**
 
@@ -2703,9 +2746,9 @@ moveTo(x: number, y: number): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
-| 17000005 | This operation is not supported.         |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.           |
+| 17000005 | if the action is not supported on this window.         |
 
 **示例：**
 
@@ -2739,9 +2782,9 @@ resize(wide: number, height: number, direction: ResizeDirection): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
-| 17000005 | This operation is not supported.         |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.           |
+| 17000005 | if the action is not supported on this window.         |
 
 **示例：**
 
@@ -2767,9 +2810,9 @@ split(): Promise\<void>
 
 | 错误码ID | 错误信息                                 |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
-| 17000005 | This operation is not supported.         |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.         |
+| 17000005 | if the action is not supported on this window.         |
 
 **示例：**
 
@@ -2795,9 +2838,9 @@ maximize(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
-| 17000005 | This operation is not supported.         |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.           |
+| 17000005 | if the action is not supported on this window.         |
 
 **示例：**
 
@@ -2823,9 +2866,9 @@ minimize(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
-| 17000005 | This operation is not supported.         |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.          |
+| 17000005 | if the action is not supported on this window.         |
 
 **示例：**
 
@@ -2851,9 +2894,9 @@ resume(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
-| 17000005 | This operation is not supported.         |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.          |
+| 17000005 | if the action is not supported on this window.         |
 
 **示例：**
 
@@ -2879,9 +2922,9 @@ close(): Promise\<void>
 
 | 错误码ID | 错误信息                               |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
-| 17000005 | This operation is not supported.         |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.           |
+| 17000005 | if the action is not supported on this window.         |
 
 **示例：**
 
@@ -2890,6 +2933,68 @@ async function demo() {
     let driver = Driver.create();
     let window = await driver.findWindow({actived: true});
     await window.close();
+}
+```
+
+## UIEventObserver<sup>10+</sup>
+
+UI事件监听器。
+
+### once('toastShow')
+
+once(type: 'toastShow', callback: Callback\<UIElementInfo>):void;
+
+开始监听toast控件出现的事件，使用callback的形式返回结果。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                              |
+| -------- | -------------------------------------------- | ---- | --------------------------------- |
+| type     | string                                       | 是   | 订阅的事件类型，取值为'toastShow' |
+| callback | Callback\<[UIElementInfo](#uielementinfo10)> | 是   | 事件发生时执行的回调函数          |
+
+**示例：**
+
+```js
+async function demo() {
+    let observer = await driver.createUIEventObserver()
+    let  callback = (UIElementInfo)=>{
+        console.info(UIElementInfo.bundleName)
+        console.info(UIElementInfo.text)
+        console.info(UIElementInfo.type)
+     }
+    observer.once('toastShow', callback)
+}
+```
+
+### once('dialogShow')
+
+once(type: 'dialogShow', callback: Callback\<UIElementInfo>): void;
+
+开始监听dialog控件出现的事件，使用callback的形式返回结果。
+
+**系统能力**：SystemCapability.Test.UiTest
+
+**参数：**
+
+| 参数名   | 类型                                         | 必填 | 说明                               |
+| -------- | -------------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                       | 是   | 订阅的事件类型，取值为'dialogShow' |
+| callback | Callback\<[UIElementInfo](#uielementinfo10)> | 是   | 事件发生时执行的回调函数           |
+
+**示例：**
+
+```js
+async function demo() {
+    let observer = await driver.createUIEventObserver()
+    let  callback = (UIElementInfo)=>{
+        console.info(UIElementInfo.bundleName)
+        console.info(UIElementInfo.text)
+        console.info(UIElementInfo.type)
+     }
+    observer.once('dialogShow', callback)
 }
 ```
 

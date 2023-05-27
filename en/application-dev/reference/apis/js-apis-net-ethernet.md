@@ -403,7 +403,7 @@ Registers an observer for NIC hot swap events. This API uses an asynchronous cal
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
 | type     | string                  | Yes  | Event type. The value is **interfaceStateChange**.|
-| callback | AsyncCallback\<{ iface: string, active: boolean }\> | Yes  | Callback used to return the result.<br>**iface**: NIC name.<br>**active**: whether the NIC is active. The value **true** indicates that the NIC is active, and the value **false** indicates the opposite.|
+| callback | Callback\<{ iface: string, active: boolean }\> | Yes  | Callback used to return the result.<br>**iface**: NIC name.<br>**active**: whether the NIC is active. The value **true** indicates that the NIC is active, and the value **false** indicates the opposite.|
 
 **Error codes**
 
@@ -416,8 +416,8 @@ Registers an observer for NIC hot swap events. This API uses an asynchronous cal
 **Example**
 
 ```js
- ethernet.on('interfaceStateChange', (data) => {
-  console.log('on interfaceSharingStateChange: ' + JSON.stringify(data));
+ethernet.on('interfaceStateChange', (data) => {
+  console.log('on interfaceSharingStateChange: ' + JSON.stringify(data.iface) + JSON.stringify(data.active));
 });
 ```
 
@@ -438,7 +438,7 @@ Unregisters the observer for NIC hot swap events. This API uses an asynchronous 
 | Name  | Type                                   | Mandatory| Description      |
 | -------- | --------------------------------------- | ---- | ---------- |
 | type     | string                  | Yes  | Event type. The value is **interfaceStateChange**.|
-| callback | AsyncCallback\<{ iface: string, active: boolean }> | No  | Callback used to return the result.<br>**iface**: NIC name.<br>**active**: whether the NIC is active. The value **true** indicates that the NIC is active, and the value **false** indicates the opposite.|
+| callback | Callback\<{ iface: string, active: boolean }> | No  | Callback used to return the result.<br>**iface**: NIC name.<br>**active**: whether the NIC is active. The value **true** indicates that the NIC is active, and the value **false** indicates the opposite.|
 
 **Error codes**
 

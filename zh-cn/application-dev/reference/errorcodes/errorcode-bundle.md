@@ -544,6 +544,19 @@ The specified bundle is a shared bundle which cannot be uninstalled.
 1. 通过-s参数指定卸载的应用为共享库应用。
 2. 通过UninstallParam参数的bundleName及versionCode指定卸载的共享库的包名及版本。
 
+## 17700041 企业设备管理不允许安装该应用
+**错误信息**<br/>
+Failed to install because enterprise device management disallow install.
+
+**错误描述**<br/>
+安装应用时，企业设备管理不允许安装。
+
+**可能原因**<br/>
+1. 企业设备管理不允许安装该应用。
+
+**处理步骤**<br/>
+1. 请在设备中检查应用是否被企业设备管理禁止安装。
+
 ## 17700042 数据代理中的uri配置错误
 **错误信息**<br/>
 Failed to install the HAP because of incorrect URI in the data proxy.
@@ -587,3 +600,31 @@ Failed to install the HAP because the isolationMode configured is not supported.
 
 **处理步骤**<br/>
 1. 按照设备的隔离模式正确配置HAP字段isolationMode。
+
+## 17700045 企业设备管理不允许卸载该应用
+**错误信息**<br/>
+Failed to uninstall because enterprise device management disallow uninstall.
+
+**错误描述**<br/>
+卸载应用时，企业设备管理不允许卸载。
+
+**可能原因**<br/>
+1. 企业设备管理不允许安装该应用。
+
+**处理步骤**<br/>
+1. 请在设备中检查应用是否被企业设备管理禁止卸载安装。
+
+## 17700047 要更新的应用版本没有大于当前版本
+**错误信息**<br/>
+Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode.
+
+**错误描述**<br/>
+安装应用时，要更新的应用版本没有大于当前版本。
+
+**可能原因**<br/>
+1. 安装应用的版本号小于等于已安装应用的版本号。
+2. installFlag被设置为NORMAL，此时待更新的应用的版本号必须大于当前已安装的版本。
+
+**处理步骤**<br/>
+1. 设置应用的版本号大于当前版本。
+2. 如果希望应用更新但版本号不升级，需要设置installFlag为REPLACE_EXISTING。

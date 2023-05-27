@@ -31,22 +31,28 @@ Sets the next refresh time for a widget. This API uses an asynchronous callback 
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501002 | The number of forms exceeds upper bound. |
+| 16501003 | The form can not be operated by the current application. |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
 ```ts
-import formProvider from '@ohos.app.form.formProvider';
-
 let formId = '12400633174999288';
 try {
-  formProvider.setFormNextRefreshTime(formId, 5, (error, data) => {
+  formProvider.setFormNextRefreshTime(formId, 5, (error) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
-    } else {
-      console.log(`formProvider setFormNextRefreshTime success`);
+      return;
     }
+    console.log(`formProvider setFormNextRefreshTime success`);
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -78,14 +84,20 @@ Sets the next refresh time for a widget. This API uses a promise to return the r
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501002 | The number of forms exceeds upper bound. |
+| 16501003 | The form can not be operated by the current application. |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
 ```ts
-import formProvider from '@ohos.app.form.formProvider';
-
 let formId = '12400633174999288';
 try {
   formProvider.setFormNextRefreshTime(formId, 5).then(() => {
@@ -118,24 +130,30 @@ Updates a widget. This API uses an asynchronous callback to return the result.
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
-import formProvider from '@ohos.app.form.formProvider';
 
 let formId = '12400633174999288';
 try {
   let obj = formBindingData.createFormBindingData({temperature:'22c', time:'22:00'});
-  formProvider.updateForm(formId, obj, (error, data) => {
+  formProvider.updateForm(formId, obj, (error) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
-    } else {
-      console.log(`formProvider updateForm success`);
+      return;
     }
+    console.log(`formProvider updateForm success`);
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -167,14 +185,20 @@ Updates a widget. This API uses a promise to return the result.
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+| 16501001 | The ID of the form to be operated does not exist. |
+| 16501003 | The form can not be operated by the current application. |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
-import formProvider from '@ohos.app.form.formProvider';
 
 let formId = '12400633174999288';
 let obj = formBindingData.createFormBindingData({ temperature: '22c', time: '22:00' });
@@ -204,25 +228,26 @@ Obtains the application's widget information on the device. This API uses an asy
 | callback | AsyncCallback&lt;Array&lt;[formInfo.FormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the information obtained.|
 
 **Error codes**
-
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 
 **Example**
 
 ```ts
-import formProvider from '@ohos.app.form.formProvider';
-
 try {
   formProvider.getFormsInfo((error, data) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
-    } else {
-      console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
+      return;
     }
+    console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -247,14 +272,17 @@ Obtains the application's widget information that meets a filter criterion on th
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
 ```ts
 import formInfo from '@ohos.app.form.formInfo';
-import formProvider from '@ohos.app.form.formProvider';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
@@ -264,9 +292,9 @@ try {
   formProvider.getFormsInfo(filter, (error, data) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
-    } else {
-      console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
+      return;
     }
+    console.log('formProvider getFormsInfo, data: ${JSON.stringify(data)}');
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -285,7 +313,7 @@ Obtains the application's widget information on the device. This API uses a prom
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md#forminfofilter) | No| Filter criterion.|
+| filter | [formInfo.FormInfoFilter](js-apis-app-form-formInfo.md#forminfofilter) | No| Filter criterion. By default, no value is passed, indicating that no filtering is performed.|
 
 **Return value**
 
@@ -297,14 +325,17 @@ Obtains the application's widget information on the device. This API uses a prom
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
 ```ts
 import formInfo from '@ohos.app.form.formInfo';
-import formProvider from '@ohos.app.form.formProvider';
 
 const filter: formInfo.FormInfoFilter = {
   // get info of forms belong to module entry.
@@ -343,14 +374,18 @@ Requests to publish a widget carrying data to the widget host. This API uses an 
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
 ```ts
 import formBindingData from '@ohos.app.form.formBindingData';
-import formProvider from '@ohos.app.form.formProvider';
 
 let want = {
   abilityName: 'FormAbility',
@@ -365,9 +400,9 @@ try {
   formProvider.requestPublishForm(want, obj, (error, data) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
-    } else {
-      console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
+      return;
     }
+    console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -395,14 +430,17 @@ Requests to publish a widget to the widget host. This API uses an asynchronous c
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
 ```ts
-import formProvider from '@ohos.app.form.formProvider';
-
 let want = {
   abilityName: 'FormAbility',
   parameters: {
@@ -415,9 +453,9 @@ try {
   formProvider.requestPublishForm(want, (error, data) => {
     if (error) {
       console.error(`callback error, code: ${error.code}, message: ${error.message})`);
-    } else {
-      console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
+      return;
     }
+    console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
   });
 } catch (error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -439,7 +477,7 @@ Requests to publish a widget to the widget host. This API uses a promise to retu
 | Name         | Type                                                        | Mandatory| Description                                                        |
 | --------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | want            | [Want](js-apis-application-want.md)                          | Yes  | Request used for publishing. The following fields must be included:<br>Information about the target widget.<br>**abilityName**: ability of the target widget.<br>**parameters**:<br>'ohos.extra.param.key.form_dimension'<br>'ohos.extra.param.key.form_name'<br>'ohos.extra.param.key.module_name' |
-| formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | No  | Data used for creating the widget.                                          |
+| formBindingData | [formBindingData.FormBindingData](js-apis-app-form-formBindingData.md#formbindingdata) | No  | Data used for creating the widget. By default, no value is passed, indicating that no data is provided.                                     |
 
 **Return value**
 
@@ -451,14 +489,17 @@ Requests to publish a widget to the widget host. This API uses a promise to retu
 
 | Error Code ID| Error Message|
 | -------- | -------- |
-| 401 | Incorrect input parameter.|
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16501000 | An internal functional error occurred. |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
 ```ts
-import formProvider from '@ohos.app.form.formProvider';
-
 let want = {
   abilityName: 'FormAbility',
   parameters: {
@@ -494,11 +535,20 @@ Checks whether a widget can be published to the widget host. This API uses an as
 | ------ | ------ | ---- | ------- |
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return whether the widget can be published to the widget host.|
 
+**Error codes**
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16501000 | An internal functional error occurred. |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+
 **Example**
 
 ```ts
-import formProvider from '@ohos.app.form.formProvider';
-
 try {
   formProvider.isRequestPublishFormSupported((error, isSupported) => {
     if (error) {
@@ -517,9 +567,9 @@ try {
           formProvider.requestPublishForm(want, (error, data) => {
             if (error) {
               console.error(`callback error, code: ${error.code}, message: ${error.message})`);
-            } else {
-              console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
+              return;
             }
+            console.log('formProvider requestPublishForm, form ID is: ${JSON.stringify(data)}');
           });
         } catch (error) {
           console.error(`catch error, code: ${error.code}, message: ${error.message})`);
@@ -548,11 +598,19 @@ Checks whether a widget can be published to the widget host. This API uses a pro
 | :------------ | :---------------------------------- |
 | Promise&lt;boolean&gt; | Promise used to return whether the widget can be published to the widget host.|
 
+**Error codes**
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 16500050 | An IPC connection error happened. |
+| 16501000 | An internal functional error occurred. |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+
 **Example**
 
 ```ts
-import formProvider from '@ohos.app.form.formProvider';
-
 try {
   formProvider.isRequestPublishFormSupported().then((isSupported) => {
     if (isSupported) {

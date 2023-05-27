@@ -5,6 +5,7 @@
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块接口需激活为[设备管理员应用](js-apis-enterprise-adminManager.md#adminmanagerenableadmin)后才能调用，实现相应功能。
 
 ## 导入模块
 
@@ -52,7 +53,7 @@ wifiManager.isWifiActive(wantTemp, (error, result) => {
         console.log("error code:" + error.code + " error message:" + error.message);
         return;
     }
-    console.log(result);
+    console.log("result:" + result);
 });
 ```
 
@@ -97,7 +98,7 @@ let wantTemp = {
     abilityName: "EntryAbility",
 };
 wifiManager.isWifiActive(wantTemp).then((result) => {
-    console.log(result);
+    console.log("result:" + result);
 }).catch(error => {
     console.log("error code:" + error.code + " error message:" + error.message);
 });
@@ -139,7 +140,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let profile : WifiProfile = {
+let profile : wifiManager.WifiProfile = {
     "ssid": "name",
     "preSharedKey": "passwd",
     "securityType": wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
@@ -194,12 +195,12 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let profile : WifiProfile = {
+let profile : wifiManager.WifiProfile = {
     "ssid": "name",
     "preSharedKey": "passwd",
     "securityType": wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
 };
-wifiManager.isWifiActive(wantTemp, profile).then(() => {
+wifiManager.setWifiProfile(wantTemp, profile).then(() => {
     console.log("set wifi success");
 }).catch(error => {
     console.log("error code:" + error.code + " error message:" + error.message);

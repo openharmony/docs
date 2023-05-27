@@ -15,7 +15,7 @@ import observer from '@ohos.telephony.observer';
 
 ## observer.on('networkStateChange')
 
-on\(type: \'networkStateChange\', callback: Callback<NetworkState\>\): void;
+on\(type: \'networkStateChange\', callback: Callback\<NetworkState\>\): void;
 
 订阅网络状态变化事件，使用callback方式作为异步方法。
 
@@ -32,7 +32,7 @@ on\(type: \'networkStateChange\', callback: Callback<NetworkState\>\): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -54,7 +54,7 @@ observer.on('networkStateChange', data => {
 
 ## observer.on('networkStateChange')
 
-on\(type: \'networkStateChange\', options: { slotId: number }, callback: Callback<NetworkState\>\): void;
+on\(type: \'networkStateChange\', options: { slotId: number }, callback: Callback\<NetworkState\>\): void;
 
 订阅指定卡槽位的网络状态变化事件，使用callback方式作为异步方法。
 
@@ -72,7 +72,7 @@ on\(type: \'networkStateChange\', options: { slotId: number }, callback: Callbac
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -94,7 +94,7 @@ observer.on('networkStateChange', {slotId: 0}, data => {
 
 ## observer.off('networkStateChange')
 
-off\(type: \'networkStateChange\', callback?: Callback<NetworkState\>\): void;
+off\(type: \'networkStateChange\', callback?: Callback\<NetworkState\>\): void;
 
 取消订阅网络状态变化事件，使用callback方式作为异步方法。
 
@@ -110,6 +110,10 @@ off\(type: \'networkStateChange\', callback?: Callback<NetworkState\>\): void;
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                    | 是   | 网络状态变化事件，参数固定为'networkStateChange'。                 |
 | callback | Callback\<[NetworkState](js-apis-radio.md#networkstate)\> | 否   | 回调函数。参考radio的[NetworkState](js-apis-radio.md#networkstate) |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -133,7 +137,7 @@ observer.off('networkStateChange');
 
 ## observer.on('signalInfoChange')
 
-on\(type: \'signalInfoChange\', callback: Callback<Array<SignalInformation\>\>): void;
+on\(type: \'signalInfoChange\', callback: Callback\<Array\<SignalInformation\>\>): void;
 
 订阅信号状态变化事件，使用callback方式作为异步方法。
 
@@ -144,15 +148,14 @@ on\(type: \'signalInfoChange\', callback: Callback<Array<SignalInformation\>\>):
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | 是   | 信号状态变化事件，参数固定为'signalInfoChange'。              |
-| callback | Callback<Array<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 是   | 回调函数。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
+| callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 是   | 回调函数。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
-| 错误码ID |                  错误信息                    |
+| 错误码ID |                  错误信息                     |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -170,7 +173,7 @@ observer.on('signalInfoChange', data => {
 
 ## observer.on('signalInfoChange')
 
-on\(type: \'signalInfoChange\', options: { slotId: number }, callback: Callback<Array<SignalInformation\>\>): void;
+on\(type: \'signalInfoChange\', options: { slotId: number }, callback: Callback\<Array\<SignalInformation\>\>): void;
 
 订阅指定卡槽位的信号状态变化事件，使用callback方式作为异步方法。
 
@@ -182,15 +185,14 @@ on\(type: \'signalInfoChange\', options: { slotId: number }, callback: Callback<
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | string                                                       | 是   | 信号状态变化事件，参数固定为'signalInfoChange'。              |
 | slotId   | number                                                       | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                       |
-| callback | Callback<Array<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 是   | 回调函数。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
+| callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 是   | 回调函数。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -208,7 +210,7 @@ observer.on('signalInfoChange', {slotId: 0}, data => {
 
 ## observer.off('signalInfoChange')
 
-off\(type: \'signalInfoChange\', callback?: Callback<Array<SignalInformation\>\>): void;
+off\(type: \'signalInfoChange\', callback?: Callback\<Array\<SignalInformation\>\>): void;
 
 取消订阅信号状态变化事件，使用callback方式作为异步方法。
 
@@ -223,11 +225,11 @@ off\(type: \'signalInfoChange\', callback?: Callback<Array<SignalInformation\>\>
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | string                                                       | 是   | 信号状态变化事件，参数固定为'signalInfoChange'。              |
-| callback | Callback<Array<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 否   | 回调函数。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
+| callback | Callback\<Array\<[SignalInformation](js-apis-radio.md#signalinformation)\>\> | 否   | 回调函数。参考radio的[SignalInformation](js-apis-radio.md#signalinformation) |
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -251,7 +253,7 @@ observer.off('signalInfoChange');
 
 ## observer.on('cellInfoChange')<sup>8+</sup>
 
-on\(type: \'cellInfoChange\', callback: Callback<CellInformation\>\): void;
+on\(type: \'cellInfoChange\', callback: Callback\<Array\<CellInformation\>\>\): void;
 
 订阅小区信息变化事件，使用callback方式作为异步方法。
 
@@ -263,16 +265,19 @@ on\(type: \'cellInfoChange\', callback: Callback<CellInformation\>\): void;
 
 **参数：**
 
-| 参数名   | 类型                                                      | 必填 | 说明                                                         |
-| -------- | --------------------------------------------------------- | ---- |------------------------------------------------------------|
-| type     | string                                                    | 是   | 小区信息变化事件，固定为'cellInfoChange'。              |
-| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | 是   | 回调函数。|
+| 参数名   | 类型                                                      | 必填 | 说明                                      |
+| -------- | --------------------------------------------------------- | ---- |------------------------------------------|
+| type     | string                                                    | 是   | 小区信息变化事件，固定为'cellInfoChange'。 |
+| callback | Callback\<Array\<[CellInformation](js-apis-radio.md#cellinformation8)\>\> | 是   | 回调函数。                |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -290,7 +295,7 @@ observer.on('cellInfoChange', data => {
 
 ## observer.on('cellInfoChange')<sup>8+</sup>
 
-on\(type: \'cellInfoChange\', options: { slotId: number }, callback: Callback<CellInformation\>\): void;
+on\(type: \'cellInfoChange\', options: { slotId: number }, callback: Callback\<Array\<CellInformation\>\>\): void;
 
 订阅指定卡槽位的小区信息变化事件，使用callback方式作为异步方法。
 
@@ -302,17 +307,20 @@ on\(type: \'cellInfoChange\', options: { slotId: number }, callback: Callback<Ce
 
 **参数：**
 
-| 参数名 | 类型                                               | 必填 | 说明                                                         |
-| ------ |--------------------------------------------------| ---- |------------------------------------------------------------|
-| type     | string                                           | 是   | 小区信息变化事件，固定为'cellInfoChange'。                                                   |
-| slotId | number                                           | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                              |
-| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | 是   | 回调函数。|
+| 参数名 | 类型                                               | 必填 | 说明                                      |
+| ------ |--------------------------------------------------| ---- |--------------------------------------------|
+| type     | string                                           | 是   | 小区信息变化事件，固定为'cellInfoChange'。 |
+| slotId | number                                           | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2      |
+| callback | Callback\<Array\<[CellInformation](js-apis-radio.md#cellinformation8)\>\> | 是   | 回调函数。       |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -330,7 +338,7 @@ observer.on('cellInfoChange', {slotId: 0}, data => {
 
 ## observer.off('cellInfoChange')<sup>8+</sup>
 
-off\(type: \'cellInfoChange\', callback?: Callback<CellInformation\>\): void;
+off\(type: \'cellInfoChange\', callback?: Callback\<Array\<CellInformation\>\>\): void;
 
 取消订阅小区信息变化事件，使用callback方式作为异步方法。
 
@@ -347,10 +355,15 @@ off\(type: \'cellInfoChange\', callback?: Callback<CellInformation\>\): void;
 | 参数名   | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                    | 是   | 小区信息变化事件，固定为'cellInfoChange'。                                            |
-| callback | Callback\<[CellInformation](js-apis-radio.md#cellinformation8)\> | 否   | 回调函数。|
+| callback | Callback\<Array\<[CellInformation](js-apis-radio.md#cellinformation8)\>\> | 否   | 回调函数。|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -386,7 +399,7 @@ on(type: 'callStateChange', callback: Callback\<{ state: CallState, number: stri
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -423,7 +436,7 @@ on(type: 'callStateChange', options: { slotId: number }, callback: Callback<{ st
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -463,7 +476,7 @@ off(type: 'callStateChange', callback?: Callback<{ state: CallState, number: str
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -503,7 +516,7 @@ on\(type: 'cellularDataConnectionStateChange', callback: Callback\<{ state: Data
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -540,7 +553,7 @@ on\(type: 'cellularDataConnectionStateChange', options: { slotId: number }, call
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -580,7 +593,7 @@ off\(type: 'cellularDataConnectionStateChange',  callback?: Callback\<{ state: D
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -620,7 +633,7 @@ on\(type: 'cellularDataFlowChange', callback: Callback\<DataFlowType\>\): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -657,7 +670,7 @@ on\(type: 'cellularDataFlowChange', options: { slotId: number },  callback: Call
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -697,7 +710,7 @@ off\(type: 'cellularDataFlowChange', callback?: Callback\<DataFlowType\>\): void
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                  错误信息                    |
 | -------- | -------------------------------------------- |
@@ -737,7 +750,7 @@ on\(type: 'simStateChange', callback: Callback\<SimStateData\>\): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -774,7 +787,7 @@ on\(type: 'simStateChange', options: { slotId: number }, callback: Callback\<Sim
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
@@ -814,7 +827,7 @@ off\(type: 'simStateChange', callback?: Callback\<SimStateData\>\): void;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)错误码。
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |

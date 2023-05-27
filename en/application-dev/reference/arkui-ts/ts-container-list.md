@@ -118,7 +118,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 >  **NOTE**
 >
->  To enable the editable mode for a list, the following conditions must be met:
+>  To enable the editable mode for a list, the following conditions must be met: (This feature is deprecated since API version 9.)
 >
 >  - **editMode** is set to **true**.
 >
@@ -128,7 +128,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 >
 >  To enable dragging for a list item, the following conditions must be met:
 >
->  - **editMode** is set to **true**.
+>  - **editMode** is set to **true**. (This is not required since API version 9.)
 >
 >  - The list item is bound to the **onDragStart** event and the event returns a floating UI during event callback.
 

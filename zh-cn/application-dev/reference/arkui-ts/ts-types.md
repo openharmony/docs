@@ -10,7 +10,7 @@
 
   belonging：系统资源或者应用资源，相应的取值为'sys'和'app'；
 
-  type：资源类型，支持'color'、'float'、'string'、'media'等；
+  type：资源类型，支持'boolean'、'color'、'float'、'intarray'、'integer'、'pattern'、'plural'、'strarray'、'string'、'media'；
 
   name：资源名称，在资源定义时确定。
 
@@ -122,8 +122,8 @@
 | 类型                                      | 说明                                             |
 | ---------------------------------------- | ------------------------------------------------- |
 | [Color](ts-appendix-enums.md#color)      | 颜色枚举值。                                       |
-| number                                   | HEX格式颜色，支持rgb。                                      |
-| string                                   | rgb或者argb格式颜色。                              |
+| number                                   | HEX格式颜色，支持rgb。示例：0xffffff。                                      |
+| string                                   | rgb或者argb格式颜色。示例：'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'。                              |
 | [Resource](#resource)                    | 使用引入资源的方式，引入系统资源或者应用资源中的颜色。 |
 
 ## ColoringStrategy
@@ -234,3 +234,13 @@
 | right    | [Length](#length) | 否    | 组件图像右边沿像素扩展距离。 |
 | top  | [Length](#length) | 否    | 组件图像上边沿像素扩展距离。 |
 | bottom | [Length](#length) | 否    | 组件图像下边沿像素扩展距离。 |
+
+## ModalTransition<sup>10+</sup>
+
+全屏模态转场方式枚举类型，用于设置全屏模态转场类型。
+
+| 名称        | 描述      |
+| ---------  | ------- |
+| None  | 全屏模态无转场动画。 |
+| Default  | 全屏模态上下切换动画。 |
+| Alpha  | 全屏模态透明度渐变动画。 |

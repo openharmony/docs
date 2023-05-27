@@ -3,7 +3,7 @@
 
 ## Overview
 
-[Context](../reference/apis/js-apis-inner-application-context.md) is the context of an object in an application. It provides basic information about the application, for example, **resourceManager**, **applicationInfo**, **dir** (application development path), and **area** (encrypted area). It also provides basic methods such as **createBundleContext()** and **getApplicationContext()**. The UIAbility component and ExtensionAbility derived class components have their own **Context** classes, for example, the base class **Context**, **ApplicationContext**, **AbilityStageContext**, **UIAbilityContext**, **ExtensionContext**, and **ServiceExtensionContext**.
+[Context](../reference/apis/js-apis-inner-application-context.md) is the context of an object in an application. It provides basic information about the application, for example, **resourceManager**, **applicationInfo**, **dir** (application development path), and **area** (encryption level). It also provides basic methods such as **createBundleContext()** and **getApplicationContext()**. The UIAbility component and ExtensionAbility derived class components have their own **Context** classes, for example, the base class **Context**, **ApplicationContext**, **AbilityStageContext**, **UIAbilityContext**, **ExtensionContext**, and **ServiceExtensionContext**.
 
 - The figure below illustrates the inheritance relationship of contexts.
 
@@ -71,7 +71,7 @@ This topic describes how to use the context in the following scenarios:
 
 
 - [Obtaining the Application Development Path](#obtaining-the-application-development-path)
-- [Obtaining and Modifying Encryption Areas](#obtaining-and-modifying-encryption-areas)
+- [Obtaining and Modifying Encryption Levels](#obtaining-and-modifying-encryption-levels)
 - [Creating Context of Another Application or Module](#creating-context-of-another-application-or-module)
 - [Subscribing to UIAbility Lifecycle Changes in a Process](#subscribing-to-uiability-lifecycle-changes-in-a-process)
 
@@ -144,19 +144,19 @@ export default class EntryAbility extends UIAbility {
 >
 > The sample code obtains the sandbox path of the application development path. The absolute path can be obtained by running the **find / -name <fileName>** command in the hdc shell after file creation or modification.
 
-### Obtaining and Modifying Encryption Areas
+### Obtaining and Modifying Encryption Levels
 
-Encrypting application files enhances data security by preventing files from unauthorized access. Different application files require different levels of protection. For private files, such as alarms and wallpapers, the application must place them in the device-level encryption area (EL1) to ensure that they can be accessed before the user enters the password. For sensitive files, such as personal privacy data, the application must place them in the user-level encryption area (EL2).
+Encrypting application files enhances data security by preventing files from unauthorized access. Different application files require different levels of protection. For private files, such as alarms and wallpapers, the application must place them in a directory with the device-level encryption (EL1) to ensure that they can be accessed before the user enters the password. For sensitive files, such as personal privacy data, the application must place them in a directory with the user-level encryption (EL2).
 
-In practice, you need to select a proper encrypted area based on scenario-specific requirements to protect application data security. The proper use of EL1 and the EL2 can efficiently improve the security.
+In practice, you need to select a proper encryption level based on scenario-specific requirements to protect application data security. The proper use of EL1 and the EL2 can efficiently improve the security.
 
 > **NOTE**
 >
-> - AreaMode.EL1: device-level encryption area, which is accessible after the device is powered on.
+> - AreaMode.EL1: device-level encryption. Directories with this encryption level are accessible after the device is powered on.
 >
-> - AreaMode.EL2: user-level encryption area, which is accessible only after the device is powered on and the password is entered (for the first time).
+> - AreaMode.EL2: user-level encryption. Directories with this encryption level are accessible only after the device is powered on and the password is entered (for the first time).
 
-You can obtain and set the encryption area by reading and writing the [area attribute in Context](../reference/apis/js-apis-inner-application-context.md).
+You can obtain and set the encryption level by reading and writing the [area attribute in Context](../reference/apis/js-apis-inner-application-context.md).
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';

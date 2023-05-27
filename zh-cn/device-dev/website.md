@@ -836,9 +836,7 @@
         - [VGUSurface](reference/hdi-apis/_v_g_u_surface.md)
         - [VideoPortCap](reference/hdi-apis/_video_port_cap.md)
         - [WifiStationInfo](reference/hdi-apis/_wifi_station_info.md)
-        - [WRGBColor](reference/hdi-apis/_w_r_g_b_color.md)
-
-   
+        - [WRGBColor](reference/hdi-apis/_w_r_g_b_color.md) 
   - CMSIS API参考
     - [CMSIS](reference/kernel/cmsis/_c_m_s_i_s-_r_t_o_s.md)
     - 结构体
@@ -850,3 +848,4 @@
         - [osThreadAttr_t](reference/kernel/cmsis/os_thread_attr__t.md)
         - [osTimerAttr_t](reference/kernel/cmsis/os_timer_attr__t.md)
         - [osVersion_t](reference/kernel/cmsis/os_version__t.md)
+- [免责声明](disclaimer.md)

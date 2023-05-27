@@ -65,11 +65,11 @@ createAccount(name: string, callback: AsyncCallback&lt;void&gt;): void;
 
   ```js
   try {
-    appAccountManager.createAccount("WangWu", (err) => { 
-        console.log("createAccount err: " + JSON.stringify(err));
+    appAccountManager.createAccount('WangWu', (err) => { 
+        console.log('createAccount err: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("createAccount err: " + JSON.stringify(err));
+    console.log('createAccount err: ' + JSON.stringify(err));
   }
   ```
 
@@ -103,19 +103,19 @@ createAccount(name: string, options: CreateAccountOptions, callback: AsyncCallba
   ```js
   let options = {
     customData: {
-      "age": "10"
+      'age': '10'
     }
   }
   try {
-    appAccountManager.createAccount("LiSi", options, (err) => {
+    appAccountManager.createAccount('LiSi', options, (err) => {
       if (err) {
-        console.log("createAccount failed, error: " + JSON.stringify(err));
+        console.log('createAccount failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("createAccount successfully");
+        console.log('createAccount successfully');
       }
     });
   } catch(err) {
-    console.log("createAccount exception: " + JSON.stringify(err));
+    console.log('createAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -132,7 +132,7 @@ createAccount(name: string, options?: CreateAccountOptions): Promise&lt;void&gt;
 | 参数名       | 类型     | 必填   | 说明                                       |
 | --------- | ------ | ---- | ---------------------------------------- |
 | name      | string | 是    | 应用帐号的名称。                              |
-| options | [CreateAccountOptions](#createaccountoptions9) | 否    | 创建应用帐号的选项，可提供自定义数据，但不建议包含敏感数据（如密码、Token等）。不填无影响。 |
+| options | [CreateAccountOptions](#createaccountoptions9) | 否    | 创建应用帐号的选项，可提供自定义数据，但不建议包含敏感数据（如密码、Token等）。不填无影响，默认为空，表示创建的该帐号无额外信息需要添加。 |
 
 **返回值：**
 
@@ -154,17 +154,17 @@ createAccount(name: string, options?: CreateAccountOptions): Promise&lt;void&gt;
   ```js
   let options = {
     customData: {
-      "age": "10"
+      'age': '10'
     }
   }
   try {
-    appAccountManager.createAccount("LiSi", options).then(() => {
-      console.log("createAccount successfully");
+    appAccountManager.createAccount('LiSi', options).then(() => {
+      console.log('createAccount successfully');
     }).catch((err) => {
-      console.log("createAccount failed, error: " + JSON.stringify(err));
+      console.log('createAccount failed, error: ' + JSON.stringify(err));
     });
   } catch(err) {
-    console.log("createAccount exception: " + JSON.stringify(err));
+    console.log('createAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -198,8 +198,8 @@ createAccountImplicitly(owner: string, callback: AuthCallback): void
 
   ```js
   function onResultCallback(code, result) {
-    console.log("resultCode: "  + code);
-    console.log("result: "  + JSON.stringify(result));
+    console.log('resultCode: ' + code);
+    console.log('result: ' + JSON.stringify(result));
   }
 
   function onRequestRedirectedCallback(request) {
@@ -210,19 +210,19 @@ createAccountImplicitly(owner: string, callback: AuthCallback): void
       entities: ['entity.system.default'],
     }
     this.context.startAbility(wantInfo).then(() => {
-      console.log("startAbility successfully");
+      console.log('startAbility successfully');
     }).catch((err) => {
-      console.log("startAbility err: " + JSON.stringify(err));
+      console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
 
   try {  
-    appAccountManager.createAccountImplicitly("com.example.accountjsdemo", {
+    appAccountManager.createAccountImplicitly('com.example.accountjsdemo', {
       onResult: onResultCallback,
       onRequestRedirected: onRequestRedirectedCallback
     });
   } catch (err) {
-    console.log("createAccountImplicitly exception: " + JSON.stringify(err));
+    console.log('createAccountImplicitly exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -257,8 +257,8 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
 
   ```js
   function onResultCallback(code, result) {
-    console.log("resultCode: "  + code);
-    console.log("result: "  + JSON.stringify(result));
+    console.log('resultCode: ' + code);
+    console.log('result: ' + JSON.stringify(result));
   }
 
   function onRequestRedirectedCallback(request) {
@@ -269,23 +269,23 @@ createAccountImplicitly(owner: string, options: CreateAccountImplicitlyOptions, 
       entities: ['entity.system.default'],
     }
     this.context.startAbility(wantInfo).then(() => {
-      console.log("startAbility successfully");
+      console.log('startAbility successfully');
     }).catch((err) => {
-      console.log("startAbility err: " + JSON.stringify(err));
+      console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
 
   let options = {
-    authType: "getSocialData",
-    requiredLabels: [ "student" ]
+    authType: 'getSocialData',
+    requiredLabels: [ 'student' ]
   };
   try {
-    appAccountManager.createAccountImplicitly("com.example.accountjsdemo", options, {
+    appAccountManager.createAccountImplicitly('com.example.accountjsdemo', options, {
       onResult: onResultCallback,
       onRequestRedirected: onRequestRedirectedCallback
     });
   } catch (err) {
-    console.log("createAccountImplicitly exception: " + JSON.stringify(err));
+    console.log('createAccountImplicitly exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -316,15 +316,15 @@ removeAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   try {
-    appAccountManager.removeAccount("ZhaoLiu", (err) => {
+    appAccountManager.removeAccount('ZhaoLiu', (err) => {
       if (err) {
-        console.log("removeAccount failed, error: " + JSON.stringify(err));
+        console.log('removeAccount failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("removeAccount successfully");
+        console.log('removeAccount successfully');
       }
    });
   } catch(err) {
-    console.log("removeAccount exception: " + JSON.stringify(err));
+    console.log('removeAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -360,13 +360,13 @@ removeAccount(name: string): Promise&lt;void&gt;
 
   ```js
   try {
-    appAccountManager.removeAccount("Lisi").then(() => {
-      console.log("removeAccount successfully");
+    appAccountManager.removeAccount('Lisi').then(() => {
+      console.log('removeAccount successfully');
     }).catch((err) => {
-      console.log("removeAccount failed, error: " + JSON.stringify(err));
+      console.log('removeAccount failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("removeAccount exception: " + JSON.stringify(err));
+    console.log('removeAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -400,15 +400,15 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean, callback: 
 
   ```js
   try {
-    appAccountManager.setAppAccess("ZhangSan", "com.example.accountjsdemo", true, (err) => {
+    appAccountManager.setAppAccess('ZhangSan', 'com.example.accountjsdemo', true, (err) => {
       if (err) {
-        console.log("setAppAccess failed: " + JSON.stringify(err));
+        console.log('setAppAccess failed: ' + JSON.stringify(err));
       } else {
-        console.log("setAppAccess successfully");
+        console.log('setAppAccess successfully');
       }
     });
   } catch (err) {
-    console.log("setAppAccess exception: " + JSON.stringify(err));
+    console.log('setAppAccess exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -447,13 +447,13 @@ setAppAccess(name: string, bundleName: string, isAccessible: boolean): Promise&l
 
   ```js
   try {
-    appAccountManager.setAppAccess("ZhangSan", "com.example.accountjsdemo", true).then(() => {
-      console.log("setAppAccess successfully");
+    appAccountManager.setAppAccess('ZhangSan', 'com.example.accountjsdemo', true).then(() => {
+      console.log('setAppAccess successfully');
     }).catch((err) => {
-      console.log("setAppAccess failed: " + JSON.stringify(err));
+      console.log('setAppAccess failed: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("setAppAccess exception: " + JSON.stringify(err));
+    console.log('setAppAccess exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -485,15 +485,15 @@ checkAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;bool
 
   ```js
   try {
-    appAccountManager.checkAppAccess("ZhangSan", "com.example.accountjsdemo", (err, isAccessible) => {
+    appAccountManager.checkAppAccess('ZhangSan', 'com.example.accountjsdemo', (err, isAccessible) => {
       if (err) {
-        console.log("checkAppAccess failed, error: " + JSON.stringify(err));
+        console.log('checkAppAccess failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("checkAppAccess successfully");
+        console.log('checkAppAccess successfully');
       }
     });
   } catch (err) {
-    console.log("checkAppAccess exception: " + JSON.stringify(err));
+    console.log('checkAppAccess exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -530,13 +530,13 @@ checkAppAccess(name: string, bundleName: string): Promise&lt;boolean&gt;
 
   ```js
   try {
-    appAccountManager.checkAppAccess("ZhangSan", "com.example.accountjsdemo").then((isAccessible) => {
-      console.log("checkAppAccess successfully, isAccessible: " + isAccessible);
+    appAccountManager.checkAppAccess('ZhangSan', 'com.example.accountjsdemo').then((isAccessible) => {
+      console.log('checkAppAccess successfully, isAccessible: ' + isAccessible);
     }).catch((err) => {
-      console.log("checkAppAccess failed, error: " + JSON.stringify(err));
+      console.log('checkAppAccess failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("checkAppAccess exception: " + JSON.stringify(err));
+    console.log('checkAppAccess exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -570,11 +570,11 @@ setDataSyncEnabled(name: string, isEnabled: boolean, callback: AsyncCallback&lt;
 
   ```js
   try {
-      appAccountManager.setDataSyncEnabled("ZhangSan", true, (err) => { 
-          console.log("setDataSyncEnabled err: " + JSON.stringify(err));
+      appAccountManager.setDataSyncEnabled('ZhangSan', true, (err) => { 
+          console.log('setDataSyncEnabled err: ' + JSON.stringify(err));
       });
   } catch (err) {
-      console.log("setDataSyncEnabled err: " + JSON.stringify(err));
+      console.log('setDataSyncEnabled err: ' + JSON.stringify(err));
   }
   ```
 
@@ -613,13 +613,13 @@ setDataSyncEnabled(name: string, isEnabled: boolean): Promise&lt;void&gt;
 
   ```js
   try {
-      appAccountManager .setDataSyncEnabled("ZhangSan", true).then(() => { 
+      appAccountManager .setDataSyncEnabled('ZhangSan', true).then(() => { 
           console.log('setDataSyncEnabled Success');
       }).catch((err) => {
-          console.log("setDataSyncEnabled err: "  + JSON.stringify(err));
+          console.log('setDataSyncEnabled err: ' + JSON.stringify(err));
       });
   } catch (err) {
-      console.log("setDataSyncEnabled err: "  + JSON.stringify(err));
+      console.log('setDataSyncEnabled err: ' + JSON.stringify(err));
   }
   ```
 
@@ -652,15 +652,15 @@ checkDataSyncEnabled(name: string, callback: AsyncCallback&lt;boolean&gt;): void
 
   ```js
   try {
-    appAccountManager.checkDataSyncEnabled("ZhangSan", (err, isEnabled) => {
+    appAccountManager.checkDataSyncEnabled('ZhangSan', (err, isEnabled) => {
       if (err) {
-        console.log("checkDataSyncEnabled failed, err: " + JSON.stringify(err));
+        console.log('checkDataSyncEnabled failed, err: ' + JSON.stringify(err));
       } else {
         console.log('checkDataSyncEnabled successfully, isEnabled: ' + isEnabled);
       }
     });
   } catch (err) {
-    console.log("checkDataSyncEnabled err: " + JSON.stringify(err));
+    console.log('checkDataSyncEnabled err: ' + JSON.stringify(err));
   }
   ```
 
@@ -698,13 +698,13 @@ checkDataSyncEnabled(name: string): Promise&lt;boolean&gt;
 
   ```js
   try {
-    appAccountManager.checkDataSyncEnabled("ZhangSan").then((isEnabled) => {
-        console.log("checkDataSyncEnabled successfully, isEnabled: " + isEnabled);
+    appAccountManager.checkDataSyncEnabled('ZhangSan').then((isEnabled) => {
+        console.log('checkDataSyncEnabled successfully, isEnabled: ' + isEnabled);
     }).catch((err) => {
-      console.log("checkDataSyncEnabled failed, err: " + JSON.stringify(err));
+      console.log('checkDataSyncEnabled failed, err: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("checkDataSyncEnabled err: " + JSON.stringify(err));
+    console.log('checkDataSyncEnabled err: ' + JSON.stringify(err));
   }
   ```
 
@@ -737,15 +737,15 @@ setCredential(name: string, credentialType: string, credential: string,callback:
 
   ```js
   try {
-    appAccountManager.setCredential("ZhangSan", "PIN_SIX", "xxxxxx", (err) => {
+    appAccountManager.setCredential('ZhangSan', 'PIN_SIX', 'xxxxxx', (err) => {
       if (err) {
-        console.log("setCredential failed, error: " + JSON.stringify(err));
+        console.log('setCredential failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("setCredential successfully");
+        console.log('setCredential successfully');
       }
     });
   } catch (err) {
-    console.log("setCredential exception: " + JSON.stringify(err));
+    console.log('setCredential exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -783,13 +783,13 @@ setCredential(name: string, credentialType: string, credential: string): Promise
 
   ```js
   try {
-    appAccountManager.setCredential("ZhangSan", "PIN_SIX", "xxxxxx").then(() => {
-      console.log("setCredential successfully");
+    appAccountManager.setCredential('ZhangSan', 'PIN_SIX', 'xxxxxx').then(() => {
+      console.log('setCredential successfully');
     }).catch((err) => {
-      console.log("setCredential failed, error: " + JSON.stringify(err));
+      console.log('setCredential failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("setCredential exception: " + JSON.stringify(err));
+    console.log('setCredential exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -822,15 +822,15 @@ getCredential(name: string, credentialType: string, callback: AsyncCallback&lt;s
 
   ```js
   try {
-      appAccountManager.getCredential("ZhangSan", "PIN_SIX", (err, result) => { 
+      appAccountManager.getCredential('ZhangSan', 'PIN_SIX', (err, result) => { 
         if (err) {
-          console.log("getCredential failed, error: " + JSON.stringify(err));
+          console.log('getCredential failed, error: ' + JSON.stringify(err));
         } else {
           console.log('getCredential successfully, result: ' + result);
         }
       });
   } catch (err) {
-      console.log("getCredential err: " + JSON.stringify(err));
+      console.log('getCredential err: ' + JSON.stringify(err));
   }
   ```
 
@@ -868,13 +868,13 @@ getCredential(name: string, credentialType: string): Promise&lt;string&gt;
 
   ```js
   try {
-    appAccountManager.getCredential("ZhangSan", "PIN_SIX").then((credential) => {
-        console.log("getCredential successfully, credential: " + credential);
+    appAccountManager.getCredential('ZhangSan', 'PIN_SIX').then((credential) => {
+        console.log('getCredential successfully, credential: ' + credential);
     }).catch((err) => {
-        console.log("getCredential failed, error: " + JSON.stringify(err));
+        console.log('getCredential failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("getCredential exception: "  + JSON.stringify(err));
+    console.log('getCredential exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -908,15 +908,15 @@ setCustomData(name: string, key: string, value: string, callback: AsyncCallback&
 
   ```js
   try {
-    appAccountManager.setCustomData("ZhangSan", "age", "12", (err) => {
+    appAccountManager.setCustomData('ZhangSan', 'age', '12', (err) => {
       if (err) {
-        console.log("setCustomData failed, error: " + JSON.stringify(err));
+        console.log('setCustomData failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("setCustomData successfully");
+        console.log('setCustomData successfully');
       }
     });
   } catch (err) {
-    console.log("setCustomData exception: " + JSON.stringify(err));
+    console.log('setCustomData exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -955,13 +955,13 @@ setCustomData(name: string, key: string, value: string): Promise&lt;void&gt;
 
   ```js
   try {
-    appAccountManager.setCustomData("ZhangSan", "age", "12").then(() => {
-      console.log("setCustomData successfully");
+    appAccountManager.setCustomData('ZhangSan', 'age', '12').then(() => {
+      console.log('setCustomData successfully');
     }).catch((err) => {
-      console.log("setCustomData failed, error: " + JSON.stringify(err));
+      console.log('setCustomData failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("setCustomData exception: " + JSON.stringify(err));
+    console.log('setCustomData exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -994,15 +994,15 @@ getCustomData(name: string, key: string, callback: AsyncCallback&lt;string&gt;):
 
   ```js
   try {
-    appAccountManager.getCustomData("ZhangSan", "age", (err, data) => {
+    appAccountManager.getCustomData('ZhangSan', 'age', (err, data) => {
       if (err) {
         console.log('getCustomData failed, error: ' + err);
       } else {
-        console.log("getCustomData successfully, data: " + data);
+        console.log('getCustomData successfully, data: ' + data);
       }
     });
   } catch (err) {
-    console.log("getCustomData exception: " + JSON.stringify(err));
+    console.log('getCustomData exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1040,13 +1040,13 @@ getCustomData(name: string, key: string): Promise&lt;string&gt;
 
   ```js
   try {
-    appAccountManager.getCustomData("ZhangSan", "age").then((data) => {
-      console.log("getCustomData successfully, data: " + data);
+    appAccountManager.getCustomData('ZhangSan', 'age').then((data) => {
+      console.log('getCustomData successfully, data: ' + data);
     }).catch((err) => {
-      console.log("getCustomData failed, error: " + JSON.stringify(err));
+      console.log('getCustomData failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("getCustomData exception: " + JSON.stringify(err));
+    console.log('getCustomData exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1084,10 +1084,10 @@ getCustomDataSync(name: string, key: string): string;
 
   ```js
   try {
-      let value = appAccountManager.getCustomDataSync("ZhangSan", "age");
-      console.info("getCustomDataSync successfully, vaue:" + value);
+      let value = appAccountManager.getCustomDataSync('ZhangSan', 'age');
+      console.info('getCustomDataSync successfully, vaue: ' + value);
   } catch (err) {
-    console.error("getCustomDataSync failed, error: " + JSON.stringify(err));
+    console.error('getCustomDataSync failed, error: ' + JSON.stringify(err));
   }
   ```
 
@@ -1117,13 +1117,13 @@ getAllAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&gt;): void
   try {
     appAccountManager.getAllAccounts((err, data) => {
       if (err) {
-        console.debug("getAllAccounts failed, error:" + JSON.stringify(err));
+        console.debug('getAllAccounts failed, error: ' + JSON.stringify(err));
       } else {
-        console.debug("getAllAccounts successfully");
+        console.debug('getAllAccounts successfully');
       }
     });
   } catch (err) {
-      console.debug("getAllAccounts exception: " + JSON.stringify(err));
+      console.debug('getAllAccounts exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1152,12 +1152,12 @@ getAllAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
   ```js
   try {
     appAccountManager.getAllAccounts().then((data) => {
-      console.debug("getAllAccounts successfully");
+      console.debug('getAllAccounts successfully');
     }).catch((err) => {
-      console.debug("getAllAccounts failed, error:" + JSON.stringify(err));
+      console.debug('getAllAccounts failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.debug("getAllAccounts exception: " + JSON.stringify(err));
+    console.debug('getAllAccounts exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1188,15 +1188,15 @@ getAccountsByOwner(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccount
 
   ```js
   try {
-    appAccountManager.getAccountsByOwner("com.example.accountjsdemo2", (err, data) => {
+    appAccountManager.getAccountsByOwner('com.example.accountjsdemo2', (err, data) => {
       if (err) {
-        console.debug("getAccountsByOwner failed, error:" + JSON.stringify(err));
+        console.debug('getAccountsByOwner failed, error:' + JSON.stringify(err));
       } else {
-        console.debug("getAccountsByOwner successfully, data:" + JSON.stringify(data));
+        console.debug('getAccountsByOwner successfully, data:' + JSON.stringify(data));
       }
     });
   } catch (err) {
-    console.debug("getAccountsByOwner exception:" + JSON.stringify(err));
+    console.debug('getAccountsByOwner exception:' + JSON.stringify(err));
   }
   ```
 
@@ -1232,13 +1232,13 @@ getAccountsByOwner(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 
   ```js
   try {
-    appAccountManager.getAccountsByOwner("com.example.accountjsdemo2").then((data) => {
-      console.debug("getAccountsByOwner successfully, data:" + JSON.stringify(data));
+    appAccountManager.getAccountsByOwner('com.example.accountjsdemo2').then((data) => {
+      console.debug('getAccountsByOwner successfully, data: ' + JSON.stringify(data));
     }).catch((err) => {
-      console.debug("getAccountsByOwner failed, error:" + JSON.stringify(err));
+      console.debug('getAccountsByOwner failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.debug("getAccountsByOwner exception:" + JSON.stringify(err));
+    console.debug('getAccountsByOwner exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1256,7 +1256,7 @@ on(type: 'accountChange', owners: Array&lt;string&gt;, callback: Callback&lt;Arr
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | type     | 'accountChange'                          | 是    | 事件回调类型，支持的事件为'accountChange'，当目标应用更新帐号信息时，触发该事件。 |
 | owners   | Array&lt;string&gt;                      | 是    | 应用帐号所有者的包名列表。                      |
-| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 回调函数，返回信息发生变更的应用帐号列表。           |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 需要注册的回调函数，返回信息为发生变更的应用帐号列表。           |
 
 **错误码：**
 
@@ -1270,12 +1270,12 @@ on(type: 'accountChange', owners: Array&lt;string&gt;, callback: Callback&lt;Arr
 
   ```js
   function changeOnCallback(data){
-  	console.log("receive change data:" + JSON.stringify(data));
+  	console.log('receive change data:' + JSON.stringify(data));
   }
   try{
-  	appAccountManager.on("accountChange", ["com.example.actsaccounttest"], changeOnCallback);
+  	appAccountManager.on('accountChange', ['com.example.actsaccounttest'], changeOnCallback);
   } catch(err) {
-  	console.error("on accountChange failed, error:" + JSON.stringify(err));
+  	console.error('on accountChange failed, error:' + JSON.stringify(err));
   }
   ```
 
@@ -1292,7 +1292,7 @@ off(type: 'accountChange', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt
 | 参数名      | 类型                               | 必填   | 说明           |
 | -------- | -------------------------------- | ---- | ------------ |
 | type     | 'accountChange'                         | 是    | 事件回调类型，支持的事件为'accountChange'，当帐号所有者更新帐号信息时，触发该事件。    |
-| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 否    | 回调函数，返回信息发生变更的应用帐号列表。 |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 否    | 需要注销的回调函数，默认为空，表示取消该类型事件所有的回调。 |
 
 **错误码：**
 
@@ -1305,18 +1305,18 @@ off(type: 'accountChange', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt
 
   ```js
   function changeOnCallback(data) {
-  	console.log("receive change data:" + JSON.stringify(data));
+  	console.log('receive change data:' + JSON.stringify(data));
   }
   try{
-  	appAccountManager.on("accountChange", ["com.example.actsaccounttest"], changeOnCallback);
+  	appAccountManager.on('accountChange', ['com.example.actsaccounttest'], changeOnCallback);
   } catch(err) {
-  	console.error("on accountChange failed, error:" + JSON.stringify(err));
+  	console.error('on accountChange failed, error:' + JSON.stringify(err));
   }
   try{
   	appAccountManager.off('accountChange', changeOnCallback);
   }
   catch(err){
-  	console.error("off accountChange failed, error:" + JSON.stringify(err));
+  	console.error('off accountChange failed, error:' + JSON.stringify(err));
   }
   ```
 
@@ -1354,8 +1354,8 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
 
 
   function onResultCallback(code, authResult) {
-    console.log("resultCode: "  + code);
-    console.log("authResult: "  + JSON.stringify(authResult));
+    console.log('resultCode: ' + code);
+    console.log('authResult: ' + JSON.stringify(authResult));
   }
 
   function onRequestRedirectedCallback(request) {
@@ -1366,19 +1366,19 @@ auth(name: string, owner: string, authType: string, callback: AuthCallback): voi
       entities: ['entity.system.default'],
     }
     this.context.startAbility(wantInfo).then(() => {
-      console.log("startAbility successfully");
+      console.log('startAbility successfully');
     }).catch((err) => {
-      console.log("startAbility err: " + JSON.stringify(err));
+      console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
 
   try {
-    appAccountManager.auth("LiSi", "com.example.accountjsdemo", "getSocialData", {
+    appAccountManager.auth('LiSi', 'com.example.accountjsdemo', 'getSocialData', {
         onResult: onResultCallback,
         onRequestRedirected: onRequestRedirectedCallback
     });
   } catch (err) {
-    console.log("auth exception: "  + JSON.stringify(err));
+    console.log('auth exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1417,8 +1417,8 @@ auth(name: string, owner: string, authType: string, options: {[key: string]: Obj
 
 
   function onResultCallback(code, authResult) {
-    console.log("resultCode: "  + code);
-    console.log("authResult: "  + JSON.stringify(authResult));
+    console.log('resultCode: ' + code);
+    console.log('authResult: ' + JSON.stringify(authResult));
   }
 
   function onRequestRedirectedCallback(request) {
@@ -1429,22 +1429,22 @@ auth(name: string, owner: string, authType: string, options: {[key: string]: Obj
       entities: ['entity.system.default'],
     }
     this.context.startAbility(wantInfo).then(() => {
-      console.log("startAbility successfully");
+      console.log('startAbility successfully');
     }).catch((err) => {
-      console.log("startAbility err: " + JSON.stringify(err));
+      console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
 
   let options = {
-    "password": "xxxx",
+    'password': 'xxxx',
   };
   try {
-    appAccountManager.auth("LiSi", "com.example.accountjsdemo", "getSocialData", options, {
+    appAccountManager.auth('LiSi', 'com.example.accountjsdemo', 'getSocialData', options, {
         onResult: onResultCallback,
         onRequestRedirected: onRequestRedirectedCallback
     });
   } catch (err) {
-    console.log("auth exception: "  + JSON.stringify(err));
+    console.log('auth exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1478,15 +1478,15 @@ getAuthToken(name: string, owner: string, authType: string, callback: AsyncCallb
 
   ```js
   try {
-    appAccountManager.getAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData", (err, token) => {
+    appAccountManager.getAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', (err, token) => {
       if (err) {
-        console.log("getAuthToken failed, error: " + JSON.stringify(err));
+        console.log('getAuthToken failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("getAuthToken successfully, token: " + token);
+        console.log('getAuthToken successfully, token: ' + token);
       }
     });
   } catch (err) {
-      console.log("getAuthToken exception: " + JSON.stringify(err));
+      console.log('getAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1525,13 +1525,13 @@ getAuthToken(name: string, owner: string, authType: string): Promise&lt;string&g
 
   ```js
   try {
-    appAccountManager.getAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData").then((token) => {
-      console.log("getAuthToken successfully, token: " + token);
+    appAccountManager.getAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((token) => {
+      console.log('getAuthToken successfully, token: ' + token);
     }).catch((err) => {
-      console.log("getAuthToken failed, error: " + JSON.stringify(err));
+      console.log('getAuthToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-      console.log("getAuthToken exception: " + JSON.stringify(err));
+      console.log('getAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1565,11 +1565,11 @@ setAuthToken(name: string, authType: string, token: string, callback: AsyncCallb
 
   ```js
   try {
-    appAccountManager.setAuthToken("LiSi", "getSocialData", "xxxx", (err) => {
+    appAccountManager.setAuthToken('LiSi', 'getSocialData', 'xxxx', (err) => {
       if (err) {
-        console.log("setAuthToken failed, error: " + JSON.stringify(err));
+        console.log('setAuthToken failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("setAuthToken successfully");
+        console.log('setAuthToken successfully');
       }
     });
   } catch (err) {
@@ -1612,13 +1612,13 @@ setAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt;
 
   ```js
   try {
-    appAccountManager.setAuthToken("LiSi", "getSocialData", "xxxx").then(() => {
-        console.log("setAuthToken successfully");
+    appAccountManager.setAuthToken('LiSi', 'getSocialData', 'xxxx').then(() => {
+        console.log('setAuthToken successfully');
     }).catch((err) => {
-        console.log("setAuthToken failed, error: " + JSON.stringify(err));
+        console.log('setAuthToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("setAuthToken exception: " + JSON.stringify(err));
+    console.log('setAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1653,11 +1653,11 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string, ca
 
   ```js
   try {
-      appAccountManager.deleteAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData", "xxxxx", (err) => {
+      appAccountManager.deleteAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx', (err) => {
         if (err) {
           console.log('deleteAuthToken failed, error: ' + JSON.stringify(err));
         } else {
-          console.log("deleteAuthToken successfully");
+          console.log('deleteAuthToken successfully');
         }
       });
   } catch (err) {
@@ -1701,8 +1701,8 @@ deleteAuthToken(name: string, owner: string, authType: string, token: string): P
 
   ```js
   try {
-    appAccountManager.deleteAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData", "xxxxx").then(() => {
-      console.log("deleteAuthToken successfully");
+    appAccountManager.deleteAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx').then(() => {
+      console.log('deleteAuthToken successfully');
     }).catch((err) => {
       console.log('deleteAuthToken failed, error: ' + JSON.stringify(err));
     });
@@ -1744,15 +1744,15 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 
   ```js
   try {
-      appAccountManager.setAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo", true, (err) => {
+      appAccountManager.setAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true, (err) => {
         if (err) {
-          console.log("setAuthTokenVisibility failed, error: " + JSON.stringify(err));
+          console.log('setAuthTokenVisibility failed, error: ' + JSON.stringify(err));
         } else {
-          console.log("setAuthTokenVisibility successfully");
+          console.log('setAuthTokenVisibility successfully');
         }
       });
   } catch (err) {
-      console.log("setAuthTokenVisibility exception: " + JSON.stringify(err));
+      console.log('setAuthTokenVisibility exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1794,13 +1794,13 @@ setAuthTokenVisibility(name: string, authType: string, bundleName: string, isVis
 
   ```js
   try {
-    appAccountManager.setAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo", true).then(() => {
-      console.log("setAuthTokenVisibility successfully");
+    appAccountManager.setAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true).then(() => {
+      console.log('setAuthTokenVisibility successfully');
     }).catch((err) => {
-      console.log("setAuthTokenVisibility failed, error: " + JSON.stringify(err));
+      console.log('setAuthTokenVisibility failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("setAuthTokenVisibility exception: " + JSON.stringify(err));
+    console.log('setAuthTokenVisibility exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1834,15 +1834,15 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string, cal
 
   ```js
   try {
-    appAccountManager.checkAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo", (err, isVisible) => {
+    appAccountManager.checkAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', (err, isVisible) => {
       if (err) {
-        console.log("checkAuthTokenVisibility failed, error: " + JSON.stringify(err));
+        console.log('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("checkAuthTokenVisibility successfully, isVisible: " + isVisible);
+        console.log('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
       }
     });
   } catch (err) {
-    console.log("checkAuthTokenVisibility exception: " + JSON.stringify(err));
+    console.log('checkAuthTokenVisibility exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1881,13 +1881,13 @@ checkAuthTokenVisibility(name: string, authType: string, bundleName: string): Pr
 
   ```js
   try {
-    appAccountManager.checkAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo").then((isVisible) => {
-      console.log("checkAuthTokenVisibility successfully, isVisible: " + isVisible);
+    appAccountManager.checkAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((isVisible) => {
+      console.log('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
     }).catch((err) => {
-      console.log("checkAuthTokenVisibility failed, error: " + JSON.stringify(err));
+      console.log('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("checkAuthTokenVisibility exception: " + JSON.stringify(err));
+    console.log('checkAuthTokenVisibility exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1919,15 +1919,15 @@ getAllAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&l
 
   ```js
   try {
-    appAccountManager.getAllAuthTokens("LiSi", "com.example.accountjsdemo", (err, tokenArr) => {
+    appAccountManager.getAllAuthTokens('LiSi', 'com.example.accountjsdemo', (err, tokenArr) => {
       if (err) {
-        console.log("getAllAuthTokens failed, error: "  + JSON.stringify(err));
+        console.log('getAllAuthTokens failed, error: ' + JSON.stringify(err));
       } else {
         console.log('getAllAuthTokens successfully, tokenArr: ' + tokenArr);
       }
     });
   } catch (err) {
-    console.log("getAllAuthTokens exception: "  + JSON.stringify(err));
+    console.log('getAllAuthTokens exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1964,13 +1964,13 @@ getAllAuthTokens(name: string, owner: string): Promise&lt;Array&lt;AuthTokenInfo
 
   ```js
   try {
-    appAccountManager.getAllAuthTokens("LiSi", "com.example.accountjsdemo").then((tokenArr) => {
+    appAccountManager.getAllAuthTokens('LiSi', 'com.example.accountjsdemo').then((tokenArr) => {
         console.log('getAllAuthTokens successfully, tokenArr: ' + JSON.stringify(tokenArr));
     }).catch((err) => {
-        console.log("getAllAuthTokens failed, error: "  + JSON.stringify(err));
+        console.log('getAllAuthTokens failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("getAllAuthTokens exception: "  + JSON.stringify(err));
+    console.log('getAllAuthTokens exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2003,11 +2003,11 @@ getAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt;
 
   ```js
   try {
-    appAccountManager.getAuthList("com.example.accountjsdemo", "getSocialData", (err, authList) => {
+    appAccountManager.getAuthList('LiSi', 'getSocialData', (err, authList) => {
       if (err) {
-        console.log("getAuthList failed, error: " + JSON.stringify(err));
+        console.log('getAuthList failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("getAuthList successfully, authList: " + authList);
+        console.log('getAuthList successfully, authList: ' + authList);
       }
     });
   } catch (err) {
@@ -2049,13 +2049,13 @@ getAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 
   ```js
   try {
-    appAccountManager.getAuthList("com.example.accountjsdemo", "getSocialData").then((authList) => {
-        console.log("getAuthList successfully, authList: " + authList);
+    appAccountManager.getAuthList('LiSi', 'getSocialData').then((authList) => {
+        console.log('getAuthList successfully, authList: ' + authList);
     }).catch((err) => {
-        console.log("getAuthList failed, error: "  + JSON.stringify(err));
+        console.log('getAuthList failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("getAuthList exception: "  + JSON.stringify(err));
+    console.log('getAuthList exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2093,23 +2093,23 @@ getAuthCallback(sessionId: string, callback: AsyncCallback&lt;AuthCallback&gt;):
       try {
         appAccountManager.getAuthCallback(sessionId, (err, callback) => {
           if (err != null) {
-              console.log("getAuthCallback err: "  + JSON.stringify(err));
+              console.log('getAuthCallback err: ' + JSON.stringify(err));
               return;
           }
           var result = {
             accountInfo: {
-              name: "Lisi",
-              owner: "com.example.accountjsdemo",
+              name: 'Lisi',
+              owner: 'com.example.accountjsdemo',
             },
             tokenInfo: {
-              token: "xxxxxx",
-              authType: "getSocialData"
+              token: 'xxxxxx',
+              authType: 'getSocialData'
             }
           }; 
           callback.onResult(0, result);
         });
       } catch (err) {
-          console.log("getAuthCallback exception: "  + JSON.stringify(err));
+          console.log('getAuthCallback exception: ' + JSON.stringify(err));
       }
     }
   }
@@ -2155,20 +2155,20 @@ getAuthCallback(sessionId: string): Promise&lt;AuthCallback&gt;
         appAccountManager.getAuthCallback(sessionId).then((callback) => {
         var result = {
           accountInfo: {
-            name: "Lisi",
-            owner: "com.example.accountjsdemo",
+            name: 'Lisi',
+            owner: 'com.example.accountjsdemo',
           },
           tokenInfo: {
-            token: "xxxxxx",
-            authType: "getSocialData"
+            token: 'xxxxxx',
+            authType: 'getSocialData'
           }
         };
         callback.onResult(0, result);
         }).catch((err) => {
-          console.log("getAuthCallback err: "  + JSON.stringify(err));
+          console.log('getAuthCallback err: ' + JSON.stringify(err));
         });
       } catch (err) {
-        console.log("getAuthCallback exception: "  + JSON.stringify(err));
+        console.log('getAuthCallback exception: ' + JSON.stringify(err));
       }
     }
   }
@@ -2201,15 +2201,15 @@ queryAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorIn
 
   ```js
   try {
-    appAccountManager.queryAuthenticatorInfo("com.example.accountjsdemo", (err, info) => {
+    appAccountManager.queryAuthenticatorInfo('com.example.accountjsdemo', (err, info) => {
       if (err) {
-        console.log("queryAuthenticatorInfo failed, error: "  + JSON.stringify(err));
+        console.log('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
       } else {
         console.log('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
       }
     });
   } catch (err) {
-    console.log("queryAuthenticatorInfo exception: "  + JSON.stringify(err));
+    console.log('queryAuthenticatorInfo exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2245,13 +2245,13 @@ queryAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
   ```js
   try {
-    appAccountManager.queryAuthenticatorInfo("com.example.accountjsdemo").then((info) => { 
-        console.log("queryAuthenticatorInfo successfully, info: " + JSON.stringify(info));
+    appAccountManager.queryAuthenticatorInfo('com.example.accountjsdemo').then((info) => { 
+        console.log('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
     }).catch((err) => {
-        console.log("queryAuthenticatorInfo failed, error: "  + JSON.stringify(err));
+        console.log('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("queryAuthenticatorInfo exception: "  + JSON.stringify(err));
+    console.log('queryAuthenticatorInfo exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2286,17 +2286,17 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;, cal
 **示例：**
 
   ```js
-  let labels = ["student"];
+  let labels = ['student'];
   try {
-    appAccountManager.checkAccountLabels("zhangsan", "com.example.accountjsdemo", labels, (err, hasAllLabels) => {
+    appAccountManager.checkAccountLabels('zhangsan', 'com.example.accountjsdemo', labels, (err, hasAllLabels) => {
       if (err) {
-        console.log("checkAccountLabels failed, error: "  + JSON.stringify(err));
+        console.log('checkAccountLabels failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("checkAccountLabels successfully, hasAllLabels: " + hasAllLabels);
+        console.log('checkAccountLabels successfully, hasAllLabels: ' + hasAllLabels);
       }
     });
   } catch (err) {
-    console.log("checkAccountLabels exception: "  + JSON.stringify(err));
+    console.log('checkAccountLabels exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2336,15 +2336,15 @@ checkAccountLabels(name: string, owner: string, labels: Array&lt;string&gt;): Pr
 **示例：**
 
   ```js
-  let labels = ["student"];
+  let labels = ['student'];
   try {
-    appAccountManager.checkAccountLabels("zhangsan", "com.example.accountjsdemo", labels).then((hasAllLabels) => {
+    appAccountManager.checkAccountLabels('zhangsan', 'com.example.accountjsdemo', labels).then((hasAllLabels) => {
       console.log('checkAccountLabels successfully: ' + hasAllLabels);
     }).catch((err) => {
-      console.log("checkAccountLabels failed, error: "  + JSON.stringify(err));
+      console.log('checkAccountLabels failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("checkAccountLabels exception: "  + JSON.stringify(err));
+    console.log('checkAccountLabels exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2377,15 +2377,15 @@ deleteCredential(name: string, credentialType: string, callback: AsyncCallback&l
 
   ```js
   try {
-    appAccountManager.deleteCredential("zhangsan", "PIN_SIX", (err) => {
+    appAccountManager.deleteCredential('zhangsan', 'PIN_SIX', (err) => {
       if (err) {
-        console.log("deleteCredential failed, error: "  + JSON.stringify(err));
+        console.log('deleteCredential failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("deleteCredential successfully");
+        console.log('deleteCredential successfully');
       }
     });
   } catch (err) {
-    console.log("deleteCredential exception: "  + JSON.stringify(err));
+    console.log('deleteCredential exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2423,13 +2423,13 @@ deleteCredential(name: string, credentialType: string): Promise&lt;void&gt;
 
   ```js
   try {
-    appAccountManager.deleteCredential("zhangsan", "PIN_SIX").then(() => {
-      console.log("deleteCredential successfully");
+    appAccountManager.deleteCredential('zhangsan', 'PIN_SIX').then(() => {
+      console.log('deleteCredential successfully');
     }).catch((err) => {
-      console.log("deleteCredential failed, error: " + JSON.stringify(err));
+      console.log('deleteCredential failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("deleteCredential exception: "  + JSON.stringify(err));
+    console.log('deleteCredential exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2461,19 +2461,19 @@ selectAccountsByOptions(options: SelectAccountsOptions, callback: AsyncCallback&
 
   ```js
   let options = {
-    allowedOwners: [ "com.example.accountjsdemo" ],
-    requiredLabels: [ "student" ]
+    allowedOwners: [ 'com.example.accountjsdemo' ],
+    requiredLabels: [ 'student' ]
   };
   try {
     appAccountManager.selectAccountsByOptions(options, (err, accountArr) => {
       if (err) {
-        console.log("selectAccountsByOptions failed, error: "  + JSON.stringify(err));
+        console.log('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("selectAccountsByOptions successfully, accountArr: " + JSON.stringify(accountArr));
+        console.log('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
       }
     });
   } catch (err) {
-    console.log("selectAccountsByOptions exception: "  + JSON.stringify(err));
+    console.log('selectAccountsByOptions exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2510,16 +2510,16 @@ selectAccountsByOptions(options: SelectAccountsOptions): Promise&lt;Array&lt;App
 
   ```js
   let options = {
-    allowedOwners: ["com.example.accountjsdemo"]
+    allowedOwners: ['com.example.accountjsdemo']
   };
   try {
     appAccountManager.selectAccountsByOptions(options).then((accountArr) => {
-      console.log("selectAccountsByOptions successfully, accountArr: " + JSON.stringify(accountArr));
+      console.log('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
     }).catch((err) => {
-      console.log("selectAccountsByOptions failed, error: "  + JSON.stringify(err));
+      console.log('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("selectAccountsByOptions exception: "  + JSON.stringify(err));
+    console.log('selectAccountsByOptions exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2554,17 +2554,17 @@ verifyCredential(name: string, owner: string, callback: AuthCallback): void;
 
   ```js
   try {
-      appAccountManager.verifyCredential("zhangsan", "com.example.accountjsdemo", {
+      appAccountManager.verifyCredential('zhangsan', 'com.example.accountjsdemo', {
           onResult: (resultCode, result) => {
-              console.log("verifyCredential onResult, resultCode:" + JSON.stringify(resultCode));
-              console.log("verifyCredential onResult, result:" + JSON.stringify(result));
+              console.log('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
+              console.log('verifyCredential onResult, result: ' + JSON.stringify(result));
           },
           onRequestRedirected: (request) => {
-              console.log("verifyCredential onRequestRedirected, request:" + JSON.stringify(request));
+              console.log('verifyCredential onRequestRedirected, request: ' + JSON.stringify(request));
           }
       });
   } catch (err) {
-      console.log("verifyCredential err: "  + JSON.stringify(err));
+      console.log('verifyCredential err: ' + JSON.stringify(err));
   }
   ```
 
@@ -2600,21 +2600,21 @@ verifyCredential(name: string, owner: string, options: VerifyCredentialOptions, 
 
   ```js
   let options = {
-    credentialType: "pin",
-    credential: "123456"
+    credentialType: 'pin',
+    credential: '123456'
   };
   try {
-    appAccountManager.verifyCredential("zhangsan", "com.example.accountjsdemo", options, {
+    appAccountManager.verifyCredential('zhangsan', 'com.example.accountjsdemo', options, {
       onResult: (resultCode, result) => {
-        console.log("verifyCredential onResult, resultCode:" + JSON.stringify(resultCode));
-        console.log("verifyCredential onResult, result:" + JSON.stringify(result));
+        console.log('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
+        console.log('verifyCredential onResult, result: ' + JSON.stringify(result));
       },
       onRequestRedirected: (request) => {
-        console.log("verifyCredential onRequestRedirected, request:" + JSON.stringify(request));
+        console.log('verifyCredential onRequestRedirected, request: ' + JSON.stringify(request));
       }
     });
   } catch (err) {
-    console.log("verifyCredential err: "  + JSON.stringify(err));
+    console.log('verifyCredential err: ' + JSON.stringify(err));
   }
   ```
 
@@ -2647,17 +2647,17 @@ setAuthenticatorProperties(owner: string, callback: AuthCallback): void;
 
   ```js
   try {
-    appAccountManager.setAuthenticatorProperties("com.example.accountjsdemo", {
+    appAccountManager.setAuthenticatorProperties('com.example.accountjsdemo', {
       onResult: (resultCode, result) => {
-        console.log("setAuthenticatorProperties onResult, resultCode:" + JSON.stringify(resultCode));
-        console.log("setAuthenticatorProperties onResult, result:" + JSON.stringify(result));
+        console.log('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
+        console.log('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
       },
       onRequestRedirected: (request) => {
-        console.log("setAuthenticatorProperties onRequestRedirected, request:" + JSON.stringify(request));
+        console.log('setAuthenticatorProperties onRequestRedirected, request: ' + JSON.stringify(request));
       }
     });
   } catch (err) {
-    console.log("setAuthenticatorProperties err: "  + JSON.stringify(err));
+    console.log('setAuthenticatorProperties err: ' + JSON.stringify(err));
   }
   ```
 
@@ -2691,20 +2691,20 @@ setAuthenticatorProperties(owner: string, options: SetPropertiesOptions, callbac
 
   ```js
   let options = {
-    properties: {"prop1": "value1"}
+    properties: {'prop1': 'value1'}
   };
   try {
-    appAccountManager.setAuthenticatorProperties("com.example.accountjsdemo", options, {
+    appAccountManager.setAuthenticatorProperties('com.example.accountjsdemo', options, {
       onResult: (resultCode, result) => {
-        console.log("setAuthenticatorProperties onResult, resultCode:" + JSON.stringify(resultCode));
-        console.log("setAuthenticatorProperties onResult, result:" + JSON.stringify(result));
+        console.log('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
+        console.log('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
       },
       onRequestRedirected: (request) => {
-        console.log("setAuthenticatorProperties onRequestRedirected, request:" + JSON.stringify(request));
+        console.log('setAuthenticatorProperties onRequestRedirected, request: ' + JSON.stringify(request));
       }
     });
   } catch (err) {
-    console.log("setAuthenticatorProperties err: "  + JSON.stringify(err));
+    console.log('setAuthenticatorProperties err: ' + JSON.stringify(err));
   } 
 
   ```
@@ -2732,8 +2732,8 @@ addAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  appAccountManager.addAccount("WangWu", (err) => { 
-      console.log("addAccount err: " + JSON.stringify(err));
+  appAccountManager.addAccount('WangWu', (err) => { 
+      console.log('addAccount err: ' + JSON.stringify(err));
   });
   ```
 
@@ -2759,8 +2759,8 @@ addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;)
 **示例：**
 
   ```js
-  appAccountManager.addAccount("LiSi", "token101", (err) => { 
-    console.log("addAccount err: " + JSON.stringify(err));
+  appAccountManager.addAccount('LiSi', 'token101', (err) => { 
+    console.log('addAccount err: ' + JSON.stringify(err));
   });
   ```
 
@@ -2780,7 +2780,7 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 | 参数名       | 类型     | 必填   | 说明                                       |
 | --------- | ------ | ---- | ---------------------------------------- |
 | name      | string | 是    | 应用帐号的名称。                            |
-| extraInfo | string | 否    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用帐号密码、token等）。 |
+| extraInfo | string | 否    | 额外信息(能转换string类型的其它信息)，额外信息不能是应用帐号的敏感信息（如应用帐号密码、token等），默认为空，表示创建的该帐号无额外信息需要添加。 |
 
 **返回值：**
 
@@ -2791,10 +2791,10 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  appAccountManager.addAccount("LiSi", "token101").then(()=> { 
+  appAccountManager.addAccount('LiSi', 'token101').then(()=> { 
     console.log('addAccount Success');
   }).catch((err) => {
-    console.log("addAccount err: "  + JSON.stringify(err));
+    console.log('addAccount err: ' + JSON.stringify(err));
   });
   ```
 
@@ -2825,8 +2825,8 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
 
 
   function onResultCallback(code, result) {
-    console.log("resultCode: "  + code);
-    console.log("result: "  + JSON.stringify(result));
+    console.log('resultCode: ' + code);
+    console.log('result: ' + JSON.stringify(result));
   }
 
   function onRequestRedirectedCallback(request) {
@@ -2837,13 +2837,13 @@ addAccountImplicitly(owner: string, authType: string, options: {[key: string]: a
       entities: ['entity.system.default'],
     }
     this.context.startAbility(wantInfo).then(() => {
-      console.log("startAbility successfully");
+      console.log('startAbility successfully');
     }).catch((err) => {
-      console.log("startAbility err: " + JSON.stringify(err));
+      console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
 
-  appAccountManager.addAccountImplicitly("com.example.accountjsdemo", "getSocialData", {}, {
+  appAccountManager.addAccountImplicitly('com.example.accountjsdemo', 'getSocialData', {}, {
     onResult: onResultCallback,
     onRequestRedirected: onRequestRedirectedCallback
   });
@@ -2871,8 +2871,8 @@ deleteAccount(name: string, callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
-  appAccountManager.deleteAccount("ZhaoLiu", (err) => { 
-      console.log("deleteAccount err: " + JSON.stringify(err));
+  appAccountManager.deleteAccount('ZhaoLiu', (err) => { 
+      console.log('deleteAccount err: ' + JSON.stringify(err));
    });
   ```
 
@@ -2903,10 +2903,10 @@ deleteAccount(name: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  appAccountManager.deleteAccount("ZhaoLiu").then(() => { 
+  appAccountManager.deleteAccount('ZhaoLiu').then(() => { 
         console.log('deleteAccount Success');
    }).catch((err) => {
-      console.log("deleteAccount err: "  + JSON.stringify(err));
+      console.log('deleteAccount err: ' + JSON.stringify(err));
   });
   ```
 ### disableAppAccess<sup>(deprecated)</sup>
@@ -2932,8 +2932,8 @@ disableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;vo
 **示例：**
 
   ```js
-  appAccountManager.disableAppAccess("ZhangSan", "com.example.accountjsdemo", (err) => { 
-      console.log("disableAppAccess err: " + JSON.stringify(err));
+  appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err) => { 
+      console.log('disableAppAccess err: ' + JSON.stringify(err));
   });
   ```
 
@@ -2965,10 +2965,10 @@ disableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  appAccountManager.disableAppAccess("ZhangSan", "com.example.accountjsdemo").then(() => { 
+  appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
       console.log('disableAppAccess Success');
   }).catch((err) => {
-      console.log("disableAppAccess err: "  + JSON.stringify(err));
+      console.log('disableAppAccess err: ' + JSON.stringify(err));
   });
   ```
 
@@ -2995,8 +2995,8 @@ enableAppAccess(name: string, bundleName: string, callback: AsyncCallback&lt;voi
 **示例：**
 
   ```js
-  appAccountManager.enableAppAccess("ZhangSan", "com.example.accountjsdemo", (err) => { 
-      console.log("enableAppAccess: " + JSON.stringify(err));
+  appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err) => { 
+      console.log('enableAppAccess: ' + JSON.stringify(err));
    });
   ```
 
@@ -3028,10 +3028,10 @@ enableAppAccess(name: string, bundleName: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  appAccountManager.enableAppAccess("ZhangSan", "com.example.accountjsdemo").then(() => { 
+  appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
        console.log('enableAppAccess Success');
   }).catch((err) => {
-      console.log("enableAppAccess err: "  + JSON.stringify(err));
+      console.log('enableAppAccess err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3059,8 +3059,8 @@ checkAppAccountSyncEnable(name: string, callback: AsyncCallback&lt;boolean&gt;):
 **示例：**
 
   ```js
-  appAccountManager.checkAppAccountSyncEnable("ZhangSan", (err, result) => { 
-      console.log("checkAppAccountSyncEnable err: " + JSON.stringify(err));
+  appAccountManager.checkAppAccountSyncEnable('ZhangSan', (err, result) => { 
+      console.log('checkAppAccountSyncEnable err: ' + JSON.stringify(err));
       console.log('checkAppAccountSyncEnable result: ' + result);
   });
   ```
@@ -3094,10 +3094,10 @@ checkAppAccountSyncEnable(name: string): Promise&lt;boolean&gt;
 **示例：**
 
   ```js
-  appAccountManager.checkAppAccountSyncEnable("ZhangSan").then((data) => { 
+  appAccountManager.checkAppAccountSyncEnable('ZhangSan').then((data) => { 
       console.log('checkAppAccountSyncEnable, result: ' + data);
   }).catch((err) => {
-      console.log("checkAppAccountSyncEnable err: "  + JSON.stringify(err));
+      console.log('checkAppAccountSyncEnable err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3125,8 +3125,8 @@ setAccountCredential(name: string, credentialType: string, credential: string,ca
 **示例：**
 
   ```js
-  appAccountManager.setAccountCredential("ZhangSan", "credentialType001", "credential001", (err) => { 
-      console.log("setAccountCredential err: " + JSON.stringify(err));
+  appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001', (err) => { 
+      console.log('setAccountCredential err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3159,10 +3159,10 @@ setAccountCredential(name: string, credentialType: string, credential: string): 
 **示例：**
 
   ```js
-  appAccountManager.setAccountCredential("ZhangSan", "credentialType001", "credential001").then(() => { 
+  appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001').then(() => { 
       console.log('setAccountCredential Success');
   }).catch((err) => {
-      console.log("setAccountCredential err: "  + JSON.stringify(err));
+      console.log('setAccountCredential err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3190,8 +3190,8 @@ setAccountExtraInfo(name: string, extraInfo: string, callback: AsyncCallback&lt;
 **示例：**
 
   ```js
-  appAccountManager.setAccountExtraInfo("ZhangSan", "Tk002", (err) => { 
-      console.log("setAccountExtraInfo err: " + JSON.stringify(err));
+  appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002', (err) => { 
+      console.log('setAccountExtraInfo err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3224,10 +3224,10 @@ setAccountExtraInfo(name: string, extraInfo: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  appAccountManager.setAccountExtraInfo("ZhangSan", "Tk002").then(() => { 
+  appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002').then(() => { 
       console.log('setAccountExtraInfo Success');
   }).catch((err) => {
-      console.log("setAccountExtraInfo err: "  + JSON.stringify(err));
+      console.log('setAccountExtraInfo err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3256,8 +3256,8 @@ setAppAccountSyncEnable(name: string, isEnable: boolean, callback: AsyncCallback
 **示例：**
 
   ```js
-  appAccountManager.setAppAccountSyncEnable("ZhangSan", true, (err) => { 
-      console.log("setAppAccountSyncEnable err: " + JSON.stringify(err));
+  appAccountManager.setAppAccountSyncEnable('ZhangSan', true, (err) => { 
+      console.log('setAppAccountSyncEnable err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3291,10 +3291,10 @@ setAppAccountSyncEnable(name: string, isEnable: boolean): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  appAccountManager .setAppAccountSyncEnable("ZhangSan", true).then(() => { 
+  appAccountManager .setAppAccountSyncEnable('ZhangSan', true).then(() => { 
       console.log('setAppAccountSyncEnable Success');
   }).catch((err) => {
-      console.log("setAppAccountSyncEnable err: "  + JSON.stringify(err));
+      console.log('setAppAccountSyncEnable err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3323,8 +3323,8 @@ setAssociatedData(name: string, key: string, value: string, callback: AsyncCallb
 **示例：**
 
   ```js
-  appAccountManager.setAssociatedData("ZhangSan", "k001", "v001", (err) => { 
-      console.log("setAssociatedData err: " + JSON.stringify(err));
+  appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001', (err) => { 
+      console.log('setAssociatedData err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3358,10 +3358,10 @@ setAssociatedData(name: string, key: string, value: string): Promise&lt;void&gt;
 **示例：**
 
   ```js
-  appAccountManager.setAssociatedData("ZhangSan", "k001", "v001").then(() => { 
+  appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001').then(() => { 
       console.log('setAssociatedData Success');
   }).catch((err) => {
-      console.log("setAssociatedData err: "  + JSON.stringify(err));
+      console.log('setAssociatedData err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3389,8 +3389,8 @@ getAllAccessibleAccounts(callback: AsyncCallback&lt;Array&lt;AppAccountInfo&gt;&
 
   ```js
   appAccountManager.getAllAccessibleAccounts((err, data)=>{
-  	console.debug("getAllAccessibleAccounts err:" + JSON.stringify(err));
-  	console.debug("getAllAccessibleAccounts data:" + JSON.stringify(data));
+  	console.debug('getAllAccessibleAccounts err: ' + JSON.stringify(err));
+  	console.debug('getAllAccessibleAccounts data: ' + JSON.stringify(data));
   });
   ```
 
@@ -3420,7 +3420,7 @@ getAllAccessibleAccounts(): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
   appAccountManager.getAllAccessibleAccounts().then((data) => { 
        console.log('getAllAccessibleAccounts: ' + data);
   }).catch((err) => {
-      console.log("getAllAccessibleAccounts err: "  + JSON.stringify(err));
+      console.log('getAllAccessibleAccounts err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3448,10 +3448,10 @@ getAllAccounts(owner: string, callback: AsyncCallback&lt;Array&lt;AppAccountInfo
 **示例：**
 
   ```js
-  const selfBundle = "com.example.actsgetallaaccounts";
+  const selfBundle = 'com.example.actsgetallaaccounts';
   appAccountManager.getAllAccounts(selfBundle, (err, data)=>{
-  	console.debug("getAllAccounts err:" + JSON.stringify(err));
-  	console.debug("getAllAccounts data:" + JSON.stringify(data));
+  	console.debug('getAllAccounts err: ' + JSON.stringify(err));
+  	console.debug('getAllAccounts data:' + JSON.stringify(data));
   });
   ```
 
@@ -3484,11 +3484,11 @@ getAllAccounts(owner: string): Promise&lt;Array&lt;AppAccountInfo&gt;&gt;
 **示例：**
 
   ```js
-  const selfBundle = "com.example.actsgetallaaccounts";
+  const selfBundle = 'com.example.actsgetallaaccounts';
   appAccountManager.getAllAccounts(selfBundle).then((data) => { 
        console.log('getAllAccounts: ' + data);
   }).catch((err) => {
-      console.log("getAllAccounts err: "  + JSON.stringify(err));
+      console.log('getAllAccounts err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3515,8 +3515,8 @@ getAccountCredential(name: string, credentialType: string, callback: AsyncCallba
 **示例：**
 
   ```js
-  appAccountManager.getAccountCredential("ZhangSan", "credentialType001", (err, result) => { 
-      console.log("getAccountCredential err: " + JSON.stringify(err));
+  appAccountManager.getAccountCredential('ZhangSan', 'credentialType001', (err, result) => { 
+      console.log('getAccountCredential err: ' + JSON.stringify(err));
       console.log('getAccountCredential result: ' + result);
   });
   ```
@@ -3549,10 +3549,10 @@ getAccountCredential(name: string, credentialType: string): Promise&lt;string&gt
 **示例：**
 
   ```js
-  appAccountManager.getAccountCredential("ZhangSan", "credentialType001").then((data) => { 
+  appAccountManager.getAccountCredential('ZhangSan', 'credentialType001').then((data) => { 
       console.log('getAccountCredential, result: ' + data);
   }).catch((err) => {
-      console.log("getAccountCredential err: "  + JSON.stringify(err));
+      console.log('getAccountCredential err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3578,8 +3578,8 @@ getAccountExtraInfo(name: string, callback: AsyncCallback&lt;string&gt;): void
 **示例：**
 
   ```js
-  appAccountManager.getAccountExtraInfo("ZhangSan", (err, result) => { 
-      console.log("getAccountExtraInfo err: " + JSON.stringify(err));
+  appAccountManager.getAccountExtraInfo('ZhangSan', (err, result) => { 
+      console.log('getAccountExtraInfo err: ' + JSON.stringify(err));
       console.log('getAccountExtraInfo result: ' + result);
   });
   ```
@@ -3611,10 +3611,10 @@ getAccountExtraInfo(name: string): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  appAccountManager.getAccountExtraInfo("ZhangSan").then((data) => { 
+  appAccountManager.getAccountExtraInfo('ZhangSan').then((data) => { 
       console.log('getAccountExtraInfo, result: ' + data);
   }).catch((err) => {
-      console.log("getAccountExtraInfo err: "  + JSON.stringify(err));
+      console.log('getAccountExtraInfo err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3641,8 +3641,8 @@ getAssociatedData(name: string, key: string, callback: AsyncCallback&lt;string&g
 **示例：**
 
   ```js
-  appAccountManager.getAssociatedData("ZhangSan", "k001", (err, result) => { 
-      console.log("getAssociatedData err: " + JSON.stringify(err));
+  appAccountManager.getAssociatedData('ZhangSan', 'k001', (err, result) => { 
+      console.log('getAssociatedData err: ' + JSON.stringify(err));
       console.log('getAssociatedData result: ' + result);
   });
   ```
@@ -3675,10 +3675,10 @@ getAssociatedData(name: string, key: string): Promise&lt;string&gt;
 **示例：**
 
   ```js
-  appAccountManager.getAssociatedData("ZhangSan", "k001").then((data) => { 
+  appAccountManager.getAssociatedData('ZhangSan', 'k001').then((data) => { 
        console.log('getAssociatedData: ' + data);
   }).catch((err) => {
-      console.log("getAssociatedData err: "  + JSON.stringify(err));
+      console.log('getAssociatedData err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3700,19 +3700,19 @@ on(type: 'change', owners: Array&lt;string&gt;, callback: Callback&lt;Array&lt;A
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | type     | 'change'                                 | 是    | 事件回调类型，支持的事件为'change'，当帐号所有者更新帐号信息时，触发该事件。 |
 | owners   | Array&lt;string&gt;                      | 是    | 应用帐号所有者的包名列表。                      |
-| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 回调函数，返回信息发生变更的应用帐号列表。           |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 是    | 需要注册的回调函数，返回信息发生变更的应用帐号列表。           |
 
 **示例：**
 
   ```js
   function changeOnCallback(data){
-  	console.debug("receive change data:" + JSON.stringify(data));
+  	console.debug('receive change data:' + JSON.stringify(data));
   }
   try{
-  	appAccountManager.on('change', ["com.example.actsaccounttest"], changeOnCallback);
+  	appAccountManager.on('change', ['com.example.actsaccounttest'], changeOnCallback);
   }
   catch(err){
-  	console.error("on accountOnOffDemo err:" + JSON.stringify(err));
+  	console.error('on accountOnOffDemo err:' + JSON.stringify(err));
   }
   ```
 
@@ -3733,22 +3733,22 @@ off(type: 'change', callback?: Callback&lt;Array&lt;AppAccountInfo&gt;&gt;): voi
 | 参数名      | 类型                               | 必填   | 说明           |
 | -------- | -------------------------------- | ---- | ------------ |
 | type     | 'change'                         | 是    | 事件回调类型，支持的事件为'change'，当帐号所有者更新帐号信息时，触发该事件。    |
-| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 否    | 回调函数，返回信息发生变更的应用帐号列表。 |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | 否    | 需要注销的回调函数，默认为空，表示取消该类型事件的所有回调。 |
 
 **示例：**
 
   ```js
   function changeOnCallback(data){
-  	console.debug("receive change data:" + JSON.stringify(data));
+  	console.debug('receive change data: ' + JSON.stringify(data));
   	appAccountManager.off('change', function(){
-  		console.debug("off finish");
+  		console.debug('off finish');
   	})
   }
   try{
-  	appAccountManager.on('change', ["com.example.actsaccounttest"], changeOnCallback);
+  	appAccountManager.on('change', ['com.example.actsaccounttest'], changeOnCallback);
   }
   catch(err){
-  	console.error("on accountOnOffDemo err:" + JSON.stringify(err));
+  	console.error('on accountOnOffDemo err: ' + JSON.stringify(err));
   }
   ```
 
@@ -3778,8 +3778,8 @@ authenticate(name: string, owner: string, authType: string, options: {[key: stri
 
   ```js
   function onResultCallback(code, result) {
-      console.log("resultCode: "  + code);
-      console.log("result: "  + JSON.stringify(result));
+      console.log('resultCode: ' + code);
+      console.log('result: ' + JSON.stringify(result));
   }
 
   function onRequestRedirectedCallback(request) {
@@ -3790,13 +3790,13 @@ authenticate(name: string, owner: string, authType: string, options: {[key: stri
       entities: ['entity.system.default'],
     }
     this.context.startAbility(wantInfo).then(() => {
-      console.log("startAbility successfully");
+      console.log('startAbility successfully');
     }).catch((err) => {
-      console.log("startAbility err: " + JSON.stringify(err));
+      console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
 
-  appAccountManager.authenticate("LiSi", "com.example.accountjsdemo", "getSocialData", {}, {
+  appAccountManager.authenticate('LiSi', 'com.example.accountjsdemo', 'getSocialData', {}, {
     onResult: onResultCallback,
     onRequestRedirected: onRequestRedirectedCallback
   });
@@ -3826,7 +3826,7 @@ getOAuthToken(name: string, owner: string, authType: string, callback: AsyncCall
 **示例：**
 
   ```js
-  appAccountManager.getOAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData", (err, data) => {
+  appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', (err, data) => {
        console.log('getOAuthToken err: ' + JSON.stringify(err));
        console.log('getOAuthToken token: ' + data);
   });
@@ -3861,10 +3861,10 @@ getOAuthToken(name: string, owner: string, authType: string): Promise&lt;string&
 **示例：**
 
   ```js
-  appAccountManager.getOAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData").then((data) => {
+  appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((data) => {
        console.log('getOAuthToken token: ' + data);
   }).catch((err) => {
-      console.log("getOAuthToken err: "  + JSON.stringify(err));
+      console.log('getOAuthToken err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3892,7 +3892,7 @@ setOAuthToken(name: string, authType: string, token: string, callback: AsyncCall
 **示例：**
 
   ```js
-  appAccountManager.setOAuthToken("LiSi", "getSocialData", "xxxx", (err) => {
+  appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx', (err) => {
       console.log('setOAuthToken err: ' + JSON.stringify(err));
   });
   ```
@@ -3926,7 +3926,7 @@ setOAuthToken(name: string, authType: string, token: string): Promise&lt;void&gt
 **示例：**
 
   ```js
-  appAccountManager.setOAuthToken("LiSi", "getSocialData", "xxxx").then(() => {
+  appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx').then(() => {
       console.log('setOAuthToken successfully');
   }).catch((err) => {
       console.log('setOAuthToken err: ' + JSON.stringify(err));
@@ -3958,7 +3958,7 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string, c
 **示例：**
 
   ```js
-  appAccountManager.deleteOAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData", "xxxxx", (err) => {
+  appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx', (err) => {
        console.log('deleteOAuthToken err: ' + JSON.stringify(err));
   });
   ```
@@ -3993,10 +3993,10 @@ deleteOAuthToken(name: string, owner: string, authType: string, token: string): 
 **示例：**
 
   ```js
-  appAccountManager.deleteOAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData", "xxxxx").then(() => {
+  appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx').then(() => {
        console.log('deleteOAuthToken successfully');
   }).catch((err) => {
-      console.log("deleteOAuthToken err: "  + JSON.stringify(err));
+      console.log('deleteOAuthToken err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4025,7 +4025,7 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 **示例：**
 
   ```js
-  appAccountManager.setOAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo", true, (err) => {
+  appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true, (err) => {
        console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
   });
   ```
@@ -4060,7 +4060,7 @@ setOAuthTokenVisibility(name: string, authType: string, bundleName: string, isVi
 **示例：**
 
   ```js
-  appAccountManager.setOAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo", true).then(() => {
+  appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true).then(() => {
       console.log('setOAuthTokenVisibility successfully');
   }).catch((err) => {
       console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
@@ -4091,7 +4091,7 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string, ca
 **示例：**
 
   ```js
-  appAccountManager.checkOAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo", (err, data) => {
+  appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', (err, data) => {
       console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
       console.log('checkOAuthTokenVisibility isVisible: ' + data);
   });
@@ -4126,7 +4126,7 @@ checkOAuthTokenVisibility(name: string, authType: string, bundleName: string): P
 **示例：**
 
   ```js
-  appAccountManager.checkOAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo").then((data) => {
+  appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((data) => {
       console.log('checkOAuthTokenVisibility isVisible: ' + data);
   }).catch((err) => {
       console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
@@ -4156,8 +4156,8 @@ getAllOAuthTokens(name: string, owner: string, callback: AsyncCallback&lt;Array&
 **示例：** 
 
   ```js
-  appAccountManager.getAllOAuthTokens("LiSi", "com.example.accountjsdemo", (err, data) => {
-      console.log("getAllOAuthTokens err: "  + JSON.stringify(err));
+  appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo', (err, data) => {
+      console.log('getAllOAuthTokens err: ' + JSON.stringify(err));
       console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
   });
   ```
@@ -4190,10 +4190,10 @@ getAllOAuthTokens(name: string, owner: string): Promise&lt;Array&lt;OAuthTokenIn
 **示例：**
 
   ```js
-  appAccountManager.getAllOAuthTokens("LiSi", "com.example.accountjsdemo").then((data) => {
+  appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo').then((data) => {
       console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
   }).catch((err) => {
-      console.log("getAllOAuthTokens err: "  + JSON.stringify(err));
+      console.log('getAllOAuthTokens err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4220,7 +4220,7 @@ getOAuthList(name: string, authType: string, callback: AsyncCallback&lt;Array&lt
 **示例：**
 
   ```js
-  appAccountManager.getOAuthList("com.example.accountjsdemo", "getSocialData", (err, data) => {
+  appAccountManager.getOAuthList('LiSi', 'getSocialData', (err, data) => {
     console.log('getOAuthList err: ' + JSON.stringify(err));
     console.log('getOAuthList data: ' + JSON.stringify(data));
   });
@@ -4254,10 +4254,10 @@ getOAuthList(name: string, authType: string): Promise&lt;Array&lt;string&gt;&gt;
 **示例：**
 
   ```js
-  appAccountManager.getOAuthList("com.example.accountjsdemo", "getSocialData").then((data) => {
+  appAccountManager.getOAuthList('LiSi', 'getSocialData').then((data) => {
        console.log('getOAuthList data: ' + JSON.stringify(data));
   }).catch((err) => {
-      console.log("getOAuthList err: "  + JSON.stringify(err));
+      console.log('getOAuthList err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4290,13 +4290,13 @@ getAuthenticatorCallback(sessionId: string, callback: AsyncCallback&lt;Authentic
       var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
       appAccountManager.getAuthenticatorCallback(sessionId, (err, callback) => {
         if (err.code != account_appAccount.ResultCode.SUCCESS) {
-            console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
+            console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
             return;
         }
-        var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
-                      [account_appAccount.Constants.KEY_OWNER]: "com.example.accountjsdemo",
-                      [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
-                      [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+        var result = {[account_appAccount.Constants.KEY_NAME]: 'LiSi',
+                      [account_appAccount.Constants.KEY_OWNER]: 'com.example.accountjsdemo',
+                      [account_appAccount.Constants.KEY_AUTH_TYPE]: 'getSocialData',
+                      [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
         callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       });
     }
@@ -4336,13 +4336,13 @@ getAuthenticatorCallback(sessionId: string): Promise&lt;AuthenticatorCallback&gt
     onCreate(want, param) {
       var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
       appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
-        var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
-                      [account_appAccount.Constants.KEY_OWNER]: "com.example.accountjsdemo",
-                      [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
-                      [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+        var result = {[account_appAccount.Constants.KEY_NAME]: 'LiSi',
+                      [account_appAccount.Constants.KEY_OWNER]: 'com.example.accountjsdemo',
+                      [account_appAccount.Constants.KEY_AUTH_TYPE]: 'getSocialData',
+                      [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
         callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }).catch((err) => {
-        console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
+        console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
       });
     }
   }
@@ -4370,8 +4370,8 @@ getAuthenticatorInfo(owner: string, callback: AsyncCallback&lt;AuthenticatorInfo
 **示例：**
 
   ```js
-  appAccountManager.getAuthenticatorInfo("com.example.accountjsdemo", (err, data) => {
-      console.log("getAuthenticatorInfo err: "  + JSON.stringify(err));
+  appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo', (err, data) => {
+      console.log('getAuthenticatorInfo err: ' + JSON.stringify(err));
       console.log('getAuthenticatorInfo data: ' + JSON.stringify(data));
   });
   ```
@@ -4403,10 +4403,10 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 **示例：**
 
   ```js
-  appAccountManager.getAuthenticatorInfo("com.example.accountjsdemo").then((data) => { 
+  appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo').then((data) => { 
        console.log('getAuthenticatorInfo: ' + JSON.stringify(data));
   }).catch((err) => {
-      console.log("getAuthenticatorInfo err: "  + JSON.stringify(err));
+      console.log('getAuthenticatorInfo err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4431,7 +4431,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 | -------------------- | -------------- | ----- | ---------------- |
 | authType<sup>9+</sup>             | string         | 是    | 令牌的鉴权类型。   |
 | token<sup>9+</sup>                | string         | 是    | 令牌的取值。       |
-| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的帐号信息。|
+| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的帐号信息，默认为空。|
 
 ## OAuthTokenInfo<sup>(deprecated)</sup>
 
@@ -4447,7 +4447,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 | -------------------- | -------------- | ----- | ---------------- |
 | authType             | string         | 是    | 令牌的鉴权类型。   |
 | token                | string         | 是    | 令牌的取值。       |
-| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的帐号信息。|
+| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的帐号信息，默认为空。|
 
 ## AuthenticatorInfo<sup>8+</sup>
 
@@ -4469,8 +4469,8 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称     | 类型     | 必填   | 说明         |
 | ------- | ------ | ---- | ---------- |
-| account   | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的帐号信息。 |
-| tokenInfo  | [AuthTokenInfo](#authtokeninfo9) | 否    | 令牌信息。  |
+| account   | [AppAccountInfo](#appaccountinfo) | 否    | 令牌所属的帐号信息，默认为空。 |
+| tokenInfo  | [AuthTokenInfo](#authtokeninfo9) | 否    | 令牌信息，默认为空。  |
 
 ## CreateAccountOptions<sup>9+</sup>
 
@@ -4480,7 +4480,7 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称     | 类型     | 必填   | 说明         |
 | ------- | ------ | ---- | ---------- |
-| customData   | {[key: string]: string} | 否    | 自定义数据。 |
+| customData   | {[key: string]: string} | 否    | 自定义数据，默认为空。 |
 
 ## CreateAccountImplicitlyOptions<sup>9+</sup>
 
@@ -4490,9 +4490,9 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称     | 类型     | 必填   | 说明         |
 | ------- | ------ | ---- | ---------- |
-| requiredLabels   | Array&lt;string&gt; | 否    | 必须的标签。 |
-| authType   | string | 否    | 鉴权类型。 |
-| parameters   | {[key: string]: Object} | 否    | 自定义参数对象。 |
+| requiredLabels   | Array&lt;string&gt; | 否    | 所需的标签，默认为空。 |
+| authType   | string | 否    | 鉴权类型，默认为空。 |
+| parameters   | {[key: string]: Object} | 否    | 自定义参数对象，默认为空。 |
 ## SelectAccountsOptions<sup>9+</sup>
 
 表示用于选择帐号的选项。
@@ -4501,9 +4501,9 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称          | 类型                         | 必填  | 说明                |
 | --------------- | --------------------------- | ----- | ------------------- |
-| allowedAccounts | Array&lt;[AppAccountInfo](#appaccountinfo)&gt; | 否    | 允许的帐号数组。      |
-| allowedOwners   | Array&lt;string&gt;         | 否    | 允许的帐号所有者数组。 |
-| requiredLabels  | Array&lt;string&gt;         | 否    | 认证器的标签标识。    |
+| allowedAccounts | Array&lt;[AppAccountInfo](#appaccountinfo)&gt; | 否    | 允许的帐号数组，默认为空。     |
+| allowedOwners   | Array&lt;string&gt;         | 否    | 允许的帐号所有者数组，默认为空。 |
+| requiredLabels  | Array&lt;string&gt;         | 否    | 认证器的标签标识，默认为空。  |
 
 ## VerifyCredentialOptions<sup>9+</sup>
 
@@ -4513,9 +4513,9 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称          | 类型                   | 必填  | 说明           |
 | -------------- | ---------------------- | ----- | -------------- |
-| credentialType | string                 | 否    | 凭据类型。      |
-| credential     | string                 | 否    | 凭据取值。      |
-| parameters     | {[key: string]: Object} | 否    | 自定义参数对象。 |
+| credentialType | string                 | 否    | 凭据类型，默认为空。      |
+| credential     | string                 | 否    | 凭据取值，默认为空。      |
+| parameters     | {[key: string]: Object} | 否    | 自定义参数对象，默认为空。 |
 
 
 ## SetPropertiesOptions<sup>9+</sup>
@@ -4526,8 +4526,8 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称     | 类型                    | 必填  | 说明           |
 | ---------- | ---------------------- | ----- | -------------- |
-| properties | {[key: string]: Object} | 否    | 属性对象。      |
-| parameters | {[key: string]: Object} | 否    | 自定义参数对象。 |
+| properties | {[key: string]: Object} | 否    | 属性对象，默认为空。      |
+| parameters | {[key: string]: Object} | 否    | 自定义参数对象，默认为空。 |
 
 ## Constants<sup>8+</sup>
 
@@ -4537,23 +4537,23 @@ getAuthenticatorInfo(owner: string): Promise&lt;AuthenticatorInfo&gt;
 
 | 名称                            | 值                    | 说明                   |
 | -------------------------------- | ---------------------- | ----------------------- |
-| ACTION_ADD_ACCOUNT_IMPLICITLY<sup>(deprecated)</sup>    | "addAccountImplicitly" | 表示操作，隐式添加帐号。  |
-| ACTION_AUTHENTICATE<sup>(deprecated)</sup>              | "authenticate"         | 表示操作，鉴权。         |
-| ACTION_CREATE_ACCOUNT_IMPLICITLY<sup>9+</sup>    | "createAccountImplicitly" | 表示操作，隐式创建帐号。  |
-| ACTION_AUTH<sup>9+</sup>              | "auth"         | 表示操作，鉴权。         |
-| ACTION_VERIFY_CREDENTIAL<sup>9+</sup>    | "verifyCredential" | 表示操作，验证凭据。  |
-| ACTION_SET_AUTHENTICATOR_PROPERTIES<sup>9+</sup> | "setAuthenticatorProperties" | 表示操作，设置认证器属性。      |
-| KEY_NAME                         | "name"                 | 表示键名，应用帐号的名称。  |
-| KEY_OWNER                        | "owner"                | 表示键名，应用帐号所有者。|
-| KEY_TOKEN                        | "token"                | 表示键名，令牌。         |
-| KEY_ACTION                       | "action"               | 表示键名，操作。         |
-| KEY_AUTH_TYPE                    | "authType"             | 表示键名，鉴权类型。     |
-| KEY_SESSION_ID                   | "sessionId"            | 表示键名，会话标识。     |
-| KEY_CALLER_PID                   | "callerPid"            | 表示键名，调用方PID。    |
-| KEY_CALLER_UID                   | "callerUid"            | 表示键名，调用方UID。    |
-| KEY_CALLER_BUNDLE_NAME           | "callerBundleName"     | 表示键名，调用方包名。    |
-| KEY_REQUIRED_LABELS<sup>9+</sup> | "requiredLabels"       | 表示键名，必需的标签。    |
-| KEY_BOOLEAN_RESULT<sup>9+</sup>  | "booleanResult"        | 表示键名，布尔返回值。    |
+| ACTION_ADD_ACCOUNT_IMPLICITLY<sup>(deprecated)</sup>    | 'addAccountImplicitly' | 表示操作，隐式添加帐号。  |
+| ACTION_AUTHENTICATE<sup>(deprecated)</sup>              | 'authenticate'         | 表示操作，鉴权。         |
+| ACTION_CREATE_ACCOUNT_IMPLICITLY<sup>9+</sup>    | 'createAccountImplicitly' | 表示操作，隐式创建帐号。  |
+| ACTION_AUTH<sup>9+</sup>              | 'auth'         | 表示操作，鉴权。         |
+| ACTION_VERIFY_CREDENTIAL<sup>9+</sup>    | 'verifyCredential' | 表示操作，验证凭据。  |
+| ACTION_SET_AUTHENTICATOR_PROPERTIES<sup>9+</sup> | 'setAuthenticatorProperties' | 表示操作，设置认证器属性。      |
+| KEY_NAME                         | 'name'                 | 表示键名，应用帐号的名称。  |
+| KEY_OWNER                        | 'owner'                | 表示键名，应用帐号所有者。|
+| KEY_TOKEN                        | 'token'                | 表示键名，令牌。         |
+| KEY_ACTION                       | 'action'               | 表示键名，操作。         |
+| KEY_AUTH_TYPE                    | 'authType'             | 表示键名，鉴权类型。     |
+| KEY_SESSION_ID                   | 'sessionId'            | 表示键名，会话标识。     |
+| KEY_CALLER_PID                   | 'callerPid'            | 表示键名，调用方PID。    |
+| KEY_CALLER_UID                   | 'callerUid'            | 表示键名，调用方UID。    |
+| KEY_CALLER_BUNDLE_NAME           | 'callerBundleName'     | 表示键名，调用方包名。    |
+| KEY_REQUIRED_LABELS<sup>9+</sup> | 'requiredLabels'       | 表示键名，必需的标签。    |
+| KEY_BOOLEAN_RESULT<sup>9+</sup>  | 'booleanResult'        | 表示键名，布尔返回值。    |
 
 ## ResultCode<sup>(deprecated)</sup>
 
@@ -4603,27 +4603,27 @@ onResult: (code: number, result?: AuthResult) =&gt; void
 | 参数名    | 类型                   | 必填   | 说明     |
 | ------ | -------------------- | ---- | ------ |
 | code   | number               | 是    | 鉴权结果码。 |
-| result | [AuthResult](#authresult9) | 否    | 鉴权结果。  |
+| result | [AuthResult](#authresult9) | 否    | 鉴权结果，默认为空，表示不接收认证结果信息。  |
 
 **示例：**
 
   ```js
   let appAccountManager = account_appAccount.createAppAccountManager();
-  var sessionId = "1234";
+  var sessionId = '1234';
   appAccountManager.getAuthCallback(sessionId).then((callback) => {
       var result = {
           accountInfo: {
-            name: "Lisi",
-            owner: "com.example.accountjsdemo",
+            name: 'Lisi',
+            owner: 'com.example.accountjsdemo',
           },
           tokenInfo: {
-            token: "xxxxxx",
-            authType: "getSocialData"
+            token: 'xxxxxx',
+            authType: 'getSocialData'
           }
       };
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
   }).catch((err) => {
-      console.log("getAuthCallback err: "  + JSON.stringify(err));
+      console.log('getAuthCallback err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4647,20 +4647,20 @@ onRequestRedirected: (request: Want) =&gt; void
   class MyAuthenticator extends account_appAccount.Authenticator {
       createAccountImplicitly(options, callback) {
           callback.onRequestRedirected({
-              bundleName: "com.example.accountjsdemo",
-              abilityName: "com.example.accountjsdemo.LoginAbility",
+              bundleName: 'com.example.accountjsdemo',
+              abilityName: 'com.example.accountjsdemo.LoginAbility',
           });
       }
 
       auth(name, authType, options, callback) {
           var result = {
             accountInfo: {
-              name: "Lisi",
-              owner: "com.example.accountjsdemo",
+              name: 'Lisi',
+              owner: 'com.example.accountjsdemo',
             },
             tokenInfo: {
-              token: "xxxxxx",
-              authType: "getSocialData"
+              token: 'xxxxxx',
+              authType: 'getSocialData'
             }
           };
           callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
@@ -4680,11 +4680,11 @@ onRequestContinued?: () =&gt; void
 
   ```js
   let appAccountManager = account_appAccount.createAppAccountManager();
-  var sessionId = "1234";
+  var sessionId = '1234';
   appAccountManager.getAuthCallback(sessionId).then((callback) => {
       callback.onRequestContinued();
   }).catch((err) => {
-      console.log("getAuthCallback err: "  + JSON.stringify(err));
+      console.log('getAuthCallback err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4715,15 +4715,15 @@ onResult: (code: number, result: {[key: string]: any}) =&gt; void
 
   ```js
   let appAccountManager = account_appAccount.createAppAccountManager();
-  var sessionId = "1234";
+  var sessionId = '1234';
   appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
-      var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
-                    [account_appAccount.Constants.KEY_OWNER]: "com.example.accountjsdemo",
-                    [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
-                    [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+      var result = {[account_appAccount.Constants.KEY_NAME]: 'LiSi',
+                    [account_appAccount.Constants.KEY_OWNER]: 'com.example.accountjsdemo',
+                    [account_appAccount.Constants.KEY_AUTH_TYPE]: 'getSocialData',
+                    [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
   }).catch((err) => {
-      console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
+      console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4747,15 +4747,15 @@ onRequestRedirected: (request: Want) =&gt; void
   class MyAuthenticator extends account_appAccount.Authenticator {
       addAccountImplicitly(authType, callerBundleName, options, callback) {
           callback.onRequestRedirected({
-              bundleName: "com.example.accountjsdemo",
-              abilityName: "com.example.accountjsdemo.LoginAbility",
+              bundleName: 'com.example.accountjsdemo',
+              abilityName: 'com.example.accountjsdemo.LoginAbility',
           });
       }
 
       authenticate(name, authType, callerBundleName, options, callback) {
           var result = {[account_appAccount.Constants.KEY_NAME]: name,
                         [account_appAccount.Constants.KEY_AUTH_TYPE]: authType,
-                        [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+                        [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
           callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }
   }
@@ -4773,11 +4773,11 @@ onRequestContinued?: () =&gt; void
 
   ```js
   let appAccountManager = account_appAccount.createAppAccountManager();
-  var sessionId = "1234";
+  var sessionId = '1234';
   appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
       callback.onRequestContinued();
   }).catch((err) => {
-      console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
+      console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4937,22 +4937,22 @@ getRemoteObject(): rpc.RemoteObject;
   class MyAuthenticator extends account_appAccount.Authenticator {
     addAccountImplicitly(authType, callerBundleName, options, callback) {
       callback.onRequestRedirected({
-        bundleName: "com.example.accountjsdemo",
-        abilityName: "com.example.accountjsdemo.LoginAbility",
+        bundleName: 'com.example.accountjsdemo',
+        abilityName: 'com.example.accountjsdemo.LoginAbility',
       });
     }
 
     authenticate(name, authType, callerBundleName, options, callback) {
       var result = {[account_appAccount.Constants.KEY_NAME]: name,
                     [account_appAccount.Constants.KEY_AUTH_TYPE]: authType,
-                    [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+                    [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
     }
 
     verifyCredential(name, options, callback) {
       callback.onRequestRedirected({
-        bundleName: "com.example.accountjsdemo",
-        abilityName: "com.example.accountjsdemo.VerifyAbility",
+        bundleName: 'com.example.accountjsdemo',
+        abilityName: 'com.example.accountjsdemo.VerifyAbility',
         parameters: {
           name: name
         }

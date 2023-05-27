@@ -5,6 +5,7 @@
 > **说明：**
 >
 > 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> 本模块接口需激活为[设备管理员应用](js-apis-enterprise-adminManager.md#adminmanagerenableadmin)后才能调用，实现相应功能。
 
 ## 导入模块
 
@@ -29,7 +30,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: Async
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用运行的黑名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
@@ -49,7 +50,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
 applicationManager.addDisallowedRunningBundles(wantTemp, appIds, (error) => {
     if (error != null) {
@@ -75,7 +76,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number,
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用运行的黑名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数，当接口调用成功，err为null，否则为错误对象。 |
 
@@ -95,7 +96,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
 applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100, (error) => {
     if (error != null) {
@@ -121,7 +122,7 @@ addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用运行的黑名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 
 **返回值：**
@@ -146,7 +147,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
 applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100).then(() => {
     console.log("success");
@@ -172,7 +173,7 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: As
 | 参数名      | 类型                                       | 必填   | 说明                       |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用运行的黑名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
@@ -191,7 +192,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
 applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, (error) => {
     if (error != null) {
@@ -217,7 +218,7 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: numb
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用运行的黑名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 是    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 | callback | AsyncCallback&lt;void&gt;            | 是    | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
@@ -237,7 +238,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
 applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100, (error) => {
     if (error != null) {
@@ -263,7 +264,7 @@ removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: num
 | 参数名   | 类型                                  | 必填   | 说明      |
 | ----- | ----------------------------------- | ---- | ------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | 是    | 设备管理员应用。                  |
-| appIds    | Array&lt;string&gt;                | 是    | 应用运行的黑名单。                  |
+| appIds    | Array&lt;string&gt;                | 是    | 应用ID数组。                  |
 | userId     | number                             | 否    | 用户ID。默认值：调用方所在用户，取值范围：大于等于0。 |
 
 **返回值：**
@@ -288,7 +289,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let appIds = {"com.example.myapplication"};
+let appIds = ["com.example.myapplication"];
 
 applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100).then(() => {
     console.log("success");

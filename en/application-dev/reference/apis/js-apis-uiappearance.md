@@ -4,7 +4,7 @@ The **uiAppearance** module provides basic capabilities for managing the system 
 
 > **NOTE**
 >
-> The APIs of this module are supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+> The APIs of this module are supported since API version 10. Updates will be marked with a superscript to indicate their earliest API version.
 >
 > The APIs provided by this module are system APIs.
 

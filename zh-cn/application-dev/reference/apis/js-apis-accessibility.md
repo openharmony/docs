@@ -221,7 +221,7 @@ off(type: 'enableChange', callback?: Callback&lt;boolean&gt;): void;
 | 参数名      | 类型                      | 必填   | 说明                                       |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | type     | string                  | 是    | 取消监听的事件名，固定为‘enableChange’，即字幕配置启用状态变化事件。 |
-| callback | Callback&lt;boolean&gt; | 否    | 回调函数，在字幕配置启用状态变化时将状态通过此函数进行通知。           |
+| callback | Callback&lt;boolean&gt; | 否    | 回调函数，取消指定callback对象的事件响应。           |
 
 **示例：**
 
@@ -247,7 +247,7 @@ off(type: 'styleChange', callback?: Callback&lt;CaptionsStyle&gt;): void;
 | 参数名      | 类型                                       | 必填   | 说明                                   |
 | -------- | ---------------------------------------- | ---- | ------------------------------------ |
 | type     | string                                   | 是    | 取消监听的事件名，固定为‘styleChange’，即字幕风格变化事件。 |
-| callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | 否    | 回调函数，在字幕风格变化时通过此函数进行通知。              |
+| callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | 否    | 回调函数，回调函数，取消指定callback对象的事件响应。              |
 
 **示例：**
 
@@ -634,7 +634,7 @@ off(type: 'accessibilityStateChange', callback?: Callback&lt;boolean&gt;): void
 | 参数名      | 类型                      | 必填   | 说明                                       |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | type     | string                  | 否    | 取消监听的事件名，固定为‘accessibilityStateChange’，即辅助应用启用状态变化事件。 |
-| callback | Callback&lt;boolean&gt; | 否    | 回调函数，在辅助应用启用状态变化时将状态通过此函数进行通知。           |
+| callback | Callback&lt;boolean&gt; | 否    | 回调函数，取消指定callback对象的事件响应。           |
 
 **示例：**
 
@@ -661,7 +661,7 @@ off(type: 'touchGuideStateChange', callback?: Callback&lt;boolean&gt;): void
 | 参数名      | 类型                      | 必填   | 说明                                       |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
 | type     | string                  | 否    | 取消监听的事件名，固定为‘touchGuideStateChange’，即触摸浏览启用状态变化事件。 |
-| callback | Callback&lt;boolean&gt; | 否    | 回调函数，在触摸浏览启用状态变化时将状态通过此函数进行通知。           |
+| callback | Callback&lt;boolean&gt; | 否    | 回调函数，取消指定callback对象的事件响应。           |
 
 **示例：**
 

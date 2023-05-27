@@ -8,7 +8,7 @@ In addition to displaying web page content on applications, the **Web** componen
 
 - **Page interaction**: supports a wide range of page interaction modes, which allow you to set the dark mode for frontend pages, load pages in a new window, manage location permissions and cookies, and use frontend page JavaScript code on the application.
 
-- **Page debugging**: uses DevTools to debug frontend pages.
+- **Page debugging**: uses [DevTools](web-debugging-with-devtools.md) to debug frontend pages.
 
 
 To help you better understand the features of the **Web** component, the following sections will exemplify use of the **Web** component in common application scenarios.

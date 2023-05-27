@@ -41,6 +41,6 @@ To help you better understand the preceding basic concepts and application devel
 
 1. Download the latest version of [DevEco Studio](https://developer.harmonyos.com/cn/develop/deveco-studio).
 
-2. Install DevEco Studio and configure the development environment. For details, see [Setting Up the Development Environment](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-setting-up-environment-0000001263160443).
+2. Install DevEco Studio and configure the development environment. For details, see [Setting Up the Development Environment](https://developer.harmonyos.com/en/docs/documentation/doc-guides-V3/environment_config-0000001052902427-V3).
 
 When you are done, follow the instructions in [Getting Started with ArkTS in Stage Model](start-with-ets-stage.md), [Getting Started with ArkTS in FA Model](start-with-ets-fa.md), and [Getting Started with JavaScript in FA Model](start-with-js-fa.md).

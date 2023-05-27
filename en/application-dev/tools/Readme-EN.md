@@ -8,3 +8,4 @@
 - [Common Event Manager](cem-tool.md)
 - [Advanced Notification Manager](anm-tool.md)
 - [restool](restool.md)
+- [LLDB Usage Guide](lldb-tool.md)
