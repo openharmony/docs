@@ -1242,6 +1242,9 @@
       - [@ohos.multimedia.camera (相机管理)](reference/apis/js-apis-camera.md)
       - [@ohos.multimedia.image (图片处理)](reference/apis/js-apis-image.md)
       - [@ohos.multimedia.media (媒体服务)](reference/apis/js-apis-media.md)
+      - [@ohos.multimedia.systemSoundManager (系统声音管理)](reference/apis/js-apis-systemSoundManager.md)
+      - multimedia
+        - [ringtonePlayer (铃声播放器)](reference/apis/js-apis-inner-multimedia-ringtonePlayer.md)
     - 资源管理
       - [@ohos.i18n (国际化-I18n)](reference/apis/js-apis-i18n.md)
       - [@ohos.intl (国际化-Intl)](reference/apis/js-apis-intl.md)
