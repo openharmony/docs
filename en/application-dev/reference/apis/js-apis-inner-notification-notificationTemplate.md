@@ -8,7 +8,7 @@ The **NotificationTemplate** module describes the notification template.
 
 **System capability**: SystemCapability.Notification.Notification
 
-| Name| Type                   | Readable| Writable| Description      |
+| Name| Type                   | Read-only| Mandatory| Description      |
 | ---- | ---------------------- | ---- | ---- | ---------- |
-| name | string                 | Yes  | Yes  | Template name.|
-| data | {[key:string]: Object} | Yes  | Yes  | Template data.|
+| name | string                 | No  | Yes  | Template name.|
+| data | {[key:string]: Object} | No  | Yes  | Template data.|

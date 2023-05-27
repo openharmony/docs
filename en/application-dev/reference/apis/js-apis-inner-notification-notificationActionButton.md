@@ -8,9 +8,9 @@ The **NotificationActionButton** module describes the button displayed in the no
 
 **System capability**: SystemCapability.Notification.Notification
 
-| Name     | Type                                           | Readable| Writable| Description                     |
+| Name     | Type                                           | Read-only| Mandatory| Description                     |
 | --------- | ----------------------------------------------- | --- | ---- | ------------------------- |
-| title     | string                                          | Yes | Yes | Button title.                 |
-| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md)   | Yes | Yes | **WantAgent** of the button.|
-| extras    | { [key: string]: any }                          | Yes | Yes | Extra information of the button.             |
-| userInput<sup>8+</sup> | [NotificationUserInput](js-apis-inner-notification-notificationUserInput.md) | Yes | Yes | User input object.         |
+| title     | string                                          | No | Yes | Button title.                 |
+| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md)   | No | Yes | **WantAgent** of the button.|
+| extras    | { [key: string]: any }                          | No | No | Extra information of the button.             |
+| userInput<sup>8+</sup> | [NotificationUserInput](js-apis-inner-notification-notificationUserInput.md) | No | No | User input object.         |
