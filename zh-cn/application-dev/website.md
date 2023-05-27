@@ -1277,7 +1277,8 @@
       - [@ohos.data.distributedDataObject (分布式数据对象)](reference/apis/js-apis-data-distributedobject.md)
       - [@ohos.data.distributedKVStore (分布式键值数据库)](reference/apis/js-apis-distributedKVStore.md)
       - [@ohos.data.preferences (用户首选项)](reference/apis/js-apis-data-preferences.md)
-      - [@ohos.data.relationalStore (关系型数据库)](reference/apis/js-apis-data-relationalStore.md)
+      - [@ohos.data.relationalStore (关系型数据库)](reference/apis/js-apis-data-relationalStore.md)  
+      - [@ohos.data.UDMF (统一数据管理框架)](reference/apis/js-apis-data-udmf.md)
       - [@ohos.data.ValuesBucket (数据集)](reference/apis/js-apis-data-valuesBucket.md)
     - 文件管理
       - [@ohos.file.backup (备份恢复)](reference/apis/js-apis-file-backup.md)
