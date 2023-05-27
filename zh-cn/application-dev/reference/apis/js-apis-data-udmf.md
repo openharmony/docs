@@ -334,13 +334,13 @@ folder.folderUri = 'schema://com.samples.test/files/folder/';
 
 ## SystemDefinedRecord
 
-SystemDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是OpenHarmony平台上系统侧定义的数据类型的基类，用于描述需要在OpenHarmony系统范围内流通的数据类型。
+SystemDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是OpenHarmony系统特有数据类型的基类，用于描述仅在OpenHarmony系统范围内流通的特有数据类型，推荐开发者优先使用SystemDefinedRecord的子类描述数据。
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
-| 名称    | 类型                        | 可读 | 可写 | 说明                                                         |
-| ------- |---------------------------| ---- | ---- | ------------------------------------------------------------ |
-| details | { [key: string]: number \ | string \| Uint8Array } | 是   | 是   | 是一个字典类型对象，key是string类型，value可以写入number（数值类型）、string（字符串类型）、Uint8Array（二进制字节数组）类型数据。非必填字段，默认值为空字典对象。|
+| 名称    | 类型                       | 可读 | 可写 | 说明                                                         |
+| ------- |--------------------------| ---- | ---- | ------------------------------------------------------------ |
+| details | { [key: string]: number \| string \| Uint8Array } | 是   | 是   | 是一个字典类型对象，key是string类型，value可以写入number（数值类型）、string（字符串类型）、Uint8Array（二进制字节数组）类型数据。非必填字段，默认值为空字典对象。|
 
 **示例：**
 
@@ -423,7 +423,7 @@ let unifiedData = new UDMF.UnifiedData(appItem);
 
 ## SystemDefinedPixelMap
 
-与系统侧定义的[PixelMap](js-apis-image.md#pixelmapsup7sup)数据类型对应的图片数据类型，是[SystemDefinedRecord](#systemdefinedrecord)的子类，仅保存PixelMap的二进制数据。
+与系统侧定义的[PixelMap](js-apis-image.md#pixelmap7)数据类型对应的图片数据类型，是[SystemDefinedRecord](#systemdefinedrecord)的子类，仅保存PixelMap的二进制数据。
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -455,7 +455,7 @@ image.createPixelMap(color, opts, (error, pixelmap) => {
 
 ## ApplicationDefinedRecord
 
-ApplicationDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是应用自定义数据类型的基类，用于描述应用自定义数据类型。
+ApplicationDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是应用自定义数据类型的基类，用于描述仅在应用生态内部流通的自定义数据类型。
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
