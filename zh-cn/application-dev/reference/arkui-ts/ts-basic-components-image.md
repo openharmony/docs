@@ -413,3 +413,86 @@ struct LoadImageExample {
   }
 }
 ```
+
+### 为图片增加滤镜
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct colorFilterExample {
+  @State colorFilterR: number = 0
+  @State colorFilterG: number = 0
+  @State colorFilterB: number = 0
+  @State colorFilterA: number = 0
+
+  build() {
+    Row() {
+      Column() {
+        Image($r('app.media.sky'))
+          .width(200)
+          .height(200)
+        Image($r('app.media.sky'))
+          .width(200)
+          .height(200)
+          .colorFilter([
+          this.colorFilterR, 0, this.colorFilterR, 0, 0,
+            0, this.colorFilterG, this.colorFilterG, 0, 0,
+          this.colorFilterB, 0, this.colorFilterB, 0, 0,
+            0, 0, this.colorFilterA, 0, 0
+          ])
+
+        Row() {
+          Text('R')
+          Slider({
+            min: 0,
+            max: 1,
+            step: 0.01
+          })
+            .onChange((valueR) => {
+              this.colorFilterR = valueR
+            })
+        }
+
+        Row() {
+          Text('G')
+          Slider({
+            min: 0,
+            max: 1,
+            step: 0.01
+          })
+            .onChange((valueG) => {
+              this.colorFilterG = valueG
+            })
+        }
+
+        Row() {
+          Text('B')
+          Slider({
+            min: 0,
+            max: 1,
+            step: 0.01
+          })
+            .onChange((valueB) => {
+              this.colorFilterB = valueB
+            })
+        }
+
+        Row() {
+          Text('A')
+          Slider({
+            min: 0,
+            max: 1,
+            step: 0.01
+          })
+            .onChange((valueA) => {
+              this.colorFilterA = valueA
+            })
+        }
+      }.width('90%').alignItems(HorizontalAlign.Center)
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+![colorFilter](figures/colorFilter.gif)
