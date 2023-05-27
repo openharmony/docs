@@ -149,25 +149,19 @@ struct ListItemExample2 {
 // xxx.ets
 @Entry
 @Component
-struct ListItemExample3 {
+struct ListItemExample2 {
+  @State message: string = 'Hello World'
   @State arr: number[] = [0, 1, 2, 3, 4]
   @State enterEndDeleteAreaString: string = "not enterEndDeleteArea"
   @State exitEndDeleteAreaString: string = "not exitEndDeleteArea"
 
-  @Builder itemEnd(value: number) {
+  @Builder itemEnd() {
     Row() {
       Button("Delete").margin("4vp")
-        .onClick(() => {
-          animateTo({ duration: 1000 }, () => {
-            let index = this.arr.indexOf(value)
-            this.arr.splice(index, 1)
-          })
-        })
       Button("Set").margin("4vp")
-    }
-    .padding("4vp")
-    .justifyContent(FlexAlign.SpaceEvenly)
+    }.padding("4vp").justifyContent(FlexAlign.SpaceEvenly)
   }
+
   build() {
     Column() {
       List({ space: 10 }) {
@@ -182,25 +176,26 @@ struct ListItemExample3 {
               .backgroundColor(0xFFFFFF)
           }
           .transition({ type: TransitionType.Delete, opacity: 0 })
-          .swipeAction({ end: {
-            builder: this.itemEnd.bind(this, item),
-            useDefaultDeleteAnimation: true,
-            onDelete: () => {
-              animateTo({ duration: 1000 }, () => {
-                let index = this.arr.indexOf(item)
-                this.arr.splice(index, 1)
-              })
-            },
-            deleteAreaDistance: 80,
-            onEnterDeleteArea: () => {
-              this.enterEndDeleteAreaString = "enterEndDeleteArea"
-              this.exitEndDeleteAreaString = "not exitEndDeleteArea"
-            },
-            onExitDeleteArea: () => {
-              this.enterEndDeleteAreaString = "not enterEndDeleteArea"
-              this.exitEndDeleteAreaString = "exitEndDeleteArea"
+          .swipeAction({
+            end: {
+              builder: this.itemEnd.bind(this, item),
+              useDefaultDeleteAnimation: true,
+              onDelete: () => {
+                animateTo({ duration: 1000 }, () => {
+                  let index = this.arr.indexOf(item)
+                  this.arr.splice(index, 1)
+                })
+              },
+              deleteAreaDistance: 80,
+              onEnterDeleteArea: () => {
+                this.enterEndDeleteAreaString = "enterEndDeleteArea"
+                this.exitEndDeleteAreaString = "not exitEndDeleteArea"
+              },
+              onExitDeleteArea: () => {
+                this.enterEndDeleteAreaString = "not enterEndDeleteArea"
+                this.exitEndDeleteAreaString = "exitEndDeleteArea"
+              }
             }
-          }
           })
         }, item => item)
       }
