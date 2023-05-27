@@ -8,7 +8,7 @@ The **NotificationFlags** module implements a **NotificationFlags** instance.
 
 **System capability**: SystemCapability.Notification.Notification
 
-| Name            | Type                   | Readable| Writable| Description                              |
+| Name            | Type                   | Read-only| Mandatory| Description                              |
 | ---------------- | ---------------------- | ---- | ---- | --------------------------------- |
 | soundEnabled     | [NotificationFlagStatus](#notificationflagstatus) | Yes  | No  | Whether to enable the sound alert for the notification.                 |
 | vibrationEnabled | [NotificationFlagStatus](#notificationflagstatus) | Yes  | No  | Whether to enable vibration for the notification.              |
