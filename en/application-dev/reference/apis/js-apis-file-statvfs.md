@@ -4,14 +4,14 @@ The **statfs** module provides APIs for obtaining file system information, inclu
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module support processing of error codes. For details, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
 ```js
 import statvfs from '@ohos.file.statvfs';
 ```
+
 ## statvfs.getFreeSize
 
 getFreeSize(path:string):Promise&lt;number&gt;
@@ -22,15 +22,19 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                        |
-| ------ | ------ | ---- | ---------------------------- |
-| path   | string | Yes  | File path of the file system.|
+  | Name| Type  | Mandatory| Description                        |
+  | ------ | ------ | ---- | ---------------------------- |
+  | path   | string | Yes  | File path of the file system.|
 
 **Return value**
 
-| Type                 | Description          |
-| --------------------- | -------------- |
-| Promise&lt;number&gt; | Promise used to return the number of free bytes obtained.|
+  | Type                 | Description          |
+  | --------------------- | -------------- |
+  | Promise&lt;number&gt; | Promise used to return the number of free bytes obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -53,10 +57,14 @@ Obtains the number of free bytes of the specified file system in asynchronous mo
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                        |
-| -------- | --------------------------- | ---- | ---------------------------- |
-| path     | string                      | Yes  | File path of the file system.|
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of free bytes obtained.|
+  | Name  | Type                       | Mandatory| Description                        |
+  | -------- | --------------------------- | ---- | ---------------------------- |
+  | path     | string                      | Yes  | File path of the file system.|
+  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the number of free bytes obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -81,15 +89,19 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description                        |
-| ---- | ------ | ---- | ---------------------------- |
-| path | string | Yes  | File path of the file system.|
+  | Name| Type  | Mandatory| Description                        |
+  | ---- | ------ | ---- | ---------------------------- |
+  | path | string | Yes  | File path of the file system.|
 
 **Return value**
 
-| Type                 | Description        |
-| --------------------- | ------------ |
-| Promise&lt;number&gt; | Promise used to return the total number of bytes obtained.|
+  | Type                 | Description        |
+  | --------------------- | ------------ |
+  | Promise&lt;number&gt; | Promise used to return the total number of bytes obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
@@ -112,10 +124,14 @@ Obtains the total number of bytes of the specified file system in asynchronous m
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                        |
-| -------- | --------------------------- | ---- | ---------------------------- |
-| path     | string                      | Yes  | File path of the file system.|
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total number of bytes obtained.  |
+  | Name  | Type                       | Mandatory| Description                        |
+  | -------- | --------------------------- | ---- | ---------------------------- |
+  | path     | string                      | Yes  | File path of the file system.|
+  | callback | AsyncCallback&lt;number&gt; | Yes  | Callback invoked to return the total number of bytes obtained.  |
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
 
 **Example**
 
