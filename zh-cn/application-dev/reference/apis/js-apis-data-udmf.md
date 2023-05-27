@@ -173,7 +173,7 @@ if (records[0].getType() == UDMF.UnifiedDataType.PLAIN_TEXT) {
 
 ## Text
 
-文本类型数据，是[UnifiedRecord](#unifiedrecord)的子类，也是文本类型数据的基类，用于描述文本类数据，推荐开发者优先使用Text的子类描述数据。
+文本类型数据，是[UnifiedRecord](#unifiedrecord)的子类，也是文本类型数据的基类，用于描述文本类数据，推荐开发者优先使用Text的子类描述数据，如[PlainText](#plaintext)、[HyperLink](#hyperlink)、[HTML](#html)等具体子类。
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -251,7 +251,7 @@ html.plainContent = 'this is plainContent';
 
 ## File
 
-File类型数据，是[UnifiedRecord](#unifiedrecord)的子类，也是文件类型数据的基类，用于描述文件类型数据，推荐开发者优先使用File的子类描述数据。
+File类型数据，是[UnifiedRecord](#unifiedrecord)的子类，也是文件类型数据的基类，用于描述文件类型数据，推荐开发者优先使用File的子类描述数据，如[Image](#image)、[Video](#video)、[Folder](#folder)等具体子类。
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
