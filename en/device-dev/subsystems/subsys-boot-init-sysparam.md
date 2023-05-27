@@ -10,7 +10,7 @@ The parameter management subsystem, namely, sysparam, provides easy-to-use key-v
 
 #### Operation Primitives
 
-Figure 1 shows the primitives used to operate system parameters. For details about how they work, see Figure 1.
+Figure 1 shows the primitives used to operate system parameters. For details about how they work, see Table 1.
 
 Figure 1 Overview of system parameter operation primitives
 
@@ -33,7 +33,7 @@ Figure 1 Overview of system parameter operation primitives
 
   Two naming formats are supported for system parameters, as described in Table 2.
 
-  **Table 2** System parameter names
+  **Table 2** Description of system parameter naming formats
 
   | Type | Example | Description |
   | -------- | -------- | -------- |
@@ -44,21 +44,23 @@ Figure 1 Overview of system parameter operation primitives
 
   System parameters are categorized into three types, as described in Table 3.
 
-  **Table 3** System parameter types
+  **Table 3** Description of system parameter types
 
   | Type| Prefix| Description|
   | -------- | -------- | -------- |
-  | Constant| const. | Constant parameter, which will not be changed once a value is assigned. The value can contain a maximum of 4,096 bytes (including the end-of-text character).|
-  | Writable| Others| Writable parameter, which will be lost after system restart. The value can contain a maximum of 96 bytes (including the end-of-text character).|
-  | Persistent| persist. | Writable and persistent parameter, which will not be lost after system restart. The value can contain a maximum of 96 bytes (including the end-of-text character).|
+  | Constant| const. | Constant parameter, which will not change once a value is assigned. The value can contain a maximum of 4,096 bytes (including the end-of-text character).|
+  | Writable| Others| Writable parameter, which will be discarded after a system restart. The value can contain a maximum of 96 bytes (including the end-of-text character).|
+  | Persistent| persist. | Writable and persistent parameter, which will not be discarded after a system restart. The value can contain a maximum of 96 bytes (including the end-of-text character).|
 
   Given below is the general naming format for system parameters:
   ```
   [ const | persist ].$sub_system.$desc
   ```
-  **$sub_system** is the subsystem or module name.
+  wherein,
+  
+  - **$sub_system** is the subsystem or module name.
 
-  **$desc** is the parameter description, which can contain multiple segments in dotted notation.
+  - **$desc** is the parameter description, which can contain multiple segments in dotted notation.
 
 #### Parameter Definition Rule
 
@@ -99,17 +101,17 @@ System parameters are defined per module on each subsystem. The parameter defini
   const.product.="root:root:660"
   ```
 
-  As shown in this example, a **parameter directory** can be used to define the same access permission for system parameters with the same prefix. A piece of DAC information is divided into three segments, user, group, and UGO rule, which are separated using a semicolon (:).
+  As shown in this example, a **parameter directory** can be used to define the same access permission for system parameters with the same prefix. A piece of DAC information is divided into three segments, user, group, and Ugo rule, which are separated using a semicolon (:).
 
   > **NOTE**
   > 
   > Ugo is the abbreviation for user access, group access, ad other system user's access, respectively. These permissions are set to allow or deny access to members of their own group, or any other groups.
 
-  Figure 2 shows the UGO rule structure.
+  Figure 2 shows the Ugo rule structure.
 
-  **Figure 2** Overview of the UGO rule structure
+  **Figure 2** Overview of the Ugo rule structure
 
-  ![UGO rule](figures/dac-definition.png)
+  ![Ugo rule](figures/dac-definition.png)
 
 - SELinux policy
 
@@ -162,9 +164,9 @@ System parameters are defined per module on each subsystem. The parameter defini
     allow { domain -limit_domain } servicectrl_param:file { map open read };
     ```
 
--  Suggestions
+-  System parameter tag
 
-   Keep only two system parameter tags for each subsystem:
+   You are advised to keep only two system parameter tags for each subsystem:
 
    - A private tag to control system parameter settings.
 
@@ -187,13 +189,13 @@ System parameters are defined per module on each subsystem. The parameter defini
 
 #### Tag File Size
 
-If one tag is associated with more than five system parameters, you need to set the size of the system parameter tag file in **/base/startup/init/services/etc/param/ohos.para.size**. The value is **512** by default.
+If one tag is associated with more than five system parameters, you need to set the size of the system parameter tag file in **/base/startup/init/services/etc/param/ohos.para.size**. The default value is **512**.
 
 The configuring rule is as follows:
 
 System parameter tag = Size
 
-Example:
+For example:
 
 ```java
 startup_init_param=40960
@@ -206,7 +208,7 @@ The parameter management subsystem is available only for the mini system and sta
 
 ## How to Develop
 
-### Use Case
+### Application Scenario
 
 You can set specific system parameters as needed to meet your service demand.
 
@@ -216,9 +218,7 @@ The parameter management subsystem allows you to manage system parameters by run
 
   - Shell command mode
 
-    You can operate system parameters directly by running shell commands. This operation mode is available only for the standard system.
-
-    Table 6 is a list of the shell commands.
+    You can operate system parameters directly by running shell commands. This operation mode is available only for the standard system. Table 6 is a list of the shell commands.
 
     **Table 6** Description of shell commands
 
@@ -231,9 +231,7 @@ The parameter management subsystem allows you to manage system parameters by run
 
   - syspara API mode
 
-    Besides shell commands, you can use **syspara** APIs to manage system parameters. The return result is a constant string and the **free** operation is not supported.
-    
-    Table 7 is a list of the **syspara** APIs. 
+    Besides shell commands, you can use **syspara** APIs to manage system parameters. The return result is a constant string and the **free** operation is not supported. Table 7 is a list of the **syspara** APIs. 
 
     **Table 7** Description of syspara APIs
 
@@ -274,7 +272,7 @@ The parameter management subsystem allows you to manage system parameters by run
 
 #### Parameter Definition
 
-You can define default system parameters and implement permission control on them by configuring the subsystem or product <strong>.para</strong> and <strong>.para.dac</strong> files. 
+You can define default system parameters and implement permission control on them by configuring the <strong>.para</strong> and <strong>.para.dac</strong> files of the respective subsystem or product.
 
 - On a standard system, use the <strong>ohos_prebuilt_para</strong> template to install the configuration file to the <strong>/etc/param/</strong> directory. The following is an example of the GN script:
 
