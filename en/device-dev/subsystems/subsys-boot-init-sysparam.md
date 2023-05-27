@@ -191,7 +191,7 @@ System parameters are defined per module on each subsystem. The parameter defini
 
 If one tag is associated with more than five system parameters, you need to set the size of the system parameter tag file in **/base/startup/init/services/etc/param/ohos.para.size**. The default value is **512**.
 
-The configuring rule is as follows:
+The configuration rule is as follows:
 
 System parameter tag = Size
 
