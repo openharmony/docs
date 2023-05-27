@@ -33,11 +33,11 @@ Provides options that can be set for the **Worker** instance to create.
 
 **System capability**: SystemCapability.Utils.Lang
 
-| Name| Type| Readable| Writable| Description          |
+| Name| Type| Readable| Writable| Description|
 | ---- | -------- | ---- | ---- | -------------- |
-| type | "classic" \| "module" | Yes  | Yes  | Mode in which the **Worker** instance executes the script. The default value is **classic**. The module **type** is not supported yet.|
-| name | string   | Yes  | Yes  | Name of the worker thread.|
-| shared | boolean | Yes  | Yes  | Sharing of the **Worker** instance is not supported yet.|
+| type | "classic" \| "module" | Yes  | Yes| Mode in which the **Worker** instance executes the script. The **module** type is not supported yet. The default value is **classic**.|
+| name | string   | Yes  | Yes| Name of the worker thread. The default value is **undefined**.|
+| shared | boolean | Yes  | Yes| Whether sharing of the **Worker** instance is enabled. Currently, sharing is not supported.|
 
 
 ## ThreadWorker<sup>9+</sup>
@@ -188,8 +188,6 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 ```js
 const workerInstance = new worker.ThreadWorker("entry/ets/workers/worker.ts");
 
-workerInstance.postMessage("hello world");
-
 var buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
 ```
@@ -207,7 +205,7 @@ Sends a message to the worker thread. The data type of the message must be seque
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | message | Object                                    | Yes  | Message to be sent to the worker thread.                                        |
-| options | [PostMessageOptions](#postmessageoptions) | No  | **ArrayBuffer** instances that can be transferred. The **transferList** array cannot contain **null**.|
+| options | [PostMessageOptions](#postmessageoptions) | No  | **ArrayBuffer** instances that can be transferred. The default value is **undefined**.|
 
 **Error codes**
 
@@ -859,7 +857,7 @@ Sends a message to the host thread from the worker thread.
 
 | Name  | Type         | Mandatory| Description                                                   |
 | -------- | ------------- | ---- | ------------------------------------------------------- |
-| message  | Object        | Yes  | Message to be sent to the worker thread.                                 |
+| message  | Object        | Yes  | Message to be sent to the host thread.                                 |
 | transfer | ArrayBuffer[] | Yes  | An **ArrayBuffer** object can be transferred. The value **null** should not be passed in the array.|
 
 **Error codes**
@@ -907,8 +905,8 @@ Sends a message to the host thread from the worker thread.
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | Yes  | Message to be sent to the worker thread.                                      |
-| options | [PostMessageOptions](#postmessageoptions) | No  | **ArrayBuffer** instances that can be transferred. The **transferList** array cannot contain **null**.|
+| message | Object                                    | Yes  | Message to be sent to the host thread.                                      |
+| options | [PostMessageOptions](#postmessageoptions) | No  | **ArrayBuffer** instances that can be transferred. The default value is **undefined**.|
 
 **Error codes**
 
@@ -1279,8 +1277,6 @@ Sends a message to the worker thread. The data type of the message must be seque
 ```js
 const workerInstance = new worker.Worker("workers/worker.js");
 
-workerInstance.postMessage("hello world");
-
 var buffer = new ArrayBuffer(8);
 workerInstance.postMessage(buffer, [buffer]);
 ```
@@ -1301,7 +1297,7 @@ Sends a message to the worker thread. The data type of the message must be seque
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | message | Object                                    | Yes  | Message to be sent to the worker thread.                                        |
-| options | [PostMessageOptions](#postmessageoptions) | No  | **ArrayBuffer** instances that can be transferred. The **transferList** array cannot contain **null**.|
+| options | [PostMessageOptions](#postmessageoptions) | No  | **ArrayBuffer** instances that can be transferred. The default value is **undefined**.|
 
 **Example**
 
@@ -1309,6 +1305,9 @@ Sends a message to the worker thread. The data type of the message must be seque
 const workerInstance = new worker.Worker("workers/worker.js");
 
 workerInstance.postMessage("hello world");
+
+var buffer = new ArrayBuffer(8);
+workerInstance.postMessage(buffer, [buffer]);
 ```
 
 
@@ -1490,7 +1489,7 @@ Defines the event handler to be called when the host thread receives a message s
 
 | Name| Type                          | Mandatory| Description                  |
 | ------ | ------------------------------ | ---- | ---------------------- |
-| event  | [MessageEvent](#messageevent)| Yes  | Message received.|
+| event  | [MessageEvent](#messageeventt) | Yes  | Message received.|
 
 **Example**
 
@@ -1519,7 +1518,7 @@ Defines the event handler to be called when the worker thread receives a message
 
 | Name| Type                          | Mandatory| Description      |
 | ------ | ------------------------------ | ---- | ---------- |
-| event  | [MessageEvent](#messageevent)| Yes  | Error data.|
+| event  | [MessageEvent](#messageeventt) | Yes  | Error data.|
 
 **Example**
 
@@ -1693,11 +1692,33 @@ Implements communication between the worker thread and the host thread. The **po
 > **NOTE**<br>
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9) instead.
 
+### postMessage<sup>(deprecated)</sup>
+
+postMessage(messageObject: Object, transfer: Transferable[]): void;
+
+Sends a message to the host thread from the worker thread.
+
+> **NOTE**<br>
+> This API is deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-2).
+
+**System capability**: SystemCapability.Utils.Lang
+
+**Parameters**
+
+| Name | Type                                     | Mandatory| Description                                                        |
+| ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| messageObject | Object                                    | Yes  | Message to be sent to the host thread.                                      |
+| transfer| Transferable[]                            | Yes  | Currently, this parameter is not supported.                                        |
+
 ### postMessage<sup>9+</sup>
 
 postMessage(messageObject: Object, transfer: ArrayBuffer[]): void;
 
 Sends a message to the host thread from the worker thread.
+
+> **NOTE**
+>
+> The **DedicatedWorkerGlobalScope** class is deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-2).
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1705,7 +1726,7 @@ Sends a message to the host thread from the worker thread.
 
 | Name  | Type         | Mandatory| Description                                                 |
 | -------- | ------------- | ---- | ----------------------------------------------------- |
-| message  | Object        | Yes  | Message to be sent to the worker thread.                               |
+| message  | Object        | Yes  | Message to be sent to the host thread.                               |
 | transfer | ArrayBuffer[] | Yes  | An **ArrayBuffer** object can be transferred. The value **null** should not be passed in the array.|
 
 **Example**
@@ -1738,7 +1759,7 @@ postMessage(messageObject: Object, options?: PostMessageOptions): void
 Sends a message to the host thread from the worker thread.
 
 > **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).postMessage<sup>9+</sup> instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>.postMessage<sup>9+</sup>](#postmessage9-3).
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1746,8 +1767,8 @@ Sends a message to the host thread from the worker thread.
 
 | Name | Type                                     | Mandatory| Description                                                        |
 | ------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| message | Object                                    | Yes  | Message to be sent to the worker thread.                                      |
-| options | [PostMessageOptions](#postmessageoptions) | No  | **ArrayBuffer** instances that can be transferred. The **transferList** array cannot contain **null**.|
+| message | Object                                    | Yes  | Message to be sent to the host thread.                                      |
+| options | [PostMessageOptions](#postmessageoptions) | No  | **ArrayBuffer** instances that can be transferred. The default value is **undefined**.|
 
 **Example**
 
@@ -1778,7 +1799,7 @@ close(): void
 Terminates the worker thread to stop it from receiving messages.
 
 > **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).close<sup>9+</sup> instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>.close<sup>9+</sup>](#close9).
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1806,7 +1827,7 @@ onmessage?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) =&gt; void
 Defines the event handler to be called when the worker thread receives a message sent by the host thread through **postMessage**. The event handler is executed in the worker thread.
 
 > **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).onmessage<sup>9+</sup> instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>.onmessage<sup>9+</sup>](#onmessage9-1).
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1815,7 +1836,7 @@ Defines the event handler to be called when the worker thread receives a message
 | Name| Type                                                        | Mandatory| Description                    |
 | ------ | ------------------------------------------------------------ | ---- | ------------------------ |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Caller.        |
-| ev     | [MessageEvent](#messageevent)                              | Yes  | Message received.|
+| ev     | [MessageEvent](#messageeventt)                             | Yes  | Message received.|
 
 **Example**
 
@@ -1842,7 +1863,7 @@ onmessageerror?: (this: DedicatedWorkerGlobalScope, ev: MessageEvent) =&gt; void
 Defines the event handler to be called when the worker thread receives a message that cannot be deserialized. The event handler is executed in the worker thread.
 
 > **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>](#threadworkerglobalscope9).onmessageerror<sup>9+</sup> instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [ThreadWorkerGlobalScope<sup>9+</sup>.onmessageerror<sup>9+</sup>](#onmessageerror9-1).
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -1851,7 +1872,7 @@ Defines the event handler to be called when the worker thread receives a message
 | Name| Type                          | Mandatory| Description      |
 | ------ | ------------------------------ | ---- | ---------- |
 | this   | [DedicatedWorkerGlobalScope](#dedicatedworkerglobalscopedeprecated) | Yes  | Caller.|
-| ev     | [MessageEvent](#messageevent)| Yes  | Error data.|
+| ev     | [MessageEvent](#messageeventt) | Yes  | Error data.|
 
 **Example**
 
@@ -1878,7 +1899,7 @@ Specifies the object whose ownership needs to be transferred during data transfe
 
 | Name    | Type    | Readable| Writable| Description                             |
 | -------- | -------- | ---- | ---- | --------------------------------- |
-| transfer | Object[] | Yes  | Yes  | **ArrayBuffer** array used to transfer the ownership.|
+| transfer | Object[] | Yes  | Yes  | **ArrayBuffer** array used to transfer the ownership. The array cannot contain **null**.|
 
 
 ## Event
@@ -1976,7 +1997,7 @@ onerror?: (ev: ErrorEvent) =&gt; void
 Defines the event handler to be called when an exception occurs during worker execution. The event handler is executed in the worker thread.
 
 > **NOTE**<br>
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [GlobalScope<sup>9+</sup>](#globalscope9).onerror instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [GlobalScope<sup>9+</sup>.onerror<sup>9+</sup>](#onerror9-1).
 
 **System capability**: SystemCapability.Utils.Lang
 
