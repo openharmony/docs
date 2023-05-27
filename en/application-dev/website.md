@@ -138,8 +138,8 @@
           - [Continuation Overview](application-models/inter-device-interaction-hop-overview.md)
           - [Cross-Device Migration (for System Applications Only)](application-models/hop-cross-device-migration.md)
           - [Multi-device Collaboration (for System Applications Only)](application-models/hop-multi-device-collaboration.md)
-      - IPC
-        - [Process Model](application-models/process-model-stage.md)
+      - Process Model
+        - [Process Model Overview](application-models/process-model-stage.md)
         - Common Events
           - [Introduction to Common Events](application-models/common-event-overview.md)
           - Common Event Subscription
@@ -149,8 +149,8 @@
              - [Unsubscribing from Common Events](application-models/common-event-unsubscription.md)
           - [Publishing Common Events](application-models/common-event-publish.md)
         - [Background Services](application-models/background-services.md)
-      - Inter-Thread Communication
-        - [Thread Model](application-models/thread-model-stage.md)
+      - Thread Model
+        - [Thread Model Overview](application-models/thread-model-stage.md)
         - [Using Emitter for Inter-Thread Communication](application-models/itc-with-emitter.md)
         - [Using Worker for Inter-Thread Communication](application-models/itc-with-worker.md)
       - Mission Management
@@ -193,12 +193,12 @@
         - [Context](application-models/application-context-fa.md)
         - [Want](application-models/want-fa.md)
         - [Component Startup Rules](application-models/component-startup-rules-fa.md)
-      - IPC
-        - [Process Model](application-models/process-model-fa.md)
+      - Process Model
+        - [Process Model Overview](application-models/process-model-fa.md)
         - [Common Events](application-models/common-event-fa.md)
         - [Background Services](application-models/rpc.md)
-      - Inter-Thread Communication
-        - [Thread Model](application-models/thread-model-fa.md)
+      - Thread Model
+        - [Thread Model Overview](application-models/thread-model-fa.md)
         - [Inter-Thread Communication](application-models/itc-fa-overview.md)
       - [Mission Management](application-models/mission-management-fa.md)
     - Development of Component Interaction Between the FA Model and Stage Model
@@ -575,9 +575,13 @@
     - [Development of Application Event Logging](dfx/hiappevent-guidelines.md)
     - [Development of Performance Tracing](dfx/hitracemeter-guidelines.md)
     - [Development of Distributed Call Chain Tracing](dfx/hitracechain-guidelines.md)
+    - [HiLog Development (Native)](dfx/hilog-guidelines.md)
     - Error Management
       - [Development of Error Manager](dfx/errormanager-guidelines.md)
       - [Development of Application Recovery](dfx/apprecovery-guidelines.md)
+    - Log Analysis
+      - [Application Freeze (appfreeze) Log Analysis](dfx/appfreeze-guidelines.md)
+      - [cppcrash Log Analysis](dfx/cppcrash-guidelines.md)
   - Internationalization
     - [Internationalization Overview](internationalization/international-overview.md)
     - [Internationalization Development (intl)](internationalization/intl-guidelines.md)
@@ -1164,7 +1168,6 @@
       - [@ohos.net.connection (Network Connection Management)](reference/apis/js-apis-net-connection.md)
       - [@ohos.net.ethernet (Ethernet Connection Management)](reference/apis/js-apis-net-ethernet.md)
       - [@ohos.net.http (Data Request)](reference/apis/js-apis-http.md)
-      - [@ohos.net.policy (Network Policy Management)](reference/apis/js-apis-net-policy.md)
       - [@ohos.net.sharing (Network Sharing)](reference/apis/js-apis-net-sharing.md)
       - [@ohos.net.socket (Socket Connection)](reference/apis/js-apis-socket.md)
       - [@ohos.net.webSocket (WebSocket Connection)](reference/apis/js-apis-webSocket.md)
@@ -1391,7 +1394,6 @@
       - [Network Connection Management Error Codes](reference/errorcodes/errorcode-net-connection.md)
       - [Ethernet Connection Management Error Codes](reference/errorcodes/errorcode-net-ethernet.md)
       - [Network Sharing Error Codes](reference/errorcodes/errorcode-net-sharing.md)
-      - [Network Policy Management Error Codes](reference/errorcodes/errorcode-net-policy.md)
     - Connectivity
       - [NFC Error Codes](reference/errorcodes/errorcode-nfc.md)
       - [RPC Error Codes](reference/errorcodes/errorcode-rpc.md)
@@ -1533,6 +1535,8 @@
   - [Full SDK Compilation Guide](quick-start/full-sdk-compile-guide.md)
   - [Guide to Switching to Full SDK](quick-start/full-sdk-switch-guide.md)
   - [Ability Development](faqs/faqs-ability.md)
+  - [ArkUI Development](faqs/faqs-arkui.md)
+  - [Web Development](faqs/faqs-arkui-web.md)
   - [Bundle Management Development](faqs/faqs-bundle-management.md)
   - [Resource Manager Development](faqs/faqs-globalization.md)
   - [Common Event and Notification Development](faqs/faqs-event-notification.md)
@@ -1548,4 +1552,5 @@
   - [Pan-Sensor Development](faqs/faqs-sensor.md)
   - [Startup Development](faqs/faqs-startup.md)
   - [Distributed Device Development](faqs/faqs-distributed-device-profile.md)
+  - [SDK Usage](faqs/faqs-sdk.md)
   - [Usage of Third- and Fourth-Party Libraries](faqs/faqs-third-fourth-party-library.md)
