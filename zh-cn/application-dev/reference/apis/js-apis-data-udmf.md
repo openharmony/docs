@@ -128,7 +128,7 @@ for (let i = 0; i < records.length; i++) {
 
 ## Summary
 
-描述某一统一数据对象的数据摘要，包括所含数据类型及大小。
+描述某一统一数据对象的数据摘要，包括所含数据类型及大小，当前暂不支持。
 
 **系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -136,16 +136,6 @@ for (let i = 0; i < records.length; i++) {
 | --------- | ------------------------- | ---- | ---- |-----------------------------------------------------------------------------------|
 | summary   | { [key: string]: number } | 是   | 否   | 是一个字典类型对象，key表示数据类型（见[UnifiedDataType](#unifieddatatype)），value为统一数据对象中该类型记录大小总和（单位：Byte）。 |
 | totalSize | number                    | 是   | 否   | 统一数据对象内记录总大小（单位：Byte）。                                                                     |
-
-**示例：**
-
-```js
-getSummaryCallback(data, err) {
-  let summaryData = data;
-  console.info(`summary: ${JSON.stringify(summaryData.summary)}`);
-  console.info(`totalSize: ${summaryData.totalSize}`);
-}
-```
 
 ## UnifiedRecord
 
@@ -334,7 +324,7 @@ folder.folderUri = 'schema://com.samples.test/files/folder/';
 
 ## SystemDefinedRecord
 
-SystemDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是OpenHarmony系统特有数据类型的基类，用于描述仅在OpenHarmony系统范围内流通的特有数据类型，推荐开发者优先使用SystemDefinedRecord的子类描述数据。
+SystemDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是OpenHarmony系统特有数据类型的基类，用于描述仅在OpenHarmony系统范围内流通的特有数据类型，推荐开发者优先使用SystemDefinedRecord的子类描述数据，如[SystemDefinedForm](#systemdefinedform)、[SystemDefinedAppItem](#systemdefinedappitem)、[SystemDefinedPixelMap](#systemdefinedpixelmap)等具体子类。
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -396,10 +386,10 @@ let unifiedData = new UDMF.UnifiedData(form);
 | 名称        | 类型   | 可读 | 可写 | 说明              |
 | ----------- | ------ | ---- | ---- |-----------------|
 | appId       | string | 是   | 是   | 图标对应的应用id。      |
-| appName     | string | 是   | 是   | 图标对应的应用名。        |
-| appIconId   | string | 是   | 是   | 图标的图片id。         |
-| appLabelId  | string | 是   | 是   | 图标的标签id。         |
-| bundleName  | string | 是   | 是   | 图标对应的应用bundle名。  |
+| appName     | string | 是   | 是   | 图标对应的应用名。       |
+| appIconId   | string | 是   | 是   | 图标的图片id。        |
+| appLabelId  | string | 是   | 是   | 图标名称对应的标签id。    |
+| bundleName  | string | 是   | 是   | 图标对应的应用bundle名。 |
 | abilityName | string | 是   | 是   | 图标对应的应用ability名。 |
 
 **示例：**
@@ -455,7 +445,7 @@ image.createPixelMap(color, opts, (error, pixelmap) => {
 
 ## ApplicationDefinedRecord
 
-ApplicationDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是应用自定义数据类型的基类，用于描述仅在应用生态内部流通的自定义数据类型。
+ApplicationDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是应用自定义数据类型的基类，用于描述仅在应用生态内部流通的自定义数据类型，应用可基于此类进行自定义数据类型的扩展。
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
