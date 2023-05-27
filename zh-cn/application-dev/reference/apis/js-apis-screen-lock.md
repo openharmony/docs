@@ -94,7 +94,7 @@ unlock(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 
 
@@ -130,7 +130,7 @@ unlock(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 
 
@@ -166,7 +166,7 @@ lock(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 
 
@@ -204,7 +204,7 @@ lock(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 
 
@@ -246,7 +246,7 @@ onSystemEvent(callback: Callback&lt;SystemEvent&gt;): boolean
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 
 
@@ -286,7 +286,7 @@ sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback&lt
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  |the screenlock management service is abnormal.         |
 
 **示例：** 
 
@@ -324,6 +324,14 @@ sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
 | 类型               | 说明                                           |
 | ----------------- | ---------------------------------------------- |
 | Promise\<boolean> | Promise对象。返回true表示发送事件成功；返回false表示发送事件失败。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[锁屏服务错误码](../errorcodes/errorcode-screenlock.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **示例：** 
 

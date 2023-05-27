@@ -35,7 +35,8 @@ LocalStorage根据与\@Component装饰的组件的的同步类型不同，提供
 
 ## 限制条件
 
-LocalStorage创建后，命名属性的类型不可更改。后续调用Set时必须使用相同类型的值。
+- LocalStorage创建后，命名属性的类型不可更改。后续调用Set时必须使用相同类型的值。
+- LocalStorage是页面级存储，[GetShared](../reference/arkui-ts/ts-state-management.md#getshared9)接口仅能获取当前stage，通过[windowStage.loadContent](../reference/apis/js-apis-window.md#loadcontent9)传入的LocalStorage实例，否则返回undefined。例子可见[将LocalStorage实例从UIAbility共享到一个或多个视图](#将localstorage实例从uiability共享到一个或多个视图)。
 
 
 ## \@LocalStorageProp

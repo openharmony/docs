@@ -122,6 +122,14 @@ Deregisters a mission status listener.
   | listenerId | number | Yes| Index of the mission status listener to deregister. It is returned by **on()**.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16300002 | Input error. The specified mission listener does not exist. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
@@ -209,6 +217,14 @@ Deregisters a mission status listener. This API uses a promise to return the res
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16300002 | Input error. The specified mission listener does not exist. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
@@ -295,32 +311,35 @@ Obtains the information about a given mission. This API uses an asynchronous cal
 **Example**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager';
+    import missionManager from '@ohos.app.ability.missionManager';
 
-  let testMissionId = 1;
-  try {
-    let allMissions=await missionManager.getMissionInfos('',10).catch(function(err){console.log(err);});
-    if (allMissions && allMissions.length > 0) {
-        testMissionId = allMissions[0].missionId;
-    }
+    let testMissionId = 1;
 
-    missionManager.getMissionInfo('', testMissionId, (error, mission) => {
-        if (error) {
+    missionManager.getMissionInfos('',10)
+    .then((allMissions) => {
+        try {
+        if (allMissions && allMissions.length > 0) {
+            testMissionId = allMissions[0].missionId;
+        }
+
+        missionManager.getMissionInfo('', testMissionId, (error, mission) => {
+            if (error) {
             console.error('getMissionInfo failed, error.code: ${error.code}, error.message: ${error.message}');
-        } else {
+            } else {
             console.log('mission.missionId = ${mission.missionId}');
             console.log('mission.runningState = ${mission.runningState}');
             console.log('mission.lockedState = ${mission.lockedState}');
             console.log('mission.timestamp = ${mission.timestamp}');
             console.log('mission.label = ${mission.label}');
             console.log('mission.iconPath = ${mission.iconPath}');
+            }
+        });
+        } catch (paramError) {
+        console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
         }
-    });
-  } catch (paramError) {
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
-  }
+    })
+    .catch(function(err){console.log(err);});
   ```
-
 
 ## missionManager.getMissionInfo
 
@@ -624,6 +643,14 @@ Locks a given mission. This API uses an asynchronous callback to return the resu
   | missionId | number | Yes| Mission ID.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16300001 | Mission not found. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 
 ```ts
@@ -667,6 +694,14 @@ Locks a given mission. This API uses a promise to return the result.
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the result.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16300001 | Mission not found. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
 ```ts
 import missionManager from '@ohos.app.ability.missionManager';
@@ -701,6 +736,14 @@ Unlocks a given mission. This API uses an asynchronous callback to return the re
 | -------- | -------- | -------- | -------- |
 | missionId | number | Yes| Mission ID.|
 | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16300001 | Mission not found. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 ```ts
@@ -743,6 +786,14 @@ Unlocks a given mission. This API uses a promise to return the result.
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16300001 | Mission not found. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -895,8 +946,8 @@ Clears all unlocked missions. This API uses a promise to return the result.
 import missionManager from '@ohos.app.ability.missionManager';
 
 try {
-    missionManager.clearAllMissions(bundleName).then(() => {
-        console.info('clearAllMissions successfully.');
+    missionManager.clearAllMissions(bundleName).then((data) => {
+        console.info('clearAllMissions successfully. Data: ${JSON.stringify(data)}');
     }).catch(err => {
         console.error('clearAllMissions failed: ${err.message}');
     });
@@ -923,6 +974,14 @@ Switches a given mission to the foreground. This API uses an asynchronous callba
   | -------- | -------- | -------- | -------- |
   | missionId | number | Yes| Mission ID.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -962,6 +1021,14 @@ Switches a given mission to the foreground, with the startup parameters for the 
   | missionId | number | Yes| Mission ID.|
   | options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Startup parameters, which are used to specify the window mode and device ID for switching the mission to the foreground.|
   | callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1006,6 +1073,14 @@ Switches a given mission to the foreground, with the startup parameters for the 
   | Type| Description|
   | -------- | -------- |
   | Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 

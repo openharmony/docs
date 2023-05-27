@@ -2,22 +2,32 @@
 
 进程数据的对象定义。使用接口[registerApplicationStateObserver](js-apis-application-appManager.md#appmanagerregisterapplicationstateobserver8)注册生命周期变化监听后，当应用或组件的生命周期变化时，系统通过[ApplicationStateObserver](js-apis-inner-application-applicationStateObserver.md)的onProcessCreated等方法回调给开发者。
 
+> **说明：**
+> 
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
+
+## 导入模块
+
+```ts
+import appManager from '@ohos.application.appManager';
+```
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API**：该接口为系统接口，三方应用不支持调用。
 
 | 名称                     | 类型     | 可读 | 可写 | 说明                       |
 | ----------------------- | ---------| ---- | ---- | ------------------------- |
-| pid<sup>8+</sup>         | number   | 是   | 否   | 进程ID。                    |
-| bundleName<sup>8+</sup>  | string   | 是   | 否  | 应用包名。                  |
-| uid<sup>8+</sup>         | number   | 是   | 否   | 应用的uid。                  |
+| pid         | number   | 是   | 否   | 进程ID。                    |
+| bundleName  | string   | 是   | 否  | 应用包名。                  |
+| uid         | number   | 是   | 否   | 应用的uid。                  |
 | isContinuousTask<sup>9+</sup>         | boolean   | 是   | 否   | 是否为长时任务，true表示是，false表示不是                 |
 | isKeepAlive<sup>9+</sup>         | boolean   | 是   | 否   | 是否为常驻进程，true表示是，false表示不是                   |
 | state<sup>9+</sup>       | number   | 是   | 否   | 应用的状态，取值及对应的状态为：0(刚创建)，2(前台)，4(后台)，5(已终止)。     |
 
 **示例：**
 ```ts
-import appManager from '@ohos.app.ability.appManager';
+import appManager from '@ohos.application.appManager';
 
 let applicationStateObserver = {
     onForegroundApplicationChanged(appStateData) {

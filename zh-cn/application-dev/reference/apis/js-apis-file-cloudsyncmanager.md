@@ -3,9 +3,8 @@
 该模块向云空间提供通知或更改端云服务状态的能力。
 
 > **说明：**
-> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 本模块接口为系统接口，三方应用不支持调用。
-> 本模块支持对错误码进行处理，错误码及其适配方式[参考文档](../errorcodes/errorcode-filemanagement.md#错误码适配指导)。
+> - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+> - 本模块接口为系统接口，三方应用不支持调用。
 
 ## 导入模块
 
@@ -34,6 +33,15 @@ changeAppCloudSwitch(accountId: string, bundleName: string, status: boolean): Pr
 | 类型                  | 说明             |
 | --------------------- | ---------------- |
 | Promise&lt;void&gt; | 使用Promise形式返回修改应用的端云文件同步开关的结果 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
 
 **示例：**
 
@@ -64,6 +72,15 @@ changeAppCloudSwitch(accountId: string, bundleName: string, status: boolean, cal
 | status | boolean | 是   | 修改的应用云同步开关状态，true为打开，false为关闭|
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步修改应用的端云文件同步开关之后的回调 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
+
 **示例：**
 
   ```js
@@ -77,6 +94,7 @@ changeAppCloudSwitch(accountId: string, bundleName: string, status: boolean, cal
     }
   });
   ```
+
 ## cloudSyncManager.notifyDataChange
 
 notifyDataChange(accountId: string, bundleName: string): Promise&lt;void&gt;;
@@ -97,6 +115,15 @@ notifyDataChange(accountId: string, bundleName: string): Promise&lt;void&gt;;
 | 类型                  | 说明             |
 | --------------------- | ---------------- |
 | Promise&lt;void&gt; | 使用Promise形式返回通知端云服务应用的云数据变更的结果 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
 
 **示例：**
 
@@ -125,6 +152,15 @@ notifyDataChange(accountId: string, bundleName: string, callback: AsyncCallback&
 | accountId | string | 是   | 帐号|
 | bundleName | string | 是   | 应用包名|
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步通知端云服务应用的云数据变更之后的回调 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+| 错误码ID                     | 错误信息        |
+| ---------------------------- | ---------- |
+| 201 | Permission verification failed. |
+| 202 | The caller is not a system application. |
+| 401 | The input parameter is invalid. |
 
 **示例：**
 

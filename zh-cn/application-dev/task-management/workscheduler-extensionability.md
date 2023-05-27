@@ -155,7 +155,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
     import { workAbility } from '@ohos/library';
     ```
 
-    增加“升级”按钮，调用library封装的延迟任务注册接口，传入bundleName和abilityName，其中bilityName为WorkTest。
+    增加“升级”按钮，调用library封装的延迟任务注册接口，传入bundleName和abilityName，其中abilityName为WorkTest。
 
     ```ts
     Button($r('app.string.upgrade'))

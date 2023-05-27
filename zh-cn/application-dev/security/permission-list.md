@@ -994,6 +994,16 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME
+
+允许设备管理员设置系统休眠时间。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.NFC_TAG
 
 允许应用读取Tag卡片。
@@ -1506,7 +1516,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 ## ohos.permission.ACCESS_CERT_MANAGER
 
@@ -1825,5 +1835,85 @@
 **权限级别**：system_basic
 
 **授权方式**：user_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
+
+允许应用管理系统分布式帐号信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.GET_DISTRIBUTED_ACCOUNTS
+
+允许应用查询系统分布式帐号信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.GET_LOCAL_ACCOUNTS
+
+允许应用查询系统本地帐号信息。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.READ_HIVIEW_SYSTEM
+
+允许应用访问hiview的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.WRITE_HIVIEW_SYSTEM
+
+允许应用修改hiview的数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ACCESS_CAST_ENGINE_MIRROR
+
+允许应用使用镜像投屏能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ACCESS_CAST_ENGINE_STREAM
+
+允许应用调用系统资源投射能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.CLOUDDATA_CONFIG
+
+允许应用获取配置数据库端云信息能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
 
 **ACL使能**：TRUE

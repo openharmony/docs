@@ -1,4 +1,4 @@
-# System Common Events
+# System Common Events (To Be Deprecated Soon)
 
 This document provides indexes for system common events defined in OpenHarmony.
 For details about the definition of a system common event, see [Support in @ohos.commonEvent (Common Event)](./js-apis-commonEvent.md#support).
@@ -119,7 +119,7 @@ Indicates that a new application package has been installed on the device.
 - Required subscriber permissions: none
 
 ## COMMON_EVENT_PACKAGE_REMOVED
-Indicates that an installed application has been uninstalled from the device with the application data retained.
+Indicates that an application has been uninstalled from the device with the application data retained.
 - Value: **usual.event.PACKAGE_REMOVED**
 - Required subscriber permissions: none
 

@@ -15,10 +15,7 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 
 ## Attributes
 
-
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
@@ -32,12 +29,12 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 
   try {
     missionManager.getMissionInfos('', 10, (error, missions) => {
-      if (error.code) {
-          console.error('getMissionInfos failed, error.code: ${error.code}, error.message: ${error.message}');
+      if (error) {
+          console.error(`getMissionInfos failed, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}`);
           return;
       }
-      console.log('size = ${missions.length}');
-      console.log('missions = ${JSON.stringify(missions)}');
+      console.log(`size = ${missions.length}`);
+      console.log(`missions = ${JSON.stringify(missions)}`);
       let id = missions[0].missionId;
 
       let startOptions = {
@@ -45,10 +42,10 @@ import StartOptions from '@ohos.app.ability.StartOptions';
           displayId: 0
       };
       missionManager.moveMissionToFront(id, startOptions).then(() => {
-  	    console.log('moveMissionToFront is called ');
+  	    console.log('moveMissionToFront is called');
       });
     });
   } catch (paramError) {
-    console.error('error: ${paramError.code}, ${paramError.message}');
+    console.error(`error: ${paramError.code}, ${paramError.message}`);
   }
   ```

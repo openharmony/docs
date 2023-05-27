@@ -7,6 +7,12 @@
 > 本模块首批接口从API version 7开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口仅可在FA模型下使用。
 
+## 导入模块
+
+```ts
+import ability from '@ohos.ability.ability';
+```
+
 ## 使用说明
 
 使用前根据具体情况引入如下模块
@@ -35,7 +41,7 @@ openFile(uri: string, mode: string, callback: AsyncCallback\<number>): void
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 let mode = 'rw';
@@ -73,7 +79,7 @@ openFile(uri: string, mode: string): Promise\<number>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 let mode = 'rw';
@@ -102,7 +108,7 @@ on(type: 'dataChange', uri: string, callback: AsyncCallback\<void>): void
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 function onChangeNotify() {
@@ -135,7 +141,7 @@ off(type: 'dataChange', uri: string, callback?: AsyncCallback\<void>): void
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 function onChangeNotify() {
@@ -171,7 +177,7 @@ getType(uri: string, callback: AsyncCallback\<string>): void
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 DAHelper.getType('dataability:///com.example.DataAbility', (error, data) => {
@@ -207,7 +213,7 @@ getType(uri: string): Promise\<string>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 DAHelper.getType('dataability:///com.example.DataAbility').then((data) => {
@@ -235,7 +241,7 @@ getFileTypes(uri: string, mimeTypeFilter: string, callback: AsyncCallback<Array\
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 DAHelper.getFileTypes( 'dataability:///com.example.DataAbility', 'image/*', (error, data) => {
@@ -272,7 +278,7 @@ getFileTypes(uri: string, mimeTypeFilter: string): Promise\<Array\<string>>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 DAHelper.getFileTypes('dataability:///com.example.DataAbility', 'image/*').then((data) => {
@@ -299,7 +305,7 @@ normalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 DAHelper.normalizeUri('dataability:///com.example.DataAbility', (error, data) => {
@@ -335,7 +341,7 @@ normalizeUri(uri: string): Promise\<string>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 DAHelper.normalizeUri('dataability:///com.example.DataAbility',).then((data) => {
@@ -362,7 +368,7 @@ denormalizeUri(uri: string, callback: AsyncCallback\<string>): void
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 DAHelper.denormalizeUri('dataability:///com.example.DataAbility', (error, data) => {
@@ -398,7 +404,7 @@ denormalizeUri(uri: string): Promise\<string>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 DAHelper.denormalizeUri('dataability:///com.example.DataAbility',).then((data) => {
@@ -425,7 +431,7 @@ notifyChange(uri: string, callback: AsyncCallback\<void>): void
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 DAHelper.notifyChange('dataability:///com.example.DataAbility', (error) => {
@@ -461,7 +467,7 @@ notifyChange(uri: string): Promise\<void>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 DAHelper.notifyChange('dataability:///com.example.DataAbility').then(() => {
@@ -489,7 +495,7 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket, callback: AsyncCallback\<num
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 const valueBucket = {
@@ -532,7 +538,7 @@ insert(uri: string, valuesBucket: rdb.ValuesBucket): Promise\<number>
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 const valueBucket = {
@@ -566,7 +572,7 @@ batchInsert(uri: string, valuesBuckets: Array\<rdb.ValuesBucket>, callback: Asyn
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 let cars = new Array({'name': 'roe11', 'age': 21, 'salary': 20.5, 'blobType': 'u8',},
@@ -606,7 +612,7 @@ batchInsert(uri: string, valuesBuckets: Array<rdb.ValuesBucket>): Promise\<numbe
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 let cars = new Array({'name': 'roe11', 'age': 21, 'salary': 20.5, 'blobType': 'u8',},
@@ -638,7 +644,7 @@ delete(uri: string, predicates: dataAbility.DataAbilityPredicates, callback: Asy
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 let da = new ohos_data_ability.DataAbilityPredicates();
@@ -677,7 +683,7 @@ delete(uri: string, predicates?: dataAbility.DataAbilityPredicates): Promise\<nu
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 let da = new ohos_data_ability.DataAbilityPredicates();
@@ -708,7 +714,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates: dataAbility.Data
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 const va = {
@@ -754,7 +760,7 @@ update(uri: string, valuesBucket: rdb.ValuesBucket, predicates?: dataAbility.Dat
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 const va = {
@@ -791,7 +797,7 @@ query(uri: string, columns: Array\<string>, predicates: dataAbility.DataAbilityP
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 let cars=new Array('value1', 'value2', 'value3', 'value4');
@@ -834,7 +840,7 @@ query(uri: string, columns?: Array\<string>, predicates?: dataAbility.DataAbilit
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 import ohos_data_ability from '@ohos.data.dataAbility';
-let DAHelper = featureAbility.acquireDataAbilityHelper(
+let DAHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.DataAbility'
 );
 let cars = new Array('value1', 'value2', 'value3', 'value4');
@@ -859,15 +865,15 @@ call(uri: string, method: string, arg: string, extras: PacMap, callback: AsyncCa
 | uri        | string                 | 是   | 指示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'           |
 | method    | string                  | 是   | 指示被调用的方法名。   |
 | arg      | string                   | 是   | 指示需传入的参数。      |
-| extras   | [PacMap](js-apis-inner-application-pacMap.md)        | 是   | 指示扩展的键值对参数。       |
-| callback | AsyncCallback\<[PacMap](js-apis-inner-application-pacMap.md)> | 是 | 指示数据操作的回调方法，返回操作结果。     |
+| extras   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)        | 是   | 指示扩展的键值对参数。       |
+| callback | AsyncCallback\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | 是 | 指示数据操作的回调方法，返回操作结果。     |
 
 **示例：**
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
-let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+let dataAbilityHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.jsapidemo.UserDataAbility'
 );
 dataAbilityHelper.call('dataability:///com.example.jsapidemo.UserDataAbility',
@@ -895,20 +901,20 @@ call(uri: string, method: string, arg: string, extras: PacMap): Promise\<PacMap>
 | uri        | string                 | 是   | 指示待处理的DataAbility。例：'dataability:///com.example.xxx.xxxx'           |
 | method    | string                  | 是   | 指示被调用的方法名。   |
 | arg      | string                   | 是   | 指示需传入的参数。      |
-| extras   | [PacMap](js-apis-inner-application-pacMap.md)        | 是   | 指示扩展的键值对参数。       |
+| extras   | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)        | 是   | 指示扩展的键值对参数。       |
 
 **返回值：**
 
 | 类型 | 说明 |
 |------ | ------- |
-|Promise\<[PacMap](js-apis-inner-application-pacMap.md)> | 返回操作结果。 |
+|Promise\<[PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)> | 返回操作结果。 |
 
 **示例：**
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
 
-let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+let dataAbilityHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.jsapidemo.UserDataAbility'
 );
 dataAbilityHelper.call('dataability:///com.example.jsapidemo.UserDataAbility',
@@ -942,7 +948,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 // 根据DataAbilityOperation列表选择要对数据库做的操作
 let op=new Array();
-let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+let dataAbilityHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.jsapidemo.UserDataAbility'
 );
 dataAbilityHelper.executeBatch('dataability:///com.example.jsapidemo.UserDataAbility', op, (error, data) => {
@@ -982,7 +988,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 
 // 根据DataAbilityOperation列表选择要对数据库做的操作
 let op=new Array();
-let dataAbilityHelper = featureAbility.acquireDataAbilityHelper(
+let dataAbilityHelper: ability.DataAbilityHelper = featureAbility.acquireDataAbilityHelper(
     'dataability:///com.example.jsapidemo.UserDataAbility'
 );
 dataAbilityHelper.executeBatch('dataability:///com.example.jsapidemo.UserDataAbility', op).then((data) => {
@@ -992,3 +998,13 @@ dataAbilityHelper.executeBatch('dataability:///com.example.jsapidemo.UserDataAbi
 });
 
 ```
+
+## PacMap
+
+[key: string]: number | string | boolean | Array\<string | number | boolean> | null;
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.FAModel
+
+| 参数名 | 参数类型 | 必填 | 说明 |
+| ------ | ------ | ------ | ------ |
+| [key: string] | number \| string \| boolean \| Array\<string \| number \| boolean\> \| null | Yes| 数据存储在键值对中。|

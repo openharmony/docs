@@ -21,6 +21,11 @@ Shows a date picker dialog box.
 | end | Date | No| Date('2100-12-31') | End date of the picker.|
 | selected | Date | No| Current system date| Selected date.|
 | lunar | boolean | No| false | Whether to display the lunar calendar.|
+| showTime<sup>10+</sup> | boolean | No| false | Whether to display the time item.|
+| useMilitaryTime<sup>10+</sup> | boolean | No| false | Whether to display time in 24-hour format.|
+| disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| - | Font color, font size, and font width for the top and bottom items.|
+| textStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| - | Font color, font size, and font width of all items except the top, bottom, and selected items.|
+| selectedTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10) | No| - | Font color, font size, and font width of the selected item.|
 | onAccept | (value: [DatePickerResult](ts-basic-components-datepicker.md#DatePickerResult)) => void | No| - | Callback invoked when the OK button in the dialog box is clicked.|
 | onCancel | () => void | No| - | Callback invoked when the Cancel button in the dialog box is clicked.|
 | onChange | (value: [DatePickerResult](ts-basic-components-datepicker.md#DatePickerResult)) => void | No| - | Callback invoked when the selected item in the picker changes.|

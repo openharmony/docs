@@ -28,7 +28,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
 | 参数名        | 参数类型                                     | 必填   | 参数描述    |
 | ---------- | ---------------------------------------- | ---- | ------- |
 | src        | [ResourceStr](ts-types.md)               | 是    | 网页资源地址。如果访问本地资源文件，请使用$rawfile或者resource协议。如果加载应用包外沙箱路径的本地资源文件，请使用file://沙箱文件路径。 |
-| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不在维护，建议使用WebviewController替代。 |
+| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 
 **示例：**
 
@@ -241,7 +241,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
 | object     | object                                   | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。    |
 | name       | string                                   | 是    | -    | 注册对象的名称，与window中调用的对象名一致。 |
 | methodList | Array\<string\>                          | 是    | -    | 参与注册的应用侧JavaScript对象的方法。  |
-| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不在维护，建议使用WebviewController替代。 |
+| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController再维护，建议使用WebviewController替代。 |
 
 **示例：**
 
@@ -408,7 +408,7 @@ zoomAccess(zoomAccess: boolean)
 
 overviewModeAccess(overviewModeAccess: boolean)
 
-设置是否使用概览模式加载网页，默认使用该方式。
+设置是否使用概览模式加载网页，默认使用该方式。当前仅支持移动设备。
 
 **参数：**
 
@@ -695,6 +695,38 @@ cacheMode(cacheMode: CacheMode)
       Column() {
         Web({ src: 'www.example.com', controller: this.controller })
           .cacheMode(this.mode)
+      }
+    }
+  }
+  ```
+
+### textZoomAtio<sup>(deprecated)</sup>
+
+textZoomAtio(textZoomAtio: number)
+
+设置页面的文本缩放百分比，默认为100%。
+
+从API version 9开始不再维护，建议使用[textZoomRatio<sup>9+</sup>](#textzoomratio9)代替。
+
+**参数：**
+
+| 参数名           | 参数类型   | 必填   | 默认值  | 参数描述            |
+| ------------- | ------ | ---- | ---- | --------------- |
+| textZoomAtio | number | 是    | 100  | 要设置的页面的文本缩放百分比。 |
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: WebController = new WebController()
+    @State atio: number = 150
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .textZoomAtio(this.atio)
       }
     }
   }
@@ -1142,7 +1174,7 @@ webCursiveFont(family: string)
 
 darkMode(mode: WebDarkMode)
 
-设置Web深色模式，默认关闭。当深色模式开启时，Web将启用媒体查询prefer-color-scheme中网页所定义的深色样式，若网页未定义深色样式，则保持原状。如需开启强制深色模式，建议配合[forceDarkAccess](#forcedarkaccess9)使用。
+设置Web深色模式，默认关闭。当深色模式开启时，Web将启用媒体查询prefers-color-scheme中网页所定义的深色样式，若网页未定义深色样式，则保持原状。如需开启强制深色模式，建议配合[forceDarkAccess](#forcedarkaccess9)使用。
 
 **参数：**
 
@@ -1386,8 +1418,10 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile("xxx.html"), controller: this.controller })
           .onAlert((event) => {
+            console.log("event.url:" + event.url)
+            console.log("event.message:" + event.message)
             AlertDialog.show({
               title: 'onAlert',
               message: 'text',
@@ -1412,6 +1446,25 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
       }
     }
   }
+  ```
+
+  ```
+  <!--xxx.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  </head>
+  <body>
+    <h1>WebView onAlert Demo</h1>
+    <button onclick="myFunction()">Click here</button>
+    <script>
+      function myFunction() {
+        alert("Hello World");
+      }
+    </script>
+  </body>
+  </html>
   ```
 
 ### onBeforeUnload
@@ -1447,7 +1500,7 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile("xxx.html"), controller: this.controller })
           .onBeforeUnload((event) => {
             console.log("event.url:" + event.url)
             console.log("event.message:" + event.message)
@@ -1475,6 +1528,25 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
       }
     }
   }
+  ```
+
+  ```
+  <!--xxx.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  </head>
+  <body onbeforeunload="return myFunction()">
+    <h1>WebView onBeforeUnload Demo</h1>
+    <a href="https://www.example.com">Click here</a>
+    <script>
+      function myFunction() {
+        return "onBeforeUnload Event";
+      }
+    </script>
+  </body>
+  </html>
   ```
 
 ### onConfirm
@@ -1510,11 +1582,10 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile("xxx.html"), controller: this.controller })
           .onConfirm((event) => {
             console.log("event.url:" + event.url)
             console.log("event.message:" + event.message)
-            console.log("event.result:" + event.result)
             AlertDialog.show({
               title: 'onConfirm',
               message: 'text',
@@ -1539,6 +1610,34 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
       }
     }
   }
+  ```
+
+  ```
+  <!--xxx.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  </head>
+
+  <body>
+    <h1>WebView onConfirm Demo</h1>
+    <button onclick="myFunction()">Click here</button>
+    <p id="demo"></p>
+    <script>
+      function myFunction() {
+        let x;
+        let r = confirm("click button!");
+        if (r == true) {
+          x = "ok";
+        } else {
+          x = "cancel";
+        }
+        document.getElementById("demo").innerHTML = x;
+      }
+    </script>
+  </body>
+  </html>
   ```
 
 ### onPrompt<sup>9+</sup>
@@ -1572,7 +1671,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile("xxx.html"), controller: this.controller })
           .onPrompt((event) => {
             console.log("url:" + event.url)
             console.log("message:" + event.message)
@@ -1589,7 +1688,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
               secondaryButton: {
                 value: 'ok',
                 action: () => {
-                  event.result.handleConfirm()
+                  event.result.handlePromptConfirm(event.value)
                 }
               },
               cancel: () => {
@@ -1601,6 +1700,30 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
       }
     }
   }
+  ```
+
+  ```
+  <!--xxx.html-->
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+  </head>
+
+  <body>
+    <h1>WebView onPrompt Demo</h1>
+    <button onclick="myFunction()">Click here</button>
+    <p id="demo"></p>
+    <script>
+      function myFunction() {
+        let message = prompt("Message info", "Hello World");
+        if (message != null && message != "") {
+          document.getElementById("demo").innerHTML = message;
+        }
+      }
+    </script>
+  </body>
+  </html>
   ```
 
 ### onConsole
@@ -1656,6 +1779,7 @@ onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisp
 | 参数名                | 参数类型          | 参数描述                                |
 | ------------------ | ------------- | ----------------------------------- |
 | url                | string        | 文件下载的URL。                           |
+| userAgent          | string        | 用于下载的用户代理。                           |
 | contentDisposition | string        | 服务器返回的 Content-Disposition响应头，可能为空。 |
 | mimetype           | string        | 服务器返回内容媒体类型（MIME）信息。                |
 | contentLength      | contentLength | 服务器返回文件的长度。                         |
@@ -2124,7 +2248,7 @@ onScaleChange(callback: (event: {oldScale: number, newScale: number}) => void)
 onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
 
 当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。
-从API version 10开始不在维护，建议使用[onLoadIntercept<sup>10+</sup>](#onloadintercept10)代替。
+从API version 10开始再维护，建议使用[onLoadIntercept<sup>10+</sup>](#onloadintercept10)代替。
 
 **参数：**
 
@@ -2343,7 +2467,6 @@ onSslErrorEventReceive(callback: (event: { handler: SslErrorHandler, error: SslE
                 event.handler.handleCancel()
               }
             })
-            return true
           })
       }
     }
@@ -2398,7 +2521,6 @@ onClientAuthenticationRequest(callback: (event: {handler : ClientAuthenticationH
                 event.handler.ignore()
               }
             })
-            return true
           })
       }
     }
@@ -3218,6 +3340,34 @@ onLoadIntercept(callback: (event?: { data: WebResourceRequest }) => boolean)
   }
   ```
 
+### onRequestSelected
+
+onRequestSelected(callback: () => void)
+
+当Web组件获得焦点时触发该回调。
+
+**示例：**
+
+  ```ts
+  // xxx.ets
+  import web_webview from '@ohos.web.webview'
+
+  @Entry
+  @Component
+  struct WebComponent {
+    controller: web_webview.WebviewController = new web_webview.WebviewController()
+
+    build() {
+      Column() {
+        Web({ src: 'www.example.com', controller: this.controller })
+          .onRequestSelected(() => {
+            console.log('onRequestSelected')
+          })
+      }
+    }
+  }
+  ```
+
 ## ConsoleMessage
 
 Web组件获取控制台信息对象。示例代码参考[onConsole事件](#onconsole)。
@@ -3516,7 +3666,7 @@ getResponseMimeType(): string
 
 ### setResponseData<sup>9+</sup>
 
-setResponseData(data: string | number)
+setResponseData(data: string | number \| Resource)
 
 设置资源响应数据。
 
@@ -3524,7 +3674,7 @@ setResponseData(data: string | number)
 
 | 参数名 | 参数类型         | 必填 | 默认值 | 参数描述                                                     |
 | ------ | ---------------- | ---- | ------ | ------------------------------------------------------------ |
-| data   | string \| number | 是   | -      | 要设置的资源响应数据。string表示输入类型是字符串，number表示输入类型是文件句柄。 |
+| data   | string \| number \| [Resource](ts-types.md)<sup>10+</sup>| 是   | -      | 要设置的资源响应数据。string表示HTML格式的字符串。number表示文件句柄, 此句柄由系统的Web组件负责关闭。 Resource表示应用rawfile目录下文件资源。|
 
 ### setResponseEncoding<sup>9+</sup>
 
@@ -4142,7 +4292,7 @@ Web媒体策略的配置。
 
 | 名称           | 类型       | 可读 | 可写 | 必填 | 说明                         |
 | -------------- | --------- | ---- | ---- | --- | ---------------------------- |
-| resumeInterval |  number   |  是  | 是   |  否  |被暂停的Web音频能够自动续播的有效期，单位：秒。最长有效期为60秒。 |
+| resumeInterval |  number   |  是  | 是   |  否  |被暂停的Web音频能够自动续播的有效期，单位：秒。最长有效期为60秒，由于近似值原因，该有效期可能存在一秒内的误差。 |
 | audioExclusive |  boolean  |  是  | 是   |  否  | 应用内多个Web实例的音频是否独占。    |
 
 ## DataResubmissionHandler<sup>9+</sup>
@@ -4176,7 +4326,7 @@ resend(): void
   }
   ```
 
-###  cancel<sup>9+</sup>
+### cancel<sup>9+</sup>
 
 cancel(): void
 
@@ -4926,7 +5076,7 @@ clearHistory(): void
 setCookie(url: string, value: string): boolean
 
 设置cookie，该方法为同步方法。设置成功返回true，否则返回false。
-从API version 9开始不在维护，建议使用[setCookie<sup>9+</sup>](../apis/js-apis-webview.md#setcookie)代替。
+从API version 9开始不再维护，建议使用[setCookie<sup>9+</sup>](../apis/js-apis-webview.md#setcookie)代替。
 
 **参数：**
 
@@ -4966,7 +5116,7 @@ setCookie(url: string, value: string): boolean
 saveCookie(): boolean
 
 将当前存在内存中的cookie同步到磁盘中，该方法为同步方法。
-从API version 9开始不在维护，建议使用[saveCookieAsync<sup>9+</sup>](../apis/js-apis-webview.md#savecookieasync)代替。
+从API version 9开始不再维护，建议使用[saveCookieAsync<sup>9+</sup>](../apis/js-apis-webview.md#savecookieasync)代替。
 
 **返回值：**
 

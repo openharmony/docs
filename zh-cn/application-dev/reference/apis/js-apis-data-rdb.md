@@ -1634,7 +1634,7 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 
 ```js
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = ?"
-rdbStore.executeSql(SQL_CREATE_TABLE, ['zhangsan'], function(err) {
+rdbStore.executeSql(SQL_DELETE_TABLE, ['zhangsan'], function(err) {
     if (err) {
         console.info("ExecuteSql failed, err: " + err)
         return
@@ -2045,7 +2045,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | -------- | -------- | -------- |
 | event | string | 是 | 取值为'dataChange'，表示数据更改。 |
 | type | [SubscribeType](#subscribetype8) | 是 | 订阅类型。 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; | 是 | 指分布式数据库中数据更改事件的观察者。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt; | 是 | 指分布式数据库中数据更改事件的观察者。Array&lt;string>为数据库中的数据发生改变的对端设备ID。 |
 
 **示例：**
 
@@ -2076,7 +2076,7 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | -------- | -------- | -------- |
 | event | string | 是 | 取值为'dataChange'，表示数据更改。 |
 | type | [SubscribeType](#subscribetype8)    | 是 | 订阅类型。 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; | 是 | 指已注册的数据更改观察者。|
+| observer | Callback&lt;Array&lt;string&gt;&gt; | 是 | 指已注册的数据更改观察者。Array&lt;string>为数据库中的数据发生改变的对端设备ID。 |
 
 **示例：**
 

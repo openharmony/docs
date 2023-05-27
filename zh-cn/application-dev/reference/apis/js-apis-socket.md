@@ -12,7 +12,7 @@
 import socket from '@ohos.net.socket';
 ```
 
-## socket.constructUDPSocketInstance
+## socket.constructUDPSocketInstance<sup>7+</sup>
 
 constructUDPSocketInstance(): UDPSocket
 
@@ -32,11 +32,11 @@ constructUDPSocketInstance(): UDPSocket
 let udp = socket.constructUDPSocketInstance();
 ```
 
-## UDPSocket
+## UDPSocket<sup>7+</sup>
 
 UDPSocket连接。在调用UDPSocket的方法前，需要先通过[socket.constructUDPSocketInstance](#socketconstructudpsocketinstance)创建UDPSocket对象。
 
-### bind
+### bind<sup>7+</sup>
 
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
@@ -73,7 +73,7 @@ udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
 })
 ```
 
-### bind
+### bind<sup>7+</sup>
 
 bind(address: NetAddress): Promise\<void\>
 
@@ -106,7 +106,7 @@ bind(address: NetAddress): Promise\<void\>
 
 ```js
 let udp = socket.constructUDPSocketInstance();
-let promise = udp.bind({address: '192.168.xx.xxx', port: 8080, family: 1});
+let promise = udp.bind({ address: '192.168.xx.xxx', port: 8080, family: 1 });
 promise.then(() => {
   console.log('bind success');
 }).catch(err => {
@@ -114,7 +114,7 @@ promise.then(() => {
 });
 ```
 
-### send
+### send<sup>7+</sup>
 
 send(options: UDPSendOptions, callback: AsyncCallback\<void\>): void
 
@@ -160,7 +160,7 @@ udp.send({
 })
 ```
 
-### send
+### send<sup>7+</sup>
 
 send(options: UDPSendOptions): Promise\<void\>
 
@@ -210,7 +210,7 @@ promise.then(() => {
 });
 ```
 
-### close
+### close<sup>7+</sup>
 
 close(callback: AsyncCallback\<void\>): void
 
@@ -239,7 +239,7 @@ udp.close(err => {
 })
 ```
 
-### close
+### close<sup>7+</sup>
 
 close(): Promise\<void\>
 
@@ -267,7 +267,7 @@ promise.then(() => {
 });
 ```
 
-### getState
+### getState<sup>7+</sup>
 
 getState(callback: AsyncCallback\<SocketStateBase\>): void
 
@@ -312,7 +312,7 @@ udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
 })
 ```
 
-### getState
+### getState<sup>7+</sup>
 
 getState(): Promise\<SocketStateBase\>
 
@@ -335,7 +335,7 @@ getState(): Promise\<SocketStateBase\>
 
 ```js
 let udp = socket.constructUDPSocketInstance();
-let promise = udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1});
+let promise = udp.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
 promise.then(err => {
   if (err) {
     console.log('bind fail');
@@ -351,7 +351,7 @@ promise.then(err => {
 });
 ```
 
-### setExtraOptions
+### setExtraOptions<sup>7+</sup>
 
 setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 
@@ -382,7 +382,7 @@ setExtraOptions(options: UDPExtraOptions, callback: AsyncCallback\<void\>): void
 
 ```js
 let udp = socket.constructUDPSocketInstance();
-udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+udp.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -404,7 +404,7 @@ udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
 })
 ```
 
-### setExtraOptions
+### setExtraOptions<sup>7+</sup>
 
 setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 
@@ -440,7 +440,7 @@ setExtraOptions(options: UDPExtraOptions): Promise\<void\>
 
 ```js
 let udp = socket.constructUDPSocketInstance();
-let promise = udp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1});
+let promise = udp.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
 promise.then(() => {
   console.log('bind success');
   let promise1 = udp.setExtraOptions({
@@ -460,7 +460,7 @@ promise.then(() => {
 });
 ```
 
-### on('message')
+### on('message')<sup>7+</sup>
 
 on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -480,11 +480,18 @@ on(type: 'message', callback: Callback\<{message: ArrayBuffer, remoteInfo: Socke
 ```js
 let udp = socket.constructUDPSocketInstance();
 udp.on('message', value => {
-  console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
+  for (var i = 0; i < value.message.length; i++) {
+    let messages = value.message[i]
+    let message = String.fromCharCode(messages);
+    let messageView = '';
+    messageView += item;
+  }
+  console.log('on message message: ' + JSON.stringify(messageView));
+  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
 });
 ```
 
-### off('message')
+### off('message')<sup>7+</sup>
 
 off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -507,7 +514,14 @@ off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: Soc
 ```js
 let udp = socket.constructUDPSocketInstance();
 let callback = value => {
-  console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
+  for (var i = 0; i < value.message.length; i++) {
+    let messages = value.message[i]
+    let message = String.fromCharCode(messages);
+    let messageView = '';
+    messageView += item;
+  }
+  console.log('on message message: ' + JSON.stringify(messageView));
+  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
 }
 udp.on('message', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -515,7 +529,7 @@ udp.off('message', callback);
 udp.off('message');
 ```
 
-### on('listening' | 'close')
+### on('listening' | 'close')<sup>7+</sup>
 
 on(type: 'listening' | 'close', callback: Callback\<void\>): void
 
@@ -542,7 +556,7 @@ udp.on('close', () => {
 });
 ```
 
-### off('listening' | 'close')
+### off('listening' | 'close')<sup>7+</sup>
 
 off(type: 'listening' | 'close', callback?: Callback\<void\>): void
 
@@ -580,7 +594,7 @@ udp.off('close', callback2);
 udp.off('close');
 ```
 
-### on('error')
+### on('error')<sup>7+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -604,7 +618,7 @@ udp.on('error', err => {
 });
 ```
 
-### off('error')
+### off('error')<sup>7+</sup>
 
 off(type: 'error', callback?: ErrorCallback): void
 
@@ -635,7 +649,7 @@ udp.off('error', callback);
 udp.off('error');
 ```
 
-## NetAddress
+## NetAddress<sup>7+</sup>
 
 目标地址信息。
 
@@ -647,7 +661,7 @@ udp.off('error');
 | port    | number | 否   | 端口号 ，范围0~65535。如果不指定系统随机分配端口。           |
 | family  | number | 否   | 网络协议类型，可选类型：<br />- 1：IPv4<br />- 2：IPv6<br />默认为1。 |
 
-## UDPSendOptions
+## UDPSendOptions<sup>7+</sup>
 
 UDPSocket发送参数。
 
@@ -658,7 +672,7 @@ UDPSocket发送参数。
 | data    | string \| ArrayBuffer<sup>7+</sup>                          | 是   | 发送的数据。   |
 | address | [NetAddress](#netaddress) | 是   | 目标地址信息。 |
 
-## UDPExtraOptions
+## UDPExtraOptions<sup>7+</sup>
 
 UDPSocket连接的其他属性。
 
@@ -672,7 +686,7 @@ UDPSocket连接的其他属性。
 | reuseAddress      | boolean | 否   | 是否重用地址。默认为false。      |
 | socketTimeout     | number  | 否   | 套接字超时时间，单位毫秒（ms）。 |
 
-## SocketStateBase
+## SocketStateBase<sup>7+</sup>
 
 Socket的状态信息。
 
@@ -684,7 +698,7 @@ Socket的状态信息。
 | isClose     | boolean | 是   | 是否关闭。 |
 | isConnected | boolean | 是   | 是否连接。 |
 
-## SocketRemoteInfo
+## SocketRemoteInfo<sup>7+</sup>
 
 Socket的连接信息。
 
@@ -703,7 +717,7 @@ UDP 其余错误码映射形式为：2301000 + Linux内核错误码。
 
 错误码的详细介绍参见[Socket错误码](../errorcodes/errorcode-net-socket.md)
 
-## socket.constructTCPSocketInstance
+## socket.constructTCPSocketInstance<sup>7+</sup>
 
 constructTCPSocketInstance(): TCPSocket
 
@@ -723,11 +737,11 @@ constructTCPSocketInstance(): TCPSocket
 let tcp = socket.constructTCPSocketInstance();
 ```
 
-## TCPSocket
+## TCPSocket<sup>7+</sup>
 
 TCPSocket连接。在调用TCPSocket的方法前，需要先通过[socket.constructTCPSocketInstance](#socketconstructtcpsocketinstance)创建TCPSocket对象。
 
-### bind
+### bind<sup>7+</sup>
 
 bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 
@@ -764,7 +778,7 @@ tcp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
 })
 ```
 
-### bind
+### bind<sup>7+</sup>
 
 bind(address: NetAddress): Promise\<void\>
 
@@ -797,7 +811,7 @@ bind(address: NetAddress): Promise\<void\>
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let promise = tcp.bind({address: '192.168.xx.xxx', port: xxxx, family: 1});
+let promise = tcp.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
 promise.then(() => {
   console.log('bind success');
 }).catch(err => {
@@ -805,7 +819,7 @@ promise.then(() => {
 });
 ```
 
-### connect
+### connect<sup>7+</sup>
 
 connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 
@@ -836,7 +850,7 @@ connect(options: TCPConnectOptions, callback: AsyncCallback\<void\>): void
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeout: 6000}, err => {
+tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 }, err => {
   if (err) {
     console.log('connect fail');
     return;
@@ -845,7 +859,7 @@ tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeou
 })
 ```
 
-### connect
+### connect<sup>7+</sup>
 
 connect(options: TCPConnectOptions): Promise\<void\>
 
@@ -878,7 +892,7 @@ connect(options: TCPConnectOptions): Promise\<void\>
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let promise = tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeout: 6000});
+let promise = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 });
 promise.then(() => {
   console.log('connect success')
 }).catch(err => {
@@ -886,7 +900,7 @@ promise.then(() => {
 });
 ```
 
-### send
+### send<sup>7+</sup>
 
 send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 
@@ -917,7 +931,7 @@ send(options: TCPSendOptions, callback: AsyncCallback\<void\>): void
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeout: 6000}, () => {
+tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 }, () => {
   console.log('connect success');
   tcp.send({
     data: 'Hello, server!'
@@ -932,7 +946,7 @@ tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeou
 })
 ```
 
-### send
+### send<sup>7+</sup>
 
 send(options: TCPSendOptions): Promise\<void\>
 
@@ -968,7 +982,7 @@ send(options: TCPSendOptions): Promise\<void\>
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let promise1 = tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeout: 6000});
+let promise1 = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 });
 promise1.then(() => {
   console.log('connect success');
   let promise2 = tcp.send({
@@ -984,7 +998,7 @@ promise1.then(() => {
 });
 ```
 
-### close
+### close<sup>7+</sup>
 
 close(callback: AsyncCallback\<void\>): void
 
@@ -1019,7 +1033,7 @@ tcp.close(err => {
 })
 ```
 
-### close
+### close<sup>7+</sup>
 
 close(): Promise\<void\>
 
@@ -1053,7 +1067,7 @@ promise.then(() => {
 });
 ```
 
-### getRemoteAddress
+### getRemoteAddress<sup>7+</sup>
 
 getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
@@ -1082,7 +1096,7 @@ getRemoteAddress(callback: AsyncCallback\<NetAddress\>): void
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeout: 6000}, () => {
+tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 }, () => {
   console.log('connect success');
   tcp.getRemoteAddress((err, data) => {
     if (err) {
@@ -1094,7 +1108,7 @@ tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeou
 });
 ```
 
-### getRemoteAddress
+### getRemoteAddress<sup>7+</sup>
 
 getRemoteAddress(): Promise\<NetAddress\>
 
@@ -1123,7 +1137,7 @@ getRemoteAddress(): Promise\<NetAddress\>
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let promise1 = tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeout: 6000});
+let promise1 = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 });
 promise1.then(() => {
   console.log('connect success');
   let promise2 = tcp.getRemoteAddress();
@@ -1137,7 +1151,7 @@ promise1.then(() => {
 });
 ```
 
-### getState
+### getState<sup>7+</sup>
 
 getState(callback: AsyncCallback\<SocketStateBase\>): void
 
@@ -1166,7 +1180,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let promise = tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeout: 6000}, () => {
+let promise = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 }, () => {
   console.log('connect success');
   tcp.getState((err, data) => {
     if (err) {
@@ -1178,7 +1192,7 @@ let promise = tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, fami
 });
 ```
 
-### getState
+### getState<sup>7+</sup>
 
 getState(): Promise\<SocketStateBase\>
 
@@ -1207,7 +1221,7 @@ getState(): Promise\<SocketStateBase\>
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let promise = tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeout: 6000});
+let promise = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 });
 promise.then(() => {
   console.log('connect success');
   let promise1 = tcp.getState();
@@ -1221,7 +1235,7 @@ promise.then(() => {
 });
 ```
 
-### setExtraOptions
+### setExtraOptions<sup>7+</sup>
 
 setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
@@ -1252,13 +1266,13 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let promise = tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeout: 6000}, () => {
+let promise = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 }, () => {
   console.log('connect success');
   tcp.setExtraOptions({
     keepAlive: true,
     OOBInline: true,
     TCPNoDelay: true,
-    socketLinger: {on: true, linger: 10},
+    socketLinger: { on: true, linger: 10 },
     receiveBufferSize: 1000,
     sendBufferSize: 1000,
     reuseAddress: true,
@@ -1273,7 +1287,7 @@ let promise = tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, fami
 });
 ```
 
-### setExtraOptions
+### setExtraOptions<sup>7+</sup>
 
 setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
@@ -1309,14 +1323,14 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 
 ```js
 let tcp = socket.constructTCPSocketInstance();
-let promise = tcp.connect({address: {address: '192.168.xx.xxx', port: xxxx, family: 1}, timeout: 6000});
+let promise = tcp.connect({ address: { address: '192.168.xx.xxx', port: xxxx, family: 1 }, timeout: 6000 });
 promise.then(() => {
   console.log('connect success');
   let promise1 = tcp.setExtraOptions({
     keepAlive: true,
     OOBInline: true,
     TCPNoDelay: true,
-    socketLinger: {on: true, linger: 10},
+    socketLinger: { on: true, linger: 10 },
     receiveBufferSize: 1000,
     sendBufferSize: 1000,
     reuseAddress: true,
@@ -1332,7 +1346,7 @@ promise.then(() => {
 });
 ```
 
-### on('message')
+### on('message')<sup>7+</sup>
 
 on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -1352,11 +1366,18 @@ on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: Socket
 ```js
 let tcp = socket.constructTCPSocketInstance();
 tcp.on('message', value => {
-  console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo)
+  for (var i = 0; i < value.message.length; i++) {
+    let messages = value.message[i]
+    let message = String.fromCharCode(messages);
+    let messageView = '';
+    messageView += item;
+  }
+  console.log('on message message: ' + JSON.stringify(messageView));
+  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
 });
 ```
 
-### off('message')
+### off('message')<sup>7+</sup>
 
 off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
 
@@ -1379,7 +1400,14 @@ off(type: 'message', callback?: Callback<{message: ArrayBuffer, remoteInfo: Sock
 ```js
 let tcp = socket.constructTCPSocketInstance();
 let callback = value => {
-  console.log("on message, message:" + value.message + ", remoteInfo:" + value.remoteInfo);
+  for (var i = 0; i < value.message.length; i++) {
+    let messages = value.message[i]
+    let message = String.fromCharCode(messages);
+    let messageView = '';
+    messageView += item;
+  }
+  console.log('on message message: ' + JSON.stringify(messageView));
+  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
 }
 tcp.on('message', callback);
 // 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
@@ -1387,7 +1415,7 @@ tcp.off('message', callback);
 tcp.off('message');
 ```
 
-### on('connect' | 'close')
+### on('connect' | 'close')<sup>7+</sup>
 
 on(type: 'connect' | 'close', callback: Callback\<void\>): void
 
@@ -1409,12 +1437,12 @@ let tcp = socket.constructTCPSocketInstance();
 tcp.on('connect', () => {
   console.log("on connect success")
 });
-tcp.on('close', data => {
+tcp.on('close', () => {
   console.log("on close success")
 });
 ```
 
-### off('connect' | 'close')
+### off('connect' | 'close')<sup>7+</sup>
 
 off(type: 'connect' | 'close', callback?: Callback\<void\>): void
 
@@ -1452,7 +1480,7 @@ tcp.off('close', callback2);
 tcp.off('close');
 ```
 
-### on('error')
+### on('error')<sup>7+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -1476,7 +1504,7 @@ tcp.on('error', err => {
 });
 ```
 
-### off('error')
+### off('error')<sup>7+</sup>
 
 off(type: 'error', callback?: ErrorCallback): void
 
@@ -1507,7 +1535,7 @@ tcp.off('error', callback);
 tcp.off('error');
 ```
 
-## TCPConnectOptions
+## TCPConnectOptions<sup>7+</sup>
 
 TCPSocket连接的参数。
 
@@ -1518,7 +1546,7 @@ TCPSocket连接的参数。
 | address | [NetAddress](#netaddress) | 是   | 绑定的地址以及端口。       |
 | timeout | number                             | 否   | 超时时间，单位毫秒（ms）。 |
 
-## TCPSendOptions
+## TCPSendOptions<sup>7+</sup>
 
 TCPSocket发送请求的参数。
 
@@ -1529,7 +1557,7 @@ TCPSocket发送请求的参数。
 | data     | string\| ArrayBuffer<sup>7+</sup>  | 是   | 发送的数据。                                                 |
 | encoding | string | 否   | 字符编码(UTF-8，UTF-16BE，UTF-16LE，UTF-16，US-AECII，ISO-8859-1)，默认为UTF-8。 |
 
-## TCPExtraOptions
+## TCPExtraOptions<sup>7+</sup>
 
 TCPSocket连接的其他属性。
 
@@ -1605,7 +1633,7 @@ bind(address: NetAddress, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1648,7 +1676,7 @@ bind(address: NetAddress): Promise\<void\>
 **示例：**
 
 ```js
-let promise = tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1});
+let promise = tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
 promise.then(() => {
   console.log('bind success');
 }).catch(err => {
@@ -1680,7 +1708,7 @@ getState(callback: AsyncCallback\<SocketStateBase\>): void
 **示例：**
 
 ```js
-let promise = tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+let promise = tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1720,7 +1748,7 @@ getState(): Promise\<SocketStateBase\>
 **示例：**
 
 ```js
-let promiseBind = tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1});
+let promiseBind = tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 });
 promiseBind.then(() => {
   console.log('bind success');
 }).catch((err) => {
@@ -1760,7 +1788,7 @@ setExtraOptions(options: TCPExtraOptions, callback: AsyncCallback\<void\>): void
 **示例：**
 
 ```js
-tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1772,7 +1800,7 @@ tls.setExtraOptions({
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: {on: true, linger: 10},
+  socketLinger: { on: true, linger: 10 },
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -1784,7 +1812,6 @@ tls.setExtraOptions({
   }
   console.log('setExtraOptions success');
 });
-
 ```
 
 ### setExtraOptions<sup>9+</sup>
@@ -1818,7 +1845,7 @@ setExtraOptions(options: TCPExtraOptions): Promise\<void\>
 **示例：**
 
 ```js
-tls.bind({address: '192.168.xx.xxx', port: xxxx, family: 1}, err => {
+tls.bind({ address: '192.168.xx.xxx', port: xxxx, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1829,7 +1856,7 @@ let promise = tls.setExtraOptions({
   keepAlive: true,
   OOBInline: true,
   TCPNoDelay: true,
-  socketLinger: {on: true, linger: 10},
+  socketLinger: { on: true, linger: 10 },
   receiveBufferSize: 1000,
   sendBufferSize: 1000,
   reuseAddress: true,
@@ -1840,6 +1867,191 @@ promise.then(() => {
 }).catch(err => {
   console.log('setExtraOptions fail');
 });
+```
+
+### on('message')<sup>9+</sup>
+
+on(type: 'message', callback: Callback<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}>): void;
+
+订阅TLSSocket连接的接收消息事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                      |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback\<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}\> | 是   | 回调函数。message：接收到的消息；remoteInfo：socket连接信息。 |
+
+**示例：**
+
+```js
+let tls = socket.constructTLSSocketInstance();
+tls.on('message', value => {
+  for (var i = 0; i < value.message.length; i++) {
+    let messages = value.message[i]
+    let message = String.fromCharCode(messages);
+    let messageView = '';
+    messageView += item;
+  }
+  console.log('on message message: ' + JSON.stringify(messageView));
+  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+});
+```
+
+### off('message')<sup>9+</sup>
+
+off(type: 'message', callback?: Callback\<{message: ArrayBuffer, remoteInfo: SocketRemoteInfo}\>): void
+
+取消订阅TLSSocket连接的接收消息事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                      |
+| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------- |
+| type     | string                                                       | 是   | 订阅的事件类型。'message'：接收消息事件。 |
+| callback | Callback<{message: ArrayBuffer, remoteInfo: [SocketRemoteInfo](#socketremoteinfo)}> | 否   | 回调函数。message：接收到的消息；remoteInfo：socket连接信息。 |
+
+**示例：**
+
+```js
+let tls = socket.constructTLSSocketInstance();
+let callback = value => {
+  for (var i = 0; i < value.message.length; i++) {
+    let messages = value.message[i]
+    let message = String.fromCharCode(messages);
+    let messageView = '';
+    messageView += item;
+  }
+  console.log('on message message: ' + JSON.stringify(messageView));
+  console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
+}
+tls.on('message', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+tls.off('message', callback);
+```
+### on('connect' | 'close')<sup>9+</sup>
+
+on(type: 'connect' | 'close', callback: Callback\<void\>): void
+
+订阅TLSSocket的连接事件或关闭事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明                                                         |
+| -------- | ---------------- | ---- | ------------------------------------------------------------ |
+| type     | string           | 是   | 订阅的事件类型。<br />- 'connect'：连接事件。<br />- 'close'：关闭事件。 |
+| callback | Callback\<void\> | 是   | 回调函数。                                                   |
+
+**示例：**
+
+```js
+let tls = socket.constructTLSSocketInstance();
+tls.on('connect', () => {
+  console.log("on connect success")
+});
+tls.on('close', () => {
+  console.log("on close success")
+});
+```
+
+### off('connect' | 'close')<sup>9+</sup>
+
+off(type: 'connect' | 'close', callback?: Callback\<void\>): void
+
+取消订阅TLSSocket的连接事件或关闭事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型             | 必填 | 说明                                                         |
+| -------- | ---------------- | ---- | ------------------------------------------------------------ |
+| type     | string           | 是   | 订阅的事件类型。<br />- 'connect'：连接事件。<br />- 'close'：关闭事件。 |
+| callback | Callback\<void\> | 否   | 回调函数。                                                   |
+
+**示例：**
+
+```js
+let tls = socket.constructTLSSocketInstance();
+let callback1 = () => {
+  console.log("on connect success");
+}
+tls.on('connect', callback1);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+tls.off('connect', callback1);
+tls.off('connect');
+let callback2 = () => {
+  console.log("on close success");
+}
+tls.on('close', callback2);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+tls.off('close', callback2);
+```
+
+### on('error')<sup>9+</sup>
+
+on(type: 'error', callback: ErrorCallback): void
+
+订阅TLSSocket连接的error事件。使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 是   | 回调函数。                           |
+
+**示例：**
+
+```js
+let tls = socket.constructTLSSocketInstance();
+tls.on('error', err => {
+  console.log("on error, err:" + JSON.stringify(err))
+});
+```
+
+### off('error')<sup>9+</sup>
+
+off(type: 'error', callback?: ErrorCallback): void
+
+取消订阅TLSSocket连接的error事件。使用callback方式作为异步方法。
+
+> **说明：**
+> 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Communication.NetStack
+
+**参数：**
+
+| 参数名   | 类型          | 必填 | 说明                                 |
+| -------- | ------------- | ---- | ------------------------------------ |
+| type     | string        | 是   | 订阅的事件类型。'error'：error事件。 |
+| callback | ErrorCallback | 否   | 回调函数。                           |
+
+**示例：**
+
+```js
+let tls = socket.constructTLSSocketInstance();
+let callback = err => {
+  console.log("on error, err:" + JSON.stringify(err));
+}
+tls.on('error', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+tls.off('error', callback);
 ```
 
 ### connect<sup>9+</sup>
@@ -1881,7 +2093,7 @@ connect(options: TLSConnectOptions, callback: AsyncCallback\<void\>): void
 
 ```js
 let tlsTwoWay = socket.constructTLSSocketInstance(); // Two way authentication
-tlsTwoWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
+tlsTwoWay.bind({ address: '192.168.xxx.xxx', port: 8080, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1912,7 +2124,7 @@ tlsTwoWay.connect(options, (err, data) => {
 });
 
 let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
-tlsOneWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
+tlsOneWay.bind({ address: '192.168.xxx.xxx', port: 8080, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -1980,7 +2192,7 @@ connect(options: TLSConnectOptions): Promise\<void\>
 
 ```js
 let tlsTwoWay = socket.constructTLSSocketInstance(); // Two way authentication
-tlsTwoWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
+tlsTwoWay.bind({ address: '192.168.xxx.xxx', port: 8080, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -2012,7 +2224,7 @@ tlsTwoWay.connect(options).then(data => {
 });
 
 let tlsOneWay = socket.constructTLSSocketInstance(); // One way authentication
-tlsOneWay.bind({address: '192.168.xxx.xxx', port: 8080, family: 1}, err => {
+tlsOneWay.bind({ address: '192.168.xxx.xxx', port: 8080, family: 1 }, err => {
   if (err) {
     console.log('bind fail');
     return;
@@ -2451,7 +2663,7 @@ send(data: string, callback: AsyncCallback\<void\>): void
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303501 | SSL is null.                                 |
-| 2303503 | Error in tls writing                         |
+| 2303503 | Error in tls writing.                         |
 | 2303505 | Error occurred in the tls system call.       |
 | 2303506 | Error clearing tls connection.               |
 | 2300002 | System internal error.                       |
@@ -2488,7 +2700,7 @@ send(data: string): Promise\<void\>
 | ------- | -------------------------------------------- |
 | 401     | Parameter error.                             |
 | 2303501 | SSL is null.                                 |
-| 2303503 | Error in tls writing                         |
+| 2303503 | Error in tls writing.                         |
 | 2303505 | Error occurred in the tls system call.       |
 | 2303506 | Error clearing tls connection.               |
 | 2300002 | System internal error.                       |
@@ -2572,7 +2784,7 @@ close(): Promise\<void\>
 ```js
 tls.close().then(() => {
   console.log("close success");
-}).catch(err => {
+}).catch((err) => {
   console.error(err);
 });
 ```
@@ -2623,6 +2835,3 @@ TLS通信的协议版本。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
-| 类型                                                                   | 说明                   |
-| --------------------------------------------------------------------- | --------------------- |
-|[cert.EncodingBlob](js-apis-cert.md#datablob) | 存储证书的数据和编码格式 |

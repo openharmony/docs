@@ -88,6 +88,10 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
      - 如果是第三方框架的模型，比如 TensorFlow、TensorFlow Lite、Caffe、ONNX等，可以使用[模型转换工具](https://www.mindspore.cn/lite/docs/zh-CN/r1.5/use/downloads.html#id1)转换为`.ms`格式的模型文件。
 
 2. 创建上下文，设置线程数、设备类型等参数。
+
+    以下介绍两种典型情形。
+
+    情形1：仅创建CPU推理上下文。
   
     ```c
     // 创建并配置上下文，设置运行时的线程数量为2，绑核策略为大核优先
@@ -109,6 +113,44 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
     OH_AI_DeviceInfoSetEnableFP16(cpu_device_info, false);
     OH_AI_ContextAddDeviceInfo(context, cpu_device_info);
     ```
+
+    情形2：创建NNRT（Neural Network Runtime）和CPU异构推理上下文。
+
+    NNRT是OpenHarMony系统中面向AI领域的跨芯片推理计算运行时，一般来说，NNRT对接的加速硬件如NPU，推理能力较强，但支持的算子规格少；而通用CPU推理能力较弱，但支持算子规格更全面。MindSpore Lite支持配置NNRT硬件和CPU异构推理：优先将模型算子调度到NNRT推理，若某些算子NNRT不支持，将其调度到CPU进行推理。通过下面的操作即可配置NNRT/CPU异构推理。
+
+   > **说明：**
+   >
+   > NNRT/CPU异构推理，需要有实际的NNRT硬件接入，NNRT相关资料请参考：[OpenHarmony/ai_neural_network_runtime](https://gitee.com/openharmony/ai_neural_network_runtime)。
+
+    ```c
+    // 创建并配置上下文，设置运行时的线程数量为2，绑核策略为大核优先
+    OH_AI_ContextHandle context = OH_AI_ContextCreate();
+    if (context == NULL) {
+      printf("OH_AI_ContextCreate failed.\n");
+      return OH_AI_STATUS_LITE_ERROR;
+    }
+    // 优先使用NNRT推理。
+    // 这里利用查找到的第一个ACCELERATORS类别的NNRT硬件，来创建nnrt设备信息，并设置硬件使用高性能模式推理。还可以通过如：OH_AI_GetAllNNRTDeviceDescs()接口获取当前环境中所有NNRT硬件的描述信息，按设备名、类型等信息查找，找到某一具体设备作为NNRT推理硬件。具体可参考：[Native接口参考：MindSpore](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/native-apis/_mind_spore.md/)
+    OH_AI_DeviceInfoHandle nnrt_device_info = OH_AI_CreateNNRTDeviceInfoByType(OH_AI_NNRTDEVICE_ACCELERATORS);
+    if (nnrt_device_info == NULL) {
+      printf("OH_AI_DeviceInfoCreate failed.\n");
+      OH_AI_ContextDestroy(&context);
+      return OH_AI_STATUS_LITE_ERROR;
+    }
+    OH_AI_DeviceInfoSetPerformaceMode(nnrt_device_info, OH_AI_PERFORMANCE_HIGH);
+    OH_AI_ContextAddDeviceInfo(context, nnrt_device_info);
+
+    // 其次设置CPU推理。
+    OH_AI_DeviceInfoHandle cpu_device_info = OH_AI_DeviceInfoCreate(OH_AI_DEVICETYPE_CPU);
+    if (cpu_device_info == NULL) {
+      printf("OH_AI_DeviceInfoCreate failed.\n");
+      OH_AI_ContextDestroy(&context);
+      return OH_AI_STATUS_LITE_ERROR;
+    }
+    OH_AI_ContextAddDeviceInfo(context, cpu_device_info);
+    ```
+
+    
 
 3. 创建、加载与编译模型。
 

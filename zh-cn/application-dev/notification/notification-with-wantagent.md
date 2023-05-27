@@ -4,7 +4,7 @@
 
 为通知添加行为意图的实现方式如下图所示：发布通知的应用向应用组件管理服务AMS（Ability Manager Service）申请[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)，然后随其他通知信息一起发送给桌面，当用户在桌面通知栏上点击通知时，触发[WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md)动作。
 
-  **图1** 携带行为意图的通知运行机制  
+**图1** 携带行为意图的通知运行机制  
 ![notification-with-wantagent](figures/notification-with-wantagent.png)
 
 
@@ -41,20 +41,20 @@
    
    // 通过WantAgentInfo的operationType设置动作类型
    let wantAgentInfo = {
-       wants: [
-           {
-               deviceId: '',
-               bundleName: 'com.example.myapplication',
-               abilityName: 'EntryAbility',
-               action: '',
-               entities: [],
-               uri: '',
-               parameters: {}
-           }
-       ],
-       operationType: wantAgent.OperationType.START_ABILITY,
-       requestCode: 0,
-       wantAgentFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
+     wants: [
+       {
+         deviceId: '',
+         bundleName: 'com.example.myapplication',
+         abilityName: 'EntryAbility',
+         action: '',
+         entities: [],
+         uri: '',
+         parameters: {}
+       }
+     ],
+     operationType: wantAgent.OperationType.START_ABILITY,
+     requestCode: 0,
+     wantAgentFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
    };
    ```
 
@@ -65,16 +65,16 @@
    
    // 通过WantAgentInfo的operationType设置动作类型
    let wantAgentInfo = {
-       wants: [
-           {
-               action: 'event_name', // 设置事件名
-               parameters: {},
-           }
-       ],
-       operationType: wantAgent.OperationType.SEND_COMMON_EVENT,
-       requestCode: 0,
-       wantAgentFlags: [wantAgent.WantAgentFlags.CONSTANT_FLAG],
-   }
+     wants: [
+       {
+         action: 'event_name', // 设置事件名
+         parameters: {},
+       }
+     ],
+     operationType: wantAgent.OperationType.SEND_COMMON_EVENT,
+     requestCode: 0,
+     wantAgentFlags: [wantAgent.WantAgentFlags.CONSTANT_FLAG],
+   };
    ```
 
 4. 调用[getWantAgent()](../reference/apis/js-apis-app-ability-wantAgent.md#wantagentgetwantagent)方法进行创建WantAgent。
@@ -82,12 +82,12 @@
    ```typescript
    // 创建WantAgent
    wantAgent.getWantAgent(wantAgentInfo, (err, data) => {
-       if (err) {
-         console.error('[WantAgent]getWantAgent err=' + JSON.stringify(err));
-         return;
-       }
-       console.info('[WantAgent]getWantAgent success');
-       wantAgentObj = data;
+     if (err) {
+       console.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
+       return;
+     }
+     console.info('Succeeded in geting want agent.');
+     wantAgentObj = data;
    });
    ```
 
@@ -96,25 +96,25 @@
    ```typescript
    // 构造NotificationRequest对象
    let notificationRequest: notificationManager.NotificationRequest = {
-       content: {
-           contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
-           normal: {
-               title: 'Test_Title',
-               text: 'Test_Text',
-               additionalText: 'Test_AdditionalText',
-           },
+     content: {
+       contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+       normal: {
+         title: 'Test_Title',
+         text: 'Test_Text',
+         additionalText: 'Test_AdditionalText',
        },
-       id: 1,
-       label: 'TEST',
-       wantAgent: wantAgentObj,
+     },
+     id: 1,
+     label: 'TEST',
+     wantAgent: wantAgentObj,
    }
    
    notificationManager.publish(notificationRequest, (err) => {
-       if (err) {
-           console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
-           return;
-       }
-       console.info(`[ANS] publish success`);
+     if (err) {
+       console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+       return;
+     }
+     console.info('Succeeded in publishing notification.');
    });
    ```
 

@@ -65,7 +65,7 @@ createDataShareHelper(context: Context, uri: string, callback: AsyncCallback&lt;
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
-| 15700010 | The dataShareHelper is not initialized successfully. |
+| 15700010 | The DataShareHelper is not initialized successfully. |
 
 **示例：**
 
@@ -120,7 +120,7 @@ createDataShareHelper(context: Context, uri: string): Promise&lt;DataShareHelper
 
 | 错误码ID | 错误信息                                             |
 | -------- | ---------------------------------------------------- |
-| 15700010 | The dataShareHelper is not initialized successfully. |
+| 15700010 | The DataShareHelper is not initialized successfully. |
 
 **示例：**
 

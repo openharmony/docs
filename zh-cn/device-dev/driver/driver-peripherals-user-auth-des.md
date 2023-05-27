@@ -71,7 +71,7 @@
 - Kit
 
   OpenHarmony系统向第三方应用提供的基础应用编程接口。
-  
+
 - Inner API
 
   OpenHarmony系统向系统应用提供的应用编程接口。
@@ -117,26 +117,30 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
 | 接口名称       | 功能介绍     |
 | --------------------------- | --------------------------- |
 | Init()           | 初始化缓存信息。                        |
-| AddExecutor(const ExecutorRegisterInfo& info, uint64_t& index, std::vector<uint8_t>& publicKey,<br/>        std::vector<uint64_t>& templateIds) | 添加认证执行器，获得此认证能力。           |
+| AddExecutor(const ExecutorRegisterInfo& info, uint64_t& index, std::vector\<uint8_t>& publicKey,<br/>        std::vector\<uint64_t>& templateIds) | 添加认证执行器，获得此认证能力。           |
 | DeleteExecutor(uint64_t index)            | 根据索引值index删除认证执行器。       |
-| OpenSession(int32_t userId, std::vector<uint8_t>& challenge) | 开启认证凭据管理Session。      |
+| OpenSession(int32_t userId, std::vector\<uint8_t>& challenge) | 开启认证凭据管理Session。      |
 | CloseSession(int32_t userId)        | 关闭认证凭据管理Session。            |
-| BeginEnrollment(int32_t userId, const std::vector<uint8_t>& authToken, const EnrollParam& param,<br/>        ScheduleInfo& info) | 发起用户的认证凭据的录入，当录入类型为PIN码且当前用户已录入PIN码的情况下会更新PIN码。 |
-| UpdateEnrollmentResult(int32_t userId, const std::vector<uint8_t>& scheduleResult, uint64_t& credentialId,<br/>        CredentialInfo& oldInfo) | 更新录入结果，完成此次录入。   |
+| BeginEnrollment(int32_t userId, const std::vector\<uint8_t>& authToken, const EnrollParam& param,<br/>        ScheduleInfo& info) | 发起用户的认证凭据的录入，当录入类型为PIN码且当前用户已录入PIN码的情况下会更新PIN码（V1_0版本）。 |
+| UpdateEnrollmentResult(int32_t userId, const std::vector\<uint8_t>& scheduleResult, uint64_t& credentialId,<br/>        CredentialInfo& oldInfo) | 更新录入结果，完成此次录入。   |
 | CancelEnrollment(int32_t userId)     | 取消此次录入。          |
-| DeleteCredential(int32_t userId, uint64_t credentialId, const std::vector<uint8_t>& authToken,<br/>        CredentialInfo& info) | 根据credentialId删除凭据信息。                               |
-| DeleteUser(int32_t userId, const std::vector<uint8_t>& authToken,<br/>        std::vector<CredentialInfo>& deletedInfos) | 删除PIN码即在用户认证框架中删除用户。                        |
-| EnforceDeleteUser(int32_t userId, std::vector<CredentialInfo>& deletedInfos) | 强制删除用户，当系统内此用户被删除时强制调用。               |
-| GetCredential(int32_t userId, AuthType authType, std::vector<CredentialInfo>& infos) | 查询用户某种认证类型下的凭据信息。             |
-| GetSecureInfo(int32_t userId, uint64_t& secureUid, std::vector<EnrolledInfo>& infos) | 查询用户的安全用户Id和每种认证类型的录入标记Id。             |
-| BeginAuthentication(uint64_t contextId, const AuthSolution& param,<br/>        std::vector<ScheduleInfo>& scheduleInfos) | 发起认证，生成认证方案和调度信息。                           |
-| UpdateAuthenticationResult(uint64_t contextId, const std::vector<uint8_t>& scheduleResult,<br/>        AuthResultInfo& info) | 更新认证结果，进行此次认证方案结果的评估。                   |
+| DeleteCredential(int32_t userId, uint64_t credentialId, const std::vector\<uint8_t>& authToken,<br/>        CredentialInfo& info) | 根据credentialId删除凭据信息。                               |
+| DeleteUser(int32_t userId, const std::vector\<uint8_t>& authToken,<br/>        std::vector\<CredentialInfo>& deletedInfos) | 删除PIN码即在用户认证框架中删除用户。                        |
+| EnforceDeleteUser(int32_t userId, std::vector\<CredentialInfo>& deletedInfos) | 强制删除用户，当系统内此用户被删除时强制调用。               |
+| GetCredential(int32_t userId, AuthType authType, std::vector\<CredentialInfo>& infos) | 查询用户某种认证类型下的凭据信息。             |
+| GetSecureInfo(int32_t userId, uint64_t& secureUid, std::vector\<EnrolledInfo>& infos) | 查询用户的安全用户Id和每种认证类型的录入标记Id。             |
+| BeginAuthentication(uint64_t contextId, const AuthSolution& param,<br/>        std::vector\<ScheduleInfo>& scheduleInfos) | 发起认证，生成认证方案和调度信息（V1_0版本）。                           |
+| UpdateAuthenticationResult(uint64_t contextId, const std::vector\<uint8_t>& scheduleResult,<br/>        AuthResultInfo& info) | 更新认证结果，进行此次认证方案结果的评估。                   |
 | CancelAuthentication(uint64_t contextId)      | 取消此次认证。             |
-| BeginIdentification(uint64_t contextId, AuthType authType, const std::vector<int8_t>& challenge,<br/>        uint32_t executorId, ScheduleInfo& scheduleInfo) | 发起识别，生成识别方案和调度信息。                           |
-| UpdateIdentificationResult(uint64_t contextId, const std::vector<uint8_t>& scheduleResult,<br/>        IdentifyResultInfo& info) | 更新识别结果，进行此次识别方案结果的评估。                   |
+| BeginIdentification(uint64_t contextId, AuthType authType, const std::vector\<int8_t>& challenge,<br/>        uint32_t executorId, ScheduleInfo& scheduleInfo) | 发起识别，生成识别方案和调度信息（V1_0版本）。                           |
+| UpdateIdentificationResult(uint64_t contextId, const std::vector\<uint8_t>& scheduleResult,<br/>        IdentifyResultInfo& info) | 更新识别结果，进行此次识别方案结果的评估。                   |
 | CancelIdentification(uint64_t contextId)             | 取消此次识别。              |
 | GetAuthTrustLevel(int32_t userId, AuthType authType, uint32_t& authTrustLevel) | 获取此用户当前认证类型的认证可信等级。     |
-| GetValidSolution(int32_t userId, const std::vector<AuthType>& authTypes, uint32_t authTrustLevel,<br/>        std::vector<AuthType>& validTypes) | 筛选此用户当前认证可信等级下可用的认证方式。                   |
+| GetValidSolution(int32_t userId, const std::vector\<AuthType>& authTypes, uint32_t authTrustLevel,<br/>        std::vector\<AuthType>& validTypes) | 筛选此用户当前认证可信等级下可用的认证方式。                   |
+| BeginEnrollmentV1_1(int32_t userId, const std::vector\<uint8_t>& authToken, const EnrollParam& param, ScheduleInfoV1_1& info) | 发起用户的认证凭据的录入，当录入类型为PIN码且当前用户已录入PIN码的情况下会更新PIN码（V1_1版本）。 |
+| BeginAuthenticationV1_1(uint64_t contextId, const AuthSolution& param,  std::vector\<ScheduleInfoV1_1>& scheduleInfos) | 发起认证，生成认证方案和调度信息（V1_1版本）。                           |
+| BeginIdentificationV1_1(uint64_t contextId, AuthType authType,
+ const std::vector\<uint8_t>& challenge, uint32_t executorSensorHint, ScheduleInfoV1_1& scheduleInfo)| 发起识别，生成识别方案和调度信息（V1_1版本）。                           |
 
 ### 开发步骤
 
@@ -164,17 +168,17 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        struct IDeviceIoService ioService;
        OHOS::sptr<OHOS::IRemoteObject> stub;
    };
-   
+
    // 服务接口调用响应接口
    static int32_t UserAuthInterfaceDriverDispatch(struct HdfDeviceIoClient *client, int cmdId, struct HdfSBuf *data,
        struct HdfSBuf *reply)
    {
        auto *hdfUserAuthInterfaceHost = CONTAINER_OF(client->device->service, struct HdfUserAuthInterfaceHost, ioService);
-   
+
        OHOS::MessageParcel *dataParcel = nullptr;
        OHOS::MessageParcel *replyParcel = nullptr;
        OHOS::MessageOption option;
-   
+
        if (SbufToParcel(data, &dataParcel) != HDF_SUCCESS) {
            HDF_LOGE("%{public}s:invalid data sbuf object to dispatch", __func__);
            return HDF_ERR_INVALID_PARAM;
@@ -183,10 +187,10 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
            HDF_LOGE("%{public}s:invalid reply sbuf object to dispatch", __func__);
            return HDF_ERR_INVALID_PARAM;
        }
-   
+
        return hdfUserAuthInterfaceHost->stub->SendRequest(cmdId, *dataParcel, *replyParcel, option);
    }
-   
+
    // 初始化接口
    int HdfUserAuthInterfaceDriverInit(struct HdfDeviceObject *deviceObject)
    {
@@ -194,46 +198,46 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        OHOS::UserIAM::Common::Init();
        return HDF_SUCCESS;
    }
-   
+
    // User_auth驱动对外提供的服务绑定到HDF框架
    int HdfUserAuthInterfaceDriverBind(struct HdfDeviceObject *deviceObject)
    {
        HDF_LOGI("HdfUserAuthInterfaceDriverBind enter");
-   
+
        auto *hdfUserAuthInterfaceHost = new (std::nothrow) HdfUserAuthInterfaceHost;
        if (hdfUserAuthInterfaceHost == nullptr) {
            HDF_LOGE("%{public}s: failed to create HdfUserAuthInterfaceHost object", __func__);
            return HDF_FAILURE;
        }
-   
+
        hdfUserAuthInterfaceHost->ioService.Dispatch = UserAuthInterfaceDriverDispatch;
        hdfUserAuthInterfaceHost->ioService.Open = NULL;
        hdfUserAuthInterfaceHost->ioService.Release = NULL;
-   
+
        auto serviceImpl = IUserAuthInterface::Get(true);
        if (serviceImpl == nullptr) {
            HDF_LOGE("%{public}s: failed to implement service", __func__);
            return HDF_FAILURE;
        }
-   
+
        hdfUserAuthInterfaceHost->stub = OHOS::HDI::ObjectCollector::GetInstance().GetOrNewObject(serviceImpl,
            IUserAuthInterface::GetDescriptor());
        if (hdfUserAuthInterfaceHost->stub == nullptr) {
            HDF_LOGE("%{public}s: failed to get stub object", __func__);
            return HDF_FAILURE;
        }
-   
+
        deviceObject->service = &hdfUserAuthInterfaceHost->ioService;
        return HDF_SUCCESS;
    }
-   
+
    // 释放User_auth驱动中的资源
    void HdfUserAuthInterfaceDriverRelease(struct HdfDeviceObject *deviceObject){
        HDF_LOGI("HdfUserAuthInterfaceDriverRelease enter");
        auto *hdfUserAuthInterfaceHost = CONTAINER_OF(deviceObject->service, struct HdfUserAuthInterfaceHost, ioService);
        delete hdfUserAuthInterfaceHost;
    }
-   
+
    // 注册User_auth驱动入口数据结构体对象
    struct HdfDriverEntry g_userAuthInterfaceDriverEntry = {
        .moduleVersion = 1,
@@ -242,7 +246,7 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        .Init = HdfUserAuthInterfaceDriverInit,
        .Release = HdfUserAuthInterfaceDriverRelease,
    };
-   
+
    // 调用HDF_INIT将驱动入口注册到HDF框架中，在加载驱动时HDF框架会先调用Bind函数,再调用Init函数加载该驱动，当Init调用异常时，HDF框架会调用Release释放驱动资源并退出
    #ifndef __cplusplus
    extern "C" {
@@ -267,14 +271,14 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        GlobalUnLock();
        return ret;
    }
-   
+
    // 删除执行器
    int32_t UserAuthInterfaceService::DeleteExecutor(uint64_t index)
    {
        return UnRegisterExecutor(index);
    }
    ```
-   
+
 3. 录入接口举例实现，详细代码参见[user_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/user_auth/hdi_service/service/user_auth_interface_service.cpp)文件。
 
    ```c++
@@ -292,7 +296,7 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        GlobalUnLock();
        return ret;
    }
-   
+
    // 关闭认证凭据管理会话
    int32_t UserAuthInterfaceService::CloseSession(int32_t userId)
    {
@@ -301,10 +305,10 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        GlobalUnLock();
        return ret;
    }
-   
-   // 发起认证，生成录入调度信息
-   int32_t UserAuthInterfaceService::BeginEnrollment(int32_t userId, const std::vector<uint8_t>& authToken,
-       const EnrollParam& param, ScheduleInfo& info)
+
+   // 发起录入，生成录入调度信息（V1_1版本）
+   int32_t UserAuthInterfaceService::BeginEnrollmentV1_1(int32_t userId, const std::vector<uint8_t>& authToken,
+       const EnrollParam& param, ScheduleInfoV1_1& info)
    {
        IAM_LOGI("start");
        GlobalLock();
@@ -342,7 +346,18 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        GlobalUnLock();
        return ret;
    }
-   
+
+   // 发起录入，生成录入调度信息（V1_0版本），通过调用 V1_1 版本相应接口实现功能
+   int32_t UserAuthInterfaceService::BeginEnrollment(int32_t userId, const std::vector<uint8_t> &authToken,
+       const EnrollParam &param, ScheduleInfo &info)
+   {
+       IAM_LOGI("start");
+       ScheduleInfoV1_1 infoV1_1;
+       int32_t ret = BeginEnrollmentV1_1(userId, authToken, param, infoV1_1);
+       CopyScheduleInfoV1_1ToV1_0(infoV1_1, info);
+       return ret;
+   }
+
    // 取消录入接口实现
    int32_t UserAuthInterfaceService::CancelEnrollment(int32_t userId)
    {
@@ -350,7 +365,7 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        BreakOffCoauthSchedule(userId);
        return RESULT_SUCCESS;
    }
-   
+
    // 录入凭据信息存储接口实现
    int32_t UserAuthInterfaceService::UpdateEnrollmentResult(int32_t userId, const std::vector<uint8_t>& scheduleResult,
        uint64_t& credentialId, CredentialInfo& oldInfo)
@@ -405,10 +420,10 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        }
        return userAuthInterfaceService;
    }
-   
+
    // 发起认证，生成认证方案和调度信息
-   int32_t UserAuthInterfaceService::BeginAuthentication(uint64_t contextId, const AuthSolution& param,
-       std::vector<ScheduleInfo>& infos)
+   int32_t UserAuthInterfaceService::BeginAuthenticationV1_1(uint64_t contextId, const AuthSolution& param,
+       std::vector<ScheduleInfoV1_1>& infos)
    {
        IAM_LOGI("start");
        if (param.challenge.size() != sizeof(uint64_t)) {
@@ -436,7 +451,7 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
            return ret;
        }
        for (uint32_t i = 0; i < scheduleIdNum; i++) {
-           ScheduleInfo temp;
+           ScheduleInfoV1_1 temp;
            if (!CopyScheduleInfo(schedulesGet + i, &temp)) {
                infos.clear();
                ret = RESULT_GENERAL_ERROR;
@@ -448,7 +463,18 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        GlobalUnLock();
        return ret;
    }
-   
+
+   // 发起认证，生成认证方案和调度信息（V1_0版本），通过调用 V1_1 版本相应接口实现功能
+   int32_t UserAuthInterfaceService::BeginAuthentication(uint64_t contextId, const AuthSolution &param,
+       std::vector<ScheduleInfo> &infos)
+   {
+       IAM_LOGI("start");
+       std::vector<ScheduleInfoV1_1> infosV1_1;
+       int32_t ret = BeginAuthenticationV1_1(contextId, param, infosV1_1);
+       CopyScheduleInfosV1_1ToV1_0(infosV1_1, infos);
+       return ret;
+   }
+
    // 更新认证结果，进行此次认证方案结果的评估
    int32_t UserAuthInterfaceService::UpdateAuthenticationResult(uint64_t contextId,
        const std::vector<uint8_t>& scheduleResult, AuthResultInfo& info)
@@ -487,7 +513,7 @@ User_auth驱动的主要工作是为User_auth服务提供稳定的用户凭据�
        GlobalUnLock();
        return RESULT_SUCCESS;
    }
-   
+
    // 取消认证
    int32_t UserAuthInterfaceService::CancelAuthentication(uint64_t contextId)
    {

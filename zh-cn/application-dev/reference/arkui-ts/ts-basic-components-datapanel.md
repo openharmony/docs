@@ -46,22 +46,22 @@ DataPanel(options:{values: number[], max?: number, type?: DataPanelType})
 
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
-| closeEffect | boolean | 是 | 关闭数据占比图表旋转动效。<br/>默认值：false。|
-| valueColors<sup>10+</sup>   | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10)> | 是 | 各数据段颜色，ResourceColor为纯色，LinearGradient为渐变色。|
-| trackBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 是 | 底板颜色。|
-| strokeWidth<sup>10+</sup> | [Length](ts-types.md#Length) | 是 | 圆环粗细。 |
-| trackShadow<sup>10+</sup> | [DataPanelShadowOption](#datapanelshadowoption10) | 是 | 投影样式，不设置为不开启投影。|
+| closeEffect | boolean | 是 | 关闭数据占比图表旋转动效。<br/>默认值：false |
+| valueColors<sup>10+</sup>   | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10对象说明)> | 是 | 各数据段颜色，ResourceColor为纯色，LinearGradient为渐变色。|
+| trackBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 是 | 底板颜色。<br/>默认值：'#081824' |
+| strokeWidth<sup>10+</sup> | [Length](ts-types.md#Length) | 是 | 圆环粗细。<br/>默认值：24<br/>单位：vp<br/>**说明：** <br/>设置小于0的值时，按默认值显示。<br/>数据面板的类型为DataPanelType.Line时该属性不生效。 |
+| trackShadow<sup>10+</sup> | [DataPanelShadowOption](#datapanelshadowoption10对象说明) | 是 | 投影样式，不设置为不开启投影。|
 
 
-## DataPanelShadowOption<sup>10+</sup>
+## DataPanelShadowOption<sup>10+</sup>对象说明
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
-| radius | number \| [Resource](ts-types.md#resource类型) | 否 | 阴影模糊半径。 若数据值小于等于0则置为默认值。<br/>默认值：5vp。 |
-| colors | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10)> | 否 | 各数据段阴影的颜色。 <br/>默认值：与valueColors值相同。 |
-| offsetX | number \| [Resource](ts-types.md#resource类型) | 否 | X轴的偏移量。 <br/>默认值：5vp。 |
-| offsetY | number \| [Resource](ts-types.md#resource类型) | 否 | Y轴的偏移量。 <br/>默认值：5vp。 |
+| radius | number \| [Resource](ts-types.md#resource类型) | 否 | 阴影模糊半径。 <br/>默认值：5<br/>单位：vp |
+| colors | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10对象说明)> | 否 | 各数据段阴影的颜色。 <br/>默认值：与valueColors值相同 |
+| offsetX | number \| [Resource](ts-types.md#resource类型) | 否 | X轴的偏移量。 <br/>默认值：5<br/>单位：vp |
+| offsetY | number \| [Resource](ts-types.md#resource类型) | 否 | Y轴的偏移量。 <br/>默认值：5<br/>单位：vp |
 
-## LinearGradient<sup>10+</sup>
+## LinearGradient<sup>10+</sup>对象说明
 
 线性渐变颜色描述。
 
@@ -69,10 +69,10 @@ LinearGradient(colorStops: ColorStop[])
 
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
-| colorStops | [ColorStop](#colorstop10)[] | 是 | 存储渐变颜色和渐变点。|
+| colorStops | [ColorStop](#colorstop10对象说明)[] | 是 | 存储渐变颜色和渐变点。|
 
 
-## ColorStop<sup>10+</sup>
+## ColorStop<sup>10+</sup>对象说明
 
 颜色断点类型，用于描述渐进色颜色断点。
 
@@ -84,6 +84,8 @@ LinearGradient(colorStops: ColorStop[])
 
 
 ## 示例
+
+### 示例1
 
 ```ts
 // xxx.ets
@@ -133,3 +135,48 @@ struct DataPanelExample {
 ```
 
 ![dataPanel](figures/dataPanel.PNG)
+
+### 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct LinearGradientDataPanelExample {
+  public values1: number[] = [20, 20, 20, 20]
+  public color1: LinearGradient = new LinearGradient([{ color: "#65EEC9A3", offset: 0 }, { color: "#FFEF629F", offset: 1 }])
+  public color2: LinearGradient = new LinearGradient([{ color: "#FF67F9D4", offset: 0 }, { color: "#FFFF9554", offset: 1 }])
+  public colorShadow1: LinearGradient = new LinearGradient([{ color: "#65EEC9A3", offset: 0 }, { color: "#65EF629F", offset: 1 }])
+  public colorShadow2: LinearGradient = new LinearGradient([{ color: "#65e26709", offset: 0 }, { color: "#65efbd08", offset: 1 }])
+  public colorShadow3: LinearGradient = new LinearGradient([{ color: "#6572B513", offset: 0 }, { color: "#6508efa6", offset: 1 }])
+  public colorShadow4: LinearGradient = new LinearGradient([{ color: "#65ed08f5", offset: 0 }, { color: "#65ef0849", offset: 1 }])
+  @State color3: string = '#00FF00'
+  @State color4: string = '#20FF0000'
+  @State bgColor: string = '#08182431'
+  @State offsetX: number = 15
+  @State offsetY: number = 15
+  @State radius: number = 5
+  @State colorArray: Array<LinearGradient | ResourceColor> = [this.color1, this.color2, this.color3, this.color4]
+  @State shadowColorArray: Array<LinearGradient | ResourceColor> = [this.colorShadow1, this.colorShadow2, this.colorShadow3, this.colorShadow4]
+
+  build() {
+    Column({ space: 5 }) {
+      Text('LinearGradient').fontSize(9).fontColor(0xCCCCCC).textAlign(TextAlign.Start).width('100%').margin({ top: 20, left: 20})
+      DataPanel({ values: this.values1, max: 100, type: DataPanelType.Circle })
+        .width(300)
+        .height(300)
+        .valueColors(this.colorArray)
+        .trackShadow({
+          radius: this.radius,
+          colors: this.shadowColorArray,
+          offsetX: this.offsetX,
+          offsetY: this.offsetY
+        })
+        .strokeWidth(30)
+        .trackBackgroundColor(this.bgColor)
+    }.width('100%').margin({ top: 5 })
+  }
+}
+```
+
+![LinearGradientDataPanel](figures/LinearGradientDataPanel.PNG)

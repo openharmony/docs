@@ -55,8 +55,8 @@ Plugin组件模板参数。
 | --------- | ----------------------------------- | ---- | -------------------------------------------------------------- |
 | want      | [Want](js-apis-application-want.md) | 是   | 组件使用者Ability信息。                                        |
 | name      | string                              | 是   | 组件名称。                                                     |
-| data      | [KVObject](#kvobject)               | 否   | 组件数据值。                                                   |
-| extraData | [KVObject](#kvobject)               | 否   | 附加数据值。                                                   |
+| data      | [KVObject](#kvobject)               | 是   | 组件数据值。                                                   |
+| extraData | [KVObject](#kvobject)               | 是   | 附加数据值。                                                   |
 | jsonPath  | string                              | 否   | 存放模板路径的[external.json](#externaljson文件说明)件的路径。 |
 
 ### PushParameterForStage
@@ -74,8 +74,8 @@ Plugin组件模板参数。
 | owner     | [Want](js-apis-application-want.md) | 是   | 组件提供方Ability信息。                                          |
 | target    | [Want](js-apis-application-want.md) | 是   | 组件使用者Ability信息。                                          |
 | name      | string                              | 是   | 组件名称。                                                       |
-| data      | [KVObject](#kvobject)               | 否   | 组件数据值。                                                     |
-| extraData | [KVObject](#kvobject)               | 否   | 附加数据值。                                                     |
+| data      | [KVObject](#kvobject)               | 是   | 组件数据值。                                                     |
+| extraData | [KVObject](#kvobject)               | 是   | 附加数据值。                                                     |
 | jsonPath  | string                              | 否   | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。 |
 
 ### RequestParameters
@@ -117,11 +117,11 @@ PluginManager.Request方法时候接收到的回调结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称              | 类型                                                 | 必填 | 说明       |
-| ----------------- | ---------------------------------------------------- | ---- | ---------- |
-| componentTemplate | [PluginComponentTemplate](#plugincomponenttemplate)] | 是   | 组件模板。 |
-| data              | [KVObject](#kvobject)                                | 是   | 组件数据。 |
-| extraData         | [KVObject](#kvobject)                                | 是   | 附加数据。 |
+| 名称              | 类型                                                | 必填 | 说明       |
+| ----------------- | --------------------------------------------------- | ---- | ---------- |
+| componentTemplate | [PluginComponentTemplate](#plugincomponenttemplate) | 是   | 组件模板。 |
+| data              | [KVObject](#kvobject)                               | 是   | 组件数据。 |
+| extraData         | [KVObject](#kvobject)                               | 是   | 附加数据。 |
 
 ### RequestEventResult
 
@@ -155,11 +155,11 @@ OnPushEventCallback = (source: Want, template: PluginComponentTemplate, data: KV
 
 ```js
 function onPushListener(source, template, data, extraData) {
-    console.log("onPushListener template.source=" + template.source)
-    console.log("onPushListener source=" + JSON.stringify(source))
-    console.log("onPushListener template=" + JSON.stringify(template))
-    console.log("onPushListener data=" + JSON.stringify(data))
-    console.log("onPushListener extraData=" + JSON.stringify(extraData))
+  console.log("onPushListener template.source=" + template.source)
+  console.log("onPushListener source=" + JSON.stringify(source))
+  console.log("onPushListener template=" + JSON.stringify(template))
+  console.log("onPushListener data=" + JSON.stringify(data))
+  console.log("onPushListener extraData=" + JSON.stringify(extraData))
 }
 ```
 
@@ -175,20 +175,19 @@ OnRequestEventCallback = (source: Want, name: string, data: KVObject) => Request
 | 参数      | 类型                                | 必填 | 说明                        |
 | --------- | ----------------------------------- | ---- | --------------------------- |
 | source    | [Want](js-apis-application-want.md) | 是   | request请求发送方相关信息。 |
-| data      | [KVObject](#kvobject)               | 是   | 数据。                      |
+| name      | string                              | 是   | 模板名称。                  |
 | extraData | [KVObject](#kvobject)               | 是   | 附加数据。                  |
 
 **示例：**
 
 ```js
-function onRequestListener(source, name, data)
-{
-    console.error("onRequestListener");
-    console.log("onRequestListener source=" + JSON.stringify(source));
-    console.log("onRequestListener name=" + name);
-    console.log("onRequestListener data=" + JSON.stringify(data));
+function onRequestListener(source, name, data) {
+  console.error("onRequestListener");
+  console.log("onRequestListener source=" + JSON.stringify(source));
+  console.log("onRequestListener name=" + name);
+  console.log("onRequestListener data=" + JSON.stringify(data));
 
-    return {template:"ets/pages/plugin.js", data:data};
+  return { template: "ets/pages/plugin.js", data: data };
 }
 ```
 
@@ -210,24 +209,24 @@ push(param: PushParameters , callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 pluginComponentManager.push(
-{
+  {
     want: {
-        bundleName: "com.example.provider",
-        abilityName: "com.example.provider.MainAbility",
+      bundleName: "com.example.provider",
+      abilityName: "com.example.provider.MainAbility",
     },
     name: "plugintemplate",
     data: {
-        "key_1": "plugin component test",
-        "key_2": 34234
+      "key_1": "plugin component test",
+      "key_2": 34234
     },
     extraData: {
-        "extra_str": "this is push event"
+      "extra_str": "this is push event"
     },
     jsonPath: "",
-    },
-    (err, data) => {
-        console.log("push_callback: push ok!");
-    }
+  },
+  (err, data) => {
+    console.log("push_callback: push ok!");
+  }
 )
 ```
 
@@ -251,30 +250,30 @@ push(param: PushParameterForStage, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 pluginComponentManager.push(
-    {
-        owner:{
-            bundleName:"com.example.provider",
-            abilityName:"com.example.provider.MainAbility"
-        },
-        target: {
-            bundleName: "com.example.provider",
-            abilityName: "com.example.provider.MainAbility",
-        },
-        name: "ets/pages/plugin2.js",
-        data: {
-            "js": "ets/pages/plugin.js",
-            "key_1": 1111, ,
-        },
-        extraData: {
-            "extra_str": "this is push event"
-        },
-        jsonPath: "",
+  {
+    owner: {
+      bundleName: "com.example.provider",
+      abilityName: "com.example.provider.MainAbility"
     },
-    (err, data) => {
-        console.log("push_callback:err: " ,JSON.stringify(err));
-        console.log("push_callback:data: " , JSON.stringify(data));
-        console.log("push_callback: push ok!");
-    }
+    target: {
+      bundleName: "com.example.provider",
+      abilityName: "com.example.provider.MainAbility",
+    },
+    name: "ets/pages/plugin2.js",
+    data: {
+      "js": "ets/pages/plugin.js",
+      "key_1": 1111, ,
+    },
+    extraData: {
+      "extra_str": "this is push event"
+    },
+    jsonPath: "",
+  },
+  (err, data) => {
+    console.log("push_callback:err: ", JSON.stringify(err));
+    console.log("push_callback:data: ", JSON.stringify(data));
+    console.log("push_callback: push ok!");
+  }
 )
 ```
 
@@ -299,24 +298,24 @@ request(param: RequestParameters, callback: AsyncCallback&lt;RequestCallbackPara
 
 ```js
 pluginComponentManager.request(
-    {
-        want: {
-            bundleName: "com.example.provider",
-            abilityName: "com.example.provider.MainAbility",
-        },
-        name: "plugintemplate",
-        data: {
-            "key_1": "plugin component test",
-            "key_2": 1111111
-        },
-        jsonPath: "",
+  {
+    want: {
+      bundleName: "com.example.provider",
+      abilityName: "com.example.provider.MainAbility",
     },
-    (err, data) => {
-        console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
-        console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
-        console.log("request_callback: data=" + JSON.stringify(data.data))
-        console.log("request_callback: extraData=" + JSON.stringify(data.extraData))
-    }
+    name: "plugintemplate",
+    data: {
+      "key_1": "plugin component test",
+      "key_2": 1111111
+    },
+    jsonPath: "",
+  },
+  (err, data) => {
+    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
+    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
+    console.log("request_callback: data=" + JSON.stringify(data.data))
+    console.log("request_callback: extraData=" + JSON.stringify(data.extraData))
+  }
 )
 ```
 
@@ -342,25 +341,25 @@ request(param: RequestParameterForStage, callback: AsyncCallback&lt;RequestCallb
 
 ```js
 pluginComponentManager.request(
-    {
-        owner:{
-            bundleName:"com.example.provider",
-            abilityName:"com.example.provider.MainAbility"
-            },
-        target: {
-            bundleName: "com.example.provider",
-            abilityName: "ets/pages/plugin2.js",
-            },
-        name: "plugintemplate",
-        data: {
-                "key_1": " myapplication plugin component test",
-                },
-        jsonPath: "",
+  {
+    owner: {
+      bundleName: "com.example.provider",
+      abilityName: "com.example.provider.MainAbility"
     },
-    (err, data) => {
-        console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
-        console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
-    }
+    target: {
+      bundleName: "com.example.provider",
+      abilityName: "ets/pages/plugin2.js",
+    },
+    name: "plugintemplate",
+    data: {
+      "key_1": " myapplication plugin component test",
+    },
+    jsonPath: "",
+  },
+  (err, data) => {
+    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
+    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
+  }
 )
 ```
 
@@ -381,8 +380,8 @@ on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback ): 
 **示例：**
 
 ```js
-    pluginComponentManager.on("push", onPushListener)
-    pluginComponentManager.on("request", onRequestListener)
+pluginComponentManager.on("push", onPushListener)
+pluginComponentManager.on("request", onRequestListener)
 ```
 
 ## external.json文件说明
@@ -396,3 +395,5 @@ external.json文件由开发者创建。external.json中以键值对形式存放
   "PluginProviderExample": "ets/pages/PluginProviderExample.js",
   "plugintemplate2": "ets/pages/plugintemplate2.js"
 }
+
+```

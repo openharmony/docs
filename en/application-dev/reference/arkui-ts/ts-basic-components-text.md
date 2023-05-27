@@ -9,7 +9,7 @@ The **\<Text>** component is used to display a piece of textual information.
 
 ## Child Components
 
-This component can contain the [\<Span>](ts-basic-components-span.md) child component.
+This component can contain the \<[Span](ts-basic-components-span.md)> and \<[ImageSpan](ts-basic-components-imagespan.md)> child components.
 
 
 ## APIs
@@ -31,22 +31,27 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name                      | Type                           | Description                                              |
 | ----------------------- | ----------------------------------- | ------------------------------------------- |
 | textAlign               | [TextAlign](ts-appendix-enums.md#textalign) | Horizontal alignment mode of the text.<br>Default value: **TextAlign.Start**<br>**NOTE**<br>The text takes up the full width of the **\<Text>** component. To set the vertical alignment for the text, use the [align](ts-universal-attributes-location.md) attribute.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| textOverflow            | {overflow: [TextOverflow](ts-appendix-enums.md#textoverflow)} | Display mode when the text is too long.<br>Default value: **{overflow: TextOverflow.Clip}**<br>**NOTE**<br/>Text is clipped at the transition between words. To clip text in the middle of a word, add **\u200B** between characters.<br>This attribute must be used with **maxLines** to take effect.<br>Since API version 9, this API is supported in ArkTS widgets. |
-| maxLines                | number | Maximum number of lines in the text.<br>Default value: **Infinity**<br>**NOTE**<br/>By default, text is automatically folded. If this attribute is specified, the text will not exceed the specified number of lines. If there is extra text, you can use **textOverflow** to specify how it is displayed.<br>Since API version 9, this API is supported in ArkTS widgets. |
+| textOverflow            | {overflow: [TextOverflow](ts-appendix-enums.md#textoverflow)} | Display mode when the text is too long.<br>Default value: **{overflow: TextOverflow.Clip}**<br>**NOTE**<br/>Text is clipped at the transition between words. To clip text in the middle of a word, add **\u200B** between characters.<br>If **overflow** is set to **TextOverflow.None**, **TextOverflow.Clip**, or **TextOverflow.Ellipsis**, this attribute must be used with **maxLines**. Otherwise, the setting does not take effect. If **overflow** is set to **TextOverflow.Marquee**, the text scrolls in a line, and therefore **maxLines** does not need to be set.<br>Since API version 9, this API is supported in ArkTS widgets. |
+| maxLines                | number | Maximum number of lines in the text.<br>Default value: **Infinity**<br>**NOTE**<br/>By default, text is automatically folded. If this attribute is specified, the text will not exceed the specified number of lines. If there is extra text, you can use **textOverflow** to specify how it is displayed.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | lineHeight              | string \| number \| [Resource](ts-types.md#resource)  | Text line height. If the value is less than or equal to **0**, the line height is not limited and the font size is adaptive. If the value of the number type, the unit fp is used.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | decoration              | {<br>type: [TextDecorationType](ts-appendix-enums.md#textdecorationtype),<br>color?: [ResourceColor](ts-types.md#resourcecolor)<br>} | Style and color of the text decorative line.<br>Default value: {<br>type: TextDecorationType.None,<br>color: Color.Black<br>} <br>Since API version 9, this API is supported in ArkTS widgets.|
-| baselineOffset          | number \| string | Baseline offset of the text. The default value is **0**.<br>Since API version 9, this API is supported in ArkTS widgets.                           |
-| letterSpacing           | number \| string | Letter spacing.<br>Since API version 9, this API is supported in ArkTS widgets.                                |
-| minFontSize             | number \| string \| [Resource](ts-types.md#resource)      | Minimum font size.<br>For the setting to take effect, this attribute must be used together with **maxFontSize**, **maxLines**, or layout constraint settings.<br>Since API version 9, this API is supported in ArkTS widgets.                      |
-| maxFontSize             | number \| string \| [Resource](ts-types.md#resource)      | Maximum font size.<br>For the setting to take effect, this attribute must be used together with **minFontSize**, **maxLines**, or layout constraint settings.<br>Since API version 9, this API is supported in ArkTS widgets.                       |
+| baselineOffset          | number \| string | Baseline offset of the text. The default value is **0**.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br/><br>If this attribute is set to a percentage, the default value is used.|
+| letterSpacing           | number \| string | Letter spacing.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br/><br>If this attribute is set to a percentage, the default value is used.|
+| minFontSize             | number \| string \| [Resource](ts-types.md#resource)      | Minimum font size.<br>For the setting to take effect, this attribute must be used together with **maxFontSize**, **maxLines**, or layout constraint settings.<br>Since API version 9, this API is supported in ArkTS widgets.                              |
+| maxFontSize             | number \| string \| [Resource](ts-types.md#resource)      | Maximum font size.<br>For the setting to take effect, this attribute must be used together with **minFontSize**, **maxLines**, or layout constraint settings.<br>Since API version 9, this API is supported in ArkTS widgets.                               |
 | textCase                | [TextCase](ts-appendix-enums.md#textcase) | Text case.<br>Default value: **TextCase.Normal**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | copyOption<sup>9+</sup> | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether copy and paste is allowed.<br>Default value: **CopyOptions.None**<br>This API is supported in ArkTS widgets.|
 | textShadow<sup>10+</sup> | [ShadowOptions](ts-universal-attributes-image-effect.md#shadowoptions) | Text shadow.|
 | heightAdaptivePolicy<sup>10+</sup> | [TextHeightAdaptivePolicy](ts-appendix-enums.md#TextHeightAdaptivePolicy10) | How the adaptive height is determined for the text.|
+| textIndent<sup>10+</sup> | number \| string | Indentation of the first line.<br>Default value: **0**|
 
 >  **NOTE**
 >
->  The **\<Text>** component cannot contain both the text and the child component **\<Span>**. If both of them exist, only the content in **\<Span>** is displayed.
+>  The **\<Text>** component cannot contain both the text and the child component **\<Span>** or **\<ImageSpan>**. If both of them exist, only the content in **\<Span>** or **\<ImageSpan>** is displayed.
+
+## Events
+
+The [universal events](ts-universal-events-click.md) are supported.
 
 
 ## Example

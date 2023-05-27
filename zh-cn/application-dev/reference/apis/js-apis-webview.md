@@ -234,7 +234,7 @@ postMessageEventExt(message: WebMessageExt): void
 
 | 参数名  | 类型   | 必填 | 说明           |
 | ------- | ------ | ---- | :------------- |
-| message | [WebMessageExt](#webmessageext) | 是   | 要发送的消息。 |
+| message | [WebMessageExt](#webmessageext10) | 是   | 要发送的消息。 |
 
 **错误码：**
 
@@ -491,7 +491,7 @@ static setHttpDns(secureDnsMode:SecureDnsMode, secureDnsConfig:string): void
 
 | 参数名              | 类型    | 必填   |  说明 |
 | ------------------ | ------- | ---- | ------------- |
-| secureDnsMode         |   [SecureDnsMode](#securednsmode)   | 是   | 使用HTTPDNS的模式。|
+| secureDnsMode         |   [SecureDnsMode](#securednsmode10)   | 是   | 使用HTTPDNS的模式。|
 | secureDnsConfig       | string | 是 | HTTPDNS server的配置，必须是https协议并且只允许配置一个server。 |
 
 **示例：**
@@ -504,7 +504,6 @@ import web_webview from '@ohos.web.webview';
 export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log("EntryAbility onCreate")
-        web_webview.WebviewController.initializeWebEngine()
         try {
             web_webview.WebviewController.setHttpDns(web_webview.SecureDnsMode.Auto, "https://example1.test")
         } catch(error) {
@@ -739,6 +738,11 @@ loadData(data: string, mimeType: string, encoding: string, baseUrl?: string, his
 | encoding   | string | 是   | 编码类型，具体为“Base64"或者”URL编码。                       |
 | baseUrl    | string | 否   | 指定的一个URL路径（“http”/“https”/"data"协议），并由Web组件赋值给window.origin。 |
 | historyUrl | string | 否   | 用作历史记录所使用的URL。非空时，历史记录以此URL进行管理。当baseUrl为空时，此属性无效。 |
+
+> **说明：**
+> 
+> 若加载本地图片，可以给baseUrl或historyUrl任一参数赋值空格，详情请参考示例代码。
+> 加载本地图片场景，baseUrl和historyUrl不能同时为空，否则图片无法成功加载。
 
 **错误码：**
 
@@ -1755,7 +1759,7 @@ zoom(factor: number): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| factor | number   | 是   | 基于当前网页所需调整的相对缩放比例，正值为放大，负值为缩小。 |
+| factor | number   | 是   | 基于当前网页所需调整的相对缩放比例，入参要求大于0，当入参为1时为默认加载网页的缩放比例，入参小于1为缩小，入参大于1为放大。 |
 
 **错误码：**
 
@@ -2038,7 +2042,7 @@ createWebMessagePorts(isExtentionType?: boolean): Array\<WebMessagePort>
 
 | 参数名 | 类型                   | 必填 | 说明                             |
 | ------ | ---------------------- | ---- | :------------------------------|
-| isExtentionType<sup>10+</sup>   | boolean     | 否  | 是否使用扩展增强接口，默认false不使用。 |
+| isExtentionType<sup>10+</sup>   | boolean     | 否  | 是否使用扩展增强接口，默认false不使用。 从API version 10开始，该接口支持此参数。|
 
 **返回值：**
 
@@ -2138,24 +2142,24 @@ struct WebComponent {
             this.ports = this.controller.createWebMessagePorts();
             // 2、在应用侧的消息端口(如端口1)上注册回调事件。
             this.ports[1].onMessageEvent((result: web_webview.WebMessage) => {
-                let msg = 'Got msg from HTML:';
-                if (typeof(result) == "string") {
-                  console.log("received string message from html5, string is:" + result);
-                  msg = msg + result;
-                } else if (typeof(result) == "object") {
-                  if (result instanceof ArrayBuffer) {
-                    console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                    msg = msg + "lenght is " + result.byteLength;
-                  } else {
-                    console.log("not support");
-                  }
+              let msg = 'Got msg from HTML:';
+              if (typeof(result) == "string") {
+                console.log("received string message from html5, string is:" + result);
+                msg = msg + result;
+              } else if (typeof(result) == "object") {
+                if (result instanceof ArrayBuffer) {
+                  console.log("received arraybuffer from html5, length is:" + result.byteLength);
+                  msg = msg + "lenght is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
-                this.receivedFromHtml = msg;
-              })
-              // 3、将另一个消息端口(如端口0)发送到HTML侧，由HTML侧保存并使用。
-              this.controller.postMessage('__init_port__', [this.ports[0]], '*');
+              } else {
+                console.log("not support");
+              }
+              this.receivedFromHtml = msg;
+            })
+            // 3、将另一个消息端口(如端口0)发送到HTML侧，由HTML侧保存并使用。
+            this.controller.postMessage('__init_port__', [this.ports[0]], '*');
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -2524,6 +2528,37 @@ struct WebComponent {
 }
 ```
 
+支持开发者基于默认的UserAgent去定制UserAgent。
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State ua: string = ""
+
+  aboutToAppear():void {
+    web_webview.once('webInited', () => {
+      try {
+        // 应用侧用法示例，定制UserAgent。
+        this.ua = this.controller.getUserAgent() + 'xxx';
+      } catch(error) {
+        console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+      }
+    })
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .userAgent(this.ua)
+    }
+  }
+}
+```
+
 ### getTitle
 
 getTitle(): string
@@ -2638,7 +2673,7 @@ storeWebArchive(baseName: string, autoName: boolean, callback: AsyncCallback\<st
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | baseName | string                | 是   | 文件存储路径，该值不能为空。                                 |
 | autoName | boolean               | 是   | 决定是否自动生成文件名。 如果为false，则将baseName作为文件存储路径。 如果为true，则假定baseName是一个目录，将根据当前页的Url自动生成文件名。 |
-| callback | AsyncCallback\<string> | 是   | 返回文件存储路径，保持网页失败会返回null。                   |
+| callback | AsyncCallback\<string> | 是   | 返回文件存储路径，保存网页失败会返回null。                   |
 
 **错误码：**
 
@@ -2662,7 +2697,7 @@ struct WebComponent {
 
   build() {
     Column() {
-      Button('saveWebArchive')
+      Button('storeWebArchive')
         .onClick(() => {
           try {
             this.controller.storeWebArchive("/data/storage/el2/base/", true, (error, filename) => {
@@ -2727,7 +2762,7 @@ struct WebComponent {
 
   build() {
     Column() {
-      Button('saveWebArchive')
+      Button('storeWebArchive')
         .onClick(() => {
           try {
             this.controller.storeWebArchive("/data/storage/el2/base/", true)
@@ -3192,7 +3227,7 @@ import image from "@ohos.multimedia.image"
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-    @State pixelmap: image.PixelMap = undefined;
+  @State pixelmap: image.PixelMap = undefined;
 
   build() {
     Column() {
@@ -3298,12 +3333,12 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.controller.hasImage((error, data) => {
-                if (error) {
-                  console.info(`hasImage error: ` + JSON.stringify(error))
-                  return;
-                }
-                console.info("hasImage: " + data);
-              });
+              if (error) {
+                console.info(`hasImage error: ` + JSON.stringify(error))
+                return;
+              }
+              console.info("hasImage: " + data);
+            });
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -3353,11 +3388,11 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.controller.hasImage().then((data) => {
-                console.info('hasImage: ' + data);
-              })
-              .catch(function (error) {
-                console.error("error: " + error);
-              })
+              console.info('hasImage: ' + data);
+            })
+            .catch(function (error) {
+              console.error("error: " + error);
+            })
           } catch (error) {
             console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
           }
@@ -4132,7 +4167,7 @@ struct WebComponent {
 
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookieManager实例。
 
-###  getCookie
+### getCookie
 
 static getCookie(url: string): string
 
@@ -4188,7 +4223,7 @@ struct WebComponent {
 }
 ```
 
-###  setCookie
+### setCookie
 
 static setCookie(url: string, value: string): void
 
@@ -4239,7 +4274,7 @@ struct WebComponent {
 }
 ```
 
-###  saveCookieAsync
+### saveCookieAsync
 
 static saveCookieAsync(callback: AsyncCallback\<void>): void
 
@@ -4251,7 +4286,7 @@ static saveCookieAsync(callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                   | 必填 | 说明                                               |
 | -------- | ---------------------- | ---- | :------------------------------------------------- |
-| callback | AsyncCallback\<void> | 是   | 返回cookie是否成功保存的布尔值作为回调函数的入参。 |
+| callback | AsyncCallback\<void> | 是   | callback回调，用于获取cookie是否成功保存。 |
 
 
 **示例：**
@@ -4285,7 +4320,7 @@ struct WebComponent {
 }
 ```
 
-###  saveCookieAsync
+### saveCookieAsync
 
 static saveCookieAsync(): Promise\<void>
 
@@ -4332,7 +4367,7 @@ struct WebComponent {
 }
 ```
 
-###  putAcceptCookieEnabled
+### putAcceptCookieEnabled
 
 static putAcceptCookieEnabled(accept: boolean): void
 
@@ -4373,7 +4408,7 @@ struct WebComponent {
 }
 ```
 
-###  isCookieAllowed
+### isCookieAllowed
 
 static isCookieAllowed(): boolean
 
@@ -4411,7 +4446,7 @@ struct WebComponent {
 }
 ```
 
-###  putAcceptThirdPartyCookieEnabled
+### putAcceptThirdPartyCookieEnabled
 
 static putAcceptThirdPartyCookieEnabled(accept: boolean): void
 
@@ -4452,7 +4487,7 @@ struct WebComponent {
 }
 ```
 
-###  isThirdPartyCookieAllowed
+### isThirdPartyCookieAllowed
 
 static isThirdPartyCookieAllowed(): boolean
 
@@ -4490,7 +4525,7 @@ struct WebComponent {
 }
 ```
 
-###  existCookie
+### existCookie
 
 static existCookie(): boolean
 
@@ -4528,7 +4563,7 @@ struct WebComponent {
 }
 ```
 
-###  deleteEntireCookie
+### deleteEntireCookie
 
 static deleteEntireCookie(): void
 
@@ -4559,7 +4594,7 @@ struct WebComponent {
 }
 ```
 
-###  deleteSessionCookie
+### deleteSessionCookie
 
 static deleteSessionCookie(): void
 

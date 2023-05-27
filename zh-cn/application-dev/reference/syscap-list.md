@@ -62,14 +62,6 @@ libuv功能
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
 
-## SystemCapability.BundleManager.BundleTool
-
-包管理命令行工具
-
-| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
-| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
-
 ## SystemCapability.BundleManager.Zlib
 
 Zlib压缩、解压缩工具
@@ -77,14 +69,6 @@ Zlib压缩、解压缩工具
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
-
-## SystemCapability.BundleManager.PackingTool
-
-包管理打包、拆包工具
-
-| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
-| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| 是      | 是     | 是     | 是   | 是   | 是     | 是           | 否     |
 
 ## SystemCapability.Graphic.Graphic2D.WebGL
 
@@ -309,6 +293,14 @@ GNSS硬件相关能力
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
 
+## SystemCapability.MultimodalInput.Input.RemoteInputDevice
+
+远程输入设备
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
+
 ## SystemCapability.MultimodalInput.Input.InputMonitor
 
 输入事件监听者
@@ -328,6 +320,14 @@ GNSS硬件相关能力
 ## SystemCapability.MultimodalInput.Input.InputSimulator
 
 输入事件模拟者
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 否     | 是   | 是   | 是     | 否           | 否     |
+
+## SystemCapability.MultimodalInput.Input.InputFilter
+
+输入过滤
 
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -1347,7 +1347,7 @@ webview组件
 
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
+| 是      | 否     | 否     | 是   | 是   | 否     | 否           | 否     |
 
 ## SystemCapability.Cloud.AAID
 
@@ -1637,9 +1637,9 @@ VPN
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 是     | 是   | 是   | 是     | 否           | 否     |
 
-## SystemCapability.MultimodalInput.Input.Pointer
+## SystemCapability.MultimodalInput.Input.ShortKey
 
-Pointer输入增强能力
+快捷键
 
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -1668,4 +1668,12 @@ Pointer输入增强能力
 | Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 是     | 是     | 是   | 是   | 是     | 是           | 是     |
+
+## SystemCapability.Msdp.DeviceStatus.Cooperate
+
+设备状态感知
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 否     | 否     | 是   | 否   | 否     | 否           | 否     |
 

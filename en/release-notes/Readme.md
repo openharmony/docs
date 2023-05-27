@@ -1,20 +1,23 @@
 # OpenHarmony Release Notes
 ## OpenHarmony 3.x Releases
 
+- [OpenHarmony v3.2 Release (2023-04-09)](OpenHarmony-v3.2-release.md)
 - [OpenHarmony v3.2 Beta5 (2023-01-31)](OpenHarmony-v3.2-beta5.md)
 - [OpenHarmony v3.2 Beta4 (2022-11-30)](OpenHarmony-v3.2-beta4.md)
 - [OpenHarmony v3.2 Beta3 (2022-09-30)](OpenHarmony-v3.2-beta3.md)
 - [OpenHarmony v3.2 Beta2 (2022-07-30)](OpenHarmony-v3.2-beta2.md)
 - [OpenHarmony v3.2 Beta1 (2022-05-31)](OpenHarmony-v3.2-beta1.md)
 - [OpenHarmony v3.1 Release (2022-03-30)](OpenHarmony-v3.1-release.md)
-- [OpenHarmony v3.1.6 Release (2023-01-30)](OpenHarmony-v3.1.6-release.md)
-- [OpenHarmony v3.1.5 Release (2022-12-30)](OpenHarmony-v3.1.5-release.md)
+- [OpenHarmony v3.1.7 Release (2023-04-04)](OpenHarmony-v3.1.7-release.md)
+- [OpenHarmony v3.1.6 Release (2023-02-06)](OpenHarmony-v3.1.6-release.md)
+- [OpenHarmony v3.1.5 Release (2023-01-10)](OpenHarmony-v3.1.5-release.md)
 - [OpenHarmony v3.1.4 Release (2022-11-02)](OpenHarmony-v3.1.4-release.md)
 - [OpenHarmony v3.1.3 Release (2022-09-30)](OpenHarmony-v3.1.3-release.md)
 - [OpenHarmony v3.1.2 Release (2022-08-24)](OpenHarmony-v3.1.2-release.md)
 - [OpenHarmony v3.1.1 Release (2022-05-31)](OpenHarmony-v3.1.1-release.md)
 - [OpenHarmony v3.1 Beta (2021-12-31)](OpenHarmony-v3.1-beta.md)
 - [OpenHarmony v3.0 LTS (2021-09-30)](OpenHarmony-v3.0-LTS.md)
+- [OpenHarmony v3.0.8 LTS (2022-03-03)](OpenHarmony-v3.0.8-LTS.md)
 - [OpenHarmony v3.0.7 LTS (2022-12-05)](OpenHarmony-v3.0.7-LTS.md)
 - [OpenHarmony v3.0.6 LTS (2022-09-15)](OpenHarmony-v3.0.6-LTS.md)
 - [OpenHarmony v3.0.5 LTS (2022-07-01)](OpenHarmony-v3.0.5-LTS.md)
@@ -27,7 +30,7 @@
 - [OpenHarmony v2.2 beta2 (2021-08-04)](OpenHarmony-v2.2-beta2.md)
 - [OpenHarmony 2.0 Canary (2021-06-01)](OpenHarmony-2-0-Canary.md)
 
-## OpenHarmony 1.x Releases(EOL)
+## OpenHarmony 1.x Releases (EOL)
 
 - [OpenHarmony v1.0 (2020-09-10)](OpenHarmony-1-0.md)
 - [OpenHarmony v1.1.5 LTS (2022-08-24)](OpenHarmony-v1.1.5-LTS.md)

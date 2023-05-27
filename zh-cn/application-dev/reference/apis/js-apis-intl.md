@@ -67,7 +67,7 @@ constructor(locale: string, options?: LocaleOptions)
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
 | locale               | string                           | 是    | 包含区域信息的字符串，包括语言以、脚本、国家或地区。语言、脚本、国家或地区的国际标准及组合方式请见[Intl开发指导](../../internationalization/intl-guidelines.md#设置区域信息) |
-| options<sup>9+</sup> | [LocaleOptions](#localeoptions9) | 否    | 用于创建区域对象的选项。                 |
+| options             | [LocaleOptions](#localeoptions6) | 否    | 用于创建区域对象的选项。                 |
 
 **示例：** 
   ```js
@@ -159,9 +159,10 @@ minimize(): Locale
   ```
 
 
-## LocaleOptions<sup>9+</sup>
+## LocaleOptions<sup>6+</sup>
 
 表示区域初始化选项。
+在API9中，LocaleOptions中的属性修改为可选属性。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -206,7 +207,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: DateTimeOptions)
 | 参数名                  | 类型                                   | 必填   | 说明                           |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options<sup>9+</sup> | [DateTimeOptions](#datetimeoptions9) | 否    | 用于创建时间日期格式化的选项。              |
+| options              | [DateTimeOptions](#datetimeoptions6) | 否    | 用于创建时间日期格式化的选项。              |
 
 **示例：** 
   ```js
@@ -298,7 +299,7 @@ resolvedOptions(): DateTimeOptions
 
 | 类型                                   | 说明                            |
 | ------------------------------------ | ----------------------------- |
-| [DateTimeOptions](#datetimeoptions9) | DateTimeFormat&nbsp;对象的格式化选项。 |
+| [DateTimeOptions](#datetimeoptions6) | DateTimeFormat&nbsp;对象的格式化选项。 |
 
 **示例：** 
   ```js
@@ -310,9 +311,10 @@ resolvedOptions(): DateTimeOptions
   ```
 
 
-## DateTimeOptions<sup>9+</sup>
+## DateTimeOptions<sup>6+</sup>
 
 表示时间日期格式化选项。
+在API9中，DateTimeOptions中的属性修改为可选属性。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -370,7 +372,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: NumberOptions)
 | 参数名                  | 类型                               | 必填   | 说明                           |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;    | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options<sup>9+</sup> | [NumberOptions](#numberoptions9) | 否    | 用于创建数字格式化的选项。                |
+| options              | [NumberOptions](#numberoptions6) | 否    | 用于创建数字格式化的选项。                |
 
 **示例：** 
   ```js
@@ -420,7 +422,7 @@ resolvedOptions(): NumberOptions
 
 | 类型                               | 说明                          |
 | -------------------------------- | --------------------------- |
-| [NumberOptions](#numberoptions9) | NumberFormat&nbsp;对象的格式化选项。 |
+| [NumberOptions](#numberoptions6) | NumberFormat&nbsp;对象的格式化选项。 |
 
 
 **示例：** 
@@ -433,9 +435,10 @@ resolvedOptions(): NumberOptions
   ```
 
 
-## NumberOptions<sup>9+</sup>
+## NumberOptions<sup>6+</sup>
 
 表示设备支持的能力。
+在API9中，NumberOptions中的属性修改为可选属性。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -447,7 +450,7 @@ resolvedOptions(): NumberOptions
 | currencyDisplay          | string  | 是    | 是    | 货币的显示方式，取值包括："symbol",&nbsp;"narrowSymbol",&nbsp;"code",&nbsp;"name"。 |
 | unit                     | string  | 是    | 是    | 单位名称，如："meter"，"inch"，“hectare”等。        |
 | unitDisplay              | string  | 是    | 是    | 单位的显示格式，取值包括："long",&nbsp;"short",&nbsp;"narrow"。 |
-| unitUsage                | string  | 是    | 是    | 单位的使用场景，取值包括："default",&nbsp;"area-land-agricult",&nbsp;"area-land-commercl",&nbsp;"area-land-residntl",&nbsp;"length-person",&nbsp;"length-person-small",&nbsp;"length-rainfall",&nbsp;"length-road",&nbsp;"length-road-small",&nbsp;"length-snowfall",&nbsp;"length-vehicle",&nbsp;"length-visiblty",&nbsp;"length-visiblty-small",&nbsp;"length-person-informal",&nbsp;"length-person-small-informal",&nbsp;"length-road-informal",&nbsp;"speed-road-travel",&nbsp;"speed-wind",&nbsp;"temperature-person",&nbsp;"temperature-weather",&nbsp;"volume-vehicle-fuel"。 |
+| unitUsage<sup>8+</sup>   | string  | 是    | 是    | 单位的使用场景，取值包括："default",&nbsp;"area-land-agricult",&nbsp;"area-land-commercl",&nbsp;"area-land-residntl",&nbsp;"length-person",&nbsp;"length-person-small",&nbsp;"length-rainfall",&nbsp;"length-road",&nbsp;"length-road-small",&nbsp;"length-snowfall",&nbsp;"length-vehicle",&nbsp;"length-visiblty",&nbsp;"length-visiblty-small",&nbsp;"length-person-informal",&nbsp;"length-person-small-informal",&nbsp;"length-road-informal",&nbsp;"speed-road-travel",&nbsp;"speed-wind",&nbsp;"temperature-person",&nbsp;"temperature-weather",&nbsp;"volume-vehicle-fuel"。 |
 | signDisplay              | string  | 是    | 是    | 数字符号的显示格式，取值包括："auto",&nbsp;"never",&nbsp;"always",&nbsp;"expectZero"。 |
 | compactDisplay           | string  | 是    | 是    | 紧凑型的显示格式，取值包括："long",&nbsp;"short"。      |
 | notation                 | string  | 是    | 是    | 数字的格式化规格，取值包括："standard",&nbsp;"scientific",&nbsp;"engineering",&nbsp;"compact"。 |
@@ -493,7 +496,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: CollatorOptions)
 | 参数名                  | 类型                                   | 必填   | 说明                           |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options<sup>9+</sup> | [CollatorOptions](#collatoroptions9) | 否    | 用于创建排序对象的选项。                 |
+| options              | [CollatorOptions](#collatoroptions8) | 否    | 用于创建排序对象的选项。                 |
 
 **示例：** 
   ```js
@@ -544,7 +547,7 @@ resolvedOptions(): CollatorOptions
 
 | 类型                                   | 说明                |
 | ------------------------------------ | ----------------- |
-| [CollatorOptions](#collatoroptions9) | 返回的Collator对象的属性。 |
+| [CollatorOptions](#collatoroptions8) | 返回的Collator对象的属性。 |
 
 **示例：** 
   ```js
@@ -556,9 +559,10 @@ resolvedOptions(): CollatorOptions
   ```
 
 
-## CollatorOptions<sup>9+</sup>
+## CollatorOptions<sup>8+</sup>
 
 表示Collator可设置的属性。
+在API9中，CollatorOptions中的属性修改为可选属性。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -604,7 +608,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: PluralRulesOptions)
 | 参数名                  | 类型                                       | 必填   | 说明                           |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;            | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options<sup>9+</sup> | [PluralRulesOptions](#pluralrulesoptions9) | 否    | 用于创建单复数对象的选项。                |
+| options              | [PluralRulesOptions](#pluralrulesoptions8) | 否    | 用于创建单复数对象的选项。                |
 
 **示例：** 
   ```js
@@ -647,9 +651,10 @@ select(n: number): string
   ```
 
 
-## PluralRulesOptions<sup>9+</sup>
+## PluralRulesOptions<sup>8+</sup>
 
 表示PluralRules对象可设置的属性。
+在API9中，PluralRulesOptions中的属性修改为可选属性。
 
 **系统能力**：SystemCapability.Global.I18n
 
@@ -695,7 +700,7 @@ constructor(locale: string | Array&lt;string&gt;, options?: RelativeTimeFormatIn
 | 参数名                  | 类型                                       | 必填   | 说明                           |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;            | 是    | 包含区域设置信息的字符串，包括语言以及可选的脚本和区域。 |
-| options<sup>9+</sup> | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions9) | 否    | 用于创建相对时间格式化对象的选项。            |
+| options              | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions8) | 否    | 用于创建相对时间格式化对象的选项。            |
 
 **示例：** 
   ```js
@@ -787,9 +792,10 @@ resolvedOptions(): RelativeTimeFormatResolvedOptions
   ```
 
 
-## RelativeTimeFormatInputOptions<sup>9+</sup>
+## RelativeTimeFormatInputOptions<sup>8+</sup>
 
 表示RelativeTimeFormat对象可设置的属性。
+在API9中，RelativeTimeFormatInputOptions中的属性修改为可选属性。
 
 **系统能力**：SystemCapability.Global.I18n
 

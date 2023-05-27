@@ -33,8 +33,8 @@ OpenHarmony does not support creation of a Service Extension ability for third-p
         "icon": "$media:icon",
         "description": "service",
         "type": "service",
-        "visible": true,
-        "srcEntrance": "./ets/ServiceExtAbility/ServiceExtAbility.ts"
+        "exported": true,
+        "srcEntry": "./ets/ServiceExtAbility/ServiceExtAbility.ts"
     }]
    ```
 

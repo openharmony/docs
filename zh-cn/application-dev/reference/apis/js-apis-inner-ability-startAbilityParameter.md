@@ -7,6 +7,12 @@
 > 本接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本接口仅可在FA模型下使用
 
+## 导入模块
+
+```ts
+import ability from '@ohos.ability.ability';
+```
+
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.FAModel
 
 | 名称               |   类型   | 必填   | 说明                                    |
@@ -30,7 +36,7 @@ let abilityStartSetting ={
     [featureAbility.AbilityStartSetting.DISPLAY_ID_KEY] : 1,
 };
 
-let startAbilityParameter = {
+let startAbilityParameter: ability.StartAbilityParameter = {
     want : Want,
     abilityStartSetting : abilityStartSetting
 };

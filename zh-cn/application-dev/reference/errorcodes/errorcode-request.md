@@ -30,7 +30,7 @@ Bad file path.
 
 **错误描述**
 
-在调用uploadFile或downloadFile接口时，文件路径不合法。
+在调用uploadFile或downloadFile接口时，文件路径不合法或文件路径下文件已存在。
 
 **可能原因**
 

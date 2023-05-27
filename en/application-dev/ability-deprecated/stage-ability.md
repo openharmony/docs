@@ -12,8 +12,8 @@ An ability can be launched in the **standard**, **singleton**, or **specified** 
 
 | Launch Type    | Description    |Action            |
 | ----------- | -------  |---------------- |
-| standard    | Standard mode  | A new instance is started each time an ability starts.|
-| singleton   | Singleton mode  | The ability has only one instance in the system. If an instance already exists when an ability is started, that instance is reused.|
+| multiton    | Multi-instance mode| A new instance is started each time an ability starts.|
+| singleton   | Singleton mode  | Default type. The ability has only one instance in the system. If an instance already exists when an ability is started, that instance is reused.|
 | specified   | Instance-specific| The internal service of an ability determines whether to create multiple instances during running.|
 
 By default, the singleton mode is used. The following is an example of the **module.json5** file:
@@ -39,7 +39,7 @@ The table below describes the APIs provided by the **AbilityStage** class, which
 |onAcceptWant(want: Want): string|Called when a specified ability is started.|
 |onConfigurationUpdated(config: Configuration): void|Called when the global configuration is updated.|
 
-The table below describes the APIs provided by the **Ability** class. For details about the APIs, see [Ability](../reference/apis/js-apis-application-ability.md).
+The table below describes the APIs provided by the **Ability** class. For details about the APIs, see [UIAbility](../reference/apis/js-apis-app-ability-uiAbility.md).
 
 **Table 2** Ability APIs
 
@@ -190,7 +190,7 @@ export default class EntryAbility extends UIAbility {
 ```
 ## Starting an Ability
 ### Available APIs
-The **Ability** class has the **context** attribute, which belongs to the **AbilityContext** class. The **AbilityContext** class has the **abilityInfo**, **currentHapModuleInfo**, and other attributes as well as the APIs used for starting abilities. For details, see [AbilityContext](../reference/apis/js-apis-ability-context.md).
+The **Ability** class has the **context** attribute, which belongs to the **AbilityContext** class. The **AbilityContext** class has the **abilityInfo**, **currentHapModuleInfo**, and other attributes as well as the APIs used for starting abilities. For details, see [AbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md).
 
 **Table 3** AbilityContext APIs
 |API|Description|
@@ -207,7 +207,7 @@ The **Ability** class has the **context** attribute, which belongs to the **Abil
 An application can obtain the context of an **Ability** instance through **this.context** and then use the **startAbility** API in the **AbilityContext** class to start the ability. The ability can be started by specifying **Want**, **StartOptions**, and **accountId**, and the operation result can be returned using a callback or **Promise** instance. The sample code is as follows:
 ```ts
 let context = this.context
-var want = {
+let want = {
     "deviceId": "",
     "bundleName": "com.example.MyApplication",
     "abilityName": "EntryAbility"
@@ -224,7 +224,7 @@ context.startAbility(want).then(() => {
 In the cross-device scenario, you must specify the ID of the remote device. The sample code is as follows:
 ```ts
 let context = this.context
-var want = {
+let want = {
     "deviceId": getRemoteDeviceId(),
     "bundleName": "com.example.MyApplication",
     "abilityName": "EntryAbility"
@@ -239,9 +239,9 @@ Obtain the ID of a specified device from **DeviceManager**. The sample code is a
 ```ts
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 function getRemoteDeviceId() {
-    if (typeof dmClass === 'object' && dmClass != null) {
-        var list = dmClass.getTrustedDeviceListSync();
-        if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
+    if (typeof dmClass === 'object' && dmClass !== null) {
+        let list = dmClass.getTrustedDeviceListSync();
+        if (typeof (list) === 'undefined' || typeof (list.length) === 'undefined') {
             console.log("EntryAbility onButtonClick getRemoteDeviceId err: list is null");
             return;
         }

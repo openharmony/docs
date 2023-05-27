@@ -86,7 +86,7 @@ activateOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
       if (err) {
         console.error(`activateOsAccount failed, code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log("activateOsAccount successfully");
+        console.log('activateOsAccount successfully');
       }
     });
   } catch (err) {
@@ -139,7 +139,7 @@ activateOsAccount(localId: number): Promise&lt;void&gt;
       console.log('activateOsAccount failed, err:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('activateOsAccount exception:' + JSON.stringify(e));
+    console.log('activateOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -172,7 +172,7 @@ checkMultiOsAccountEnabled(callback: AsyncCallback&lt;boolean&gt;): void
       if (err) {
         console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
       } else {
-      console.log("checkMultiOsAccountEnabled successfully, isEnabled: " + isEnabled);
+      console.log('checkMultiOsAccountEnabled successfully, isEnabled: ' + isEnabled);
       }
     });
   } catch (err) {
@@ -254,7 +254,7 @@ checkOsAccountActivated(localId: number, callback: AsyncCallback&lt;boolean&gt;)
       }
     });
   } catch (err) {
-    console.log('checkOsAccountActivated exception:' + JSON.stringify(err));
+    console.log('checkOsAccountActivated exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -297,10 +297,10 @@ checkOsAccountActivated(localId: number): Promise&lt;boolean&gt;
     accountManager.checkOsAccountActivated(localId).then((isActivated) => {
       console.log('checkOsAccountActivated successfully, isActivated: ' + isActivated);
     }).catch((err) => {
-      console.log('checkOsAccountActivated failed, error: '  + JSON.stringify(err));
+      console.log('checkOsAccountActivated failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('checkOsAccountActivated exception:' + JSON.stringify(err));
+    console.log('checkOsAccountActivated exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -335,17 +335,17 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string, callback: A
   ```js
   let accountManager = account_osAccount.getAccountManager();
   let localId = 100;
-  let constraint = "constraint.wifi";
+  let constraint = 'constraint.wifi';
   try {
     accountManager.checkOsAccountConstraintEnabled(localId, constraint, (err, isEnabled)=>{
       if (err) {
-        console.log("checkOsAccountConstraintEnabled failed, error: " + JSON.stringify(err));
+        console.log('checkOsAccountConstraintEnabled failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("checkOsAccountConstraintEnabled successfully, isEnabled: " + isEnabled);
+        console.log('checkOsAccountConstraintEnabled successfully, isEnabled: ' + isEnabled);
       }
     });
   } catch (err) {
-    console.log("checkOsAccountConstraintEnabled exception: " + JSON.stringify(err));
+    console.log('checkOsAccountConstraintEnabled exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -385,15 +385,15 @@ checkOsAccountConstraintEnabled(localId: number, constraint: string): Promise&lt
   ```js
   let accountManager = account_osAccount.getAccountManager();
   let localId = 100;
-  let constraint = "constraint.wifi";
+  let constraint = 'constraint.wifi';
   try {
     accountManager.checkOsAccountConstraintEnabled(localId, constraint).then((isEnabled) => {
-      console.log("checkOsAccountConstraintEnabled successfully, isEnabled: " + isEnabled);
+      console.log('checkOsAccountConstraintEnabled successfully, isEnabled: ' + isEnabled);
     }).catch((err) => {
-      console.log("checkOsAccountConstraintEnabled failed, error: "  + JSON.stringify(err));
+      console.log('checkOsAccountConstraintEnabled failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("checkOsAccountConstraintEnabled exception: " + JSON.stringify(err));
+    console.log('checkOsAccountConstraintEnabled exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -424,13 +424,13 @@ checkOsAccountTestable(callback: AsyncCallback&lt;boolean&gt;): void
   try {
     accountManager.checkOsAccountTestable((err, isTestable) => {
       if (err) {
-        console.log("checkOsAccountTestable failed, error: " + JSON.stringify(err));
+        console.log('checkOsAccountTestable failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("checkOsAccountTestable successfully, isTestable: " + isTestable);
+        console.log('checkOsAccountTestable successfully, isTestable: ' + isTestable);
       }
     });
   } catch (err) {
-    console.log("checkOsAccountTestable error: " + JSON.stringify(err));
+    console.log('checkOsAccountTestable error: ' + JSON.stringify(err));
   }
   ```
 
@@ -460,9 +460,9 @@ checkOsAccountTestable(): Promise&lt;boolean&gt;
   let accountManager = account_osAccount.getAccountManager();
   try {
     accountManager.checkOsAccountTestable().then((isTestable) => {
-      console.log("checkOsAccountTestable successfully, isTestable: " + isTestable);
+      console.log('checkOsAccountTestable successfully, isTestable: ' + isTestable);
     }).catch((err) => {
-      console.log("checkOsAccountTestable failed, error: "  + JSON.stringify(err));
+      console.log('checkOsAccountTestable failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
     console.log('checkOsAccountTestable exception: ' + JSON.stringify(err));
@@ -496,13 +496,13 @@ checkOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
   try {
     accountManager.checkOsAccountVerified((err, isVerified) => {
       if (err) {
-        console.log("checkOsAccountVerified failed, error: " + JSON.stringify(err));
+        console.log('checkOsAccountVerified failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("checkOsAccountVerified successfully, isVerified: " + isVerified);
+        console.log('checkOsAccountVerified successfully, isVerified: ' + isVerified);
       }
     });
   } catch (err) {
-    console.log("checkOsAccountVerified exception: " + JSON.stringify(err));
+    console.log('checkOsAccountVerified exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -539,13 +539,13 @@ checkOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;):
   try {
     accountManager.checkOsAccountVerified(localId, (err, isVerified) => {
       if (err) {
-        console.log("checkOsAccountVerified failed, error: " + JSON.stringify(err));
+        console.log('checkOsAccountVerified failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("checkOsAccountVerified successfully, isVerified: " + isVerified);
+        console.log('checkOsAccountVerified successfully, isVerified: ' + isVerified);
       }
     });
   } catch (err) {
-    console.log("checkOsAccountVerified exception: " + err);
+    console.log('checkOsAccountVerified exception: ' + err);
   }
   ```
 
@@ -586,9 +586,9 @@ checkOsAccountVerified(localId: number): Promise&lt;boolean&gt;
   let localId = 100;
   try {
     accountManager.checkOsAccountVerified(localId).then((isVerified) => {
-      console.log("checkOsAccountVerified successfully, isVerified: " + isVerified);
+      console.log('checkOsAccountVerified successfully, isVerified: ' + isVerified);
     }).catch((err) => {
-      console.log("checkOsAccountVerified failed, error: " + JSON.stringify(err));
+      console.log('checkOsAccountVerified failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
     console.log('checkOsAccountVerified exception: ' + JSON.stringify(err));
@@ -627,19 +627,19 @@ removeOsAccount(localId: number, callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
-  let accountName = "testAccountName";
+  let accountName = 'testAccountName';
   try {
     accountManager.createOsAccount(accountName, account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo) => {
       accountManager.removeOsAccount(osAccountInfo.localId, (err)=>{
         if (err) {
-          console.log("removeOsAccount failed, error: " + JSON.stringify(err));
+          console.log('removeOsAccount failed, error: ' + JSON.stringify(err));
         } else {
-          console.log("removeOsAccount successfully");
+          console.log('removeOsAccount successfully');
         }
       });
     });
   } catch (err) {
-    console.log('removeOsAccount exception:' + JSON.stringify(err));
+    console.log('removeOsAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -680,17 +680,17 @@ removeOsAccount(localId: number): Promise&lt;void&gt;
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
-  let accountName = "testAccountName";
+  let accountName = 'testAccountName';
   try {
     accountManager.createOsAccount(accountName, account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
       accountManager.removeOsAccount(osAccountInfo.localId).then(() => {
-        console.log("removeOsAccount successfully");
+        console.log('removeOsAccount successfully');
       }).catch((err) => {
-          console.log("removeOsAccount failed, error: " + JSON.stringify(err));
+          console.log('removeOsAccount failed, error: ' + JSON.stringify(err));
       });
     });
   } catch (err) {
-    console.log("removeOsAccount exception: " + JSON.stringify(err));
+    console.log('removeOsAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -729,17 +729,17 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
   ```js
   let accountManager = account_osAccount.getAccountManager();
   let localId = 100;
-  let constraint = "constraint.wifi";
+  let constraint = 'constraint.wifi';
   try {
     accountManager.setOsAccountConstraints(localId, [constraint], true, (err) => {
       if (err) {
-        console.log("setOsAccountConstraints failed, error:" + JSON.stringify(err));
+        console.log('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("setOsAccountConstraints successfully");
+        console.log('setOsAccountConstraints successfully');
       }
     });
   } catch (err) {
-    console.log("setOsAccountConstraints exception: " + JSON.stringify(err));
+    console.log('setOsAccountConstraints exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -787,10 +787,10 @@ setOsAccountConstraints(localId: number, constraints: Array&lt;string&gt;, enabl
     accountManager.setOsAccountConstraints(localId, ['constraint.location.set'], false).then(() => {
       console.log('setOsAccountConstraints succsuccessfully');
     }).catch((err) => {
-      console.log('setOsAccountConstraints failed, error: '  + JSON.stringify(err));
+      console.log('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('setOsAccountConstraints exception:' + JSON.stringify(err));
+    console.log('setOsAccountConstraints exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -828,17 +828,17 @@ setOsAccountName(localId: number, localName: string, callback: AsyncCallback&lt;
   ```js
   let accountManager = account_osAccount.getAccountManager();
   let localId = 100;
-  let name = "demoName";
+  let name = 'demoName';
   try {
     accountManager.setOsAccountName(localId, name, (err) => {
       if (err) {
-        console.log("setOsAccountName failed, error: " + JSON.stringify(err));
+        console.log('setOsAccountName failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("setOsAccountName successfully");
+        console.log('setOsAccountName successfully');
       }
     });
   } catch (err) {
-    console.log('setOsAccountName exception:' + JSON.stringify(err));
+    console.log('setOsAccountName exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -886,10 +886,10 @@ setOsAccountName(localId: number, localName: string): Promise&lt;void&gt;
     accountManager.setOsAccountName(localId, name).then(() => {
       console.log('setOsAccountName successfully');
     }).catch((err) => {
-      console.log('setOsAccountName failed, error: '  + JSON.stringify(err));
+      console.log('setOsAccountName failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('setOsAccountName exception:' + JSON.stringify(err));
+    console.log('setOsAccountName exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -922,13 +922,13 @@ getOsAccountCount(callback: AsyncCallback&lt;number&gt;): void
   try {
     accountManager.getOsAccountCount((err, count) => {
       if (err) {
-        console.log("getOsAccountCount failed, error: " + JSON.stringify(err));
+        console.log('getOsAccountCount failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("getOsAccountCount successfully, count: " + count);
+        console.log('getOsAccountCount successfully, count: ' + count);
       }
     });
   } catch (err) {
-    console.log("getOsAccountCount exception: " + JSON.stringify(err));
+    console.log('getOsAccountCount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -960,12 +960,12 @@ getOsAccountCount(): Promise&lt;number&gt;
   let accountManager = account_osAccount.getAccountManager();
   try {
     accountManager.getOsAccountCount().then((count) => {
-      console.log("getOsAccountCount successfully, count: " + count);
+      console.log('getOsAccountCount successfully, count: ' + count);
     }).catch((err) => {
-      console.log("getOsAccountCount failed, error: " + JSON.stringify(err));
+      console.log('getOsAccountCount failed, error: ' + JSON.stringify(err));
     });
   } catch(err) {
-    console.log('getOsAccountCount exception:' + JSON.stringify(err));
+    console.log('getOsAccountCount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -996,13 +996,13 @@ getOsAccountLocalId(callback: AsyncCallback&lt;number&gt;): void
   try {
     accountManager.getOsAccountLocalId((err, localId) => {
       if (err) {
-        console.log("getOsAccountLocalId failed, error: " + JSON.stringify(err));
+        console.log('getOsAccountLocalId failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("getOsAccountLocalId successfully, localId: " + localId);
+        console.log('getOsAccountLocalId successfully, localId: ' + localId);
       }
     });
   } catch (err) {
-    console.log("getOsAccountLocalId exception: " + JSON.stringify(err));
+    console.log('getOsAccountLocalId exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1032,9 +1032,9 @@ getOsAccountLocalId(): Promise&lt;number&gt;
   let accountManager = account_osAccount.getAccountManager();
   try {
     accountManager.getOsAccountLocalId().then((localId) => {
-      console.log("getOsAccountLocalId successfully, localId: " + localId);
+      console.log('getOsAccountLocalId successfully, localId: ' + localId);
     }).catch((err) => {
-      console.log("getOsAccountLocalId failed, error: "  + JSON.stringify(err));
+      console.log('getOsAccountLocalId failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
     console.log('getOsAccountLocalId exception: ' + JSON.stringify(err));
@@ -1071,12 +1071,12 @@ getOsAccountLocalIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): v
   try {
     accountManager.getOsAccountLocalIdForUid(uid, (err, localId) => {
       if (err) {
-        console.log("getOsAccountLocalIdForUid failed, error: " + JSON.stringify(err));
+        console.log('getOsAccountLocalIdForUid failed, error: ' + JSON.stringify(err));
       }
-      console.log("getOsAccountLocalIdForUid successfully, localId: " + localId);
+      console.log('getOsAccountLocalIdForUid successfully, localId: ' + localId);
     });
   } catch (err) {
-    console.log("getOsAccountLocalIdForUid exception: " + JSON.stringify(err));
+    console.log('getOsAccountLocalIdForUid exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1114,9 +1114,9 @@ getOsAccountLocalIdForUid(uid: number): Promise&lt;number&gt;
   let uid = 12345678;
   try {
     accountManager.getOsAccountLocalIdForUid(uid).then((localId) => {
-      console.log("getOsAccountLocalIdForUid successfully, localId: " + localId);
+      console.log('getOsAccountLocalIdForUid successfully, localId: ' + localId);
     }).catch((err) => {
-      console.log("getOsAccountLocalIdForUid failed, error: " + JSON.stringify(err));
+      console.log('getOsAccountLocalIdForUid failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
     console.log('getOsAccountLocalIdForUid exception: ' + JSON.stringify(err));
@@ -1155,9 +1155,9 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo, callback: AsyncCallb
   try {
     accountManager.getOsAccountLocalIdForDomain(domainInfo, (err, localId) => {
       if (err) {
-        console.log("getOsAccountLocalIdForDomain failed, error: " + JSON.stringify(err));
+        console.log('getOsAccountLocalIdForDomain failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("getOsAccountLocalIdForDomain successfully, localId: " + localId);
+        console.log('getOsAccountLocalIdForDomain successfully, localId: ' + localId);
       }
     });
   } catch (err) {
@@ -1201,12 +1201,12 @@ getOsAccountLocalIdForDomain(domainInfo: DomainAccountInfo): Promise&lt;number&g
   let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   try {
     accountManager.getOsAccountLocalIdForDomain(domainInfo).then((localId) => {
-      console.log("getOsAccountLocalIdForDomain successfully, localId: " + localId);
+      console.log('getOsAccountLocalIdForDomain successfully, localId: ' + localId);
     }).catch((err) => {
-      console.log("getOsAccountLocalIdForDomain failed, error: "  + JSON.stringify(err));
+      console.log('getOsAccountLocalIdForDomain failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("getOsAccountLocalIdForDomain exception: " + JSON.stringify(err));
+    console.log('getOsAccountLocalIdForDomain exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1245,7 +1245,7 @@ queryMaxOsAccountNumber(callback: AsyncCallback&lt;number&gt;): void
       }
     });
   } catch (err) {
-    console.log('queryMaxOsAccountNumber exception:' + JSON.stringify(err));
+    console.log('queryMaxOsAccountNumber exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1279,10 +1279,10 @@ queryMaxOsAccountNumber(): Promise&lt;number&gt;
     accountManager.queryMaxOsAccountNumber().then((maxCnt) => {
       console.log('queryMaxOsAccountNumber successfully, maxCnt: ' + maxCnt);
     }).catch((err) => {
-      console.log('queryMaxOsAccountNumber failed, error: '  + JSON.stringify(err));
+      console.log('queryMaxOsAccountNumber failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('queryMaxOsAccountNumber exception:' + JSON.stringify(err));
+    console.log('queryMaxOsAccountNumber exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1319,13 +1319,13 @@ getOsAccountConstraints(localId: number, callback: AsyncCallback&lt;Array&lt;str
   try {
     accountManager.getOsAccountConstraints(localId, (err, constraints) => {
       if (err) {
-        console.log("getOsAccountConstraints failed, err: " + JSON.stringify(err));
+        console.log('getOsAccountConstraints failed, err: ' + JSON.stringify(err));
       } else {
-        console.log("getOsAccountConstraints successfully, constraints: " + JSON.stringify(constraints));
+        console.log('getOsAccountConstraints successfully, constraints: ' + JSON.stringify(constraints));
       }
     });
   } catch (err) {
-    console.log('getOsAccountConstraints exception:' + JSON.stringify(err));
+    console.log('getOsAccountConstraints exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1368,10 +1368,10 @@ getOsAccountConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
     accountManager.getOsAccountConstraints(localId).then((constraints) => {
       console.log('getOsAccountConstraints, constraints: ' + constraints);
     }).catch((err) => {
-      console.log('getOsAccountConstraints err: '  + JSON.stringify(err));
+      console.log('getOsAccountConstraints err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getOsAccountConstraints exception:' + JSON.stringify(e));
+    console.log('getOsAccountConstraints exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1409,7 +1409,7 @@ queryAllCreatedOsAccounts(callback: AsyncCallback&lt;Array&lt;OsAccountInfo&gt;&
       console.log('queryAllCreatedOsAccounts accountArr:' + JSON.stringify(accountArr));
     });
   } catch (e) {
-    console.log('queryAllCreatedOsAccounts exception:' + JSON.stringify(e));
+    console.log('queryAllCreatedOsAccounts exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1445,10 +1445,10 @@ queryAllCreatedOsAccounts(): Promise&lt;Array&lt;OsAccountInfo&gt;&gt;
     accountManager.queryAllCreatedOsAccounts().then((accountArr) => {
       console.log('queryAllCreatedOsAccounts, accountArr: ' + JSON.stringify(accountArr));
     }).catch((err) => {
-      console.log('queryAllCreatedOsAccounts err: '  + JSON.stringify(err));
+      console.log('queryAllCreatedOsAccounts err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('queryAllCreatedOsAccounts exception:' + JSON.stringify(e));
+    console.log('queryAllCreatedOsAccounts exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1485,7 +1485,7 @@ getActivatedOsAccountLocalIds(callback: AsyncCallback&lt;Array&lt;number&gt;&gt;
       }
     });
   } catch (e) {
-    console.log('getActivatedOsAccountLocalIds exception:' + JSON.stringify(e));
+    console.log('getActivatedOsAccountLocalIds exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1517,10 +1517,10 @@ getActivatedOsAccountLocalIds(): Promise&lt;Array&lt;number&gt;&gt;
     accountManager.getActivatedOsAccountLocalIds().then((idArray) => {
       console.log('getActivatedOsAccountLocalIds, idArray: ' + idArray);
     }).catch((err) => {
-      console.log('getActivatedOsAccountLocalIds err: '  + JSON.stringify(err));
+      console.log('getActivatedOsAccountLocalIds err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getActivatedOsAccountLocalIds exception:' + JSON.stringify(e));
+    console.log('getActivatedOsAccountLocalIds exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1564,7 +1564,7 @@ createOsAccount(localName: string, type: OsAccountType, callback: AsyncCallback&
       console.log('createOsAccount osAccountInfo:' + JSON.stringify(osAccountInfo));
     });
   } catch (e) {
-    console.log('createOsAccount exception:' + JSON.stringify(e));
+    console.log('createOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1611,10 +1611,10 @@ createOsAccount(localName: string, type: OsAccountType): Promise&lt;OsAccountInf
     accountManager.createOsAccount('testAccountName', account_osAccount.OsAccountType.NORMAL).then((accountInfo) => {
       console.log('createOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
     }).catch((err) => {
-      console.log('createOsAccount err: '  + JSON.stringify(err));
+      console.log('createOsAccount err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('createOsAccount exception:' + JSON.stringify(e));
+    console.log('createOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1659,7 +1659,7 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo, cal
       console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
     });
   } catch (e) {
-    console.log('createOsAccountForDomain exception:' + JSON.stringify(e));
+    console.log('createOsAccountForDomain exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1707,10 +1707,10 @@ createOsAccountForDomain(type: OsAccountType, domainInfo: DomainAccountInfo): Pr
     accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo).then((accountInfo) => {
       console.log('createOsAccountForDomain, account info: ' + JSON.stringify(accountInfo));
     }).catch((err) => {
-      console.log('createOsAccountForDomain err: '  + JSON.stringify(err));
+      console.log('createOsAccountForDomain err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('createOsAccountForDomain exception:' + JSON.stringify(e));
+    console.log('createOsAccountForDomain exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1746,7 +1746,7 @@ getCurrentOsAccount(callback: AsyncCallback&lt;OsAccountInfo&gt;): void
       console.log('getCurrentOsAccount curAccountInfo:' + JSON.stringify(curAccountInfo));
     });
   } catch (e) {
-    console.log('getCurrentOsAccount exception:' + JSON.stringify(e));
+    console.log('getCurrentOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1780,10 +1780,10 @@ getCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
     accountManager.getCurrentOsAccount().then((accountInfo) => {
       console.log('getCurrentOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
     }).catch((err) => {
-      console.log('getCurrentOsAccount err: '  + JSON.stringify(err));
+      console.log('getCurrentOsAccount err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getCurrentOsAccount exception:' + JSON.stringify(e));
+    console.log('getCurrentOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1825,7 +1825,7 @@ queryOsAccountById(localId: number, callback: AsyncCallback&lt;OsAccountInfo&gt;
       console.log('queryOsAccountById accountInfo:' + JSON.stringify(accountInfo));
     });
   } catch (e) {
-    console.log('queryOsAccountById exception:' + JSON.stringify(e));
+    console.log('queryOsAccountById exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1870,10 +1870,10 @@ queryOsAccountById(localId: number): Promise&lt;OsAccountInfo&gt;
     accountManager.queryOsAccountById(localId).then((accountInfo) => {
       console.log('queryOsAccountById, accountInfo: ' + JSON.stringify(accountInfo));
     }).catch((err) => {
-      console.log('queryOsAccountById err: '  + JSON.stringify(err));
+      console.log('queryOsAccountById err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('queryOsAccountById exception:' + JSON.stringify(e));
+    console.log('queryOsAccountById exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1939,7 +1939,7 @@ getOsAccountType(): Promise&lt;OsAccountType&gt;
     accountManager.getOsAccountType().then((accountType) => {
       console.log('getOsAccountType, accountType: ' + accountType);
     }).catch((err) => {
-      console.log('getOsAccountType err: '  + JSON.stringify(err));
+      console.log('getOsAccountType err: ' + JSON.stringify(err));
     });
   } catch (e) {
     console.log('getOsAccountType exception: ' + JSON.stringify(e));
@@ -2012,7 +2012,7 @@ queryDistributedVirtualDeviceId(): Promise&lt;string&gt;
     accountManager.queryDistributedVirtualDeviceId().then((virtualID) => {
       console.log('queryDistributedVirtualDeviceId, virtualID: ' + virtualID);
     }).catch((err) => {
-      console.log('queryDistributedVirtualDeviceId err: '  + JSON.stringify(err));
+      console.log('queryDistributedVirtualDeviceId err: ' + JSON.stringify(err));
     });
   } catch (e) {
     console.log('queryDistributedVirtualDeviceId exception: ' + JSON.stringify(e));
@@ -2057,7 +2057,7 @@ getOsAccountProfilePhoto(localId: number, callback: AsyncCallback&lt;string&gt;)
       console.log('get photo:' + photo + ' by localId: ' + localId);
     });
   } catch (e) {
-    console.log('getOsAccountProfilePhoto exception:' + JSON.stringify(e));
+    console.log('getOsAccountProfilePhoto exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2102,10 +2102,10 @@ getOsAccountProfilePhoto(localId: number): Promise&lt;string&gt;
     accountManager.getOsAccountProfilePhoto(localId).then((photo) => {
       console.log('getOsAccountProfilePhoto: ' + photo);
     }).catch((err) => {
-      console.log('getOsAccountProfilePhoto err: '  + JSON.stringify(err));
+      console.log('getOsAccountProfilePhoto err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getOsAccountProfilePhoto exception:' + JSON.stringify(e));
+    console.log('getOsAccountProfilePhoto exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2152,7 +2152,7 @@ setOsAccountProfilePhoto(localId: number, photo: string, callback: AsyncCallback
       console.log('setOsAccountProfilePhoto err:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('setOsAccountProfilePhoto exception:' + JSON.stringify(e));
+    console.log('setOsAccountProfilePhoto exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2203,10 +2203,10 @@ setOsAccountProfilePhoto(localId: number, photo: string): Promise&lt;void&gt;
     accountManager.setOsAccountProfilePhoto(localId, photo).then(() => {
       console.log('setOsAccountProfilePhoto success');
     }).catch((err) => {
-      console.log('setOsAccountProfilePhoto err: '  + JSON.stringify(err));
+      console.log('setOsAccountProfilePhoto err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('setOsAccountProfilePhoto exception:' + JSON.stringify(e));
+    console.log('setOsAccountProfilePhoto exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2244,7 +2244,7 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number, callback: AsyncCallback
       console.log('get localId:' + localId + ' by serialNumber: ' + serialNumber);
     });
   } catch (e) {
-    console.log('ger localId exception:' + JSON.stringify(e));
+    console.log('ger localId exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2285,10 +2285,10 @@ getOsAccountLocalIdForSerialNumber(serialNumber: number): Promise&lt;number&gt;
     accountManager.getOsAccountLocalIdForSerialNumber(serialNumber).then((localId) => {
       console.log('getOsAccountLocalIdForSerialNumber localId: ' + localId);
     }).catch((err) => {
-      console.log('getOsAccountLocalIdForSerialNumber err: '  + JSON.stringify(err));
+      console.log('getOsAccountLocalIdForSerialNumber err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getOsAccountLocalIdForSerialNumber exception: '  + JSON.stringify(e));
+    console.log('getOsAccountLocalIdForSerialNumber exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2326,7 +2326,7 @@ getSerialNumberForOsAccountLocalId(localId: number, callback: AsyncCallback&lt;n
       console.log('get serialNumber:' + serialNumber + ' by localId: ' + localId);
     });
   } catch (e) {
-    console.log('ger serialNumber exception:' + JSON.stringify(e));
+    console.log('ger serialNumber exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2367,10 +2367,10 @@ getSerialNumberForOsAccountLocalId(localId: number): Promise&lt;number&gt;
     accountManager.getSerialNumberForOsAccountLocalId(localId).then((serialNumber) => {
       console.log('getSerialNumberForOsAccountLocalId serialNumber: ' + serialNumber);
     }).catch((err) => {
-      console.log('getSerialNumberForOsAccountLocalId err: '  + JSON.stringify(err));
+      console.log('getSerialNumberForOsAccountLocalId err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getSerialNumberForOsAccountLocalId exception:' + JSON.stringify(e));
+    console.log('getSerialNumberForOsAccountLocalId exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2411,7 +2411,7 @@ on(type: 'activate' | 'activating', name: string, callback: Callback&lt;number&g
   try {
     accountManager.on('activating', 'osAccountOnOffNameA', onCallback);
   } catch (e) {
-    console.log('receive localId exception:' + JSON.stringify(e));
+    console.log('receive localId exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2433,7 +2433,7 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | type     | 'activate' \| 'activating' | 是   | 取消订阅类型，activate表示取消订阅帐号已激活完成的事件，activating取消订阅帐号正在激活的事件。 |
 | name     | string                     | 是   | 订阅名称，可自定义，要求非空且长度不超过1024字节，需要与订阅接口传入的值保持一致。 |
-| callback | Callback&lt;number&gt;     | 否   | 取消订阅系统帐号激活完成与激活中的事件回调，默认返回0。                      |
+| callback | Callback&lt;number&gt;     | 否   | 取消订阅系统帐号激活完成与激活中的事件回调，默认为空，表示取消该类型事件的所有回调。                      |
 
 **错误码：**
 
@@ -2452,7 +2452,7 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
   try {
     accountManager.off('activating', 'osAccountOnOffNameA', offCallback);
   } catch (e) {
-    console.log('off exception:' + JSON.stringify(e));
+    console.log('off exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2491,7 +2491,7 @@ getBundleIdForUid(uid: number, callback: AsyncCallback&lt;number&gt;): void;
       console.info('getBundleIdForUid bundleId:' + JSON.stringify(bundleId));
     });
   } catch (e) {
-    console.info('getBundleIdForUid exception:' + JSON.stringify(e));
+    console.info('getBundleIdForUid exception: ' + JSON.stringify(e));
   }
   ```
 ### getBundleIdForUid<sup>9+</sup>
@@ -2535,7 +2535,7 @@ getBundleIdForUid(uid: number): Promise&lt;number&gt;;
       console.info('getBundleIdForUid errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.info('getBundleIdForUid exception:' + JSON.stringify(e));
+    console.info('getBundleIdForUid exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2573,7 +2573,7 @@ isMainOsAccount(callback: AsyncCallback&lt;boolean&gt;): void;
       console.info('isMainOsAccount result:' + JSON.stringify(result));
     });
   } catch (e) {
-    console.info('isMainOsAccount exception:' + JSON.stringify(e));
+    console.info('isMainOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 ### isMainOsAccount<sup>9+</sup>
@@ -2611,7 +2611,7 @@ isMainOsAccount(): Promise&lt;boolean&gt;;
       console.info('isMainOsAccount errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.info('isMainOsAccount exception:' + JSON.stringify(e));
+    console.info('isMainOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 ### getOsAccountConstraintSourceTypes<sup>9+</sup>
@@ -2652,7 +2652,7 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string, callback:
       console.info('getOsAccountConstraintSourceTypes sourceTypeInfos:' + JSON.stringify(sourceTypeInfos));
     });
   } catch (e) {
-    console.info('getOsAccountConstraintSourceTypes exception:' + JSON.stringify(e));
+    console.info('getOsAccountConstraintSourceTypes exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2700,7 +2700,7 @@ getOsAccountConstraintSourceTypes(localId: number, constraint: string): Promise&
       console.info('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.info('getOsAccountConstraintSourceTypes exception:' + JSON.stringify(e));
+    console.info('getOsAccountConstraintSourceTypes exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2728,9 +2728,9 @@ isMultiOsAccountEnable(callback: AsyncCallback&lt;boolean&gt;): void
   let accountManager = account_osAccount.getAccountManager();
   accountManager.isMultiOsAccountEnable((err, isEnabled) => {
     if (err) {
-      console.log("isMultiOsAccountEnable failed, error: " + JSON.stringify(err));
+      console.log('isMultiOsAccountEnable failed, error: ' + JSON.stringify(err));
     } else {
-    console.log("isMultiOsAccountEnable successfully, isEnabled: " + isEnabled);
+    console.log('isMultiOsAccountEnable successfully, isEnabled: ' + isEnabled);
     }
   });
   ```
@@ -2760,7 +2760,7 @@ isMultiOsAccountEnable(): Promise&lt;boolean&gt;
   accountManager.isMultiOsAccountEnable().then((isEnabled) => {
     console.log('isMultiOsAccountEnable successfully, isEnabled: ' + isEnabled);
   }).catch((err) => {
-    console.log('isMultiOsAccountEnable failed, error: '  + JSON.stringify(err));
+    console.log('isMultiOsAccountEnable failed, error: ' + JSON.stringify(err));
   });
   ```
 
@@ -2834,7 +2834,7 @@ isOsAccountActived(localId: number): Promise&lt;boolean&gt;
   accountManager.isOsAccountActived(localId).then((isActived) => {
     console.log('isOsAccountActived successfully, isActived: ' + isActived);
   }).catch((err) => {
-    console.log('isOsAccountActived failed, error: '  + JSON.stringify(err));
+    console.log('isOsAccountActived failed, error: ' + JSON.stringify(err));
   });
   ```
 
@@ -2865,12 +2865,12 @@ isOsAccountConstraintEnable(localId: number, constraint: string, callback: Async
   ```js
   let accountManager = account_osAccount.getAccountManager();
   let localId = 100;
-  let constraint = "constraint.wifi";
+  let constraint = 'constraint.wifi';
   accountManager.isOsAccountConstraintEnable(localId, constraint, (err, isEnabled) => {
     if (err) {
-      console.log("isOsAccountConstraintEnable failed, error:" + JSON.stringify(err));
+      console.log('isOsAccountConstraintEnable failed, error: ' + JSON.stringify(err));
     } else {
-      console.log("isOsAccountConstraintEnable successfully, isEnabled:" + isEnabled);
+      console.log('isOsAccountConstraintEnable successfully, isEnabled: ' + isEnabled);
     }
   });
   ```
@@ -2907,11 +2907,11 @@ isOsAccountConstraintEnable(localId: number, constraint: string): Promise&lt;boo
   ```js
   let accountManager = account_osAccount.getAccountManager();
   let localId = 100;
-  let constraint = "constraint.wifi";
+  let constraint = 'constraint.wifi';
   accountManager.isOsAccountConstraintEnable(localId, constraint).then((isEnabled) => {
-    console.log("isOsAccountConstraintEnable successfully, isEnabled: " + isEnabled);
+    console.log('isOsAccountConstraintEnable successfully, isEnabled: ' + isEnabled);
   }).catch((err) => {
-    console.log("isOsAccountConstraintEnable err: "  + JSON.stringify(err));
+    console.log('isOsAccountConstraintEnable err: ' + JSON.stringify(err));
   });
   ```
 
@@ -2939,9 +2939,9 @@ isTestOsAccount(callback: AsyncCallback&lt;boolean&gt;): void
   let accountManager = account_osAccount.getAccountManager();
   accountManager.isTestOsAccount((err, isTestable) => {
     if (err) {
-      console.log("isTestOsAccount failed, error: " + JSON.stringify(err));
+      console.log('isTestOsAccount failed, error: ' + JSON.stringify(err));
     } else {
-      console.log("isTestOsAccount successfully, isTestable: " + isTestable);
+      console.log('isTestOsAccount successfully, isTestable: ' + isTestable);
     }
   });
   ```
@@ -2969,9 +2969,9 @@ isTestOsAccount(): Promise&lt;boolean&gt;
   ```js
   let accountManager = account_osAccount.getAccountManager();
   accountManager.isTestOsAccount().then((isTestable) => {
-      console.log("isTestOsAccount successfully, isTestable: " + isTestable);
+      console.log('isTestOsAccount successfully, isTestable: ' + isTestable);
   }).catch((err) => {
-      console.log("isTestOsAccount failed, error: " + JSON.stringify(err));
+      console.log('isTestOsAccount failed, error: ' + JSON.stringify(err));
   });
   ```
 
@@ -3001,9 +3001,9 @@ isOsAccountVerified(callback: AsyncCallback&lt;boolean&gt;): void
   let accountManager = account_osAccount.getAccountManager();
   accountManager.isOsAccountVerified((err, isVerified) => {
     if (err) {
-      console.log("isOsAccountVerified failed, error: " + JSON.stringify(err));
+      console.log('isOsAccountVerified failed, error: ' + JSON.stringify(err));
     } else {
-      console.log("isOsAccountVerified successfully, isVerified: " + isVerified);
+      console.log('isOsAccountVerified successfully, isVerified: ' + isVerified);
     }
   });
   ```
@@ -3036,9 +3036,9 @@ isOsAccountVerified(localId: number, callback: AsyncCallback&lt;boolean&gt;): vo
   let localId = 100;
   accountManager.isOsAccountVerified(localId, (err, isVerified) => {
     if (err) {
-      console.log("isOsAccountVerified failed, error: " + JSON.stringify(err));
+      console.log('isOsAccountVerified failed, error: ' + JSON.stringify(err));
     } else {
-      console.log("isOsAccountVerified successfully, isVerified: " + isVerified);
+      console.log('isOsAccountVerified successfully, isVerified: ' + isVerified);
     }
   });
   ```
@@ -3074,9 +3074,9 @@ isOsAccountVerified(localId?: number): Promise&lt;boolean&gt;
   ```js
   let accountManager = account_osAccount.getAccountManager();
   accountManager.isOsAccountVerified(localId).then((isVerified) => {
-    console.log("isOsAccountVerified successfully, isVerified: " + isVerified);
+    console.log('isOsAccountVerified successfully, isVerified: ' + isVerified);
   }).catch((err) => {
-    console.log("isOsAccountVerified failed, error: " + JSON.stringify(err));
+    console.log('isOsAccountVerified failed, error: ' + JSON.stringify(err));
   });
   ```
 
@@ -3106,9 +3106,9 @@ getCreatedOsAccountsCount(callback: AsyncCallback&lt;number&gt;): void
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getCreatedOsAccountsCount((err, count)=>{
     if (err) {
-      console.log("getCreatedOsAccountsCount failed, error: " + JSON.stringify(err));
+      console.log('getCreatedOsAccountsCount failed, error: ' + JSON.stringify(err));
     } else {
-      console.log("getCreatedOsAccountsCount successfully, count: " + count);
+      console.log('getCreatedOsAccountsCount successfully, count: ' + count);
     }
   });
   ```
@@ -3138,9 +3138,9 @@ getCreatedOsAccountsCount(): Promise&lt;number&gt;
   ```js
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getCreatedOsAccountsCount().then((count) => {
-    console.log("getCreatedOsAccountsCount successfully, count: " + count);
+    console.log('getCreatedOsAccountsCount successfully, count: ' + count);
   }).catch((err) => {
-    console.log("getCreatedOsAccountsCount failed, error: "  + JSON.stringify(err));
+    console.log('getCreatedOsAccountsCount failed, error: ' + JSON.stringify(err));
   });
   ```
 
@@ -3168,9 +3168,9 @@ getOsAccountLocalIdFromProcess(callback: AsyncCallback&lt;number&gt;): void
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromProcess((err, localId) => {
     if (err) {
-      console.log("getOsAccountLocalIdFromProcess failed, error: " + JSON.stringify(err));
+      console.log('getOsAccountLocalIdFromProcess failed, error: ' + JSON.stringify(err));
     } else {
-      console.log("getOsAccountLocalIdFromProcess successfully, localId: " + localId);
+      console.log('getOsAccountLocalIdFromProcess failed, error: ' + localId);
     }
   });
   ```
@@ -3200,7 +3200,7 @@ getOsAccountLocalIdFromProcess(): Promise&lt;number&gt;
   accountManager.getOsAccountLocalIdFromProcess().then((localId) => {
     console.log('getOsAccountLocalIdFromProcess successfully, localId: ' + localId);
   }).catch((err) => {
-    console.log('getOsAccountLocalIdFromProcess failed, error: '  + JSON.stringify(err));
+    console.log('getOsAccountLocalIdFromProcess failed, error: ' + JSON.stringify(err));
   });
   ```
 
@@ -3230,9 +3230,9 @@ getOsAccountLocalIdFromUid(uid: number, callback: AsyncCallback&lt;number&gt;): 
   let uid = 12345678;
   accountManager.getOsAccountLocalIdFromUid(uid, (err, localId) => {
     if (err) {
-      console.log("getOsAccountLocalIdFromUid failed, error: " + JSON.stringify(err));
+      console.log('getOsAccountLocalIdFromUid failed, error: ' + JSON.stringify(err));
     } else {
-      console.log("getOsAccountLocalIdFromUid successfully, localId: " + localId);
+      console.log('getOsAccountLocalIdFromUid successfully, localId: ' + localId);
     }
   });
   ```
@@ -3267,9 +3267,9 @@ getOsAccountLocalIdFromUid(uid: number): Promise&lt;number&gt;
   let accountManager = account_osAccount.getAccountManager();
   let uid = 12345678;
   accountManager.getOsAccountLocalIdFromUid(uid).then((localId) => {
-    console.log("getOsAccountLocalIdFromUid successfully, localId: " + localId);
+    console.log('getOsAccountLocalIdFromUid successfully, localId: ' + localId);
   }).catch((err) => {
-    console.log("getOsAccountLocalIdFromUid failed, error: "  + JSON.stringify(err));
+    console.log('getOsAccountLocalIdFromUid failed, error: ' + JSON.stringify(err));
   });
   ```
 
@@ -3301,9 +3301,9 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo, callback: AsyncCall
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromDomain(domainInfo, (err, localId) => {
     if (err) {
-      console.log("getOsAccountLocalIdFromDomain failed, error: " + JSON.stringify(err));
+      console.log('getOsAccountLocalIdFromDomain failed, error: ' + JSON.stringify(err));
     } else {
-      console.log("getOsAccountLocalIdFromDomain successfully, localId: " + localId);
+      console.log('getOsAccountLocalIdFromDomain successfully, localId: ' + localId);
     }
   });
   ```
@@ -3342,7 +3342,7 @@ getOsAccountLocalIdFromDomain(domainInfo: DomainAccountInfo): Promise&lt;number&
   accountManager.getOsAccountLocalIdFromDomain(domainInfo).then((localId) => {
     console.log('getOsAccountLocalIdFromDomain successfully, localId: ' + localId);
   }).catch((err) => {
-    console.log('getOsAccountLocalIdFromDomain failed, error: '  + JSON.stringify(err));
+    console.log('getOsAccountLocalIdFromDomain failed, error: ' + JSON.stringify(err));
   });
   ```
 
@@ -3412,7 +3412,7 @@ getOsAccountAllConstraints(localId: number): Promise&lt;Array&lt;string&gt;&gt;
   accountManager.getOsAccountAllConstraints(localId).then((constraints) => {
     console.log('getOsAccountAllConstraints, constraints: ' + constraints);
   }).catch((err) => {
-    console.log('getOsAccountAllConstraints err: '  + JSON.stringify(err));
+    console.log('getOsAccountAllConstraints err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3472,7 +3472,7 @@ queryActivatedOsAccountIds(): Promise&lt;Array&lt;number&gt;&gt;
   accountManager.queryActivatedOsAccountIds().then((idArray) => {
     console.log('queryActivatedOsAccountIds, idArray: ' + idArray);
   }).catch((err) => {
-    console.log('queryActivatedOsAccountIds err: '  + JSON.stringify(err));
+    console.log('queryActivatedOsAccountIds err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3533,7 +3533,7 @@ queryCurrentOsAccount(): Promise&lt;OsAccountInfo&gt;
   accountManager.queryCurrentOsAccount().then((accountInfo) => {
     console.log('queryCurrentOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
   }).catch((err) => {
-    console.log('queryCurrentOsAccount err: '  + JSON.stringify(err));
+    console.log('queryCurrentOsAccount err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3590,7 +3590,7 @@ getOsAccountTypeFromProcess(): Promise&lt;OsAccountType&gt;
   accountManager.getOsAccountTypeFromProcess().then((accountType) => {
     console.log('getOsAccountTypeFromProcess, accountType: ' + accountType);
   }).catch((err) => {
-    console.log('getOsAccountTypeFromProcess err: '  + JSON.stringify(err));
+    console.log('getOsAccountTypeFromProcess err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3651,7 +3651,7 @@ getDistributedVirtualDeviceId(): Promise&lt;string&gt;
   accountManager.getDistributedVirtualDeviceId().then((virtualID) => {
     console.log('getDistributedVirtualDeviceId, virtualID: ' + virtualID);
   }).catch((err) => {
-    console.log('getDistributedVirtualDeviceId err: '  + JSON.stringify(err));
+    console.log('getDistributedVirtualDeviceId err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3717,7 +3717,7 @@ getOsAccountLocalIdBySerialNumber(serialNumber: number): Promise&lt;number&gt;
   accountManager.getOsAccountLocalIdBySerialNumber(serialNumber).then((localId) => {
     console.log('getOsAccountLocalIdBySerialNumber localId: ' + localId);
   }).catch((err) => {
-    console.log('getOsAccountLocalIdBySerialNumber err: '  + JSON.stringify(err));
+    console.log('getOsAccountLocalIdBySerialNumber err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3783,7 +3783,7 @@ getSerialNumberByOsAccountLocalId(localId: number): Promise&lt;number&gt;
   accountManager.getSerialNumberByOsAccountLocalId(localId).then((serialNumber) => {
     console.log('getSerialNumberByOsAccountLocalId serialNumber: ' + serialNumber);
   }).catch((err) => {
-    console.log('getSerialNumberByOsAccountLocalId err: '  + JSON.stringify(err));
+    console.log('getSerialNumberByOsAccountLocalId err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4396,7 +4396,7 @@ static unregisterInputer(authType: AuthType): void
     account_osAccount.InputerManager.unregisterInputer(authType);
     console.log('unregisterInputer success.');
   } catch(err) {
-    console.log("unregisterInputer err:" + JSON.stringify(err));
+    console.log('unregisterInputer err:' + JSON.stringify(err));
   }
   ```
 
@@ -4437,12 +4437,12 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
       });
     },
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin);
@@ -4492,12 +4492,12 @@ authWithPopup(domainAccountInfo: DomainAccountInfo, callback: IUserAuthCallback)
         freezingTime: 0
       });
     },
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
@@ -4526,7 +4526,7 @@ authWithToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback:
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {
+    authWithToken: (domainAccountInfo, token, callback) => {
       // mock authentication
       // notify authentication result
       callback.onResult(0, {
@@ -4539,7 +4539,7 @@ authWithToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, callback:
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
@@ -4568,7 +4568,7 @@ getAccountInfo(domain: string, accountName: string, callback: AsyncCallback&lt;D
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {
       // mock getting account information
       // notify result
@@ -4577,13 +4577,13 @@ getAccountInfo(domain: string, accountName: string, callback: AsyncCallback&lt;D
       }, {
         domain: domain,
         accountName: accountName,
-        accountId: "xxxx"
+        accountId: 'xxxx'
       })
     },
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
@@ -4611,7 +4611,7 @@ getAuthStatusInfo(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {
       callback({
@@ -4623,7 +4623,7 @@ getAuthStatusInfo(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&
     },
     bindAccount: (domainAccountInfo, localId, callback) => {},
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
@@ -4651,7 +4651,7 @@ bindAccount(domainAccountInfo: DomainAccountInfo, localId: number, callback: Asy
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {
@@ -4660,7 +4660,7 @@ bindAccount(domainAccountInfo: DomainAccountInfo, localId: number, callback: Asy
       callback({code: 0})
     },
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
@@ -4688,7 +4688,7 @@ unbindAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;v
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
@@ -4697,7 +4697,7 @@ unbindAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;v
       // notify unbinding result
       callback({code: 0})
     },
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
@@ -4726,12 +4726,12 @@ isAccountTokenValid(domainAccountInfo: DomainAccountInfo, token: Uint8Array, cal
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {
       // mock checking operation
       // notify checking result
       callback({code: 0}, true);
@@ -4763,12 +4763,12 @@ getAccessToken(options: GetDomainAccessTokenOptions, callback: AsyncCallback&lt;
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {
       // mock getting operation
       let token = new Uint8Array([0]);
@@ -4811,17 +4811,19 @@ static registerPlugin(plugin: DomainPlugin): void
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
-    unbindAccount: (domainAccountInfo, callback) => {}
+    unbindAccount: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
+    getAccessToken: (options, callback) => {}
   }
   try {
     account_osAccount.DomainAccountManager.registerPlugin(plugin);
     console.log('registerPlugin success.');
   } catch(err) {
-    console.log("registerPlugin err:" + JSON.stringify(err));
+    console.log('registerPlugin err:' + JSON.stringify(err));
   }
   ```
 
@@ -4843,7 +4845,7 @@ static unregisterPlugin(): void
     account_osAccount.DomainAccountManager.unregisterPlugin();
     console.log('unregisterPlugin success.');
   } catch(err) {
-    console.log("unregisterPlugin err:" + JSON.stringify(err));
+    console.log('unregisterPlugin err:' + JSON.stringify(err));
   }
   ```
 
@@ -4886,8 +4888,8 @@ auth(domainAccountInfo: DomainAccountInfo, credential: Uint8Array, callback: IUs
 **示例：**
   ```js
   let domainAccountInfo = {
-    domain: "CHINA",
-    accountName: "zhangsan"
+    domain: 'CHINA',
+    accountName: 'zhangsan'
   }
   let credential = new Uint8Array([0])
   try {
@@ -5028,15 +5030,15 @@ hasAccount(domainAccountInfo: DomainAccountInfo, callback: AsyncCallback&lt;bool
 **示例：**
   ```js
   let domainAccountInfo = {
-    domain: "CHINA",
-    accountName: "zhangsan"
+    domain: 'CHINA',
+    accountName: 'zhangsan'
   }
   try {
     account_osAccount.DomainAccountManager.hasAccount(domainAccountInfo, (err, result) => {
       if (err) {
-        console.log("call hasAccount failed, error: " + JSON.stringify(err));
+        console.log('call hasAccount failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("hasAccount result: " + result);
+        console.log('hasAccount result: ' + result);
       }
     });
   } catch (err) {
@@ -5079,14 +5081,14 @@ hasAccount(domainAccountInfo: DomainAccountInfo): Promise&lt;boolean&gt;
 **示例：**
   ```js
   let domainAccountInfo = {
-    domain: "CHINA",
-    accountName: "zhangsan"
+    domain: 'CHINA',
+    accountName: 'zhangsan'
   }
   try {
     account_osAccount.DomainAccountManager.hasAccount(domainAccountInfo).then((result) => {
-      console.log("hasAccount result: " + result);
+      console.log('hasAccount result: ' + result);
     }).catch((err) => {
-        console.log("call hasAccount failed, error: " + JSON.stringify(err));
+        console.log('call hasAccount failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
     console.log('hasAccount exception = ' + JSON.stringify(err));
@@ -5124,17 +5126,17 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array, call
 **示例：**
   ```js
   let domainAccountInfo = {
-    domain: "CHINA",
-    accountName: "zhangsan",
-    accountId: "123456"
+    domain: 'CHINA',
+    accountName: 'zhangsan',
+    accountId: '123456'
   }
   let token = new Uint8Array([0])
   try {
     account_osAccount.DomainAccountManager.updateAccountToken(domainAccountInfo, token, (err) => {
       if (err != null) {
-        console.log("updateAccountToken failed, error: " + JSON.stringify(err));
+        console.log('updateAccountToken failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("updateAccountToken successfully");
+        console.log('updateAccountToken successfully');
       }
     })
   } catch (err) {
@@ -5178,16 +5180,16 @@ updateAccountToken(domainAccountInfo: DomainAccountInfo, token: Uint8Array): Pro
 **示例：**
   ```js
   let domainAccountInfo = {
-    domain: "CHINA",
-    accountName: "zhangsan",
-    accountId: "123456"
+    domain: 'CHINA',
+    accountName: 'zhangsan',
+    accountId: '123456'
   }
   let token = new Uint8Array([0])
   try {
     account_osAccount.DomainAccountManager.updateAccountToken(domainAccountInfo, token).then(() => {
-      console.log("updateAccountToken successfully");
+      console.log('updateAccountToken successfully');
     }).catch((err) => {
-        console.log("updateAccountToken failed, error: " + JSON.stringify(err));
+        console.log('updateAccountToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
     console.log('updateAccountToken exception = ' + JSON.stringify(err));
@@ -5463,7 +5465,7 @@ cancel(challenge: Uint8Array): void;
   try {
     userIDM.cancel(challenge);
   } catch(err) {
-    console.log("cancel err:" + JSON.stringify(err));
+    console.log('cancel err:' + JSON.stringify(err));
   }
   ```
 
@@ -5647,7 +5649,7 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 
 | 参数名    | 类型                                | 必填 | 说明      |
 | -------- | ----------------------------------- | ---- | -------- |
-| authType | [AuthType](#authtype8)              | 否   | 认证类型。|
+| authType | [AuthType](#authtype8)              | 否   | 认证类型，默认为空，表示查询所有认证类型的信息。|
 
 **返回值：**
 
@@ -5927,12 +5929,14 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 名称        | 类型                                     | 必填   | 说明              |
-| ------------ | ---------------------------------------- | ----- | ----------------- |
-| result       | number                                   | 是    | 指示结果。         |
-| authSubType  | [AuthSubType](#authsubtype8) | 是    | 指示认证凭据子类型。|
-| remainTimes  | number                                   | 否    | 指示剩余次数。     |
-| freezingTime | number                                   | 否    | 指示冻结时间。     |
+| 名称         | 类型                         |  可读 | 可写 | 说明              |
+| ------------ | ---------------------------- | ----- | -----|----------------- |
+| result       | number                       | 是    | 是   | 指示结果。         |
+| authSubType  | [AuthSubType](#authsubtype8) | 是    | 是   | 指示认证凭据子类型。|
+| remainTimes  | number                       | 是    | 是   | 指示剩余次数。     |
+| freezingTime | number                       | 是    | 是   | 指示冻结时间。     |
+| enrollmentProgress<sup>10+</sup> | string   | 是    | 是   | 指示录入进度，默认为空。 |
+| sensorInfo<sup>10+</sup> | string           | 是    | 是   | 指示传感器信息，默认为空。 |
 
 ## AuthResult<sup>8+</sup>
 
@@ -5944,9 +5948,9 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 | 名称        | 类型        | 必填   | 说明              |
 | ------------ | ----------- | ----- | ----------------- |
-| token        | Uint8Array  | 否    | 指示认证令牌。     |
-| remainTimes  | number      | 否    | 指示剩余次数。     |
-| freezingTime | number      | 否    | 指示冻结时间。     |
+| token        | Uint8Array  | 否    | 指示认证令牌，默认为空。      |
+| remainTimes  | number      | 否    | 指示剩余次数，默认为空。      |
+| freezingTime | number      | 否    | 指示冻结时间，默认为空。      |
 
 ## CredentialInfo<sup>8+</sup>
 
@@ -5972,7 +5976,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 | 名称        | 类型        | 必填   | 说明              |
 | ------------ | ----------- | ----- | ----------------- |
-| credentialId | Uint8Array  | 否    | 指示凭据索引。     |
+| credentialId | Uint8Array  | 否    | 指示凭据索引，默认为空。      |
 
 ## EnrolledCredInfo<sup>8+</sup>
 
@@ -6002,6 +6006,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | AUTH_SUB_TYPE | 1      | 认证子类型。 |
 | REMAIN_TIMES  | 2      | 剩余时间。   |
 | FREEZING_TIME | 3      | 冻结时间。   |
+| ENROLLMENT_PROGRESS<sup>10+</sup> | 4      | 录入进度。   |
+| SENSOR_INFO<sup>10+</sup> | 5      | 传感器信息。   |
 
 ## SetPropertyType<sup>8+</sup>
 
@@ -6045,6 +6051,9 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | PIN_MIXED  | 10002 | 表示自定义混合凭据。 |
 | FACE_2D    | 20000 | 表示2D 人脸凭证。   |
 | FACE_3D    | 20001 | 表示3D 人脸凭证。   |
+| FINGERPRINT_CAPACITIVE<sup>10+</sup>    | 30000 | 表示电容式指纹。   |
+| FINGERPRINT_OPTICAL<sup>10+</sup>    | 30001 | 表示光学指纹。   |
+| FINGERPRINT_ULTRASONIC<sup>10+</sup>    | 30002 | 表示超声波指纹。   |
 | DOMAIN_MIXED<sup>9+</sup>    | 10240001 | 表示域认证混合凭证。   |
 
 ## AuthTrustLevel<sup>8+</sup>
@@ -6128,12 +6137,14 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 | 名称                          | 值 | 说明                                            |
 | ----------------------------- | ----- | ----------------------------------------------- |
-| FINGERPRINT_TIP_GOOD          | 0     | 表明采集的图像良好。                              |
+| FINGERPRINT_TIP_GOOD          | 0     | 表示采集的图像良好。                              |
 | FINGERPRINT_TIP_IMAGER_DIRTY  | 1     | 表示由于传感器上可疑或检测到污垢，指纹图像噪声过大。 |
 | FINGERPRINT_TIP_INSUFFICIENT  | 2     | 表示由于检测到的情况，指纹图像噪声太大，无法处理。   |
-| FINGERPRINT_TIP_PARTIAL       | 3     | 指示仅检测到部分指纹图像。                         |
+| FINGERPRINT_TIP_PARTIAL       | 3     | 表示仅检测到部分指纹图像。                         |
 | FINGERPRINT_TIP_TOO_FAST      | 4     | 表示指纹图像由于快速运动而不完整。                  |
 | FINGERPRINT_TIP_TOO_SLOW      | 5     | 表示由于缺少运动，指纹图像无法读取。                |
+| FINGERPRINT_TIP_FINGER_DOWN<sup>10+</sup>   | 6     | 表示手指向下。                  |
+| FINGERPRINT_TIP_FINGER_UP<sup>10+</sup>     | 7     | 表示手指向上。                |
 
 ## OsAccountInfo
 
@@ -6145,17 +6156,17 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------- |
 | localId                        | number                                                       | 是   | 系统帐号ID。                      |
 | localName                      | string                                                       | 是   | 系统帐号名称。                    |
-| type                           | [OsAccountType](#osaccounttype)                              | 是   | 系统帐号类型                      |
-| constraints                    | Array&lt;string&gt;                                          | 否   | 系统帐号[约束](#系统帐号约束列表) |
-| isVerified<sup>8+</sup>        | boolean                                                      | 是   | 帐号是否验证                      |
-| photo<sup>8+</sup>             | string                                                       | 否   | 系统帐号头像                      |
-| createTime<sup>8+</sup>        | number                                                       | 是   | 系统帐号创建时间                  |
-| lastLoginTime<sup>8+</sup>     | number                                                       | 否   | 系统帐号最后一次登录时间          |
-| serialNumber<sup>8+</sup>      | number                                                       | 是   | 系统帐号SN码                      |
-| isActived<sup>8+</sup>         | boolean                                                      | 是   | 系统帐号激活状态                  |
-| isCreateCompleted<sup>8+</sup> | boolean                                                      | 是   | 系统帐号创建是否完整              |
-| distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | 否   | 分布式帐号信息                    |
-| domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | 否   | 域帐号信息                        |
+| type                           | [OsAccountType](#osaccounttype)                              | 是   | 系统帐号类型。                      |
+| constraints                    | Array&lt;string&gt;                                          | 否   | 系统帐号[约束](#系统帐号约束列表)，默认为空。|
+| isVerified<sup>8+</sup>        | boolean                                                      | 是   | 帐号是否验证。                      |
+| photo<sup>8+</sup>             | string                                                       | 否   | 系统帐号头像，默认为空。                      |
+| createTime<sup>8+</sup>        | number                                                       | 是   | 系统帐号创建时间。                  |
+| lastLoginTime<sup>8+</sup>     | number                                                       | 否   | 系统帐号最后一次登录时间，默认为空。          |
+| serialNumber<sup>8+</sup>      | number                                                       | 是   | 系统帐号SN码。                      |
+| isActived<sup>8+</sup>         | boolean                                                      | 是   | 系统帐号激活状态。                  |
+| isCreateCompleted<sup>8+</sup> | boolean                                                      | 是   | 系统帐号创建是否完整。              |
+| distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | 否   | 分布式帐号信息，默认为空。                    |
+| domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | 否   | 域帐号信息，默认为空。                        |
 
 ## DomainAccountInfo<sup>8+</sup>
 
@@ -6167,7 +6178,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | ----------- | ------ | ---- | ---------- |
 | domain      | string | 是   | 域名。     |
 | accountName | string | 是   | 域帐号名。 |
-| accountId<sup>10+</sup> | string | 否   | 域帐号标识。<br>**系统接口：** 此接口为系统接口。 |
+| accountId<sup>10+</sup> | string | 否   | 域帐号标识。<br>**系统接口：** 此接口为系统接口，默认为空。 |
 
 ## 系统帐号约束列表
 

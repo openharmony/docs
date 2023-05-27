@@ -121,6 +121,10 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700036 | Failed to install the HSP because lacks appropriate permissions. |
 | 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
 | 17700041 | Failed to install because enterprise device management disallow install. |
+| 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
+| 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
+| 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
+| 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 
 **示例：**
 
@@ -184,6 +188,10 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 | 17700036 | Failed to install the HSP because lacks appropriate permissions. |
 | 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
 | 17700041 | Failed to install because enterprise device management disallow install. |
+| 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
+| 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
+| 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
+| 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 
 **示例：**
 
@@ -225,7 +233,7 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array\<string\>               | 是   | 存储应用程序包的路径。路径应该是当前应用程序中存放HAP的数据目录。当传入的路径是一个目录时， 该目录下只能放同一个应用的HAP，且这些HAP的签名需要保持一致。 |
-| installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数。                                     |
+| installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。                                     |
 
 **返回值：**
 
@@ -251,6 +259,10 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 | 17700036 | Failed to install the HSP because lacks appropriate permissions. |
 | 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
 | 17700041 | Failed to install because enterprise device management disallow install. |
+| 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
+| 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
+| 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
+| 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 
 **示例：**
 
@@ -309,6 +321,7 @@ uninstall(bundleName: string, installParam: InstallParam, callback: AsyncCallbac
 | 17700004 | The specified user ID is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
+| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
 
 **示例：**
 
@@ -366,6 +379,7 @@ uninstall(bundleName: string, callback: AsyncCallback&lt;void&gt;): void;
 | 17700001 | The specified bundle name is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
+| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
 
 **示例：**
 
@@ -406,7 +420,7 @@ uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName | string                          | 是   | 待卸载应用的包名。                                           |
-| installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数。                                     |
+| installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。                                     |
 
 **返回值：**
 
@@ -421,9 +435,10 @@ uninstall(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
 | 17700001 | The specified bundle name is not found. |
-| 17700004 | The specified userId is not existed. |
+| 17700004 | The specified user ID is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
+| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
 
 **示例：**
 ```ts
@@ -576,7 +591,7 @@ recover(bundleName: string, installParam?: InstallParam) : Promise\<void\>;
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName | string                          | 是   | 待卸载应用的包名。                                           |
-| installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数。                                     |
+| installParam | [InstallParam](#installparam) | 否   | 指定安装所需的其他参数，默认值：参照[InstallParam](#installparam)的默认值。                                     |
 
 **返回值：**
 
@@ -754,12 +769,12 @@ try {
 
 | 名称                        | 类型                           | 必填                         | 说明               |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |
-| userId                         | number                         | 否                        | 指示用户id，可使用[queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#getOsAccountLocalId)获取当前进程所在用户。 |
-| installFlag                    | number                         | 否                        | 指示安装标志，枚举值：0：应用初次安装，1：应用覆盖安装。 |
-| isKeepData                     | boolean                        | 否                       | 卸载时是否保留数据目录。 |
-| hashParams        | Array<[HashParam](#hashparam)> | 否 | 哈希值参数。         |
-| crowdtestDeadline| number                         | 否                        |[众测](https://developer.huawei.com/consumer/cn/agconnect/crowd-test/)截止日期。 |
-| sharedBundleDirPaths<sup>10+</sup> | Array\<String> | 否 |共享包文件所在路径。 |
+| userId                         | number                         | 否                        | 指示用户id，默认值：调用方所在用户，取值范围：大于等于0，可使用[queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#getOsAccountLocalId)获取当前进程所在用户。 |
+| installFlag                    | number                         | 否                        | 指示安装标志，枚举值：0：应用初次安装，1：应用覆盖安装，默认值为应用初次安装 |
+| isKeepData                     | boolean                        | 否                       | 卸载时是否保留数据目录，默认值为false。 |
+| hashParams        | Array<[HashParam](#hashparam)> | 否 | 哈希值参数，默认值为空。         |
+| crowdtestDeadline| number                         | 否                        |[众测](https://developer.huawei.com/consumer/cn/agconnect/crowd-test/)截止日期，默认值为-1。 |
+| sharedBundleDirPaths<sup>10+</sup> | Array\<String> | 否 |共享包文件所在路径，默认值为空。 |
 
 ## UninstallParam<sup>10+</sup>
 
@@ -772,4 +787,4 @@ try {
 | 名称        | 类型   | 必填 | 说明                                                         |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | bundleName  | string | 是   | 共享包包名。                                                 |
-| versionCode | number | 否   | 指示共享包的版本号。如果不填写versionCode，则卸载该包名的所有共享包。 |
+| versionCode | number | 否   | 指示共享包的版本号。默认值：如果不填写versionCode，则卸载该包名的所有共享包。 |

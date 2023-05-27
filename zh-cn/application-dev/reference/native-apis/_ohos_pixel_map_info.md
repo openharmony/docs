@@ -21,10 +21,10 @@
 
   | 成员变量名称 | 描述 | 
 | -------- | -------- |
-| [width](#width) | 图片的高，用pixels表示。 | 
-| [height](#height) | Pixel的格式。 | 
+| [width](#width) | 图片的宽，用pixels表示。 | 
+| [height](#height) | 图片的高，用pixels表示。 | 
 | [rowSize](#rowsize) | 每行的bytes数。 | 
-| [pixelFormat](#pixelformat) | 图片的宽，用pixels表示。 | 
+| [pixelFormat](#pixelformat) | Pixel的格式。 | 
 
 
 ## 结构体成员变量说明

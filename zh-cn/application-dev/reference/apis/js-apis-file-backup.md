@@ -3,9 +3,9 @@
 该模块为应用提供备份/恢复数据的能力。
 
 > **说明：**
+>
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > - 本模块接口为系统接口。
-> - 本模块支持对错误码进行处理，错误码及其适配方式[参考文档](../errorcodes/errorcode-filemanagement.md#错误码适配指导)。
 
 ## 导入模块
 
@@ -19,9 +19,9 @@ import backup from '@ohos.file.backup';
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
-| 名称       | 类型   | 必填 | 说明                                                                                                   |
-| ---------- | ------ | ---- | ------------------------------------------------------------------------------------------------------ |
-| bundleName | string | 是   | 应用名称，可通过[bundle.BundleInfo](js-apis-bundle-BundleInfo.md)提供的获取方式获取。                  |
+| 名称       | 类型   | 必填 | 说明                                                                                           |
+| ---------- | ------ | ---- | ---------------------------------------------------------------------------------------------- |
+| bundleName | string | 是   | 应用名称，可通过[bundle.BundleInfo](js-apis-bundle-BundleInfo.md)提供的获取方式获取。          |
 | uri        | string | 是   | 应用沙箱内待传输文件的名称，当前uri尚未升级为标准格式，仅接受0-9a-zA-Z下划线(_)点(.)组成的名称 |
 
 ## FileData
@@ -29,7 +29,8 @@ import backup from '@ohos.file.backup';
 文件的元数据，包含一个已经打开的文件描述符。FileData在执行备份/恢复时是不可缺少的对象
 
 > **说明：**
-> - FileData使用完成后必须关闭，如不关闭会出现内心泄露问题。关闭的方法可参考由[@ohos.file.fs](./js-apis-file-fs.md)提供的[fs.closeSync](js-apis-file-fs.md#fsclosesync)等相关关闭接口
+>
+> FileData使用完成后必须关闭，如不关闭会出现内存泄露问题。关闭的方法可参考由[@ohos.file.fs](js-apis-file-fs.md)提供的[fs.closeSync](js-apis-file-fs.md#fsclosesync)等相关关闭接口。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
@@ -43,7 +44,8 @@ import backup from '@ohos.file.backup';
 继承[FileMeta](#filemeta)和[FileData](#filedata)
 
 > **说明：**
-> - file.backup.File与@ohos.file.fs中的提供的[File](js-apis-file-fs.md#file)是带有不同的涵义，前者是继承[FileMeta](#filemeta)和[FileData](#filedata)的对象而后者只有一个文件描述符的对象。请注意做区分，不要混淆。
+>
+> file.backup.File与@ohos.file.fs中的提供的[File](js-apis-file-fs.md#file)是带有不同的涵义，前者是继承[FileMeta](#filemeta)和[FileData](#filedata)的对象而后者只有一个文件描述符的对象。请注意做区分，不要混淆。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
@@ -57,12 +59,26 @@ import backup from '@ohos.file.backup';
 
 onFileReady : AsyncCallback&lt;File&gt;
 
-回调函数。当服务端返向客户端发送文件成功，err为undefined，否则为错误对象。
+回调函数。当服务端返向客户端发送文件成功时触发回调，err为undefined，否则为错误对象。
 
 > **说明：**
-> - AsyncCallback回调中返回的File 所属file.backup.[File](#file)类型，返回的文件归备份服务所有，一旦文件关闭，备份服务将选择合适的实际去清理，但客户端必须关闭文件句柄。
+>
+> AsyncCallback回调中返回的File 所属file.backup.[File](#file)类型，返回的文件归备份服务所有，一旦文件关闭，备份服务将选择合适的时机去清理，但客户端必须关闭文件句柄。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
+| 13900025 | No space left on device |
+| 13900042 | Unknown error           |
 
 **示例：**
 
@@ -81,19 +97,29 @@ onFileReady : AsyncCallback&lt;File&gt;
 
 onBundleBegin : AsyncCallback&lt;string&gt;
 
- 回调函数。当应用备份/恢复开始时返回bundle名称成功，err为undefined，否则为错误对象。
-
-> **说明：**
-> - 回调函数。当应用备份/恢复开始时，err为undefined，否则为错误对象。
+ 回调函数。当应用备份/恢复开始时返回bundle名称成功时触发回调，err为undefined，否则为错误对象。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
+| 13900025 | No space left on device |
+| 13900042 | Unknown error           |
 
 **示例：**
 
   ```js
   onBundleBegin: (err, bundleName) => {
     if (err) {
-      console.error('onBundleBegin failed with err: ' + err);]
+      console.error('onBundleBegin failed with err: ' + err);
     }
     console.info('onBundleBegin success with bundleName: ' + bundleName);
   }
@@ -103,9 +129,22 @@ onBundleBegin : AsyncCallback&lt;string&gt;
 
 onBundleEnd : AsyncCallback&lt;string&gt;
 
-回调函数。当应用备份/恢复结束后返回bundle名称成功，err为undefined，否则为错误对象。
+回调函数。当应用备份/恢复结束后返回bundle名称成功时触发回调，err为undefined，否则为错误对象。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
+| 13900025 | No space left on device |
+| 13900042 | Unknown error           |
 
 **示例：**
 
@@ -122,9 +161,22 @@ onBundleEnd : AsyncCallback&lt;string&gt;
 
 onAllBundlesEnd : AsyncCallback&lt;undefined&gt;
 
-回调函数。当所有bundle的备份/恢复过程结束成功，err为undefined，否则为错误对象。
+回调函数。当所有bundle的备份/恢复过程结束成功时触发回调，err为undefined，否则为错误对象。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
+| 13900025 | No space left on device |
+| 13900042 | Unknown error           |
 
 **示例：**
 
@@ -141,7 +193,7 @@ onAllBundlesEnd : AsyncCallback&lt;undefined&gt;
 
 onBackupServiceDied : Callback&lt;undefined&gt;
 
-回调函数，返回备份服务死亡。
+回调函数。备份服务死亡时触发回调。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
@@ -153,9 +205,9 @@ onBackupServiceDied : Callback&lt;undefined&gt;
   }
   ```
 
-## getLocalCapabilities
+## backup.getLocalCapabilities
 
-getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void;
+getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
 
 用于获取一个描述本地能力的Json文件。使用callback异步回调。
 
@@ -164,27 +216,22 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void;
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
 **参数：**
+
 | 参数名   | 类型                                       | 必填 | 说明                                                   |
 | -------- | ------------------------------------------ | ---- | ------------------------------------------------------ |
 | callback | AsyncCallback&lt;[FileData](#filedata)&gt; | 是   | 回调函数。当获取成功，err为undefined，否则为错误对象。 |
 
-**json configuration example**
+**错误码：**
 
- ```json
- {
-  "bundleInfos" :[{
-    "allToBackup" : true,
-    "extensionName" : "BackupExtensionAbility",
-    "name" : "com.example.hiworld",
-    "needToInstall" : false,
-    "spaceOccupied" : 0,
-    "versionCode" : 1000000,
-    "versionName" : "1.0.0"
-    }],
-  "deviceType" : "phone",
-  "systemFullName" : "OpenHarmony-4.0.0.0"
- }
- ```
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900025 | No space left on device |
+| 13900042 | Unknown error           |
 
 **示例：**
 
@@ -203,23 +250,7 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void;
   }
   ```
 
-## getLocalCapabilities
-
-getLocalCapabilities(): Promise&lt;FileData&gt;;
-
-用于获取一个描述本地能力的Json文件。使用Promise异步回调。
-
-**需要权限**：ohos.permission.BACKUP
-
-**系统能力**：SystemCapability.FileManagement.StorageService.Backup
-
-**返回值：**
-
-| 类型                                 | 说明                                                |
-| ------------------------------------ | --------------------------------------------------- |
-| Promise&lt;[FileData](#filedata)&gt; | Promise对象，返回描述本地能力的Json文件的FileData。 |
-
-**json configuration example**
+**返回的能力文件内容示例：**
 
  ```json
  {
@@ -237,18 +268,66 @@ getLocalCapabilities(): Promise&lt;FileData&gt;;
  }
  ```
 
+## backup.getLocalCapabilities
+
+getLocalCapabilities(): Promise&lt;FileData&gt;
+
+用于获取一个描述本地能力的Json文件。使用Promise异步回调。
+
+**需要权限**：ohos.permission.BACKUP
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**返回值：**
+
+| 类型                                 | 说明                                                |
+| ------------------------------------ | --------------------------------------------------- |
+| Promise&lt;[FileData](#filedata)&gt; | Promise对象，返回描述本地能力的Json文件的FileData。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900025 | No space left on device |
+| 13900042 | Unknown error           |
+
 **示例：**
 
   ```js
-  try {
-    import fs from '@ohos.file.fs';
-    let fileData = await backup.getLocalCapabilities();
-    console.info('getLocalCapabilities success');
-    fs.closeSync(fileData.fd);
-  } catch (err) {
-    console.error('getLocalCapabilities failed with err: ' + err);
+  import fs from '@ohos.file.fs';
+  async function getLocalCapabilities() {
+    try {
+      let fileData = await backup.getLocalCapabilities();
+      console.info('getLocalCapabilities success');
+      fs.closeSync(fileData.fd);
+    } catch (err) {
+      console.error('getLocalCapabilities failed with err: ' + err);
+    }
   }
   ```
+
+  **返回的能力文件内容示例：**
+
+ ```json
+ {
+  "bundleInfos" :[{
+    "allToBackup" : true,
+    "extensionName" : "BackupExtensionAbility",
+    "name" : "com.example.hiworld",
+    "needToInstall" : false,
+    "spaceOccupied" : 0,
+    "versionCode" : 1000000,
+    "versionName" : "1.0.0"
+    }],
+  "deviceType" : "phone",
+  "systemFullName" : "OpenHarmony-4.0.0.0"
+ }
+ ```
 
 ## SessionBackup
 
@@ -269,6 +348,157 @@ constructor(callbacks: GeneralCallbacks);
 | 参数名   | 类型                                  | 必填 | 说明                 |
 | -------- | ------------------------------------- | ---- | -------------------- |
 | callback | [GeneralCallbacks](#generalcallbacks) | 是   | 备份流程所需的回调。 |
+
+**示例：**
+
+  ```js
+  import fs from '@ohos.file.fs';
+  let generalCallbacks = backup.GeneralCallbacks({
+    onFileReady: (err, file) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + err);
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleBegin failed with err: ' + err);
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleEnd failed with err: ' + err);
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + err);
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    }
+  });
+  let sessionBackup = new backup.SessionBackup(generalCallbacks);
+  ```
+
+### appendBundles
+
+appendBundles(bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): void
+
+添加需要备份的应用。当前整个流程中，在获取SessionBackup类的实例后只能调用一次。使用callback异步回调。
+
+**需要权限**：ohos.permission.BACKUP
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名          | 类型                      | 必填 | 说明                                                           |
+| --------------- | ------------------------- | ---- | -------------------------------------------------------------- |
+| bundlesToBackup | string[]                  | 是   | 需要备份的应用名称的数组。                                     |
+| callback        | AsyncCallback&lt;void&gt; | 是   | 回调函数。当添加备份应用成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900001 | Operation not permitted |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
+| 13900025 | No space left on device |
+| 13900042 | Unknown error           |
+
+**示例：**
+
+
+  ```js
+  import fs from '@ohos.file.fs';
+  let sessionBackup = new backup.SessionBackup({
+    onFileReady: (err, file) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + err);
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleBegin failed with err: ' + err);
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleEnd failed with err: ' + err);
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + err);
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    }
+  });
+  try {
+    sessionBackup.appendBundles(['com.example.hiworld'], (err) => {
+      if (err) {
+        console.error('appendBundles failed with err: ' + err);
+      }
+      console.info('appendBundles success');
+    });
+  } catch (err) {
+    console.error('appendBundles failed with err: ' + err);
+  }
+  ```
+
+### appendBundles
+
+appendBundles(bundlesToBackup: string[]): Promise&lt;void&gt;
+
+添加需要备份的应用。当前整个流程中，在获取SessionBackup类的实例后只能调用一次。使用Promise异步回调。
+
+**需要权限**：ohos.permission.BACKUP
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名          | 类型     | 必填 | 说明                       |
+| --------------- | -------- | ---- | -------------------------- |
+| bundlesToBackup | string[] | 是   | 需要备份的应用名称的数组。 |
+
+**返回值：**
+
+| 类型                | 说明                                   |
+| ------------------- | -------------------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900001 | Operation not permitted |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
+| 13900025 | No space left on device |
+| 13900042 | Unknown error           |
 
 **示例：**
 
@@ -304,70 +534,13 @@ constructor(callbacks: GeneralCallbacks);
       console.info('service died');
     }
   });
-  ```
-
-### appendBundles
-
-appendBundles(bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): void;
-
-添加需要备份的应用。当前整个流程中，在获取SessionBackup类的实例后只能调用一次。使用callback异步回调。
-
-**需要权限**：ohos.permission.BACKUP
-
-**系统能力**：SystemCapability.FileManagement.StorageService.Backup
-
-**参数：**
-
-| 参数名          | 类型                      | 必填 | 说明                                                           |
-| --------------- | ------------------------- | ---- | -------------------------------------------------------------- |
-| bundlesToBackup | string[]                  | 是   | 需要备份的应用名称的数组。                                     |
-| callback        | AsyncCallback&lt;void&gt; | 是   | 回调函数。当添加备份应用成功，err为undefined，否则为错误对象。 |
-
-**示例：**
-
-  ```js
-  try {
-    sessionBackup.appendBundles(['com.example.hiworld'], (err) => {
-      if (err) {
-        console.error('appendBundles failed with err: ' + err);
-      }
+  async function appendBundles() {
+    try {
+      await sessionBackup.appendBundles(['com.example.hiworld']);
       console.info('appendBundles success');
-    });
-  } catch (err) {
+    } catch (err) {
     console.error('appendBundles failed with err: ' + err);
-  }
-  ```
-
-### appendBundles
-
-appendBundles(bundlesToBackup: string[]): Promise&lt;void&gt;;
-
-添加需要备份的应用。当前整个流程中，在获取SessionBackup类的实例后只能调用一次。使用Promise异步回调。
-
-**需要权限**：ohos.permission.BACKUP
-
-**系统能力**：SystemCapability.FileManagement.StorageService.Backup
-
-**参数：**
-
-| 参数名          | 类型     | 必填 | 说明                       |
-| --------------- | -------- | ---- | -------------------------- |
-| bundlesToBackup | string[] | 是   | 需要备份的应用名称的数组。 |
-
-**返回值：**
-
-| 类型                | 说明                                   |
-| ------------------- | -------------------------------------- |
-| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
-
-**示例：**
-
-  ```js
-  try {
-    await sessionBackup.appendBundles(['com.example.hiworld']);
-    console.info('appendBundles success');
-  } catch (err) {
-    console.error('appendBundles failed with err: ' + err);
+    }
   }
   ```
 
@@ -390,6 +563,80 @@ constructor(callbacks: GeneralCallbacks);
 | 参数名   | 类型                                  | 必填 | 说明                 |
 | -------- | ------------------------------------- | ---- | -------------------- |
 | callback | [GeneralCallbacks](#generalcallbacks) | 是   | 恢复流程所需的回调。 |
+
+**示例：**
+
+  ```js
+  import fs from '@ohos.file.fs';
+  let generalCallbacks = backup.GeneralCallbacks({
+    onFileReady: (err, file) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + err);
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleBegin failed with err: ' + err);
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleEnd failed with err: ' + err);
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + err);
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    }
+  });
+  let sessionRestore = new backup.SessionRestore(generalCallbacks);
+  ```
+
+### appendBundles
+
+appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): void
+
+添加需要恢复的应用。当前整个流程中，在获取SessionRestore类的实例后只能调用一次。使用callback异步回调。
+
+> **说明：**
+>
+> - 服务在恢复时需要其能力文件进行相关校验。
+> - 因此remoteCapabilitiesFd可通过备份端服务所提供的[getLocalCapabilities](#backupgetlocalcapabilities)接口获取，可对其内容根据恢复应用的实际状况修改参数。也可通过getLocalCapabilities提供的json示例自行生成能力文件。
+
+**需要权限**：ohos.permission.BACKUP
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名               | 类型                      | 必填 | 说明                                                           |
+| -------------------- | ------------------------- | ---- | -------------------------------------------------------------- |
+| remoteCapabilitiesFd | number                    | 是   | 用于恢复所需能力文件的文件描述符。                             |
+| bundlesToBackup      | string[]                  | 是   | 需要恢复的应用名称的数组。                                     |
+| callback             | AsyncCallback&lt;void&gt; | 是   | 回调函数。当添加恢复应用成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900001 | Operation not permitted |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
+| 13900025 | No space left on device |
+| 13900042 | Unknown error           |
 
 **示例：**
 
@@ -421,60 +668,36 @@ constructor(callbacks: GeneralCallbacks);
       }
       console.info('onAllBundlesEnd success');
     },
-    onRestoreServiceDied: () => {
+    onBackupServiceDied: () => {
       console.info('service died');
     }
   });
-  ```
-
-### appendBundles
-
-appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): void;
-
-添加需要恢复的应用。当前整个流程中，在获取SessionRestore类的实例后只能调用一次。使用callback异步回调。
-
-> **说明：**
-> - 服务在恢复时需要其能力文件进行相关校验。
-> - 因此remoteCapabilitiesFd可通过备份端服务所提供的[getLocalCapabilities](#getlocalcapabilities)接口获取，可对其内容根据恢复应用的实际状况修改参数。也可通过getLocalCapabilities提供的json示例自行生成能力文件。
-
-**需要权限**：ohos.permission.BACKUP
-
-**系统能力**：SystemCapability.FileManagement.StorageService.Backup
-
-**参数：**
-
-| 参数名               | 类型                      | 必填 | 说明                                                           |
-| -------------------- | ------------------------- | ---- | -------------------------------------------------------------- |
-| remoteCapabilitiesFd | number                    | 是   | 用于恢复所需能力文件的文件描述符。                             |
-| bundlesToBackup      | string[]                  | 是   | 需要恢复的应用名称的数组。                                     |
-| callback             | AsyncCallback&lt;void&gt; | 是   | 回调函数。当添加恢复应用成功，err为undefined，否则为错误对象。 |
-
-**示例：**
-
-  ```js
-  try {
-    let fileData = await backup.getLocalCapabilities();
-    console.info('getLocalCapabilities success');
-    sessionRestore.appendBundles(fileData.fd, ['com.example.hiworld'], (err) => {
+  async function appendBundles() {
+    try {
+      let fileData = await backup.getLocalCapabilities();
+      console.info('getLocalCapabilities success');
+      sessionRestore.appendBundles(fileData.fd, ['com.example.hiworld'], (err) => {
       if (err) {
         console.error('appendBundles failed with err: ' + err);
       }
       console.info('appendBundles success');
     });
-  } catch (err) {
-    console.error('appendBundles failed with err: ' + err);
+    } catch (err) {
+      console.error('getLocalCapabilities failed with err: ' + err);
+    }
   }
   ```
 
 ### appendBundles
 
-appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[]): Promise&lt;void&gt;;
+appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[]): Promise&lt;void&gt;
 
 添加需要恢复的应用。当前整个流程中，在获取SessionRestore类的实例后只能调用一次。使用Promise异步回调。
 
 > **说明：**
+>
 > - 服务在恢复时需要其能力文件进行相关校验。
-> - 因此remoteCapabilitiesFd可通过备份端服务所提供的[getLocalCapabilities](#getlocalcapabilities)接口获取，可对其内容根据恢复应用的实际状况修改参数。也可通过getLocalCapabilities提供的json示例自行生成能力文件。
+> - 因此remoteCapabilitiesFd可通过备份端服务所提供的[getLocalCapabilities](#backupgetlocalcapabilities)接口获取，可对其内容根据恢复应用的实际状况修改参数。也可通过getLocalCapabilities提供的json示例自行生成能力文件。
 
 **需要权限**：ohos.permission.BACKUP
 
@@ -493,27 +716,75 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[]): Promise&
 | ------------------- | -------------------------------------- |
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900001 | Operation not permitted |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
+| 13900025 | No space left on device |
+| 13900042 | Unknown error           |
+
 **示例：**
 
   ```js
-  try {
-    let fileData = await backup.getLocalCapabilities();
-    console.info('getLocalCapabilities success');
-    await sessionRestore.appendBundles(fileData.fd, ['com.example.hiworld']);
-    console.info('appendBundles success');
-  } catch (err) {
-    console.error('appendBundles failed with err: ' + err);
+  import fs from '@ohos.file.fs';
+  let sessionRestore = new backup.SessionRestore({
+    onFileReady: (err, file) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + err);
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleBegin failed with err: ' + err);
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleEnd failed with err: ' + err);
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + err);
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    }
+  });
+  async function appendBundles() {
+    try {
+      let fileData = await backup.getLocalCapabilities();
+      console.info('getLocalCapabilities success');
+      await sessionRestore.appendBundles(fileData.fd, ['com.example.hiworld']);
+      console.info('appendBundles success');
+    } catch (err) {
+      console.error('getLocalCapabilities failed with err: ' + err);
+    }
   }
   ```
 
 ### getFileHandle
 
-getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void;
+getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 
 用于请求从服务中获取共享文件。使用callback异步回调。
 
 > **说明：**
-> - 这个接口是零拷贝特性（减少不必要的内存拷贝，实现了更高效率的传输）的一部分。零拷贝方法可参考由[@ohos.file.fs](./js-apis-file-fs.md)提供的[fs.copyFile](js-apis-file-fs.md#fscopyfile)等相关零拷贝接口。
+>
+> - 这个接口是零拷贝特性（减少不必要的内存拷贝，实现了更高效率的传输）的一部分。零拷贝方法可参考由[@ohos.file.fs](js-apis-file-fs.md)提供的[fs.copyFile](js-apis-file-fs.md#fscopyfile)等相关零拷贝接口。
 > - 使用getFileHandle前需要获取SessionRestore类的实例，并且成功通过appendBundles添加需要待恢复的应用。
 > - 开发者可以通过onFileReady回调来获取文件句柄，当客户端完成文件操作时，需要使用publishFile来进行发布。
 > - 根据所需要恢复的文件个数，可以多次调用getFileHandle。
@@ -529,11 +800,52 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void;
 | fileMeta | [FileMeta](#filemeta)     | 是   | 恢复文件的元数据。                                             |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当请求文件句柄成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900001 | Operation not permitted |
+| 13900020 | Invalid argument        |
+| 13900042 | Unknown error           |
+
 **示例：**
 
   ```js
-  try {
-    sessionRestore.getFileHandle({
+  import fs from '@ohos.file.fs';
+  let sessionRestore = new backup.SessionRestore({
+    onFileReady: (err, file) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + err);
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleBegin failed with err: ' + err);
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleEnd failed with err: ' + err);
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + err);
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    }
+  });
+  sessionRestore.getFileHandle({
       bundleName: "com.example.hiworld",
       uri: "test.txt"
       }, (err, file) => {
@@ -542,19 +854,17 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void;
       }
       console.info('getFileHandle success');
     });
-  } catch (err) {
-    console.error('getFileHandle failed with err: ' + err);
-  }
   ```
 
 ### getFileHandle
 
-getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;;
+getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
 
 用于请求从服务中获取共享文件。使用Promise异步回调。
 
 > **说明：**
-> - 这个接口是零拷贝特性（减少不必要的内存拷贝，实现了更高效率的传输）的一部分。零拷贝方法可参考由[@ohos.file.fs](./js-apis-file-fs.md)提供的[fs.copyFile](js-apis-file-fs.md#fscopyfile)等相关零拷贝接口。
+>
+> - 这个接口是零拷贝特性（减少不必要的内存拷贝，实现了更高效率的传输）的一部分。零拷贝方法可参考由[@ohos.file.fs](js-apis-file-fs.md)提供的[fs.copyFile](js-apis-file-fs.md#fscopyfile)等相关零拷贝接口。
 > - 使用getFileHandle前需要获取SessionRestore类的实例，并且成功通过appendBundles添加需要待恢复的应用。
 > - 开发者可以通过onFileReady回调来获取文件句柄，当客户端完成文件操作时，需要使用publishFile来进行发布。
 > - 根据所需要恢复的文件个数，可以多次调用getFileHandle。
@@ -575,28 +885,73 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;;
 | ------------------- | -------------------------------------- |
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900001 | Operation not permitted |
+| 13900020 | Invalid argument        |
+| 13900042 | Unknown error           |
+
 **示例：**
 
   ```js
-  try {
-    await sessionRestore.getFileHandle({
-      bundleName: "com.example.hiworld",
-      uri: "test.txt"
+  import fs from '@ohos.file.fs';
+  let sessionRestore = new backup.SessionRestore({
+    onFileReady: (err, file) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + err);
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleBegin failed with err: ' + err);
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleEnd failed with err: ' + err);
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + err);
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    }
+  });
+  async function getFileHandle() {
+    try {
+      await sessionRestore.getFileHandle({
+        bundleName: "com.example.hiworld",
+        uri: "test.txt"
       });
-    console.info('getFileHandle success');
-  } catch (err) {
-    console.error('getFileHandle failed with err: ' + err);
+      console.info('getFileHandle success');
+    } catch (err) {
+      console.error('getFileHandle failed with err: ' + err);
+    }
   }
   ```
 
 ### publishFile
 
-publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void;
+publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 
 用于将FileMeta发布到备份服务，使服务知道文件的内容已经准备完成。使用callback异步回调。
 
 > **说明：**
-> - 这个接口是零拷贝特性（减少不必要的内存拷贝，实现了更高效率的传输）的一部分。零拷贝方法可参考由[@ohos.file.fs](./js-apis-file-fs.md)提供的[fs.copyFile](js-apis-file-fs.md#fscopyfile)等相关零拷贝接口。
+>
+> - 这个接口是零拷贝特性（减少不必要的内存拷贝，实现了更高效率的传输）的一部分。零拷贝方法可参考由[@ohos.file.fs](js-apis-file-fs.md)提供的[fs.copyFile](js-apis-file-fs.md#fscopyfile)等相关零拷贝接口。
 > - 服务端通过onFileReady返回文件句柄后，客户端可通过零拷贝操作将其对应的文件内容拷贝到服务端提供的文件句柄中。
 > - 在完成拷贝操作后可使用publishFile通知备份服务文件已经准备完成。
 
@@ -611,39 +966,76 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void;
 | fileMeta | [FileMeta](#filemeta)     | 是   | 恢复文件元数据。                                           |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当发布文件成功，err为undefined，否则为错误对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900001 | Operation not permitted |
+| 13900020 | Invalid argument        |
+| 13900042 | Unknown error           |
+
 **示例：**
 
   ```js
-  try {
-    onFileReady: (err, file) => {
-      if (err) {
-        console.error('onFileReady failed with err: ' + err);
-      }
-      console.info('onFileReady success');
-      fs.closeSync(file.fd);
-      sessionRestore.publishFile({
-      bundleName: file.bundleName,
-      uri: file.uri
-      }, (err) => {
+  import fs from '@ohos.file.fs';
+  let g_session;
+  function createSessionRestore() {
+    let sessionRestore = new backup.SessionRestore({
+      onFileReady: (err, file) => {
         if (err) {
-          console.error('publishFile failed with err: ' + err);
+          console.error('onFileReady failed with err: ' + err);
         }
-        console.info('publishFile success');
-      });
-    }
-  } catch (err) {
-    console.error('publishFile failed with err: ' + err);
+        console.info('onFileReady success');
+        fs.closeSync(file.fd);
+        g_session.publishFile({
+          bundleName: file.bundleName,
+          uri: file.uri
+        }, (err) => {
+          if (err) {
+            console.error('publishFile failed with err: ' + err);
+          }
+          console.info('publishFile success');
+        });
+      },
+      onBundleBegin: (err, bundleName) => {
+        if (err) {
+          console.error('onBundleBegin failed with err: ' + err);
+        }
+        console.info('onBundleBegin success');
+      },
+      onBundleEnd: (err, bundleName) => {
+        if (err) {
+          console.error('onBundleEnd failed with err: ' + err);
+        }
+        console.info('onBundleEnd success');
+      },
+      onAllBundlesEnd: (err) => {
+        if (err) {
+          console.error('onAllBundlesEnd failed with err: ' + err);
+        }
+        console.info('onAllBundlesEnd success');
+      },
+      onBackupServiceDied: () => {
+        console.info('service died');
+      }
+    });
+    return sessionRestore;
   }
+  g_session = createSessionRestore();
   ```
 
 ### publishFile
 
-publishFile(fileMeta: FileMeta): Promise&lt;void&gt;;
+publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
 
 用于将FileMeta发布到备份服务，使服务知道文件的内容已经准备完成。使用Promise异步回调。
 
 > **说明：**
-> - 这个接口是零拷贝特性（减少不必要的内存拷贝，实现了更高效率的传输）的一部分。零拷贝方法可参考由[@ohos.file.fs](./js-apis-file-fs.md)提供的[fs.copyFile](js-apis-file-fs.md#fscopyfile)等相关零拷贝接口。
+>
+> - 这个接口是零拷贝特性（减少不必要的内存拷贝，实现了更高效率的传输）的一部分。零拷贝方法可参考由[@ohos.file.fs](js-apis-file-fs.md)提供的[fs.copyFile](js-apis-file-fs.md#fscopyfile)等相关零拷贝接口。
 > - 服务端通过onFileReady返回文件句柄后，客户端可通过零拷贝操作将其对应的文件内容拷贝到服务端提供的文件句柄中。
 > - 在完成拷贝操作后可使用publishFile通知备份服务文件已经准备完成。
 
@@ -663,23 +1055,63 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;;
 | ------------------- | -------------------------------------- |
 | Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900001 | Operation not permitted |
+| 13900020 | Invalid argument        |
+| 13900042 | Unknown error           |
+
 **示例：**
 
   ```js
-  try {
-    onFileReady: (err, file) => {
-      if (err) {
-        console.error('onFileReady failed with err: ' + err);
-      }
-      console.info('onFileReady success');
-      fs.closeSync(file.fd);
-      await sessionRestore.publishFile({
+  import fs from '@ohos.file.fs';
+  let g_session;
+  async function publishFile(file)
+  {
+    await g_session.publishFile({
       bundleName: file.bundleName,
       uri: file.uri
-      });
-      console.info('publishFile success');
-    },
-  } catch (err) {
-    console.error('publishFile failed with err: ' + err);
+    });
   }
+  function createSessionRestore() {
+    let sessionRestore = new backup.SessionRestore({
+      onFileReady: (err, file) => {
+        if (err) {
+          console.error('onFileReady failed with err: ' + err);
+        }
+        console.info('onFileReady success');
+        fs.closeSync(file.fd);
+        publishFile(file);
+        console.info('publishFile success');
+      },
+      onBundleBegin: (err, bundleName) => {
+        if (err) {
+          console.error('onBundleBegin failed with err: ' + err);
+        }
+        console.info('onBundleBegin success');
+      },
+      onBundleEnd: (err, bundleName) => {
+        if (err) {
+          console.error('onBundleEnd failed with err: ' + err);
+        }
+        console.info('onBundleEnd success');
+      },
+      onAllBundlesEnd: (err) => {
+        if (err) {
+          console.error('onAllBundlesEnd failed with err: ' + err);
+        }
+        console.info('onAllBundlesEnd success');
+      },
+      onBackupServiceDied: () => {
+        console.info('service died');
+      }
+    });
+    return sessionRestore;
+  }
+  g_session = createSessionRestore();
   ```

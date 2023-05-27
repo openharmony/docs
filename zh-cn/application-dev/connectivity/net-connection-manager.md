@@ -39,7 +39,7 @@
 | ---- | ---- | ---- |
 | ohos.net.connection | function getDefaultNet(callback: AsyncCallback\<NetHandle>): void; |获取一个含有默认网络的netId的NetHandle对象，使用callback回调 |
 | ohos.net.connection | function getGlobalHttpProxy<sup>10+</sup>(callback: AsyncCallback\<HttpProxy>): void;| 获取网络的全局代理设置，使用callback回调 |
-| ohos.net.connection | function setGlobalHttpProxy<sup>10+</sup>(httpProxy: HttpProxy, callback: AsyncCallback<void>): void;| 设置网络全局Http代理配置信息，使用callback回调 |
+| ohos.net.connection | function setGlobalHttpProxy<sup>10+</sup>(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void;| 设置网络全局Http代理配置信息，使用callback回调 |
 | ohos.net.connection | function getAppNet<sup>9+</sup>(callback: AsyncCallback\<NetHandle>): void;| 获取一个App绑定的包含了网络netId的NetHandle对象，使用callback回调 |
 | ohos.net.connection | function setAppNet<sup>9+</sup>(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 绑定App到指定网络，绑定后的App只能通过指定网络访问外网。使用callback回调 |
 | ohos.net.connection | function getDefaultNetSync<sup>9+</sup>(): NetHandle; |使用同步方法获取默认激活的数据网络。可以使用getNetCapabilities去获取网络的类型、拥有的能力等信息。|
@@ -47,7 +47,7 @@
 | ohos.net.connection | function getAllNets(callback: AsyncCallback\<Array\<NetHandle>>): void;| 获取所处于连接状态的网络的MetHandle对象列表，使用callback回调 |
 | ohos.net.connection | function getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void; |查询默认网络的链路信息，使用callback回调 |
 | ohos.net.connection | function getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilities>): void; |查询默认网络的能力集信息，使用callback回调 |
-| ohos.net.connection | function isDefaultNetMetered<sup>9+</sup>(callback: AsyncCallback<boolean>): void; |检查当前网络上的数据流量使用是否被计量，使用callback方式作为异步方法 |
+| ohos.net.connection | function isDefaultNetMetered<sup>9+</sup>(callback: AsyncCallback\<boolean>): void; |检查当前网络上的数据流量使用是否被计量，使用callback方式作为异步方法 |
 | ohos.net.connection | function reportNetConnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 向网络管理报告网络处于可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。使用callback回调 |
 | ohos.net.connection | function reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback\<void>): void;| 向网络管理报告网络处于不可用状态，调用此接口说明应用程序认为网络的可用性（ohos.net.connection.NetCap.NET_CAPABILITY_VAILDATED）与网络管理不一致。使用callback回调 |
 | ohos.net.connection | function getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void; |使用对应网络解析域名，获取所有IP，使用callback回调 |
@@ -81,7 +81,7 @@
 6. 当不使用该网络时，可以调用该对象的unregister()方法，取消订阅。
 
 ```js
-   // 引入包名
+// 引入包名
 import connection from '@ohos.net.connection'
 
 let netCap = {
@@ -128,7 +128,7 @@ conn.unregister((err, data) => {
 2. 调用getAllNets方法，获取所有处于连接状态的网络列表。
 
 ```js
-   // 引入包名
+// 引入包名
 import connection from '@ohos.net.connection'
 
 // 获取所有处于连接状态的网络列表
@@ -154,7 +154,7 @@ connection.getAllNets((err, data) => {
 4. 调用getConnectionProperties方法，获取NetHandle对应网络的连接信息。
 
 ```js
-   // 引入包名
+// 引入包名
 import connection from '@ohos.net.connection'
 
 // 调用getDefaultNet方法，获取默认的数据网络(NetHandle)

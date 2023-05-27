@@ -12,9 +12,9 @@ The **policy** module provides APIs for managing network policies, through which
 import policy from '@ohos.net.policy'
 ```
 
-## policy.setBackgroundPolicy
+## policy.setBackgroundAllowed
 
-setBackgroundPolicy(isAllowed: boolean, callback: AsyncCallback\<void>): void
+setBackgroundAllowed(isAllowed: boolean, callback: AsyncCallback\<void>): void
 
 Sets a background network policy. This API uses an asynchronous callback to return the result.
 
@@ -42,16 +42,15 @@ Sets a background network policy. This API uses an asynchronous callback to retu
 **Example**
 
 ```js
-policy.setBackgroundPolicy(Boolean(Number.parseInt(this.isBoolean))), (error, data) => {
-    this.callBack(error, data);
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
-});
+policy.setBackgroundAllowed(Boolean(Number.parseInt(this.isBoolean)), (error) => {
+  console.log(JSON.stringify(error))
+})
+;
 ```
 
-## policy.setBackgroundPolicy
+## policy.setBackgroundAllowed
 
-setBackgroundPolicy(isAllowed: boolean): Promise\<void>
+setBackgroundAllowed(isAllowed: boolean): Promise\<void>
 
 Sets a background network policy. This API uses a promise to return the result.
 
@@ -84,9 +83,8 @@ Sets a background network policy. This API uses a promise to return the result.
 **Example**
 
 ```js
-policy.setBackgroundPolicy(Boolean(Number.parseInt(this.isBoolean))).then(function(error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+policy.setBackgroundAllowed(Boolean(Number.parseInt(this.isBoolean))).then(function (error) {
+  console.log(JSON.stringify(error))
 })
 ```
 
@@ -118,9 +116,9 @@ Obtains the background network policy. This API uses an asynchronous callback to
 
 ```js
 policy.isBackgroundAllowed((error, data) => {
-    this.callBack(error, data);
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+  this.callBack(error, data);
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 });
 ```
 
@@ -151,11 +149,10 @@ Obtains the background network policy. This API uses a promise to return the res
 **Example**
 
 ```js
-policy.isBackgroundAllowed().then(function(error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+policy.isBackgroundAllowed().then(function (error, data) {
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 })
-
 ```
 
 ## policy.setPolicyByUid
@@ -190,10 +187,10 @@ Sets an application-specific network policy. This API uses an asynchronous callb
 
 ```js
 let param = {
-    uid: Number.parseInt(this.firstParam), policy: Number.parseInt(this.currentNetUidPolicy)
+  uid: Number.parseInt(this.firstParam), policy: Number.parseInt(this.currentNetUidPolicy)
 }
-policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.currentNetUidPolicy), (error, data) => {
-    this.callBack(error, data);
+policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.currentNetUidPolicy), (error) => {
+  this.callBack(error);
 });
 ```
 
@@ -234,13 +231,11 @@ Sets an application-specific network policy. This API uses a promise to return t
 
 ```js
 let param = {
-    uid: Number.parseInt(this.firstParam), policy: Number.parseInt(this.currentNetUidPolicy)
+  uid: Number.parseInt(this.firstParam), policy: Number.parseInt(this.currentNetUidPolicy)
 }
-policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.currentNetUidPolicy)).then(function(error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.currentNetUidPolicy)).then(function (error) {
+  console.log(JSON.stringify(error))
 })
-
 ```
 
 ## policy.getPolicyByUid
@@ -274,7 +269,7 @@ Obtains an application-specific network policy by **uid**. This API uses an asyn
 
 ```js
 policy.getPolicyByUid(Number.parseInt(this.firstParam), (error, data) => {
-    this.callBack(error, data);
+  this.callBack(error, data);
 });
 ```
 
@@ -313,11 +308,10 @@ Obtains an application-specific network policy by **uid**. This API uses a promi
 **Example**
 
 ```js
-policy.getPolicyByUid(Number.parseInt(this.firstParam)).then(function(error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+policy.getPolicyByUid(Number.parseInt(this.firstParam)).then(function (error, data) {
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 })
-
 ```
 
 ## policy.getUidsByPolicy
@@ -351,7 +345,7 @@ Obtains the UID array of applications configured with a certain application-spec
 
 ```js
 policy.getUidsByPolicy(Number.parseInt(this.currentNetUidPolicy), (error, data) => {
-    this.callBack(error, data);
+  this.callBack(error, data);
 });
 ```
 
@@ -390,11 +384,10 @@ Obtains the UID array of applications configured with a certain application-spec
 **Example**
 
 ```js
-policy.getUidsByPolicy(Number.parseInt(this.firstParam)).then(function(error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+policy.getUidsByPolicy(Number.parseInt(this.firstParam)).then(function (error, data) {
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 })
-
 ```
 
 ## policy.getNetQuotaPolicies
@@ -425,7 +418,7 @@ Obtains the network quota policies. This API uses an asynchronous callback to re
 
 ```js
 policy.getNetQuotaPolicies((error, data) => {
-    this.callBack(error, data);
+  this.callBack(error, data);
 });
 ```
 
@@ -456,9 +449,9 @@ Obtains the network quota policies. This API uses a promise to return the result
 **Example**
 
 ```js
-policy.getNetQuotaPolicies().then(function(error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+policy.getNetQuotaPolicies().then(function (error, data) {
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 })
 
 ```
@@ -493,12 +486,22 @@ Sets an array of network quota policies. This API uses an asynchronous callback 
 **Example**
 
 ```js
-let param = {netType:Number.parseInt(this.netType), iccid:this.iccid, ident:this.ident, periodDuration:this.periodDuration, warningBytes:Number.parseInt(this.warningBytes),
-    limitBytes:Number.parseInt(this.limitBytes), lastWarningRemind:this.lastWarningRemind, lastLimitRemind:this.lastLimitRemind, metered:Boolean(Number.parseInt(this.metered)), limitAction:this.limitAction};
+let param = {
+  netType: Number.parseInt(this.netType),
+  iccid: this.iccid,
+  ident: this.ident,
+  periodDuration: this.periodDuration,
+  warningBytes: Number.parseInt(this.warningBytes),
+  limitBytes: Number.parseInt(this.limitBytes),
+  lastWarningRemind: this.lastWarningRemind,
+  lastLimitRemind: this.lastLimitRemind,
+  metered: Boolean(Number.parseInt(this.metered)),
+  limitAction: this.limitAction
+};
 this.netQuotaPolicyList.push(param);
 
-policy.setNetQuotaPolicies(this.netQuotaPolicyList, (error, data) => {
-    this.callBack(error, data);
+policy.setNetQuotaPolicies(this.netQuotaPolicyList, (error) => {
+  console.log(JSON.stringify(error))
 });
 ```
 
@@ -537,13 +540,22 @@ Sets an array of network quota policies. This API uses a promise to return the r
 **Example**
 
 ```js
-let param = {netType:Number.parseInt(this.netType), iccid:this.iccid, ident:this.ident, periodDuration:this.periodDuration, warningBytes:Number.parseInt(this.warningBytes),
-    limitBytes:Number.parseInt(this.limitBytes), lastWarningRemind:this.lastWarningRemind, lastLimitRemind:this.lastLimitRemind, metered:Boolean(Number.parseInt(this.metered)), limitAction:this.limitAction};
+let param = {
+  netType: Number.parseInt(this.netType),
+  iccid: this.iccid,
+  ident: this.ident,
+  periodDuration: this.periodDuration,
+  warningBytes: Number.parseInt(this.warningBytes),
+  limitBytes: Number.parseInt(this.limitBytes),
+  lastWarningRemind: this.lastWarningRemind,
+  lastLimitRemind: this.lastLimitRemind,
+  metered: Boolean(Number.parseInt(this.metered)),
+  limitAction: this.limitAction
+};
 this.netQuotaPolicyList.push(param);
 
-policy.setNetQuotaPolicies(this.netQuotaPolicyList).then(function(error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+policy.setNetQuotaPolicies(this.netQuotaPolicyList).then(function (error) {
+  console.log(JSON.stringify(error))
 })
 ```
 
@@ -578,8 +590,8 @@ Restores all the policies (cellular network, background network, firewall, and a
 
 ```js
 this.firstParam = iccid;
-policy.restoreAllPolicies(this.firstParam, (error, data) => {
-    this.callBack(error, data);
+policy.restoreAllPolicies(this.firstParam, (error) => {
+  console.log(JSON.stringify(error))
 });
 ```
 
@@ -619,11 +631,9 @@ Restores all the policies (cellular network, background network, firewall, and a
 
 ```js
 this.firstParam = iccid;
-policy.restoreAllPolicies(this.firstParam).then(function(error, data){
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+policy.restoreAllPolicies(this.firstParam).then(function (error) {
+  console.log(JSON.stringify(error))
 })
-
 ```
 
 ## policy.isUidNetAllowed
@@ -657,12 +667,11 @@ Checks whether an application is allowed to access metered networks. This API us
 **Example**
 
 ```js
-
 let param = {
-    uid: Number.parseInt(this.firstParam), isMetered: Boolean(Number.parseInt(this.isBoolean))
+  uid: Number.parseInt(this.firstParam), isMetered: Boolean(Number.parseInt(this.isBoolean))
 }
 policy.isUidNetAllowed(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean)), (error, data) => {
-    this.callBack(error, data);
+  this.callBack(error, data);
 });
 ```
 
@@ -702,15 +711,13 @@ Checks whether an application is allowed to access metered networks. This API us
 **Example**
 
 ```js
-
 let param = {
-    uid: Number.parseInt(this.firstParam), isMetered: Boolean(Number.parseInt(this.isBoolean))
+  uid: Number.parseInt(this.firstParam), isMetered: Boolean(Number.parseInt(this.isBoolean))
 }
-policy.isUidNetAllowed(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then(function(error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+policy.isUidNetAllowed(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then(function (error, data) {
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 })
-
 ```
 
 ## policy.isUidNetAllowed
@@ -744,12 +751,11 @@ Checks whether an application is allowed to access the given network. This API u
 **Example**
 
 ```js
-
 let param = {
-    uid: Number.parseInt(this.firstParam), iface: this.secondParam
+  uid: Number.parseInt(this.firstParam), iface: this.secondParam
 }
 policy.isUidNetAllowed(Number.parseInt(this.firstParam), this.secondParam, (error, data) => {
-    this.callBack(error, data);
+  this.callBack(error, data);
 });
 ```
 
@@ -790,13 +796,12 @@ Checks whether an application is allowed to access the given network. This API u
 
 ```js
 let param = {
-    uid: Number.parseInt(this.firstParam), iface: this.secondParam
+  uid: Number.parseInt(this.firstParam), iface: this.secondParam
 }
-policy.isUidNetAllowed(Number.parseInt(this.firstParam), this.secondParam).then(function(error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+policy.isUidNetAllowed(Number.parseInt(this.firstParam), this.secondParam).then(function (error, data) {
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 })
-
 ```
 
 ## policy.setDeviceIdleAllowList
@@ -831,10 +836,10 @@ Sets whether to add an application to the device idle allowlist. This API uses a
 
 ```js
 let param = {
-    uid: Number.parseInt(this.firstParam), isAllowed: Boolean(Number.parseInt(this.isBoolean))
+  uid: Number.parseInt(this.firstParam), isAllowed: Boolean(Number.parseInt(this.isBoolean))
 }
-policy.setDeviceIdleAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean)), (error, data) => {
-    this.callBack(error, data);
+policy.setDeviceIdleAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean)), (error) => {
+  console.log(JSON.stringify(error))
 });
 ```
 
@@ -875,13 +880,11 @@ Sets whether to add an application to the device idle allowlist. This API uses a
 
 ```js
 let param = {
-    uid: Number.parseInt(this.firstParam), isAllowed: Boolean(Number.parseInt(this.isBoolean))
+  uid: Number.parseInt(this.firstParam), isAllowed: Boolean(Number.parseInt(this.isBoolean))
 }
-policy.setDeviceIdleAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then(function(error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+policy.setDeviceIdleAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then(function (error) {
+  console.log(JSON.stringify(error))
 })
-
 ```
 
 ## policy.getDeviceIdleAllowList
@@ -912,7 +915,7 @@ Obtains the UID array of applications that are on the device idle allowlist. Thi
 
 ```js
 policy.getDeviceIdleAllowList((error, data) => {
-    this.callBack(error, data);
+  this.callBack(error, data);
 });
 ```
 
@@ -943,9 +946,9 @@ Obtains the UID array of applications that are on the device idle allowlist. Thi
 **Example**
 
 ```js
-policy.getDeviceIdleAllowList().then(function(error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+policy.getDeviceIdleAllowList().then(function (error, data) {
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 })
 ```
 
@@ -981,7 +984,7 @@ Obtains the background network policies configured for the given application. Th
 ```js
 this.firstParam = uid
 policy.getBackgroundPolicyByUid(Number.parseInt(this.firstParam), (error, data) => {
-    this.callBack(error, data);
+  this.callBack(error, data);
 });
 ```
 
@@ -1021,9 +1024,9 @@ Obtains the background network policies configured for the given application. Th
 
 ```js
 this.firstParam = uid
-policy.getBackgroundPolicyByUid(Number.parseInt(this.firstParam)).then(function(error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+policy.getBackgroundPolicyByUid(Number.parseInt(this.firstParam)).then(function (error, data) {
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 })
 ```
 
@@ -1058,8 +1061,8 @@ Restores all the policies (cellular network, background network, firewall, and a
 
 ```js
 this.firstParam = iccid
-policy.resetPolicies(this.firstParam, (error, data) => {
-    this.callBack(error, data);
+policy.resetPolicies(this.firstParam, (error) => {
+  console.log(JSON.stringify(error))
 });
 ```
 
@@ -1098,15 +1101,13 @@ Restores all the policies (cellular network, background network, firewall, and a
 **Example**
 
 ```js
-policy.getUidsByPolicy(Number.parseInt(this.firstParam)).then(function(error, data) {
+policy.getUidsByPolicy(Number.parseInt(this.firstParam)).then(function (error, data) {
 
 })
 this.firstParam = iccid
-policy.resetPolicies(this.firstParam).then(function(error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+policy.resetPolicies(this.firstParam).then(function (error) {
+  console.log(JSON.stringify(error))
 })
-
 ```
 
 ## policy.updateRemindPolicy
@@ -1142,10 +1143,10 @@ Updates a reminder policy. This API uses an asynchronous callback to return the 
 
 ```js
 let param = {
-    netType: Number.parseInt(this.netType), iccid: this.firstParam, remindType: this.currentRemindType
+  netType: Number.parseInt(this.netType), iccid: this.firstParam, remindType: this.currentRemindType
 }
-policy.updateRemindPolicy(Number.parseInt(this.netType), this.firstParam, Number.parseInt(this.currentRemindType), (error, data) => {
-    this.callBack(error, data);
+policy.updateRemindPolicy(Number.parseInt(this.netType), this.firstParam, Number.parseInt(this.currentRemindType), (error) => {
+  console.log(JSON.stringify(error))
 });
 ```
 
@@ -1187,13 +1188,11 @@ Updates a reminder policy. This API uses a promise to return the result.
 
 ```js
 let param = {
-    netType: Number.parseInt(this.netType), iccid: this.firstParam, remindType: this.currentRemindType
+  netType: Number.parseInt(this.netType), iccid: this.firstParam, remindType: this.currentRemindType
 }
-policy.updateRemindPolicy(Number.parseInt(this.netType), this.firstParam, Number.parseInt(this.currentRemindType)).then(function(error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+policy.updateRemindPolicy(Number.parseInt(this.netType), this.firstParam, Number.parseInt(this.currentRemindType)).then(function (error) {
+  console.log(JSON.stringify(error))
 })
-
 ```
 
 ## policy.setPowerSaveAllowList
@@ -1228,10 +1227,10 @@ Sets whether to add an application to the power-saving allowlist. This API uses 
 
 ```js
 let param = {
-    uid: Number.parseInt(this.firstParam), isAllowed: Boolean(Number.parseInt(this.isBoolean))
+  uid: Number.parseInt(this.firstParam), isAllowed: Boolean(Number.parseInt(this.isBoolean))
 }
-policy.setPowerSaveAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean)), (error, data) => {
-    this.callBack(error, data);
+policy.setPowerSaveAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean)), (error) => {
+  console.log(JSON.stringify(error))
 });
 ```
 
@@ -1272,13 +1271,11 @@ Sets whether to add an application to the power-saving allowlist. This API uses 
 
 ```js
 let param = {
-    uid: Number.parseInt(this.firstParam), isAllowed: Boolean(Number.parseInt(this.isBoolean))
+  uid: Number.parseInt(this.firstParam), isAllowed: Boolean(Number.parseInt(this.isBoolean))
 }
-policy.setPowerSaveAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then(function(error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+policy.setPowerSaveAllowList(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then(function (error) {
+  console.log(JSON.stringify(error))
 })
-
 ```
 
 ## policy.getPowerSaveAllowList
@@ -1309,7 +1306,7 @@ Obtains the UID array of applications that are on the power-saving allowlist. Th
 
 ```js
 policy.getPowerSaveAllowList((error, data) => {
-    this.callBack(error, data);
+  this.callBack(error, data);
 });
 ```
 
@@ -1340,9 +1337,9 @@ Obtains the UID array of applications that are on the device idle allowlist. Thi
 **Example**
 
 ```js
-policy.getPowerSaveAllowList().then(function(error, data) {
-    console.log(JSON.stringify(error))
-    console.log(JSON.stringify(data))
+policy.getPowerSaveAllowList().then(function (error, data) {
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 })
 ```
 
@@ -1371,7 +1368,7 @@ Subscribes to policy changes. This API uses an asynchronous callback to return t
 
 ```js
 policy.on('netUidPolicyChange', (data) => {
-    this.log('on netUidPolicyChange: ' + JSON.stringify(data));
+  this.log('on netUidPolicyChange: ' + JSON.stringify(data));
 })
 ```
 
@@ -1396,7 +1393,7 @@ Subscribes to rule changes. This API uses an asynchronous callback to return the
 
 ```js
 policy.on('netUidRuleChange', (data) => {
-    this.log('on netUidRuleChange: ' + JSON.stringify(data));
+  this.log('on netUidRuleChange: ' + JSON.stringify(data));
 })
 ```
 
@@ -1421,7 +1418,7 @@ Subscribes to metered **iface** changes. This API uses an asynchronous callback 
 
 ```js
 policy.on('netMeteredIfacesChange', (data) => {
-    this.log('on netMeteredIfacesChange: ' + JSON.stringify(data));
+  this.log('on netMeteredIfacesChange: ' + JSON.stringify(data));
 })
 ```
 
@@ -1446,7 +1443,7 @@ Subscribes to network quota policy changes. This API uses an asynchronous callba
 
 ```js
 policy.on('netQuotaPolicyChange', (data) => {
-    this.log('on netQuotaPolicyChange: ' + JSON.stringify(data));
+  this.log('on netQuotaPolicyChange: ' + JSON.stringify(data));
 })
 ```
 
@@ -1471,7 +1468,7 @@ Subscribes to background network policy changes. This API uses an asynchronous c
 
 ```js
 policy.on('netBackgroundPolicyChange', (data) => {
-    this.log('on netBackgroundPolicyChange: ' + JSON.stringify(data));
+  this.log('on netBackgroundPolicyChange: ' + JSON.stringify(data));
 })
 ```
 
@@ -1540,10 +1537,10 @@ Enumerates the reminder types.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
-| Name                 | Value| Description  |
+| Name| Value| Description|
 | ---------------------- | - | ------- |
-| REMIND_TYPE_WARNING    | 1 | Warning.|
-| REMIND_TYPE_LIMIT      | 2 | Limit.|
+| REMIND_TYPE_WARNING | 1 | Warning.|
+| REMIND_TYPE_LIMIT   | 2 | Limit.|
 
 ## NetUidPolicy
 

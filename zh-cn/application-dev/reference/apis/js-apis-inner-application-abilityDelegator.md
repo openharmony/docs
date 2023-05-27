@@ -6,6 +6,12 @@ AbilityDelegator提供添加用于监视指定ability的生命周期状态更改
 > 
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
 
+## 导入模块
+
+```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+```
+
 ## 使用说明
 
 通过AbilityDelegatorRegistry中[getAbilityDelegator](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetabilitydelegator)方法获取。
@@ -41,7 +47,7 @@ addAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback, data: ${JSON.stringify(data)}');
@@ -89,7 +95,7 @@ addAbilityMonitor(monitor: AbilityMonitor): Promise\<void>;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
@@ -132,7 +138,7 @@ removeAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<void>): v
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
@@ -180,7 +186,7 @@ removeAbilityMonitor(monitor: AbilityMonitor): Promise\<void>;
 - 示例
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
@@ -223,7 +229,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, callback: AsyncCallback\<UIAbility>)
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
@@ -271,7 +277,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout: number, callback: AsyncCall
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let timeout = 100;
 
 function onAbilityCreateCallback(data) {
@@ -327,7 +333,7 @@ waitAbilityMonitor(monitor: AbilityMonitor, timeout?: number): Promise\<UIAbilit
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
@@ -361,7 +367,7 @@ getAppContext(): Context;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 let context = abilityDelegator.getAppContext();
@@ -390,7 +396,7 @@ getAbilityState(ability: UIAbility): number;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -427,7 +433,7 @@ getCurrentTopAbility(callback: AsyncCallback\<UIAbility>): void;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -462,7 +468,7 @@ getCurrentTopAbility(): Promise\<UIAbility>;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -510,7 +516,7 @@ startAbility(want: Want, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let want = {
     bundleName: 'bundleName',
     abilityName: 'abilityName'
@@ -565,7 +571,7 @@ startAbility(want: Want): Promise\<void>;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let want = {
     bundleName: 'bundleName',
     abilityName: 'abilityName'
@@ -603,7 +609,7 @@ doAbilityForeground(ability: UIAbility, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -647,7 +653,7 @@ doAbilityForeground(ability: UIAbility): Promise\<void>;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -686,7 +692,7 @@ doAbilityBackground(ability: UIAbility, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -730,7 +736,7 @@ doAbilityBackground(ability: UIAbility): Promise\<void>;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let ability;
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -760,7 +766,7 @@ printSync(msg: string): void;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -785,7 +791,7 @@ print(msg: string, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -817,7 +823,7 @@ print(msg: string): Promise\<void>;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -844,7 +850,7 @@ executeShellCommand(cmd: string, callback: AsyncCallback\<ShellCmdResult>): void
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -872,7 +878,7 @@ executeShellCommand(cmd: string, timeoutSecs: number, callback: AsyncCallback\<S
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 let timeout = 100;
 
@@ -906,7 +912,7 @@ executeShellCommand(cmd: string, timeoutSecs?: number): Promise\<ShellCmdResult>
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let cmd = 'cmd';
 let timeout = 100;
 
@@ -943,7 +949,7 @@ finishTest(msg: string, code: number, callback: AsyncCallback\<void>): void;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -984,7 +990,7 @@ finishTest(msg: string, code: number): Promise\<void>;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let msg = 'msg';
 
 abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -1019,7 +1025,7 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<vo
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 let monitor = {
     moduleName: 'moduleName',
@@ -1063,7 +1069,7 @@ addAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 let monitor = {
     moduleName: 'moduleName',
@@ -1102,7 +1108,7 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 let monitor = {
     moduleName: 'moduleName',
@@ -1146,7 +1152,7 @@ removeAbilityStageMonitor(monitor: AbilityStageMonitor): Promise\<void>;
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 let monitor = {
     moduleName: 'moduleName',
@@ -1185,7 +1191,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, callback: AsyncCallback\<A
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
@@ -1234,7 +1240,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout?: number): Promise
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 
 function onAbilityCreateCallback(data) {
     console.info('onAbilityCreateCallback');
@@ -1278,7 +1284,7 @@ waitAbilityStageMonitor(monitor: AbilityStageMonitor, timeout: number, callback:
 **示例：**
 
 ```ts
-let abilityDelegator;
+let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
 let timeout = 100;
 
 function onAbilityCreateCallback(data) {

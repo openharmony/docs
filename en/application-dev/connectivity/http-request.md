@@ -49,44 +49,43 @@ let httpRequest = http.createHttp();
 // This API is used to listen for the HTTP Response Header event, which is returned earlier than the result of the HTTP request. It is up to you whether to listen for HTTP Response Header events.
 // on('headerReceive', AsyncCallback) is replaced by on('headersReceive', Callback) since API version 8.
 httpRequest.on('headersReceive', (header) => {
-    console.info('header: ' + JSON.stringify(header));
+  console.info('header: ' + JSON.stringify(header));
 });
 httpRequest.request(
-    // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
-    "EXAMPLE_URL",
-    {
-        method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
-        // You can add header fields based on service requirements.
-        header: {
-            'Content-Type': 'application/json'
-        },
-        // This field is used to transfer data when the POST request is used.
-        extraData: {
-            "data": "data to send",
-        },
-        expectDataType: http.HttpDataType.STRING, // Optional. This field specifies the type of the return data.
-        usingCache: true, // Optional. The default value is true.
-        priority: 1, // Optional. The default value is 1.
-        connectTimeout: 60000 // Optional. The default value is 60000, in ms.
-        readTimeout: 60000, // Optional. The default value is 60000, in ms.
-        usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
-        usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API 10.
-    }, (err, data) => {
-        if (!err) {
-            // data.result carries the HTTP response. Parse the response based on service requirements.
-            console.info('Result:' + JSON.stringify(data.result));
-            console.info('code:' + JSON.stringify(data.responseCode));
-            // data.header carries the HTTP response header. Parse the content based on service requirements.
-            console.info('header:' + JSON.stringify(data.header));
-            console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
-        } else {
-            console.info('error:' + JSON.stringify(err));
-            // Unsubscribe from HTTP Response Header events.
-            httpRequest.off('headersReceive');
-            // Call the destroy() method to release resources after HttpRequest is complete.
-            httpRequest.destroy();
-        }
+  // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
+  {
+    method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
+    // You can add header fields based on service requirements.
+    header: {
+      'Content-Type': 'application/json'
+    },
+    // This field is used to transfer data when the POST request is used.
+    extraData: {
+      "data": "data to send",
+    },
+    expectDataType: http.HttpDataType.STRING, // Optional. This field specifies the type of the return data.
+    usingCache: true, // Optional. The default value is true.
+    priority: 1, // Optional. The default value is 1.
+    connectTimeout: 60000 // Optional. The default value is 60000, in ms.
+    readTimeout: 60000, // Optional. The default value is 60000, in ms.
+    usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
+    usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API 10.
+  }, (err, data) => {
+    if (!err) {
+      // data.result carries the HTTP response. Parse the response based on service requirements.
+      console.info('Result:' + JSON.stringify(data.result));
+      console.info('code:' + JSON.stringify(data.responseCode));
+      // data.header carries the HTTP response header. Parse the content based on service requirements.
+      console.info('header:' + JSON.stringify(data.header));
+      console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
+    } else {
+      console.info('error:' + JSON.stringify(err));
+      // Unsubscribe from HTTP Response Header events.
+      httpRequest.off('headersReceive');
+      // Call the destroy() method to release resources after HttpRequest is complete.
+      httpRequest.destroy();
     }
+  }
 );
 ```
 
@@ -108,61 +107,55 @@ import http from '@ohos.net.http'
 let httpRequest = http.createHttp();
 // Subscribe to HTTP response header events.
 httpRequest.on('headersReceive', (header) => {
-    console.info('header: ' + JSON.stringify(header));
+  console.info('header: ' + JSON.stringify(header));
 });
 // Subscribe to events indicating receiving of HTTP streaming responses.
 let res = '';
 httpRequest.on('dataReceive', (data) => {
-    res += data;
-    console.info('res: ' + res);
+  res += data;
+  console.info('res: ' + res);
 });
 // Subscribe to events indicating completion of receiving HTTP streaming responses.
 httpRequest.on('dataEnd', () => {
-    console.info('No more data in response, data receive end');
+  console.info('No more data in response, data receive end');
 });
 // Subscribe to events indicating progress of receiving HTTP streaming responses.
 httpRequest.on('dataProgress', (data) => {
-    console.log("dataProgress receiveSize:" + data.receiveSize+ ", totalSize:" + data.totalSize);
+  console.log("dataProgress receiveSize:" + data.receiveSize + ", totalSize:" + data.totalSize);
 });
 
 httpRequest.request2(
-    // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
-    "EXAMPLE_URL",
-    {
-        method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
-        // You can add header fields based on service requirements.
-        header: {
-            'Content-Type': 'application/json'
-        },
-        // This field is used to transfer data when the POST request is used.
-        extraData: {
-            "data": "data to send",
-        },
-        expectDataType: http.HttpDataType.STRING, // Optional. This field specifies the type of the return data.
-        usingCache: true, // Optional. The default value is true.
-        priority: 1, // Optional. The default value is 1.
-        connectTimeout: 60000 // Optional. The default value is 60000, in ms.
-        readTimeout: 60000, // Optional. The default value is 60000, in ms. If a large amount of data needs to be transmitted, you are advised to set this parameter to a larger value to ensure normal data transmission.
-        usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
-    }, (err, data) => {
-            console.info('error:' + JSON.stringify(err));
-            console.info('ResponseCode :' + JSON.stringify(data));
-            // Unsubscribe from HTTP Response Header events.
-            httpRequest.off('headersReceive');
-            // Unregister the observer for events indicating receiving of HTTP streaming responses.
-            httpRequest.off('dataReceive');
-            // Unregister the observer for events indicating progress of receiving HTTP streaming responses.
-            httpRequest.off('dataProgress');
-            // Unregister the observer for events indicating completion of receiving HTTP streaming responses.
-            httpRequest.off('dataEnd');
-            // Call the destroy() method to release resources after HttpRequest is complete.
-            httpRequest.destroy();
-        }
+  // Customize EXAMPLE_URL in extraData on your own. It is up to you whether to add parameters to the URL.
+  "EXAMPLE_URL",
+  {
+    method: http.RequestMethod.POST, // Optional. The default value is http.RequestMethod.GET.
+    // You can add header fields based on service requirements.
+    header: {
+      'Content-Type': 'application/json'
+    },
+    // This field is used to transfer data when the POST request is used.
+    extraData: {
+      "data": "data to send",
+    },
+    expectDataType: http.HttpDataType.STRING, // Optional. This field specifies the type of the return data.
+    usingCache: true, // Optional. The default value is true.
+    priority: 1, // Optional. The default value is 1.
+    connectTimeout: 60000 // Optional. The default value is 60000, in ms.
+    readTimeout: 60000, // Optional. The default value is 60000, in ms. If a large amount of data needs to be transmitted, you are advised to set this parameter to a larger value to ensure normal data transmission.
+    usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
+  }, (err, data) => {
+    console.info('error:' + JSON.stringify(err));
+    console.info('ResponseCode :' + JSON.stringify(data));
+    // Unsubscribe from HTTP Response Header events.
+    httpRequest.off('headersReceive');
+    // Unregister the observer for events indicating receiving of HTTP streaming responses.
+    httpRequest.off('dataReceive');
+    // Unregister the observer for events indicating progress of receiving HTTP streaming responses.
+    httpRequest.off('dataProgress');
+    // Unregister the observer for events indicating completion of receiving HTTP streaming responses.
+    httpRequest.off('dataEnd');
+    // Call the destroy() method to release resources after HttpRequest is complete.
+    httpRequest.destroy();
+  }
 );
-
 ```
-
-## Samples
-The following sample is provided to help you better understand how to develop the HTTP data request feature:
-- [HTTP Data Request (ArkTS) (API9)](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http)
-- [HTTP Communication (ArkTS) (API9)](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/SmartChatEtsOH)

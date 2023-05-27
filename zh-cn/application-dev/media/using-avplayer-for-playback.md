@@ -23,17 +23,17 @@
 1. 创建实例createAVPlayer()，AVPlayer初始化idle状态。
 
 2. 设置业务需要的监听事件，搭配全流程场景使用。支持的监听事件包括：
-   | 事件类型 | 说明 | 
+   | 事件类型 | 说明 |
    | -------- | -------- |
-   | stateChange | 必要事件，监听播放器的state属性改变。 | 
-   | error | 必要事件，监听播放器的错误信息。 | 
-   | durationUpdate | 用于进度条，监听进度条长度，刷新资源时长。 | 
-   | timeUpdate | 用于进度条，监听进度条当前位置，刷新当前时间。 | 
-   | seekDone | 响应API调用，监听seek()请求完成情况。<br/>当使用seek()跳转到指定播放位置后，如果seek操作成功，将上报该事件。 | 
-   | speedDone | 响应API调用，监听setSpeed()请求完成情况。<br/>当使用setSpeed()设置播放倍速后，如果setSpeed操作成功，将上报该事件。 | 
-   | volumeChange | 响应API调用，监听setVolume()请求完成情况。<br/>当使用setVolume()调节播放音量后，如果setVolume操作成功，将上报该事件。 | 
-   | bufferingUpdate | 用于网络播放，监听网络播放缓冲信息，用于上报缓冲百分比以及缓存播放进度。 | 
-   | audioInterrupt | 监听音频焦点切换信息，搭配属性audioInterruptMode使用。<br/>如果当前设备存在多个音频正在播放，音频焦点被切换（即播放其他媒体如通话等）时将上报该事件，应用可以及时处理。 | 
+   | stateChange | 必要事件，监听播放器的state属性改变。 |
+   | error | 必要事件，监听播放器的错误信息。 |
+   | durationUpdate | 用于进度条，监听进度条长度，刷新资源时长。 |
+   | timeUpdate | 用于进度条，监听进度条当前位置，刷新当前时间。 |
+   | seekDone | 响应API调用，监听seek()请求完成情况。<br/>当使用seek()跳转到指定播放位置后，如果seek操作成功，将上报该事件。 |
+   | speedDone | 响应API调用，监听setSpeed()请求完成情况。<br/>当使用setSpeed()设置播放倍速后，如果setSpeed操作成功，将上报该事件。 |
+   | volumeChange | 响应API调用，监听setVolume()请求完成情况。<br/>当使用setVolume()调节播放音量后，如果setVolume操作成功，将上报该事件。 |
+   | bufferingUpdate | 用于网络播放，监听网络播放缓冲信息，用于上报缓冲百分比以及缓存播放进度。 |
+   | audioInterrupt | 监听音频焦点切换信息，搭配属性audioInterruptMode使用。<br/>如果当前设备存在多个音频正在播放，音频焦点被切换（即播放其他媒体如通话等）时将上报该事件，应用可以及时处理。 |
 
 3. 设置资源：设置属性url，AVPlayer进入initialized状态。
    > **说明：**
@@ -59,7 +59,7 @@
 ## 完整示例
 
 参考以下示例，完整地播放一首音乐。
-  
+
 ```ts
 import media from '@ohos.multimedia.media';
 import fs from '@ohos.file.fs';
@@ -68,7 +68,9 @@ import common from '@ohos.app.ability.common';
 export class AVPlayerDemo {
   private avPlayer;
   private count: number = 0;
-
+  private isSeek: boolean = true; // 用于区分模式是否支持seek操作
+  private fileSize: number = -1;
+  private fd: number = 0;
   // 注册avplayer回调函数
   setAVPlayerCallback() {
     // seek操作结果回调函数
@@ -102,8 +104,13 @@ export class AVPlayerDemo {
         case 'playing': // play成功调用后触发该状态机上报
           console.info('AVPlayer state playing called.');
           if (this.count !== 0) {
-            console.info('AVPlayer start to seek.');
-            this.avPlayer.seek(this.avPlayer.duration); //seek到音频末尾
+            if (this.isSeek) {
+              console.info('AVPlayer start to seek.');
+              this.avPlayer.seek(this.avPlayer.duration); //seek到音频末尾
+            } else {
+              // 当播放模式不支持seek操作时继续播放到结尾
+              console.info('AVPlayer wait to play end.');
+            }
           } else {
             this.avPlayer.pause(); // 调用暂停接口暂停播放
           }
@@ -145,6 +152,7 @@ export class AVPlayerDemo {
     // 打开相应的资源文件地址获取fd，并为url赋值触发initialized状态机上报
     let file = await fs.open(path);
     fdPath = fdPath + '' + file.fd;
+    this.isSeek = true; // 支持seek操作
     this.avPlayer.url = fdPath;
   }
 
@@ -158,8 +166,85 @@ export class AVPlayerDemo {
     // 返回类型为{fd,offset,length},fd为HAP包fd地址，offset为媒体资源偏移量，length为播放长度
     let context = getContext(this) as common.UIAbilityContext;
     let fileDescriptor = await context.resourceManager.getRawFd('01.mp3');
+    this.isSeek = true; // 支持seek操作
     // 为fdSrc赋值触发initialized状态机上报
     this.avPlayer.fdSrc = fileDescriptor;
+  }
+
+  // 以下demo为使用fs文件系统打开沙箱地址获取媒体文件地址并通过dataSrc属性进行播放(seek模式)示例
+  async avPlayerDataSrcSeekDemo() {
+    // 创建avPlayer实例对象
+    this.avPlayer = await media.createAVPlayer();
+    // 创建状态机变化回调函数
+    this.setAVPlayerCallback();
+    // dataSrc播放模式的的播放源地址，当播放为Seek模式时fileSize为播放文件的具体大小，下面会对fileSize赋值
+    let src = {
+      fileSize: -1,
+      callback: (buf, length, pos) => {
+        let num = 0;
+        if (buf == undefined || length == undefined || pos == undefined) {
+          return -1;
+        }
+        num = fs.readSync(this.fd, buf, { offset: pos, length: length });
+        if (num > 0 && (this.fileSize >= pos)) {
+          return num;
+        }
+        return -1;
+      }
+    }
+    let context = getContext(this) as common.UIAbilityContext;
+    // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
+    let pathDir = context.filesDir;
+    let path = pathDir  + '/01.mp3';
+    await fs.open(path).then((file) => {
+      this.fd = file.fd;
+    })
+    // 获取播放文件的大小
+    this.fileSize = fs.statSync(path).size;
+    src.fileSize = this.fileSize;
+    this.isSeek = true; // 支持seek操作
+    this.avPlayer.dataSrc = src;
+  }
+
+  // 以下demo为使用fs文件系统打开沙箱地址获取媒体文件地址并通过dataSrc属性进行播放(No seek模式)示例
+  async avPlayerDataSrcNoSeekDemo() {
+    // 创建avPlayer实例对象
+    this.avPlayer = await media.createAVPlayer();
+    // 创建状态机变化回调函数
+    this.setAVPlayerCallback();
+    let context = getContext(this) as common.UIAbilityContext;
+    let src: object = {
+      fileSize: -1,
+      callback: (buf, length, pos) => {
+        let num = 0;
+        if (buf == undefined || length == undefined) {
+          return -1;
+        }
+        num = fs.readSync(this.fd, buf);
+        if (num > 0) {
+          return num;
+        }
+        return -1;
+      }
+    }
+    // 通过UIAbilityContext获取沙箱地址filesDir，以Stage模型为例
+    let pathDir = context.filesDir;
+    let path = pathDir  + '/01.mp3';
+    await fs.open(path).then((file) => {
+      this.fd = file.fd;
+    })
+    this.isSeek = false; // 不支持seek操作
+    this.avPlayer.dataSrc = src;
+  }
+
+  // 以下demo为通过url设置网络地址来实现播放直播码流的demo
+  async avPlayerLiveDemo() {
+    // 创建avPlayer实例对象
+    this.avPlayer = await media.createAVPlayer();
+    // 创建状态机变化回调函数
+    this.setAVPlayerCallback();
+    this.isSeek = false; // 不支持seek操作
+    this.avPlayer.url = 'http://xxx.xxx.xxx.xxx:xx/xx/index.m3u8';
   }
 }
 ```

@@ -26,13 +26,13 @@ XmlSerializer的构造函数。
 | 参数名   | 类型                              | 必填 | 说明                                             |
 | -------- | --------------------------------- | ---- | ------------------------------------------------ |
 | buffer   | ArrayBuffer \| DataView | 是   | 用于接收写入xml信息的ArrayBuffer或DataView内存。 |
-| encoding | string                            | 否   | 编码格式。                                       |
+| encoding | string                            | 否   | 编码格式 , 默认'utf-8'(目前仅支持'utf-8')。               |
 
 **示例：**
 
 ```js
 let arrayBuffer = new ArrayBuffer(2048);
-let thatSer = new xml.XmlSerializer(arrayBuffer,"utf-8");
+let thatSer = new xml.XmlSerializer(arrayBuffer, "utf-8");
 thatSer.setDeclaration();
 let result = '<?xml version="1.0" encoding="utf-8"?>';
 let view = new Uint8Array(arrayBuffer);
@@ -362,11 +362,11 @@ console.log(view1) //'<!DOCTYPE root SYSTEM "http://www.test.org/test.dtd">'
 ## XmlPullParser
 
 
-### XmlPullParser
+### constructor
 
 constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
-创建并返回一个XmlPullParser对象，该XmlPullParser对象传参两个, 第一参数是ArrayBuffer或DataView类型的一段内存，第二个参数为文件格式（默认为UTF-8）
+构造并返回一个XmlPullParser对象。
 
 **系统能力：** SystemCapability.Utils.Lang
 
@@ -374,8 +374,8 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 
 | 参数名   | 类型                              | 必填 | 说明                                       |
 | -------- | --------------------------------- | ---- | ------------------------------------------ |
-| buffer   | ArrayBuffer \| DataView | 是   | 含有xml文本信息的ArrayBuffer或者DataView。 |
-| encoding | string                            | 否   | 编码格式（仅支持utf-8）。                  |
+| buffer   | ArrayBuffer \| DataView | 是   | 需要解析的xml文本信息。 |
+| encoding | string                            | 否   | 编码格式 , 默认'utf-8'(目前仅支持'utf-8')。         |
 
 **示例：**
 
@@ -400,13 +400,9 @@ let strXml =
     '        </h:tr>' +
     '    </h:table>' +
     '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let i = 0; i < strLen; ++i) {
-    bufView[i] = strXml.charCodeAt(i);
-}
-let that = new xml.XmlPullParser(arrayBuffer, 'UTF-8');
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer, 'UTF-8');
 let str1 = '';
 function func1(name, value){
     str1 += name+':'+value;
@@ -442,13 +438,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;
@@ -480,9 +472,9 @@ xml解析选项。
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------------- |
 | supportDoctype                 | boolean                                                      | 否   | 是否忽略Doctype , 默认false。 |
 | ignoreNameSpace                | boolean                                                      | 否   | 是否忽略NameSpace，默认false。          |
-| tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | 否   | 获取tagValue回调函数。                  |
-| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否   | 获取attributeValue回调函数。            |
-| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | 否   | 获取tokenValue回调函数。                |
+| tagValueCallbackFunction       | (name: string, value: string) =&gt; boolean | 否   | 获取tagValue回调函数 , 默认null。                  |
+| attributeValueCallbackFunction | (name: string, value: string) =&gt; boolean | 否   | 获取attributeValue回调函数 , 默认null。            |
+| tokenValueCallbackFunction     | (eventType: [EventType](#eventtype), value: [ParseInfo](#parseinfo)) =&gt; boolean | 否   | 获取tokenValue回调函数, 默认null。     |
 
 ## ParseInfo
 
@@ -513,13 +505,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;
@@ -560,13 +548,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;
@@ -610,13 +594,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;
@@ -657,13 +637,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;
@@ -703,13 +679,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;
@@ -749,13 +721,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;
@@ -796,13 +764,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;
@@ -842,13 +806,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;
@@ -888,13 +848,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;
@@ -933,13 +889,9 @@ let strXml =
             '    <todo>Work</todo>' +
             '    <todo>Play</todo>' +
             '</note>';
-let arrayBuffer = new ArrayBuffer(strXml.length);
-let bufView = new Uint8Array(arrayBuffer);
-let strLen = strXml.length;
-for (let tmp = 0; tmp < strLen; ++tmp) {
-    bufView[tmp] = strXml.charCodeAt(tmp);
-}
-let that = new xml.XmlPullParser(arrayBuffer);
+let textEncoder = new util.TextEncoder();
+let arrbuffer = textEncoder.encodeInto(strXml);
+let that = new xml.XmlPullParser(arrbuffer.buffer);
 let arrTag = {};
 let str = "";
 let i = 0;

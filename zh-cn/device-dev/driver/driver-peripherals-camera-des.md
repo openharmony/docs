@@ -633,7 +633,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
 ### 开发实例<a name = "8"></a>
 
-在/drivers/peripheral/camera/hal/init目录下有一个关于Camera的demo，开机后会在/vendor/bin下生成可执行文件ohos_camera_demo，该demo可以完成Camera的预览，拍照等基础功能。下面我们就以此demo为例讲述怎样用HDI接口去编写预览PreviewOn()和拍照CaptureON()的用例，可参考[ohos_camera_demo](https://gitee.com/openharmony/drivers_peripheral/tree/master/camera/hal/init)。
+在/drivers/peripheral/camera/hal/test/demo目录下有一个关于Camera的demo，开机后会在/vendor/bin下生成可执行文件ohos_camera_demo，该demo可以完成Camera的预览，拍照等基础功能。下面我们就以此demo为例讲述怎样用HDI接口去编写预览PreviewOn()和拍照CaptureON()的用例，可参考[ohos_camera_demo](https://gitee.com/openharmony/drivers_peripheral/tree/master/camera/test/demo)。
 
 1. 在main函数中构造一个CameraDemo 对象，该对象中有对Camera初始化、启停流、释放等控制的方法。下面mainDemo->InitSensors()函数为初始化CameraHost，mainDemo->InitCameraDevice()函数为初始化CameraDevice。
 

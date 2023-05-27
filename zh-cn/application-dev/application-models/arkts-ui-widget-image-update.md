@@ -160,7 +160,7 @@
    }
    ```
 
-> ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+> **说明：**
 > - Image组件通过入参(**memory://fileName**)中的**memory://**标识来进行远端内存图片显示，其中**fileName**需要和EntryFormAbility传递对象(**'formImages': {key: fd})**中的**key**相对应。
 > 
 > - Image组件通过传入的参数是否有变化来决定是否刷新图片，因此EntryFormAbility每次传递过来的**imgName**都需要不同，连续传递两个相同的**imgName**时，图片不会刷新。

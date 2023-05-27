@@ -42,7 +42,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -71,7 +71,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -103,7 +103,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -132,7 +132,7 @@ SystemCapability.BundleManager.DistributedBundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 

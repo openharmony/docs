@@ -189,7 +189,7 @@ The following steps describe how to use the text drawing and display feature of 
         OH_Drawing_CreateFontCollection());
     OH_Drawing_TypographyHandlerPushTextStyle(handler, txtStyle);
     // Set the text content.
-    const char* text = "OpenHarmony\n";
+    const char* text = "Hello World\n";
     OH_Drawing_TypographyHandlerAddText(handler, text);
     OH_Drawing_TypographyHandlerPopTextStyle(handler);
     OH_Drawing_Typography* typography = OH_Drawing_CreateTypography(handler);

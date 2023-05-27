@@ -28,15 +28,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 | max               | number     | No   |   - When set to a value greater than 0, this parameter indicates the maximum value in the **values** list.<br>- When set to a value equal to or smaller than 0, this parameter indicates the sum of values in the **values** list. The values are displayed in proportion.<br>Default value: **100**|
 | type<sup>8+</sup> | [DataPanelType](#datapaneltype) | No| Type of the data panel (dynamic modification is not supported).<br>Default value: **DataPanelType.Circle**|
 
-## Attributes
-
-In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
-
-| Name       | Type   | Description                                        |
-| ----------- | ------- | -------------------------------------------- |
-| closeEffect | boolean | Whether to disable the rotation effect for the component.<br>Default value: **false**|
-
-
 
 ## DataPanelType
 
@@ -46,6 +37,50 @@ Since API version 9, this API is supported in ArkTS widgets.
 | -------| ------------ |
 | Line   | Line data panel.|
 | Circle | Circle data panel.|
+
+
+## Attributes
+
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
+
+
+| Name         | Type| Mandatory| Description|
+| ------------- | ------- | ---- | -------- |
+| closeEffect | boolean | Yes| Whether to disable the rotation effect for the component.<br>Default value: **false**.|
+| valueColors<sup>10+</sup>   | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10)> | Yes| Array of data segment colors. A value of the **ResourceColor** type indicates a solid color, and A value of the **LinearGradient** type indicates a color gradient.|
+| trackBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | Yes| Background color.|
+| strokeWidth<sup>10+</sup> | [Length](ts-types.md#Length) | Yes| Stroke width of the border.|
+| trackShadow<sup>10+</sup> | [DataPanelShadowOption](#datapanelshadowoption10) | Yes| Shadow style. If this attribute is not set, the shadow effect is disabled.|
+
+
+## DataPanelShadowOption<sup>10+</sup>
+| Name         | Type| Mandatory| Description|
+| ------------- | ------- | ---- | -------- |
+| radius | number \| [Resource](ts-types.md#resource)| No| Shadow blur radius.<br>Default value: **5vp**|
+| colors | Array<[ResourceColor](ts-types.md#resourcecolor) \| [LinearGradient](#lineargradient10)> | No| Array of shadow colors for data segments.<br>Default value: same as the value of **valueColors**.|
+| offsetX | number \| [Resource](ts-types.md#resource)| No| Offset on the x-axis.<br>Default value: **5vp**|
+| offsetY | number \| [Resource](ts-types.md#resource)| No| Offset on the y-axis.<br>Default value: **5vp**|
+
+## LinearGradient<sup>10+</sup>
+
+Describes the linear gradient.
+
+LinearGradient(colorStops: ColorStop[])
+
+| Name         | Type| Mandatory| Description|
+| ------------- | ------- | ---- | -------- |
+| colorStops | [ColorStop](#colorstop10)[] | Yes| Gradient colors and color stops.|
+
+
+## ColorStop<sup>10+</sup>
+
+Describes the gradient color stop.
+
+| Name         | Type| Mandatory| Description|
+| ------------- | ------- | ---- | -------- |
+| color | [ResourceColor](ts-types.md#resourcecolor) | Yes| Color value.|
+| offset | [Length](ts-types.md#Length) | Yes| Gradient color stop (proportion value between 0 and 1).|
+
 
 
 ## Example

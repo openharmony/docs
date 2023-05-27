@@ -9,6 +9,12 @@ You can use the APIs of this module to start, terminate, connect, and disconnect
 >  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >  - The APIs of this module can be used only in the stage model.
 
+## Modules to Import
+
+```ts
+import common from '@ohos.app.ability.common';
+```
+
 ## Usage
 
 Before using the **ServiceExtensionContext** module, you must define a child class that inherits from **ServiceExtensionAbility**.
@@ -46,26 +52,21 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000017 | The previous ability is starting, wait start later.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -118,26 +119,21 @@ Starts an ability. This API uses a promise to return the result.
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000017 | The previous ability is starting, wait start later.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -170,7 +166,7 @@ Starts an ability. This API uses a promise to return the result.
 
 startAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&gt;): void
 
-Starts an ability. This API uses an asynchronous callback to return the result.
+Starts an ability with the start options specified. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -188,26 +184,21 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000017 | The previous ability is starting, wait start later.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -245,7 +236,7 @@ Starts an ability with the account ID specified. This API uses an asynchronous c
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -264,27 +255,21 @@ Observe the following when using this API:
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000017 | The previous ability is starting, wait start later.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -320,7 +305,7 @@ Starts an ability with the account ID and start options specified. This API uses
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -340,27 +325,21 @@ Observe the following when using this API:
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000017 | The previous ability is starting, wait start later.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -400,7 +379,7 @@ Starts an ability with the account ID specified. This API uses a promise to retu
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -425,27 +404,21 @@ Observe the following when using this API:
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000010 | Can not operation with continue flag.        |
-| 16000011 | Context does not exist.        |
-| 16000017 | The previous ability is starting, wait start later.        |
-| 16000051 | Network error. The network is abnormal. |
-| 16000052 | Free install not support. The application does not support freeinstall |
-| 16000053 | Not top ability. The application is not top ability. |
-| 16000054 | Free install busyness. There are concurrent tasks, waiting for retry. |
-| 16000055 | Free install timeout. |
-| 16000056 | Can not free install other ability. |
-| 16000057 | Not support cross device free install. |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden.        |
+| 16000011 | The context does not exist.        |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -497,18 +470,16 @@ Starts a new ServiceExtensionAbility. This API uses an asynchronous callback to 
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000011 | The context does not exist.        |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -561,18 +532,16 @@ Starts a new ServiceExtensionAbility. This API uses a promise to return the resu
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000011 | The context does not exist.        |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -623,19 +592,16 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000011 | The context does not exist.        |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 
 **Example**
@@ -693,19 +659,16 @@ Starts a new ServiceExtensionAbility with the account ID specified. This API use
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000011 | The context does not exist.        |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -754,15 +717,15 @@ Stops a ServiceExtensionAbility in the same application. This API uses an asynch
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000011 | The context does not exist.        |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -815,15 +778,15 @@ Stops a ServiceExtensionAbility in the same application. This API uses a promise
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000011 | The context does not exist.        |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -874,16 +837,15 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000011 | The context does not exist.        |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -940,16 +902,15 @@ Stops a ServiceExtensionAbility in the same application with the account ID spec
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000006 | Can not cross user operations. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16200001 | Caller released. The caller has been released. |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000011 | The context does not exist.        |
+| 16000050 | Internal error. |
+| 16200001 | The caller has been released. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -997,12 +958,14 @@ Terminates this ability. This API uses an asynchronous callback to return the re
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist.        |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1038,12 +1001,14 @@ Terminates this ability. This API uses a promise to return the result.
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
-| 16000011 | Context does not exist.        |
-| 16000050 | Internal Error. |
+| 16000001 | The specified ability does not exist. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000011 | The context does not exist.        |
+| 16000050 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1084,13 +1049,12 @@ Connects this ability to a ServiceExtensionAbility.
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
 | 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000011 | Context does not exist.        |
+| 16000005 | The specified process does not have the permission. |
+| 16000011 | The context does not exist.        |
 | 16000050 | Internal Error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1145,14 +1109,12 @@ Uses the **AbilityInfo.AbilityType.SERVICE** template and account ID to connect 
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
 | 16000001 | Input error. The specified ability name does not exist. |
-| 16000002 | Ability type error. The specified ability type is wrong. |
-| 16000004 | Visibility verification failed. |
-| 16000006 | Can not cross user operations. |
-| 16000011 | Context does not exist.        |
+| 16000005 | The specified process does not have the permission. |
+| 16000011 | The context does not exist.        |
 | 16000050 | Internal Error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1202,12 +1164,10 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000003 | Input error. The specified id does not exist. |
-| 16000011 | Context does not exist.        |
+| 16000011 | The context does not exist.        |
 | 16000050 | Internal Error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1259,12 +1219,10 @@ Disconnects this ability from a ServiceExtensionAbility and after the successful
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
-| 16000001 | Input error. The specified ability name does not exist. |
-| 16000003 | Input error. The specified id does not exist. |
-| 16000011 | Context does not exist.        |
+| 16000011 | The context does not exist.        |
 | 16000050 | Internal Error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1299,7 +1257,7 @@ Starts an ability in the foreground or background and obtains the caller object 
 
 Observe the following when using this API:
  - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
- - If **visible** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
  - The rules for using this API in the same-device and cross-device scenarios are different. For details, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -1322,16 +1280,17 @@ Observe the following when using this API:
 
 | ID| Error Message|
 | ------- | -------------------------------- |
-| 201 | The application does not have permission to call the interface. |
-| 401 | Invalid input parameter. |
 | 16000001 | Input error. The specified ability name does not exist. |
+| 16000002 | Incorrect ability type. |
 | 16000004 | Visibility verification failed. |
 | 16000005 | Static permission denied. The specified process does not have the permission. |
-| 16000007 | Service busyness. There are concurrent tasks, waiting for retry. |
+| 16000006 | Cross-user operations are not allowed. |
 | 16000008 | Crowdtest App Expiration. |
-| 16000009 | Can not start ability in wukong mode. |
-| 16000017 | The previous ability is starting, wait start later.        |
+| 16000011 | The context does not exist. |
 | 16000050 | Internal Error. |
+| 16200001 | The caller has been released.        |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -1394,4 +1353,209 @@ Observe the following when using this API:
     // Process input parameter errors.
     console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
   }
+  ```
+## UIAbilityContext.startRecentAbility
+
+startRecentAbility(want: Want, callback: AsyncCallback&lt;void&lt;): void;
+
+Starts an ability. If the ability has multiple instances, the latest instance is started. This API uses an asynchronous callback to return the result.
+
+Observe the following when using this API:
+ - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+**Example**
+
+  ```ts
+let want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+
+try {
+  this.context.startRecentAbility(want, (err) => {
+    if (err.code) {
+      // Process service logic errors.
+      console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // Carry out normal service processing.
+    console.info('startRecentAbility succeed');
+  });
+} catch (err) {
+  // Process input parameter errors.
+  console.error(`startRecentAbility failed failed, code is ${err.code}, message is ${err.message}`);
+}
+  ```
+## UIAbilityContext.startRecentAbility
+
+startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&lt;): void;
+
+Starts an ability with the start options specified. If the ability has multiple instances, the latest instance is started. This API uses an asynchronous callback to return the result.
+You can use this API to carry start options.
+
+Observe the following when using this API:
+ - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+**Example**
+
+  ```ts
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let options = {
+  windowMode: 0
+};
+
+try {
+  this.context.startRecentAbility(want, options, (err) => {
+    if (err.code) {
+      // Process service logic errors.
+      console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // Carry out normal service processing.
+    console.info('startRecentAbility succeed');
+  });
+} catch (err) {
+  // Process input parameter errors.
+  console.error(`startRecentAbility failed failed, code is ${err.code}, message is ${err.message}`);
+}
+  ```
+## UIAbilityContext.startRecentAbility
+
+startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&lt;;
+
+Starts an ability. If the ability has multiple instances, the latest instance is started.
+This API uses a promise to return the result.
+
+Observe the following when using this API:
+ - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+**Example**
+
+  ```ts
+let want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let options = {
+  windowMode: 0,
+};
+
+try {
+  this.context.startRecentAbility(want, options)
+    .then(() => {
+      // Carry out normal service processing.
+      console.info('startRecentAbility succeed');
+    })
+    .catch((err) => {
+      // Process service logic errors.
+      console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+    });
+} catch (err) {
+  // Process input parameter errors.
+  console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+}
   ```

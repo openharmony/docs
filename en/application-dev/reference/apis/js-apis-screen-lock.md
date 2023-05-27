@@ -94,7 +94,7 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **Example**
 
@@ -130,7 +130,7 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **Example**
 
@@ -166,7 +166,7 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **Example**
 
@@ -204,7 +204,7 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **Example**
 
@@ -246,7 +246,7 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **Example**
 
@@ -286,7 +286,7 @@ For details about the error codes, see [Screen Lock Management Error Codes](../e
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
-| 13200002  | The screenlock management service is abnormal.         |
+| 13200002  |the screenlock management service is abnormal.         |
 
 **Example**
 
@@ -324,6 +324,14 @@ Sends an event to the screen lock service. This API uses a promise to return the
 | Type              | Description                                          |
 | ----------------- | ---------------------------------------------- |
 | Promise\<boolean> | Promise used to return the result. The **value** true means that the event is sent successfully, and **false** means the opposite.|
+
+**Error codes**
+
+For details about the error codes, see [Screen Lock Management Error Codes](../errorcodes/errorcode-screenlock.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 13200002  | the screenlock management service is abnormal.         |
 
 **Example**
 

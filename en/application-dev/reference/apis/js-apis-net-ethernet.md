@@ -48,19 +48,19 @@ Sets the network interface configuration. This API uses an asynchronous callback
 
 ```js
 ethernet.setIfaceConfig("eth0", {
-    mode: 0,
-    ipAddr: "192.168.xx.xxx",
-    route: "192.168.xx.xxx",
-    gateway: "192.168.xx.xxx",
-    netMask: "255.255.255.0",
-    dnsServers: "1.1.1.1",
-    domain: "2.2.2.2"
+  mode: 0,
+  ipAddr: "192.168.xx.xxx",
+  route: "192.168.xx.xxx",
+  gateway: "192.168.xx.xxx",
+  netMask: "255.255.255.0",
+  dnsServers: "1.1.1.1",
+  domain: "2.2.2.2"
 }, (error) => {
-    if (error) {
-        console.log("setIfaceConfig callback error = " + JSON.stringify(error));
-    } else {
-        console.log("setIfaceConfig callback ok ");
-    }
+  if (error) {
+    console.log("setIfaceConfig callback error = " + JSON.stringify(error));
+  } else {
+    console.log("setIfaceConfig callback ok ");
+  }
 });
 ```
 
@@ -106,17 +106,17 @@ Sets the network interface configuration. This API uses a promise to return the 
 
 ```js
 ethernet.setIfaceConfig("eth0", {
-    mode: 0,
-    ipAddr: "192.168.xx.xxx",
-    route: "192.168.xx.xxx",
-    gateway: "192.168.xx.xxx",
-    netMask: "255.255.255.0",
-    dnsServers: "1.1.1.1",
-    domain: "2.2.2.2"
+  mode: 0,
+  ipAddr: "192.168.xx.xxx",
+  route: "192.168.xx.xxx",
+  gateway: "192.168.xx.xxx",
+  netMask: "255.255.255.0",
+  dnsServers: "1.1.1.1",
+  domain: "2.2.2.2"
 }).then(() => {
-    console.log("setIfaceConfig promise ok ");
+  console.log("setIfaceConfig promise ok ");
 }).catch(error => {
-    console.log("setIfaceConfig promise error = " + JSON.stringify(error));
+  console.log("setIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -154,17 +154,17 @@ Obtains the configuration of a network interface. This API uses an asynchronous 
 
 ```js
 ethernet.getIfaceConfig("eth0", (error, value) => {
-    if (error) {
-        console.log("getIfaceConfig  callback error = " + JSON.stringify(error));
-    } else {
-        console.log("getIfaceConfig callback mode = " + JSON.stringify(value.mode));
-        console.log("getIfaceConfig callback ipAddr = " + JSON.stringify(value.ipAddr));
-        console.log("getIfaceConfig callback route = " + JSON.stringify(value.route));
-        console.log("getIfaceConfig callback gateway = " + JSON.stringify(value.gateway));
-        console.log("getIfaceConfig callback netMask = " + JSON.stringify(value.netMask));
-        console.log("getIfaceConfig callback dnsServers = " + JSON.stringify(value.dnsServers));
-        console.log("getIfaceConfig callback domain = " + JSON.stringify(value.domain));
-    }
+  if (error) {
+    console.log("getIfaceConfig  callback error = " + JSON.stringify(error));
+  } else {
+    console.log("getIfaceConfig callback mode = " + JSON.stringify(value.mode));
+    console.log("getIfaceConfig callback ipAddr = " + JSON.stringify(value.ipAddr));
+    console.log("getIfaceConfig callback route = " + JSON.stringify(value.route));
+    console.log("getIfaceConfig callback gateway = " + JSON.stringify(value.gateway));
+    console.log("getIfaceConfig callback netMask = " + JSON.stringify(value.netMask));
+    console.log("getIfaceConfig callback dnsServers = " + JSON.stringify(value.dnsServers));
+    console.log("getIfaceConfig callback domain = " + JSON.stringify(value.domain));
+  }
 });
 ```
 
@@ -207,15 +207,15 @@ Obtains the configuration of a network interface. This API uses a promise to ret
 
 ```js
 ethernet.getIfaceConfig("eth0").then((data) => {
-    console.log("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
-    console.log("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
-    console.log("getIfaceConfig promise route = " + JSON.stringify(data.route));
-    console.log("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
-    console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
-    console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
-    console.log("getIfaceConfig promise domain = " + JSON.stringify(data.domain));
+  console.log("getIfaceConfig promise mode = " + JSON.stringify(data.mode));
+  console.log("getIfaceConfig promise ipAddr = " + JSON.stringify(data.ipAddr));
+  console.log("getIfaceConfig promise route = " + JSON.stringify(data.route));
+  console.log("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
+  console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
+  console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
+  console.log("getIfaceConfig promise domain = " + JSON.stringify(data.domain));
 }).catch(error => {
-    console.log("getIfaceConfig promise error = " + JSON.stringify(error));
+  console.log("getIfaceConfig promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -253,11 +253,11 @@ Checks whether a network interface is active. This API uses an asynchronous call
 
 ```js
 ethernet.isIfaceActive("eth0", (error, value) => {
-    if (error) {
-        console.log("whether2Activate callback error = " + JSON.stringify(error));
-    } else {
-        console.log("whether2Activate callback = " + JSON.stringify(value));
-    }
+  if (error) {
+    console.log("whether2Activate callback error = " + JSON.stringify(error));
+  } else {
+    console.log("whether2Activate callback = " + JSON.stringify(value));
+  }
 });
 ```
 
@@ -300,9 +300,9 @@ Checks whether a network interface is active. This API uses a promise to return 
 
 ```js
 ethernet.isIfaceActive("eth0").then((data) => {
-    console.log("isIfaceActive promise = " + JSON.stringify(data));
+  console.log("isIfaceActive promise = " + JSON.stringify(data));
 }).catch(error => {
-    console.log("isIfaceActive promise error = " + JSON.stringify(error));
+  console.log("isIfaceActive promise error = " + JSON.stringify(error));
 });
 ```
 
@@ -336,14 +336,14 @@ Obtains the list of all active network interfaces. This API uses an asynchronous
 
 ```js
 ethernet.getAllActiveIfaces((error, value) => {
-    if (error) {
-        console.log("getAllActiveIfaces callback error = " + JSON.stringify(error));
-    } else {
-        console.log("getAllActiveIfaces callback value.length = " + JSON.stringify(value.length));
-        for (let i = 0; i < value.length; i++) {
-            console.log("getAllActiveIfaces callback = " + JSON.stringify(value[i]));
-        }
+  if (error) {
+    console.log("getAllActiveIfaces callback error = " + JSON.stringify(error));
+  } else {
+    console.log("getAllActiveIfaces callback value.length = " + JSON.stringify(value.length));
+    for (let i = 0; i < value.length; i++) {
+      console.log("getAllActiveIfaces callback = " + JSON.stringify(value[i]));
     }
+  }
 });
 ```
 
@@ -377,13 +377,81 @@ Obtains the list of all active network interfaces. This API uses a promise to re
 
 ```js
 ethernet.getAllActiveIfaces().then((data) => {
-    console.log("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
-    for (let i = 0; i < data.length; i++) {
-        console.log("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
-    }
+  console.log("getAllActiveIfaces promise data.length = " + JSON.stringify(data.length));
+  for (let i = 0; i < data.length; i++) {
+    console.log("getAllActiveIfaces promise  = " + JSON.stringify(data[i]));
+  }
 }).catch(error => {
-    console.log("getAllActiveIfaces promise error = " + JSON.stringify(error));
+  console.log("getAllActiveIfaces promise error = " + JSON.stringify(error));
 });
+```
+
+## ethernet.on('interfaceStateChange')<sup>10+</sup>
+
+on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: boolean }\>): void
+
+Registers an observer for NIC hot swap events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Communication.NetManager.Ethernet
+
+**Parameters**
+
+| Name  | Type                                   | Mandatory| Description      |
+| -------- | --------------------------------------- | ---- | ---------- |
+| type     | string                  | Yes  | Event type. The value is **interfaceStateChange**.|
+| callback | Callback\<{ iface: string, active: boolean }\> | Yes  | Callback used to return the result.<br>**iface**: NIC name.<br>**active**: whether the NIC is active. The value **true** indicates that the NIC is active, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 202     | Applicable only to system applications.      |
+| 401     | Parameter error.                             |
+
+**Example**
+
+```js
+ethernet.on('interfaceStateChange', (data) => {
+  console.log('on interfaceSharingStateChange: ' + JSON.stringify(data.iface) + JSON.stringify(data.active));
+});
+```
+
+## ethernet.off('interfaceStateChange')<sup>10+</sup>
+
+off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: boolean }\>): void
+
+Unregisters the observer for NIC hot swap events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.GET_NETWORK_INFO
+
+**System capability**: SystemCapability.Communication.NetManager.Ethernet
+
+**Parameters**
+
+| Name  | Type                                   | Mandatory| Description      |
+| -------- | --------------------------------------- | ---- | ---------- |
+| type     | string                  | Yes  | Event type. The value is **interfaceStateChange**.|
+| callback | Callback\<{ iface: string, active: boolean }> | No  | Callback used to return the result.<br>**iface**: NIC name.<br>**active**: whether the NIC is active. The value **true** indicates that the NIC is active, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+| ID| Error Message                                     |
+| ------- | -------------------------------------------- |
+| 201     | Permission denied.                           |
+| 202     | Applicable only to system applications.                           |
+| 401     | Parameter error.                             |
+
+**Example**
+
+```js
+ethernet.off('interfaceStateChange');
 ```
 
 ## InterfaceConfiguration

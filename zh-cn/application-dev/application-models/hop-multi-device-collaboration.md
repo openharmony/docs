@@ -33,7 +33,7 @@
 
 ## 通过跨设备启动UIAbility和ServiceExtensionAbility组件实现多端协同（无返回数据）
 
-在设备A上通过发起端应用提供的启动按钮，启动设备B上指定的UIAbility。
+在设备A上通过发起端应用提供的启动按钮，启动设备B上指定的UIAbility与ServiceExtensionAbility。
 
 
 ### 接口说明
@@ -43,6 +43,8 @@
 | **接口名** | **描述** |
 | -------- | -------- |
 | startAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 启动UIAbility和ServiceExtensionAbility（callback形式）。 |
+| stopServiceExtensionAbility(want:&nbsp;Want,&nbsp;callback:&nbsp;AsyncCallback&lt;void&gt;):&nbsp;void; | 退出启动的ServiceExtensionAbility（callback形式）。 |
+| stopServiceExtensionAbility(want:&nbsp;Want):&nbsp;Promise&lt;void&gt;; | 退出启动的ServiceExtensionAbility（Promise形式）。 |
 
 
 ### 开发步骤
@@ -61,7 +63,7 @@
        // 其中createDeviceManager接口为系统API
        deviceManager.createDeviceManager('ohos.samples.demo', (err, dm) => {
            if (err) {
-               // ...
+               ...
                return
            }
            dmClass = dm
@@ -81,7 +83,7 @@
    }
    ```
 
-4. 设置目标组件参数，调用[startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，启动UIAbility或ServiceExtensionAbility。
+4. 设置目标组件参数，调用[`startAbility()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability)接口，启动UIAbility或ServiceExtensionAbility。
 
    ```ts
    let want = {
@@ -92,12 +94,28 @@
    }
    // context为发起端UIAbility的AbilityContext
    this.context.startAbility(want).then(() => {
-       // ...
+       ...
    }).catch((err) => {
-       // ...
+       ...
    })
    ```
 
+5. 当设备A发起端应用不需要设备B上的ServiceExtensionAbility时，可调用stopServiceExtensionAbility(../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopserviceextensionability)接口退出。（该接口不支持UIAbility的退出，UIAbility由用户手动通过任务管理退出）
+
+   ```ts
+   let want = {
+       deviceId: getRemoteDeviceId(),
+       bundleName: 'com.example.myapplication',
+       abilityName: 'FuncAbility',
+       moduleName: 'module1', // moduleName非必选
+   }
+   // 退出由startAbility接口启动的ServiceExtensionAbility
+   this.context.stopServiceExtensionAbility(want).then(() => {
+       console.info("stop service extension ability success")
+   }).catch((err) => {
+       console.info("stop service extension ability err is " + JSON.stringify(err))
+   })
+   ```
 
 ## 通过跨设备启动UIAbility组件实现多端协同（获取返回数据）
 
@@ -132,9 +150,9 @@
    }
    // context为发起端UIAbility的AbilityContext
    this.context.startAbilityForResult(want).then((data) => {
-       // ...
+       ...
    }).catch((err) => {
-       // ...
+       ...
    })
    ```
 
@@ -152,7 +170,7 @@
    }
    // context为目标端UIAbility的AbilityContext
    this.context.terminateSelfWithResult(abilityResult, (err) => {
-       // ...
+       ...
    });
    ```
 
@@ -161,17 +179,17 @@
    ```ts
    const RESULT_CODE: number = 1001;
    
-   // ...
+   ...
    
    // context为调用方UIAbility的UIAbilityContext
    this.context.startAbilityForResult(want).then((data) => {
        if (data?.resultCode === RESULT_CODE) {
            // 解析目标端UIAbility返回的信息
            let info = data.want?.parameters?.info
-           // ...
+           ...
        }
    }).catch((err) => {
-       // ...
+       ...
    })
    ```
 
@@ -421,10 +439,10 @@
                    // 注册caller的协同场景下跨设备组件状态变化监听通知
                    try {
                         caller.onRemoteStateChange((str) => {
-                            console.log('Remote state changed ' + str);
+                            console.info('Remote state changed ' + str);
                         });
                     } catch (error) {
-                        console.log('Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+                        console.info('Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
                     }
                }
            }).catch((error) => {

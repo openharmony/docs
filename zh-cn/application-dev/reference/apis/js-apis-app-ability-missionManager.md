@@ -311,32 +311,35 @@ getMissionInfo(deviceId: string, missionId: number, callback: AsyncCallback&lt;M
 **示例：**
 
   ```ts
-  import missionManager from '@ohos.app.ability.missionManager';
+    import missionManager from '@ohos.app.ability.missionManager';
 
-  let testMissionId = 1;
-  try {
-    let allMissions=await missionManager.getMissionInfos('',10).catch(function(err){console.log(err);});
-    if (allMissions && allMissions.length > 0) {
-        testMissionId = allMissions[0].missionId;
-    }
+    let testMissionId = 1;
 
-    missionManager.getMissionInfo('', testMissionId, (error, mission) => {
-        if (error) {
+    missionManager.getMissionInfos('',10)
+    .then((allMissions) => {
+        try {
+        if (allMissions && allMissions.length > 0) {
+            testMissionId = allMissions[0].missionId;
+        }
+
+        missionManager.getMissionInfo('', testMissionId, (error, mission) => {
+            if (error) {
             console.error('getMissionInfo failed, error.code: ${error.code}, error.message: ${error.message}');
-        } else {
+            } else {
             console.log('mission.missionId = ${mission.missionId}');
             console.log('mission.runningState = ${mission.runningState}');
             console.log('mission.lockedState = ${mission.lockedState}');
             console.log('mission.timestamp = ${mission.timestamp}');
             console.log('mission.label = ${mission.label}');
             console.log('mission.iconPath = ${mission.iconPath}');
+            }
+        });
+        } catch (paramError) {
+        console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
         }
-    });
-  } catch (paramError) {
-    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
-  }
+    })
+    .catch(function(err){console.log(err);});
   ```
-
 
 ## missionManager.getMissionInfo
 
@@ -943,8 +946,8 @@ clearAllMissions(): Promise&lt;void&gt;;
 import missionManager from '@ohos.app.ability.missionManager';
 
 try {
-    missionManager.clearAllMissions(bundleName).then(() => {
-        console.info('clearAllMissions successfully.');
+    missionManager.clearAllMissions(bundleName).then((data) => {
+        console.info('clearAllMissions successfully. Data: ${JSON.stringify(data)}');
     }).catch(err => {
         console.error('clearAllMissions failed: ${err.message}');
     });

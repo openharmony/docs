@@ -20,10 +20,10 @@ Rating(options?: { rating: number, indicator?: boolean })
 
 **参数：**
 
-| 参数名       | 参数类型    | 必填   | 参数描述                                     |
-| --------- | ------- | ---- | ---------------------------------------- |
-| rating    | number  | 是    | 设置并接收评分值。<br/>默认值：0<br/>取值范围： [0, stars]<br/>小于0取0，大于stars取最大值stars。 |
-| indicator | boolean | 否    | 设置评分组件作为指示器使用，不可改变评分。<br/>默认值：false, 可进行评分<br/>**说明：** <br/>indicator=true时，默认组件高度height=12.0vp，组件width=height*stars。<br/>indicator=false时，默认组件高度height=28.0vp，组件width=height*stars。 |
+| 参数名    | 参数类型 | 必填 | 参数描述                                                     |
+| --------- | -------- | ---- | ------------------------------------------------------------ |
+| rating    | number   | 是   | 设置并接收评分值。<br/>默认值：0<br/>取值范围： [0, stars]<br/>小于0取0，大于stars取最大值stars。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| indicator | boolean  | 否   | 设置评分组件作为指示器使用，不可改变评分。<br/>默认值：false, 可进行评分<br/>**说明：** <br/>indicator=true时，默认组件高度height=12.0vp，组件width=height*stars。<br/>indicator=false时，默认组件高度height=28.0vp，组件width=height*stars。 |
 
 
 ## 属性

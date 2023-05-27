@@ -61,7 +61,8 @@
     ]
   },
   "targetModuleName": "feature",
-  "targetPriority": 50
+  "targetPriority": 50,
+  "isolationMode": "nonisolationFirst"
 }
 ```
 
@@ -93,6 +94,9 @@ module.json5配置文件包含以下标签。
 | [dependencies](#dependencies标签)| 标识当前模块运行时依赖的共享库列表。| 对象数组 | 该标签可缺省，缺省值为空。  |
 | targetModuleName | 标识当前包所指定的目标module, 标签值采用字符串表示（最大长度31个字节），该名称在指定的应用中要唯一。|字符串|该标签可缺省，缺省时当前包为非overlay特性的Module。|
 | targetPriority | 标识当前Module的优先级, 当targetModuleName字段配置之后，当前Module为overlay特征的Module, 该标签的额取值范围为1~100|数值|该标签可缺省, 缺省值为1。|
+| [proxyDatas](#proxydatas标签) | 标识当前Module提供的数据代理列表。| 对象数组 | 该标签可缺省，缺省值为空。|
+| isolationMode | 标识当前Module的多进程配置项。类型有4种，分别：<br/>-&nbsp;nonisolationFirst：优先在非独立进程中运行。<br/>-&nbsp;isolationFirst：优先在独立进程中运行。<br/>-&nbsp;isolationOnly：只在独立进程中运行。<br/>-&nbsp;nonisolationOnly：只在非独立进程中运行。 |字符串|该标签可缺省, 缺省值为nonisolationFirst。|
+| generateBuildHash |标识当前HAP/HSP是否由打包工具生成哈希值。如果存在，则在系统OTA升级但应用的versionCode保持不变时，可根据哈希值判断应用是否需要升级。<br/>该字段仅在[app.json5文件](./app-configuration-file.md)中的generateBuildHash字段为false时使能。<br/><strong>注：</strong>该字段仅对预置应用生效。|布尔值|该标签可缺省, 缺省值为false。|
 
 ## deviceTypes标签
 
@@ -224,66 +228,6 @@ deviceTypes示例：
 
 abilities标签描述UIAbility组件的配置信息，标签值为数组类型，该标签下的配置只对当前UIAbility生效。
 
-**OpenHarmony中不允许应用隐藏入口图标**
-
-OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置入口图标，那么系统将应用app.json中的icon作为入口图标，并显示在桌面上。<br>
-用户点击该图标，将跳转到设置应用管理中对应的应用详情页面（图1）中。<br>
-如果应用想要隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。
-
-**场景说明：** 该功能能防止一些恶意应用，故意配置无入口图标，导致用户找不到软件所在的位置，无法操作卸载应用，在一定程度上保证用户的手机安全
-
-**入口图标的设置:** 需要在配置文件（module.json5）中abilities配置下设置icon，label以及skills,而且skills的配置下的必须同时包含“ohos.want.action.home” 和 “entity.system.home”:
-```
-{
-  "module":{
-
-    ...
-
-    "abilities": [{
-      "icon": "$media:icon",
-      "label": "Login",
-      "skills": [{
-        "actions": ["ohos.want.action.home"],
-        "entities": ["entity.system.home"],
-        "uris": []
-      }]
-    }],
-    ...
-
-  }
-}
-```
-
-**入口图标及入口标签的显示规则**
-* HAP中包含UIAbility
-  * 配置文件（module.json5）中abilities配置中设置了入口图标
-    * 该应用没有隐藏图标的特权
-      * 显示桌面图标为该UIAbility配置的图标
-      * 显示桌面Label为该UIAbility配置的Label（如果没有配置Label，返回包名）
-      * 显示组件名为该UIAbility的组件名
-      * 用户点击该桌面图标，页面跳转到该UIAbility首页
-    * 该应用具有隐藏图标的特权
-      * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
-  * 配置文件（module.json5）中abilities配置中未设置入口图标
-    * 该应用没有隐藏图标的特权
-      * 显示桌面图标为app配置下的图标（app.json中icon为必填项）
-      * 显示桌面Label为app配置下的label（app.json中label为必填项）
-      * 用户点击该桌面图标，页面跳转到该应用的详情页面（图1）
-    * 该应用具有隐藏图标的特权
-      * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
-* HAP中不包含UIAbility
-  * 该应用没有隐藏图标的特权
-    * 显示桌面图标为app配置下的图标（app.json中icon为必填项）
-    * 显示桌面Label为app配置下的label（app.json中label为必填项）
-    * 用户点击该桌面图标，页面跳转到该应用的详情页面（图1）
-  * 该应用具有隐藏图标的特权
-    * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。<br><br>
-
-应用的详情页例图
-
-![应用的详情页例图](figures/application_details.jpg)
-
-
   **表6** **abilities标签说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
@@ -293,7 +237,7 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置入口
 | [launchType](../application-models/uiability-launch-type.md) | 标识当前UIAbility组件的启动模式，可选标签值：<br/>-&nbsp;multiton：标准实例模式，每次启动创建一个新的实例。<br/>-&nbsp;singleton：单实例模式，仅第一次启动创建新实例。<br/>-&nbsp;specified：指定实例模式，运行时由开发者决定是否创建新实例。 | 字符串 | 可缺省，该标签缺省为“singleton”。 |
 | description | 标识当前UIAbility组件的描述信息，标签值是字符串类型（最长255字节）或对描述内容的资源索引，要求采用资源索引方式，以支持多语言。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | icon | 标识当前UIAbility组件的图标，标签值为图标资源文件的索引。 | 字符串 | 该标签可缺省，缺省值为空。<br/>如果UIAbility被配置为MainElement，该标签必须配置。 |
-| label | 标识当前UIAbility组件对用户显示的名称，标签值配置为该名称的资源索引以支持多语言。<br/>如果UIAbility被配置当前Module的mainElement时，该标签必须配置，且应用内唯一。 | 字符串 | 该标签不可缺省。 |
+| label | 标识当前UIAbility组件对用户显示的名称，标签值配置为该名称的资源索引以支持多语言。 | 字符串 | 该标签可缺省，缺省值为空。<br/>如果UIAbility被配置为MainElement，该标签必须配置。 |
 | permissions | 标识当前UIAbility组件自定义的权限信息。当其他应用访问该UIAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），取值为系统预定义的权限。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | [metadata](#metadata标签) | 标识当前UIAbility组件的元信息。 | 对象数组 | 该标签可缺省，缺省值为空。 |
 | exported | 标识当前UIAbility组件是否可以被其他应用调用。<br/>-&nbsp;true：表示可以被其他应用调用。<br/>-&nbsp;false：表示不可以被其他应用调用。 | 布尔值 | 该标签可缺省，缺省值为false。 |
@@ -430,7 +374,7 @@ skills示例：
 | description | 标识当前ExtensionAbility组件的描述，标签值最大长度为255字节，标签也可以是描述内容的资源索引，用于支持多语言。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | icon | 标识当前ExtensionAbility组件的图标，标签值为资源文件的索引。如果ExtensionAbility组件被配置为MainElement，该标签必须配置。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | label | 标识当前ExtensionAbility组件对用户显示的名称，标签值配置为该名称的资源索引以支持多语言。<br/>**说明：**<br/>如果ExtensionAbility被配置当前Module的mainElement时，该标签必须配置，且应用内唯一。 | 字符串 | 该标签不可缺省。 |
-| type | 标识当前ExtensionAbility组件的类型，取值为：<br/>-&nbsp;form：卡片的ExtensionAbility。<br/>-&nbsp;workScheduler：延时任务的ExtensionAbility。<br/>-&nbsp;inputMethod：输入法的ExtensionAbility。<br/>-&nbsp;service：后台运行的service组件。<br/>-&nbsp;accessibility：辅助能力的ExtensionAbility。<br/>-&nbsp;dataShare：数据共享的ExtensionAbility。<br/>-&nbsp;fileShare：文件共享的ExtensionAbility。<br/>-&nbsp;staticSubscriber：静态广播的ExtensionAbility。<br/>-&nbsp;wallpaper：壁纸的ExtensionAbility。<br/>-&nbsp;backup：数据备份的ExtensionAbility。<br/>-&nbsp;window：该ExtensionAbility会在启动过程中创建一个window，为开发者提供界面开发。开发者开发出来的界面将通过abilityComponent控件组合到其他应用的窗口中。<br/>-&nbsp;thumbnail：获取文件缩略图的ExtensionAbility，开发者可以对自定义文件类型的文件提供缩略。<br/>-&nbsp;preview：该ExtensionAbility会将文件解析后在一个窗口中显示，开发者可以通过将此窗口组合到其他应用窗口中。<br/>-&nbsp;print：打印框架的ExtensionAbility。<br/>-&nbsp;driver：驱动框架的ExtensionAbility。<br/>**说明：**<br/>其中service和dataShare类型，仅支持系统应用配置，三方应用配置不生效。 | 字符串 | 该标签不可缺省。 |
+| type | 标识当前ExtensionAbility组件的类型，取值为：<br/>-&nbsp;form：卡片的ExtensionAbility。<br/>-&nbsp;workScheduler：延时任务的ExtensionAbility。<br/>-&nbsp;inputMethod：输入法的ExtensionAbility。<br/>-&nbsp;service：后台运行的service组件。<br/>-&nbsp;accessibility：辅助能力的ExtensionAbility。<br/>-&nbsp;dataShare：数据共享的ExtensionAbility。<br/>-&nbsp;fileShare：文件共享的ExtensionAbility。<br/>-&nbsp;staticSubscriber：静态广播的ExtensionAbility。<br/>-&nbsp;wallpaper：壁纸的ExtensionAbility。<br/>-&nbsp;backup：数据备份的ExtensionAbility。<br/>-&nbsp;window：该ExtensionAbility会在启动过程中创建一个window，为开发者提供界面开发。开发者开发出来的界面将通过abilityComponent控件组合到其他应用的窗口中。<br/>-&nbsp;thumbnail：获取文件缩略图的ExtensionAbility，开发者可以对自定义文件类型的文件提供缩略。<br/>-&nbsp;preview：该ExtensionAbility会将文件解析后在一个窗口中显示，开发者可以通过将此窗口组合到其他应用窗口中。<br/>-&nbsp;print：打印框架的ExtensionAbility。<br/>-&nbsp;push：推送的ExtensionAbility。<br/>-&nbsp;driver：驱动框架的ExtensionAbility。<br/>**说明：**<br/>其中service和dataShare类型，仅支持系统应用配置，三方应用配置不生效。 | 字符串 | 该标签不可缺省。 |
 | permissions | 标识当前ExtensionAbility组件自定义的权限信息。当其他应用访问该ExtensionAbility时，需要申请相应的权限信息。<br/>一个数组元素为一个权限名称。通常采用反向域名格式（最大255字节），可以是系统预定义的权限，也可以是该应用自定义的权限。如果是后者，需与defPermissions标签中定义的某个权限的name标签值一致。 | 字符串数组 | 该标签可缺省，缺省值为空。 |
 | uri | 标识当前ExtensionAbility组件提供的数据URI，为字符数组类型（最大长度255），用反向域名的格式表示。<br/>**说明：**<br/>该标签在type为dataShare类型的ExtensionAbility时，不可缺省。 | 字符串 | 该标签可缺省，缺省值为空。 |
 |skills | 标识当前ExtensionAbility组件能够接收的[Want](../application-models/want-overview.md)的特征集，为数组格式。<br/>配置规则：entry包可以配置多个具有入口能力的skills标签（配置了ohos.want.action.home和entity.system.home）的ExtensionAbility，其中第一个配置了skills标签的ExtensionAbility中的label和icon作为OpenHarmony服务或应用的label和icon。<br/>**说明：**<br/>OpenHarmony服务的Feature包不能配置具有入口能力的skills标签。<br/>OpenHarmony应用的Feature包可以配置具有入口能力的skills标签。 | 数组 | 该标签可缺省，缺省值为空。 |
@@ -588,7 +532,7 @@ metadata中指定shortcut信息，其中：
 
 ## distributionFilter标签
 
-该标签下的子标签均为可选字段，在应用市场云端分发时做精准匹配使用，distributionFilter标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。该标签可配置的分发策略维度包括API Version、屏幕形状、屏幕尺寸、屏幕分辨率，设备的国家与地区码。在进行分发时，通过deviceType与这五个属性的匹配关系，唯一确定一个用于分发到设备的HAP。该标签需要配置在/resource/profile资源目录下。
+该标签下的子标签均为可选字段，在应用市场云端分发时做精准匹配使用，distributionFilter标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。该标签可配置的分发策略维度包括屏幕形状、屏幕尺寸、屏幕分辨率，设备的国家与地区码。在进行分发时，通过deviceType与这五个属性的匹配关系，唯一确定一个用于分发到设备的HAP。该标签需要配置在/resource/profile资源目录下。
 
   **表12** **distributionFilter标签标签配置说明**
 
@@ -785,6 +729,38 @@ dependencies标签示例：
         "bundleName":"com.share.library",
         "moduleName": "library",
         "versionCode": 10001
+      }
+    ]
+  }
+}
+```
+
+## proxyDatas标签
+
+此标签标识模块提供的数据代理列表，仅限entry和feature配置。
+
+**表21** **proxyDatas标签说明**
+| 属性名称    | 含义                           | 数据类型 | 是否可缺省 |
+| ----------- | ------------------------------ | -------- | ---------- |
+| uri | 标识用于访问该数据代理的uri，不同的数据代理配置的uri不可重复，且需要满足`datashareproxy://当前应用包名/xxx`的格式。  | 字符串   | 不可缺省。 |
+| requiredReadPermission  | 标识从该数据代理中读取数据所需要的权限，非系统应用配置的权限的等级需为system_basic或system_core，系统应用可以不配置权限，且权限的等级没有限制。权限等级可以参考[权限列表](../security/permission-list.md)。 | 字符串   | 可缺省，缺省值为空。 |
+| requiredWritePermission | 标识向该数据代理中读取数据所需要的权限。非系统应用配置的权限的等级需为system_basic或system_core，系统应用可以不配置权限，且权限的等级没有限制。权限等级可以参考[权限列表](../security/permission-list.md)。 | 字符串   | 可缺省，缺省值为空。 |
+| [metadata](#metadata标签) | 标识该数据代理的元信息，只支持配置name和resource字段。 | 对象 | 可缺省，缺省值为空。 |
+
+proxyDatas标签示例：
+
+```json
+{
+  "module": {
+    "proxyDatas": [
+      {
+        "uri":"datashareproxy://com.ohos.datashare/event/Meeting",
+        "requiredReadPermission": "ohos.permission.GET_BUNDLE_INFO",
+        "requiredWritePermission": "ohos.permission.GET_BUNDLE_INFO",
+        "metadata": {
+          "name": "datashare_metadata",
+          "resource": "$profile:datashare"
+        }
       }
     ]
   }

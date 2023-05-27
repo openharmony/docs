@@ -320,7 +320,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode): Promise&lt;void&gt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
+| 100001    | if can not get the delegate, only throw in standard system. |
 | 200002    | if the uri is not exist. |
 
 **示例：**
@@ -362,7 +362,7 @@ replaceUrl(options: RouterOptions, mode: RouterMode, callback: AsyncCallback&lt;
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
-| 100001    | if can not get the delegate, only throw in standard system. |
+| 100001    | if UI execution context not found, only throw in standard system. |
 | 200002    | if the uri is not exist. |
 
 **示例：**
@@ -659,9 +659,9 @@ import router from '@ohos.router'
 struct Second {
   private content: string = "这是第二页"
   @State text: string = router.getParams()['text']
-  @State data: any = router.getParams()['data']
-  @State secondData : string = ''
-  
+  @State data: object = router.getParams()['data']
+  @State secondData: string = ''
+
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text(`${this.content}`)
@@ -669,14 +669,14 @@ struct Second {
         .fontWeight(FontWeight.Bold)
       Text(this.text)
         .fontSize(30)
-        .onClick(()=>{
-          this.secondData = (this.data.array[1]).toString()
+        .onClick(() => {
+          this.secondData = (this.data.['array'][1]).toString()
         })
-      .margin({top:20})
+        .margin({ top: 20 })
       Text(`第一页传来的数值:${this.secondData}`)
         .fontSize(20)
-        .margin({top:20})
-        .backgroundColor('red')      
+        .margin({ top: 20 })
+        .backgroundColor('red')
     }
     .width('100%')
     .height('100%')
@@ -761,9 +761,9 @@ enableAlertBeforeBackPage(options: EnableAlertOptions): void
 **示例：**
 
   ```js        
-  router.enableAlertBeforeBackPage({            
-    message: 'Message Info'        
-  });    
+router.enableAlertBeforeBackPage({            
+  message: 'Message Info'        
+});    
   ```
 
 ## router.disableAlertBeforeBackPage<sup>(deprecated)</sup>

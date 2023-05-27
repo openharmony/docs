@@ -11,7 +11,6 @@ appRecovery模块提供了应用在故障状态下的恢复能力。
 import appRecovery from '@ohos.app.ability.appRecovery';
 ```
 
-
 ## appRecovery.RestartFlag
 
 应用重启标志，[enableAppRecovery](#apprecoveryenableapprecovery)接口重启选项参数，该类型为枚举。
@@ -174,9 +173,17 @@ saveAppState(context?: UIAbilityContext): boolean;
 
 ```ts
 import appRecovery from '@ohos.app.ability.appRecovery';
-onBackground() {
-    hilog.info(0x0000, '[demo]', '%{public}s', 'EntryAbility onBackground');
-    appRecovery.saveAppState(this.context)
+let observer = {
+    onUnhandledException(errorMsg) {
+        console.log('onUnhandledException, errorMsg: ', errorMsg);
+        appRecovery.saveAppState(this.context);
+    }
+};
+
+try {
+    errorManager.on('error', observer);
+} catch (paramError) {
+    console.error('error: ${paramError.code}, ${paramError.message}');
 }
 ```
 

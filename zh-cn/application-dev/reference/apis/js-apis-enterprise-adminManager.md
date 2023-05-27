@@ -54,7 +54,7 @@ let enterpriseInfo = {
     name: "enterprise name",
     description: "enterprise description"
 }
-adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, error => {
+adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_SUPER, error => {
     if (error != null) {
         console.log("error occurs" + error);
         return;
@@ -67,7 +67,7 @@ adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_
 
 enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId: number, callback: AsyncCallback\<void>): void
 
-激活指定用户下的指定设备管理员应用，使用callback形式返回是否激活成功。其中超级管理员应用只能在管理员用户下被激活。
+激活指定用户（通过userId指定）下的指定设备管理员应用，使用callback形式返回是否激活成功。其中超级管理员应用只能在管理员用户下被激活。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -216,7 +216,7 @@ adminManager.disableAdmin(wantTemp, error => {
 
 disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 
-将指定用户下的指定普通管理员应用去激活，使用callback形式返回是否去激活成功。
+将指定用户（通过userId指定）下的指定普通管理员应用去激活，使用callback形式返回是否去激活成功。
 
 **需要权限：** ohos.permission.MANAGE_ENTERPRISE_DEVICE_ADMIN
 
@@ -419,7 +419,7 @@ adminManager.isAdminEnabled(wantTemp, (error, result) => {
 
 isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): void
 
-查询指定用户下的指定设备管理员应用是否被激活，使用callback形式返回是否处于激活状态。
+查询指定用户（通过userId指定）下的指定设备管理员应用是否被激活，使用callback形式返回是否处于激活状态。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -955,6 +955,6 @@ adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
 | -------------------------- | ---- | ------------- |
 | MANAGED_EVENT_BUNDLE_ADDED | 0    | 应用安装事件。 |
 | MANAGED_EVENT_BUNDLE_REMOVED | 1  | 应用卸载事件。 |
-| MANAGED_EVENT_APP_START | 2    | 应用启动事件。 |
-| MANAGED_EVENT_APP_STOP | 3  | 应用停止事件。 |
+| MANAGED_EVENT_APP_START<sup>10+</sup> | 2    | 应用启动事件。 |
+| MANAGED_EVENT_APP_STOP<sup>10+</sup> | 3  | 应用停止事件。 |
 
