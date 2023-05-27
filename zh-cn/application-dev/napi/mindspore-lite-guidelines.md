@@ -116,7 +116,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
 
     情形2：创建NNRT（Neural Network Runtime）和CPU异构推理上下文。
 
-    NNRT是OpenHarMony系统中面向AI领域的跨芯片推理计算运行时，一般来说，NNRT对接的加速硬件如NPU，推理能力较强，但支持的算子规格少；而通用CPU推理能力较弱，但支持算子规格更全面。MindSpore Lite支持配置NNRT硬件和CPU异构推理：优先将模型算子调度到NNRT推理，若某些算子NNRT不支持，将其调度到CPU进行推理。通过下面的操作即可配置NNRT/CPU异构推理。
+    NNRT是面向AI领域的跨芯片推理计算运行时，一般来说，NNRT对接的加速硬件如NPU，推理能力较强，但支持的算子规格少；而通用CPU推理能力较弱，但支持算子规格更全面。MindSpore Lite支持配置NNRT硬件和CPU异构推理：优先将模型算子调度到NNRT推理，若某些算子NNRT不支持，将其调度到CPU进行推理。通过下面的操作即可配置NNRT/CPU异构推理。
 
    > **说明：**
    >
@@ -130,7 +130,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
       return OH_AI_STATUS_LITE_ERROR;
     }
     // 优先使用NNRT推理。
-    // 这里利用查找到的第一个ACCELERATORS类别的NNRT硬件，来创建nnrt设备信息，并设置硬件使用高性能模式推理。还可以通过如：OH_AI_GetAllNNRTDeviceDescs()接口获取当前环境中所有NNRT硬件的描述信息，按设备名、类型等信息查找，找到某一具体设备作为NNRT推理硬件。具体可参考：[Native接口参考：MindSpore](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/reference/native-apis/_mind_spore.md/)
+    // 这里利用查找到的第一个ACCELERATORS类别的NNRT硬件，来创建nnrt设备信息，并设置硬件使用高性能模式推理。还可以通过如：OH_AI_GetAllNNRTDeviceDescs()接口获取当前环境中所有NNRT硬件的描述信息，按设备名、类型等信息查找，找到某一具体设备作为NNRT推理硬件。
     OH_AI_DeviceInfoHandle nnrt_device_info = OH_AI_CreateNNRTDeviceInfoByType(OH_AI_NNRTDEVICE_ACCELERATORS);
     if (nnrt_device_info == NULL) {
       printf("OH_AI_DeviceInfoCreate failed.\n");
