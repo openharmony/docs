@@ -1,6 +1,8 @@
 #  OffscreenCanvas
 
-提供离屏画布组件，用于自定义绘制图形。
+OffscreenCanvas组件用于自定义绘制图形。
+
+使用Canvas组件或Canvas API时，渲染、动画和用户交互通常发生在应用程序的主线程上。与画布动画和渲染相关的计算可能会对应用程序性能产生重大影响。OffscreenCanvas提供了一个可以在屏幕外渲染的画布，这样可以在单独的线程中运行一些任务，从而避免主线程上的繁重工作。
 
 > **说明：** 
 >
@@ -18,10 +20,10 @@ OffscreenCanvas(width: number, height: number)
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                   |
-| ------ | -------- | ---- | ------ | -------------------------- |
-| width  | number   | 是   | 0      | 离屏画布的宽度，单位为vp。 |
-| height | number   | 是   | 0      | 离屏画布的高度，单位为vp。 |
+| 参数名 | 参数类型 | 必填 | 默认值 | 参数描述                              |
+| ------ | -------- | ---- | ------ | ------------------------------------- |
+| width  | number   | 是   | 0      | OffscreenCanvas组件的宽度，单位为vp。 |
+| height | number   | 是   | 0      | OffscreenCanvas组件的高度，单位为vp。 |
 
 ## 属性
 
@@ -29,8 +31,8 @@ OffscreenCanvas(width: number, height: number)
 
 | 名称   | 类型   | 默认值 | 描述                                                         |
 | ------ | ------ | ------ | ------------------------------------------------------------ |
-| width  | number | 0      | 离屏画布的宽度，单位为vp。从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| height | number | 0      | 离屏画布的高度，单位为vp。从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| width  | number | 0      | OffscreenCanvas组件的宽度，单位为vp。从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| height | number | 0      | OffscreenCanvas组件的高度，单位为vp。从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 ### width
 
@@ -41,7 +43,7 @@ OffscreenCanvas(width: number, height: number)
 struct OffscreenCanvasPage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(200, 300)
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
@@ -49,15 +51,22 @@ struct OffscreenCanvasPage {
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
+          .backgroundColor('#FFFFFF')
           .onReady(() => {
-            console.log(this.offscreenCanvas.width.toString())
+            var offContext = this.offCanvas.getContext("2d", this.settings)
+            offContext.fillStyle = '#CDCDCD'
+            offContext.fillRect(0, 0, offCanvas.width, 150)
+            var image = this.offCanvas.transferToImageBitmap()
+            this.context.setTransform(1, 0, 0, 1, 50, 200)
+            this.context.transferFromImageBitmap(image)
           })
       }
     }.width('100%').height('100%')
   }
 }
 ```
+
+![zh-cn_image_0000001194032666](figures/offscreen_canvas_width.png)
 
 ### height
 
@@ -68,7 +77,7 @@ struct OffscreenCanvasPage {
 struct OffscreenCanvasPage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(200, 300)
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
@@ -76,9 +85,14 @@ struct OffscreenCanvasPage {
         Canvas(this.context)
           .width('100%')
           .height('100%')
-          .backgroundColor('#ffff00')
+          .backgroundColor('#FFFFFF')
           .onReady(() => {
-            console.log(this.offscreenCanvas.height.toString())
+            var offContext = this.offCanvas.getContext("2d", this.settings)
+            offContext.fillStyle = '#CDCDCD'
+            offContext.fillRect(0, 0, 100, offCanvas.height)
+            var image = this.offCanvas.transferToImageBitmap()
+            this.context.setTransform(1, 0, 0, 1, 50, 200)
+            this.context.transferFromImageBitmap(image)
           })
       }
     }.width('100%').height('100%')
@@ -86,13 +100,15 @@ struct OffscreenCanvasPage {
 }
 ```
 
+![zh-cn_image_0000001194032666](figures/offscreen_canvas_height.png)
+
 ## 方法
 
 ### transferToImageBitmap
 
 transferToImageBitmap(): ImageBitmap
 
-从离屏画布中最近渲染的图像创建一个ImageBitmap对象。
+从OffscreenCanvas组件中最近渲染的图像创建一个ImageBitmap对象。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -111,20 +127,25 @@ transferToImageBitmap(): ImageBitmap
 struct OffscreenCanvasPage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true)
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(300, 500)
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Canvas(this.context)
         .width('100%')
         .height('100%')
-        .backgroundColor('#ffff00')
+        .borderWidth(5)
+        .borderColor(Color.Green)
+        .backgroundColor('#FFFFFF')
         .onReady(() => {
           var offContext = this.offCanvas.getContext("2d", this.settings)
-          offContext.font = '70px sans-serif'
+          offContext.fillStyle = '#CDCDCD'
+          offContext.fillRect(0, 0, 300, 500)
+          offContext.fillStyle = '#000000'
+          offContext.font = '70px serif bold'
           offContext.fillText("Offscreen : Hello World!", 20, 60)
-          var imageData = this.offCanvas.transferToImageBitmap()
-          this.context.transferFromImageBitmap(imageData)
+          var image = this.offCanvas.transferToImageBitmap()
+          this.context.transferFromImageBitmap(image)
         })
     }
     .width('100%')
@@ -132,24 +153,27 @@ struct OffscreenCanvasPage {
   }
 }
 ```
+
+![zh-cn_image_0000001194032666](figures/offscreen_canvas_transferToImageBitmap.png)
+
 ### getContext<sup>10+</sup>
 
 getContext(contextType: "2d", option?: RenderingContextSettings): OffscreenCanvasRenderingContext2D
 
-返回离屏画布的绘图上下文。
+返回OffscreenCanvas组件的绘图上下文。
 
 **参数：**
 
 | 参数        | 类型                                                         | 必填 | 默认值 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------ | ------------------------------------------------------------ |
-| contextType | string                                                       | 是   | "2d"   | 离屏画布绘图上下文的类型。                                   |
+| contextType | string                                                       | 是   | "2d"   | OffscreenCanvas组件绘图上下文的类型。                        |
 | option      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 否   | -      | 见[RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings)。 |
 
 **返回值：**
 
-| 类型                                                         | 描述                   |
-| ------------------------------------------------------------ | ---------------------- |
-| [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md) | 离屏画布的绘图上下文。 |
+| 类型                                                         | 描述                              |
+| ------------------------------------------------------------ | --------------------------------- |
+| [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md) | OffscreenCanvas组件的绘图上下文。 |
 
 **示例：**
 
@@ -159,7 +183,7 @@ getContext(contextType: "2d", option?: RenderingContextSettings): OffscreenCanva
 struct OffscreenCanvasExamplePage {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
+  private offscreenCanvas: OffscreenCanvas = new OffscreenCanvas(600, 800)
 
   build() {
     Flex({ direction: FlexDirection.Row, alignItems: ItemAlign.Start, justifyContent: FlexAlign.Start }) {
@@ -200,5 +224,5 @@ struct OffscreenCanvasExamplePage {
 }
 ```
 
-  ![zh-cn_image_0000001194032666](figures/offscreen_canvas.png)
+![zh-cn_image_0000001194032666](figures/offscreen_canvas.png)
 
