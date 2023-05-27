@@ -20,6 +20,10 @@ The decorators described above can observe only the changes of the first layer. 
 - Using \@Observed alone has no effect. Combined use with \@ObjectLink for two-way synchronization or with [\@Prop](arkts-prop.md) for one-way synchronization is required.
 
 
+## Restrictions
+
+Using \@Observed to decorate a class changes the original prototype chain of the class. Using \@Observed and other class decorators to decorate the same class may cause problems.
+
 ## Decorator Description
 
 | \@Observed Decorator| Description                               |
@@ -212,7 +216,7 @@ Event handlers in **ViewB**:
 
 - this.b.a = new ClassA(0) and this.b = new ClassB(new ClassA(0)): Change to the \@State decorated variable **b** and its attributes.
 
-- this.b.a.c = ... : Second change. [@State](arkts-state.md# observe the change) cannot observe the change of the second layer, but ClassA is decorated by \@Observed, and therefore the change of its attribute c can be observed by \@ObjectLink.
+- this.b.a.c = ... : Second change. [@State](arkts-state.md#observed-changes) cannot observe the change of the second layer, but ClassA is decorated by \@Observed, and therefore the change of its attribute c can be observed by \@ObjectLink.
 
 
 Event handlers in **ViewA**:
@@ -296,7 +300,7 @@ struct ViewB {
   1. ForEach: The newly added Class A object is unknown to the **ForEach** [itemGenerator](arkts-rendering-control-foreach.md#api-description). The item builder of **ForEach** will be executed to create a **View A** component instance.
   2. ViewA({ label: ViewA this.arrA[last], a: this.arrA[this.arrA.length-1] }): The last item of the array is changed. As a result, the second **View A** component instance is changed. For **ViewA({ label: ViewA this.arrA[first], a: this.arrA[0] })**, a change to the array does not trigger a change to the array item, so the first **View A** component instance is not refreshed.
 
-- this.arrA[Math.floor (this.arrA.length/2)].c: [@State] (arkts-state.md#observe-changes) cannot observe changes in the second layer. However, as **ClassA** is decorated by \@Observed, the change of its attributes will be observed by \@ObjectLink.
+- this.arrA[Math.floor (this.arrA.length/2)].c: [@State](arkts-state.md#observed-changes) cannot observe changes in the second layer. However, as **ClassA** is decorated by \@Observed, the change of its attributes will be observed by \@ObjectLink.
 
 
 ### Two-Dimensional Array
@@ -312,7 +316,7 @@ class StringArray extends Array<String> {
 
  
 
-Declare a class that extends from** Array**: **class StringArray extends Array\<String> {}** and create an instance of **StringArray**. The use of the **new** operator is required for the \@Observed class decorator to work properly.
+Declare a class that extends from **Array**: **class StringArray extends Array\<String> {}** and create an instance of **StringArray**. The use of the **new** operator is required for the \@Observed class decorator to work properly.
 
 
 ```ts

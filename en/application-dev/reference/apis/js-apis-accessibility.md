@@ -370,7 +370,7 @@ Obtains the accessibility application list. This API uses a promise to return th
 > **NOTE**
 >
 > This API is supported since API version 7 and deprecated since API version 9.
-> You are advised to use[getAccessibilityExtensionList()](#accessibilitygetaccessibilityextensionlist9).
+> You are advised to use [getAccessibilityExtensionList()](#accessibilitygetaccessibilityextensionlist9).
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
