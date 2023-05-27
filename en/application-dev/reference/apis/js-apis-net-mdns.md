@@ -11,7 +11,7 @@ Multicast DNS (mDNS) provides functions such as adding, removing, discovering, a
 import mdns from '@ohos.net.mdns'
 ```
 
-## mdns.addLocalService
+## mdns.addLocalService<sup>10+</sup>
 
 addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void
 
@@ -100,7 +100,7 @@ mdns.addLocalService(context, localServiceInfo, function (error, data) {
 });
 ```
 
-## mdns.addLocalService
+## mdns.addLocalService<sup>10+</sup>
 
 addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<LocalServiceInfo>
 
@@ -192,7 +192,7 @@ mdns.addLocalService(context, localServiceInfo).then(function (data) {
 });
 ```
 
-## mdns.removeLocalService
+## mdns.removeLocalService<sup>10+</sup>
 
 removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void
 
@@ -216,7 +216,7 @@ Removes an mDNS service. This API uses an asynchronous callback to return the re
 | 2100002 | Operation failed. Cannot connect to service. |
 | 2100003 | System internal error. |
 | 2204002 | Callback not found. |
-| 2204008 | Service instance duplicated. |
+| 2204008 | Service instance not found. |
 | 2204010 | Send packet failed. |
 
 > **NOTE**
@@ -281,7 +281,7 @@ mdns.removeLocalService(context, localServiceInfo, function (error, data) {
 });
 ```
 
-## mdns.removeLocalService
+## mdns.removeLocalService<sup>10+</sup>
 
 removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<LocalServiceInfo>
 
@@ -310,7 +310,7 @@ Removes an mDNS service. This API uses a promise to return the result.
 | 2100002 | Operation failed. Cannot connect to service. |
 | 2100003 | System internal error. |
 | 2204002 | Callback not found. |
-| 2204008 | Service instance duplicated. |
+| 2204008 | Service instance not found. |
 | 2204010 | Send packet failed. |
 
 > **NOTE**
@@ -373,7 +373,7 @@ mdns.removeLocalService(context, localServiceInfo).then(function (data) {
 });
 ```
 
-## mdns.createDiscoveryService
+## mdns.createDiscoveryService<sup>10+</sup>
 
 createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 
@@ -423,7 +423,7 @@ let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 ```
 
-## mdns.resolveLocalService
+## mdns.resolveLocalService<sup>10+</sup>
 
 resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void
 
@@ -512,7 +512,7 @@ mdns.resolveLocalService(context, localServiceInfo, function (error, data) {
 });
 ```
 
-## mdns.resolveLocalService
+## mdns.resolveLocalService<sup>10+</sup>
 
 resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<LocalServiceInfo>
 
@@ -603,11 +603,11 @@ mdns.resolveLocalService(context, localServiceInfo).then(function (data) {
   console.log(JSON.stringify(data));
 });
 ```
-## DiscoveryService
+## DiscoveryService<sup>10+</sup>
 
 Defines a **DiscoveryService** object for discovering mDNS services of the specified type.
 
-### startSearchingMDNS
+### startSearchingMDNS<sup>10+</sup>
 
 startSearchingMDNS(): void
 
@@ -644,7 +644,7 @@ let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 ```
 
-### stopSearchingMDNS
+### stopSearchingMDNS<sup>10+</sup>
 
 stopSearchingMDNS(): void
 
@@ -681,7 +681,7 @@ let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.stopSearchingMDNS();
 ```
 
-### on('discoveryStart')
+### on('discoveryStart')<sup>10+</sup>
 
 on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void
 
@@ -710,7 +710,7 @@ discoveryService.on('discoveryStart', (data) => {
 discoveryService.stopSearchingMDNS();
 ```
 
-### on('discoveryStop')
+### on('discoveryStop')<sup>10+</sup>
 
 on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void
 
@@ -739,7 +739,7 @@ discoveryService.on('discoveryStop', (data) => {
 discoveryService.stopSearchingMDNS();
 ```
 
-### on('serviceFound')
+### on('serviceFound')<sup>10+</sup>
 
 on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
 
@@ -768,7 +768,7 @@ discoveryService.on('serviceFound', (data) => {
 discoveryService.stopSearchingMDNS();
 ```
 
-### on('serviceLost')
+### on('serviceLost')<sup>10+</sup>
 
 on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
 
@@ -797,7 +797,7 @@ discoveryService.on('serviceLost', (data) => {
 discoveryService.stopSearchingMDNS();
 ```
 
-## LocalServiceInfo
+## LocalServiceInfo<sup>10+</sup>
 
 Defines the mDNS service information.
 
@@ -811,7 +811,7 @@ Defines the mDNS service information.
 | host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  No|  IP address of the device that provides the mDNS service. The IP address is not effective when an mDNS service is added or removed.              |
 | serviceAttribute     | serviceAttribute\<[ServiceAttribute](#serviceattribute)> |  No|  mDNS service attribute information.              |
 
-## ServiceAttribute
+## ServiceAttribute<sup>10+</sup>
 
 Defines the mDNS service attribute information.
 
