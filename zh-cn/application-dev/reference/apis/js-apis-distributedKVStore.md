@@ -2182,8 +2182,8 @@ put(key: string, value: Uint8Array | string | number | boolean): Promise&lt;void
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((data) => {
-        console.info(`Succeeded in putting.data=${data}`);
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
+        console.info(`Succeeded in putting data`);
     }).catch((err) => {
         console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
     });
@@ -2434,7 +2434,7 @@ try {
     v8Arr.push(vb1);
     v8Arr.push(vb2);
     v8Arr.push(vb3);
-    kvStore.putBatch(v8Arr).then(async (data) => {
+    kvStore.putBatch(v8Arr).then(async () => {
         console.info(`Succeeded in putting patch`);
     }).catch((err) => {
         console.error(`putBatch fail.code is ${err.code},message is ${err.message}`);
@@ -2540,9 +2540,9 @@ delete(key: string): Promise&lt;void&gt;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((data) => {
-        console.info(`Succeeded in putting: ${data}`);
-        kvStore.delete(KEY_TEST_STRING_ELEMENT).then((data) => {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
+        console.info(`Succeeded in putting data`);
+        kvStore.delete(KEY_TEST_STRING_ELEMENT).then(() => {
             console.info('Succeeded in deleting');
         }).catch((err) => {
             console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
@@ -2660,9 +2660,9 @@ try {
     let predicates = new dataSharePredicates.DataSharePredicates();
     let arr = ["name"];
     predicates.inKeys(arr);
-    kvStore.put("name", "bob").then((data) => {
-        console.info(`Succeeded in putting: ${data}`);
-        kvStore.delete(predicates).then((data) => {
+    kvStore.put("name", "bob").then(() => {
+        console.info(`Succeeded in putting data`);
+        kvStore.delete(predicates).then(() => {
             console.info('Succeeded in deleting');
         }).catch((err) => {
             console.error(`Failed to delete.code is ${err.code},message is ${err.message}`);
@@ -2797,9 +2797,9 @@ try {
         keys.push(key + i);
     }
     console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries).then(async (data) => {
+    kvStore.putBatch(entries).then(async () => {
         console.info('Succeeded in putting Batch');
-        kvStore.deleteBatch(keys).then((err) => {
+        kvStore.deleteBatch(keys).then(() => {
             console.info('Succeeded in deleting Batch');
         }).catch((err) => {
             console.error(`Failed to delete Batch.code is ${err.code},message is ${err.message}`);
@@ -2902,13 +2902,13 @@ removeDeviceData(deviceId: string): Promise&lt;void&gt;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-001';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((err) => {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
         console.info('Succeeded in putting data');
     }).catch((err) => {
         console.error(`Failed to put data.code is ${err.code},message is ${err.message} `);
     });
     const deviceid = 'no_exist_device_id';
-    kvStore.removeDeviceData(deviceid).then((err) => {
+    kvStore.removeDeviceData(deviceid).then(() => {
         console.info('succeeded in removing device data');
     }).catch((err) => {
         console.error(`Failed to remove device data.code is ${err.code},message is ${err.message} `);
@@ -2954,7 +2954,7 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err, data) {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err) {
         if (err != undefined) {
             console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
             return;
@@ -3009,7 +3009,7 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((data) => {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
         console.info(`Succeeded in putting data.data=${data}`);
         kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
             console.info(`Succeeded in getting data.data=${data}`);
@@ -3065,7 +3065,7 @@ try {
         entries.push(entry);
     }
     console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries, async function (err, data) {
+    kvStore.putBatch(entries, async function (err) {
         if (err != undefined) {
             console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
             return;
@@ -3132,7 +3132,7 @@ try {
         entries.push(entry);
     }
     console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries).then(async (entries) => {
+    kvStore.putBatch(entries).then(async () => {
         console.info('Succeeded in putting Batch');
         kvStore.getEntries('batch_test_string_key').then((entries) => {
             console.info('Succeeded in getting Entries');
@@ -3190,7 +3190,7 @@ try {
         entries.push(entry);
     }
     console.info(`entries: {entries}`);
-    kvStore.putBatch(entries, async function (err, data) {
+    kvStore.putBatch(entries, async function (err) {
         console.info('Succeeded in putting Batch');
         const query = new distributedKVStore.Query();
         query.prefixKey("batch_test");
@@ -3256,7 +3256,7 @@ try {
         entries.push(entry);
     }
     console.info(`entries: {entries}`);
-    kvStore.putBatch(entries).then(async (err) => {
+    kvStore.putBatch(entries).then(async () => {
         console.info('Succeeded in putting Batch');
         const query = new distributedKVStore.Query();
         query.prefixKey("batch_test");
@@ -3317,7 +3317,7 @@ try {
         }
         entries.push(entry);
     }
-    kvStore.putBatch(entries, async function (err, data) {
+    kvStore.putBatch(entries, async function (err) {
         if (err != undefined) {
             console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
             return;
@@ -3330,7 +3330,7 @@ try {
             }
             console.info('Succeeded in getting result set');
             resultSet = result;
-            kvStore.closeResultSet(resultSet, function (err, data) {
+            kvStore.closeResultSet(resultSet, function (err) {
                 if (err != undefined) {
                     console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
                     return;
@@ -3391,7 +3391,7 @@ try {
         }
         entries.push(entry);
     }
-    kvStore.putBatch(entries).then(async (err) => {
+    kvStore.putBatch(entries).then(async () => {
         console.info('Succeeded in putting batch');
     }).catch((err) => {
         console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
@@ -3402,7 +3402,7 @@ try {
     }).catch((err) => {
         console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
     });
-    kvStore.closeResultSet(resultSet).then((err) => {
+    kvStore.closeResultSet(resultSet).then(() => {
         console.info('Succeeded in closing result set');
     }).catch((err) => {
         console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
@@ -3454,7 +3454,7 @@ try {
         }
         entries.push(entry);
     }
-    kvStore.putBatch(entries, async function (err, data) {
+    kvStore.putBatch(entries, async function (err) {
         if (err != undefined) {
             console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
             return;
@@ -3522,7 +3522,7 @@ try {
         }
         entries.push(entry);
     }
-    kvStore.putBatch(entries).then(async (err) => {
+    kvStore.putBatch(entries).then(async () => {
         console.info('Succeeded in putting batch');
     }).catch((err) => {
         console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
@@ -3583,7 +3583,7 @@ try {
         }
         console.info('Succeeded in getting result set');
         resultSet = result;
-        kvStore.closeResultSet(resultSet, function (err, data) {
+        kvStore.closeResultSet(resultSet, function (err) {
             if (err != undefined) {
                 console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
                 return;
@@ -3643,7 +3643,7 @@ try {
     }).catch((err) => {
         console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
     });
-    kvStore.closeResultSet(resultSet).then((err) => {
+    kvStore.closeResultSet(resultSet).then(() => {
         console.info('Succeeded in closing result set');
     }).catch((err) => {
         console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
@@ -3760,7 +3760,7 @@ try {
         }
         entries.push(entry);
     }
-    kvStore.putBatch(entries, async function (err, data) {
+    kvStore.putBatch(entries, async function (err) {
         console.info('Succeeded in putting batch');
         const query = new distributedKVStore.Query();
         query.prefixKey("batch_test");
@@ -3822,7 +3822,7 @@ try {
         }
         entries.push(entry);
     }
-    kvStore.putBatch(entries).then(async (err) => {
+    kvStore.putBatch(entries).then(async () => {
         console.info('Succeeded in putting batch');
     }).catch((err) => {
         console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
@@ -3912,8 +3912,8 @@ backup(file:string): Promise&lt;void&gt;
 ```js
 let file = "BK001";
 try {
-    kvStore.backup(file).then((data) => {
-        console.info(`Succeeded in backupping data.data=${data}`);
+    kvStore.backup(file).then(() => {
+        console.info(`Succeeded in backupping data`);
     }).catch((err) => {
         console.error(`Failed to backup.code is ${err.code},message is ${err.message}`);
     });
@@ -3995,8 +3995,8 @@ restore(file:string): Promise&lt;void&gt;
 ```js
 let file = "BK001";
 try {
-    kvStore.restore(file).then((data) => {
-        console.info(`Succeeded in restoring data.data=${data}`);
+    kvStore.restore(file).then(() => {
+        console.info(`Succeeded in restoring data`);
     }).catch((err) => {
         console.error(`Failed to restore.code is ${err.code},message is ${err.message}`);
     });
@@ -4182,7 +4182,7 @@ try {
         console.info(`startTransaction 0 ${data}`);
         count++;
     });
-    kvStore.startTransaction().then(async (err) => {
+    kvStore.startTransaction().then(async () => {
         console.info('Succeeded in starting Transaction');
     }).catch((err) => {
         console.error(`Failed to start Transaction.code is ${err.code},message is ${err.message}`);
@@ -4256,7 +4256,7 @@ commit(): Promise&lt;void&gt;
 
 ```js
 try {
-    kvStore.commit().then(async (err) => {
+    kvStore.commit().then(async () => {
         console.info('Succeeded in committing');
     }).catch((err) => {
         console.error(`Failed to commit.code is ${err.code},message is ${err.message}`);
@@ -4330,7 +4330,7 @@ rollback(): Promise&lt;void&gt;
 
 ```js
 try {
-    kvStore.rollback().then(async (err) => {
+    kvStore.rollback().then(async () => {
         console.info('Succeeded in rolling back');
     }).catch((err) => {
         console.error(`Failed to rollback.code is ${err.code},message is ${err.message}`);
@@ -4395,7 +4395,7 @@ enableSync(enabled: boolean): Promise&lt;void&gt;
 
 ```js
 try {
-    kvStore.enableSync(true).then((err) => {
+    kvStore.enableSync(true).then(() => {
         console.info('Succeeded in enabling sync');
     }).catch((err) => {
         console.error(`Failed to enable sync.code is ${err.code},message is ${err.message}`);
@@ -4466,7 +4466,7 @@ setSyncRange(localLabels: string[], remoteSupportLabels: string[]): Promise&lt;v
 try {
     const localLabels = ['A', 'B'];
     const remoteSupportLabels = ['C', 'D'];
-    kvStore.setSyncRange(localLabels, remoteSupportLabels).then((err) => {
+    kvStore.setSyncRange(localLabels, remoteSupportLabels).then(() => {
         console.info('Succeeded in setting syncRange');
     }).catch((err) => {
         console.error(`Failed to set syncRange.code is ${err.code},message is ${err.message}`);
@@ -4533,7 +4533,7 @@ setSyncParam(defaultAllowedDelayMs: number): Promise&lt;void&gt;
 ```js
 try {
     const defaultAllowedDelayMs = 500;
-    kvStore.setSyncParam(defaultAllowedDelayMs).then((err) => {
+    kvStore.setSyncParam(defaultAllowedDelayMs).then(() => {
         console.info('Succeeded in setting syncParam');
     }).catch((err) => {
         console.error(`Failed to set syncParam.code is ${err.code},message is ${err.message}`);
@@ -4596,7 +4596,7 @@ deviceManager.createDeviceManager('bundleName', (err, value) => {
       kvStore.on('syncComplete', function (data) {
         console.info('Sync dataChange');
       });
-      kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err, data) {
+      kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err) {
         if (err != undefined) {
           console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
           return;
@@ -4666,7 +4666,7 @@ deviceManager.createDeviceManager('bundleName', (err, value) => {
       kvStore.on('syncComplete', function (data) {
         console.info('Sync dataChange');
       });
-      kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err, data) {
+      kvStore.put(KEY_TEST_SYNC_ELEMENT + 'testSync101', VALUE_TEST_SYNC_ELEMENT, function (err) {
         if (err != undefined) {
           console.error(`Failed to sync.code is ${err.code},message is ${err.message}`);
           return;
@@ -4969,7 +4969,7 @@ get(key: string, callback: AsyncCallback&lt;boolean | string | number | Uint8Arr
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err, data) {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, function (err) {
         if (err != undefined) {
             console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
             return;
@@ -5024,8 +5024,8 @@ get(key: string): Promise&lt;boolean | string | number | Uint8Array&gt;
 const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then((data) => {
-        console.info(`Succeeded in putting data.data=${data}`);
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
+        console.info(`Succeeded in putting data`);
         kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
             console.info(`Succeeded in getting data.data=${data}`);
         }).catch((err) => {
@@ -5075,7 +5075,7 @@ get(deviceId: string, key: string, callback: AsyncCallback&lt;boolean | string |
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err, data) {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT, async function (err) {
         if (err != undefined) {
             console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
             return;
@@ -5135,7 +5135,7 @@ get(deviceId: string, key: string): Promise&lt;boolean | string | number | Uint8
 const KEY_TEST_STRING_ELEMENT = 'key_test_string_2';
 const VALUE_TEST_STRING_ELEMENT = 'value-string-002';
 try {
-    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(async (data) => {
+    kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(async () => {
         console.info('Succeeded in putting');
         kvStore.get('localDeviceId', KEY_TEST_STRING_ELEMENT).then((data) => {
             console.info('Succeeded in getting');
@@ -5191,7 +5191,7 @@ try {
         entries.push(entry);
     }
     console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries, async function (err, data) {
+    kvStore.putBatch(entries, async function (err) {
         if (err != undefined) {
             console.error(`Failed to put Batch.code is ${err.code},message is ${err.message}`);
             return;
@@ -5258,7 +5258,7 @@ try {
         entries.push(entry);
     }
     console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries).then(async (entries) => {
+    kvStore.putBatch(entries).then(async () => {
         console.info('Succeeded in putting Batch');
         kvStore.getEntries('batch_test_string_key').then((entries) => {
             console.info('Succeeded in getting Entries');
@@ -5320,7 +5320,7 @@ try {
         entries.push(entry);
     }
     console.info(`entries : ${entries}`);
-    kvStore.putBatch(entries, async function (err, data) {
+    kvStore.putBatch(entries, async function (err) {
         if (err != undefined) {
             console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
             return;
@@ -5392,7 +5392,7 @@ try {
         entries.push(entry);
     }
     console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries).then(async (err) => {
+    kvStore.putBatch(entries).then(async () => {
         console.info('Succeeded in putting batch');
         kvStore.getEntries('localDeviceId', 'batch_test_string_key').then((entries) => {
             console.info('Succeeded in getting entries');
@@ -5453,7 +5453,7 @@ try {
         entries.push(entry);
     }
     console.info(`entries: {entries}`);
-    kvStore.putBatch(entries, async function (err, data) {
+    kvStore.putBatch(entries, async function (err) {
         console.info('Succeeded in putting Batch');
         const query = new distributedKVStore.Query();
         query.prefixKey("batch_test");
@@ -5519,7 +5519,7 @@ try {
         entries.push(entry);
     }
     console.info(`entries: {entries}`);
-    kvStore.putBatch(entries).then(async (err) => {
+    kvStore.putBatch(entries).then(async () => {
         console.info('Succeeded in putting Batch');
         const query = new distributedKVStore.Query();
         query.prefixKey("batch_test");
@@ -5584,7 +5584,7 @@ try {
         entries.push(entry);
     }
     console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries, async function (err, data) {
+    kvStore.putBatch(entries, async function (err) {
         if (err != undefined) {
             console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
             return;
@@ -5661,7 +5661,7 @@ try {
         entries.push(entry);
     }
     console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries).then(async (err) => {
+    kvStore.putBatch(entries).then(async () => {
         console.info('Succeeded in putting batch');
         var query = new distributedKVStore.Query();
         query.deviceId('localDeviceId');
@@ -5722,7 +5722,7 @@ try {
         }
         entries.push(entry);
     }
-    kvStore.putBatch(entries, async function (err, data) {
+    kvStore.putBatch(entries, async function (err) {
         if (err != undefined) {
             console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
             return;
@@ -5735,7 +5735,7 @@ try {
             }
             console.info('Succeeded in getting result set');
             resultSet = result;
-            kvStore.closeResultSet(resultSet, function (err, data) {
+            kvStore.closeResultSet(resultSet, function (err) {
                 if (err != undefined) {
                     console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
                     return;
@@ -5796,7 +5796,7 @@ try {
         }
         entries.push(entry);
     }
-    kvStore.putBatch(entries).then(async (err) => {
+    kvStore.putBatch(entries).then(async () => {
         console.info('Succeeded in putting batch');
     }).catch((err) => {
         console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
@@ -5807,7 +5807,7 @@ try {
     }).catch((err) => {
         console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
     });
-    kvStore.closeResultSet(resultSet).then((err) => {
+    kvStore.closeResultSet(resultSet).then(() => {
         console.info('Succeeded in closing result set');
     }).catch((err) => {
         console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
@@ -5859,7 +5859,7 @@ try {
         }
         console.info('Succeeded in getting resultSet');
         resultSet = result;
-        kvStore.closeResultSet(resultSet, function (err, data) {
+        kvStore.closeResultSet(resultSet, function (err) {
             if (err != undefined) {
                 console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
                 return;
@@ -5918,7 +5918,7 @@ try {
     }).catch((err) => {
         console.error(`Failed to get resultSet.code is ${err.code},message is ${err.message}`);
     });
-    kvStore.closeResultSet(resultSet).then((err) => {
+    kvStore.closeResultSet(resultSet).then(() => {
         console.info('Succeeded in closing resultSet');
     }).catch((err) => {
         console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
@@ -5975,7 +5975,7 @@ try {
         }
         entries.push(entry);
     }
-    kvStore.putBatch(entries, async function (err, data) {
+    kvStore.putBatch(entries, async function (err) {
         if (err != undefined) {
             console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
             return;
@@ -5990,7 +5990,7 @@ try {
             }
             console.info('Succeeded in getting resultSet');
             resultSet = result;
-            kvStore.closeResultSet(resultSet, function (err, data) {
+            kvStore.closeResultSet(resultSet, function (err) {
                 if (err != undefined) {
                     console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
                     return;
@@ -6056,7 +6056,7 @@ try {
         }
         entries.push(entry);
     }
-    kvStore.putBatch(entries).then(async (err) => {
+    kvStore.putBatch(entries).then(async () => {
         console.info('Succeeded in putting batch');
     }).catch((err) => {
         console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
@@ -6071,7 +6071,7 @@ try {
     });
     query.deviceId('localDeviceId');
     console.info("GetResultSet " + query.getSqlLike());
-    kvStore.closeResultSet(resultSet).then((err) => {
+    kvStore.closeResultSet(resultSet).then(() => {
         console.info('Succeeded in closing resultSet');
     }).catch((err) => {
         console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
@@ -6194,7 +6194,7 @@ try {
         }
         entries.push(entry);
     }
-    kvStore.putBatch(entries, async function (err, data) {
+    kvStore.putBatch(entries, async function (err) {
         if (err != undefined) {
             console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
             return;
@@ -6209,7 +6209,7 @@ try {
             }
             console.info('Succeeded in getting resultSet');
             resultSet = result;
-            kvStore.closeResultSet(resultSet, function (err, data) {
+            kvStore.closeResultSet(resultSet, function (err) {
                 if (err != undefined) {
                     console.error(`Failed to close resultSet.code is ${err.code},message is ${err.message}`);
                     return;
@@ -6266,7 +6266,7 @@ try {
         }
         console.info('Succeeded in getting result set');
         resultSet = result;
-        kvStore.closeResultSet(resultSet, function (err, data) {
+        kvStore.closeResultSet(resultSet, function (err) {
             if (err != undefined) {
                 console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
                 return;
@@ -6326,7 +6326,7 @@ try {
     }).catch((err) => {
         console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
     });
-    kvStore.closeResultSet(resultSet).then((err) => {
+    kvStore.closeResultSet(resultSet).then(() => {
         console.info('Succeeded in closing result set');
     }).catch((err) => {
         console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
@@ -6384,7 +6384,7 @@ try {
         }
         console.info('Succeeded in getting result set');
         resultSet = result;
-        kvStore.closeResultSet(resultSet, function (err, data) {
+        kvStore.closeResultSet(resultSet, function (err) {
             if (err != undefined) {
                 console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
                 return;
@@ -6449,7 +6449,7 @@ try {
     }).catch((err) => {
         console.error(`Failed to get resultset.code is ${err.code},message is ${err.message}`);
     });
-    kvStore.closeResultSet(resultSet).then((err) => {
+    kvStore.closeResultSet(resultSet).then(() => {
         console.info('Succeeded in closing result set');
     }).catch((err) => {
         console.error(`Failed to close resultset.code is ${err.code},message is ${err.message}`);
@@ -6499,7 +6499,7 @@ try {
         }
         entries.push(entry);
     }
-    kvStore.putBatch(entries, async function (err, data) {
+    kvStore.putBatch(entries, async function (err) {
         console.info('Succeeded in putting batch');
         const query = new distributedKVStore.Query();
         query.prefixKey("batch_test");
@@ -6561,7 +6561,7 @@ try {
         }
         entries.push(entry);
     }
-    kvStore.putBatch(entries).then(async (err) => {
+    kvStore.putBatch(entries).then(async () => {
         console.info('Succeeded in putting batch');
     }).catch((err) => {
         console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
@@ -6623,7 +6623,7 @@ try {
         }
         entries.push(entry);
     }
-    kvStore.putBatch(entries, async function (err, data) {
+    kvStore.putBatch(entries, async function (err) {
         if (err != undefined) {
             console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
             return;
@@ -6695,7 +6695,7 @@ try {
         }
         entries.push(entry);
     }
-    kvStore.putBatch(entries).then(async (err) => {
+    kvStore.putBatch(entries).then(async () => {
         console.info('Succeeded in putting batch');
     }).catch((err) => {
         console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
