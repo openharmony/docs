@@ -151,7 +151,7 @@ Describes the window properties.
 | isLayoutFullScreen<sup>7+</sup> | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is `false`.             |
 | focusable<sup>7+</sup>          | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is `true`.                |
 | touchable<sup>7+</sup>          | boolean                   | Yes  | No  | Whether the window is touchable. The default value is `true`.                |
-| brightness                      | number                    | Yes  | Yes  | Screen brightness. The value ranges from 0 to 1. The value `1` indicates the maximum brightness. |
+| brightness                      | number                    | Yes  | Yes  | Screen brightness. The value ranges from 0 to 1. The value **1** indicates the maximum brightness. If no value is passed, the brightness follows the system. In this case, the obtained brightness value is –1. |
 | dimBehindValue<sup>7+</sup>     | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value ranges from 0 to 1. The value `1` indicates the maximum dimness.|
 | isKeepScreenOn                  | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is `false`.                 |
 | isPrivacyMode<sup>7+</sup>      | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is `false`.                     |
@@ -1715,6 +1715,8 @@ setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the screen brightness for this window. This API uses an asynchronous callback to return the result.
 
+When the screen brightness setting for the window takes effect, Control Panel cannot adjust the system screen brightness. It can do so only after the window screen brightness is restored to the default value.
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
@@ -1742,6 +1744,8 @@ windowClass.setBrightness(brightness, (err, data) => {
 setBrightness(brightness: number): Promise&lt;void&gt;
 
 Sets the screen brightness for this window. This API uses a promise to return the result.
+
+When the screen brightness setting for the window takes effect, Control Panel cannot adjust the system screen brightness. It can do so only after the window screen brightness is restored to the default value.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1779,6 +1783,7 @@ Sets the dimness of the window that is not on top. This API uses an asynchronous
 >
 > This API cannot be used.
 
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
@@ -1809,6 +1814,7 @@ Sets the dimness of the window that is not on top. This API uses a promise to re
 > **NOTE**
 >
 > This API cannot be used.
+
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -1965,6 +1971,7 @@ Sets whether the area outside the subwindow is touchable. This API uses an async
 >
 > This API cannot be used.
 
+
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
 **Parameters**
@@ -1995,6 +2002,7 @@ Sets whether the area outside the subwindow is touchable. This API uses a promis
 > **NOTE**
 >
 > This API cannot be used.
+
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
