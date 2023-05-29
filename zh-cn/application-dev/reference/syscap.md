@@ -93,31 +93,33 @@ DevEco Studio会根据创建的工程所支持的设置自动配置联想能力�
 
 ### 判断 API 是否可以使用
 
-- JS API
+当前提供了ArtTS API和Native API用于帮助判断某个API是否可以使用。
 
-方法1：OpenHarmony定义了API canIUse帮助开发者来判断该设备是否支持某个特定的syscap。
+- ArkTS API
 
-```ts
-if (canIUse("SystemCapability.ArkUI.ArkUI.Full")) {
+  - 方法1：OpenHarmony定义了API canIUse帮助开发者来判断该设备是否支持某个特定的syscap。
+
+    ```ts
+    if (canIUse("SystemCapability.ArkUI.ArkUI.Full")) {
 	   console.log("该设备支持SystemCapability.ArkUI.ArkUI.Full");
-} else {
-   console.log("该设备不支持SystemCapability.ArkUI.ArkUI.Full");
-}
-```
+    } else {
+       console.log("该设备不支持SystemCapability.ArkUI.ArkUI.Full");
+    }
+    ```
 
-方法2：开发者可通过import的方式将模块导入，若当前设备不支持该模块，import的结果为undefined，开发者在使用其API时，需要判断其是否存在。
+  - 方法2：开发者可通过import的方式将模块导入，若当前设备不支持该模块，import的结果为undefined，开发者在使用其API时，需要判断其是否存在。
 
-```ts
-import geolocation from '@ohos.geolocation';
+	```ts
+	import geolocation from '@ohos.geolocation';
 
-if (geolocation) {
-   geolocation.getCurrentLocation((location) => {
-	   console.log(location.latitude, location.longitude);
-   });
-} else {
-   console.log('该设备不支持位置信息')；
-}
-```
+	if (geolocation) {
+	geolocation.getCurrentLocation((location) => {
+		console.log(location.latitude, location.longitude);
+	});
+	} else {
+	console.log('该设备不支持位置信息');
+	}
+	```
 - Native API
 
 ```c

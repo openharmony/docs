@@ -21,6 +21,7 @@
   - [HuksKeyApi](_huks_key_api.md)
   - [HuksParamSetApi](_huks_param_set_api.md)
   - [HuksTypeApi](_huks_type_api.md)
+  - [Init](init.md)
 - 头文件
   - [drawing_bitmap.h](drawing__bitmap_8h.md)
   - [drawing_brush.h](drawing__brush_8h.md)
@@ -62,6 +63,7 @@
   - [native_huks_api.h](native__huks__api_8h.md)
   - [native_huks_param.h](native__huks__param_8h.md)
   - [native_huks_type.h](native__huks__type_8h.md)
+  - [syscap_ndk.h](syscap__ndk_8h.md)
 - 结构体
   - [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)
   - [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)
