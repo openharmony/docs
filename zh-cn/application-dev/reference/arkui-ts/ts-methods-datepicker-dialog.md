@@ -86,3 +86,5 @@ struct DatePickerDialogExample {
   }
 }
 ```
+
+![DataPickerDialog](figures\DataPickerDialog.gif)
