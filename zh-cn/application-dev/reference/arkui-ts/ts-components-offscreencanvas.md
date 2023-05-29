@@ -51,6 +51,8 @@ struct OffscreenCanvasPage {
         Canvas(this.context)
           .width('100%')
           .height('100%')
+          .borderWidth(5)
+          .borderColor('#00FF00')
           .backgroundColor('#FFFFFF')
           .onReady(() => {
             var offContext = this.offCanvas.getContext("2d", this.settings)
@@ -85,6 +87,8 @@ struct OffscreenCanvasPage {
         Canvas(this.context)
           .width('100%')
           .height('100%')
+          .borderWidth(5)
+          .borderColor('#00FF00')
           .backgroundColor('#FFFFFF')
           .onReady(() => {
             var offContext = this.offCanvas.getContext("2d", this.settings)
@@ -135,7 +139,7 @@ struct OffscreenCanvasPage {
         .width('100%')
         .height('100%')
         .borderWidth(5)
-        .borderColor(Color.Green)
+        .borderColor('#00FF00')
         .backgroundColor('#FFFFFF')
         .onReady(() => {
           var offContext = this.offCanvas.getContext("2d", this.settings)
