@@ -2,7 +2,7 @@
 
 OffscreenCanvas组件用于自定义绘制图形。
 
-使用Canvas组件或Canvas API时，渲染、动画和用户交互通常发生在应用程序的主线程上。与画布动画和渲染相关的计算可能会对应用程序性能产生重大影响。OffscreenCanvas提供了一个可以在屏幕外渲染的画布，这样可以在单独的线程中运行一些任务，从而避免主线程上的繁重工作。
+使用[Canvas](ts-component-canvas-canvas.md)组件或[Canvas API](ts-canvasrenderingcontext2d.md)时，渲染、动画和用户交互通常发生在应用程序的主线程上，与画布动画和渲染相关的计算可能会影响应用程序性能。OffscreenCanvas提供了一个可以在屏幕外渲染的画布，这样可以在单独的线程中运行一些任务，从而避免影响应用程序主线程性能。
 
 > **说明：** 
 >
