@@ -336,6 +336,7 @@
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
   - [console (控制台)](js-apis-logs.md)
   - [Timer (定时器)](js-apis-timer.md)
+  - [syscap (系统能力)](js-apis-syscap.md)
   - application
     - [AccessibilityExtensionContext (辅助功能扩展上下文)](js-apis-inner-application-accessibilityExtensionContext.md)
 
