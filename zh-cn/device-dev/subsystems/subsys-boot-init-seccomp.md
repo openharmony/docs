@@ -376,12 +376,18 @@ swapon;all
     ./build.sh --product-name 产品文件 --ccache --target-cpu arm64 --build-target 目标文件
     ```
 
-5. 若第4步ELF文件依赖libc++.so，则通过执行命令将arm64位的libc++.so复制到out目录下。
+5. 若此前未进行全量编译，且第4步依赖的动态库未在//out文件夹下，则通过执行以下命令将业务依赖的相关动态库复制到//out目录下。以下为参考操作，若还依赖其它动态库，请自行复制。
     ```shell
-    ./build.sh --product-name 产品名称 --ccache --build-target musl-libcxx.so --target-cpu arm64
+    # 先进入代码根目录
+    cd /root/to/OpenHarmonyCode
+    # 在out/产品名称/lib.unstripped/下创建aarch64-linux-ohos文件夹存放依赖的动态库
+    mkdir out/产品名称/lib.unstripped/aarch64-linux-ohos
+    # 复制相关动态库到out目录下
+    cp prebuilts/clang/ohos/${host_platform_dir}/llvm/lib/clang/${clang_version}/lib/aarch64-linux-ohos/*.so out/产品名称/lib.unstripped/aarch64-linux-ohos/
+    cp prebuilts/clang/ohos/${host_platform_dir}/${clang_version}/llvm/lib/aarch64-linux-ohos/*.so out/产品名称/lib.unstripped/aarch64-linux-ohos/
     ```
 
-6. 修改collect_elf_syscall.py脚本文件，将objdump与readelf工具的路径从空修改为工具在linux环境下的绝对路径。工具路径存放在//prebuilts文件夹下。
+6. 修改collect_elf_syscall.py脚本文件，将objdump与readelf工具的路径从空修改为工具在linux环境下的绝对路径。脚本文件存放在base/startup/init/services/modules/seccomp/scripts/tools/下。objdump与readelf工具存放在//prebuilts文件夹内部。
     ```python
     #modified the path of objdump and readelf path
     def get_obj_dump_path():
@@ -395,8 +401,6 @@ swapon;all
     ```
 
 7. 使用脚本解析生成对应的策略文件xxx.seccomp.policy
-
-    脚本collect_elf_syscall.py在//base/startup/init/services/modules/seccomp/scripts/tools/路径下
 
     **表7**  collect_elf_syscall.py的参数说明
     |  参数  |  说明  |
