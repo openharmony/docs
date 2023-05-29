@@ -20,7 +20,7 @@
       - [AccessibilityExtensionAbility](accessibilityextensionability.md)
       - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
       - [InputMethodExtensionAbility](inputmethodextentionability.md)
-      - [WindowExtensionAbility](windowextensionability.md)
+      - [WindowExtensionAbility (for System Applications Only)](windowextensionability.md)
     - Service Widget Development in Stage Model
       - [Service Widget Overview](service-widget-overview.md)
       - Developing an ArkTS Widget
@@ -52,7 +52,7 @@
       - [Want Overview](want-overview.md)
       - [Matching Rules of Explicit Want and Implicit Want](explicit-implicit-want-mappings.md)
       - [Common action and entities Values](actions-entities.md)
-      - [Using Explicit Want to Start an Ability](ability-startup-with-explicit-want.md)
+      - [Using Explicit Want to Start an Application Component](ability-startup-with-explicit-want.md)
       - [Using Implicit Want to Open a Website](ability-startup-with-implicit-want.md)
       - [Using Want to Share Data Between Applications](data-share-via-want.md)
     - [Component Startup Rules](component-startup-rules.md)
@@ -71,7 +71,7 @@
         - [Subscribing to Common Events in Static Mode (for System Applications Only)](common-event-static-subscription.md)
         - [Unsubscribing from Common Events](common-event-unsubscription.md)
       - [Publishing Common Events](common-event-publish.md)
-      - [Removing Sticky Common Events](common-event-remove-sticky.md)
+      - [Removing Sticky Common Events (for System Applications Only)](common-event-remove-sticky.md)
     - [Background Services](background-services.md)
   - Thread Model
     - [Thread Model Overview](thread-model-stage.md)
