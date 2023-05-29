@@ -151,9 +151,6 @@ export default class AudioRendererDemo {
         console.info(`${TAG}: creating AudioRenderer success`);
         this.renderModel = renderer;
         this.renderModel.on('stateChange', (state) => { // Set the events to listen for. A callback is invoked when the AudioRenderer is switched to the specified state.
-          if (state == 1) {
-            console.info('audio renderer state is: STATE_PREPARED');
-          }
           if (state == 2) {
             console.info('audio renderer state is: STATE_RUNNING');
           }

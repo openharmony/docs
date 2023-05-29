@@ -64,14 +64,6 @@ Distributed scheduler
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
 
-## SystemCapability.BundleManager.BundleTool
-
-Bundle manager CLI tool
-
-| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
-| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
-
 ## SystemCapability.BundleManager.Zlib
 
 zlib compression and decompression tool
@@ -79,14 +71,6 @@ zlib compression and decompression tool
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
-
-## SystemCapability.BundleManager.PackingTool
-
-Packing and unpacking tools for bundle management
-
-| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
-| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| Yes     | Yes    | Yes    | Yes  | Yes  | Yes    | Yes          | No    |
 
 ## SystemCapability.Graphic.Graphic2D.WebGL
 
@@ -311,6 +295,14 @@ Input device management
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | No    | No    | Yes  | Yes  | Yes    | No          | No    |
 
+## SystemCapability.MultimodalInput.Input.RemoteInputDevice
+
+Remote input device
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | No    | Yes  | Yes  | Yes    | No          | No    |
+
 ## SystemCapability.MultimodalInput.Input.InputMonitor
 
 Input event listener
@@ -330,6 +322,14 @@ Input event consumer
 ## SystemCapability.MultimodalInput.Input.InputSimulator
 
 Input event simulator
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | No    | Yes  | Yes  | Yes    | No          | No    |
+
+## SystemCapability.MultimodalInput.Input.InputFilter
+
+Input filter
 
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -1349,7 +1349,7 @@ Webview component
 
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+| Yes     | No    | No    | Yes  | Yes  | No    | No          | No    |
 
 ## SystemCapability.Cloud.AAID
 
@@ -1639,9 +1639,9 @@ Quick fix
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
 
-## SystemCapability.MultimodalInput.Input.Pointer
+## SystemCapability.MultimodalInput.Input.ShortKey
 
-Pointer input enhancement
+Shortcut keys
 
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
@@ -1670,3 +1670,11 @@ General type
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | Yes    | Yes    | Yes  | Yes  | Yes    | Yes          | Yes    |
+
+## SystemCapability.Msdp.DeviceStatus.Cooperate
+
+Device status awareness
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | No    | No    | Yes  | No  | No    | No          | No    |

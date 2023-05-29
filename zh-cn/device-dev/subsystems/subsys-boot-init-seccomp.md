@@ -114,13 +114,13 @@ Seccomp（Secure computing mode）是Linux kernel支持的一种安全机制。�
         **表2**  ohos_prebuilt_seccomp模板字段说明
         |  字段  |  说明  |
         |  ---  |  ---  |
-        |  sources  |  必填，策略配置文件的路径  |
-        |  filtername  |  必填，该内容与进程[引导启动配置文件](subsys-boot-init-cfg.md)中的services name保持一致，否则会使能失败。该字段决定了动态库的名称。例如，将filtername设置为xxx，则编译生成的策略动态库名称为libxxx_filter.z.so  |
-        |  process_type  |  必填，根据使能进程类型填写不同的字符串。若使能的进程为init孵化的进程，则该字段赋值"system"；若是应用进程，则该字段赋值"app" |
-        |  part_name  |  必填，部件名  |
-        |  subsystem_name  |  必填，子系统名  |
-        |  install_enable  |  必填，是否安装到镜像，为true  |
-        |  install_images  |  必填，安装的镜像位置  |
+        |  sources  |  必填，策略配置文件的路径。 |
+        |  filtername  |  必填，该内容与进程[引导启动配置文件](subsys-boot-init-cfg.md)中的services name保持一致，否则会使能失败。该字段决定了动态库的名称。例如，将filtername设置为xxx，则编译生成的策略动态库名称为libxxx_filter.z.so。  |
+        |  process_type  |  必填，根据使能进程类型填写不同的字符串。若使能的进程为init孵化的进程，则该字段赋值"system"；若是应用进程，则该字段赋值"app"。 |
+        |  part_name  |  必填，部件名。  |
+        |  subsystem_name  |  必填，子系统名。  |
+        |  install_enable  |  必填，是否安装到镜像，为true。  |
+        |  install_images  |  必填，安装的镜像位置。  |
     
         示例
         ```python
@@ -236,12 +236,12 @@ base/startup/init/services/modules/seccomp
     |  策略文件  |  说明  |
     |  ---  |  ---  |
     |  system.seccomp.policy  | 大部分系统服务进程使能的Seccomp策略 |
-    |  system.blocklist.seccomp.policy  | 系统进程的系统调用基线黑名单，即非特权进程禁止使用的系统调用名单 |
+    |  system.blocklist.seccomp.policy  | 系统进程的系统调用基线黑名单，即非特权进程禁止使用的系统调用名单。 |
     |  app.seccomp.policy  | 所有应用进程使能的Seccomp策略 |
-    |  app.blocklist.seccomp.policy  | 应用进程的系统调用基线黑名单，即应用进程禁止使用的系统调用名单 |
+    |  app.blocklist.seccomp.policy  | 应用进程的系统调用基线黑名单，即应用进程禁止使用的系统调用名单。 |
     |  spawn.seccomp.policy  | appspawn进程与nwebspawn进程使能的Seccomp策略 |
     |  renderer.seccomp.policy  | 由nwebspawn孵化的渲染进程使能的Seccomp策略 |
-    |  privileged_process.seccomp.policy  | 特权进程声明名单，即某些进程需使用基线黑名单系统调用时，可在此文件中声明进程标识符与需使用的基线黑名单 |
+    |  privileged_process.seccomp.policy  | 特权进程声明名单，即某些进程需使用基线黑名单系统调用时，可在此文件中声明进程标识符与需使用的基线黑名单。 |
 
 ### 普通策略文件编写规则
 - 若要声明配置项，以“@”加配置项的形式书写，例如，@returnValue。
@@ -255,11 +255,11 @@ base/startup/init/services/modules/seccomp
 
 |  配置项  |  说明  | 规则  |
 |  ---  |  ---  |  --  |
-|  returnValue  |  返回值  |  必填，范围为：<br>- LOG: 宽容模式，只记录Audit日志，不会终止进程；<br>- TRAP: 终止进程，且可交给faultloggerd处理；<br>- KILL_PROCESS: 终止进程； <br>- KILL_THREAD：终止线程。  |
+|  returnValue  |  返回值  |  必填，范围为：<br>- LOG：宽容模式，只记录Audit日志，不会终止进程；<br>- TRAP：终止进程，且可交给faultloggerd处理；<br>- KILL_PROCESS：终止进程。 <br>- KILL_THREAD：终止线程。  |
 |  headFiles  |  头文件，用于声明allowListWithArgs与priorityWithArgs字段中出现的宏。 |  格式上：用""、<>来包含头文件名称，例如 <abc.h>、"cde.h" 默认有的头文件：<linux/filter.h>、<stddef.h>、<linux/seccomp.h>、<audit.h>。  |
 |  priority  |  频繁使用的系统调用白名单  |  在策略中优先判断，用于提高性能。  |
 |  priorityWithArgs  |  频繁使用的带参数限制的系统调用白名单  |  在策略中优先判断，用于提高性能。  |
-|  allowList  |  白名单  |  进程允许的系统调用。  |
+|  allowList  |  白名单  |  进程允许的系统调用  |
 |  allowListWithArgs  |  带参数限制白名单  |  其中系统调用名称与参数限制说明用“:”隔开，判断符号可用<、<=、>、>=、==、!=、&，逻辑符号可用&&、\|\|。<br>系统调用的第几个参数，使用argn表示，n的范围为0~5。判断语句用“if”开头，else语句结尾。语句结束后需声明返回值，判断语句与返回值使用“;”隔开。<br>声明返回值的样式为“return xxx”，xxx的范围与returnValue一致。若有多重判断条件，判断条件之间可使用elif隔开。 |
 |  blockList  |  黑名单  |  在解析策略过程中，生成BPF指令前会检查白名单中的系统调用会不会存在于黑名单中。若存在，则会出现解析错误的信息。 |
 |  selfDefineSyscall  |  自定义系统调用  |  填写的内容为数字。  |
@@ -329,26 +329,27 @@ swapon;all
 **表6**  统计方法对比说明
 |  统计方法  |  基本方法  |  优点  |  缺点  |
 |  ---  |  ---  |  ---  |  ---  |
-|  <div style="width: 50pt">静态分析  | <div style="width: 300pt">分析ELF反汇编代码得到调用关系，统计调用libc库的接口集合，解析libc库得到libc接口与系统调用号的调用关系，从而得到ELF文件使用的系统调用号 |  <div style="width: 100pt">可以统计到异常分支的系统调用。  |  <div style="width: 100pt">不支持解析指针函数的调用关系。  |
-|  Strace工具统计  | 设备运行时，使用Strace跟踪业务进程或者跟踪测试进程。跟踪过程中会将系统调用的执行记录下来。收集日志后使用脚本解析日志生成Seccomp策略文件。 |  操作简单  |  代码分支全部覆盖才能完整统计使用的系统调用。  |
+|  <div style="width: 50pt">静态分析  | <div style="width: 300pt">分析ELF反汇编代码得到调用关系，统计调用libc库的接口集合，解析libc库得到libc接口与系统调用号的调用关系，从而得到ELF文件使用的系统调用号。 |  <div style="width: 100pt">可以统计到异常分支的系统调用。  |  <div style="width: 100pt">不支持解析指针函数的调用关系。  |
+|  Strace工具统计  | 设备运行时，使用Strace跟踪业务进程。跟踪过程中会将系统调用的执行记录下来。收集日志后使用脚本解析日志生成Seccomp策略文件。 |  操作简单  |  代码分支全部覆盖才能完整统计使用的系统调用。  |
 |  Audit统计  | 进程使能Seccomp策略后，Seccomp机制会拦截非法系统调用，在内核日志生成含系统调用号信息的Audit日志。收集日志后使用脚本解析日志生成Seccomp策略文件。 |  可对上面两个方法进行查漏补缺。  |  日志有丢失的风险。<br>代码分支全部覆盖才能完整统计使用的系统调用。  |
-
-> ![icon-note.gif](public_sys-resources/icon-note.gif)**免责声明：使用第三方软件或网站**<br>
-> 我们可能会推荐使用其它公司拥有或运营的软件、信息、产品或网站。我们通过超链接或其它方法作此推荐，以帮助您访问第三方资源。<br>
-> 虽然我们努力将您引导至有用的、值得信赖的资源，但我们无法保证由第三方资源提供或在第三方资源处提供的软件、信息、产品或服务，也无法跟踪这些资源的变化。因此，我们不对任何第三方资源的内容或结果的合规性、准确性、完整性负责，也不对因使用第三方资源提供的产品或服务或由第三方资源提供的产品或服务的使用或故障而导致的任何损失或损害负责。
 
 #### 静态分析
 1. 环境准备
     1. 准备linux环境。
     2. 下载交叉编译器arm-linux-musleabi与aarch64-linux-musl。
         ```shell
-        # 将执行工具路径加入环境变量
+        wget https://musl.cc/arm-linux-musleabi-cross.tgz
+        wget https://musl.cc/aarch64-linux-musl-cross.tgz
+
+        tar -zxvf arm-linux-musleabi-cross.tgz
+        tar -zxvf aarch64-linux-musl-cross.tgz
+
+        # 将执行工具路径加入环境变量。
         export PATH=$PATH:/path/to/arm-linux-musleabi-cross/bin
         export PATH=$PATH:/path/to/aarch64-linux-musl-cross/bin
         ```
 
-    3. 下载openharmony源代码，
-    见[下载说明](../get-code/sourcecode-acquire.md)。
+    3. 下载OpenHarmony源代码，见[下载说明](../get-code/sourcecode-acquire.md)。
 
 2. 通过编译seccomp_filter得到静态分析的依赖文件libsyscall_to_nr_arm与libsyscall_to_nr_arm64。
 
@@ -362,8 +363,8 @@ swapon;all
 
 3. 复制generate_code_from_policy.py到统计系统调用工具的文件夹内。该脚本存在于//base/startup/init/services/modules/seccomp/scripts/路径下
     ```shell
-    # 进入Openharmony代码根目录
-    cd /root/to/OpenharmonyCode;
+    # 进入OpenHarmony代码根目录
+    cd /root/to/OpenHarmonyCode;
     # 进入generate_code_from_policy.py所在目录
     cd base/startup/init/services/modules/seccomp/scripts/;
     # 复制generate_code_from_policy.py
@@ -375,31 +376,36 @@ swapon;all
     ./build.sh --product-name 产品文件 --ccache --target-cpu arm64 --build-target 目标文件
     ```
 
-5. 修改collect_elf_syscall.py脚本文件，将objdump与readelf工具的路径从空修改为工具在linux环境下的绝对路径。工具路径存放在//prebuilts文件夹下，具体路径一般在//prebuilts/clang/ohos/linux-x86_64/15.0.4/llvm/bin文件夹下。
+5. 若第4步ELF文件依赖libc++.so，则通过执行命令将arm64位的libc++.so复制到out目录下。
+    ```shell
+    ./build.sh --product-name 产品名称 --ccache --build-target musl-libcxx.so --target-cpu arm64
+    ```
+
+6. 修改collect_elf_syscall.py脚本文件，将objdump与readelf工具的路径从空修改为工具在linux环境下的绝对路径。工具路径存放在//prebuilts文件夹下。
     ```python
     #modified the path of objdump and readelf path
     def get_obj_dump_path():
-        obj_dump_path = '/path/to/prebuilts/clang/ohos/linux-x86_64/15.0.4/llvm/bin/llvm-objdump'
+        obj_dump_path = '/path/to/llvm-objdump'
         return obj_dump_path
 
 
     def get_read_elf_path():
-        read_elf_path = '/path/to/prebuilts/clang/ohos/linux-x86_64/15.0.4/llvm/bin/llvm-readelf'
+        read_elf_path = '/path/to/llvm-readelf'
         return read_elf_path
     ```
 
-6. 使用脚本解析生成对应的策略文件xxx.seccomp.policy
+7. 使用脚本解析生成对应的策略文件xxx.seccomp.policy
 
     脚本collect_elf_syscall.py在//base/startup/init/services/modules/seccomp/scripts/tools/路径下
 
     **表7**  collect_elf_syscall.py的参数说明
     |  参数  |  说明  |
     |  ---  |  ---  |
-    |  --src-elf-path  | ELF文件所在文件夹，例如，~/ohcode/out/rk3568，不以'/'结尾|
-    |  --elf-name| ELF文件名，例如，libmedia_service.z.so|
-    |  --src-syscall-path  |  libsyscall_to_nr_arm或libsyscall_to_nr_arm64，与--target-cpu架构对应  |
-    |  --target-cpu  |  架构号，表示需要统计系统调用的对应架构，该参数影响解析何种架构的libc文件，arm或arm64  |
-    |  --filter-name  | 生成的策略文件名名称，例如，输入值为test，生成的文件名为test.seccomp.policy  |
+    |  --src-elf-path  | ELF文件所在文件夹，例如，~/ohcode/out/rk3568，不以'/'结尾。|
+    |  --elf-name| ELF文件名，例如，libmedia_service.z.so。|
+    |  --src-syscall-path  |  libsyscall_to_nr_arm或libsyscall_to_nr_arm64，与--target-cpu架构对应。  |
+    |  --target-cpu  |  架构号，表示需要统计系统调用的对应架构，该参数影响解析何种架构的libc文件，arm或arm64。  |
+    |  --filter-name  | 生成的策略文件名名称，例如，输入值为test，生成的文件名为test.seccomp.policy。  |
     
     使用collect_elf_syscall.py解析ELF文件。
 
@@ -424,53 +430,8 @@ swapon;all
 
 #### Strace统计
 1. 使用arm-linux-musleabi与aarch64-linux-musl交叉编译器分别构建32位与64的Strace工具。
-2. [跟踪测试进程](#跟踪测试进程)，得到Strace日志。
-3. [跟踪业务进程](#跟踪业务进程)，得到Strace日志。
-4. 利用脚本[解析Strace日志](#解析strace日志文件)，得到Seccomp策略文件。
-##### 跟踪测试进程
-1. 将Strace工具推入设备中。
-    ```shell
-    hdc shell mount -rw -o remount /
-    hdc file send /path/to/strace /system/bin/
-    hdc shell chmod a+x /system/bin/strace
-    ```
-
-2. 在[开发者测试框架](https://gitee.com/openharmony/testfwk_developer_test)本地代码进行嵌入式修改，使得执行测试套会执行Strace跟踪测试进程。
-
-    在src/core/driver/drivers.py修改_init_gtest函数与_run_gtest函数的内容，以下为修改内容。其中行首符号为“+”，则该行为新增内容，若符号为“-”，则是需删除的内容。
-
-    ```python
-    --- a/src/core/driver/drivers.py
-    +++ b/src/core/driver/drivers.py
-    @@ -500,6 +500,8 @@ class CppTestDriver(IDriver):
-                "rm -rf %s" % self.config.target_test_path)
-            self.config.device.execute_shell_command(
-                "mkdir -p %s" % self.config.target_test_path)
-    +        self.config.device.execute_shell_command(
-    +            "mkdir -p /data/strace")
-            self.config.device.execute_shell_command(
-                "mount -o rw,remount,rw /")
-            if "fuzztest" == self.config.testtype[0]:
-    @@ -539,10 +541,11 @@ class CppTestDriver(IDriver):
-                        test_para,
-                        seed)
-                else:
-    -                command = "cd %s; rm -rf %s.xml; chmod +x *; ./%s %s" % (
-    +                command = "cd %s; rm -rf %s.xml; chmod +x *; strace -ff -o /data/strace/%s.strace.log ./%s %s" % (
-                        self.config.target_test_path,
-                        filename,
-                        filename,
-    +                    filename,
-                        test_para)
-            else:
-                coverage_outpath = self.config.coverage_outpath
-    ```
-3. 执行相关业务测试用例。
-4. 从设备中/data/strace文件夹取出Strace日志。
-    ```shell
-    hdc file recv /data/strace /path/to/base/startup/init/services/modules/seccomp/scripts/tools/
-    ```
-
+2. [跟踪业务进程](#跟踪业务进程)，得到Strace日志。
+3. 利用脚本[解析Strace日志](#解析strace日志文件)，得到Seccomp策略文件。
 ##### 跟踪业务进程
 1. 在init仓代码中进行嵌入式修改，修改文件为//base/startup/init/services/init/init_common_service.c，在执行SetSystemseccompPolicy函数设置Seccomp策略前增加以下内容。以下为修改内容。其中行首符号为“+”，则该行为新增内容，若符号为“-”，则是需删除的内容，“xxxx”与进程[引导启动配置文件](subsys-boot-init-cfg.md)中的Services name保持一致。
     ```c
@@ -525,16 +486,16 @@ swapon;all
     cp out/产品名称/gen/base/startup/init/services/modules/seccomp/gen_system_filter/libsyscall_to_nr_arm* base/startup/init/services/modules/seccomp/scripts/tools/strace/
     ```
  
-2. 使用脚本解析生成对应的策略文件xxx.seccomp.policy
+2. 使用脚本解析生成对应的策略文件xxx.seccomp.policy。
 
     脚本strace_log_analysis.py在//base/startup/init/services/modules/seccomp/scripts/tools/路径下
     
     **表8**  strace_log_analysis.py的参数说明
     |  参数  |  说明  |
     |  ---  |  ---  |
-    |  --src-path  | 日志文件所在文件夹，需含libsyscall_to_nr_arm与libsyscall_to_nr_arm64例如，./strace，不以'/'结尾|
-    |  --target-cpu  |  架构号，与跟踪进程的对应的架构一致，arm或arm64  |
-    |  --filter-name  | 生成的策略文件名名称，例如，输入值为test，生成的文件名为test.seccomp.policy  |
+    |  --src-path  | 日志文件所在文件夹，需含libsyscall_to_nr_arm与libsyscall_to_nr_arm64例如，./strace，不以'/'结尾。|
+    |  --target-cpu  |  架构号，与跟踪进程的对应的架构一致，arm或arm64。  |
+    |  --filter-name  | 生成的策略文件名名称，例如，输入值为test，生成的文件名为test.seccomp.policy。  |
 
     使用strace_log_analysis.py解析Strace日志。
     ```shell
@@ -562,7 +523,7 @@ swapon;all
         ```shell
         mkdir -p /data/audit
         ```
-    2. 利用Shell命令获取内核日志中与Seccomp相关的Audit日志，存放的日志以“.audit.log”结尾
+    2. 利用Shell命令获取内核日志中与Seccomp相关的Audit日志，存放的日志以“.audit.log”结尾。
         ```shell
         cat /proc/kmsg | grep type=1326 > /data/audit/media_service.audit.log
         ```
@@ -591,30 +552,29 @@ swapon;all
     
     Audit日志示例
     ```shell
-    <5>[  198.963101] audit: type=1326 audit(1659528178.748:27): auid=4294967295 uid=0 gid=1000 ses=4294967295 subj=u:r:appspawn:s0 pid=2704 comm="config_dialog_s" exe="/system/bin/appspawn" sig=31 arch=40000028 syscall=
-    208 compat=1 ip=0xf7b79400 code=0x80000000
+    <5>[  198.963101] audit: type=1326 audit(1659528178.748:27): auid=4294967295 uid=0 gid=1000 ses=4294967295 subj=u:r:appspawn:s0 pid=2704 comm="config_dialog_s" exe="/system/bin/appspawn" sig=31 arch=40000028 syscall=208 compat=1 ip=0xf7b79400 code=0x80000000
     ```
     **表9**  Audit日志关键字段说明
     |  参数  |  说明  |
     |  ---  |  ---  |
-    |  type  |  类型，值为1326说明是seccomop类型日志  |
-    |  sig  |  信号量，31为SIGSYS，表示Seccomp发生拦截时给进程发出的信号  |
-    |  arch  |  架构标识，值为40000028表示arm，值为c00000b7表示arm64  |
+    |  type  |  类型，值为1326说明是seccomop类型日志。  |
+    |  sig  |  信号量，31为SIGSYS，表示Seccomp发生拦截时给进程发出的信号。  |
+    |  arch  |  架构标识，值为40000028表示arm，值为c00000b7表示arm64。  |
     |  syscall  |  系统调用号  |
-    |  compat  |  1表示为兼容模式，即arm64的内核使用了arm的系统调用  |
+    |  compat  |  1表示为兼容模式，即arm64的内核使用了arm的系统调用。 |
 
 
     1. 将解析日志时所依赖的文件复制到日志文件夹以备使用，该依赖文件为[静态分析](#静态分析)第2步的产物。
         ```shell
         cp out/产品名称/gen/base/startup/init/services/modules/seccomp/gen_system_filter/libsyscall_to_nr_arm* base/startup/init/services/modules/seccomp/scripts/tools/audit/
         ```
-    2. 使用audit_log_analysis.py脚本解析日志生成xxx.seccomp.policy。工具路径在//base/startup/init/services/modules/seccomp/scripts/tools/下
+    2. 使用audit_log_analysis.py脚本解析日志生成xxx.seccomp.policy。工具路径在//base/startup/init/services/modules/seccomp/scripts/tools/下。
 
         **表10**  audit_log_analysis.py的参数说明
         |  参数  |  说明  |
         |  ---  |  ---  |
-        |  --src-path  | 日志文件所在文件夹，需含libsyscall_to_nr_arm与libsyscall_to_nr_arm64。例如，./audit，不以'/'结尾|
-        |  --filter-name  | 生成的策略文件名名称，例如，输入值为test，生成的文件名为test.seccomp.policy  |
+        |  --src-path  | 日志文件所在文件夹，需含libsyscall_to_nr_arm与libsyscall_to_nr_arm64。例如，./audit，不以'/'结尾。|
+        |  --filter-name  | 生成的策略文件名名称，例如，输入值为test，生成的文件名为test.seccomp.policy。 |
 
         ```shell
         cd base/startup/init/services/modules/seccomp/scripts/tools
@@ -627,13 +587,13 @@ swapon;all
 **表11**  merge_policy.py的参数说明
 |  参数  |  说明  |
 |  ---  |  ---  |
-|  --src-files  | 需处理的文件，需含libsyscall_to_nr_arm与libsyscall_to_nr_arm64|
-|  --filter-name  | 生成的策略文件名名称，例如，输入值为test，生成的文件名为test.seccomp.policy  |
+|  --src-files  | 需处理的文件，需含libsyscall_to_nr_arm与libsyscall_to_nr_arm64。 |
+|  --filter-name  | 生成的策略文件名名称，例如，输入值为test，生成的文件名为test.seccomp.policy。  |
 1. 将合并文件所依赖的文件复制到日志文件夹以备使用。
     ```shell
     cp out/产品名称/gen/base/startup/init/services/modules/seccomp/gen_system_filter/libsyscall_to_nr_arm* base/startup/init/services/modules/seccomp/scripts/tools/
     ```
-2. 使用merge_policy.py将policy1.seccomp.policy，policy2.seccomp.policy策略文件合并成xxxx.seccomp.policy
+2. 使用merge_policy.py将policy1.seccomp.policy，policy2.seccomp.policy策略文件合并成xxxx.seccomp.policy。
     ```shell
     python3 merge_policy.py --src-files libsyscall_to_nr_arm --src-files libsyscall_to_nr_arm64 --src-files policy1.seccomp.policy --src-files policy2.seccomp.policy --filter-name xxxx
     ```

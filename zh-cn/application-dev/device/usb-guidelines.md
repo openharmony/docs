@@ -135,7 +135,7 @@ USB设备可作为Host设备连接Device设备进行数据传输。开发示例�
    let dataUint8Array = new Uint8Array(1024);
    usb.bulkTransfer(pipe, inEndpoint, dataUint8Array, 15000).then(dataLength => {
    if (dataLength >= 0) {
-     console.info("usb readData buffer : " + resultStr);
+     console.info("usb readData result Length : " + dataLength);
    } else {
      console.info("usb readData failed : " + dataLength);
    }

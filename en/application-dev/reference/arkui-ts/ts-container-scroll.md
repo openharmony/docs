@@ -139,7 +139,7 @@ Scrolls to the item with the specified index.
 
 >  **NOTE**
 >
->  Only the **\<Grid>** and **\<List>** components are supported.
+>  Only the **\<Grid>**, **\<List>**, and **\<WaterFlow>** components are supported.
 
 **Parameters**
 

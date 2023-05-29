@@ -19,7 +19,7 @@ import taskpool from '@ohos.taskpool';
 
 ## Priority
 
-Enumerates the priorities available for created tasks. (This enum is not supported yet.)
+Enumerates the priorities available for created tasks.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -28,6 +28,45 @@ Enumerates the priorities available for created tasks. (This enum is not support
 | HIGH   | 0    | The task has a high priority.|
 | MEDIUM | 1 | The task has a medium priority.|
 | LOW | 2 | The task has a low priority.|
+
+**Example**
+
+```ts
+function func(args) {
+    "use concurrent";
+    console.log("func: " + args);
+    return args;
+}
+async function taskpoolTest() {
+  let task = new taskpool.Task(func, 100);
+
+  let highCount = 0;
+  let mediumCount = 0;
+  let lowCount = 0;
+  let allCount = 100;
+  for (let i = 0; i < allCount; i++) {
+    taskpool.execute(task, taskpool.Priority.LOW).then((res: number) => {
+      lowCount++;
+      console.log("taskpool lowCount is :" + lowCount);
+    }).catch((e) => {
+      console.error("low task error: " + e);
+    })
+    taskpool.execute(task, taskpool.Priority.MEDIUM).then((res: number) => {
+      mediumCount++;
+      console.log("taskpool mediumCount is :" + mediumCount);
+    }).catch((e) => {
+      console.error("medium task error: " + e);
+    })
+    taskpool.execute(task, taskpool.Priority.HIGH).then((res: number) => {
+      highCount++;
+      console.log("taskpool highCount is :" + highCount);
+    }).catch((e) => {
+      console.error("high task error: " + e);
+    })
+  }
+}
+taskpoolTest();
+```
 
 ## Task
 
@@ -46,7 +85,7 @@ A constructor used to create a **Task** instance.
 | Name| Type     | Mandatory| Description                                                                 |
 | ------ | --------- | ---- | -------------------------------------------------------------------- |
 | func   | Function  | Yes  | Function to be passed in for task execution. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).  |
-| args   | unknown[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| args   | unknown[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
 
 **Error codes**
 
@@ -81,7 +120,7 @@ let task = new taskpool.Task(func, "this is my first Task");
 
 execute(func: Function, ...args: unknown[]): Promise\<unknown>
 
-Executes a task in the task pool. You must pass in a function and arguments to execute the task, and the task executed in this mode cannot be canceled.
+Places the function to be executed in the internal task queue of the task pool. The function will be distributed to the worker thread for execution. The function to be executed in this mode cannot be canceled.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -89,8 +128,8 @@ Executes a task in the task pool. You must pass in a function and arguments to e
 
 | Name| Type     | Mandatory| Description                                                                  |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| func   | Function  | Yes  | Function used to execute the task. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
-| args   | unknown[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| func   | Function  | Yes  | Function to be executed. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
+| args   | unknown[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
 
 **Return value**
 
@@ -129,16 +168,16 @@ taskpoolTest();
 
 execute(task: Task, priority?: Priority): Promise\<unknown>
 
-Executes a task in the task pool. You must pass in a created task, and the task executed in this mode can be canceled.
+Places a task in the internal task queue of the task pool. The task will be distributed to the worker thread for execution. The task to be executed in this mode can be canceled.
 
 **System capability**: SystemCapability.Utils.Lang
 
 **Parameters**
 
-| Name  | Type                 | Mandatory| Description                                |
-| -------- | --------------------- | ---- | ------------------------------------ |
-| task     | [Task](#task)         | Yes  | Task to be executed.          |
-| priority | [Priority](#priority) | No  | Priority of the task (not supported yet).|
+| Name  | Type                 | Mandatory| Description                                      |
+| -------- | --------------------- | ---- | ---------------------------------------- |
+| task     | [Task](#task)         | Yes  | Task to be executed.                 |
+| priority | [Priority](#priority) | No  | Priority of the task. The default value is **MEDIUM**.|
 
 **Return value**
 
@@ -197,20 +236,80 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 | 10200015 | If the task is not exist. |
 | 10200016 | If the task is running.   |
 
-**Example**
+**Example of successful task cancellation**
 
 ```ts
-@Concurrent
 function func(args) {
+    "use concurrent";
     console.log("func: " + args);
     return args;
 }
 
 async function taskpoolTest() {
   let task = new taskpool.Task(func, 100);
-  let value = await taskpool.execute(task);
+  taskpool.execute(task);
   try {
     taskpool.cancel(task);
+  } catch (e) {
+    console.log("taskpool.cancel occur error:" + e);
+  }
+}
+
+taskpoolTest();
+```
+
+**Example of a failure to cancel a task that has been executed**
+
+```ts
+function func(args) {
+    "use concurrent";
+    console.log("func: " + args);
+    return args;
+}
+
+async function taskpoolTest() {
+  let task = new taskpool.Task(func, 100);
+  let value = taskpool.execute(task);
+  let start = new Date().getTime();
+  while (new Date().getTime() - start < 1000) {// Wait for 1s to ensure that the task has been executed.
+    continue;
+  }
+
+  try {
+    taskpool.cancel(task); // The task has been executed and fails to be canceled.
+  } catch (e) {
+    console.log("taskpool.cancel occur error:" + e);
+  }
+}
+
+taskpoolTest();
+```
+
+**Example of a failure to cancel an ongoing task**
+
+```ts
+function func(args) {
+    "use concurrent";
+    console.log("func: " + args);
+    return args;
+}
+
+async function taskpoolTest() {
+  let task1 = new taskpool.Task(func, 100);
+  let task2 = new taskpool.Task(func, 200);
+  let task3 = new taskpool.Task(func, 300);
+  let task4 = new taskpool.Task(func, 400);
+  let task5 = new taskpool.Task(func, 500);
+  let task6 = new taskpool.Task(func, 600);
+
+  let res1 = taskpool.execute(task1);
+  let res2 = taskpool.execute(task2);
+  let res3 = taskpool.execute(task3);
+  let res4 = taskpool.execute(task4);
+  let res5 = taskpool.execute(task5);
+  let res6 = taskpool.execute(task6);
+  try {
+    taskpool.cancel(task1); // task1 is being executed and fails to be canceled.
   } catch (e) {
     console.log("taskpool.cancel occur error:" + e);
   }

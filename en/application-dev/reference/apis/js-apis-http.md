@@ -45,7 +45,8 @@ httpRequest.request(
     connectTimeout: 60000 // Optional. The default value is 60000, in ms.
     readTimeout: 60000, // Optional. The default value is 60000, in ms.
     usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
-    usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API 10.
+    usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API version 10.
+    caPath: "", // Optional. The preset CA certificate is used by default. This field is supported since API version 10.
   }, (err, data) => {
     if (!err) {
       // data.result carries the HTTP response. Parse the response based on service requirements.
@@ -68,7 +69,7 @@ httpRequest.request(
 > **NOTE**
 > If the data in **console.info()** contains a newline character, the data will be truncated.
 
-## http.createHttp
+## http.createHttp<sup>6+</sup>
 
 createHttp(): HttpRequest
 
@@ -94,7 +95,7 @@ let httpRequest = http.createHttp();
 
 Defines an HTTP request task. Before invoking APIs provided by **HttpRequest**, you must call [createHttp()](#httpcreatehttp) to create an **HttpRequestTask** object.
 
-### request
+### request<sup>6+</sup>
 
 request(url: string, callback: AsyncCallback\<HttpResponse\>):void
 
@@ -116,14 +117,38 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 
 **Error codes**
 
-| Code  | Error Message                                                 |
+| ID  | Error Message                                                 |
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
+| 2300001 | Unsupported protocol.                                 |
 | 2300003 | URL using bad/illegal format or missing URL.          |
+| 2300005 | Couldn't resolve proxy name.                          |
+| 2300006 | Couldn't resolve host name.                           |
 | 2300007 | Couldn't connect to server.                           |
+| 2300008 | Weird server reply.                                   |
+| 2300009 | Access denied to remote resource.                     |
+| 2300016 | Error in the HTTP2 framing layer.                     |
+| 2300018 | Transferred a partial file.                           |
+| 2300023 | Failed writing received data to disk/application.     |
+| 2300025 | Upload failed.                                        |
+| 2300026 | Failed to open/read local data from file/application. |
+| 2300027 | Out of memory.                                        |
 | 2300028 | Timeout was reached.                                  |
+| 2300047 | Number of redirects hit maximum amount.               |
 | 2300052 | Server returned nothing (no headers, no data).        |
+| 2300055 | Failed sending data to the peer.                      |
+| 2300056 | Failure when receiving data from the peer.            |
+| 2300058 | Problem with the local SSL certificate.               |
+| 2300059 | Couldn't use specified SSL cipher.                    |
+| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
+| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
+| 2300063 | Maximum file size exceeded.                           |
+| 2300070 | Disk full or allocation exceeded.                     |
+| 2300073 | Remote file already exists.                           |
+| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
+| 2300078 | Remote file not found.                                |
+| 2300094 | An authentication function returned an error.         |
 | 2300999 | Unknown Other Error.                                  |
 
 > **NOTE**
@@ -145,7 +170,7 @@ httpRequest.request("EXAMPLE_URL", (err, data) => {
 });
 ```
 
-### request
+### request<sup>6+</sup>
 
 request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpResponse\>):void
 
@@ -168,7 +193,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 **Error codes**
 
-| Code  | Error Message                                                 |
+| ID  | Error Message                                                 |
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
@@ -231,7 +256,7 @@ httpRequest.request("EXAMPLE_URL",
   });
 ```
 
-### request
+### request<sup>6+</sup>
 
 request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
@@ -259,7 +284,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 **Error codes**
 
-| Code  | Error Message                                                 |
+| ID  | Error Message                                                 |
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
@@ -353,14 +378,38 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 **Error codes**
 
-| Code  | Error Message                                                 |
+| ID  | Error Message                                                 |
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
+| 2300001 | Unsupported protocol.                                 |
 | 2300003 | URL using bad/illegal format or missing URL.          |
+| 2300005 | Couldn't resolve proxy name.                          |
+| 2300006 | Couldn't resolve host name.                           |
 | 2300007 | Couldn't connect to server.                           |
+| 2300008 | Weird server reply.                                   |
+| 2300009 | Access denied to remote resource.                     |
+| 2300016 | Error in the HTTP2 framing layer.                     |
+| 2300018 | Transferred a partial file.                           |
+| 2300023 | Failed writing received data to disk/application.     |
+| 2300025 | Upload failed.                                        |
+| 2300026 | Failed to open/read local data from file/application. |
+| 2300027 | Out of memory.                                        |
 | 2300028 | Timeout was reached.                                  |
+| 2300047 | Number of redirects hit maximum amount.               |
 | 2300052 | Server returned nothing (no headers, no data).        |
+| 2300055 | Failed sending data to the peer.                      |
+| 2300056 | Failure when receiving data from the peer.            |
+| 2300058 | Problem with the local SSL certificate.               |
+| 2300059 | Couldn't use specified SSL cipher.                    |
+| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
+| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
+| 2300063 | Maximum file size exceeded.                           |
+| 2300070 | Disk full or allocation exceeded.                     |
+| 2300073 | Remote file already exists.                           |
+| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
+| 2300078 | Remote file not found.                                |
+| 2300094 | An authentication function returned an error.         |
 | 2300999 | Unknown Other Error.                                  |
 
 > **NOTE**
@@ -383,7 +432,7 @@ httpRequest.request2("EXAMPLE_URL", (err, data) => {
 
 request2(url: string, options: HttpRequestOptions, callback: AsyncCallback\<number\>): void
 
-Initiates an HTTP request to a given URL. This API uses an asynchronous callback to return the result, which is a streaming response.
+Initiates an HTTP request containing specified options to a given URL. This API uses an asynchronous callback to return the result, which is a streaming response.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -399,7 +448,7 @@ Initiates an HTTP request to a given URL. This API uses an asynchronous callback
 
 **Error codes**
 
-| Code  | Error Message                                                 |
+| ID  | Error Message                                                 |
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
@@ -482,7 +531,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 **Error codes**
 
-| Code  | Error Message                                                 |
+| ID  | Error Message                                                 |
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
@@ -757,7 +806,7 @@ httpRequest.off('dataEnd');
 
 ### on('dataProgress')<sup>10+</sup>
 
-on(type: 'dataProgress', callback: AsyncCallback\<{ receiveSize: number, totalSize: number }\>): void
+on(type: 'dataProgress', callback: Callback\<{ receiveSize: number, totalSize: number }\>): void
 
 Registers an observer for events indicating progress of receiving HTTP streaming responses.
 
@@ -802,7 +851,7 @@ Unregisters the observer for events indicating progress of receiving HTTP stream
 httpRequest.off('dataProgress');
 ```
 
-## HttpRequestOptions
+## HttpRequestOptions<sup>6+</sup>
 
 Specifies the type and value range of the optional parameters in the HTTP request.
 
@@ -819,9 +868,10 @@ Specifies the type and value range of the optional parameters in the HTTP reques
 | readTimeout                  | number                          | No  | Read timeout duration. The default value is **60000**, in ms.<br>The value **0** indicates no timeout.|
 | connectTimeout               | number                          | No  | Connection timeout interval. The default value is **60000**, in ms.             |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | No  | Protocol. The default value is automatically specified by the system.                            |
-| usingProxy<sup>10+</sup>     | boolean \| Object               | No  | Whether to use HTTP proxy. The default value is **false**, which means not to use HTTP proxy.<br>- If **usingProxy** is of the **Boolean** type and the value is **true**, network proxy is used by default.<br>- If **usingProxy** is of the **object** type, the specified network proxy is used.                               |
+| usingProxy<sup>10+</sup>     | boolean \| Object               | No  | Whether to use HTTP proxy. The default value is **false**, which means not to use HTTP proxy.<br>- If **usingProxy** is of the **Boolean** type and the value is **true**, network proxy is used by default.<br>- If **usingProxy** is of the **object** type, the specified network proxy is used.
+| caPath<sup>10+</sup>     | string               | No  | Path of the CA certificate. If this parameter is set, the system uses the CA certificate in the specified path. Otherwise, the system uses the preset CA certificate.                            |
 
-## RequestMethod
+## RequestMethod<sup>6+</sup>
 
 Defines an HTTP request method.
 
@@ -838,7 +888,7 @@ Defines an HTTP request method.
 | TRACE   | "TRACE"   | TRACE method.  |
 | CONNECT | "CONNECT" | CONNECT method.|
 
-## ResponseCode
+## ResponseCode<sup>6+</sup>
 
 Enumerates the response codes for an HTTP request.
 
@@ -882,7 +932,7 @@ Enumerates the response codes for an HTTP request.
 | GATEWAY_TIMEOUT   | 504  | "Gateway Timeout." The server acting as a gateway or proxy does not receive requests from the remote server within the timeout period.        |
 | VERSION           | 505  | "HTTP Version Not Supported." The server does not support the HTTP protocol version used in the request.                                 |
 
-## HttpResponse
+## HttpResponse<sup>6+</sup>
 
 Defines the response to an HTTP request.
 

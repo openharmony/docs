@@ -30,7 +30,7 @@ Obtains the value of the system parameter with the specified key.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | string | Yes| Key of the system parameter.|
-| def | string | No| Default value.|
+| def | string | No| Default value of the system parameter.<br> It works only when the system parameter does not exist.<br>The value can be **undefined** (in which case an empty string will be returned) or any custom value.|
 
 **Return value**
 
@@ -124,7 +124,7 @@ Obtains the value of the system parameter with the specified key. This API uses 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | key | string | Yes| Key of the system parameter.|
-| def | string | No| Default value.|
+| def | string | No| Default value of the system parameter.<br> It works only when the system parameter does not exist.<br>The value can be **undefined** (in which case an empty string will be returned) or any custom value.|
 
 **Return value**
 

@@ -41,9 +41,9 @@ Obtains the URI of a file in synchronous mode.
 
 **Return value**
 
-| Type                          | Description        |
-| ---------------------------- | ---------- |
-| string | File URI obtained.|
+  | Type                          | Description        |
+  | ---------------------------- | ---------- |
+  | string | File URI obtained.|
 
 **Error codes** 
 
@@ -51,7 +51,6 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | ID                    | Error Message       |
 | ---------------------------- | ---------- |
 | 401 | The input parameter is invalid |
-
 
 **Example**
 
