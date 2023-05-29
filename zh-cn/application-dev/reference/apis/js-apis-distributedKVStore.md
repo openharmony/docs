@@ -3010,7 +3010,7 @@ const KEY_TEST_STRING_ELEMENT = 'key_test_string';
 const VALUE_TEST_STRING_ELEMENT = 'value-test-string';
 try {
     kvStore.put(KEY_TEST_STRING_ELEMENT, VALUE_TEST_STRING_ELEMENT).then(() => {
-        console.info(`Succeeded in putting data.data=${data}`);
+        console.info(`Succeeded in putting data`);
         kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
             console.info(`Succeeded in getting data.data=${data}`);
         }).catch((err) => {
@@ -3871,7 +3871,7 @@ try {
         if (err) {
             console.error(`Failed to backup.code is ${err.code},message is ${err.message} `);
         } else {
-            console.info(`Succeeded in backupping data.data=${data}`);
+            console.info(`Succeeded in backupping data`);
         }
     });
 } catch (e) {
@@ -3954,7 +3954,7 @@ try {
         if (err) {
             console.error(`Failed to restore.code is ${err.code},message is ${err.message}`);
         } else {
-            console.info(`Succeeded in restoring data.data=${data}`);
+            console.info(`Succeeded in restoring data.data`);
         }
     });
 } catch (e) {
@@ -4746,7 +4746,7 @@ try {
     kvStore.on('syncComplete', function (data) {
         console.info(`syncComplete ${data}`);
     });
-    kvStore.put(KEY_TEST_FLOAT_ELEMENT, VALUE_TEST_FLOAT_ELEMENT).then((data) => {
+    kvStore.put(KEY_TEST_FLOAT_ELEMENT, VALUE_TEST_FLOAT_ELEMENT).then(() => {
         console.info('succeeded in putting');
     }).catch((err) => {
         console.error(`Failed to put.code is ${err.code},message is ${err.message}`);
