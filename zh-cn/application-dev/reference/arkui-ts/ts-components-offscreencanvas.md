@@ -55,7 +55,7 @@ struct OffscreenCanvasPage {
           .onReady(() => {
             var offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.fillStyle = '#CDCDCD'
-            offContext.fillRect(0, 0, offCanvas.width, 150)
+            offContext.fillRect(0, 0, this.offCanvas.width, 150)
             var image = this.offCanvas.transferToImageBitmap()
             this.context.setTransform(1, 0, 0, 1, 50, 200)
             this.context.transferFromImageBitmap(image)
@@ -89,7 +89,7 @@ struct OffscreenCanvasPage {
           .onReady(() => {
             var offContext = this.offCanvas.getContext("2d", this.settings)
             offContext.fillStyle = '#CDCDCD'
-            offContext.fillRect(0, 0, 100, offCanvas.height)
+            offContext.fillRect(0, 0, 100, this.offCanvas.height)
             var image = this.offCanvas.transferToImageBitmap()
             this.context.setTransform(1, 0, 0, 1, 50, 200)
             this.context.transferFromImageBitmap(image)
