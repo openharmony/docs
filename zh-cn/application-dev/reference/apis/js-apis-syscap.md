@@ -37,6 +37,6 @@ if (isLocationAvailable) {
         console.log(location.latitude, location.longitue);
     });
 } else {
-    console.log('Location not by this device.')
+    console.log('Location not by this device.');
 }
   ```
