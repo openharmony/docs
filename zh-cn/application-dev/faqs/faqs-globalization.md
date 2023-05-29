@@ -116,3 +116,35 @@ Resource为string支持限定词目录使用this.context.resourceManager.getStri
 适用于：OpenHarmony 3.2 Beta5  API 9
 
 form\_config.json文件中不支持使用\$引用常量。
+
+## ArkTS如何解析xml文件
+
+适用于：OpenHarmony 3.2 Beta5  API 9
+
+**解决措施**
+
+1.  在rawfile目录下创建如下xml文件**。**
+
+    ```
+    <?xml version="1.0" encoding="utf-8"?>
+    <user>
+        <name>Jacky</name>
+        <age>18</age>
+    </user>
+    ```
+
+2.  使用resourceManager.getRawFileContent获取xml文件字节数组。
+
+    ```
+    import resourceManager from '@ohos.resourceManager';
+    resourceManager.getRawFileContent("test.xml", (error, value) => {
+      if (error != null) {
+        console.log("error is " + error);
+        return
+      }
+      let arrayBuffer = value.buffer; // unit8Array
+      var xmpParser = new xml.XmlPullParser(arrayBuffer);
+      var tagName = ""
+      //do something
+    }
+    ```

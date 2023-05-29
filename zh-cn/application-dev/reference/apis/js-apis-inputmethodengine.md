@@ -56,7 +56,9 @@ import inputMethodEngine from '@ohos.inputMethodEngine';
 
 getInputMethodAbility(): InputMethodAbility
 
-为输入法应用获取输入法应用客户端实例[InputMethodAbility](#inputmethodability)。输入法应用获取该实例可订阅软键盘显示/隐藏请求事件、创建/销毁输入法应用面板等。
+为输入法应用获取输入法应用客户端实例[InputMethodAbility](#inputmethodability)。
+该接口仅限于输入法应用调用。
+输入法应用获取该实例可订阅软键盘显示/隐藏请求事件、创建/销毁输入法应用面板等。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -100,7 +102,7 @@ getInputMethodEngine(): InputMethodEngine
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[getInputMethodAbility()](#inputmethodenginegetinputmethodability9)替代。
+> 从API version 8开始支持，API version 9开始废弃，建议使用[getInputMethodAbility()](#inputmethodenginegetinputmethodability9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -124,7 +126,7 @@ createKeyboardDelegate(): KeyboardDelegate
 
 > **说明：**
 >
->从API version 8开始支持，API version 9开始废弃, 建议使用[getKeyboardDelegate()](#inputmethodenginegetkeyboarddelegate9)替代。
+>从API version 8开始支持，API version 9开始废弃，建议使用[getKeyboardDelegate()](#inputmethodenginegetkeyboarddelegate9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -163,8 +165,8 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, textInputCli
 
 ```js
 inputMethodEngine.getInputMethodEngine().on('inputStart', (kbController, textClient) => {
-    let keyboardController = kbController;
-    let textInputClient = textClient;
+  let keyboardController = kbController;
+  let textInputClient = textClient;
 });
 ```
 
@@ -187,7 +189,7 @@ off(type: 'inputStart', callback?: (kbController: KeyboardController, textInputC
 
 ```js
 inputMethodEngine.getInputMethodEngine().off('inputStart', (kbController, textInputClient) => {
-    console.log('delete inputStart notification.');
+  console.log('delete inputStart notification.');
 });
 ```
 
@@ -210,10 +212,10 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
 ```js
 inputMethodEngine.getInputMethodEngine().on('keyboardShow', () => {
-    console.log('inputMethodEngine keyboardShow.');
+  console.log('inputMethodEngine keyboardShow.');
 });
 inputMethodEngine.getInputMethodEngine().on('keyboardHide', () => {
-    console.log('inputMethodEngine keyboardHide.');
+  console.log('inputMethodEngine keyboardHide.');
 });
 ```
 
@@ -262,8 +264,8 @@ on(type: 'inputStart', callback: (kbController: KeyboardController, inputClient:
 
 ```js
 inputMethodEngine.getInputMethodAbility().on('inputStart', (kbController, client) => {
-    let keyboardController = kbController;
-    let inputClient = client;
+  let keyboardController = kbController;
+  let inputClient = client;
 });
 ```
 
@@ -307,7 +309,7 @@ on(type: 'inputStop', callback: () => void): void
 
 ```js
 inputMethodEngine.getInputMethodAbility().on('inputStop', () => {
-    console.log('inputMethodAbility inputStop');
+  console.log('inputMethodAbility inputStop');
 });
 ```
 
@@ -330,7 +332,7 @@ off(type: 'inputStop', callback: () => void): void
 
 ```js
 inputMethodEngine.getInputMethodAbility().off('inputStop', () => {
-    console.log('inputMethodAbility delete inputStop notification.');
+  console.log('inputMethodAbility delete inputStop notification.');
 });
 ```
 
@@ -353,7 +355,7 @@ on(type: 'setCallingWindow', callback: (wid: number) => void): void
 
 ```js
 inputMethodEngine.getInputMethodAbility().on('setCallingWindow', (wid) => {
-    console.log('inputMethodAbility setCallingWindow');
+  console.log('inputMethodAbility setCallingWindow');
 });
 ```
 
@@ -375,8 +377,8 @@ off(type: 'setCallingWindow', callback: (wid:number) => void): void
 **示例：**
 
 ```js
-inputMethodEngine.getInputMethodAbility().off('setCallingWindow', () => {
-    console.log('inputMethodAbility delete setCallingWindow notification.');
+inputMethodEngine.getInputMethodAbility().off('setCallingWindow', (wid) => {
+  console.log('inputMethodAbility delete setCallingWindow notification.');
 });
 ```
 
@@ -399,10 +401,10 @@ on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
 ```js
 inputMethodEngine.getInputMethodAbility().on('keyboardShow', () => {
-    console.log('InputMethodAbility keyboardShow.');
+  console.log('InputMethodAbility keyboardShow.');
 });
 inputMethodEngine.getInputMethodAbility().on('keyboardHide', () => {
-    console.log('InputMethodAbility keyboardHide.');
+  console.log('InputMethodAbility keyboardHide.');
 });
 ```
 
@@ -425,10 +427,10 @@ off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
 ```js
 inputMethodEngine.getInputMethodAbility().off('keyboardShow', () => {
-    console.log('InputMethodAbility delete keyboardShow notification.');
+  console.log('InputMethodAbility delete keyboardShow notification.');
 });
 inputMethodEngine.getInputMethodAbility().off('keyboardHide', () => {
-    console.log('InputMethodAbility delete keyboardHide notification.');
+  console.log('InputMethodAbility delete keyboardHide notification.');
 });
 ```
 
@@ -442,16 +444,16 @@ on(type: 'setSubtype', callback: (inputMethodSubtype: InputMethodSubtype) => voi
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 设置监听类型。<br/>-&nbsp;type为'setSubtype'，表示订阅输入法子类型的设置事件。 |
+| 参数名    | 类型 | 必填  | 说明 |
+| -------- | --- | ---- | --- |
+| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'setSubtype'，表示订阅输入法子类型的设置事件。 |
 | callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | 是   | 回调函数，返回设置的输入法子类型。                           |
 
 **示例：**
 
 ```js
 inputMethodEngine.getInputMethodAbility().on('setSubtype', (inputMethodSubtype) => {
-    console.log('InputMethodAbility setSubtype.');
+  console.log('InputMethodAbility setSubtype.');
 });
 ```
 
@@ -465,16 +467,16 @@ off(type: 'setSubtype', callback?: (inputMethodSubtype: InputMethodSubtype) => v
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 设置监听类型。<br/>-&nbsp;type为'setSubtype'，表示取消订阅输入法子类型的设置事件。 |
+| 参数名   | 类型  | 必填 | 说明   |
+| ------- | ----- | ---- | ---- |
+| type     | string | 是   | 设置监听类型。<br/>-&nbsp;type为'setSubtype'，表示取消订阅输入法子类型的设置事件。 |
 | callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | 否   | 回调函数，返回设置的输入法子类型。  |
 
 **示例：**
 
 ```js
 inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
-    console.log('InputMethodAbility delete setSubtype notification.');
+  console.log('InputMethodAbility delete setSubtype notification.');
 });
 ```
 
@@ -482,7 +484,9 @@ inputMethodEngine.getInputMethodAbility().off('setSubtype', () => {
 
 createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>): void
 
-创建输入法应用面板。仅支持输入法应用或者具有system_core权限的系统应用调用。单个输入法应用仅仅允许创建一个SOFT_KEYBOARD及一个STATUS_BAR类型的面板。使用callback异步回调。
+创建输入法应用面板。使用callback异步回调。
+
+仅支持输入法应用调用。单个输入法应用仅仅允许创建一个SOFT_KEYBOARD及一个STATUS_BAR类型的面板。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -504,19 +508,19 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: SOFT_KEYBOARD,
-  panelFlag: FLG_FIXED
+  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 try {
   inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
-    if (err !== undefined) {
-      console.log('Failed to create panel, err: ' + JSON.stringify(err));
+    if (err) {
+      console.error(`Failed to createPanel: ${JSON.stringify(err)}`);
       return;
     }
     console.log('Succeed in creating panel.');
   })
 } catch(err) {
-  console.log('Failed to create panel, err: ' + JSON.stringify(err));
+  console.error(`Failed to createPanel: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -524,7 +528,9 @@ try {
 
 createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
-创建输入法应用面板。仅支持输入法应用或者具有system_core权限的系统应用调用。单个输入法应用仅仅允许创建一个SOFT_KEYBOARD及一个STATUS_BAR类型的面板。使用promise异步回调。
+创建输入法应用面板。使用promise异步回调。
+
+仅支持输入法应用调用。单个输入法应用仅仅允许创建一个SOFT_KEYBOARD及一个STATUS_BAR类型的面板。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -550,13 +556,13 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: SOFT_KEYBOARD,
-  panelFlag: FLG_FIXED
+  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo).then((panel) => {
   console.log('Succeed in creating panel.');
 }).catch((err) => {
-  console.log('Failed to create panel, err: ' + JSON.stringify(err));
+  console.error(`Failed to create panel: ${JSON.stringify(err)}`);
 })
 ```
 
@@ -579,32 +585,32 @@ destroyPanel(panel: Panel, callback: AsyncCallback\<void>): void;
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: SOFT_KEYBOARD,
-  panelFlag: FLG_FIXED
+  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 try {
   inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
-    if (err !== undefined) {
-      console.log('Failed to create panel, err: ' + JSON.stringify(err));
+    if (err) {
+      console.error(`Failed to create panel: ${JSON.stringify(err)}`);
       return;
     }
 	globalThis.inputMethodPanel = panel;
     console.log('Succeed in creating panel.');
   })
 } catch(err) {
-  console.log('Failed to create panel, err: ' + JSON.stringify(err));
+  console.error(`Failed to create panel: ${JSON.stringify(err)}`);
 }
 
 try {
   inputMethodEngine.getInputMethodAbility().destroyPanel(globalThis.inputMethodPanel, (err) => {
     if(err !== undefined) {
-      console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
+      console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
       return;
     }
     console.log('Succeed in destroying panel.');
   })
 } catch(err) {
-  console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
+  console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -631,30 +637,30 @@ destroyPanel(panel: Panel): Promise\<void>;
 
 ```js
 let panelInfo: inputMethodEngine.PanelInfo = {
-  panelType: SOFT_KEYBOARD,
-  panelFlag: FLG_FIXED
+  panelType: inputMethodEngine.PanelType.SOFT_KEYBOARD,
+  panelFlag: inputMethodEngine.PanelFlag.FLG_FIXED
 }
 try {
   inputMethodEngine.getInputMethodAbility().createPanel(this.context, panelInfo, (err, panel) => {
-    if (err !== undefined) {
-      console.log('Failed to create panel, err: ' + JSON.stringify(err));
+    if (err) {
+      console.error(`Failed to create panel: ${JSON.stringify(err)}`);
       return;
     }
 	globalThis.inputMethodPanel = panel;
     console.log('Succeed in creating panel.');
   })
 } catch(err) {
-  console.log('Failed to create panel, err: ' + JSON.stringify(err));
+  console.error(`Failed to create panel: ${JSON.stringify(err)}`);
 }
 
 try {
   inputMethodEngine.getInputMethodAbility().destroyPanel(globalThis.inputMethodPanel).then(() => {
     console.log('Succeed in destroying panel.');
   }).catch((err) => {
-    console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
+    console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
   });
 } catch (err) {
-  console.log('Failed to destroy panel, err: ' + JSON.stringify(err));
+  console.error(`Failed to destroy panel: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -681,14 +687,14 @@ on(type: 'keyDown'|'keyUp', callback: (event: KeyEvent) => boolean): void
 
 ```js
 inputMethodEngine.getKeyboardDelegate().on('keyUp', (keyEvent) => {
-    console.info('inputMethodEngine keyCode.(keyUp):' + JSON.stringify(keyEvent.keyCode));
-    console.info('inputMethodEngine keyAction.(keyUp):' + JSON.stringify(keyEvent.keyAction));
-    return true;
+  console.log('inputMethodEngine keyCode.(keyUp):' + JSON.stringify(keyEvent.keyCode));
+  console.log('inputMethodEngine keyAction.(keyUp):' + JSON.stringify(keyEvent.keyAction));
+  return true;
 });
 inputMethodEngine.getKeyboardDelegate().on('keyDown', (keyEvent) => {
-    console.info('inputMethodEngine keyCode.(keyDown):' + JSON.stringify(keyEvent.keyCode));
-    console.info('inputMethodEngine keyAction.(keyDown):' + JSON.stringify(keyEvent.keyAction));
-    return true;
+  console.log('inputMethodEngine keyCode.(keyDown):' + JSON.stringify(keyEvent.keyCode));
+  console.log('inputMethodEngine keyAction.(keyDown):' + JSON.stringify(keyEvent.keyAction));
+  return true;
 });
 ```
 
@@ -702,21 +708,21 @@ off(type: 'keyDown'|'keyUp', callback?: (event: KeyEvent) => boolean): void
 
 **参数：**
 
-| 参数名   | 类型                                      | 必填 | 说明                                                         |
-| -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                    | 是   | 设置监听类型。<br/>-&nbsp;type为'keyDown'，表示取消订阅硬键盘按下事件。<br/>-&nbsp;type为'keyUp'，表示取消订阅硬键盘抬起事件。 |
+| 参数名    | 类型     | 必填  | 说明  |
+| -------- | ------- | ---- | ----- |
+| type     | string  | 是   | 设置监听类型。<br/>-&nbsp;type为'keyDown'，表示取消订阅硬键盘按下事件。<br/>-&nbsp;type为'keyUp'，表示取消订阅硬键盘抬起事件。 |
 | callback | (event: [KeyEvent](#keyevent)) => boolean | 否   | 回调函数，返回按键信息。  |
 
 **示例：**
 
 ```js
 inputMethodEngine.getKeyboardDelegate().off('keyUp', (keyEvent) => {
-    console.log('delete keyUp notification.');
-    return true;
+  console.log('delete keyUp notification.');
+  return true;
 });
 inputMethodEngine.getKeyboardDelegate().off('keyDown', (keyEvent) => {
-    console.log('delete keyDown notification.');
-    return true;
+  console.log('delete keyDown notification.');
+  return true;
 });
 ```
 
@@ -730,18 +736,18 @@ on(type: 'cursorContextChange', callback: (x: number, y:number, height:number) =
 
 **参数：**
 
-| 参数名   | 类型                                           | 必填 | 说明                                                         |
-| -------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                         | 是   | 光标变化事件。<br/>-&nbsp;type为’cursorContextChange‘时，表示订阅光标变化事件。 |
+| 参数名    | 类型  | 必填  | 说明  |
+| -------- | ---- | ---- | ----- |
+| type     | string | 是   | 光标变化事件。<br/>-&nbsp;type为’cursorContextChange‘时，表示订阅光标变化事件。 |
 | callback | (x: number, y: number, height: number) => void | 是   | 回调函数，返回光标信息。<br/>-&nbsp;x为光标上端的的x坐标值。<br/>-&nbsp;y为光标上端的y坐标值。<br/>-&nbsp;height为光标的高度值。 |
 
 **示例：**
 
 ```js
 inputMethodEngine.getKeyboardDelegate().on('cursorContextChange', (x, y, height) => {
-    console.log('inputMethodEngine cursorContextChange x:' + x);
-    console.log('inputMethodEngine cursorContextChange y:' + y);
-    console.log('inputMethodEngine cursorContextChange height:' + height);
+  console.log('inputMethodEngine cursorContextChange x:' + x);
+  console.log('inputMethodEngine cursorContextChange y:' + y);
+  console.log('inputMethodEngine cursorContextChange height:' + height);
 });
 ```
 
@@ -755,9 +761,9 @@ off(type: 'cursorContextChange', callback?: (x: number, y: number, height: numbe
 
   **参数：**
 
-| 参数名   | 类型                                         | 必填 | 说明                                                         |
-| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                       | 是   | 光标变化事件。<br/>-&nbsp;type为’cursorContextChange‘时，表示光标变化。 |
+| 参数名    | 类型  | 必填  | 说明   |
+| -------- | ---- | ---- | ------ |
+| type     | string  | 是   | 光标变化事件。<br/>-&nbsp;type为’cursorContextChange‘时，表示光标变化。 |
 | callback | (x: number, y:number, height:number) => void | 否   | 回调函数，返回光标信息。<br/>-&nbsp;x为光标上端的的x坐标值。<br/>-&nbsp;y为光标上端的y坐标值。<br/>-&nbsp;height为光标的高度值。<br/> |
 
 
@@ -765,7 +771,7 @@ off(type: 'cursorContextChange', callback?: (x: number, y: number, height: numbe
 
 ```js
 inputMethodEngine.getKeyboardDelegate().off('cursorContextChange', (x, y, height) => {
-    console.log('delete cursorContextChange notification.');
+  console.log('delete cursorContextChange notification.');
 });
 ```
 ### on('selectionChange')
@@ -778,19 +784,19 @@ on(type: 'selectionChange', callback: (oldBegin: number, oldEnd: number, newBegi
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 文本选择变化事件。<br/>-&nbsp;type为’selectionChange‘时，表示选择文本变化。 |
+| 参数名    | 类型   | 必填 | 说明   |
+| -------- | ----- | ---- | ---- |
+| type     | string  | 是   | 文本选择变化事件。<br/>-&nbsp;type为’selectionChange‘时，表示选择文本变化。 |
 | callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | 是   | 回调函数，返回文本选择信息。<br/>-&nbsp;oldBegin为变化之前被选中文本的起始下标。<br/>-&nbsp;oldEnd为变化之前被选中文本的终止下标。<br/>-&nbsp;newBegin为变化之后被选中文本的起始下标。<br/>-&nbsp;newEnd为变化之后被选中文本的终止下标。 |
 
 **示例：**
 
 ```js
 inputMethodEngine.getKeyboardDelegate().on('selectionChange', (oldBegin, oldEnd, newBegin, newEnd) => {
-    console.log('inputMethodEngine beforeEach selectionChange oldBegin:' + oldBegin);
-    console.log('inputMethodEngine beforeEach selectionChange oldEnd:' + oldEnd);
-    console.log('inputMethodEngine beforeEach selectionChange newBegin:' + newBegin);
-    console.log('inputMethodEngine beforeEach selectionChange newEnd:' + newEnd);
+  console.log('inputMethodEngine beforeEach selectionChange oldBegin:' + oldBegin);
+  console.log('inputMethodEngine beforeEach selectionChange oldEnd:' + oldEnd);
+  console.log('inputMethodEngine beforeEach selectionChange newBegin:' + newBegin);
+  console.log('inputMethodEngine beforeEach selectionChange newEnd:' + newEnd);
 });
 ```
 
@@ -804,9 +810,9 @@ off(type: 'selectionChange', callback?: (oldBegin: number, oldEnd: number, newBe
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 文本选择变化事件。<br/>-&nbsp;type为’selectionChange‘时，表示选择文本变化。 |
+| 参数名   | 类型  | 必填 | 说明     |
+| -------- | ------- | ---- | ------- |
+| type     | string  | 是   | 文本选择变化事件。<br/>-&nbsp;type为’selectionChange‘时，表示选择文本变化。 |
 | callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | 否   | 回调函数，返回文本选择信息。<br/>-&nbsp;oldBegin为变化之前被选中文本的起始下标。<br/>-&nbsp;oldEnd为变化之前被选中文本的终止下标。<br/>-&nbsp;newBegin为变化之后被选中文本的起始下标。<br/>-&nbsp;newEnd为变化之后被选中文本的终止下标。<br/> |
 
 **示例：**
@@ -831,13 +837,13 @@ on(type: 'textChange', callback: (text: string) => void): void
 | 参数名   | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | 是   | 文本变化事件。<br/>-&nbsp;type为’textChange‘时，表示订阅文本变化事件。 |
-| callback | (text: string) => void | 是   | 回调函数，返回订阅的文本内容。                                   |
+| callback | (text: string) => void | 是   | 回调函数，返回订阅的文本内容。|
 
 **示例：**
 
 ```js
 inputMethodEngine.getKeyboardDelegate().on('textChange', (text) => {
-    console.log('inputMethodEngine textChange. text:' + text);
+  console.log('inputMethodEngine textChange. text:' + text);
 });
 ```
 
@@ -860,7 +866,7 @@ off(type: 'textChange', callback?: (text: string) => void): void
 
 ```js
 inputMethodEngine.getKeyboardDelegate().off('textChange', (text) => {
-    console.log('delete textChange notification. text:' + text);
+  console.log('delete textChange notification. text:' + text);
 });
 ```
 
@@ -889,13 +895,13 @@ setUiContent(path: string, callback: AsyncCallback\<void>): void
 try {
   panel.setUiContent('pages/page2/page2', (err) => {
     if (err) {
-      console.error('Failed to set the content. err:' + JSON.stringify(err));
+      console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
       return;
     }
-    console.info('Succeeded in setting the content.');
+    console.log('Succeeded in setting the content.');
   });
-} catch (exception) {
-  console.error('Failed to set the content. err:' + JSON.stringify(exception));
+} catch (err) {
+  console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -925,12 +931,12 @@ setUiContent(path: string): Promise\<void>
 try {
   let promise = panel.setUiContent('pages/page2/page2');
   promise.then(() => {
-    console.info('Succeeded in setting the content.');
+    console.log('Succeeded in setting the content.');
   }).catch((err) =>{
-    console.error('Failed to set the content. err: ' + JSON.stringify(err));
+    console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
   });
-} catch (exception) {
-  console.error('Failed to set the content. err: ' + JSON.stringify(exception));
+} catch (err) {
+  console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -947,7 +953,7 @@ setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | 是   | 设置加载页面的路径。 |
-| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
+| storage | [LocalStorage](../arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
@@ -958,13 +964,13 @@ storage.setOrCreate('storageSimpleProp',121);
 try {
   panel.setUiContent('pages/page2/page2', storage, (err) => {
     if (err) {
-      console.error('Failed to set the content. err:' + JSON.stringify(err));
+      console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
       return;
     }
-    console.info('Succeeded in setting the content.');
+    console.log('Succeeded in setting the content.');
   });
-} catch (exception) {
-  console.error('Failed to set the content. err:' + JSON.stringify(exception));
+} catch (err) {
+  console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -981,7 +987,7 @@ setUiContent(path: string, storage: LocalStorage): Promise\<void>
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | 是   | 设置加载页面的路径。 |
-| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
+| storage | [LocalStorage](../arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
 
 **返回值：**
 
@@ -997,12 +1003,12 @@ storage.setOrCreate('storageSimpleProp',121);
 try {
   let promise = panel.setUiContent('pages/page2/page2');
   promise.then(() => {
-    console.info('Succeeded in setting the content.');
+    console.log('Succeeded in setting the content.');
   }).catch((err) =>{
-    console.error('Failed to set the content. err: ' + JSON.stringify(err));
+    console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
   });
-} catch (exception) {
-  console.error('Failed to set the content. err: ' + JSON.stringify(exception));
+} catch (err) {
+  console.error(`Failed to setUiContent: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1011,6 +1017,7 @@ try {
 resize(width: number, height: number, callback: AsyncCallback\<void>): void
 
 改变当前面板大小，使用callback异步回调。
+
 面板存在大小限制，面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的二分之一。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -1029,13 +1036,13 @@ resize(width: number, height: number, callback: AsyncCallback\<void>): void
 try {
   panel.resize(500, 1000, (err) => {
     if (err) {
-      console.error('Failed to change the panel size. Cause:' + JSON.stringify(err));
+      console.error(`Failed to resize panel: ${JSON.stringify(err)}`);
       return;
     }
-    console.info('Succeeded in changing the panel size.');
+    console.log('Succeeded in changing the panel size.');
   });
-} catch (exception) {
-  console.error('Failed to change the panel size. Cause:' + JSON.stringify(exception));
+} catch (err) {
+  console.error(`Failed to resize panel: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1044,6 +1051,7 @@ try {
 resize(width: number, height: number): Promise\<void>;
 
 改变当前面板大小，使用Promise异步回调。
+
 面板存在大小限制，面板宽度不超出屏幕宽度，面板高度不高于屏幕高度的二分之一。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -1059,7 +1067,7 @@ resize(width: number, height: number): Promise\<void>;
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise<void> | 无返回结果的Promise对象。  |
+| Promise\<void> | 无返回结果的Promise对象。  |
 
 **示例：**
 
@@ -1067,12 +1075,12 @@ resize(width: number, height: number): Promise\<void>;
 try {
   let promise = panel.resize(500, 1000);
   promise.then(() => {
-    console.info('Succeeded in changing the panel size.');
+    console.log('Succeeded in changing the panel size.');
   }).catch((err) =>{
-    console.error('Failed to change the panel size. err: ' + JSON.stringify(err));
+    console.error(`Failed to resize panel: ${JSON.stringify(err)}`);
   });
-} catch (exception) {
-  console.error('Failed to change the panel size. err: ' + JSON.stringify(exception));
+} catch (err) {
+  console.error(`Failed to resize panel: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1081,6 +1089,7 @@ try {
 moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 
 移动面板位置，使用callback异步回调。
+
 对FLG_FIXED状态的panel不产生实际移动效果。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -1099,13 +1108,13 @@ moveTo(x: number, y: number, callback: AsyncCallback\<void>): void
 try {
   panel.moveTo(300, 300, (err) =>{
     if (err) {
-      console.error('Failed to move the panel. err:' + JSON.stringify(err));
+      console.error(`Failed to move panel: ${JSON.stringify(err)}`);
       return;
     }
-    console.info('Succeeded in moving the panel.');
+    console.log('Succeeded in moving the panel.');
   });
-} catch (exception) {
-    console.error('Failed to move the panel. err:' + JSON.stringify(exception));
+} catch (err) {
+    console.error(`Failed to move panel: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1113,7 +1122,8 @@ try {
 
 moveTo(x: number, y: number): Promise\<void>
 
-移动面板位置，使用callback异步回调。
+移动面板位置。使用promise异步回调。
+
 对FLG_FIXED状态的panel不产生实际移动效果。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
@@ -1129,7 +1139,7 @@ moveTo(x: number, y: number): Promise\<void>
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise<void> | 无返回结果的Promise对象。  |
+| Promise\<void> | 无返回结果的Promise对象。  |
 
 **示例：**
 
@@ -1137,12 +1147,12 @@ moveTo(x: number, y: number): Promise\<void>
 try {
   let promise = windowClass.moveTo(300, 300);
   promise.then(() => {
-    console.info('Succeeded in moving the panel.');
+    console.log('Succeeded in moving the panel.');
   }).catch((err) =>{
-    console.error('Failed to move the panel. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to move panel: ${JSON.stringify(err)}`);
   });
-} catch (exception) {
-  console.error('Failed to move the panel. Cause:' + JSON.stringify(exception));
+} catch (err) {
+  console.error(`Failed to move panel: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1165,10 +1175,10 @@ show(callback: AsyncCallback\<void>): void
 ```js
 panel.show((err) => {
   if (err) {
-    console.error('Failed to show the panel. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to show panel: ${JSON.stringify(err)}`);
     return;
   }
-  console.info('Succeeded in showing the panel.');
+  console.log('Succeeded in showing the panel.');
 });
 ```
 
@@ -1176,7 +1186,7 @@ panel.show((err) => {
 
 show(): Promise\<void>
 
-显示当前面板，使用callback异步回调。
+显示当前面板，使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1191,9 +1201,9 @@ show(): Promise\<void>
 ```js
 let promise = panel.show();
 promise.then(() => {
-  console.info('Succeeded in showing the panel.');
+  console.log('Succeeded in showing the panel.');
 }).catch((err) =>{
-  console.error('Failed to show the panel. err: ' + JSON.stringify(err));
+  console.error(`Failed to show panel: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1216,10 +1226,10 @@ hide(callback: AsyncCallback\<void>): void
 ```js
 panel.hide((err) => {
   if (err) {
-    console.error('Failed to hide the panel. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to hide panel: ${JSON.stringify(err)}`);
     return;
   }
-  console.info('Succeeded in hiding the panel.');
+  console.log('Succeeded in hiding the panel.');
 });
 ```
 
@@ -1227,7 +1237,7 @@ panel.hide((err) => {
 
 hide(): Promise\<void>
 
-隐藏当前面板，使用callback异步回调。
+隐藏当前面板，使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1242,9 +1252,9 @@ hide(): Promise\<void>
 ```js
 let promise = panel.hide();
 promise.then(() => {
-  console.info('Succeeded in hiding the panel.');
+  console.log('Succeeded in hiding the panel.');
 }).catch((err) =>{
-  console.error('Failed to hide the panel. err: ' + JSON.stringify(err));
+  console.error(`Failed to hide panel: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1252,7 +1262,7 @@ promise.then(() => {
 
 on(type: 'show' | 'hide', callback: () => void): void
 
-监听当前面板状态，可监听面板类型为show或者hide， 使用callback异步回调。
+监听当前面板状态，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1267,7 +1277,7 @@ on(type: 'show' | 'hide', callback: () => void): void
 
 ```js
 panel.on('show', () => {
-  console.info('Panel is showing.');
+  console.log('Panel is showing.');
 });
 ```
 
@@ -1275,7 +1285,7 @@ panel.on('show', () => {
 
 off(type: 'show' | 'hide', callback?: () => void): void
 
-取消监听当前面板状态，可取消监听的面板类型为show或者hide，使用callback异步回调。
+取消监听当前面板状态，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1283,7 +1293,7 @@ off(type: 'show' | 'hide', callback?: () => void): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| type | 'show'/'hide' | 是 | 要取消监听的当前面板状态类型，show表示显示状态，hide表示隐藏状态 |
+| type | 'show'\|'hide' | 是 | 要取消监听的当前面板状态类型，show表示显示状态，hide表示隐藏状态 |
 | callback | () => void | 否   | 回调函数。 |
 
 **示例：**
@@ -1343,11 +1353,11 @@ hide(callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 keyboardController.hide((err) => {
-    if (err !== undefined) {
-        console.error('Failed to hide keyboard: ' + JSON.stringify(err));
-        return;
-    }
-    console.log('Succeeded in hiding keyboard.');
+  if (err) {
+    console.error(`Failed to hide: ${JSON.stringify(err)}`);
+    return;
+  }
+  console.log('Succeeded in hiding keyboard.');
 });
 ```
 
@@ -1377,9 +1387,9 @@ hide(): Promise&lt;void&gt;
 
 ```js
 keyboardController.hide().then(() => {
-    console.info('Succeeded in hiding keyboard.');
+  console.log('Succeeded in hiding keyboard.');
 }).catch((err) => {
-    console.info('Failed to hide keyboard: ' + JSON.stringify(err));
+  console.log(`Failed to hide: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1391,7 +1401,7 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[hide](#hide9)替代。
+> 从API version 8开始支持，API version 9开始废弃，建议使用[hide](#hide9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1405,11 +1415,11 @@ hideKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 keyboardController.hideKeyboard((err) => {
-    if (err !== undefined) {
-        console.error('Failed to hide Keyboard: ' + JSON.stringify(err));
-        return;
-    }
-    console.log('Succeeded in hiding keyboard.');
+  if (err) {
+    console.error(`Failed to hideKeyboard: ${JSON.stringify(err)}`);
+    return;
+  }
+  console.log('Succeeded in hiding keyboard.');
 });
 ```
 
@@ -1421,7 +1431,7 @@ hideKeyboard(): Promise&lt;void&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[hide](#hide9-1)替代。
+> 从API version 8开始支持，API version 9开始废弃，建议使用[hide](#hide9-1)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1435,11 +1445,58 @@ hideKeyboard(): Promise&lt;void&gt;
 
 ```js
 keyboardController.hideKeyboard().then(() => {
-    console.info('Succeeded in hiding keyboard.');
+  console.log('Succeeded in hiding keyboard.');
 }).catch((err) => {
-    console.info('Failed to hide Keyboard: ' + JSON.stringify(err));
+  console.log(`Failed to hideKeyboard: ${JSON.stringify(err)}`);
 });
 ```
+
+## ExtendAction<sup>10+</sup>
+
+对编辑框中文本的扩展编辑操作类型。
+
+**系统能力**: SystemCapability.MiscServices.InputMethodFramework
+
+| 名称 | 值 |说明 |
+| -------- | -------- |-------- |
+| SELECT_ALL  | 0 |全选。 |
+| CUT  | 3 |剪切。 |
+| COPY  | 4 |复制。 |
+| PASTE  | 5 |粘贴。 |
+
+## Direction<sup>10+</sup>
+
+输入法光标移动方向。
+
+**系统能力**: SystemCapability.MiscServices.InputMethodFramework
+
+| 名称 | 值 |说明 |
+| -------- | -------- |-------- |
+| CURSOR_UP  | 1 |向上。 |
+| CURSOR_DOWN  | 2 |向下。 |
+| CURSOR_LEFT  | 3 |向左。 |
+| CURSOR_RIGHT  | 4 |向右。 |
+
+## Range<sup>10+</sup>
+
+描述选中文本的范围。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| start  | number | 是 | 是 | 选中文本的首字符在编辑框的索引值。|
+| end  | number | 是 | 是 | 选中文本的末字符在编辑框的索引值。|
+
+## Movement<sup>10+</sup>
+
+描述进行选中文本动作时光标移动的方向。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| direction  | [Direction](#direction10) | 是 | 是 | 进行选中文本动作时光标移动的方向。|
 
 ## InputClient<sup>9+</sup>
 
@@ -1457,7 +1514,7 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| action | number | 是 | 功能键键值。<br/>当值为0时，表示无效按键；<br/>当值为1时，表示确认键（即回车键）。 |
+| action | number | 是 | 功能键键值。<br/>- 当值为0时，表示无效按键；<br/>- 当值为1时，表示确认键（即回车键）。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当功能键发送成功，err为undefined，data为true；否则为错误对象。 |
 
 **错误码：**
@@ -1473,19 +1530,19 @@ sendKeyFunction(action:number, callback: AsyncCallback&lt;boolean&gt;): void
 ```js
 let action = 1;
 try {
-    inputClient.sendKeyFunction(action, (err, result) => {
-        if (err !== undefined) {
-            console.error('Failed to sendKeyFunction: ' + JSON.stringify(err));
-            return;
-        }
-        if (result) {
-            console.info('Succeeded in sending key function. ');
-        } else {
-            console.error('Failed to sendKeyFunction. ');
-        }
-    });
+  inputClient.sendKeyFunction(action, (err, result) => {
+    if (err) {
+      console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
+      return;
+    }
+    if (result) {
+      console.log('Succeeded in sending key function.');
+    } else {
+      console.error('Failed to sendKeyFunction.');
+    }
+  });
 } catch (err) {
-    console.error('sendKeyFunction err: ' + JSON.stringify(err));
+  console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1522,17 +1579,17 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 ```js
 let action = 1;
 try {
-    inputClient.sendKeyFunction(action).then((result) => {
-        if (result) {
-            console.info('Succeeded in sending key function. ');
-        } else {
-            console.error('Failed to sendKeyFunction. ');
-        }
-    }).catch((err) => {
-        console.error('Failed to sendKeyFunction:' + JSON.stringify(err));
-    });
+  inputClient.sendKeyFunction(action).then((result) => {
+    if (result) {
+      console.log('Succeeded in sending key function.');
+    } else {
+      console.error('Failed to sendKeyFunction.');
+    }
+  }).catch((err) => {
+    console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
+  });
 } catch (err) {
-    console.error('Failed to sendKeyFunction: ' + JSON.stringify(err));
+  console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1565,15 +1622,15 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 ```js
 let length = 1;
 try {
-    inputClient.getForward(length, (err, text) => {
-        if (err !== undefined) {
-            console.error('Failed to getForward: ' + JSON.stringify(err));
-            return;
-        }
-        console.log('Succeeded in getting forward, text: ' + text);
-    });
+  inputClient.getForward(length, (err, text) => {
+    if (err) {
+      console.error(`Failed to getForward: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.log('Succeeded in getting forward, text: ' + text);
+  });
 } catch (err) {
-    console.error('Failed to getForward: ' + JSON.stringify(err));
+  console.error(`Failed to getForward: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1611,13 +1668,13 @@ getForward(length:number): Promise&lt;string&gt;
 ```js
 let length = 1;
 try {
-    inputClient.getForward(length).then((text) => {
-        console.info('Succeeded in getting forward, text: ' + text);
-    }).catch((err) => {
-        console.error('Failed to getForward: ' + JSON.stringify(err));
-    });
+  inputClient.getForward(length).then((text) => {
+    console.log('Succeeded in getting forward, text: ' + text);
+  }).catch((err) => {
+    console.error(`Failed to getForward: ${JSON.stringify(err)}`);
+  });
 } catch (err) {
-    console.error('Failed to getForward: ' + JSON.stringify(err));
+  console.error(`Failed to getForward: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1650,15 +1707,15 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 ```js
 let length = 1;
 try {
-    inputClient.getBackward(length, (err, text) => {
-        if (err !== undefined) {
-            console.error('Failed to getForward: ' + JSON.stringify(err));
-            return;
-        }
-        console.log('Succeeded in getting backward, text: ' + text);
-    });
+  inputClient.getBackward(length, (err, text) => {
+    if (err) {
+      console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.log('Succeeded in getting backward, text: ' + text);
+  });
 } catch (err) {
-    console.error('Failed to getForward: ' + JSON.stringify(err));
+  console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1696,13 +1753,13 @@ getBackward(length:number): Promise&lt;string&gt;
 ```js
 let length = 1;
 try {
-    inputClient.getBackward(length).then((text) => {
-        console.info('Succeeded in getting backward, text: ' + text);
-    }).catch((err) => {
-        console.error('Failed to getForward: ' + JSON.stringify(err));
-    });
+  inputClient.getBackward(length).then((text) => {
+    console.log('Succeeded in getting backward, text: ' + text);
+  }).catch((err) => {
+    console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
+  });
 } catch (err) {
-    console.error('Failed to getForward: ' + JSON.stringify(err));
+  console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1735,19 +1792,19 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 ```js
 let length = 1;
 try {
-    inputClient.deleteForward(length, (err, result) => {
-        if (err !== undefined) {
-            console.error('Failed to delete forward: ' + JSON.stringify(err));
-            return;
-        }
-        if (result) {
-            console.info('Succeeded in deleting forward. ');
-        } else {
-            console.error('Failed to delete forward: ' + JSON.stringify(err));
-        }
-    });
+  inputClient.deleteForward(length, (err, result) => {
+    if (err) {
+      console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
+      return;
+    }
+    if (result) {
+      console.log('Succeeded in deleting forward.');
+    } else {
+      console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
+    }
+  });
 } catch (err) {
-    console.error('Failed to delete forward: ' + JSON.stringify(err));
+  console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1785,17 +1842,17 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 ```js
 let length = 1;
 try {
-    inputClient.deleteForward(length).then((result) => {
-        if (result) {
-            console.info('Succeeded in deleting forward. ');
-        } else {
-            console.error('Failed to delete Forward. ');
-        }
-    }).catch((err) => {
-        console.error('Failed to delete Forward: ' + JSON.stringify(err));
-    });
+  inputClient.deleteForward(length).then((result) => {
+    if (result) {
+      console.log('Succeeded in deleting forward.');
+    } else {
+      console.error('Failed to delete Forward.');
+    }
+  }).catch((err) => {
+    console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
+  });
 } catch (err) {
-    console.error('Failed to delete Forward: ' + JSON.stringify(err));
+  console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1828,19 +1885,19 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 ```js
 let length = 1;
 try {
-    inputClient.deleteBackward(length, (err, result) => {
-        if (err !== undefined) {
-            console.error('Failed to delete Backward: ' + JSON.stringify(err));
-            return;
-        }
-        if (result) {
-            console.info('Succeeded in deleting backward. ');
-        } else {
-            console.error('Failed to delete Backward: ' + JSON.stringify(err));
-        }
-    });
+  inputClient.deleteBackward(length, (err, result) => {
+    if (err) {
+      console.error(`Failed to deleteBackward: ${JSON.stringify(err)}`);
+      return;
+    }
+    if (result) {
+      console.log('Succeeded in deleting backward.');
+    } else {
+      console.error(`Failed to deleteBackward: ${JSON.stringify(err)}`);
+    }
+  });
 } catch (err) {
-    console.error('deleteBackward err: ' + JSON.stringify(err));
+  console.error('deleteBackward err: ' + JSON.stringify(err));
 }
 ```
 
@@ -1848,7 +1905,7 @@ try {
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
 
-删除光标后固定长度的文本。使用callback异步回调。
+删除光标后固定长度的文本。使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1878,13 +1935,13 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 ```js
 let length = 1;
 inputClient.deleteBackward(length).then((result) => {
-    if (result) {
-        console.info('Succeeded in deleting backward. ');
-    } else {
-        console.error('Failed to deleteBackward. ');
-    }
+  if (result) {
+    console.log('Succeeded in deleting backward.');
+  } else {
+    console.error('Failed to deleteBackward.');
+  }
 }).catch((err) => {
-    console.error('Failed to deleteBackward: ' + JSON.stringify(err));
+  console.error(`Failed to deleteBackward: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -1916,15 +1973,15 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 inputClient.insertText('test', (err, result) => {
-    if (err !== undefined) {
-        console.error('Failed to insertText: ' + JSON.stringify(err));
-        return;
-    }
-    if (result) {
-        console.info('Succeeded in inserting text. ');
-    } else {
-        console.error('Failed to insertText. ');
-    }
+  if (err) {
+    console.error(`Failed to insertText: ${JSON.stringify(err)}`);
+    return;
+  }
+  if (result) {
+    console.log('Succeeded in inserting text.');
+  } else {
+    console.error('Failed to insertText.');
+  }
 });
 ```
 
@@ -1961,17 +2018,17 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 ```js
 try {
-    inputClient.insertText('test').then((result) => {
-        if (result) {
-            console.info('Succeeded in inserting text. ');
-        } else {
-            console.error('Failed to insertText. ');
-        }
-    }).catch((err) => {
-        console.error('Failed to insertText: ' + JSON.stringify(err));
-    });
+  inputClient.insertText('test').then((result) => {
+    if (result) {
+      console.log('Succeeded in inserting text.');
+    } else {
+      console.error('Failed to insertText.');
+    }
+  }).catch((err) => {
+    console.error(`Failed to insertText: ${JSON.stringify(err)}`);
+  });
 } catch (err) {
-    console.error('Failed to insertText: ' + JSON.stringify(err));
+  console.error(`Failed to insertText: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2001,12 +2058,12 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 ```js
 inputClient.getEditorAttribute((err, editorAttribute) => {
-    if (err !== undefined) {
-        console.error('Failed to getEditorAttribute: ' + JSON.stringify(err));
-        return;
-    }
-    console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-    console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+  if (err) {
+    console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
+    return;
+  }
+  console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
+  console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
 });
 ```
 
@@ -2036,10 +2093,10 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 ```js
 inputClient.getEditorAttribute().then((editorAttribute) => {
-    console.info('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-    console.info('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+  console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
+  console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
 }).catch((err) => {
-    console.error('Failed to getEditorAttribute: ' + JSON.stringify(err));
+  console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2070,15 +2127,15 @@ moveCursor(direction: number, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 try {
-    inputClient.moveCursor(inputMethodEngine.CURSOR_UP, (err) => {
-        if (err !== undefined) {
-            console.error('Failed to moveCursor: ' + JSON.stringify(err));
-            return;
-        }
-        console.info('Succeeded in moving cursor.');
-    });
+  inputClient.moveCursor(inputMethodEngine.CURSOR_UP, (err) => {
+    if (err) {
+      console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.log('Succeeded in moving cursor.');
+  });
 } catch (err) {
-    console.error('Failed to moveCursor: ' + JSON.stringify(err));
+  console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2114,13 +2171,13 @@ moveCursor(direction: number): Promise&lt;void&gt;
 
 ```js
 try {
-    inputClient.moveCursor(inputMethodEngine.CURSOR_UP).then(() => {
-        console.log('Succeeded in moving cursor.');
-    }).catch((err) => {
-        console.error('Failed to moveCursor: ' + JSON.stringify(err));
-    });
+  inputClient.moveCursor(inputMethodEngine.CURSOR_UP).then(() => {
+    console.log('Succeeded in moving cursor.');
+  }).catch((err) => {
+    console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
+  });
 } catch (err) {
-    console.log('Failed to moveCursor: ' + JSON.stringify(err));
+  console.error(`Failed to moveCursor: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2136,7 +2193,7 @@ selectByRange(range: Range, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                                                      | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| range    | [Range](./js-apis-inputmethod-InputMethodCommon.md#range) | 是   | 选中文本的范围。                                             |
+| range    | [Range](#range10) | 是   | 选中文本的范围。                                             |
 | callback | AsyncCallback&lt;void&gt;                                 | 是   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
 
 **错误码：**
@@ -2152,15 +2209,15 @@ selectByRange(range: Range, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 try {
-    inputClient.selectByRange({start: 0, end: 1}, (err) => {
-        if (err !== undefined) {
-            console.error('Failed to selectByRange: ${err.message}');
-            return;
-        }
-        console.info('Succeeded in selecting by range.');
-    });
+  inputClient.selectByRange({start: 0, end: 1}, (err) => {
+    if (err) {
+      console.error(`Failed to selectByRange: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.log('Succeeded in selecting by range.');
+  });
 } catch (err) {
-    console.error('Failed to selectByRange: ${err.message}');
+  console.error(`Failed to selectByRange: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2176,7 +2233,7 @@ selectByRange(range: Range): Promise&lt;void&gt;
 
 | 参数名 | 类型                                                      | 必填 | 说明             |
 | ------ | --------------------------------------------------------- | ---- | ---------------- |
-| range  | [Range](./js-apis-inputmethod-InputMethodCommon.md#range) | 是   | 选中文本的范围。 |
+| range  | [Range](#range10) | 是   | 选中文本的范围。 |
 
 **返回值：**
 
@@ -2197,13 +2254,13 @@ selectByRange(range: Range): Promise&lt;void&gt;
 
 ```js
 try {
-    inputClient.selectByRange({start: 0, end:1}).then(() => {
-        console.log('Succeeded in selecting by range.');
-    }).catch((err) => {
-        console.error('Failed to selectByRange: ${err.message}');
-    });
+  inputClient.selectByRange({start: 0, end:1}).then(() => {
+    console.log('Succeeded in selecting by range.');
+  }).catch((err) => {
+    console.error(`Failed to selectByRange: ${JSON.stringify(err)}`);
+  });
 } catch (err) {
-    console.log('Failed to selectByRange: ${err.message}');
+  console.error(`Failed to selectByRange: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2217,10 +2274,10 @@ selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                         |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| movement | [Movement](./js-apis-inputmethod-InputMethodCommon.md#movement) | 是   | 选中时光标移动的方向。                                       |
-| callback | AsyncCallback&lt;void&gt;                                    | 是   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
+| 参数名   | 类型  | 必填 | 说明   |
+| -------- | ------ | ---- | ------ |
+| movement | [Movement](#movement10)   | 是   | 选中时光标移动的方向。  |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当成功发送选中事件后，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -2235,15 +2292,15 @@ selectByMovement(movement: Movement, callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 try {
-    inputClient.selectByMovement({direction: 1}, (err) => {
-        if (err !== undefined) {
-            console.error('Failed to selectByMovement: ${err.message}');
-            return;
-        }
-        console.info('Succeeded in selecting by movement.');
-    });
+  inputClient.selectByMovement({direction: 1}, (err) => {
+    if (err) {
+      console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.log('Succeeded in selecting by movement.');
+  });
 } catch (err) {
-    console.error('Failed to selectByMovement: ${err.message}');
+  console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2259,7 +2316,7 @@ selectByMovement(movement: Movement): Promise&lt;void&gt;
 
 | 参数名   | 类型                                                         | 必填 | 说明                   |
 | -------- | ------------------------------------------------------------ | ---- | ---------------------- |
-| movement | [Movement](./js-apis-inputmethod-InputMethodCommon.md#movement) | 是   | 选中时光标移动的方向。 |
+| movement | [Movement](#movement10) | 是   | 选中时光标移动的方向。 |
 
 **返回值：**
 
@@ -2280,13 +2337,13 @@ selectByMovement(movement: Movement): Promise&lt;void&gt;
 
 ```js
 try {
-    inputClient.selectByMovement({direction: 1}).then(() => {
-        console.log('Succeeded in selecting by movement.');
-    }).catch((err) => {
-        console.error('Failed to selectByMovement: ${err.message}');
-    });
+  inputClient.selectByMovement({direction: 1}).then(() => {
+    console.log('Succeeded in selecting by movement.');
+  }).catch((err) => {
+    console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
+  });
 } catch (err) {
-    console.log('Failed to selectByMovement: ${err.message}');
+  console.error(`Failed to selectByMovement: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -2310,7 +2367,6 @@ getTextIndexAtCursor(callback: AsyncCallback&lt;number&gt;): void
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 401      | parameter error.               |
 | 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
@@ -2318,11 +2374,11 @@ getTextIndexAtCursor(callback: AsyncCallback&lt;number&gt;): void
 
 ```js
 inputClient.getTextIndexAtCursor((err, index) => {
-    if (err !== undefined) {
-        console.error('Failed to getTextIndexAtCursor: ${err.message}');
-        return;
-    }
-    console.info('Succeeded in getTextIndexAtCursor: ' + index);
+  if (err) {
+    console.error(`Failed to getTextIndexAtCursor: ${JSON.stringify(err)}`);
+    return;
+  }
+  console.log('Succeeded in getTextIndexAtCursor: ' + index);
 });
 ```
 
@@ -2353,10 +2409,97 @@ getTextIndexAtCursor(): Promise&lt;number&gt;
 
 ```js
 inputClient.getTextIndexAtCursor().then((index) => {
-    console.info('Succeeded in getTextIndexAtCursor: ' + index);
+  console.log('Succeeded in getTextIndexAtCursor: ' + index);
 }).catch((err) => {
-    console.error('Failed to getTextIndexAtCursor: ${err.message}');
+  console.error(`Failed to getTextIndexAtCursor: ${JSON.stringify(err)}`);
 });
+```
+
+### sendExtendAction<sup>10+</sup>
+
+sendExtendAction(action: ExtendAction, callback: AsyncCallback&lt;void&gt;): void
+
+发送扩展编辑操作。使用callback异步回调。
+
+输入法应用调用该接口向编辑控件（如：输入框）发送扩展编辑操作，编辑控件监听相应事件[on(handleExtendAction)](./js-apis-inputmethod.md#onhandleextendaction10)，从而进一步做出处理。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明                                                         |
+| -------- | --------------------------- | ---- | ------------------------------------------------------------ |
+| action | [ExtendAction](#extendaction10) | 是   | 要发送的扩展操作。 |
+| callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。发送成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 12800003 | input method client error.     |
+| 12800006 | Input method controller error. |
+
+**示例：**
+
+```js
+try {
+  inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY, (err) => {
+    if (err) {
+      console.error(`Failed to sendExtendAction: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.log('Succeeded in sending extend action.');
+  });
+} catch(err) {
+  console.error(`Failed to sendExtendAction: ${JSON.stringify(err)}`);
+}
+```
+
+### sendExtendAction<sup>10+</sup>
+
+sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
+
+发送扩展编辑操作。使用promise异步回调。
+
+输入法应用调用该接口向编辑控件（如：输入框）发送扩展编辑操作，编辑控件监听相应事件[on(handleExtendAction)](./js-apis-inputmethod.md#onhandleextendaction10)，从而进一步做出处理。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| action | [ExtendAction](#extendaction10) | 是 | 要发送的扩展操作。 |
+
+**返回值：**
+
+| 类型                  | 说明                                    |
+| --------------------- | --------------------------------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[输入法框架错误码](../errorcodes/errorcode-inputmethod-framework.md)。
+
+| 错误码ID | 错误信息                       |
+| -------- | ------------------------------ |
+| 12800003 | Input method client error.     |
+| 12800006 | Input method controller error. |
+
+**示例：**
+
+```js
+try {
+  inputClient.sendExtendAction(inputMethodEngine.ExtendAction.COPY).then(() => {
+    console.log('Succeeded in sending extend action.');
+  }).catch((err) => {
+    console.error(`Failed to sendExtendAction: ${JSON.stringify(err)}`);
+  });
+} catch(err) {
+  console.error(`Failed to sendExtendAction: ${JSON.stringify(err)}`);
+}
 ```
 
 ## EditorAttribute
@@ -2418,7 +2561,7 @@ inputClient.getTextIndexAtCursor().then((index) => {
 
 > **说明：** 
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[InputClient](#inputclient9)替代。
+> 从API version 8开始支持，API version 9开始废弃，建议使用[InputClient](#inputclient9)替代。
 
 下列API示例中都需使用[on('inputStart')](#oninputstart)回调获取到TextInputClient实例，再通过此实例调用对应方法。
 
@@ -2430,7 +2573,7 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[getForward](#getforward9)替代。
+> 从API version 8开始支持，API version 9开始废弃，建议使用[getForward](#getforward9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2446,11 +2589,11 @@ getForward(length:number, callback: AsyncCallback&lt;string&gt;): void
 ```js
 let length = 1;
 textInputClient.getForward(length, (err, text) => {
-    if (err !== undefined) {
-        console.error('Failed to getForward: ' + JSON.stringify(err));
-        return;
-    }
-    console.log('Succeeded in getting forward, text: ' + text);
+  if (err) {
+    console.error(`Failed to getForward: ${JSON.stringify(err)}`);
+    return;
+  }
+  console.log('Succeeded in getting forward, text: ' + text);
 });
 ```
 
@@ -2462,7 +2605,7 @@ getForward(length:number): Promise&lt;string&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[getForward](#getforward9)替代。
+> 从API version 8开始支持，API version 9开始废弃，建议使用[getForward](#getforward9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2483,9 +2626,9 @@ getForward(length:number): Promise&lt;string&gt;
 ```js
 let length = 1;
 textInputClient.getForward(length).then((text) => {
-    console.info('Succeeded in getting forward, text: ' + text);
+  console.log('Succeeded in getting forward, text: ' + text);
 }).catch((err) => {
-    console.error('Failed to getForward: ' + JSON.stringify(err));
+  console.error(`Failed to getForward: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2497,7 +2640,7 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[getBackward](#getbackward9)替代。
+> 从API version 8开始支持，API version 9开始废弃，建议使用[getBackward](#getbackward9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2513,11 +2656,11 @@ getBackward(length:number, callback: AsyncCallback&lt;string&gt;): void
 ```js
 let length = 1;
 textInputClient.getBackward(length, (err, text) => {
-    if (err !== undefined) {
-        console.error('Failed to getBackward: ' + JSON.stringify(err));
-        return;
-    }
-    console.log('Succeeded in getting borward, text: ' + text);
+  if (err) {
+    console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
+    return;
+  }
+  console.log('Succeeded in getting borward, text: ' + text);
 });
 ```
 
@@ -2529,7 +2672,7 @@ getBackward(length:number): Promise&lt;string&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[getBackward](#getbackward9)替代。
+> 从API version 8开始支持，API version 9开始废弃，建议使用[getBackward](#getbackward9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2550,9 +2693,9 @@ getBackward(length:number): Promise&lt;string&gt;
 ```js
 let length = 1;
 textInputClient.getBackward(length).then((text) => {
-    console.info('Succeeded in getting backward: ' + JSON.stringify(text));
+  console.log('Succeeded in getting backward: ' + JSON.stringify(text));
 }).catch((err) => {
-    console.error('Failed to getBackward: ' + JSON.stringify(err));
+  console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2564,7 +2707,7 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteForward](#deleteforward9)替代。
+> 从API version 8开始支持，API version 9开始废弃，建议使用[deleteForward](#deleteforward9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2580,15 +2723,15 @@ deleteForward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 ```js
 let length = 1;
 textInputClient.deleteForward(length, (err, result) => {
-    if (err !== undefined) {
-        console.error('Failed to deleteForward: ' + JSON.stringify(err));
-        return;
-    }
-    if (result) {
-        console.info('Succeeded in deleting forward. ');
-    } else {
-        console.error('Failed to deleteForward. ');
-    }
+  if (err) {
+    console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
+    return;
+  }
+  if (result) {
+    console.log('Succeeded in deleting forward.');
+  } else {
+    console.error('Failed to deleteForward.');
+  }
 });
 ```
 
@@ -2600,7 +2743,7 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteForward](#deleteforward9)替代。
+> 从API version 8开始支持，API version 9开始废弃，建议使用[deleteForward](#deleteforward9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2621,13 +2764,13 @@ deleteForward(length:number): Promise&lt;boolean&gt;
 ```js
 let length = 1;
 textInputClient.deleteForward(length).then((result) => {
-    if (result) {
-        console.info('Succeeded in deleting forward. ');
-    } else {
-        console.error('Failed to delete forward. ');
-    }
+  if (result) {
+    console.log('Succeeded in deleting forward.');
+  } else {
+    console.error('Failed to delete forward.');
+  }
 }).catch((err) => {
-    console.error('Failed to delete forward: ' + JSON.stringify(err));
+  console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2639,31 +2782,31 @@ deleteBackward(length:number, callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteBackward](#deletebackward9)替代。
+> 从API version 8开始支持，API version 9开始废弃，建议使用[deleteBackward](#deletebackward9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-  **参数：**
+**参数：**
 
 | 参数名   | 类型                         | 必填 | 说明           |
 | -------- | ---------------------------- | ---- | -------------- |
 | length   | number                       | 是   | 文本长度。     |
 | callback | AsyncCallback&lt;boolean&gt; | 是   | 回调函数。当光标后固定长度的文本删除成功，err为undefined，data为true；否则为错误对象。|
 
-  **示例：**
+**示例：**
 
 ```js
 let length = 1;
 textInputClient.deleteBackward(length, (err, result) => {
-    if (err !== undefined) {
-        console.error('Failed to delete backward: ' + JSON.stringify(err));
-        return;
-    }
-    if (result) {
-        console.info('Succeeded in deleting backward. ');
-    } else {
-        console.error('Failed to deleteBackward. ');
-    }
+  if (err) {
+    console.error(`Failed to deleteBackward: ${JSON.stringify(err)}`);
+    return;
+  }
+  if (result) {
+    console.log('Succeeded in deleting backward.');
+  } else {
+    console.error('Failed to deleteBackward.');
+  }
 });
 ```
 
@@ -2671,11 +2814,11 @@ textInputClient.deleteBackward(length, (err, result) => {
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
 
-删除光标后固定长度的文本。使用callback异步回调。
+删除光标后固定长度的文本。使用promise异步回调。
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[deleteBackward](#deletebackward9)替代。
+> 从API version 8开始支持，API version 9开始废弃，建议使用[deleteBackward](#deletebackward9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2696,13 +2839,13 @@ deleteBackward(length:number): Promise&lt;boolean&gt;
 ```js
 let length = 1;
 textInputClient.deleteBackward(length).then((result) => {
-    if (result) {
-        console.info('Succeeded in deleting backward. ');
-    } else {
-        console.error('Failed to deleteBackward. ');
-    }
+  if (result) {
+    console.log('Succeeded in deleting backward.');
+  } else {
+    console.error('Failed to deleteBackward.');
+  }
 }).catch((err) => {
-    console.error('Failed to deleteBackward: ' + JSON.stringify(err));
+  console.error(`Failed to deleteBackward: ${JSON.stringify(err)}`);
 });
 ```
 ### sendKeyFunction<sup>(deprecated)</sup>
@@ -2713,31 +2856,31 @@ sendKeyFunction(action: number, callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[sendKeyFunction](#sendkeyfunction9)替代。
+> 从API version 8开始支持，API version 9开始废弃，建议使用[sendKeyFunction](#sendkeyfunction9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
-  **参数：**
+**参数：**
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| action | number | 是 | 功能键键值。<br/>当值为0时，表示无效按键；<br/>当值为1时，表示确认键（即回车键）。 |
+| action | number | 是 | 功能键键值。<br/>- 当值为0时，表示无效按键；<br/>- 当值为1时，表示确认键（即回车键）。 |
 | callback | AsyncCallback&lt;boolean&gt; | 是 | 回调函数。当功能键发送成功，err为undefined，data为true；否则为错误对象。 |
 
-  **示例：**
+**示例：**
 
 ```js
 let action = 1;
 textInputClient.sendKeyFunction(action, (err, result) => {
-    if (err !== undefined) {
-        console.error('Failed to sendKeyFunction: ' + JSON.stringify(err));
-        return;
-    }
-    if (result) {
-        console.info('Succeeded in sending key function. ');
-    } else {
-        console.error('Failed to sendKeyFunction. ');
-    }
+  if (err) {
+    console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
+    return;
+  }
+  if (result) {
+    console.log('Succeeded in sending key function.');
+  } else {
+    console.error('Failed to sendKeyFunction.');
+  }
 });
 ```
 
@@ -2749,7 +2892,7 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[sendKeyFunction](#sendkeyfunction9)替代。
+> 从API version 8开始支持，API version 9开始废弃，建议使用[sendKeyFunction](#sendkeyfunction9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2770,13 +2913,13 @@ sendKeyFunction(action: number): Promise&lt;boolean&gt;
 ```js
 let action = 1;
 textInputClient.sendKeyFunction(action).then((result) => {
-    if (result) {
-        console.info('Succeeded in sending key function. ');
-    } else {
-        console.error('Failed to sendKeyFunction. ');
-    }
+  if (result) {
+    console.log('Succeeded in sending key function.');
+  } else {
+    console.error('Failed to sendKeyFunction.');
+  }
 }).catch((err) => {
-    console.error('Failed to sendKeyFunction:' + JSON.stringify(err));
+  console.error(`Failed to sendKeyFunction: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2788,7 +2931,7 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[insertText](#inserttext9)替代。
+> 从API version 8开始支持，API version 9开始废弃，建议使用[insertText](#inserttext9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2803,15 +2946,15 @@ insertText(text:string, callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 textInputClient.insertText('test', (err, result) => {
-    if (err !== undefined) {
-        console.error('Failed to insertText: ' + JSON.stringify(err));
-        return;
-    }
-    if (result) {
-        console.info('Succeeded in inserting text. ');
-    } else {
-        console.error('Failed to insertText. ');
-    }
+  if (err) {
+    console.error(`Failed to insertText: ${JSON.stringify(err)}`);
+    return;
+  }
+  if (result) {
+    console.log('Succeeded in inserting text.');
+  } else {
+    console.error('Failed to insertText.');
+  }
 });
 ```
 
@@ -2823,7 +2966,7 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[insertText](#inserttext9)替代。
+> 从API version 8开始支持，API version 9开始废弃，建议使用[insertText](#inserttext9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2843,13 +2986,13 @@ insertText(text:string): Promise&lt;boolean&gt;
 
 ```js
 textInputClient.insertText('test').then((result) => {
-    if (result) {
-        console.info('Succeeded in inserting text. ');
-    } else {
-        console.error('Failed to insertText. ');
-    }
+  if (result) {
+    console.log('Succeeded in inserting text.');
+  } else {
+    console.error('Failed to insertText.');
+  }
 }).catch((err) => {
-    console.error('Failed to insertText: ' + JSON.stringify(err));
+  console.error(`Failed to insertText: ${JSON.stringify(err)}`);
 });
 ```
 
@@ -2861,26 +3004,26 @@ getEditorAttribute(callback: AsyncCallback&lt;EditorAttribute&gt;): void
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[getEditorAttribute](#geteditorattribute9)替代。
+> 从API version 8开始支持，API version 9开始废弃，建议使用[getEditorAttribute](#geteditorattribute9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 **参数：**
 
-| 参数名                         | 类型                          | 必填                            | 说明                                                         |
-| ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 参数名    | 类型   | 必填  | 说明   |
+| -------- | ----- | ----- | ----- |
 | callback | AsyncCallback&lt;[EditorAttribute](#editorattribute)&gt; | 是 |  回调函数。当编辑框的属性值获取成功，err为undefined，data为编辑框属性值；否则为错误对象。|
 
 **示例：**
 
 ```js
 textInputClient.getEditorAttribute((err, editorAttribute) => {
-    if (err !== undefined) {
-        console.error('Failed to getEditorAttribute: ' + JSON.stringify(err));
-        return;
-    }
-    console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-    console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+  if (err) {
+    console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
+    return;
+  }
+  console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
+  console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
 });
 ```
 
@@ -2892,7 +3035,7 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 > **说明：**
 >
-> 从API version 8开始支持，API version 9开始废弃, 建议使用[getEditorAttribute](#geteditorattribute9)替代。
+> 从API version 8开始支持，API version 9开始废弃，建议使用[getEditorAttribute](#geteditorattribute9)替代。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2906,10 +3049,10 @@ getEditorAttribute(): Promise&lt;EditorAttribute&gt;
 
 ```js
 textInputClient.getEditorAttribute().then((editorAttribute) => {
-    console.info('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
-    console.info('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
+  console.log('editorAttribute.inputPattern: ' + JSON.stringify(editorAttribute.inputPattern));
+  console.log('editorAttribute.enterKeyType: ' + JSON.stringify(editorAttribute.enterKeyType));
 }).catch((err) => {
-    console.error('Failed to getEditorAttribute: ' + JSON.stringify(err));
+  console.error(`Failed to getEditorAttribute: ${JSON.stringify(err)}`);
 });
 ```
 <!--no_check-->

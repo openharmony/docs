@@ -370,18 +370,19 @@ let record = pasteboard.createUriRecord('dataability:///com.example.myapplicatio
 
 ## PasteDataProperty<sup>7+</sup>
 
-定义了剪贴板中所有内容条目的属性，包含时间戳、数据类型、粘贴范围以及一些附加数据等。
+定义了剪贴板中所有内容条目的属性，包含时间戳、数据类型、粘贴范围以及一些附加数据等，
+该属性必须通过[setProperty](#setproperty9)方法，才能设置到剪贴板中。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
-| 名称 | 类型 | 可读 | 可写 | 说明                                                                                         |
-| -------- | -------- | -------- | -------- |--------------------------------------------------------------------------------------------|
-| additions<sup>7+</sup> | {[key:string]:object} | 是 | 是 | 设置其他附加属性数据。                                                                               |
-| mimeTypes<sup>7+</sup> | Array&lt;string&gt; | 是 | 否 | 剪贴板内容条目的数据类型，非重复的类型列表。                                                                     |
-| tag<sup>7+</sup> | string | 是 | 是 | 用户自定义标签。                                                                                   |
-| timestamp<sup>7+</sup> | number | 是 | 否 | 剪贴板数据的写入时间戳（单位：ms）。                                                                        |
-| localOnly<sup>7+</sup> | boolean | 是 | 是 | 配置剪贴板内容是否为“仅在本地”，默认值为false。暂不支持，推荐使用shareOption属性。<br/>- 配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>- 配置为false时，表示内容将在设备间传递。 |
-| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围，如果未设置或设置不正确，则默认值为CROSSDEVICE。                                              |
+| 名称 | 类型 | 可读 | 可写 | 说明                                                                                                                                                                                                                                       |
+| -------- | -------- | -------- | -------- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| additions<sup>7+</sup> | {[key:string]:object} | 是 | 是 | 设置其他附加属性数据。                                                                                                                                                                                                                              |
+| mimeTypes<sup>7+</sup> | Array&lt;string&gt; | 是 | 否 | 剪贴板内容条目的数据类型，非重复的类型列表。                                                                                                                                                                                                                   |
+| tag<sup>7+</sup> | string | 是 | 是 | 用户自定义标签。                                                                                                                                                                                                                                 |
+| timestamp<sup>7+</sup> | number | 是 | 否 | 剪贴板数据的写入时间戳（单位：ms）。                                                                                                                                                                                                                      |
+| localOnly<sup>7+</sup> | boolean | 是 | 是 | 配置剪贴板内容是否为“仅在本地”，默认值为false。其值会被shareOption属性覆盖，推荐使用shareOption属性。ShareOption.INAPP、ShareOption.LOCALDEVICE会将localOnly设置为true，ShareOption.CROSSDEVICE会将localOnly设置为false。<br/>- 配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>- 配置为false时，表示内容将在设备间传递。 |
+| shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围，如果未设置或设置不正确，则默认值为CROSSDEVICE。                                                                                                                                                                                            |
 
 ## PasteDataRecord<sup>7+</sup>
 
@@ -483,9 +484,9 @@ record.convertToText().then((data) => {
 
 ## PasteData
 
-剪贴板内容对象。
+剪贴板内容对象。剪贴板内容包含一个或者多个内容条目（[PasteDataRecord](#pastedatarecord7)）以及属性描述对象（[PasteDataProperty](#pastedataproperty7)）。
 
-在调用PasteData的接口前，需要先获取一个PasteData对象。
+在调用PasteData的接口前，需要先通过[createData()](#pasteboardcreatedata9)或[getData()](#getdata9)获取一个PasteData对象。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -737,7 +738,7 @@ let property = pasteData.getProperty();
 
 setProperty(property: PasteDataProperty): void
 
-设置剪贴板内容的属性描述对象，当前仅支持设置shareOption属性。
+设置剪贴板内容的属性描述对象[PasteDataProperty](#pastedataproperty7)。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -753,7 +754,28 @@ setProperty(property: PasteDataProperty): void
 let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_HTML, 'application/xml');
 let prop = pasteData.getProperty();
 prop.shareOption = pasteboard.ShareOption.INAPP;
+prop.additions['TestOne'] = 123;
+prop.additions['TestTwo'] = {'Test' : 'additions'};
+prop.tag = 'TestTag';
 pasteData.setProperty(prop);
+```
+[PasteDataProperty](#pastedataproperty7)的localOnly与shareOption属性互斥，最终结果以shareOption为准，shareOption会影响localOnly的值。
+```js
+prop.shareOption = pasteboard.ShareOption.INAPP;
+prop.localOnly = false;
+pasteData.setProperty(prop);
+pasteData.localOnly //true
+
+prop.shareOption = pasteboard.ShareOption.LOCALDEVICE;
+prop.localOnly = false;
+pasteData.setProperty(prop);
+pasteData.localOnly //true
+
+prop.shareOption = pasteboard.ShareOption.CROSSDEVICE;
+prop.localOnly = true;
+pasteData.setProperty(prop);
+pasteData.localOnly //false
+
 ```
 
 ### getRecord<sup>9+</sup>

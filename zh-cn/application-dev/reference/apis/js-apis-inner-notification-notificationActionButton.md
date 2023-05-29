@@ -8,9 +8,9 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称      | 类型                                            | 可读 | 可写 | 说明                      |
+| 名称      | 类型                                            | 只读 | 必填 | 说明                      |
 | --------- | ----------------------------------------------- | --- | ---- | ------------------------- |
-| title     | string                                          | 是  | 是  | 按钮标题。                  |
-| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md)   | 是  | 是  | 点击按钮时触发的WantAgent。 |
-| extras    | { [key: string]: any }                          | 是  | 是  | 按钮扩展信息。              |
-| userInput<sup>8+</sup> | [NotificationUserInput](js-apis-inner-notification-notificationUserInput.md) | 是  | 是  | 用户输入对象实例。          |
+| title     | string                                          | 否  | 是  | 按钮标题。                  |
+| wantAgent | [WantAgent](js-apis-app-ability-wantAgent.md)   | 否  | 是  | 点击按钮时触发的WantAgent。 |
+| extras    | { [key: string]: any }                          | 否  | 否  | 按钮扩展信息。              |
+| userInput<sup>8+</sup> | [NotificationUserInput](js-apis-inner-notification-notificationUserInput.md) | 否  | 否  | 用户输入对象实例。          |

@@ -121,6 +121,86 @@ console.log(`bundleName: ${context.abilityInfo.bundleName}`)
 
 ## 能否在本应用中获取到其他应用的HAP包信息
 
-适用于：OpenHarmony 3.2 Beta API 9
+适用于：OpenHarmony 3.2 API 9
 
-根据OpenHarmony的安全设计规范，SDK不提供接口能力给三方应用查询其他应用的包信息（包括但不限于应用名称、版本号等）。
+**问题现象**
+
+如何查询系统内其他应用的信息
+
+**解决措施**
+
+查询系统内其他应用信息的API暂时只提供给系统应用使用，具体使用方法：
+
+- 查询系统内指定应用信息需要获取normal级权限ohos.permission.GET\_BUNDLE\_INFO，使用接口bundleManager.getApplicationInfo\(\)。
+
+- 查询系统内所有应用信息需要获取system\_basic级权限ohos.permission.GET\_BUNDLE\_INFO\_PRIVILEGED，使用接口bundleManager.getAllApplicationInfo\(\)。
+
+**参考链接**
+
+[@ohos.bundle.bundleManager \(bundleManager模块\)](../reference/apis/js-apis-bundleManager.md)
+
+## 如何查询进程的pid
+
+适用于：OpenHarmony 3.2 Beta API 9 
+
+**解决措施**
+
+可以通过接口@ohos.process来获取。
+
+**代码示例**
+
+```
+import process from '@ohos.process';
+private pid = process.pid;
+```
+
+**参考链接**
+
+[@ohos.process \(获取进程相关的信息\)](../reference/apis/js-apis-process.md)
+
+## 如何让最大化按钮不可用
+
+适用于：OpenHarmony 3.2 Beta API 9 
+
+**解决措施**
+
+可以通过supportWindowModes字段去指定是否显示。
+
+- full\_screen表示支持全屏显示
+
+- split表示支持分屏显示
+
+- floating表示支持窗口化显示
+
+**代码示例**
+
+```
+"abilities": [
+  {
+    "name": "EntryAbility",
+    "srcEntry": "./ets/entryability/EntryAbility.ts",
+    "description": "$string:EntryAbility_desc",
+    "icon": "$media:icon",
+    "label": "$string:EntryAbility_label",
+    "startWindowIcon": "$media:icon",
+    "startWindowBackground": "$color:start_window_background",
+    "exported": true,
+    "supportWindowMode": ["split", "floating"],
+    "skills": [
+      {
+        "entities": [
+          "entity.system.home"
+        ],
+        "actions": [
+          "action.system.home"
+        ]
+      }
+    ]
+  }
+]
+```
+
+**参考链接**
+
+[supportWindowModes参考文档](../reference/apis/js-apis-bundleManager-abilityInfo.md)
+

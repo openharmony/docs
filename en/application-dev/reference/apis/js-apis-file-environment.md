@@ -1,12 +1,11 @@
 # @ohos.file.environment (Directory Environment Capability)
 
-The **Environment** module provides APIs for obtaining the root directories of the storage and public files.
+The **Environment** module provides APIs for obtaining the root directories of the storage and user files.
 
 > **NOTE**
 >
 > - The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The APIs of this module are system APIs and cannot be called by third-party applications.
-> - The APIs of this module support processing of error codes. For details, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
 
 ## Modules to Import
 
@@ -27,6 +26,15 @@ Obtains the root directory of the storage. This API uses a promise to return the
 | Type                 | Description            |
 | --------------------- | ---------------- |
 | Promise&lt;string&gt; | Promise used to return the root directory of the storage.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 202 | The caller is not a system application |
+| 13900020 | Invalid argument |
+| 13900042 | Unknown error |
 
 **Example**
 
@@ -52,6 +60,15 @@ Obtains the root directory of the storage. This API uses an asynchronous callbac
 | -------- | --------------------------- | ---- | -------------------------------- |
 | callback | AsyncCallback&lt;string&gt; | Yes  | Asynchronous callback invoked to return the root directory of the storage.|
 
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 202 | The caller is not a system application |
+| 13900020 | Invalid argument |
+| 13900042 | Unknown error |
+
 **Example**
 
   ```js
@@ -68,7 +85,7 @@ Obtains the root directory of the storage. This API uses an asynchronous callbac
 
 getUserDataDir():Promise&lt;string&gt;
 
-Obtains the root directory of public files. This API uses a promise to return the result.
+Obtains the root directory of user files. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.Environment
 
@@ -76,7 +93,16 @@ Obtains the root directory of public files. This API uses a promise to return th
 
 | Type                 | Description              |
 | --------------------- | ------------------ |
-| Promise&lt;string&gt; | Promise returned with the root directory of public files.|
+| Promise&lt;string&gt; | Promise used to return the root directory of user files.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 202 | The caller is not a system application |
+| 13900020 | Invalid argument |
+| 13900042 | Unknown error |
 
 **Example**
 
@@ -92,7 +118,7 @@ Obtains the root directory of public files. This API uses a promise to return th
 
 getUserDataDir(callback:AsyncCallback&lt;string&gt;): void
 
-Obtains the root directory of public files. This API uses an asynchronous callback to return the result.
+Obtains the root directory of user files. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.File.Environment
 
@@ -100,7 +126,16 @@ Obtains the root directory of public files. This API uses an asynchronous callba
 
 | Name  | Type                       | Mandatory| Description                            |
 | -------- | --------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Asynchronous callback used to return the root directory of public files.|
+| callback | AsyncCallback&lt;string&gt; | Yes  | Asynchronous callback used to return the root directory of user files.|
+
+**Error codes**
+
+For details about the error codes, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+| ID                    | Error Message       |
+| ---------------------------- | ---------- |
+| 202 | The caller is not a system application |
+| 13900020 | Invalid argument |
+| 13900042 | Unknown error |
 
 **Example**
 

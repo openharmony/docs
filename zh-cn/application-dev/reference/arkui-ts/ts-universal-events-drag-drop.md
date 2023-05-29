@@ -6,6 +6,13 @@
 >
 >  从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
+## 属性
+
+拖拽事件相关组件除支持[通用属性](ts-universal-attributes-size.md)外，支持绑定以下属性：
+| 名称 | 参数类型 | 描述 |
+| -------- | -------- | -------- |
+| allowDrop<sup>10+</sup> | Array\<UnifiedData> | 设置该组件上允许落入的数据类型。<br/>默认值：空<br/> |
+| draggable<sup>10+</sup> | boolean | 设置该组件是否允许进行拖拽。<br/>默认值：false<br/> |
 ## 事件
 
 | 名称                                                         | 支持冒泡 | 功能描述                                                     |
@@ -15,6 +22,7 @@
 | onDragMove(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽在组件范围内移动时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
 | onDragLeave(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 拖拽离开组件范围内时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。<br/>当监听了onDrop事件时，此事件才有效。 |
 | onDrop(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | 否       | 绑定此事件的组件可作为拖拽释放目标，当在本组件范围内停止拖拽行为时，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。 |
+| onDragEnd(event:&nbsp;(event?:&nbsp;[DragEvent](#dragevent说明),&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void)<sup>10+</sup> | 否       | 绑定此事件的组件触发的拖拽结束后，触发回调。<br/>- event：拖拽事件信息，包括拖拽点坐标。<br/>- extraParams：拖拽事件额外信息，详见[extraParams](#extraparams说明)说明。 |
 
 ## DragItemInfo说明
 
@@ -42,6 +50,31 @@
 | ------ | ------ | ---------------- |
 | getX() | number | 当前拖拽点相对于屏幕左上角的x轴坐标，单位为vp。 |
 | getY() | number | 当前拖拽点相对于屏幕左上角的y轴坐标，单位为vp。 |
+| useCustomDropAnimation<sup>10+</sup> | boolean | 当拖拽结束时，是否使用系统默认落入动画。 |
+| dragBehavior<sup>10+</sup> | [DragBehavior](#dragbehavior10枚举说明) | DrgaEvent对应的组件树行为。 |
+| setData(unifiedData: UnifiedData)<sup>10+</sup> | void | 向DragEvent中设置拖拽相关数据。 |
+| getData()<sup>10+</sup> | UnifiedData | 从DragEvent中获取拖拽相关数据。 |
+| getSummary()<sup>10+</sup> | Summary | 从DragEvent中获取拖拽相关数据的简介。 |
+| setResult(dragRect: [DragRet](#dragret10枚举说明))<sup>10+</sup> | void | 向DragEvent中设置拖拽结果。 |
+| getResult()<sup>10+</sup> | [DragRet](#dragret10枚举说明) | 从DragEvent中获取拖拽结果。 |
+| getPrviewRect()<sup>10+</sup> | [Rectangle](ts-universal-attributes-touch-target.md#rectangle对象说明) | 获取预览图所在的Rectangle。 |
+
+## DragBehavior<sup>10+</sup>枚举说明
+
+| 名称 | 描述 |
+| ------ | ------ |
+| COPY | 在组件树上，对发起拖拽的组件进行拷贝，将拷贝结果复制到拖拽结束的位置。 |
+| MOVE | 在组件树上，对发起拖拽的组件进行裁剪，移动至拖拽结束的位置。 |
+
+## DragRet<sup>10+</sup>枚举说明
+
+| 名称 | 描述 |
+| ----- | ----------------- |
+| DRAG_SUCCESS | 拖拽成功 |
+| DRAG_FAILED | 拖拽失败 |
+| DRAG_CANCELED | 拖拽取消 |
+| DROP_ENABLED | 组件允许落入 |
+| DROP_DISABLED | 组件不允许落入 |
 
 ## 示例
 

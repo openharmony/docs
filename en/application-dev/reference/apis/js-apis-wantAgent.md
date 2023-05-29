@@ -20,6 +20,8 @@ Obtains the Want in a **WantAgent** object. This API uses an asynchronous callba
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name    | Type                      | Mandatory| Description                   |
@@ -90,6 +92,8 @@ getWant(agent: WantAgent): Promise\<Want\>
 Obtains the Want in a **WantAgent** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 

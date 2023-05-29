@@ -132,6 +132,7 @@ UIAbility生命周期回调，在销毁时回调，执行资源清理等操作�
 
 **示例：**
     
+
   ```ts
   class MyUIAbility extends UIAbility {
       onDestroy() {
@@ -140,6 +141,16 @@ UIAbility生命周期回调，在销毁时回调，执行资源清理等操作�
   }
   ```
 
+在执行完onDestroy生命周期回调后，应用可能会退出，从而可能导致onDestroy中的异步函数未能正确执行，比如异步写入数据库。可以使用异步生命周期，以确保异步onDestroy完成后再继续后续的生命周期。
+
+  ```ts
+class MyUIAbility extends UIAbility {
+    async onDestroy() {
+        console.log('onDestroy');
+        // 调用异步函数...
+    }
+}
+  ```
 
 ## UIAbility.onForeground
 
@@ -360,7 +371,7 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 | ------- | -------------------------------- |
 | 16200001 | Caller released. The caller has been released. |
 | 16200002 | Callee invalid. The callee does not exist. |
-| 16000050 | Internal Error. |
+| 16000050 | Internal error. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
@@ -441,7 +452,7 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 | ------- | -------------------------------- |
 | 16200001 | Caller released. The caller has been released. |
 | 16200002 | Callee invalid. The callee does not exist. |
-| 16000050 | Internal Error. |
+| 16000050 | Internal error. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
@@ -586,9 +597,9 @@ release(): void;
   }
   ```
 
-  ## Caller.onRemoteStateChange
+## Caller.onRemoteStateChange<sup>10+</sup>
 
- onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
+onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
 
 注册协同场景下跨设备组件状态变化监听通知。
 
@@ -639,7 +650,7 @@ release(): void;
 
 ## Caller.on
 
- on(type: 'release', callback: OnReleaseCallback): void;
+on(type: 'release', callback: OnReleaseCallback): void;
 
 注册通用组件服务端Stub（桩）断开监听通知。
 
@@ -656,6 +667,7 @@ release(): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
 | 16200001 | Caller released. The caller has been released. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
@@ -700,6 +712,12 @@ off(type: 'release', callback: OnReleaseCallback): void;
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听releaseCall事件，固定为'release'。 |
 | callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回off回调结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
 
 **示例：**
     
@@ -892,7 +910,7 @@ off(method: string): void;
 | -------- | -------- | -------- | -------- | -------- |
 | (msg: string) | 是 | 否 | function | 调用者注册的侦听器函数接口的原型。 |
 
-## OnRemoteStateChangeCallback
+## OnRemoteStateChangeCallback<sup>10+</sup>
 
 (msg: string): void;
 

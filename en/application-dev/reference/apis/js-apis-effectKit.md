@@ -29,7 +29,7 @@ Creates a **Filter** instance based on the pixel map.
 
 | Name   | Type              | Mandatory| Description    |
 | ------- | ----------------- | ---- | -------- |
-| source  | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes  | **PixelMap** instance created by the image module.  |
+| source  | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes  | **PixelMap** instance created by the image module. An instance can be obtained by decoding an image or directly created. For details, see [Image Overview](../../media/image-overview.md).  |
 
 **Return value**
 
@@ -61,7 +61,7 @@ Creates a **ColorPicker** instance based on the pixel map. This API uses a promi
 
 | Name    | Type        | Mandatory| Description                      |
 | -------- | ----------- | ---- | -------------------------- |
-| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes  |  **PixelMap** instance created by the image module.|
+| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes  |  **PixelMap** instance created by the image module. An instance can be obtained by decoding an image or directly created. For details, see [Image Overview](../../media/image-overview.md).|
 
 **Return value**
 
@@ -95,7 +95,7 @@ Creates a **ColorPicker** instance based on the pixel map. This API uses an asyn
 
 | Name    | Type               | Mandatory| Description                      |
 | -------- | ------------------ | ---- | -------------------------- |
-| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes |**PixelMap** instance created by the image module. |
+| source   | [image.PixelMap](js-apis-image.md#pixelmap7) | Yes |**PixelMap** instance created by the image module. An instance can be obtained by decoding an image or directly created. For details, see [Image Overview](../../media/image-overview.md). |
 | callback | AsyncCallback\<[ColorPicker](#colorpicker)> | Yes | Callback used to return the **ColorPicker** instance created.|
 
 **Example**

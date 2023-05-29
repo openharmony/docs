@@ -14,6 +14,7 @@ This topic uses the following to identify the use of generics:
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+
 ## Modules to Import
 
 ```ts
@@ -122,9 +123,8 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```ts
 let treeSet = new TreeSet();
-treeSet.has(123);
 treeSet.add(123);
-let result1 = treeSet.has(123);
+let result = treeSet.has(123);
 ```
 
 

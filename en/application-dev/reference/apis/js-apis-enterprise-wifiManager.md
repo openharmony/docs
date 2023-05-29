@@ -1,6 +1,6 @@
 # @ohos.enterprise.wifiManager (Wi-Fi Management)
 
-The **wifiManager** module provides Wi-Fi management capabilities for enterprise devices. Only the enterprise device administrator applications can call the APIs provided by this module.
+The **wifiManager** module provides APIs for Wi-Fi management of enterprise devices. Only the device administrator applications can call the APIs provided by this module.
 
 > **NOTE**
 >
@@ -16,7 +16,7 @@ import wifiManager from '@ohos.enterprise.wifiManager';
 
 isWifiActive(admin: Want, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether Wi-Fi is active. This API uses an asynchronous callback to return the result.
+Checks whether Wi-Fi is active through a device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -35,7 +35,7 @@ Checks whether Wi-Fi is active. This API uses an asynchronous callback to return
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -60,7 +60,7 @@ wifiManager.isWifiActive(wantTemp, (error, result) => {
 
 isWifiActive(admin: Want): Promise&lt;boolean&gt;
 
-Checks whether Wi-Fi is active. This API uses a promise to return the result.
+Checks whether Wi-Fi is active through a device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -84,7 +84,7 @@ Checks whether Wi-Fi is active. This API uses a promise to return the result.
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -127,7 +127,7 @@ Sets Wi-Fi to connect to the specified network. This API uses an asynchronous ca
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |
@@ -176,13 +176,13 @@ Sets Wi-Fi to connect to the specified network. This API uses a promise to retur
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object is thrown.|
+| Promise&lt;void&gt; | Promise that returns no value. If the operation fails, an error object will be thrown.|
 
 **Error codes**
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                        |
 | 9200002 | The administrator application does not have permission to manage the device. |

@@ -11,7 +11,7 @@ WindowExtensionAbility必须和[AbilityComponent](../reference/arkui-ts/ts-conta
 
 > **说明：**
 >
-> 本接口为系统接口，如果三方开发者想要实现应用进行跨应用的界面拉起和嵌入，请参考[full-SDK替换指南](../../application-dev/quick-start/full-sdk-switch-guide.md)将SDK替换为full-SDK。
+> 本接口为系统接口，如果三方开发者想要实现应用进行跨应用的界面拉起和嵌入，请参考[full-SDK替换指南](../faqs/full-sdk-switch-guide.md)将SDK替换为full-SDK。
 >
 
 
@@ -43,7 +43,7 @@ WindowExtensionAbility提供了onConnect()、onDisconnect()和onWindowReady()生
         onWindowReady(window) {
             window.loadContent('WindowExtAbility/pages/index1').then(() => {
                 window.getProperties().then((pro) => {
-                    console.log("WindowExtension " + JSON.stringify(pro));
+                    console.info("WindowExtension " + JSON.stringify(pro));
                 })
                 window.show();
             })

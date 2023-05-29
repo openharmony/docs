@@ -3,8 +3,9 @@
 The **ServiceExtensionAbility** module provides lifecycle callbacks when a ServiceExtensionAbility (background service) is created, destroyed, connected, or disconnected.
 
 > **NOTE**
-> 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+>
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>
 > The APIs of this module can be used only in the stage model.
 
 ## Modules to Import
@@ -145,6 +146,29 @@ Called following **onCreate()** when a ServiceExtensionAbility is started by cal
   }
   ```
 
+If the returned **RemoteObject** object depends on an asynchronous API, you can use the asynchronous lifecycle.
+
+  ```ts
+import rpc from '@ohos.rpc';
+class StubTest extends rpc.RemoteObject{
+    constructor(des) {
+        super(des);
+    }
+    onConnect(code, data, reply, option) {
+    }
+}
+async function getDescriptor() {
+    // Call the asynchronous function.
+    return "asyncTest"
+}
+class ServiceExt extends ServiceExtension {
+  async onConnect(want) {
+    console.log(`onConnect , want: ${want.abilityName}`);
+    let descriptor = await getDescriptor();
+    return new StubTest(descriptor);
+  }
+}
+  ```
 
 ## ServiceExtensionAbility.onDisconnect
 
@@ -170,6 +194,17 @@ Called when a client is disconnected from this ServiceExtensionAbility.
       console.log('onDisconnect, want: ${want.abilityName}');
     }
   }
+  ```
+
+After the **onDisconnect** lifecycle callback is executed, the application may exit. As a result, the asynchronous function in **onDisconnect** may fail to be executed correctly, for example, asynchronously writing data to the database. The asynchronous lifecycle can be used to ensure that the subsequent lifecycle continues after the asynchronous **onDisconnect** is complete.
+
+  ```ts
+class ServiceExt extends ServiceExtension {
+  async onDisconnect(want) {
+    console.log('onDisconnect, want: ${want.abilityName}');
+    // Call the asynchronous function.
+  }
+}
   ```
 
 ## ServiceExtensionAbility.onReconnect

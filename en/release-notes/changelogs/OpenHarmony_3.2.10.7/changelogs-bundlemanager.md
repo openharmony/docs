@@ -124,8 +124,8 @@ The **visible** field in the [ModuleAbilityInfo](https://gitee.com/openharmony/i
 **Adaptation Guide**<br>
 Change **visible** to **exported** for your application.
 
-## cl.bundlemanager.8 Deleted the distributedNotificationEnabled Tag from the app.json Configuration File
-The [distributedNotificationEnabled](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** configuration file.
+## cl.bundlemanager.8 Deleted the distributedNotificationEnabled Tag from the app.json File
+The [distributedNotificationEnabled](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** file.
 
 **Change Impact**<br>
 If this tag is used, an error is reported during compilation on DevEco Studio.
@@ -133,8 +133,8 @@ If this tag is used, an error is reported during compilation on DevEco Studio.
 **Adaptation Guide**<br>
 Delete this tag from the configuration file.
 
-## cl.bundlemanager.9 Deleted the entityType Tag from the app.json Configuration File
-The [entityType](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** configuration file.
+## cl.bundlemanager.9 Deleted the entityType Tag from the app.json File
+The [entityType](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** file.
 
 **Change Impact**<br>
 If this tag is used, an error is reported during compilation on DevEco Studio.
@@ -142,8 +142,8 @@ If this tag is used, an error is reported during compilation on DevEco Studio.
 **Adaptation Guide**<br>
 Delete this tag from the configuration file.
 
-## cl.bundlemanager.10 Deleted the keepAlive Tag from the app.json Configuration File
-The [keepAlive](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** configuration file.
+## cl.bundlemanager.10 Deleted the keepAlive Tag from the app.json File
+The [keepAlive](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** file.
 
 **Change Impact**<br>
 If this tag is used, an error is reported during compilation on DevEco Studio.
@@ -151,8 +151,8 @@ If this tag is used, an error is reported during compilation on DevEco Studio.
 **Adaptation Guide**<br>
 Delete this tag from the configuration file.
 
-## cl.bundlemanager.11 Deleted the removable Tag from the app.json Configuration File
-The [removable](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** configuration file.
+## cl.bundlemanager.11 Deleted the removable Tag from the app.json File
+The [removable](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** file.
 
 **Change Impact**<br>
 If this tag is used, an error is reported during compilation on DevEco Studio.
@@ -160,8 +160,8 @@ If this tag is used, an error is reported during compilation on DevEco Studio.
 **Adaptation Guide**<br>
 Delete this tag from the configuration file.
 
-## cl.bundlemanager.12 Deleted the singleton Tag from the app.json Configuration File
-The [singleton](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** configuration file.
+## cl.bundlemanager.12 Deleted the singleton Tag from the app.json File
+The [singleton](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** file.
 
 **Change Impact**<br>
 If this tag is used, an error is reported during compilation on DevEco Studio.
@@ -169,8 +169,8 @@ If this tag is used, an error is reported during compilation on DevEco Studio.
 **Adaptation Guide**<br>
 Delete this tag from the configuration file.
 
-## cl.bundlemanager.13 Deleted the userDataClearable Tag from the app.json Configuration File
-The [userDataClearable](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** configuration file.
+## cl.bundlemanager.13 Deleted the userDataClearable Tag from the app.json File
+The [userDataClearable](../../../application-dev/quick-start/app-configuration-file.md) tag is deleted from the **app.json** file.
 
 **Change Impact**<br>
 If this tag is used, an error is reported during compilation on DevEco Studio.
@@ -178,8 +178,8 @@ If this tag is used, an error is reported during compilation on DevEco Studio.
 **Adaptation Guide**<br>
 Delete this tag from the configuration file.
 
-## cl.bundlemanager.14 No Longer Chinese Characters for the name Tag under module in the module.json Configuration File
-The value of [name](../../../application-dev/quick-start/module-configuration-file.md) under **module** in the **module.json** configuration file does not support Chinese characters.
+## cl.bundlemanager.14 No Longer Chinese Characters for the name Tag under module in the module.json File
+The value of [name](../../../application-dev/quick-start/module-configuration-file.md) under **module** in the **module.json** file does not support Chinese characters.
 
 **Change Impact**<br>
 If the tag is set to Chinese, an error is reported during compilation on DevEco Studio.
@@ -187,8 +187,8 @@ If the tag is set to Chinese, an error is reported during compilation on DevEco 
 **Adaptation Guide**<br>
 Set this tag to English.
 
-## cl.bundlemanager.15 No Longer Chinese Characters for the name Tag under ability in the module.json Configuration File
-The value of [name](../../../application-dev/quick-start/module-configuration-file.md) under **ability** in the **module.json** configuration file does not support Chinese characters.
+## cl.bundlemanager.15 No Longer Chinese Characters for the name Tag under ability in the module.json File
+The value of [name](../../../application-dev/quick-start/module-configuration-file.md) under **ability** in the **module.json** file does not support Chinese characters.
 
 **Change Impact**<br>
 If the tag is set to Chinese, an error is reported during compilation on DevEco Studio.
@@ -196,8 +196,8 @@ If the tag is set to Chinese, an error is reported during compilation on DevEco 
 **Adaptation Guide**<br>
 Set this tag to English.
 
-## cl.bundlemanager.16 Deleted the uiSyntax Tag from the module.json Configuration File
-The [uiSyntax](../../../application-dev/quick-start/module-configuration-file.md) tag is deleted from the **module.json** configuration file.
+## cl.bundlemanager.16 Deleted the uiSyntax Tag from the module.json File
+The [uiSyntax](../../../application-dev/quick-start/module-configuration-file.md) tag is deleted from the **module.json** file.
 
 **Change Impact**<br>
 If this tag is used, an error is reported during compilation on DevEco Studio.
@@ -205,8 +205,8 @@ If this tag is used, an error is reported during compilation on DevEco Studio.
 **Adaptation Guide**<br>
 Delete this tag from the configuration file.
 
-## cl.bundlemanager.17 Changed srcEntrance to srcEntry in the module.json Configuration File
-The [srcEntrance](../../../application-dev/quick-start/module-configuration-file.md) tag under **module** and **ability** in the **module.json** configuration file is changed to **srcEntry**.
+## cl.bundlemanager.17 Changed srcEntrance to srcEntry in the module.json File
+The [srcEntrance](../../../application-dev/quick-start/module-configuration-file.md) tag under **module** and **ability** in the **module.json** file is changed to **srcEntry**.
 
 **Change Impact**<br>
 If the **srcEntrance** tag is used, an error is reported during compilation on DevEco Studio.
@@ -214,8 +214,8 @@ If the **srcEntrance** tag is used, an error is reported during compilation on D
 **Adaptation Guide**<br>
 Replace the **srcEntrance** tag with **srcEntry** in the configuration file.
 
-## cl.bundlemanager.18 Deleted the apiVersion Tag Under distroFilter from the module.json Configuration File
-The **apiVersion** tag under [distroFilter](../../../application-dev/quick-start/module-configuration-file.md) is deleted from the **module.json** configuration file.
+## cl.bundlemanager.18 Deleted the apiVersion Tag Under distroFilter from the module.json File
+The **apiVersion** tag under [distroFilter](../../../application-dev/quick-start/module-configuration-file.md) is deleted from the **module.json** file.
 
 **Change Impact**<br>
 If this tag is used, an error is reported during compilation on DevEco Studio.
@@ -223,8 +223,8 @@ If this tag is used, an error is reported during compilation on DevEco Studio.
 **Adaptation Guide**<br>
 Delete this tag from the configuration file.
 
-## cl.bundlemanager.19 Changed distroFilter to distributionFilter in the module.json Configuration File
-The [distroFilter](../../../application-dev/quick-start/module-configuration-file.md) tag in the **module.json** configuration file is changed to **distributionFilter**.
+## cl.bundlemanager.19 Changed distroFilter to distributionFilter in the module.json File
+The [distroFilter](../../../application-dev/quick-start/module-configuration-file.md) tag in the **module.json** file is changed to **distributionFilter**.
 
 **Change Impact**<br>
 If the **distroFilter** tag is used, an error is reported during compilation on DevEco Studio.
@@ -232,9 +232,14 @@ If the **distroFilter** tag is used, an error is reported during compilation on 
 **Adaptation Guide**<br>
 Replace **distroFilter** with **distributionFilter** in the configuration file.
 
-## cl.bundlemanager.20 Changed standard of launchType to multiton in the module.json Configuration File
-
+## cl.bundlemanager.20 Changed standard of launchType to multiton in the module.json File
 The **standard** mode of the [launchType](../../../application-dev/quick-start/module-configuration-file.md) tag in the **module.json** file is changed to **multiton**.
 
 **Adaptation Guide**<br>
-Replace **standard** of **launchType** to **multiton** in the configuration file.
+Replace **standard** of **launchType** with **multiton** in the configuration file.
+
+## cl.bundlemanager.20 Changed visible of abilities to exported in the module.json File
+The **visible** tag under [abilities](../../../application-dev/quick-start/module-configuration-file.md) in the [module.json] file is changed to **exported**, indicating whether the ability supports export and can be used by other ability.
+
+**Adaptation Guide**<br>
+Replace **visible** under **abilities** with **exported** in the configuration file.

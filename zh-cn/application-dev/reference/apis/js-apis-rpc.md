@@ -2396,7 +2396,7 @@ readException(): void
   ```ts
   // 仅FA模型需要导入@ohos.ability.featureAbility
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -2414,10 +2414,10 @@ readException(): void
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -4856,9 +4856,9 @@ readException(): void
   Stage模型的应用在获取服务前需要先获取context，具体方法可参考[获取context](#获取context)
 
   ```ts
-  // 仅FA模型需要导入@ohos.ability.;featureAbility
+  // 仅FA模型需要导入@ohos.ability.featureAbility
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -4876,10 +4876,10 @@ readException(): void
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -5450,6 +5450,7 @@ marshalling(dataOut: MessageSequence): boolean
   | 类型    | 说明                             |
   | ------- | -------------------------------- |
   | boolean | true：封送成功，false：封送失败。|
+
 **示例：**
 
   ```ts
@@ -5555,6 +5556,7 @@ marshalling(dataOut: MessageParcel): boolean
   | 类型    | 说明                              |
   | ------- | --------------------------------  |
   | boolean | true：封送成功，false：封送失败。 |
+
 **示例：**
 
   ```ts
@@ -5671,7 +5673,7 @@ asObject(): IRemoteObject
   ```ts
   // 仅FA模型需要导入@ohos.ability.featureAbility
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -5689,10 +5691,10 @@ asObject(): IRemoteObject
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6115,7 +6117,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   ```ts
   // 仅FA模型需要导入@ohos.ability.featureAbility
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6133,10 +6135,10 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6191,7 +6193,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   ```ts
   // 仅FA模型需要导入@ohos.ability.featureAbility
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6209,10 +6211,10 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6275,7 +6277,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   ```ts
   // 仅FA模型需要导入@ohos.ability.featureAbility
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6293,10 +6295,10 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6352,7 +6354,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
   ```ts
   // 仅FA模型需要导入@ohos.ability.featureAbility
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6383,10 +6385,10 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
       result.data.reclaim();
       result.reply.reclaim();
   }
-  
+
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6433,7 +6435,7 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
   ```ts
   // 仅FA模型需要导入@ohos.ability.featureAbility
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6464,10 +6466,10 @@ sendRequest(code: number, data: MessageParcel, reply: MessageParcel, options: Me
       result.data.reclaim();
       result.reply.reclaim();
   }
-  
+
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6517,7 +6519,7 @@ getLocalInterface(interface: string): IRemoteBroker
   ```ts
   // 仅FA模型需要导入@ohos.ability.featureAbility
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6535,10 +6537,10 @@ getLocalInterface(interface: string): IRemoteBroker
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6583,7 +6585,7 @@ queryLocalInterface(interface: string): IRemoteBroker
   ```ts
   // 仅FA模型需要导入@ohos.ability.featureAbility
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6601,10 +6603,10 @@ queryLocalInterface(interface: string): IRemoteBroker
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6645,7 +6647,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   ```ts
   // 仅FA模型需要导入@ohos.ability.featureAbility
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6663,10 +6665,10 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6687,7 +6689,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   }
   ```
 
-### addDeathRecippient<sup>(deprecated)</sup>
+### addDeathRecipient<sup>(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[registerDeathRecipient](#registerdeathrecipient9)类替代。
 
@@ -6717,7 +6719,7 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   ```ts
   // 仅FA模型需要导入@ohos.ability.featureAbility
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6735,14 +6737,14 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
-  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的addDeathRecippient接口方法新增死亡回调
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的addDeathRecipient接口方法新增死亡回调
 
   ```ts
   class MyDeathRecipient {
@@ -6784,7 +6786,7 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
   ```ts
   // 仅FA模型需要导入@ohos.ability.featureAbility
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6802,10 +6804,10 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6819,8 +6821,8 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
   }
   let deathRecipient = new MyDeathRecipient();
   try {
-      proxy.registerDeathRecippient(deathRecipient, 0);
-      proxy.unregisterDeathRecippient(deathRecipient, 0);
+      proxy.registerDeathRecipient(deathRecipient, 0);
+      proxy.unregisterDeathRecipient(deathRecipient, 0);
   } catch(error) {
       console.info("proxy register deathRecipient fail, errorCode " + error.code);
       console.info("proxy register deathRecipient fail, errorMessage " + error.message);
@@ -6857,7 +6859,7 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   ```ts
   // 仅FA模型需要导入@ohos.ability.featureAbility
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6875,10 +6877,10 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6891,7 +6893,7 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
       }
   }
   let deathRecipient = new MyDeathRecipient();
-  proxy.addDeathRecippient(deathRecipient, 0);
+  proxy.addDeathRecipient(deathRecipient, 0);
   proxy.removeDeathRecipient(deathRecipient, 0);
   ```
 
@@ -6925,7 +6927,7 @@ getDescriptor(): string
   ```ts
   // 仅FA模型需要导入@ohos.ability.featureAbility
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6943,10 +6945,10 @@ getDescriptor(): string
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
   上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的getDescriptor接口方法获取对象的接口描述符
@@ -6984,7 +6986,7 @@ getInterfaceDescriptor(): string
   ```ts
   // 仅FA模型需要导入@ohos.ability.featureAbility
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -7002,10 +7004,10 @@ getInterfaceDescriptor(): string
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -7037,7 +7039,7 @@ isObjectDead(): boolean
   ```ts
   // 仅FA模型需要导入@ohos.ability.featureAbility
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -7055,10 +7057,10 @@ isObjectDead(): boolean
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // FA模型使用此方法连接服务
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -7093,9 +7095,9 @@ MessageOption构造函数。
 
 **参数：**
 
-  | 参数名    | 类型   | 必填 | 说明                                   |
-  | --------- | ------ | ---- | -------------------------------------- |
-  | syncFlags | number | 否   | 同步调用或异步调用标志。默认同步调用。 |
+| 参数名 | 类型    | 必填 | 说明                                   |
+| ------ | ------- | ---- | -------------------------------------- |
+| async  | boolean | 否   | 同步调用或异步调用标志。默认同步调用。 |
 
 
 **示例：**
@@ -7144,7 +7146,7 @@ isAsync(): boolean;
 
   | 类型    | 说明                                     |
   | ------- | ---------------------------------------- |
-  | boolean | true：同步调用成功，false：异步调用成功。|
+  | boolean | true：异步调用成功，false：同步调用成功。|
 
 **示例：**
 
@@ -7823,7 +7825,7 @@ sendMessageRequest(code: number, data: MessageSequence, reply: MessageSequence, 
 
   | 类型                         | 说明                                          |
   | ---------------------------- | --------------------------------------------- |
-  | Promise&lt;RequestResult&gt; | 返回一个期约，兑现值是sendRequestResult实例。 |
+  | Promise&lt;RequestResult&gt; | 返回一个期约，兑现值是RequestResult实例。     |
 
 **示例：**
 
@@ -9099,30 +9101,31 @@ readFromAshmem(size: number, offset: number): number[]
 
  ```ts
   import Ability from '@ohos.app.ability.UIAbility';
+
   export default class MainAbility extends Ability {
-    onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate");
-        globalThis.context = this.context;
-    }
-    onDestroy() {
-        console.log("[Demo] MainAbility onDestroy");
-    }
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.log("[Demo] MainAbility onWindowStageCreate");
-    }
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("[Demo] MainAbility onWindowStageDestroy");
-    }
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("[Demo] MainAbility onForeground");
-    }
-    onBackground() {
-        // Ability has back to background
-        console.log("[Demo] MainAbility onBackground");
-    }
+      onCreate(want, launchParam) {
+          console.log("[Demo] MainAbility onCreate");
+          globalThis.context = this.context;
+      }
+      onDestroy() {
+          console.log("[Demo] MainAbility onDestroy");
+      }
+      onWindowStageCreate(windowStage) {
+          // Main window is created, set main page for this ability
+          console.log("[Demo] MainAbility onWindowStageCreate");
+      }
+      onWindowStageDestroy() {
+          // Main window is destroyed, release UI related resources
+          console.log("[Demo] MainAbility onWindowStageDestroy");
+      }
+      onForeground() {
+          // Ability has brought to foreground
+          console.log("[Demo] MainAbility onForeground");
+      }
+      onBackground() {
+          // Ability has back to background
+          console.log("[Demo] MainAbility onBackground");
+      }  
   };
  ```
 

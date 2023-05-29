@@ -1,40 +1,43 @@
-## 如何通过显示动画实现书籍翻页动效
+# 如何通过显示动画实现书籍翻页动效
 
-### 场景介绍
+## 场景介绍
 
-翻页动效是应用开发中常见的动效场景，常见的如书籍翻页、日历翻页等。本文就为大家举例讲解如何通过ArkUI提供的显示动画接口[animateTo](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/reference/arkui-ts/ts-explicit-animation.md/)实现书籍翻页的效果。
+翻页动效是应用开发中常见的动效场景，常见的如书籍翻页、日历翻页等。本文就为大家举例讲解如何通过ArkUI提供的显示动画接口[animateTo](../application-dev/reference/arkui-ts/ts-explicit-animation.md)实现书籍翻页的效果。
 
-### 效果呈现
+## 效果呈现
 
 本例最终实现效果如下：
 
 ![翻页动效示例图](figures/book-flip-animation.gif)
 
-### 环境要求
+## 环境要求
 
-- IDE：DevEco Studio 3.1.1.301
-- SDK：3.2.2.6（API9）
+- IDE：DevEco Studio 3.1 Beta1
+- SDK：Ohos_sdk_public 3.2.11.9 (API Version 9 Release)
 
-### 实现思路
+## 实现思路
 
-如图，我们分上下两层、左右两侧建立4个文本组件（下文用A、B、C、D代称），左右两侧分别代表打开书籍的左右两面，上下两层堆叠放置。
+如图，分上下两层、左右两侧建立4个文本组件（下文用A、B、C、D代称），左右两侧分别代表打开书籍的左右两面，上下两层堆叠放置。
 当B沿旋转轴旋转180度覆盖在A上时，就体现为翻页效果。一个翻页动作的完成包括以下几步：
-1、B沿旋转轴旋转180度。
-2、B旋转时，D会在右侧显示出来，作为书籍的下一页，此时D承载的内容要变为下一页的内容。
-3、B旋转到左侧后，A承载的内容变为B的内容。
-4、由于A和B互为镜像，所以A显示为B的内容后，需要以A的中间为轴旋转180度。
-5、B重新旋转到右边，其承载的内容变为下一页的内容。
+
+1. B沿旋转轴旋转180度。
+2. B旋转时，D会在右侧显示出来，作为书籍的下一页，此时D承载的内容要变为下一页的内容。
+3. B旋转到左侧后，A承载的内容变为B的内容。
+4. 由于A和B互为镜像，所以A显示为B的内容后，需要以A的中间为轴旋转180度。
+5. B重新旋转到右边，其承载的内容变为下一页的内容。
+
 ***说明：C用来占位，不需要做动作。***
 连续重复上述动作即可实现连续翻页动效。
 
 ![翻页动效](figures/book-flip-logic.png)
 
-### 开发步骤
+## 开发步骤
 
-1. 创建文本组件
-    首先，我们看到动效中用到了4个文本组件，我们可以定义一个文本组件，然后对其进行重复调用。创建时我们为其添加[rotate](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/reference/arkui-ts/ts-universal-attributes-transformation.md/)属性，用来控制组件的旋转。
-    由于各组件旋转的角度和旋转中心不同，需要父组件在调用时传入对应的参数，所以我们为对应变量添加[@Prop](https://docs.openharmony.cn/pages/v3.1/zh-cn/application-dev/ui/ts-component-states-prop.md/)装饰器，用来控制变量传递。具体代码如下：
-    ```
+1. 创建文本组件。
+
+    动效中用到了4个文本组件，因此可以先定义一个文本组件，然后对其进行重复调用。同时为文本组件添加[rotate](../application-dev/reference/arkui-ts/ts-universal-attributes-transformation.md)属性，用来控制组件的旋转。
+    由于各组件旋转的角度和旋转中心不同，需要父组件在调用时传入对应的参数，所以需要为对应变量添加[@Prop](../application-dev/quick-start/arkts-prop.md)装饰器，用来控制变量传递。具体代码如下：
+    ```ts
     @Component
     struct BookCard{
       // 为变量添加@Prop装饰器，用于接收父组件的动态传参
@@ -65,9 +68,10 @@
       }
     }
     ```
-2. 创建父组件框架
-    由于文本组件分为上下两层，所以我们在父组件中采用[Stack](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/reference/arkui-ts/ts-container-stack.md/)组件进行层叠布局。同时使用[Divider](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-divider.md/)组件作为书籍两个页面间的分隔线。具体代码如下：
-    ```
+2. 创建父组件框架。
+
+    由于文本组件分为上下两层，所以在父组件中采用[Stack](../application-dev/reference/arkui-ts/ts-container-stack.md)组件进行层叠布局。同时使用[Divider](../application-dev/reference/arkui-ts/ts-basic-components-divider.md)组件作为书籍两个页面间的分隔线。具体代码如下：
+    ```ts
     @Entry
     @Component
     struct BookAnimation {
@@ -100,14 +104,14 @@
     }
     ```
 
-3. 添加翻页动效
+3. 添加翻页动效。
 
-    最后我们通过以下几点来为静态的组件添加动效：
+    最后通过以下几点来为静态的组件添加动效：
     - 根据**实现思路**章节的分析，在父组件中定义对应的变量，并在调用子组件时分别传入子组件。
     - 自定义book_animate函数，在其中使用animateTo方法添加动画效果，同时控制动画的时长，以及动画过程中各元素状态的改变。
-    - 在[aboutToAppear](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/ui/ui-ts-custom-component-lifecycle-callbacks.md/)方法中，使用[setInterval](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/reference/apis/js-apis-timer.md/)方法重复调用book_animate函数，以实现连续翻页动效。
+    - 在[aboutToAppear](../application-dev/reference/arkui-ts/ts-custom-component-lifecycle.md#abouttoappear)方法中，使用[setInterval](../application-dev/reference/apis/js-apis-timer.md)方法重复调用book_animate函数，以实现连续翻页动效。
     具体代码如下：
-    ```
+    ```ts
     @Entry
     @Component
     struct BookAnimation {
@@ -175,11 +179,11 @@
       }
     }
     ```
-    通过以上步骤我们就可以实现翻页动效了。
+    通过以上步骤就可以实现翻页动效了。
 
-### 完整代码
+## 完整代码
 示例完整代码如下：
-```
+```ts
 @Component
 struct BookCard{
   @Prop num:number

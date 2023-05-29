@@ -43,7 +43,7 @@ onPageHide?(): void
 
 onBackPress?(): void
 
-当用户点击返回按钮时触发，仅\@Entry装饰的自定义组件生效。返回true表示页面自己处理返回逻辑，不进行页面路由，返回false表示使用默认的路由返回逻辑。不设置返回值按照false处理。
+当用户点击返回按钮时触发，仅\@Entry装饰的自定义组件生效。
 
 
 ```ts
@@ -113,6 +113,63 @@ onMeasure?(children: Array&lt;LayoutChild&gt;, constraint: ConstraintSizeOptions
 | children   | Array&lt;[LayoutChild](#layoutchild9)&gt; | 子组件布局信息。         |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 父组件constraint信息。 |
 
+## onRecycle<sup>10+</sup>
+
+onRecycle?(params: { [key: string]: unknown }): void
+
+当一个可复用的自定义组件从复用缓存中重新加入到节点树时，触发onRecycle生命周期回调，并将组件的构造参数传递给onRecycle。
+
+从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**参数：**
+
+| 参数名 | 类型                       | 说明                 |
+| ------ | -------------------------- | -------------------- |
+| params | { [key: string]: unknown } | 自定义组件的构造参数 |
+
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+  @State switch: boolean = true
+
+  build() {
+    Column() {
+      Button(this.message)
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+        .onClick(() => {
+          this.switch = !this.switch
+        })
+      if (this.switch) {
+        Child()
+      }
+    }
+    .height("100%")
+    .width('100%')
+  }
+}
+
+@Recycle
+@Component
+struct Child {
+  onRecycle(params) {
+    console.info("Recycle Child")
+  }
+
+  build() {
+    Column() {
+      Text("Child Component")
+        .fontSize(20)
+    }
+    .borderWidth(2)
+    .height(100)
+  }
+}
+```
 
 ## LayoutChild<sup>9+</sup>
 

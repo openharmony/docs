@@ -114,6 +114,19 @@ struct ParentComponent {
   }
   ```
 
+- \@Recycle：\@Recycle装饰的自定义组件具备可复用能力
+
+  > **说明：**
+  >
+  > 从API version 10开始，该装饰器支持在ArkTS卡片中使用。
+
+  ```ts
+  @Recycle
+  @Component
+  struct MyComponent {
+  }
+  ```
+
 
 ## 成员函数/变量
 
@@ -122,7 +135,7 @@ struct ParentComponent {
 
 - 不支持静态函数。
 
-- 成员函数的访问始终是私有的，仅能定义private。定义访问权限是可选的，其他访问权限会带来语法错误。
+- 成员函数的访问始终是私有的。
 
 
 自定义组件可以包含成员变量，成员变量具有以下约束：

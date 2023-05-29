@@ -36,7 +36,7 @@ MenuItem(value?: MenuItemOptions| CustomBuilder)
 
 | 名称                           | 参数类型                                                     | 描述                                                         |
 | ------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| selected                       | boolean                                                      | 设置菜单项是否选中。<br />默认值：false                      |
+| selected                       | boolean                                                      | 设置菜单项是否选中。<br />默认值：false<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | selectIcon                     | boolean \| [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> | 当菜单项被选中时，是否显示被选中的图标。<br/>默认值：false<br/>true: 菜单项被选中时，显示默认的对勾图标<br/>false: 即使菜单项被选中也不显示图标<br/>ResourceStr: 菜单项被选中时，显示指定的图标 |
 | contentFont<sup>10+</sup>      | [Font](ts-types.md#font)                                     | 设置菜单项中内容信息的字体样式。                             |
 | contentFontColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor)                   | 设置菜单项中内容信息的字体颜色。                             |

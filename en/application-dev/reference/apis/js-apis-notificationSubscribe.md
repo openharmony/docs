@@ -12,8 +12,6 @@ The **notificationSubscribe** module provides APIs for notification subscription
 import notificationSubscribe from '@ohos.notificationSubscribe';
 ```
 
-
-
 ## NotificationSubscribe.subscribe
 
 subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, callback: AsyncCallback\<void\>): void
@@ -43,6 +41,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
 
 **Example**
 
@@ -95,6 +94,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
 
 **Example**
 
@@ -145,6 +145,7 @@ For details about the error codes, see [Notification Error Codes](../errorcodes/
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
+| 1600012  | No memory space.                    |
 
 **Example**
 
@@ -269,7 +270,7 @@ Removes a notification for a specified application. This API uses an asynchronou
 | Name           | Type                               | Mandatory| Description                |
 | --------------- |   ----------------------------------| ---- | -------------------- |
 | bundle          | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)       | Yes  | Bundle information of the application.          |
-| notificationKey | [NotificationKey](js-apis-notification.md#notificationkey) | Yes  | Notification key.            |
+| notificationKey | [NotificationKey](#notificationkey) | Yes  | Notification key.            |
 | reason          | [RemoveReason](#removereason)      | Yes  | Reason for removing the notification.        |
 | callback        | AsyncCallback\<void\>               | Yes  | Callback used to return the result.|
 
@@ -325,7 +326,7 @@ Removes a notification for a specified application. This API uses a promise to r
 | Name           | Type           | Mandatory| Description      |
 | --------------- | --------------- | ---- | ---------- |
 | bundle          | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)    | Yes  | Bundle information of the application.|
-| notificationKey | [NotificationKey]((js-apis-notification.md#notificationkey)) | Yes  | Notification key.  |
+| notificationKey | [NotificationKey](#notificationkey) | Yes  | Notification key.  |
 | reason          | [RemoveReason](#removereason) | Yes  | Reason for removing the notification.        |
 
 **Error codes**
@@ -350,7 +351,7 @@ let notificationKey = {
     id: 0,
     label: "label",
 };
-let reason = NotificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
+let reason = notificationSubscribe.RemoveReason.CLICK_REASON_REMOVE;
 notificationSubscribe.remove(bundle, notificationKey, reason).then(() => {
 	console.info("remove success");
 });
@@ -372,7 +373,7 @@ Removes a specified notification. This API uses an asynchronous callback to retu
 
 | Name    | Type                 | Mandatory| Description                |
 | -------- | --------------------- | ---- | -------------------- |
-| hashCode | string                | Yes  | Unique notification ID. It is the value of **hashCode** in the [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) object of [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata) in the [onConsume](#onconsume) callback. |
+| hashCode | string                | Yes  | Unique notification ID. It is the **hashCode** in the [NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest) object of [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata) of the [onConsume](js-apis-inner-notification-notificationSubscriber.md#onConsume) callback.|
 | reason   | [RemoveReason](#removereason) | Yes  | Reason for removing the notification.        |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
@@ -399,7 +400,7 @@ function removeCallback(err) {
         console.info("remove success");
     }
 }
-let reason = NotificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
+let reason = notificationSubscribe.RemoveReason.CANCEL_REASON_REMOVE;
 notificationSubscribe.remove(hashCode, reason, removeCallback);
 ```
 
@@ -459,7 +460,7 @@ Removes all notifications for a specified application. This API uses an asynchro
 
 | Name    | Type                 | Mandatory| Description                        |
 | -------- | --------------------- | ---- | ---------------------------- |
-| bundle   | [BundleOption]((js-apis-inner-notification-notificationCommonDef.md#bundleoption))          | Yes  | Bundle information of the application.                  |
+| bundle   | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption)        | Yes  | Bundle information of the application.                  |
 | callback | AsyncCallback\<void\> | Yes  | Callback used to return the result.|
 
 **Error codes**
@@ -486,7 +487,7 @@ function removeAllCallback(err) {
 let bundle = {
     bundle: "bundleName1",
 };
-NotificationSubscribe.removeAll(bundle, removeAllCallback);
+notificationSubscribe.removeAll(bundle, removeAllCallback);
 ```
 
 ## NotificationSubscribe.removeAll
@@ -547,7 +548,7 @@ Removes all notifications for a specified application. This API uses a promise t
 
 | Name  | Type        | Mandatory| Description      |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption]((js-apis-inner-notification-notificationCommonDef.md#bundleoption)) | No  | Bundle information of the application.|
+| bundle | [BundleOption](js-apis-inner-notification-notificationCommonDef.md#bundleoption) | No  | Bundle information of the application.|
 
 **Error codes**
 
@@ -615,7 +616,7 @@ let userId = 1;
 notificationSubscribe.removeAll(userId, removeAllCallback);
 ```
 
-## Notification.removeAll
+## NotificationSubscribe.removeAll
 
 removeAll(userId: number): Promise\<void>
 
@@ -660,359 +661,14 @@ let userId = 1;
 notificationSubscribe.removeAll(userId, removeAllCallback);
 ```
 
-## NotificationSubscriber
-
-Provides callbacks for receiving or removing notifications and serves as the input parameter of [subscribe](#notificationsubscribe).
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-### onConsume
-
-onConsume?: (data: [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)) => void
-
-Callback for receiving notifications.
+## NotificationKey
 
 **System capability**: SystemCapability.Notification.Notification
 
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| ------------ | ------------------------ | ---- | -------------------------- |
-| data | [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata) | Yes| Information about the notification received.|
-
-**Example**
-
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onConsumeCallback(data) {
-    console.info('===> onConsume in test');
-    let req = data.request;
-    console.info('===> onConsume callback req.id:' + req.id);
-};
-
-let subscriber = {
-    onConsume: onConsumeCallback
-};
-
-notificationSubscribe.subscribe(subscriber, subscribeCallback);
-```
-
-### onCancel
-
-onCancel?:(data: [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata)) => void
-
-Callback for canceling notifications.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| ------------ | ------------------------ | ---- | -------------------------- |
-| data | [SubscribeCallbackData](js-apis-notification.md#subscribecallbackdata) | Yes| Information about the notification to cancel.|
-
-**Example**
-
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onCancelCallback(data) {
-    console.info('===> onCancel in test');
-    let req = data.request;
-    console.info('===> onCancel callback req.id:' + req.id);
-}
-
-let subscriber = {
-    onCancel: onCancelCallback
-};
-
-notificationSubscribe.subscribe(subscriber, subscribeCallback);
-```
-
-### onUpdate
-
-onUpdate?:(data: [NotificationSortingMap](js-apis-notification.md#notificationsortingmap)) => void
-
-Callback for notification sorting updates.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| ------------ | ------------------------ | ---- | -------------------------- |
-| data | [NotificationSortingMap](js-apis-notification.md#notificationsortingmap)) | Yes| Latest notification sorting list.|
-
-**Example**
-
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onUpdateCallback(map) {
-    console.info('===> onUpdateCallback map:' + JSON.stringify(map));
-}
-
-let subscriber = {
-    onUpdate: onUpdateCallback
-};
-
-notificationSubscribe.subscribe(subscriber, subscribeCallback);
-```
-
-### onConnect
-
-onConnect?:() => void
-
-Callback for subscription.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Example**
-
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onConnectCallback() {
-    console.info('===> onConnect in test');
-}
-
-let subscriber = {
-    onConnect: onConnectCallback
-};
-
-notificationSubscribe.subscribe(subscriber, subscribeCallback);
-```
-
-### onDisconnect
-
-onDisconnect?:() => void
-
-Callback for unsubscription.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Example**
-
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-function unsubscribeCallback(err) {
-    if (err.code) {
-        console.error(`unsubscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("unsubscribeCallback");
-    }
-};
-
-function onConnectCallback() {
-    console.info('===> onConnect in test');
-}
-function onDisconnectCallback() {
-    console.info('===> onDisconnect in test');
-}
-
-let subscriber = {
-    onConnect: onConnectCallback,
-    onDisconnect: onDisconnectCallback
-};
-
-// The onConnect callback is invoked when subscription to the notification is complete.
-notificationSubscribe.subscribe(subscriber, subscribeCallback);
-// The onDisconnect callback is invoked when unsubscription to the notification is complete.
-notificationSubscribe.unsubscribe(subscriber, unsubscribeCallback);
-```
-
-### onDestroy
-
-onDestroy?:() => void
-
-Callback for service disconnection.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Example**
-
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onDestroyCallback() {
-    console.info('===> onDestroy in test');
-}
-
-let subscriber = {
-    onDestroy: onDestroyCallback
-};
-
-notificationSubscribe.subscribe(subscriber, subscribeCallback);
-```
-
-### onDoNotDisturbDateChange
-
-onDoNotDisturbDateChange?:(mode: notification.[DoNotDisturbDate](js-apis-notificationManager.md#donotdisturbdate)) => void
-
-Callback for DND time setting updates.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| ------------ | ------------------------ | ---- | -------------------------- |
-| mode | notification.[DoNotDisturbDate](js-apis-notificationManager.md#DoNotDisturbDate) | Yes| DND time setting updates.|
-
-**Example**
-
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onDoNotDisturbDateChangeCallback(mode) {
-    console.info('===> onDoNotDisturbDateChange:' + mode);
-}
-
-let subscriber = {
-    onDoNotDisturbDateChange: onDoNotDisturbDateChangeCallback
-};
-
-notificationSubscribe.subscribe(subscriber, subscribeCallback);
-```
-
-
-### onEnabledNotificationChanged
-
-onEnabledNotificationChanged?:(callbackData: [EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata)) => void
-
-Listens for the notification enabled status changes. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name| Type| Mandatory| Description|
-| ------------ | ------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<[EnabledNotificationCallbackData](js-apis-notification.md#enablednotificationcallbackdata)\> | Yes| Callback used to return the result.|
-
-**Example**
-
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onEnabledNotificationChangedCallback(callbackData) {
-    console.info("bundle: ", callbackData.bundle);
-    console.info("uid: ", callbackData.uid);
-    console.info("enable: ", callbackData.enable);
-};
-
-let subscriber = {
-    onEnabledNotificationChanged: onEnabledNotificationChangedCallback
-};
-
-notificationSubscribe.subscribe(subscriber, subscribeCallback);
-```
-
-### onBadgeChanged<sup>10+</sup>
-
- onBadgeChanged?:(data: [BadgeNumberCallbackData](#badgenumbercallbackdata)) => void
-
-Listens for the change of the notification badge number.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name  | Type                                                        | Mandatory| Description                      |
-| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| callback | AsyncCallback\<[BadgeNumberCallbackData](#badgenumbercallbackdata)\> | Yes  | Callback used to return the result.|
-
-**Example**
-
-```javascript
-function subscribeCallback(err) {
-    if (err) {
-        console.error(`subscribe failed, code is ${err.code}, message is ${err.message}`);
-    } else {
-        console.info("subscribeCallback");
-    }
-};
-
-function onBadgeChangedCallback(data) {
-    console.info("bundle: ", data.bundle);
-    console.info("uid: ", data.uid);
-    console.info("badgeNumber: ", data.badgeNumber);
-};
-
-let subscriber = {
-    onBadgeChanged: onBadgeChangedCallback
-};
-
-notificationSubscribe.subscribe(subscriber, subscribeCallback);
-```
-
+| Name | Type  | Read-only| Mandatory| Description    |
+| ----- | ------ | ---- | --- | -------- |
+| id    | number | No | Yes | Notification ID.  |
+| label | string | No | No | Notification label.|
 
 ## RemoveReason
 
@@ -1024,15 +680,3 @@ notificationSubscribe.subscribe(subscriber, subscribeCallback);
 | -------------------- | --- | -------------------- |
 | CLICK_REASON_REMOVE  | 1   | The notification is removed after a click on it.   |
 | CANCEL_REASON_REMOVE | 2   | The notification is removed by the user.        |
-
-## BadgeNumberCallbackData<sup>10+</sup>
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-| Name       | Type  | Readable| Writable| Description        |
-| ----------- | ------ | ---- | ---- | ------------ |
-| bundle      | string | Yes  | No  | Bundle name of the application.|
-| uid         | number | Yes  | No  | UID of the application. |
-| badgeNumber | number | Yes  | No  | Notification badge number.  |

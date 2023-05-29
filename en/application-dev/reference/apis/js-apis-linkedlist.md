@@ -198,7 +198,6 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```ts
 let linkedList = new LinkedList();
-let result1 = linkedList.has("squirrel");
 linkedList.add("squirrel");
 let result = linkedList.has("squirrel");
 ```
@@ -802,7 +801,7 @@ linkedList.add(2);
 linkedList.add(4);
 linkedList.add(5);
 linkedList.add(4);
-linkedList.getLast();
+let result = linkedList.getLast();
 ```
 
 ### [Symbol.iterator]

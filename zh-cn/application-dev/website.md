@@ -1,4 +1,5 @@
 # OpenHarmony应用开发文档
+
 - [应用开发导读](application-dev-guide.md)
 - 入门
   - 快速入门
@@ -12,7 +13,6 @@
       - 应用程序包结构
         - [Stage模型应用程序包结构](quick-start/application-package-structure-stage.md)
         - [FA模型应用程序包结构](quick-start/application-package-structure-fa.md)
-        - [HAR包结构](quick-start/har-structure.md)
       - 应用程序包多HAP机制
         - [多HAP机制设计目标](quick-start/multi-hap-objective.md)
         - [多HAP构建视图](quick-start/multi-hap-build-view.md)
@@ -20,6 +20,16 @@
         - [多HAP使用规则](quick-start/multi-hap-rules.md)
         - [多HAP运行机制及数据通信方式](quick-start/multi-hap-principles.md)
       - [应用程序包安装和卸载流程](quick-start/application-package-install-uninstall.md)
+      - [应用程序包更新流程](quick-start/application-package-update.md)
+      - 共享包
+        - [共享包概述](quick-start/shared-guide.md)
+        - [HAR](quick-start/har-package.md)
+        - HSP
+          - [应用内HSP开发指导](quick-start/in-app-hsp.md)
+          - [应用间HSP开发指导（仅对系统应用开放）](quick-start/cross-app-hsp.md)
+      - 应用程序包快速修复
+        - [快速修复概述](quick-start/quickfix-principles.md)
+        - [快速修复调试指导](quick-start/quickfix-debug.md)
     - 应用配置文件（Stage模型）
       - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
       - [app.json5配置文件](quick-start/app-configuration-file.md)
@@ -32,20 +42,45 @@
   - [资源分类与访问](quick-start/resource-categories-and-access.md)
   - 学习ArkTS语言
     - [初识ArkTS语言](quick-start/arkts-get-started.md)
-    - ArkTS语法（声明式UI）
-      - [基本UI描述](quick-start/arkts-basic-ui-description.md)
-      - 状态管理
-        - [基本概念](quick-start/arkts-state-mgmt-concepts.md)
-        - [页面级变量的状态管理](quick-start/arkts-state-mgmt-page-level.md)
-        - [应用级变量的状态管理](quick-start/arkts-state-mgmt-application-level.md)
-      - [动态构建UI元素](quick-start/arkts-dynamic-ui-elememt-building.md)
-      - [渲染控制](quick-start/arkts-rendering-control.md)
-      - [使用限制与扩展](quick-start/arkts-restrictions-and-extensions.md)
+    - 基本语法
+      - [基本语法概述](quick-start/arkts-basic-syntax-overview.md)
+      - [声明式UI描述](quick-start/arkts-declarative-ui-description.md)
+      - 自定义组件
+        - [创建自定义组件](quick-start/arkts-create-custom-components.md)
+        - [页面和自定义组件生命周期](quick-start/arkts-page-custom-components-lifecycle.md)
+      - [\@Builder：自定义构建函数](quick-start/arkts-builder.md)
+      - [\@BuilderParam：引用\@Builder函数](quick-start/arkts-builderparam.md)
+      - [\@Styles：定义组件重用样式](quick-start/arkts-style.md)
+      - [\@Extend：定义扩展组件样式](quick-start/arkts-extend.md)
+      - [stateStyles：多态样式](quick-start/arkts-statestyles.md)
+    - 状态管理
+      - [状态管理概述](quick-start/arkts-state-management-overview.md)
+      - 管理组件拥有的状态
+        - [\@State：组件内状态](quick-start/arkts-state.md)
+        - [\@Prop：父子单向同步](quick-start/arkts-prop.md)
+        - [\@Link：父子双向同步](quick-start/arkts-link.md)
+        - [\@Provide和\@Consume：与后代组件双向同步](quick-start/arkts-provide-and-consume.md)
+        - [\@Observed和\@ObjectLink：嵌套类对象属性变化](quick-start/arkts-observed-and-objectlink.md)
+      - 管理应用拥有的状态
+        - [管理应用拥有的状态概述](quick-start/arkts-application-state-management-overview.md)
+        - [LocalStorage：页面级UI状态存储](quick-start/arkts-localstorage.md)
+        - [AppStorage：应用全局的UI状态存储](quick-start/arkts-appstorage.md)
+        - [PersistentStorage：持久化存储UI状态](quick-start/arkts-persiststorage.md)
+        - [Environment：设备环境查询](quick-start/arkts-environment.md)
+      - 其他状态管理
+        - [其他状态管理概述](quick-start/arkts-other-state-mgmt-functions-overview.md)
+        - [\@Watch：状态变量更改通知](quick-start/arkts-watch.md)
+        - [$$语法：内置组件双向同步](quick-start/arkts-two-way-sync.md)
+    - 渲染控制
+      - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
+      - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
+      - [ForEach：循环渲染](quick-start/arkts-rendering-control-foreach.md)
+      - [LazyForEach：数据懒加载](quick-start/arkts-rendering-control-lazyforeach.md)
 - 开发
   - 应用模型
     - 应用模型概述
-      - [OpenHarmony应用模型的构成要素](application-models/application-model-composition.md)
-      - [OpenHarmony应用模型解读](application-models/application-model-description.md)
+      - [应用模型的构成要素](application-models/application-model-composition.md)
+      - [应用模型解读](application-models/application-model-description.md)
     - Stage模型开发指导
       - [Stage模型开发概述](application-models/stage-model-development-overview.md)
       - Stage模型应用组件
@@ -60,41 +95,74 @@
         - ExtensionAbility组件
           - [ExtensionAbility组件概述](application-models/extensionability-overview.md)
           - [ServiceExtensionAbility](application-models/serviceextensionability.md)
-          - [DataShareExtensionAbility（仅对系统应用开放）](application-models/datashareextensionability.md)
-          - [FormExtensionAbility（服务卡片）](application-models/widget-development-stage.md)
           - [AccessibilityExtensionAbility](application-models/accessibilityextensionability.md)
+          - [EnterpriseAdminExtensionAbility](application-models/enterprise-extensionAbility.md)
           - [InputMethodExtensionAbility](application-models/inputmethodextentionability.md)
           - [WindowExtensionAbility](application-models/windowextensionability.md)
+        - 服务卡片开发指导（Stage模型）
+          - [服务卡片概述](application-models/service-widget-overview.md)
+          - 开发基于ArkTS UI的卡片
+            - [ArkTS卡片运行机制](application-models/arkts-ui-widget-working-principles.md)
+            - [ArkTS卡片相关模块](application-models/arkts-ui-widget-modules.md)
+            - ArkTS卡片开发指导
+              - [创建一个ArkTS卡片](application-models/arkts-ui-widget-creation.md)
+              - [配置卡片的配置文件](application-models/arkts-ui-widget-configuration.md)
+              - [卡片生命周期管理](application-models/arkts-ui-widget-lifecycle.md)
+              - 开发卡片页面
+                - [卡片页面能力说明](application-models/arkts-ui-widget-page-overview.md)
+                - [卡片使用动效能力](application-models/arkts-ui-widget-page-animation.md)
+                - [卡片使用自定义绘制能力](application-models/arkts-ui-widget-page-custom-drawing.md)
+              - 开发卡片事件
+                - [卡片事件能力说明](application-models/arkts-ui-widget-event-overview.md)
+                - [使用router事件跳转到指定UIAbility](application-models/arkts-ui-widget-event-router.md)
+                - [使用call事件拉起指定UIAbility到后台](application-models/arkts-ui-widget-event-call.md)
+                - [通过message事件刷新卡片内容](application-models/arkts-ui-widget-event-formextensionability.md)
+                - [通过router或call事件刷新卡片内容](application-models/arkts-ui-widget-event-uiability.md)
+              - 卡片数据交互
+                - [卡片数据交互说明](application-models/arkts-ui-widget-interaction-overview.md)
+                - [定时刷新和定点刷新](application-models/arkts-ui-widget-update-by-time.md)
+                - [刷新本地图片和网络图片](application-models/arkts-ui-widget-image-update.md)
+                - [根据卡片状态刷新不同内容](application-models/arkts-ui-widget-update-by-status.md)
+                - [使用方刷新卡片内容（仅对系统应用开放）](application-models/arkts-ui-widget-content-update.md)
+          - [开发基于JS UI的卡片](application-models/js-ui-widget-development.md)
+          - [Stage模型服务卡片相关实例](application-models/service-widget-development-samples.md)
         - [AbilityStage组件容器](application-models/abilitystage.md)
         - [应用上下文Context](application-models/application-context-stage.md)
         - 信息传递载体Want
           - [Want概述](application-models/want-overview.md)
           - [显式Want与隐式Want匹配规则](application-models/explicit-implicit-want-mappings.md)
           - [常见action与entities](application-models/actions-entities.md)
-          - [使用显式Want启动Ability](application-models/ability-startup-with-explicit-want.md)
+          - [使用显式Want启动应用组件](application-models/ability-startup-with-explicit-want.md)
           - [使用隐式Want打开网址](application-models/ability-startup-with-implicit-want.md)
           - [应用间使用Want分享数据](application-models/data-share-via-want.md)
-        - [组件启动规则](application-models/component-startup-rules.md)
+        - [组件启动规则（Stage模型）](application-models/component-startup-rules.md)
         - 应用组件跨设备交互（流转）
           - [流转概述](application-models/inter-device-interaction-hop-overview.md)
           - [跨端迁移（仅对系统应用开放）](application-models/hop-cross-device-migration.md)
           - [多端协同（仅对系统应用开放）](application-models/hop-multi-device-collaboration.md)
-      - 进程间通信
-        - [进程模型](application-models/process-model-stage.md)
+        - [订阅系统环境变量的变化](application-models/subscribe-system-environment-variable-changes.md)
+      - 了解进程模型
+        - [进程模型概述](application-models/process-model-stage.md)
         - 公共事件
           - [公共事件简介](application-models/common-event-overview.md)
-          - [公共事件订阅](application-models/common-event-subscription.md)
+          - 公共事件订阅
+            - [公共事件订阅概述](application-models/common-event-subscription-overview.md)
+            - [动态订阅公共事件](application-models/common-event-subscription.md)
+            - [静态订阅公共事件（仅对系统应用开放）](application-models/common-event-static-subscription.md)
+            - [取消动态订阅公共事件](application-models/common-event-unsubscription.md)
           - [公共事件发布](application-models/common-event-publish.md)
-          - [公共事件取消订阅](application-models/common-event-unsubscription.md)
+          - [移除粘性公共事件](application-models/common-event-remove-sticky.md)
         - [后台服务](application-models/background-services.md)
-      - 线程间通信
-        - [线程模型](application-models/thread-model-stage.md)
+      - 了解线程模型
+        - [线程模型概述](application-models/thread-model-stage.md)
         - [使用Emitter进行线程间通信](application-models/itc-with-emitter.md)
         - [使用Worker进行线程间通信](application-models/itc-with-worker.md)
-      - 任务管理
-        - [任务管理场景介绍](application-models/mission-management-overview.md)
-        - [任务管理与启动模式](application-models/mission-management-launch-type.md)
+      - 任务（Mission）管理
+        - [任务（Mission）管理场景介绍](application-models/mission-management-overview.md)
+        - [任务（Mission）与启动模式](application-models/mission-management-launch-type.md)
         - [页面栈及任务链](application-models/page-mission-stack.md)
+        - [设置任务快照的图标和名称](application-models/mission-set-icon-name-for-task-snapshot.md)
+      - [Stage模型应用配置文件](application-models/config-file-stage.md)
     - FA模型开发指导
       - [FA模型开发概述](application-models/fa-model-development-overview.md)
       - FA模型应用组件
@@ -130,14 +198,16 @@
         - [服务卡片开发指导](application-models/widget-development-fa.md)
         - [FA模型的Context](application-models/application-context-fa.md)
         - [信息传递载体Want](application-models/want-fa.md)
-      - 进程间通信
-        - [进程模型](application-models/process-model-fa.md)
+        - [组件启动规则（FA模型）](application-models/component-startup-rules-fa.md)
+      - 了解进程模型
+        - [进程模型概述](application-models/process-model-fa.md)
         - [公共事件](application-models/common-event-fa.md)
         - [后台服务](application-models/rpc.md)
-      - 线程间通信
-        - [线程模型](application-models/thread-model-fa.md)
+      - 了解线程模型
+        - [线程模型概述](application-models/thread-model-fa.md)
         - [线程间通信](application-models/itc-fa-overview.md)
       - [任务管理](application-models/mission-management-fa.md)
+      - [FA模型应用配置文件](application-models/config-file-fa.md)
     - FA模型与Stage模型应用组件互通指导
       - [FA模型与Stage模型应用组件互通综述](application-models/fa-stage-interaction-overview.md)
       - [FA模型启动Stage模型UIAbility](application-models/start-uiability-from-fa.md)
@@ -173,34 +243,66 @@
         - [Storage接口切换](application-models/storage-switch.md)
   - UI开发
     - [方舟开发框架（ArkUI）概述](ui/arkui-overview.md)
-    - 基于ArkTS的声明式开发范式
-      - [概述](ui/ui-ts-overview.md)
-      - [声明式UI开发指导](ui/ui-ts-developing-intro.md)
-      - 声明式UI开发实例
-        - [创建简单视图](ui/ui-ts-creating-simple-page.md)
-        - 构建完整实例
-          - [构建食物数据模型](ui/ui-ts-building-data-model.md)
-          - [构建食物列表List布局](ui/ui-ts-building-category-list-layout.md)
-          - [构建食物分类Grid布局](ui/ui-ts-building-category-grid-layout.md)
-          - [页面跳转与数据传递](ui/ui-ts-page-redirection-data-transmission.md)
-        - 添加闪屏动画
-          - [绘制图像](ui/ui-ts-drawing-feature.md)
-          - [添加动画效果](ui/ui-ts-animation-feature.md)
-      - [常用组件说明](ui/ui-ts-components-intro.md)
-      - 常见布局开发指导
-        - 自适应布局
-          - [线性布局](ui/ui-ts-layout-linear.md)
-          - [层叠布局](ui/ui-ts-layout-stack.md)
-          - [弹性布局](ui/ui-ts-layout-flex.md)
-          - [网格布局](ui/ui-ts-layout-grid.md)
-        - 响应式布局
-          - [栅格布局](ui/ui-ts-layout-grid-container-new.md)
-          - [媒体查询](ui/ui-ts-layout-mediaquery.md)
-      - [自定义组件的生命周期](ui/ui-ts-custom-component-lifecycle-callbacks.md)
-      - [Web组件开发指导](ui/ui-ts-components-web.md)
-      - [性能提升的推荐方法](ui/ui-ts-performance-improvement-recommendation.md)
-    - 兼容JS的类Web开发范式
-      - [概述](ui/ui-js-overview.md)
+    - UI开发（ArkTS声明式开发范式）
+      - [UI开发（ArkTS声明式开发范式）概述](ui/arkts-ui-development-overview.md)
+      - 开发布局
+        - [布局概述](ui/arkts-layout-development-overview.md)
+        - 构建布局
+          - [线性布局](ui/arkts-layout-development-linear.md)
+          - [层叠布局](ui/arkts-layout-development-stack-layout.md)
+          - [弹性布局](ui/arkts-layout-development-flex-layout.md)
+          - [相对布局](ui/arkts-layout-development-relative-layout.md)
+          - [栅格布局](ui/arkts-layout-development-grid-layout.md)
+          - [媒体查询](ui/arkts-layout-development-media-query.md)
+          - [创建列表](ui/arkts-layout-development-create-list.md)
+          - [创建网格](ui/arkts-layout-development-create-grid.md)
+          - [创建轮播](ui/arkts-layout-development-create-looping.md)
+        - [改善布局性能](ui/arkts-layout-development-performance-boost.md)
+      - 添加组件
+        - 添加常用组件
+          - [按钮](ui/arkts-common-components-button.md)
+          - [单选框](ui/arkts-common-components-radio-button.md)
+          - [切换按钮](ui/arkts-common-components-switch.md)
+          - [进度条](ui/arkts-common-components-progress-indicator.md)
+          - [文本显示](ui/arkts-common-components-text-display.md)
+          - [文本输入](ui/arkts-common-components-text-input.md)
+          - [自定义弹窗](ui/arkts-common-components-custom-dialog.md)
+          - [视频播放](ui/arkts-common-components-video-player.md)
+          - [XComponent](ui/arkts-common-components-xcomponent.md)
+        - 添加气泡和菜单
+          - [气泡提示](ui/arkts-popup-and-menu-components-popup.md)
+          - [菜单](ui/arkts-popup-and-menu-components-menu.md)
+      - 设置页面路由和组件导航
+        - [页面路由](ui/arkts-routing.md)
+        - 组件导航
+          - [Navigation](ui/arkts-navigation-navigation.md)
+          - [Tabs](ui/arkts-navigation-tabs.md)
+      - 显示图形
+        - [显示图片](ui/arkts-graphics-display.md)
+        - [绘制几何图形](ui/arkts-geometric-shape-drawing.md)
+        - [使用画布绘制自定义图形](ui/arkts-drawing-customization-on-canvas.md)
+      - 使用动画
+        - [动画概述](ui/arkts-animation-overview.md)
+        - 页面内的动画
+          - [布局更新动画](ui/arkts-layout-update-animation.md)
+          - [组件内转场动画](ui/arkts-transition-animation-within-component.md)
+          - [弹簧曲线动画](ui/arkts-spring-animation.md)
+        - 页面间的动画
+          - [放大缩小视图](ui/arkts-zoom-animation.md)
+          - [页面转场动画](ui/arkts-page-transition-animation.md)
+      - 支持交互事件
+        - [交互事件概述](ui/arkts-event-overview.md)
+        - 使用通用事件
+          - [触屏事件](ui/arkts-common-events-touch-screen-event.md)
+          - [键鼠事件](ui/arkts-common-events-device-input-event.md)
+          - [焦点事件](ui/arkts-common-events-focus-event.md)
+        - 使用手势事件
+          - [绑定手势方法](ui/arkts-gesture-events-binding.md)
+          - [单一手势](ui/arkts-gesture-events-single-gesture.md)
+          - [组合手势](ui/arkts-gesture-events-combined-gestures.md)
+      - [性能提升的推荐方法](ui/arkts-performance-improvement-recommendation.md)
+    - UI开发（兼容JS的类Web开发范式）
+      - [UI开发（兼容JS的类Web开发范式）概述](ui/ui-js-overview.md)
       - 框架说明
         - [文件组织](ui/js-framework-file.md)
         - [js标签配置](ui/js-framework-js-tag.md)
@@ -271,10 +373,27 @@
             - [动画动效](ui/ui-js-animate-dynamic-effects.md)
             - [动画帧](ui/ui-js-animate-frame.md)
       - [自定义组件](ui/ui-js-custom-components.md)
+  - Web
+    - [Web组件概述](web/web-component-overview.md)
+    - [使用Web组件加载页面](web/web-page-loading-with-web-components.md)
+    - 设置基本属性和事件
+      - [设置深色模式](web/web-set-dark-mode.md)
+      - [上传文件](web/web-file-upload.md)
+      - [在新窗口中打开页面](web/web-open-in-new-window.md)
+      - [管理位置权限](web/web-geolocation-permission.md)
+    - 在应用中使用前端页面JavaScript
+      - [应用侧调用前端页面函数](web/web-in-app-frontend-page-function-invoking.md)
+      - [前端页面调用应用侧函数](web/web-in-page-app-function-invoking.md)
+      - [建立应用侧与前端页面数据通道](web/web-app-page-data-channel.md)
+    - [管理页面跳转及浏览记录导航](web/web-redirection-and-browsing-history-mgmt.md)
+    - [管理Cookie及数据存储](web/web-cookie-and-data-storage-mgmt.md)
+    - [自定义页面请求响应](web/web-resource-interception-request-mgmt.md)
+    - [使用Devtools工具调试前端页面](web/web-debugging-with-devtools.md)
   - 通知
     - [通知概述](notification/notification-overview.md)
     - [订阅通知（仅对系统应用开放）](notification/notification-subscription.md)
     - [使能通知开关](notification/notification-enable.md)
+    - [通知角标](notification/notification-badge.md)
     - 发布通知
       - [发布基础类型通知](notification/text-notification.md)
       - [发布进度条类型通知](notification/progress-bar-notification.md)
@@ -288,30 +407,64 @@
     - [WebGL开发概述](webgl/webgl-overview.md)
     - [WebGL开发指导](webgl/webgl-guidelines.md)
   - 媒体
+    - [媒体应用开发概述](media/media-application-overview.md)
     - 音视频
-      - [音频开发概述](media/audio-overview.md)
-      - [音频渲染开发指导](media/audio-renderer.md)
-      - [音频流管理开发指导](media/audio-stream-manager.md)
-      - [音频采集开发指导](media/audio-capturer.md)
-      - [OpenSL ES播放开发指导](media/opensles-playback.md)
-      - [OpenSL ES录音开发指导](media/opensles-capture.md)
-      - [音频焦点模式开发指导](media/audio-interruptmode.md)
-      - [音量管理开发指导](media/audio-volume-manager.md)
-      - [路由、设备管理开发指导](media/audio-routing-manager.md)
-      - [音视频播放器开发指导(推荐使用)](media/avplayer-playback.md)
-      - [音视频录制开发指导(推荐使用)](media/avrecorder.md)
-      - [音频播放开发指导(待停用)](media/audio-playback.md)
-      - [音频录制开发指导(待停用)](media/audio-recorder.md)
-      - [视频播放开发指导(待停用)](media/video-playback.md)
-      - [视频录制开发指导(待停用)](media/video-recorder.md)
-    - 媒体会话
-      - [AVSession开发概述](media/avsession-overview.md)
-      - [AVSession开发指导](media/avsession-guidelines.md)
+      - [音视频概述](media/av-overview.md)
+      - [AVPlayer和AVRecorder](media/avplayer-avrecorder-overview.md)
+      - 音频播放
+        - [音频播放开发概述](media/audio-playback-overview.md)
+        - [使用AVPlayer开发音频播放功能](media/using-avplayer-for-playback.md)
+        - [使用AudioRenderer开发音频播放功能](media/using-audiorenderer-for-playback.md)
+        - [使用OpenSL ES开发音频播放功能](media/using-opensl-es-for-playback.md)
+        - [使用TonePlayer开发音频播放功能（仅对系统应用开放）](media/using-toneplayer-for-playback.md)
+        - [多音频播放的并发策略](media/audio-playback-concurrency.md)
+        - [播放音量管理](media/volume-management.md)
+        - [音频播放流管理](media/audio-playback-stream-management.md)
+        - [音频输出设备管理](media/audio-output-device-management.md)
+        - [分布式音频播放（仅对系统应用开放）](media/distributed-audio-playback.md)
+      - 音频录制
+        - [音频录制开发概述](media/audio-recording-overview.md)
+        - [使用AVRecorder开发音频录制功能](media/using-avrecorder-for-recording.md)
+        - [使用AudioCapturer开发音频录制功能](media/using-audiocapturer-for-recording.md)
+        - [使用OpenSLES开发音频录制功能](media/using-opensl-es-for-recording.md)
+        - [管理麦克风](media/mic-management.md)
+        - [音频录制流管理](media/audio-recording-stream-management.md)
+        - [音频输入设备管理](media/audio-input-device-management.md)
+      - 音频通话
+        - [音频通话开发概述](media/audio-call-overview.md)
+        - [开发音频通话功能](media/audio-call-development.md)
+      - [视频播放](media/video-playback.md)
+      - [视频录制](media/video-recording.md)
+    - 媒体会话（仅对系统应用开放）
+      - [媒体会话概述](media/avsession-overview.md)
+      - 本地媒体会话
+        - [本地媒体会话概述](media/local-avsession-overview.md)
+        - [媒体会话提供方](media/using-avsession-developer.md)
+        - [媒体会话控制方](media/using-avsession-controller.md)
+      - 分布式媒体会话
+        - [分布式媒体会话概述](media/distributed-avsession-overview.md)
+        - [使用分布式媒体会话](media/using-distributed-avsession.md)
+    - 相机（仅对系统应用开放）
+      - [相机开发概述](media/camera-overview.md)
+      - 相机开发指导
+        - [开发准备](media/camera-preparation.md)
+        - [设备输入](media/camera-device-input.md)
+        - [会话管理](media/camera-session-management.md)
+        - [预览](media/camera-preview.md)
+        - [拍照](media/camera-shooting.md)
+        - [录像](media/camera-recording.md)
+        - [元数据](media/camera-metadata.md)
+      - 相机最佳实践
+        - [拍照实现方案](media/camera-shooting-case.md)
+        - [录像实现方案](media/camera-recording-case.md)
     - 图片
-      - [图片开发指导](media/image.md)
-    - 相机
-      - [相机开发指导](media/camera.md)
-      - [分布式相机开发指导](media/remote-camera.md)
+      - [图片开发概述](media/image-overview.md)
+      - [图片解码](media/image-decoding.md)
+      - 图片处理
+        - [图像变换](media/image-transformation.md)
+        - [位图操作](media/image-pixelmap-operation.md)
+      - [图片编码](media/image-encoding.md)
+      - [图片工具](media/image-tool.md)
   - 安全
     - 访问控制  
       - [访问控制（权限）开发概述](security/accesstoken-overview.md)
@@ -321,9 +474,10 @@
     - 用户认证
       - [用户认证开发概述](security/userauth-overview.md)
       - [用户认证开发指导](security/userauth-guidelines.md)
-    - 密钥管理
-      - [HUKS开发概述](security/huks-overview.md)
-      - [HUKS开发指导](security/huks-guidelines.md)
+    - 通用密钥库
+      - [通用密钥库开发概述](security/huks-overview.md)
+      - [通用密钥库开发指导](security/huks-guidelines.md)
+      - [通用密钥库密码算法规格](security/huks-appendix.md)
     - 加解密算法库框架
       - [加解密算法库框架概述](security/cryptoFramework-overview.md)
       - [加解密算法框架开发指导](security/cryptoFramework-guidelines.md)
@@ -340,10 +494,10 @@
       - [HTTP数据请求](connectivity/http-request.md)
       - [WebSocket连接](connectivity/websocket-connection.md)
       - [Socket连接](connectivity/socket-connection.md)
-      - [策略管理](connectivity/net-policy-management.md)
       - [网络共享](connectivity/net-sharing.md)
       - [以太网连接](connectivity/net-ethernet.md)
       - [网络连接管理](connectivity/net-connection-manager.md)
+      - [MDNS管理](connectivity/net-mdns.md)
     - IPC与RPC通信
       - [IPC与RPC通信概述](connectivity/ipc-rpc-overview.md)
       - [IPC与RPC通信开发指导](connectivity/ipc-rpc-development-guideline.md)
@@ -353,31 +507,53 @@
     - [拨打电话](telephony/telephony-call.md)
     - [短信服务](telephony/telephony-sms.md)
   - 数据管理
-    - 分布式数据服务
-      - [分布式数据服务概述](database/database-mdds-overview.md)
-      - [分布式数据服务开发指导](database/database-mdds-guidelines.md)
-    - 关系型数据库
-      - [关系型数据库概述](database/database-relational-overview.md)
-      - [关系型数据库开发指导](database/database-relational-guidelines.md)
-    - 首选项
-      - [首选项概述](database/database-preference-overview.md)
-      - [首选项开发指导](database/database-preference-guidelines.md)
-    - 分布式数据对象
-      - [分布式数据对象概述](database/database-distributedobject-overview.md)
-      - [分布式数据对象开发指导](database/database-distributedobject-guidelines.md)
-    - 数据共享
-      - [数据共享概述](database/database-datashare-overview.md)
-      - [数据共享开发指导](database/database-datashare-guidelines.md)
+    - [数据管理概述](database/data-mgmt-overview.md)
+    - 应用数据持久化
+      - [应用数据持久化概述](database/app-data-persistence-overview.md)
+      - [通过用户首选项实现数据持久化](database/data-persistence-by-preferences.md)
+      - [通过键值型数据库实现数据持久化](database/data-persistence-by-kv-store.md)
+      - [通过关系型数据库实现数据持久化](database/data-persistence-by-rdb-store.md)
+    - 同应用跨设备数据同步（分布式）
+      - [同应用跨设备数据同步概述](database/sync-app-data-across-devices-overview.md)
+      - [键值型数据库跨设备数据同步](database/data-sync-of-kv-store.md)
+      - [关系型数据库跨设备数据同步](database/data-sync-of-rdb-store.md)
+      - [分布式数据对象跨设备数据同步](database/data-sync-of-distributed-data-object.md)
+    - 数据可靠性与安全性
+      - [数据可靠性与安全性概述](database/data-reliability-security-overview.md)
+      - [数据库备份与恢复](database/data-backup-and-restore.md)
+      - [数据库加密](database/data-encryption.md)
+      - [基于设备分类和数据分级的访问控制](database/access-control-by-device-and-data-level.md)
+    - 同设备跨应用数据共享（仅对系统应用开放）
+      - [同设备跨应用数据共享概述](database/share-device-data-across-apps-overview.md)
+      - [通过DataShareExtensionAbility实现数据共享](database/share-data-by-datashareextensionability.md)
+      - [通过静默数据访问实现数据共享](database/share-data-by-silent-access.md)
   - 文件管理
-    - 媒体库管理
-      - [媒体库开发概述](file-management/medialibrary-overview.md)
-      - [媒体资源使用指导](file-management/medialibrary-resource-guidelines.md)
-      - [文件路径使用指导](file-management/medialibrary-filepath-guidelines.md)
-      - [相册资源使用指导](file-management/medialibrary-album-guidelines.md)
-    - 文件访问框架
-      - [用户公共文件访问框架概述](file-management/file-access-framework-overview.md)
-    - [文件选择器使用指导](file-management/filepicker-guidelines.md)
-  - 后台任务(Background Task)管理
+    - [文件管理概述](file-management/file-management-overview.md)
+    - 应用文件
+      - [应用文件概述](file-management/app-file-overview.md)
+      - [应用沙箱目录](file-management/app-sandbox-directory.md)
+      - 应用文件访问与管理
+        - [应用文件访问](file-management/app-file-access.md)
+        - [应用文件上传下载](file-management/app-file-upload-download.md)
+        - [应用及文件系统空间统计](file-management/app-fs-space-statistics.md)
+      - [向应用沙箱推送文件](file-management/send-file-to-app-sandbox.md)
+      - [应用文件分享](file-management/share-app-file.md)
+      - 应用数据备份恢复
+        - [应用数据备份恢复概述](file-management/app-file-backup-overview.md)
+        - [应用接入数据备份恢复](file-management/app-file-backup-extension.md)
+        - [应用触发数据备份/恢复（仅对系统应用开放）](file-management/app-file-backup.md)
+    - 用户文件
+      - [用户文件概述](file-management/user-file-overview.md)
+      - 选择与保存用户文件（FilePicker）
+        - [选择用户文件](file-management/select-user-file.md)
+        - [保存用户文件](file-management/save-user-file.md)
+      - [开发用户文件管理器（仅对系统应用开放）](file-management/dev-user-file-manager.md)
+      - [管理外置存储设备（仅对系统应用开放）](file-management/manage-external-storage.md)
+    - 分布式文件系统
+      - [分布式文件系统概述](file-management/distributed-fs-overview.md)
+      - [设置分布式文件数据等级](file-management/set-security-label.md)
+      - [跨设备文件访问](file-management/file-access-across-devices.md)
+  - 后台任务（Background Task）管理
     - 后台任务
       - [后台任务概述](task-management/background-task-overview.md)
       - [短时任务开发指导](task-management/transient-task-dev-guide.md)
@@ -392,8 +568,8 @@
     - USB服务
       - [USB服务开发概述](device/usb-overview.md)
       - [USB服务开发指导](device/usb-guidelines.md)
-    - 位置服务
-      - [位置开发指南](device/location-guidelines.md)
+    - 位置
+      - [位置服务开发指南](device/location-guidelines.md)
     - 传感器
       - [传感器开发概述](device/sensor-overview.md)
       - [传感器开发指导](device/sensor-guidelines.md)
@@ -415,9 +591,13 @@
     - [应用事件打点开发指导](dfx/hiappevent-guidelines.md)
     - [性能打点跟踪开发指导](dfx/hitracemeter-guidelines.md)
     - [分布式跟踪开发指导](dfx/hitracechain-guidelines.md)
+    - [HiLog开发指导（Native）](dfx/hilog-guidelines.md)
     - 错误管理
       - [错误管理开发指导](dfx/errormanager-guidelines.md)
       - [应用恢复开发指导](dfx/apprecovery-guidelines.md)
+    - 日志分析
+      - [应用无响应(appfreeze)日志分析指导](dfx/appfreeze-guidelines.md)
+      - [进程崩溃(cppcrash)日志分析指导](dfx/cppcrash-guidelines.md)
   - 国际化
     - [国际化开发概述](internationalization/international-overview.md)
     - [Intl开发指导](internationalization/intl-guidelines.md)
@@ -472,9 +652,10 @@
       - [资源使用](key-features/multi-device-app-dev/resource-usage.md)
     - [功能开发的一多能力介绍](key-features/multi-device-app-dev/development-intro.md)
     - [案例应用](key-features/multi-device-app-dev/case.md)
-    - [常见问题](key-features/multi-device-app-dev/faq.md)  
+    - [常见问题](key-features/multi-device-app-dev/faq.md)
   - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
   - Native API相关指导
+    - [Native API介绍](napi/introduction.md)
     - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
     - [Drawing开发指导](napi/drawing-guidelines.md)
     - [Rawfile开发指导](napi/rawfile-guidelines.md)
@@ -489,9 +670,12 @@
     - 打包拆包工具
       - [打包工具](tools/packing-tool.md)
       - [拆包工具](tools/unpacking-tool.md)
-    - [anm工具](tools/anm-tool.md)
     - [cem工具](tools/cem-tool.md)
+    - [anm工具](tools/anm-tool.md)
+    - [restool工具](tools/restool.md)
+    - [LLDB调试器使用指导](tools/lldb-tool.md)
 - 示例教程
+  - [开发案例](https://gitee.com/openharmony/docs/blob/master/zh-cn/third-party-cases/Readme-CN.md)
   - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/master/README_zh.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
@@ -510,6 +694,7 @@
         - [鼠标事件](reference/arkui-ts/ts-universal-mouse-key.md)
         - [组件区域变化事件](reference/arkui-ts/ts-universal-component-area-change-event.md)
         - [组件可见区域变化事件](reference/arkui-ts/ts-universal-component-visible-area-change-event.md)
+        - [组件快捷键事件](reference/arkui-ts/ts-universal-events-keyboardshortcut.md)
       - 通用属性
         - [尺寸设置](reference/arkui-ts/ts-universal-attributes-size.md)
         - [位置设置](reference/arkui-ts/ts-universal-attributes-location.md)
@@ -526,7 +711,6 @@
         - [图形变换](reference/arkui-ts/ts-universal-attributes-transformation.md)
         - [图像效果](reference/arkui-ts/ts-universal-attributes-image-effect.md)
         - [形状裁剪](reference/arkui-ts/ts-universal-attributes-sharp-clipping.md)
-        - [文本样式设置](reference/arkui-ts/ts-universal-attributes-text-style.md)
         - [栅格设置](reference/arkui-ts/ts-universal-attributes-grid.md)
         - [颜色渐变](reference/arkui-ts/ts-universal-attributes-gradient-color.md)
         - [Popup控制](reference/arkui-ts/ts-universal-attributes-popup.md)
@@ -540,6 +724,11 @@
         - [触摸测试控制](reference/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
         - [背景模糊设置](reference/arkui-ts/ts-universal-attributes-backgroundBlurStyle.md)
         - [分布式迁移标识](reference/arkui-ts/ts-universal-attributes-restoreId.md)
+        - [前景色设置](reference/arkui-ts/ts-universal-attributes-foreground-color.md)
+        - [图像球面效果设置](reference/arkui-ts/ts-universal-attributes-sphericalEffect.md)
+        - [图像渐亮效果设置](reference/arkui-ts/ts-universal-attributes-lightUpEffect.md)
+        - [图像像素扩展效果设置](reference/arkui-ts/ts-universal-attributes-pixelStretchEffect.md)
+      - [文本通用属性](reference/arkui-ts/ts-universal-attributes-text-style.md)
       - 手势处理
         - [绑定手势方法](reference/arkui-ts/ts-gesture-settings.md)
         - 基础手势
@@ -551,6 +740,7 @@
           - [SwipeGesture](reference/arkui-ts/ts-basic-gestures-swipegesture.md)
         - [组合手势](reference/arkui-ts/ts-combined-gestures.md)
     - 基础组件
+      - [AlphabetIndexer](reference/arkui-ts/ts-container-alphabet-indexer.md)
       - [Blank](reference/arkui-ts/ts-basic-components-blank.md)
       - [Button](reference/arkui-ts/ts-basic-components-button.md)
       - [Checkbox](reference/arkui-ts/ts-basic-components-checkbox.md)
@@ -562,6 +752,7 @@
       - [Gauge](reference/arkui-ts/ts-basic-components-gauge.md)
       - [Image](reference/arkui-ts/ts-basic-components-image.md)
       - [ImageAnimator](reference/arkui-ts/ts-basic-components-imageanimator.md)
+      - [ImageSpan](reference/arkui-ts/ts-basic-components-imagespan.md)
       - [LoadingProgress](reference/arkui-ts/ts-basic-components-loadingprogress.md)
       - [Marquee](reference/arkui-ts/ts-basic-components-marquee.md)
       - [Menu](reference/arkui-ts/ts-basic-components-menu.md)
@@ -597,7 +788,6 @@
       - [XComponent](reference/arkui-ts/ts-basic-components-xcomponent.md)
     - 容器组件
       - [AbilityComponent](reference/arkui-ts/ts-container-ability-component.md)
-      - [AlphabetIndexer](reference/arkui-ts/ts-container-alphabet-indexer.md)
       - [Badge](reference/arkui-ts/ts-container-badge.md)
       - [Column](reference/arkui-ts/ts-container-column.md)
       - [ColumnSplit](reference/arkui-ts/ts-container-columnsplit.md)
@@ -661,6 +851,7 @@
         - [时间选择弹窗](reference/arkui-ts/ts-methods-timepicker-dialog.md)
         - [文本选择弹窗](reference/arkui-ts/ts-methods-textpicker-dialog.md)
       - [菜单](reference/arkui-ts/ts-methods-menu.md)
+    - [自定义组件的生命周期](reference/arkui-ts/ts-custom-component-lifecycle.md)
     - [应用级变量的状态管理](reference/arkui-ts/ts-state-management.md)
     - [像素单位](reference/arkui-ts/ts-pixel-units.md)
     - [枚举说明](reference/arkui-ts/ts-appendix-enums.md)
@@ -768,43 +959,43 @@
       - [生命周期定义](reference/arkui-js/js-components-custom-lifecycle.md)
     - [动态创建组件](reference/arkui-js/js-components-create-elements.md)
     - [数据类型说明](reference/arkui-js/js-appendix-types.md)
-  - 组件参考（兼容JS的类Web开发范式-ArkUI.Lite） 
+  - 组件参考（兼容JS的类Web开发范式-ArkUI.Lite）
     - 框架说明
-      - [文件组织](js-framework-file.md)
-      - [js标签配置](js-framework-js-tag.md)
-      - [app.js](js-framework-js-file.md)
+      - [文件组织](reference/arkui-js-lite/js-framework-file.md)
+      - [js标签配置](reference/arkui-js-lite/js-framework-js-tag.md)
+      - [app.js](reference/arkui-js-lite/js-framework-js-file.md)
       - 语法
-        - [HML语法参考](js-framework-syntax-hml.md)
-        - [CSS语法参考](js-framework-syntax-css.md)
-        - [JS语法参考](js-framework-syntax-js.md)
+        - [HML语法参考](reference/arkui-js-lite/js-framework-syntax-hml.md)
+        - [CSS语法参考](reference/arkui-js-lite/js-framework-syntax-css.md)
+        - [JS语法参考](reference/arkui-js-lite/js-framework-syntax-js.md)
     - 组件通用信息
-      - [通用事件](js-common-events.md)
-      - [通用属性](js-common-attributes.md)
-      - [通用样式](js-common-styles.md)
-      - [动画样式](js-components-common-animation.md)
+      - [通用事件](reference/arkui-js-lite/js-common-events.md)
+      - [通用属性](reference/arkui-js-lite/js-common-attributes.md)
+      - [通用样式](reference/arkui-js-lite/js-common-styles.md)
+      - [动画样式](reference/arkui-js-lite/js-components-common-animation.md)
     - 容器组件
-      - [div](js-components-container-div.md)
-      - [list](js-components-container-list.md)
-      - [list-item](js-components-container-list-item.md)
-      - [stack](js-components-container-stack.md)
-      - [swiper](js-components-container-swiper.md)
+      - [div](reference/arkui-js-lite/js-components-container-div.md)
+      - [list](reference/arkui-js-lite/js-components-container-list.md)
+      - [list-item](reference/arkui-js-lite/js-components-container-list-item.md)
+      - [stack](reference/arkui-js-lite/js-components-container-stack.md)
+      - [swiper](reference/arkui-js-lite/js-components-container-swiper.md)
     - 基础组件
-      - [chart](js-components-basic-chart.md)
-      - [image](js-components-basic-image.md)
-      - [image-animator](js-components-basic-image-animator.md)
-      - [input](js-components-basic-input.md)
-      - [marquee](js-components-basic-marquee.md)
-      - [picker-view](js-components-basic-picker-view.md)
-      - [progress](js-components-basic-progress.md)
-      - [qrcode](js-components-basic-qrcode.md)
-      - [slider](js-components-basic-slider.md)
-      - [switch](js-components-basic-switch.md)
-      - [text](js-components-basic-text.md)
+      - [chart](reference/arkui-js-lite/js-components-basic-chart.md)
+      - [image](reference/arkui-js-lite/js-components-basic-image.md)
+      - [image-animator](reference/arkui-js-lite/js-components-basic-image-animator.md)
+      - [input](reference/arkui-js-lite/js-components-basic-input.md)
+      - [marquee](reference/arkui-js-lite/js-components-basic-marquee.md)
+      - [picker-view](reference/arkui-js-lite/js-components-basic-picker-view.md)
+      - [progress](reference/arkui-js-lite/js-components-basic-progress.md)
+      - [qrcode](reference/arkui-js-lite/js-components-basic-qrcode.md)
+      - [slider](reference/arkui-js-lite/js-components-basic-slider.md)
+      - [switch](reference/arkui-js-lite/js-components-basic-switch.md)
+      - [text](reference/arkui-js-lite/js-components-basic-text.md)
     - 画布组件
-      - [canvas组件](js-components-canvas-canvas.md)
-      - [CanvasRenderingContext2D对象](js-components-canvas-canvasrenderingcontext2d.md)
+      - [canvas组件](reference/arkui-js-lite/js-components-canvas-canvas.md)
+      - [CanvasRenderingContext2D对象](reference/arkui-js-lite/js-components-canvas-canvasrenderingcontext2d.md)
   - JS服务卡片UI组件参考
-    - JS服务卡片UI框架说明
+    - 框架说明
       - [文件组织](reference/js-service-widget-ui/js-service-widget-file.md)
       - 语法
         - [HML语法参考](reference/js-service-widget-ui/js-service-widget-syntax-hml.md)
@@ -812,34 +1003,33 @@
       - [多语言支持](reference/js-service-widget-ui/js-service-widget-multiple-languages.md)
       - [版本兼容适配](reference/js-service-widget-ui/js-service-widget-version-compatibility.md)
       - [设置主题样式](reference/js-service-widget-ui/js-service-widget-theme.md)
-    - 组件
-      - 通用
-        - [通用属性](reference/js-service-widget-ui/js-service-widget-common-attributes.md)
-        - [通用样式](reference/js-service-widget-ui/js-service-widget-common-styles.md)
-        - [通用事件](reference/js-service-widget-ui/js-service-widget-common-events.md)
-        - [渐变样式](reference/js-service-widget-ui/js-service-widget-common-gradient.md)
-        - [媒体查询](reference/js-service-widget-ui/js-service-widget-common-mediaquery.md)
-        - [自定义字体样式](reference/js-service-widget-ui/js-service-widget-common-customizing-font.md)
-        - [无障碍](reference/js-service-widget-ui/js-service-widget-common-accessibility.md)
-        - [原子布局](reference/js-service-widget-ui/js-service-widget-common-atomic-layout.md)
-      - 容器组件
-        - [badge](reference/js-service-widget-ui/js-service-widget-container-badge.md)
-        - [div](reference/js-service-widget-ui/js-service-widget-container-div.md)
-        - [list](reference/js-service-widget-ui/js-service-widget-container-list.md)
-        - [list-item](reference/js-service-widget-ui/js-service-widget-container-list-item.md)
-        - [stack](reference/js-service-widget-ui/js-service-widget-container-stack.md)
-        - [swiper](reference/js-service-widget-ui/js-service-widget-container-swiper.md)
-      - 基础组件
-        - [button](reference/js-service-widget-ui/js-service-widget-basic-button.md)
-        - [calendar](reference/js-service-widget-ui/js-service-widget-basic-calendar.md)
-        - [chart](reference/js-service-widget-ui/js-service-widget-basic-chart.md)
-        - [clock](reference/js-service-widget-ui/js-service-widget-basic-clock.md)
-        - [divider](reference/js-service-widget-ui/js-service-widget-basic-divider.md)
-        - [image](reference/js-service-widget-ui/js-service-widget-basic-image.md)
-        - [input](reference/js-service-widget-ui/js-service-widget-basic-input.md)
-        - [progress](reference/js-service-widget-ui/js-service-widget-basic-progress.md)
-        - [span](reference/js-service-widget-ui/js-service-widget-basic-span.md)
-        - [text](reference/js-service-widget-ui/js-service-widget-basic-text.md)
+    - 组件通用信息
+      - [通用属性](reference/js-service-widget-ui/js-service-widget-common-attributes.md)
+      - [通用样式](reference/js-service-widget-ui/js-service-widget-common-styles.md)
+      - [通用事件](reference/js-service-widget-ui/js-service-widget-common-events.md)
+      - [渐变样式](reference/js-service-widget-ui/js-service-widget-common-gradient.md)
+      - [媒体查询](reference/js-service-widget-ui/js-service-widget-common-mediaquery.md)
+      - [自定义字体样式](reference/js-service-widget-ui/js-service-widget-common-customizing-font.md)
+      - [无障碍](reference/js-service-widget-ui/js-service-widget-common-accessibility.md)
+      - [原子布局](reference/js-service-widget-ui/js-service-widget-common-atomic-layout.md)
+    - 容器组件
+      - [badge](reference/js-service-widget-ui/js-service-widget-container-badge.md)
+      - [div](reference/js-service-widget-ui/js-service-widget-container-div.md)
+      - [list](reference/js-service-widget-ui/js-service-widget-container-list.md)
+      - [list-item](reference/js-service-widget-ui/js-service-widget-container-list-item.md)
+      - [stack](reference/js-service-widget-ui/js-service-widget-container-stack.md)
+      - [swiper](reference/js-service-widget-ui/js-service-widget-container-swiper.md)
+    - 基础组件
+      - [button](reference/js-service-widget-ui/js-service-widget-basic-button.md)
+      - [calendar](reference/js-service-widget-ui/js-service-widget-basic-calendar.md)
+      - [chart](reference/js-service-widget-ui/js-service-widget-basic-chart.md)
+      - [clock](reference/js-service-widget-ui/js-service-widget-basic-clock.md)
+      - [divider](reference/js-service-widget-ui/js-service-widget-basic-divider.md)
+      - [image](reference/js-service-widget-ui/js-service-widget-basic-image.md)
+      - [input](reference/js-service-widget-ui/js-service-widget-basic-input.md)
+      - [progress](reference/js-service-widget-ui/js-service-widget-basic-progress.md)
+      - [span](reference/js-service-widget-ui/js-service-widget-basic-span.md)
+      - [text](reference/js-service-widget-ui/js-service-widget-basic-text.md)
     - [自定义组件使用说明](reference/js-service-widget-ui/js-service-widget-custom-basic-usage.md)
     - [数据类型说明](reference/js-service-widget-ui/js-service-widget-appendix-types.md)
   - 接口参考（ArkTS及JS API）
@@ -860,8 +1050,6 @@
         - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](reference/apis/js-apis-app-form-formExtensionAbility.md)
         - [@ohos.application.DataShareExtensionAbility (数据共享扩展能力)](reference/apis/js-apis-application-dataShareExtensionAbility.md)
         - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](reference/apis/js-apis-application-staticSubscriberExtensionAbility.md)
-      - Stage模型能力的接口(待停用)
-        - [@ohos.application.EnvironmentCallback (EnvironmentCallback)](reference/apis/js-apis-application-environmentCallback.md)
       - FA模型能力的接口
         - [@ohos.ability.ability (Ability)](reference/apis/js-apis-ability-ability.md)
         - [@ohos.ability.featureAbility (FeatureAbility模块)](reference/apis/js-apis-ability-featureAbility.md)
@@ -873,16 +1061,20 @@
         - [@ohos.app.ability.appRecovery (appRecovery)](reference/apis/js-apis-app-ability-appRecovery.md)
         - [@ohos.app.ability.Configuration (Configuration)](reference/apis/js-apis-app-ability-configuration.md)
         - [@ohos.app.ability.ConfigurationConstant (ConfigurationConstant)](reference/apis/js-apis-app-ability-configurationConstant.md)
+        - [@ohos.app.ability.dataUriUtils (DataUriUtils模块)](reference/apis/js-apis-app-ability-dataUriUtils.md)
+        - [@ohos.app.ability.dialogRequest (dialogRequest模块)](reference/apis/js-apis-app-ability-dialogRequest.md)
         - [@ohos.app.ability.errorManager (ErrorManager)](reference/apis/js-apis-app-ability-errorManager.md)
         - [@ohos.app.ability.missionManager (missionManager)](reference/apis/js-apis-app-ability-missionManager.md)
         - [@ohos.app.ability.quickFixManager (quickFixManager)](reference/apis/js-apis-app-ability-quickFixManager.md)
         - [@ohos.app.ability.Want (Want)](reference/apis/js-apis-app-ability-want.md)
         - [@ohos.app.ability.wantAgent (WantAgent模块)](reference/apis/js-apis-app-ability-wantAgent.md)
         - [@ohos.app.ability.wantConstant (wantConstant)](reference/apis/js-apis-app-ability-wantConstant.md)
+        - [@ohos.app.businessAbilityRouter (业务路由模块)](reference/apis/js-apis-businessAbilityRouter.md)
         - [@ohos.app.form.formBindingData (卡片数据绑定类)](reference/apis/js-apis-app-form-formBindingData.md)
         - [@ohos.app.form.formHost (FormHost)](reference/apis/js-apis-app-form-formHost.md)
         - [@ohos.app.form.formInfo (FormInfo)](reference/apis/js-apis-app-form-formInfo.md)
         - [@ohos.app.form.formProvider (FormProvider)](reference/apis/js-apis-app-form-formProvider.md)
+        - [@ohos.application.uriPermissionManager(URI权限管理)](reference/apis/js-apis-uripermissionmanager.md)
       - 通用能力的接口(待停用)
         - [@ohos.ability.dataUriUtils (DataUriUtils模块)](reference/apis/js-apis-ability-dataUriUtils.md)
         - [@ohos.ability.errorCode (ErrorCode)](reference/apis/js-apis-ability-errorCode.md)
@@ -954,10 +1146,13 @@
           - [continuationExtraParams](reference/apis/js-apis-continuation-continuationExtraParams.md)
           - [continuationResult](reference/apis/js-apis-continuation-continuationResult.md)
     - 公共事件与通知
+      - [系统公共事件定义](reference/apis/commonEventManager-definitions.md)
       - [@ohos.commonEventManager (公共事件模块)(推荐)](reference/apis/js-apis-commonEventManager.md)
       - [@ohos.events.emitter (Emitter)](reference/apis/js-apis-emitter.md)
       - [@ohos.notificationManager (NotificationManager模块)(推荐)](reference/apis/js-apis-notificationManager.md)
       - [@ohos.notificationSubscribe (NotificationSubscribe模块)(推荐)](reference/apis/js-apis-notificationSubscribe.md)
+      - [@ohos.application.StaticSubscriberExtensionContext (NotificationSubscribe模块)(推荐)](reference/apis/js-apis-application-StaticSubscriberExtensionContext.md)
+      - [系统公共事件定义 (待停用)](reference/apis/commonEvent-definitions.md)
       - [@ohos.commonEvent (公共事件模块)(待停用)](reference/apis/js-apis-commonEvent.md)
       - [@ohos.notification (Notification模块)(待停用)](reference/apis/js-apis-notification.md)
       - application
@@ -974,8 +1169,19 @@
         - [NotificationFlags](reference/apis/js-apis-inner-notification-notificationFlags.md)
         - [NotificationRequest](reference/apis/js-apis-inner-notification-notificationRequest.md)
         - [NotificationSlot](reference/apis/js-apis-inner-notification-notificationSlot.md)
+        - [NotificationSorting](reference/apis/js-apis-inner-notification-notificationSorting.md)
+        - [NotificationSortingMap](reference/apis/js-apis-inner-notification-notificationSortingMap.md)
+        - [NotificationSubscribeInfo](reference/apis/js-apis-inner-notification-notificationSubscribeInfo.md)
+        - [NotificationSubscriber](reference/apis/js-apis-inner-notification-notificationSubscriber.md)
         - [NotificationTemplate](reference/apis/js-apis-inner-notification-notificationTemplate.md)
         - [NotificationUserInput](reference/apis/js-apis-inner-notification-notificationUserInput.md)
+      - 公共事件定义
+        - [元能力子系统公共事件定义](reference/apis/common_event/commonEvent-ability.md)
+        - [包管理子系统公共事件定义](reference/apis/common_event/commonEvent-bundleManager.md)
+        - [通知服务公共事件定义](reference/apis/common_event/commonEvent-ans.md)
+        - [资源调度子系统公共事件定义](reference/apis/common_event/commonEvent-resourceschedule.md)
+        - [电话服务子系统公共事件定义](reference/apis/common_event/commonEvent-telephony.md)
+        - [USB子系统公共事件定义](reference/apis/common_event/commonEvent-usb.md)
     - 包管理
       - [@ohos.bundle.appControl (appControl模块)](reference/apis/js-apis-appControl.md)
       - [@ohos.bundle.bundleManager (bundleManager模块)](reference/apis/js-apis-bundleManager.md)
@@ -985,29 +1191,39 @@
       - [@ohos.bundle.freeInstall (freeInstall模块)](reference/apis/js-apis-freeInstall.md)
       - [@ohos.bundle.installer (installer模块)](reference/apis/js-apis-installer.md)
       - [@ohos.bundle.launcherBundleManager (launcherBundleManager模块)](reference/apis/js-apis-launcherBundleManager.md)
+      - [@ohos.bundle.overlay (overlay模块)](reference/apis/js-apis-overlay.md)
       - [@ohos.zlib (Zip模块)](reference/apis/js-apis-zlib.md)
       - bundleManager
         - [abilityInfo](reference/apis/js-apis-bundleManager-abilityInfo.md)
         - [applicationInfo](reference/apis/js-apis-bundleManager-applicationInfo.md)
+        - [AppProvisionInfo](reference/apis/js-apis-bundleManager-AppProvisionInfo.md)
         - [bundleInfo](reference/apis/js-apis-bundleManager-bundleInfo.md)
         - [BundlePackInfo](reference/apis/js-apis-bundleManager-BundlePackInfo.md)
+        - [BusinessAbilityInfo](reference/apis/js-apis-bundleManager-businessAbilityInfo.md)
         - [dispatchInfo](reference/apis/js-apis-bundleManager-dispatchInfo.md)
         - [elementName](reference/apis/js-apis-bundleManager-elementName.md)
         - [extensionAbilityInfo](reference/apis/js-apis-bundleManager-extensionAbilityInfo.md)
         - [hapModuleInfo](reference/apis/js-apis-bundleManager-hapModuleInfo.md)
         - [launcherAbilityInfo](reference/apis/js-apis-bundleManager-launcherAbilityInfo.md)
         - [metadata](reference/apis/js-apis-bundleManager-metadata.md)
+        - [OverlayModuleInfo](reference/apis/js-apis-bundleManager-overlayModuleInfo.md)
         - [permissionDef](reference/apis/js-apis-bundleManager-permissionDef.md)
         - [remoteAbilityInfo](reference/apis/js-apis-bundleManager-remoteAbilityInfo.md)
+        - [SharedBundleInfo](reference/apis/js-apis-bundleManager-sharedBundleInfo.md)
         - [shortcutInfo](reference/apis/js-apis-bundleManager-shortcutInfo.md)
     - UI界面
       - [@ohos.animator (动画)](reference/apis/js-apis-animator.md)
+      - [@ohos.arkui.componentSnapshot（组件截图）](reference/apis/js-apis-arkui-componentSnapshot.md)
+      - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
       - [@ohos.curves (插值计算)](reference/apis/js-apis-curve.md)
+      - [@ohos.font(注册自定义字体)](reference/apis/js-apis-font.md)
       - [@ohos.matrix4 (矩阵变换)](reference/apis/js-apis-matrix4.md)
       - [@ohos.mediaquery (媒体查询)](reference/apis/js-apis-mediaquery.md)
       - [@ohos.pluginComponent(PluginComponentManager)](reference/apis/js-apis-plugincomponent.md)
       - [@ohos.promptAction (弹窗)](reference/apis/js-apis-promptAction.md)
       - [@ohos.router (页面路由)](reference/apis/js-apis-router.md)
+      - [@ohos.measure (文本计算)](reference/apis/js-apis-measure.md)
+      - [@ohos.uiAppearance(用户界面外观)](reference/apis/js-apis-uiappearance.md)
     - 图形图像
       - [@ohos.animation.windowAnimationManager (窗口动画管理)](reference/apis/js-apis-windowAnimationManager.md)
       - [@ohos.application.WindowExtensionAbility (窗口扩展能力)](reference/apis/js-apis-application-windowExtensionAbility.md)
@@ -1026,6 +1242,9 @@
       - [@ohos.multimedia.camera (相机管理)](reference/apis/js-apis-camera.md)
       - [@ohos.multimedia.image (图片处理)](reference/apis/js-apis-image.md)
       - [@ohos.multimedia.media (媒体服务)](reference/apis/js-apis-media.md)
+      - [@ohos.multimedia.systemSoundManager (系统声音管理)](reference/apis/js-apis-systemSoundManager.md)
+      - multimedia
+        - [ringtonePlayer (铃声播放器)](reference/apis/js-apis-inner-multimedia-ringtonePlayer.md)
     - 资源管理
       - [@ohos.i18n (国际化-I18n)](reference/apis/js-apis-i18n.md)
       - [@ohos.intl (国际化-Intl)](reference/apis/js-apis-intl.md)
@@ -1037,6 +1256,8 @@
       - [@ohos.resourceschedule.workScheduler (延迟任务调度)](reference/apis/js-apis-resourceschedule-workScheduler.md)
       - [@ohos.resourceschedule.usageStatistics (设备使用信息统计)](reference/apis/js-apis-resourceschedule-deviceUsageStatistics.md)
       - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](reference/apis/js-apis-WorkSchedulerExtensionAbility.md)
+      - application
+        - [WorkSchedulerExtensionContext](reference/apis/js-apis-inner-application-WorkSchedulerExtensionContext.md)
     - 安全
       - [@ohos.abilityAccessCtrl (程序访问控制管理)](reference/apis/js-apis-abilityAccessCtrl.md)
       - [@ohos.privacyManager (隐私管理)](reference/apis/js-apis-privacyManager.md)
@@ -1045,33 +1266,36 @@
       - [@ohos.security.huks (通用密钥库系统)](reference/apis/js-apis-huks.md)
       - [@ohos.userIAM.faceAuth (人脸认证)](reference/apis/js-apis-useriam-faceauth.md)
       - [@ohos.userIAM.userAuth (用户认证)](reference/apis/js-apis-useriam-userauth.md)
-      - [@system.cipher (加密算法)](reference/apis/js-apis-system-cipher.md)
       - security
         - [PermissionRequestResult](reference/apis/js-apis-permissionrequestresult.md)
     - 数据管理
+      - [@ohos.data.cloudData（端云协同）](reference/apis/js-apis-data-cloudData.md)
       - [@ohos.data.dataAbility (DataAbility谓词)](reference/apis/js-apis-data-ability.md)
       - [@ohos.data.dataShare (数据共享)](reference/apis/js-apis-data-dataShare.md)
       - [@ohos.data.dataSharePredicates (数据共享谓词)](reference/apis/js-apis-data-dataSharePredicates.md)
       - [@ohos.data.dataShareResultSet (数据共享结果集)](reference/apis/js-apis-data-DataShareResultSet.md)
       - [@ohos.data.distributedDataObject (分布式数据对象)](reference/apis/js-apis-data-distributedobject.md)
       - [@ohos.data.distributedKVStore (分布式键值数据库)](reference/apis/js-apis-distributedKVStore.md)
-      - [@ohos.data.preferences (首选项)](reference/apis/js-apis-data-preferences.md)
-      - [@ohos.data.relationalStore (关系型数据库)](reference/apis/js-apis-data-relationalStore.md)
+      - [@ohos.data.preferences (用户首选项)](reference/apis/js-apis-data-preferences.md)
+      - [@ohos.data.relationalStore (关系型数据库)](reference/apis/js-apis-data-relationalStore.md)  
+      - [@ohos.data.UDMF (统一数据管理框架)](reference/apis/js-apis-data-udmf.md)
       - [@ohos.data.ValuesBucket (数据集)](reference/apis/js-apis-data-valuesBucket.md)
-      - data/rdb
-        - [resultSet (结果集)](reference/apis/js-apis-data-resultset.md)
     - 文件管理
+      - [@ohos.file.backup (备份恢复)](reference/apis/js-apis-file-backup.md)
+      - [@ohos.file.cloudSyncManager (端云同步管理)](reference/apis/js-apis-file-cloudsyncmanager.md)
       - [@ohos.file.environment (目录环境能力)](reference/apis/js-apis-file-environment.md)
       - [@ohos.file.fileAccess (公共文件访问与管理)](reference/apis/js-apis-fileAccess.md)
       - [@ohos.file.fileExtensionInfo (公共文件访问与管理属性信息)](reference/apis/js-apis-fileExtensionInfo.md)
+      - [@ohos.file.fileuri (文件URI)](reference/apis/js-apis-file-fileuri.md)
       - [@ohos.file.fs (文件管理)](reference/apis/js-apis-file-fs.md)
       - [@ohos.file.hash (文件哈希处理)](reference/apis/js-apis-file-hash.md)
+      - [@ohos.file.picker (选择器)](reference/apis/js-apis-file-picker.md)
       - [@ohos.file.securityLabel (数据标签)](reference/apis/js-apis-file-securityLabel.md)
       - [@ohos.file.statvfs (文件系统空间统计)](reference/apis/js-apis-file-statvfs.md)
       - [@ohos.file.storageStatistics (应用空间统计)](reference/apis/js-apis-file-storage-statistics.md)
       - [@ohos.file.volumeManager (卷管理)](reference/apis/js-apis-file-volumemanager.md)
       - [@ohos.filemanagement.userFileManager (用户数据管理)](reference/apis/js-apis-userFileManager.md)
-      - [@ohos.multimedia.medialibrary (媒体库管理)](reference/apis/js-apis-medialibrary.md)
+      - [@ohos.fileshare (文件分享)](reference/apis/js-apis-fileShare.md)
     - 电话服务
       - [@ohos.contact (联系人)](reference/apis/js-apis-contact.md)
       - [@ohos.telephony.call (拨打电话)](reference/apis/js-apis-call.md)
@@ -1084,12 +1308,14 @@
       - [@ohos.net.connection (网络连接管理)](reference/apis/js-apis-net-connection.md)
       - [@ohos.net.ethernet (以太网连接管理)](reference/apis/js-apis-net-ethernet.md)
       - [@ohos.net.http (数据请求)](reference/apis/js-apis-http.md)
+      - [@ohos.net.mdns (MDNS管理)](reference/apis/js-apis-net-mdns.md)
       - [@ohos.net.sharing (网络共享管理)](reference/apis/js-apis-net-sharing.md)
       - [@ohos.net.socket (Socket连接)](reference/apis/js-apis-socket.md)
       - [@ohos.net.webSocket (WebSocket连接)](reference/apis/js-apis-webSocket.md)
       - [@ohos.request (上传下载)](reference/apis/js-apis-request.md)
     - 通信与连接
-      - [@ohos.bluetooth (蓝牙)](reference/apis/js-apis-bluetooth.md)
+      - [@ohos.bluetooth (蓝牙)(待停用)](reference/apis/js-apis-bluetooth.md)
+      - [@ohos.bluetoothManager (蓝牙)(推荐)](reference/apis/js-apis-bluetoothManager.md)
       - [@ohos.connectedTag (有源标签)](reference/apis/js-apis-connectedTag.md)
       - [@ohos.nfc.cardEmulation (标准NFC-cardEmulation)](reference/apis/js-apis-cardEmulation.md)
       - [@ohos.nfc.controller (标准NFC)](reference/apis/js-apis-nfcController.md)
@@ -1121,13 +1347,14 @@
       - [@ohos.InputMethodExtensionAbility (InputMethodExtensionAbility)](reference/apis/js-apis-inputmethod-extension-ability.md)
       - [@ohos.InputMethodExtensionContext (InputMethodExtensionContext)](reference/apis/js-apis-inputmethod-extension-context.md)
       - [@ohos.InputMethodSubtype (输入法子类型)](reference/apis/js-apis-inputmethod-subtype.md)
+      - [@ohos.logLibrary (维测日志获取)](reference/apis/js-apis-loglibrary.md)
       - [@ohos.pasteboard (剪贴板)](reference/apis/js-apis-pasteboard.md)
       - [@ohos.screenLock (锁屏管理)](reference/apis/js-apis-screen-lock.md)
       - [@ohos.systemDateTime (系统时间、时区)](reference/apis/js-apis-system-date-time.md)
       - [@ohos.systemTimer (系统定时器)](reference/apis/js-apis-system-timer.md)
       - [@ohos.wallpaper (壁纸)](reference/apis/js-apis-wallpaper.md)
       - [@ohos.web.webview (Webview)](reference/apis/js-apis-webview.md)
-      - [console (日志打印)](reference/apis/js-apis-logs.md)
+      - [console (控制台)](reference/apis/js-apis-logs.md)
       - [Timer (定时器)](reference/apis/js-apis-timer.md)
       - application
         - [AccessibilityExtensionContext (辅助功能扩展上下文)](reference/apis/js-apis-inner-application-accessibilityExtensionContext.md)
@@ -1135,12 +1362,14 @@
       - [@ohos.batteryInfo (电量信息)](reference/apis/js-apis-battery-info.md)
       - [@ohos.batteryStatistics (耗电统计)](reference/apis/js-apis-batteryStatistics.md)
       - [@ohos.brightness (屏幕亮度)](reference/apis/js-apis-brightness.md)
+      - [@ohos.charger (充电类型)](reference/apis/js-apis-charger.md)
+      - [@ohos.cooperate (键鼠穿越)](reference/apis/js-apis-devicestatus-cooperate.md)
       - [@ohos.deviceInfo (设备信息)](reference/apis/js-apis-device-info.md)
       - [@ohos.distributedHardware.deviceManager (设备管理)](reference/apis/js-apis-device-manager.md)
       - [@ohos.geoLocationManager (位置服务)](reference/apis/js-apis-geoLocationManager.md)
       - [@ohos.multimodalInput.inputConsumer (组合按键)](reference/apis/js-apis-inputconsumer.md)
       - [@ohos.multimodalInput.inputDevice (输入设备)](reference/apis/js-apis-inputdevice.md)
-      - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)](reference/apis/js-apis-cooperate.md)
+      - [@ohos.multimodalInput.inputDeviceCooperate (键鼠穿越)(待停用)](reference/apis/js-apis-cooperate.md)
       - [@ohos.multimodalInput.inputEvent (输入事件)](reference/apis/js-apis-inputevent.md)
       - [@ohos.multimodalInput.inputEventClient (按键注入)](reference/apis/js-apis-inputeventclient.md)
       - [@ohos.multimodalInput.inputMonitor (输入监听)](reference/apis/js-apis-inputmonitor.md)
@@ -1149,6 +1378,7 @@
       - [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](reference/apis/js-apis-mouseevent.md)
       - [@ohos.multimodalInput.pointer (鼠标指针)](reference/apis/js-apis-pointer.md)
       - [@ohos.multimodalInput.touchEvent (触摸输入事件)](reference/apis/js-apis-touchevent.md)
+      - [@ohos.multimodalInput.shortKey (快捷键)](reference/apis/js-apis-shortKey.md)
       - [@ohos.power (系统电源管理)](reference/apis/js-apis-power.md)
       - [@ohos.runningLock (Runninglock锁)](reference/apis/js-apis-runninglock.md)
       - [@ohos.sensor (传感器)](reference/apis/js-apis-sensor.md)
@@ -1166,9 +1396,16 @@
       - [@ohos.account.osAccount (系统帐号管理)](reference/apis/js-apis-osAccount.md)
     - 定制管理
       - [@ohos.configPolicy (配置策略)](reference/apis/js-apis-configPolicy.md)
-      - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)
+      - [@ohos.enterprise.accountManager (帐户管理)](reference/apis/js-apis-enterprise-accountManager.md)
       - [@ohos.enterprise.adminManager (企业设备管理)](reference/apis/js-apis-enterprise-adminManager.md)
+      - [@ohos.enterprise.applicationManager (应用管理)](reference/apis/js-apis-enterprise-applicationManager.md)
+      - [@ohos.enterprise.bundleManager (包管理)](reference/apis/js-apis-enterprise-bundleManager.md)
       - [@ohos.enterprise.dateTimeManager (系统时间管理)](reference/apis/js-apis-enterprise-dateTimeManager.md)
+      - [@ohos.enterprise.deviceControl (设备控制管理)](reference/apis/js-apis-enterprise-deviceControl.md)
+      - [@ohos.enterprise.deviceInfo (设备信息管理)](reference/apis/js-apis-enterprise-deviceInfo.md)
+      - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)
+      - [@ohos.enterprise.networkManager (网络管理)](reference/apis/js-apis-enterprise-networkManager.md)
+      - [@ohos.enterprise.wifiManager (WiFi管理)](reference/apis/js-apis-enterprise-wifiManager.md)
     - 语言基础类库
       - [@ohos.buffer (Buffer)](reference/apis/js-apis-buffer.md)
       - [@ohos.convertxml (xml转换JavaScript)](reference/apis/js-apis-convertxml.md)
@@ -1210,17 +1447,18 @@
       - [@ohos.fileio (文件管理)](reference/apis/js-apis-fileio.md)
       - [@ohos.geolocation (位置服务)](reference/apis/js-apis-geolocation.md)
       - [@ohos.hiAppEvent (应用打点)](reference/apis/js-apis-hiappevent.md)
+      - [@ohos.multimedia.medialibrary (媒体库管理)](reference/apis/js-apis-medialibrary.md)
       - [@ohos.prompt (弹窗)](reference/apis/js-apis-prompt.md)
       - [@ohos.reminderAgent (后台代理提醒)](reference/apis/js-apis-reminderAgent.md)
       - [@ohos.statfs (statfs)](reference/apis/js-apis-statfs.md)
       - [@ohos.systemParameter (系统属性)](reference/apis/js-apis-system-parameter.md)
       - [@ohos.systemTime (系统时间、时区)](reference/apis/js-apis-system-time.md)
       - [@ohos.usb (USB管理)](reference/apis/js-apis-usb-deprecated.md)
-      - [@ohos.usbV9 (USB管理)](reference/apis/js-apis-usb.md)
       - [@system.app (应用上下文)](reference/apis/js-apis-system-app.md)
       - [@system.battery (电量信息)](reference/apis/js-apis-system-battery.md)
       - [@system.bluetooth (蓝牙)](reference/apis/js-apis-system-bluetooth.md)
       - [@system.brightness (屏幕亮度)](reference/apis/js-apis-system-brightness.md)
+      - [@system.cipher (加密算法)](reference/apis/js-apis-system-cipher.md)
       - [@system.configuration (应用配置)](reference/apis/js-apis-system-configuration.md)
       - [@system.device (设备信息)](reference/apis/js-apis-system-device.md)
       - [@system.fetch (数据请求)](reference/apis/js-apis-system-fetch.md)
@@ -1250,6 +1488,8 @@
         - [PermissionDef](reference/apis/js-apis-bundle-PermissionDef.md)
         - [remoteAbilityInfo](reference/apis/js-apis-bundle-remoteAbilityInfo.md)
         - [shortcutInfo](reference/apis/js-apis-bundle-ShortcutInfo.md)
+      - data/rdb
+        - [resultSet (结果集)](reference/apis/js-apis-data-resultset.md)
   - 错误码参考
     - [通用错误码](reference/errorcodes/errorcode-universal.md)
     - Ability框架
@@ -1294,14 +1534,22 @@
       - [数据共享错误码](reference/errorcodes/errorcode-datashare.md)
       - [分布式数据对象错误码](reference/errorcodes/errorcode-distributed-dataObject.md)
       - [分布式键值数据库错误码](reference/errorcodes/errorcode-distributedKVStore.md)
-      - [首选项错误码](reference/errorcodes/errorcode-preferences.md)
+      - [用户首选项错误码](reference/errorcodes/errorcode-preferences.md)
     - 文件管理
       - [文件管理子系统错误码](reference/errorcodes/errorcode-filemanagement.md)
     - 电话服务
       - [电话子系统错误码](reference/errorcodes/errorcode-telephony.md)
     - 网络管理
       - [上传下载错误码](reference/errorcodes/errorcode-request.md)
+      - [HTTP错误码](reference/errorcodes/errorcode-net-http.md)
+      - [Socket错误码](reference/errorcodes/errorcode-net-socket.md)
+      - [网络连接管理错误码](reference/errorcodes/errorcode-net-connection.md)
+      - [以太网连接错误码](reference/errorcodes/errorcode-net-ethernet.md)
+      - [网络共享错误码](reference/errorcodes/errorcode-net-sharing.md)
+      - [MDNS错误码](reference/errorcodes/errorcode-net-mdns.md)
     - 通信与连接
+      - [Bluetooth错误码](reference/errorcodes/errorcode-bluetoothManager.md)
+      - [WIFI错误码](reference/errorcodes/errorcode-wifi.md)
       - [NFC错误码](reference/errorcodes/errorcode-nfc.md)
       - [RPC错误码](reference/errorcodes/errorcode-rpc.md)
     - 系统基础能力
@@ -1310,8 +1558,10 @@
       - [应用事件打点错误码](reference/errorcodes/errorcode-hiappevent.md)
       - [系统事件错误码](reference/errorcodes/errorcode-hisysevent.md)
       - [Hidebug错误码](reference/errorcodes/errorcode-hiviewdfx-hidebug.md)
+      - [维测日志错误码](reference/errorcodes/errorcode-loglibrary.md)
       - [输入法框架错误码](reference/errorcodes/errorcode-inputmethod-framework.md)
       - [剪贴板错误码](reference/errorcodes/errorcode-pasteboard.md)
+      - [锁屏服务错误码](reference/errorcodes/errorcode-screenlock.md)
       - [时间时区服务错误码](reference/errorcodes/errorcode-time.md)
       - [Webview错误码](reference/errorcodes/errorcode-webview.md)
     - 帐号管理
@@ -1324,7 +1574,8 @@
       - [热管理错误码](reference/errorcodes/errorcode-thermal.md)
       - [设备管理错误码](reference/errorcodes/errorcode-device-manager.md)
       - [位置服务子系统错误码](reference/errorcodes/errorcode-geoLocationManager.md)
-      - [键鼠穿越管理错误码](reference/errorcodes/errorcode-multimodalinput.md)
+      - [键鼠穿越管理错误码](reference/errorcodes/errorcode-devicestatus.md)
+      - [键鼠穿越管理错误码 (待停用)](reference/errorcodes/errorcode-multimodalinput.md)
       - [传感器错误码](reference/errorcodes/errorcode-sensor.md)
       - [振动错误码](reference/errorcodes/errorcode-vibrator.md)
       - [系统参数错误码](reference/errorcodes/errorcode-system-parameterV9.md)
@@ -1335,8 +1586,8 @@
     - 语言基础类库
       - [语言基础类库错误码](reference/errorcodes/errorcode-utils.md)
     - 测试
-      - [uitest错误码](reference/errorcodes/errorcode-uitest.md) 
-  - 接口参考（Native API）
+      - [uitest错误码](reference/errorcodes/errorcode-uitest.md)
+  - Native接口参考
     - 模块
       - [Native XComponent](reference/native-apis/_o_h___native_x_component.md)
       - [HiLog](reference/native-apis/_hi_log.md)
@@ -1441,28 +1692,37 @@
       - [支持的标准库介绍](reference/native-lib/third_party_libc/musl.md)
       - 附录
         - [Native api中没有导出的符号列表](reference/native-lib/third_party_libc/musl-peculiar-symbol.md)
+        - [Native api中由于权限管控可能调用失败的符号列表](reference/native-lib/third_party_libc/musl-permission-control-symbol.md)
         - [Native api中导出的EGL符号列表](reference/native-lib/third_party_opengl/egl-symbol.md)
-        - [Native api中导出的OpenGL ES 3.0符号列表](reference/native-lib/third_party_opengl/openglesv3-symbol.md)  
+        - [Native api中导出的OpenGL ES 3.0符号列表](reference/native-lib/third_party_opengl/openglesv3-symbol.md)
+        - [Native api中支持的OpenSL ES接口列表](reference/native-lib/third_party_opensles/opensles.md)
 - 常见问题
-  - [full-SDK替换指南](quick-start/full-sdk-switch-guide.md)
-  - [开发语言常见问题](faqs/faqs-language.md)
-  - [Ability框架开发常见问题](faqs/faqs-ability.md)
-  - [应用程序包管理开发常见问题](faqs/faqs-bundle.md)
-  - [ArkUI组件（ArkTS）开发常见问题](faqs/faqs-ui-ets.md)
-  - [ArkUI Web组件（ArkTS）开发常见问题](faqs/faqs-web-arkts.md)
-  - [UI框架（JS）开发常见问题](faqs/faqs-ui-js.md)
-  - [公共事件与通知开发常见问题](faqs/faqs-event-notification.md)
+  - [如何编译full-SDK](faqs/full-sdk-compile-guide.md)
+  - [如何替换full-SDK](faqs/full-sdk-switch-guide.md)
+  - [Ability开发常见问题](faqs/faqs-ability.md)
+  - ArkUI框架开发常见问题(ArkTS)
+    - [ArkTS语法使用常见问题](faqs/faqs-arkui-arkts.md)
+    - [ArkUI组件开发常见问题(ArkTS)](faqs/faqs-arkui-component.md)
+    - [ArkUI布局开发常见问题(ArkTS)](faqs/faqs-arkui-layout.md)
+    - [ArkUI路由/导航开发常见问题(ArkTS)](faqs/faqs-arkui-route-nav.md)
+    - [ArkUI动画/交互事件开发常见问题(ArkTS)](faqs/faqs-arkui-animation-interactive-event.md)
+  - [ArkUI框架开发常见问题(JS)](faqs/faqs-arkui-js.md)
+  - [Web开发常见问题](faqs/faqs-arkui-web.md)
+  - [包管理开发常见问题](faqs/faqs-bundle-management.md)
+  - [资源管理开发常见问题](faqs/faqs-globalization.md)
+  - [事件通知开发常见问题](faqs/faqs-event-notification.md)
   - [图形图像开发常见问题](faqs/faqs-graphics.md)
+  - [窗口管理开发常见问题](faqs/faqs-window-manager.md)
+  - [媒体开发常见问题](faqs/faqs-multimedia.md)
+  - [安全基础能力开发常见问题](faqs/faqs-security.md)
+  - [程序访问控制开发常见问题](faqs/faqs-ability-access-control.md)
+  - [数据管理开发常见问题](faqs/faqs-distributed-data-management.md)
   - [文件管理开发常见问题](faqs/faqs-file-management.md)
-  - [媒体开发常见问题](faqs/faqs-media.md)
-  - [网络与连接开发常见问题](faqs/faqs-connectivity.md)
-  - [数据管理开发常见问题](faqs/faqs-data-management.md)
-  - [设备管理开发常见问题](faqs/faqs-device-management.md)
+  - [网络管理开发常见问题](faqs/faqs-network-management.md)
   - [DFX开发常见问题](faqs/faqs-dfx.md)
-  - [国际化开发常见问题](faqs/faqs-international.md)
-  - [Native API使用常见问题](faqs/faqs-native.md)
-  - [三四方库使用常见问题](faqs/faqs-third-party-library.md)
-  - [IDE使用常见问题](faqs/faqs-ide.md)
-  - [hdc_std命令使用常见问题](faqs/faqs-hdc-std.md)
-  - [开发板使用常见问题](faqs/faqs-development-board.md)
-<!--no_check-->
+  - [泛Sensor服务开发常见问题](faqs/faqs-sensor.md)
+  - [启动恢复开发常见问题](faqs/faqs-startup.md)
+  - [分布式DeviceProfrofile开发常见问题](faqs/faqs-distributed-device-profile.md)
+  - [SDK使用常见问题](faqs/faqs-sdk.md)
+  - [语言编译运行时常见问题](faqs/faqs-compiler-runtime.md)
+  - [三四方库使用常见问题](faqs/faqs-third-fourth-party-library.md) 

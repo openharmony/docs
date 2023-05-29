@@ -1,4 +1,0 @@
-# DataShareExtensionAbility（仅对系统应用开放）
-
-
-DataShareExtensionAbility提供了数据分享的能力，系统应用可以实现一个DataShareExtensionAbility，也可以访问系统中已有的DataShareExtensionAbility，针对三方应用仅开放访问系统中已有DataShareExtensionAbility的能力，详细介绍请参见[同设备跨应用数据共享](../database/share-device-data-across-apps-overview.md)。

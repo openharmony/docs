@@ -1,29 +1,30 @@
-## 如何按字母分组展示联系人（仅UI）
+# 如何按字母分组展示联系人
 
-### 场景说明
+## 场景说明
 在通讯录中，需要将联系人按照姓氏的首字母进行分组排列，从而更方便联系人的查找；联系人列表右侧的字母导航可以随列表的滑动而定位到对应字母处；同时，也可以通过字母导航控制列表跳到指定联系人分组。
-本例即为大家介绍如何通过实现上述场景。
+本例即为大家介绍如何实现上述场景。
 
-### 效果呈现
+## 效果呈现
 本示例最终效果如下：
 
 ![contactlist](figures/contactlist.gif)
 
-### 环境要求
+## 环境要求
 - IDE：DevEco Studio 3.1 Beta1
 - SDK：Ohos_sdk_public 3.2.11.9 (API Version 9 Release)
 
-### 实现思路
+## 实现思路
 本例涉及的四个关键特性及其实现方案如下：
 - 联系人按字母分组展示：通过List组件显示联系人列表，通过ListItemGroup组件实现联系人分组。
 - 联系人右侧呈现字母导航：使用AlphabetIndexer组件实现字母导航，同时通过Stack组件使字母导航浮在联系人列表右侧。
 - 滑动联系人列表，右侧字母导航随之变动：通过List组件的onScrollIndex事件获取到联系人列表的滑动位置，并将该位置索引传递给字母导航的selected属性，作为字母导航的被选中项。
 - 通过右侧字母导航控制联系人列表滑动到指定分组：通过字母导航的onSelected事件获取选中字母的索引，并将该索引传递给联系人列表的控制器，控制列表滑动到指定分组。
 
-### 开发步骤
+## 开发步骤
 针对上述关键特性，具体实现步骤如下：
-1、先通过Stack、List、ListItemGroup、AlphabetIndexer等关键组件将UI框架搭建起来。
-先构建列表数据，其中Contact为联系人数据类
+
+1、通过Stack、List、ListItemGroup、AlphabetIndexer等关键组件将UI框架搭建起来。
+先构建列表数据，其中Contact为联系人数据类。
 ```ts
 contactGroups: object[] = [
    ...
@@ -112,7 +113,7 @@ struct ContactList{
 
 ![contactframe](figures/contactframe.PNG)
 
-2、接下来我们为UI框架添加逻辑控制。首先，通过List的onScrollIndex事件获取到列表滑动位置的索引，并将索引同步给右侧字母表的selected属性，从而在滑动联系人时，使右侧字母导航随之变动，关键代码如下：
+2、接下来为UI框架添加逻辑控制。首先，通过List的onScrollIndex事件获取到列表滑动位置的索引，并将索引同步给右侧字母表的selected属性，从而在滑动联系人时，使右侧字母导航随之变动，关键代码如下：
 ```ts
   ...
   // 创建动态变量，用于指定字母导航的选择项
@@ -184,8 +185,9 @@ struct ContactList{
 
 ![navtolist](figures/navtolist.gif)
 
-### 完整代码
+## 完整代码
 通过上述步骤我们已经完成了整个示例的开发，现提供本示例的完整代码供大家参考：
+
 联系人数据类代码：
 ```ts
 // ListModel.ets
@@ -333,5 +335,5 @@ struct ContactList{
   }
 }
 ```
-### 参考
-[创建列表](https://docs.openharmony.cn/pages/v3.2/zh-cn/application-dev/ui/arkts-layout-development-create-list.md/)
+## 参考
+[创建列表](../application-dev/ui/arkts-layout-development-create-list.md)

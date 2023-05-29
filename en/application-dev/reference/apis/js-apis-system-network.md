@@ -21,9 +21,25 @@ ohos.permission.GET_WIFI_INFO
 ohos.permission.GET_NETWORK_INFO
 
 
-## network.getType
+## network.getType<sup>3+</sup>
 
-getType(Object): void
+getType(options?: {
+    /**
+     * Called when the network type is obtained.
+     * @since 3
+     */
+    success?: (data: NetworkResponse) => void;
+    /**
+     * Called when the network type fails to be obtained.
+     * @since 3
+     */
+    fail?: (data: any, code: number) => void;
+    /**
+     * Called when the execution is completed.
+     * @since 3
+     */
+    complete?: () => void;
+  }): void
 
 Obtains the network type.
 
@@ -61,9 +77,20 @@ export default {
 ```
 
 
-## network.subscribe
+## network.subscribe<sup>3+</sup>
 
-subscribe(Object): void
+subscribe(options?:{
+    /**
+     * Called when the network connection state changes.
+     * @since 3
+     */
+    success?: (data: NetworkResponse) => void;
+    /**
+     * Called when the listening fails.
+     * @since 3
+     */
+    fail?: (data: any, code: number) => void;
+  }): void
 
 Listens to the network connection state. If this method is called multiple times, the last call takes effect.
 
@@ -101,7 +128,7 @@ export default {
 ```
 
 
-## network.unsubscribe
+## network.unsubscribe<sup>3+</sup>
 
 unsubscribe(): void
 
@@ -120,7 +147,7 @@ export default {
 ```
 
 
-## NetworkResponse
+## NetworkResponse<sup>3+</sup>
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 

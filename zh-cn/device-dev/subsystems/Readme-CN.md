@@ -78,6 +78,7 @@
       - [插件](subsys-boot-init-plugin.md)
       - [组件化启动](subsys-boot-init-sub-unit.md)
       - [init运行日志规范化](subsys-boot-init-log.md)
+      - [Seccomp策略使能开发指导](subsys-boot-init-seccomp.md)
     - [appspawn应用孵化组件](subsys-boot-appspawn.md)
     - [bootstrap服务启动组件](subsys-boot-bootstrap.md)
     - [常见问题](subsys-boot-faqs.md)
@@ -126,3 +127,5 @@
         - [热场景定制开发指导](subsys-thermal_scene.md)
     - 电源管理
         - [电源模式定制开发指导](subsys-power-mode-customization.md)
+        - [电源默认休眠行为定制开发指导](subsys-power-default-sleep-behavior-customization.md)
+        - [唤醒源定制开发指导](subsys-power-wakeup-source-customization.md)

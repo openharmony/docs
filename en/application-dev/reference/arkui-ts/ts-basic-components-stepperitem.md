@@ -28,12 +28,12 @@ StepperItem()
 
 ## ItemState
 
-|   Name   |   Value   | Description|
-| -------- | -------- |-------- |
-| Normal |  0  |The button on the right is clickable and can navigate users to the next **\<StepperItem>** when it is clicked.|
-| Disabled |  1  |The button on the right is disabled.|
-| Waiting |  2  | The button on the right is not displayed, and a progress bar is displayed instead.|
-| Skip |  3  |The button on the right reads "Skip" by default. You can define the processing logic for this state in the **onSkip** callback of the stepper.|
+|   Name   | Description|
+| -------- |-------- |
+| Normal |The button on the right is clickable and can navigate users to the next **\<StepperItem>** when it is clicked.|
+| Disabled |The button on the right is disabled.|
+| Waiting | The button on the right is not displayed, and a progress bar is displayed instead.|
+| Skip |The button on the right reads "Skip" by default. You can define the processing logic for this state in the **onSkip** callback of the stepper.|
 
 
 ## Example

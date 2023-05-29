@@ -5,6 +5,8 @@
 > **说明：**
 >
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该模块不支持在[UIAbility](./js-apis-app-ability-uiAbility.md)中使用。
 
 
 ## 导入模块

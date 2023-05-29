@@ -98,7 +98,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 13400002 | Bad file path. |
+  | 13400002 | bad file path. |
 
 **示例：**
 
@@ -146,7 +146,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 13400002 | Bad file path. |
+  | 13400002 | bad file path. |
 
 **示例：**
 
@@ -362,7 +362,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
         console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
     }
   };
-  uploadTask.on('complete', upComplete);
+  uploadTask.on('complete', upCompleteCallback);
 
   let upFailCallback = (taskStates) => {
     for (let i = 0; i < taskStates.length; i++ ) {
@@ -393,6 +393,9 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 **示例：**
 
   ```js
+  let upProgressCallback = (uploadedSize, totalSize) => {
+      console.info('Upload delete progress notification.' + 'totalSize:' + totalSize + 'uploadedSize:' + uploadedSize);
+  };
   uploadTask.off('progress', upProgressCallback);
   ```
 
@@ -417,6 +420,9 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 **示例：**
 
   ```js
+  let headerCallback = (header) => {
+      console.info(`Upload delete headerReceive notification. header: ${JSON.stringify(header)}`);
+  };
   uploadTask.off('headerReceive', headerCallback);
   ```
 
@@ -440,8 +446,20 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 **示例：**
 
   ```js
+  let upCompleteCallback = (taskStates) => {
+    console.info('Upload delete complete notification.');
+    for (let i = 0; i < taskStates.length; i++ ) {
+        console.info('taskState:' + JSON.stringify(taskStates[i]));
+    }
+  };
   uploadTask.off('complete', upCompleteCallback);
 
+  let upFailCallback = (taskStates) => {
+    console.info('Upload delete fail notification.');
+    for (let i = 0; i < taskStates.length; i++ ) {
+      console.info('taskState:' + JSON.stringify(taskStates[i]));
+    }
+  };
   uploadTask.off('fail', upFailCallback);
   ```
 
@@ -659,9 +677,9 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 13400001 | File operation error. |
-  | 13400002 | Bad file path. |
-  | 13400003 | Task manager service error. |
+  | 13400001 | file operation error. |
+  | 13400002 | bad file path. |
+  | 13400003 | task manager service error. |
 
 **示例：**
 
@@ -703,9 +721,9 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
-  | 13400001 | File operation error. |
-  | 13400002 | Bad file path. |
-  | 13400003 | Task manager service error. |
+  | 13400001 | file operation error. |
+  | 13400002 | bad file path. |
+  | 13400003 | task manager service error. |
 
 **示例：**
 
@@ -830,10 +848,10 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 **示例：**
 
   ```js
-  let progresCallbanck = (receivedSize, totalSize) => {
+  let progresCallback = (receivedSize, totalSize) => {
       console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
   };
-  downloadTask.on('progress', progresCallbanck);
+  downloadTask.on('progress', progresCallback);
   ```
 
 
@@ -857,7 +875,10 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 **示例：**
 
   ```js
-  downloadTask .off('progress',progresCallbanck);
+  let progresCallback = (receivedSize, totalSize) => {
+      console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
+  };
+  downloadTask.off('progress', progresCallback);
   ```
 
 
@@ -885,6 +906,16 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
       console.info('Download task completed.');
   };
   downloadTask.on('complete', completeCallback);
+
+  let pauseCallback = () => {
+      console.info('Download task pause.');
+  };
+  downloadTask.on('pause', pauseCallback);
+
+  let removeCallback = () => {
+      console.info('Download task remove.');
+  };
+  downloadTask.on('remove', removeCallback);
   ```
 
 
@@ -908,7 +939,20 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 **示例：**
 
   ```js
+  let completeCallback = () => {
+      console.info('Download delete complete notification.');
+  };
   downloadTask.off('complete', completeCallback);
+
+  let pauseCallback = () => {
+      console.info('Download delete pause notification.');
+  };
+  downloadTask.off('pause', pauseCallback);
+
+  let removeCallback = () => {
+      console.info('Download delete remove notification.');
+  };
+  downloadTask.off('remove', removeCallback);
   ```
 
 
@@ -965,6 +1009,9 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 **示例：**
 
   ```js
+  let failCallback = (err) => {
+      console.info(`Download delete fail notification. err: ${err.message}`);
+  };
   downloadTask.off('fail', failCallback);
   ```
 
@@ -1610,10 +1657,10 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- | -------- | -------- |
 | url | string | 是 | 资源地址。 |
 | header | Object | 否 | 添加要包含在下载请求中的HTTPS标志头。<br/>开发者可以通过header的X-TLS-Version参数指定需要使用的TLS版本(如果不指定，则默认使用CURL_SSLVERSION_TLSv1_2版本，指定则使用指定版本。)<br/>CURL_SSLVERSION_TLSv1_0<br/>CURL_SSLVERSION_TLSv1_1<br/>CURL_SSLVERSION_TLSv1_2<br/>CURL_SSLVERSION_TLSv1_3<br/>通过header的X-Cipher-List参数指定需要使用的密码套件(如果不指定，则默认使用安全密码套件，指定则使用指定密码套件。)<br/>-1.2允许使用的密码套件白名单：<br/>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,<br/>TLS_DHE_DSS_WITH_AES_128_GCM_SHA256,TLS_DSS_RSA_WITH_AES_256_GCM_SHA384,<br/>TLS_PSK_WITH_AES_256_GCM_SHA384,TLS_DHE_PSK_WITH_AES_128_GCM_SHA256,<br/>TLS_DHE_PSK_WITH_AES_256_GCM_SHA384,TLS_DHE_PSK_WITH_CHACHA20_POLY1305_SHA256,<br/>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,<br/>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,<br/>TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256,TLS_ECDHE_PSK_WITH_CHACHA20_POLY1305_SHA256,<br/>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256,TLS_ECDHE_PSK_WITH_AES_256_GCM_SHA384,<br/>TLS_ECDHE_PSK_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_CCM,<br/>TLS_DHE_RSA_WITH_AES_256_CCM,TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256,<br/>TLS_PSK_WITH_AES_256_CCM,TLS_DHE_PSK_WITH_AES_128_CCM,<br/>TLS_DHE_PSK_WITH_AES_256_CCM,TLS_ECDHE_ECDSA_WITH_AES_128_CCM,<br/>TLS_ECDHE_ECDSA_WITH_AES_256_CCM,TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256<br/>-1.3允许使用的密码套件白名单：<br/>TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384,TLS_CHACHA20_POLY1305_SHA256,TLS_AES_128_CCM_SHA256<br/>-1.3新增国密算法套：<br/>TLS_SM4_GCM_SM3,TLS_SM4_CCM_SM3 |
-| enableMetered | boolean | 否 | 设置是否允许在按流量计费的连接下下载(默认使用false)。<br/>-&nbsp;true：是<br/>-&nbsp;false：否 |
+| enableMetered | boolean | 否 | 设置是否允许在按流量计费的连接下下载(默认使用false)。Wi-Fi为非计费网络，数据流量为计费网络。<br/>-&nbsp;true：是<br/>-&nbsp;false：否 |
 | enableRoaming | boolean | 否 | 设置是否允许在漫游网络中下载(默认使用false)。 <br/>-&nbsp;true：是<br/>-&nbsp;false：否|
 | description | string | 否 | 设置下载会话的描述。 |
-| filePath<sup>7+</sup> | string | 否 | 设置下载路径。<br/>-&nbsp;filePath:'/data/storage/el2/base/haps/entry/files/test.txt'：将文件存储在绝对路径下。<br/>-&nbsp;FA模型下使用[context](js-apis-inner-app-context.md#contextgetcachedir) 获取应用存储路径，比如：\`${featureAbility.getContext().getFilesDir()}/test.txt\`，并将文件存储在此路径下。<br/>-&nbsp;Stage模型下使用[AbilityContext](js-apis-inner-application-context.md) 类获取文件路径，比如：\`${globalThis.abilityContext.tempDir}/test.txt\`，并将文件存储在此路径下。|
+| filePath<sup>7+</sup> | string | 否 | 设置下载路径。<br/>-&nbsp;FA模型下使用[context](js-apis-inner-app-context.md#contextgetcachedir) 获取应用存储路径，比如：\`${featureAbility.getContext().getFilesDir()}/test.txt\`，并将文件存储在此路径下。<br/>-&nbsp;Stage模型下使用[AbilityContext](js-apis-inner-application-context.md) 类获取文件路径，比如：\`${globalThis.abilityContext.tempDir}/test.txt\`，并将文件存储在此路径下。|
 | networkType | number | 否 | 设置允许下载的网络类型(默认使用NETWORK_MOBILE&NETWORK_WIFI)。<br/>-&nbsp;NETWORK_MOBILE：0x00000001<br/>-&nbsp;NETWORK_WIFI：0x00010000|
 | title | string | 否 | 设置下载任务名称。 |
 | background<sup>9+</sup> | boolean | 否 | 后台任务通知开关，开启后可在通知中显示下载状态(默认使用false)。 |
@@ -1626,17 +1673,17 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**: SystemCapability.MiscServices.Download
 
-| 名称 | 类型 | 说明 |
+| 名称 | 类型 |必填 |  说明 |
 | -------- | ------ |---------------- |
-| downloadId | number | 下载任务ID。 |
-| failedReason | number | 下载失败原因，可以是任何[下载任务的错误码](#下载任务的错误码)常量。 |
-| fileName | string | 下载的文件名。 |
-| filePath | string | 存储文件的URI。 |
-| pausedReason | number | 会话暂停的原因，可以是任何[下载任务暂停原因](#下载任务暂停原因)常量。 |
-| status | number | 下载状态码，可以是任何[下载任务状态码](#下载任务状态码)常量。 |
-| targetURI | string | 下载文件的URI。 |
-| downloadTitle | string | 下载任务名称。 |
-| downloadTotalBytes | number | 下载的文件的总大小（int&nbsp;bytes）。 |
-| description | string | 待下载任务的描述信息。 |
-| downloadedBytes | number | 实时下载大小（int&nbsp;&nbsp;bytes）。 |
+| downloadId | number |是 | 下载任务ID。 |
+| failedReason | number|是 | 下载失败原因，可以是任何[下载任务的错误码](#下载任务的错误码)常量。 |
+| fileName | string |是| 下载的文件名。 |
+| filePath | string |是| 存储文件的URI。 |
+| pausedReason | number |是| 会话暂停的原因，可以是任何[下载任务暂停原因](#下载任务暂停原因)常量。 |
+| status | number |是| 下载状态码，可以是任何[下载任务状态码](#下载任务状态码)常量。 |
+| targetURI | string |是| 下载文件的URI。 |
+| downloadTitle | string |是| 下载任务名称。 |
+| downloadTotalBytes | number |是| 下载的文件的总大小（int&nbsp;bytes）。 |
+| description | string |是| 待下载任务的描述信息。 |
+| downloadedBytes | number |是| 实时下载大小（int&nbsp;&nbsp;bytes）。 |
 <!--no_check-->

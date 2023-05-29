@@ -31,13 +31,13 @@ Subscribes to data of the acceleration sensor.
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).ACCELEROMETER                         | Yes  | Sensor type. The value is fixed at **SensorId.ACCELEROMETER**.             |
 | callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is an **AccelerometerResponse** object.|
-| options  | [Options](#options)                                          | No  | Data reporting frequency. The default value is 200,000,000 ns.                        |
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.          |
 
 **Error code**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -49,7 +49,7 @@ try {
         console.info('X-coordinate component: ' + data.x);
         console.info('Y-coordinate component: ' + data.y);
         console.info('Z-coordinate component: ' + data.z);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -71,13 +71,13 @@ Subscribes to data of the uncalibrated acceleration sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).ACCELEROMETER_UNCALIBRATED            | Yes  | Sensor type. The value is fixed at **SensorId.ACCELEROMETER_UNCALIBRATED**. |
 | callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes  | Callback used to report the sensor data, which is an **AccelerometerUncalibratedResponse** object.|
-| options  | [Options](#options)                                          | No  | Data reporting frequency. The default value is 200,000,000 ns.                         |
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.           |
 
 **Error code**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -92,7 +92,7 @@ try {
         console.info('X-coordinate bias: ' + data.biasX);
         console.info('Y-coordinate bias: ' + data.biasY);
         console.info('Z-coordinate bias: ' + data.biasZ);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -112,13 +112,13 @@ Subscribes to data of the ambient light sensor.
 | -------- | ----------------------------------------------- | ---- | --------------------------------------------------- |
 | type     | [SensorId](#sensorid9).AMBIENT_LIGHT            | Yes  | Sensor type. The value is fixed at **SensorId.AMBIENT_LIGHT**.     |
 | callback | Callback&lt;[LightResponse](#lightresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **LightResponse** object.|
-| options  | [Options](#options)                             | No  | Data reporting frequency. The default value is 200,000,000 ns.                |
+| options  | [Options](#options)                             | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.  |
 
 **Error code**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -128,7 +128,7 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 try {
     sensor.on(sensor.SensorId.AMBIENT_LIGHT, function (data) {
         console.info('The ambient light intensity: ' + data.intensity);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -148,13 +148,13 @@ Subscribes to data of the ambient temperature sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).AMBIENT_TEMPERATURE                   | Yes  | Sensor type. The value is fixed at **SensorId.AMBIENT_TEMPERATURE**.        |
 | callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | Yes  | Callback used to report the sensor data, which is an **AmbientTemperatureResponse** object.|
-| options  | [Options](#options)                                          | No  | Data reporting frequency. The default value is 200,000,000 ns.                         |
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.           |
 
 **Error code**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -164,7 +164,7 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 try {
     sensor.on(sensor.SensorId.AMBIENT_TEMPERATURE, function (data) {
         console.info('Temperature: ' + data.temperature);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -184,13 +184,13 @@ Subscribes to data of the barometer sensor.
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).BAROMETER                        | Yes  | Sensor type. The value is fixed at **SensorId.BAROMETER**.             |
 | callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **BarometerResponse** object.|
-| options  | [Options](#options)                                     | No  | Data reporting frequency. The default value is 200,000,000 ns.                    |
+| options  | [Options](#options)                                     | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.      |
 
 **Error code**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -200,7 +200,7 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 try {
     sensor.on(sensor.SensorId.BAROMETER, function (data) {
         console.info('Atmospheric pressure: ' + data.pressure);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -220,13 +220,13 @@ Subscribes to data of the gravity sensor.
 | -------- | --------------------------------------------------- | ---- | ----------------------------------------------------- |
 | type     | [SensorId](#sensorid9).GRAVITY                      | Yes  | Sensor type. The value is fixed at **SensorId.GRAVITY**.             |
 | callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **GravityResponse** object.|
-| options  | [Options](#options)                                 | No  | Data reporting frequency. The default value is 200,000,000 ns.                  |
+| options  | [Options](#options)                                 | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.    |
 
 **Error code**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -238,7 +238,7 @@ try {
         console.info('X-coordinate component: ' + data.x);
         console.info('Y-coordinate component: ' + data.y);
         console.info('Z-coordinate component: ' + data.z);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -260,13 +260,13 @@ Subscribes to data of the gyroscope sensor.
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).GYROSCOPE                        | Yes  | Sensor type. The value is fixed at **SensorId.GYROSCOPE**.             |
 | callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | Yes  | Callback used to report the sensor data, which is a **GyroscopeResponse** object.|
-| options  | [Options](#options)                                     | No  | Data reporting frequency. The default value is 200,000,000 ns.                    |
+| options  | [Options](#options)                                     | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.      |
 
 **Error code**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -278,7 +278,7 @@ try {
         console.info('X-coordinate component: ' + data.x);
         console.info('Y-coordinate component: ' + data.y);
         console.info('Z-coordinate component: ' + data.z);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -301,13 +301,13 @@ Subscribes to data of the uncalibrated gyroscope sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).GYROSCOPE_UNCALIBRATED                | Yes  | Sensor type. The value is fixed at **SensorId.GYROSCOPE_UNCALIBRATED**.     |
 | callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **GyroscopeUncalibratedResponse** object.|
-| options  | [Options](#options)                                          | No  | Data reporting frequency. The default value is 200,000,000 ns.                         |
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.           |
 
 **Error code**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -322,7 +322,7 @@ try {
         console.info('X-coordinate bias: ' + data.biasX);
         console.info('Y-coordinate bias: ' + data.biasY);
         console.info('Z-coordinate bias: ' + data.biasZ);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -342,13 +342,13 @@ Subscribes to data of the Hall effect sensor.
 | -------- | --------------------------------------------- | ---- | -------------------------------------------------- |
 | type     | [SensorId](#sensorid9).HALL                   | Yes  | Sensor type. The value is fixed at **SensorId.HALL**.             |
 | callback | Callback&lt;[HallResponse](#hallresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **HallResponse** object.|
-| options  | [Options](#options)                           | No  | Data reporting frequency. The default value is 200,000,000 ns.               |
+| options  | [Options](#options)                           | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns. |
 
 **Error code**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -358,7 +358,7 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 try {
     sensor.on(sensor.SensorId.HALL, function (data) {
         console.info('Hall status: ' + data.status);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -380,13 +380,13 @@ Subscribes to data of the heart rate sensor.
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).HEART_RATE                       | Yes  | Sensor type. The value is fixed at **SensorId.HEART_RATE**.            |
 | callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **HeartRateResponse** object.|
-| options  | [Options](#options)                                     | No  | Data reporting frequency. The default value is 200,000,000 ns.                    |
+| options  | [Options](#options)                                     | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.      |
 
 **Error code**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -396,7 +396,7 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 try {
     sensor.on(sensor.SensorId.HEART_RATE, function (data) {
         console.info('Heart rate: ' + data.heartRate);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -416,13 +416,13 @@ Subscribes to data of the humidity sensor.
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).HUMIDITY                       | Yes  | Sensor type. The value is fixed at **SensorId.HUMIDITY**.             |
 | callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **HumidityResponse** object.|
-| options  | [Options](#options)                                   | No  | Data reporting frequency. The default value is 200,000,000 ns.                   |
+| options  | [Options](#options)                                   | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.     |
 
 **Error code**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -432,7 +432,7 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 try {
     sensor.on(sensor.SensorId.HUMIDITY, function (data) {
         console.info('Humidity: ' + data.humidity);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -455,13 +455,13 @@ Subscribes to data of the linear acceleration sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).LINEAR_ACCELEROMETER                  | Yes  | Sensor type. The value is fixed at **SensorId.LINEAR_ACCELEROMETER**.       |
 | callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **LinearAccelerometerResponse** object.|
-| options  | [Options](#options)                                          | No  | Data reporting frequency. The default value is 200,000,000 ns.                         |
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.           |
 
 **Error code**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -473,7 +473,7 @@ try {
         console.info('X-coordinate component: ' + data.x);
         console.info('Y-coordinate component: ' + data.y);
         console.info('Z-coordinate component: ' + data.z);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -493,13 +493,13 @@ Subscribes to data of the magnetic field sensor.
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).MAGNETIC_FIELD                        | Yes  | Sensor type. The value is fixed at **SensorId.MAGNETIC_FIELD**.            |
 | callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **MagneticFieldResponse** object.|
-| options  | [Options](#options)                                          | No  | Data reporting frequency. The default value is 200,000,000 ns.                        |
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.          |
 
 **Error code**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -511,7 +511,7 @@ try {
         console.info('X-coordinate component: ' + data.x);
         console.info('Y-coordinate component: ' + data.y);
         console.info('Z-coordinate component: ' + data.z);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -531,13 +531,13 @@ Subscribes to data of the uncalibrated magnetic field sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).MAGNETIC_FIELD_UNCALIBRATED           | Yes  | Sensor type. The value is fixed at **SensorId.MAGNETIC_FIELD_UNCALIBRATED**.|
 | callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **MagneticFieldUncalibratedResponse** object.|
-| options  | [Options](#options)                                          | No  | Data reporting frequency. The default value is 200,000,000 ns.                         |
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.           |
 
 **Error code**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -552,7 +552,7 @@ try {
         console.info('X-coordinate bias: ' + data.biasX);
         console.info('Y-coordinate bias: ' + data.biasY);
         console.info('Z-coordinate bias: ' + data.biasZ);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -570,7 +570,7 @@ Subscribes to data of the orientation sensor.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -580,7 +580,7 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 | -------- | ----------------------------------------------------------- | ---- | --------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).ORIENTATION                          | Yes  | Sensor type. The value is fixed at **SensorId.ORIENTATION**.             |
 | callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **OrientationResponse** object.|
-| options  | [Options](#options)                                         | No  | Data reporting frequency. The default value is 200,000,000 ns.                      |
+| options  | [Options](#options)                                         | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.        |
 
 **Example**
 
@@ -590,7 +590,7 @@ try {
         console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
         console.info('The device rotates at an angle around the X axis: ' + data.beta);
         console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -610,7 +610,7 @@ Subscribes to data of the pedometer sensor.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -620,7 +620,7 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).PEDOMETER                        | Yes  | Sensor type. The value is fixed at **SensorId.PEDOMETER**.             |
 | callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **PedometerResponse** object.|
-| options  | [Options](#options)                                     | No  | Data reporting frequency. The default value is 200,000,000 ns.                    |
+| options  | [Options](#options)                                     | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.      |
 
 **Example**
 
@@ -628,7 +628,7 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 try {
     sensor.on(sensor.SensorId.PEDOMETER, function (data) {
         console.info('Step count: ' + data.steps);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -651,13 +651,13 @@ Subscribes to data of the pedometer detection sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).PEDOMETER_DETECTION                   | Yes  | Sensor type. The value is fixed at **SensorId.PEDOMETER_DETECTION**.        |
 | callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **PedometerDetectionResponse** object.|
-| options  | [Options](#options)                                          | No  | Data reporting frequency. The default value is 200,000,000 ns.                         |
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.           |
 
 **Error code**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -667,7 +667,7 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 try {
     sensor.on(sensor.SensorId.PEDOMETER_DETECTION, function (data) {
         console.info('Pedometer scalar: ' + data.scalar);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -687,13 +687,13 @@ Subscribes to data of the proximity sensor.
 | -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).PROXIMITY                        | Yes  | Sensor type. The value is fixed at **SensorId.PROXIMITY**.             |
 | callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **ProximityResponse** object.|
-| options  | [Options](#options)                                     | No  | Data reporting frequency. The default value is 200,000,000 ns.                    |
+| options  | [Options](#options)                                     | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.      |
 
 **Error code**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -703,7 +703,7 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 try {
     sensor.on(sensor.SensorId.PROXIMITY, function (data) {
         console.info('Distance: ' + data.distance);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -724,13 +724,13 @@ Subscribes to data of the rotation vector sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).ROTATION_VECTOR                       | Yes  | Sensor type. The value is fixed at **SensorId.ROTATION_VECTOR**.            |
 | callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **RotationVectorResponse** object.|
-| options  | [Options](#options)                                          | No  | Data reporting frequency. The default value is 200,000,000 ns.                         |
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.           |
 
 **Error code**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -743,7 +743,7 @@ try {
         console.info('Y-coordinate component: ' + data.y);
         console.info('Z-coordinate component: ' + data.z);
         console.info('Scalar quantity: ' + data.w);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -764,13 +764,13 @@ Subscribes to data of the significant motion sensor.
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | type     | [SensorId](#sensorid9).SIGNIFICANT_MOTION                    | Yes  | Sensor type. The value is fixed at **SensorId.SIGNIFICANT_MOTION**.         |
 | callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **SignificantMotionResponse** object.|
-| options  | [Options](#options)                                          | No  | Data reporting frequency. The default value is 200,000,000 ns.                         |
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.           |
 
 **Error code**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -780,7 +780,7 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 try {
     sensor.on(sensor.SensorId.SIGNIFICANT_MOTION, function (data) {
         console.info('Scalar data: ' + data.scalar);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -801,13 +801,13 @@ Subscribes to data of the wear detection sensor.
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
 | type     | [SensorId](#sensorid9).WEAR_DETECTION                        | Yes  | Sensor type. The value is fixed at **SensorId.WEAR_DETECTION**.            |
 | callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | Yes  | Callback used to report the sensor data, which is a **WearDetectionResponse** object.|
-| options  | [Options](#options)                                          | No  | Data reporting frequency. The default value is 200,000,000 ns.                        |
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.          |
 
 **Error code**
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -817,7 +817,7 @@ For details about the following error codes, see [Sensor Error Codes](../errorco
 try {
     sensor.on(sensor.SensorId.WEAR_DETECTION, function (data) {
         console.info('Wear status: ' + data.value);
-    }, { interval: 10000000 });
+    }, { interval: 100000000 });
 } catch (err) {
     console.error('On fail, errCode: ' + err.code + ' ,msg: ' + err.message);
 }
@@ -846,7 +846,7 @@ Obtains data of the acceleration sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -885,7 +885,7 @@ Obtains data of the uncalibrated acceleration sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -925,7 +925,7 @@ Obtains data of the ambient light sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -960,7 +960,7 @@ Obtains data of the temperature sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -995,7 +995,7 @@ Obtains data of the barometer sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -1030,7 +1030,7 @@ Obtains data of the gravity sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -1069,7 +1069,7 @@ Obtains to data of the gyroscope sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -1108,7 +1108,7 @@ Obtains data of the uncalibrated gyroscope sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -1148,7 +1148,7 @@ Obtains data of the Hall effect sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -1185,7 +1185,7 @@ Obtains data of the heart rate sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -1220,7 +1220,7 @@ Obtains data of the humidity sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -1257,7 +1257,7 @@ Obtains data of the linear acceleration sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -1294,7 +1294,7 @@ Obtains data of the magnetic field sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -1331,7 +1331,7 @@ Obtains data of the uncalibrated magnetic field sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -1371,7 +1371,7 @@ Obtains data of the orientation sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -1410,7 +1410,7 @@ Obtains data of the pedometer sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -1447,7 +1447,7 @@ Obtains data of the pedometer sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -1482,7 +1482,7 @@ Obtains data of the proximity sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -1517,7 +1517,7 @@ Obtains data of the rotation vector sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -1555,7 +1555,7 @@ Obtains data of the significant motion sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -1590,7 +1590,7 @@ Obtains data of the wear detection sensor once.
 
 For details about the following error codes, see [Sensor Error Codes](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -2400,7 +2400,7 @@ Obtains the geomagnetic field of a geographic location at a certain time. This A
 
 For details about the following error codes, see [Error Codes of sensor.getGeomagneticInfo](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -2451,7 +2451,7 @@ Obtains the geomagnetic field of a geographic location at a certain time. This A
 
 For details about the following error codes, see [Error Codes of sensor.getGeomagneticInfo](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -2496,7 +2496,7 @@ Obtains the altitude based on the atmospheric pressure. This API uses an asynchr
 
 For details about the following error codes, see [Error Codes of sensor.getDeviceAltitude](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -2543,7 +2543,7 @@ Obtains the altitude based on the atmospheric pressure. This API uses a promise 
 
 For details about the following error codes, see [Error Codes of sensor.getDeviceAltitude](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -2583,7 +2583,7 @@ Obtains the magnetic dip based on the inclination matrix. This API uses an async
 
 For details about the following error codes, see [Error Codes of sensor.getInclination](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -2633,7 +2633,7 @@ Obtains the magnetic dip based on the inclination matrix. This API uses a promis
 
 For details about the following error codes, see [Error Codes of sensor.getInclination](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -2679,7 +2679,7 @@ Obtains the angle change between two rotation matrices. This API uses an asynchr
 
 For details about the following error codes, see [Error Codes of sensor.getAngleVariation](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -2740,7 +2740,7 @@ Obtains the angle change between two rotation matrices. This API uses a promise 
 
 For details about the following error codes, see [Error Codes of sensor.getAngleVariation](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -2794,7 +2794,7 @@ Obtains the rotation matrix from a rotation vector. This API uses an asynchronou
 
 For details about the following error codes, see [Error Codes of sensor.getRotationMatrix](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -2841,7 +2841,7 @@ Obtains the rotation matrix from a rotation vector. This API uses a promise to r
 
 For details about the following error codes, see [Error Codes of sensor.getRotationMatrix](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -2880,11 +2880,11 @@ Transforms a rotation vector based on the coordinate system. This API uses an as
 | coordinates      | [CoordinatesOptions](#coordinatesoptions) | Yes  | Rotation vector to transform.      |
 | callback         | AsyncCallback&lt;Array&lt;number&gt;&gt;  | Yes  | Callback used to return the rotation vector after being transformed.|
 
-**Error code**
+**Error codes**
 
 For details about the following error codes, see [Error Codes of sensor.transformRotationMatrix](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -2936,7 +2936,7 @@ Transforms a rotation vector based on the coordinate system. This API uses a pro
 
 For details about the following error codes, see [Error Codes of sensor.transformRotationMatrix](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -2981,7 +2981,7 @@ Obtains the quaternion from a rotation vector. This API uses an asynchronous cal
 
 For details about the following error codes, see [Error Codes of sensor.getQuaternion](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -3028,7 +3028,7 @@ Obtains the quaternion from a rotation vector. This API uses a promise to return
 
 For details about the following error codes, see [Error Codes of sensor.getQuaternion](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -3069,7 +3069,7 @@ Obtains the device direction based on the rotation matrix. This API uses an asyn
 
 For details about the following error codes, see [Error Codes of sensor.getOrientation](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -3123,7 +3123,7 @@ Obtains the device direction based on the rotation matrix. This API uses a promi
 
 For details about the following error codes, see [Error Codes of sensor.getOrientation](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -3169,7 +3169,7 @@ Obtains the rotation matrix based on a gravity vector and geomagnetic vector. Th
 
 For details about the following error codes, see [Error Codes of sensor.getRotationMatrix](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -3216,7 +3216,7 @@ Obtains the rotation matrix based on a gravity vector and geomagnetic vector. Th
 
 For details about the following error codes, see [Error Codes of sensor.getRotationMatrix](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -3255,7 +3255,7 @@ Obtains information about all sensors on the device. This API uses an asynchrono
 
 For details about the following error codes, see [Error Codes of sensor.getSensorList](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -3295,7 +3295,7 @@ Obtains information about all sensors on the device. This API uses a promise to 
 
 For details about the following error codes, see [Error Codes of sensor.getSensorList](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -3334,7 +3334,7 @@ Obtains information about the sensor of a specific type. This API uses an asynch
 
 For details about the following error codes, see [Error Codes of sensor.getSingleSensor](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -3378,7 +3378,7 @@ Obtains information about the sensor of a specific type. This API uses a promise
 
 For details about the following error codes, see [Error Codes of sensor.getSingleSensor](../errorcodes/errorcode-sensor.md).
 
-| Error Code ID| Error Message          |
+| ID| Error Message          |
 | -------- | ------------------ |
 | 14500101 | Service exception. |
 
@@ -3847,11 +3847,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.AC
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ACCELEROMETER       | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ACCELEROMETER**. |
-| callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes       | Callback used to return the acceleration sensor data. The reported data type in the callback is **AccelerometerResponse**. |
-| options  | [Options](#options)                                          | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ACCELEROMETER       | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ACCELEROMETER**.    |
+| callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes  | Callback used to return the acceleration sensor data. The reported data type in the callback is **AccelerometerResponse**.|
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
 
 **Example**
 
@@ -3861,7 +3861,7 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.AC
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -3879,11 +3879,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.LI
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_LINEAR_ACCELERATION | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_LINEAR_ACCELERATION**. |
-| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | Yes       | Callback used to return the linear acceleration sensor data. The reported data type in the callback is **LinearAccelerometerResponse**. |
-| options  | [Options](#options)                                          | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_LINEAR_ACCELERATION | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_LINEAR_ACCELERATION**.|
+| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | Yes  | Callback used to return the linear acceleration sensor data. The reported data type in the callback is **LinearAccelerometerResponse**.|
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
 
 ### ACCELEROMETER_UNCALIBRATED<sup>(deprecated)</sup>
 
@@ -3899,14 +3899,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.AC
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED**. |
-| callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes       | Callback used to return the uncalibrated acceleration sensor data. The reported data type in the callback is **AccelerometerUncalibratedResponse**. |
-| options  | [Options](#options)                                          | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED**.|
+| callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes  | Callback used to return the uncalibrated acceleration sensor data. The reported data type in the callback is **AccelerometerUncalibratedResponse**.|
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED,function(data){
       console.info('X-coordinate component: ' + data.x);
@@ -3916,7 +3915,7 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.AC
       console.info('Y-coordinate bias: ' + data.biasY);
       console.info('Z-coordinate bias: ' + data.biasZ);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -3932,11 +3931,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.GR
 
 **Parameters**
 
-| Name     | Type                                                | Mandatory | Description                                                  |
-| -------- | --------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GRAVITY    | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GRAVITY**. |
-| callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | Yes       | Callback used to return the gravity sensor data. The reported data type in the callback is **GravityResponse**. |
-| options  | [Options](#options)                                 | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
+| Name  | Type                                               | Mandatory| Description                                                       |
+| -------- | --------------------------------------------------- | ---- | ----------------------------------------------------------- |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GRAVITY    | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GRAVITY**.           |
+| callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | Yes  | Callback used to return the gravity sensor data. The reported data type in the callback is **GravityResponse**.|
+| options  | [Options](#options)                                 | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.      |
 
 **Example**
 
@@ -3946,7 +3945,7 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.GR
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -3964,21 +3963,20 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.GY
 
 **Parameters**
 
-| Name     | Type                                                    | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GYROSCOPE      | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GYROSCOPE**. |
-| callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | Yes       | Callback used to return the gyroscope sensor data. The reported data type in the callback is **GyroscopeResponse**. |
-| options  | [Options](#options)                                     | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GYROSCOPE      | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GYROSCOPE**.        |
+| callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | Yes  | Callback used to return the gyroscope sensor data. The reported data type in the callback is **GyroscopeResponse**.|
+| options  | [Options](#options)                                     | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE,function(data){
       console.info('X-coordinate component: ' + data.x);
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -3996,14 +3994,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.GY
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED**. |
-| callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | Yes       | Callback used to return the uncalibrated gyroscope sensor data. The reported data type in the callback is **GyroscopeUncalibratedResponse**. |
-| options  | [Options](#options)                                          | No        | Interval at which the callback is invoked to return the sensor data. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED**.|
+| callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | Yes  | Callback used to return the uncalibrated gyroscope sensor data. The reported data type in the callback is **GyroscopeUncalibratedResponse**.|
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED,function(data){
       console.info('X-coordinate component: ' + data.x);
@@ -4013,7 +4010,7 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.GY
       console.info('Y-coordinate bias: ' + data.biasY);
       console.info('Z-coordinate bias: ' + data.biasZ);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -4029,19 +4026,18 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.SI
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_SIGNIFICANT_MOTION  | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_SIGNIFICANT_MOTION**. |
-| callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | Yes       | Callback used to return the significant motion sensor data. The reported data type in the callback is **SignificantMotionResponse**. |
-| options  | [Options](#options)                                          | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_SIGNIFICANT_MOTION  | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_SIGNIFICANT_MOTION**.|
+| callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | Yes  | Callback used to return the significant motion sensor data. The reported data type in the callback is **SignificantMotionResponse**.|
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION,function(data){
       console.info('Scalar data: ' + data.scalar);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -4059,19 +4055,18 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.PE
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PEDOMETER_DETECTION | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PEDOMETER_DETECTION**. |
-| callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | Yes       | Callback used to return the pedometer detection sensor data. The reported data type in the callback is **PedometerDetectionResponse**. |
-| options  | [Options](#options)                                          | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PEDOMETER_DETECTION | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PEDOMETER_DETECTION**.|
+| callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | Yes  | Callback used to return the pedometer detection sensor data. The reported data type in the callback is **PedometerDetectionResponse**.|
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION,function(data){
       console.info('Scalar data: ' + data.scalar);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -4089,19 +4084,18 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.PE
 
 **Parameters**
 
-| Name     | Type                                                    | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PEDOMETER      | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PEDOMETER**. |
-| callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes       | Callback used to return the pedometer sensor data. The reported data type in the callback is **PedometerResponse**. |
-| options  | [Options](#options)                                     | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PEDOMETER      | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PEDOMETER**.          |
+| callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes  | Callback used to return the pedometer sensor data. The reported data type in the callback is **PedometerResponse**.|
+| options  | [Options](#options)                                     | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER,function(data){
       console.info('Steps: ' + data.steps);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
   ```
 
@@ -4117,11 +4111,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.AM
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_AMBIENT_TEMPERATURE | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_AMBIENT_TEMPERATURE**. |
-| callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | Yes       | Callback used to return the ambient temperature sensor data. The reported data type in the callback is **AmbientTemperatureResponse**. |
-| options  | [Options](#options)                                          | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_AMBIENT_TEMPERATURE | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_AMBIENT_TEMPERATURE**.|
+| callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | Yes  | Callback used to return the ambient temperature sensor data. The reported data type in the callback is **AmbientTemperatureResponse**.|
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
 
 **Example**
 
@@ -4129,9 +4123,8 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.AM
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE,function(data){
       console.info('Temperature: ' + data.temperature);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
-
   ```
 
 ### MAGNETIC_FIELD<sup>(deprecated)</sup>
@@ -4146,11 +4139,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.MA
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_MAGNETIC_FIELD      | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD**. |
-| callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | Yes       | Callback used to return the magnetic field sensor data. The reported data type in the callback is **MagneticFieldResponse**. |
-| options  | [Options](#options)                                          | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_MAGNETIC_FIELD      | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD**.     |
+| callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | Yes  | Callback used to return the magnetic field sensor data. The reported data type in the callback is **MagneticFieldResponse**.|
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
 
 **Example**
 
@@ -4160,9 +4153,8 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.MA
       console.info('Y-coordinate component: ' + data.y);
       console.info('Z-coordinate component: ' + data.z);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
-
   ```
 
 ### MAGNETIC_FIELD_UNCALIBRATED<sup>(deprecated)</sup>
@@ -4177,14 +4169,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.MA
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED**. |
-| callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | Yes       | Callback used to return the uncalibrated magnetic field sensor data. The reported data type in the callback is **MagneticFieldUncalibratedResponse**. |
-| options  | [Options](#options)                                          | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED**.|
+| callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | Yes  | Callback used to return the uncalibrated magnetic field sensor data. The reported data type in the callback is **MagneticFieldUncalibratedResponse**.|
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED,function(data){
       console.info('X-coordinate component: ' + data.x);
@@ -4194,9 +4185,8 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.MA
       console.info('Y-coordinate bias: ' + data.biasY);
       console.info('Z-coordinate bias: ' + data.biasZ);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
-
   ```
 
 ### PROXIMITY<sup>(deprecated)</sup>
@@ -4211,21 +4201,19 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.PR
 
 **Parameters**
 
-| Name     | Type                                                    | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PROXIMITY      | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PROXIMITY**. |
-| callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes       | Callback used to return the proximity sensor data. The reported data type in the callback is **ProximityResponse**. |
-| options  | [Options](#options)                                     | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PROXIMITY      | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PROXIMITY**.        |
+| callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes  | Callback used to return the proximity sensor data. The reported data type in the callback is **ProximityResponse**.|
+| options  | [Options](#options)                                     | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY,function(data){
       console.info('Distance: ' + data.distance);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
-
   ```
 
 ### HUMIDITY<sup>(deprecated)</sup>
@@ -4240,11 +4228,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.HU
 
 **Parameters**
 
-| Name     | Type                                                  | Mandatory | Description                                                  |
-| -------- | ----------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HUMIDITY     | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HUMIDITY**. |
-| callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | Yes       | Callback used to return the humidity sensor data. The reported data type in the callback is **HumidityResponse**. |
-| options  | [Options](#options)                                   | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HUMIDITY     | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HUMIDITY**.           |
+| callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | Yes  | Callback used to return the humidity sensor data. The reported data type in the callback is **HumidityResponse**.|
+| options  | [Options](#options)                                   | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
 
 **Example**
 
@@ -4252,9 +4240,8 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.HU
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY,function(data){
       console.info('Humidity: ' + data.humidity);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
-
   ```
 
 ### BAROMETER<sup>(deprecated)</sup>
@@ -4269,11 +4256,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.BA
 
 **Parameters**
 
-| Name     | Type                                                    | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_BAROMETER      | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_BAROMETER**. |
-| callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | Yes       | Callback used to return the barometer sensor data. The reported data type in the callback is **BarometerResponse**. |
-| options  | [Options](#options)                                     | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_BAROMETER      | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_BAROMETER**.        |
+| callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | Yes  | Callback used to return the barometer sensor data. The reported data type in the callback is **BarometerResponse**.|
+| options  | [Options](#options)                                     | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
 
 **Example**
 
@@ -4281,9 +4268,8 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.BA
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER,function(data){
       console.info('Atmospheric pressure: ' + data.pressure);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
-
   ```
 
 ### HALL<sup>(deprecated)</sup>
@@ -4298,21 +4284,19 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.HA
 
 **Parameters**
 
-| Name     | Type                                          | Mandatory | Description                                                  |
-| -------- | --------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HALL | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HALL**. |
-| callback | Callback&lt;[HallResponse](#hallresponse)&gt; | Yes       | Callback used to return the Hall effect sensor data. The reported data type in the callback is **HallResponse**. |
-| options  | [Options](#options)                           | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
+| Name  | Type                                         | Mandatory| Description                                                        |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HALL | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HALL**.               |
+| callback | Callback&lt;[HallResponse](#hallresponse)&gt; | Yes  | Callback used to return the Hall effect sensor data. The reported data type in the callback is **HallResponse**.|
+| options  | [Options](#options)                           | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_HALL,function(data){
       console.info('Status: ' + data.status);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
-
   ```
 
 ### AMBIENT_LIGHT<sup>(deprecated)</sup>
@@ -4327,11 +4311,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.AM
 
 **Parameters**
 
-| Name     | Type                                                   | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_AMBIENT_LIGHT | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_AMBIENT_LIGHT**. |
-| callback | Callback&lt;[LightResponse](#lightresponse)&gt;        | Yes       | Callback used to return the ambient light sensor data. The reported data type in the callback is **LightResponse**. |
-| options  | [Options](#options)                                    | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
+| Name  | Type                                                  | Mandatory| Description                                                       |
+| -------- | ------------------------------------------------------ | ---- | ----------------------------------------------------------- |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_AMBIENT_LIGHT | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_AMBIENT_LIGHT**.   |
+| callback | Callback&lt;[LightResponse](#lightresponse)&gt;        | Yes  | Callback used to return the ambient light sensor data. The reported data type in the callback is **LightResponse**.|
+| options  | [Options](#options)                                    | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.      |
 
 **Example**
 
@@ -4339,9 +4323,8 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.AM
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT,function(data){
       console.info(' Illumination: ' + data.intensity);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
-
   ```
 
 ### ORIENTATION<sup>(deprecated)</sup>
@@ -4356,30 +4339,28 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.OR
 
 **Parameters**
 
-| Name     | Type                                                        | Mandatory | Description                                                  |
-| -------- | ----------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ORIENTATION        | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ORIENTATION**. |
-| callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | Yes       | Callback used to return the orientation sensor data. The reported data type in the callback is **OrientationResponse**. |
-| options  | [Options](#options)                                         | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
+| Name  | Type                                                       | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ORIENTATION        | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ORIENTATION**.          |
+| callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | Yes  | Callback used to return the orientation sensor data. The reported data type in the callback is **OrientationResponse**.|
+| options  | [Options](#options)                                         | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION,function(data){
       console.info('The device rotates at an angle around the X axis: ' + data.beta);
       console.info('The device rotates at an angle around the Y axis: ' + data.gamma);
       console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
-
   ```
 
 ### HEART_RATE<sup>(deprecated)</sup>
 
 on(type: SensorType.SENSOR_TYPE_ID_HEART_RATE, callback: Callback&lt;HeartRateResponse&gt;, options?: Options): void
 
-Subscribes to only one data change of the heart rate sensor.
+Subscribes to data changes of the heart rate sensor. If this API is called multiple times for the same application, the last call takes effect.
 
 This API is deprecated since API version 9. You are advised to use [sensor.on.HEART_RATE](#heart_rate9) instead.
 
@@ -4389,10 +4370,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.HE
 
 **Parameters**
 
-| Name     | Type                                                    | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HEART_RATE     | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HEART_RATE**. |
-| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | Yes       | One-shot callback used to return the heart rate sensor data. The reported data type in the callback is **HeartRateResponse**. |
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HEART_RATE     | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HEART_RATE**.         |
+| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | Yes  | Callback used to return the heart rate sensor data. The reported data type in the callback is **HeartRateResponse**.|
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
 
 ### ROTATION_VECTOR<sup>(deprecated)</sup>
 
@@ -4406,14 +4388,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.RO
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ROTATION_VECTOR     | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ROTATION_VECTOR**. |
-| callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | Yes       | Callback used to return the rotation vector sensor data. The reported data type in the callback is **RotationVectorResponse**. |
-| options  | [Options](#options)                                          | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ROTATION_VECTOR     | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ROTATION_VECTOR**.|
+| callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | Yes  | Callback used to return the rotation vector sensor data. The reported data type in the callback is **RotationVectorResponse**.|
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR,function(data){
       console.info('X-coordinate component: ' + data.x);
@@ -4421,9 +4402,8 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.RO
       console.info('Z-coordinate component: ' + data.z);
       console.info('Scalar quantity: ' + data.w);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
-
   ```
 
 ### WEAR_DETECTION<sup>(deprecated)</sup>
@@ -4438,21 +4418,19 @@ This API is deprecated since API version 9. You are advised to use [sensor.on.WE
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_WEAR_DETECTION      | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_WEAR_DETECTION**. |
-| callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | Yes       | Callback used to return the wear detection sensor data. The reported data type in the callback is **WearDetectionResponse**. |
-| options  | [Options](#options)                                          | No        | Interval at which the callback is invoked to return the sensor data. The default value is 200,000,000 ns. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_WEAR_DETECTION      | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_WEAR_DETECTION**. |
+| callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | Yes  | Callback used to return the wear detection sensor data. The reported data type in the callback is **WearDetectionResponse**.|
+| options  | [Options](#options)                                          | No  | List of optional parameters. Currently, this parameter can be used to set the data reporting frequency. The default value is 200,000,000 ns.       |
 
 **Example**
-
   ```js
   sensor.on(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION,function(data){
       console.info('Wear status: ' + data.value);
   },
-      {interval: 10000000}
+      {interval: 100000000}
   );
-
   ```
 
 ## sensor.once<sup>(deprecated)</sup>
@@ -4471,13 +4449,12 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ACCELEROMETER       | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ACCELEROMETER**. |
-| callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes       | One-shot callback used to return the acceleration sensor data. The reported data type in the callback is **AccelerometerResponse**. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ACCELEROMETER       | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ACCELEROMETER**.            |
+| callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | Yes  | One-shot callback used to return the acceleration sensor data. The reported data type in the callback is **AccelerometerResponse**.|
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER,function(data){
       console.info('X-coordinate component: ' + data.x);
@@ -4485,7 +4462,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
       console.info('Z-coordinate component: ' + data.z);
     }
   );
-
   ```
 
 ### LINEAR_ACCELERATION<sup>(deprecated)</sup>
@@ -4502,10 +4478,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_LINEAR_ACCELERATION | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_LINEAR_ACCELERATION**. |
-| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | Yes       | One-shot callback used to return the linear acceleration sensor data. The reported data type in the callback is **LinearAccelerometerResponse**. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_LINEAR_ACCELERATION | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_LINEAR_ACCELERATION**.  |
+| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | Yes  | One-shot callback used to return the linear acceleration sensor data. The reported data type in the callback is **LinearAccelerometerResponse**.|
 
 ### ACCELEROMETER_UNCALIBRATED<sup>(deprecated)</sup>
 
@@ -4521,13 +4497,12 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED**. |
-| callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes       | One-shot callback used to return the uncalibrated acceleration sensor data. The reported data type in the callback is **AccelerometerUncalibratedResponse**. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED**.|
+| callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | Yes  | One-shot callback used to return the uncalibrated acceleration sensor data. The reported data type in the callback is **AccelerometerUncalibratedResponse**.|
 
 **Example**
-
   ```
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, function(data) {
       console.info('X-coordinate component: ' + data.x);
@@ -4538,7 +4513,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
       console.info('Z-coordinate bias: ' + data.biasZ);
     }
   );
-
   ```
 
 ### GRAVITY<sup>(deprecated)</sup>
@@ -4553,13 +4527,12 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Parameters**
 
-| Name     | Type                                                | Mandatory | Description                                                  |
-| -------- | --------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GRAVITY    | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GRAVITY**. |
-| callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | Yes       | One-shot callback used to return the gravity sensor data. The reported data type in the callback is **GravityResponse**. |
+| Name  | Type                                               | Mandatory| Description                                                        |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GRAVITY    | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GRAVITY**.                    |
+| callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | Yes  | One-shot callback used to return the gravity sensor data. The reported data type in the callback is **GravityResponse**.|
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, function(data) {
       console.info('X-coordinate component: ' + data.x);
@@ -4567,7 +4540,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
       console.info('Z-coordinate component: ' + data.z);
     }
   );
-
   ```
 
 ### GYROSCOPE<sup>(deprecated)</sup>
@@ -4584,13 +4556,12 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Parameters**
 
-| Name     | Type                                                    | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GYROSCOPE      | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GYROSCOPE**. |
-| callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | Yes       | One-shot callback used to return the gyroscope sensor data. The reported data type in the callback is **GyroscopeResponse**. |
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GYROSCOPE      | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GYROSCOPE**.                |
+| callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | Yes  | One-shot callback used to return the gyroscope sensor data. The reported data type in the callback is **GyroscopeResponse**.|
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, function(data) {
       console.info('X-coordinate component: ' + data.x);
@@ -4598,7 +4569,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
       console.info('Z-coordinate component: ' + data.z);
     }
   );
-
   ```
 
 ### GYROSCOPE_UNCALIBRATED<sup>(deprecated)</sup>
@@ -4615,13 +4585,12 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED**. |
-| callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | Yes       | One-shot callback used to return the uncalibrated gyroscope sensor data. The reported data type in the callback is **GyroscopeUncalibratedResponse**. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED**.|
+| callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | Yes  | One-shot callback used to return the uncalibrated gyroscope sensor data. The reported data type in the callback is **GyroscopeUncalibratedResponse**.|
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, function(data) {
       console.info('X-coordinate component: ' + data.x);
@@ -4632,7 +4601,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
       console.info('Z-coordinate bias: ' + data.biasZ);
     }
   );
-
   ```
 
 ### SIGNIFICANT_MOTION<sup>(deprecated)</sup>
@@ -4647,19 +4615,17 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_SIGNIFICANT_MOTION  | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_SIGNIFICANT_MOTION**. |
-| callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | Yes       | One-shot callback used to return the significant motion sensor data. The reported data type in the callback is **SignificantMotionResponse**. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_SIGNIFICANT_MOTION  | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_SIGNIFICANT_MOTION**.     |
+| callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | Yes  | One-shot callback used to return the significant motion sensor data. The reported data type in the callback is **SignificantMotionResponse**.|
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, function(data) {
       console.info('Scalar data: ' + data.scalar);
     }
   );
-
   ```
 
 ### PEDOMETER_DETECTION<sup>(deprecated)</sup>
@@ -4676,19 +4642,17 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PEDOMETER_DETECTION | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PEDOMETER_DETECTION**. |
-| callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | Yes       | One-shot callback used to return the pedometer detection sensor data. The reported data type in the callback is **PedometerDetectionResponse**. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PEDOMETER_DETECTION | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PEDOMETER_DETECTION**.    |
+| callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | Yes  | One-shot callback used to return the pedometer detection sensor data. The reported data type in the callback is **PedometerDetectionResponse**.|
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, function(data) {
       console.info('Scalar data: ' + data.scalar);
     }
   );
-
   ```
 
 ### PEDOMETER<sup>(deprecated)</sup>
@@ -4705,19 +4669,17 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Parameters**
 
-| Name     | Type                                                    | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PEDOMETER      | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PEDOMETER**. |
-| callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes       | One-shot callback used to return the pedometer sensor data. The reported data type in the callback is **PedometerResponse**. |
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PEDOMETER      | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PEDOMETER**.                  |
+| callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | Yes  | One-shot callback used to return the pedometer sensor data. The reported data type in the callback is **PedometerResponse**.|
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, function(data) {
       console.info('Steps: ' + data.steps);
     }
   );
-
   ```
 
 ### AMBIENT_TEMPERATURE<sup>(deprecated)</sup>
@@ -4732,19 +4694,17 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_AMBIENT_TEMPERATURE | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_AMBIENT_TEMPERATURE**. |
-| callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | Yes       | One-shot callback used to return the ambient temperature sensor data. The reported data type in the callback is **AmbientTemperatureResponse**. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_AMBIENT_TEMPERATURE | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_AMBIENT_TEMPERATURE**.    |
+| callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | Yes  | One-shot callback used to return the ambient temperature sensor data. The reported data type in the callback is **AmbientTemperatureResponse**.|
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, function(data) {
       console.info('Temperature: ' + data.temperature);
     }
   );
-
   ```
 
 ### MAGNETIC_FIELD<sup>(deprecated)</sup>
@@ -4759,13 +4719,12 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_MAGNETIC_FIELD      | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD**. |
-| callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | Yes       | One-shot callback used to return the magnetic field sensor data. The reported data type in the callback is **MagneticFieldResponse**. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_MAGNETIC_FIELD      | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD**.             |
+| callback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | Yes  | One-shot callback used to return the magnetic field sensor data. The reported data type in the callback is **MagneticFieldResponse**.|
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, function(data) {
       console.info('X-coordinate component: ' + data.x);
@@ -4773,7 +4732,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
       console.info('Z-coordinate component: ' + data.z);
     }
   );
-
   ```
 
 ### MAGNETIC_FIELD_UNCALIBRATED<sup>(deprecated)</sup>
@@ -4788,13 +4746,12 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED**. |
-| callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | Yes       | One-shot callback used to return the uncalibrated magnetic field sensor data. The reported data type in the callback is **MagneticFieldUncalibratedResponse**. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED**.|
+| callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | Yes  | One-shot callback used to return the uncalibrated magnetic field sensor data. The reported data type in the callback is **MagneticFieldUncalibratedResponse**.|
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, function(data) {
       console.info('X-coordinate component: ' + data.x);
@@ -4805,7 +4762,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
       console.info('Z-coordinate bias: ' + data.biasZ);
     }
   );
-
   ```
 
 ### PROXIMITY<sup>(deprecated)</sup>
@@ -4820,19 +4776,17 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Parameters**
 
-| Name     | Type                                                    | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PROXIMITY      | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PROXIMITY**. |
-| callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes       | One-shot callback used to return the proximity sensor data. The reported data type in the callback is **ProximityResponse**. |
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PROXIMITY      | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_PROXIMITY**.                |
+| callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | Yes  | One-shot callback used to return the proximity sensor data. The reported data type in the callback is **ProximityResponse**.|
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, function(data) {
       console.info('Distance: ' + data.distance);
     }
   );
-
   ```
 
 ### HUMIDITY<sup>(deprecated)</sup>
@@ -4847,19 +4801,17 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Parameters**
 
-| Name     | Type                                                  | Mandatory | Description                                                  |
-| -------- | ----------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HUMIDITY     | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HUMIDITY**. |
-| callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | Yes       | One-shot callback used to return the humidity sensor data. The reported data type in the callback is **HumidityResponse**. |
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HUMIDITY     | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HUMIDITY**.                   |
+| callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | Yes  | One-shot callback used to return the humidity sensor data. The reported data type in the callback is **HumidityResponse**.|
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, function(data) {
       console.info('Humidity: ' + data.humidity);
     }
   );
-
   ```
 
 ### BAROMETER<sup>(deprecated)</sup>
@@ -4874,19 +4826,17 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Parameters**
 
-| Name     | Type                                                    | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_BAROMETER      | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_BAROMETER**. |
-| callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | Yes       | One-shot callback used to return the barometer sensor data. The reported data type in the callback is **BarometerResponse**. |
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_BAROMETER      | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_BAROMETER**.                |
+| callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | Yes  | One-shot callback used to return the barometer sensor data. The reported data type in the callback is **BarometerResponse**.|
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, function(data) {
       console.info('Atmospheric pressure: ' + data.pressure);
     }
   );
-
   ```
 
 ### HALL<sup>(deprecated)</sup>
@@ -4901,19 +4851,17 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Parameters**
 
-| Name     | Type                                          | Mandatory | Description                                                  |
-| -------- | --------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HALL | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HALL**. |
-| callback | Callback&lt;[HallResponse](#hallresponse)&gt; | Yes       | One-shot callback used to return the Hall effect sensor data. The reported data type in the callback is **HallResponse**. |
+| Name  | Type                                         | Mandatory| Description                                                        |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HALL | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HALL**.                       |
+| callback | Callback&lt;[HallResponse](#hallresponse)&gt; | Yes  | One-shot callback used to return the Hall effect sensor data. The reported data type in the callback is **HallResponse**.|
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_HALL, function(data) {
       console.info('Status: ' + data.status);
     }
   );
-
   ```
 
 ### AMBIENT_LIGHT<sup>(deprecated)</sup>
@@ -4928,10 +4876,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Parameters**
 
-| Name     | Type                                                   | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_AMBIENT_LIGHT | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_AMBIENT_LIGHT**. |
-| callback | Callback&lt;[LightResponse](#lightresponse)&gt;        | Yes       | One-shot callback used to return the ambient light sensor data. The reported data type in the callback is **LightResponse**. |
+| Name  | Type                                                  | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_AMBIENT_LIGHT | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_AMBIENT_LIGHT**.            |
+| callback | Callback&lt;[LightResponse](#lightresponse)&gt;        | Yes  | One-shot callback used to return the ambient light sensor data. The reported data type in the callback is **LightResponse**.|
 
 **Example**
 
@@ -4940,7 +4888,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
       console.info(' Illumination: ' + data.intensity);
     }
   );
-
   ```
 
 ### ORIENTATION<sup>(deprecated)</sup>
@@ -4955,13 +4902,12 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Parameters**
 
-| Name     | Type                                                        | Mandatory | Description                                                  |
-| -------- | ----------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ORIENTATION        | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ORIENTATION**. |
-| callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | Yes       | One-shot callback used to return the orientation sensor data. The reported data type in the callback is **OrientationResponse**. |
+| Name  | Type                                                       | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ORIENTATION        | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ORIENTATION**.                |
+| callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | Yes  | One-shot callback used to return the orientation sensor data. The reported data type in the callback is **OrientationResponse**.|
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, function(data) {
       console.info('The device rotates at an angle around the X axis: ' + data.beta);
@@ -4969,7 +4915,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
       console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
     }
   );
-
   ```
 
 ### ROTATION_VECTOR<sup>(deprecated)</sup>
@@ -4984,13 +4929,12 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ROTATION_VECTOR     | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ROTATION_VECTOR**. |
-| callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | Yes       | One-shot callback used to return the rotation vector sensor data. The reported data type in the callback is **RotationVectorResponse**. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ROTATION_VECTOR     | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_ROTATION_VECTOR**.        |
+| callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | Yes  | One-shot callback used to return the rotation vector sensor data. The reported data type in the callback is **RotationVectorResponse**.|
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, function(data) {
       console.info('X-coordinate component: ' + data.x);
@@ -4999,7 +4943,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
       console.info('Scalar quantity: ' + data.w);
     }
   );
-
   ```
 
 ### HEART_RATE<sup>(deprecated)</sup>
@@ -5016,10 +4959,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Parameters**
 
-| Name     | Type                                                    | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HEART_RATE     | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HEART_RATE**. |
-| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | Yes       | One-shot callback used to return the heart rate sensor data. The reported data type in the callback is **HeartRateResponse**. |
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HEART_RATE     | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_HEART_RATE**.                 |
+| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | Yes  | One-shot callback used to return the heart rate sensor data. The reported data type in the callback is **HeartRateResponse**.|
 
 ### WEAR_DETECTION<sup>(deprecated)</sup>
 
@@ -5033,19 +4976,17 @@ This API is deprecated since API version 9. You are advised to use [sensor.once.
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_WEAR_DETECTION      | Yes       | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_WEAR_DETECTION**. |
-| callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | Yes       | One-shot callback used to return the wear detection sensor data. The reported data type in the callback is **WearDetectionResponse**. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_WEAR_DETECTION      | Yes  | Type of the sensor to subscribe to, which is **SENSOR_TYPE_ID_WEAR_DETECTION**.         |
+| callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | Yes  | One-shot callback used to return the wear detection sensor data. The reported data type in the callback is **WearDetectionResponse**.|
 
 **Example**
-
   ```js
   sensor.once(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, function(data) {
       console.info("Wear status: "+ data.value);
     }
   );
-
   ```
 
 ## sensor.off<sup>(deprecated)</sup>
@@ -5064,10 +5005,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.A
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ACCELEROMETER       | Yes       | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_ACCELEROMETER**. |
-| callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | No        | Callback used to return the acceleration sensor data. The reported data type in the callback is **AccelerometerResponse**. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ACCELEROMETER       | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_ACCELEROMETER**.|
+| callback | Callback&lt;[AccelerometerResponse](#accelerometerresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 
@@ -5078,7 +5019,6 @@ function callback(data) {
     console.info('Z-coordinate component: ' + data.z);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER, callback);
-
 ```
 
 ### ACCELEROMETER_UNCALIBRATED<sup>(deprecated)</sup>
@@ -5095,10 +5035,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.A
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED | Yes       | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED**. |
-| callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | No        | Callback used to return the uncalibrated acceleration sensor data. The reported data type in the callback is **AccelerometerUncalibratedResponse**. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED**.|
+| callback | Callback&lt;[AccelerometerUncalibratedResponse](#accelerometeruncalibratedresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 
@@ -5112,7 +5052,6 @@ function callback(data) {
     console.info('Z-coordinate bias: ' + data.biasZ);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ACCELEROMETER_UNCALIBRATED, callback);
-
 ```
 
 ### AMBIENT_LIGHT<sup>(deprecated)</sup>
@@ -5127,10 +5066,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.A
 
 **Parameters**
 
-| Name     | Type                                                   | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_AMBIENT_LIGHT | Yes       | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_AMBIENT_LIGHT**. |
-| callback | Callback&lt;[LightResponse](#lightresponse)&gt;        | No        | Callback used to return the ambient light sensor data. The reported data type in the callback is **LightResponse**. |
+| Name  | Type                                                  | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_AMBIENT_LIGHT | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_AMBIENT_LIGHT**.|
+| callback | Callback&lt;[LightResponse](#lightresponse)&gt;        | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 
@@ -5139,7 +5078,6 @@ function callback(data) {
     console.info(' Illumination: ' + data.intensity);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_LIGHT, callback);
-
 ```
 
 ### AMBIENT_TEMPERATURE<sup>(deprecated)</sup>
@@ -5154,10 +5092,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.A
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_AMBIENT_TEMPERATURE | Yes       | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_AMBIENT_TEMPERATURE**. |
-| callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | No        | Callback used to return the ambient temperature sensor data. The reported data type in the callback is **AmbientTemperatureResponse**. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_AMBIENT_TEMPERATURE | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_AMBIENT_TEMPERATURE**.|
+| callback | Callback&lt;[AmbientTemperatureResponse](#ambienttemperatureresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 
@@ -5166,7 +5104,6 @@ function callback(data) {
      console.info('Temperature: ' + data.temperature);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_AMBIENT_TEMPERATURE, callback);
-
 ```
 
 ### BAROMETER<sup>(deprecated)</sup>
@@ -5181,10 +5118,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.B
 
 **Parameters**
 
-| Name     | Type                                                    | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_BAROMETER      | Yes       | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_BAROMETER**. |
-| callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | No        | Callback used to return the barometer sensor data. The reported data type in the callback is **BarometerResponse**. |
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_BAROMETER      | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_BAROMETER**.    |
+| callback | Callback&lt;[BarometerResponse](#barometerresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 
@@ -5193,7 +5130,6 @@ function callback(data) {
      console.info('Atmospheric pressure: ' + data.pressure);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_BAROMETER, callback);
-
 ```
 
 ### GRAVITY<sup>(deprecated)</sup>
@@ -5208,10 +5144,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.G
 
 **Parameters**
 
-| Name     | Type                                                | Mandatory | Description                                                  |
-| -------- | --------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GRAVITY    | Yes       | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_GRAVITY**. |
-| callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | No        | Callback used to return the gravity sensor data. The reported data type in the callback is **GravityResponse**. |
+| Name  | Type                                               | Mandatory| Description                                                        |
+| -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GRAVITY    | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_GRAVITY**.        |
+| callback | Callback&lt;[GravityResponse](#gravityresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 
@@ -5222,7 +5158,6 @@ function callback(data) {
     console.info('Z-coordinate component: ' + data.z);
 }
 sensor.off( sensor.SensorType.SENSOR_TYPE_ID_GRAVITY, callback);
-
 ```
 
 ### GYROSCOPE<sup>(deprecated)</sup>
@@ -5239,10 +5174,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.G
 
 **Parameters**
 
-| Name     | Type                                                    | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GYROSCOPE      | Yes       | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_GYROSCOPE**. |
-| callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | No        | Callback used to return the gyroscope sensor data. The reported data type in the callback is **GyroscopeResponse**. |
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GYROSCOPE      | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_GYROSCOPE**.    |
+| callback | Callback&lt;[GyroscopeResponse](#gyroscoperesponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 
@@ -5253,7 +5188,6 @@ function callback(data) {
     console.info('Z-coordinate component: ' + data.z);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE, callback);
-
 ```
 
 ### GYROSCOPE_UNCALIBRATED<sup>(deprecated)</sup>
@@ -5270,10 +5204,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.G
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED | Yes       | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED**. |
-| callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | No        | Callback used to return the uncalibrated gyroscope sensor data. The reported data type in the callback is **GyroscopeUncalibratedResponse**. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED**.|
+| callback | Callback&lt;[GyroscopeUncalibratedResponse](#gyroscopeuncalibratedresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 
@@ -5284,7 +5218,6 @@ function callback(data) {
     console.info('Z-coordinate component: ' + data.z);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_GYROSCOPE_UNCALIBRATED, callback);
-
 ```
 
 ### HALL<sup>(deprecated)</sup>
@@ -5299,10 +5232,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.H
 
 **Parameters**
 
-| Name     | Type                                          | Mandatory | Description                                                  |
-| -------- | --------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HALL | Yes       | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_HALL**. |
-| callback | Callback&lt;[HallResponse](#hallresponse)&gt; | No        | Callback used to return the Hall effect sensor data. The reported data type in the callback is **HallResponse**. |
+| Name  | Type                                         | Mandatory| Description                                                        |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HALL | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_HALL**.           |
+| callback | Callback&lt;[HallResponse](#hallresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 
@@ -5311,7 +5244,6 @@ function callback(data) {
     console.info('Status: ' + data.status);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HALL, callback);
-
 ```
 
 ### HEART_RATE<sup>(deprecated)</sup>
@@ -5328,10 +5260,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.H
 
 **Parameters**
 
-| Name     | Type                                                    | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HEART_RATE     | Yes       | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_HEART_RATE**. |
-| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | No        | One-shot callback used to return the heart rate sensor data. The reported data type in the callback is **HeartRateResponse**. |
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HEART_RATE     | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_HEART_RATE**.     |
+| callback | Callback&lt;[HeartRateResponse](#heartrateresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 ### HUMIDITY<sup>(deprecated)</sup>
 
@@ -5345,10 +5277,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.H
 
 **Parameters**
 
-| Name     | Type                                                  | Mandatory | Description                                                  |
-| -------- | ----------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HUMIDITY     | Yes       | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_HUMIDITY**. |
-| callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | No        | Callback used to return the humidity sensor data. The reported data type in the callback is **HumidityResponse**. |
+| Name  | Type                                                 | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_HUMIDITY     | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_HUMIDITY**.       |
+| callback | Callback&lt;[HumidityResponse](#humidityresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 
@@ -5357,7 +5289,6 @@ function callback(data) {
     console.info('Humidity: ' + data.humidity);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_HUMIDITY, callback);
-
 ```
 
 ### LINEAR_ACCELERATION<sup>(deprecated)</sup>
@@ -5374,10 +5305,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.L
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_LINEAR_ACCELERATION | Yes       | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_LINEAR_ACCELERATION**. |
-| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | No        | Callback used to return the linear acceleration sensor data. The reported data type in the callback is **LinearAccelerometerResponse**. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_LINEAR_ACCELERATION | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_LINEAR_ACCELERATION**.|
+| callback | Callback&lt;[LinearAccelerometerResponse](#linearaccelerometerresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 ### MAGNETIC_FIELD<sup>(deprecated)</sup>
 
@@ -5391,10 +5322,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.M
 
 **Parameters**
 
-| Name             | Type                                                         | Mandatory | Description                                                  |
-| ---------------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type             | [SensorType](#sensortype).SENSOR_TYPE_ID_MAGNETIC_FIELD      | Yes       | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD**. |
-| callbackcallback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | No        | Callback used to return the magnetic field sensor data. The reported data type in the callback is **MagneticFieldResponse**. |
+| Name          | Type                                                        | Mandatory| Description                                                        |
+| ---------------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type             | [SensorType](#sensortype).SENSOR_TYPE_ID_MAGNETIC_FIELD      | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD**. |
+| callbackcallback | Callback&lt;[MagneticFieldResponse](#magneticfieldresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 
@@ -5405,7 +5336,6 @@ function callback(data) {
     console.info('Z-coordinate component: ' + data.z);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD, callback);
-
 ```
 
 ### MAGNETIC_FIELD_UNCALIBRATED<sup>(deprecated)</sup>
@@ -5420,10 +5350,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.M
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED | Yes       | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED**. |
-| callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | No        | Callback used to return the uncalibrated magnetic field sensor data. The reported data type in the callback is **MagneticFieldUncalibratedResponse**. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED**.|
+| callback | Callback&lt;[MagneticFieldUncalibratedResponse](#magneticfielduncalibratedresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 
@@ -5437,7 +5367,6 @@ function callback(data) {
     console.info('Z-coordinate bias: ' + data.biasZ);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_MAGNETIC_FIELD_UNCALIBRATED, callback);
-
 ```
 
 ### ORIENTATION<sup>(deprecated)</sup>
@@ -5452,10 +5381,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.O
 
 **Parameters**
 
-| Name     | Type                                                        | Mandatory | Description                                                  |
-| -------- | ----------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ORIENTATION        | Yes       | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_ORIENTATION**. |
-| callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | No        | Callback used to return the orientation sensor data. The reported data type in the callback is **OrientationResponse**. |
+| Name  | Type                                                       | Mandatory| Description                                                        |
+| -------- | ----------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ORIENTATION        | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_ORIENTATION**.      |
+| callback | Callback&lt;[OrientationResponse](#orientationresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 
@@ -5466,7 +5395,6 @@ function callback(data) {
     console.info('The device rotates at an angle around the Z axis: ' + data.alpha);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ORIENTATION, callback);
-
 ```
 
 ### PEDOMETER<sup>(deprecated)</sup>
@@ -5483,10 +5411,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.P
 
 **Parameters**
 
-| Name     | Type                                                    | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PEDOMETER      | Yes       | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_PEDOMETER**. |
-| callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | No        | Callback used to return the pedometer sensor data. The reported data type in the callback is **PedometerResponse**. |
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PEDOMETER      | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_PEDOMETER**.      |
+| callback | Callback&lt;[PedometerResponse](#pedometerresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 
@@ -5495,7 +5423,6 @@ function callback(data) {
     console.info('Steps: ' + data.steps);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER, callback);
-
 ```
 
 ### PEDOMETER_DETECTION<sup>(deprecated)</sup>
@@ -5512,10 +5439,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.P
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PEDOMETER_DETECTION | Yes       | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_PEDOMETER_DETECTION**. |
-| callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | No        | Callback used to return the pedometer detection sensor data. The reported data type in the callback is **PedometerDetectionResponse**. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PEDOMETER_DETECTION | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_PEDOMETER_DETECTION**.|
+| callback | Callback&lt;[PedometerDetectionResponse](#pedometerdetectionresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 
@@ -5524,7 +5451,6 @@ function callback(data) {
     console.info('Scalar data: ' + data.scalar);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PEDOMETER_DETECTION, callback);
-
 ```
 
 ### PROXIMITY<sup>(deprecated)</sup>
@@ -5539,10 +5465,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.P
 
 **Parameters**
 
-| Name     | Type                                                    | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PROXIMITY      | Yes       | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_PROXIMITY**. |
-| callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | No        | Callback used to return the proximity sensor data. The reported data type in the callback is **ProximityResponse**. |
+| Name  | Type                                                   | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_PROXIMITY      | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_PROXIMITY**.    |
+| callback | Callback&lt;[ProximityResponse](#proximityresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 
@@ -5551,7 +5477,6 @@ function callback(data) {
     console.info('Distance: ' + data.distance);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_PROXIMITY, callback);
-
 ```
 
 ### ROTATION_VECTOR<sup>(deprecated)</sup>
@@ -5566,10 +5491,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.R
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ROTATION_VECTOR     | Yes       | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_ROTATION_VECTOR**. |
-| callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | No        | Callback used to return the rotation vector sensor data. The reported data type in the callback is **RotationVectorResponse**. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_ROTATION_VECTOR     | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_ROTATION_VECTOR**.|
+| callback | Callback&lt;[RotationVectorResponse](#rotationvectorresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 
@@ -5581,7 +5506,6 @@ function callback(data) {
     console.info('Scalar quantity: ' + data.w);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_ROTATION_VECTOR, callback);
-
 ```
 
 ### SIGNIFICANT_MOTION<sup>(deprecated)</sup>
@@ -5596,10 +5520,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.S
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_SIGNIFICANT_MOTION  | Yes       | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_SIGNIFICANT_MOTION**. |
-| callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | No        | Callback used to return the significant motion sensor data. The reported data type in the callback is **SignificantMotionResponse**. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_SIGNIFICANT_MOTION  | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_SIGNIFICANT_MOTION**.|
+| callback | Callback&lt;[SignificantMotionResponse](#significantmotionresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 
@@ -5608,7 +5532,6 @@ function callback(data) {
     console.info('Scalar data: ' + data.scalar);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_SIGNIFICANT_MOTION, callback);
-
 ```
 
 ### WEAR_DETECTION<sup>(deprecated)</sup>
@@ -5623,10 +5546,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.off.W
 
 **Parameters**
 
-| Name     | Type                                                         | Mandatory | Description                                                  |
-| -------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_WEAR_DETECTION      | Yes       | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_WEAR_DETECTION**. |
-| callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | No        | Callback used to return the wear detection sensor data. The reported data type in the callback is **WearDetectionResponse**. |
+| Name  | Type                                                        | Mandatory| Description                                                        |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | [SensorType](#sensortype).SENSOR_TYPE_ID_WEAR_DETECTION      | Yes  | Type of the sensor to unsubscribe from, which is **SENSOR_TYPE_ID_WEAR_DETECTION**.|
+| callback | Callback&lt;[WearDetectionResponse](#weardetectionresponse)&gt; | No  | Callback used for unsubscription. If this parameter is not specified, all callbacks of the specified sensor type are unsubscribed from.|
 
 **Example**
 
@@ -5635,7 +5558,6 @@ function accCallback(data) {
     console.info('Wear status: ' + data.value);
 }
 sensor.off(sensor.SensorType.SENSOR_TYPE_ID_WEAR_DETECTION, accCallback);
-
 ```
 
 ## sensor.transformCoordinateSystem<sup>(deprecated)</sup>
@@ -5650,11 +5572,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.trans
 
 **Parameters**
 
-| Name             | Type                                      | Mandatory | Description                                                  |
-| ---------------- | ----------------------------------------- | --------- | ------------------------------------------------------------ |
-| inRotationVector | Array&lt;number&gt;                       | Yes       | Rotation vector to rotate.                                   |
-| coordinates      | [CoordinatesOptions](#coordinatesoptions) | Yes       | Direction of the coordinate system.                          |
-| callback         | AsyncCallback&lt;Array&lt;number&gt;&gt;  | Yes       | Callback used to return the rotation vector after being rotated. |
+| Name             | Type                                      | Mandatory  | Description         |
+| ---------------- | ---------------------------------------- | ---- | ----------- |
+| inRotationVector | Array&lt;number&gt;                      | Yes   | Rotation vector to rotate.    |
+| coordinates      | [CoordinatesOptions](#coordinatesoptions) | Yes   | Direction of the coordinate system.   |
+| callback         | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes   | Callback used to return the rotation vector after being rotated.|
 
 **Example**
 
@@ -5669,9 +5591,7 @@ sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x:2, y:3}, functi
         console.info("transformCoordinateSystem data[ " + i + "] = " + data[i]);
     }
  })
-
 ```
-
 ## sensor.transformCoordinateSystem<sup>(deprecated)</sup>
 
 transformCoordinateSystem(inRotationVector: Array&lt;number&gt;, coordinates: CoordinatesOptions): Promise&lt;Array&lt;number&gt;&gt;
@@ -5684,16 +5604,16 @@ This API is deprecated since API version 9. You are advised to use [sensor.trans
 
 **Parameters**
 
-| Name             | Type                                      | Mandatory | Description                         |
-| ---------------- | ----------------------------------------- | --------- | ----------------------------------- |
-| inRotationVector | Array&lt;number&gt;                       | Yes       | Rotation vector to rotate.          |
-| coordinates      | [CoordinatesOptions](#coordinatesoptions) | Yes       | Direction of the coordinate system. |
+| Name             | Type                                      | Mandatory  | Description      |
+| ---------------- | ---------------------------------------- | ---- | -------- |
+| inRotationVector | Array&lt;number&gt;                      | Yes   | Rotation vector to rotate. |
+| coordinates      | [CoordinatesOptions](#coordinatesoptions) | Yes   | Direction of the coordinate system.|
 
 **Return value**
 
-| Type                               | Description                                                  |
-| ---------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation vector after being rotated. |
+| Type                                | Description         |
+| ---------------------------------- | ----------- |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation vector after being rotated.|
 
 **Example**
 
@@ -5707,7 +5627,6 @@ const promise = sensor.transformCoordinateSystem([1, 0, 0, 0, 1, 0, 0, 0, 1], {x
     }).catch((err) => {
            console.info("Operation failed");
 })
-
 ```
 
 ## sensor.getGeomagneticField<sup>(deprecated)</sup>
@@ -5722,14 +5641,13 @@ This API is deprecated since API version 9. You are advised to use [sensor.getGe
 
 **Parameters**
 
-| Name            | Type                                                         | Mandatory | Description                                                  |
-| --------------- | ------------------------------------------------------------ | --------- | ------------------------------------------------------------ |
-| locationOptions | [LocationOptions](#locationoptions)                          | Yes       | Geographic location.                                         |
-| timeMillis      | number                                                       | Yes       | Time for obtaining the magnetic declination, in milliseconds. |
-| callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Yes       | Callback used to return the geomagnetic field.               |
+| Name         | Type                                                        | Mandatory| Description                              |
+| --------------- | ------------------------------------------------------------ | ---- | ---------------------------------- |
+| locationOptions | [LocationOptions](#locationoptions)                          | Yes  | Geographic location.                        |
+| timeMillis      | number                                                       | Yes  | Time for obtaining the magnetic declination, in milliseconds.|
+| callback        | AsyncCallback&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Yes  | Callback used to return the geomagnetic field.                    |
 
 **Example**
-
 ```js
 sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000, function(err, data)  {
     if (err) {
@@ -5740,9 +5658,7 @@ sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000
 	             data.z + ',geomagneticDip: ' + data.geomagneticDip + ',deflectionAngle: ' + data.deflectionAngle +
 		     ',levelIntensity: ' + data.levelIntensity + ',totalIntensity: ' + data.totalIntensity);
 });
-
 ```
-
 ## sensor.getGeomagneticField<sup>(deprecated)</sup>
 
 getGeomagneticField(locationOptions: LocationOptions, timeMillis: number): Promise&lt;GeomagneticResponse&gt;
@@ -5755,19 +5671,17 @@ This API is deprecated since API version 9. You are advised to use [sensor.getGe
 
 **Parameters**
 
-| Name            | Type                                | Mandatory | Description                                                  |
-| --------------- | ----------------------------------- | --------- | ------------------------------------------------------------ |
-| locationOptions | [LocationOptions](#locationoptions) | Yes       | Geographic location.                                         |
-| timeMillis      | number                              | Yes       | Time for obtaining the magnetic declination, in milliseconds. |
+| Name            | Type                                 | Mandatory  | Description               |
+| --------------- | ----------------------------------- | ---- | ----------------- |
+| locationOptions | [LocationOptions](#locationoptions) | Yes   | Geographic location.            |
+| timeMillis      | number                              | Yes   | Time for obtaining the magnetic declination, in milliseconds.|
 
 **Return value**
-
-| Type                                                       | Description                                   |
-| ---------------------------------------------------------- | --------------------------------------------- |
-| Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise used to return the geomagnetic field. |
+| Type                                      | Description     |
+| ---------------------------------------- | ------- |
+| Promise&lt;[GeomagneticResponse](#geomagneticresponse)&gt; | Promise used to return the geomagnetic field.|
 
 **Example**
-
   ```js
   const promise = sensor.getGeomagneticField({latitude:80, longitude:0, altitude:0}, 1580486400000);
       promise.then((data) => {
@@ -5777,7 +5691,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getGe
       }).catch((reason) => {
           console.info('Operation failed.');
   })
-
   ```
 
 ## sensor.getAltitude<sup>(deprecated)</sup>
@@ -5792,11 +5705,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.getDe
 
 **Parameters**
 
-| Name            | Type                        | Mandatory | Description                                                  |
-| --------------- | --------------------------- | --------- | ------------------------------------------------------------ |
-| seaPressure     | number                      | Yes       | Sea-level atmospheric pressure, in hPa.                      |
-| currentPressure | number                      | Yes       | Atmospheric pressure at the altitude where the device is located, in hPa. |
-| callback        | AsyncCallback&lt;number&gt; | Yes       | Callback used to return the altitude, in meters.             |
+| Name            | Type                         | Mandatory  | Description                  |
+| --------------- | --------------------------- | ---- | -------------------- |
+| seaPressure     | number                      | Yes   | Sea-level atmospheric pressure, in hPa.    |
+| currentPressure | number                      | Yes   | Atmospheric pressure at the altitude where the device is located, in hPa.|
+| callback        | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the altitude, in meters.   |
 
 **Example**
 
@@ -5809,7 +5722,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getDe
       }
           console.info("Succeeded to get getAltitude interface get data: " + data);
   });
-
   ```
 
 ## sensor.getAltitude<sup>(deprecated)</sup>
@@ -5824,16 +5736,16 @@ This API is deprecated since API version 9. You are advised to use [sensor.getDe
 
 **Parameters**
 
-| Name            | Type   | Mandatory | Description                                                  |
-| --------------- | ------ | --------- | ------------------------------------------------------------ |
-| seaPressure     | number | Yes       | Sea-level atmospheric pressure, in hPa.                      |
-| currentPressure | number | Yes       | Atmospheric pressure at the altitude where the device is located, in hPa. |
+| Name            | Type    | Mandatory  | Description                  |
+| --------------- | ------ | ---- | -------------------- |
+| seaPressure     | number | Yes   | Sea-level atmospheric pressure, in hPa.    |
+| currentPressure | number | Yes   | Atmospheric pressure at the altitude where the device is located, in hPa.|
 
 **Return value**
 
-| Type                  | Description                                     |
-| --------------------- | ----------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the altitude, in meters. |
+| Type                   | Description                |
+| --------------------- | ------------------ |
+| Promise&lt;number&gt; | Promise used to return the altitude, in meters.|
 
 **Example**
 
@@ -5844,7 +5756,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getDe
       }).catch((err) => {
           console.error("Operation failed");
   })
-
   ```
 
 
@@ -5860,10 +5771,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.getIn
 
 **Parameters**
 
-| Name              | Type                        | Mandatory | Description                                           |
-| ----------------- | --------------------------- | --------- | ----------------------------------------------------- |
-| inclinationMatrix | Array&lt;number&gt;         | Yes       | Inclination matrix.                                   |
-| callback          | AsyncCallback&lt;number&gt; | Yes       | Callback used to return the magnetic dip, in radians. |
+| Name              | Type                         | Mandatory  | Description            |
+| ----------------- | --------------------------- | ---- | -------------- |
+| inclinationMatrix | Array&lt;number&gt;         | Yes   | Inclination matrix.       |
+| callback          | AsyncCallback&lt;number&gt; | Yes   | Callback used to return the magnetic dip, in radians.|
 
 **Example**
 
@@ -5876,7 +5787,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getIn
       }
           console.info("Succeeded to get getGeomagneticDip interface get data: " + data);
   })
-
   ```
 
 ## sensor.getGeomagneticDip<sup>(deprecated)</sup>
@@ -5891,15 +5801,15 @@ This API is deprecated since API version 9. You are advised to use [sensor.getIn
 
 **Parameters**
 
-| Name              | Type                | Mandatory | Description         |
-| ----------------- | ------------------- | --------- | ------------------- |
-| inclinationMatrix | Array&lt;number&gt; | Yes       | Inclination matrix. |
+| Name              | Type                 | Mandatory  | Description     |
+| ----------------- | ------------------- | ---- | ------- |
+| inclinationMatrix | Array&lt;number&gt; | Yes   | Inclination matrix.|
 
 **Return value**
 
-| Type                  | Description                                          |
-| --------------------- | ---------------------------------------------------- |
-| Promise&lt;number&gt; | Promise used to return the magnetic dip, in radians. |
+| Type                   | Description            |
+| --------------------- | -------------- |
+| Promise&lt;number&gt; | Promise used to return the magnetic dip, in radians.|
 
 **Example**
 
@@ -5910,7 +5820,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getIn
       }).catch((err) => {
            console.error("Operation failed");
   })
-
   ```
 
 ## sensor. getAngleModify<sup>(deprecated)</sup>
@@ -5925,11 +5834,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.getAn
 
 **Parameters**
 
-| Name                  | Type                                     | Mandatory | Description                                                  |
-| --------------------- | ---------------------------------------- | --------- | ------------------------------------------------------------ |
-| currentRotationMatrix | Array&lt;number&gt;                      | Yes       | Current rotation matrix.                                     |
-| preRotationMatrix     | Array&lt;number&gt;                      | Yes       | The other rotation matrix.                                   |
-| callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes       | Callback used to return the angle change around the z, x, and y axes. |
+| Name                  | Type                                      | Mandatory  | Description                |
+| --------------------- | ---------------------------------------- | ---- | ------------------ |
+| currentRotationMatrix | Array&lt;number&gt;                      | Yes   | Current rotation matrix.         |
+| preRotationMatrix     | Array&lt;number&gt;                      | Yes   | The other rotation matrix.           |
+| callback              | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes   | Callback used to return the angle change around the z, x, and y axes.|
 
 **Example**
 
@@ -5944,7 +5853,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getAn
           console.info("data[" + i + "]: " + data[i]);
       }
   })
-
   ```
 
 
@@ -5960,16 +5868,16 @@ This API is deprecated since API version 9. You are advised to use [sensor.getAn
 
 **Parameters**
 
-| Name                  | Type                | Mandatory | Description                |
-| --------------------- | ------------------- | --------- | -------------------------- |
-| currentRotationMatrix | Array&lt;number&gt; | Yes       | Current rotation matrix.   |
-| preRotationMatrix     | Array&lt;number&gt; | Yes       | The other rotation matrix. |
+| Name                  | Type                 | Mandatory  | Description       |
+| --------------------- | ------------------- | ---- | --------- |
+| currentRotationMatrix | Array&lt;number&gt; | Yes   | Current rotation matrix.|
+| preRotationMatrix     | Array&lt;number&gt; | Yes   | The other rotation matrix.  |
 
 **Return value**
 
-| Type                               | Description                                                  |
-| ---------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the angle change around the z, x, and y axes. |
+| Type                                | Description                |
+| ---------------------------------- | ------------------ |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the angle change around the z, x, and y axes.|
 
 **Example**
 
@@ -5983,7 +5891,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getAn
       }).catch((reason) => {
           console.info("promise::catch", reason);
   })
-
   ```
 
 
@@ -5999,10 +5906,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
 
 **Parameters**
 
-| Name           | Type                                     | Mandatory | Description                                  |
-| -------------- | ---------------------------------------- | --------- | -------------------------------------------- |
-| rotationVector | Array&lt;number&gt;                      | Yes       | Rotation vector to convert.                  |
-| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes       | Callback used to return the rotation matrix. |
+| Name           | Type                                      | Mandatory  | Description     |
+| -------------- | ---------------------------------------- | ---- | ------- |
+| rotationVector | Array&lt;number&gt;                      | Yes   | Rotation vector to convert.|
+| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes   | Callback used to return the rotation matrix.|
 
 **Example**
 
@@ -6017,7 +5924,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
           console.info("data[" + i + "]: " + data[i]);
       }
   })
-
   ```
 
 
@@ -6033,15 +5939,15 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
 
 **Parameters**
 
-| Name           | Type                | Mandatory | Description                 |
-| -------------- | ------------------- | --------- | --------------------------- |
-| rotationVector | Array&lt;number&gt; | Yes       | Rotation vector to convert. |
+| Name           | Type                 | Mandatory  | Description     |
+| -------------- | ------------------- | ---- | ------- |
+| rotationVector | Array&lt;number&gt; | Yes   | Rotation vector to convert.|
 
 **Return value**
 
-| Type                               | Description                                 |
-| ---------------------------------- | ------------------------------------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation matrix. |
+| Type                                | Description     |
+| ---------------------------------- | ------- |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation matrix.|
 
 **Example**
 
@@ -6055,7 +5961,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
       }).catch((reason) => {
           console.info("promise::catch", reason);
   })	
-
   ```
 
 
@@ -6071,10 +5976,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.getQu
 
 **Parameters**
 
-| Name           | Type                                     | Mandatory | Description                             |
-| -------------- | ---------------------------------------- | --------- | --------------------------------------- |
-| rotationVector | Array&lt;number&gt;                      | Yes       | Rotation vector to convert.             |
-| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes       | Callback used to return the quaternion. |
+| Name           | Type                                      | Mandatory  | Description     |
+| -------------- | ---------------------------------------- | ---- | ------- |
+| rotationVector | Array&lt;number&gt;                      | Yes   | Rotation vector to convert.|
+| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes   | Callback used to return the quaternion. |
 
 **Example**
 
@@ -6089,7 +5994,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getQu
           console.info("data[" + i + "]: " + data[i]);
       }
   })
-
   ```
 
 
@@ -6105,15 +6009,15 @@ This API is deprecated since API version 9. You are advised to use [sensor.getQu
 
 **Parameters**
 
-| Name           | Type                | Mandatory | Description                 |
-| -------------- | ------------------- | --------- | --------------------------- |
-| rotationVector | Array&lt;number&gt; | Yes       | Rotation vector to convert. |
+| Name           | Type                 | Mandatory  | Description     |
+| -------------- | ------------------- | ---- | ------- |
+| rotationVector | Array&lt;number&gt; | Yes   | Rotation vector to convert.|
 
 **Return value**
 
-| Type                               | Description                            |
-| ---------------------------------- | -------------------------------------- |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the quaternion. |
+| Type                                | Description    |
+| ---------------------------------- | ------ |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the quaternion.|
 
 **Example**
 
@@ -6127,7 +6031,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getQu
       }).catch((err) => {
           console.info('promise failed');
   })
-
   ```
 
 
@@ -6143,10 +6046,10 @@ This API is deprecated since API version 9. You are advised to use [sensor.getOr
 
 **Parameters**
 
-| Name           | Type                                     | Mandatory | Description                                                  |
-| -------------- | ---------------------------------------- | --------- | ------------------------------------------------------------ |
-| rotationMatrix | Array&lt;number&gt;                      | Yes       | Rotation matrix.                                             |
-| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes       | Callback used to return the rotation angle around the z, x, and y axes. |
+| Name           | Type                                      | Mandatory  | Description                |
+| -------------- | ---------------------------------------- | ---- | ------------------ |
+| rotationMatrix | Array&lt;number&gt;                      | Yes   | Rotation matrix.           |
+| callback       | AsyncCallback&lt;Array&lt;number&gt;&gt; | Yes   | Callback used to return the rotation angle around the z, x, and y axes.|
 
 **Example**
 
@@ -6162,7 +6065,6 @@ This API is deprecated since API version 9. You are advised to use [sensor.getOr
           console.info("sensor_getDirection_callback" + data[i]);
       }
   })
-
   ```
 
 
@@ -6178,15 +6080,15 @@ This API is deprecated since API version 9. You are advised to use [sensor.getOr
 
 **Parameters**
 
-| Name           | Type                | Mandatory | Description      |
-| -------------- | ------------------- | --------- | ---------------- |
-| rotationMatrix | Array&lt;number&gt; | Yes       | Rotation matrix. |
+| Name           | Type                 | Mandatory  | Description     |
+| -------------- | ------------------- | ---- | ------- |
+| rotationMatrix | Array&lt;number&gt; | Yes   | Rotation matrix.|
 
 **Return value**
 
-| Type                               | Description                                                  |
-| ---------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation angle around the z, x, and y axes. |
+| Type                                | Description                |
+| ---------------------------------- | ------------------ |
+| Promise&lt;Array&lt;number&gt;&gt; | Promise used to return the rotation angle around the z, x, and y axes.|
 
 **Example**
 
@@ -6215,11 +6117,11 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
 
 **Parameters**
 
-| Name        | Type                                                         | Mandatory | Description                                  |
-| ----------- | ------------------------------------------------------------ | --------- | -------------------------------------------- |
-| gravity     | Array&lt;number&gt;                                          | Yes       | Gravity vector.                              |
-| geomagnetic | Array&lt;number&gt;                                          | Yes       | Geomagnetic vector.                          |
-| callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Yes       | Callback used to return the rotation matrix. |
+| Name        | Type                                      | Mandatory  | Description     |
+| ----------- | ---------------------------------------- | ---- | ------- |
+| gravity     | Array&lt;number&gt;                      | Yes   | Gravity vector.|
+| geomagnetic | Array&lt;number&gt;                      | Yes   | Geomagnetic vector.|
+| callback    | AsyncCallback&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Yes   | Callback used to return the rotation matrix.|
 
 **Example**
 
@@ -6246,16 +6148,16 @@ This API is deprecated since API version 9. You are advised to use [sensor.getRo
 
 **Parameters**
 
-| Name        | Type                | Mandatory | Description         |
-| ----------- | ------------------- | --------- | ------------------- |
-| gravity     | Array&lt;number&gt; | Yes       | Gravity vector.     |
-| geomagnetic | Array&lt;number&gt; | Yes       | Geomagnetic vector. |
+| Name        | Type                 | Mandatory  | Description     |
+| ----------- | ------------------- | ---- | ------- |
+| gravity     | Array&lt;number&gt; | Yes   | Gravity vector.|
+| geomagnetic | Array&lt;number&gt; | Yes   | Geomagnetic vector.|
 
 **Return value**
 
-| Type                                                         | Description                                 |
-| ------------------------------------------------------------ | ------------------------------------------- |
-| Promise&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Promise used to return the rotation matrix. |
+| Type                                      | Description     |
+| ---------------------------------------- | ------- |
+| Promise&lt;[RotationMatrixResponse](#rotationmatrixresponse)&gt; | Promise used to return the rotation matrix.|
 
 **Example**
 

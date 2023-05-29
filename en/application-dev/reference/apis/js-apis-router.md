@@ -320,7 +320,7 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | if UI execution context not found, only throw in standard system. |
+| 100001    | if can not get the delegate, only throw in standard system. |
 | 200002    | if the uri is not exist. |
 
 **Example**
@@ -362,7 +362,7 @@ For details about the error codes, see [Router Error Codes](../errorcodes/errorc
 
 | ID  | Error Message|
 | --------- | ------- |
-| 100001    | if can not get the delegate, only throw in standard system. |
+| 100001    | if UI execution context not found, only throw in standard system. |
 | 200002    | if the uri is not exist. |
 
 **Example**
@@ -660,9 +660,9 @@ import router from '@ohos.router'
 struct Second {
   private content: string = "This is the second page."
   @State text: string = router.getParams()['text']
-  @State data: any = router.getParams()['data']
-  @State secondData : string = ''
-  
+  @State data: object = router.getParams()['data']
+  @State secondData: string = ''
+
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text(`${this.content}`)
@@ -670,14 +670,14 @@ struct Second {
         .fontWeight(FontWeight.Bold)
       Text(this.text)
         .fontSize(30)
-        .onClick(()=>{
-          this.secondData = (this.data.array[1]).toString()
+        .onClick(() => {
+          this.secondData = (this.data.['array'][1]).toString()
         })
-      .margin({top:20})
+        .margin({ top: 20 })
       Text(`This is the data passed from the first page: ${this.secondData}`)
         .fontSize(20)
-        .margin({top:20})
-        .backgroundColor('red')      
+        .margin({ top: 20 })
+        .backgroundColor('red')
     }
     .width('100%')
     .height('100%')
@@ -762,9 +762,9 @@ This API is deprecated since API version 9. You are advised to use [showAlertBef
 **Example**
 
   ```js        
-  router.enableAlertBeforeBackPage({            
-    message: 'Message Info'        
-  });    
+router.enableAlertBeforeBackPage({            
+  message: 'Message Info'        
+});    
   ```
 
 ## router.disableAlertBeforeBackPage<sup>(deprecated)</sup>

@@ -872,7 +872,7 @@ let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
 console.log(buf.readBigInt64BE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(8);
-let result = buf1.writeBigInt64BE(0x0102030405060708n, 0);
+let result = buf1.writeBigInt64BE(BigInt(0x0102030405060708), 0);
 ```
 
 ### readBigInt64LE
@@ -913,7 +913,7 @@ let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
 console.log(buf.readBigInt64LE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(8);
-let result = buf1.writeBigInt64BE(0x0102030405060708n, 0);
+let result = buf1.writeBigInt64BE(BigInt(0x0102030405060708), 0);
 ```
 
 ### readBigUInt64BE
@@ -954,7 +954,7 @@ let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
 console.log(buf.readBigUInt64BE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(8);
-let result = buf1.writeBigUInt64BE(0xdecafafecacefaden, 0);
+let result = buf1.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
 ```
 
 ### readBigUInt64LE
@@ -995,7 +995,7 @@ let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
 console.log(buf.readBigUInt64LE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(8);
-let result = buf1.writeBigUInt64BE(0xdecafafecacefaden, 0);
+let result = buf1.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
 ```
 
 ### readDoubleBE
@@ -2045,7 +2045,7 @@ writeBigInt64BE(value: bigint, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
-let result = buf.writeBigInt64BE(0x0102030405060708n, 0);
+let result = buf.writeBigInt64BE(BigInt(0x0102030405060708), 0);
 ```
 
 ### writeBigInt64LE
@@ -2084,7 +2084,7 @@ writeBigInt64LE(value: bigint, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
-let result = buf.writeBigInt64LE(0x0102030405060708n, 0);
+let result = buf.writeBigInt64LE(BigInt(0x0102030405060708), 0);
 ```
 
 ### writeBigUInt64BE
@@ -2123,7 +2123,7 @@ writeBigUInt64BE(value: bigint, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
-let result = buf.writeBigUInt64BE(0xdecafafecacefaden, 0);
+let result = buf.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
 ```
 
 ### writeBigUInt64LE
@@ -2162,7 +2162,7 @@ writeBigUInt64LE(value: bigint, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
-let result = buf.writeBigUInt64LE(0xdecafafecacefaden, 0);
+let result = buf.writeBigUInt64LE(BigInt(0xdecafafecacefade), 0);
 ```
 
 ### writeDoubleBE
@@ -2657,7 +2657,7 @@ writeUInt16BE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。 默认值为0。 |
 
 
 **返回值：**
@@ -2906,7 +2906,7 @@ Blob的构造函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | sources | string[]&nbsp;\|&nbsp;ArrayBuffer[]&nbsp;\|&nbsp;TypedArray[]&nbsp;\|&nbsp;DataView[]&nbsp;\|&nbsp;Blob[] | 是 | Blob实例的数据源。 |
-| options | Object | 否 | options:<br/>-&nbsp;endings:'transparent'或'native'<br/>-&nbsp;type:Blob内容类型 |
+| options | Object | 否 | options:<br/>- endings:含义为结束符'\n'的字符串如何被输出，为'transparent'或'native'。native代表行结束符会跟随系统。'transparent'代表会保持Blob中保存的结束符不变。此参数非必填，默认值为'transparent'。<br/>- type:Blob内容类型。其目的是让类型传达数据的MIME媒体类型，但是不执行类型格式的验证。此参数非必填，默认参数为''。 |
 
 
 **示例：**
@@ -2951,9 +2951,9 @@ slice(start?: number, end?: number, type?: string): Blob
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| start | number | 否 | 起始位置。 |
-| end | number | 否 | 结束位置。 |
-| type | string | 否 | 内容类型。 |
+| start | number | 否 | 起始位置。默认值为0。 |
+| end | number | 否 | 结束位置。默认值为原Blob对象中的数据长度。 |
+| type | string | 否 | 内容类型。默认值为''。 |
 
 **返回值：**
 | 类型 | 说明 |

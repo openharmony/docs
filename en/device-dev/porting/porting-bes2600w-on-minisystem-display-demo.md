@@ -1,6 +1,6 @@
 # Mini-System Devices with Screens – Bestechnic SoC Porting Case
 
-This document exemplifies the porting procedure for a development board on a mini-system device with a screen – an intelligent switch panel. It uses the BES multi-modal V200Z-R development board powered by the Bestechnic BES2600W SoC as an example. Components such as `ace_engine_lite`, `graphic_ui`, `aafwk_lite`, `appexecfwk_lite`, and `HDF` are adapted based on the OpenHarmony LiteOS-M kernel. This example uses the board-SoC separation solution as the porting architecture, the Newlib C or Musl C library as the toolchain, and GN and Kconfig graphical configuration for LiteOS-M kernel compilation.
+This document exemplifies the porting procedure for a development board on a mini-system device with a screen – an intelligent switch panel. It uses the BES multi-modal V200Z-R development board powered by the Bestechnic BES2600W SoC as an example. Components such as `ace_engine_lite`, `arkui_ui_lite`, `aafwk_lite`, `appexecfwk_lite`, and `HDF` are adapted based on the OpenHarmony LiteOS-M kernel. This example uses the board-SoC separation solution as the porting architecture, the Newlib C or Musl C library as the toolchain, and GN and Kconfig graphical configuration for LiteOS-M kernel compilation.
 
 ## Compilation and Building
 
@@ -1229,10 +1229,10 @@ To adapt the multimedia subsystem, you need to add the `histreamer` component in
     {
       "component": "histreamer",
       "features": [
-        "multimedia_histreamer_enable_plugin_hdi_adapter = true",
-        "multimedia_histreamer_enable_plugin_minimp3_adapter = true",
-        "multimedia_histreamer_enable_plugin_ffmpeg_adapter = false",
-        "config_ohos_multimedia_histreamer_stack_size = 65536"
+        "histreamer_enable_plugin_hdi_adapter = true",
+        "histreamer_enable_plugin_minimp3_adapter = true",
+        "histreamer_enable_plugin_ffmpeg_adapter = false",
+        "config_ohos_histreamer_stack_size = 65536"
       ]
     }
   ]
@@ -1241,12 +1241,12 @@ To adapt the multimedia subsystem, you need to add the `histreamer` component in
 
 The configuration items of the `histreamer` component are described as follows:
 
-| Item                                             | Description                           |
-| --------------------------------------------------- | ------------------------------- |
-| multimedia_histreamer_enable_plugin_hdi_adapter     | Whether to enable histreamer to connect to the HDMI interface.|
-| multimedia_histreamer_enable_plugin_minimp3_adapter | Whether to enable the plug-in to adapt to miniMP3.        |
-| multimedia_histreamer_enable_plugin_ffmpeg_adapter  | Whether to enable the plug-in to adapt to FFmpeg.         |
-| config_ohos_multimedia_histreamer_stack_size        | Size of the histreamer stack.           |
+| Item                                     | Description                                                   |
+| ---------------------------------------- | ------------------------------------------------------------- |
+| histreamer_enable_plugin_hdi_adapter     | Whether to enable histreamer to connect to the HDMI interface.|
+| histreamer_enable_plugin_minimp3_adapter | Whether to enable the plug-in to adapt to miniMP3.            |
+| histreamer_enable_plugin_ffmpeg_adapter  | Whether to enable the plug-in to adapt to FFmpeg.             |
+| config_ohos_histreamer_stack_size        | Size of the histreamer stack.                                 |
 
 #### utils Subsystem Adaptation
 
@@ -1311,7 +1311,7 @@ aafwk_lite + appexecfwk_lite    (AAFWK + APPEXECFWK)
       |
 ace_engine_lite + jerryscript + i18n_lite + resmgr_lite + utils/native/lite/... (ACE and JS engines and their dependencies)
       |
-graphic_ui + graphic_utils      (Graphic framework)
+arkui_lite + graphic_graphic_utils_lite      (Graphic framework)
       |
 giflib + libjpeg + libpng + qrcodegen + freetype... (Third-party graphics library)
 ```

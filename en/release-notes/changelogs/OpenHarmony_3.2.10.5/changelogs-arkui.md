@@ -214,4 +214,4 @@ N/A
 
    To change these variables from the parent component, use the API provided by the **LocalStorage** (such as the **set** API) to assign values to them.
 
-2. For details about how to use **@ObjectLink**, see [@Observed and @ObjectLink](../../../application-dev/quick-start/arkts-state-mgmt-page-level.md).
+2. For details about how to use **@ObjectLink**, see [@Observed and @ObjectLink](../../../application-dev/quick-start/arkts-observed-and-objectlink.md).

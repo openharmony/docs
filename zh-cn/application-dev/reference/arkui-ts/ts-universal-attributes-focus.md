@@ -39,7 +39,7 @@ requestFocus(value: string): boolean
 
 >  **说明：**
 >
->  支持焦点控制的组件：Button、Text、Image、List、Grid。焦点事件当前仅支持在真机上显示运行效果。
+>  支持焦点控制的组件：TextInput、TextArea、Search、Button、Text、Image、List、Grid。焦点事件当前仅支持在真机上显示运行效果。
 
 ## 示例
 

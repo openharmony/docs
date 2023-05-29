@@ -500,7 +500,7 @@ function foo() {
 
 参见：[@typescript-eslint/no-this-alias](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-this-alias.md)
 
-ESLint的描述更加严苛，我们认为this不应该在任务情况下赋值给一个变量。
+ESLint的描述更加严苛，我们认为this不应该在任何情况下赋值给一个变量。
 
 # 类与对象
 
@@ -622,7 +622,7 @@ function foo() {
 
 **【描述】**
 
-因为async function的返回值总是封装在Promise.resolve，return await实际上并没有做任何事情，只是在Promise resolve或reject之前增加了额外的时间。唯一有效是，如果try/catch语句中使用return await来捕获另一个基于Promise的函数的错误，则会出现异常。
+因为async function的返回值总是封装在Promise.resolve，return await实际上并没有做任何事情，只是在Promise resolve或reject之前增加了额外的时间。唯一有效的情况是，在try/catch语句中使用return await来捕获另一个基于Promise的函数的错误。
 
 **【反例】**
 
@@ -820,7 +820,7 @@ export type { ButtonProps };
 
 **【描述】**
 
-如果导入类型（type），将导入类型和导出其他对象分开写。
+如果导入类型（type），将导入类型和导入其他对象分开写。
 
 **【反例】**
 

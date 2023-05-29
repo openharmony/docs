@@ -81,10 +81,6 @@ The **condition** parameter must be in the specified JSON string format. For exa
         "and":[
             {"param":"type_","op":">","value":0},
             {"param":"uid_","op":"=","value":1201}
-        ],
-        "or":[
-            {"param":"NAME","op":"=","value":"SysEventService"},
-            {"param":"NAME","op":"=","value":"SysEventSource"}
         ]
     }
 }
@@ -93,7 +89,6 @@ The **condition** parameter must be in the specified JSON string format. For exa
 - The **version** field is mandatory, indicating the supported version of the input condition. Currently, only **V1** is supported.
 - The **condition** field is mandatory, indicating the input condition.
   - The **and** field is optional, indicating the AND relationship between conditions.
-  - The **or** field is optional, indicating the OR relationship between conditions.
     - The **param** field is mandatory, indicating the parameter name for condition matching. The value must be a string.
     - The **op** field is mandatory, indicating the parameter comparison operator for condition matching. The value must be a string. Supported comparison operators include the following: =, >, <, >=, and <=.
     - The **value** field is mandatory, indicating the parameter value for condition matching. The value must be a string or an integer.

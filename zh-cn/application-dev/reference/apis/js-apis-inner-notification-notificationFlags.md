@@ -8,7 +8,7 @@
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称             | 类型                    | 可读 | 可写 | 说明                               |
+| 名称             | 类型                    | 只读 | 必填 | 说明                               |
 | ---------------- | ---------------------- | ---- | ---- | --------------------------------- |
 | soundEnabled     | [NotificationFlagStatus](#notificationflagstatus) | 是   | 否   | 是否启用声音提示。                  |
 | vibrationEnabled | [NotificationFlagStatus](#notificationflagstatus) | 是   | 否   | 是否启用振动提醒功能。               |

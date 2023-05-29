@@ -16,7 +16,7 @@
 
 跨端迁移流程如下图所示。
 
-  **图1** 跨端迁移流程图  
+**图1** 跨端迁移流程图  
 ![hop-cross-device-migration](figures/hop-cross-device-migration.png)
 
 
@@ -60,10 +60,10 @@
    ```json
    {
      "module": {
-       // ...
+       ...
        "abilities": [
          {
-           // ...
+           ...
            "continuable": true,
          }
        ]

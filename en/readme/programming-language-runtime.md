@@ -36,10 +36,6 @@ Basic language capabilities are supported through library files. Some capabiliti
 
 The following list shows the repositories of third-party software and precompilation toolchains that are referenced:
 
-[/third\_party/boost](https://gitee.com/openharmony/third_party_boost)
-
-[/third\_party/quickjs](https://gitee.com/openharmony/third_party_quickjs)
-
 [/third\_party/jerryscript](https://gitee.com/openharmony/third_party_jerryscript)
 
 [/third\_party/mingw-w64](https://gitee.com/openharmony/third_party_mingw-w64)

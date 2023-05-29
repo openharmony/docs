@@ -16,12 +16,12 @@ Search(options?: { value?: string; placeholder?: ResourceStr; icon?: string; con
 
 **Parameters**
 
-| Name     | Type        | Mandatory| Description                                                    |
-| ----------- | ---------------- | ---- | ------------------------------------------------------------ |
-| value       | string           | No  | Text input in the search text box.                                |
+| Name     | Type                                            | Mandatory| Description                                                    |
+| ----------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value       | string                                               | No  | Text input in the search text box.<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md).|
 | placeholder | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> | No  | Text displayed when there is no input.                                    |
-| icon        | string           | No  | Path to the search icon. By default, the system search icon is used. The supported icon formats are .svg, .jpg, and .png.|
-| controller  | SearchController | No  | Controller of the **\<Search>** component.                                                    |
+| icon        | string                                               | No  | Path to the search icon. By default, the system search icon is used.<br>For details about the supported image types, see [Image](ts-basic-components-image.md).|
+| controller  | SearchController                                     | No  | Controller of the **\<Search>** component.                                      |
 
 ## Attributes
 
@@ -74,13 +74,13 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
-| Name                                        | Description                                                  |
-| ------------------------------------------- | ------------------------------------------------------------ |
-| onSubmit(callback: (value: string) => void) | Invoked when users click the search icon or the search button, or touch the search button on a soft keyboard.<br> - **value**: current text input. |
+| Name                                      | Description                                    |
+| ---------------------------------------- | ---------------------------------------- |
+| onSubmit(callback: (value: string) => void) | Invoked when users click the search icon or the search button, or touch the search button on a soft keyboard.<br> - **value**: current text input.|
 | onChange(callback: (value: string) => void) | Invoked when the input in the text box changes.<br> - **value**: current text input. |
-| onCopy(callback: (value: string) => void)   | Invoked when data is copied to the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text copied.     |
-| onCut(callback: (value: string) => void)    | Invoked when data is cut from the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text cut.     |
-| onPaste(callback: (value: string) => void)  | Invoked when data is pasted from the pasteboard, which is displayed when the search text box is long pressed.<br> -**value**: text pasted.     |
+| onCopy(callback: (value: string) => void) | Invoked when data is copied to the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text copied.     |
+| onCut(callback: (value: string) => void)  | Invoked when data is cut from the pasteboard, which is displayed when the search text box is long pressed.<br> - **value**: text cut.     |
+| onPaste(callback: (value: string) => void) | Invoked when data is pasted from the pasteboard, which is displayed when the search text box is long pressed.<br> -**value**: text pasted.     |
 
 ## SearchController
 

@@ -52,11 +52,11 @@ try {
     overlay.setOverlayEnabled(moduleName, isEnabled)
         .then(() => {
             console.info('setOverlayEnabled success');
-        }).catch((error) => {
-            console.info('setOverlayEnabled failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
+        }).catch((err) => {
+            console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
         });
-} catch (error) {
-    console.info('setOverlayEnabled failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
+} catch (err) {
+    console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
 }
 ```
 
@@ -92,15 +92,15 @@ var moduleName = "feature";
 var isEnabled = false;
 
 try {
-    overlay.setOverlayEnabled(moduleName, isEnabled, (error, data) => {
-        if (error) {
-            console.info('setOverlayEnabled failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
+    overlay.setOverlayEnabled(moduleName, isEnabled, (err, data) => {
+        if (err) {
+            console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
             return;
         }
         console.info('setOverlayEnabled success');
     });
-} catch (error) {
-    console.info('setOverlayEnabled failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
+} catch (err) {
+    console.info('setOverlayEnabled failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
 }
 ```
 
@@ -145,18 +145,18 @@ setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: b
 
 ```ts
 var bundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature"
+var moduleName = "feature";
 var isEnabled = false;
 
 try {
     overlay.setOverlayEnabledByBundleName(bundleName, moduleName, isEnabled)
         .then((data) => {
             console.info('setOverlayEnabledByBundleName successfully');
-        }).catch((error) => {
-            console.info('setOverlayEnabledByBundleName failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
+        }).catch((err) => {
+            console.info('setOverlayEnabledByBundleName failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
         });
-} catch (error) {
-    console.info('setOverlayEnabledByBundleName failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
+} catch (err) {
+    console.info('setOverlayEnabledByBundleName failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
 }
 ```
 
@@ -196,19 +196,19 @@ setOverlayEnabledByBundleName(bundleName:string, moduleName:string, isEnabled: b
 
 ```ts
 var bundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature"
+var moduleName = "feature";
 var isEnabled = false;
 
 try {
-    overlay.setOverlayEnabledByBundleName(bundleName, moduleName, isEnabled, (error, data) => {
-        if (error) {
-            console.info('setOverlayEnabledByBundleName failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
+    overlay.setOverlayEnabledByBundleName(bundleName, moduleName, isEnabled, (err, data) => {
+        if (err) {
+            console.info('setOverlayEnabledByBundleName failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
             return;
         }
         console.info('setOverlayEnabledByBundleName successfully');
     });
-} catch (error) {
-    console.info('setOverlayEnabledByBundleName failed due to error code: ' + err.code + ' ' + 'message:' + err.message);
+} catch (err) {
+    console.info('setOverlayEnabledByBundleName failed due to err code: ' + err.code + ' ' + 'message:' + err.message);
 }
 ```
 
@@ -245,14 +245,14 @@ getOverlayModuleInfo(moduleName: string): Promise\<OverlayModuleInfo>;
 **示例：**
 
 ```ts
-var moduleName = "feature"
+var moduleName = "feature";
 
 (async() => {
     try {
         let overlayModuleInfo = await overlay.getOverlayModuleInfo(moduleName);
         console.log('overlayModuleInfo is ' + JSON.stringify(overlayModuleInfo));
     } catch(err) {
-        console.log('getOverlayModuleInfo failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+        console.log('getOverlayModuleInfo failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
     }
 })();
 ```
@@ -279,23 +279,23 @@ getOverlayModuleInfo(moduleName: string, callback: AsyncCallback\<OverlayModuleI
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
 | 17700002 | The specified module name is not found. |
-| 17700032 | he specified bundle does not contain any overlay module. |
+| 17700032 | The specified bundle does not contain any overlay module. |
 | 17700033 | The specified module is not an overlay module. |
 
 **示例：**
 
 ```ts
-var moduleName = "feature"
+var moduleName = "feature";
 try {
-    overlay.getOverlayModuleInfo(moduleName, (error, data) => {
-        if (error) {
-            console.log('getOverlayModuleInfo failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+    overlay.getOverlayModuleInfo(moduleName, (err, data) => {
+        if (err) {
+            console.log('getOverlayModuleInfo failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
-} catch (error) {
-    console.log('getOverlayModuleInfo failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+} catch (err) {
+    console.log('getOverlayModuleInfo failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
 }
 ```
 
@@ -331,14 +331,14 @@ getTargetOverlayModuleInfos(targetModuleName: string): Promise\<Array\<OverlayMo
 **示例：**
 
 ```ts
-var targetModuleName = "feature"
+var targetModuleName = "feature";
 
 (async() => {
     try {
         let overlayModuleInfos = await overlay.getTargetOverlayModuleInfos(targetModuleName);
         console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
     } catch(err) {
-        console.log('getTargetOverlayModuleInfos failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+        console.log('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
     }
 })();
 ```
@@ -370,17 +370,17 @@ getTargetOverlayModuleInfos(targetModuleName: string, callback: AsyncCallback\<A
 **示例：**
 
 ```ts
-var targetModuleName = "feature"
+var targetModuleName = "feature";
 try {
-    overlay.getTargetOverlayModuleInfos(targetModuleName, (error, data) => {
-        if (error) {
-            console.log('getTargetOverlayModuleInfos failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+    overlay.getTargetOverlayModuleInfos(targetModuleName, (err, data) => {
+        if (err) {
+            console.log('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
-} catch (error) {
-    console.log('getTargetOverlayModuleInfos failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+} catch (err) {
+    console.log('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
 }
 ```
 
@@ -401,7 +401,7 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName?: string): Promi
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | bundleName | string | 是    | 指定应用的bundle名称。                    |
-| moduleName | string | 否    | 指定应用中的overlay module的HAP名称。缺省该字段时，查询接口将查询指定应用中所有module的OverlayModuleInfo信息。     |
+| moduleName | string | 否    | 指定应用中的overlay module的HAP名称。默认值：缺省该字段时，查询接口将查询指定应用中所有module的OverlayModuleInfo信息。     |
 
 **返回值：**
 
@@ -424,14 +424,14 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName?: string): Promi
 
 ```ts
 var bundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature"
+var moduleName = "feature";
 
 (async() => {
     try {
         let overlayModuleInfos = await overlay.getOverlayModuleInfoByBundleName(bundleName, moduleName);
         console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
     } catch(err) {
-        console.log('getTargetOverlayModuleInfos failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+        console.log('getTargetOverlayModuleInfos failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
     }
 })();
 ```
@@ -471,18 +471,18 @@ getOverlayModuleInfoByBundleName(bundleName: string, moduleName: string, callbac
 
 ```ts
 var bundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature"
+var moduleName = "feature";
 
 try {
-    overlay.getOverlayModuleInfoByBundleName(bundleName, moduleName, (error, data) => {
-        if (error) {
-            console.log('getOverlayModuleInfoByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+    overlay.getOverlayModuleInfoByBundleName(bundleName, moduleName, (err, data) => {
+        if (err) {
+            console.log('getOverlayModuleInfoByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
-} catch (error) {
-    console.log('getOverlayModuleInfoByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+} catch (err) {
+    console.log('getOverlayModuleInfoByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
 }
 ```
 
@@ -512,9 +512,7 @@ getOverlayModuleInfoByBundleName(bundleName: string, callback: AsyncCallback\<Ar
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
-| 17700002 | The specified module name is not found. |
 | 17700032 | The specified bundle does not contain any overlay module. |
-| 17700033 | The specified module is not an overlay module. |
 
 **示例：**
 
@@ -522,15 +520,15 @@ getOverlayModuleInfoByBundleName(bundleName: string, callback: AsyncCallback\<Ar
 var bundleName = "com.example.myapplication_xxxxx";
 
 try {
-    overlay.getOverlayModuleInfoByBundleName(bundleName, (error, data) => {
-        if (error) {
-            console.log('getOverlayModuleInfoByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+    overlay.getOverlayModuleInfoByBundleName(bundleName, (err, data) => {
+        if (err) {
+            console.log('getOverlayModuleInfoByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
-} catch (error) {
-    console.log('getOverlayModuleInfoByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+} catch (err) {
+    console.log('getOverlayModuleInfoByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
 }
 ```
 
@@ -551,7 +549,7 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName?: s
 | 参数名       | 类型     | 必填   | 说明                                    |
 | ----------- | ------ | ---- | --------------------------------------- |
 | targetBundleName | string | 是    | 指定目标应用的bundle名称。                    |
-| moduleName | string | 否    | 指定应用中的目标module的HAP名称。缺省该字段时，查询接口将查询指定应用中所有module所关联的OverlayModuleInfo信息。     |
+| moduleName | string | 否    | 指定应用中的目标module的HAP名称。默认值：缺省该字段时，查询接口将查询指定应用中所有module所关联的OverlayModuleInfo信息。     |
 
 **返回值：**
 
@@ -574,21 +572,21 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName?: s
 
 ```ts
 var targetBundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature"
+var moduleName = "feature";
 
 (async() => {
     try {
         let overlayModuleInfos = await overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, moduleName);
         console.log('overlayModuleInfos are ' + JSON.stringify(overlayModuleInfos));
     } catch(err) {
-        console.log('getTargetOverlayModuleInfosByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+        console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
     }
 })();
 ```
 
 ## overlay.getTargetOverlayModuleInfosByBundleName
 
-getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: string, callback: AsyncCallback\<Array<OverlayModuleInfo>>): void;
+getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: string, callback: AsyncCallback&lt;Array&lt;OverlayModuleInfo&gt;&gt;): void;
 
 以异步方法获取指定应用中指定module关联的所有OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
 
@@ -621,24 +619,24 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, moduleName: st
 
 ```ts
 var targetBundleName = "com.example.myapplication_xxxxx";
-var moduleName = "feature"
+var moduleName = "feature";
 
 try {
-    overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, moduleName, (error, data) => {
-        if (error) {
-            console.log('getTargetOverlayModuleInfosByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+    overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, moduleName, (err, data) => {
+        if (err) {
+            console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
-} catch (error) {
-    console.log('getTargetOverlayModuleInfosByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+} catch (err) {
+    console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
 }
 ```
 
 ## overlay.getTargetOverlayModuleInfosByBundleName
 
-getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: AsyncCallback\<Array<OverlayModuleInfo>>): void;
+getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: AsyncCallback&lt;Array&lt;OverlayModuleInfo&gt;&gt;): void;
 
 以异步方法获取指定应用中所有module关联的所有OverlayModuleInfo信息。使用callback异步回调，成功返回null，失败返回对应错误信息。
 
@@ -662,8 +660,6 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: Asyn
 | 错误码ID | 错误信息                                |
 | ------ | -------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
-| 17700002 | The specified module name is not found. |
-| 17700034 | The specified module is an overlay module. |
 | 17700035 | The specified bundle is an overlay bundle. |
 
 **示例：**
@@ -672,15 +668,15 @@ getTargetOverlayModuleInfosByBundleName(targetBundleName: string, callback: Asyn
 var targetBundleName = "com.example.myapplication_xxxxx";
 
 try {
-    overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, (error, data) => {
-        if (error) {
-            console.log('getTargetOverlayModuleInfosByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+    overlay.getTargetOverlayModuleInfosByBundleName(targetBundleName, (err, data) => {
+        if (err) {
+            console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
             return;
         }
         console.log('overlayModuleInfo is ' + JSON.stringify(data));
     });
-} catch (error) {
-    console.log('getTargetOverlayModuleInfosByBundleName failed due to error code : ' + err.code + ' ' + 'message :' + err.message);
+} catch (err) {
+    console.log('getTargetOverlayModuleInfosByBundleName failed due to err code : ' + err.code + ' ' + 'message :' + err.message);
 }
 ```
 

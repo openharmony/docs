@@ -1,7 +1,6 @@
 # picker-view
 
 >  **NOTE**
->
 >  This component is supported since API version 4. Updates will be marked with a superscript to indicate their earliest API version.
 
 The **\<picker-view>** component provides the view that shows an embedded scrollable selector on the screen.
@@ -121,228 +120,232 @@ Not supported
 
 
 ## Example
-1. Text Selector
-    ```html
-    <!-- xxx.hml -->
-    <div class="container">
-        <text class="title">
-            Selected value: {{value}} Selected index: {{index}}
-        </text>
-        <picker-view class="text-picker" type="text" range="{{options}}" selected="0" indicatorprefix="prefix" indicatorsuffix="suffix" @change="handleChange"></picker-view>
-    </div>
-    ```
-    
-    ```css
-    /* xxx.css */
-    .container {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 50%;
-    }
-    .title {
-        font-size: 30px;
-        text-align: center;
-        margin-top: 50%;
-    }
-    ```
-    
-    ```js
-    /* xxx.js */
-    export default {
-        data: {
-            options: ['Option 1','Option 2','Option 3'],
-            value: "Option 1",
-            index: 0
-        },
-        handleChange(data) {
-            this.value = data.newValue;
-            this.index = data.newSelected;
-        },
-    }
-    ```
-    ![picker-view0](figures/picker-view0.gif)
-    
-2. Time Selector
-    ```html
-    <!-- xxx.hml -->
-    <div class="container">
-      <text class="title">
-        Selected: {{time}}
-      </text>
-      <picker-view class="time-picker" type="time" selected="{{defaultTime}}" @change="handleChange"></picker-view>
-    </div>
-    ```
-    
-    ```css
-    /* xxx.css */
-    .container {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 50%;
-    }
-    .title {
-        font-size: 31px;
-        text-align: center;
-        margin-top: 50%;
-    }
-    ```
-    
-    ```js
-    /* xxx.js */
-    export default {
-      data: {
-        defaultTime: "",
-        time: "",
-      },
-      onInit() {
-        this.defaultTime = this.now();
-      },
-      handleChange(data) {
-        this.time = this.concat(data.hour, data.minute);
-      },
-      now() {
-        const date = new Date();
-        const hours = date.getHours();
-        const minutes = date.getMinutes();
-        return this.concat(hours, minutes);
-      },
-      fill(value) {
-        return (value > 9 ? "" : "0") + value;
-      },
-      concat(hours, minutes) {
-        return `${this.fill(hours)}:${this.fill(minutes)}`;
-      },
-    }
-    ```
-    
-    ![picker-view1](figures/picker-view1.gif)
-    
-3. Date Selector
-    ```html
-    <!-- xxx.hml -->
-    <div class="container">
-        <text class="title">
-            Selected: {{date}}
-        </text>
-        <picker-view class="time-picker" type="date" selected="{{defaultTime}}" @change="handleChange" lunarswitch="true"></picker-view>
-    </div>
-    ```
-    
-    ```css
-    /* xxx.css */
-    .container {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 50%;
-    }
-    .title {
-        font-size: 31px;
-        text-align: center;
-        margin-top: 50%;
-    }
-    ```
-    
-    ```js
-    /* xxx.js */
-    export default {
-        data: {
-            date: "",
-        },
-        handleChange(data) {
-            this.date = data.year + "/" + data.month + "/" + data.day + "";
-        },
-    }
-    ```
-    ![picker-view2](figures/picker-view2.gif)
-    
-4. Date and Time Selector
-    ```html
-    <!-- xxx.hml -->
-    <div class="container">
-        <text class="title">
-            Selected: {{datetime}}
-        </text>
-        <picker-view class="date-picker" type="datetime"  hours="24" lunarswitch="true" @change="handleChange"></picker-view>
-    </div>
-    ```
-    
-    ```css
-    /* xxx.css */
-    .container {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 50%;
-    }
-    .title {
-        font-size: 31px;
-        text-align: center;
-        margin-top: 50%;
-    }
-    ```
-    
-    ```js
-    /* xxx.js */
-    export default {
-        data: {
-            datetime: "",
-        },
-        handleChange(data) {
-            this.datetime = data.year + "/" + data.month + "/" + data.day + "" + data.hour + ":" + data.minute + "";
-        },
-    }
-    ```
-    ![picker-view3](figures/picker-view3.gif)
-    
-5. Multi-Column Text Selector
+### Text Selector
 
-    ```html
-    <!-- xxx.hml -->
-    <div class="container">
-        <text class="title">
-            Selected: {{ value }}
-        </text>
-        <picker-view class="multitype-picker" type="multi-text" columns="3" range="{{ multitext }}" @columnchange="handleChange"></picker-view>
-    </div>
-    ```
-    
-    ```css
-    /* xxx.css */
-    .container {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 50%;
-    }
-    .title {
-        font-size: 31px;
-        text-align: center;
-        margin-top: 50%;
-    }
-    ```
-    
-    ```js
-    /* xxx.js */
-    export default {
-        data: {
-            multitext: [
-                [1, 2, 3],
-                [4, 5, 6],
-                [7, 8, 9],
-            ],
-            value: ""
-        },
-        handleChange(data) {
-            this.value = "Selected: " + data.column + "," + "value: " + data.newValue + ", index:" + data.newSelected;
-        },
-    }
-    ```
-    ![picker-view4](figures/picker-view4.gif)
+```html
+<!-- xxx.hml -->
+<div class="container">
+    <text class="title">
+        Selected value: {{value}} Selected index: {{index}}
+    </text>
+    <picker-view class="text-picker" type="text" range="{{options}}" selected="0" indicatorprefix="prefix" indicatorsuffix="suffix" @change="handleChange"></picker-view>
+</div>
+```
+
+```css
+/* xxx.css */
+.container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+}
+.title {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 50%;
+}
+```
+
+```js
+/* xxx.js */
+export default {
+    data: {
+        options: ['Option 1','Option 2','Option 3'],
+        value: "Option 1",
+        index: 0
+    },
+    handleChange(data) {
+        this.value = data.newValue;
+        this.index = data.newSelected;
+    },
+}
+```
+![picker-view0](figures/picker-view0.gif)
+
+### Time Selector
+
+```html
+<!-- xxx.hml -->
+<div class="container">
+  <text class="title">
+    Selected: {{time}}
+  </text>
+  <picker-view class="time-picker" type="time" selected="{{defaultTime}}" @change="handleChange"></picker-view>
+</div>
+```
+
+```css
+/* xxx.css */
+.container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+}
+.title {
+    font-size: 31px;
+    text-align: center;
+    margin-top: 50%;
+}
+```
+
+```js
+/* xxx.js */
+export default {
+  data: {
+    defaultTime: "",
+    time: "",
+  },
+  onInit() {
+    this.defaultTime = this.now();
+  },
+  handleChange(data) {
+    this.time = this.concat(data.hour, data.minute);
+  },
+  now() {
+    const date = new Date();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    return this.concat(hours, minutes);
+  },
+  fill(value) {
+    return (value > 9 ? "" : "0") + value;
+  },
+  concat(hours, minutes) {
+    return `${this.fill(hours)}:${this.fill(minutes)}`;
+  },
+}
+```
+
+![picker-view1](figures/picker-view1.gif)
+
+### Date Selector
+
+```html
+<!-- xxx.hml -->
+<div class="container">
+    <text class="title">
+        Selected: {{date}}
+    </text>
+    <picker-view class="time-picker" type="date" selected="{{defaultTime}}" @change="handleChange" lunarswitch="true"></picker-view>
+</div>
+```
+
+```css
+/* xxx.css */
+.container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+}
+.title {
+    font-size: 31px;
+    text-align: center;
+    margin-top: 50%;
+}
+```
+
+```js
+/* xxx.js */
+export default {
+    data: {
+        date: "",
+    },
+    handleChange(data) {
+        this.date = data.year + "/" + data.month + "/" + data.day + "";
+    },
+}
+```
+![picker-view2](figures/picker-view2.gif)
+
+### Date and Time Selector
+
+```html
+<!-- xxx.hml -->
+<div class="container">
+    <text class="title">
+        Selected: {{datetime}}
+    </text>
+    <picker-view class="date-picker" type="datetime"  hours="24" lunarswitch="true" @change="handleChange"></picker-view>
+</div>
+```
+
+```css
+/* xxx.css */
+.container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+}
+.title {
+    font-size: 31px;
+    text-align: center;
+    margin-top: 50%;
+}
+```
+
+```js
+/* xxx.js */
+export default {
+    data: {
+        datetime: "",
+    },
+    handleChange(data) {
+        this.datetime = data.year + "/" + data.month + "/" + data.day + "" + data.hour + ":" + data.minute + "";
+    },
+}
+```
+![picker-view3](figures/picker-view3.gif)
+
+### Multi-Column Text Selector
+
+```html
+<!-- xxx.hml -->
+<div class="container">
+    <text class="title">
+        Selected: {{ value }}
+    </text>
+    <picker-view class="multitype-picker" type="multi-text" columns="3" range="{{ multitext }}" @columnchange="handleChange"></picker-view>
+</div>
+```
+
+```css
+/* xxx.css */
+.container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+}
+.title {
+    font-size: 31px;
+    text-align: center;
+    margin-top: 50%;
+}
+```
+
+```js
+/* xxx.js */
+export default {
+    data: {
+        multitext: [
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9],
+        ],
+        value: ""
+    },
+    handleChange(data) {
+        this.value = "Column: " + data.column + "," + "Value: " + data.newValue + ", Index:" + data.newSelected;
+    },
+}
+```
+![picker-view4](figures/picker-view4.gif)

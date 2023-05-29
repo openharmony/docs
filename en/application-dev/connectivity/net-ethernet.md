@@ -44,7 +44,7 @@ For the complete list of APIs and example code, see [Ethernet Connection](../ref
 5. Call **getIfaceConfig** in user mode to obtain the static network attributes of the **eth0** port. By default, an unconfigured Ethernet network uses the DHCP mode, in which the Ethernet network obtains the automatically assigned network attributes.
 
 ```js
-   // Import the ethernet namespace from @ohos.net.ethernet.
+// Import the ethernet namespace from @ohos.net.ethernet.
 import ethernet from '@ohos.net.ethernet'
 
 // Call getAllActiveIfaces to obtain the list of all active network ports.
@@ -96,7 +96,7 @@ ethernet.getIfaceConfig("eth0", (error, data) => {
 6. Call **getIfaceConfig** in user mode to obtain the static network attributes of the **eth0** port.
 
 ```js
-   // Import the ethernet namespace from @ohos.net.ethernet.
+// Import the ethernet namespace from @ohos.net.ethernet.
 import ethernet from '@ohos.net.ethernet'
 
 // Call getAllActiveIfaces to obtain the list of all active network ports.
@@ -158,13 +158,13 @@ ethernet.getIfaceConfig("eth0", (error, data) => {
 4. Call the **off()** method to unsubscribe from **interfaceStateChange** events.
 
 ```js
-   // Import the ethernet namespace from @ohos.net.ethernet.
+// Import the ethernet namespace from @ohos.net.ethernet.
 import ethernet from '@ohos.net.ethernet'
 
 // Subscribe to interfaceStateChange events.
-ethernet.on('interfaceStateChange', ((data) => {
+ethernet.on('interfaceStateChange', (data) => {
   console.log(JSON.stringify(data));
-}));
+});
 
 // Unsubscribe from interfaceStateChange events.
 ethernet.off('interfaceStateChange');

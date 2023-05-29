@@ -1,10 +1,39 @@
 # CommonEventSubscriber
 
-## getCode
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+## Usage
+
+Before using the **CommonEventSubscriber** module, you must obtain a **subscriber** object by calling **CommonEvent.createSubscriber**.
 
 ```ts
-getCode(callback: AsyncCallback<number>): void
+import CommonEvent from '@ohos.commonEvent';
+let subscriber; // Used to save the created subscriber object for subsequent subscription and unsubscription.
+
+// Subscriber information.
+let subscribeInfo = {
+	events: ["event"]
+};
+
+// Callback for subscriber creation.
+function createCB(err, commonEventSubscriber) {
+    if (err.code) {
+        console.error(`createSubscriber failed, code is ${err.code}`);
+    } else {
+        console.info("createSubscriber");
+        subscriber = commonEventSubscriber;
+    }
+}
+
+// Create a subscriber.
+CommonEvent.createSubscriber(subscribeInfo, createCB);
 ```
+
+## getCode
+
+getCode(callback: AsyncCallback\<number>): void
 
 Obtains the code of this common event. This API uses an asynchronous callback to return the result.
 
@@ -19,8 +48,6 @@ Obtains the code of this common event. This API uses an asynchronous callback to
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 // Callback for result code obtaining of an ordered common event.
 function getCodeCB(err, code) {
     if (err.code) {
@@ -34,9 +61,7 @@ subscriber.getCode(getCodeCB);
 
 ## getCode
 
-```ts
-getCode(): Promise<number>
-```
+getCode(): Promise\<number>
 
 Obtains the code of this common event. This API uses a promise to return the result.
 
@@ -51,8 +76,6 @@ Obtains the code of this common event. This API uses a promise to return the res
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 subscriber.getCode().then((code) => {
     console.info("getCode " + JSON.stringify(code));
 }).catch((err) => {
@@ -62,9 +85,7 @@ subscriber.getCode().then((code) => {
 
 ## setCode
 
-```ts
-setCode(code: number, callback: AsyncCallback<void>): void
-```
+setCode(code: number, callback: AsyncCallback\<void>): void
 
 Sets the code for this common event. This API uses an asynchronous callback to return the result.
 
@@ -80,8 +101,6 @@ Sets the code for this common event. This API uses an asynchronous callback to r
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 // Callback for result code setting of an ordered common event.
 function setCodeCB(err) {
     if (err.code) {
@@ -95,9 +114,7 @@ subscriber.setCode(1, setCodeCB);
 
 ## setCode
 
-```ts
-setCode(code: number): Promise<void>
-```
+setCode(code: number): Promise\<void>
 
 Sets the code for this common event. This API uses a promise to return the result.
 
@@ -118,8 +135,6 @@ Sets the code for this common event. This API uses a promise to return the resul
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 subscriber.setCode(1).then(() => {
     console.info("setCode");
 }).catch((err) => {
@@ -129,9 +144,7 @@ subscriber.setCode(1).then(() => {
 
 ## getData
 
-```ts
-getData(callback: AsyncCallback<string>): void
-```
+getData(callback: AsyncCallback\<string>): void
 
 Obtains the data of this common event. This API uses an asynchronous callback to return the result.
 
@@ -146,8 +159,6 @@ Obtains the data of this common event. This API uses an asynchronous callback to
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 // Callback for result data obtaining of an ordered common event.
 function getDataCB(err, data) {
     if (err.code) {
@@ -161,9 +172,7 @@ subscriber.getData(getDataCB);
 
 ## getData
 
-```ts
-getData(): Promise<string>
-```
+getData(): Promise\<string>
 
 Obtains the data of this common event. This API uses a promise to return the result.
 
@@ -178,8 +187,6 @@ Obtains the data of this common event. This API uses a promise to return the res
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 subscriber.getData().then((data) => {
     console.info("getData " + JSON.stringify(data));
 }).catch((err) => {
@@ -205,8 +212,6 @@ Sets the data for this common event. This API uses an asynchronous callback to r
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 // Callback for result data setting of an ordered common event
 function setDataCB(err) {
     if (err.code) {
@@ -220,9 +225,7 @@ subscriber.setData("publish_data_changed", setDataCB);
 
 ## setData
 
-```ts
-setData(data: string): Promise<void>
-```
+setData(data: string): Promise\<void>
 
 Sets the data for this common event. This API uses a promise to return the result.
 
@@ -243,8 +246,6 @@ Sets the data for this common event. This API uses a promise to return the resul
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 subscriber.setData("publish_data_changed").then(() => {
     console.info("setData");
 }).catch((err) => {
@@ -254,9 +255,7 @@ subscriber.setData("publish_data_changed").then(() => {
 
 ## setCodeAndData
 
-```ts
-setCodeAndData(code: number, data: string, callback:AsyncCallback<void>): void
-```
+setCodeAndData(code: number, data: string, callback:AsyncCallback\<void>): void
 
 Sets the code and data for this common event. This API uses an asynchronous callback to return the result.
 
@@ -273,8 +272,6 @@ Sets the code and data for this common event. This API uses an asynchronous call
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 // Callback for code and data setting of an ordered common event.
 function setCodeDataCB(err) {
     if (err.code) {
@@ -288,9 +285,7 @@ subscriber.setCodeAndData(1, "publish_data_changed", setCodeDataCB);
 
 ## setCodeAndData
 
-```ts
-setCodeAndData(code: number, data: string): Promise<void>
-```
+setCodeAndData(code: number, data: string): Promise\<void>
 
 Sets the code and data for this common event. This API uses a promise to return the result.
 
@@ -312,8 +307,6 @@ Sets the code and data for this common event. This API uses a promise to return 
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
     console.info("setCodeAndData");
 }).catch((err) => {
@@ -323,9 +316,7 @@ subscriber.setCodeAndData(1, "publish_data_changed").then(() => {
 
 ## isOrderedCommonEvent
 
-```ts
-isOrderedCommonEvent(callback: AsyncCallback<boolean>): void
-```
+isOrderedCommonEvent(callback: AsyncCallback\<boolean>): void
 
 Checks whether this common event is an ordered one. This API uses an asynchronous callback to return the result.
 
@@ -340,8 +331,6 @@ Checks whether this common event is an ordered one. This API uses an asynchronou
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 // Callback for checking whether the current common event is an ordered one.
 function isOrderedCB(err, isOrdered) {
     if (err.code) {
@@ -355,9 +344,7 @@ subscriber.isOrderedCommonEvent(isOrderedCB);
 
 ## isOrderedCommonEvent
 
-```ts
-isOrderedCommonEvent(): Promise<boolean>
-```
+isOrderedCommonEvent(): Promise\<boolean>
 
 Checks whether this common event is an ordered one. This API uses a promise to return the result.
 
@@ -372,8 +359,6 @@ Checks whether this common event is an ordered one. This API uses a promise to r
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 subscriber.isOrderedCommonEvent().then((isOrdered) => {
     console.info("isOrdered " + JSON.stringify(isOrdered));
 }).catch((err) => {
@@ -383,9 +368,7 @@ subscriber.isOrderedCommonEvent().then((isOrdered) => {
 
 ## isStickyCommonEvent
 
-```ts
-isStickyCommonEvent(callback: AsyncCallback<boolean>): void
-```
+isStickyCommonEvent(callback: AsyncCallback\<boolean>): void
 
 Checks whether this common event is a sticky one. This API uses an asynchronous callback to return the result.
 
@@ -400,8 +383,6 @@ Checks whether this common event is a sticky one. This API uses an asynchronous 
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 // Callback for checking whether the current common event is a sticky one.
 function isStickyCB(err, isSticky) {
     if (err.code) {
@@ -415,9 +396,7 @@ subscriber.isStickyCommonEvent(isStickyCB);
 
 ## isStickyCommonEvent
 
-```ts
-isStickyCommonEvent(): Promise<boolean>
-```
+isStickyCommonEvent(): Promise\<boolean>
 
 Checks whether this common event is a sticky one. This API uses a promise to return the result.
 
@@ -432,8 +411,6 @@ Checks whether this common event is a sticky one. This API uses a promise to ret
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 subscriber.isStickyCommonEvent().then((isSticky) => {
     console.info("isSticky " + JSON.stringify(isSticky));
 }).catch((err) => {
@@ -443,9 +420,7 @@ subscriber.isStickyCommonEvent().then((isSticky) => {
 
 ## abortCommonEvent
 
-```ts
-abortCommonEvent(callback: AsyncCallback<void>): void
-```
+abortCommonEvent(callback: AsyncCallback\<void>): void
 
 Aborts this common event. After the abort, the common event is not sent to the next subscriber. This API takes effect only for ordered common events. It uses an asynchronous callback to return the result.
 
@@ -460,8 +435,6 @@ Aborts this common event. After the abort, the common event is not sent to the n
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 // Callback for common event aborting.
 function abortCB(err) {
     if (err.code) {
@@ -475,9 +448,7 @@ subscriber.abortCommonEvent(abortCB);
 
 ## abortCommonEvent
 
-```ts
-abortCommonEvent(): Promise<void>
-```
+abortCommonEvent(): Promise\<void>
 
 Aborts this common event. After the abort, the common event is not sent to the next subscriber. This API takes effect only for ordered common events. It uses a promise to return the result.
 
@@ -492,8 +463,6 @@ Aborts this common event. After the abort, the common event is not sent to the n
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 subscriber.abortCommonEvent().then(() => {
     console.info("abortCommonEvent");
 }).catch((err) => {
@@ -503,9 +472,7 @@ subscriber.abortCommonEvent().then(() => {
 
 ## clearAbortCommonEvent
 
-```ts
-clearAbortCommonEvent(callback: AsyncCallback<void>): void
-```
+clearAbortCommonEvent(callback: AsyncCallback\<void>): void
 
 Clears the aborted state of this common event. This API takes effect only for ordered common events. It uses an asynchronous callback to return the result.
 
@@ -520,8 +487,6 @@ Clears the aborted state of this common event. This API takes effect only for or
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 // Callback for clearing the aborted state of the current common event.
 function clearAbortCB(err) {
     if (err.code) {
@@ -535,9 +500,7 @@ subscriber.clearAbortCommonEvent(clearAbortCB);
 
 ## clearAbortCommonEvent
 
-```ts
-clearAbortCommonEvent(): Promise<void>
-```
+clearAbortCommonEvent(): Promise\<void>
 
 Clears the aborted state of this common event. This API takes effect only for ordered common events. It uses a promise to return the result.
 
@@ -552,8 +515,6 @@ Clears the aborted state of this common event. This API takes effect only for or
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 subscriber.clearAbortCommonEvent().then(() => {
     console.info("clearAbortCommonEvent");
 }).catch((err) => {
@@ -563,9 +524,7 @@ subscriber.clearAbortCommonEvent().then(() => {
 
 ## getAbortCommonEvent
 
-```ts
-getAbortCommonEvent(callback: AsyncCallback<boolean>): void
-```
+getAbortCommonEvent(callback: AsyncCallback\<boolean>): void
 
 Checks whether this common event is in the aborted state. This API takes effect only for ordered common events. It uses an asynchronous callback to return the result.
 
@@ -580,8 +539,6 @@ Checks whether this common event is in the aborted state. This API takes effect 
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 // Callback for checking whether the current common event is in the aborted state.
 function getAbortCB(err, abortEvent) {
     if (err.code) {
@@ -595,9 +552,7 @@ subscriber.getAbortCommonEvent(getAbortCB);
 
 ## getAbortCommonEvent
 
-```ts
-getAbortCommonEvent(): Promise<boolean>
-```
+getAbortCommonEvent(): Promise\<boolean>
 
 Checks whether this common event is in the aborted state. This API takes effect only for ordered common events. It uses a promise to return the result.
 
@@ -612,8 +567,6 @@ Checks whether this common event is in the aborted state. This API takes effect 
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 subscriber.getAbortCommonEvent().then((abortEvent) => {
     console.info("abortCommonEvent " + JSON.stringify(abortEvent));
 }).catch((err) => {
@@ -623,9 +576,7 @@ subscriber.getAbortCommonEvent().then((abortEvent) => {
 
 ## getSubscribeInfo
 
-```ts
-getSubscribeInfo(callback: AsyncCallback<CommonEventSubscribeInfo>): void
-```
+getSubscribeInfo(callback: AsyncCallback\<CommonEventSubscribeInfo>): void
 
 Obtains the subscriber information. This API uses an asynchronous callback to return the result.
 
@@ -640,8 +591,6 @@ Obtains the subscriber information. This API uses an asynchronous callback to re
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 // Callback for subscriber information obtaining.
 function getCB(err, subscribeInfo) {
     if (err.code) {
@@ -655,9 +604,7 @@ subscriber.getSubscribeInfo(getCB);
 
 ## getSubscribeInfo
 
-```ts
-getSubscribeInfo(): Promise<CommonEventSubscribeInfo>
-```
+getSubscribeInfo(): Promise\<CommonEventSubscribeInfo>
 
 Obtains the subscriber information. This API uses a promise to return the result.
 
@@ -672,8 +619,6 @@ Obtains the subscriber information. This API uses a promise to return the result
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 subscriber.getSubscribeInfo().then((subscribeInfo) => {
     console.info("subscribeInfo " + JSON.stringify(subscribeInfo));
 }).catch((err) => {
@@ -683,9 +628,7 @@ subscriber.getSubscribeInfo().then((subscribeInfo) => {
 
 ## finishCommonEvent<sup>9+</sup>
 
-```ts
-finishCommonEvent(callback: AsyncCallback<void>): void
-```
+finishCommonEvent(callback: AsyncCallback\<void>): void
 
 Finishes this common event. This API takes effect only for ordered common events. It uses an asynchronous callback to return the result.
 
@@ -700,14 +643,13 @@ Finishes this common event. This API takes effect only for ordered common events
 **Example**
 
 ```ts
-let subscriber; // Subscriber object successfully created.
-
 // Callback for ordered common event finishing.
 function finishCB(err) {
   if (err.code) {
     console.error(`finishCommonEvent failed, code is ${err.code}, message is ${err.message}`);
-} else {
+  } else {
     console.info("FinishCommonEvent");
+  }
 }
 
 subscriber.finishCommonEvent(finishCB);
@@ -715,9 +657,7 @@ subscriber.finishCommonEvent(finishCB);
 
 ## finishCommonEvent<sup>9+</sup>
 
-```ts
-finishCommonEvent(): Promise<void\>
-```
+finishCommonEvent(): Promise\<void>
 
 Finishes this common event. This API takes effect only for ordered common events. It uses a promise to return the result.
 
@@ -732,8 +672,6 @@ Finishes this common event. This API takes effect only for ordered common events
 **Example**
 
 ```ts
-let subscriber;	// Subscriber object successfully created.
-
 subscriber.finishCommonEvent().then(() => {
     console.info("FinishCommonEvent");
 }).catch((err) => {

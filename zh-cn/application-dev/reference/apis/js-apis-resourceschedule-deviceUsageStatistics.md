@@ -1570,9 +1570,9 @@ FA卡片的使用信息的属性集合。
 
 | 名称                   | 类型     | 必填   | 说明                                       |
 | --------------------- | ------ | ---- | ---------------------------------------- |
-| bundleName            | string | 是    | 应用包名。                                    |
-| eventId             | number | 是    | 应用事件类型。                                  |
-| eventOccurredTime     | number | 是    | 应用事件发生的时间戳。                              |
+| bundleName            | string | 否    | 应用包名。                                    |
+| eventId             | number | 否    | 应用事件类型。                                  |
+| eventOccurredTime     | number | 否    | 应用事件发生的时间戳。                              |
 | appGroup | number | 否    | 应用程序的使用优先级组。|
 | indexOfLink           | string | 否    | 快捷方式id。|
 | nameOfClass           | string | 否    | 类名。|
@@ -1587,7 +1587,7 @@ FA卡片的使用信息的属性集合。
 
 | 参数名                            | 类型                                       | 必填   | 说明             |
 | ------------------------------ | ---------------------------------------- | ---- | -------------- |
-| [key: string]: BundleStatsInfo | [key: string]: [BundleStatsInfo](#bundlestatsinfo) | 是    | 不同应用的使用时长统计信息。 |
+| [key: string] | [BundleStatsInfo](#bundlestatsinfo) | 是    | 不同应用的使用时长统计信息。 |
 
 ## DeviceEventStats
 

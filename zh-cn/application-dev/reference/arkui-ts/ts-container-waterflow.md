@@ -260,9 +260,11 @@ struct WaterflowDemo {
               Text("N" + item).fontSize(12).height('16')
               Image('res/waterFlowTest(' + item % 5 + ').jpg')
                 .objectFit(ImageFit.Fill)
+                .width('100%')
+                .layoutWeight(1)
             }
           }
-          .width(this.itemWidthArray[item])
+          .width('100%')
           .height(this.itemHeightArray[item])
           .backgroundColor(this.colors[item % 5])
         }, item => item)

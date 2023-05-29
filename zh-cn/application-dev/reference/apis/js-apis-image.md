@@ -878,6 +878,53 @@ async function Demo() {
 }
 ```
 
+### getColorSpace<sup>10+</sup>
+
+getColorSpace(): colorSpaceManager.ColorSpaceManager
+
+获取图像广色域信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型                                | 说明             |
+| ----------------------------------- | ---------------- |
+| [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 图像广色域信息。 |
+
+**示例：**
+
+```js
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+async function Demo() {
+    let csm = pixelmap.getColorSpace();
+}
+```
+
+### setColorSpace<sup>10+</sup>
+
+setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
+
+设置图像广色域信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明            |
+| ---------- | ----------------------------------- | ---- | --------------- |
+| colorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 图像广色域信息。|
+
+**示例：**
+
+```js
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+async function Demo() {
+    var csm = colorSpaceManager.create(colorSpaceName);
+    pixelmap.setColorSpace(csm);
+}
+```
+
 ### release<sup>7+</sup>
 
 release():Promise\<void>
@@ -936,7 +983,7 @@ createImageSource(uri: string): ImageSource
 
 | 参数名 | 类型   | 必填 | 说明                               |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW。 |
+| uri    | string | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW [SVG<sup>10+</sup>](#svg标签说明)。 |
 
 **返回值：**
 
@@ -974,7 +1021,7 @@ createImageSource(uri: string, options: SourceOptions): ImageSource
 
 | 参数名  | 类型                            | 必填 | 说明                                |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW。 |
+| uri     | string                          | 是   | 图片路径，当前仅支持应用沙箱路径。</br>当前支持格式有：.jpg .png .gif .bmp .webp RAW [SVG<sup>10+</sup>](#svg标签说明)。 |
 | options | [SourceOptions](#sourceoptions9) | 是   | 图片属性，包括图片序号与默认属性值。|
 
 **返回值：**
@@ -1552,10 +1599,10 @@ let decodeOpts = {
     editable: true,
     desiredSize: { width: 198, height: 202 },
     rotate: 0,
-    desiredPixelFormat: RGBA_8888,
+    desiredPixelFormat: 3,
     index: 0,
 };
-let pixelmaplist = await imageSourceApi.createPixelMapList(decodeOpts);
+let pixelmaplist = imageSourceApi.createPixelMapList(decodeOpts);
 ```
 
 ### createPixelMapList<sup>10+</sup>
@@ -1603,7 +1650,7 @@ let decodeOpts = {
     editable: true,
     desiredSize: { width: 198, height: 202 },
     rotate: 0,
-    desiredPixelFormat: RGBA_8888,
+    desiredPixelFormat: 3,
     index: 0,
 };
 imageSourceApi.createPixelMap(decodeOpts, pixelmaplist => { 
@@ -1650,12 +1697,12 @@ getDelayTime(): Promise<Array\<number>>;
 **示例：**
 
 ```js
-let delayTimes = await imageSourceApi.getDelayTime();
+let delayTimes = imageSourceApi.getDelayTime();
 ```
 
 ### getFrameCount<sup>10+</sup>
 
-getFrameCount(callback: AsyncCallback<number>): void;
+getFrameCount(callback: AsyncCallback\<number>): void;
 
 获取图像帧数，使用callback形式返回结果。
 
@@ -1692,7 +1739,7 @@ getFrameCount(): Promise\<number>;
 **示例：**
 
 ```js
-let frameCount = await imageSourceApi.getFrameCount();
+let frameCount = imageSourceApi.getFrameCount();
 ```
 
 ### release
@@ -2786,7 +2833,50 @@ PixelMap的初始化选项。
 | pixelStride   | number                           | 是   | 否   | 像素间距。   |
 | byteBuffer    | ArrayBuffer                      | 是   | 否   | 组件缓冲区。 |
 
-## ResponseCode
+## 补充说明
+### SVG标签说明
+
+从API verison 10开始支持SVG标签，使用版本为(SVG) 1.1，当前支持的标签列表有：
+- a
+- circla
+- clipPath
+- defs
+- ellipse
+- feBlend
+- feColorMatrix
+- feComposite
+- feDiffuseLighting
+- feDisplacementMap
+- feDistantLight
+- feFlood
+- feGaussianBlur
+- feImage
+- feMorphology
+- feOffset
+- fePointLight
+- feSpecularLighting
+- feSpotLight
+- feTurbulence
+- filter
+- g
+- image
+- line
+- linearGradient
+- mask
+- path
+- pattern
+- polygon
+- polyline
+- radialGradient
+- rect
+- stop
+- svg
+- text
+- textPath
+- tspan
+- use
+
+### ResponseCode说明
 
 编译错误返回的响应码。
 

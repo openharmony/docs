@@ -11,7 +11,7 @@ The **ethernet** module provides wired network capabilities, which allow users t
 import ethernet from '@ohos.net.ethernet'
 ```
 
-## ethernet.setIfaceConfig
+## ethernet.setIfaceConfig<sup>9+</sup>
 
 setIfaceConfig(iface: string, ic: InterfaceConfiguration, callback: AsyncCallback\<void>): void
 
@@ -36,13 +36,15 @@ Sets the network interface configuration. This API uses an asynchronous callback
 | ID| Error Message                                |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
-| 2201005 | The device information does not exist.  |
-| 2201006 | Device disconnected.                    |
-| 2201007 | Failed to write the user configuration.    |
+| 2201004 | Invalid Ethernet profile.  |
+| 2201005 | Device information does not exist.  |
+| 2201006 | Ethernet device not connected.                    |
+| 2201007 | Ethernet failed to write user configuration information.    |
 
 **Example**
 
@@ -64,7 +66,7 @@ ethernet.setIfaceConfig("eth0", {
 });
 ```
 
-## ethernet.setIfaceConfig
+## ethernet.setIfaceConfig<sup>9+</sup>
 
 setIfaceConfig(iface: string, ic: InterfaceConfiguration): Promise\<void>
 
@@ -94,13 +96,15 @@ Sets the network interface configuration. This API uses a promise to return the 
 | ID| Error Message                                |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
-| 2201005 | The device information does not exist.  |
-| 2201006 | Device disconnected.                   |
-| 2201007 | Failed to write the user configuration.    |
+| 2201004 | Invalid Ethernet profile.  |
+| 2201005 | Device information does not exist.  |
+| 2201006 | Ethernet device not connected.                    |
+| 2201007 | Ethernet failed to write user configuration information.    |
 
 **Example**
 
@@ -120,7 +124,7 @@ ethernet.setIfaceConfig("eth0", {
 });
 ```
 
-## ethernet.getIfaceConfig
+## ethernet.getIfaceConfig<sup>9+</sup>
 
 getIfaceConfig(iface: string, callback: AsyncCallback\<InterfaceConfiguration>): void
 
@@ -144,11 +148,12 @@ Obtains the configuration of a network interface. This API uses an asynchronous 
 | ID| Error Message                                |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
-| 2201005 | The device information does not exist.  |
+| 2201005 | Device information does not exist.  |
 
 **Example**
 
@@ -168,7 +173,7 @@ ethernet.getIfaceConfig("eth0", (error, value) => {
 });
 ```
 
-## ethernet.getIfaceConfig
+## ethernet.getIfaceConfig<sup>9+</sup>
 
 getIfaceConfig(iface: string): Promise\<InterfaceConfiguration>
 
@@ -197,11 +202,12 @@ Obtains the configuration of a network interface. This API uses a promise to ret
 | ID| Error Message                                |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
-| 2201005 | The device information does not exist.  |
+| 2201005 | Device information does not exist.  |
 
 **Example**
 
@@ -219,7 +225,7 @@ ethernet.getIfaceConfig("eth0").then((data) => {
 });
 ```
 
-## ethernet.isIfaceActive
+## ethernet.isIfaceActive<sup>9+</sup>
 
 isIfaceActive(iface: string, callback: AsyncCallback\<number>): void
 
@@ -243,11 +249,12 @@ Checks whether a network interface is active. This API uses an asynchronous call
 | ID| Error Message                                |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
-| 2201005 | The device information does not exist.  |
+| 2201005 | Device information does not exist.  |
 
 **Example**
 
@@ -261,7 +268,7 @@ ethernet.isIfaceActive("eth0", (error, value) => {
 });
 ```
 
-## ethernet.isIfaceActive
+## ethernet.isIfaceActive<sup>9+</sup>
 
 isIfaceActive(iface: string): Promise\<number>
 
@@ -290,11 +297,12 @@ Checks whether a network interface is active. This API uses a promise to return 
 | ID| Error Message                                |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 401     | Parameter error.                        |
 | 2200001 | Invalid parameter value.                |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
-| 2201005 | The device information does not exist.  |
+| 2201005 | Device information does not exist.  |
 
 **Example**
 
@@ -306,7 +314,7 @@ ethernet.isIfaceActive("eth0").then((data) => {
 });
 ```
 
-## ethernet.getAllActiveIfaces
+## ethernet.getAllActiveIfaces<sup>9+</sup>
 
 getAllActiveIfaces(callback: AsyncCallback\<Array\<string>>): void
 
@@ -329,6 +337,7 @@ Obtains the list of all active network interfaces. This API uses an asynchronous
 | ID| Error Message                                |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
 
@@ -347,7 +356,7 @@ ethernet.getAllActiveIfaces((error, value) => {
 });
 ```
 
-## ethernet.getAllActiveIfaces
+## ethernet.getAllActiveIfaces<sup>9+</sup>
 
 getAllActiveIfaces(): Promise\<Array\<string>>
 
@@ -370,6 +379,7 @@ Obtains the list of all active network interfaces. This API uses a promise to re
 | ID| Error Message                                |
 | ------- | ----------------------------------------|
 | 201     | Permission denied.                      |
+| 202     | Non-system applications use system APIs.                      |
 | 2200002 | Operation failed. Cannot connect to service.|
 | 2200003 | System internal error.                  |
 
@@ -409,9 +419,7 @@ Registers an observer for NIC hot swap events. This API uses an asynchronous cal
 
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
-| 201     | Permission denied.                           |
-| 202     | Applicable only to system applications.      |
-| 401     | Parameter error.                             |
+| 202     | Non-system applications use system APIs.                      |
 
 **Example**
 
@@ -444,9 +452,7 @@ Unregisters the observer for NIC hot swap events. This API uses an asynchronous 
 
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
-| 201     | Permission denied.                           |
-| 202     | Applicable only to system applications.                           |
-| 401     | Parameter error.                             |
+| 202     | Non-system applications use system APIs.                      |
 
 **Example**
 
@@ -454,7 +460,7 @@ Unregisters the observer for NIC hot swap events. This API uses an asynchronous 
 ethernet.off('interfaceStateChange');
 ```
 
-## InterfaceConfiguration
+## InterfaceConfiguration<sup>9+</sup>
 
 Defines the network configuration for the Ethernet connection.
 
@@ -471,7 +477,7 @@ Defines the network configuration for the Ethernet connection.
 | netMask      | string                  | Yes| Subnet mask of the Ethernet connection. The value must be an IPv4 address, which is a 32-bit number displayed in dotted decimal notation and each 8-bit field ranges from 0 to 255. This parameter does not need to be configured in DHCP mode.|
 | dnsServers   | string                  | Yes| DNS server addresses of the Ethernet connection. The value must be an IPv4 address. This parameter does not need to be configured in DHCP mode. Multiple addresses are separated by commas (,).|
 
-## IPSetMode
+## IPSetMode<sup>9+</sup>
 
 Defines the configuration mode of the Ethernet connection.
 

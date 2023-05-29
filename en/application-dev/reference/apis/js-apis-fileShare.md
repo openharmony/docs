@@ -1,6 +1,6 @@
-# @ohos.fileShare (File Sharing)
+# @ohos.fileshare (File Sharing)
 
-The **fileShare** module provides APIs for granting the access permissions on a user file to another application by the Uniform Resource Identifier (URI). Then, the authorized application can access the file by using the APIs provided by [@ohos.file.fs](js-apis-file-fs.md).
+The **fileshare** module provides APIs for granting the access permissions on a user file to another application by the Uniform Resource Identifier (URI). Then, the authorized application can access the file by using the APIs provided by [@ohos.file.fs](js-apis-file-fs.md).
 
 > **NOTE**
 >
@@ -9,7 +9,7 @@ The **fileShare** module provides APIs for granting the access permissions on a 
 ## Modules to Import
 
 ```js
-import fileShare from '@ohos.fileShare';
+import fileShare from '@ohos.fileshare';
 ```
 
 ## fileShare.grantUriPermission
@@ -31,7 +31,7 @@ Grants permissions on a user file by the URI to an application. This API uses an
 | uri   | string | Yes  | URI of a user file.|
 | bundleName   | string | Yes  | Bundle name of the application to be grated with the permissions.|
 | mode   | number | Yes  | Permissions to grant. For details, see [wantConstant.Flags](js-apis-app-ability-wantConstant.md#wantconstantflags).<br>**wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION**: permission to read the file. <br>**wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION**: permission to write the file.|
-| callback | AsyncCallback&lt;void&gt;  | Yes   | Callback invoked to return the result.                            |
+ | callback | AsyncCallback&lt;void&gt;  | Yes   | Callback invoked to return the result.                           |
 
 **Error codes**
 
@@ -44,14 +44,13 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid |
 | 143000001 | IPC error |
 
-
 **Example**
 
   ```js
 import wantConstant from '@ohos.app.ability.wantConstant';
 
 
-let uri = 'datashare:///media/image/8';
+let uri = 'file://media/image/8';
 let bundleName = 'com.demo.test';
 try {
     fileShare.grantUriPermission(uri, bundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION, (err) => {
@@ -65,7 +64,6 @@ try {
     console.error("grantUriPermission failed with error:" + error);
 }
   ```
-
 
 ## fileShare.grantUriPermission
 
@@ -89,10 +87,9 @@ Grants permissions on a user file by the URI to an application. This API uses a 
 
 **Return value**
 
-| Type                          | Description        |
-| ---------------------------- | ---------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
-
+  | Type                          | Description        |
+  | ---------------------------- | ---------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Error codes**
 
@@ -105,13 +102,12 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 | 401 | The input parameter is invalid |
 | 143000001 | IPC error |
 
-
 **Example**
 
   ```js
 import wantConstant from '@ohos.app.ability.wantConstant';
 
-let uri = 'datashare:///media/image/8';
+let uri = 'file://media/image/8';
 let bundleName = 'com.demo.test';
 try {
     fileShare.grantUriPermission(uri, bundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION |

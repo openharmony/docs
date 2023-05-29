@@ -1,14 +1,12 @@
 # 系统公共事件定义
 
 本文档提供OpenHarmony系统所定义的公共事件类型的索引。
-公共事件类型定义在[ohos.commonEvent模块的Support枚举](./js-apis-commonEventManager.md#support)中。
+公共事件类型定义在[ohos.commonEventManager模块的Support枚举](./js-apis-commonEventManager.md#support)中。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
-## COMMON_EVENT_BOOT_COMPLETED
+## [COMMON_EVENT_BOOT_COMPLETED](./common_event/commonEvent-ability.md)
 表示用户已完成引导并加载系统的公共事件的操作。
-- 值： usual.event.BOOT_COMPLETED
-- 订阅者所需权限： ohos.permission.RECEIVER_STARTUP_COMPLETED
 
 ## COMMON_EVENT_LOCKED_BOOT_COMPLETED
 （预留事件，暂未支持）表示用户已完成引导，系统已加载，但屏幕仍锁定的公共事件的操作。
@@ -128,15 +126,11 @@
 - 值： usual.event.PACKAGE_CHANGED
 - 订阅者所需权限： 无
 
-## COMMON_EVENT_PACKAGE_RESTARTED
+## [COMMON_EVENT_PACKAGE_RESTARTED](./common_event/commonEvent-ability.md)
 表示用户重启应用包并杀死其所有进程的普通事件的动作。
-- 值： usual.event.PACKAGE_RESTARTED
-- 订阅者所需权限： 无
 
-## COMMON_EVENT_PACKAGE_DATA_CLEARED
+## [COMMON_EVENT_PACKAGE_DATA_CLEARED](./common_event/commonEvent-ability.md)
 用户清除应用包数据的公共事件的动作。
-- 值： usual.event.PACKAGE_DATA_CLEARED
-- 订阅者所需权限： 无
 
 ## COMMON_EVENT_PACKAGE_CACHE_CLEARED<sup>9+</sup>
 用户清除应用包缓存数据的公共事件的动作。
@@ -568,9 +562,14 @@ Wi-Fi P2P群组信息已更改。
 - 值： usual.event.CHARGE_TYPE_CHANGED
 - 订阅者所需权限： 无
 
-## COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED
-（预留事件，暂未支持）表示系统空闲模式已更改的公共事件的动作。
+## [COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED](./common_event/commonEvent-resourceschedule.md)
+表示系统待机空闲模式已更改的公共事件的动作。
 - 值： usual.event.DEVICE_IDLE_MODE_CHANGED
+- 订阅者所需权限： 无
+
+## [COMMON_EVENT_DEVICE_IDLE_EXEMPTION_LIST_UPDATED<sup>10+<sup>](./common_event/commonEvent-resourceschedule.md)
+表示系统待机空闲模式下豁免应用程序列表已更新的公共事件的动作。仅限系统应用使用。
+- 值： usual.event.DEVICE_IDLE_EXEMPTION_LIST_UPDATED
 - 订阅者所需权限： 无
 
 ## COMMON_EVENT_POWER_SAVE_MODE_CHANGED
@@ -665,33 +664,33 @@ Wi-Fi P2P群组信息已更改。
 
 ## COMMON_EVENT_USB_STATE<sup>9+</sup>
 表示USB设备状态发生变化的公共事件。
-- 值： usual.event.hardware.usb.action.USB_STATE
-- 订阅者所需权限： 无
 
-## COMMON_EVENT_USB_PORT_CHANGED<sup>9+</sup>
+具体查看[USB公共事件](common_event/commonEvent-usb.md)。
+
+## **COMMON_EVENT_USB_PORT_CHANGED**<sup>9+</sup>
 表示用户设备的USB端口状态发生改变的公共事件。
-- 值： usual.event.hardware.usb.action.USB_PORT_CHANGED
-- 订阅者所需权限： 无
+
+具体查看[USB公共事件](common_event/commonEvent-usb.md)。
 
 ## COMMON_EVENT_USB_DEVICE_ATTACHED
 当用户设备作为USB主机时，USB设备已挂载的公共事件的动作。
-- 值： usual.event.hardware.usb.action.USB_DEVICE_ATTACHED
-- 订阅者所需权限： 无
+
+具体查看[USB公共事件](common_event/commonEvent-usb.md)。
 
 ## COMMON_EVENT_USB_DEVICE_DETACHED
 当用户设备作为USB主机时，USB设备被卸载的公共事件的动作。
-- 值： usual.event.hardware.usb.action.USB_DEVICE_DETACHED
-- 订阅者所需权限： 无
+
+具体查看[USB公共事件](common_event/commonEvent-usb.md)。
 
 ## COMMON_EVENT_USB_ACCESSORY_ATTACHED
 （预留事件，暂未支持）表示已连接USB附件的公共事件的动作。
-- 值： usual.event.hardware.usb.action.USB_ACCESSORY_ATTACHED
-- 订阅者所需权限： 无
+
+具体查看[USB公共事件](common_event/commonEvent-usb.md)。
 
 ## COMMON_EVENT_USB_ACCESSORY_DETACHED
 （预留事件，暂未支持）表示USB附件被卸载的公共事件的动作。
-- 值： usual.event.data.DISK_MOUNTED
-- 订阅者所需权限： 无
+
+具体查看[USB公共事件](common_event/commonEvent-usb.md)。
 
 ## COMMON_EVENT_DISK_REMOVED
 （预留事件，暂未支持）外部存储设备状态变更为移除时发送此公共事件。
@@ -783,7 +782,7 @@ Wi-Fi P2P群组信息已更改。
 - 值： usual.event.SPN_INFO_CHANGED
 - 订阅者所需权限： 无
 
-## COMMON_EVENT_QUICK_FIX_APPLY_RESULT <sup>9+<sup>
+## [COMMON_EVENT_QUICK_FIX_APPLY_RESULT<sup>9+<sup>](./common_event/commonEvent-ability.md)
 表示快速修复应用的动作。
 - 值： usual.event.QUICK_FIX_APPLY_RESULT
 - 订阅者所需权限： 无
@@ -798,102 +797,102 @@ Wi-Fi P2P群组信息已更改。
 - 值：usual.event.DOMAIN_ACCOUNT_STATUS_CHANGED
 - 订阅者所需权限：无
 
-## COMMON_EVENT_SIM_STATE_CHANGED<sup>10+<sup>
+## [COMMON_EVENT_SIM_STATE_CHANGED<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 提示SIM卡状态更新。
 - 值：usual.event.SIM_STATE_CHANGED
 - 订阅者所需权限：无
 
-## COMMON_EVENT_SMS_RECEIVED_COMPLETED<sup>10+<sup>
+## [COMMON_EVENT_SMS_RECEIVED_COMPLETED<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 提示短信接收完成。
 - 值：usual.event.SMS_RECEIVED_COMPLETED
 - 订阅者所需权限：ohos.permission.RECEIVE_SMS
 
-## COMMON_EVENT_SMS_EMERGENCY_CB_RECEIVE_COMPLETED<sup>10+<sup>
+## [COMMON_EVENT_SMS_EMERGENCY_CB_RECEIVE_COMPLETED<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 提示紧急小区广播短信接收完成。
 - 值：usual.event.SMS_EMERGENCY_CB_RECEIVE_COMPLETED
 - 订阅者所需权限：ohos.permission.RECEIVE_SMS
 
-## COMMON_EVENT_SMS_CB_RECEIVE_COMPLETED<sup>10+<sup>
+## [COMMON_EVENT_SMS_CB_RECEIVE_COMPLETED<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 提示小区广播短信接收完成。
 - 值：usual.event.SMS_CB_RECEIVE_COMPLETED
 - 订阅者所需权限：ohos.permission.RECEIVE_SMS
 
-## COMMON_EVENT_STK_COMMAND<sup>10+<sup>
+## [COMMON_EVENT_STK_COMMAND<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 （预留事件，暂未支持）提示STK命令。
 - 值：usual.event.STK_COMMAND
 - 订阅者所需权限：无
 
-## COMMON_EVENT_STK_SESSION_END<sup>10+<sup>
+## [COMMON_EVENT_STK_SESSION_END<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 （预留事件，暂未支持）提示STK会话结束。
 - 值：usual.event.STK_SESSION_END
 - 订阅者所需权限：无
 
-## COMMON_EVENT_STK_CARD_STATE_CHANGED<sup>10+<sup>
+## [COMMON_EVENT_STK_CARD_STATE_CHANGED<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 （预留事件，暂未支持）提示STK卡状态已更新。
 - 值：usual.event.STK_CARD_STATE_CHANGED
-- 订阅者所需权限：ohos.permission.
+- 订阅者所需权限：无
 
-## COMMON_EVENT_STK_ALPHA_IDENTIFIER<sup>10+<sup>
+## [COMMON_EVENT_STK_ALPHA_IDENTIFIER<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 （预留事件，暂未支持）提示STK ALPHA标识符。
 - 值：usual.event.STK_ALPHA_IDENTIFIER
 - 订阅者所需权限：无
 
-## COMMON_EVENT_SMS_WAPPUSH_RECEIVE_COMPLETED<sup>10+<sup>
+## [COMMON_EVENT_SMS_WAPPUSH_RECEIVE_COMPLETED<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 提示服务信息短信接收完成。
 - 值：usual.event.SMS_WAPPUSH_RECEIVE_COMPLETED
 - 订阅者所需权限：ohos.permission.RECEIVE_SMS
 
-## COMMON_EVENT_OPERATOR_CONFIG_CHANGED<sup>10+<sup>
+## [COMMON_EVENT_OPERATOR_CONFIG_CHANGED<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 提示运营商配置已更新。
 - 值：usual.event.OPERATOR_CONFIG_CHANGED
 - 订阅者所需权限：无
 
-## COMMON_EVENT_SIM_CARD_DEFAULT_SMS_SUBSCRIPTION_CHANGED<sup>10+<sup>
+## [COMMON_EVENT_SIM_CARD_DEFAULT_SMS_SUBSCRIPTION_CHANGED<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 提示SIM卡默认短信主卡已更新。
 - 值：usual.event.DEFAULT_SMS_SUBSCRIPTION_CHANGED
 - 订阅者所需权限：无
 
-## COMMON_EVENT_SIM_CARD_DEFAULT_DATA_SUBSCRIPTION_CHANGED<sup>10+<sup>
+## [COMMON_EVENT_SIM_CARD_DEFAULT_DATA_SUBSCRIPTION_CHANGED<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 提示SIM卡默认数据主卡已更新。
 - 值：usual.event.DEFAULT_DATA_SUBSCRIPTION_CHANGED
 - 订阅者所需权限：无
 
-## COMMON_EVENT_SIM_CARD_DEFAULT_MAIN_SUBSCRIPTION_CHANGED<sup>10+<sup>
+## [COMMON_EVENT_SIM_CARD_DEFAULT_MAIN_SUBSCRIPTION_CHANGED<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 提示SIM卡默认主卡已更新。
 - 值：usual.event.SIM.DEFAULT_MAIN_SUBSCRIPTION_CHANGED
 - 订阅者所需权限：无
 
-## COMMON_EVENT_SIM_CARD_DEFAULT_VOICE_SUBSCRIPTION_CHANGED<sup>10+<sup>
+## [COMMON_EVENT_SIM_CARD_DEFAULT_VOICE_SUBSCRIPTION_CHANGED<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 提示SIM卡默认语音主卡已更新。
 - 值：usual.event.DEFAULT_VOICE_SUBSCRIPTION_CHANGED
 - 订阅者所需权限：无
 
-## COMMON_EVENT_CALL_STATE_CHANGED<sup>10+<sup>
+## [COMMON_EVENT_CALL_STATE_CHANGED<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 提示呼叫状态更新。
 - 值：usual.event.CALL_STATE_CHANGED
 - 订阅者所需权限：ohos.permission.GET_TELEPHONY_STATE
 
-## COMMON_EVENT_CELLULAR_DATA_STATE_CHANGED<sup>10+<sup>
+## [COMMON_EVENT_CELLULAR_DATA_STATE_CHANGED<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 提示蜂窝数据状态更新。
 - 值：usual.event.CELLULAR_DATA_STATE_CHANGED
 - 订阅者所需权限：无
 
-## COMMON_EVENT_NETWORK_STATE_CHANGED<sup>10+<sup>
+## [COMMON_EVENT_NETWORK_STATE_CHANGED<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 提示网络状态更新。
 - 值：usual.event.NETWORK_STATE_CHANGED
 - 订阅者所需权限：无
 
-## COMMON_EVENT_SIGNAL_INFO_CHANGED<sup>10+<sup>
+## [COMMON_EVENT_SIGNAL_INFO_CHANGED<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 提示信号信息更新。
 - 值：usual.event.SIGNAL_INFO_CHANGED
 - 订阅者所需权限：无
 
-## COMMON_EVENT_INCOMING_CALL_MISSED<sup>10+<sup>
+## [COMMON_EVENT_INCOMING_CALL_MISSED<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 提示未接来电。
 - 值：usual.event.INCOMING_CALL_MISSED
 - 订阅者所需权限：ohos.permission.GET_TELEPHONY_STATE
 
-## COMMON_EVENT_RADIO_STATE_CHANGE<sup>10+<sup>
+## [COMMON_EVENT_RADIO_STATE_CHANGE<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 提示设备modem上下电状态变化。
 - 值：usual.event.RADIO_STATE_CHANGE
 
@@ -910,3 +909,7 @@ Wi-Fi P2P群组信息已更改。
 
 - 值：usual.event.SCREEN_UNLOCKED
 - 订阅者所需权限：无
+
+## [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT<sup>10+<sup>](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)
+
+指示撤销快速修复的动作。

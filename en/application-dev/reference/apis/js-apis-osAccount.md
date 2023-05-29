@@ -86,7 +86,7 @@ Activates an OS account. This API uses an asynchronous callback to return the re
       if (err) {
         console.error(`activateOsAccount failed, code is ${err.code}, message is ${err.message}`);
       } else {
-        console.log("activateOsAccount successfully");
+        console.log('activateOsAccount successfully');
       }
     });
   } catch (err) {
@@ -139,7 +139,7 @@ Activates an OS account. This API uses a promise to return the result.
       console.log('activateOsAccount failed, err:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('activateOsAccount exception:' + JSON.stringify(e));
+    console.log('activateOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -172,7 +172,7 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
       if (err) {
         console.error(`checkMultiOsAccountEnabled failed, code is ${err.code}, message is ${err.message}`);
       } else {
-      console.log("checkMultiOsAccountEnabled successfully, isEnabled: " + isEnabled);
+      console.log('checkMultiOsAccountEnabled successfully, isEnabled: ' + isEnabled);
       }
     });
   } catch (err) {
@@ -254,7 +254,7 @@ Checks whether an OS account is activated. This API uses an asynchronous callbac
       }
     });
   } catch (err) {
-    console.log('checkOsAccountActivated exception:' + JSON.stringify(err));
+    console.log('checkOsAccountActivated exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -297,10 +297,10 @@ Checks whether an OS account is activated. This API uses a promise to return the
     accountManager.checkOsAccountActivated(localId).then((isActivated) => {
       console.log('checkOsAccountActivated successfully, isActivated: ' + isActivated);
     }).catch((err) => {
-      console.log('checkOsAccountActivated failed, error: '  + JSON.stringify(err));
+      console.log('checkOsAccountActivated failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('checkOsAccountActivated exception:' + JSON.stringify(err));
+    console.log('checkOsAccountActivated exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -335,17 +335,17 @@ Checks whether the specified constraint is enabled for an OS account. This API u
   ```js
   let accountManager = account_osAccount.getAccountManager();
   let localId = 100;
-  let constraint = "constraint.wifi";
+  let constraint = 'constraint.wifi';
   try {
     accountManager.checkOsAccountConstraintEnabled(localId, constraint, (err, isEnabled)=>{
       if (err) {
-        console.log("checkOsAccountConstraintEnabled failed, error: " + JSON.stringify(err));
+        console.log('checkOsAccountConstraintEnabled failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("checkOsAccountConstraintEnabled successfully, isEnabled: " + isEnabled);
+        console.log('checkOsAccountConstraintEnabled successfully, isEnabled: ' + isEnabled);
       }
     });
   } catch (err) {
-    console.log("checkOsAccountConstraintEnabled exception: " + JSON.stringify(err));
+    console.log('checkOsAccountConstraintEnabled exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -385,15 +385,15 @@ Checks whether the specified constraint is enabled for an OS account. This API u
   ```js
   let accountManager = account_osAccount.getAccountManager();
   let localId = 100;
-  let constraint = "constraint.wifi";
+  let constraint = 'constraint.wifi';
   try {
     accountManager.checkOsAccountConstraintEnabled(localId, constraint).then((isEnabled) => {
-      console.log("checkOsAccountConstraintEnabled successfully, isEnabled: " + isEnabled);
+      console.log('checkOsAccountConstraintEnabled successfully, isEnabled: ' + isEnabled);
     }).catch((err) => {
-      console.log("checkOsAccountConstraintEnabled failed, error: "  + JSON.stringify(err));
+      console.log('checkOsAccountConstraintEnabled failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("checkOsAccountConstraintEnabled exception: " + JSON.stringify(err));
+    console.log('checkOsAccountConstraintEnabled exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -424,13 +424,13 @@ Checks whether this OS account is a test account. This API uses an asynchronous 
   try {
     accountManager.checkOsAccountTestable((err, isTestable) => {
       if (err) {
-        console.log("checkOsAccountTestable failed, error: " + JSON.stringify(err));
+        console.log('checkOsAccountTestable failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("checkOsAccountTestable successfully, isTestable: " + isTestable);
+        console.log('checkOsAccountTestable successfully, isTestable: ' + isTestable);
       }
     });
   } catch (err) {
-    console.log("checkOsAccountTestable error: " + JSON.stringify(err));
+    console.log('checkOsAccountTestable error: ' + JSON.stringify(err));
   }
   ```
 
@@ -460,9 +460,9 @@ Checks whether this OS account is a test account. This API uses a promise to ret
   let accountManager = account_osAccount.getAccountManager();
   try {
     accountManager.checkOsAccountTestable().then((isTestable) => {
-      console.log("checkOsAccountTestable successfully, isTestable: " + isTestable);
+      console.log('checkOsAccountTestable successfully, isTestable: ' + isTestable);
     }).catch((err) => {
-      console.log("checkOsAccountTestable failed, error: "  + JSON.stringify(err));
+      console.log('checkOsAccountTestable failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
     console.log('checkOsAccountTestable exception: ' + JSON.stringify(err));
@@ -496,13 +496,13 @@ Checks whether this OS account has been verified. This API uses an asynchronous 
   try {
     accountManager.checkOsAccountVerified((err, isVerified) => {
       if (err) {
-        console.log("checkOsAccountVerified failed, error: " + JSON.stringify(err));
+        console.log('checkOsAccountVerified failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("checkOsAccountVerified successfully, isVerified: " + isVerified);
+        console.log('checkOsAccountVerified successfully, isVerified: ' + isVerified);
       }
     });
   } catch (err) {
-    console.log("checkOsAccountVerified exception: " + JSON.stringify(err));
+    console.log('checkOsAccountVerified exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -539,13 +539,13 @@ Checks whether an OS account has been verified. This API uses an asynchronous ca
   try {
     accountManager.checkOsAccountVerified(localId, (err, isVerified) => {
       if (err) {
-        console.log("checkOsAccountVerified failed, error: " + JSON.stringify(err));
+        console.log('checkOsAccountVerified failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("checkOsAccountVerified successfully, isVerified: " + isVerified);
+        console.log('checkOsAccountVerified successfully, isVerified: ' + isVerified);
       }
     });
   } catch (err) {
-    console.log("checkOsAccountVerified exception: " + err);
+    console.log('checkOsAccountVerified exception: ' + err);
   }
   ```
 
@@ -586,9 +586,9 @@ Checks whether an OS account has been verified. This API uses a promise to retur
   let localId = 100;
   try {
     accountManager.checkOsAccountVerified(localId).then((isVerified) => {
-      console.log("checkOsAccountVerified successfully, isVerified: " + isVerified);
+      console.log('checkOsAccountVerified successfully, isVerified: ' + isVerified);
     }).catch((err) => {
-      console.log("checkOsAccountVerified failed, error: " + JSON.stringify(err));
+      console.log('checkOsAccountVerified failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
     console.log('checkOsAccountVerified exception: ' + JSON.stringify(err));
@@ -627,19 +627,19 @@ Deletes an OS account. This API uses an asynchronous callback to return the resu
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
-  let accountName = "testAccountName";
+  let accountName = 'testAccountName';
   try {
     accountManager.createOsAccount(accountName, account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo) => {
       accountManager.removeOsAccount(osAccountInfo.localId, (err)=>{
         if (err) {
-          console.log("removeOsAccount failed, error: " + JSON.stringify(err));
+          console.log('removeOsAccount failed, error: ' + JSON.stringify(err));
         } else {
-          console.log("removeOsAccount successfully");
+          console.log('removeOsAccount successfully');
         }
       });
     });
   } catch (err) {
-    console.log('removeOsAccount exception:' + JSON.stringify(err));
+    console.log('removeOsAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -680,17 +680,17 @@ Deletes an OS account. This API uses a promise to return the result.
 
   ```js
   let accountManager = account_osAccount.getAccountManager();
-  let accountName = "testAccountName";
+  let accountName = 'testAccountName';
   try {
     accountManager.createOsAccount(accountName, account_osAccount.OsAccountType.NORMAL, (err, osAccountInfo)=>{
       accountManager.removeOsAccount(osAccountInfo.localId).then(() => {
-        console.log("removeOsAccount successfully");
+        console.log('removeOsAccount successfully');
       }).catch((err) => {
-          console.log("removeOsAccount failed, error: " + JSON.stringify(err));
+          console.log('removeOsAccount failed, error: ' + JSON.stringify(err));
       });
     });
   } catch (err) {
-    console.log("removeOsAccount exception: " + JSON.stringify(err));
+    console.log('removeOsAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -729,17 +729,17 @@ Sets or removes constraints for an OS account. This API uses an asynchronous cal
   ```js
   let accountManager = account_osAccount.getAccountManager();
   let localId = 100;
-  let constraint = "constraint.wifi";
+  let constraint = 'constraint.wifi';
   try {
     accountManager.setOsAccountConstraints(localId, [constraint], true, (err) => {
       if (err) {
-        console.log("setOsAccountConstraints failed, error:" + JSON.stringify(err));
+        console.log('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("setOsAccountConstraints successfully");
+        console.log('setOsAccountConstraints successfully');
       }
     });
   } catch (err) {
-    console.log("setOsAccountConstraints exception: " + JSON.stringify(err));
+    console.log('setOsAccountConstraints exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -787,10 +787,10 @@ Sets or removes constraints for an OS account. This API uses a promise to return
     accountManager.setOsAccountConstraints(localId, ['constraint.location.set'], false).then(() => {
       console.log('setOsAccountConstraints succsuccessfully');
     }).catch((err) => {
-      console.log('setOsAccountConstraints failed, error: '  + JSON.stringify(err));
+      console.log('setOsAccountConstraints failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('setOsAccountConstraints exception:' + JSON.stringify(err));
+    console.log('setOsAccountConstraints exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -828,17 +828,17 @@ Sets a name for an OS account. This API uses an asynchronous callback to return 
   ```js
   let accountManager = account_osAccount.getAccountManager();
   let localId = 100;
-  let name = "demoName";
+  let name = 'demoName';
   try {
     accountManager.setOsAccountName(localId, name, (err) => {
       if (err) {
-        console.log("setOsAccountName failed, error: " + JSON.stringify(err));
+        console.log('setOsAccountName failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("setOsAccountName successfully");
+        console.log('setOsAccountName successfully');
       }
     });
   } catch (err) {
-    console.log('setOsAccountName exception:' + JSON.stringify(err));
+    console.log('setOsAccountName exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -886,10 +886,10 @@ Sets a name for an OS account. This API uses a promise to return the result.
     accountManager.setOsAccountName(localId, name).then(() => {
       console.log('setOsAccountName successfully');
     }).catch((err) => {
-      console.log('setOsAccountName failed, error: '  + JSON.stringify(err));
+      console.log('setOsAccountName failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('setOsAccountName exception:' + JSON.stringify(err));
+    console.log('setOsAccountName exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -922,13 +922,13 @@ Obtains the number of OS accounts created. This API uses an asynchronous callbac
   try {
     accountManager.getOsAccountCount((err, count) => {
       if (err) {
-        console.log("getOsAccountCount failed, error: " + JSON.stringify(err));
+        console.log('getOsAccountCount failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("getOsAccountCount successfully, count: " + count);
+        console.log('getOsAccountCount successfully, count: ' + count);
       }
     });
   } catch (err) {
-    console.log("getOsAccountCount exception: " + JSON.stringify(err));
+    console.log('getOsAccountCount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -960,12 +960,12 @@ Obtains the number of OS accounts created. This API uses a promise to return the
   let accountManager = account_osAccount.getAccountManager();
   try {
     accountManager.getOsAccountCount().then((count) => {
-      console.log("getOsAccountCount successfully, count: " + count);
+      console.log('getOsAccountCount successfully, count: ' + count);
     }).catch((err) => {
-      console.log("getOsAccountCount failed, error: " + JSON.stringify(err));
+      console.log('getOsAccountCount failed, error: ' + JSON.stringify(err));
     });
   } catch(err) {
-    console.log('getOsAccountCount exception:' + JSON.stringify(err));
+    console.log('getOsAccountCount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -996,13 +996,13 @@ Obtains the ID of the OS account to which the current process belongs. This API 
   try {
     accountManager.getOsAccountLocalId((err, localId) => {
       if (err) {
-        console.log("getOsAccountLocalId failed, error: " + JSON.stringify(err));
+        console.log('getOsAccountLocalId failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("getOsAccountLocalId successfully, localId: " + localId);
+        console.log('getOsAccountLocalId successfully, localId: ' + localId);
       }
     });
   } catch (err) {
-    console.log("getOsAccountLocalId exception: " + JSON.stringify(err));
+    console.log('getOsAccountLocalId exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1032,9 +1032,9 @@ Obtains the ID of the OS account to which the current process belongs. This API 
   let accountManager = account_osAccount.getAccountManager();
   try {
     accountManager.getOsAccountLocalId().then((localId) => {
-      console.log("getOsAccountLocalId successfully, localId: " + localId);
+      console.log('getOsAccountLocalId successfully, localId: ' + localId);
     }).catch((err) => {
-      console.log("getOsAccountLocalId failed, error: "  + JSON.stringify(err));
+      console.log('getOsAccountLocalId failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
     console.log('getOsAccountLocalId exception: ' + JSON.stringify(err));
@@ -1071,12 +1071,12 @@ Obtains the OS account ID based on the process UID. This API uses an asynchronou
   try {
     accountManager.getOsAccountLocalIdForUid(uid, (err, localId) => {
       if (err) {
-        console.log("getOsAccountLocalIdForUid failed, error: " + JSON.stringify(err));
+        console.log('getOsAccountLocalIdForUid failed, error: ' + JSON.stringify(err));
       }
-      console.log("getOsAccountLocalIdForUid successfully, localId: " + localId);
+      console.log('getOsAccountLocalIdForUid successfully, localId: ' + localId);
     });
   } catch (err) {
-    console.log("getOsAccountLocalIdForUid exception: " + JSON.stringify(err));
+    console.log('getOsAccountLocalIdForUid exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1114,9 +1114,9 @@ Obtains the OS account ID based on the process UID. This API uses a promise to r
   let uid = 12345678;
   try {
     accountManager.getOsAccountLocalIdForUid(uid).then((localId) => {
-      console.log("getOsAccountLocalIdForUid successfully, localId: " + localId);
+      console.log('getOsAccountLocalIdForUid successfully, localId: ' + localId);
     }).catch((err) => {
-      console.log("getOsAccountLocalIdForUid failed, error: " + JSON.stringify(err));
+      console.log('getOsAccountLocalIdForUid failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
     console.log('getOsAccountLocalIdForUid exception: ' + JSON.stringify(err));
@@ -1155,9 +1155,9 @@ Obtains the OS account ID based on the domain account information. This API uses
   try {
     accountManager.getOsAccountLocalIdForDomain(domainInfo, (err, localId) => {
       if (err) {
-        console.log("getOsAccountLocalIdForDomain failed, error: " + JSON.stringify(err));
+        console.log('getOsAccountLocalIdForDomain failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("getOsAccountLocalIdForDomain successfully, localId: " + localId);
+        console.log('getOsAccountLocalIdForDomain successfully, localId: ' + localId);
       }
     });
   } catch (err) {
@@ -1201,12 +1201,12 @@ Obtains the OS account ID based on the domain account information. This API uses
   let domainInfo = {domain: 'testDomain', accountName: 'testAccountName'};
   try {
     accountManager.getOsAccountLocalIdForDomain(domainInfo).then((localId) => {
-      console.log("getOsAccountLocalIdForDomain successfully, localId: " + localId);
+      console.log('getOsAccountLocalIdForDomain successfully, localId: ' + localId);
     }).catch((err) => {
-      console.log("getOsAccountLocalIdForDomain failed, error: "  + JSON.stringify(err));
+      console.log('getOsAccountLocalIdForDomain failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("getOsAccountLocalIdForDomain exception: " + JSON.stringify(err));
+    console.log('getOsAccountLocalIdForDomain exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1245,7 +1245,7 @@ Obtains the maximum number of OS accounts that can be created. This API uses an 
       }
     });
   } catch (err) {
-    console.log('queryMaxOsAccountNumber exception:' + JSON.stringify(err));
+    console.log('queryMaxOsAccountNumber exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1279,10 +1279,10 @@ Obtains the maximum number of OS accounts that can be created. This API uses a p
     accountManager.queryMaxOsAccountNumber().then((maxCnt) => {
       console.log('queryMaxOsAccountNumber successfully, maxCnt: ' + maxCnt);
     }).catch((err) => {
-      console.log('queryMaxOsAccountNumber failed, error: '  + JSON.stringify(err));
+      console.log('queryMaxOsAccountNumber failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log('queryMaxOsAccountNumber exception:' + JSON.stringify(err));
+    console.log('queryMaxOsAccountNumber exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1319,13 +1319,13 @@ Obtains all constraints enabled for an OS account. This API uses an asynchronous
   try {
     accountManager.getOsAccountConstraints(localId, (err, constraints) => {
       if (err) {
-        console.log("getOsAccountConstraints failed, err: " + JSON.stringify(err));
+        console.log('getOsAccountConstraints failed, err: ' + JSON.stringify(err));
       } else {
-        console.log("getOsAccountConstraints successfully, constraints: " + JSON.stringify(constraints));
+        console.log('getOsAccountConstraints successfully, constraints: ' + JSON.stringify(constraints));
       }
     });
   } catch (err) {
-    console.log('getOsAccountConstraints exception:' + JSON.stringify(err));
+    console.log('getOsAccountConstraints exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1368,10 +1368,10 @@ Obtains all constraints enabled for an OS account. This API uses a promise to re
     accountManager.getOsAccountConstraints(localId).then((constraints) => {
       console.log('getOsAccountConstraints, constraints: ' + constraints);
     }).catch((err) => {
-      console.log('getOsAccountConstraints err: '  + JSON.stringify(err));
+      console.log('getOsAccountConstraints err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getOsAccountConstraints exception:' + JSON.stringify(e));
+    console.log('getOsAccountConstraints exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1409,7 +1409,7 @@ Obtains information about all the OS accounts created. This API uses an asynchro
       console.log('queryAllCreatedOsAccounts accountArr:' + JSON.stringify(accountArr));
     });
   } catch (e) {
-    console.log('queryAllCreatedOsAccounts exception:' + JSON.stringify(e));
+    console.log('queryAllCreatedOsAccounts exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1445,10 +1445,10 @@ Obtains information about all the OS accounts created. This API uses a promise t
     accountManager.queryAllCreatedOsAccounts().then((accountArr) => {
       console.log('queryAllCreatedOsAccounts, accountArr: ' + JSON.stringify(accountArr));
     }).catch((err) => {
-      console.log('queryAllCreatedOsAccounts err: '  + JSON.stringify(err));
+      console.log('queryAllCreatedOsAccounts err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('queryAllCreatedOsAccounts exception:' + JSON.stringify(e));
+    console.log('queryAllCreatedOsAccounts exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1485,7 +1485,7 @@ Obtains information about all activated OS accounts. This API uses an asynchrono
       }
     });
   } catch (e) {
-    console.log('getActivatedOsAccountLocalIds exception:' + JSON.stringify(e));
+    console.log('getActivatedOsAccountLocalIds exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1517,10 +1517,10 @@ Obtains information about all activated OS accounts. This API uses a promise to 
     accountManager.getActivatedOsAccountLocalIds().then((idArray) => {
       console.log('getActivatedOsAccountLocalIds, idArray: ' + idArray);
     }).catch((err) => {
-      console.log('getActivatedOsAccountLocalIds err: '  + JSON.stringify(err));
+      console.log('getActivatedOsAccountLocalIds err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getActivatedOsAccountLocalIds exception:' + JSON.stringify(e));
+    console.log('getActivatedOsAccountLocalIds exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1564,7 +1564,7 @@ Creates an OS account. This API uses an asynchronous callback to return the resu
       console.log('createOsAccount osAccountInfo:' + JSON.stringify(osAccountInfo));
     });
   } catch (e) {
-    console.log('createOsAccount exception:' + JSON.stringify(e));
+    console.log('createOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1611,10 +1611,10 @@ Creates an OS account. This API uses a promise to return the result.
     accountManager.createOsAccount('testAccountName', account_osAccount.OsAccountType.NORMAL).then((accountInfo) => {
       console.log('createOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
     }).catch((err) => {
-      console.log('createOsAccount err: '  + JSON.stringify(err));
+      console.log('createOsAccount err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('createOsAccount exception:' + JSON.stringify(e));
+    console.log('createOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1659,7 +1659,7 @@ Creates an OS account and associates it with the specified domain account. This 
       console.log('createOsAccountForDomain osAccountInfo:' + JSON.stringify(osAccountInfo));
     });
   } catch (e) {
-    console.log('createOsAccountForDomain exception:' + JSON.stringify(e));
+    console.log('createOsAccountForDomain exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1707,10 +1707,10 @@ Creates an OS account and associates it with the specified domain account. This 
     accountManager.createOsAccountForDomain(account_osAccount.OsAccountType.NORMAL, domainInfo).then((accountInfo) => {
       console.log('createOsAccountForDomain, account info: ' + JSON.stringify(accountInfo));
     }).catch((err) => {
-      console.log('createOsAccountForDomain err: '  + JSON.stringify(err));
+      console.log('createOsAccountForDomain err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('createOsAccountForDomain exception:' + JSON.stringify(e));
+    console.log('createOsAccountForDomain exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1746,7 +1746,7 @@ Obtains information about the OS account to which the current process belongs. T
       console.log('getCurrentOsAccount curAccountInfo:' + JSON.stringify(curAccountInfo));
     });
   } catch (e) {
-    console.log('getCurrentOsAccount exception:' + JSON.stringify(e));
+    console.log('getCurrentOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1780,10 +1780,10 @@ Obtains information about the OS account to which the current process belongs. T
     accountManager.getCurrentOsAccount().then((accountInfo) => {
       console.log('getCurrentOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
     }).catch((err) => {
-      console.log('getCurrentOsAccount err: '  + JSON.stringify(err));
+      console.log('getCurrentOsAccount err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getCurrentOsAccount exception:' + JSON.stringify(e));
+    console.log('getCurrentOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1825,7 +1825,7 @@ Obtains information about the OS account of the given ID. This API uses an async
       console.log('queryOsAccountById accountInfo:' + JSON.stringify(accountInfo));
     });
   } catch (e) {
-    console.log('queryOsAccountById exception:' + JSON.stringify(e));
+    console.log('queryOsAccountById exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1870,10 +1870,10 @@ Obtains information about the OS account of the given ID. This API uses a promis
     accountManager.queryOsAccountById(localId).then((accountInfo) => {
       console.log('queryOsAccountById, accountInfo: ' + JSON.stringify(accountInfo));
     }).catch((err) => {
-      console.log('queryOsAccountById err: '  + JSON.stringify(err));
+      console.log('queryOsAccountById err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('queryOsAccountById exception:' + JSON.stringify(e));
+    console.log('queryOsAccountById exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -1939,7 +1939,7 @@ Obtains the type of the account to which the current process belongs. This API u
     accountManager.getOsAccountType().then((accountType) => {
       console.log('getOsAccountType, accountType: ' + accountType);
     }).catch((err) => {
-      console.log('getOsAccountType err: '  + JSON.stringify(err));
+      console.log('getOsAccountType err: ' + JSON.stringify(err));
     });
   } catch (e) {
     console.log('getOsAccountType exception: ' + JSON.stringify(e));
@@ -2012,7 +2012,7 @@ Obtains the ID of this distributed virtual device. This API uses a promise to re
     accountManager.queryDistributedVirtualDeviceId().then((virtualID) => {
       console.log('queryDistributedVirtualDeviceId, virtualID: ' + virtualID);
     }).catch((err) => {
-      console.log('queryDistributedVirtualDeviceId err: '  + JSON.stringify(err));
+      console.log('queryDistributedVirtualDeviceId err: ' + JSON.stringify(err));
     });
   } catch (e) {
     console.log('queryDistributedVirtualDeviceId exception: ' + JSON.stringify(e));
@@ -2057,7 +2057,7 @@ Obtains the profile photo of an OS account. This API uses an asynchronous callba
       console.log('get photo:' + photo + ' by localId: ' + localId);
     });
   } catch (e) {
-    console.log('getOsAccountProfilePhoto exception:' + JSON.stringify(e));
+    console.log('getOsAccountProfilePhoto exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2102,10 +2102,10 @@ Obtains the profile photo of an OS account. This API uses a promise to return th
     accountManager.getOsAccountProfilePhoto(localId).then((photo) => {
       console.log('getOsAccountProfilePhoto: ' + photo);
     }).catch((err) => {
-      console.log('getOsAccountProfilePhoto err: '  + JSON.stringify(err));
+      console.log('getOsAccountProfilePhoto err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getOsAccountProfilePhoto exception:' + JSON.stringify(e));
+    console.log('getOsAccountProfilePhoto exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2152,7 +2152,7 @@ Sets a profile photo for an OS account. This API uses an asynchronous callback t
       console.log('setOsAccountProfilePhoto err:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('setOsAccountProfilePhoto exception:' + JSON.stringify(e));
+    console.log('setOsAccountProfilePhoto exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2203,10 +2203,10 @@ Sets a profile photo for an OS account. This API uses a promise to return the re
     accountManager.setOsAccountProfilePhoto(localId, photo).then(() => {
       console.log('setOsAccountProfilePhoto success');
     }).catch((err) => {
-      console.log('setOsAccountProfilePhoto err: '  + JSON.stringify(err));
+      console.log('setOsAccountProfilePhoto err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('setOsAccountProfilePhoto exception:' + JSON.stringify(e));
+    console.log('setOsAccountProfilePhoto exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2244,7 +2244,7 @@ Obtains the OS account ID based on the serial number (SN). This API uses an asyn
       console.log('get localId:' + localId + ' by serialNumber: ' + serialNumber);
     });
   } catch (e) {
-    console.log('ger localId exception:' + JSON.stringify(e));
+    console.log('ger localId exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2285,10 +2285,10 @@ Obtains the OS account ID based on the SN. This API uses a promise to return the
     accountManager.getOsAccountLocalIdForSerialNumber(serialNumber).then((localId) => {
       console.log('getOsAccountLocalIdForSerialNumber localId: ' + localId);
     }).catch((err) => {
-      console.log('getOsAccountLocalIdForSerialNumber err: '  + JSON.stringify(err));
+      console.log('getOsAccountLocalIdForSerialNumber err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getOsAccountLocalIdForSerialNumber exception: '  + JSON.stringify(e));
+    console.log('getOsAccountLocalIdForSerialNumber exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2326,7 +2326,7 @@ Obtains the SN of an OS account based on the account ID. This API uses an asynch
       console.log('get serialNumber:' + serialNumber + ' by localId: ' + localId);
     });
   } catch (e) {
-    console.log('ger serialNumber exception:' + JSON.stringify(e));
+    console.log('ger serialNumber exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2367,10 +2367,10 @@ Obtains the SN of an OS account based on the account ID. This API uses a promise
     accountManager.getSerialNumberForOsAccountLocalId(localId).then((serialNumber) => {
       console.log('getSerialNumberForOsAccountLocalId serialNumber: ' + serialNumber);
     }).catch((err) => {
-      console.log('getSerialNumberForOsAccountLocalId err: '  + JSON.stringify(err));
+      console.log('getSerialNumberForOsAccountLocalId err: ' + JSON.stringify(err));
     });
   } catch (e) {
-    console.log('getSerialNumberForOsAccountLocalId exception:' + JSON.stringify(e));
+    console.log('getSerialNumberForOsAccountLocalId exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2411,7 +2411,7 @@ Subscribes to the OS account activation states, including the states of the acco
   try {
     accountManager.on('activating', 'osAccountOnOffNameA', onCallback);
   } catch (e) {
-    console.log('receive localId exception:' + JSON.stringify(e));
+    console.log('receive localId exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2452,7 +2452,7 @@ Unsubscribes from the OS account activation states, including the states of the 
   try {
     accountManager.off('activating', 'osAccountOnOffNameA', offCallback);
   } catch (e) {
-    console.log('off exception:' + JSON.stringify(e));
+    console.log('off exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2491,7 +2491,7 @@ Obtains the bundle ID based on the UID. This API uses an asynchronous callback t
       console.info('getBundleIdForUid bundleId:' + JSON.stringify(bundleId));
     });
   } catch (e) {
-    console.info('getBundleIdForUid exception:' + JSON.stringify(e));
+    console.info('getBundleIdForUid exception: ' + JSON.stringify(e));
   }
   ```
 ### getBundleIdForUid<sup>9+</sup>
@@ -2535,7 +2535,7 @@ Obtains the bundle ID based on the UID. This API uses a promise to return the re
       console.info('getBundleIdForUid errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.info('getBundleIdForUid exception:' + JSON.stringify(e));
+    console.info('getBundleIdForUid exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2573,7 +2573,7 @@ Checks whether the current process belongs to the main OS account. This API uses
       console.info('isMainOsAccount result:' + JSON.stringify(result));
     });
   } catch (e) {
-    console.info('isMainOsAccount exception:' + JSON.stringify(e));
+    console.info('isMainOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 ### isMainOsAccount<sup>9+</sup>
@@ -2611,7 +2611,7 @@ Checks whether the current process belongs to the main OS account. This API uses
       console.info('isMainOsAccount errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.info('isMainOsAccount exception:' + JSON.stringify(e));
+    console.info('isMainOsAccount exception: ' + JSON.stringify(e));
   }
   ```
 ### getOsAccountConstraintSourceTypes<sup>9+</sup>
@@ -2652,7 +2652,7 @@ Obtains the constraint source information of an OS account. This API uses an asy
       console.info('getOsAccountConstraintSourceTypes sourceTypeInfos:' + JSON.stringify(sourceTypeInfos));
     });
   } catch (e) {
-    console.info('getOsAccountConstraintSourceTypes exception:' + JSON.stringify(e));
+    console.info('getOsAccountConstraintSourceTypes exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2700,7 +2700,7 @@ Obtains the constraint source information of an OS account. This API uses a prom
       console.info('getOsAccountConstraintSourceTypes errInfo:' + JSON.stringify(err));
     });
   } catch (e) {
-    console.info('getOsAccountConstraintSourceTypes exception:' + JSON.stringify(e));
+    console.info('getOsAccountConstraintSourceTypes exception: ' + JSON.stringify(e));
   }
   ```
 
@@ -2728,9 +2728,9 @@ Checks whether multiple OS accounts are supported. This API uses an asynchronous
   let accountManager = account_osAccount.getAccountManager();
   accountManager.isMultiOsAccountEnable((err, isEnabled) => {
     if (err) {
-      console.log("isMultiOsAccountEnable failed, error: " + JSON.stringify(err));
+      console.log('isMultiOsAccountEnable failed, error: ' + JSON.stringify(err));
     } else {
-    console.log("isMultiOsAccountEnable successfully, isEnabled: " + isEnabled);
+    console.log('isMultiOsAccountEnable successfully, isEnabled: ' + isEnabled);
     }
   });
   ```
@@ -2760,7 +2760,7 @@ Checks whether multiple OS accounts are supported. This API uses a promise to re
   accountManager.isMultiOsAccountEnable().then((isEnabled) => {
     console.log('isMultiOsAccountEnable successfully, isEnabled: ' + isEnabled);
   }).catch((err) => {
-    console.log('isMultiOsAccountEnable failed, error: '  + JSON.stringify(err));
+    console.log('isMultiOsAccountEnable failed, error: ' + JSON.stringify(err));
   });
   ```
 
@@ -2834,7 +2834,7 @@ Checks whether an OS account is activated. This API uses a promise to return the
   accountManager.isOsAccountActived(localId).then((isActived) => {
     console.log('isOsAccountActived successfully, isActived: ' + isActived);
   }).catch((err) => {
-    console.log('isOsAccountActived failed, error: '  + JSON.stringify(err));
+    console.log('isOsAccountActived failed, error: ' + JSON.stringify(err));
   });
   ```
 
@@ -2865,12 +2865,12 @@ Checks whether the specified constraint is enabled for an OS account. This API u
   ```js
   let accountManager = account_osAccount.getAccountManager();
   let localId = 100;
-  let constraint = "constraint.wifi";
+  let constraint = 'constraint.wifi';
   accountManager.isOsAccountConstraintEnable(localId, constraint, (err, isEnabled) => {
     if (err) {
-      console.log("isOsAccountConstraintEnable failed, error:" + JSON.stringify(err));
+      console.log('isOsAccountConstraintEnable failed, error: ' + JSON.stringify(err));
     } else {
-      console.log("isOsAccountConstraintEnable successfully, isEnabled:" + isEnabled);
+      console.log('isOsAccountConstraintEnable successfully, isEnabled: ' + isEnabled);
     }
   });
   ```
@@ -2907,11 +2907,11 @@ Checks whether the specified constraint is enabled for an OS account. This API u
   ```js
   let accountManager = account_osAccount.getAccountManager();
   let localId = 100;
-  let constraint = "constraint.wifi";
+  let constraint = 'constraint.wifi';
   accountManager.isOsAccountConstraintEnable(localId, constraint).then((isEnabled) => {
-    console.log("isOsAccountConstraintEnable successfully, isEnabled: " + isEnabled);
+    console.log('isOsAccountConstraintEnable successfully, isEnabled: ' + isEnabled);
   }).catch((err) => {
-    console.log("isOsAccountConstraintEnable err: "  + JSON.stringify(err));
+    console.log('isOsAccountConstraintEnable err: ' + JSON.stringify(err));
   });
   ```
 
@@ -2939,9 +2939,9 @@ Checks whether this OS account is a test account. This API uses an asynchronous 
   let accountManager = account_osAccount.getAccountManager();
   accountManager.isTestOsAccount((err, isTestable) => {
     if (err) {
-      console.log("isTestOsAccount failed, error: " + JSON.stringify(err));
+      console.log('isTestOsAccount failed, error: ' + JSON.stringify(err));
     } else {
-      console.log("isTestOsAccount successfully, isTestable: " + isTestable);
+      console.log('isTestOsAccount successfully, isTestable: ' + isTestable);
     }
   });
   ```
@@ -2969,9 +2969,9 @@ Checks whether this OS account is a test account. This API uses a promise to ret
   ```js
   let accountManager = account_osAccount.getAccountManager();
   accountManager.isTestOsAccount().then((isTestable) => {
-      console.log("isTestOsAccount successfully, isTestable: " + isTestable);
+      console.log('isTestOsAccount successfully, isTestable: ' + isTestable);
   }).catch((err) => {
-      console.log("isTestOsAccount failed, error: " + JSON.stringify(err));
+      console.log('isTestOsAccount failed, error: ' + JSON.stringify(err));
   });
   ```
 
@@ -3001,9 +3001,9 @@ Checks whether this OS account has been verified. This API uses an asynchronous 
   let accountManager = account_osAccount.getAccountManager();
   accountManager.isOsAccountVerified((err, isVerified) => {
     if (err) {
-      console.log("isOsAccountVerified failed, error: " + JSON.stringify(err));
+      console.log('isOsAccountVerified failed, error: ' + JSON.stringify(err));
     } else {
-      console.log("isOsAccountVerified successfully, isVerified: " + isVerified);
+      console.log('isOsAccountVerified successfully, isVerified: ' + isVerified);
     }
   });
   ```
@@ -3036,9 +3036,9 @@ Checks whether an OS account has been verified. This API uses an asynchronous ca
   let localId = 100;
   accountManager.isOsAccountVerified(localId, (err, isVerified) => {
     if (err) {
-      console.log("isOsAccountVerified failed, error: " + JSON.stringify(err));
+      console.log('isOsAccountVerified failed, error: ' + JSON.stringify(err));
     } else {
-      console.log("isOsAccountVerified successfully, isVerified: " + isVerified);
+      console.log('isOsAccountVerified successfully, isVerified: ' + isVerified);
     }
   });
   ```
@@ -3074,9 +3074,9 @@ Checks whether an OS account has been verified. This API uses a promise to retur
   ```js
   let accountManager = account_osAccount.getAccountManager();
   accountManager.isOsAccountVerified(localId).then((isVerified) => {
-    console.log("isOsAccountVerified successfully, isVerified: " + isVerified);
+    console.log('isOsAccountVerified successfully, isVerified: ' + isVerified);
   }).catch((err) => {
-    console.log("isOsAccountVerified failed, error: " + JSON.stringify(err));
+    console.log('isOsAccountVerified failed, error: ' + JSON.stringify(err));
   });
   ```
 
@@ -3106,9 +3106,9 @@ Obtains the number of OS accounts created. This API uses an asynchronous callbac
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getCreatedOsAccountsCount((err, count)=>{
     if (err) {
-      console.log("getCreatedOsAccountsCount failed, error: " + JSON.stringify(err));
+      console.log('getCreatedOsAccountsCount failed, error: ' + JSON.stringify(err));
     } else {
-      console.log("getCreatedOsAccountsCount successfully, count: " + count);
+      console.log('getCreatedOsAccountsCount successfully, count: ' + count);
     }
   });
   ```
@@ -3138,9 +3138,9 @@ Obtains the number of OS accounts created. This API uses a promise to return the
   ```js
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getCreatedOsAccountsCount().then((count) => {
-    console.log("getCreatedOsAccountsCount successfully, count: " + count);
+    console.log('getCreatedOsAccountsCount successfully, count: ' + count);
   }).catch((err) => {
-    console.log("getCreatedOsAccountsCount failed, error: "  + JSON.stringify(err));
+    console.log('getCreatedOsAccountsCount failed, error: ' + JSON.stringify(err));
   });
   ```
 
@@ -3168,9 +3168,9 @@ Obtains the ID of the OS account to which the current process belongs. This API 
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromProcess((err, localId) => {
     if (err) {
-      console.log("getOsAccountLocalIdFromProcess failed, error: " + JSON.stringify(err));
+      console.log('getOsAccountLocalIdFromProcess failed, error: ' + JSON.stringify(err));
     } else {
-      console.log("getOsAccountLocalIdFromProcess successfully, localId: " + localId);
+      console.log('getOsAccountLocalIdFromProcess failed, error: ' + localId);
     }
   });
   ```
@@ -3200,7 +3200,7 @@ Obtains the ID of the OS account to which the current process belongs. This API 
   accountManager.getOsAccountLocalIdFromProcess().then((localId) => {
     console.log('getOsAccountLocalIdFromProcess successfully, localId: ' + localId);
   }).catch((err) => {
-    console.log('getOsAccountLocalIdFromProcess failed, error: '  + JSON.stringify(err));
+    console.log('getOsAccountLocalIdFromProcess failed, error: ' + JSON.stringify(err));
   });
   ```
 
@@ -3230,9 +3230,9 @@ Obtains the OS account ID based on the process UID. This API uses an asynchronou
   let uid = 12345678;
   accountManager.getOsAccountLocalIdFromUid(uid, (err, localId) => {
     if (err) {
-      console.log("getOsAccountLocalIdFromUid failed, error: " + JSON.stringify(err));
+      console.log('getOsAccountLocalIdFromUid failed, error: ' + JSON.stringify(err));
     } else {
-      console.log("getOsAccountLocalIdFromUid successfully, localId: " + localId);
+      console.log('getOsAccountLocalIdFromUid successfully, localId: ' + localId);
     }
   });
   ```
@@ -3267,9 +3267,9 @@ Obtains the OS account ID based on the process UID. This API uses a promise to r
   let accountManager = account_osAccount.getAccountManager();
   let uid = 12345678;
   accountManager.getOsAccountLocalIdFromUid(uid).then((localId) => {
-    console.log("getOsAccountLocalIdFromUid successfully, localId: " + localId);
+    console.log('getOsAccountLocalIdFromUid successfully, localId: ' + localId);
   }).catch((err) => {
-    console.log("getOsAccountLocalIdFromUid failed, error: "  + JSON.stringify(err));
+    console.log('getOsAccountLocalIdFromUid failed, error: ' + JSON.stringify(err));
   });
   ```
 
@@ -3301,9 +3301,9 @@ Obtains the OS account ID based on the domain account information. This API uses
   let accountManager = account_osAccount.getAccountManager();
   accountManager.getOsAccountLocalIdFromDomain(domainInfo, (err, localId) => {
     if (err) {
-      console.log("getOsAccountLocalIdFromDomain failed, error: " + JSON.stringify(err));
+      console.log('getOsAccountLocalIdFromDomain failed, error: ' + JSON.stringify(err));
     } else {
-      console.log("getOsAccountLocalIdFromDomain successfully, localId: " + localId);
+      console.log('getOsAccountLocalIdFromDomain successfully, localId: ' + localId);
     }
   });
   ```
@@ -3342,7 +3342,7 @@ Obtains the OS account ID based on the domain account information. This API uses
   accountManager.getOsAccountLocalIdFromDomain(domainInfo).then((localId) => {
     console.log('getOsAccountLocalIdFromDomain successfully, localId: ' + localId);
   }).catch((err) => {
-    console.log('getOsAccountLocalIdFromDomain failed, error: '  + JSON.stringify(err));
+    console.log('getOsAccountLocalIdFromDomain failed, error: ' + JSON.stringify(err));
   });
   ```
 
@@ -3412,7 +3412,7 @@ Obtains all constraints enabled for an OS account. This API uses a promise to re
   accountManager.getOsAccountAllConstraints(localId).then((constraints) => {
     console.log('getOsAccountAllConstraints, constraints: ' + constraints);
   }).catch((err) => {
-    console.log('getOsAccountAllConstraints err: '  + JSON.stringify(err));
+    console.log('getOsAccountAllConstraints err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3472,7 +3472,7 @@ Obtains information about all activated OS accounts. This API uses a promise to 
   accountManager.queryActivatedOsAccountIds().then((idArray) => {
     console.log('queryActivatedOsAccountIds, idArray: ' + idArray);
   }).catch((err) => {
-    console.log('queryActivatedOsAccountIds err: '  + JSON.stringify(err));
+    console.log('queryActivatedOsAccountIds err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3533,7 +3533,7 @@ Obtains information about the OS account to which the current process belongs. T
   accountManager.queryCurrentOsAccount().then((accountInfo) => {
     console.log('queryCurrentOsAccount, accountInfo: ' + JSON.stringify(accountInfo));
   }).catch((err) => {
-    console.log('queryCurrentOsAccount err: '  + JSON.stringify(err));
+    console.log('queryCurrentOsAccount err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3590,7 +3590,7 @@ Obtains the type of the account to which the current process belongs. This API u
   accountManager.getOsAccountTypeFromProcess().then((accountType) => {
     console.log('getOsAccountTypeFromProcess, accountType: ' + accountType);
   }).catch((err) => {
-    console.log('getOsAccountTypeFromProcess err: '  + JSON.stringify(err));
+    console.log('getOsAccountTypeFromProcess err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3651,7 +3651,7 @@ Obtains the ID of this distributed virtual device. This API uses a promise to re
   accountManager.getDistributedVirtualDeviceId().then((virtualID) => {
     console.log('getDistributedVirtualDeviceId, virtualID: ' + virtualID);
   }).catch((err) => {
-    console.log('getDistributedVirtualDeviceId err: '  + JSON.stringify(err));
+    console.log('getDistributedVirtualDeviceId err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3717,7 +3717,7 @@ Obtains the OS account ID based on the SN. This API uses a promise to return the
   accountManager.getOsAccountLocalIdBySerialNumber(serialNumber).then((localId) => {
     console.log('getOsAccountLocalIdBySerialNumber localId: ' + localId);
   }).catch((err) => {
-    console.log('getOsAccountLocalIdBySerialNumber err: '  + JSON.stringify(err));
+    console.log('getOsAccountLocalIdBySerialNumber err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3783,7 +3783,7 @@ Obtains the SN of an OS account based on the account ID. This API uses a promise
   accountManager.getSerialNumberByOsAccountLocalId(localId).then((serialNumber) => {
     console.log('getSerialNumberByOsAccountLocalId serialNumber: ' + serialNumber);
   }).catch((err) => {
-    console.log('getSerialNumberByOsAccountLocalId err: '  + JSON.stringify(err));
+    console.log('getSerialNumberByOsAccountLocalId err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4396,7 +4396,7 @@ Unregisters this credential inputer.
     account_osAccount.InputerManager.unregisterInputer(authType);
     console.log('unregisterInputer success.');
   } catch(err) {
-    console.log("unregisterInputer err:" + JSON.stringify(err));
+    console.log('unregisterInputer err:' + JSON.stringify(err));
   }
   ```
 
@@ -4437,12 +4437,12 @@ Authenticates a domain account.
       });
     },
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin);
@@ -4492,12 +4492,12 @@ Authenticates a domain account in a pop-up window.
         freezingTime: 0
       });
     },
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
@@ -4526,7 +4526,7 @@ Authenticates a domain account by the authorization token.
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {
+    authWithToken: (domainAccountInfo, token, callback) => {
       // mock authentication
       // notify authentication result
       callback.onResult(0, {
@@ -4539,7 +4539,7 @@ Authenticates a domain account by the authorization token.
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
@@ -4568,7 +4568,7 @@ Obtains information about a domain account.
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {
       // mock getting account information
       // notify result
@@ -4577,13 +4577,13 @@ Obtains information about a domain account.
       }, {
         domain: domain,
         accountName: accountName,
-        accountId: "xxxx"
+        accountId: 'xxxx'
       })
     },
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
@@ -4611,7 +4611,7 @@ Obtains the authentication status of a domain account.
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {
       callback({
@@ -4623,7 +4623,7 @@ Obtains the authentication status of a domain account.
     },
     bindAccount: (domainAccountInfo, localId, callback) => {},
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
@@ -4651,7 +4651,7 @@ Binds a domain account.
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {
@@ -4660,7 +4660,7 @@ Binds a domain account.
       callback({code: 0})
     },
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
@@ -4688,7 +4688,7 @@ Unbinds a domain account.
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
@@ -4697,7 +4697,7 @@ Unbinds a domain account.
       // notify unbinding result
       callback({code: 0})
     },
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {}
   }
   account_osAccount.DomainAccountManager.registerPlugin(plugin)
@@ -4726,12 +4726,12 @@ Checks whether a domain account token is valid.
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {
       // mock checking operation
       // notify checking result
       callback({code: 0}, true);
@@ -4763,12 +4763,12 @@ Obtains the domain access token based on the specified conditions.
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
     unbindAccount: (domainAccountInfo, callback) => {},
-    isAccountTokenValid: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
     getAccessToken: (options, callback) => {
       // mock getting operation
       let token = new Uint8Array([0]);
@@ -4811,17 +4811,19 @@ Registers a domain plug-in.
   let plugin = {
     auth: (domainAccountInfo, credential, callback) => {},
     authWithPopup: (domainAccountInfo, callback) => {},
-    authWithToken: (domainAccountInfo, callback) => {},
+    authWithToken: (domainAccountInfo, token, callback) => {},
     getAccountInfo: (domain, accountName, callback) => {},
     getAuthStatusInfo: (domainAccountInfo, callback) => {},
     bindAccount: (domainAccountInfo, localId, callback) => {},
-    unbindAccount: (domainAccountInfo, callback) => {}
+    unbindAccount: (domainAccountInfo, callback) => {},
+    isAccountTokenValid: (domainAccountInfo, token, callback) => {},
+    getAccessToken: (options, callback) => {}
   }
   try {
     account_osAccount.DomainAccountManager.registerPlugin(plugin);
     console.log('registerPlugin success.');
   } catch(err) {
-    console.log("registerPlugin err:" + JSON.stringify(err));
+    console.log('registerPlugin err:' + JSON.stringify(err));
   }
   ```
 
@@ -4843,7 +4845,7 @@ Unregisters this domain plug-in.
     account_osAccount.DomainAccountManager.unregisterPlugin();
     console.log('unregisterPlugin success.');
   } catch(err) {
-    console.log("unregisterPlugin err:" + JSON.stringify(err));
+    console.log('unregisterPlugin err:' + JSON.stringify(err));
   }
   ```
 
@@ -4886,8 +4888,8 @@ Authenticates a domain account.
 **Example**
   ```js
   let domainAccountInfo = {
-    domain: "CHINA",
-    accountName: "zhangsan"
+    domain: 'CHINA',
+    accountName: 'zhangsan'
   }
   let credential = new Uint8Array([0])
   try {
@@ -5028,15 +5030,15 @@ Checks whether a domain account exists.
 **Example**
   ```js
   let domainAccountInfo = {
-    domain: "CHINA",
-    accountName: "zhangsan"
+    domain: 'CHINA',
+    accountName: 'zhangsan'
   }
   try {
     account_osAccount.DomainAccountManager.hasAccount(domainAccountInfo, (err, result) => {
       if (err) {
-        console.log("call hasAccount failed, error: " + JSON.stringify(err));
+        console.log('call hasAccount failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("hasAccount result: " + result);
+        console.log('hasAccount result: ' + result);
       }
     });
   } catch (err) {
@@ -5079,14 +5081,14 @@ Checks whether a domain account exists.
 **Example**
   ```js
   let domainAccountInfo = {
-    domain: "CHINA",
-    accountName: "zhangsan"
+    domain: 'CHINA',
+    accountName: 'zhangsan'
   }
   try {
     account_osAccount.DomainAccountManager.hasAccount(domainAccountInfo).then((result) => {
-      console.log("hasAccount result: " + result);
+      console.log('hasAccount result: ' + result);
     }).catch((err) => {
-        console.log("call hasAccount failed, error: " + JSON.stringify(err));
+        console.log('call hasAccount failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
     console.log('hasAccount exception = ' + JSON.stringify(err));
@@ -5124,17 +5126,17 @@ Updates the token of a domain account. An empty token means an invalid token. Th
 **Example**
   ```js
   let domainAccountInfo = {
-    domain: "CHINA",
-    accountName: "zhangsan",
-    accountId: "123456"
+    domain: 'CHINA',
+    accountName: 'zhangsan',
+    accountId: '123456'
   }
   let token = new Uint8Array([0])
   try {
     account_osAccount.DomainAccountManager.updateAccountToken(domainAccountInfo, token, (err) => {
       if (err != null) {
-        console.log("updateAccountToken failed, error: " + JSON.stringify(err));
+        console.log('updateAccountToken failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("updateAccountToken successfully");
+        console.log('updateAccountToken successfully');
       }
     })
   } catch (err) {
@@ -5178,16 +5180,16 @@ Updates the token of a domain account. An empty token means an invalid token. Th
 **Example**
   ```js
   let domainAccountInfo = {
-    domain: "CHINA",
-    accountName: "zhangsan",
-    accountId: "123456"
+    domain: 'CHINA',
+    accountName: 'zhangsan',
+    accountId: '123456'
   }
   let token = new Uint8Array([0])
   try {
     account_osAccount.DomainAccountManager.updateAccountToken(domainAccountInfo, token).then(() => {
-      console.log("updateAccountToken successfully");
+      console.log('updateAccountToken successfully');
     }).catch((err) => {
-        console.log("updateAccountToken failed, error: " + JSON.stringify(err));
+        console.log('updateAccountToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
     console.log('updateAccountToken exception = ' + JSON.stringify(err));
@@ -5463,7 +5465,7 @@ Cancels an entry based on the challenge value.
   try {
     userIDM.cancel(challenge);
   } catch(err) {
-    console.log("cancel err:" + JSON.stringify(err));
+    console.log('cancel err:' + JSON.stringify(err));
   }
   ```
 
