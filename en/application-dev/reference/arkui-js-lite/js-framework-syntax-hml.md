@@ -7,7 +7,7 @@ The OpenHarmony Markup Language (HML) is an HTML-like language that allows you t
 ## HML Page Structure
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="item-container">
   <text class="item-title">Image Show</text>
@@ -21,7 +21,7 @@ The OpenHarmony Markup Language (HML) is an HTML-like language that allows you t
 ## Data Binding
 
 
-```
+```html
 <!-- xxx.hml -->
 <div onclick="changeText">
   <text> {{content[1]}} </text>
@@ -29,7 +29,7 @@ The OpenHarmony Markup Language (HML) is an HTML-like language that allows you t
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -42,9 +42,9 @@ export default {
 ```
 
 >  **NOTE**
-> - To make the array data modification take effect, use the **splice** method to change array items.
-> 
-> - ECMAScript 6.0 syntax is not supported in HML.
+>  - To make the array data modification take effect, use the **splice** method to change array items.
+>
+>  - ECMAScript 6.0 syntax is not supported in HML.
 
 
 ## Event Binding
@@ -52,7 +52,7 @@ export default {
 The callback bound to an event receives an event object parameter, which can be used to obtain the event information.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div>
   <!-- Bind an event using @. -->
@@ -73,7 +73,7 @@ The callback bound to an event receives an event object parameter, which can be 
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -88,11 +88,11 @@ export default {
 
 >  **NOTE**
 >
-> Event bubbling is supported since API version 5. After you upgrade the SDK and run an existing JavaScript application, events bound using a traditional statement (such as **onclick**) will not bubble. However, if you use the new SDK to repack the JavaScript application, such events will bubble. To avoid service logic errors, replace the traditional statement with one supported by the new SDK. For example, replace **onclick** with **grab:click**.
+>  Event bubbling is supported since API version 5. After you upgrade the SDK and run an existing JavaScript application, events bound using a traditional statement (such as **onclick**) will not bubble. However, if you use the new SDK to repack the JavaScript application, such events will bubble. To avoid service logic errors, replace the traditional statement with one supported by the new SDK. For example, replace **onclick** with **grab:click**.
 
 **Example:**
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <text class="title">{{count}}</text>
@@ -108,8 +108,8 @@ export default {
 ```
 
 
-```
-/* xxx.js */
+```js
+// xxx.js 
 export default {
   data: {
     count: 0
@@ -127,7 +127,7 @@ export default {
 ```
 
 
-```
+```css
 /* xxx.css */
 .container {
     display: flex;
@@ -164,7 +164,7 @@ export default {
 ## Loop Rendering
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="array-container">
   <!-- div loop rendering -->
@@ -184,7 +184,7 @@ export default {
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -211,11 +211,12 @@ The **tid** attribute accelerates the **for** loop and improves the re-rendering
 
 - for="(i, v) in array": **i** indicates the element index, and **v** indicates the element variable. All elements of the array object will be looped through.
 
-> **NOTE**
+>  **NOTE**
+>
 > - Each element in the array must have the data attribute specified by **tid**. Otherwise, an exception may occur.
-> 
+>
 > - The attribute specified by **tid** in the array must be unique. Otherwise, performance loss occurs. In the above example, only **id** and **name** can be used as **tid** because they are unique fields.
-> 
+>
 > - The **tid** field does not support expressions.
 
 
@@ -224,7 +225,7 @@ The **tid** attribute accelerates the **for** loop and improves the re-rendering
 There are two ways to implement conditional rendering: **if-elif-else** or **show**. In **if-elif-else**, when the **if** statement evaluates to **false**, the component is not built in the VDOM and is not rendered. For **show**, when show is **false**, the component is not rendered but is built in the VDOM. In addition, the **if-elif-else** statements must be used in sibling nodes. Otherwise, the compilation fails. The following example uses both ways to implement conditional rendering:
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <button class="btn" type="capsule" value="toggleShow" onclick="toggleShow"></button>
@@ -236,8 +237,8 @@ There are two ways to implement conditional rendering: **if-elif-else** or **sho
 ```
 
 
-```
-// xxx.css
+```css
+/* xxx.css */
 .container{
   flex-direction: column;
   align-items: center;
@@ -250,7 +251,7 @@ There are two ways to implement conditional rendering: **if-elif-else** or **sho
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -269,7 +270,7 @@ export default {
 In the optimized rendering (**show**), if **show** is **true**, the node is rendered properly; if it is **false**, the display style will be **none**.
 
 
-```
+```html
 <!-- xxx.hml -->
 <div class="container">
   <button class="btn" type="capsule" value="toggle" onclick="toggle"></button>
@@ -278,8 +279,8 @@ In the optimized rendering (**show**), if **show** is **true**, the node is rend
 ```
 
 
-```
-// xxx.css
+```css
+/* xxx.css */
 .container{
   flex-direction: column;
   align-items: center;
@@ -292,7 +293,7 @@ In the optimized rendering (**show**), if **show** is **true**, the node is rend
 ```
 
 
-```
+```js
 // xxx.js
 export default {
   data: {
@@ -305,4 +306,5 @@ export default {
 ```
 
 >  **NOTE**
-> Do not use **for** and **if** attributes at the same time in an element.
+>
+>  Do not use **for** and **if** attributes at the same time in an element.
