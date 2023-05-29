@@ -2311,7 +2311,7 @@ try {
         entries.push(entry);
     }
     console.info(`entries: ${entries}`);
-    kvStore.putBatch(entries).then(async (entries) => {
+    kvStore.putBatch(entries).then(async () => {
         console.info('Succeeded in putting Batch');
         kvStore.getEntries('batch_test_string_key').then((entries) => {
             console.info('Succeeded in getting Entries');
@@ -3954,7 +3954,7 @@ try {
         if (err) {
             console.error(`Failed to restore.code is ${err.code},message is ${err.message}`);
         } else {
-            console.info(`Succeeded in restoring data.data`);
+            console.info(`Succeeded in restoring data`);
         }
     });
 } catch (e) {
@@ -6129,7 +6129,7 @@ try {
         }
         entries.push(entry);
     }
-    kvStore.putBatch(entries).then(async (err) => {
+    kvStore.putBatch(entries).then(async () => {
         console.info('Succeeded in putting batch');
     }).catch((err) => {
         console.error(`Failed to put batch.code is ${err.code},message is ${err.message}`);
