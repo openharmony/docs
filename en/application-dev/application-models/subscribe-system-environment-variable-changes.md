@@ -54,7 +54,7 @@ In OpenHarmony, you can subscribe to system environment variable changes in the 
    
      // Page display.
      build() {
-       // ...
+       ...
      }
    }
    ```
@@ -77,7 +77,7 @@ In OpenHarmony, you can subscribe to system environment variable changes in the 
    
      // Page display.
      build() {
-       // ...
+       ...
      }
    }
    ```
@@ -99,19 +99,19 @@ import AbilityStage from '@ohos.app.ability.AbilityStage';
 let systemLanguage: string; // System language in use.
 
 export default class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        systemLanguage = this.context.config.language; // Obtain the system language in use when the AbilityStage instance is loaded for the first time.
-        console.info(`systemLanguage is ${systemLanguage} `);
-    }
+  onCreate() {
+    systemLanguage = this.context.config.language; // Obtain the system language in use when the AbilityStage instance is loaded for the first time.
+    console.info(`systemLanguage is ${systemLanguage} `);
+  }
 
-    onConfigurationUpdate(newConfig) {
-        console.info(`onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
+  onConfigurationUpdate(newConfig) {
+    console.info(`onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
 
-        if (systemLanguage !== newConfig.language) {
-            console.info(`systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
-            systemLanguage = newConfig.language; // Save the new system language as the system language in use, which will be used for comparison.
-        }
+    if (systemLanguage !== newConfig.language) {
+      console.info(`systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
+      systemLanguage = newConfig.language; // Save the new system language as the system language in use, which will be used for comparison.
     }
+  }
 }
 ```
 
@@ -131,21 +131,21 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 let systemLanguage: string; // System language in use.
 
 export default class EntryAbility extends UIAbility {
-    onCreate(want, launchParam) {
-        systemLanguage = this.context.config.language; // Obtain the system language in use when the UIAbility instance is loaded for the first time.
-        console.info(`systemLanguage is ${systemLanguage} `);
+  onCreate(want, launchParam) {
+    systemLanguage = this.context.config.language; // Obtain the system language in use when the UIAbility instance is loaded for the first time.
+    console.info(`systemLanguage is ${systemLanguage} `);
+  }
+
+  onConfigurationUpdate(newConfig) {
+    console.info(`onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
+
+    if (systemLanguage !== newConfig.language) {
+      console.info(`systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
+      systemLanguage = newConfig.language; // Save the new system language as the system language in use, which will be used for comparison.
     }
+  }
 
-    onConfigurationUpdate(newConfig) {
-        console.info(`onConfigurationUpdated systemLanguage is ${systemLanguage}, newConfig: ${JSON.stringify(newConfig)}`);
-
-        if (systemLanguage !== newConfig.language) {
-            console.info(`systemLanguage from ${systemLanguage} changed to ${newConfig.language}`);
-            systemLanguage = newConfig.language; // Save the new system language as the system language in use, which will be used for comparison.
-        }
-    }
-
-    // ...
+  ...
 }
 ```
 
@@ -163,10 +163,10 @@ The code snippet below uses FormExtensionAbility as an example to describe how t
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 
 export default class EntryFormAbility extends FormExtensionAbility {
-    onConfigurationUpdate(newConfig) {
-        console.info(`newConfig is ${JSON.stringify(newConfig)}`);
-    }
+  onConfigurationUpdate(newConfig) {
+    console.info(`newConfig is ${JSON.stringify(newConfig)}`);
+  }
 
-    // ...
+  ...
 }
 ```

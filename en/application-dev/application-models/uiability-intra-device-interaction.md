@@ -15,6 +15,8 @@ This topic describes the UIAbility interaction modes in the following scenarios.
 
 - [Starting UIAbility of Another Application and Obtaining the Return Result](#starting-uiability-of-another-application-and-obtaining-the-return-result)
 
+- [Starting UIAbility with Window Mode Specified (for System Applications Only)](#starting-uiability-with-window-mode-specified-for-system-applications-only)
+
 - [Starting a Specified Page of UIAbility](#starting-a-specified-page-of-uiability)
 
 - [Using Call to Implement UIAbility Interaction (for System Applications Only)](#using-call-to-implement-uiability-interaction-for-system-applications-only)
@@ -26,113 +28,134 @@ This scenario is possible when an application contains multiple UIAbility compon
 
 Assume that your application has two UIAbility components: EntryAbility and FuncAbility, either in the same module or different modules. You are required to start FuncAbility from EntryAbility.
 
-1. In EntryAbility, call **startAbility()** to start UIAbility. The [want](../reference/apis/js-apis-app-ability-want.md) parameter is the entry parameter for starting the UIAbility instance. In the **want** parameter, **bundleName** indicates the bundle name of the application to start; **abilityName** indicates the name of the UIAbility to start; **moduleName** is required only when the target UIAbility belongs to a different module; **parameters** is used to carry custom information. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
+1. In EntryAbility, call [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) to start UIAbility. The [want](../reference/apis/js-apis-app-ability-want.md) parameter is the entry parameter for starting the UIAbility instance. In the **want** parameter, **bundleName** indicates the bundle name of the application to start; **abilityName** indicates the name of the UIAbility to start; **moduleName** is required only when the target UIAbility belongs to a different module; **parameters** is used to carry custom information. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
    
    ```ts
-   let wantInfo = {
-       deviceId: '', // An empty deviceId indicates the local device.
-       bundleName: 'com.example.myapplication',
-       abilityName: 'FuncAbility',
-       moduleName: 'module1', // moduleName is optional.
-       parameters: {// Custom information.
-           info: 'From the Index page of EntryAbility',
-       },
+   let context = ...; // UIAbilityContext
+   let want = {
+     deviceId: '', // An empty deviceId indicates the local device.
+     bundleName: 'com.example.myapplication',
+     abilityName: 'FuncAbility',
+     moduleName: 'func', // moduleName is optional.
+     parameters: {// Custom information.
+       info: 'From the Index page of EntryAbility',
+     },
    }
-   // context is the AbilityContext of the initiator UIAbility.
-   this.context.startAbility(wantInfo).then(() => {
-       // ...
+   // context is the UIAbilityContext of the initiator UIAbility.
+   context.startAbility(want).then(() => {
+     console.info('Succeeded in starting ability.');
    }).catch((err) => {
-       // ...
+     console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
    })
    ```
-
-2. Use the FuncAbility lifecycle callback to receive the parameters passed from EntryAbility.
+   
+2. In FuncAbility, use [onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) to receive the parameters passed in by EntryAbility.
    
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import Window from '@ohos.window';
    
    export default class FuncAbility extends UIAbility {
-       onCreate(want, launchParam) {
-   	// Receive the parameters passed by the initiator UIAbility.
-           let funcAbilityWant = want;
-           let info = funcAbilityWant?.parameters?.info;
-           // ...
-       }
+     onCreate(want, launchParam) {
+       // Receive the parameters passed by the initiator UIAbility.
+       let funcAbilityWant = want;
+       let info = funcAbilityWant?.parameters?.info;
+       ...
+     }
    }
    ```
-
-3. To stop the **UIAbility** instance after the FuncAbility service is complete, call **terminateSelf()** in FuncAbility.
+   
+   > **NOTE**
+   >
+   > In FuncAbility started, you can obtain the PID and bundle name of the UIAbility through **parameters** in the passed **want** parameter.
+   
+3. To stop the **UIAbility** instance after the FuncAbility service is complete, call [terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) in FuncAbility.
    
    ```ts
-   // context is the AbilityContext of the UIAbility instance to stop.
-   this.context.terminateSelf((err) => {
-       // ...
+   let context = ...; // UIAbilityContext
+   
+   // context is the UIAbilityContext of the UIAbility instance to stop.
+   context.terminateSelf((err) => {
+     if (err.code) {
+       console.error(`Failed to terminate Self. Code is ${err.code}, message is ${err.message}`);
+       return;
+     }
    });
    ```
+   
+   > **NOTE**
+   >
+   > When [terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself) is called to stop the **UIAbility** instance, the snapshot of the instance is retained by default. That is, the mission corresponding to the instance is still displayed in Recents. If you do not want to retain the snapshot, set **removeMissionAfterTerminate** under the [abilities](../quick-start/module-configuration-file.md#abilities) tag to **true** in the [module.json5 file](../quick-start/module-configuration-file.md) of the corresponding UIAbility.
+   
+4. To stop all UIAbility instances of the application, call **killProcessBySelf()** of [ApplicationContext](../reference/apis/js-apis-inner-application-applicationContext.md) to stop all processes of the application.
 
 
 ## Starting UIAbility in the Same Application and Obtaining the Return Result
 
 When starting FuncAbility from EntryAbility, you want the result to be returned after the FuncAbility service is finished. For example, your application uses two independent UIAbility components to carry the entry and sign-in functionalities. After the sign-in operation is finished in the sign-in UIAbility, the sign-in result needs to be returned to the entry UIAbility.
 
-1. In EntryAbility, call **startAbilityForResult()** to start FuncAbility. Use **data** in the asynchronous callback to receive information returned after FuncAbility stops itself. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
+1. In EntryAbility, call [startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to start FuncAbility. Use **data** in the asynchronous callback to receive information returned after FuncAbility stops itself. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
    
    ```ts
-   let wantInfo = {
-       deviceId: '', // An empty deviceId indicates the local device.
-       bundleName: 'com.example.myapplication',
-       abilityName: 'FuncAbility',
-       moduleName: 'module1', // moduleName is optional.
-       parameters: {// Custom information.
-           info: 'From the Index page of EntryAbility',
-       },
+   let context = ...; // UIAbilityContext
+   let want = {
+     deviceId: '', // An empty deviceId indicates the local device.
+     bundleName: 'com.example.myapplication',
+     abilityName: 'FuncAbility',
+     moduleName: 'func', // moduleName is optional.
+     parameters: {// Custom information.
+       info: 'From the Index page of EntryAbility',
+     },
    }
-   // context is the AbilityContext of the initiator UIAbility.
-   this.context.startAbilityForResult(wantInfo).then((data) => {
-       // ...
+   // context is the UIAbilityContext of the initiator UIAbility.
+   context.startAbilityForResult(want).then((data) => {
+     ...
    }).catch((err) => {
-       // ...
+     console.error(`Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
    })
    ```
-
-2. Call **terminateSelfWithResult()** to stop FuncAbility. Use the input parameter **abilityResult** to carry the information that FuncAbility needs to return to EntryAbility.
+   
+2. Call [terminateSelfWithResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to stop FuncAbility. Use the input parameter **abilityResult** to carry the information that FuncAbility needs to return to EntryAbility.
    
    ```ts
+   let context = ...; // UIAbilityContext
    const RESULT_CODE: number = 1001;
    let abilityResult = {
-       resultCode: RESULT_CODE,
-       want: {
-           bundleName: 'com.example.myapplication',
-           abilityName: 'FuncAbility',
-           moduleName: 'module1',
-           parameters: {
-               info: 'From the Index page of FuncAbility',
-           },
+     resultCode: RESULT_CODE,
+     want: {
+       bundleName: 'com.example.myapplication',
+       abilityName: 'FuncAbility',
+       moduleName: 'func',
+       parameters: {
+         info: 'From the Index page of FuncAbility',
        },
+     },
    }
    // context is the AbilityContext of the target UIAbility.
-   this.context.terminateSelfWithResult(abilityResult, (err) => {
-       // ...
+   context.terminateSelfWithResult(abilityResult, (err) => {
+     if (err.code) {
+       console.error(`Failed to terminate self with result. Code is ${err.code}, message is ${err.message}`);
+       return;
+     }
    });
    ```
-
-3. After FuncAbility stops itself, EntryAbility uses **startAbilityForResult()** to receive the information returned by FuncAbility. The value of **RESULT_CODE** must be the same as the preceding value.
+   
+3. After FuncAbility stops itself, EntryAbility uses [startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to receive the information returned by FuncAbility. The value of **RESULT_CODE** must be the same as the preceding value.
    
    ```ts
+   let context = ...; // UIAbilityContext
    const RESULT_CODE: number = 1001;
    
-   // ...
+   ...
    
-   // context is the AbilityContext of the initiator UIAbility.
-   this.context.startAbilityForResult(want).then((data) => {
-       if (data?.resultCode === RESULT_CODE) {
-           // Parse the information returned by the target UIAbility.
-           let info = data.want?.parameters?.info;
-           // ...
-       }
+   // context is the UIAbilityContext of the initiator UIAbility.
+   context.startAbilityForResult(want).then((data) => {
+     if (data?.resultCode === RESULT_CODE) {
+       // Parse the information returned by the target UIAbility.
+       let info = data.want?.parameters?.info;
+       ...
+     }
    }).catch((err) => {
-       // ...
+     console.error(`Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
    })
    ```
 
@@ -145,26 +168,26 @@ There are two ways to start **UIAbility**: [explicit and implicit](want-overview
 
 - Explicit Want launch: This mode is used to start a determined UIAbility component of an application. You need to set **bundleName** and **abilityName** of the target application in the **want** parameter.
 
-- Implicit Want launch: The user selects a UIAbility to start based on the matching conditions. That is, the UIAbility to start is not determined (the **abilityName** parameter is not specified). When **startAbility()** is called, the **want** parameter specifies a series of parameters such as [entities](../reference/apis/js-apis-ability-wantConstant.md#wantconstantentity) and [actions](../reference/apis/js-apis-ability-wantConstant.md#wantconstantaction). **entities** provides category information of the target UIAbility, such as the browser or video player. **actions** specifies the common operations to perform, such as viewing, sharing, and application details. Then the system analyzes the **want** parameter to find the right UIAbility to start. You usually do not know whether the target application is installed and what **bundleName** and **abilityName** of the target application are. Therefore, implicit Want launch is usually used to start the UIAbility of another application.
+- Implicit Want launch: The user selects a UIAbility to start based on the matching conditions. That is, the UIAbility to start is not determined (the **abilityName** parameter is not specified). When [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called, the want parameter specifies a series of parameters such as **entities** and **actions**. **entities** provides category information of the target UIAbility, such as the browser or video player. **actions** specifies the common operations to perform, such as viewing, sharing, and application details. Then the system analyzes the **want** parameter to find the right UIAbility to start. You usually do not know whether the target application is installed and what **bundleName** and **abilityName** of the target application are. Therefore, implicit Want launch is usually used to start the UIAbility of another application.
 
 This section describes how to start the UIAbility of another application through implicit Want.
 
-1. Install multiple document applications on your device. In the **module.json5** file of each UIAbility component, configure [entities](../reference/apis/js-apis-ability-wantConstant.md#wantconstantentity) and [actions](../reference/apis/js-apis-ability-wantConstant.md#wantconstantaction) under **skills**.
+1. Install multiple document applications on your device. In the [module.json5 file](../quick-start/module-configuration-file.md) of each UIAbility component, configure **entities** and **actions** under **skills**.
    
    ```json
    {
      "module": {
        "abilities": [
          {
-           // ...
+           ...
            "skills": [
              {
                "entities": [
-                 // ...
+                 ...
                  "entity.system.default"
                ],
                "actions": [
-                 // ...
+                 ...
                  "ohos.want.action.viewData"
                ]
              }
@@ -178,57 +201,62 @@ This section describes how to start the UIAbility of another application through
 2. Include **entities** and **actions** of the initiator UIAbility's **want** parameter into **entities** and **actions** under **skills** of the target UIAbility. After the system matches the UIAbility that meets the **entities** and **actions** information, a dialog box is displayed, showing the list of matched UIAbility instances for users to select. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
    
    ```ts
-   let wantInfo = {
-       deviceId: '', // An empty deviceId indicates the local device.
-       // Uncomment the line below if you want to implicitly query data only in the specific bundle.
-       // bundleName: 'com.example.myapplication',
-       action: 'ohos.want.action.viewData',
-       // entities can be omitted.
-       entities: ['entity.system.default'],
+   let context = ...; // UIAbilityContext
+   let want = {
+     deviceId: '', // An empty deviceId indicates the local device.
+     // Uncomment the line below if you want to implicitly query data only in the specific bundle.
+     // bundleName: 'com.example.myapplication',
+     action: 'ohos.want.action.viewData',
+     // entities can be omitted.
+     entities: ['entity.system.default'],
    }
    
-   // context is the AbilityContext of the initiator UIAbility.
-   this.context.startAbility(wantInfo).then(() => {
-       // ...
+   // context is the UIAbilityContext of the initiator UIAbility.
+   context.startAbility(want).then(() => {
+     console.info('Succeeded in starting ability.');
    }).catch((err) => {
-       // ...
+     console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
    })
    ```
-
-   The following figure shows the effect. When you click **Open PDF**, a dialog box is displayed for you to select.
-
-   ![uiability-intra-device-interaction](figures/uiability-intra-device-interaction.png)
    
-3. To stop the **UIAbility** instance after the document application is used, call **terminateSelf()**.
+   The following figure shows the effect. When you click **Open PDF**, a dialog box is displayed for you to select. 
+   ![](figures/uiability-intra-device-interaction.png)
+   
+3. To stop the **UIAbility** instance after the document application is used, call [terminateSelf()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateself).
    
    ```ts
-   // context is the AbilityContext of the UIAbility instance to stop.
-   this.context.terminateSelf((err) => {
-       // ...
+   let context = ...; // UIAbilityContext
+   
+   // context is the UIAbilityContext of the UIAbility instance to stop.
+   context.terminateSelf((err) => {
+     if (err.code) {
+       console.error(`Failed to terminate self. Code is ${err.code}, message is ${err.message}`);
+       return;
+     }
    });
    ```
 
 
 ## Starting UIAbility of Another Application and Obtaining the Return Result
 
-If you want to obtain the return result when using implicit Want to start the UIAbility of another application, use **startAbilityForResult()**. An example scenario is that the main application needs to start a third-party payment application and obtain the payment result.
+If you want to obtain the return result when using implicit Want to start the UIAbility of another application, use [startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult). An example scenario is that the main application needs to start a third-party payment application and obtain the payment result.
 
-1. In the **module.json5** file of the UIAbility corresponding to the payment application, set [entities](../reference/apis/js-apis-ability-wantConstant.md#wantconstantentity) and [actions](../reference/apis/js-apis-ability-wantConstant.md#wantconstantaction) under **skills**.
+1. In the [module.json5 file](../quick-start/module-configuration-file.md) of the UIAbility corresponding to the payment application, set **entities** and **actions** under **skills**.
    
    ```json
    {
      "module": {
        "abilities": [
          {
-           // ...
+           ...
            "skills": [
              {
                "entities": [
-                 // ...
+                 ...
                  "entity.system.default"
                ],
                "actions": [
-                 // ...
+                 ...
                  "ohos.want.action.editData"
                ]
              }
@@ -239,68 +267,125 @@ If you want to obtain the return result when using implicit Want to start the UI
    }
    ```
 
-2. Call **startAbilityForResult()** to start the UIAbility of the payment application. Include **entities** and **actions** of the initiator UIAbility's **want** parameter into **entities** and **actions** under **skills** of the target UIAbility. Use **data** in the asynchronous callback to receive the information returned to the initiator UIAbility after the payment UIAbility stops itself. After the system matches the UIAbility that meets the **entities** and **actions** information, a dialog box is displayed, showing the list of matched UIAbility instances for users to select.
+2. Call [startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to start the UIAbility of the payment application. Include **entities** and **actions** of the initiator UIAbility's **want** parameter into **entities** and **actions** under **skills** of the target UIAbility. Use **data** in the asynchronous callback to receive the information returned to the initiator UIAbility after the payment UIAbility stops itself. After the system matches the UIAbility that meets the **entities** and **actions** information, a dialog box is displayed, showing the list of matched UIAbility instances for users to select.
    
    ```ts
-   let wantInfo = {
-       deviceId: '', // An empty deviceId indicates the local device.
-       // Uncomment the line below if you want to implicitly query data only in the specific bundle.
-       // bundleName: 'com.example.myapplication',
-       action: 'ohos.want.action.editData',
-       // entities can be omitted.
-       entities: ['entity.system.default'],
+   let context = ...; // UIAbilityContext
+   let want = {
+     deviceId: '', // An empty deviceId indicates the local device.
+     // Uncomment the line below if you want to implicitly query data only in the specific bundle.
+     // bundleName: 'com.example.myapplication',
+     action: 'ohos.want.action.editData',
+     // entities can be omitted.
+     entities: ['entity.system.default']
    }
    
-   // context is the AbilityContext of the initiator UIAbility.
-   this.context.startAbilityForResult(wantInfo).then((data) => {
-       // ...
+   // context is the UIAbilityContext of the initiator UIAbility.
+   context.startAbilityForResult(want).then((data) => {
+     ...
    }).catch((err) => {
-       // ...
+     console.error(`Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
    })
    ```
-
-3. After the payment is finished, call **terminateSelfWithResult()** to stop the payment UIAbility and return the **abilityResult** parameter.
+   
+3. After the payment is finished, call [terminateSelfWithResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) to stop the payment UIAbility and return the **abilityResult** parameter.
    
    ```ts
+   let context = ...; // UIAbilityContext
    const RESULT_CODE: number = 1001;
    let abilityResult = {
-       resultCode: RESULT_CODE,
-       want: {
-           bundleName: 'com.example.myapplication',
-           abilityName: 'EntryAbility',
-           moduleName: 'entry',
-           parameters: {
-               payResult: 'OKay',
-           },
+     resultCode: RESULT_CODE,
+     want: {
+       bundleName: 'com.example.myapplication',
+       abilityName: 'EntryAbility',
+       moduleName: 'entry',
+       parameters: {
+         payResult: 'OKay',
        },
+     },
    }
    // context is the AbilityContext of the target UIAbility.
-   this.context.terminateSelfWithResult(abilityResult, (err) => {
-       // ...
+   context.terminateSelfWithResult(abilityResult, (err) => {
+     if (err.code) {
+       console.error(`Failed to terminate self with result. Code is ${err.code}, message is ${err.message}`);
+       return;
+     }
    });
    ```
-
-4. Receive the information returned by the payment application in the callback of **startAbilityForResult()**. The value of **RESULT_CODE** must be the same as that returned by **terminateSelfWithResult()**.
+   
+4. Receive the information returned by the payment application in the callback of the [startAbilityForResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult) method. The value of **RESULT_CODE** must be the same as that returned by [terminateSelfWithResult()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextterminateselfwithresult).
    
    ```ts
+   let context = ...; // UIAbilityContext
    const RESULT_CODE: number = 1001;
    
    let want = {
      // Want parameter information.
    };
    
-   // context is the AbilityContext of the initiator UIAbility.
-   this.context.startAbilityForResult(want).then((data) => {
-       if (data?.resultCode === RESULT_CODE) {
-           // Parse the information returned by the target UIAbility.
-           let payResult = data.want?.parameters?.payResult;
-           // ...
-       }
+   // context is the UIAbilityContext of the initiator UIAbility.
+   context.startAbilityForResult(want).then((data) => {
+     if (data?.resultCode === RESULT_CODE) {
+       // Parse the information returned by the target UIAbility.
+       let payResult = data.want?.parameters?.payResult;
+       ...
+     }
    }).catch((err) => {
-       // ...
+     console.error(`Failed to start ability for result. Code is ${err.code}, message is ${err.message}`);
    })
    ```
 
+## Starting UIAbility with Window Mode Specified (for System Applications Only)
+
+By specifying the window mode when starting the UIAbility of an application, the application can be displayed in different window modes, which can be full-screen, floating window, or split-screen.
+
+In full-screen mode, an application occupies the entire screen after being started. Users cannot view other windows or applications. This mode is suitable for an application that requires users to focus on a specific task or UI.
+
+In floating window mode, an application is displayed on the screen as a floating window after being started. Users can easily switch to other windows or applications. The mode is suitable for an application that requires users to process multiple tasks at the same time.
+
+In split-screen mode, two applications occupy the entire screen, with one on the left or in the upper part of the screen and the other on the right or in the lower part. This mode helps users improve multi-task processing efficiency.
+
+The window mode is specified by the **windowMode** field in the [StartOptions](../reference/apis/js-apis-app-ability-startOptions.md) parameter of [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).
+
+> **NOTE**
+>
+> 1. If the **windowMode** field is not specified, the UIAbility is started in the default window mode.
+> 2. To ensure that the application can be displayed in the required window mode, check the **supportWindowMode** field in the [abilities](../quick-start/module-configuration-file.md#abilities) tag in the [module.json5 file](../quick-start/module-configuration-file.md) of the UIAbility and make sure the specified window mode is supported.
+
+The following uses the floating window mode as an example to describe how to start the FuncAbility from the EntryAbility page.
+
+1. Add the [StartOptions](../reference/apis/js-apis-app-ability-startOptions.md) parameter in [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability).
+2. Set the **windowMode** field in the [StartOptions](../reference/apis/js-apis-app-ability-startOptions.md) parameter to **WINDOW_MODE_FLOATING**, indicating that the UIAbility will be displayed in a floating window.
+
+For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
+
+```ts
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+
+let context = ...; // UIAbilityContext
+let want = {
+  deviceId: '', // An empty deviceId indicates the local device.
+  bundleName: 'com.example.myapplication',
+  abilityName: 'FuncAbility',
+  moduleName: 'func', // moduleName is optional.
+  parameters: {// Custom information.
+    info: 'From the Index page of EntryAbility',
+  },
+}
+let options = {
+  windowMode: AbilityConstant.WindowMode.WINDOW_MODE_FLOATING
+};
+// context is the UIAbilityContext of the initiator UIAbility.
+context.startAbility(want, options).then(() => {
+  console.info('Succeeded in starting ability.');
+}).catch((err) => {
+  console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
+})
+```
+
+The display effect is shown below.
+
+![](figures/start-uiability-floating-window.png)
 
 ## Starting a Specified Page of UIAbility
 
@@ -313,20 +398,21 @@ When the initiator UIAbility starts another UIAbility, it usually needs to redir
 
 
 ```ts
-let wantInfo = {
+let context = ...; // UIAbilityContext
+let want = {
     deviceId: '', // An empty deviceId indicates the local device.
     bundleName: 'com.example.myapplication',
     abilityName: 'FuncAbility',
-    moduleName: 'module1', // moduleName is optional.
+    moduleName: 'func', // moduleName is optional.
     parameters: {// Custom parameter used to pass the page information.
         router: 'funcA',
     },
 }
-// context is the AbilityContext of the initiator UIAbility.
-this.context.startAbility(wantInfo).then(() => {
-    // ...
+// context is the UIAbilityContext of the initiator UIAbility.
+context.startAbility(want).then(() => {
+  console.info('Succeeded in starting ability.');
 }).catch((err) => {
-    // ...
+  console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
 })
 ```
 
@@ -341,25 +427,25 @@ import UIAbility from '@ohos.app.ability.UIAbility'
 import Window from '@ohos.window'
 
 export default class FuncAbility extends UIAbility {
-    funcAbilityWant;
+  funcAbilityWant;
 
-    onCreate(want, launchParam) {
-        // Receive the parameters passed by the initiator UIAbility.
-        this.funcAbilityWant = want;
-    }
+  onCreate(want, launchParam) {
+    // Receive the parameters passed by the initiator UIAbility.
+    this.funcAbilityWant = want;
+  }
 
-    onWindowStageCreate(windowStage: Window.WindowStage) {
-        // Main window is created. Set a main page for this UIAbility.
-        let url = 'pages/Index';
-        if (this.funcAbilityWant?.parameters?.router) {
-            if (this.funcAbilityWant.parameters.router === 'funA') {
-                url = 'pages/Second';
-            }
-        }
-        windowStage.loadContent(url, (err, data) => {
-            // ...
-        });
+  onWindowStageCreate(windowStage: Window.WindowStage) {
+    // Main window is created. Set a main page for this UIAbility.
+    let url = 'pages/Index';
+    if (this.funcAbilityWant?.parameters?.router) {
+      if (this.funcAbilityWant.parameters.router === 'funA') {
+        url = 'pages/Second';
+      }
     }
+    windowStage.loadContent(url, (err, data) => {
+      ...
+    });
+  }
 }
 ```
 
@@ -378,11 +464,11 @@ In summary, when a UIAbility instance of application A has been created and the 
    import UIAbility from '@ohos.app.ability.UIAbility'
    
    export default class FuncAbility extends UIAbility {
-       onNewWant(want, launchParam) {
-           // Receive the parameters passed by the initiator UIAbility.
-           globalThis.funcAbilityWant = want;
-           // ...
-       }
+     onNewWant(want, launchParam) {
+       // Receive the parameters passed by the initiator UIAbility.
+       globalThis.funcAbilityWant = want;
+       ...
+     }
    }
    ```
 
@@ -406,25 +492,25 @@ In summary, when a UIAbility instance of application A has been created and the 
    
      // Page display.
      build() {
-       // ...
+       ...
      }
    }
    ```
 
 > **NOTE**
 >
-> When the [launch type of the target UIAbility](uiability-launch-type.md) is set to **standard**, a new instance is created each time the target UIAbility is started. In this case, the [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant) callback will not be invoked.
+> When the [launch type of the target UIAbility](uiability-launch-type.md) is set to **multiton**, a new instance is created each time the target UIAbility is started. In this case, the [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant) callback will not be invoked.
 
 
 ## Using Call to Implement UIAbility Interaction (for System Applications Only)
 
 Call is an extension of the UIAbility capability. It enables the UIAbility to be invoked by and communicate with external systems. The UIAbility invoked can be either started in the foreground or created and run in the background. You can use the call to implement data sharing between two UIAbility instances (CallerAbility and CalleeAbility) through IPC.
 
-The core API used for the call is **startAbilityByCall**, which differs from **startAbility** in the following ways:
+The core API used for the call is **startAbilityByCall()**, which differs from **startAbility()** in the following ways:
 
-- **startAbilityByCall** supports UIAbility launch in the foreground and background, whereas **startAbility** supports UIAbility launch in the foreground only.
+- **startAbilityByCall()** supports UIAbility launch in the foreground and background, whereas **startAbility()** supports UIAbility launch in the foreground only.
 
-- The CallerAbility can use the caller object returned by **startAbilityByCall** to communicate with the CalleeAbility, but **startAbility** does not provide the communication capability.
+- The CallerAbility can use the caller object returned by **startAbilityByCall()** to communicate with the CalleeAbility, but **startAbility()** does not provide the communication capability.
 
 Call is usually used in the following scenarios:
 
@@ -432,20 +518,21 @@ Call is usually used in the following scenarios:
 
 - Starting the CalleeAbility in the background
 
+
 **Table 1** Terms used in the call
 
 | **Term**| Description|
 | -------- | -------- |
-| CallerAbility | UIAbility that triggers the call.|
+| CallerAbility| UIAbility that triggers the call.|
 | CalleeAbility | UIAbility invoked by the call.|
 | Caller | Object returned by **startAbilityByCall** and used by the CallerAbility to communicate with the CalleeAbility.|
 | Callee | Object held by the CalleeAbility to communicate with the CallerAbility.|
 
 The following figure shows the call process.
 
-  Figure 1 Call process
+Figure 1 Call process
 
-  ![call](figures/call.png)  
+![call](figures/call.png)  
 
 - The CallerAbility uses **startAbilityByCall** to obtain a caller object and uses **call()** of the caller object to send data to the CalleeAbility.
 
@@ -463,7 +550,7 @@ The following figure shows the call process.
 
 The following table describes the main APIs used for the call. For details, see [AbilityContext](../reference/apis/js-apis-app-ability-uiAbility.md#caller).
 
-  **Table 2** Call APIs
+**Table 2** Call APIs
 
 | API| Description|
 | -------- | -------- |
@@ -487,32 +574,13 @@ The implementation of using the call for UIAbility interaction involves two part
 For the CalleeAbility, implement the callback to receive data and the methods to marshal and unmarshal data. When data needs to be received, use **on()** to register a listener. When data does not need to be received, use **off()** to deregister the listener.
 
 1. Configure the launch type of the UIAbility.
-
-   Set **launchType** of the CalleeAbility to **singleton** in the **module.json5** file.
-
-   | JSON Field| Description|
-   | -------- | -------- |
-   | "launchType" | Ability launch type. Set this parameter to **singleton**.|
-
-   An example of the ability configuration is as follows:
-
    
-   ```json
-   "abilities":[{
-     "name": ".CalleeAbility",
-     "srcEnty": "./ets/CalleeAbility/CalleeAbility.ts",
-     "launchType": "singleton",
-     "description": "$string:CalleeAbility_desc",
-     "icon": "$media:icon",
-     "label": "$string:CalleeAbility_label",
-     "exported": true
-   }]
-   ```
-
+   For example, set the launch type of the CalleeAbility to **singleton**. For details, see [UIAbility Component Launch Type](uiability-launch-type.md).
+   
 2. Import the **UIAbility** module.
    
    ```ts
-   import Ability from '@ohos.app.ability.UIAbility';
+   import UIAbility from '@ohos.app.ability.UIAbility';
    ```
 
 3. Define the agreed parcelable data.
@@ -522,66 +590,66 @@ For the CalleeAbility, implement the callback to receive data and the methods to
    
    ```ts
    export default class MyParcelable {
-       num: number = 0
-       str: string = ""
+     num: number = 0;
+     str: string = '';
    
-       constructor(num, string) {
-           this.num = num
-           this.str = string
-       }
+     constructor(num, string) {
+       this.num = num;
+       this.str = string;
+     }
    
-       marshalling(messageSequence) {
-           messageSequence.writeInt(this.num)
-           messageSequence.writeString(this.str)
-           return true
-       }
+     marshalling(messageSequence) {
+       messageSequence.writeInt(this.num);
+       messageSequence.writeString(this.str);
+       return true;
+     }
    
-       unmarshalling(messageSequence) {
-           this.num = messageSequence.readInt()
-           this.str = messageSequence.readString()
-           return true
-       }
+     unmarshalling(messageSequence) {
+       this.num = messageSequence.readInt();
+       this.str = messageSequence.readString();
+       return true;
+     }
    }
    ```
 
 4. Implement **Callee.on** and **Callee.off**.
-
+   
    The time to register a listener for the CalleeAbility depends on your application. The data sent and received before the listener is registered and that after the listener is deregistered are not processed. In the following example, the **MSG_SEND_METHOD** listener is registered in **onCreate** of the UIAbility and deregistered in **onDestroy**. After receiving parcelable data, the application processes the data and returns the data result. You need to implement processing based on service requirements. The sample code is as follows:
-
+   
    
    ```ts
    const TAG: string = '[CalleeAbility]';
    const MSG_SEND_METHOD: string = 'CallSendMsg';
    
    function sendMsgCallback(data) {
-       console.info('CalleeSortFunc called');
+     console.info('CalleeSortFunc called');
    
-       // Obtain the parcelable data sent by the CallerAbility.
-       let receivedData = new MyParcelable(0, '');
-       data.readParcelable(receivedData);
-       console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
+     // Obtain the parcelable data sent by the CallerAbility.
+     let receivedData = new MyParcelable(0, '');
+     data.readParcelable(receivedData);
+     console.info(`receiveData[${receivedData.num}, ${receivedData.str}]`);
    
-       // Process the data.
-       // Return the parcelable data result to the CallerAbility.
-       return new MyParcelable(receivedData.num + 1, `send ${receivedData.str} succeed`);
+     // Process the data.
+     // Return the parcelable data result to the CallerAbility.
+     return new MyParcelable(receivedData.num + 1, `send ${receivedData.str} succeed`);
    }
    
-   export default class CalleeAbility extends Ability {
-       onCreate(want, launchParam) {
-           try {
-               this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
-           } catch (error) {
-               console.info(`${MSG_SEND_METHOD} register failed with error ${JSON.stringify(error)}`);
-           }
+   export default class CalleeAbility extends UIAbility {
+     onCreate(want, launchParam) {
+       try {
+         this.callee.on(MSG_SEND_METHOD, sendMsgCallback);
+       } catch (err) {
+         console.error(`Failed to register. Code is ${err.code}, message is ${err.message}`);
        }
+     }
    
-       onDestroy() {
-           try {
-               this.callee.off(MSG_SEND_METHOD);
-           } catch (error) {
-               console.error(TAG, `${MSG_SEND_METHOD} unregister failed with error ${JSON.stringify(error)}`);
-           }
+     onDestroy() {
+       try {
+         this.callee.off(MSG_SEND_METHOD);
+       } catch (err) {
+         console.error(`Failed to unregister. Code is ${err.code}, message is ${err.message}`);
        }
+     }
    }
    ```
 
@@ -591,41 +659,41 @@ For the CalleeAbility, implement the callback to receive data and the methods to
 1. Import the **UIAbility** module.
    
    ```ts
-   import Ability from '@ohos.app.ability.UIAbility';
+   import UIAbility from '@ohos.app.ability.UIAbility';
    ```
 
 2. Obtain the caller interface.
 
-   The **context** attribute of the UIAbility implements **startAbilityByCall** to obtain the caller object for communication. The following example uses **this.context** to obtain the **context** attribute of the UIAbility, uses **startAbilityByCall** to start the CalleeAbility, obtain the caller object, and register the **onRelease** listener of the CallerAbility. You need to implement processing based on service requirements.
+   The **UIAbilityContext** attribute implements **startAbilityByCall** to obtain the caller object for communication. The following example uses **this.context** to obtain the **UIAbilityContext**, uses **startAbilityByCall** to start the CalleeAbility, obtain the caller object, and register the **onRelease** listener of the CallerAbility. You need to implement processing based on service requirements.
 
    
    ```ts
    // Register the onRelease() listener of the CallerAbility.
    private regOnRelease(caller) {
-       try {
-           caller.on("release", (msg) => {
-               console.info(`caller onRelease is called ${msg}`);
-           })
-           console.info('caller register OnRelease succeed');
-       } catch (error) {
-           console.info(`caller register OnRelease failed with ${error}`);
-       }
+     try {
+       caller.on('release', (msg) => {
+         console.info(`caller onRelease is called ${msg}`);
+       })
+       console.info('Succeeded in registering on release.');
+     } catch (err) {
+       console.err(`Failed to caller register on release. Code is ${err.code}, message is ${err.message}`);
+     }
    }
    
    async onButtonGetCaller() {
-       try {
-           this.caller = await context.startAbilityByCall({
-               bundleName: 'com.samples.CallApplication',
-               abilityName: 'CalleeAbility'
-           })
-           if (this.caller === undefined) {
-               console.info('get caller failed')
-               return
-           }
-           console.info('get caller success')
-           this.regOnRelease(this.caller)
-       } catch (error) {
-           console.info(`get caller failed with ${error}`)
+     try {
+       this.caller = await context.startAbilityByCall({
+         bundleName: 'com.samples.CallApplication',
+         abilityName: 'CalleeAbility'
+       });
+       if (this.caller === undefined) {
+         console.info('get caller failed')
+         return;
        }
+       console.info('get caller success')
+       this.regOnRelease(this.caller)
+     } (err) {
+       console.err(`Failed to get caller. Code is ${err.code}, message is ${err.message}`);
+     }
    }
    ```

@@ -43,7 +43,7 @@ To implement an embedded application, manually create a WindowExtensionAbility i
         onWindowReady(window) {
             window.loadContent('WindowExtAbility/pages/index1').then(() => {
                 window.getProperties().then((pro) => {
-                    console.log("WindowExtension " + JSON.stringify(pro));
+                    console.info("WindowExtension " + JSON.stringify(pro));
                 })
                 window.show();
             })
@@ -59,7 +59,7 @@ To implement an embedded application, manually create a WindowExtensionAbility i
     }
    ```
 
-4. Register the WindowExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) corresponding to the **Module** project. Set **type** to **"window"** and **srcEnty** to the code path of the ExtensionAbility component.
+4. Register the WindowExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) corresponding to the **Module** project. Set **type** to **"window"** and **srcEntry** to the code path of the ExtensionAbility component.
 
    ```json
    {
@@ -67,7 +67,7 @@ To implement an embedded application, manually create a WindowExtensionAbility i
        "extensionAbilities": [
             {
                 "name": "WindowExtAbility",
-                "srcEnty": "./ets/WindowExtAbility/WindowExtAbility.ts",
+                "srcEntry": "./ets/WindowExtAbility/WindowExtAbility.ts",
                 "icon": "$media:icon",
                 "description": "WindowExtension",
                 "type": "window",

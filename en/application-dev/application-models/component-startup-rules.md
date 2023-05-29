@@ -23,8 +23,8 @@ In view of this, OpenHarmony formulates a set of component startup rules, as fol
 
 
 - **Before starting a component of another application, verify the visible field of the target component.**
-  - If the **visible** field of the target component is **false**, verify the **ohos.permission.START_INVISIBLE_ABILITY** permission.
-  - For details, see [Component Visible Configuration](../quick-start/module-configuration-file.md#abilities).
+  - If the **exported** field of the target component is **false**, verify the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+  - For details, see [Component exported Configuration](../quick-start/module-configuration-file.md#abilities).
 
 - **Before starting a component of a background application, verify the BACKGROUND permission.**
   - An application is considered as a foreground application only when the application process gains focus or its UIAbility component is running in the foreground.
@@ -37,8 +37,8 @@ In view of this, OpenHarmony formulates a set of component startup rules, as fol
 > **NOTE**
 >
 > - Component startup control has been implemented since OpenHarmony v3.2 Release.
->
-> - The new component startup rules are more strict than the original ones. You must be familiar with the new startup rules to prevent service exceptions. 
+> 
+> - The new component startup rules are more strict than the original ones. You must be familiar with the new startup rules to prevent service exceptions.
 
 
 ## Intra-Device Component Startup Rules

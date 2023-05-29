@@ -11,7 +11,9 @@ The following design philosophy is behind UIAbility:
 
 2. Support for multiple device types and window forms
 
-For details, see [Interpretation of the Application Model](application-model-description.md).
+> **NOTE**
+>
+> For details, see [Interpretation of the Application Model](application-model-description.md).
 
 The UIAbility division principles and suggestions are as follows:
 
@@ -33,17 +35,17 @@ To enable an application to properly use a UIAbility component, declare the UIAb
 ```json
 {
   "module": {
-    // ...
+    ...
     "abilities": [
       {
         "name": "EntryAbility", // Name of the UIAbility component.
-        "srcEnty": "./ets/entryability/EntryAbility.ts", // Code path of the UIAbility component.
+        "srcEntry": "./ets/entryability/EntryAbility.ts", // Code path of the UIAbility component.
         "description": "$string:EntryAbility_desc", // Description of the UIAbility component.
         "icon": "$media:icon", // Icon of the UIAbility component.
         "label": "$string:EntryAbility_label", // Label of the UIAbility component.
         "startWindowIcon": "$media:icon", // Index of the icon resource file.
         "startWindowBackground": "$color:start_window_background", // Index of the background color resource file.
-        // ...
+        ...
       }
     ]
   }
