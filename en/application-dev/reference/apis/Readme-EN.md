@@ -365,6 +365,7 @@
   - [@ohos.configPolicy (Configuration Policy)](js-apis-configPolicy.md)
   - [@ohos.enterprise.accountManager (Account Management)](js-apis-enterprise-accountManager.md)
   - [@ohos.enterprise.adminManager (Enterprise Device Management)](js-apis-enterprise-adminManager.md)
+  - [@ohos.enterprise.applicationManager (Application Management)](js-apis-enterprise-applicationManager.md)
   - [@ohos.enterprise.bundleManager (Bundle Management)](js-apis-enterprise-bundleManager.md)
   - [@ohos.enterprise.dateTimeManager (System Time Management)](js-apis-enterprise-dateTimeManager.md)
   - [@ohos.enterprise.deviceControl (Device Control Management)](js-apis-enterprise-deviceControl.md)
