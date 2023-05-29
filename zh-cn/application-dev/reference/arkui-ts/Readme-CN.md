@@ -148,10 +148,12 @@
   - [Shape](ts-drawing-components-shape.md)
 - 画布组件
   - [Canvas](ts-components-canvas-canvas.md)
-  - [CanvasRenderingContext2D对象](ts-canvasrenderingcontext2d.md)
   - [CanvasGradient对象](ts-components-canvas-canvasgradient.md)
+  - [CanvasPattern](ts-components-canvas-canvaspattern.md)
+  - [CanvasRenderingContext2D对象](ts-canvasrenderingcontext2d.md)
   - [ImageBitmap对象](ts-components-canvas-imagebitmap.md)
   - [ImageData对象](ts-components-canvas-imagedata.md)
+  - [Matrix2D](ts-components-canvas-matrix2d.md)
   - [OffscreenCanvasRenderingContext2D对象](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D对象](ts-components-canvas-path2d.md)
   - [Lottie](ts-components-canvas-lottie.md)
