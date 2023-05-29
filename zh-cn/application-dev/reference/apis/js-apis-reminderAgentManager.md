@@ -170,7 +170,7 @@ cancelReminder(reminderId: number): Promise\<void>
 
 | 类型 | 说明 |
 | -------- | -------- |
-| PPromise\<void>	 | Promise类型异步回调。 |
+| Promise\<void>	 | Promise类型异步回调。 |
 
 **错误码：**
 
