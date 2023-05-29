@@ -158,7 +158,7 @@ getCurrentTime(isNano?: boolean): Promise&lt;number&gt;
 
 | 参数名 | 类型    | 必填 | 说明                     |
 | ------ | ------- | ---- | ------------------------- |
-| isNano | boolean | 否   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
+| isNano | boolean | 否   | 返回结果是否为纳秒数。<br/>默认值为false。<br>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 
 **返回值：**
 
@@ -253,7 +253,7 @@ getRealActiveTime(isNano?: boolean): Promise&lt;number&gt;
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | ----------------------------------- |
-| isNano | boolean | 否   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
+| isNano | boolean | 否   | 返回结果是否为纳秒数。<br/>默认值为false。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 
 **返回值：**
 
@@ -348,7 +348,7 @@ getRealTime(isNano?: boolean): Promise&lt;number&gt;
 
 | 参数名 | 类型    | 必填 | 说明                               |
 | ------ | ------- | ---- | ------------------------------- |
-| isNano | boolean | 否   | 返回结果是否为纳秒数。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
+| isNano | boolean | 否   | 返回结果是否为纳秒数。<br/>默认值为false。<br/>- true：表示返回结果为纳秒数（ns）。 <br/>- false：表示返回结果为毫秒数（ms）。 |
 
 **返回值：**
 
