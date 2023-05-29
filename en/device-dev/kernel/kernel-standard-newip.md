@@ -16,7 +16,7 @@ The network layer header ranges from 20 to 60 bytes for an IPv4 packet and is 40
 
 New IP supports variable-length multi-semantic addresses (min. 1 byte) and customized header encapsulation (min. 5 bytes). Simplified packet headers reduce overheads and improve transmission efficiency.
 
-New IP provides 25.9% less packet header overheads than IPv4 and 44.9% less than IPv6.
+New IP provides 25.9% fewer packet header overheads than IPv4 and 44.9% less than IPv6.
 
 New IP provides at least 1% higher payload transmission efficiency than IPv4 and 2.33% higher than IPv6.
 
@@ -33,6 +33,7 @@ The following figure shows a New IP Wi-Fi packet header. "EtherType = 0xEADD" in
 ![](figures/newip-header.png)
 
 - **Dispatch** indicates the encapsulation type. The value **0b0** indicates the New IP encapsulation child class, which is 1 bit long (**0b** indicates that the following values are binary).
+
 - **Bitmap** is of variable length. By default, it is seven bits following the **Dispatch** valid bit. The length of **Bitmap** can be extended contiguously. If the last bit of **Bitmap** is **0**, it indicates the end of **Bitmap**. If the last bit is **1**, it means one more byte until the last bit **0**.
 - **Value** indicates the field value. The length is an integer multiple of 1 byte. The value type and length are determined by the semantic table of the header field.
 
@@ -43,7 +44,7 @@ The **Bitmap** field is defined as follows:
 | Bitmap first byte            | -      | -                | -              | The eight bits are from the most significant bit to the least significant bit.           |
 | Dispatch              | 0      | -                | Set to **0**.           | **0**: indicates a New IP packet; **1**: indicates a non-New-IP packet.   |
 | Whether the packet header carries the TTL           | 1      | 1          | Set to **1**.           | Indicates the number of remaining hops.                             |
-| Whether the packet header carries the total length  | 2      | 2          | Set to **0** for UDP and **1** for TCP.| Total length of the new IP packet (including the header)     |
+| Whether the packet header carries the total length  | 2      | 2          | Set to **0** for UDP and **1** for TCP.| Total length of the New IP packet (including the header)     |
 | Whether the packet header carries the Next Header   | 3      | 1          | Set to **1**.           | Protocol type.                             |
 | Reserve                      | 4      | Reserved            | Set to **0**.           | Reserved.                             |
 | Whether the packet header carries the destination address  | 5      | Variable length (1 to 8 bytes)| Set to **1**.           | Destination address.                             |
@@ -65,7 +66,7 @@ Only the bitmap fields defined in New IP are parsed. All the bitmap fields with 
 
 ## Variable-Length Address Format
 
-Different from IPv4 and IPv6, which use fixed-length addresses, New IP supports variable-length addresses and parse of the address length. The packet header may not carry the address length field. The encoding format of new IP addresses is as follows:
+Different from IPv4 and IPv6, which use fixed-length addresses, New IP supports variable-length addresses and parse of the address length. The packet header may not carry the address length field. The encoding format of New IP addresses is as follows:
 
 | First Byte | Semantics                                                    | Valid Range of Address                                               |
 | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -90,7 +91,7 @@ Different from IPv4 and IPv6, which use fixed-length addresses, New IP supports 
 
 ### Enabling New IP
 
-Only the Linux 5.10 kernel of the RK3568 development board supports the New IP kernel protocol stack. To enable New IP, search for "NEWIP" in the kernel module configuration file of the RK3568 development board and set      related parameters as follows:
+Only the Linux 5.10 kernel of the RK3568 development board supports the New IP kernel protocol stack. To enable New IP, search for "NEWIP" in the kernel module configuration file of the RK3568 development board and set related parameters as follows:
 
 ```
 # kernel/linux/config/linux-5.10/arch/arm64/configs/rk3568_standard_defconfig
@@ -133,17 +134,15 @@ static u32 sk_ehashfn(const struct sock *sk)
 				     &sk->sk_v6_daddr, sk->sk_dport);
 #endif
 
-#if IS_ENABLED(CONFIG_NEWIP_HOOKS)
-	if (sk->sk_family == AF_NINET) {
-		u32 ret = 0;
+	if (trace_vendor_ninet_ehashfn_enabled()) {
+		if (sk->sk_family == AF_NINET) {
+			u32 ret = 0;
 
         /* Register the New IP ehash function. */
-		trace_ninet_ehashfn_hook(sock_net(sk), &sk->sk_nip_rcv_saddr, sk->sk_num,
-					 &sk->sk_nip_daddr, sk->sk_dport, &ret);
-		return ret;
+			trace_vendor_ninet_ehashfn(sk, &ret);
+			return ret;
+		}
 	}
-#endif
-
     /* IPv4 */
 	return inet_ehashfn(sock_net(sk),
 			    sk->sk_rcv_saddr, sk->sk_num,
@@ -243,15 +242,15 @@ struct sockaddr_nin {
 
 ## New IP Development
 
-Only the OpenHarmony Linux-5.10 kernel supports New IP kernel protocol stack. You must manually configure IP address and route data for New IP in user mode, and connect the two devices through the router Wi-Fi. If you want to automatically switch to the new IP kernel protocol stack after configuring the new IP address and route, see the description in the blue box in the following figure.
+Only the OpenHarmony Linux-5.10 kernel supports New IP kernel protocol stack. You must manually configure IP address and route data for New IP in user mode, and connect the two devices through the router Wi-Fi. If you want to automatically switch to the New IP kernel protocol stack after configuring the New IP address and route, see the description in the blue box in the following figure.
 
 ![](figures/newip-development.png)
 
-For details about the address and route configuration, see [examples](https://gitee.com/openharmony/kernel_common_modules_newip/tree/master/examples). Modify the CC definition in Makefile based on the CPU you use, compile the CC definition into a binary file, and push the file to the development board. Refer to the figure above to configure the address and route data for New IP.
+For details about the address and route configuration, see [examples](https://gitee.com/openharmony/kernel_linux_common_modules/tree/master/newip/examples). Modify the CC definition in Makefile based on the CPU you use, compile the CC definition into a binary file, and push the file to the development board. Refer to the figure above to configure the address and route data for New IP.
 
 | File            | Description                                                    |
 | ------------------ | -------------------------------------------------------- |
-| nip_addr.c         | Sample code for configuring variable-length New IP addresses (any valid New IP address can be configured). |
+| nip_addr.c         | Sample code for configuring variable-length New IP addresses (any valid New IP address can be configured).|
 | nip_route.c        | Sample code for configuring New IP route information (any valid New IP address can be configured).     |
 | check_nip_enable.c | Code for obtaining the New IP capabilities of the local host.                                     |
 
@@ -277,7 +276,7 @@ Check the New IP address and route information on device 2.
 
 ## Sample Code for Receiving and Sending New IP Packets
 
-The following table lists the related sample code. For details about how to use the user-mode APIs of the New IP stack, see [examples](https://gitee.com/openharmony/kernel_common_modules_newip/tree/master/examples). Fixed addresses and routes are configured in the demo code. You do not need to manually specify the addresses and routes when executing the binary program.
+The following table lists the related sample code. For details about how to use the user-mode APIs of the New IP stack, see [examples](https://gitee.com/openharmony/kernel_linux_common_modules/tree/master/newip/examples). Fixed addresses and routes are configured in the demo code. You do not need to manually specify the addresses and routes when executing the binary program.
 
 | File               | Description                          |
 | --------------------- | ------------------------------ |
@@ -376,7 +375,7 @@ allowxperm thread_xxx thread_xxx:socket ioctl { 0x8933 0x8916 0x890B };
 
 ## WireShark Packet Parsing Template
 
-The default packet parsing rules of Wireshark cannot parse New IP packets. You can add a New IP packet parsing template to Wireshark to parse New IP packets. For details about the template, see [New IP packet parsing template](https://gitee.com/openharmony/kernel_common_modules_newip/blob/master/tools/wireshark_cfg_for_newip.lua).
+The default packet parsing rules of Wireshark cannot parse New IP packets. You can add a New IP packet parsing template to Wireshark to parse New IP packets. For details about the template, see [New IP packet parsing template](https://gitee.com/openharmony/kernel_linux_common_modules/blob/master/newip/tools/wireshark_cfg_for_newip.lua).
 
 The procedure is as follows:
 
@@ -394,7 +393,7 @@ D:\tools\WireShark\wireshark_cfg_for_newip.lua
 Path of the WireShark configuration file:
 C:\Program Files\Wireshark\init.lua
 
-Add the following to the end of the **init.lua** file (Windows 11, for example):
+Add the following to the end of the init.lua file (Windows 11, for example):
 dofile("D:\\tools\\WireShark\\wireshark_cfg_for_newip.lua")
 ```
 
