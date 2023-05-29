@@ -18,7 +18,7 @@ getScreenOffTime(admin: Want, callback: AsyncCallback&lt;number&gt;): void
 
 指定设备管理员应用获取设备息屏时间，使用callback形式返回设备息屏时间。
 
-**需要权限：** ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME
+**需要权限：** ohos.permission.ENTERPRISE_GET_SETTINGS
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
@@ -62,7 +62,7 @@ getScreenOffTime(admin: Want): Promise&lt;number&gt;
 
 指定设备管理员应用获取设备息屏时间，使用Promise形式返回设备息屏时间。
 
-**需要权限：** ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME
+**需要权限：** ohos.permission.ENTERPRISE_GET_SETTINGS
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
