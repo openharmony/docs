@@ -127,3 +127,5 @@
         - [Thermal Scene Customization](subsys-thermal_scene.md)
     - Power Management
         - [Power Mode Customization](subsys-power-mode-customization.md)
+        - [Default Hibernation Behavior Customization](subsys-power-default-sleep-behavior-customization.md)
+        - [Wakeup Source Customization](subsys-power-wakeup-source-customization.md)
