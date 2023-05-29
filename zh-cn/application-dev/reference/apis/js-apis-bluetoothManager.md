@@ -259,6 +259,103 @@ try {
 ```
 
 
+## bluetoothManager.pairCredibleDevice<sup>10+</sup>
+
+pairCredibleDevice(deviceId: string, transport: BluetoothTransport, callback: AsyncCallback&lt;void&gt;): void
+
+向可信的远端设备发起蓝牙配对。通过非蓝牙扫描的方式(例如NFC等)获取到外设的地址，可以通过该接口发起配对。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明                                  |
+| -------- | ------ | ---- | ----------------------------------- |
+| deviceId | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| transport | [BluetoothTransport](#bluetoothtransport10) | 是    | 表示设备类型，例如传统蓝牙设备或低功耗蓝牙设备。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当发起配对成功，err为undefined，否则为错误对象。   |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+try {
+    bluetoothManager.pairCredibleDevice("68:13:24:79:4C:8C", 1, err => {
+        if (err) {
+            console.error("errCode:" + err.code + ",errMessage:" + err.message);
+            return;
+        }
+        console.info("pairCredibleDevice,err:" + JSON.stringify(err));
+    });
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+
+## bluetoothManager.pairCredibleDevice<sup>10+</sup>
+
+pairCredibleDevice(deviceId: string, transport: BluetoothTransport): Promise&lt;void&gt;
+
+向可信的远端设备发起蓝牙配对。通过非蓝牙扫描的方式(例如NFC等)获取到外设的地址，可以通过该接口发起配对。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明                                  |
+| -------- | ------ | ---- | ----------------------------------- |
+| deviceId | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| transport | [BluetoothTransport](#bluetoothtransport10) | 是    | 表示设备类型，例如传统蓝牙设备或低功耗蓝牙设备。 |
+
+**返回值：**
+
+| 类型                                              | 说明                |
+| ------------------------------------------------- | ------------------- |
+| Promise&lt;void&gt; | 返回promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+try {
+    bluetoothManager.pairCredibleDevice("68:13:24:79:4C:8C", 0).then(() => {
+        console.info("PairCredibleDevice");
+    }, err => {
+        console.error("PairCredibleDevice:errCode" + err.code + ",errMessage:" + err.message);
+    });
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+
 ## bluetoothManager.getProfileConnectionState<a name="getProfileConnectionState"></a>
 
 getProfileConnectionState(profileId: ProfileId): ProfileConnectionState
@@ -4425,7 +4522,7 @@ try {
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称       | 类型  | 必填   | 说明          |
-| -------- | ------ | ---- | ---- | ----------- |
+| -------- | ------ |---- | ----------- |
 | write<sup>10+</sup>    | boolean | 是  | 表示该特征支持写操作，需要对端设备的回复。 |
 | writeNoResponse<sup>10+</sup> | boolean | 是    | 表示该特征支持写操作，无需对端设备回复。 |
 | read<sup>10+</sup> | boolean   |  是    | 表示该特征支持读操作。 |
@@ -4587,6 +4684,18 @@ try {
 | PROFILE_HANDS_FREE_AUDIO_GATEWAY | 4 | 表示HFP profile。  |
 | PROFILE_HID_HOST | 6 | 表示HID profile。  |
 | PROFILE_PAN_NETWORK | 7 | 表示PAN profile。  |
+
+
+## BluetoothTransport<sup>10+</sup><a name="BluetoothTransport"></a>
+
+枚举，表示设备类型。例如传统蓝牙设备或低功耗蓝牙设备，支持双模默认使用TRANSPORT_BR_EDR。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称                               | 值    | 说明              |
+| -------------------------------- | ------ | --------------- |
+| TRANSPORT_BR_EDR<sup>10+</sup>   | 0 | 表示传统蓝牙(BR/EDR)设备。 |
+| TRANSPORT_LE<sup>10+</sup>  | 1 | 表示低功耗蓝牙(BLE)设备。  |
 
 
 ## PinType<sup>10+</sup><a name="PinType"></a>
