@@ -28,7 +28,7 @@
     - [开发音频通话功能](audio-call-development.md)
   - [视频播放](video-playback.md)
   - [视频录制](video-recording.md)
-- 媒体会话（仅对系统应用开放）
+- 媒体会话
   - [媒体会话概述](avsession-overview.md)
   - 本地媒体会话
     - [本地媒体会话概述](local-avsession-overview.md)
