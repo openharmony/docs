@@ -19,7 +19,7 @@
     - [音频录制开发概述](audio-recording-overview.md)
     - [使用AVRecorder开发音频录制功能](using-avrecorder-for-recording.md)
     - [使用AudioCapturer开发音频录制功能](using-audiocapturer-for-recording.md)
-    - [使用OpenSLES开发音频录制功能](using-opensl-es-for-recording.md)
+    - [使用OpenSL ES开发音频录制功能](using-opensl-es-for-recording.md)
     - [管理麦克风](mic-management.md)
     - [音频录制流管理](audio-recording-stream-management.md)
     - [音频输入设备管理](audio-input-device-management.md)
