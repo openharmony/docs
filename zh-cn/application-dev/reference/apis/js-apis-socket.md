@@ -681,10 +681,10 @@ UDPSocket连接的其他属性。
 | 名称            | 类型    | 必填 | 说明                             |
 | ----------------- | ------- | ---- | -------------------------------- |
 | broadcast         | boolean | 否   | 是否可以发送广播。默认为false。  |
-| receiveBufferSize | number  | 否   | 接收缓冲区大小（单位：Byte）。   |
-| sendBufferSize    | number  | 否   | 发送缓冲区大小（单位：Byte）。   |
+| receiveBufferSize | number  | 否   | 接收缓冲区大小（单位：Byte），默认为0。   |
+| sendBufferSize    | number  | 否   | 发送缓冲区大小（单位：Byte），默认为0。   |
 | reuseAddress      | boolean | 否   | 是否重用地址。默认为false。      |
-| socketTimeout     | number  | 否   | 套接字超时时间，单位毫秒（ms）。 |
+| socketTimeout     | number  | 否   | 套接字超时时间，单位毫秒（ms），默认为0。 |
 
 ## SocketStateBase<sup>7+</sup>
 
@@ -1569,10 +1569,10 @@ TCPSocket连接的其他属性。
 | OOBInline         | boolean | 否   | 是否为OOB内联。默认为false。                                 |
 | TCPNoDelay        | boolean | 否   | TCPSocket连接是否无时延。默认为false。                       |
 | socketLinger      | Object  | 是   | socket是否继续逗留。<br />- on：是否逗留（true：逗留；false：不逗留）。<br />- linger：逗留时长，单位毫秒（ms），取值范围为0~65535。<br />当入参on设置为true时，才需要设置。 |
-| receiveBufferSize | number  | 否   | 接收缓冲区大小（单位：Byte）。                               |
-| sendBufferSize    | number  | 否   | 发送缓冲区大小（单位：Byte）。                               |
+| receiveBufferSize | number  | 否   | 接收缓冲区大小（单位：Byte），默认为0。                               |
+| sendBufferSize    | number  | 否   | 发送缓冲区大小（单位：Byte），默认为0。                               |
 | reuseAddress      | boolean | 否   | 是否重用地址。默认为false。                                  |
-| socketTimeout     | number  | 否   | 套接字超时时间，单位毫秒（ms）。                             |
+| socketTimeout     | number  | 否   | 套接字超时时间，单位毫秒（ms），默认为0。                             |
 
 ## TCP 错误码说明
 
@@ -2799,7 +2799,7 @@ TLS连接的操作。
 | -------------- | ------------------------------------- | ---  |-------------- |
 | address        | [NetAddress](#netaddress)             | 是  |  网关地址。       |
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | 是 | TLS安全相关操作。|
-| ALPNProtocols  | Array\<string\>                         | 否 | ALPN协议。      |
+| ALPNProtocols  | Array\<string\>                         | 否 | ALPN协议,支持["spdy/1", "http/1.1"]，默认为[]。      |
 
 ## TLSSecureOptions<sup>9+</sup>
 
@@ -2813,10 +2813,10 @@ TLS安全相关操作，其中ca证书为必选参数，其他参数为可选参
 | cert                  | string                                                  | 否 | 本地客户端的数字证书。                 |
 | key                   | string                                                  | 否 | 本地数字证书的私钥。                   |
 | password                | string                                                  | 否 | 读取私钥的密码。                      |
-| protocols             | [Protocol](#protocol9) \|Array\<[Protocol](#protocol9)\> | 否 | TLS的协议版本。                  |
-| useRemoteCipherPrefer | boolean                                                 | 否 | 优先使用对等方的密码套件。          |
-| signatureAlgorithms   | string                                                 | 否 | 通信过程中的签名算法。               |
-| cipherSuite           | string                                                 | 否 | 通信过程中的加密套件。               |
+| protocols             | [Protocol](#protocol9) \|Array\<[Protocol](#protocol9)\> | 否 | TLS的协议版本，默认为"TLSv1.2"。                  |
+| useRemoteCipherPrefer | boolean                                                 | 否 | 优先使用对等方的密码套件。        |
+| signatureAlgorithms   | string                                                 | 否 | 通信过程中的签名算法，默认为"" 。              |
+| cipherSuite           | string                                                 | 否 | 通信过程中的加密套件，默认为"" 。              |
 
 ## Protocol<sup>9+</sup>
 
