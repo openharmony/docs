@@ -468,18 +468,6 @@ Scroll组件在未设置高度情况下，默认为窗口高度，当滚动区�
 
 Scroll组件需要设置Scroll高度，或者使用Flex布局限制Scroll高度。
 
-## backgroundImage如何设置CenterCrop
-
-适用于：OpenHarmony 3.2 Beta5 API 9 Stage模型
-
-**问题现象**
-
-CenterCrop是android中imageView,scaletype的设置，主要保证图片等比缩放裁剪，位置保持居中，要达到相同效果，应该怎么处理？
-
-**解决措施**
-
-可以使用通用属性backgroundImageSize\(ImageSize.cover\)和backgroundImagePosition\(Alignment.Center\)达到相同效果。
-
 ## 如何自定义Video组件控制栏样式
 
 适用于：OpenHarmony 3.2 Beta5 API 9 Stage模型
