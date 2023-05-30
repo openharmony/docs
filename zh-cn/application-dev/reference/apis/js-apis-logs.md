@@ -19,9 +19,10 @@ debug(message: string, ...arguments: any[]): void
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
 | message | string | 是    | 表示要打印的文本信息。 |
-| arguments | any | 否    | 表示其余要打印的信息或message的替换值。 |
+| arguments | any[] | 否    | 表示其余要打印的信息或message的替换值。 |
 
 **示例：**
+
 ```js
 const number = 5;
 console.debug('count: %d', number);  // 格式化输出替换message中的文本。
@@ -45,9 +46,10 @@ log(message: string, ...arguments: any[]): void
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
 | message | string | 是    | 表示要打印的文本信息。 |
-| arguments | any | 否    |表示其余要打印的信息或message的替换值。 |
+| arguments | any[] | 否    |表示其余要打印的信息或message的替换值。 |
 
 **示例：**
+
 ```js
 const number = 5;
 console.log('count: %d', number);  // 格式化输出替换message中的文本。
@@ -71,7 +73,7 @@ info(message: string, ...arguments: any[]): void
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
 | message | string | 是    | 表示要打印的文本信息。 |
-| arguments | any | 否    | 表示其余要打印的信息或message的替换值。 |
+| arguments | any[] | 否    | 表示其余要打印的信息或message的替换值。 |
 
 **示例：**
 ```js
@@ -97,9 +99,10 @@ warn(message: string, ...arguments: any[]): void
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
 | message | string | 是    | 表示要打印的警告信息。 |
-| arguments | any | 否    | 表示其余要打印的信息或message的替换值。 |
+| arguments | any[] | 否    | 表示其余要打印的信息或message的替换值。 |
 
 **示例：**
+
 ```js
 const str = "name should be string";
 console.warn('warn: %d', str);  // 格式化输出替换message中的文本。
@@ -123,10 +126,11 @@ error(message: string, ...arguments: any[]): void
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
 | message | string | 是    | 表示要打印的错误信息。 |
-| arguments | any | 否    | 表示其余要打印的信息或message的替换值。 |
+| arguments | any[] | 否    | 表示其余要打印的信息或message的替换值。 |
 
 
 **示例：**
+
 ```js
 const str = "value is not defined";
 console.error('error: %d', str);  // 格式化输出替换message中的文本。
@@ -153,6 +157,7 @@ assert(value?: Object, ...arguments: Object[]): void
 | arguments | Object | 否    | value为假(false)的后续错误消息打印。省略则不打印。|
 
 **示例：**
+
 ```js
 console.assert(true, 'does nothing');  // 表达式结果值为true, 无打印。
 console.assert(2 % 1 == 0, 'does nothing');  // 表达式结果值为true, 无打印。
@@ -180,6 +185,7 @@ count(label?: string): void
 
 
 **示例：**
+
 ```js
 console.count()
 // default: 1
@@ -210,6 +216,7 @@ countReset(label?: string): void
 | label | string | 否    | 计数器标签名。默认值为'default'。|
 
 **示例：**
+
 ```js
 console.count('abc');
 // abc: 1
@@ -234,6 +241,7 @@ dir(dir?: Object): void
 
 
 **示例：**
+
 ```js
 let a = { foo: { bar: { baz: true } }};
 console.dir(a);
@@ -258,6 +266,7 @@ dirxml(...arguments: Object[]): void
 | arguments | Object | 是    | 要打印的信息。 |
 
 **示例：**
+
 ```js
 const number = 5;
 console.dirxml('count: %d', number);
@@ -284,6 +293,7 @@ group(...arguments: Object[]): void
 | arguments | Object | 否    | 要打印的信息。 |
 
 **示例：**
+
 ```js
 console.log("outter");
 // outter
@@ -313,6 +323,7 @@ groupCollapsed(...arguments: Object[]): void
 
 
 **示例：**
+
 ```js
 console.groupCollapsed("outter");
 // outter
@@ -335,6 +346,7 @@ groupEnd(): void
 
 
 **示例：**
+
 ```js
 console.log("outter");
 // outter
@@ -362,6 +374,7 @@ table(tableData?: Object): void
 | tableData | Object | 否    | 要打印为表格形式的对象。省略则无任何打印。 |
 
 **示例：**
+
 ```js
 console.table([1, 2, 3]);
 // ┌─────────┬────────┐
@@ -382,6 +395,7 @@ console.table({ a: [1, 2, 3, 4, 5], b: 5, c: { e: 5 } });
 // │    c    │   │   │   │   │   │ 5 │        │
 // └─────────┴───┴───┴───┴───┴───┴───┴────────┘
 ```
+
 ## console.time<sup>10+</sup>
 
 time(label?: string): void
@@ -397,6 +411,7 @@ time(label?: string): void
 | label | string | 否    | 计时器标识。默认值为'default'。 |
 
 **示例：**
+
 ```js
 console.time('abc');
 ```
@@ -416,6 +431,7 @@ timeEnd(label?: string): void
 | label | string | 否    | 计时器标识。默认值为'default' |
 
 **示例：**
+
 ```js
 console.time('abc');
 console.timeEnd('abc');
@@ -438,6 +454,7 @@ timeLog(label?: string, ...arguments: Object[]): void
 | arguments | Object | 否    | 需要打印的其他日志。 |
 
 **示例：**
+
 ```js
 console.time('timer1');
 console.timeLog('timer1', 17);
@@ -461,6 +478,7 @@ trace(...arguments: Object[]): void
 | arguments | Object | 否    | 需要打印的其他日志。省略则仅打印堆栈信息。|
 
 **示例：**
+
 ```js
 console.trace();
 // Trace:
