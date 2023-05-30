@@ -213,6 +213,9 @@
   - [@ohos.multimedia.camera (相机管理)](js-apis-camera.md)
   - [@ohos.multimedia.image (图片处理)](js-apis-image.md)
   - [@ohos.multimedia.media (媒体服务)](js-apis-media.md)
+  - [@ohos.multimedia.systemSoundManager (系统声音管理)](js-apis-systemSoundManager.md)
+  - multimedia
+    - [ringtonePlayer (铃声播放器)](js-apis-inner-multimedia-ringtonePlayer.md)
 
 - 资源管理
   - [@ohos.i18n (国际化-I18n)](js-apis-i18n.md)
@@ -250,6 +253,7 @@
   - [@ohos.data.distributedKVStore (分布式键值数据库)](js-apis-distributedKVStore.md)
   - [@ohos.data.preferences (用户首选项)](js-apis-data-preferences.md)
   - [@ohos.data.relationalStore (关系型数据库)](js-apis-data-relationalStore.md)
+  - [@ohos.data.UDMF (统一数据管理框架)](js-apis-data-udmf.md)
   - [@ohos.data.ValuesBucket (数据集)](js-apis-data-valuesBucket.md)
 
 - 文件管理
@@ -332,6 +336,7 @@
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
   - [console (控制台)](js-apis-logs.md)
   - [Timer (定时器)](js-apis-timer.md)
+  - [syscap (系统能力)](js-apis-syscap.md)
   - application
     - [AccessibilityExtensionContext (辅助功能扩展上下文)](js-apis-inner-application-accessibilityExtensionContext.md)
 

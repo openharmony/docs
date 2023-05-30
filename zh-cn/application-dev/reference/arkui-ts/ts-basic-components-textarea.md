@@ -81,14 +81,14 @@ caretPosition(value: number): void
 
 setTextSelection(selectionStart: number, selectionEnd: number): void
 
-设置文本选择范围。
+组件在获焦状态下，调用该接口设置文本选择区域并高亮显示，且只有在selectionStart小于selectionEnd时，文字才会被选取、高亮显示。
 
 **参数：**
 
-| 参数名         | 参数类型 | 必填 | 参数描述           |
-| -------------- | -------- | ---- | ------------------ |
-| selectionStart | number   | 是   | 选择范围起始位置。 |
-| selectionEnd   | number   | 是   | 选择范围结束位置。 |
+| 参数名         | 参数类型 | 必填 | 参数描述                                                     |
+| -------------- | -------- | ---- | ------------------------------------------------------------ |
+| selectionStart | number   | 是   | 文本选择区域起始位置，文本框中文字的起始位置为0。<br/>当selectionStart小于0时、按照0处理；当selectionStart大于文字最大长度时、按照文字最大长度处理。<br/> |
+| selectionEnd   | number   | 是   | 文本选择区域结束位置。<br/>当selectionEnd小于0时、按照0处理；当selectionEnd大于文字最大长度时、按照文字最大长度处理。<br/> |
 
 ## 示例
 

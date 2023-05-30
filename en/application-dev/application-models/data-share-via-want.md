@@ -48,9 +48,9 @@ function implicitStartAbility() {
     }
   }
   context.startAbility(wantInfo).then(() => {
-    // ...
+    ...
   }).catch((err) => {
-    // ...
+    ...
   })
 }
 ```
@@ -66,8 +66,7 @@ In the preceding code, under the custom field **parameters**, the following **ab
 - **ability.picker.fileSizes**: file size, in bytes.
 - **ability.picker.fileNames** and **ability.picker.fileSizes** are arrays and have a one-to-one mapping.
 
-The following figure shows an example. 
-
+The following figure shows an example.  
 ![](figures/ability-startup-with-implicit-want2.png)
 
 ## Shared Party
@@ -77,17 +76,17 @@ To enable the shared party to identify the shared content, configure **skills** 
 ```json
 {
   "module": {
-    // ...
+    ...
     "abilities": [
       {
-        // ...
+        ...
         "skills": [
           {
-            // ...
+            ...
             "actions": [
               "action.system.home",
               "ohos.want.action.sendData"
-              // ...
+              ...
             ],
             "uris": [
               {
@@ -102,7 +101,7 @@ To enable the shared party to identify the shared content, configure **skills** 
 }
 ```
 
-After the user selects an application, the Want nested in the **ability.want.params.INTENT** field is passed to that application. The UIAbility of the shared party, after being started, can call [onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [onNewWant()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant) to obtain the passed Want.
+After the user selects an application, the Want nested in the **ability.want.params.INTENT** field is passed to that application. After the UIAbility of the application starts, the application obtains **want** information from [**onCreate()**](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate) or [**onNewWant()**](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityonnewwant).
 
 The following is an example of the Want obtained. You can use the FD of the shared file to perform required operations.
 

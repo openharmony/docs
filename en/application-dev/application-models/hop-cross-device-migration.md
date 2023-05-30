@@ -55,21 +55,21 @@ The table below describes the main APIs used for cross-device migration. For det
 
    Configure the application to support migration.
    Set the **continuable** field in the **module.json5** file to **true**. The default value is **false**. If this parameter is set to **false**, the application cannot be continued on the target device.
-   
-   
-      ```json
-      {
-        "module": {
-          // ...
-          "abilities": [
-            {
-              // ...
-              "continuable": true,
-            }
-          ]
-        }
-      }
-      ```
+
+
+   ```json
+   {
+     "module": {
+       ...
+       "abilities": [
+         {
+           ...
+           "continuable": true,
+         }
+       ]
+     }
+   }
+   ```
 
    Configure the application launch type. For details, see [UIAbility Component Launch Type](uiability-launch-type.md).
 
@@ -83,19 +83,19 @@ The table below describes the main APIs used for cross-device migration. For det
 
      The sample code is as follows:
      
-     ```ts
-     import UIAbility from '@ohos.app.ability.UIAbility';
-     import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-     
-     onContinue(wantParam : {[key: string]: any}) {         
-         console.info(`onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`)         
-         let workInput = AppStorage.Get<string>('ContinueWork');         
-         // Set the user input data into wantParam.        
-         wantParam["work"] = workInput // set user input data into want params         
-         console.info(`onContinue input = ${wantParam["input"]}`);         
-         return AbilityConstant.OnContinueResult.AGREE     
-     }
-     ```
+   ```ts
+   import UIAbility from '@ohos.app.ability.UIAbility';
+   import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+   
+   onContinue(wantParam : {[key: string]: any}) {         
+       console.info(`onContinue version = ${wantParam.version}, targetDevice: ${wantParam.targetDevice}`)         
+       let workInput = AppStorage.Get<string>('ContinueWork');         
+       // Set the user input data into wantParam.        
+       wantParam["work"] = workInput // set user input data into want params         
+       console.info(`onContinue input = ${wantParam["input"]}`);         
+       return AbilityConstant.OnContinueResult.AGREE     
+   }
+   ```
 
 5. Implement **onCreate()** and **onNewWant()** in the UIAbility of the target application to implement data restoration.
    - Implementation example of **onCreate** in the multi-instance scenario

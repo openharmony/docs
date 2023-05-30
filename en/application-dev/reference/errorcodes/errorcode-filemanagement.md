@@ -4,9 +4,14 @@
 >
 > This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
 
-The error codes of the file management subsystem consist of the following:<br>- Basic file I/O error codes<br>- User data management error codes<br>- User file access error codes<br>- Spatial statistics error codes
+The error codes of the file management subsystem include the following:
 
-## Basic File I/O Error Codes
+- [Basic File IO Error Codes](#basic-file-io-error-codes)
+- [User Data Management Error Codes](#user-data-management-error-code)
+- [User File Access Error Codes](#user-file-access-error-codes)
+- [Space Statistics Error Codes](#space-statistics-error-codes)
+
+## Basic File IO Error Codes
 
 ### 13900001 Operation Not Permitted
 
@@ -49,6 +54,7 @@ The process does not exist.
 **Solution**
 
 1. Check whether the process is killed unexpectedly.
+
 2. Check whether the service related to the process has started.
 
 ### 13900004 System Call Interrupted
@@ -64,6 +70,7 @@ The system call is interrupted by another thread.
 **Solution**
 
 1. Check the multi-thread code logic.
+
 2. Invoke the system call again.
 
 ### 13900005 I/O Error
@@ -161,7 +168,9 @@ Out of memory
 A memory overflow occurs.
 
 **Solution**
+
 1. Check the memory overhead.
+
 2. Control the memory overhead.
 
 ### 13900012 Permission Denied
@@ -172,13 +181,14 @@ Permission denied
 
 **Possible Causes**
 
-
-
 1. You do not have the permission to operate the file.
+
 2. The file sandbox path is incorrect.
 
 **Solution**
-1. Check that you have the permission to operate the file.
+
+1. Check that the required permission is available.
+
 2. Check that the file sandbox path is correct.
 
 ### 13900013 Incorrect Address
@@ -375,7 +385,7 @@ Seek is used in pipe or FIFO.
 
 **Solution**
 
-Check the use of seek.
+Check the use of **seek()**.
 
 ### 13900027 Read-Only File System
 
@@ -460,6 +470,7 @@ The specified directory is not empty.
 **Solution**
 
 1. Check the directory.
+
 2. Ensure that the directory is empty.
 
 ### 13900033 Too Many Symbol Links
@@ -516,7 +527,7 @@ The device pointed to by the file descriptor is not a character stream device.
 
 **Solution**
 
-Check whether the file descriptor points to a stream device.
+Check whether the file descriptor points to a stream.
 
 ### 13900037 No Data Available
 
@@ -599,7 +610,9 @@ Unknown error
 The error is unidentified.
 
 **Solution**
+
 1. Call the API again.
+
 2. Restart the service.
 
 ## User Data Management Error Codes
@@ -636,7 +649,7 @@ Use the obtained URI.
 
 **Error Message**
 
-Invalid file extension
+Invalid file name extension
 
 **Possible Causes**
 
@@ -660,7 +673,7 @@ The file is moved to the Recycle Bin.
 
 Check whether the file is in the Recycle Bin.
 
-## Spatial Statistics Error Codes
+## Space Statistics Error Codes
 
 ### 13600001 IPC Failed
 
@@ -680,7 +693,7 @@ Check whether the service is started.
 
 **Error Message**
 
-Not supported file system
+Not supported filesystem
 
 **Possible Causes**
 
@@ -767,11 +780,15 @@ Check whether the specified directory or node exists.
 No such object
 
 **Possible Causes**
+
 1. The specified volume ID is incorrect.
+
 2. The specified bundle name is incorrect.
 
 **Solution**
+
 1. Check whether the specified volume exists.
+
 2. Check whether the specified bundle name exists.
 
 ### 13600009 Invalid User ID
@@ -799,6 +816,7 @@ IPC error
 **Possible Causes**
 
 1. The server service does not exist.
+
 2. The extension mechanism is abnormal.
 
 **Solution**
@@ -854,7 +872,9 @@ Check the data returned by the server.
 Fail to register notification
 
 **Possible Causes**
+
 1. The server service does not exist.
+
 2. The extension mechanism is abnormal.
 
 **Solution**
@@ -868,7 +888,9 @@ Check that the server service exists.
 Fail to remove notification
 
 **Possible Causes**
+
 1. The server service does not exist.
+
 2. The extension mechanism is abnormal.
 
 **Solution**
@@ -896,47 +918,11 @@ Check whether the specified Notify agent is registered.
 Fail to notify agent
 
 **Possible Causes**
+
 1. The service does not exist.
+
 2. The extension mechanism is abnormal.
 
 **Solution**
 
 Check whether the client is normal.
-
-## Error Code Adaptation
-The APIs provided by the file management subsystem support exception handling.
-Sample code for exception handling in a synchronous API:
-```js
-import fs from '@ohos.file.fs'
-
-try {
-    let file = fs.openSync(path, fs.OpenMode.READ_ONLY);
-} catch (err) {
-    console.error("openSync errCode:" + err.code + ", errMessage:" + err.message);
-}
-```
-Sample code for exception handling in an asynchronous API (promise):
-```js
-import fs from '@ohos.file.fs'
-
-try {
-    let file = await fs.open(path, fs.OpenMode.READ_ONLY);
-} catch (err) {
-    console.error("open promise errCode:" + err.code + ", errMessage:" + err.message);
-}
-```
-
-Sample code for exception handling in an asynchronous API (callback):
-```js
-import fs from '@ohos.file.fs'
-
-try {
-    fs.open(path, fs.OpenMode.READ_ONLY, function(e, file){ // Asynchronous thread (such as the system call) errors are obtained via a callback.
-        if (e) {
-            console.error("open in async errCode:" + e.code + ", errMessage:" + e.message);
-        }
-    });
-} catch (err) {// Main thread errors (such as invalid parameters) are obtained by try catch.
-    console.error("open callback errCode:" + err.code + ", errMessage:" + err.message);
-}
-```

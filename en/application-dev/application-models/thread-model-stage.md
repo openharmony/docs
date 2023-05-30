@@ -1,4 +1,4 @@
-# Thread Model (Stage Model)
+# Thread Model Overview (Stage Model)
 
 For an OpenHarmony application, each process has a main thread to provide the following functionalities:
 
@@ -17,5 +17,6 @@ Based on the OpenHarmony thread model, different services run on different threa
 
 > **NOTE**
 > 
-> - The stage model provides only the main thread and worker thread. Emitter is mainly used for event synchronization within the main thread or between the main thread and worker thread.
-> - To view thread information about an application process, run the **hdc shell** command to enter the shell CLI of the device, and then run the **ps -p *<pid>* -T command**, where *<pid>* indicates the ID of the application process.
+> - The stage model provides only the main thread and worker thread. Emitter is mainly used for event synchronization within the worker thread or between the main thread and worker thread.
+> - The UIAbility and UI are in the main thread. For details about data synchronization between them, see [Data Synchronization Between UIAbility and UI](uiability-data-sync-with-ui.md).
+> - To view thread information about an application process, run the **hdc shell** command to enter the shell CLI of the device, and then run the **ps -p *<pid>* -T command**, where *<pid>* indicates the [process ID](process-model-stage.md) of the application.

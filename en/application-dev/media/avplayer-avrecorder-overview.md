@@ -59,6 +59,7 @@ The table below lists the supported protocols.
 | -------- | -------- |
 | Local VOD| The file descriptor is supported, but the file path is not.|
 | Network VoD| HTTP, HTTPS, and HLS are supported.|
+| Live webcasting| HLS is supported.|
 
 The table below lists the supported audio playback formats.
 
