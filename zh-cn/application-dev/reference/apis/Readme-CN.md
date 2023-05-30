@@ -182,18 +182,18 @@
 
 - UI界面
   - [@ohos.animator (动画)](js-apis-animator.md)
-  - [@ohos.arkui.componentSnapshot（组件截图）](js-apis-arkui-componentSnapshot.md)
+  - [@ohos.arkui.componentSnapshot (组件截图)](js-apis-arkui-componentSnapshot.md)
   - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
   - [@ohos.curves (插值计算)](js-apis-curve.md)
-  - [@ohos.font(注册自定义字体)](js-apis-font.md)
+  - [@ohos.font (注册自定义字体)](js-apis-font.md)
   - [@ohos.matrix4 (矩阵变换)](js-apis-matrix4.md)
   - [@ohos.mediaquery (媒体查询)](js-apis-mediaquery.md)
-  - [@ohos.pluginComponent(PluginComponentManager)](js-apis-plugincomponent.md)
+  - [@ohos.pluginComponent (PluginComponentManager)](js-apis-plugincomponent.md)
   - [@ohos.promptAction (弹窗)](js-apis-promptAction.md)
   - [@ohos.router (页面路由)](js-apis-router.md)
   - [@ohos.measure (文本计算)](js-apis-measure.md)
-  - [@ohos.uiAppearance(用户界面外观)](js-apis-uiappearance.md)
-  
+  - [@ohos.uiAppearance (用户界面外观)](js-apis-uiappearance.md)
+
 - 图形图像
   - [@ohos.animation.windowAnimationManager (窗口动画管理)](js-apis-windowAnimationManager.md)
   - [@ohos.application.WindowExtensionAbility (窗口扩展能力)](js-apis-application-windowExtensionAbility.md)
