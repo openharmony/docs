@@ -1897,3 +1897,23 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+## ohos.permission.DEVICE_STANDBY_EXEMPTION
+
+允许应用在系统待机模式正常使用资源。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.RESTRICT_APPLICATION_ACTIVE
+
+允许待机续航部件发布一个自定义的限网事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
