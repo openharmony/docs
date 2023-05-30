@@ -5,7 +5,7 @@ Before configuring a widget to update periodically, enable the periodic update f
 The widget framework provides the following modes of updating widgets periodically:
 
 
-- Set the update interval: The widget will be updated at the specified interval. You can specify the interval by setting the [updateDuration](arkts-ui-widget-configuration.md) field in the **form_config.json** file. For example, you can configure the widget to update once an hour.
+- Set the update interval: The widget will be updated at the specified interval by calling [onUpdateForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onupdateform). You can specify the interval by setting the [updateDuration](arkts-ui-widget-configuration.md) field in the **form_config.json** file. For example, you can configure the widget to update once an hour.
   
   > **NOTE**
   >
