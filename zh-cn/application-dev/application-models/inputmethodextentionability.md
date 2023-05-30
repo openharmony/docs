@@ -1,4 +1,4 @@
-# InputMethodExtensionAbility开发指南
+# InputMethodExtensionAbility
 
 ## 使用场景
 [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md)基于[ExtensionAbility](extensionability-overview.md)框架，用于开发输入法应用。
