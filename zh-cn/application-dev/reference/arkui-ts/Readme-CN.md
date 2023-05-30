@@ -50,6 +50,7 @@
       - [全屏模态转场](ts-universal-attributes-modal-transition.md)
       - [半模态转场](ts-universal-attributes-sheet-transition.md)
   - [文本通用属性](ts-universal-attributes-text-style.md)
+  - [安全控件通用属性](ts-universal-attributes-securitycomponent.md)
   - 手势处理
     - [绑定手势方法](ts-gesture-settings.md)
     - 基础手势
@@ -92,6 +93,9 @@
   - [RichText](ts-basic-components-richtext.md)
   - [ScrollBar](ts-basic-components-scrollbar.md)
   - [Search](ts-basic-components-search.md)
+  - [SecLocationButton](ts-basic-components-seclocationbutton.md)
+  - [SecPasteButton](ts-basic-components-secpastebutton.md)
+  - [SecSaveButton](ts-basic-components-secsavebutton.md)
   - [Select](ts-basic-components-select.md)
   - [Slider](ts-basic-components-slider.md)
   - [Span](ts-basic-components-span.md)
