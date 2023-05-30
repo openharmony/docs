@@ -76,6 +76,7 @@ info(message: string, ...arguments: any[]): void
 | arguments | any[] | 否    | 表示其余要打印的信息或message的替换值。 |
 
 **示例：**
+
 ```js
 const number = 5;
 console.info('count: %d', number);  // 格式化输出替换message中的文本。
