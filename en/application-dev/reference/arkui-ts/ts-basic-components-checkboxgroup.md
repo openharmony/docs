@@ -39,7 +39,7 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 
 | Name| Description|
 | -------- | -------- |
-| onChange (callback: (event: [CheckboxGroupResult](#checkboxgroupresult)) => void ) |Triggered when the selected status of the check box group or any check box wherein changes due to a manual operation.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| onChange (callback: (event: [CheckboxGroupResult](#checkboxgroupresult)) => void ) |Triggered when the selected status of the check box group or any check box wherein changes.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## CheckboxGroupResult
 

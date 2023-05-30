@@ -6,7 +6,7 @@ The file of an application can be shared with another application based on the f
 
 - You can also use **open()** of the ohos.file.fs module to share an application file with the specified permissions to another application based on the FD. After parsing the FD from **Want**, the target application can read and write the file by using **read()** and **write()** APIs of ohos.file.fs.
 
-You can use the related APIs to [share a file with another application](#sharing-a-file-with-another-application) or [use shared application files](#using-shared-application-files).
+You can use the related APIs to [share a file with another application](#sharing-a-file-with-another-application) or [use shared application files](#using-shared-files).
 
 ## File URI Specifications
 

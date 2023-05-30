@@ -4,8 +4,7 @@ The **securityLabel** module provides APIs for managing data security levels of 
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs of this module support processing of error codes. For details, see [File Management Error Codes](../errorcodes/errorcode-filemanagement.md).
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -60,9 +59,24 @@ Sets a security label for a file in asynchronous mode. This API uses a promise t
 
 **Return value**
 
-| Type               | Description            |
-| ------------------- | ---------------- |
-| Promise&lt;void&gt; | Promise that returns no value.|
+  | Type               | Description            |
+  | ------------------- | ---------------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+| ID| Error Message|
+| -------- | -------- |
+| 13900001 | Operation not permitted |
+| 13900007 | Arg list too long |
+| 13900015 | File exists |
+| 13900020 | Invalid argument |
+| 13900025 | No space left on device |
+| 13900037 | No data available |
+| 13900041 | Quota exceeded |
+| 13900042 | Unknown error |
 
 **Example**
 
@@ -90,6 +104,21 @@ Sets a security label for a file in asynchronous mode. This API uses an asynchro
 | path      | string                    | Yes  | Path of the target file.                                    |
 | type      | DataLevel                 | Yes  | File security level to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
 | callback  | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.                  |
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+| ID| Error Message|
+| -------- | -------- |
+| 13900001 | Operation not permitted |
+| 13900007 | Arg list too long |
+| 13900015 | File exists |
+| 13900020 | Invalid argument |
+| 13900025 | No space left on device |
+| 13900037 | No data available |
+| 13900041 | Quota exceeded |
+| 13900042 | Unknown error |
 
 **Example**
 
@@ -119,6 +148,21 @@ Sets a security label for a file in synchronous mode.
 | path      | string | Yes  | Path of the target file.                                    |
 | type      | DataLevel | Yes  | File security level to set, which can be **s0**, **s1**, **s2**, **s3**, or **s4**.|
 
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+| ID| Error Message|
+| -------- | -------- |
+| 13900001 | Operation not permitted |
+| 13900007 | Arg list too long |
+| 13900015 | File exists |
+| 13900020 | Invalid argument |
+| 13900025 | No space left on device |
+| 13900037 | No data available |
+| 13900041 | Quota exceeded |
+| 13900042 | Unknown error |
+
 **Example**
 
 ```js
@@ -136,15 +180,30 @@ Obtains the security label of a file in asynchronous mode. This API uses a promi
 
 **Parameters**
 
-| Name| Type  | Mandatory| Description    |
-| ------ | ------ | ---- | -------- |
-| path   | string | Yes  | Path of the target file.|
+  | Name| Type  | Mandatory| Description    |
+  | ------ | ------ | ---- | -------- |
+  | path   | string | Yes  | Path of the target file.|
 
 **Return value**
 
-| Type                 | Description        |
-| --------------------- | ------------ |
-| Promise&lt;string&gt; | Security label obtained.|
+  | Type                 | Description        |
+  | --------------------- | ------------ |
+  | Promise&lt;string&gt; | Security label obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+| ID| Error Message|
+| -------- | -------- |
+| 13900001 | Operation not permitted |
+| 13900007 | Arg list too long |
+| 13900015 | File exists |
+| 13900020 | Invalid argument |
+| 13900025 | No space left on device |
+| 13900037 | No data available |
+| 13900041 | Quota exceeded |
+| 13900042 | Unknown error |
 
 **Example**
 
@@ -167,10 +226,25 @@ Obtains the security label of a file in asynchronous mode. This API uses a callb
 
 **Parameters**
 
-| Name  | Type                       | Mandatory| Description                      |
-| -------- | --------------------------- | ---- | -------------------------- |
-| path     | string                      | Yes  | Path of the target file.                  |
-| callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the security label obtained.|
+  | Name  | Type                       | Mandatory| Description                      |
+  | -------- | --------------------------- | ---- | -------------------------- |
+  | path     | string                      | Yes  | Path of the target file.                  |
+  | callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the security label obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+| ID| Error Message|
+| -------- | -------- |
+| 13900001 | Operation not permitted |
+| 13900007 | Arg list too long |
+| 13900015 | File exists |
+| 13900020 | Invalid argument |
+| 13900025 | No space left on device |
+| 13900037 | No data available |
+| 13900041 | Quota exceeded |
+| 13900042 | Unknown error |
 
 **Example**
 
@@ -184,6 +258,7 @@ Obtains the security label of a file in asynchronous mode. This API uses a callb
     }
   });
   ```
+
 ## securityLabel.getSecurityLabelSync
 
 getSecurityLabelSync(path:string):string
@@ -203,6 +278,21 @@ Obtains the security label of a file in synchronous mode.
 | Type  | Description        |
 | ------ | ------------ |
 | string | Security label obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Basic File IO Error Codes](../errorcodes/errorcode-filemanagement.md#basic-file-io-error-codes).
+
+| ID| Error Message|
+| -------- | -------- |
+| 13900001 | Operation not permitted |
+| 13900007 | Arg list too long |
+| 13900015 | File exists |
+| 13900020 | Invalid argument |
+| 13900025 | No space left on device |
+| 13900037 | No data available |
+| 13900041 | Quota exceeded |
+| 13900042 | Unknown error |
 
 **Example**
 

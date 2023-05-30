@@ -106,6 +106,10 @@ Decorators for [managing the state owned by a component](arkts-state.md):
 
 - \@ObjectLink: An \@ObjectLink decorated variable, when used with an \@Observed decorated class of the parent component, is for two-way data synchronization in scenarios involving multiple levels of nested objects or arrays in the class.
 
+> **NOTE**
+>
+> Only [\@Observed/\@ObjectLink](arkts-observed-and-objectlink.md) can observe changes of nested attributes. Other decorators can only observe changes of attributes at the first layer. For details, see the "Observed Changes and Behavior" part in each decorator section.
+
 
 Decorators for [managing the state owned by an application](arkts-state.md):
 

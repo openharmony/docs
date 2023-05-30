@@ -231,7 +231,7 @@ struct MyComponent {
       Text(`${this.title.value}`)
       Button(`Click to change title`).onClick(() => {
         // The update of the @State decorated variable triggers the update of the <Text> component.
-        this.title.value = this.title.value === 'Hello ArkUI' ? 'Hello World' : 'HelloArkUI';
+        this.title.value = this.title.value === 'Hello ArkUI' ? 'Hello World' : 'Hello ArkUI';
       })
 
       Button(`Click to increase count=${this.count}`).onClick(() => {

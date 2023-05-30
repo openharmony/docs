@@ -609,7 +609,7 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.BarrierFree.Accessibility.Core
 
-## attributeNames
+### attributeNames
 
 attributeNames\<T extends keyof ElementAttributeValues>(): Promise\<Array\<T>>;
 
@@ -635,7 +635,7 @@ rootElement.attributeNames().then((data) => {
     console.log('failed to get attribute names, because '  + JSON.stringify(err));
 });
 ```
-## attributeNames
+### attributeNames
 
 attributeNames\<T extends keyof ElementAttributeValues>(callback: AsyncCallback\<Array\<T>>): void;
 
@@ -663,7 +663,7 @@ rootElement.attributeNames((err, data) => {
     console.info('get attribute names success');
 });
 ```
-## AccessibilityElement.attributeValue
+### attributeValue
 
 attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promise\<ElementAttributeValues[T]>;
 
@@ -708,7 +708,7 @@ try {
     console.log('failed to get attribute value, because ' + JSON.stringify(exception));
 }
 ```
-## AccessibilityElement.attributeValue
+### attributeValue
 
 attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T, 
     callback: AsyncCallback\<ElementAttributeValues[T]>): void;
@@ -751,7 +751,7 @@ try {
     console.log('failed to get attribute value, because ' + JSON.stringify(exception));
 }
 ```
-## actionNames
+### actionNames
 
 actionNames(): Promise\<Array\<string>>;
 
@@ -777,7 +777,7 @@ rootElement.actionNames().then((data) => {
     console.log('failed to get action names because '  + JSON.stringify(err));
 });
 ```
-## actionNames
+### actionNames
 
 actionNames(callback: AsyncCallback\<Array\<string>>): void;
 
@@ -805,7 +805,7 @@ rootElement.actionNames((err, data) => {
     console.info('get action names success');
 });
 ```
-## performAction
+### performAction
 
 performAction(actionName: string, parameters?: object): Promise\<void>;
 
@@ -848,7 +848,7 @@ try {
     console.log('failed to perform action, because ' + JSON.stringify(exception));
 }
 ```
-## performAction
+### performAction
 
 performAction(actionName: string, callback: AsyncCallback\<void>): void;
 
@@ -887,7 +887,7 @@ try {
     console.log('failed to perform action, because ' + JSON.stringify(exception));
 }
 ```
-## performAction
+### performAction
 
 performAction(actionName: string, parameters: object, callback: AsyncCallback\<void>): void;
 
@@ -931,7 +931,7 @@ try {
     console.log('failed to perform action, because ' + JSON.stringify(exception));
 }
 ```
-## findElement('content')
+### findElement('content')
 
 findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityElement>>;
 
@@ -970,7 +970,7 @@ try {
     console.log('failed to find element, because ' + JSON.stringify(exception));
 }
 ```
-## findElement('content')
+### findElement('content')
 
 findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
@@ -1006,7 +1006,7 @@ try {
     console.log('failed to find element, because ' + JSON.stringify(exception));
 }
 ```
-## findElement('focusType')
+### findElement('focusType')
 
 findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElement>;
 
@@ -1045,7 +1045,7 @@ try {
     console.log('failed to find element, because ' + JSON.stringify(exception));
 }
 ```
-## findElement('focusType')
+### findElement('focusType')
 
 findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<AccessibilityElement>): void;
 
@@ -1081,7 +1081,7 @@ try {
     console.log('failed to find element, because ' + JSON.stringify(exception));
 }
 ```
-## findElement('focusDirection')
+### findElement('focusDirection')
 
 findElement(type: 'focusDirection', condition: FocusDirection): Promise\<AccessibilityElement>;
 
@@ -1120,7 +1120,7 @@ try {
     console.log('failed to find element, because ' + JSON.stringify(exception));
 }
 ```
-## findElement('focusDirection')
+### findElement('focusDirection')
 
 findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCallback\<AccessibilityElement>): void;
 
