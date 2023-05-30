@@ -232,7 +232,7 @@ import window from '@ohos.window';
 | isLayoutFullScreen<sup>7+</sup>       | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。true表示沉浸式；false表示非沉浸式。 |
 | focusable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。true表示可聚焦；false表示不可聚焦。 |
 | touchable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。true表示可触摸；false表示不可触摸。 |
-| brightness                            | number                    | 是   | 是   | 屏幕亮度， 取值范围为0~1，1表示最大亮度值。                  |
+| brightness                            | number                    | 是   | 是   | 屏幕亮度， 可设置的亮度范围为0~1，其中1表示最大亮度值。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1。 |
 | dimBehindValue<sup>(deprecated)</sup> | number                    | 是   | 是   | 靠后窗口的暗度值，取值范围为0~1，1表示最暗。<br>- **说明：** 从API version 9开始废弃。<br>- 从 API version 7开始支持。 |
 | isKeepScreenOn                        | boolean                   | 是   | 是   | 屏幕是否常亮，默认为false。true表示常亮；false表示不常亮。 |
 | isPrivacyMode<sup>7+</sup>            | boolean                   | 是   | 是   | 隐私模式，默认为false。true表示模式开启；false表示模式关闭。 |
@@ -332,6 +332,8 @@ createWindow(config: Configuration, callback: AsyncCallback&lt;Window&gt;): void
 | ------- | -------------------------------- |
 | 1300001 | Repeated operation. |
 | 1300006 | This window context is abnormal. |
+| 1300008 | The operation is on invalid display. |
+| 1300009 | The parent window is invalid. |
 
 **示例：**
 
@@ -381,6 +383,8 @@ createWindow(config: Configuration): Promise&lt;Window&gt;
 | ------- | -------------------------------- |
 | 1300001 | Repeated operation. |
 | 1300006 | This window context is abnormal. |
+| 1300008 | The operation is on invalid display. |
+| 1300009 | The parent window is invalid. |
 
 **示例：**
 
@@ -419,6 +423,14 @@ findWindow(name: string): Window
 | 类型 | 说明 |
 | ----------------- | ------------------- |
 | [Window](#window) | 当前查找的窗口对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 1300002 | This window state is abnormal. |
 
 **示例：**
 

@@ -298,6 +298,82 @@ appManager.getRunningProcessInformation((err, data) => {
 });
 ```
 
+## appManager.isSharedBundleRunning
+
+isSharedBundleRunning(bundleName: string, versionCode: number): Promise\<boolean>;
+
+检查共享库是否正在使用。使用Promise异步回调。
+
+**需要权限**：ohos.permission.GET_RUNNING_INFO
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**：此接口为系统接口。
+
+**参数**：
+
+| 参数名        | 类型                                       | 必填   | 说明             |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| bundleName    | string   | 是    | 表示要查询的共享库包名。 |
+| versionCode   | number   | 是    | 表示要查询的共享库版本号。      |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise\<boolean> | Promise对象。返回true表示共享库正在使用，返回false表示共享库不在使用。 |
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+appManager.isSharedBundleRunning(bundleName, versionCode).then((data) => {
+    console.log('The shared bundle running is: ${JSON.stringify(data)}');
+}).catch((error) => {
+    console.error('error: ${JSON.stringify(error)}');
+});
+```
+
+## appManager.isSharedBundleRunning
+
+isSharedBundleRunning(bundleName: string, versionCode: number, callback: AsyncCallback\<boolean>): void;
+
+检查共享库是否正在使用。使用callback异步回调。
+
+**需要权限**：ohos.permission.GET_RUNNING_INFO
+
+**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统接口**：此接口为系统接口。
+
+**参数**：
+
+| 参数名        | 类型                                       | 必填   | 说明             |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| bundleName    | string   | 是    | 表示要查询的共享库包名。 |
+| versionCode   | number   | 是    | 表示要查询的共享库版本号。      |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+|AsyncCallback\<boolean>> | 回调函数。返回true表示共享库正在使用，返回false表示共享库不在使用。 |
+
+**示例：**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+appManager.isSharedBundleRunning(bundleName, versionCode, (err, data) => {
+    if (err) {
+        console.error('err: ${JSON.stringify(err)}');
+    } else {
+        console.log('The shared bundle running is: ${JSON.stringify(data)}');
+    }
+});
+```
+
 ## appManager.on
 
 on(type: 'applicationState', observer: ApplicationStateObserver): number;
@@ -669,7 +745,11 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 
 切断account进程（Promise形式）。
 
-**需要权限**：ohos.permission.CLEAN_BACKGROUND_PROCESSES，ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS权限。
+> **说明：** 
+>
+> 当accountId为当前用户时，不需要校验ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS权限。
+
+**需要权限**：ohos.permission.CLEAN_BACKGROUND_PROCESSES，ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -715,11 +795,15 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 
 切断account进程（callback形式）。
 
+> **说明：** 
+>
+> 当accountId为当前用户时，不需要校验ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS权限。
+
+**需要权限**：ohos.permission.CLEAN_BACKGROUND_PROCESSES，ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
-
-**需要权限**：ohos.permission.CLEAN_BACKGROUND_PROCESSES，ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS，当accountId为当前用户时，不需要校验ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS权限。
 
 **参数：**
 

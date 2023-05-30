@@ -46,6 +46,7 @@ httpRequest.request(
     readTimeout: 60000, // 可选，默认为60000ms
     usingProtocol: http.HttpProtocol.HTTP1_1, // 可选，协议类型默认值由系统自动指定
     usingProxy: false, //可选，默认不使用网络代理，自API 10开始支持该属性
+    caPath: "", // 可选，默认使用系统预设CA证书，自API 10开始支持该属性
   }, (err, data) => {
     if (!err) {
       // data.result为HTTP响应内容，可根据业务需要进行解析
@@ -54,6 +55,8 @@ httpRequest.request(
       // data.header为HTTP响应头，可根据业务需要进行解析
       console.info('header:' + JSON.stringify(data.header));
       console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
+      // 当该请求使用完毕时，调用destroy方法主动销毁
+      httpRequest.destroy();
     } else {
       console.info('error:' + JSON.stringify(err));
       // 取消订阅HTTP响应头事件
@@ -68,7 +71,7 @@ httpRequest.request(
 > **说明：**
 > console.info()输出的数据中包含换行符会导致数据出现截断现象。
 
-## http.createHttp
+## http.createHttp<sup>6+</sup>
 
 createHttp(): HttpRequest
 
@@ -94,7 +97,7 @@ let httpRequest = http.createHttp();
 
 HTTP请求任务。在调用HttpRequest的方法前，需要先通过[createHttp()](#httpcreatehttp)创建一个任务。
 
-### request
+### request<sup>6+</sup>
 
 request(url: string, callback: AsyncCallback\<HttpResponse\>):void
 
@@ -120,10 +123,34 @@ request(url: string, callback: AsyncCallback\<HttpResponse\>):void
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
+| 2300001 | Unsupported protocol.                                 |
 | 2300003 | URL using bad/illegal format or missing URL.          |
+| 2300005 | Couldn't resolve proxy name.                          |
+| 2300006 | Couldn't resolve host name.                           |
 | 2300007 | Couldn't connect to server.                           |
+| 2300008 | Weird server reply.                                   |
+| 2300009 | Access denied to remote resource.                     |
+| 2300016 | Error in the HTTP2 framing layer.                     |
+| 2300018 | Transferred a partial file.                           |
+| 2300023 | Failed writing received data to disk/application.     |
+| 2300025 | Upload failed.                                        |
+| 2300026 | Failed to open/read local data from file/application. |
+| 2300027 | Out of memory.                                        |
 | 2300028 | Timeout was reached.                                  |
+| 2300047 | Number of redirects hit maximum amount.               |
 | 2300052 | Server returned nothing (no headers, no data).        |
+| 2300055 | Failed sending data to the peer.                      |
+| 2300056 | Failure when receiving data from the peer.            |
+| 2300058 | Problem with the local SSL certificate.               |
+| 2300059 | Couldn't use specified SSL cipher.                    |
+| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
+| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
+| 2300063 | Maximum file size exceeded.                           |
+| 2300070 | Disk full or allocation exceeded.                     |
+| 2300073 | Remote file already exists.                           |
+| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
+| 2300078 | Remote file not found.                                |
+| 2300094 | An authentication function returned an error.         |
 | 2300999 | Unknown Other Error.                                  |
 
 > **错误码说明：**
@@ -145,7 +172,7 @@ httpRequest.request("EXAMPLE_URL", (err, data) => {
 });
 ```
 
-### request
+### request<sup>6+</sup>
 
 request(url: string, options: HttpRequestOptions, callback: AsyncCallback\<HttpResponse\>):void
 
@@ -231,7 +258,7 @@ httpRequest.request("EXAMPLE_URL",
   });
 ```
 
-### request
+### request<sup>6+</sup>
 
 request(url: string, options? : HttpRequestOptions): Promise\<HttpResponse\>
 
@@ -357,10 +384,34 @@ request2(url: string, callback: AsyncCallback\<number\>): void
 |---------|-------------------------------------------------------|
 | 401     | Parameter error.                                      |
 | 201     | Permission denied.                                    |
+| 2300001 | Unsupported protocol.                                 |
 | 2300003 | URL using bad/illegal format or missing URL.          |
+| 2300005 | Couldn't resolve proxy name.                          |
+| 2300006 | Couldn't resolve host name.                           |
 | 2300007 | Couldn't connect to server.                           |
+| 2300008 | Weird server reply.                                   |
+| 2300009 | Access denied to remote resource.                     |
+| 2300016 | Error in the HTTP2 framing layer.                     |
+| 2300018 | Transferred a partial file.                           |
+| 2300023 | Failed writing received data to disk/application.     |
+| 2300025 | Upload failed.                                        |
+| 2300026 | Failed to open/read local data from file/application. |
+| 2300027 | Out of memory.                                        |
 | 2300028 | Timeout was reached.                                  |
+| 2300047 | Number of redirects hit maximum amount.               |
 | 2300052 | Server returned nothing (no headers, no data).        |
+| 2300055 | Failed sending data to the peer.                      |
+| 2300056 | Failure when receiving data from the peer.            |
+| 2300058 | Problem with the local SSL certificate.               |
+| 2300059 | Couldn't use specified SSL cipher.                    |
+| 2300060 | SSL peer certificate or SSH remote key was not OK.    |
+| 2300061 | Unrecognized or bad HTTP Content or Transfer-Encoding.|
+| 2300063 | Maximum file size exceeded.                           |
+| 2300070 | Disk full or allocation exceeded.                     |
+| 2300073 | Remote file already exists.                           |
+| 2300077 | Problem with the SSL CA cert (path? access rights?).  |
+| 2300078 | Remote file not found.                                |
+| 2300094 | An authentication function returned an error.         |
 | 2300999 | Unknown Other Error.                                  |
 
 > **错误码说明：**
@@ -757,7 +808,7 @@ httpRequest.off('dataEnd');
 
 ### on('dataProgress')<sup>10+</sup>
 
-on(type: 'dataProgress', callback: AsyncCallback\<{ receiveSize: number, totalSize: number }\>): void
+on(type: 'dataProgress', callback: Callback\<{ receiveSize: number, totalSize: number }\>): void
 
 订阅HTTP流式响应数据接收进度事件。
 
@@ -802,7 +853,7 @@ off(type: 'dataProgress', callback?: Callback\<{ receiveSize: number, totalSize:
 httpRequest.off('dataProgress');
 ```
 
-## HttpRequestOptions
+## HttpRequestOptions<sup>6+</sup>
 
 发起请求可选参数的类型和取值范围。
 
@@ -819,9 +870,10 @@ httpRequest.off('dataProgress');
 | readTimeout                  | number                          | 否   | 读取超时时间。单位为毫秒（ms），默认为60000ms。<br />设置为0表示不会出现超时情况。 |
 | connectTimeout               | number                          | 否   | 连接超时时间。单位为毫秒（ms），默认为60000ms。              |
 | usingProtocol<sup>9+</sup>   | [HttpProtocol](#httpprotocol9)  | 否   | 使用协议。默认值由系统自动指定。                             |
-| usingProxy<sup>10+</sup>     | boolean \| Object               | 否   | 是否使用HTTP代理，默认为false，不使用代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理。<br />- 当usingProxy为object类型时，使用指定网络代理。                                |
+| usingProxy<sup>10+</sup>     | boolean \| Object               | 否   | 是否使用HTTP代理，默认为false，不使用代理。<br />- 当usingProxy为布尔类型true时，使用默认网络代理。<br />- 当usingProxy为object类型时，使用指定网络代理。 
+| caPath<sup>10+</sup>     | string               | 否   | 如果设置了此参数，系统将使用用户指定路径的CA证书，否则将使用系统预设CA证书。                             |
 
-## RequestMethod
+## RequestMethod<sup>6+</sup>
 
 HTTP 请求方法。
 
@@ -838,7 +890,7 @@ HTTP 请求方法。
 | TRACE   | "TRACE"   | HTTP 请求 TRACE。   |
 | CONNECT | "CONNECT" | HTTP 请求 CONNECT。 |
 
-## ResponseCode
+## ResponseCode<sup>6+</sup>
 
 发起请求返回的响应码。
 
@@ -882,7 +934,7 @@ HTTP 请求方法。
 | GATEWAY_TIMEOUT   | 504  | 充当网关或代理的服务器，未及时从远端服务器获取请求。         |
 | VERSION           | 505  | 服务器请求的HTTP协议的版本。                                 |
 
-## HttpResponse
+## HttpResponse<sup>6+</sup>
 
 request方法回调函数的返回值类型。
 

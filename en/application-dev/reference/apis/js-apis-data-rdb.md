@@ -1634,7 +1634,7 @@ Executes an SQL statement that contains specified arguments but returns no value
 
 ```js
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = ?"
-rdbStore.executeSql(SQL_CREATE_TABLE, ['zhangsan'], function(err) {
+rdbStore.executeSql(SQL_DELETE_TABLE, ['zhangsan'], function(err) {
     if (err) {
         console.info("Failed to execute SQL, err: " + err)
         return
@@ -2045,7 +2045,7 @@ Registers an observer for this RDB store. When the data in the RDB store changes
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| The value is'dataChange', which indicates a data change event.|
 | type | [SubscribeType](#subscribetype8) | Yes| Subscription type to register.|
-| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Observer that listens for the data changes in the RDB store.|
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Observer that listens for the data changes in the RDB store. **Array<string>** indicates the ID of the peer device whose data in the database is changed.|
 
 **Example**
 
@@ -2076,7 +2076,7 @@ Unregisters the observer of the specified type from the RDB store. This API uses
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| The value is'dataChange', which indicates a data change event.|
 | type | [SubscribeType](#subscribetype8)    | Yes| Subscription type to unregister.|
-| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Data change observer registered.|
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Data change observer to unregister. **Array<string>** indicates the ID of the peer device whose data in the database is changed.|
 
 **Example**
 

@@ -694,7 +694,7 @@ try {
 ```
 
 
-## bluetoothManager.setDevicePinCode<sup>10+</sup><a name="setDevicePinCode"></a>
+## bluetoothManager.setDevicePinCode<sup>10+</sup><a name="setDevicePinCode-1"></a>
 
 setDevicePinCode(device: string, code: string): Promise&lt;void&gt;
 
@@ -985,7 +985,7 @@ try {
 
 on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 
-订阅蓝牙连接状态改变事件。
+订阅蓝牙设备开关状态事件。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -1024,7 +1024,7 @@ try {
 
 off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
-取消订阅蓝牙连接状态改变事件。
+取消订阅蓝牙设备开关状态事件。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2167,7 +2167,7 @@ connect(device: string): void
 
 ```js
 try {
-    let hidHostProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+    let hidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
     hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2208,7 +2208,7 @@ disconnect(device: string): void
 
 ```js
 try {
-    let hidHostProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+    let hidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
     hidHostProfile.disconnect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2237,7 +2237,7 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 function onReceiveEvent(data) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
-let hidHost = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+let hidHost = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -2263,7 +2263,7 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 function onReceiveEvent(data) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
-let hidHost = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+let hidHost = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
 hidHost.off('connectionStateChange', onReceiveEvent);
 ```
@@ -2307,7 +2307,7 @@ disconnect(device: string): void
 
 ```js
 try {
-    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     panProfile.disconnect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2336,7 +2336,7 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 function onReceiveEvent(data) {
     console.info('pan state = '+ JSON.stringify(data));
 }
-let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -2362,7 +2362,7 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 function onReceiveEvent(data) {
     console.info('pan state = '+ JSON.stringify(data));
 }
-let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
 panProfile.off('connectionStateChange', onReceiveEvent);
 ```
@@ -2401,7 +2401,7 @@ setTethering(enable: boolean): void
 
 ```js
 try {
-    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     panProfile.setTethering(true);
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2429,7 +2429,7 @@ isTetheringOn(): boolean
 
 ```js
 try {
-    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     let ret = panProfile.isTetheringOn();
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -4391,7 +4391,7 @@ try {
 | -------- | ------ | ---- | ---- | ----------- |
 | deviceId | string | 是    | 否    | 表示要配对的设备ID。 |
 | pinCode  | string | 是    | 否    | 表示要配对的密钥。   |
-| pinType<sup>10+</sup> | [PinType](#pintype10) | 是    | 否    | 表示要配对的设备类型。   |
+| pinType<sup>10+</sup> | [PinType](#pintype10) | 是    | 否    | 表示要配对的设备类型。<br/>此接口为系统接口。   |
 
 
 ## BondStateParam<a name="BondStateParam"></a>
@@ -4424,13 +4424,13 @@ try {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称       | 类型   | 只读   | 必填   | 说明          |
+| 名称       | 类型  | 必填   | 说明          |
 | -------- | ------ | ---- | ---- | ----------- |
-| write<sup>10+</sup>    | boolean | 是   | 是    | 表示该特征支持写操作，需要对端设备的回复。 |
-| writeNoResponse<sup>10+</sup> | boolean | 是    | 是    | 表示该特征支持写操作，无需对端设备回复。 |
-| read<sup>10+</sup> | boolean   | 是    | 是    | 表示该特征支持读操作。 |
-| notify<sup>10+</sup> | boolean   | 是    | 是    | 表示该特征可通知对端设备。 |
-| indicate<sup>10+</sup> | boolean   | 是    | 是    | 表示该特征可通知对端设备，需要对端设备的回复。 |
+| write<sup>10+</sup>    | boolean | 是  | 表示该特征支持写操作，需要对端设备的回复。 |
+| writeNoResponse<sup>10+</sup> | boolean | 是    | 表示该特征支持写操作，无需对端设备回复。 |
+| read<sup>10+</sup> | boolean   |  是    | 表示该特征支持读操作。 |
+| notify<sup>10+</sup> | boolean   | 是    | 表示该特征可通知对端设备。 |
+| indicate<sup>10+</sup> | boolean   | 是    | 表示该特征可通知对端设备，需要对端设备的回复。 |
 
 
 ## DeviceClass<a name="DeviceClass"></a>
@@ -4593,15 +4593,17 @@ try {
 
 枚举，蓝牙配对类型。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称                               | 值    | 说明              |
 | -------------------------------- | ------ | --------------- |
-| PIN_TYPE_ENTER_PIN_CODE<sup>10+</sup> | 0 | 用户需要输入对端设备上显示的PIN码。 |
-| PIN_TYPE_ENTER_PASSKEY<sup>10+</sup>  | 1 | 用户需要输入对端设备上显示的PASSKEY。  |
-| PIN_TYPE_CONFIRM_PASSKEY<sup>10+</sup>  | 2 | 用户需要确认本地设备上显示的PASSKEY。  |
-| PIN_TYPE_NO_PASSKEY_CONSENT<sup>10+</sup>  | 3 | 无PASSKEY，用户需要接受或拒绝配对请求。  |
-| PIN_TYPE_NOTIFY_PASSKEY<sup>10+</sup>   | 4 | 本地设备显示PASSKEY，用户需要在对端设备上输入该PASSKEY。  |
-| PIN_TYPE_DISPLAY_PIN_CODE<sup>10+</sup>    | 5 | bluetooth 2.0设备，用户需要输入对端设备上显示的PIN码。  |
-| PIN_TYPE_OOB_CONSENT<sup>10+</sup>    | 6 | 用户需要接受或拒绝OOB配对请求。  |
-| PIN_TYPE_PIN_16_DIGITS<sup>10+</sup>    | 7 | 用户需要输入对端设备上显示的16位PIN码。  |
+| PIN_TYPE_ENTER_PIN_CODE<sup>10+</sup> | 0 | 用户需要输入对端设备上显示的PIN码。<br/>此接口为系统接口。 |
+| PIN_TYPE_ENTER_PASSKEY<sup>10+</sup>  | 1 | 用户需要输入对端设备上显示的PASSKEY。<br/>此接口为系统接口。  |
+| PIN_TYPE_CONFIRM_PASSKEY<sup>10+</sup>  | 2 | 用户需要确认本地设备上显示的PASSKEY。<br/>此接口为系统接口。  |
+| PIN_TYPE_NO_PASSKEY_CONSENT<sup>10+</sup>  | 3 | 无PASSKEY，用户需要接受或拒绝配对请求。<br/>此接口为系统接口。  |
+| PIN_TYPE_NOTIFY_PASSKEY<sup>10+</sup>   | 4 | 本地设备显示PASSKEY，用户需要在对端设备上输入该PASSKEY。<br/>此接口为系统接口。  |
+| PIN_TYPE_DISPLAY_PIN_CODE<sup>10+</sup>    | 5 | bluetooth 2.0设备，用户需要输入对端设备上显示的PIN码。<br/>此接口为系统接口。  |
+| PIN_TYPE_OOB_CONSENT<sup>10+</sup>    | 6 | 用户需要接受或拒绝OOB配对请求。<br/>此接口为系统接口。  |
+| PIN_TYPE_PIN_16_DIGITS<sup>10+</sup>    | 7 | 用户需要输入对端设备上显示的16位PIN码。<br/>此接口为系统接口。  |

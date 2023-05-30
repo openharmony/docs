@@ -10,7 +10,7 @@
 
 ## 接口
 
-OffscreenCanvasRenderingContext2D(width: number, height: number, setting: RenderingContextSettings)
+OffscreenCanvasRenderingContext2D(width: number, height: number, settings?: RenderingContextSettings)
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -20,20 +20,20 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, setting: Render
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------ |
 | width   | number                                                       | 是   | 离屏画布的宽度                       |
 | height  | number                                                       | 是   | 离屏画布的高度                       |
-| setting | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 是   | 见RenderingContextSettings接口描述。 |
+| setting | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 否   | 见RenderingContextSettings接口描述。 |
 
 
 ## 属性
 
 | 名称                                                  | 类型                                                         | 描述                                                         |
 | ----------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [fillStyle](#fillstyle)                               | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](#canvaspattern) | 指定绘制的填充色。<br/>-&nbsp;类型为string时，表示设置填充区域的颜色。<br/>- 类型为number时，表示设置填充区域的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [fillStyle](#fillstyle)                               | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 指定绘制的填充色。<br/>-&nbsp;类型为string时，表示设置填充区域的颜色。<br/>- 类型为number时，表示设置填充区域的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [lineWidth](#linewidth)                               | number                                                       | 设置绘制线条的宽度。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [strokeStyle](#strokestyle)                           | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](#canvaspattern) | 设置描边的颜色。<br/>-&nbsp;类型为string时，表示设置描边使用的颜色。<br/>- 类型为number时，表示设置描边使用的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [strokeStyle](#strokestyle)                           | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 设置描边的颜色。<br/>-&nbsp;类型为string时，表示设置描边使用的颜色。<br/>- 类型为number时，表示设置描边使用的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [lineCap](#linecap)                                   | CanvasLineCap                                                | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>-&nbsp;默认值：'butt'。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [lineJoin](#linejoin)                                 | CanvasLineJoin                                               | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>-&nbsp;默认值：'miter'。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [miterLimit](#miterlimit)                             | number                                                       | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。  <br/>-&nbsp;默认值：10。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [font](#font)                                         | string                                                       | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。<br/>-&nbsp;默认值：'normal normal 14px sans-serif'。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [font](#font)                                         | string                                                       | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px、vp。使用时需要添加单位。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。<br/>-&nbsp;默认值：'normal normal 14px sans-serif'。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [textAlign](#textalign)                               | CanvasTextAlign                                              | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>> **说明：**<br/>>&nbsp;ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致·。<br/>-&nbsp;默认值：'left'。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [textBaseline](#textbaseline)                         | CanvasTextBaseline                                           | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic基线不需要考虑下行字母。<br/>-&nbsp;默认值：'alphabetic'。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [globalAlpha](#globalalpha)                           | number                                                       | 设置透明度，0.0为完全透明，1.0为完全不透明。                 |
@@ -44,6 +44,9 @@ OffscreenCanvasRenderingContext2D(width: number, height: number, setting: Render
 | [shadowOffsetX](#shadowoffsetx)                       | number                                                       | 设置绘制阴影时和原有对象的水平偏移值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [shadowOffsetY](#shadowoffsety)                       | number                                                       | 设置绘制阴影时和原有对象的垂直偏移值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | [imageSmoothingEnabled](#imagesmoothingenabled)       | boolean                                                      | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。 <br/>-&nbsp;默认值：true。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [imageSmoothingQuality](#imagesmoothingquality)       |ImageSmoothingQuality     | imageSmoothingEnabled为true时，用于设置图像平滑度。可选值为：<br/>- 'low'：低画质<br/>- 'medium'：中画质<br/>- 'high'：高画质。<br/>默认值：low<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [direction](#direction)       |CanvasDirection     | 用于设置绘制文字时使用的文字方向。可选值为：<br/>- 'inherit'：继承canvas组件已设定的文本方向<br/>- 'ltr'：从左往右<br/>- 'rtl'：从右往左。<br/>默认值：inherit<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [filter](#filter)       |string     | 用于设置图像的滤镜。支持的滤镜效果如下：<br/>- 'none': 无滤镜效果<br/>- 'blur'：给图像设置高斯模糊<br/>- 'brightness'：给图片应用一种线性乘法，使其看起来更亮或更暗<br/>- 'contrast'：调整图像的对比度<br/>- 'grayscale'：将图像转换为灰度图像<br/>- 'hue-rotate'：给图像应用色相旋转<br/>- 'invert'：反转输入图像<br/>- 'opacity'：转化图像的透明程度<br/>- 'saturate'：转换图像饱和度<br/>- 'sepia'：将图像转换为深褐色<br/>默认值：'none'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 > **说明：**
 > fillStyle、shadowColor与 strokeStyle 中string类型格式为 'rgb(255, 255, 255)'，'rgba(255, 255, 255, 1.0)'，'\#FFFFFF'。
@@ -1277,7 +1280,7 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
 
 | 类型                              | 说明                      |
 | ------------------------------- | ----------------------- |
-| [CanvasPattern](#canvaspattern) | 通过指定图像和重复方式创建图片填充的模板对象。 |
+| [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 通过指定图像和重复方式创建图片填充的模板对象。 |
 
  **示例：**
 
@@ -1841,7 +1844,7 @@ clip(path:Path2D, fillRule?: CanvasFillRule): void
 
 filter(filter: string): void
 
-为Canvas图形设置各类滤镜效果。该接口为空接口。
+为Canvas图形设置各类滤镜效果。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -1849,7 +1852,69 @@ filter(filter: string): void
 
 | 参数     | 类型     | 必填   | 默认值  | 说明           |
 | ------ | ------ | ---- | ---- | ------------ |
-| filter | string | 是    | -    | 接受各类滤镜效果的函数。 |
+| filter | string | 是    | -    | 接受各类滤镜效果的函数。支持的滤镜效果如下：<br/>- 'none': 无滤镜效果<br/>- 'blur'：给图像设置高斯模糊<br/>- 'brightness'：给图片应用一种线性乘法，使其看起来更亮或更暗<br/>- 'contrast'：调整图像的对比度<br/>- 'grayscale'：将图像转换为灰度图像<br/>- 'hue-rotate'：给图像应用色相旋转<br/>- 'invert'：反转输入图像<br/>- 'opacity'：转化图像的透明程度<br/>- 'saturate'：转换图像饱和度<br/>- 'sepia'：将图像转换为深褐色<br/>默认值：'none' |
+
+**示例：**
+```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct FilterDemoOff {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            let offctx = this.offContext
+            let img = this.img
+
+            offctx.drawImage(img, 0, 0, 100, 100);
+
+            offctx.filter = 'grayscale(50%)';
+            offctx.drawImage(img, 100, 0, 100, 100);
+
+            offctx.filter = 'sepia(60%)';
+            offctx.drawImage(img, 200, 0, 100, 100);
+
+            offctx.filter = 'saturate(30%)';
+            offctx.drawImage(img, 0, 100, 100, 100);
+
+            offctx.filter = 'hue-rotate(90degree)';
+            offctx.drawImage(img, 100, 100, 100, 100);
+
+            offctx.filter = 'invert(100%)';
+            offctx.drawImage(img, 200, 100, 100, 100);
+
+            offctx.filter = 'opacity(25%)';
+            offctx.drawImage(img, 0, 200, 100, 100);
+
+            offctx.filter = 'brightness(0.4)';
+            offctx.drawImage(img, 100, 200, 100, 100);
+
+            offctx.filter = 'contrast(200%)';
+            offctx.drawImage(img, 200, 200, 100, 100);
+
+            offctx.filter = 'blur(5px)';
+            offctx.drawImage(img, 0, 300, 100, 100);
+
+            var image = offctx.transferToImageBitmap()
+            this.context.transferFromImageBitmap(image)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+```
+
+![filterDemo](figures/filterDemo.jpeg)
 
 
 ### getTransform
@@ -1860,6 +1925,11 @@ getTransform(): Matrix2D
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
+**返回值：**
+
+| 类型                                                  | 说明       |
+| ----------------------------------------------------- | ---------- |
+| [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 矩阵对象。 |
 
 ### resetTransform
 
@@ -1874,9 +1944,47 @@ resetTransform(): void
 
 direction(direction: CanvasDirection): void
 
-绘制文本时，描述当前文本方向的属性。该接口为空接口。
+绘制文本时，描述当前文本方向的属性。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**示例：**
+```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct DirectionDemoOff {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            let offctx = this.offContext
+            offctx.font = '48px serif';
+            offctx.textAlign = 'start'
+            offctx.fillText("Hi ltr!", 200, 50);
+
+            offctx.direction = "rtl";
+            offctx.fillText("Hi rtl!", 200, 100);
+
+            var image = offctx.transferToImageBitmap()
+            this.context.transferFromImageBitmap(image)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+```
+
+![directionDemo](figures/directionDemo.jpeg)
+
 
 
 ### rotate
@@ -2342,9 +2450,9 @@ getImageData(sx: number, sy: number, sw: number, sh: number): ImageData
 
 ### putImageData
 
-putImageData(imageData: Object, dx: number, dy: number): void
+putImageData(imageData: Object, dx: number | string, dy: number | string): void
 
-putImageData(imageData: Object, dx: number, dy: number, dirtyX: number, dirtyY: number, dirtyWidth?: number, dirtyHeight: number): void
+putImageData(imageData: Object, dx: number | string, dy: number | string, dirtyX: number | string, dirtyY: number | string, dirtyWidth?: number | string, dirtyHeight: number | string): void
 
 使用[ImageData](ts-components-canvas-imagedata.md)数据填充新的矩形区域。
 
@@ -2352,15 +2460,15 @@ putImageData(imageData: Object, dx: number, dy: number, dirtyX: number, dirtyY: 
 
  **参数：**
 
-| 参数          | 类型     | 必填   | 默认值          | 描述                            |
-| ----------- | ------ | ---- | ------------ | ----------------------------- |
-| imagedata   | Object | 是    | null         | 包含像素值的ImageData对象。            |
-| dx          | number | 是    | 0            | 填充区域在x轴方向的偏移量。                |
-| dy          | number | 是    | 0            | 填充区域在y轴方向的偏移量。                |
-| dirtyX      | number | 否    | 0            | 源图像数据矩形裁切范围左上角距离源图像左上角的x轴偏移量。 |
-| dirtyY      | number | 否    | 0            | 源图像数据矩形裁切范围左上角距离源图像左上角的y轴偏移量。 |
-| dirtyWidth  | number | 否    | imagedata的宽度 | 源图像数据矩形裁切范围的宽度。               |
-| dirtyHeight | number | 否    | imagedata的高度 | 源图像数据矩形裁切范围的高度。               |
+| 参数        | 类型                                     | 必填 | 默认值          | 描述                                                      |
+| ----------- | ---------------------------------------- | ---- | --------------- | --------------------------------------------------------- |
+| imagedata   | Object                                   | 是   | null            | 包含像素值的ImageData对象。                               |
+| dx          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是   | 0               | 填充区域在x轴方向的偏移量。                               |
+| dy          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是   | 0               | 填充区域在y轴方向的偏移量。                               |
+| dirtyX      | number&nbsp;\|&nbsp;string<sup>10+</sup> | 否   | 0               | 源图像数据矩形裁切范围左上角距离源图像左上角的x轴偏移量。 |
+| dirtyY      | number&nbsp;\|&nbsp;string<sup>10+</sup> | 否   | 0               | 源图像数据矩形裁切范围左上角距离源图像左上角的y轴偏移量。 |
+| dirtyWidth  | number&nbsp;\|&nbsp;string<sup>10+</sup> | 否   | imagedata的宽度 | 源图像数据矩形裁切范围的宽度。                            |
+| dirtyHeight | number&nbsp;\|&nbsp;string<sup>10+</sup> | 否   | imagedata的高度 | 源图像数据矩形裁切范围的高度。                            |
 
  **示例：**
 
@@ -2557,7 +2665,7 @@ toDataURL(type?: string, quality?: number): string
 
 imageSmoothingQuality(quality: imageSmoothingQuality)
 
-用于设置图像平滑度。该接口为空接口。
+用于设置图像平滑度。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
@@ -2565,8 +2673,42 @@ imageSmoothingQuality(quality: imageSmoothingQuality)
 
 | 参数      | 类型                    | 描述                                       |
 | ------- | --------------------- | ---------------------------------------- |
-| quality | imageSmoothingQuality | 支持如下三种类型：'low',&nbsp;'medium',&nbsp;'high'。 |
+| quality | imageSmoothingQuality | 支持如下三种类型：<br/>- 'low'：低画质<br/>- 'medium'：中画质<br/>- 'high'：高画质 |
 
+**示例：**
+```ts
+  // xxx.ets
+  @Entry
+  @Component
+  struct ImageSmoothingQualityDemoOff {
+    private settings: RenderingContextSettings = new RenderingContextSettings(true);
+    private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
+    private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
+    private img:ImageBitmap = new ImageBitmap("common/images/example.jpg");
+
+    build() {
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+        Canvas(this.context)
+          .width('100%')
+          .height('100%')
+          .backgroundColor('#ffff00')
+          .onReady(() =>{
+            let offctx = this.offContext
+            offctx.imageSmoothingEnabled = true
+            offctx.imageSmoothingQuality = 'high'
+            offctx.drawImage(this.img, 0, 0, 400, 200)
+
+            var image = offctx.transferToImageBitmap()
+            this.context.transferFromImageBitmap(image)
+          })
+      }
+      .width('100%')
+      .height('100%')
+    }
+  }
+```
+
+![ImageSmoothingQualityDemo](figures/ImageSmoothingQualityDemo.jpeg)
 
 ### transferToImageBitmap
 
@@ -2863,9 +3005,3 @@ struct OffscreenCanvasConicGradientPage {
 ```
 
   ![zh-cn_image_0000001239032419](figures/zh-cn_image_0000001239032420.png)
-
-## CanvasPattern
-
-一个Object对象, 通过[createPattern](#createpattern)方法创建。
-
-从API version 9开始，该接口支持在ArkTS卡片中使用。

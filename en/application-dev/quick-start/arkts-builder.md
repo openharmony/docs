@@ -1,7 +1,7 @@
 # \@Builder: Custom Builder Function
 
 
-After a custom component is created, its internal UI structure is fixed and allows only data passing with its caller. ArkUI also provides a more lightweight mechanism for reusing UI elements: \@Builder. An \@Builder decorated function is a special function that serves similar purpose as the build function. The \@Builder function body follows the same syntax rules as the **build** function. You can abstract reusable UI elements into a method and call the method in **build**.
+As previously described, you can reuse UI elements by creating a custom component, which comes with a fixed internal UI structure and allows for data transfer only with its caller. ArkUI also provides a more lightweight mechanism for reusing UI elements: \@Builder. An \@Builder decorated function is a special function that serves similar purpose as the build function. The \@Builder function body follows the same syntax rules as the **build** function. You can abstract reusable UI elements into a method and call the method in **build**.
 
 
 To simplify language, here we refer to an \@Builder decorated function also as a custom builder function.
@@ -33,7 +33,7 @@ this.myBuilderFunction({ ... })
 
 - Defining one or more custom builder (\@Builder decorated) functions inside a custom component is allowed. Such a custom builder function can be considered as a private, special type of member functions of that component.
 
-- The custom builder function can be called from the owning component's** build** or another custom builder (within that custom component) function only.
+- The custom builder function can be called from the owning component's **build** or another custom builder (within that custom component) function only.
 
 - Inside the custom builder function body, **this** refers to the owning component. Component state variables are accessible from within the custom builder function implementation. Using the custom components' state variables is recommended over parameter passing.
 

@@ -18,8 +18,6 @@
     - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](js-apis-app-form-formExtensionAbility.md)
     - [@ohos.application.DataShareExtensionAbility (DataShare Extension Ability)](js-apis-application-dataShareExtensionAbility.md)
     - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](js-apis-application-staticSubscriberExtensionAbility.md)
-  - Stage Model (To Be Deprecated Soon)
-    - [@ohos.application.EnvironmentCallback (EnvironmentCallback)](js-apis-application-environmentCallback.md)
   - FA Model
     - [@ohos.ability.ability (Ability)](js-apis-ability-ability.md)
     - [@ohos.ability.featureAbility (FeatureAbility)](js-apis-ability-featureAbility.md)
@@ -39,10 +37,12 @@
     - [@ohos.app.ability.Want (Want)](js-apis-app-ability-want.md)
     - [@ohos.app.ability.wantAgent (WantAgent)](js-apis-app-ability-wantAgent.md)
     - [@ohos.app.ability.wantConstant (wantConstant)](js-apis-app-ability-wantConstant.md)
+    - [@ohos.app.businessAbilityRouter (Business Ability Router)](js-apis-businessAbilityRouter.md)
     - [@ohos.app.form.formBindingData (formBindingData)](js-apis-app-form-formBindingData.md)
     - [@ohos.app.form.formHost (FormHost)](js-apis-app-form-formHost.md)
     - [@ohos.app.form.formInfo (FormInfo)](js-apis-app-form-formInfo.md)
     - [@ohos.app.form.formProvider (FormProvider)](js-apis-app-form-formProvider.md)
+    - [@ohos.application.uriPermissionManager (URI Permission Management)](js-apis-uripermissionmanager.md)
   - Both Models (To Be Deprecated Soon)
     - [@ohos.ability.dataUriUtils (DataUriUtils)](js-apis-ability-dataUriUtils.md)
     - [@ohos.ability.errorCode (ErrorCode)](js-apis-ability-errorCode.md)
@@ -139,7 +139,11 @@
     - [NotificationSlot](js-apis-inner-notification-notificationSlot.md)
     - [NotificationTemplate](js-apis-inner-notification-notificationTemplate.md)
     - [NotificationUserInput](js-apis-inner-notification-notificationUserInput.md)
-- Bundle Management 
+  - Common Events
+    - [Common Events of the Bundle Management Subsystem](common_event/commonEvent-bundleManager.md)
+    - [Common Events of the Notification Service](common_event/commonEvent-ans.md)
+    - [Common Events of the Telephony Subsystem](common_event/commonEvent-telephony.md)
+- Bundle Management
   - [@ohos.bundle.appControl (appControl)](js-apis-appControl.md)
   - [@ohos.bundle.bundleManager (bundleManager)](js-apis-bundleManager.md)
   - [@ohos.bundle.bundleMonitor (bundleMonitor)](js-apis-bundleMonitor.md)
@@ -148,24 +152,31 @@
   - [@ohos.bundle.freeInstall (freeInstall)](js-apis-freeInstall.md)
   - [@ohos.bundle.installer (installer)](js-apis-installer.md)
   - [@ohos.bundle.launcherBundleManager (launcherBundleManager)](js-apis-launcherBundleManager.md)
+  - [@ohos.bundle.overlay (overlay)](js-apis-overlay.md)
   - [@ohos.zlib (Zip)](js-apis-zlib.md)
   - bundleManager
     - [abilityInfo](js-apis-bundleManager-abilityInfo.md)
     - [applicationInfo](js-apis-bundleManager-applicationInfo.md)
+    - [AppProvisionInfo](js-apis-bundleManager-AppProvisionInfo.md)
     - [bundleInfo](js-apis-bundleManager-bundleInfo.md)
     - [BundlePackInfo](js-apis-bundleManager-BundlePackInfo.md)
+    - [BusinessAbilityInfo](js-apis-bundleManager-businessAbilityInfo.md)
     - [dispatchInfo](js-apis-bundleManager-dispatchInfo.md)
     - [elementName](js-apis-bundleManager-elementName.md)
     - [extensionAbilityInfo](js-apis-bundleManager-extensionAbilityInfo.md)
     - [hapModuleInfo](js-apis-bundleManager-hapModuleInfo.md)
     - [launcherAbilityInfo](js-apis-bundleManager-launcherAbilityInfo.md)
     - [metadata](js-apis-bundleManager-metadata.md)
+    - [OverlayModuleInfo](js-apis-bundleManager-overlayModuleInfo.md)
     - [permissionDef](js-apis-bundleManager-permissionDef.md)
     - [remoteAbilityInfo](js-apis-bundleManager-remoteAbilityInfo.md)
+    - [SharedBundleInfo](js-apis-bundleManager-sharedBundleInfo.md)
     - [shortcutInfo](js-apis-bundleManager-shortcutInfo.md)
 
 - UI Page
   - [@ohos.animator (Animator)](js-apis-animator.md)
+  - [@ohos.arkui.componentSnapshot (Component Snapshot)](js-apis-arkui-componentSnapshot.md)
+  - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
   - [@ohos.curves (Interpolation Calculation)](js-apis-curve.md)
   - [@ohos.matrix4 (Matrix Transformation)](js-apis-matrix4.md)
   - [@ohos.mediaquery (Media Query)](js-apis-mediaquery.md)
@@ -233,6 +244,7 @@
   - [@ohos.data.ValuesBucket (Value Bucket)](js-apis-data-valuesBucket.md)
 
 - File Management
+  - [@ohos.file.backup (Backup and Restoration)](js-apis-file-backup.md)
   - [@ohos.file.cloudSyncManager (Device-Cloud Synchronization Management)](js-apis-file-cloudsyncmanager.md)
   - [@ohos.file.environment (Directory Environment Capability)](js-apis-file-environment.md)
   - [@ohos.file.fileAccess (User File Access and Management)](js-apis-fileAccess.md)
@@ -246,7 +258,7 @@
   - [@ohos.file.storageStatistics (Application Storage Statistics)](js-apis-file-storage-statistics.md)
   - [@ohos.file.volumeManager (Volume Management)](js-apis-file-volumemanager.md)
   - [@ohos.filemanagement.userFileManager (User Data Management)](js-apis-userFileManager.md)
-  - [@ohos.fileShare (File Sharing)](js-apis-fileShare.md)
+  - [@ohos.fileshare (File Sharing)](js-apis-fileShare.md)
 
 - Telephony Service
   - [@ohos.contact (Contacts)](js-apis-contact.md)
@@ -261,7 +273,7 @@
   - [@ohos.net.connection (Network Connection Management)](js-apis-net-connection.md)
   - [@ohos.net.ethernet (Ethernet Connection Management)](js-apis-net-ethernet.md)
   - [@ohos.net.http (Data Request)](js-apis-http.md)
-  - [@ohos.net.policy (Network Policy Management)](js-apis-net-policy.md)
+  - [@ohos.net.mdns (mDNS Management)](js-apis-net-mdns.md)
   - [@ohos.net.sharing (Network Sharing)](js-apis-net-sharing.md)
   - [@ohos.net.socket (Socket Connection)](js-apis-socket.md)
   - [@ohos.net.webSocket (WebSocket Connection)](js-apis-webSocket.md)
@@ -312,8 +324,6 @@
   - [Timer](js-apis-timer.md)
   - application
     - [AccessibilityExtensionContext (Accessibility Extension Context)](js-apis-inner-application-accessibilityExtensionContext.md)
-  - imf
-    - [InputMethodCommon](js-apis-inputmethod-InputMethodCommon.md)
 
 - Device Management
   - [@ohos.batteryInfo (Battery Information)](js-apis-battery-info.md)
@@ -354,8 +364,8 @@
 - Customization
   - [@ohos.configPolicy (Configuration Policy)](js-apis-configPolicy.md)
   - [@ohos.enterprise.accountManager (Account Management)](js-apis-enterprise-accountManager.md)
-  - [@ohos.enterprise.bundleManager (Bundle Management)](js-apis-enterprise-bundleManager.md)
   - [@ohos.enterprise.adminManager (Enterprise Device Management)](js-apis-enterprise-adminManager.md)
+  - [@ohos.enterprise.bundleManager (Bundle Management)](js-apis-enterprise-bundleManager.md)
   - [@ohos.enterprise.dateTimeManager (System Time Management)](js-apis-enterprise-dateTimeManager.md)
   - [@ohos.enterprise.deviceControl (Device Control Management)](js-apis-enterprise-deviceControl.md)
   - [@ohos.enterprise.deviceInfo (Device Information Management)](js-apis-enterprise-deviceInfo.md)
@@ -448,4 +458,4 @@
     - [remoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)
     - [shortcutInfo](js-apis-bundle-ShortcutInfo.md)
   - data/rdb
-    - [resultSet (Result Set)](js-apis-data-resultset.md)
+    - [resultSet](js-apis-data-resultset.md)

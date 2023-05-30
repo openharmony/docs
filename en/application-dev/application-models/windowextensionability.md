@@ -11,7 +11,7 @@ the context is [WindowExtensionContext](../reference/apis/js-apis-inner-applicat
 
 > **NOTE**
 >
-> **WindowExtensionAbility** is a system API. To embed a third-party application in another application and display it over the application, switch to the full SDK by following the instructions provided in [Guide to Switching to Full SDK](../../application-dev/quick-start/full-sdk-switch-guide.md).
+> **WindowExtensionAbility** is a system API. To embed a third-party application in another application and display it over the application, switch to the full SDK by following the instructions provided in [Guide to Switching to Full SDK](../faqs/full-sdk-switch-guide.md).
 >
 
 
@@ -43,7 +43,7 @@ To implement an embedded application, manually create a WindowExtensionAbility i
         onWindowReady(window) {
             window.loadContent('WindowExtAbility/pages/index1').then(() => {
                 window.getProperties().then((pro) => {
-                    console.log("WindowExtension " + JSON.stringify(pro));
+                    console.info("WindowExtension " + JSON.stringify(pro));
                 })
                 window.show();
             })
@@ -111,3 +111,4 @@ System applications can load the created WindowExtensionAbility through the Abil
      }
    }
    ```
+

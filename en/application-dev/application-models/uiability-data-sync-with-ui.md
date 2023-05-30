@@ -22,21 +22,21 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
    const TAG: string = '[Example].[Entry].[EntryAbility]';
 
    export default class EntryAbility extends UIAbility {
-       func1(...data) {
-           // Trigger the event to complete the service operation.
-           console.info(TAG, '1. ' + JSON.stringify(data));
-       }
+     func1(...data) {
+       // Trigger the event to complete the service operation.
+       console.info(TAG, '1. ' + JSON.stringify(data));
+     }
 
-       onCreate(want, launch) {
-           // Obtain an eventHub object.
-           let eventhub = this.context.eventHub;
-           // Subscribe to the event.
-           eventhub.on('event1', this.func1);
-           eventhub.on('event1', (...data) => {
-               // Trigger the event to complete the service operation.
-               console.info(TAG, '2. ' + JSON.stringify(data));
-           });
-       }
+     onCreate(want, launch) {
+       // Obtain an eventHub object.
+       let eventhub = this.context.eventHub;
+       // Subscribe to the event.
+       eventhub.on('event1', this.func1);
+       eventhub.on('event1', (...data) => {
+         // Trigger the event to complete the service operation.
+         console.info(TAG, '2. ' + JSON.stringify(data));
+       });
+     }
    }
    ```
 
@@ -62,7 +62,7 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 
      // Page display.
      build() {
-       // ...
+       ...
      }
    }
    ```
@@ -90,8 +90,7 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 **globalThis** is a global object inside the [ArkTS engine instance](thread-model-stage.md) and can be used by UIAbility, ExtensionAbility, and Page inside the engine. Therefore, you can use **globalThis** for data synchronization.
 
 **Figure 1** Using globalThis for data synchronization
-
-  ![globalThis1](figures/globalThis1.png)
+![globalThis1](figures/globalThis1.png)
 
 
 The following describes how to use **globalThis** in three scenarios. Precautions are provided as well.
@@ -105,18 +104,18 @@ The following describes how to use **globalThis** in three scenarios. Precaution
 
 By binding attributes or methods to **globalThis**, you can implement data synchronization between the UIAbility component and UI. For example, if you bind the **want** parameter in the UIAbility component, you can use the **want** parameter information on the UI corresponding to the UIAbility component.
 
-1. When [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called to start a UIAbility instance, the **onCreate()** callback is invoked, and the **want** parameter can be passed in the callback. Therefore, you can bind the **want** parameter to **globalThis**.
+1. When [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called to start a UIAbility instance, the [onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate) callback is invoked, and the **want** parameter can be passed in the callback. Therefore, you can bind the **want** parameter to **globalThis**.
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
 
    export default class EntryAbility extends UIAbility {
-       onCreate(want, launch) {
-           globalThis.entryAbilityWant = want;
-           // ...
-       }
+     onCreate(want, launch) {
+       globalThis.entryAbilityWant = want;
+       ...
+     }
 
-       // ...
+     ...
    }
    ```
 
@@ -124,17 +123,17 @@ By binding attributes or methods to **globalThis**, you can implement data synch
 
    ```ts
    let entryAbilityWant;
-
+   
    @Entry
    @Component
    struct Index {
      aboutToAppear() {
        entryAbilityWant = globalThis.entryAbilityWant;
      }
-
+   
      // Page display.
      build() {
-       // ...
+       ...
      }
    }
    ```
@@ -150,10 +149,10 @@ To implement data synchronization between two UIAbility components in the same a
    import UIAbility from '@ohos.app.ability.UIAbility'
 
    export default class UIAbilityA extends UIAbility {
-       onCreate(want, launch) {
-           globalThis.entryAbilityStr = 'UIAbilityA'; // UIAbilityA stores the string "UIAbilityA" to globalThis.
-           // ...
-       }
+     onCreate(want, launch) {
+       globalThis.entryAbilityStr = 'UIAbilityA'; // UIAbilityA stores the string "UIAbilityA" to globalThis.
+       ...
+     }
    }
    ```
 
@@ -161,13 +160,13 @@ To implement data synchronization between two UIAbility components in the same a
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility'
-
+   
    export default class UIAbilityB extends UIAbility {
-       onCreate(want, launch) {
-           // UIAbilityB reads name from globalThis and outputs it.
-           console.info('name from entryAbilityStr: ' + globalThis.entryAbilityStr);
-           // ...
-       }
+     onCreate(want, launch) {
+       // UIAbilityB reads name from globalThis and outputs it.
+       console.info('name from entryAbilityStr: ' + globalThis.entryAbilityStr);
+       ...
+     }
    }
    ```
 
@@ -182,11 +181,11 @@ To implement data synchronization between the UIAbility and ExtensionAbility com
    import UIAbility from '@ohos.app.ability.UIAbility'
 
    export default class UIAbilityA extends UIAbility {
-       onCreate(want, launch) {
-           // UIAbilityA stores the string "UIAbilityA" to globalThis.
-           globalThis.entryAbilityStr = 'UIAbilityA';
-           // ...
-       }
+     onCreate(want, launch) {
+       // UIAbilityA stores the string "UIAbilityA" to globalThis.
+       globalThis.entryAbilityStr = 'UIAbilityA';
+       ...
+     }
    }
    ```
 
@@ -194,21 +193,20 @@ To implement data synchronization between the UIAbility and ExtensionAbility com
 
    ```ts
    import Extension from '@ohos.app.ability.ServiceExtensionAbility'
-
+   
    export default class ServiceExtAbility extends Extension {
-       onCreate(want) {
-           / / ServiceExtAbility reads name from globalThis and outputs it.
-           console.info('name from entryAbilityStr: ' + globalThis.entryAbilityStr);
-           // ...
-       }
+     onCreate(want) {
+       / / ServiceExtAbility reads name from globalThis and outputs it.
+       console.info('name from entryAbilityStr: ' + globalThis.entryAbilityStr);
+       ...
+     }
    }
    ```
 
 
 ### Precautions for Using globalThis
 
-**Figure 2** Precautions for globalThis
-
+**Figure 2** Precautions for globalThis 
 ![globalThis2](figures/globalThis2.png)
 
 - In the stage model, all the UIAbility components in a process share one ArkTS engine instance. When using **globalThis**, do not store objects with the same name. For example, if UIAbilityA and UIAbilityB use **globalThis** to store two objects with the same name, the object stored earlier will be overwritten.
@@ -225,10 +223,10 @@ The following provides an example to describe the object overwritten problem in 
    import UIAbility from '@ohos.app.ability.UIAbility'
 
    export default class UIAbilityA extends UIAbility {
-       onCreate(want, launch) {
-           globalThis.context = this.context; // UIAbilityA stores the context in globalThis.
-           // ...
-       }
+     onCreate(want, launch) {
+       globalThis.context = this.context; // UIAbilityA stores the context in globalThis.
+       ...
+     }
    }
    ```
 
@@ -243,7 +241,7 @@ The following provides an example to describe the object overwritten problem in 
      }
      // Page display.
      build() {
-       // ...
+       ...
      }
    }
    ```
@@ -254,11 +252,11 @@ The following provides an example to describe the object overwritten problem in 
    import UIAbility from '@ohos.app.ability.UIAbility'
 
    export default class UIAbilityB extends UIAbility {
-       onCreate(want, launch) {
-           // UIAbilityB overwrites the context stored by UIAbilityA in globalThis.
-           globalThis.context = this.context;
-           // ...
-       }
+     onCreate(want, launch) {
+       // UIAbilityB overwrites the context stored by UIAbilityA in globalThis.
+       globalThis.context = this.context;
+       ...
+     }
    }
    ```
 
@@ -273,7 +271,7 @@ The following provides an example to describe the object overwritten problem in 
      }
      // Page display.
      build() {
-       // ...
+       ...
      }
    }
    ```
@@ -284,10 +282,10 @@ The following provides an example to describe the object overwritten problem in 
    import UIAbility from '@ohos.app.ability.UIAbility'
 
    export default class UIAbilityA extends UIAbility {
-       onCreate(want, launch) { // UIAbilityA will not enter this lifecycle.
-           globalThis.context = this.context;
-           // ...
-       }
+     onCreate(want, launch) { // UIAbilityA will not enter this lifecycle.
+       globalThis.context = this.context;
+       ...
+     }
    }
    ```
 
@@ -302,7 +300,7 @@ The following provides an example to describe the object overwritten problem in 
      }
      // Page display.
      build() {
-       // ...
+       ...
      }
    }
    ```
@@ -310,5 +308,3 @@ The following provides an example to describe the object overwritten problem in 
 ## Using AppStorage or LocalStorage for Data Synchronization
 
 ArkUI provides AppStorage and LocalStorage to implement application- and UIAbility-level data synchronization, respectively. Both solutions can be used to manage the application state, enhance application performance, and improve user experience. The AppStorage is a global state manager and is applicable when multiple UIAbilities share the same state data. The LocalStorage is a local state manager that manages state data used inside a single UIAbility. They help you control the application state more flexibly and improve the maintainability and scalability of applications. For details, see [State Management of Application-Level Variables](../quick-start/arkts-application-state-management-overview.md).
-
- <!--no_check--> 

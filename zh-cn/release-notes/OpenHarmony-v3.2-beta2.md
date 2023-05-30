@@ -36,7 +36,7 @@
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2 Beta2 | NA |
 | Public SDK | Ohos_sdk_public 3.2.5.5 (API Version 9 Beta2)<br>Ohos_sdk_public 3.2.5.6 (API Version 9 Beta2) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。<br/>通过DevEco Studio默认获取的SDK为Public SDK。 |
-| Full SDK | Ohos_sdk_full 3.2.5.5 (API Version 9 Beta2)<br/>Ohos_sdk_full 3.2.5.6 (API Version 9 Beta2) | 面向OEM厂商提供，包含了需要使用系统权限的系统接口。<br/>使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](../application-dev/quick-start/full-sdk-switch-guide.md)。 |
+| Full SDK | Ohos_sdk_full 3.2.5.5 (API Version 9 Beta2)<br/>Ohos_sdk_full 3.2.5.6 (API Version 9 Beta2) | 面向OEM厂商提供，包含了需要使用系统权限的系统接口。<br/>使用Full SDK时需要手动从镜像站点获取，并在DevEco Studio中替换，具体操作可参考[替换指南](../application-dev/faqs/full-sdk-switch-guide.md)。 |
 | HUAWEI DevEco Studio（可选） | 3.0 Beta4 | OpenHarmony应用开发推荐使用。 |
 | HUAWEI DevEco Device Tool（可选） | 3.0 Release | OpenHarmony智能设备集成开发环境推荐使用。 |
 
@@ -132,7 +132,7 @@
 ### SDK变更
 从本版本起，SDK会同时提供Public SDK和Full SDK。通过DevEco Studio默认获取的SDK为Public SDK。
 
-已使用较早版本SDK开发的应用如果使用到了系统API，升级本版本后需要[手动替换SDK为Full SDK](../application-dev/quick-start/full-sdk-switch-guide.md)才可以保证应用工程可编译通过。
+已使用较早版本SDK开发的应用如果使用到了系统API，升级本版本后需要[手动替换SDK为Full SDK](../application-dev/faqs/full-sdk-switch-guide.md)才可以保证应用工程可编译通过。
 
 ### 特性变更
 

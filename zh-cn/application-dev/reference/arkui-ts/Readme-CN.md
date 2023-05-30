@@ -12,6 +12,7 @@
     - [鼠标事件](ts-universal-mouse-key.md)
     - [组件区域变化事件](ts-universal-component-area-change-event.md)
     - [组件可见区域变化事件](ts-universal-component-visible-area-change-event.md)
+    - [组件快捷键事件](ts-universal-events-keyboardshortcut.md)
   - 通用属性
     - [尺寸设置](ts-universal-attributes-size.md)
     - [位置设置](ts-universal-attributes-location.md)
@@ -45,6 +46,9 @@
     - [图像球面效果设置](ts-universal-attributes-sphericalEffect.md)
     - [图像渐亮效果设置](ts-universal-attributes-lightUpEffect.md)
     - [图像像素扩展效果设置](ts-universal-attributes-pixelStretchEffect.md)
+    - 模态转场设置
+      - [全屏模态转场](ts-universal-attributes-modal-transition.md)
+      - [半模态转场](ts-universal-attributes-sheet-transition.md)
   - [文本通用属性](ts-universal-attributes-text-style.md)
   - 手势处理
     - [绑定手势方法](ts-gesture-settings.md)
@@ -69,6 +73,7 @@
   - [Gauge](ts-basic-components-gauge.md)
   - [Image](ts-basic-components-image.md)
   - [ImageAnimator](ts-basic-components-imageanimator.md)
+  - [ImageSpan](ts-basic-components-imagespan.md)
   - [LoadingProgress](ts-basic-components-loadingprogress.md)
   - [Marquee](ts-basic-components-marquee.md)
   - [Menu](ts-basic-components-menu.md)
@@ -143,10 +148,12 @@
   - [Shape](ts-drawing-components-shape.md)
 - 画布组件
   - [Canvas](ts-components-canvas-canvas.md)
-  - [CanvasRenderingContext2D对象](ts-canvasrenderingcontext2d.md)
   - [CanvasGradient对象](ts-components-canvas-canvasgradient.md)
+  - [CanvasPattern](ts-components-canvas-canvaspattern.md)
+  - [CanvasRenderingContext2D对象](ts-canvasrenderingcontext2d.md)
   - [ImageBitmap对象](ts-components-canvas-imagebitmap.md)
   - [ImageData对象](ts-components-canvas-imagedata.md)
+  - [Matrix2D](ts-components-canvas-matrix2d.md)
   - [OffscreenCanvasRenderingContext2D对象](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D对象](ts-components-canvas-path2d.md)
   - [Lottie](ts-components-canvas-lottie.md)

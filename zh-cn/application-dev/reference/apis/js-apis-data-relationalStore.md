@@ -38,10 +38,11 @@ getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;Rd
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800010     | If failed delete database by invalid database name.  |
-| 14800011     | If failed open database by database corrupted.     |
+| **错误码ID** | **错误信息**                                                |
+| ------------ | ----------------------------------------------------------- |
+| 14800010     | Failed to open or delete database by invalid database path. |
+| 14800011     | Failed to open database by database corrupted.              |
+| 14800000     | Inner error.                                                |
 
 **示例：**
 
@@ -121,10 +122,11 @@ getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800010     | If failed delete database by invalid database name. |
-| 14800011     | If failed open database by database corrupted.     |
+| **错误码ID** | **错误信息**                                                |
+| ------------ | ----------------------------------------------------------- |
+| 14800010     | Failed to open or delete database by invalid database path. |
+| 14800011     | Failed to open database by database corrupted.              |
+| 14800000     | Inner error.                                                |
 
 **示例：**
 
@@ -196,9 +198,10 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800010     | If failed delete database by invalid database name. |
+| **错误码ID** | **错误信息**                                                |
+| ------------ | ----------------------------------------------------------- |
+| 14800010     | Failed to open or delete database by invalid database path. |
+| 14800000     | Inner error.                                                |
 
 **示例：**
 
@@ -262,9 +265,10 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800010     | If failed delete database by invalid database name. |
+| **错误码ID** | **错误信息**                                                |
+| ------------ | ----------------------------------------------------------- |
+| 14800010     | Failed to open or delete database by invalid database path. |
+| 14800000     | Inner error.                                                |
 
 **示例：**
 
@@ -344,7 +348,7 @@ class EntryAbility extends UIAbility {
 
 ## ValuesBucket
 
-用于存储键值对的类型。
+用于存储键值对的类型。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -374,6 +378,7 @@ class EntryAbility extends UIAbility {
 | 名称                  | 值   | 说明               |
 | --------------------- | ---- | ------------------ |
 | SUBSCRIBE_TYPE_REMOTE | 0    | 订阅远程数据更改。 |
+| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | 1    | 订阅云端数据更改。 |
 
 ## ConflictResolution<sup>10+</sup>
 
@@ -392,7 +397,7 @@ class EntryAbility extends UIAbility {
 
 ## RdbPredicates
 
-表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。
+表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
 
 ### constructor
 
@@ -1289,9 +1294,10 @@ insert(table: string, values: ValuesBucket, callback: AsyncCallback&lt;number&gt
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1332,9 +1338,10 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution, callb
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1379,9 +1386,10 @@ insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1426,9 +1434,10 @@ insert(table: string, values: ValuesBucket,  conflict: ConflictResolution):Promi
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1467,9 +1476,10 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCal
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1528,9 +1538,10 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1583,9 +1594,10 @@ update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1628,9 +1640,10 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1677,9 +1690,10 @@ update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1726,9 +1740,10 @@ update(values: ValuesBucket, predicates: RdbPredicates, conflict: ConflictResolu
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1774,9 +1789,10 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1829,9 +1845,10 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1872,9 +1889,10 @@ delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1914,9 +1932,10 @@ delete(predicates: RdbPredicates):Promise&lt;number&gt;
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -1955,9 +1974,10 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callb
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -2003,9 +2023,10 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promi
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -2037,6 +2058,14 @@ query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCa
 | columns    | Array&lt;string&gt;                                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。            |
 | callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **示例：**
 
 ```js
@@ -2066,6 +2095,14 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 | ---------- | ------------------------------------ | ---- | ------------------------------------------------ |
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的查询条件。        |
 | columns    | Array&lt;string&gt;                  | 否   | 表示要查询的列。如果值为空，则查询应用于所有列。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
 
 **返回值**：
 
@@ -2107,6 +2144,14 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的查询条件。               |
 | columns    | Array&lt;string&gt;                                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。            |
 | callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
 
 **示例：**
 
@@ -2150,6 +2195,14 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | ------------------------------------------------------- | -------------------------------------------------- |
 | Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **示例：**
 
 ```js
@@ -2186,6 +2239,14 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 | predicates | [RdbPredicates](#rdbpredicates)              | 是   | RdbPredicates的实例对象，指定查询的条件。                 |
 | columns    | Array&lt;string&gt;                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。          |
 | callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
 
 **示例：**
 
@@ -2245,6 +2306,14 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 | ------------------------------------------------------------ | -------------------------------------------------- |
 | Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **示例：**
 
 ```js
@@ -2289,6 +2358,14 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 | bindArgs | Array&lt;[ValueType](#valuetype)&gt;         | 是   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。当sql参数语句完整时，该参数需为空数组。 |
 | callback | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。    |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **示例：**
 
 ```js
@@ -2323,6 +2400,14 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 | ------------------------------------------------------- | -------------------------------------------------- |
 | Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **示例：**
 
 ```js
@@ -2355,9 +2440,10 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -2397,9 +2483,10 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -2425,9 +2512,10 @@ beginTransaction():void
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800047     | The WAL file size exceeds the default limit.|
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800047     | The WAL file size exceeds the default limit. |
+| 14800000     | Inner error.                                 |
 
 **示例：**
 
@@ -2544,6 +2632,14 @@ backup(destName:string, callback: AsyncCallback&lt;void&gt;):void
 | destName | string                    | 是   | 指定数据库的备份文件名。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。   |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **示例：**
 
 ```js
@@ -2576,6 +2672,14 @@ backup(destName:string): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **示例：**
 
 ```js
@@ -2601,6 +2705,14 @@ restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void
 | -------- | ------------------------- | ---- | ------------------------ |
 | srcName  | string                    | 是   | 指定数据库的备份文件名。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
 
 **示例：**
 
@@ -2634,6 +2746,14 @@ restore(srcName:string): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **示例：**
 
 ```js
@@ -2661,6 +2781,14 @@ setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 | -------- | ------------------------- | ---- | ---------------------- |
 | tables   | Array&lt;string&gt;       | 是   | 要设置的分布式列表表名 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
 
 **示例：**
 
@@ -2696,6 +2824,14 @@ store.setDistributedTables(["EMPLOYEE"], function (err) {
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **示例：**
 
 ```js
@@ -2728,6 +2864,14 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 | device   | string                      | 是   | 远程设备ID 。                                                |
 | table    | string                      | 是   | 远程设备的本地表名。                                         |
 | callback | AsyncCallback&lt;string&gt; | 是   | 指定的callback回调函数。如果操作成功，返回远程设备的分布式表名。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
 
 **示例：**
 
@@ -2782,6 +2926,14 @@ store.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName)
 | --------------------- | ----------------------------------------------------- |
 | Promise&lt;string&gt; | Promise对象。如果操作成功，返回远程设备的分布式表名。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
+
 **示例：**
 
 ```js
@@ -2824,6 +2976,14 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 | mode       | [SyncMode](#syncmode)                             | 是   | 指同步模式。该值可以是推、拉。                               |
 | predicates | [RdbPredicates](#rdbpredicates)               | 是   | 约束同步数据和设备。                                         |
 | callback   | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | 是   | 指定的callback回调函数，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
 
 **示例：**
 
@@ -2880,6 +3040,14 @@ store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, function (err, r
 | 类型                                         | 说明                                                         |
 | -------------------------------------------- | ------------------------------------------------------------ |
 | Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise对象，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                 |
+| ------------ | ---------------------------- |
+| 14800000     | Inner error.                 |
 
 **示例：**
 
@@ -3111,7 +3279,7 @@ goTo(offset:number): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty or the specified location is invalid. |
 
 **示例：**
 
@@ -3152,7 +3320,7 @@ goToRow(position: number): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty or the specified location is invalid. |
 
 **示例：**
 
@@ -3188,7 +3356,7 @@ goToFirstRow(): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty or the specified location is invalid. |
 
 **示例：**
 
@@ -3223,7 +3391,7 @@ goToLastRow(): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty or the specified location is invalid. |
 
 **示例：**
 
@@ -3258,7 +3426,7 @@ goToNextRow(): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty or the specified location is invalid. |
 
 **示例：**
 
@@ -3293,7 +3461,7 @@ goToPreviousRow(): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty or the specified location is invalid. |
 
 **示例：**
 
@@ -3328,6 +3496,14 @@ getBlob(columnIndex: number): Uint8Array
 | ---------- | -------------------------------- |
 | Uint8Array | 以字节数组的形式返回指定列的值。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 14800013     | The column value is null or the column type is incompatible. |
+
 **示例：**
 
   ```js
@@ -3353,6 +3529,14 @@ getString(columnIndex: number): string
 | 类型   | 说明                         |
 | ------ | ---------------------------- |
 | string | 以字符串形式返回指定列的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 14800013     | The column value is null or the column type is incompatible. |
 
 **示例：**
 
@@ -3380,6 +3564,14 @@ getLong(columnIndex: number): number
 | ------ | ------------------------------------------------------------ |
 | number | 以Long形式返回指定列的值。<br>该接口支持的数据范围是：Number.MIN_SAFE_INTEGER ~ Number.MAX_SAFE_INTEGER，若超出该范围，建议使用[getDouble](#getdouble)。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 14800013     | The column value is null or the column type is incompatible. |
+
 **示例：**
 
   ```js
@@ -3405,6 +3597,14 @@ getDouble(columnIndex: number): number
 | 类型   | 说明                         |
 | ------ | ---------------------------- |
 | number | 以double形式返回指定列的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 14800013     | The column value is null or the column type is incompatible. |
 
 **示例：**
 
@@ -3472,4 +3672,4 @@ promiseClose.then((resultSet) => {
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty or the specified location is invalid. |

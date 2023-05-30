@@ -309,7 +309,6 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 **示例：**
 
 ```ts
-let applicationContext = this.context.getApplicationContext();
 applicationContext.getRunningProcessInformation().then((data) => {
     console.log('The process running information is: ${JSON.stringify(data)}');
 }).catch((error) => {
@@ -347,7 +346,6 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 **示例：**
 
 ```ts
-let applicationContext = this.context.getApplicationContext();
 applicationContext.getRunningProcessInformation((err, data) => {
     if (err) {
         console.error('getRunningProcessInformation faile, err: ${JSON.stringify(err)}');
@@ -382,7 +380,6 @@ killAllProcesses(): Promise\<void\>;
 **示例：**
 
 ```ts
-let applicationContext = this.context.getApplicationContext();
 applicationContext.killAllProcesses();
 ```
 
@@ -411,7 +408,6 @@ killAllProcesses(callback: AsyncCallback\<void\>);
 **示例：**
 
 ```ts
-let applicationContext = this.context.getApplicationContext();
 applicationContext.killAllProcesses(error => {
     if (error) {
         console.error('killAllProcesses fail, error: ${JSON.stringify(error)}');

@@ -28,14 +28,14 @@ Hi3861V100的镜像烧录通过Windows环境进行烧录，开发者启动烧录
 
    ![zh-cn_image_0000001333802045](figures/zh-cn_image_0000001333802045.png)
 
-4. 在“Tool Chain”页签，设置Uploader烧录器工具，可以通过Tool Chain页签中的Install按钮在线安装。
+4. 在“Tool Chain”页签，检查Uploader烧录器工具是否已安装。
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
-   > 若烧录器存在新版本或需要使用其它烧录器，您可以在**Uploader > Use Custom Burn Tool**指定本地的烧录器。
+   - 如工具为“uninstalled”状态（![status_uninstall](figures/status_uninstall.png)），可单击**Download Uninstalled Tools**，自动安装所需工具，或单击工具后方的**Download**安装指定工具。
+   - 如工具无法通过**Download**方式安装，表示该工具未被DevEco Device Tool收录，需要开发者自行下载到本地后单击**Import**导入。
 
-   ![Phoenix-upload](figures/Phoenix-upload.png)
+   ![3861_false](figures/3861_false.png)
 
-5. 在“hi3861”页签，设置烧录选项，包括upload_port、upload_protocol和upload_partitions。配置完成后工程将自动保存。
+5. 在“wifiiot_hispark_pegasus”页签，设置烧录选项，包括upload_port、upload_protocol和upload_partitions。配置完成后工程将自动保存。
    - upload_port：选择已查询的串口号。
    - upload_protocol：选择烧录协议，选择“hiburn-serial”。
    - upload_partitions：选择待烧录的文件名称。DevEco Device Tool已预置默认的烧录文件信息，如果需要修改待烧录文件地址，可点击每个待烧录文件后的![zh-cn_image_0000001333642545](figures/zh-cn_image_0000001333642545.png)按钮进行修改。

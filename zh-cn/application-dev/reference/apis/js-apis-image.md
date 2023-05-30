@@ -878,6 +878,53 @@ async function Demo() {
 }
 ```
 
+### getColorSpace<sup>10+</sup>
+
+getColorSpace(): colorSpaceManager.ColorSpaceManager
+
+获取图像广色域信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**返回值：**
+
+| 类型                                | 说明             |
+| ----------------------------------- | ---------------- |
+| [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 图像广色域信息。 |
+
+**示例：**
+
+```js
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+async function Demo() {
+    let csm = pixelmap.getColorSpace();
+}
+```
+
+### setColorSpace<sup>10+</sup>
+
+setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
+
+设置图像广色域信息。
+
+**系统能力：** SystemCapability.Multimedia.Image.Core
+
+**参数：**
+
+| 参数名     | 类型                                | 必填 | 说明            |
+| ---------- | ----------------------------------- | ---- | --------------- |
+| colorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | 是   | 图像广色域信息。|
+
+**示例：**
+
+```js
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+async function Demo() {
+    var csm = colorSpaceManager.create(colorSpaceName);
+    pixelmap.setColorSpace(csm);
+}
+```
+
 ### release<sup>7+</sup>
 
 release():Promise\<void>
@@ -1552,10 +1599,10 @@ let decodeOpts = {
     editable: true,
     desiredSize: { width: 198, height: 202 },
     rotate: 0,
-    desiredPixelFormat: RGBA_8888,
+    desiredPixelFormat: 3,
     index: 0,
 };
-let pixelmaplist = await imageSourceApi.createPixelMapList(decodeOpts);
+let pixelmaplist = imageSourceApi.createPixelMapList(decodeOpts);
 ```
 
 ### createPixelMapList<sup>10+</sup>
@@ -1603,7 +1650,7 @@ let decodeOpts = {
     editable: true,
     desiredSize: { width: 198, height: 202 },
     rotate: 0,
-    desiredPixelFormat: RGBA_8888,
+    desiredPixelFormat: 3,
     index: 0,
 };
 imageSourceApi.createPixelMap(decodeOpts, pixelmaplist => { 
@@ -1650,12 +1697,12 @@ getDelayTime(): Promise<Array\<number>>;
 **示例：**
 
 ```js
-let delayTimes = await imageSourceApi.getDelayTime();
+let delayTimes = imageSourceApi.getDelayTime();
 ```
 
 ### getFrameCount<sup>10+</sup>
 
-getFrameCount(callback: AsyncCallback<number>): void;
+getFrameCount(callback: AsyncCallback\<number>): void;
 
 获取图像帧数，使用callback形式返回结果。
 
@@ -1692,7 +1739,7 @@ getFrameCount(): Promise\<number>;
 **示例：**
 
 ```js
-let frameCount = await imageSourceApi.getFrameCount();
+let frameCount = imageSourceApi.getFrameCount();
 ```
 
 ### release

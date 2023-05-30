@@ -279,6 +279,7 @@ HiTraceMeter提供了可执行的二进制程序hitrace，设备刷openharmony�
 | --trace_begin                 | 启动抓trace                                                 |
 | --trace_dump                  | 将数据输出到指定位置（默认控制台）                                        |
 | --trace_finish                | 停止抓trace，并将数据输出到指定位置（默认控制台）                              |
+| --trace_finish_nodump         | 停止抓trace，不输出trace信息                                 |
 | -l，--list_categories          | 输出手机能支持的trace模块                                          |
 | --overwrite                   | 当缓冲区满的时候，将丢弃最新的信息。（默认丢弃最老的日志）                            |
 | -o filename，--output filename | 指定输出的目标文件名称                                              |

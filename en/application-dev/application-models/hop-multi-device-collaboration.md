@@ -63,7 +63,7 @@ On device A, touch the **Start** button provided by the initiator application to
        // createDeviceManager is a system API.
        deviceManager.createDeviceManager('ohos.samples.demo', (err, dm) => {
            if (err) {
-               // ...
+               ...
                return
            }
            dmClass = dm
@@ -94,13 +94,13 @@ On device A, touch the **Start** button provided by the initiator application to
    }
    // context is the AbilityContext of the initiator UIAbility.
    this.context.startAbility(want).then(() => {
-       // ...
+       ...
    }).catch((err) => {
-       // ...
+       ...
    })
    ```
 
-5. Call stopServiceExtensionAbility(../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopserviceextensionability) to stop the ServiceExtensionAbility when it is no longer required on device B. (This API cannot be used to stop a UIAbility. Users must manually stop a UIAbility through task management.)
+5. Call [stopServiceExtensionAbility](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopserviceextensionability) to stop the ServiceExtensionAbility when it is no longer required on device B. (This API cannot be used to stop a UIAbility. Users must manually stop a UIAbility through task management.)
 
    ```ts
    let want = {
@@ -150,9 +150,9 @@ On device A, touch the **Start** button provided by the initiator application to
    }
    // context is the AbilityContext of the initiator UIAbility.
    this.context.startAbilityForResult(want).then((data) => {
-       // ...
+       ...
    }).catch((err) => {
-       // ...
+       ...
    })
    ```
 
@@ -170,7 +170,7 @@ On device A, touch the **Start** button provided by the initiator application to
    }
    // context is the AbilityContext of the target UIAbility.
    this.context.terminateSelfWithResult(abilityResult, (err) => {
-       // ...
+       ...
    });
    ```
 
@@ -179,17 +179,17 @@ On device A, touch the **Start** button provided by the initiator application to
    ```ts
    const RESULT_CODE: number = 1001;
    
-   // ...
+   ...
    
    // context is the UIAbilityContext of the initiator UIAbility.
    this.context.startAbilityForResult(want).then((data) => {
        if (data?.resultCode === RESULT_CODE) {
            // Parse the information returned by the target UIAbility.
            let info = data.want?.parameters?.info
-           // ...
+           ...
        }
    }).catch((err) => {
-       // ...
+       ...
    })
    ```
 
@@ -444,10 +444,10 @@ The following describes how to implement multi-device collaboration through cros
                    // Register the onRemoteStateChange listener of the CallerAbility.
                    try {
                         caller.onRemoteStateChange((str) => {
-                            console.log('Remote state changed ' + str);
+                            console.info('Remote state changed ' + str);
                         });
                     } catch (error) {
-                        console.log('Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
+                        console.info('Caller.onRemoteStateChange catch error, error.code: ${JSON.stringify(error.code)}, error.message: ${JSON.stringify(error.message)}');
                     }
                }
            }).catch((error) => {

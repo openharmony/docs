@@ -52,7 +52,7 @@ try {
         usage: 'alarm'
     }, (error) => {
         if (error) {
-            console.error('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
+            console.error('Vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
             return;
         }
         console.log('Callback returned to indicate a successful vibration.');
@@ -145,7 +145,7 @@ try {
         usage: 'alarm'
     }, (error) => {
         if (error) {
-            console.error('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
+            console.error('Vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
             return;
         }
         console.log('Callback returned to indicate a successful vibration.');
@@ -253,7 +253,7 @@ try {
         usage: 'alarm'
     }, (error) => {
         if (error) {
-            console.error('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
+            console.error('Vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
             return;
         }
         console.log('Callback returned to indicate a successful vibration.');
@@ -338,7 +338,7 @@ Checks whether the passed effect ID is supported. This API uses an asynchronous 
 | Name  | Type                        | Mandatory| Description                                                  |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------ |
 | effectId | string                       | Yes  | Vibration effect ID.                                            |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that the passed effect ID is supported, and **false** means the opposite. |
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. The value **true** means that the passed effect ID is supported, and **false** means the opposite.|
 
 **Example**
 
@@ -395,7 +395,7 @@ Checks whether the passed effect ID is supported. This API uses a promise to ret
 
 | Type                  | Description                                                     |
 | ---------------------- | --------------------------------------------------------- |
-| Promise&lt;boolean&gt; | Promise that returns the result. The value **true** means that the passed effect ID is supported, and **false** means the opposite. |
+| Promise&lt;boolean&gt; | Promise that returns the result. The value **true** means that the passed effect ID is supported, and **false** means the opposite.|
 
 **Example**
 
@@ -419,7 +419,7 @@ try {
                     console.error('Promise returned to indicate a failed vibration:' + JSON.stringify(error));
                 });
             } catch (error) {
-                console.error('exception in, error:' + JSON.stringify(error));
+                console.error('Exception in, error:' + JSON.stringify(error));
             }
         }
     }, (error) => {

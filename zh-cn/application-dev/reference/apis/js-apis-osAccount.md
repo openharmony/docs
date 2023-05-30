@@ -2433,7 +2433,7 @@ off(type: 'activate' | 'activating', name: string, callback?: Callback&lt;number
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | type     | 'activate' \| 'activating' | 是   | 取消订阅类型，activate表示取消订阅帐号已激活完成的事件，activating取消订阅帐号正在激活的事件。 |
 | name     | string                     | 是   | 订阅名称，可自定义，要求非空且长度不超过1024字节，需要与订阅接口传入的值保持一致。 |
-| callback | Callback&lt;number&gt;     | 否   | 取消订阅系统帐号激活完成与激活中的事件回调，默认返回0。                      |
+| callback | Callback&lt;number&gt;     | 否   | 取消订阅系统帐号激活完成与激活中的事件回调，默认为空，表示取消该类型事件的所有回调。                      |
 
 **错误码：**
 
@@ -5649,7 +5649,7 @@ getAuthInfo(authType?: AuthType): Promise&lt;Array&lt;EnrolledCredInfo&gt;&gt;;
 
 | 参数名    | 类型                                | 必填 | 说明      |
 | -------- | ----------------------------------- | ---- | -------- |
-| authType | [AuthType](#authtype8)              | 否   | 认证类型。|
+| authType | [AuthType](#authtype8)              | 否   | 认证类型，默认为空，表示查询所有认证类型的信息。|
 
 **返回值：**
 
@@ -5929,12 +5929,14 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 **系统能力：** 以下各项对应的系统能力均为SystemCapability.Account.OsAccount
 
-| 名称        | 类型                                     | 必填   | 说明              |
-| ------------ | ---------------------------------------- | ----- | ----------------- |
-| result       | number                                   | 是    | 指示结果。         |
-| authSubType  | [AuthSubType](#authsubtype8) | 是    | 指示认证凭据子类型。|
-| remainTimes  | number                                   | 否    | 指示剩余次数。     |
-| freezingTime | number                                   | 否    | 指示冻结时间。     |
+| 名称         | 类型                         |  可读 | 可写 | 说明              |
+| ------------ | ---------------------------- | ----- | -----|----------------- |
+| result       | number                       | 是    | 是   | 指示结果。         |
+| authSubType  | [AuthSubType](#authsubtype8) | 是    | 是   | 指示认证凭据子类型。|
+| remainTimes  | number                       | 是    | 是   | 指示剩余次数。     |
+| freezingTime | number                       | 是    | 是   | 指示冻结时间。     |
+| enrollmentProgress<sup>10+</sup> | string   | 是    | 是   | 指示录入进度，默认为空。 |
+| sensorInfo<sup>10+</sup> | string           | 是    | 是   | 指示传感器信息，默认为空。 |
 
 ## AuthResult<sup>8+</sup>
 
@@ -5946,9 +5948,9 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 | 名称        | 类型        | 必填   | 说明              |
 | ------------ | ----------- | ----- | ----------------- |
-| token        | Uint8Array  | 否    | 指示认证令牌。     |
-| remainTimes  | number      | 否    | 指示剩余次数。     |
-| freezingTime | number      | 否    | 指示冻结时间。     |
+| token        | Uint8Array  | 否    | 指示认证令牌，默认为空。      |
+| remainTimes  | number      | 否    | 指示剩余次数，默认为空。      |
+| freezingTime | number      | 否    | 指示冻结时间，默认为空。      |
 
 ## CredentialInfo<sup>8+</sup>
 
@@ -5974,7 +5976,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 | 名称        | 类型        | 必填   | 说明              |
 | ------------ | ----------- | ----- | ----------------- |
-| credentialId | Uint8Array  | 否    | 指示凭据索引。     |
+| credentialId | Uint8Array  | 否    | 指示凭据索引，默认为空。      |
 
 ## EnrolledCredInfo<sup>8+</sup>
 
@@ -6004,6 +6006,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | AUTH_SUB_TYPE | 1      | 认证子类型。 |
 | REMAIN_TIMES  | 2      | 剩余时间。   |
 | FREEZING_TIME | 3      | 冻结时间。   |
+| ENROLLMENT_PROGRESS<sup>10+</sup> | 4      | 录入进度。   |
+| SENSOR_INFO<sup>10+</sup> | 5      | 传感器信息。   |
 
 ## SetPropertyType<sup>8+</sup>
 
@@ -6047,6 +6051,9 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | PIN_MIXED  | 10002 | 表示自定义混合凭据。 |
 | FACE_2D    | 20000 | 表示2D 人脸凭证。   |
 | FACE_3D    | 20001 | 表示3D 人脸凭证。   |
+| FINGERPRINT_CAPACITIVE<sup>10+</sup>    | 30000 | 表示电容式指纹。   |
+| FINGERPRINT_OPTICAL<sup>10+</sup>    | 30001 | 表示光学指纹。   |
+| FINGERPRINT_ULTRASONIC<sup>10+</sup>    | 30002 | 表示超声波指纹。   |
 | DOMAIN_MIXED<sup>9+</sup>    | 10240001 | 表示域认证混合凭证。   |
 
 ## AuthTrustLevel<sup>8+</sup>
@@ -6130,12 +6137,14 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 
 | 名称                          | 值 | 说明                                            |
 | ----------------------------- | ----- | ----------------------------------------------- |
-| FINGERPRINT_TIP_GOOD          | 0     | 表明采集的图像良好。                              |
+| FINGERPRINT_TIP_GOOD          | 0     | 表示采集的图像良好。                              |
 | FINGERPRINT_TIP_IMAGER_DIRTY  | 1     | 表示由于传感器上可疑或检测到污垢，指纹图像噪声过大。 |
 | FINGERPRINT_TIP_INSUFFICIENT  | 2     | 表示由于检测到的情况，指纹图像噪声太大，无法处理。   |
-| FINGERPRINT_TIP_PARTIAL       | 3     | 指示仅检测到部分指纹图像。                         |
+| FINGERPRINT_TIP_PARTIAL       | 3     | 表示仅检测到部分指纹图像。                         |
 | FINGERPRINT_TIP_TOO_FAST      | 4     | 表示指纹图像由于快速运动而不完整。                  |
 | FINGERPRINT_TIP_TOO_SLOW      | 5     | 表示由于缺少运动，指纹图像无法读取。                |
+| FINGERPRINT_TIP_FINGER_DOWN<sup>10+</sup>   | 6     | 表示手指向下。                  |
+| FINGERPRINT_TIP_FINGER_UP<sup>10+</sup>     | 7     | 表示手指向上。                |
 
 ## OsAccountInfo
 
@@ -6147,17 +6156,17 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | ------------------------------ | ------------------------------------------------------------ | ---- | --------------------------------- |
 | localId                        | number                                                       | 是   | 系统帐号ID。                      |
 | localName                      | string                                                       | 是   | 系统帐号名称。                    |
-| type                           | [OsAccountType](#osaccounttype)                              | 是   | 系统帐号类型                      |
-| constraints                    | Array&lt;string&gt;                                          | 否   | 系统帐号[约束](#系统帐号约束列表) |
-| isVerified<sup>8+</sup>        | boolean                                                      | 是   | 帐号是否验证                      |
-| photo<sup>8+</sup>             | string                                                       | 否   | 系统帐号头像                      |
-| createTime<sup>8+</sup>        | number                                                       | 是   | 系统帐号创建时间                  |
-| lastLoginTime<sup>8+</sup>     | number                                                       | 否   | 系统帐号最后一次登录时间          |
-| serialNumber<sup>8+</sup>      | number                                                       | 是   | 系统帐号SN码                      |
-| isActived<sup>8+</sup>         | boolean                                                      | 是   | 系统帐号激活状态                  |
-| isCreateCompleted<sup>8+</sup> | boolean                                                      | 是   | 系统帐号创建是否完整              |
-| distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | 否   | 分布式帐号信息                    |
-| domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | 否   | 域帐号信息                        |
+| type                           | [OsAccountType](#osaccounttype)                              | 是   | 系统帐号类型。                      |
+| constraints                    | Array&lt;string&gt;                                          | 否   | 系统帐号[约束](#系统帐号约束列表)，默认为空。|
+| isVerified<sup>8+</sup>        | boolean                                                      | 是   | 帐号是否验证。                      |
+| photo<sup>8+</sup>             | string                                                       | 否   | 系统帐号头像，默认为空。                      |
+| createTime<sup>8+</sup>        | number                                                       | 是   | 系统帐号创建时间。                  |
+| lastLoginTime<sup>8+</sup>     | number                                                       | 否   | 系统帐号最后一次登录时间，默认为空。          |
+| serialNumber<sup>8+</sup>      | number                                                       | 是   | 系统帐号SN码。                      |
+| isActived<sup>8+</sup>         | boolean                                                      | 是   | 系统帐号激活状态。                  |
+| isCreateCompleted<sup>8+</sup> | boolean                                                      | 是   | 系统帐号创建是否完整。              |
+| distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | 否   | 分布式帐号信息，默认为空。                    |
+| domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | 否   | 域帐号信息，默认为空。                        |
 
 ## DomainAccountInfo<sup>8+</sup>
 
@@ -6169,7 +6178,7 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | ----------- | ------ | ---- | ---------- |
 | domain      | string | 是   | 域名。     |
 | accountName | string | 是   | 域帐号名。 |
-| accountId<sup>10+</sup> | string | 否   | 域帐号标识。<br>**系统接口：** 此接口为系统接口。 |
+| accountId<sup>10+</sup> | string | 否   | 域帐号标识。<br>**系统接口：** 此接口为系统接口，默认为空。 |
 
 ## 系统帐号约束列表
 

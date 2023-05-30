@@ -12,7 +12,7 @@ OpenHarmony为了集成C/C++代码和提升编译速度，使用了GN + Ninja的
 | ----- | ------------------------------------------------------------ |
 | Cargo | Cargo是Rust官方使用的构建工具,允许Rust项目声明其各种依赖项，并确保您始终获得可重复的构建。 |
 | crate | crate是一个独立的可编译单元。                                |
-| lints | lints 是指出常见编程错误、错误、样式错误和可疑结构的工具。可以对程序进行更加广泛的错误分析。 |
+| Lint  | Lint是指出常见编程错误、错误、样式错误和可疑结构的工具。可以对程序进行更加广泛的错误分析。 |
 
 
 
@@ -100,6 +100,9 @@ OpenHarmony提供了用于Rust代码编译构建的各类型GN模板，可以用
    ![test_rlib_crate](./figures/test_rlib_crate.png)
 
 ### 配置三方库示例
+
+rust三方库的BUILD.gn文件可通过cargo2gn工具自动生成。参见：[Cargo2gn工具操作指导](subsys-build-cargo2gn-guide.md)
+
 该示例用于测试包含预编译文件build.rs的三方静态库rlib文件的编译，使用了模板ohos_rust_executable和ohos_rust_cargo_crate。操作步骤如下：
 
 1. 创建build/rust/tests/test_rlib_cargo_crate/crate/src/lib.rs，如下所示：
@@ -301,26 +304,27 @@ OpenHarmony提供了用于Rust代码编译构建的各类型GN模板，可以用
 在build/rust/tests目录下有Rust各类型模块的配置实例可供参考：
 | 用例目录                                     | 测试功能                                                     |
 | -------------------------------------------- | ------------------------------------------------------------ |
-| build/rust/tests/test_bin_crate              | 测试ohos_rust_executable的host和target编译链接及运行         |
-| build/rust/tests/test_static_link            | 测试ohos_rust_executable对libstd.rlib进行静态链接            |
-| build/rust/tests/test_dylib_crate            | 测试ohos_rust_executable对ohos_rust_shared_library的编译依赖和运行 |
-| build/rust/tests/test_rlib_crate             | 测试ohos_rust_executable对ohos_rust_static_library的编译依赖和运行 |
-| build/rust/tests/test_proc_macro_crate       | 测试ohos_rust_executable对ohos_rust_proc_macro的编译依赖和运行，对不同类型都有用例覆盖 |
-| build/rust/tests/test_cdylib_crate           | 测试ohos_rust_executable对ohos_rust_shared_ffi的编译依赖和运行 |
-| build/rust/tests/test_staticlib_crate        | 测试ohos_rust_executable对ohos_rust_static_ffi的编译依赖和运行 |
-| build/rust/tests/test_rust_ut                | 测试ohos_rust_unittest，用例代码与特性代码在同一个文件中     |
-| build/rust/tests/test_rust_st                | 测试ohos_rust_systemtest，用例代码在独立的test目录中         |
-| build/rust/tests/test_bin_cargo_crate        | 测试ohos_cargo_crate对拥有build.rs预编译的可执行文件编译链接和运行，适用于rust三方crate编译依赖 |
-| build/rust/tests/test_rlib_cargo_crate       | 测试ohos_cargo_crate对拥有build.rs预编译的静态库文件编译链接和运行，适用于rust三方crate编译依赖 |
-| build/rust/tests/test_proc_macro_cargo_crate | 测试ohos_cargo_crate对拥有build.rs预编译的过程宏编译链接和运行，适用于rust三方crate编译依赖 |
+| build/rust/tests/test_bin_crate              | 用ohos_rust_executable模板在host平台编译可执行文件，在target平台上运行可执行文件。 |
+| build/rust/tests/test_static_link            | 测试可执行文件对标准库的静态链接。                           |
+| build/rust/tests/test_dylib_crate            | 测试对动态库的编译和动态链接功能                             |
+| build/rust/tests/test_rlib_crate             | 测试对静态库的编译和静态链接功能                             |
+| build/rust/tests/test_proc_macro_crate       | 测试对Rust过程宏的编译和链接功能。提供对不同类型的宏的测试用例。 |
+| build/rust/tests/test_cdylib_crate           | 测试将Rust代码编译成C/C++动态库。                            |
+| build/rust/tests/test_staticlib_crate        | 测试将Rust代码编译成C/C++静态库。                            |
+| build/rust/tests/test_rust_ut                | 测试Rust代码单元测试模板功能（ability）。                    |
+| build/rust/tests/test_rust_st                | 测试Rust代码系统测试模板功能（ability）。                    |
+| build/rust/tests/test_bin_cargo_crate        | 测试Rust三方可执行文件的编译和运行。三方源码中包含build.rs。 |
+| build/rust/tests/test_rlib_cargo_crate       | 测试Rust三方静态库的编译和静态链接。三方源码中包含build.rs。 |
+| build/rust/tests/test_proc_macro_cargo_crate | 测试Rust三方过程宏的编译和链接。三方源码中包含build.rs。     |
 
 ## 参考
 
 ### 特性点实例
 
 #### Rust源码依赖调用C/C++库
-OpenHarmony上C/C++模块动态库默认用.z.so后缀，但是Rust的编译命令通过-l链接时，默认只会链接.so后缀的动态库。因此如果要依赖一个C/C++动态库编译模块，需要在该动态库的GN构建文件中添加output_externsion = "so"的声明，这样编译得到的动态库将会以".so"作为后缀，而不是".z.so"。
+OpenHarmony上C/C++模块动态库默认用.z.so后缀，但是Rust的编译命令通过-l链接时，默认只会链接.so后缀的动态库。因此如果要依赖一个C/C++动态库编译模块，需要在该动态库的GN构建文件中添加output_extension = "so"的声明，这样编译得到的动态库将会以".so"作为后缀，而不是".z.so"。
 在Rust源码中如果直接链接动态库，后缀也需要使用".so"，这时使用动态库的中间名，不需要添加lib前缀。例如Rust源码中链接libhilog.so:
+
 ```rust
 #[link(name = "hilog")]
 ```
@@ -335,10 +339,11 @@ executable("foo") {
     }]
 }
 ```
-### lints规则
-OpenHarmony框架支持rustc lints和clippy lints两种lints，每种lints划为三个等级的标准："openharmony"、"vendor"和"none"，严格程度按照"openharmony" -> "vendor" -> "none"逐级递减。
-配置Rust模块时可以通过rustc_lints和clippy_lints来指定使用lints的等级。
+### Lint规则
+OpenHarmony框架支持rustc lints和clippy lints两种Lint，每种Lint划为三个等级的标准："openharmony"、"vendor"和"none"，严格程度按照"openharmony" -> "vendor" -> "none"逐级递减。
+配置Rust模块时可以通过rustc_lints和clippy_lints来指定使用Lint的等级。
 模块中没有配置rustc_lints或者clippy_lints时会根据模块所在路径来匹配lints等级。不同路径下的Rust代码的语法规范会有不同程度地约束，因此用户在OpenHarmony配置Rust代码编译模块时还应关注模块所在路径。
+
 #### rustc lints和clippy lints的各等级标志
 | **lints类型** | **模块属性** | **lints等级** | **lints等级标志** | **lints内容**                                                |
 | ------------- | ------------ | ------------- | ----------------- | ------------------------------------------------------------ |
@@ -358,3 +363,5 @@ OpenHarmony框架支持rustc lints和clippy lints两种lints，每种lints划为
 | device     | vendor      |
 | others     | openharmony |
 
+### [交互工具使用指导](subsys-build-bindgen-cxx-guide.md)
+### [Cargo2gn工具操作指导](subsys-build-cargo2gn-guide.md)

@@ -6689,7 +6689,7 @@ registerDeathRecipient(recipient: DeathRecipient, flags: number): void
   }
   ```
 
-### addDeathRecippient<sup>(deprecated)</sup>
+### addDeathRecipient<sup>(deprecated)</sup>
 
 >从API version 9 开始不再维护，建议使用[registerDeathRecipient](#registerdeathrecipient9)类替代。
 
@@ -6744,7 +6744,7 @@ addDeathRecipient(recipient: DeathRecipient, flags: number): boolean
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
-  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的addDeathRecippient接口方法新增死亡回调
+  上述onConnect回调函数中的proxy对象需要等ability异步连接成功后才会被赋值，然后才可调用proxy对象的addDeathRecipient接口方法新增死亡回调
 
   ```ts
   class MyDeathRecipient {
@@ -6821,8 +6821,8 @@ unregisterDeathRecipient(recipient: DeathRecipient, flags: number): void
   }
   let deathRecipient = new MyDeathRecipient();
   try {
-      proxy.registerDeathRecippient(deathRecipient, 0);
-      proxy.unregisterDeathRecippient(deathRecipient, 0);
+      proxy.registerDeathRecipient(deathRecipient, 0);
+      proxy.unregisterDeathRecipient(deathRecipient, 0);
   } catch(error) {
       console.info("proxy register deathRecipient fail, errorCode " + error.code);
       console.info("proxy register deathRecipient fail, errorMessage " + error.message);
@@ -6893,7 +6893,7 @@ removeDeathRecipient(recipient: DeathRecipient, flags: number): boolean
       }
   }
   let deathRecipient = new MyDeathRecipient();
-  proxy.addDeathRecippient(deathRecipient, 0);
+  proxy.addDeathRecipient(deathRecipient, 0);
   proxy.removeDeathRecipient(deathRecipient, 0);
   ```
 
@@ -7146,7 +7146,7 @@ isAsync(): boolean;
 
   | 类型    | 说明                                     |
   | ------- | ---------------------------------------- |
-  | boolean | true：同步调用成功，false：异步调用成功。|
+  | boolean | true：异步调用成功，false：同步调用成功。|
 
 **示例：**
 

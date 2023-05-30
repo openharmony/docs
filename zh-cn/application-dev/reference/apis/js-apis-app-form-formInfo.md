@@ -18,6 +18,8 @@ import formInfo from '@ohos.app.form.formInfo';
 
 **系统能力**：SystemCapability.Ability.Form
 
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
 | bundleName  | string               | 是    | 否     | 卡片所属包的Bundle名称。                   |
@@ -100,7 +102,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | HEIGHT_KEY         | 'ohos.extra.param.key.form_height'   | 卡片高度。   |
 | TEMPORARY_KEY          | 'ohos.extra.param.key.form_temporary'   | 临时卡片。   |
 | ABILITY_NAME_KEY   | 'ohos.extra.param.key.ability_name'   | ability名称。  |
-| DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id'   | 设备标识。   |
+| DEVICE_ID_KEY    | 'ohos.extra.param.key.device_id' <br>**系统API**: 此接口为系统接口，三方应用不支持调用。  | 设备标识。   |
 | BUNDLE_NAME_KEY    | 'ohos.extra.param.key.bundle_name'   | 指示指定要获取的捆绑Bundle名称的键。 |
 | LAUNCH_REASON_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_launch_reason'   | 卡片创建原因。   |
 | PARAM_FORM_CUSTOMIZE_KEY<sup>10+</sup>    | 'ohos.extra.param.key.form_customize'   | 自定义数据。   |
@@ -138,6 +140,7 @@ import formInfo from '@ohos.app.form.formInfo';
 
 | 名称        |  值   | 说明         |
 | ----------- | ---- | ------------ |
+| UNKNOWN | 0   | 表示卡片为未知。 |
 | FORM_VISIBLE | 1   | 表示卡片为可见。 |
 | FORM_INVISIBLE   | 2   | 表示卡片为不可见。 |
 

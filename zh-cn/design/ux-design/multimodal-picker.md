@@ -26,8 +26,7 @@
   | -------- |
   | ![阿斯顿](figures/阿斯顿.png) | 
 
-  有关时间选择器的软件实现，请参阅详见...
-
+  有关时间选择器的软件实现，请参阅[“TimePicker”](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-timepicker.md)。
 
 ## 日期选择器
 
@@ -39,7 +38,7 @@
 - 操作区：操作为“取消”、“确定”。
   ![v的v分](figures/v的v分.png)
 
-  有关日期选择器的软件实现，请参阅datapicker
+  有关日期选择器的软件实现，请参阅[“DatePicker”](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-basic-components-datepicker.md)。
 
 
 ## 资源

@@ -739,6 +739,11 @@ Loads specified data.
 | baseUrl    | string | No  | URL (HTTP/HTTPS/data compliant), which is assigned by the **\<Web>** component to **window.origin**.|
 | historyUrl | string | No  | URL used for historical records. If this parameter is not empty, historical records are managed based on this URL. This parameter is invalid when **baseUrl** is left empty.|
 
+> **NOTE**
+> 
+> To load a local image, you can assign a space to either **baseUrl** or **historyUrl**. For details, see the sample code.
+> In the scenario of loading a local image, **baseUrl** and **historyUrl** cannot be both empty. Otherwise, the image cannot be loaded.
+
 **Error codes**
 
 For details about the error codes, see [Webview Error Codes](../errorcodes/errorcode-webview.md).
@@ -1754,7 +1759,7 @@ Zooms in or out of this web page.
 
 | Name| Type| Mandatory| Description|
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| factor | number   | Yes  | Relative zoom ratio. A positive value indicates zoom-in, and a negative value indicates zoom-out.|
+| factor | number   | Yes  | Relative zoom ratio. The value must be greater than 0. The value **1** indicates that the page is not zoomed. A value smaller than **1** indicates zoom-out, and a value greater than **1** indicates zoom-in.|
 
 **Error codes**
 
@@ -2037,7 +2042,7 @@ Creates web message ports. For the complete sample code, see [onMessageEventExt]
 
 | Name| Type                  | Mandatory| Description                            |
 | ------ | ---------------------- | ---- | :------------------------------|
-| isExtentionType<sup>10+</sup>   | boolean     | No | Whether to use the extended interface. The default value is **false**, indicating that the extended interface is not used.|
+| isExtentionType<sup>10+</sup>   | boolean     | No | Whether to use the extended interface. The default value is **false**, indicating that the extended interface is not used. This parameter is supported since API version 10.|
 
 **Return value**
 
@@ -2137,24 +2142,24 @@ struct WebComponent {
             this.ports = this.controller.createWebMessagePorts();
             // 2. Register a callback on a message port (for example, port 1) on the application side.
             this.ports[1].onMessageEvent((result: web_webview.WebMessage) => {
-                let msg = 'Got msg from HTML:';
-                if (typeof(result) == "string") {
-                  console.log("received string message from html5, string is:" + result);
-                  msg = msg + result;
-                } else if (typeof(result) == "object") {
-                  if (result instanceof ArrayBuffer) {
-                    console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                    msg = msg + "lenght is " + result.byteLength;
-                  } else {
-                    console.log("not support");
-                  }
+              let msg = 'Got msg from HTML:';
+              if (typeof(result) == "string") {
+                console.log("received string message from html5, string is:" + result);
+                msg = msg + result;
+              } else if (typeof(result) == "object") {
+                if (result instanceof ArrayBuffer) {
+                  console.log("received arraybuffer from html5, length is:" + result.byteLength);
+                  msg = msg + "lenght is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
-                this.receivedFromHtml = msg;
-              })
-              // 3. Send another message port (for example, port 0) to the HTML side, which can then save the port for future use.
-              this.controller.postMessage('__init_port__', [this.ports[0]], '*');
+              } else {
+                console.log("not support");
+              }
+              this.receivedFromHtml = msg;
+            })
+            // 3. Send another message port (for example, port 0) to the HTML side, which can then save the port for future use.
+            this.controller.postMessage('__init_port__', [this.ports[0]], '*');
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -2518,6 +2523,37 @@ struct WebComponent {
           }
         })
       Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
+You can customize the user agent based on the default user agent.
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State ua: string = ""
+
+  aboutToAppear():void {
+    web_webview.once('webInited', () => {
+      try {
+        // Customize the user agent on the application side.
+        this.ua = this.controller.getUserAgent() + 'xxx';
+      } catch(error) {
+        console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+      }
+    })
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .userAgent(this.ua)
     }
   }
 }
@@ -3191,7 +3227,7 @@ import image from "@ohos.multimedia.image"
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-    @State pixelmap: image.PixelMap = undefined;
+  @State pixelmap: image.PixelMap = undefined;
 
   build() {
     Column() {
@@ -3297,12 +3333,12 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.controller.hasImage((error, data) => {
-                if (error) {
-                  console.info(`hasImage error: ` + JSON.stringify(error))
-                  return;
-                }
-                console.info("hasImage: " + data);
-              });
+              if (error) {
+                console.info(`hasImage error: ` + JSON.stringify(error))
+                return;
+              }
+              console.info("hasImage: " + data);
+            });
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -3352,11 +3388,11 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.controller.hasImage().then((data) => {
-                console.info('hasImage: ' + data);
-              })
-              .catch(function (error) {
-                console.error("error: " + error);
-              })
+              console.info('hasImage: ' + data);
+            })
+            .catch(function (error) {
+              console.error("error: " + error);
+            })
           } catch (error) {
             console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
           }
@@ -4131,7 +4167,7 @@ struct WebComponent {
 
 Implements a **WebCookieManager** instance to manage behavior of cookies in **\<Web>** components. All **\<Web>** components in an application share a **WebCookieManager** instance.
 
-###  getCookie
+### getCookie
 
 static getCookie(url: string): string
 
@@ -4187,7 +4223,7 @@ struct WebComponent {
 }
 ```
 
-###  setCookie
+### setCookie
 
 static setCookie(url: string, value: string): void
 
@@ -4238,7 +4274,7 @@ struct WebComponent {
 }
 ```
 
-###  saveCookieAsync
+### saveCookieAsync
 
 static saveCookieAsync(callback: AsyncCallback\<void>): void
 
@@ -4250,7 +4286,7 @@ Saves the cookies in the memory to the drive. This API uses an asynchronous call
 
 | Name  | Type                  | Mandatory| Description                                              |
 | -------- | ---------------------- | ---- | :------------------------------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return whether the cookies are successfully saved.|
 
 
 **Example**
@@ -4284,7 +4320,7 @@ struct WebComponent {
 }
 ```
 
-###  saveCookieAsync
+### saveCookieAsync
 
 static saveCookieAsync(): Promise\<void>
 
@@ -4331,7 +4367,7 @@ struct WebComponent {
 }
 ```
 
-###  putAcceptCookieEnabled
+### putAcceptCookieEnabled
 
 static putAcceptCookieEnabled(accept: boolean): void
 
@@ -4372,7 +4408,7 @@ struct WebComponent {
 }
 ```
 
-###  isCookieAllowed
+### isCookieAllowed
 
 static isCookieAllowed(): boolean
 
@@ -4410,7 +4446,7 @@ struct WebComponent {
 }
 ```
 
-###  putAcceptThirdPartyCookieEnabled
+### putAcceptThirdPartyCookieEnabled
 
 static putAcceptThirdPartyCookieEnabled(accept: boolean): void
 
@@ -4451,7 +4487,7 @@ struct WebComponent {
 }
 ```
 
-###  isThirdPartyCookieAllowed
+### isThirdPartyCookieAllowed
 
 static isThirdPartyCookieAllowed(): boolean
 
@@ -4489,7 +4525,7 @@ struct WebComponent {
 }
 ```
 
-###  existCookie
+### existCookie
 
 static existCookie(): boolean
 
@@ -4527,7 +4563,7 @@ struct WebComponent {
 }
 ```
 
-###  deleteEntireCookie
+### deleteEntireCookie
 
 static deleteEntireCookie(): void
 
@@ -4558,7 +4594,7 @@ struct WebComponent {
 }
 ```
 
-###  deleteSessionCookie
+### deleteSessionCookie
 
 static deleteSessionCookie(): void
 

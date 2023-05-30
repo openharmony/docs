@@ -264,7 +264,7 @@ struct WaterflowDemo {
                 .layoutWeight(1)
             }
           }
-          .width(this.itemWidthArray[item])
+          .width('100%')
           .height(this.itemHeightArray[item])
           .backgroundColor(this.colors[item % 5])
         }, item => item)

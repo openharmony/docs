@@ -49,11 +49,11 @@ The following example illustrates how to log and subscribe to button click event
 
    ```js
    import hilog from '@ohos.hilog';
-   import UIAbility from '@ohos.app.ability.UIAbility';
+   import Ability from '@ohos.application.Ability'
    import Window from '@ohos.window'
    import hiAppEvent from '@ohos.hiviewdfx.hiAppEvent'
    
-   export default class EntryAbility extends UIAbility {
+   export default class EntryAbility extends Ability {
        onCreate(want, launchParam) {
            hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
            hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');

@@ -94,7 +94,7 @@ Licenses compatible with Apache License 2.0 can be accepted. The OpenHarmony pro
 
 - The Romantic WTF public license
 
-- UNICODE, INC. LICENSE AGREEMENT - DATA FILES AND      SOFTWARE
+- UNICODE, INC. LICENSE AGREEMENT - DATA FILES AND SOFTWARE
 
 - Zope Public License 2.0
 
@@ -125,7 +125,7 @@ In principle, the OpenHarmony project will not accept third-party dependencies t
 - Sun Community Source License 3.0
 - GNU GPL 3
 - GNU Affero GPL 3
-- BSD-4-Clause   
+- BSD-4-Clause/BSD-4-Clause (University of California-Specific)    
 - Facebook BSD+Patents license
 - NPL 1.0/NPL 1.1
 - The Solipsistic Eclipse Public License 

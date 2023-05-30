@@ -38,7 +38,7 @@ isSupported(type: RunningLockType): boolean;
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | 连接服务失败。 |
+| 4900101 | If connecting to the service failed. |
 
 **示例：**
 
@@ -75,7 +75,7 @@ create(name: string, type: RunningLockType, callback: AsyncCallback&lt;RunningLo
 
 | 错误码ID   | 错误信息     |
 |---------|----------|
-| 4900101 | 连接服务器失败。 |
+| 4900101 | If connecting to the service failed. |
 
 **示例：**
 
@@ -118,7 +118,7 @@ create(name: string, type: RunningLockType): Promise&lt;RunningLock&gt;
 
 | 错误码ID   | 错误信息     |
 |---------|----------|
-| 4900101 | 连接服务器失败。 |
+| 4900101 | If connecting to the service failed. |
 
 **示例：**
 
@@ -290,7 +290,7 @@ hold(timeout: number): void
 
 | 错误码ID   | 错误信息     |
 |---------|----------|
-| 4900101 | 连接服务器失败。 |
+| 4900101 | If connecting to the service failed. |
 
 **示例：**
 
@@ -326,7 +326,7 @@ unhold(): void
 
 | 错误码ID   | 错误信息     |
 |---------|----------|
-| 4900101 | 连接服务器失败。 |
+| 4900101 | If connecting to the service failed. |
 
 **示例：**
 
@@ -366,7 +366,7 @@ isHolding(): boolean
 
 | 错误码ID   | 错误信息    |
 |---------|---------|
-| 4900101 | 连接服务失败。 |
+| 4900101 | If connecting to the service failed. |
 
 **示例：**
 

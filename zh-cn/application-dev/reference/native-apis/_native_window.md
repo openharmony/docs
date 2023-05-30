@@ -28,8 +28,8 @@
   | 结构体名称 | 描述 | 
 | -------- | -------- |
 | [Region](_region.md) | 表示本地窗口NativeWindow需要更新内容的矩形区域（脏区） | 
-| [OHHDRMetaData](_o_h_h_d_r_meta_data.md) | HDR元数据结构体定义 | 
-| [OHExtDataHandle](_o_h_ext_data_handle.md) | 扩展数据句柄结构体定义 | 
+| [OHHDRMetaData<sup>(deprecated)](_o_h_h_d_r_meta_data.md) | HDR元数据结构体定义，从API9开始废弃，预计API14删除 | 
+| [OHExtDataHandle<sup>(deprecated)](_o_h_ext_data_handle.md) | 扩展数据句柄结构体定义，从API9开始废弃，预计API14删除 | 
 
 
 ### 类型定义
@@ -46,8 +46,8 @@
   | 枚举名称 | 描述 | 
 | -------- | -------- |
 | [NativeWindowOperation](#nativewindowoperation) {   SET_BUFFER_GEOMETRY, GET_BUFFER_GEOMETRY, GET_FORMAT, SET_FORMAT,   GET_USAGE, SET_USAGE, SET_STRIDE, GET_STRIDE,   SET_SWAP_INTERVAL, GET_SWAP_INTERVAL, SET_TIMEOUT, GET_TIMEOUT,   SET_COLOR_GAMUT, GET_COLOR_GAMUT, SET_TRANSFORM, GET_TRANSFORM,   SET_UI_TIMESTAMP } | OH_NativeWindow_NativeWindowHandleOpt函数中的操作码 | 
-| [OHScalingMode](#ohscalingmode) { OH_SCALING_MODE_FREEZE = 0, OH_SCALING_MODE_SCALE_TO_WINDOW, OH_SCALING_MODE_SCALE_CROP, OH_SCALING_MODE_NO_SCALE_CROP } | 缩放模式 Scaling Mode | 
-| [OHHDRMetadataKey](#ohhdrmetadatakey) {   OH_METAKEY_RED_PRIMARY_X = 0, OH_METAKEY_RED_PRIMARY_Y = 1, OH_METAKEY_GREEN_PRIMARY_X = 2, OH_METAKEY_GREEN_PRIMARY_Y = 3,   OH_METAKEY_BLUE_PRIMARY_X = 4, OH_METAKEY_BLUE_PRIMARY_Y = 5, OH_METAKEY_WHITE_PRIMARY_X = 6, OH_METAKEY_WHITE_PRIMARY_Y = 7,   OH_METAKEY_MAX_LUMINANCE = 8, OH_METAKEY_MIN_LUMINANCE = 9, OH_METAKEY_MAX_CONTENT_LIGHT_LEVEL = 10, OH_METAKEY_MAX_FRAME_AVERAGE_LIGHT_LEVEL = 11,   OH_METAKEY_HDR10_PLUS = 12, OH_METAKEY_HDR_VIVID = 13 } | 枚举HDR元数据关键字 | 
+| [OHScalingMode<sup>(deprecated)](#ohscalingmode) { OH_SCALING_MODE_FREEZE = 0, OH_SCALING_MODE_SCALE_TO_WINDOW, OH_SCALING_MODE_SCALE_CROP, OH_SCALING_MODE_NO_SCALE_CROP } | 缩放模式 Scaling Mode，从API9开始废弃，预计API14删除 | 
+| [OHHDRMetadataKey<sup>(deprecated)](#ohhdrmetadatakey) {   OH_METAKEY_RED_PRIMARY_X = 0, OH_METAKEY_RED_PRIMARY_Y = 1, OH_METAKEY_GREEN_PRIMARY_X = 2, OH_METAKEY_GREEN_PRIMARY_Y = 3,   OH_METAKEY_BLUE_PRIMARY_X = 4, OH_METAKEY_BLUE_PRIMARY_Y = 5, OH_METAKEY_WHITE_PRIMARY_X = 6, OH_METAKEY_WHITE_PRIMARY_Y = 7,   OH_METAKEY_MAX_LUMINANCE = 8, OH_METAKEY_MIN_LUMINANCE = 9, OH_METAKEY_MAX_CONTENT_LIGHT_LEVEL = 10, OH_METAKEY_MAX_FRAME_AVERAGE_LIGHT_LEVEL = 11,   OH_METAKEY_HDR10_PLUS = 12, OH_METAKEY_HDR_VIVID = 13 } | 枚举HDR元数据关键字，从API9开始废弃，预计API14删除 | 
 
 
 ### 函数
@@ -66,10 +66,10 @@
 | [OH_NativeWindow_NativeObjectReference](#oh_nativewindow_nativeobjectreference) (void \*obj) | 增加一个NativeObject的引用计数 | 
 | [OH_NativeWindow_NativeObjectUnreference](#oh_nativewindow_nativeobjectunreference) (void \*obj) | 减少一个NativeObject的引用计数，当引用计数减少为0时，该NativeObject将被析构掉 | 
 | [OH_NativeWindow_GetNativeObjectMagic](#oh_nativewindow_getnativeobjectmagic) (void \*obj) | 获取NativeObject的MagicId | 
-| [OH_NativeWindow_NativeWindowSetScalingMode](#oh_nativewindow_nativewindowsetscalingmode) (OHNativeWindow \*window, uint32_t sequence, [OHScalingMode](#ohscalingmode) scalingMode) | 设置NativeWindow的ScalingMode | 
-| [OH_NativeWindow_NativeWindowSetMetaData](#oh_nativewindow_nativewindowsetmetadata) (OHNativeWindow \*window, uint32_t sequence, int32_t size, const [OHHDRMetaData](_o_h_h_d_r_meta_data.md) \*metaData) | 设置NativeWindow的元数据 | 
-| [OH_NativeWindow_NativeWindowSetMetaDataSet](#oh_nativewindow_nativewindowsetmetadataset) (OHNativeWindow \*window, uint32_t sequence, [OHHDRMetadataKey](#ohhdrmetadatakey) key, int32_t size, const uint8_t \*metaData) | 设置NativeWindow的元数据集。 | 
-| [OH_NativeWindow_NativeWindowSetTunnelHandle](#oh_nativewindow_nativewindowsettunnelhandle) (OHNativeWindow \*window, const [OHExtDataHandle](_o_h_ext_data_handle.md) \*handle) | 设置NativeWindow的TunnelHandle。 | 
+| [OH_NativeWindow_NativeWindowSetScalingMode<sup>(deprecated)](#oh_nativewindow_nativewindowsetscalingmode) (OHNativeWindow \*window, uint32_t sequence, [OHScalingMode](#ohscalingmode) scalingMode) | 设置NativeWindow的ScalingMode，从API9开始废弃，预计API14删除 | 
+| [OH_NativeWindow_NativeWindowSetMetaData<sup>(deprecated)](#oh_nativewindow_nativewindowsetmetadata) (OHNativeWindow \*window, uint32_t sequence, int32_t size, const [OHHDRMetaData](_o_h_h_d_r_meta_data.md) \*metaData) | 设置NativeWindow的元数据，从API9开始废弃，预计API14删除 | 
+| [OH_NativeWindow_NativeWindowSetMetaDataSet<sup>(deprecated)](#oh_nativewindow_nativewindowsetmetadataset) (OHNativeWindow \*window, uint32_t sequence, [OHHDRMetadataKey](#ohhdrmetadatakey) key, int32_t size, const uint8_t \*metaData) | 设置NativeWindow的元数据集，从API9开始废弃，预计API14删除 | 
+| [OH_NativeWindow_NativeWindowSetTunnelHandle<sup>(deprecated)](#oh_nativewindow_nativewindowsettunnelhandle) (OHNativeWindow \*window, const [OHExtDataHandle](_o_h_ext_data_handle.md) \*handle) | 设置NativeWindow的TunnelHandle，从API9开始废弃，预计API14删除 | 
 
 
 ## 详细描述
@@ -110,7 +110,7 @@ OH_NativeWindow_NativeWindowHandleOpt函数中的操作码
 | SET_UI_TIMESTAMP | 设置本地窗口缓冲区UI时间戳， 函数中的可变参数是 [输入] uint64_t uiTimestamp。 | 
 
 
-### OHHDRMetadataKey
+### OHHDRMetadataKey<sup>(deprecated)
 
   
 ```
@@ -119,7 +119,7 @@ enum OHHDRMetadataKey
 
 **描述：**
 
-枚举HDR元数据关键字
+枚举HDR元数据关键字，从API9开始废弃，预计API14删除
 
   | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -139,7 +139,7 @@ enum OHHDRMetadataKey
 | OH_METAKEY_HDR_VIVID | Vivid | 
 
 
-### OHScalingMode
+### OHScalingMode<sup>(deprecated)
 
   
 ```
@@ -148,7 +148,7 @@ enum OHScalingMode
 
 **描述：**
 
-缩放模式 Scaling Mode
+缩放模式 Scaling Mode，从API9开始废弃，预计API14删除
 
   | 枚举值 | 描述 | 
 | -------- | -------- |
@@ -497,7 +497,7 @@ GSError 返回值为错误码
 8
 
 
-### OH_NativeWindow_NativeWindowSetMetaData()
+### OH_NativeWindow_NativeWindowSetMetaData()<sup>(deprecated)
 
   
 ```
@@ -506,7 +506,8 @@ int32_t OH_NativeWindow_NativeWindowSetMetaData (OHNativeWindow * window, uint32
 
 **描述：**
 
-设置NativeWindow的元数据.
+设置NativeWindow的元数据。
+从API9开始废弃，预计API14删除。
 
 \@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -528,7 +529,7 @@ GSError 返回值为错误码
 9
 
 
-### OH_NativeWindow_NativeWindowSetMetaDataSet()
+### OH_NativeWindow_NativeWindowSetMetaDataSet()<sup>(deprecated)
 
   
 ```
@@ -538,6 +539,7 @@ int32_t OH_NativeWindow_NativeWindowSetMetaDataSet (OHNativeWindow * window, uin
 **描述：**
 
 设置NativeWindow的元数据集。
+从API9开始废弃，预计API14删除。
 
 \@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -560,7 +562,7 @@ GSError 返回值为错误码
 9
 
 
-### OH_NativeWindow_NativeWindowSetScalingMode()
+### OH_NativeWindow_NativeWindowSetScalingMode()<sup>(deprecated)
 
   
 ```
@@ -569,7 +571,8 @@ int32_t OH_NativeWindow_NativeWindowSetScalingMode (OHNativeWindow * window, uin
 
 **描述：**
 
-设置NativeWindow的ScalingMode
+设置NativeWindow的ScalingMode。
+从API9开始废弃，预计API14删除。
 
 \@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
 
@@ -590,7 +593,7 @@ GSError 返回值为错误码
 9
 
 
-### OH_NativeWindow_NativeWindowSetTunnelHandle()
+### OH_NativeWindow_NativeWindowSetTunnelHandle()<sup>(deprecated)
 
   
 ```
@@ -600,6 +603,7 @@ int32_t OH_NativeWindow_NativeWindowSetTunnelHandle (OHNativeWindow * window, co
 **描述：**
 
 设置NativeWindow的TunnelHandle。
+从API9开始废弃，预计API14删除。
 
 \@syscap SystemCapability.Graphic.Graphic2D.NativeWindow
 
