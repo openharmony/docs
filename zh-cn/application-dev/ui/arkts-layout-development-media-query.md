@@ -260,4 +260,4 @@ struct MediaQueryExample {
 
 基于媒体查询，可参考以下实例：
 
-[媒体查询](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/UI/ArkTsComponentClollection/MediaQuery))：使用媒体查询，完成在不同设备上显示不同的界面效果。
+[媒体查询](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/UI/ArkTsComponentClollection/MediaQuery)：使用媒体查询，完成在不同设备上显示不同的界面效果。
