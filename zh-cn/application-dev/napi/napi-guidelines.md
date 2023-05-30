@@ -1,4 +1,4 @@
-# N-API在应用工程中的使用指导
+# Native API在应用工程中的使用指导
 
 在OpenHarmony中，C API中的N-API接口可以实现ArkTS/TS/JS与C/C++之间的交互。N-API提供的接口名与三方Node.js一致，目前支持部分接口，支持列表见[链接](https://gitee.com/openharmony/arkui_napi/blob/master/libnapi.ndk.json)。
 
