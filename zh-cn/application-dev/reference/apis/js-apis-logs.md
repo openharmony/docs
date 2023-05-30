@@ -19,9 +19,10 @@ debug(message: string, ...arguments: any[]): void
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
 | message | string | 是    | 表示要打印的文本信息。 |
-| arguments | any | 否    | 表示其余要打印的信息或message的替换值。 |
+| arguments | any[] | 否    | 表示其余要打印的信息或message的替换值。 |
 
 **示例：**
+
 ```js
 const number = 5;
 console.debug('count: %d', number);  // 格式化输出替换message中的文本。
@@ -45,9 +46,10 @@ log(message: string, ...arguments: any[]): void
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
 | message | string | 是    | 表示要打印的文本信息。 |
-| arguments | any | 否    |表示其余要打印的信息或message的替换值。 |
+| arguments | any[] | 否    |表示其余要打印的信息或message的替换值。 |
 
 **示例：**
+
 ```js
 const number = 5;
 console.log('count: %d', number);  // 格式化输出替换message中的文本。
@@ -71,9 +73,10 @@ info(message: string, ...arguments: any[]): void
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
 | message | string | 是    | 表示要打印的文本信息。 |
-| arguments | any | 否    | 表示其余要打印的信息或message的替换值。 |
+| arguments | any[] | 否    | 表示其余要打印的信息或message的替换值。 |
 
 **示例：**
+
 ```js
 const number = 5;
 console.info('count: %d', number);  // 格式化输出替换message中的文本。
@@ -97,9 +100,10 @@ warn(message: string, ...arguments: any[]): void
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
 | message | string | 是    | 表示要打印的警告信息。 |
-| arguments | any | 否    | 表示其余要打印的信息或message的替换值。 |
+| arguments | any[] | 否    | 表示其余要打印的信息或message的替换值。 |
 
 **示例：**
+
 ```js
 const str = "name should be string";
 console.warn('warn: %d', str);  // 格式化输出替换message中的文本。
@@ -123,10 +127,11 @@ error(message: string, ...arguments: any[]): void
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
 | message | string | 是    | 表示要打印的错误信息。 |
-| arguments | any | 否    | 表示其余要打印的信息或message的替换值。 |
+| arguments | any[] | 否    | 表示其余要打印的信息或message的替换值。 |
 
 
 **示例：**
+
 ```js
 const str = "value is not defined";
 console.error('error: %d', str);  // 格式化输出替换message中的文本。
