@@ -1,7 +1,7 @@
-# Updating Widget Content Through FormExtensionAbility
+# Updating Widget Content Through the message Event
 
 
-On the widget page, the **postCardAction** API can be used to trigger a message event to the FormExtensionAbility, which then updates the widget content. The following is an example of this widget update mode.
+On the widget page, the **postCardAction** API can be used to trigger a message event to start a FormExtensionAbility, which then updates the widget content. The following is an example of this widget update mode.
 
 
 - On the widget page, register the **onClick** event callback of the button and call the **postCardAction** API in the callback to trigger the event to the FormExtensionAbility.
@@ -57,10 +57,10 @@ On the widget page, the **postCardAction** API can be used to trigger a message 
       })
     }
   
-    // ...
+    ...
   }
   ```
 
   The figure below shows the effect.
-
+  
   ![WidgetUpdatePage](figures/WidgetUpdatePage.png)

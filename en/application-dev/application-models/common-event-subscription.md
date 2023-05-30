@@ -8,7 +8,7 @@ In dynamic subscription mode, an application subscribes to a common event when i
 
 ## Available APIs
 
-For details about the APIs, see [API Reference](../reference/apis/js-apis-commonEvent.md#commoneventcreatesubscriber).
+For details about the APIs, see [API Reference](../reference/apis/js-apis-commonEventManager.md#commoneventmanagersubscribe).
 
 | API| Description|
 | -------- | -------- |
@@ -19,10 +19,10 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-common
 
 ## How to Develop
 
-1. Import the **commonEvent** module.
+1. Import the **commonEventManager** module.
    
    ```ts
-   import commonEvent from '@ohos.commonEventManager';
+   import commonEventManager from '@ohos.commonEventManager';
    ```
 
 2. Create a **subscribeInfo** object. For details about the data types and parameters of the object, see [CommonEventSubscribeInfo](../reference/apis/js-apis-commonEventManager.md#commoneventsubscribeinfo).
@@ -32,7 +32,7 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-common
    let subscriber = null;
    // Subscriber information.
    let subscribeInfo = {
-       events: ["usual.event.SCREEN_OFF"], // Subscribe to the common event screen-off.
+     events: ["usual.event.SCREEN_OFF"], // Subscribe to the common event screen-off.
    }
    ```
 
@@ -40,14 +40,14 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-common
    
    ```ts
    // Callback for subscriber creation.
-   commonEvent.createSubscriber(subscribeInfo, (err, data) => {
-       if (err) {
-           console.error(`[CommonEvent] CreateSubscriberCallBack err=${JSON.stringify(err)}`);
-       } else {
-           console.info(`[CommonEvent] CreateSubscriber success`);
-           subscriber = data;
-           // Callback for common event subscription.
-       }
+   commonEventManager.createSubscriber(subscribeInfo, (err, data) => {
+     if (err) {
+       console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+       return;
+     }
+     console.info('Succeeded in creating subscriber.');
+     subscriber = data;
+     // Callback for common event subscription.
    })
    ```
 
@@ -56,14 +56,13 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-common
    ```ts
    // Callback for common event subscription.
    if (subscriber !== null) {
-       commonEvent.subscribe(subscriber, (err, data) => {
-           if (err) {
-               console.error(`[CommonEvent] SubscribeCallBack err=${JSON.stringify(err)}`);
-           } else {
-               console.info(`[CommonEvent] SubscribeCallBack data=${JSON.stringify(data)}`);
-           }
-       })
+     commonEventManager.subscribe(subscriber, (err, data) => {
+       if (err) {
+         console.error(`Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
+         return;
+       }
+     })
    } else {
-       console.error(`[CommonEvent] Need create subscriber`);
+     console.error(`Need create subscriber`);
    }
    ```

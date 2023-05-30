@@ -1,8 +1,6 @@
-# Redirecting to a Specified Page Through the Router Event
+# Redirecting to a UIAbility Through the router Event
 
-
-The **router** capability of the **postCardAction** API can be used in a widget to quickly start the widget provider application. An application can provide different buttons through the widget so that users can jump to different pages at the touch of a button. For example, a camera widget provides the buttons that direct the user to respective pages, such as the page for taking a photo and the page for recording a video.
-
+The **router** capability of the **postCardAction** API can be used in a widget to quickly start a specific UIAbility of the widget provider. By leveraging this capability, an application can provide in the widget multiple buttons, each of which targets a different target UIAbility. For example, a camera widget can provide the buttons that redirect the user to the UIAbility for taking a photo and the UIAbility for recording a video.
 
 ![WidgerCameraCard](figures/WidgerCameraCard.png)
 
