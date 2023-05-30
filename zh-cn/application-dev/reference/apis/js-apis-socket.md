@@ -2799,7 +2799,7 @@ TLS连接的操作。
 | -------------- | ------------------------------------- | ---  |-------------- |
 | address        | [NetAddress](#netaddress)             | 是  |  网关地址。       |
 | secureOptions  | [TLSSecureOptions](#tlssecureoptions9) | 是 | TLS安全相关操作。|
-| ALPNProtocols  | Array\<string\>                         | 否 | ALPN协议,支持["spdy/1", "http/1.1"]，默认为[]。      |
+| ALPNProtocols  | Array\<string\>                         | 否 | ALPN协议，支持["spdy/1", "http/1.1"]，默认为[]。      |
 
 ## TLSSecureOptions<sup>9+</sup>
 
