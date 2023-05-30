@@ -54,6 +54,8 @@ httpRequest.request(
       // data.header为HTTP响应头，可根据业务需要进行解析
       console.info('header:' + JSON.stringify(data.header));
       console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
+      // 当该请求使用完毕时，调用destroy方法主动销毁
+      httpRequest.destroy();
     } else {
       console.info('error:' + JSON.stringify(err));
       // 取消订阅HTTP响应头事件
