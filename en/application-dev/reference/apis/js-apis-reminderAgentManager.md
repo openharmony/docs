@@ -122,7 +122,7 @@ Cancels the reminder with the specified ID. This API uses an asynchronous callba
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | reminderId | number | Yes| ID of the reminder to cancel.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -168,7 +168,7 @@ Cancels the reminder with the specified ID. This API uses a promise to return th
 
 | Type| Description|
 | -------- | -------- |
-| Promise&lt;void&gt;	 | Promise used to return the result.|
+| Promise&lt;void&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -324,7 +324,7 @@ Cancels all reminders set by the current application. This API uses an asynchron
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Error codes**
 
@@ -401,7 +401,7 @@ Adds a notification slot. This API uses an asynchronous callback to return the r
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | slot | [NotificationSlot](js-apis-notification.md#notificationslot) | Yes| Notification slot, whose type can be set.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -478,7 +478,7 @@ Removes a notification slot of a specified type. This API uses an asynchronous c
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | slotType | [notification.SlotType](js-apis-notification.md#slottype) | Yes| Type of the notification slot to remove.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Asynchronous callback used to return the result.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result.|
 
 **Example**
 
@@ -562,7 +562,7 @@ Enumerates reminder types.
 
 ## ActionButton
 
-Defines a button displayed in the reminder notification.
+Defines a button displayed for the reminder in the notification panel.
 
 **System capability**: SystemCapability.Notification.ReminderAgent
 
@@ -580,8 +580,9 @@ Sets the package and ability that are redirected to when the reminder notificati
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pkgName | string | Yes| Name of the HAP that is redirected to when the reminder notification is clicked.|
-| abilityName | string | Yes| Name of the ability that is redirected to when the reminder notification is clicked.|
+| pkgName | string | Yes| Name of the target package.|
+| abilityName | string | Yes| Name of the target ability.|
+| uri | string | No| URI of the target ability. (This is a system API.)|
 
 
 ## MaxScreenWantAgent
@@ -592,7 +593,7 @@ Provides the information about the target package and ability to start automatic
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| pkgName | string | Yes| Name of the HAP that is automatically started when the reminder arrives and the device is not in use.|
+| pkgName | string | Yes| Name of the package that is automatically started when the reminder arrives and the device is not in use.|
 | abilityName | string | Yes| Name of the ability that is automatically started when the reminder arrives and the device is not in use.|
 
 
@@ -605,8 +606,8 @@ Defines the reminder to publish.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | reminderType | [ReminderType](#remindertype) | Yes| Type of the reminder.|
-| actionButton | [ActionButton](#actionbutton) | No| Button displayed in the reminder notification. (The parameter is optional. Up to two buttons are supported.)|
-| wantAgent | [WantAgent](#wantagent) | No| Information about the ability that is redirected to when the notification is clicked.|
+| actionButton | [ActionButton](#actionbutton) | No| Button displayed for the reminder in the notification panel. (A maximum of two buttons are supported.)|
+| wantAgent | [WantAgent](#wantagent) | No| Information about the ability that is redirected to when the reminder is clicked.|
 | maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | No| Information about the ability that is automatically started when the reminder arrives. If the device is in use, a notification will be displayed.|
 | ringDuration | number | No| Ringing duration, in seconds. The default value is **1**.|
 | snoozeTimes | number | No| Number of reminder snooze times. The default value is **0**.|
