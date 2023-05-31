@@ -405,16 +405,9 @@ killProcessesBySelf(callback: AsyncCallback\<void>);
 **示例：**
 
 ```ts
-<<<<<<< HEAD
-let applicationContext = this.context.getApplicationContext();
-applicationContext.killProcessesBySelf(err => {
-    if (err.code !== 0) {
-        console.error('killProcessesBySelf faile, err: ' + JSON.stringify(err));
-=======
 applicationContext.killAllProcesses(error => {
     if (error) {
         console.error('killAllProcesses fail, error: ${JSON.stringify(error)}');
->>>>>>> 9643df3c1b (Fix document consistency issues of ability)
     }
 })
 ```
