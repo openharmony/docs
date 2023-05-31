@@ -147,7 +147,7 @@ scrollToIndex(value: number, smooth?:boolean): void
 | 参数名                | 参数类型 | 必填 | 参数描述                                                     |
 | --------------------- | -------- | ---- | ------------------------------------------------------------ |
 | value                 | number   | 是   | 要滑动到的列表项在列表中的索引值。                           |
-| smooth<sup>10+ </sup> | boolean  | 否   | 设置滑动到列表项在列表中的索引值时有动效或没有动效，true表示有动效，false表示没有动效。<br/>默认值：false。<br/>**说明：** <br/>当前仅List组件支持该参数。 |
+| smooth<sup>10+ </sup> | boolean  | 否   | 设置滑动到列表项在列表中的索引值时是否有动效，true表示有动效，false表示没有动效。<br/>默认值：false。<br/>**说明：** <br/>当前仅List组件支持该参数。 |
 
 ### scrollBy<sup>9+</sup>
 
