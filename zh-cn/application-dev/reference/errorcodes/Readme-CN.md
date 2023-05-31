@@ -84,7 +84,7 @@
   - [设备管理错误码](errorcode-device-manager.md)
   - [位置服务子系统错误码](errorcode-geoLocationManager.md)
   - [键鼠穿越管理错误码](errorcode-devicestatus.md)
-  - [键鼠穿越管理错误码 (待停用)](errorcode-multimodalinput.md)
+  - [键鼠穿越管理错误码（待停用）](errorcode-multimodalinput.md)
   - [传感器错误码](errorcode-sensor.md)
   - [振动错误码](errorcode-vibrator.md)
   - [系统参数错误码](errorcode-system-parameterV9.md)
