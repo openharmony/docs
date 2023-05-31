@@ -1,7 +1,7 @@
 # IUsbdSubscriber.idl
 
 
-## **概述**
+## 概述
 
 USB驱动的订阅函数。
 
@@ -15,17 +15,17 @@ USB驱动的订阅函数。
 
 **相关模块:**
 
-[USB](usb.md)
+[USB](_u_s_b.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### 类
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [IUsbdSubscriber](interface_i_usbd_subscriber.md) | 定义USB驱动的订阅类相关函数。 | 
+| [IUsbdSubscriber](interface_i_usbd_subscriber.md) | interface<br/>定义USB驱动的订阅类相关函数。 | 
 
 
 ### 关键字
