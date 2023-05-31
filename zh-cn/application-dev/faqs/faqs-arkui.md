@@ -282,7 +282,7 @@ controller: TextInputController = new TextInputController()
 
 适用于：OpenHarmony 3.2 Beta5 API 9 Stage模型
 
-gridCount参数是指弹窗宽度占栅格列数的个数。系统把窗口宽等分，等分的份数即为栅格列数，不同设备栅格列数不同。比如手机屏幕密度值在320vp<=水平宽度<600vp，所以栅格列数是4，则gridCount的有效值在\[1, 4\]。
+gridCount参数是指弹窗宽度占栅格列数的个数。系统把窗口宽等分，等分的份数即为栅格列数，不同设备栅格列数不同。假设设备屏幕密度值在320vp<=水平宽度<600vp，所以栅格列数是4，则gridCount的有效值在\[1, 4\]。
 
 注意：仅采用弹窗默认样式时设置有效。
 
