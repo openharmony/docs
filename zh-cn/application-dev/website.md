@@ -558,8 +558,8 @@
       - [后台任务概述](task-management/background-task-overview.md)
       - [短时任务开发指导](task-management/transient-task-dev-guide.md)
       - [长时任务开发指导](task-management/continuous-task-dev-guide.md)
-      - [延迟任务开发指导](task-management/work-scheduler-dev-guide.md)
-      - [延迟任务回调能力开发指导](task-management/workscheduler-extensionability.md)
+      - [延迟任务调度开发指导](task-management/work-scheduler-dev-guide.md)
+      - [延迟任务回调能力开发指导（WorkSchedulerExtensionAbility）](task-management/workscheduler-extensionability.md)
       - [申请能效资源开发指导](task-management/efficiency-resources-apply-dev-guide.md)
     - 后台代理提醒
       - [后台代理提醒概述](task-management/reminder-agent-overview.md)
@@ -574,8 +574,8 @@
       - [传感器开发概述](device/sensor-overview.md)
       - [传感器开发指导](device/sensor-guidelines.md)
     - 振动
-      - [振动开发概述](device/vibrator-overview.md)
-      - [振动开发指导](device/vibrator-guidelines.md)
+      - [Vibrator开发概述](device/vibrator-overview.md)
+      - [Vibrator开发指导](device/vibrator-guidelines.md)
     - 多模输入
       - [输入设备开发指导](device/inputdevice-guidelines.md)
       - [鼠标光标开发指导](device/pointerstyle-guidelines.md)
@@ -583,7 +583,7 @@
       - [示例服务器开发概述](device/sample-server-overview.md)
       - [示例服务器开发指导](device/sample-server-guidelines.md)
     - 设备状态
-      - [设备状态开发指导](device/stationary-guidelines.md)
+      - [Stationary开发指导](device/stationary-guidelines.md)
   - 设备使用信息统计
     - [设备使用信息统计概述](device-usage-statistics/device-usage-statistics-overview.md)
     - [设备使用信息统计开发指导](device-usage-statistics/device-usage-statistics-use-guide.md)
