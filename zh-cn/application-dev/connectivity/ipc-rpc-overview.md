@@ -7,8 +7,8 @@ IPC（Inter-Process Communication）与RPC（Remote Procedure Call）用于实�
 
 > **说明：**
 > Stage模型不能直接使用本文介绍的IPC和RPC，需要通过以下能力实现相关业务场景：
->- IPC典型使用场景为[后台服务](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/background-services.md)，后台服务通过IPC机制提供跨进程的服务调用能力。
->- RPC典型使用场景为[多端协同](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/application-models/hop-multi-device-collaboration.md)，多端协同通过RPC机制提供远端接口调用与数据传递。
+>- IPC典型使用场景为[后台服务](../application-models/background-services.md)，后台服务通过IPC机制提供跨进程的服务调用能力。
+>- RPC典型使用场景为[多端协同](../application-models/hop-multi-device-collaboration.md)，多端协同通过RPC机制提供远端接口调用与数据传递。
 
 
 ## 实现原理
@@ -20,7 +20,7 @@ IPC和RPC通常采用客户端-服务器（Client-Server）模型，在使用时
 
 ## 约束与限制
 
-- 单个设备上跨进程通信时，传输的数据量最大约为1MB，过大的数据量请使用[匿名共享内存](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-rpc.md#ashmem8)。
+- 单个设备上跨进程通信时，传输的数据量最大约为1MB，过大的数据量请使用[匿名共享内存](../reference/apis/js-apis-rpc.md#ashmem8)。
 
 - 不支持在RPC中订阅匿名Stub对象（没有向SAMgr注册Stub对象）的死亡通知。
 
