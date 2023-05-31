@@ -1378,7 +1378,7 @@
       - [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](reference/apis/js-apis-mouseevent.md)
       - [@ohos.multimodalInput.pointer (鼠标指针)](reference/apis/js-apis-pointer.md)
       - [@ohos.multimodalInput.touchEvent (触摸输入事件)](reference/apis/js-apis-touchevent.md)
-      - [@ohos.multimodalInput.shortKey (快捷键)](reference/apis/js-apis-shortKey.md)
+      - [@ohos.multimodalInput.shortKey(快捷键)](reference/apis/js-apis-shortKey.md)
       - [@ohos.power (系统电源管理)](reference/apis/js-apis-power.md)
       - [@ohos.runningLock (Runninglock锁)](reference/apis/js-apis-runninglock.md)
       - [@ohos.sensor (传感器)](reference/apis/js-apis-sensor.md)
