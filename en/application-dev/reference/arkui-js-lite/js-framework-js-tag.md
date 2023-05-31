@@ -46,7 +46,7 @@ The **"pages"** defines the route information of each page. Each page consists o
 ```
 {
   "app": {
-    "bundleName": "com.huawei.player",
+    "bundleName": "com.example.player",
     "version": {
         "code": 1,
         "name": "1.0"
