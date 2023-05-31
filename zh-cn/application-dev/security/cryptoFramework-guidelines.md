@@ -1420,7 +1420,6 @@ function doHmacByCallback() {
   try {
     mac = cryptoFramework.createMac(macAlgName);
   } catch (error) {
-    AlertDialog.show({message: "[Callback]: error code: " + error.code + ", message is: " + error.message});
     console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);
   }
   console.info("[Promise]: Mac algName is: " + mac.algName);
@@ -1448,9 +1447,9 @@ function doHmacByCallback() {
             console.error("[Callback]: err: " + err3.code);
           } else {
             macOutput = output;
-            console.error("[Callback]: HMAC result: " + macOutput.data);
+            console.info("[Callback]: HMAC result: " + macOutput.data);
             let macLen = mac.getMacLength();
-            console.error("[Callback]: MAC len: " + macLen);
+            console.info("[Callback]: MAC len: " + macLen);
           }
         });
       });
