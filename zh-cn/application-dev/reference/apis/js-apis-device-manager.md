@@ -866,7 +866,7 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string,
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 401      | Input parameter error.                                 |
+| 401      | Input parameter error.                                          |
 
 **示例：**
 
