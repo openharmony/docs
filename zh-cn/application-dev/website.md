@@ -1575,7 +1575,7 @@
       - [设备管理错误码](reference/errorcodes/errorcode-device-manager.md)
       - [位置服务子系统错误码](reference/errorcodes/errorcode-geoLocationManager.md)
       - [键鼠穿越管理错误码](reference/errorcodes/errorcode-devicestatus.md)
-      - [键鼠穿越管理错误码 (待停用)](reference/errorcodes/errorcode-multimodalinput.md)
+      - [键鼠穿越管理错误码（待停用）](reference/errorcodes/errorcode-multimodalinput.md)
       - [传感器错误码](reference/errorcodes/errorcode-sensor.md)
       - [振动错误码](reference/errorcodes/errorcode-vibrator.md)
       - [系统参数错误码](reference/errorcodes/errorcode-system-parameterV9.md)
