@@ -5,7 +5,7 @@
 
 ## 2. 如何下载Native API开发包（NDK)
 
-1）推荐OHOS正式发布的SDK包 ，下载链接可以从OHOS正式发布版本的[release-notes](https://gitee.com/openharmony/docs/tree/master/zh-cn/release-notes#/openharmony/docs/blob/master/zh-cn/release-notes/OpenHarmony-v3.2-release.md)中获取，点击release notes中的如下链接下载。
+1）推荐OHOS正式发布的SDK包 ，下载链接可以从OHOS正式发布版本的[release-notes](https://gitee.com/openharmony/docs/tree/master/zh-cn/release-notes#/openharmony/docs/blob/master/zh-cn/release-notes/OpenHarmony-v3.2-release.md)中获取，点击release notes中【从站点镜像获取】章节下载。
 
 
 2）IDE OpenHarmony SDK Manager中下载
@@ -41,14 +41,13 @@
 ```
 
 
-## 3. 如何使用Native API开发包编译一个动态库
+## 3. 如何使用Native API开发包编译一个native程序
 
-应用开发者可以通过Native API开发包快速的开发出native动态库，静态库与可执行文件，ArkUI应用程序框架可以通过NAPI框架调用到native的动态库中。开发包提供CMake作为官方的编译构建工具。下面通过自己编写一个C/C++ demo工程来演示如何使用Native API开发包
-来编译C/C++动态库。
+应用开发者可以通过Native API开发包快速的开发出native动态库，静态库与可执行文件，ArkUI应用程序框架可以通过NAPI框架调用到native的动态库中。开发包提供CMake作为官方的编译构建工具。下面通过自己编写一个C/C++ demo工程来演示如何使用Native API开发包来编译C/C++动态库。
 
 ### 3.1、NDK中的几个文件夹简介
 #### 3.1.1、build目录中工具链文件ohos.toolchain.cmake
-cmake编译时需要读取该文件中的默认值，比如编译器架构、C++库链接方式等，这个需要在编译时需要指出该文件的所在路径，以便于cmake在编译时定位到该文件。在编译的时候需要位cmake指定参数来控制编译目标的属性，具体要指定的参数在下面的编译环节会具体介绍。
+cmake编译时需要读取该文件中的默认值，比如编译器架构、C++库链接方式等，这个需要在编译时通过CMAKE_TOOLCHAIN_FILE指出该文件的路径，便于cmake在编译时定位到该文件。在编译的时候需要为cmake指定参数来控制编译目标的属性，具体要指定的参数在下面的[命令行构建](#3.4、命令行构建)会具体介绍。
 
 
 #### 3.1.2、build-tools文件夹放的是NDK提供的编译工具
