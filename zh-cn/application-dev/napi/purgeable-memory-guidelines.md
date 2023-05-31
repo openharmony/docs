@@ -25,7 +25,6 @@
 |size_t OH_PurgeableMemory_ContentSize(OH_PurgeableMemory \*purgObj)|获取PurgeableMemory对象内存数据大小。|
 |bool OH_PurgeableMemory_AppendModify(OH_PurgeableMemory \*purgObj, OH_PurgeableMemory_ModifyFunc func, void \*funcPara)|添加PurgeableMemory对象的修改方法。|
 
-详细的接口说明请参考[purgeable_memory](../reference/native-apis/_purgeable_memory.md)。
 
 ## Purgeable应用开发步骤
 
