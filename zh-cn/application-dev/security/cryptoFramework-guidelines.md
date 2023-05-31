@@ -1136,8 +1136,7 @@ function stringToUint8Array(str) {
   for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
   }
-  let tmpArray = new Uint8Array(arr);
-  return tmpArray;
+  return new Uint8Array(arr);
 }
 
 // 以Promise方式完成摘要
