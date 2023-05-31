@@ -1,6 +1,6 @@
 # AVSession Provider
 
-An audio and video application needs to access the AVSession service as a provider in order to display media information in the controller (for example, Media Controller) and respond to control commands delivered by the controller.
+An audio and video application needs to access the AVSession service as a provider in order to display media information in the controller (for example, Media Controller) and respond to playback control commands delivered by the controller.
 
 ## Basic Concepts
 
@@ -14,22 +14,22 @@ The table below lists the key APIs used by the provider. The APIs use either a c
 
 For details, see [AVSession Management](../reference/apis/js-apis-avsession.md).
 
-| API| Description| 
+| API| Description|
 | -------- | -------- |
-| createAVSession(context: Context, tag: string, type: AVSessionType, callback: AsyncCallback&lt;AVSession&gt;): void | Creates an AVSession.<br>Only one AVSession can be created for a UIAbility.| 
-| setAVMetadata(data: AVMetadata, callback: AsyncCallback&lt;void&gt;): void | Sets AVSession metadata.| 
-| setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback&lt;void&gt;): void | Sets the AVSession playback state.| 
-| setLaunchAbility(ability: WantAgent, callback: AsyncCallback&lt;void&gt;): void | Starts a UIAbility.| 
-| getController(callback: AsyncCallback&lt;AVSessionController&gt;): void | Obtains the controller of the AVSession.| 
-| activate(callback: AsyncCallback&lt;void&gt;): void | Activates the AVSession.| 
-| destroy(callback: AsyncCallback&lt;void&gt;): void | Destroys the AVSession.| 
+| createAVSession(context: Context, tag: string, type: AVSessionType, callback: AsyncCallback&lt;AVSession&gt;): void | Creates an AVSession.<br>Only one AVSession can be created for a UIAbility.|
+| setAVMetadata(data: AVMetadata, callback: AsyncCallback&lt;void&gt;): void | Sets AVSession metadata.|
+| setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback&lt;void&gt;): void | Sets the AVSession playback state.|
+| setLaunchAbility(ability: WantAgent, callback: AsyncCallback&lt;void&gt;): void | Starts a UIAbility.|
+| getController(callback: AsyncCallback&lt;AVSessionController&gt;): void | Obtains the controller of the AVSession.|
+| activate(callback: AsyncCallback&lt;void&gt;): void | Activates the AVSession.|
+| destroy(callback: AsyncCallback&lt;void&gt;): void | Destroys the AVSession.|
 
 ## How to Develop
 
 To enable an audio and video application to access the AVSession service as a provider, proceed as follows:
 
 1. Call an API in the **AVSessionManager** class to create and activate an **AVSession** object.
-     
+   
    ```ts
    import AVSessionManager from '@ohos.multimedia.avsession'; // Import the AVSessionManager module.
    
@@ -46,10 +46,10 @@ To enable an audio and video application to access the AVSession service as a pr
    - AVPlaybackState
 
    The controller will call an API in the **AVSessionController** class to obtain the information and display or process the information.
-     
+   
    ```ts
    async setSessionInfo() {
-     // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
+     // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
      let session: AVSessionManager.AVSession = ALLREADY_CREATE_A_SESSION;
      // The player logic that triggers changes in the session metadata and playback state is omitted here.
      // Set necessary session metadata.
@@ -80,13 +80,13 @@ To enable an audio and video application to access the AVSession service as a pr
 
 3. Set the UIAbility to be started by the controller. The UIAbility configured here is started when a user operates the UI of the controller, for example, clicking a widget in Media Controller.
    The UIAbility is set through the **WantAgent** API. For details, see [WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md).
- 
+
    ```ts
    import WantAgent from "@ohos.app.ability.wantAgent";
    ```
 
    ```ts
-   // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
+   // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
    let session: AVSessionManager.AVSession = ALLREADY_CREATE_A_SESSION;
    let wantAgentInfo = {
        wants: [
@@ -104,14 +104,14 @@ To enable an audio and video application to access the AVSession service as a pr
    })
    ```
 
-4. Listen for control commands delivered by the controller, for example, Media Controller.
+4. Listen for playback control commands delivered by the controller, for example, Media Controller.
    > **NOTE**
    >
-   > After the provider registers a listener for the control command event, the event will be reflected in **getValidCommands()** of the controller. In other words, the controller determines that the command is valid and triggers the corresponding event as required. To ensure that the control commands delivered by the controller can be executed normally, the provider should not use a null implementation for listening.
-     
+   > After the provider registers a listener for playback control commands, the commands will be reflected in **getValidCommands()** of the controller. In other words, the controller determines that the command is valid and triggers the corresponding event as required. To ensure that the playback control commands delivered by the controller can be executed normally, the provider should not use a null implementation for listening.
+   
    ```ts
    async setListenerForMesFromController() {
-     // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
+     // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
      let session: AVSessionManager.AVSession = ALLREADY_CREATE_A_SESSION;
      // Generally, logic processing on the player is implemented in the listener.
      // After the processing is complete, use the setter to synchronize the playback information. For details, see the code snippet above.
@@ -140,16 +140,16 @@ To enable an audio and video application to access the AVSession service as a pr
    ```
 
 5. Obtain an **AVSessionController** object for this **AVSession** object for interaction.
-     
+   
    ```ts
    async createControllerFromSession() {
-     // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
+     // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
      let session: AVSessionManager.AVSession = ALLREADY_CREATE_A_SESSION;
    
      // Obtain an AVSessionController object for this AVSession object.
      let controller: AVSessionManager.AVSessionController = await session.getController();
    
-     // The AVSessionController object can interact with the AVSession object, for example, by delivering a control command.
+     // The AVSessionController object can interact with the AVSession object, for example, by delivering a playback control command.
      let avCommand: AVSessionManager.AVControlCommand = {command:'play'};
      controller.sendControlCommand(avCommand);
    
@@ -164,11 +164,12 @@ To enable an audio and video application to access the AVSession service as a pr
    ```
 
 6. When the audio and video application exits and does not need to continue playback, cancel the listener and destroy the **AVSession** object.
-   The code snippet below is used for canceling the listener for control commands:
+
+   The code snippet below is used for canceling the listener for playback control commands:
 
    ```ts
    async unregisterSessionListener() {
-     // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
+     // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
      let session: AVSessionManager.AVSession = ALLREADY_CREATE_A_SESSION;
    
      // Cancel the listener of the AVSession object.
@@ -180,11 +181,11 @@ To enable an audio and video application to access the AVSession service as a pr
    }
    ```
 
-     The code snippet below is used for destroying the AVSession object:
-     
+   The code snippet below is used for destroying the AVSession object:
+
    ```ts
    async destroySession() {
-     // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet above.
+     // It is assumed that an AVSession object has been created. For details about how to create an AVSession object, see the node snippet in step 1.
      let session: AVSessionManager.AVSession = ALLREADY_CREATE_A_SESSION;
      // Destroy the AVSession object.
      session.destroy(function (err) {
