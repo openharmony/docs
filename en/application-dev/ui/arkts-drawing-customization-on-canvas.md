@@ -1,12 +1,12 @@
-# Drawing Custom Graphics on the Canvas
+# Drawing Custom Graphics Using the Canvas
 
 
 **Canvas** provides a canvas component for drawing custom graphics. You can use the **CanvasRenderingContext2D** and **OffscreenCanvasRenderingContext2D** objects to draw graphics on the **Canvas** component. The drawing objects can be basic shapes, text, and images.
 
 
-## Drawing a Custom Chart Using the Canvas
+## Drawing Custom Graphics on the Canvas
 
-You can draw a custom chart on the canvas in any of the following ways:
+You can draw custom graphics on the canvas in any of the following ways:
 
 
 - Use [CanvasRenderingContext2D](../reference/arkui-ts/ts-canvasrenderingcontext2d.md).
@@ -17,11 +17,11 @@ You can draw a custom chart on the canvas in any of the following ways:
   struct CanvasExample1 {
   // Configure the parameters of the CanvasRenderingContext2D object, including whether to enable anti-aliasing. The value true indicates that anti-aliasing is enabled.
    private settings: RenderingContextSettings = new RenderingContextSettings(true)
-  // Create a CanvasRenderingContext2D object by calling CanvasRenderingContext2D object in the canvas.
+  // Create a CanvasRenderingContext2D object by calling CanvasRenderingContext2D object in Canvas.
   private context: CanvasRenderingContext2D= new CanvasRenderingContext2D(this.settings)
     build() {
   Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-        // Invoke the CanvasRenderingContext2D object in the canvas.
+        // Invoke the CanvasRenderingContext2D object in Canvas.
         Canvas(this.context)
           .width('100%')
           .height('100%')
@@ -40,9 +40,9 @@ You can draw a custom chart on the canvas in any of the following ways:
 
   ![2023022793003(1)](figures/2023022793003(1).jpg)
 
-- Drawing offscreen onto a canvas is a process where content to draw onto the canvas is first drawn in the buffer, and then converted into a picture, and finally the picture is drawn on the canvas. This process increases the drawing efficiency. The process is as follows:
+- Drawing offscreen onto a canvas is a process where content to draw onto the canvas is first drawn in the buffer, and then converted into a picture, and finally the picture is drawn on the canvas. This process increases the drawing efficiency. Specifically, the implementation is as follows:
   1. Use the **transferToImageBitmap** API to create an **ImageBitmap** object for the image that is recently rendered off the screen canvas.
-  2. Use the **transferFromImageBitmap** API of the **CanvasRenderingContext2D** object to display the given **ImageBitmap** object.
+  2. Use the **transferFromImageBitmap** API of the **CanvasRenderingContext2D** object to display the created **ImageBitmap** object.
 
     For details, see [OffscreenCanvasRenderingContext2D](../reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md).
 
@@ -53,7 +53,7 @@ You can draw a custom chart on the canvas in any of the following ways:
   // Configure the parameters of the CanvasRenderingContext2D and OffscreenCanvasRenderingContext2D objects, including whether to enable anti-aliasing. The value true indicates that anti-aliasing is enabled.
     private settings: RenderingContextSettings = new RenderingContextSettings(true)
     private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
-  // Create the OffscreenCanvasRenderingContext2D object. width indicates the width of the offscreen canvas, and height indicates the height of the offscreen canvas.
+  // Create an OffscreenCanvasRenderingContext2D object. width indicates the width of the offscreen canvas, and height indicates the height of the offscreen canvas.
     private offContext: OffscreenCanvasRenderingContext2D = new OffscreenCanvasRenderingContext2D(600, 600, this.settings)
    
     build() {
@@ -81,7 +81,7 @@ You can draw a custom chart on the canvas in any of the following ways:
 
   >**NOTE**
   >
-  >The APIs called for drawing on the canvas through the **CanvasRenderingContext2D** and **OffscreenCanvasRenderingContext2D** objects are the same. Unless otherwise specified, the unit of the API parameters is vp.
+  >The APIs called for drawing on the canvas through the **CanvasRenderingContext2D** and **OffscreenCanvasRenderingContext2D** objects are the same. Unless otherwise specified, the value unit of the parameters in these APIs is vp.
 
 - Before loading the Lottie animation on the canvas, download the Lottie as follows:
 
@@ -117,9 +117,9 @@ Canvas(this.context)
 
 ## Canvas Component Drawing Modes
 
-After the **Canvas** component lifecycle callback **onReady()** is invoked, you can use the **Canvas** component for drawing. Alternatively, you can separately define the **Path2d** object to build an ideal path without the **Canvas** component and **onReady** lifecycle callback, and then use the **Canvas** component for drawing after **onReady** is called.
+Two modes are available for drawing with the **Canvas** component: 
 
-- The **CanvasRenderingContext2D** and **OffscreenCanvasRenderingContext2D** objects are used to directly call related APIs for drawing.
+- After the **onReady()** callback of the **Canvas** component is invoked, use the **CanvasRenderingContext2D** and **OffscreenCanvasRenderingContext2D** objects to call related APIs for drawing.
 
   ```ts
   Canvas(this.context)
@@ -136,7 +136,7 @@ After the **Canvas** component lifecycle callback **onReady()** is invoked, you 
 
   ![2023022793719(1)](figures/2023022793719(1).jpg)
 
-- Define the **path2d** object to build an ideal path, and then call the **stroke** or **fill** API of the **CanvasRenderingContext2D** and **OffscreenCanvasRenderingContext2D** objects to draw the path. For details, see [Path2D](../reference/arkui-ts/ts-components-canvas-path2d.md).
+- Define an individual **path2d** object to build an ideal path, and then call the **stroke** or **fill** API of the **CanvasRenderingContext2D** and **OffscreenCanvasRenderingContext2D** objects to draw the path. For details, see [Path2D](../reference/arkui-ts/ts-components-canvas-path2d.md).
 
   ```ts
   Canvas(this.context)
@@ -155,10 +155,12 @@ After the **Canvas** component lifecycle callback **onReady()** is invoked, you 
 
 ## Common Usage of the Canvas Component
 
-**OffscreenCanvasRenderingContext2D** and **CanvasRenderingContext2D** provide a large number of attributes and methods, which can be used to draw text and graphics and process pixels. They are the core of the **Canvas** component. Common APIs include [fill](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#fill), [clip](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#clip), and [stroke](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#stroke). In addition, [fillStyle](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#fillstyle), [globalAlpha](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#globalalpha), and [strokeStyle](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#strokestyle) and more attributes are provided. This topic describes typical usage of the canvas.
+**OffscreenCanvasRenderingContext2D** and **CanvasRenderingContext2D** provide a large number of attributes and methods, which can be used to draw text and graphics and process pixels. They are the core of the **Canvas** component. Common APIs include [fill](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#fill), [clip](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#clip), and [stroke](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#stroke). In addition, [fillStyle](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#fillstyle), [globalAlpha](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#globalalpha), [strokeStyle](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#strokestyle), and more attributes are provided to spruce up the graphics. This topic describes typical usage of the canvas.
 
 - Draw a basic shape.
-  You can draw a basic shape by calling APIs such as [arc](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#arc), [ellipse](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#ellipse), and [rect](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#rect).
+  
+
+You can draw a basic shape by calling APIs such as [arc](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#arc), [ellipse](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#ellipse), and [rect](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#rect).
 
   ```ts
   Canvas(this.context)
@@ -178,11 +180,11 @@ After the **Canvas** component lifecycle callback **onReady()** is invoked, you 
        this.context.beginPath();
        this.context.ellipse(150, 450, 50, 100, Math.PI * 0.25, Math.PI * 0, Math.PI * 2);
        this.context.stroke();
-    })
-
+  })
+  
   ```
 
-  ![2023022794521(1)](figures/2023022794521(1).jpg)
+![2023022794521(1)](figures/2023022794521(1).jpg)
 
 - Draw text.
 
@@ -227,7 +229,7 @@ After the **Canvas** component lifecycle callback **onReady()** is invoked, you 
           .onReady(() =>{
             // Use the drawImage API to draw an image in the area with the width and height of 130 starting from (0, 0).
             this.offContext.drawImage(this.img,0,0,130,130);
-            // Use the getImageData API to obtain the drawing content within the range of 130 (width and height) starting from (50, 50) on the canvas.
+            // Use the getImageData API to obtain the image data with the width and height of 130 starting from (50, 50).
             let imagedata = this.offContext.getImageData(50,50,130,130);
             // Use the putImageData API to draw the obtained image data in the area starting from (150, 150).
             this.offContext.putImageData(imagedata,150,150);
@@ -245,7 +247,8 @@ After the **Canvas** component lifecycle callback **onReady()** is invoked, you 
   ![drawimage](figures/drawimage.PNG)
 
 - Other usage
-  **Canvas** also provides other usage. Usage related to [canvas gradient](../reference/arkui-ts/ts-components-canvas-canvasgradient.md): [createLinearGradient](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#createlineargradient), [createRadialGradient](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#createradialgradient), and more.
+
+  **Canvas** also provides other usage. For example, regarding [CanvasGradient](../reference/arkui-ts/ts-components-canvas-canvasgradient.md), you can create a linear gradient with [createLinearGradient](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#createlineargradient) or create a radial gradient with [createRadialGradient](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#createradialgradient), among others.
 
   ```ts
   Canvas(this.context)
@@ -255,7 +258,7 @@ After the **Canvas** component lifecycle callback **onReady()** is invoked, you 
     .onReady(() =>{
        // Create a CanvasGradient object with radial gradient colors.
        let grad = this.context.createRadialGradient(200,200,50, 200,200,200)
-       // Set the gradient color stop for the CanvasGradient object, including the offset and color.
+       // Set the gradient color stop for the CanvasGradient object, including the offset and colors.
        grad.addColorStop(0.0, '#E87361');
        grad.addColorStop(0.5, '#FFFFF0');
        grad.addColorStop(1.0, '#BDDB69');
@@ -288,9 +291,9 @@ After the **Canvas** component lifecycle callback **onReady()** is invoked, you 
           .onReady(() =>{
             // Set the fill color to blue.
             this.context.fillStyle = '#0097D4';
-            // Take (50, 50) as the upper left vertex and draw a rectangle with the width and height of 200.
+            // Take (50, 50) as the upper left corner and draw a rectangle with the width and height of 200.
             this.context.fillRect(50,50,200,200);
-            // Use (70, 70) as the upper left vertex and clear the area whose width is 150 and height is 100.
+            // Use (70, 70) as the upper left corner and clear the area with the width of 150 and height of 100.
             this.context.clearRect(70,70,150,100);
         })
       }
@@ -330,7 +333,7 @@ After the **Canvas** component lifecycle callback **onReady()** is invoked, you 
               path.closePath();
               // Set the fill color to blue.
               this.context.fillStyle = '#0097D4';
-              // Draw the pentagon described by Path2D ib the canvas in fill mode.
+              // Draw the pentagon described by Path2D in the canvas in fill mode.
               this.context.fill(path);
             })
         }
@@ -343,4 +346,3 @@ After the **Canvas** component lifecycle callback **onReady()** is invoked, you 
 
   ![2023032422159](figures/2023032422159.jpg)
 
-  
