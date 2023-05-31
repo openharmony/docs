@@ -348,6 +348,60 @@ Cross-device installation-free is not supported.
 
 确认为非跨设备免安装应用。
 
+## 16000058 指定的URI flag无效
+
+**错误信息**
+
+Invalid URI flag.
+
+**错误描述**
+
+指定的URI flag无效。
+
+**可能原因**
+
+传入的参数有误。
+
+**处理步骤**
+
+确认传入的参数属于Uri flag。
+
+## 16000059 指定的URI类型无效。
+
+**错误信息**
+
+Invalid URI type.
+
+**错误描述**
+
+指定的URI类型无效。
+
+**可能原因**
+
+传入的参数有误，目前URI授权管理仅支持file类型URI。
+
+**处理步骤**
+
+确认传入的参数属于支持的URI类型。
+
+## 16000060 不支持沙箱应用授权URI
+
+**错误信息**
+
+Sandbox application can not grant URI permission.
+
+**错误描述**
+
+当沙箱应用授权URI时，方法将返回该错误码。
+
+**可能原因**
+
+不支持沙箱应用授权URI
+
+**处理步骤**
+
+确认为非沙箱应用。
+
 ## 16000101 执行shell命令失败
 
 **错误信息**

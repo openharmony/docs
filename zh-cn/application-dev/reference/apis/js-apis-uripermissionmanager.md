@@ -32,6 +32,20 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number,
   | targetBundleName | string | 是 | 被授权URI的应用包名 | 
   | callback | AsyncCallback&lt;number&gt; | 是 | callback形式返回检验结果，返回0表示有权限，返回-1表示无权限。 | 
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 201 | Permission denied. |
+| 202 | Not System App. Interface caller is not a system app. |
+| 401 | The parameter check failed. |
+| 16000050 | Internal error. |
+| 16000058 | Invalid URI flag. |
+| 16000059 | Invalid URI type. |
+| 16000060 | Sandbox application can not grant URI permission. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
     
   ```js
@@ -66,6 +80,20 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number)
   | -------- | -------- |
   | Promise&lt;number&gt; | 返回0表示有权限，返回-1表示无权限。 | 
 
+**错误码：**
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------------------------------- |
+  | 201 | Permission denied. |
+  | 202 | Not System App. Interface caller is not a system app. |
+  | 401 | The parameter check failed. |
+  | 16000050 | Internal error. |
+  | 16000058 | Invalid URI flag. |
+  | 16000059 | Invalid URI type. |
+  | 16000060 | Sandbox application can not grant URI permission. |
+
+  以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
     
   ```js
@@ -94,6 +122,18 @@ revokeUriPermission(uri: string, accessTokenId: number, callback: AsyncCallback&
   | uri | string | 是 | 指向文件的URI，例如fileshare:///com.samples.filesharetest.FileShare/person/10。 | 
   | targetBundleName | string | 是 | 被撤销授权uri的应用包名 | 
   | callback | AsyncCallback&lt;number&gt; | 是 | callback形式返回检验结果，返回0表示有权限，返回-1表示无权限。 | 
+
+**错误码：**
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------------------------------- |
+  | 201 | Permission denied. |
+  | 202 | Not System App. Interface caller is not a system app. |
+  | 401 | The parameter check failed. |
+  | 16000050 | Internal error. |
+  | 16000059 | Invalid URI type. |
+
+  以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     
@@ -127,6 +167,18 @@ revokeUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number
   | 类型 | 说明 | 
   | -------- | -------- |
   | Promise&lt;number&gt; | 返回0表示有权限，返回-1表示无权限。 | 
+
+**错误码：**
+
+  | 错误码ID | 错误信息 |
+  | ------- | -------------------------------- |
+  | 201 | Permission denied. |
+  | 202 | Not System App. Interface caller is not a system app. |
+  | 401 | The parameter check failed. |
+  | 16000050 | Internal error. |
+  | 16000059 | Invalid URI type. |
+
+  以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
     
