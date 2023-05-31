@@ -108,10 +108,10 @@ Describes the properties of the status bar and navigation bar.
 
 | Name                                  | Type|  Mandatory| Description                                                        |
 | -------------------------------------- | -------- | ---- | ------------------------------------------------------------ |
-| statusBarColor                         | string   |  No  | Background color of the status bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**.|
+| statusBarColor                         | string   |  No  | Background color of the status bar. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**. |
 | isStatusBarLightIcon<sup>7+</sup>      | boolean  |  No  | Whether any icon on the status bar is highlighted. The value **true** means that the icon is highlighted, and **false** means the opposite. The default value is **false**.|
 | statusBarContentColor<sup>8+</sup>     | string   |  No  | Color of the text on the status bar. After this property is set, the setting of **isStatusBarLightIcon** is invalid. The default value is **0xE5FFFFFF**.|
-| navigationBarColor                     | string   |  No  | Background color of the navigation bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**.|
+| navigationBarColor                     | string   |  No  | Background color of the navigation bar. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. The default value is **#0x66000000**. |
 | isNavigationBarLightIcon<sup>7+</sup>  | boolean  |  No  | Whether any icon on the navigation bar is highlighted. The value **true** means that the icon is highlighted, and **false** means the opposite. The default value is **false**.|
 | navigationBarContentColor<sup>8+</sup> | string   |  No  | Color of the text on the navigation bar. After this property is set, the setting of **isNavigationBarLightIcon** is invalid. The default value is **0xE5FFFFFF**.|
 
@@ -164,7 +164,7 @@ Describes the callback for a single system bar.
 | type            | [WindowType](#windowtype7) | Yes  | No  | Type of the system bar whose properties are changed. Only the status bar and navigation bar are supported.|
 | isEnable        | boolean                   | Yes  | No  | Whether the system bar is displayed. The value **true** means that the system bar is displayed, and **false** means the opposite.|
 | region          | [Rect](#rect7)             | Yes  | No  | Current position and size of the system bar.                                    |
-| backgroundColor | string                    | Yes  | No  | Background color of the system bar. The value is a hexadecimal RGB or aRGB color value and is case insensitive, for example, **#00FF00** or **#FF00FF00**.|
+| backgroundColor | string                    | Yes  | No  | Background color of the system bar. The value is a hexadecimal RGB or ARGB color code and is case insensitive, for example, **#00FF00** or **#FF00FF00**. |
 | contentColor    | string                    | Yes  | No  | Color of the text on the system bar.                                            |
 
 ## SystemBarTintState<sup>8+</sup>
@@ -232,7 +232,7 @@ Describes the window properties.
 | isLayoutFullScreen<sup>7+</sup>       | boolean                   | Yes  | Yes  | Whether the window layout is in full-screen mode (whether the window is immersive). The default value is **false**. The value **true** means that the window is immersive, and **false** means the opposite.|
 | focusable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window can gain focus. The default value is **true**. The value **true** means that the window can gain focus, and **false** means the opposite.|
 | touchable<sup>7+</sup>                | boolean                   | Yes  | No  | Whether the window is touchable. The default value is **true**. The value **true** means that the window is touchable, and **false** means the opposite.|
-| brightness                            | number                    | Yes  | Yes  | Screen brightness. The value ranges from 0 to 1. The value **1** indicates the maximum brightness.                 |
+| brightness                            | number                    | Yes  | Yes  | Screen brightness. The value ranges from 0 to 1. The value **1** indicates the maximum brightness. If no value is passed, the brightness follows the system. In this case, the obtained brightness value is –1.|
 | dimBehindValue<sup>(deprecated)</sup> | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value ranges from 0 to 1. The value **1** indicates the maximum dimness.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9.<br> |
 | isKeepScreenOn                        | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is **false**. The value **true** means that the screen is always on, and **false** means the opposite.|
 | isPrivacyMode<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is **false**. The value **true** means that the window is in privacy mode, and **false** means the opposite.|
@@ -824,7 +824,7 @@ create(id: string, type: WindowType, callback: AsyncCallback&lt;Window&gt;): voi
 Creates a subwindow. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
->
+> 
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [createWindow()](#windowcreatewindow9) instead.
 
 **Model restriction**: This API can be used only in the FA model.
@@ -860,7 +860,7 @@ create(id: string, type: WindowType): Promise&lt;Window&gt;
 Creates a subwindow. This API uses a promise to return the result.
 
 > **NOTE**
->
+> 
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [createWindow()](#windowcreatewindow9-1) instead.
 
 **Model restriction**: This API can be used only in the FA model.
@@ -900,7 +900,7 @@ create(ctx: BaseContext, id: string, type: WindowType, callback: AsyncCallback&l
 Creates a system window. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
->
+> 
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [createWindow()](#windowcreatewindow9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -936,7 +936,7 @@ create(ctx: BaseContext, id: string, type: WindowType): Promise&lt;Window&gt;
 Creates a system window. This API uses a promise to return the result.
 
 > **NOTE**
->
+> 
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [createWindow()](#windowcreatewindow9-1) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -975,7 +975,7 @@ find(id: string, callback: AsyncCallback&lt;Window&gt;): void
 Finds a window based on the ID. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
->
+> 
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [findWindow()](#windowfindwindow9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -1008,7 +1008,7 @@ find(id: string): Promise&lt;Window&gt;
 Finds a window based on the ID. This API uses a promise to return the result.
 
 > **NOTE**
->
+> 
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [findWindow()](#windowfindwindow9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -1045,7 +1045,7 @@ getTopWindow(callback: AsyncCallback&lt;Window&gt;): void
 Obtains the top window of the current application. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
->
+> 
 > This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getLastWindow()](#windowgetlastwindow9) instead.
 
 **Model restriction**: This API can be used only in the FA model.
@@ -1079,7 +1079,7 @@ getTopWindow(): Promise&lt;Window&gt;
 Obtains the top window of the current application. This API uses a promise to return the result.
 
 > **NOTE**
->
+> 
 > This API is supported since API version 6 and deprecated since API version 9. You are advised to use [getLastWindow()](#windowgetlastwindow9-1) instead.
 
 **Model restriction**: This API can be used only in the FA model.
@@ -1112,7 +1112,7 @@ getTopWindow(ctx: BaseContext, callback: AsyncCallback&lt;Window&gt;): void
 Obtains the top window of the current application. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
->
+> 
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getLastWindow()](#windowgetlastwindow9) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -1145,7 +1145,7 @@ getTopWindow(ctx: BaseContext): Promise&lt;Window&gt;
 Obtains the top window of the current application. This API uses a promise to return the result.
 
 > **NOTE**
->
+> 
 > This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getLastWindow()](#windowgetlastwindow9-1) instead.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
@@ -2542,7 +2542,7 @@ try {
 
 ### off('avoidAreaChange')<sup>9+</sup>
 
-off(type: 'avoidAreaChange', callback: Callback&lt;{AvoidAreaType, AvoidArea}&gt;): void
+off(type: 'avoidAreaChange', callback?: Callback&lt;{AvoidAreaType, AvoidArea}&gt;): void
 
 Disables listening for changes to the area where the window cannot be displayed.
 
@@ -3056,7 +3056,7 @@ let colorSpace = windowClass.getWindowColorSpace();
 
 setWindowBackgroundColor(color: string): void
 
-Sets the background color for this window. In the stage model, this API must be used after [loadContent](#loadcontent9).
+Sets the background color for this window. In the stage model, this API must be used after the call of [loadContent](#loadcontent9) or [setUIContent()](#setuicontent9) takes effect.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3090,6 +3090,8 @@ try {
 setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the screen brightness for this window. This API uses an asynchronous callback to return the result.
+
+When the screen brightness setting for the window takes effect, Control Panel cannot adjust the system screen brightness. It can do so only after the window screen brightness is restored to the default value.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -3131,6 +3133,8 @@ try {
 setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
 Sets the screen brightness for this window. This API uses a promise to return the result.
+
+When the screen brightness setting for the window takes effect, Control Panel cannot adjust the system screen brightness. It can do so only after the window screen brightness is restored to the default value.
 
 **System capability**: SystemCapability.WindowManager.WindowManager.Core
 
@@ -5266,7 +5270,7 @@ promise.then((data)=> {
 
 setBackgroundColor(color: string, callback: AsyncCallback&lt;void&gt;): void
 
-Sets the background color for this window. This API uses an asynchronous callback to return the result. In the stage model, this API must be used after [loadContent](#loadcontent9) or [setUIContent()](#setuicontent9).
+Sets the background color for this window. This API uses an asynchronous callback to return the result. In the stage model, this API must be used after the call of [loadContent](#loadcontent9) or [setUIContent()](#setuicontent9) takes effect.
 
 > **NOTE**
 > 
@@ -5298,7 +5302,7 @@ windowClass.setBackgroundColor(color, (err) => {
 
 setBackgroundColor(color: string): Promise&lt;void&gt;
 
-Sets the background color for this window. This API uses a promise to return the result. In the stage model, this API must be used after [loadContent](#loadcontent9) or [setUIContent()](#setuicontent9).
+Sets the background color for this window. This API uses a promise to return the result. In the stage model, this API must be used after the call of [loadContent](#loadcontent9) or [setUIContent()](#setuicontent9) takes effect.
 
 > **NOTE**
 > 
@@ -5336,6 +5340,8 @@ setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
 Sets the screen brightness for this window. This API uses an asynchronous callback to return the result.
 
+When the screen brightness setting for the window takes effect, Control Panel cannot adjust the system screen brightness. It can do so only after the window screen brightness is restored to the default value.
+
 > **NOTE**
 > 
 > This API is supported since API version 6 and deprecated since API version 9. You are advised to use [setWindowBrightness()](#setwindowbrightness9) instead.
@@ -5367,6 +5373,8 @@ windowClass.setBrightness(brightness, (err) => {
 setBrightness(brightness: number): Promise&lt;void&gt;
 
 Sets the screen brightness for this window. This API uses a promise to return the result.
+
+When the screen brightness setting for the window takes effect, Control Panel cannot adjust the system screen brightness. It can do so only after the window screen brightness is restored to the default value.
 
 > **NOTE**
 > 
