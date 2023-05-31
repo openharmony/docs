@@ -1514,8 +1514,8 @@ try {
 
 | 名称      | 类型 | 可读 | 可写 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
-| keyCode   | number   | 是   | 否   | 按键的键值。 |
-| keyAction | number   | 是   | 否   | 按键的状态。 |
+| keyCode   | number   | 是   | 否   | 按键的键值。键码值说明参考[KeyCode](js-apis-keycode.md#keycode)。 |
+| keyAction | number   | 是   | 否   | 按键事件类型。<br/>- 当值为2时，表示按下事件；<br/>- 当值为3时，表示抬起事件。 |
 
 ## TextInputClient<sup>(deprecated)</sup>
 
