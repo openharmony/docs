@@ -263,7 +263,7 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
     "versionCode" : 1000000,
     "versionName" : "1.0.0"
     }],
-  "deviceType" : "phone",
+  "deviceType" : "default",
   "systemFullName" : "OpenHarmony-4.0.0.0"
  }
  ```
@@ -324,7 +324,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
     "versionCode" : 1000000,
     "versionName" : "1.0.0"
     }],
-  "deviceType" : "phone",
+  "deviceType" : "default",
   "systemFullName" : "OpenHarmony-4.0.0.0"
  }
  ```

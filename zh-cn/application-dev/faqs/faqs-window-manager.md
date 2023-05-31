@@ -114,7 +114,7 @@ if (windowClass) {
 
 **参考链接**
 
-[window.SystemBarProperties](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md#systembarproperties)
+[window.SystemBarProperties](../reference/apis/js-apis-window.md#systembarproperties)
 
 ## 如何保持屏幕常亮
 
@@ -124,7 +124,7 @@ if (windowClass) {
 
 设置屏幕常亮，不熄屏。
 
-获取窗口实例对象后，调用[setWindowKeepScreenOn方法](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md#setwindowkeepscreenon9)可设置屏幕是否常亮。
+获取窗口实例对象后，调用[setWindowKeepScreenOn方法](../reference/apis/js-apis-window.md#setwindowkeepscreenon9)可设置屏幕是否常亮。
 
 ```
 let isKeepScreenOn = true;

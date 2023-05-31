@@ -949,7 +949,7 @@ struct Index {
 
 ### 密钥协商
 
-应用在协商密钥时建议传入[HuksKeyStorageType](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-huks.md#hukskeystoragetype)中定义的类型；从API10开始应用只能选择存储(HUKS_STORAGE_ONLY_USED_IN_HUKS)，或者选择导出(HUKS_STORAGE_KEY_EXPORT_ALLOWED)，若不传入，则默认同时支持存储和导出，存在安全问题，不推荐业务使用。
+应用在协商密钥时建议传入[HuksKeyStorageType](../reference/apis/js-apis-huks.md#hukskeystoragetype)中定义的类型；从API10开始应用只能选择存储(HUKS_STORAGE_ONLY_USED_IN_HUKS)，或者选择导出(HUKS_STORAGE_KEY_EXPORT_ALLOWED)，若不传入，则默认同时支持存储和导出，存在安全问题，不推荐业务使用。
 
 ```ts
 /*
@@ -1320,7 +1320,7 @@ async function testAgree() {
 
 ### 密钥派生
 
-应用在派生密钥时建议传入[HuksKeyStorageType](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-huks.md#hukskeystoragetype)中定义的类型；从API10开始应用只能选择存储(HUKS_STORAGE_ONLY_USED_IN_HUKS)，或者选择导出(HUKS_STORAGE_KEY_EXPORT_ALLOWED)，若不传入，则默认同时支持存储和导出，存在安全问题，不推荐业务使用。
+应用在派生密钥时建议传入[HuksKeyStorageType](../reference/apis/js-apis-huks.md#hukskeystoragetype)中定义的类型；从API10开始应用只能选择存储(HUKS_STORAGE_ONLY_USED_IN_HUKS)，或者选择导出(HUKS_STORAGE_KEY_EXPORT_ALLOWED)，若不传入，则默认同时支持存储和导出，存在安全问题，不推荐业务使用。
 
 ```ts
 /*
@@ -2076,16 +2076,16 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
 
 ### 细粒度用户身份认证访问控制
 
-该功能是基于已有[密钥访问控制](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/huks-guidelines.md#%E5%AF%86%E9%92%A5%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6)能力的扩展，提供了基于生物特征和锁屏密码二次身份认证的细粒度访问控制能力，允许设置密钥在加密、解密、签名、验签、密钥协商、密钥派生的单个或多个场景时是否需要进行身份验证。比如，业务需要使用HUKS密钥加密保存账号密码信息等数据，要求在加密的时候不进行指纹等身份认证，解密的时候需要进行指纹等身份认证，这是就需要依赖HUKS提供细粒度的二次身份认证访问控制机制。
+该功能是基于已有[密钥访问控制](#密钥访问控制)能力的扩展，提供了基于生物特征和锁屏密码二次身份认证的细粒度访问控制能力，允许设置密钥在加密、解密、签名、验签、密钥协商、密钥派生的单个或多个场景时是否需要进行身份验证。比如，业务需要使用HUKS密钥加密保存账号密码信息等数据，要求在加密的时候不进行指纹等身份认证，解密的时候需要进行指纹等身份认证，这是就需要依赖HUKS提供细粒度的二次身份认证访问控制机制。
 
 **开发流程**
 
-1. 基于用户身份认证访问控制的流程，在密钥生成阶段，通过额外指定用于细粒度用户身份认证访问控制的HuksTag：[HUKS_TAG_KEY_AUTH_PURPOSE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-huks.md#hukstag)值，来指定在某种算法用途的情况下需要使用用户身份认证访问控制能力。
+1. 基于用户身份认证访问控制的流程，在密钥生成阶段，通过额外指定用于细粒度用户身份认证访问控制的HuksTag：[HUKS_TAG_KEY_AUTH_PURPOSE](../reference/apis/js-apis-huks.md#hukstag)值，来指定在某种算法用途的情况下需要使用用户身份认证访问控制能力。
 2. 基于用户身份认证访问控制的流程，在密钥使用阶段，业务无需再次指定HUKS_TAG_KEY_AUTH_PURPOSE值，同用户身份认证访问控制的开发流程。
 
 **接口说明**
 
-新增用于细粒度用户身份认证访问控制的HuksTag：[HUKS_TAG_KEY_AUTH_PURPOSE](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-huks.md#hukstag)，该Tag值取值范围为枚举类[HuksKeyAlg](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-huks.md#hukskeyalg)。
+新增用于细粒度用户身份认证访问控制的HuksTag：[HUKS_TAG_KEY_AUTH_PURPOSE](../reference/apis/js-apis-huks.md#hukstag)，该Tag值取值范围为枚举类[HuksKeyAlg](../reference/apis/js-apis-huks.md#hukskeyalg)。
 
 **表8** 细粒度用户身份认证访问控制Tag类型介绍
 | 名称                      | 描述                 |
