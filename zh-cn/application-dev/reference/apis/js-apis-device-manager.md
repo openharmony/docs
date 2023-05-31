@@ -45,8 +45,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 11600101 | Failed to execute the function.                                 |
-| 11600102 | Failed to obtain the service.                                   |
+| 401      | Input parameter error.                                          |
 
 **示例：**
 
@@ -287,7 +286,7 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
     console.error("getTrustedDeviceListSync errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
-### getTrustedDeviceListSync
+### getTrustedDeviceListSync<sup>10+</sup>
 
 getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;
 
@@ -346,7 +345,7 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 11600101 | Failed to execute the function.                                 |
+| 401      | Input parameter error.                                          |
 
 **示例：**
 
@@ -448,7 +447,7 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 11600101 | Failed to execute the function.                                 |
+| 401      | Input parameter error.                                          |
 
 **示例：**
 
@@ -519,7 +518,7 @@ getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 11600101 | Failed to execute the function.                                 |
+| 401      | Input parameter error.                                          |
 
 **示例：**
 
@@ -565,7 +564,7 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
 
 | 错误码ID | 错误信息                                                        |
 | ------- | --------------------------------------------------------------- |
-| 11600101| Failed to execute the function.                                 |
+| 401     | Input parameter error.                                          |
 
 **示例：**
 
@@ -808,8 +807,7 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 11600101 | Failed to execute the function.                                 |
-| 11600103 | Authentication invalid.                                         |
+| 401      | Input parameter error.                                          |
 
 **示例：**
 
@@ -906,7 +904,7 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string,
 
 | 错误码ID | 错误信息                                                        |
 | -------- | --------------------------------------------------------------- |
-| 11600101 | Failed to execute the function.                                 |
+| 401      | Input parameter error.                                 |
 
 **示例：**
 
