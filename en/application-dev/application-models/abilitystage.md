@@ -24,20 +24,20 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
        // When the HAP of the application is loaded for the first time, initialize the module.
      }
      onAcceptWant(want) {
-       // Triggered only for the ability with the specified launch type.
+       // Triggered only for the UIAbility with the specified launch type.
        return "MyAbilityStage";
      }
    }
    ```
    
-4. Set **srcEntry** in the [module.json5 file](../quick-start/module-configuration-file.md) to the code path of the module.
+4. In the [module.json5 file](../quick-start/module-configuration-file.md), set **srcEntry** to specify the code path of the module as the entry for loading the HAP.
    ```json
    {
      "module": {
        "name": "entry",
        "type": "entry",
        "srcEntry": "./ets/myabilitystage/MyAbilityStage.ts",
-       // ...
+       ...
      }
    }
    ```

@@ -83,28 +83,31 @@ After obtaining the data synchronization permission, obtain the trusted device l
 The following sample code shows how to use **getTrustedDeviceListSync()** to obtain the trusted device list.
 
 ```ts
-import deviceManager from '@ohos.distributedHardware.deviceManager';  
-let dmClass;  
+import deviceManager from '@ohos.distributedHardware.deviceManager';
+
+let dmClass;
+
 function getDeviceManager() {
-    deviceManager.createDeviceManager('ohos.example.distributedService', (error, dm) => {
-        if (error) {
-            console.info('create device manager failed with ' + error)
-        }
-        dmClass = dm;
-    })
+  deviceManager.createDeviceManager('ohos.example.distributedService', (error, dm) => {
+    if (error) {
+      console.info('create device manager failed with ' + error)
+    }
+    dmClass = dm;
+  })
 }
-function getRemoteDeviceId() {      
-    if (typeof dmClass === 'object' && dmClass != null) {          
-        let list = dmClass.getTrustedDeviceListSync();          
-        if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {            
-            console.info("EntryAbility onButtonClick getRemoteDeviceId err: list is null");            
-            return;          
-        }          
-        console.info("EntryAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId);          
-        return list[0].deviceId;      
-    } else {          
-        console.info("EntryAbility onButtonClick getRemoteDeviceId err: dmClass is null");      
-    }  
+
+function getRemoteDeviceId() {
+  if (typeof dmClass === 'object' && dmClass != null) {
+    let list = dmClass.getTrustedDeviceListSync();
+    if (typeof (list) == 'undefined' || typeof (list.length) == 'undefined') {
+      console.info("EntryAbility onButtonClick getRemoteDeviceId err: list is null");
+      return;
+    }
+    console.info("EntryAbility onButtonClick getRemoteDeviceId success:" + list[0].deviceId);
+    return list[0].deviceId;
+  } else {
+    console.info("EntryAbility onButtonClick getRemoteDeviceId err: dmClass is null");
+  }
 }
 ```
 
@@ -116,21 +119,22 @@ The following sample code shows how to explicitly start a remote PageAbility thr
 
 ```ts
 import featureAbility from '@ohos.ability.featureAbility';
-function onStartRemoteAbility() {  
-    console.info('onStartRemoteAbility begin');  
-    let params;  
-    let wantValue = {      
-        bundleName: 'ohos.samples.etsDemo',      
-        abilityName: 'ohos.samples.etsDemo.RemoteAbility',      
-        deviceId: getRemoteDeviceId(), // getRemoteDeviceId is defined in the preceding sample code.
-        parameters: params  
-    };  
-    console.info('onStartRemoteAbility want=' + JSON.stringify(wantValue));  
-    featureAbility.startAbility({      
-        want: wantValue  
-    }).then((data) => {      
-        console.info('onStartRemoteAbility finished, ' + JSON.stringify(data));  
-    });  
-    console.info('onStartRemoteAbility end');  
+
+function onStartRemoteAbility() {
+  console.info('onStartRemoteAbility begin');
+  let params;
+  let wantValue = {
+    bundleName: 'ohos.samples.etsDemo',
+    abilityName: 'ohos.samples.etsDemo.RemoteAbility',
+    deviceId: getRemoteDeviceId(), // getRemoteDeviceId is defined in the preceding sample code.
+    parameters: params
+  };
+  console.info('onStartRemoteAbility want=' + JSON.stringify(wantValue));
+  featureAbility.startAbility({
+    want: wantValue
+  }).then((data) => {
+    console.info('onStartRemoteAbility finished, ' + JSON.stringify(data));
+  });
+  console.info('onStartRemoteAbility end');
 }
 ```

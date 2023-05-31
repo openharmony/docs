@@ -20,7 +20,7 @@
       - [AccessibilityExtensionAbility](accessibilityextensionability.md)
       - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
       - [InputMethodExtensionAbility](inputmethodextentionability.md)
-      - [WindowExtensionAbility](windowextensionability.md)
+      - [WindowExtensionAbility (for System Applications Only)](windowextensionability.md)
     - Service Widget Development in Stage Model
       - [Service Widget Overview](service-widget-overview.md)
       - Developing an ArkTS Widget
@@ -52,7 +52,7 @@
       - [Want Overview](want-overview.md)
       - [Matching Rules of Explicit Want and Implicit Want](explicit-implicit-want-mappings.md)
       - [Common action and entities Values](actions-entities.md)
-      - [Using Explicit Want to Start an Ability](ability-startup-with-explicit-want.md)
+      - [Using Explicit Want to Start an Application Component](ability-startup-with-explicit-want.md)
       - [Using Implicit Want to Open a Website](ability-startup-with-implicit-want.md)
       - [Using Want to Share Data Between Applications](data-share-via-want.md)
     - [Component Startup Rules](component-startup-rules.md)
@@ -78,10 +78,10 @@
     - [Using Worker for Inter-Thread Communication](itc-with-worker.md)
   - Mission Management
     - [Mission Management Scenarios](mission-management-overview.md)
-    - [Mission Management and Launch Type](mission-management-launch-type.md)
+    - [Mission and Launch Type](mission-management-launch-type.md)
     - [Page Stack and MissionList](page-mission-stack.md)
     - [Setting the Icon and Name of a Mission Snapshot](mission-set-icon-name-for-task-snapshot.md)
-  - [Application Configuration File (Stage Model)](config-file-stage.md)
+  - [Application Configuration File](config-file-stage.md)
 - FA Model Development
   - [FA Model Development Overview](fa-model-development-overview.md)
   - FA Mode Application Components

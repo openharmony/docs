@@ -30,7 +30,7 @@ export default {
 ```
 
 
-After the PageAbility is created, its abilities-related configuration items are displayed in the **config.json** file. The following is an example **config.json** file of an ability named MainAbility:
+After the PageAbility is created, its abilities-related configuration items are displayed in the **config.json** file. The following is an example **config.json** file of an ability named EntryAbility:
 
 ```json
 {
@@ -48,13 +48,13 @@ After the PageAbility is created, its abilities-related configuration items are 
       ],
       "orientation": "unspecified",
       "visible": true,
-      "srcPath": "MainAbility",
-      "name": ".MainAbility",
+      "srcPath": "EntryAbility",
+      "name": ".EntryAbility",
       "srcLanguage": "ets",
       "icon": "$media:icon",
-      "description": "$string:MainAbility_desc",
+      "description": "$string:EntryAbility_desc",
       "formsEnabled": false,
-      "label": "$string:MainAbility_label",
+      "label": "$string:EntryAbility_label",
       "type": "page",
       "launchType": "singleton"
     }

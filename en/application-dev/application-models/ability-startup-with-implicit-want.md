@@ -5,21 +5,21 @@ This section uses the operation of using a browser to open a website as an examp
 ```json
 {
   "module": {
-    // ...
+    ...
     "abilities": [
       {
-        // ...
+        ...
         "skills": [
           {
             "entities": [
               "entity.system.home",
               "entity.system.browsable"
-              // ...
+              ...
             ],
             "actions": [
               "action.system.home",
               "ohos.want.action.viewData"
-              // ...
+              ...
             ],
             "uris": [
               {
@@ -31,9 +31,9 @@ This section uses the operation of using a browser to open a website as an examp
               },
               {
                 "scheme": "http",
-                // ...
+                ...
               }
-              // ...
+              ...
             ]
           }
         ]
@@ -59,20 +59,19 @@ function implicitStartAbility() {
     'uri': 'https://www.test.com:8080/query/student'
   }
   context.startAbility(wantInfo).then(() => {
-    // ...
+    ...
   }).catch((err) => {
-    // ...
+    ...
   })
 }
 ```
 
 The matching process is as follows:
 
-1. If **action** in the passed **want** parameter is specified and is included in **actions** under **skills** of the ability to match, the matching is successful.
-2. If **entities** in the passed **want** parameter is specified and is included in **entities** under **skills** of the ability to match, the matching is successful.
-3. If **uri** in the passed **want** parameter is included in **uris** under **skills** of the ability to match, which is concatenated into https://www.test.com:8080/query* (where * is a wildcard), the matching is successful.
-4. If **type** in the passed **want** parameter is specified and is included in **type** under **skills** of the ability to match, the matching is successful.
+1. If **action** in the passed **want** parameter is specified and is included in **actions** under **skills** of the application component to match, the matching is successful.
+2. If **entities** in the passed **want** parameter is specified and is included in **entities** under **skills** of the application component to match, the matching is successful.
+3. If **uri** in the passed **want** parameter is included in **uris** under **skills** of the application component to match, which is concatenated into https://www.test.com:8080/query* (where * is a wildcard), the matching is successful.
 
-If there are multiple matching applications, the system displays a dialog box for you to select one of them. The following figure shows an example. 
+If there are multiple matching applications, the system displays a dialog box for you to select one of them. The following figure shows an example.
 
-![stage-want1](figures/stage-want1.png)  
+![](figures/ability-startup-with-implicit-want1.png)
