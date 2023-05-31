@@ -1285,7 +1285,7 @@
       - [@ohos.systemTimer (System Timer)](reference/apis/js-apis-system-timer.md)
       - [@ohos.wallpaper (Wallpaper)](reference/apis/js-apis-wallpaper.md)
       - [@ohos.web.webview (Webview)](reference/apis/js-apis-webview.md)
-      - [console (Log)](reference/apis/js-apis-logs.md)
+      - [Console](reference/apis/js-apis-logs.md)
       - [Timer](reference/apis/js-apis-timer.md)
       - application
         - [AccessibilityExtensionContext](reference/apis/js-apis-inner-application-accessibilityExtensionContext.md)

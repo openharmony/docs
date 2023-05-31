@@ -1,29 +1,21 @@
 # Seccomp Policy Development
-
 ## Overview
-
 ### Introduction
-
 Secure computing mode (Seccomp) is a security mechanism provided by the Linux kernel. In the Linux system, a large number of system calls can be opened to user-mode programs without any restrictions. However, not all of these system calls are necessarily needed for user-mode programs. In this case, abuse of system calls can lead to system threats. For example, if a process has a security vulnerability, an attacker can run a shellcode segment to trigger system calls that are not triggered during normal execution, resulting in privilege escalation or private information leakage. To prevent such security risks, Seccomp limits the scope of system calls that can be used by programs, so as to reduce system exposure and improve security.
 
 ### Operating Mechanism
+1. Basic mechanism
 
-- Basic mechanism
+    Seccomp policies exist in the form of policy files. During compilation and building, a policy file is parsed to generate a source file that contains the BPF instruction policies, and then the source file is compiled into a dynamic policy library. During startup of a user-mode process, Seccomp system calls are invoked to load the BPF instruction policies into the kernel through the dynamic policy library.
 
-  Seccomp policies exist in the form of policy files. During compilation and building, a policy file is parsed to generate a source file that contains the BPF instruction policies, and then the source file is compiled into a dynamic policy library. During startup of a user-mode process, Seccomp system calls are invoked to load the BPF instruction policies into the kernel through the dynamic policy library.
-
-- Basic features
-
-  - A child process inherits the Seccomp policies of its parent process.
-  - After a Seccomp policy is loaded to the kernel during process running, the policy exists in the memory as a singly linked list and cannot be modified.
-  - Seccomp policies can be set for a process for multiple times. When a process executes a system call, the kernel traverses the policies specified for the nodes in the singly linked list, and then compares the policies to obtain the policy with the highest priority.
+2. Basic features
+    - A child process inherits the Seccomp policies of its parent process.
+    - After a Seccomp policy is loaded to the kernel during process running, the policy exists in the memory as a singly linked list and cannot be modified.
+    - Seccomp policies can be set for a process for multiple times. When a process executes a system call, the kernel traverses the policies specified for the nodes in the singly linked list, and then compares the policies to obtain the policy with the highest priority.
 
 
 ### Constraints
-
-- System restrictions
-
-  The system used must be a standard system, and the options listed below must be enabled in the kernel. You can find the kernel option configuration file of the product in **//kernel/linux/config/{linux_version}/arch/{target_cpu}/configs/**.
+- System restrictions<br>The system used must be a standard system, and the options listed below must be enabled in the kernel. You can find the kernel option configuration file of the product in **//kernel/linux/config/{linux_version}/arch/{target_cpu}/configs/**.
     ```shell
     CONFIG_HAVE_ARCH_SECCOMP=y
     CONFIG_HAVE_ARCH_SECCOMP_FILTER=y
@@ -32,7 +24,6 @@ Secure computing mode (Seccomp) is a security mechanism provided by the Linux ke
     ```
 
 - Feature restrictions
-
     - The Seccomp policy for non-privileged processes complies with the baseline blocklist mechanism.
     - If a process needs to use system calls in the baseline blocklist, the system calls must be declared in the privileged process policy file.
     - The same Seccomp policy is enabled for all application processes.
@@ -40,13 +31,9 @@ Secure computing mode (Seccomp) is a security mechanism provided by the Linux ke
     - Personalized Seccomp policies can be enabled for the native service processes incubated by the init process.
 
 ## Enabling Seccomp
-
 ### When to Use
-
 To meet product security requirements, you can enable Seccomp to limit the scope of system calls that can be invoked by processes. The development procedure below describes how to enable the basic functions and policies of Seccomp. Note that the basic functions must meet the feature restrictions described in [Constraints](#constraints). For details about the basic policy file, see [Policy File Overview](#policy-file-overview).
-
 ### How to Develop
-
 1. Add the following field to **vendor/Product vendor/Product name/config.json**:
     ```c
     "build_seccomp": true
@@ -74,18 +61,14 @@ To meet product security requirements, you can enable Seccomp to limit the scope
         ]
     }
     ```
-
 2. Perform a full build on the product code to generate an image.
     ```
     ./build.sh --product-name *product name* --ccache --build-target make_all --target-cpu *specified CPU*
     ```
-
 3. Burn the image into the device.
 
 ### Debugging and Verification
-
 Check whether Seccomp is enabled for application processes and system service processes.
-
 1. Run the shell command to obtain the process ID (that is, **target pid**) of the target process.
     ```
     ps -ef | grep xxx
@@ -108,34 +91,30 @@ Check whether Seccomp is enabled for application processes and system service pr
     **Table 1** Description of the Seccomp status
     |  Parameter |  Description |
     |  ---  |  ---  |
-    |  Seccomp  | Whether Seccomp is enabled.<br>- **0**: disabled.<br>- **1**: enabled with the strict mode. Only the read, write, exit, and sigreturn system calls are allowed.<br>- **2**: enabled with the filter mode. The customized policies can be enabled by loading BPF instruction sets. |
+    |  Seccomp  |  - **0**: disabled.<br>- **1**: enabled with the strict mode. Only the read, write, exit, and sigreturn system calls are allowed.<br>- **2**: enabled with the filter mode. The customized policies can be enabled by loading BPF instruction sets. |
     |  Seccomp_filters  |  Number of Seccomp policies set for a process. |
 
 ## Customizing Seccomp Policies for a Process
-
 ### When to Use
-
 If the basic Seccomp policy has been enabled for a product, you can customize Seccomp policies for native service processes incubated by the init process to adapt to diversified security requirements. In this case, the Seccomp policies of other native service processes remain unchanged.
-
 ### How to Develop
 1. Collect statistics on the system calls required by the 32-bit and 64-bit systems by using the static analysis and Strace statistics methods described in [System Call Statistic Methods](#system-call-statistic-methods). In this way, you will obtain the initial Seccomp policy.
 2. Write a policy file. For details, see [How to Write a Common Policy File](#how-to-write-a-common-policy-file).
 3. Write and build the **BUILD.gn** file.
 
-    1. Store the policy file in the code repository of the service subsystem and create a **BUILD.gn** file. For example, create the **seccomp_policy** folder in the service code repository, and create the policy file and **BUILD.gn** file in the folder.
+    1.  Store the policy file in the code repository of the service subsystem and create a **BUILD.gn** file. For example, create the **seccomp_policy** folder in the service code repository, and create the policy file and **BUILD.gn** file in the folder.
             
         ```shell
         //path/to/code/seccomp_policy
         ├── BUILD.gn
         └── example.seccomp.policy
         ```
-
     2. To parse the policy file and build the policy dynamic library, use the **ohos_prebuilt_seccomp** template to declare the Seccomp policy file path of the process in the **BUILD.gn** file. The **ohos_prebuilt_seccomp** template is defined in the **//base/startup/init/services/modules/seccomp/scripts/seccomp_policy_fixer.gni** file. The following table describes the parameters in the template.
     
         **Table 2** Parameters in the ohos_prebuilt_seccomp template
         |  Parameter |  Description |
         |  ---  |  ---  |
-        |  sources  |  Path of the policy configuration file, mandatory. |
+        |  sources  |  Path of the policy configuration file, mandatory.|
         |  filtername  |  Filter name, mandatory. The value must be the same as the value of **Services name** in the [boot configuration file](subsys-boot-init-cfg.md) of the process. Otherwise, the attempt to enable Seccomp will fail. This parameter determines the name of the dynamic policy library generated after the build. For example, if **filtername** is set to **xxx**, the name of the dynamic policy library is **libxxx_filter.z.so**. |
         |  process_type  |  Process type, mandatory. If the process is one incubated by the init process, set this parameter to **system**; if the process is an application process, set this parameter to **app**.|
         |  part_name  |  Part name, mandatory. |
@@ -143,7 +122,7 @@ If the basic Seccomp policy has been enabled for a product, you can customize Se
         |  install_enable  |  Option specifying whether to install the policy file to the image, mandatory. Set the value to **true**. |
         |  install_images  |  Installation location in the image, mandatory. |
     
-        For example:
+        Example
         ```python
         #Import the template file.
         import("//base/startup/init/services/modules/seccomp/scripts/seccomp_policy_fixer.gni")
@@ -163,7 +142,6 @@ If the basic Seccomp policy has been enabled for a product, you can customize Se
             install_images = [ "xxxxx" ]
         }
         ```
-
     3. Add the build target of **xxxx_seccomp_filter** to other **BUILD.gn** files.
         ```python
         if (build_seccomp) {
@@ -174,12 +152,10 @@ If the basic Seccomp policy has been enabled for a product, you can customize Se
     ```shell
     ./build.sh --product-name *product name* --ccache --build-target xxxx_seccomp_filter --target-cpu *specified CPU*
     ```
-
-    If an error message that contains the following information is reported, the process needs to use the system calls in the baseline blocklist. In such a case, you need to declare the corresponding system call in **privileged_process.seccomp.policy**. For details, see [How to Write a Privileged Process Policy File](#how-to-write-a-privileged-process-policy-file). After the declaration is done, try again until the build is successful.
+    If an error message that contains the following information is reported, the process needs to use the system calls in the baseline blocklist. In such a case, you need to declare the corresponding system call in **privileged_process.seccomp.policy**. For details, see [How to Write a Privileged Process Policy File](#how-to-write-a-privileged-policy-file). After the declaration is done, try again until the build is successful.
     ```shell
     xx of allow list is in block list
     ```
-
 5. Use the hdc tool to push the dynamic policy library to the device and restart the device.
     ```shell
     # Push an appropriate library path based on the installation location in the image. For example, if the image is **system** and the system architecture is 32-bit, the path of the dynamic policy library is **/system/lib/seccomp/**.
@@ -187,19 +163,15 @@ If the basic Seccomp policy has been enabled for a product, you can customize Se
     hdc file send /path/to/libxxx_filter.z.so /path/to/lib(or lib64)/seccomp/
     hdc shell reboot
     ```
-
 6. Use the [audit statistics](#audit-statistics) method to check and supplement the Seccomp policies. Repeat steps 4 to 6 until the process can run properly.
 
 ### Debugging and Verification
-
-1. If Seccomp is not enabled for the target process, [check the Seccomp status](#debugging-and-verification) of the target process.
+1. If Seccomp is not enabled for the target process, [check the Seccomp status](#commissioning-and-verification) of the target process.
 2. If the process is terminated and audit log information is present in the kernel logs, the Seccomp policy is enabled but the policy list is incomplete. You can find an example audit log in [Audit Statistics](#audit-statistics).
 3. If the process is not terminated, comment out the system calls (for example, **setuid**) related to the specified uid in the Seccomp policy file. Rebuild the dynamic policy library, push the library to the image, and restart the process. Then, check whether the process is terminated by Seccomp. If the process is terminated, Seccomp has been enabled.
 
 ## FAQs
-
 ### How do I determine whether a process termination is caused by Seccomp?
-
 **Symptom**
 
 If a process is terminated under certain conditions, how do I determine whether the issue is caused by Seccomp?
@@ -235,9 +207,7 @@ Use either of the following methods:
     ```
 
 ## Reference
-
 ### Seccomp source code directory
-
 ```
 base/startup/init/services/modules/seccomp
 ├── BUILD.gn
@@ -259,11 +229,7 @@ base/startup/init/services/modules/seccomp
 ```
 
 ### Policy File Overview
-
-- Location
-
-  Basic policy files are stored in **//base/startup/init/services/modules/seccomp/seccomp_policy**.
-
+- Location<br>Basic policy files are stored in **//base/startup/init/services/modules/seccomp/seccomp_policy**.
 - Basic policy files
 
     **Table 3** Description of policy files
@@ -278,7 +244,6 @@ base/startup/init/services/modules/seccomp
     |  privileged_process.seccomp.policy  | Privileged process policy file. If certain processes need to use the system calls on the baseline blocklist, you need to declare the corresponding process identifiers and baseline blocklists in this file.|
 
 ### How to Write a Common Policy File
-
 - To declare a configuration item, write **@** followed by the configuration item, for example, **@returnValue**.
 - Add the content of a configuration item from the next line of this configuration item to the beginning of the next configuration item.
 - To comment out a line, add a pound sign (#) at the beginning of this line.
@@ -333,7 +298,6 @@ swapon;all
 ```
 
 ### How to Write a Privileged Process Policy File
-
 - To declare a configuration item, write **@** followed by the configuration item, for example, **@allowBlockList**.
 - Add the content of a configuration item from the next line of this configuration item to the beginning of the next configuration item.
 - To comment out a line, add a pound sign (#) at the beginning of this line.
@@ -362,32 +326,30 @@ swapon;all
 ```
 
 ### System Call Statistic Methods
-
 **Table 6** Comparison of statistic methods
 |  Statistic Method |  Description |  Advantage |  Disadvantage |
 |  ---  |  ---  |  ---  |  ---  |
 |  <div style="width: 50pt">Static analysis | <div style="width: 300pt">Analyze the ELF disassembly code to obtain the call relationship, collect statistics on the APIs that call the libc library, and then parse the LibC library to obtain the call relationship between the LibC APIs and the system call numbers. In this way, you will obtain the system call numbers used by the ELF file.|  <div style="width: 100pt">Statistics collection is supported for system calls in abnormal branches. |  <div style="width: 100pt">Parsing of call relationship is not supported for pointer functions. |
-|  Strace statistics | Use Strace to trace service processes or test processes when the device is running. During the trace, the invoked system calls are recorded into logs. Collect the logs after the trace is complete, and use a script to parse the logs and generate a Seccomp policy file.|  Easy to use. |  System calls can be completely collected only when all code branches are traversed. |
+|  Strace statistics | Use Strace to trace service processes when the device is running. During the trace, the invoked system calls are recorded into logs. Collect the logs after the trace is complete, and use a script to parse the logs and generate a Seccomp policy file.|  Easy to use. |  System calls can be completely collected only when all code branches are traversed. |
 |  Audit statistics | After the Seccomp policy is enabled for a process, Seccomp intercepts invalid system calls and records audit log information containing the system call numbers into kernel logs. Collect the logs after the trace is complete, and use a script to parse the logs and generate a Seccomp policy file.|  This method can be used as a supplement to the preceding methods. |  Logs may be lost.<br>System calls can be completely collected only when all code branches are traversed. |
 
-> **Disclaimer: Using Third-Party Software or Websites**
-> 
-> We may recommend software, information, products, or websites owned or operated by third parties. Such recommendations are usually provided via hyperlinks or other methods to help you access third-party resources.<br>
-> We strive to direct you to useful and trusted resources, but it is beyond our reach to guarantee the software, information, products, or services provided by or at third-party resources, or to track changes in these resources. Therefore, we are unable to assume the responsibility for the compliance, accuracy, and completeness of the content or results of any third-party resources, nor for any loss or damage caused by the use or failure of products or services provided by third-party resources.
-
 #### Static Analysis
-
 1. Prepare the environment.
     1. Prepare a Linux environment.
     2. Download the cross compilers arm-linux-musleabi and aarch64-linux-musl.
         ```shell
+        wget https://musl.cc/arm-linux-musleabi-cross.tgz
+        wget https://musl.cc/aarch64-linux-musl-cross.tgz
+
+        tar -zxvf arm-linux-musleabi-cross.tgz
+        tar -zxvf aarch64-linux-musl-cross.tgz
+
         # Add the tool execution path to the environment variable.
         export PATH=$PATH:/path/to/arm-linux-musleabi-cross/bin
         export PATH=$PATH:/path/to/aarch64-linux-musl-cross/bin
         ```
 
-    3. Download the OpenHarmony source code.
-    For details, see [Obtaining Source Code](../get-code/sourcecode-acquire.md).
+    3. Download the OpenHarmony source code. For details, see [Obtaining Source Code](../get-code/sourcecode-acquire.md).
 
 2. Compile **seccomp_filter** to obtain the dependency files **libsyscall_to_nr_arm** and **libsyscall_to_nr_arm64**.
 
@@ -399,10 +361,10 @@ swapon;all
     cp out/*product name* /gen/base/startup/init/services/modules/seccomp/gen_system_filter/libsyscall_to_nr_arm* base/startup/init/services/modules/seccomp/scripts/tools/
     ```
 
-3. Copy the **generate_code_from_policy.py** script file to the tool folder. This script is available at **//base/startup/init/services/modules/seccomp/scripts/**.
+3. Copy the **generate_code_from_policy.py** script file to the tool folder. This script file is available at **//base/startup/init/services/modules/seccomp/scripts/**.
     ```shell
     # Go to the root directory of the OpenHarmony source code.
-    cd /root/to/OpenharmonyCode;
+    cd /root/to/OpenHarmonyCode;
     # Go to the directory where the **generate_code_from_policy.py** script file is located.
     cd base/startup/init/services/modules/seccomp/scripts/;
     # Copy the **generate_code_from_policy.py** script file.
@@ -414,22 +376,31 @@ swapon;all
     ./build.sh --product-name *product file* --ccache --target-cpu arm64 --build-target *target file*
     ```
 
-5. Modify the **collect_elf_syscall.py** script file, and change the paths of the objdump and readelf tools to their absolute paths in the Linux environment. The tools are stored in **//prebuilts**, and more particularly, **//prebuilts/clang/ohos/linux-x86_64/15.0.4/llvm/bin**.
+5. If full build has not been performed before and the dependent dynamic libraries for step 4 are not in the **//out** directory, copy the related dynamic libraries to the **//out** directory. The following code is for reference only. If other dynamic libraries are involved, copy them in a similar way.
+    ```shell
+    # Go to the root directory of the source code.
+    cd /root/to/OpenHarmonyCode
+    # Create the **aarch64-linux-ohos** folder in **out/*product name*/lib.unstripped/** to store the dependent dynamic libraries.
+    mkdir out/*product name*/lib.unstripped/aarch64-linux-ohos
+    # Copy the related dynamic libraries to the //out directory.
+    cp prebuilts/clang/ohos/${host_platform_dir}/llvm/lib/clang/${clang_version}/lib/aarch64-linux-ohos/*.so out/*product name*/lib.unstripped/aarch64-linux-ohos/
+    cp prebuilts/clang/ohos/${host_platform_dir}/${clang_version}/llvm/lib/aarch64-linux-ohos/*.so out/*product name*/lib.unstripped/aarch64-linux-ohos/
+    ```
+
+6. Modify the **collect_elf_syscall.py** script file, and change the paths of the objdump and readelf tools to their absolute paths in the Linux environment. This script file is available at **base/startup/init/services/modules/seccomp/scripts/tools/**. The **objdump** and **readelf** tools available at **//prebuilts**.
     ```python
     #modified the path of objdump and readelf path
     def get_obj_dump_path():
-        obj_dump_path = '/path/to/prebuilts/clang/ohos/linux-x86_64/15.0.4/llvm/bin/llvm-objdump'
+        obj_dump_path = '/path/to/llvm-objdump'
         return obj_dump_path
 
 
     def get_read_elf_path():
-        read_elf_path = '/path/to/prebuilts/clang/ohos/linux-x86_64/15.0.4/llvm/bin/llvm-readelf'
+        read_elf_path = '/path/to/llvm-readelf'
         return read_elf_path
     ```
 
-6. Use the **collect_elf_syscall.py** script file to parse and generate the corresponding policy file **xxx.seccomp.policy**.
-
-    The script file is available at **//base/startup/init/services/modules/seccomp/scripts/tools/**.
+7. Use the **collect_elf_syscall.py** script file to parse and generate the corresponding policy file **xxx.seccomp.policy**.
 
     **Table 7** Parameters in the collect_elf_syscall.py script file
     |  Parameter |  Description |
@@ -462,59 +433,10 @@ swapon;all
         ```
 
 #### Strace Statistics
-
 1. Use the cross compilers arm-linux-musleabi and aarch64-linux-musl to build the Strace tool for the 32-bit and 64-bit architectures, respectively.
-2. [Trace the test process](#tracing-the-test-process) to obtain Strace logs.
-3. [Trace the service process](#tracing-the-service-process) to obtain the Strace logs.
-4. [Parse Strace logs](#parsing-strace-logs) by using scripts to obtain the Seccomp policy file.
-
-##### Tracing the Test Process
-
-1. Push the Strace tool to the device.
-    ```shell
-    hdc shell mount -rw -o remount /
-    hdc file send /path/to/strace /system/bin/
-    hdc shell chmod a+x /system/bin/strace
-    ```
-
-2. Modify the local embedded code in the [developer test framework](https://gitee.com/openharmony/testfwk_developer_test) so that Strace is executed in the test suite to trace the test process.
-
-    Modify the **_init_gtest** and **_run_gtest** functions in **src/core/driver/drivers.py** as follows. If a line starts with a plus sign (+), the line is added; if a line starts with a hyphen (-), the line is deleted.
-
-    ```python
-    --- a/src/core/driver/drivers.py
-    +++ b/src/core/driver/drivers.py
-    @@ -500,6 +500,8 @@ class CppTestDriver(IDriver):
-                "rm -rf %s" % self.config.target_test_path)
-            self.config.device.execute_shell_command(
-                "mkdir -p %s" % self.config.target_test_path)
-    +        self.config.device.execute_shell_command(
-    +            "mkdir -p /data/strace")
-            self.config.device.execute_shell_command(
-                "mount -o rw,remount,rw /")
-            if "fuzztest" == self.config.testtype[0]:
-    @@ -539,10 +541,11 @@ class CppTestDriver(IDriver):
-                        test_para,
-                        seed)
-                else:
-    -                command = "cd %s; rm -rf %s.xml; chmod +x *; ./%s %s" % (
-    +                command = "cd %s; rm -rf %s.xml; chmod +x *; strace -ff -o /data/strace/%s.strace.log ./%s %s" % (
-                        self.config.target_test_path,
-                        filename,
-                        filename,
-    +                    filename,
-                        test_para)
-            else:
-                coverage_outpath = self.config.coverage_outpath
-    ```
-3. Execute related service test cases.
-4. Obtain Strace logs from **/data/strace** on the device.
-    ```shell
-    hdc file recv /data/strace /path/to/base/startup/init/services/modules/seccomp/scripts/tools/
-    ```
-
+2. [Trace the service process](#tracing-the-service-process) to obtain the Strace logs.
+3. [Parse Strace logs](#parsing-strace-logs) by using scripts to obtain the Seccomp policy file.
 ##### Tracing the Service Process
-
 1. Modify the embedded code in the init repository. Specifically, add the following content to **//base/startup/init/services/init/init_common_service.c** before executing the **SetSystemseccompPolicy** function to set the Seccomp policy.  If the line starts with a plus sign (+), the line is added; if the line starts with a hyphen (-), the line is deleted. **xxxx** must be the same as the value of **Services name** in the [boot configuration file](subsys-boot-init-cfg.md) of the process.
     ```c
     --- a/services/init/init_common_service.c
@@ -563,7 +485,6 @@ swapon;all
     ```
 
 ##### Parsing Strace Logs
-
 1. Copy the dependency files to the Strace log folder for later use. The dependency files are those generated in step 2 in [Static Analysis](#static-analysis).
     ```shell
     cp out/*product name* /gen/base/startup/init/services/modules/seccomp/gen_system_filter/libsyscall_to_nr_arm* base/startup/init/services/modules/seccomp/scripts/tools/strace/
@@ -600,7 +521,6 @@ swapon;all
     ```
 
 #### Audit Statistics
-
 1. Enable the initial Seccomp policy. For details, see [Customizing Seccomp Policies for a Process](#customizing-seccomp-policies-for-a-process).
 2. Obtain logs.
     1. Create a folder for storing logs.
@@ -636,8 +556,7 @@ swapon;all
     
     Example audit log:
     ```shell
-    <5>[  198.963101] audit: type=1326 audit(1659528178.748:27): auid=4294967295 uid=0 gid=1000 ses=4294967295 subj=u:r:appspawn:s0 pid=2704 comm="config_dialog_s" exe="/system/bin/appspawn" sig=31 arch=40000028 syscall=
-    208 compat=1 ip=0xf7b79400 code=0x80000000
+    <5>[  198.963101] audit: type=1326 audit(1659528178.748:27): auid=4294967295 uid=0 gid=1000 ses=4294967295 subj=u:r:appspawn:s0 pid=2704 comm="config_dialog_s" exe="/system/bin/appspawn" sig=31 arch=40000028 syscall=208 compat=1 ip=0xf7b79400 code=0x80000000
     ```
     **Table 9** Key parameters in audit logs
     |  Parameter |  Description |
@@ -646,7 +565,7 @@ swapon;all
     |  sig  |  Semaphore. The value **31** indicates **SIGSYS**, which is the signal sent to the process when Seccomp interception occurs. |
     |  arch  |  Architecture ID. The value **40000028** indicates **arm**, and the value **c00000b7** indicates **arm64**. |
     |  syscall  |  System call ID. |
-    |  compat  |  The value **1** indicates the compatibility mode, that is, the arm64 kernel uses arm system calls. |
+    |  compat  |  The value **1** indicates the compatibility mode, that is, the arm64 kernel uses arm system calls.|
 
 
     1. Copy the dependency files to the log folder for later use. The dependency files are those generated in step 2 in [Static Analysis](#static-analysis).
@@ -659,7 +578,7 @@ swapon;all
         |  Parameter |  Description |
         |  ---  |  ---  |
         |  --src-path  | Folder for storing log files. It must contain **libsyscall_to_nr_arm** and **libsyscall_to_nr_arm64**. The folder name must not end with a slash (/), for example, **./audit**.|
-        |  --filter-name  | Name of the generated policy file. For example, if the input value is **test**, the generated file name is **test.seccomp.policy**. |
+        |  --filter-name  | Name of the generated policy file. For example, if the input value is **test**, the generated file name is **test.seccomp.policy**.|
 
         ```shell
         cd base/startup/init/services/modules/seccomp/scripts/tools
@@ -667,7 +586,6 @@ swapon;all
         ```
 
 ### Combining Multiple Policy Files
-
 During [colltatistics on system calls](#system-call-statistic-methods), multiple policy files may be generated. In these policy files, system calls may be repeated or disordered. To solve these problems, you can combine policy files to sort system calls by arm64/arm and by system call number in ascending order.
 
 **Table 11** Parameters in the merge_policy.py script file
@@ -675,7 +593,6 @@ During [colltatistics on system calls](#system-call-statistic-methods), multiple
 |  ---  |  ---  |
 |  --src-files  | Files to be processed, including **libsyscall_to_nr_arm** and **libsyscall_to_nr_arm64**.|
 |  --filter-name  | Name of the generated policy file. For example, if the input value is **test**, the generated file name is **test.seccomp.policy**. |
-
 1. Copy the dependency files to the log folder for later use.
     ```shell
     cp out/*product name* /gen/base/startup/init/services/modules/seccomp/gen_system_filter/libsyscall_to_nr_arm* base/startup/init/services/modules/seccomp/scripts/tools/
