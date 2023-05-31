@@ -287,6 +287,44 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
     console.error("getTrustedDeviceListSync errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
+### getTrustedDeviceListSync
+
+getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;
+
+刷新可信设备列表，让周围可信设备快速上线。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**参数：**
+
+| 参数名        | 类型                               | 必填 | 说明                       |
+| ------------- | --------------------------------- | ---- | ------------------------- |
+|   isRefresh   | boolean                           | 是   | 是否刷新                   |
+
+**返回值：**
+
+| 名称                                     | 说明            |
+| -------------------------------------- | ---------------- |
+| Array&lt;[DeviceInfo](#deviceinfo)&gt; | 返回可信设备列表。 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[设备管理错误码](../errorcodes/errorcode-device-manager.md)
+
+| 错误码ID | 错误信息                                                         |
+| -------- | --------------------------------------------------------------- |
+|    401   | Input parameter error.                                          |
+| 11600101 | Failed to execute the function.                                 |
+
+**示例：**
+
+  ```js
+  try {
+    var deviceInfoList = dmInstance.getTrustedDeviceListSync(true);
+  } catch (err) {
+    console.error("getTrustedDeviceListSync errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
 
 ### getTrustedDeviceList<sup>8+</sup>
 
