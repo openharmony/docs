@@ -648,7 +648,7 @@
 
 允许应用程序获取网络相关的信息或修改网络相关设置。
 
-**权限级别**：system_core
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 
