@@ -22,9 +22,13 @@
 - output，卷积的输出。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
@@ -58,6 +62,7 @@
 enum ActivationType Conv2DFusion::activationType
 ```
 **描述:**
+
 激活函数类型，详情请参考：[ActivationType](_n_n_rt.md#activationtype)。
 
 
@@ -68,6 +73,7 @@ enum ActivationType Conv2DFusion::activationType
 long [] Conv2DFusion::dilation
 ```
 **描述:**
+
 表示扩张卷积在height和weight上的扩张率，是一个长度为2的int数组[dilationHeight，dilationWidth]， 值必须大于或等于1，并且不能超过x的height和width。
 
 
@@ -78,6 +84,7 @@ long [] Conv2DFusion::dilation
 long Conv2DFusion::group
 ```
 **描述:**
+
 group，将输入x按inChannel分组，int类型。 group等于1，这是常规卷积。 group等于inChannel，这是depthwiseConv2d，此时group==in_channel==out_channel。 group大于1且小于inChannel，这是分组卷积，此时out_channel==group。
 
 
@@ -88,6 +95,7 @@ group，将输入x按inChannel分组，int类型。 group等于1，这是常规�
 long Conv2DFusion::inChannel
 ```
 **描述:**
+
 输入通道数量。
 
 
@@ -98,6 +106,7 @@ long Conv2DFusion::inChannel
 long [] Conv2DFusion::kernelSize
 ```
 **描述:**
+
 卷积核大小。
 
 
@@ -108,6 +117,7 @@ long [] Conv2DFusion::kernelSize
 long Conv2DFusion::outChannel
 ```
 **描述:**
+
 输出通道数量。
 
 
@@ -118,6 +128,7 @@ long Conv2DFusion::outChannel
 long [] Conv2DFusion::padList
 ```
 **描述:**
+
 输入x周围的填充，是一个长度为4的int数组[top，bottom，left，right]。
 
 
@@ -128,6 +139,7 @@ long [] Conv2DFusion::padList
 enum PadMode Conv2DFusion::padMode
 ```
 **描述:**
+
 填充类型，详情请参考：[PadMode](_n_n_rt.md#padmode)。
 
 
@@ -138,4 +150,5 @@ enum PadMode Conv2DFusion::padMode
 long [] Conv2DFusion::stride
 ```
 **描述:**
+
 卷积核在height和weight上的步幅，是一个长度为2的int数组[strideHeight，strideWidth]。
