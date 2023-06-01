@@ -1,12 +1,13 @@
 # @ohos.arkui.componentSnapshot (Component Snapshot)
 
-The **componentSnapshot** module provides APIs for obtaining component snapshots, including snapshots of components that have been loaded and snapshots of components that have not been loaded yet.
+The **componentSnapshot** module provides APIs for obtaining component snapshots, including snapshots of components that have been loaded and snapshots of components that have not been loaded yet. Note that a component snapshot does not contain content drawn outside of the area of the owning component or the parent component.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >
 > You can preview how this component looks on a real device. The preview is not yet available in the DevEco Studio Previewer.
+
 
 ## Modules to Import
 
@@ -20,14 +21,18 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 
 Obtains the snapshot of a component that has been loaded. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> The snapshot captures content rendered in the last frame. If this API is called when the component triggers an update, the re-rendered content will not be included in the obtained snapshot.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name  | Type                               | Mandatory| Description                                                                          |
-| -------- | ----------------------------------- | ---- | ------------------------------------------------------------------------------ |
-| id       | string                              | Yes  | [ID](../arkui-ts/ts-universal-attributes-component-id.md) of the target component.|
-| callback | AsyncCallback&lt;image.PixelMap&gt; | Yes  | Callback used to return the result.                                                            |
+| Name     | Type                                 | Mandatory  | Description                                      |
+| -------- | ----------------------------------- | ---- | ---------------------------------------- |
+| id       | string                              | Yes   | [ID](../arkui-ts/ts-universal-attributes-component-id.md) of the target component.|
+| callback | AsyncCallback&lt;image.PixelMap&gt; | Yes   | Callback used to return the result.                              |
 
 **Example**
 
@@ -45,8 +50,8 @@ struct SnapshotExample {
       Image(this.pixmap)
         .width(300).height(300)
       // ...Component
-      // ...Components
-      // ...Components
+      // ...Component
+      // ...Component
       Button("click to generate UI snapshot")
         .onClick(() => {
           componentSnapshot.get("root", (error: Error, pixmap: image.PixelMap) => {
@@ -71,25 +76,29 @@ get(id: string): Promise<image.PixelMap>
 
 Obtains the snapshot of a component that has been loaded. This API uses a promise to return the result.
 
+> **NOTE**
+>
+> The snapshot captures content rendered in the last frame. If this API is called when the component triggers an update, the re-rendered content will not be included in the obtained snapshot.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name | Type                                                   | Mandatory| Description                |
-| ------- | ------------------------------------------------------- | ---- | -------------------- |
-| id       | string                              | Yes  | [ID](../arkui-ts/ts-universal-attributes-component-id.md) of the target component.|
+| Name | Type    | Mandatory  | Description                                      |
+| ---- | ------ | ---- | ---------------------------------------- |
+| id   | string | Yes   | [ID](../arkui-ts/ts-universal-attributes-component-id.md) of the target component.|
 
 **Return value**
 
-| Type                         | Description          |
-| ----------------------------- | -------------- |
+| Type                           | Description      |
+| ----------------------------- | -------- |
 | Promise&lt;image.PixelMap&gt; | Promise used to return the result.|
 
 **Error codes**
 
-| ID| Error Message           |
-| -------- | ------------------- |
-| 100001   | if id is not valid. |
+| ID | Error Message               |
+| ------ | ------------------- |
+| 100001 | if id is not valid. |
 
 **Example**
 
@@ -134,14 +143,21 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 
 Renders a custom component in the application background and outputs its snapshot. This API uses an asynchronous callback to return the result.
 
+> **NOTE**
+>
+> To account for the time spent in awaiting component building and rendering, the callback of offscreen snapshots has a delay of less than 500 ms.
+>
+> If a component is on a time-consuming task, for example, an **\<Image>** or **\<Web>** component that is loading online images, its loading may be still in progress when this API is called. In this case, the output snapshot does not represent the component in the way it looks when the loading is successfully completed.
+
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name  | Type                                                   | Mandatory| Description                |
-| -------- | ------------------------------------------------------- | ---- | -------------------- |
-| builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | Yes  | Builder of the custom component.|
-| callback | AsyncCallback&lt;image.PixelMap&gt;                     | Yes  | Callback used to return the result.  |
+| Name     | Type                                      | Mandatory  | Description        |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | Yes   | Builder of the custom component.|
+| callback | AsyncCallback&lt;image.PixelMap&gt;      | Yes   | Callback used to return the result.|
 
 **Example**
 
@@ -194,25 +210,31 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 
 Renders a custom component in the application background and outputs its snapshot. This API uses a promise to return the result.
 
+> **NOTE**
+>
+> To account for the time spent in awaiting component building and rendering, the callback of offscreen snapshots has a delay of less than 500 ms.
+>
+> If a component is on a time-consuming task, for example, an **\<Image>** or **\<Web>** component that is loading online images, its loading may be still in progress when this API is called. In this case, the output snapshot does not represent the component in the way it looks when the loading is successfully completed.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
 
-| Name | Type                                                   | Mandatory| Description                |
-| ------- | ------------------------------------------------------- | ---- | -------------------- |
-| builder | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | Yes  | Builder of the custom component.|
+| Name    | Type                                      | Mandatory  | Description        |
+| ------- | ---------------------------------------- | ---- | ---------- |
+| builder | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | Yes   | Builder of the custom component.|
 
 **Return value**
 
-| Type                         | Description          |
-| ----------------------------- | -------------- |
+| Type                           | Description      |
+| ----------------------------- | -------- |
 | Promise&lt;image.PixelMap&gt; | Promise used to return the result.|
 
 **Error codes**
 
-| ID| Error Message                                 |
-| -------- | ----------------------------------------- |
-| 100001   | if builder is not a valid build function. |
+| ID | Error Message                                    |
+| ------ | ---------------------------------------- |
+| 100001 | if builder is not a valid build function. |
 
 **Example**
 
