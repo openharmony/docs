@@ -1,37 +1,33 @@
 # IUsbdBulkCallback
 
 
-## **概述**
+## 概述
 
 USB驱动的回调函数。
 
 当USB驱动进行批量传输异步读/写数据时调用回调函数，处理对应的结果。
 
 **Since:**
-
 3.2
-
 **Version:**
-
 1.0
-
 **相关模块:**
 
-[USB](usb.md)
+[USB](_u_s_b.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 成员函数
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [OnBulkWriteCallback](#onbulkwritecallback)&nbsp;([in]&nbsp;int&nbsp;status,&nbsp;[in]&nbsp;int&nbsp;actLength) | 批量写数据的回调函数。 | 
-| [OnBulkReadCallback](#onbulkreadcallback)&nbsp;([in]&nbsp;int&nbsp;status,&nbsp;[in]&nbsp;int&nbsp;actLength) | 批量读数据的回调函数。 | 
+| [OnBulkWriteCallback](#onbulkwritecallback)&nbsp;([in]&nbsp;int&nbsp;status,&nbsp;[in]&nbsp;int&nbsp;actLength) | 批量写数据的回调函数。&nbsp; | 
+| [OnBulkReadCallback](#onbulkreadcallback)&nbsp;([in]&nbsp;int&nbsp;status,&nbsp;[in]&nbsp;int&nbsp;actLength) | 批量读数据的回调函数。&nbsp; | 
 
 
-## **成员函数说明**
+## 成员函数说明
 
 
 ### OnBulkReadCallback()
@@ -40,16 +36,14 @@ USB驱动的回调函数。
 ```
 IUsbdBulkCallback::OnBulkReadCallback ([in] int status, [in] int actLength )
 ```
-
-**描述：**
-
+**描述:**
 批量读数据的回调函数。
 
 **参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| status | 完成状态。 | 
+| status | 完成状态。&nbsp; | 
 | actLength | 读数据时实际接收的数据长度。 | 
 
 **返回:**
@@ -65,16 +59,14 @@ IUsbdBulkCallback::OnBulkReadCallback ([in] int status, [in] int actLength )
 ```
 IUsbdBulkCallback::OnBulkWriteCallback ([in] int status, [in] int actLength )
 ```
-
-**描述：**
-
+**描述:**
 批量写数据的回调函数。
 
 **参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| status | 完成状态。 | 
+| status | 完成状态。&nbsp; | 
 | actLength | 写数据时实际发送的数据长度。 | 
 
 **返回:**

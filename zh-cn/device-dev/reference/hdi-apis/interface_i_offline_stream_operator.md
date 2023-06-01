@@ -1,7 +1,7 @@
 # IOfflineStreamOperator
 
 
-## **概述**
+## 概述
 
 定义Camera设备离线流操作。
 
@@ -9,10 +9,10 @@
 
 **相关模块:**
 
-[Camera](camera.md)
+[Camera](_camera.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 成员函数
@@ -21,10 +21,10 @@
 | -------- | -------- |
 | [CancelCapture](#cancelcapture)&nbsp;([in]&nbsp;int&nbsp;captureId) | 取消捕获请求。 | 
 | [ReleaseStreams](#releasestreams)&nbsp;([in]&nbsp;int[]&nbsp;streamIds) | 释放离线流。 | 
-| [Release](#release)&nbsp;() | 释放所有离线流。&nbsp;释放流的前置条件：<br/>1.&nbsp;所有单次捕获的Capture处理完成。<br/>2.&nbsp;所有连续捕获请求都已经被CancelCapture。 | 
+| [Release](#release)&nbsp;() | 释放所有离线流。 | 
 
 
-## **成员函数说明**
+## 成员函数说明
 
 
 ### CancelCapture()
@@ -34,7 +34,7 @@
 IOfflineStreamOperator::CancelCapture ([in] int captureId)
 ```
 
-**描述：**
+**描述:**
 
 取消捕获请求。
 
@@ -48,7 +48,7 @@ IOfflineStreamOperator::CancelCapture ([in] int captureId)
 
 NO_ERROR 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[CamRetCode](camera.md#camretcode)。
+其他值表示执行失败，具体错误码查看[CamRetCode](_camera.md#camretcode)。
 
 
 ### Release()
@@ -58,19 +58,21 @@ NO_ERROR 表示执行成功。
 IOfflineStreamOperator::Release ()
 ```
 
-**描述：**
+**描述:**
 
-释放所有离线流。 释放流的前置条件：
+释放所有离线流。
 
-1. 所有单次捕获的Capture处理完成。
+释放流的前置条件：
 
-2. 所有连续捕获请求都已经被CancelCapture。
+- 所有单次捕获的[Capture](interface_i_stream_operator.md#capture)处理完成。
+
+- 所有连续捕获请求都已经被[CancelCapture](interface_i_stream_operator.md#cancelcapture)。
 
 **返回:**
 
 NO_ERROR 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[CamRetCode](camera.md#camretcode)。
+其他值表示执行失败，具体错误码查看[CamRetCode](_camera.md#camretcode)。
 
 
 ### ReleaseStreams()
@@ -80,7 +82,7 @@ NO_ERROR 表示执行成功。
 IOfflineStreamOperator::ReleaseStreams ([in] int[] streamIds)
 ```
 
-**描述：**
+**描述:**
 
 释放离线流。
 
@@ -94,4 +96,4 @@ IOfflineStreamOperator::ReleaseStreams ([in] int[] streamIds)
 
 NO_ERROR 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[CamRetCode](camera.md#camretcode)。
+其他值表示执行失败，具体错误码查看[CamRetCode](_camera.md#camretcode)。

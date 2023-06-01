@@ -1,7 +1,7 @@
 # IBatteryInterface.idl
 
 
-## **概述**
+## 概述
 
 获取、订阅电池信息的接口。
 
@@ -20,18 +20,18 @@
 [Battery](battery.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### 类
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [IBatteryInterface](interface_i_battery_interface.md) | 获取、订阅电池信息的接口。 | 
+| [IBatteryInterface](interface_i_battery_interface.md) | interface<br/>获取、订阅电池信息的接口。 | 
 
 
 ### 关键字
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| package&nbsp;ohos.hdi.battery.v1_0 | 电池模块接口的包路径 | 
+| package&nbsp;ohos.hdi.battery.v1_0 | 电池模块接口的包路径。 | 
