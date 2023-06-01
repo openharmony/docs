@@ -654,7 +654,7 @@
 
 **ACL使能**：TRUE
 
-## ohos.permission.CONNECTIVITY_INTERNAL
+## ohos.permission.MANAGE_NET_STRATEGY
 
 允许应用程序获取网络策略相关的信息或修改网络策略相关设置。
 
