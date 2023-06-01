@@ -18,9 +18,13 @@
 - output，按照输出tensor的数据类型进行类型转换。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
