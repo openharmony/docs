@@ -87,7 +87,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   }
   ```
 
-  2.修改MainAbility.ts。
+  2.修改EntryAbility.ts。
   以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用开发路径](../../application-models/application-context-stage.md#获取应用开发路径)。
   ```ts
   // xxx.ts
@@ -1636,6 +1636,8 @@ onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
 ### onDownloadStart
 
 onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisposition: string, mimetype: string, contentLength: number }) => void)
+
+通知主应用开始下载一个文件。
 
 **参数：**
 
