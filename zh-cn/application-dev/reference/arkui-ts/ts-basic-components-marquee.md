@@ -36,7 +36,7 @@ Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boole
 
 | 名称       | 参数类型 | 默认值 | 描述               |
 | ---------- | -------- | ------ | ------------------ |
-| allowScale | boolean  | false  | 是否允许文本缩放。 |
+| allowScale | boolean  | false  | 是否允许文本缩放。<br/>暂不支持该接口。 |
 
 ## 事件
 
