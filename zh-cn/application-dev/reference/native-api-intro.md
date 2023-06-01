@@ -1,8 +1,8 @@
 # Native API（NDK）入门
 
-Native API是OHOS SDK上提供的一组native开发接口与工具集合（也俗称为NDK），方便开发者使用C或者C++语言实现应用的关键功能。Native API只覆盖了OHOS基础的一些底层能力，如libc，图形库，窗口系统，多媒体，压缩库等，并没有完全提供类似于JS API上的完整的OHOS 平台能力。在应用中使用Native API会编译成动态库打包到应用中。
+Native API是OHOS SDK上提供的一组native开发接口与工具集合（也称为NDK），方便开发者使用C或者C++语言实现应用的关键功能。Native API只覆盖了OHOS基础的一些底层能力，如libc，图形库，窗口系统，多媒体，压缩库等，并没有完全提供类似于JS API上的完整的OHOS 平台能力。在应用中使用Native API会编译成动态库打包到应用中。
 
-## 名词解释
+## 名词概念
 |名词|名词解释|
 |--|--|
 |Native API|OHOS SDK里面native包提供的，面向三方应用开发的Native 接口以及相应编译脚本，编译工具链。包括C运行时基础库libc，3D图形库opengl，面向JS与C跨语言的接口Node-API等，具体内容详见下表。|
@@ -45,7 +45,7 @@ Native API在SDK包的位置为$(SDK_ROOT)/native目录，主要有以下几个�
 
 ### Native API相关资料
 * 《[Native API参考手册](./native-apis/Readme-CN.md)》，介绍各个API参考手册
-* 《[Native API中支持的标准库](../reference/native-lib/third_party_libc/musl.md)》，介绍Native API支持的开源标准库
+* 《[Native API中支持的标准库](../reference/native-lib/Readme-CN.md)》，介绍Native API支持的开源标准库
 * 《[Native API开发指南](../napi/Readme-CN.md)》，结合具体的例子，场景介绍各类接口的使用
 * 《[使用NDK编译一个Cmake C/C++工程文档](../quick-start/howto-migrate-cmake-with-ohosndk.md)》，介绍如何使用使用Native API开发一个Cmake工程
 * 《[Node-API在应用工程中的使用指导](../napi/napi-guidelines.md)》, 如何使用Node-API接口
