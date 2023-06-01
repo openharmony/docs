@@ -1,47 +1,47 @@
 # Battery
 
 
-## **概述**
+## 概述
 
 电池模块为电池服务提供的获取、订阅电池信息的接口。 服务获取此模块的对象或代理后，可以调用相关的接口获取电池信息、订阅电池信息的变化。
 
-**Since**:
+**Since:**
 
-3.2
+3.1
 
-**Version**:
+**Version:**
 
 1.0
 
 
-## **汇总**
+## 汇总
 
 
 ### 文件
 
-  | 名称 | 描述 | 
+| 名称 | 描述 |
 | -------- | -------- |
-| [IBatteryCallback.idl](_i_battery_callback_8idl.md) | 电池信息的回调。 | 
-| [IBatteryInterface.idl](_i_battery_interface_8idl.md) | 获取、订阅电池信息的接口。 | 
-| [BatteryTypes.idl](battery_types_idl.md) | 电池信息相关数据类型。 | 
+| [IBatteryCallback.idl](_i_battery_callback_8idl.md) | 电池信息的回调。 |
+| [IBatteryInterface.idl](_i_battery_interface_8idl.md) | 获取、订阅电池信息的接口。 |
+| [Types.idl](_battery_types_8idl.md) | 电池信息相关数据类型。 |
 
 
 ### 类
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [IBatteryCallback](interface_i_battery_callback.md) | 电池信息的回调。 | 
-| [IBatteryInterface](interface_i_battery_interface.md) | 获取、订阅电池信息的接口。 | 
-| [BatteryInfo](_battery_info.md) | 电池相关信息。 | 
+| [IBatteryCallback](interface_i_battery_callback.md) | interface<br/>电池信息的回调。 | 
+| [IBatteryInterface](interface_i_battery_interface.md) | interface<br/>获取、订阅电池信息的接口。 | 
+| [BatteryInfo](_battery_info.md) | struct<br/>电池相关信息。 | 
 
 
 ### 枚举
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [BatteryHealthState](#batteryhealthstate)&nbsp;{&nbsp;&nbsp;&nbsp;BATTERY_HEALTH_UNKNOWN&nbsp;=&nbsp;0,&nbsp;BATTERY_HEALTH_GOOD,&nbsp;BATTERY_HEALTH_OVERHEAT,&nbsp;BATTERY_HEALTH_OVERVOLTAGE,&nbsp;&nbsp;&nbsp;BATTERY_HEALTH_COLD,&nbsp;BATTERY_HEALTH_DEAD,&nbsp;BATTERY_HEALTH_RESERVED&nbsp;} | 电池的健康状态。 | 
-| [BatteryChargeState](#batterychargestate)&nbsp;{&nbsp;&nbsp;&nbsp;CHARGE_STATE_NONE&nbsp;=&nbsp;0,&nbsp;CHARGE_STATE_ENABLE,&nbsp;CHARGE_STATE_DISABLE,&nbsp;CHARGE_STATE_FULL,&nbsp;&nbsp;&nbsp;CHARGE_STATE_RESERVED&nbsp;} | 电池的充电状态。 | 
-| [BatteryPluggedType](#batterypluggedtype)&nbsp;{&nbsp;&nbsp;&nbsp;PLUGGED_TYPE_NONE&nbsp;=&nbsp;0,&nbsp;PLUGGED_TYPE_AC,&nbsp;PLUGGED_TYPE_USB,&nbsp;PLUGGED_TYPE_WIRELESS,&nbsp;&nbsp;&nbsp;PLUGGED_TYPE_BUTT&nbsp;} | 电池的充电设备类型。 | 
+| [BatteryHealthState](#batteryhealthstate)&nbsp;{&nbsp;BATTERY_HEALTH_UNKNOWN&nbsp;=&nbsp;0,&nbsp;BATTERY_HEALTH_GOOD,&nbsp;BATTERY_HEALTH_OVERHEAT,&nbsp;BATTERY_HEALTH_OVERVOLTAGE,&nbsp;&nbsp;&nbsp;BATTERY_HEALTH_COLD,&nbsp;BATTERY_HEALTH_DEAD,&nbsp;BATTERY_HEALTH_RESERVED&nbsp;} | 电池的健康状态。 | 
+| [BatteryChargeState](#batterychargestate)&nbsp;{&nbsp;CHARGE_STATE_NONE&nbsp;=&nbsp;0,&nbsp;CHARGE_STATE_ENABLE,&nbsp;CHARGE_STATE_DISABLE,&nbsp;CHARGE_STATE_FULL,&nbsp;CHARGE_STATE_RESERVED&nbsp;} | 电池的充电状态。 | 
+| [BatteryPluggedType](#batterypluggedtype)&nbsp;{&nbsp;PLUGGED_TYPE_NONE&nbsp;=&nbsp;0,&nbsp;PLUGGED_TYPE_AC,&nbsp;PLUGGED_TYPE_USB,&nbsp;PLUGGED_TYPE_WIRELESS,&nbsp;&nbsp;&nbsp;PLUGGED_TYPE_BUTT&nbsp;} | 电池的充电设备类型。 | 
 
 
 ### 关键字
@@ -51,17 +51,17 @@
 | package&nbsp;ohos.hdi.battery.v1_0 | 电池模块接口的包路径。 | 
 
 
-## **枚举类型说明**
+## 枚举类型说明
 
 
 ### BatteryChargeState
 
-  
+
 ```
 enum BatteryChargeState
 ```
 
-**描述：**
+**描述:**
 
 电池的充电状态。
 
@@ -76,12 +76,12 @@ enum BatteryChargeState
 
 ### BatteryHealthState
 
-  
+
 ```
 enum BatteryHealthState
 ```
 
-**描述：**
+**描述:**
 
 电池的健康状态。
 
@@ -98,12 +98,12 @@ enum BatteryHealthState
 
 ### BatteryPluggedType
 
-  
+
 ```
 enum BatteryPluggedType
 ```
 
-**描述：**
+**描述:**
 
 电池的充电设备类型。
 

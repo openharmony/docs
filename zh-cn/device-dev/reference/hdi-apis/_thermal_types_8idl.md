@@ -1,7 +1,7 @@
 # ThermalTypes.idl
 
 
-## **概述**
+## 概述
 
 设备发热状态相关的数据类型。
 
@@ -20,15 +20,15 @@
 [Thermal](thermal.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### 类
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [ThermalZoneInfo](_thermal_zone_info.md) | 设备发热的信息。 | 
-| [HdfThermalCallbackInfo](_hdf_thermal_callback_info.md) | 设备发热的信息列表。 | 
+| [ThermalZoneInfo](_thermal_zone_info.md) | struct<br/>设备发热的信息。 | 
+| [HdfThermalCallbackInfo](_hdf_thermal_callback_info.md) | struct<br/>设备发热的信息列表。 | 
 
 
 ### 关键字

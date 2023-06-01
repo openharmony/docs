@@ -1,7 +1,7 @@
 # CodecComponentManager
 
 
-## **概述**
+## 概述
 
 Codec组件管理类接口定义。
 
@@ -13,23 +13,23 @@ Codec组件管理类接口定义。
 
 **相关模块:**
 
-[Codec](codec.md)
+[Codec](_codec.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| ([GetComponentNum](#getcomponentnum)&nbsp;)() | 获取Codec编解码组件数量。 | 
-| ([GetComponentCapabilityList](#getcomponentcapabilitylist)&nbsp;)(CodecCompCapability&nbsp;\*capList,&nbsp;int32_t&nbsp;count) | 获取编解码能力集表。 | 
-| ([CreateComponent](#createcomponent)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*\*component,&nbsp;char&nbsp;\*compName,&nbsp;void&nbsp;\*appData,&nbsp;int32_t&nbsp;appDataSize,&nbsp;struct&nbsp;CodecCallbackType&nbsp;\*callbacks) | 创建Codec组件实例。 | 
-| ([DestroyComponent](#destroycomponent)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*component) | 销毁组件实例。 | 
+| (\*&nbsp;[GetComponentNum](#getcomponentnum)&nbsp;)() | int32_t<br/>获取Codec编解码组件数量。 | 
+| (\*&nbsp;[GetComponentCapabilityList](#getcomponentcapabilitylist)&nbsp;)([CodecCompCapability](_codec_comp_capability.md)&nbsp;\*capList,&nbsp;int32_t&nbsp;count) | int32_t<br/>获取编解码能力集表。 | 
+| (\*&nbsp;[CreateComponent](#createcomponent)&nbsp;)(struct&nbsp;[CodecComponentType](_codec_component_type.md)&nbsp;\*\*component,&nbsp;char&nbsp;\*compName,&nbsp;void&nbsp;\*appData,&nbsp;int32_t&nbsp;appDataSize,&nbsp;struct&nbsp;[CodecCallbackType](_codec_callback_type.md)&nbsp;\*callbacks) | int32_t<br/>创建Codec组件实例。 | 
+| (\*&nbsp;[DestroyComponent](#destroycomponent)&nbsp;)(struct&nbsp;[CodecComponentType](_codec_component_type.md)&nbsp;\*component) | int32_t<br/>销毁组件实例。 | 
 
 
-## **类成员变量说明**
+## 类成员变量说明
 
 
 ### CreateComponent
@@ -39,7 +39,7 @@ Codec组件管理类接口定义。
 int32_t(* CodecComponentManager::CreateComponent) (struct CodecComponentType **component, char *compName, void *appData, int32_t appDataSize, struct CodecCallbackType *callbacks)
 ```
 
-**描述：**
+**描述:**
 
 创建Codec组件实例。
 
@@ -73,7 +73,7 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，创建组件失败。
 int32_t(* CodecComponentManager::DestroyComponent) (struct CodecComponentType *component)
 ```
 
-**描述：**
+**描述:**
 
 销毁组件实例。
 
@@ -103,7 +103,7 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，销毁组件失败。
 int32_t(* CodecComponentManager::GetComponentCapabilityList) (CodecCompCapability *capList, int32_t count)
 ```
 
-**描述：**
+**描述:**
 
 获取编解码能力集表。
 
@@ -134,7 +134,7 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，获取能力集表失败。
 int32_t(* CodecComponentManager::GetComponentNum) ()
 ```
 
-**描述：**
+**描述:**
 
 获取Codec编解码组件数量。
 

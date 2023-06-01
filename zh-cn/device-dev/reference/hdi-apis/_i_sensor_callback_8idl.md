@@ -1,11 +1,11 @@
 # ISensorCallback.idl
 
 
-## **概述**
+## 概述
 
 Sensor模块为Sensor服务提供数据上报的回调函数。
 
-**Since：**
+**Since:**
 
 2.2
 
@@ -15,17 +15,17 @@ Sensor模块为Sensor服务提供数据上报的回调函数。
 
 **相关模块:**
 
-[Sensor](sensor.md)
+[Sensor](_sensor.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### 类
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [ISensorCallback](interface_i_sensor_callback.md) | 定义用于上报传感器数据的回调函数。 | 
+| [ISensorCallback](interface_i_sensor_callback.md) | interface<br/>定义用于上报传感器数据的回调函数。 | 
 
 
 ### 关键字
