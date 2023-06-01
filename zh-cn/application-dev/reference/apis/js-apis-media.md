@@ -275,7 +275,7 @@ media.createVideoRecorder().then((video) => {
 | AVERR_SERVICE_DIED         | 5400105 | 表示服务进程死亡。                   |
 | AVERR_UNSUPPORT_FORMAT     | 5400106 | 表示不支持当前媒体资源的格式。       |
 
-## MediaType<sup>8+</sup><a name=mediatype></a>
+## MediaType<sup>8+</sup>
 
 媒体类型枚举。
 
@@ -309,19 +309,19 @@ Codec MIME类型枚举。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
-| 名称                     | 值              | 说明                                                         |
-| ------------------------ | --------------- | ------------------------------------------------------------ |
-| MD_KEY_TRACK_INDEX       | 'track_index'   | 表示轨道序号，其对应键值类型为number。                       |
-| MD_KEY_TRACK_TYPE        | 'track_type'    | 表示轨道类型，其对应键值类型为number，参考[MediaType](#mediatype8)。 |
-| MD_KEY_CODEC_MIME        | 'codec_mime'    | 表示codec_mime类型，其对应键值类型为string。                 |
-| MD_KEY_DURATION          | 'duration'      | 表示媒体时长，其对应键值类型为number，单位为毫秒（ms）。     |
-| MD_KEY_BITRATE           | 'bitrate'       | 表示比特率，其对应键值类型为number，单位为比特率（bps）。    |
-| MD_KEY_WIDTH             | 'width'         | 表示视频宽度，其对应键值类型为number，单位为像素（px）。     |
-| MD_KEY_HEIGHT            | 'height'        | 表示视频高度，其对应键值类型为number，单位为像素（px）。     |
-| MD_KEY_FRAME_RATE        | 'frame_rate'    | 表示视频帧率，其对应键值类型为number，单位为100帧每秒（100fps）。 |
-| MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | 表示声道数，其对应键值类型为number。                         |
-| MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | 表示采样率，其对应键值类型为number，单位为赫兹（Hz）。       |
-| MD_KEY_LANGUAGE          | "language"      | 表示语言信息，其对应键值类型为string。                       |
+| 名称                          | 值              | 说明                                                         |
+| ----------------------------- | --------------- | ------------------------------------------------------------ |
+| MD_KEY_TRACK_INDEX            | 'track_index'   | 表示轨道序号，其对应键值类型为number。                       |
+| MD_KEY_TRACK_TYPE             | 'track_type'    | 表示轨道类型，其对应键值类型为number，参考[MediaType](#mediatype8)。 |
+| MD_KEY_CODEC_MIME             | 'codec_mime'    | 表示codec_mime类型，其对应键值类型为string。                 |
+| MD_KEY_DURATION               | 'duration'      | 表示媒体时长，其对应键值类型为number，单位为毫秒（ms）。     |
+| MD_KEY_BITRATE                | 'bitrate'       | 表示比特率，其对应键值类型为number，单位为比特率（bps）。    |
+| MD_KEY_WIDTH                  | 'width'         | 表示视频宽度，其对应键值类型为number，单位为像素（px）。     |
+| MD_KEY_HEIGHT                 | 'height'        | 表示视频高度，其对应键值类型为number，单位为像素（px）。     |
+| MD_KEY_FRAME_RATE             | 'frame_rate'    | 表示视频帧率，其对应键值类型为number，单位为100帧每秒（100fps）。 |
+| MD_KEY_AUD_CHANNEL_COUNT      | 'channel_count' | 表示声道数，其对应键值类型为number。                         |
+| MD_KEY_AUD_SAMPLE_RATE        | 'sample_rate'   | 表示采样率，其对应键值类型为number，单位为赫兹（Hz）。       |
+| MD_KEY_LANGUAGE<sup>10+</sup> | "language"      | 表示语言信息，其对应键值类型为string。                       |
 
 ## BufferingInfoType<sup>8+</sup>
 
@@ -1001,9 +1001,9 @@ for (let i = 0; i < arrayDescription.length; i++) {
 
 ### selectTrack<sup>10+</sup><a name=avplayer_selecttrack></a>
 
-selectTrack(index: number): void;
+selectTrack(index: number): void
 
-选择音频轨道，只能在prepared状态调用，可以通过[trackChange事件](#trackchange_on)确认是否生效。
+选择音频轨道，只能在prepared状态调用，可以通过监听[trackChange事件](#trackchange_on)确认是否生效。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1022,9 +1022,9 @@ avPlayer.setBitrate(index)
 
 ### deselectTrack<sup>10+</sup><a name=avplayer_deselecttrack></a>
 
-deselectTrack(index: number): void;
+deselectTrack(index: number): void
 
-取消已经选择的音频轨道，取消后会播放默认音频轨道。只能在prepared状态调用，可以通过[trackChange事件](#trackchange_on)确认是否生效。
+取消已经选择的音频轨道，取消后会播放默认音频轨道。只能在prepared状态调用，可以通过监听[trackChange事件](#trackchange_on)确认是否生效。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1032,7 +1032,7 @@ deselectTrack(index: number): void;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| index  | number | 是   | 轨道序号，可以通过[getCurrentTrack](#avplayer_getcurrenttrack)获取当前生效的轨道。 |
+| index  | number | 是   | 轨道序号，可以通过[getCurrentTrack](#avplayer_getcurrenttrack)获取当前生效的轨道序号。 |
 
 **示例：**
 
@@ -1043,7 +1043,7 @@ avPlayer.deselectTrack(index)
 
 ### getCurrentTrack<sup>10+</sup><a name=avplayer_getcurrenttrack></a>
 
-getCurrentTrack(trackType: MediaType, callback: AsyncCallback\<number>): void;
+getCurrentTrack(trackType: MediaType, callback: AsyncCallback\<number>): void
 
 通过回调方式获取当前生效的轨道序号，只能在prepared/playing/paused/completed状态调用。
 
@@ -1082,7 +1082,7 @@ avPlayer.getCurrentTrack(mediaType  (err, index) => {
 
 ### getCurrentTrack<sup>10+</sup>
 
-getCurrentTrack(trackType: MediaType): Promise\<number>;
+getCurrentTrack(trackType: MediaType): Promise\<number>
 
 通过Promise方式获取当前生效的轨道序号，只能在prepared/playing/paused/completed状态调用。
 
