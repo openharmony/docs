@@ -1,7 +1,7 @@
 # ICameraDevice
 
 
-## **概述**
+## 概述
 
 定义Camera设备基本的操作。
 
@@ -9,10 +9,10 @@
 
 **相关模块:**
 
-[Camera](camera.md)
+[Camera](_camera.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 成员函数
@@ -21,14 +21,14 @@
 | -------- | -------- |
 | [GetStreamOperator](#getstreamoperator)&nbsp;([in]&nbsp;[IStreamOperatorCallback](interface_i_stream_operator_callback.md)&nbsp;callbackObj,&nbsp;[out]&nbsp;[IStreamOperator](interface_i_stream_operator.md)&nbsp;streamOperator) | 获取流操作句柄。 | 
 | [UpdateSettings](#updatesettings)&nbsp;([in]&nbsp;unsigned&nbsp;char[]&nbsp;settings) | 更新设备控制参数。 | 
-| [SetResultMode](#setresultmode)&nbsp;([in]&nbsp;enum&nbsp;[ResultCallbackMode](camera.md#resultcallbackmode)&nbsp;mode) | 设置metadata上报模式，逐帧上报还是设备状态变化时上报。 | 
+| [SetResultMode](#setresultmode)&nbsp;([in]&nbsp;enum&nbsp;[ResultCallbackMode](_camera.md#resultcallbackmode)&nbsp;mode) | 设置metadata上报模式，逐帧上报还是设备状态变化时上报。 | 
 | [GetEnabledResults](#getenabledresults)&nbsp;([out]&nbsp;int[]&nbsp;results) | 查询使能的metadata。 | 
 | [EnableResult](#enableresult)&nbsp;([in]&nbsp;int[]&nbsp;results) | 打开metadata上报开关。 | 
 | [DisableResult](#disableresult)&nbsp;([in]&nbsp;int[]&nbsp;results) | 关闭metadata上报开关。 | 
 | [Close](#close)&nbsp;() | 关闭当前Camera设备。 | 
 
 
-## **成员函数说明**
+## 成员函数说明
 
 
 ### Close()
@@ -38,7 +38,7 @@
 ICameraDevice::Close ()
 ```
 
-**描述：**
+**描述:**
 
 关闭当前Camera设备。
 
@@ -54,11 +54,11 @@ OpenCamera
 ICameraDevice::DisableResult ([in] int[] results)
 ```
 
-**描述：**
+**描述:**
 
 关闭metadata上报开关。
 
-屏蔽之后，相应的**OnResult**不再上报，需[EnableResult](#enableresult)使能之后才上报。
+屏蔽之后，相应的[OnResult](interface_i_camera_device_callback.md#onresult)不再上报，需[EnableResult](#enableresult)使能之后才上报。
 
 **参数:**
 
@@ -70,7 +70,7 @@ ICameraDevice::DisableResult ([in] int[] results)
 
 NO_ERROR 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[CamRetCode](camera.md#camretcode)。
+其他值表示执行失败，具体错误码查看[CamRetCode](_camera.md#camretcode)。
 
 **参见:**
 
@@ -84,11 +84,11 @@ NO_ERROR 表示执行成功。
 ICameraDevice::EnableResult ([in] int[] results)
 ```
 
-**描述：**
+**描述:**
 
 打开metadata上报开关。
 
-**OnResult**只上报此接口使能后的metadata。
+[OnResult](interface_i_camera_device_callback.md#onresult)只上报此接口使能后的metadata。
 
 **参数:**
 
@@ -100,7 +100,7 @@ ICameraDevice::EnableResult ([in] int[] results)
 
 NO_ERROR 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[CamRetCode](camera.md#camretcode)。
+其他值表示执行失败，具体错误码查看[CamRetCode](_camera.md#camretcode)。
 
 **参见:**
 
@@ -114,7 +114,7 @@ NO_ERROR 表示执行成功。
 ICameraDevice::GetEnabledResults ([out] int[] results)
 ```
 
-**描述：**
+**描述:**
 
 查询使能的metadata。
 
@@ -130,7 +130,7 @@ ICameraDevice::GetEnabledResults ([out] int[] results)
 
 NO_ERROR 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[CamRetCode](camera.md#camretcode)。
+其他值表示执行失败，具体错误码查看[CamRetCode](_camera.md#camretcode)。
 
 
 ### GetStreamOperator()
@@ -140,7 +140,7 @@ NO_ERROR 表示执行成功。
 ICameraDevice::GetStreamOperator ([in] IStreamOperatorCallback callbackObj, [out] IStreamOperator streamOperator )
 ```
 
-**描述：**
+**描述:**
 
 获取流操作句柄。
 
@@ -155,7 +155,7 @@ ICameraDevice::GetStreamOperator ([in] IStreamOperatorCallback callbackObj, [out
 
 NO_ERROR 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[CamRetCode](camera.md#camretcode)。
+其他值表示执行失败，具体错误码查看[CamRetCode](_camera.md#camretcode)。
 
 
 ### SetResultMode()
@@ -165,7 +165,7 @@ NO_ERROR 表示执行成功。
 ICameraDevice::SetResultMode ([in] enum ResultCallbackMode mode)
 ```
 
-**描述：**
+**描述:**
 
 设置metadata上报模式，逐帧上报还是设备状态变化时上报。
 
@@ -173,13 +173,13 @@ ICameraDevice::SetResultMode ([in] enum ResultCallbackMode mode)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| mode | metadata的上报模式，逐帧上报或者设备状态变化时上报，查看[ResultCallbackMode](camera.md#resultcallbackmode)。 | 
+| mode | metadata的上报模式，逐帧上报或者设备状态变化时上报，查看[ResultCallbackMode](_camera.md#resultcallbackmode)。 | 
 
 **返回:**
 
 NO_ERROR 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[CamRetCode](camera.md#camretcode)。
+其他值表示执行失败，具体错误码查看[CamRetCode](_camera.md#camretcode)。
 
 
 ### UpdateSettings()
@@ -189,7 +189,7 @@ NO_ERROR 表示执行成功。
 ICameraDevice::UpdateSettings ([in] unsigned char[] settings)
 ```
 
-**描述：**
+**描述:**
 
 更新设备控制参数。
 
@@ -203,4 +203,4 @@ ICameraDevice::UpdateSettings ([in] unsigned char[] settings)
 
 NO_ERROR 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[CamRetCode](camera.md#camretcode)。
+其他值表示执行失败，具体错误码查看[CamRetCode](_camera.md#camretcode)。

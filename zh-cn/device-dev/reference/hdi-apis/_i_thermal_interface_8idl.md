@@ -1,7 +1,7 @@
 # IThermalInterface.idl
 
 
-## **概述**
+## 概述
 
 设备温度管理、控制及订阅接口。
 
@@ -20,14 +20,14 @@
 [Thermal](thermal.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### 类
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [IThermalInterface](interface_i_thermal_interface.md) | 设备温度管理、控制及订阅接口。 | 
+| [IThermalInterface](interface_i_thermal_interface.md) | interface<br/>设备温度管理、控制及订阅接口。 | 
 
 
 ### 关键字

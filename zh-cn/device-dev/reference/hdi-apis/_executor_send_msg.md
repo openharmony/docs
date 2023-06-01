@@ -1,36 +1,42 @@
 # ExecutorSendMsg
 
 
-## **概述**
+## 概述
 
 执行器发送的消息。
 
-**Since：**
-
+**Since:**
 3.2
-
-**Version：**
-
+**Version:**
 1.0
-
-**所属模块:**
+**相关模块:**
 
 [HdfUserAuth](_hdf_user_auth.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [executorIndex](#executorindex) | 用户认证框架的执行器索引。 | 
-| [commandId](#commandid) | 消息命令ID。 | 
-| [msg](#msg) | 执行器发送的消息。 | 
+| [executorIndex](#executorindex) | unsigned&nbsp;long<br/>用户认证框架的执行器索引。&nbsp; | 
+| [commandId](#commandid) | int<br/>消息命令ID。&nbsp; | 
+| [msg](#msg) | unsigned&nbsp;char[]<br/>执行器发送的消息。&nbsp; | 
 
 
-## **类成员变量说明**
+## 类成员变量说明
+
+
+### commandId
+
+  
+```
+int ExecutorSendMsg::commandId
+```
+**描述:**
+消息命令ID。
 
 
 ### executorIndex
@@ -39,22 +45,8 @@
 ```
 unsigned long ExecutorSendMsg::executorIndex
 ```
-
-**描述：**
-
+**描述:**
 用户认证框架的执行器索引。
-
-
-### commandId
-
-  
-```
-unsigned int ExecutorSendMsg::commandId
-```
-
-**描述：**
-
-消息命令ID。
 
 
 ### msg
@@ -63,7 +55,5 @@ unsigned int ExecutorSendMsg::commandId
 ```
 unsigned char [] ExecutorSendMsg::msg
 ```
-
-**描述：**
-
+**描述:**
 执行器发送的消息。
