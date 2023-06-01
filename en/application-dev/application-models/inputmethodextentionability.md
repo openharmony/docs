@@ -1,11 +1,11 @@
 # InputMethodExtensionAbility Development
 
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md) is an ExtensionAbility component of the inputMethod type that provides extension capabilities for the input method framework.
+## When to Use
+[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md), inherited from [ExtensionAbility](extensionability-overview.md), is used for developing input method applications.
 
-InputMethodExtensionAbility can be started or connected by other application components to process transactions in the background based on the request of the caller.
+The entire lifecycle of the [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md) instance and the owning ExtensionAbility process is scheduled and managed by the input method framework. The input method framework provides the [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md) base class. Derive this base class to implement initialization and resource clearing.
 
-
-InputMethodExtensionAbility provides related capabilities through the [InputMethodExtensionContext](../reference/apis/js-apis-inputmethod-extension-context.md).
+[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md) provides related capabilities through [InputMethodExtensionContext](../reference/apis/js-apis-inputmethod-extension-context.md).
 
 
 ## Implementing an Input Method Application
@@ -13,15 +13,13 @@ InputMethodExtensionAbility provides related capabilities through the [InputMeth
 InputMethodExtensionAbility provides the **onCreate()** and **onDestory()** callbacks, as described below. Override them as required.  
 
 - **onCreate**
-  
   This callback is triggered when a service is created for the first time. You can perform initialization operations, for example, registering a common event listener.
-  
+
   > **NOTE**
   >
   > If a service has been created, starting it again does not trigger the **onCreate()** callback.
-  
+
 - **onDestroy**
-  
   This callback is triggered when the service is no longer used and the instance is ready for destruction. You can clear resources in this callback, for example, deregister the listener.
 
 
@@ -29,7 +27,7 @@ InputMethodExtensionAbility provides the **onCreate()** and **onDestory()** call
 
 To implement an input method application, manually create an InputMethodExtensionAbility component in DevEco Studio. The procedure is as follows:
 
-In the **ets** directory of the target module, right-click and choose **New** > **Extention Ability** > **InputMethod** to a minimum template of InputMethodExtensionAbility.
+In the **ets** directory of the target module, right-click and choose **New** > **Extension Ability** > **InputMethod** to a minimum template of InputMethodExtensionAbility.
 
 > **NOTE**
 > 
@@ -70,7 +68,7 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
    
      onDestroy() {
        console.log("onDestroy.");
-       this.context.destroy();
+       this.keyboardController.onDestroy(); // Destroy the window and deregister the event listener.
      }
    }
    ```
@@ -109,7 +107,6 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
        this.unRegisterListener();		// Deregister the event listener.
        let win = windowManager.findWindow(this.windowName);
        win.destroyWindow();				// Destroy the window.
-       this.mContext.terminateSelf();	// Terminate the InputMethodExtensionAbility service.
      }
    
      private initWindow(): void		// Initialize the window.
@@ -159,7 +156,7 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
        })
        globalThis.inputAbility.on('inputStop', (imeId) => {
          if (imeId == "Bundle name/Ability name") {
-           this.onDestroy();
+           this.mContext.destroy(); // Destroy the InputMethodExtensionAbility service.
          }
        });
      }
@@ -233,7 +230,7 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
 
    Add the path to this file to the **src** field in the **resources/base/profile/main_pages.json** file.
 
-   ```ts
+   ```ets
    import { numberSourceListData, sourceListType } from './keyboardKeyData'
    
    @Component
@@ -342,12 +339,12 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
    }
    ```
 
-   Register the InputMethodExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) corresponding to the target module. Set **type** to **"inputMethod"** and **srcEntry** to the code path of the InputMethodExtensionAbility component.
+5. Register the InputMethodExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) corresponding to the **Module** project. Set **type** to **"inputMethod"** and **srcEntry** to the code path of the InputMethodExtensionAbility component.
 
    ```ts
    {
      "module": {
-       // ...
+       ...
        "extensionAbilities": [
          {
            "description": "inputMethod",
@@ -362,5 +359,49 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
    }
    ```
 
+
+
+## Restrictions
+
+To reduce the risk of abuse of the InputMethodExtensionAbility by third-party applications, the invoking of APIs in the following modules is restricted in the InputMethodExtensionAbility:
+
+> **NOTE**
+>
+> - If a restricted module is imported, no error is reported during compilation, but an incorrect value (**undefined**) is returned during running. As a result, the module does not take effect.
+> - Currently, access to the [@ohos.multimedia.audio (Audio Management)](../reference/apis/js-apis-audio.md) module is allowed, with compliance with the following rules:
+>   - Users who deny the recording permission should still be allowed to use the non-voice-input features of the input method application.
+>   - Recording-related services are allowed only when the InputMethodExtensionAbility is in the foreground. For example, perform recording only when the soft keyboard is in the foreground and the user is proactively using the voice input method; stop recording when the application is switched to the background.
+>   - Applications will see increasingly stringent measures against violations with the preceding rules, and any violation may result in function exceptions.
+
+**Restricted modules:**
+
+- [@ohos.ability.featureAbility (FeatureAbility)](../reference/apis/js-apis-ability-featureAbility.md)
+- [@ohos.ability.particleAbility (ParticleAbility)](../reference/apis/js-apis-ability-particleAbility.md)
+- [@ohos.account.distributedAccount (Distributed Account Management)](../reference/apis/js-apis-distributed-account.md)
+- [@ohos.backgroundTaskManager (Background Task Management)](../reference/apis/js-apis-backgroundTaskManager.md)
+- [@ohos.bluetooth (Bluetooth)](../reference/apis/js-apis-bluetooth.md)
+- [@ohos.bluetoothManager (Bluetooth)](../reference/apis/js-apis-bluetoothManager.md)
+- [@ohos.connectedTag (Active Tags)](../reference/apis/js-apis-connectedTag.md)
+- [@ohos.geolocation (Geolocation)](../reference/apis/js-apis-geolocation.md)
+- [@ohos.geoLocationManager (Geolocation Manager)](../reference/apis/js-apis-geoLocationManager.md)
+- [@ohos.nfc.cardEmulation (Standard NFC Card Emulation)](../reference/apis/js-apis-cardEmulation.md)
+- [@ohos.nfc.controller (Standard NFC)](../reference/apis/js-apis-nfcController.md)
+- [@ohos.nfc.tag (Standard NFC Tags)](../reference/apis/js-apis-nfcTag.md)
+- [@ohos.reminderAgent (Reminder Agent)](../reference/apis/js-apis-reminderAgent.md)
+- [@ohos.reminderAgentManager (reminderAgentManager)](../reference/apis/js-apis-reminderAgentManager.md)
+- [@ohos.sensor (Sensor)](../reference/apis/js-apis-sensor.md)
+- [@ohos.telephony.call (Call)](../reference/apis/js-apis-call.md)
+- [@ohos.telephony.data (Cellular Data)](../reference/apis/js-apis-telephony-data.md)
+- [@ohos.telephony.observer (observer)](../reference/apis/js-apis-observer.md)
+- [@ohos.telephony.radio (Network Search)](../reference/apis/js-apis-radio.md)
+- [@ohos.telephony.sim (SIM Management)](../reference/apis/js-apis-sim.md)
+- [@ohos.telephony.sms (SMS)](../reference/apis/js-apis-sms.md)
+- [@ohos.wallpaper (Wallpaper)](../reference/apis/js-apis-wallpaper.md)
+- [@ohos.wifiext (WLAN Extension)](../reference/apis/js-apis-wifiext.md)
+- [@ohos.wifiManager (WLAN)](../reference/apis/js-apis-wifiManager.md)
+- [@ohos.wifiManagerExt (WLAN Extension Interface)](../reference/apis/js-apis-wifiManagerExt.md)
+- [@system.geolocation (Geolocation)](../reference/apis/js-apis-system-location.md)
+- [nfctech (Standard NFC Technologies)](../reference/apis/js-apis-nfctech.md)
+- [tagSession (Standard NFC Tag Session)](../reference/apis/js-apis-tagSession.md)
 
 

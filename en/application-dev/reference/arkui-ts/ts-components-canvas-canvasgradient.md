@@ -22,7 +22,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Name    | Type    | Mandatory  | Default Value      | Description                          |
 | ------ | ------ | ---- | --------- | ---------------------------- |
 | offset | number | Yes   | 0         | Relative position of the gradient stop along the gradient vector. The value ranges from 0 to 1.|
-| color  | string | Yes   | '#ffffff' | Gradient color to set.                    |
+| color  | string | Yes   | '#ffffff' | Gradient color to set. For details about the color notation, see the description of the string type in [ResourceColor](ts-types.md#resourcecolor).                    |
 
 
 **Example**

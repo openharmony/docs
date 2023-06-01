@@ -14,14 +14,14 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
-    onWindowStageCreate(windowStage: window.WindowStage) {
-        // Main window is created. Set a main page for this ability.
-        windowStage.loadContent('pages/Index', (err, data) => {
-            // ...
-        });
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created. Set a main page for this ability.
+    windowStage.loadContent('pages/Index', (err, data) => {
+      ...
+    });
+  }
 
-    // ...
+  ...
 }
 ```
 
@@ -40,15 +40,14 @@ The UIAbility class has its own context, which is an instance of the [UIAbilityC
   import UIAbility from '@ohos.app.ability.UIAbility';
   
   export default class EntryAbility extends UIAbility {
-      onCreate(want, launchParam) {
-          // Obtain the context of the UIAbility instance.
-          let context = this.context;
-  
-          // ...
-      }
+    onCreate(want, launchParam) {
+      // Obtain the context of the UIAbility instance.
+      let context = this.context;
+      ...
+    }
   }
   ```
-
+  
 - Import the context module and define the **context** variable in the component.
   
   ```ts
@@ -68,7 +67,7 @@ The UIAbility class has its own context, which is an instance of the [UIAbilityC
   
     // Page display.
     build() {
-      // ...
+      ...
     }
   }
   ```
@@ -93,7 +92,7 @@ The UIAbility class has its own context, which is an instance of the [UIAbilityC
   
     // Page display.
     build() {
-      // ...
+      ...
     }
   }
   ```

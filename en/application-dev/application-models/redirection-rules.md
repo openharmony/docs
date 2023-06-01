@@ -21,11 +21,11 @@ To enable an ability to be called by any application, configure the **config.jso
 ```ts
 {
   "module": {
-    // ...
+    ...
     "abilities": [
       {
         "visible": "true",
-        // ...
+        ...
       }
     ]
   }

@@ -29,6 +29,7 @@ Note the following:
 [ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md) provides the callbacks **onCreate()**, **onRequest()**, **onConnect()**, **onDisconnect()**, and **onDestory()**. Override them as required. The following figure shows the lifecycle of ServiceExtensionAbility.
 
 **Figure 1** ServiceExtensionAbility lifecycle
+
 ![ServiceExtensionAbility-lifecycle](figures/ServiceExtensionAbility-lifecycle.png)
 
 - **onCreate**
@@ -61,7 +62,7 @@ Note the following:
 
 Only system applications can implement ServiceExtensionAbility. You must make the following preparations before development:
 
-- **Switching to the full SDK**: All APIs related to ServiceExtensionAbility are marked as system APIs and hidden by default. Therefore, you must manually obtain the full SDK from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](../quick-start/full-sdk-switch-guide.md).
+- **Switching to the full SDK**: All APIs related to ServiceExtensionAbility are marked as system APIs and hidden by default. Therefore, you must manually obtain the full SDK from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](../faqs/full-sdk-switch-guide.md).
 
 - **Requesting the AllowAppUsePrivilegeExtension privilege**: Only applications with the **AllowAppUsePrivilegeExtension** privilege can develop ServiceExtensionAbility. For details about how to request the privilege, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
 
@@ -109,7 +110,7 @@ export default class ServiceExtImpl extends IdlServiceExtStub {
 
   insertDataToMap(key: string, val: number, callback: insertDataToMapCallback): void {
     // Implement service logic.
-    console.log(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
+    console.info(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
     callback(ERR_OK);
   }
 }
@@ -175,7 +176,7 @@ To manually create a ServiceExtensionAbility in the DevEco Studio project, perfo
    ```json
    {
      "module": {
-       // ...
+       ...
        "extensionAbilities": [
          {
            "name": "ServiceExtAbility",
@@ -201,41 +202,43 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
 1. Start a new ServiceExtensionAbility in a system application. For details about how to obtain the context, see [Obtaining the Context of UIAbility](uiability-usage.md#obtaining-the-context-of-uiability).
 
    ```ts
+   let context = ...; // UIAbilityContext
    let want = {
-       "deviceId": "",
-       "bundleName": "com.example.myapplication",
-       "abilityName": "ServiceExtAbility"
+     "deviceId": "",
+     "bundleName": "com.example.myapplication",
+     "abilityName": "ServiceExtAbility"
    };
-   this.context.startServiceExtensionAbility(want).then(() => {
-       console.info('startServiceExtensionAbility success');
-   }).catch((error) => {
-       console.info('startServiceExtensionAbility failed');
+   context.startServiceExtensionAbility(want).then(() => {
+     console.info('Succeeded in starting ServiceExtensionAbility.');
+   }).catch((err) => {
+     console.error(`Failed to start ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
    })
    ```
 
 2. Stop ServiceExtensionAbility in the system application.
 
    ```ts
+   let context = ...; // UIAbilityContext
    let want = {
-       "deviceId": "",
-       "bundleName": "com.example.myapplication",
-       "abilityName": "ServiceExtAbility"
+     "deviceId": "",
+     "bundleName": "com.example.myapplication",
+     "abilityName": "ServiceExtAbility"
    };
-   this.context.stopServiceExtensionAbility(want).then(() => {
-       console.info('stopServiceExtensionAbility success');
-   }).catch((error) => {
-       console.info('stopServiceExtensionAbility failed');
+   context.stopServiceExtensionAbility(want).then(() => {
+     console.info('Succeeded in stoping ServiceExtensionAbility.');
+   }).catch((err) => {
+     console.error(`Failed to stop ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
    })
    ```
 
 3. ServiceExtensionAbility stops itself.
 
    ```ts
-   // this is the current ServiceExtensionAbility component.
-   this.context.terminateSelf().then(() => {
-       console.info('terminateSelf success');
-   }).catch((error) => {
-       console.info('terminateSelf failed');
+   let context = ...; // ServiceExtensionContext
+   context.terminateSelf().then(() => {
+     console.info('Succeeded in terminating self.');
+   }).catch((err) => {
+     console.error(`Failed to terminate self. Code is ${err.code}, message is ${err.message}`);
    })
    ```
 
@@ -257,27 +260,27 @@ The ServiceExtensionAbility component returns an IRemoteObject in the **onConnec
   
   ```ts
   let want = {
-      "deviceId": "",
-      "bundleName": "com.example.myapplication",
-      "abilityName": "ServiceExtAbility"
+    "deviceId": "",
+    "bundleName": "com.example.myapplication",
+    "abilityName": "ServiceExtAbility"
   };
   let options = {
-      onConnect(elementName, remote) {
-          /* The input parameter remote is the object returned by ServiceExtensionAbility in the onConnect lifecycle callback.
-           * This object is used for communication with ServiceExtensionAbility. For details, see the section below.
-           */
-          console.info('onConnect callback');
-          if (remote === null) {
-              console.info(`onConnect remote is null`);
-              return;
-          }
-      },
-      onDisconnect(elementName) {
-          console.info('onDisconnect callback')
-      },
-      onFailed(code) {
-          console.info('onFailed callback')
+    onConnect(elementName, remote) {
+      /* The input parameter remote is the object returned by ServiceExtensionAbility in the onConnect lifecycle callback.
+       * This object is used for communication with ServiceExtensionAbility. For details, see the section below.
+       */
+      console.info('onConnect callback');
+      if (remote === null) {
+        console.info(`onConnect remote is null`);
+        return;
       }
+    },
+    onDisconnect(elementName) {
+      console.info('onDisconnect callback')
+    },
+    onFailed(code) {
+      console.info('onFailed callback')
+    }
   }
   // The ID returned after the connection is set up must be saved. The ID will be passed for service disconnection.
   let connectionId = this.context.connectServiceExtensionAbility(want, options);
@@ -288,9 +291,9 @@ The ServiceExtensionAbility component returns an IRemoteObject in the **onConnec
   ```ts
   // connectionId is returned when connectServiceExtensionAbility is called and needs to be manually maintained.
   this.context.disconnectServiceExtensionAbility(connectionId).then((data) => {
-      console.info('disconnectServiceExtensionAbility success');
+    console.info('disconnectServiceExtensionAbility success');
   }).catch((error) => {
-      console.error('disconnectServiceExtensionAbility failed');
+    console.error('disconnectServiceExtensionAbility failed');
   })
   ```
 
@@ -305,27 +308,27 @@ After obtaining the [rpc.RemoteObject](../reference/apis/js-apis-rpc.md#iremoteo
   import IdlServiceExtProxy from '../IdlServiceExt/idl_service_ext_proxy';
 
   let options = {
-      onConnect(elementName, remote) {
-          console.info('onConnect callback');
-          if (remote === null) {
-              console.info(`onConnect remote is null`);
-              return;
-          }
-          let serviceExtProxy = new IdlServiceExtProxy(remote);
-          // Communication is carried out by interface calling, without exposing RPC details.
-          serviceExtProxy.processData(1, (errorCode, retVal) => {
-              console.log(`processData, errorCode: ${errorCode}, retVal: ${retVal}`);
-          });
-          serviceExtProxy.insertDataToMap('theKey', 1, (errorCode) => {
-              console.log(`insertDataToMap, errorCode: ${errorCode}`);
-          })
-      },
-      onDisconnect(elementName) {
-          console.info('onDisconnect callback')
-      },
-      onFailed(code) {
-          console.info('onFailed callback')
+    onConnect(elementName, remote) {
+      console.info('onConnect callback');
+      if (remote === null) {
+        console.info(`onConnect remote is null`);
+        return;
       }
+      let serviceExtProxy = new IdlServiceExtProxy(remote);
+      // Communication is carried out by interface calling, without exposing RPC details.
+      serviceExtProxy.processData(1, (errorCode, retVal) => {
+        console.info(`processData, errorCode: ${errorCode}, retVal: ${retVal}`);
+      });
+      serviceExtProxy.insertDataToMap('theKey', 1, (errorCode) => {
+        console.info(`insertDataToMap, errorCode: ${errorCode}`);
+      })
+    },
+    onDisconnect(elementName) {
+      console.info('onDisconnect callback')
+    },
+    onFailed(code) {
+      console.info('onFailed callback')
+    }
   }
   ```
 
@@ -333,40 +336,40 @@ After obtaining the [rpc.RemoteObject](../reference/apis/js-apis-rpc.md#iremoteo
 
   ```ts
   import rpc from '@ohos.rpc';
-
+  
   const REQUEST_CODE = 1;
   let options = {
-      onConnect(elementName, remote) {
-          console.info('onConnect callback');
-          if (remote === null) {
-              console.info(`onConnect remote is null`);
-              return;
-          }
-          // Directly call the RPC interface to send messages to the server. The client needs to serialize the input parameters and deserialize the return values. The process is complex.
-          let option = new rpc.MessageOption();
-          let data = new rpc.MessageSequence();
-          let reply = new rpc.MessageSequence();
-          data.writeInt(100);
-
-          // @param code Indicates the service request code sent by the client.
-          // @param data Indicates the {@link MessageSequence} object sent by the client.
-          // @param reply Indicates the response message object sent by the remote service.
-          // @param options Specifies whether the operation is synchronous or asynchronous.
-          // 
-          // @return Returns {@code true} if the operation is successful; returns {@code false} otherwise.
-          remote.sendMessageRequest(REQUEST_CODE, data, reply, option).then((ret) => {
-              let msg = reply.readInt();
-              console.info(`sendMessageRequest ret:${ret} msg:${msg}`);
-          }).catch((error) => {
-              console.info('sendMessageRequest failed');
-          });
-      },
-      onDisconnect(elementName) {
-          console.info('onDisconnect callback')
-      },
-      onFailed(code) {
-          console.info('onFailed callback')
+    onConnect(elementName, remote) {
+      console.info('onConnect callback');
+      if (remote === null) {
+        console.info(`onConnect remote is null`);
+        return;
       }
+      // Directly call the RPC interface to send messages to the server. The client needs to serialize the input parameters and deserialize the return values. The process is complex.
+      let option = new rpc.MessageOption();
+      let data = new rpc.MessageSequence();
+      let reply = new rpc.MessageSequence();
+      data.writeInt(100);
+  
+      // @param code Indicates the service request code sent by the client.
+      // @param data Indicates the {@link MessageSequence} object sent by the client.
+      // @param reply Indicates the response message object sent by the remote service.
+      // @param options Specifies whether the operation is synchronous or asynchronous.
+      // 
+      // @return Returns {@code true} if the operation is successful; returns {@code false} otherwise.
+      remote.sendMessageRequest(REQUEST_CODE, data, reply, option).then((ret) => {
+        let msg = reply.readInt();
+        console.info(`sendMessageRequest ret:${ret} msg:${msg}`);
+      }).catch((error) => {
+        console.info('sendMessageRequest failed');
+      });
+    },
+    onDisconnect(elementName) {
+      console.info('onDisconnect callback')
+    },
+    onFailed(code) {
+      console.info('onFailed callback')
+    }
   }
   ```
 
@@ -381,8 +384,8 @@ When ServiceExtensionAbility is used to provide sensitive services, the client i
   ```ts
   import rpc from '@ohos.rpc';
   import bundleManager from '@ohos.bundle.bundleManager';
-  import {processDataCallback} from './i_idl_service_ext';
-  import {insertDataToMapCallback} from './i_idl_service_ext';
+  import { processDataCallback } from './i_idl_service_ext';
+  import { insertDataToMapCallback } from './i_idl_service_ext';
   import IdlServiceExtStub from './idl_service_ext_stub';
 
   const ERR_OK = 0;
@@ -397,7 +400,7 @@ When ServiceExtensionAbility is used to provide sensitive services, the client i
       bundleManager.getBundleNameByUid(callerUid).then((callerBundleName) => {
         console.info(TAG, 'getBundleNameByUid: ' + callerBundleName);
         // Identify the bundle name of the client.
-        if (callerBundleName != 'com.example.connectextapp') {  // The verification fails.
+        if (callerBundleName != 'com.example.connectextapp') { // The verification fails.
           console.info(TAG, 'The caller bundle is not in whitelist, reject');
           return;
         }
@@ -409,7 +412,7 @@ When ServiceExtensionAbility is used to provide sensitive services, the client i
 
     insertDataToMap(key: string, val: number, callback: insertDataToMapCallback): void {
       // Implement service logic.
-      console.log(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
+      console.info(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
       callback(ERR_OK);
     }
   }
@@ -425,15 +428,15 @@ When ServiceExtensionAbility is used to provide sensitive services, the client i
   import {processDataCallback} from './i_idl_service_ext';
   import {insertDataToMapCallback} from './i_idl_service_ext';
   import IdlServiceExtStub from './idl_service_ext_stub';
-
+  
   const ERR_OK = 0;
   const ERR_DENY = -1;
   const TAG: string = "[IdlServiceExtImpl]";
-
+  
   export default class ServiceExtImpl extends IdlServiceExtStub {
     processData(data: number, callback: processDataCallback): void {
       console.info(TAG, `processData: ${data}`);
-
+  
       let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
       let accessManger = abilityAccessCtrl.createAtManager();
       // The permission to be verified varies depending on the service requirements. ohos.permission.SET_WALLPAPER is only an example.
@@ -446,10 +449,10 @@ When ServiceExtensionAbility is used to provide sensitive services, the client i
       }
       callback(ERR_OK, data + 1);     // The verification is successful, and service logic is executed normally.
     }
-
+  
     insertDataToMap(key: string, val: number, callback: insertDataToMapCallback): void {
       // Implement service logic.
-      console.log(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
+      console.info(TAG, `insertDataToMap, key: ${key}  val: ${val}`);
       callback(ERR_OK);
     }
   }
