@@ -350,6 +350,7 @@
   - [@ohos.multimodalInput.mouseEvent (Mouse Event)](js-apis-mouseevent.md)
   - [@ohos.multimodalInput.pointer (Mouse Pointer)](js-apis-pointer.md)
   - [@ohos.multimodalInput.touchEvent (Touch Event)](js-apis-touchevent.md)
+  - [@ohos.multimodalInput.shortKey (Shortcut Key)](js-apis-shortKey.md)
   - [@ohos.power (System Power Management)](js-apis-power.md)
   - [@ohos.runningLock (Runninglock)](js-apis-runninglock.md)
   - [@ohos.sensor (Sensor)](js-apis-sensor.md)
