@@ -37,11 +37,11 @@
 | [OH_AI_ContextGetThreadAffinityMode](_mind_spore.md#oh_ai_contextgetthreadaffinitymode) (const OH_AI_ContextHandle context) | 获取运行时线程绑定CPU核心的策略。 |
 | [OH_AI_ContextSetThreadAffinityCoreList](_mind_spore.md#oh_ai_contextsetthreadaffinitycorelist) (OH_AI_ContextHandle context, const int32_t \*core_list, size_t core_num) | 设置运行时线程绑定CPU核心的列表。 |
 | [OH_AI_ContextGetThreadAffinityCoreList](_mind_spore.md#oh_ai_contextgetthreadaffinitycorelist) (const OH_AI_ContextHandle context, size_t \*core_num) | 获取CPU绑核列表。 |
-| [OH_AI_ContextSetEnableParallel](_mind_spore.md#oh_ai_contextsetenableparallel) (OH_AI_ContextHandle context, bool is_parallel) | 设置运行时是否支持并行。 |
+| [OH_AI_ContextSetEnableParallel](_mind_spore.md#oh_ai_contextsetenableparallel) (OH_AI_ContextHandle context, bool is_parallel) | 设置运行时是否支持并行。 此接口特性当前未开启，设置无效。|
 | [OH_AI_ContextGetEnableParallel](_mind_spore.md#oh_ai_contextgetenableparallel) (const OH_AI_ContextHandle context) | 获取是否支持算子间并行。 |
-| [OH_AI_ContextAddDeviceInfo](_mind_spore.md#oh_ai_contextadddeviceinfo) (OH_AI_ContextHandle context, OH_AI_DeviceInfoHandle device_info) | 添加运行设备信息。 |
+| [OH_AI_ContextAddDeviceInfo](_mind_spore.md#oh_ai_contextadddeviceinfo) (OH_AI_ContextHandle context, OH_AI_DeviceInfoHandle device_info) | 将一个用户定义的运行设备信息附加到推理上下文中。 |
 | [OH_AI_DeviceInfoCreate](_mind_spore.md#oh_ai_deviceinfocreate) (OH_AI_DeviceType device_type) | 创建一个设备信息对象。 |
-| [OH_AI_DeviceInfoDestroy](_mind_spore.md#oh_ai_deviceinfodestroy) (OH_AI_DeviceInfoHandle \*device_info) | 释放设备信息实例。 |
+| [OH_AI_DeviceInfoDestroy](_mind_spore.md#oh_ai_deviceinfodestroy) (OH_AI_DeviceInfoHandle \*device_info) | 释放设备信息实例。注意：设备信息实例被添加到context后，无需调用者手动释放。 |
 | [OH_AI_DeviceInfoSetProvider](_mind_spore.md#oh_ai_deviceinfosetprovider) (OH_AI_DeviceInfoHandle device_info, const char \*provider) | 设置供应商的名称。 |
 | [OH_AI_DeviceInfoGetProvider](_mind_spore.md#oh_ai_deviceinfogetprovider) (const OH_AI_DeviceInfoHandle device_info) | 获取生产商的名称。 |
 | [OH_AI_DeviceInfoSetProviderDevice](_mind_spore.md#oh_ai_deviceinfosetproviderdevice) (OH_AI_DeviceInfoHandle device_info, const char \*device) | 设置生产商设备的名称。 |
