@@ -10,7 +10,7 @@
 
 ## 本文的改进和修订说明
 
-1. 本文档由OpenHarmony 合规SIG主导起草和维护。本文档的最新版本总可以在 [这里](https://gitee.com/openharmony/docs/blob/)找到。
+1. 本文档由OpenHarmony 合规SIG主导起草和维护。本文档的最新版本总可以在 [这里](https://gitee.com/openharmony/docs/blob/c2cfb198e35d5e0eb0f18606935f7276b47a40c4/zh-cn/contribute/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6%E4%B8%8A%E6%B8%B8%E8%BD%AF%E4%BB%B6%E5%85%83%E6%95%B0%E6%8D%AEREADMEOpenSource%E6%96%87%E4%BB%B6%E8%A7%84%E8%8C%83.md)找到。
 2. 任何对于本文中涉及的规则的增加，修改，删除都必须被追踪，请进入该追踪系统 。
 3. 最终规则经过社区充分的讨论后，由PMC评审定稿。
 

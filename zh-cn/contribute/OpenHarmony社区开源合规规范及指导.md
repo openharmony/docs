@@ -40,9 +40,9 @@
 
 1. 许可证与版权规范 ，见[这里](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/%E8%AE%B8%E5%8F%AF%E8%AF%81%E4%B8%8E%E7%89%88%E6%9D%83%E8%A7%84%E8%8C%83.md)
 
-2. SPDX信息规范，见[这里](oniro)
+2. SPDX信息规范，见[这里]()
 
-3. 关于在第三方开源软件中补充上游开源软件元数据声明文件 README.OpenSource 规范,见[这里](https://gitee.com/openharmony/docs/blob/b56f671f5ec3c02c18cefe4de6eccd0b14c41662/zh-cn/contribute/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6%E4%B8%8A%E6%B8%B8%E8%BD%AF%E4%BB%B6%E5%85%83%E6%95%B0%E6%8D%AEREADMEOpenSource%E6%96%87%E4%BB%B6%E8%A7%84%E8%8C%83.md)
+3. 关于在第三方开源软件中补充上游开源软件元数据声明文件 README.OpenSource 规范,见[这里](https://gitee.com/openharmony/docs/blob/c2cfb198e35d5e0eb0f18606935f7276b47a40c4/zh-cn/contribute/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6%E4%B8%8A%E6%B8%B8%E8%BD%AF%E4%BB%B6%E5%85%83%E6%95%B0%E6%8D%AEREADMEOpenSource%E6%96%87%E4%BB%B6%E8%A7%84%E8%8C%83.md)
 
 #### OpenHarmony社区参与上游社区规范
 
