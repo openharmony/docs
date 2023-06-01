@@ -20,9 +20,13 @@
 - output，一个n维tensor，维数和数据类型和x保持一致。shape由x和paddings共同决定 output.shape[i] = input.shape[i] + paddings[i][0]+paddings[i][1]。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
