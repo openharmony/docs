@@ -22,9 +22,13 @@
 - output，形状由x和y broadcast后的形状决定。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
