@@ -33,7 +33,7 @@ Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boole
 
 | 名称       | 参数类型 | 描述                                                         |
 | ---------- | -------- | ------------------------------------------------------------ |
-| allowScale | boolean  | 是否允许文本缩放。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| allowScale | boolean  | 是否允许文本缩放。<br/>暂不支持该接口。<br/>默认值：false<br/> |
 
 ## 事件
 
