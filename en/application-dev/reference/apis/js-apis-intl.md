@@ -1,7 +1,6 @@
 # @ohos.intl (Internationalization)
 
-The **intl** module provides basic i18n capabilities, such as time and date formatting, number formatting, and string sorting, through the standard i18n APIs defined in ECMA 402.
-
+ The **intl** module provides basic i18n capabilities, such as time and date formatting, number formatting, and string sorting, through the standard i18n APIs defined in ECMA 402.
 The [i18n](js-apis-i18n.md) module provides enhanced i18n capabilities through supplementary interfaces that are not defined in ECMA 402. It works with the intl module to provide a complete suite of i18n capabilities.
 
 >  **NOTE**
@@ -68,7 +67,7 @@ Creates a **Locale** object.
 | Name                 | Type                              | Mandatory  | Description                          |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
 | locale               | string                           | Yes   | A string containing locale information, including the language, optional script, and region. For details about the international standards and combination modes for the language, script, and country or region, see [intl Development](../../internationalization/intl-guidelines.md#setting-locale-information).|
-| options<sup>9+</sup> | [LocaleOptions](#localeoptions9) | No   | Options for creating the **Locale** object.                |
+| options             | [LocaleOptions](#localeoptions6) | No   | Options for creating the **Locale** object.                |
 
 **Example**
   ```js
@@ -160,9 +159,10 @@ Minimizes information of the **Locale** object. If the script and locale informa
   ```
 
 
-## LocaleOptions<sup>9+</sup>
+## LocaleOptions<sup>6+</sup>
 
 Represents the locale options.
+In API version 9, the attributes in **LocaleOptions** are optional.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -207,7 +207,7 @@ Creates a **DateTimeOptions** object for the specified locale.
 | Name                 | Type                                  | Mandatory  | Description                          |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | Yes   | A string containing locale information, including the language, optional script, and region.|
-| options<sup>9+</sup> | [DateTimeOptions](#datetimeoptions9) | No   | Options for creating a **DateTimeFormat** object.             |
+| options              | [DateTimeOptions](#datetimeoptions6) | No   | Options for creating a **DateTimeFormat** object.             |
 
 **Example**
   ```js
@@ -299,7 +299,7 @@ Obtains the formatting options for **DateTimeFormat** object.
 
 | Type                                  | Description                           |
 | ------------------------------------ | ----------------------------- |
-| [DateTimeOptions](#datetimeoptions9) | Formatting options for **DateTimeFormat** objects.|
+| [DateTimeOptions](#datetimeoptions6) | Formatting options for **DateTimeFormat** objects.|
 
 **Example**
   ```js
@@ -311,9 +311,10 @@ Obtains the formatting options for **DateTimeFormat** object.
   ```
 
 
-## DateTimeOptions<sup>9+</sup>
+## DateTimeOptions<sup>6+</sup>
 
 Provides the options for the **DateTimeFormat** object.
+In API version 9, the attributes in **DateTimeOptions** are optional.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -371,7 +372,7 @@ Creates a **NumberFormat** object for the specified locale.
 | Name                 | Type                              | Mandatory  | Description                          |
 | -------------------- | -------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;    | Yes   | A string containing locale information, including the language, optional script, and region.|
-| options<sup>9+</sup> | [NumberOptions](#numberoptions9) | No   | Options for creating a **NumberFormat** object.               |
+| options              | [NumberOptions](#numberoptions6) | No   | Options for creating a **NumberFormat** object.               |
 
 **Example**
   ```js
@@ -421,7 +422,7 @@ Obtains the options of the **NumberFormat** object.
 
 | Type                              | Description                         |
 | -------------------------------- | --------------------------- |
-| [NumberOptions](#numberoptions9) | Formatting options for **NumberFormat** objects.|
+| [NumberOptions](#numberoptions6) | Formatting options for **NumberFormat** objects.|
 
 
 **Example**
@@ -434,9 +435,10 @@ Obtains the options of the **NumberFormat** object.
   ```
 
 
-## NumberOptions<sup>9+</sup>
+## NumberOptions<sup>6+</sup>
 
 Defines the device capability.
+In API version 9, the attributes in **NumberOptions** are optional.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -448,7 +450,7 @@ Defines the device capability.
 | currencyDisplay          | string  | Yes   | Yes   | Currency display mode. The value can be **symbol**, **narrowSymbol**, **code**, or **name**.|
 | unit                     | string  | Yes   | Yes   | Unit name, for example, **meter**, **inch**, or **hectare**.       |
 | unitDisplay              | string  | Yes   | Yes   | Unit display format. The value can be **long**, **short**, or **narrow**.|
-| unitUsage                | string  | Yes   | Yes   | Unit usage scenario. The value can be any of the following: **default**, **area-land-agricult**, **area-land-commercl**, **area-land-residntl**, **length-person**, **length-person-small**, **length-rainfall**, **length-road**, **length-road-small**, **length-snowfall**, **length-vehicle**, **length-visiblty**, **length-visiblty-small**, **length-person-informal**, **length-person-small-informal**, **length-road-informal**, **speed-road-travel**, **speed-wind**, **temperature-person**, **temperature-weather**, **volume-vehicle-fuel**.|
+| unitUsage<sup>8+</sup>   | string  | Yes   | Yes   | Unit usage scenario. The value can be any of the following: **default**, **area-land-agricult**, **area-land-commercl**, **area-land-residntl**, **length-person**, **length-person-small**, **length-rainfall**, **length-road**, **length-road-small**, **length-snowfall**, **length-vehicle**, **length-visiblty**, **length-visiblty-small**, **length-person-informal**, **length-person-small-informal**, **length-road-informal**, **speed-road-travel**, **speed-wind**, **temperature-person**, **temperature-weather**, **volume-vehicle-fuel**.|
 | signDisplay              | string  | Yes   | Yes   | Number sign display format. The value can be **auto**, **never**, **always**, or **expectZero**.|
 | compactDisplay           | string  | Yes   | Yes   | Compact display format. The value can be **long** or **short**.     |
 | notation                 | string  | Yes   | Yes   | Number formatting specification. The value can be **standard**, **scientific**, **engineering**, or **compact**.|
@@ -494,7 +496,7 @@ Creates a **Collator** object.
 | Name                 | Type                                  | Mandatory  | Description                          |
 | -------------------- | ------------------------------------ | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;        | Yes   | A string containing locale information, including the language, optional script, and region.|
-| options<sup>9+</sup> | [CollatorOptions](#collatoroptions9) | No   | Options for creating a **Collator** object.                |
+| options              | [CollatorOptions](#collatoroptions8) | No   | Options for creating a **Collator** object.                |
 
 **Example**
   ```js
@@ -545,7 +547,7 @@ Returns properties reflecting the locale and collation options of a **Collator**
 
 | Type                                  | Description               |
 | ------------------------------------ | ----------------- |
-| [CollatorOptions](#collatoroptions9) | Properties of the **Collator** object.|
+| [CollatorOptions](#collatoroptions8) | Properties of the **Collator** object.|
 
 **Example**
   ```js
@@ -557,9 +559,10 @@ Returns properties reflecting the locale and collation options of a **Collator**
   ```
 
 
-## CollatorOptions<sup>9+</sup>
+## CollatorOptions<sup>8+</sup>
 
 Represents the properties of a **Collator** object.
+In API version 9, the attributes in **CollatorOptions** are optional.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -605,7 +608,7 @@ Creates a **PluralRules** object to obtain the singular-plural type of numbers.
 | Name                 | Type                                      | Mandatory  | Description                          |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;            | Yes   | A string containing locale information, including the language, optional script, and region.|
-| options<sup>9+</sup> | [PluralRulesOptions](#pluralrulesoptions9) | No   | Options for creating a **PluralRules** object.               |
+| options              | [PluralRulesOptions](#pluralrulesoptions8) | No   | Options for creating a **PluralRules** object.               |
 
 **Example**
   ```js
@@ -648,9 +651,10 @@ Obtains a string that represents the singular-plural type of the specified numbe
   ```
 
 
-## PluralRulesOptions<sup>9+</sup>
+## PluralRulesOptions<sup>8+</sup>
 
 Represents the properties of a **PluralRules** object.
+In API version 9, the attributes in **PluralRulesOptions** are optional.
 
 **System capability**: SystemCapability.Global.I18n
 
@@ -696,7 +700,7 @@ Creates a **RelativeTimeFormat** object.
 | Name                 | Type                                      | Mandatory  | Description                          |
 | -------------------- | ---------------------------------------- | ---- | ---------------------------- |
 | locale               | string \| Array&lt;string&gt;            | Yes   | A string containing locale information, including the language, optional script, and region.|
-| options<sup>9+</sup> | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions9) | No   | Options for creating a **RelativeTimeFormat** object.           |
+| options              | [RelativeTimeFormatInputOptions](#relativetimeformatinputoptions8) | No   | Options for creating a **RelativeTimeFormat** object.           |
 
 **Example**
   ```js
@@ -788,9 +792,10 @@ Obtains the formatting options for **RelativeTimeFormat** objects.
   ```
 
 
-## RelativeTimeFormatInputOptions<sup>9+</sup>
+## RelativeTimeFormatInputOptions<sup>8+</sup>
 
 Represents the properties of a **RelativeTimeFormat** object.
+In API version 9, the attributes in **RelativeTimeFormatInputOptions** are optional.
 
 **System capability**: SystemCapability.Global.I18n
 

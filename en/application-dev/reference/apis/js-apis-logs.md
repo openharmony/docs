@@ -1,4 +1,4 @@
-# console (Log Printing)
+# Console
 
 The **console** module provides basic log printing capabilities and supports log printing by log level.
 
