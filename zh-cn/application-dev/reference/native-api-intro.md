@@ -47,6 +47,7 @@ Native API在SDK包的位置为$(SDK_ROOT)/native目录，主要有以下几个�
 * 《[API 参考手册](./native-apis/Readme-CN.md)》，介绍各个API参考手册
 * 《[Native API中支持的标准库](../reference/native-lib/third_party_libc/musl.md)》，介绍Native API支持的开源标准库
 * 《[Native API开发指南](../napi/Readme-CN.md)》，结合具体的例子，场景介绍各类接口的使用
+* 《[使用NDK编译一个Cmake C/C++工程文档](quick-start/howto-migrate-cmake-with-ohosndk.md)》，介绍如何使用使用Native API开发一个Cmake工程
 
 
 ## 使用介绍
