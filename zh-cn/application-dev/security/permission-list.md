@@ -648,6 +648,16 @@
 
 允许应用程序获取网络相关的信息或修改网络相关设置。
 
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.CONNECTIVITY_INTERNAL
+
+允许应用程序获取网络策略相关的信息或修改网络策略相关设置。
+
 **权限级别**：system_basic
 
 **授权方式**：system_grant
