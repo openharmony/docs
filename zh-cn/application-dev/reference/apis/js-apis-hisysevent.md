@@ -494,7 +494,7 @@ try {
 
 subscribe(rules: QueryRule[]): number
 
-订阅实时系统事件，事件发生时立即以文件格式写入应用沙箱固定目录(/data/storage/el2/base/cache/hiview/event/)。
+订阅实时系统事件(事件需满足低频率或偶发性的约束条件)，事件发生时立即以文件格式写入应用沙箱固定目录(/data/storage/el2/base/cache/hiview/event/)。
 
 **需要权限：** ohos.permission.READ_DFX_SYSEVENT
 
