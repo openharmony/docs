@@ -18,9 +18,13 @@
 - output，output的shape由x1和y共同决定，x1和y的shape相同时， output的shape和x1、y相同；shape不同时，需要将x1或y做broadcast操作后，相减得到output。 output的精度由两个输入中更高精度的决定。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
