@@ -2418,6 +2418,53 @@ try {
 }
 ```
 
+### getUIContext<sup>10+</sup>
+
+getUIContext(): UIContext
+
+获取UIContext实例。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.WindowManager.WindowManager.Core
+
+**返回值：**
+
+| 类型       | 说明                   |
+| ---------- | ---------------------- |
+| [UIContext](./js-apis-arkui-UIContext.md#uicontext) | 返回UIContext实例对象。 |
+
+**示例：**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        // 为主窗口加载对应的目标页面。
+        windowStage.loadContent("pages/page2", (err) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content.');
+        });
+        // 获取应用主窗口。
+        let windowClass = null;
+        windowStage.getMainWindow((err, data) => {
+            if (err.code) {
+                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                return;
+            }
+            windowClass = data;
+            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+            // 获取UIContext实例。
+            globalThis.uiContext = windowClass.getUIContext();
+        })
+    }
+};
+```
+
 ### setUIContent<sup>9+</sup>
 
 setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void
