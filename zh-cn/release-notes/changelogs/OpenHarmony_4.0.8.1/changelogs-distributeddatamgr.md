@@ -55,6 +55,6 @@ orderByAsc(field: string): DataSharePredicates;
 
 orderByDesc(field: string): DataSharePredicates;
 
-orderByDesc(field: string): DataSharePredicates;
+limit(total: number, offset: number): DataSharePredicates;
 
-orderByDesc(field: string): DataSharePredicates;
+in(field: string, value: Array<ValueType>): DataSharePredicates;
