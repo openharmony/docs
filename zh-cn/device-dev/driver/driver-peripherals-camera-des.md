@@ -47,7 +47,7 @@ Camera模块主要针对相机预览、拍照、视频流等场景，对这些�
 
 ### 接口说明<a name="6"></a>
 
-注：以下接口列举的为IDL接口描述生成的对应C++语言函数接口，接口声明见idl文件（/drivers/interface/camera/v1_0/）。         
+注：以下接口列举的为IDL接口描述生成的对应C++语言函数接口，接口声明见idl文件（/drivers/interface/camera/v1_0/，链接：https://gitee.com/openharmony/drivers_interface/tree/master/camera）。         
 在HDI使用中下发的配置参数不能超出GetCameraAbility上报的能力范围。即使通过UpdateSettings、CommitStreams、Capture等接口可以下发超出该范围的配置参数，且接口调用不会返回失败，但设置后的行为是不确定的。
 - icamera_device.h
 
@@ -633,7 +633,7 @@ Camera驱动的开发过程主要包含以下步骤：
 
 ### 开发实例<a name = "8"></a>
 
-在/drivers/peripheral/camera/hal/test/demo目录下有一个关于Camera的demo，开机后会在/vendor/bin下生成可执行文件ohos_camera_demo，该demo可以完成Camera的预览，拍照等基础功能。下面我们就以此demo为例讲述怎样用HDI接口去编写预览PreviewOn()和拍照CaptureON()的用例，可参考[ohos_camera_demo](https://gitee.com/openharmony/drivers_peripheral/tree/master/camera/test/demo)。
+在/drivers/peripheral/camera/test/demo目录下有一个关于Camera的demo，开机后会在/vendor/bin下生成可执行文件ohos_camera_demo，该demo可以完成Camera的预览，拍照等基础功能。下面我们就以此demo为例讲述怎样用HDI接口去编写预览PreviewOn()和拍照CaptureON()的用例，可参考[ohos_camera_demo](https://gitee.com/openharmony/drivers_peripheral/tree/master/camera/test/demo)。
 
 1. 在main函数中构造一个CameraDemo 对象，该对象中有对Camera初始化、启停流、释放等控制的方法。下面mainDemo->InitSensors()函数为初始化CameraHost，mainDemo->InitCameraDevice()函数为初始化CameraDevice。
 
@@ -1016,15 +1016,15 @@ Camera驱动的开发过程主要包含以下步骤：
    ```
 
 4. 编译用例         
-   在drivers/peripheral/camera/hal/BUILD.gn文件中的deps中添加“init:ohos_camera_demo”，示例代码如下：
+   在drivers/peripheral/camera/BUILD.gn文件中的deps中添加“init:ohos_camera_demo”，示例代码如下：
    ```
    deps = [
-       "buffer_manager:camera_buffer_manager",
-       "device_manager:camera_device_manager",
-       "hdi_impl:camera_host_service_1.0",
-       "pipeline_core:camera_pipeline_core",
-       "utils:camera_utils",
-       "init:ohos_camera_demo",
+       "vdi_base/common/buffer_manager:camera_buffer_manager",
+       "vdi_base/common/device_manager:camera_device_manager",
+       "vdi_base/common/hdi_impl:camera_host_service_1.0",
+       "vdi_base/common/pipeline_core:camera_pipeline_core",
+       "vdi_base/common/utils:camera_utils",
+       "test/common:ohos_camera_demo",
        ]
    ```
 
