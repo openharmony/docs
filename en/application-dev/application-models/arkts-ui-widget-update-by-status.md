@@ -1,7 +1,7 @@
 # Updating Widget Content by State
 
 
-Multiple widgets of the same application can be configured to implement different features. For example, two weather widgets can be added to the home screen: one for displaying the weather of London, and the other Beijing. The widget is set to be updated at 07:00 every morning. It needs to detect the configured city, and then updates the city-specific weather information. The following example describes how to dynamically update the widget content based on the state.
+There are cases where multiple copies of the same widget are added to the home screen to accommodate different needs. In these cases, the widget content needs to be dynamically updated based on the state. This topic exemplifies how this is implemented. In the following example, two weather widgets are added to the home screen: one for displaying the weather of London, and the other Beijing, both configured to be updated at 07:00 every morning. The widget provider detects the target city, and then displays the city-specific weather information on the widgets.
 
 
 - Widget configuration file: Configure the widget to be updated at 07:00 every morning.
@@ -74,7 +74,7 @@ Multiple widgets of the same application can be configured to implement differen
         }
   
         Row() {// Content that is updated only in state A
-          Text('State A: ')
+          Text ('State A:')
           Text(this.textA)
         }
   
@@ -167,4 +167,5 @@ Multiple widgets of the same application can be configured to implement differen
 
 
 > **NOTE**
+>
 > When the local database is used for widget information persistence, it is recommended that [TEMPORARY_KEY](../reference/apis/js-apis-app-form-formInfo.md#formparam) be used to determine whether the currently added widget is a normal one in the [onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform) lifecycle callback. If the widget is a normal one, the widget information is directly persisted. If the widget is a temporary one, the widget information is persisted when the widget is converted to a normal one ([onCastToNormalForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#oncasttonormalform)). In addition, the persistent widget information needs to be deleted when the widget is destroyed ([onRemoveForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onremoveform)), preventing the database size from continuously increasing due to repeated widget addition and deletion.
