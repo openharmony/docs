@@ -164,7 +164,8 @@ export struct WlanMoreSettingItem {
 
 Navigation组件支持自动切换单栏和双栏的显示效果，同时可以根据当前状态自动添加返回键及响应系统的返回键事件。借助Navigation组件，开发者不用关心单栏和双栏场景的差异而更关注于应用本身，极大的减少开发工作量及提高开发效率。
 
-## 相关示例
+## 相关实例
 
-本示例已经在[设置应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings)中开源，读者可以根据需要自行下载源码并运行及查看效果。
+针对设置应用，有以下相关实例可以参考：
 
+设置应用开发：[设置应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings)

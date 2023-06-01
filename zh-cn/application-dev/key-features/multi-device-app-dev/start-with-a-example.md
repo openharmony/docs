@@ -272,7 +272,12 @@ struct Home {
 
 在本文的[功能开发的一多能力介绍](development-intro.md)章节中，将详细展开介绍。
 
-## 相关示例
-天气应用已经在[天气应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Weather)中开源，感兴趣的读者可以自行下载及了解详细代码实现。
+## 相关实例
+
+针对天气应用，有以下相关实例可供参考：
+
+天气应用：[天气应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Weather)
+
+
 
 <!--no_check-->

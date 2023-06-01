@@ -268,10 +268,11 @@ export default struct Home {
 | -------- | -------- | -------- |
 | ![zh-cn_image_0000001334345550](figures/zh-cn_image_0000001334345550.jpg) | ![zh-cn_image_0000001385105477](figures/zh-cn_image_0000001385105477.jpg) | ![zh-cn_image_0000001384985569](figures/zh-cn_image_0000001384985569.jpg) | 
 
-## 相关示例
+## 相关实例
 
-本示例已经在[一多应用市场首页应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/AppMarket)中开源，读者可以根据需要自行下载源码并运行及查看效果。
+针对应用市场应用开发，有以下相关实例可以参考：
 
+应用市场开发：[一多应用市场首页应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/AppMarket)
 
 
 

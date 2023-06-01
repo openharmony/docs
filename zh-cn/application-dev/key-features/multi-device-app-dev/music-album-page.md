@@ -243,6 +243,9 @@ struct Index {
 | -------- | -------- | -------- |
 | ![MusicAlbum_sm_running](figures/MusicAlbum_sm_running.png) | ![MusicAlbum_md_running](figures/MusicAlbum_md_running.png) | ![MusicAlbum_lg_running](figures/MusicAlbum_lg_running.png) | 
 
-## 相关示例
+## 相关实例
 
-本示例已经在[音乐专辑页应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/MusicAlbum)中开源，读者可以根据需要自行下载源码并运行及查看效果。
+针对音乐专辑应用，有以下相关实例可供参考：
+
+音乐专辑应用：[音乐专辑页应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/MusicAlbum)
+
