@@ -313,6 +313,8 @@ try {
 | beginTime | number | 是 | 查询的系统事件起始时间（13位时间戳）。 |
 | endTime | number | 是 | 查询的系统事件结束时间（13位时间戳）。 |
 | maxEvents | number | 是 | 查询的系统事件最多条数。 |
+| fromSeq | number | 否   | 查询的开始序列号 |
+| toSeq | number | 否   | 查询的结束序列号 |
 
 ## QueryRule 
 
@@ -324,6 +326,7 @@ try {
 | -------- | -------- | -------- | -------- |
 | domain | string | 是 | 查询包含的事件领域。 |
 | names | string[] | 是 | 查询所包含的多个事件名称，每个查询规则对象包含多个系统事件名称。 |
+| condition | string | 否 | 事件的额外参数条件，格式：{"version":"V1","condition":{"and":[{"param":"参数","op":"操作符",<br/>        "value":"比较值"}]}} |
 
 ## Querier
 
@@ -404,3 +407,198 @@ try {
     console.error(`error code: ${error.code}, error msg: ${error.message}`);
 }
 ```
+
+## hiSysEvent.exportSysEvents
+
+exportSysEvents(queryArg: QueryArg, rules: QueryRule[]): number
+
+导出批量系统事件，以文件格式写入应用沙箱固定目录(/data/storage/el2/base/cache/hiview/event/)。
+
+**需要权限：** ohos.permission.READ_DFX_SYSEVENT
+
+**系统能力：** SystemCapability.HiviewDFX.HiSysEvent
+
+**参数：**
+
+| 参数名   | 类型                      | 必填 | 说明                                       |
+| -------- | ------------------------- | ---- | ------------------------------------------ |
+| queryArg | [QueryArg](#queryarg)     | 是   | 导出需要配置的查询参数。                   |
+| rules    | [QueryRule](#queryrule)[] | 是   | 查询规则数组，每次导出可配置多个查询规则。 |
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| number | 接口调用时间戳。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-hisysevent.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 11200301 | Count of query rules is over limit. |
+| 11200302 | Invalid query rule.                 |
+| 11200304 | Export frequency is over limit.     |
+
+**示例：**
+
+```
+import hiSysEvent from '@ohos.hiSysEvent';
+import fs from '@ohos.file.fs';
+
+try {
+    hiSysEvent.write({
+        domain: "RELIABILITY",
+        name: "STACK",
+        eventType: hiSysEvent.EventType.FAULT,
+        params: {
+            PID: 487,
+            UID: 103,
+            PACKAGE_NAME: "com.ohos.hisysevent.test",
+            PROCESS_NAME: "syseventservice",
+            MSG: "no msg."
+        }
+    }, (err, val) => {
+        // do something here.
+    })
+    
+    let time = hiSysEvent.exportSysEvents({
+        beginTime: -1,
+        endTime: -1,
+        maxEvents: 1,
+    }, [{
+        domain: "RELIABILITY",
+        names: ["STACK"],
+    }])
+    console.log(`receive export task time is : ${time}`);
+    
+    // 延迟读取本次导出的事件
+    setTimeout(function() {
+    	let eventDir = context.getApplicationContext().cacheDir + '/hiview/event';
+    	let filenames = fs.listFileSync(eventDir);
+    	for (let i = 0; i < filenames.length; i++) {
+    		if (filenames[i].indexOf(time.toString()) != -1) {
+    			let res = fs.readTextSync(eventDir + '/' + filenames[i]);
+    			let events = JSON.parse('[' + res.slice(0, res.length - 1) + ']');
+    			console.log("read file end, events is :" + JSON.stringify(events));
+    		}
+    	}
+    }, 10000)
+} catch (error) {
+    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+}
+```
+
+## hiSysEvent.subscribe
+
+subscribe(rules: QueryRule[]): number
+
+订阅实时系统事件，事件发生时立即以文件格式写入应用沙箱固定目录(/data/storage/el2/base/cache/hiview/event/)。
+
+**需要权限：** ohos.permission.READ_DFX_SYSEVENT
+
+**系统能力：** SystemCapability.HiviewDFX.HiSysEvent
+
+**参数：**
+
+| 参数名 | 类型                      | 必填 | 说明                                       |
+| ------ | ------------------------- | ---- | ------------------------------------------ |
+| rules  | [QueryRule](#queryrule)[] | 是   | 查询规则数组，每次订阅可配置多个查询规则。 |
+
+**返回值：**
+
+| 类型   | 说明             |
+| ------ | ---------------- |
+| number | 接口调用时间戳。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-hisysevent.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 11200301 | Count of query rules is over limit. |
+| 11200302 | Invalid query rule.                 |
+
+**示例：**
+
+```
+import hiSysEvent from '@ohos.hiSysEvent';
+import fs from '@ohos.file.fs';
+
+try {
+    hiSysEvent.subscribe([{
+        domain: "RELIABILITY",
+        names: ["STACK"],
+    },{
+        domain: "BUNDLE_MANAGER",
+        names: ["BUNDLE_UNINSTALL"],
+      }])
+    hiSysEvent.write({
+        domain: "RELIABILITY",
+        name: "STACK",
+        eventType: hiSysEvent.EventType.FAULT,
+        params: {
+            PID: 487,
+            UID: 103,
+            PACKAGE_NAME: "com.ohos.hisysevent.test",
+            PROCESS_NAME: "syseventservice",
+            MSG: "no msg."
+        }
+    }, (err, val) => {
+        // do something here.
+    })
+
+    // 延迟读取订阅的事件
+    setTimeout(function() {
+    	let eventDir = context.getApplicationContext().cacheDir + '/hiview/event';
+    	let filenames = fs.listFileSync(eventDir);
+    	for (let i = 0; i < filenames.length; i++) {
+    		let res = fs.readTextSync(eventDir + '/' + filenames[i]);
+    		let events = JSON.parse('[' + res.slice(0, res.length - 1) + ']');
+    		console.log("read file end, events is :" + JSON.stringify(events));
+    	}
+    }, 10000)
+} catch (error) {
+    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+}
+```
+
+## hiSysEvent.unsubscribe
+
+unsubscribe(): void
+
+取消订阅系统事件。
+
+**需要权限：** ohos.permission.READ_DFX_SYSEVENT
+
+**系统能力：** SystemCapability.HiviewDFX.HiSysEvent
+
+**错误码：**
+
+以下错误码的详细介绍请参见[系统事件错误码](../errorcodes/errorcode-hisysevent.md)。
+
+| 错误码ID | 错误信息            |
+| -------- | ------------------- |
+| 11200305 | Unsubscribe failed. |
+
+**示例：**
+
+```
+import hiSysEvent from '@ohos.hiSysEvent';
+
+try {
+    hiSysEvent.subscribe([{
+        domain: "RELIABILITY",
+        names: ["STACK"],
+    },{
+        domain: "BUNDLE_MANAGER",
+        names: ["BUNDLE_UNINSTALL","BUNDLE_INSTALL"],
+      }])
+    hiSysEvent.unsubscribe();
+} catch (error) {
+    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+}
+```
+
