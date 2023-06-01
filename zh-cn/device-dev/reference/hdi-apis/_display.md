@@ -305,7 +305,7 @@
 | [PresentTimestamp::time](#time) | int64_t<br/>类型对应的值 | 
 | [ExtDataHandle::fd](#fd) | int32_t<br/>句柄&nbsp;fd,&nbsp;-1代表不支持 | 
 | [ExtDataHandle::reserveInts](#reserveints) | uint32_t<br/>reserve数组的个数 | 
-| [ExtDataHandle::reserve[0]](#reserve\[0\]) | int32_t<br/>reserve数组 | 
+| [ExtDataHandle::reserve[0]](#reserve0) | int32_t<br/>reserve数组 | 
 | [YUVDescInfo::baseAddr](#baseaddr) | void&nbsp;\*<br/>内存的初始地址 | 
 | [YUVDescInfo::yOffset](#yoffset) | size_t<br/>Y的偏移量 | 
 | [YUVDescInfo::uOffset](#uoffset) | size_t<br/>U的偏移量 | 
