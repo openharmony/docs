@@ -117,7 +117,7 @@ Data sources of the archived type can be classified into local resources, online
         }
       }
       ```
-  2. Check the format of the URL obtained from the media library is as follows:
+  2. Check the format of the URL obtained from the media library:
       ​    
       ```ts
       Image('file://media/5')

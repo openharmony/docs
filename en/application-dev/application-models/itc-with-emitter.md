@@ -13,12 +13,12 @@ To develop the Emitter mode, perform the following steps:
 
    // Define an event with eventId 1.
    let event = {
-       eventId: 1
+     eventId: 1
    };
 
    // Trigger the callback after the event with eventId 1 is received.
    let callback = (eventData) => {
-       console.info('event callback');
+     console.info('event callback');
    };
 
    // Subscribe to the event with eventId 1.
@@ -29,21 +29,21 @@ To develop the Emitter mode, perform the following steps:
 
    ```ts
    import emitter from "@ohos.events.emitter";
-
+   
    // Define an event with eventId 1 and priority Low.
    let event = {
-       eventId: 1,
-       priority: emitter.EventPriority.LOW
+     eventId: 1,
+     priority: emitter.EventPriority.LOW
    };
-
+   
    let eventData = {
-       data: {
-           "content": "c",
-           "id": 1,
-           "isEmpty": false,
-       }
+     data: {
+       "content": "c",
+       "id": 1,
+       "isEmpty": false,
+     }
    };
-
+   
    // Emit the event with eventId 1 and event content eventData.
    emitter.emit(event, eventData);
    ```

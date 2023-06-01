@@ -1,7 +1,7 @@
 # InputManager
 
 
-## **概述**
+## 概述
 
 提供Input设备管理相关的接口。
 
@@ -9,24 +9,24 @@
 
 **相关模块:**
 
-[Input](input.md)
+[Input](_input.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| ([ScanInputDevice](#scaninputdevice)&nbsp;)([InputDevDesc](_input_dev_desc.md)&nbsp;\*staArr,&nbsp;uint32_t&nbsp;arrLen) | Input服务用于扫描所有在线设备。 | 
-| ([OpenInputDevice](#openinputdevice)&nbsp;)(uint32_t&nbsp;devIndex) | Input服务打开对应设备的设备文件。 | 
-| ([CloseInputDevice](#closeinputdevice)&nbsp;)(uint32_t&nbsp;devIndex) | Input服务关闭对应设备的设备文件。 | 
-| ([GetInputDevice](#getinputdevice)&nbsp;)(uint32_t&nbsp;devIndex,&nbsp;[InputDeviceInfo](_input_device_info.md)&nbsp;\*\*devInfo) | Input服务获取对应ID的设备信息。 | 
-| ([GetInputDeviceList](#getinputdevicelist)&nbsp;)(uint32_t&nbsp;\*devNum,&nbsp;[InputDeviceInfo](_input_device_info.md)&nbsp;\*\*devList,&nbsp;uint32_t&nbsp;size) | Input服务获取所有Input设备列表的设备信息。 | 
+| (\*&nbsp;[ScanInputDevice](#scaninputdevice)&nbsp;)([InputDevDesc](_input_dev_desc.md)&nbsp;\*staArr,&nbsp;uint32_t&nbsp;arrLen) | int32_t<br/>Input服务用于扫描所有在线设备。 | 
+| (\*&nbsp;[OpenInputDevice](#openinputdevice)&nbsp;)(uint32_t&nbsp;devIndex) | int32_t<br/>Input服务打开对应设备的设备文件。 | 
+| (\*&nbsp;[CloseInputDevice](#closeinputdevice)&nbsp;)(uint32_t&nbsp;devIndex) | int32_t<br/>Input服务关闭对应设备的设备文件。 | 
+| (\*&nbsp;[GetInputDevice](#getinputdevice)&nbsp;)(uint32_t&nbsp;devIndex,&nbsp;[InputDeviceInfo](_input_device_info.md)&nbsp;\*\*devInfo) | int32_t<br/>Input服务获取对应ID的设备信息。 | 
+| (\*&nbsp;[GetInputDeviceList](#getinputdevicelist)&nbsp;)(uint32_t&nbsp;\*devNum,&nbsp;[InputDeviceInfo](_input_device_info.md)&nbsp;\*\*devList,&nbsp;uint32_t&nbsp;size) | int32_t<br/>Input服务获取所有Input设备列表的设备信息。 | 
 
 
-## **类成员变量说明**
+## 类成员变量说明
 
 
 ### CloseInputDevice
@@ -36,7 +36,7 @@
 int32_t(* InputManager::CloseInputDevice) (uint32_t devIndex)
 ```
 
-**描述：**
+**描述:**
 
 Input服务关闭对应设备的设备文件。
 
@@ -50,7 +50,7 @@ Input服务关闭对应设备的设备文件。
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetStatus](input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### GetInputDevice
@@ -60,7 +60,7 @@ INPUT_SUCCESS 表示执行成功。
 int32_t(* InputManager::GetInputDevice) (uint32_t devIndex, InputDeviceInfo **devInfo)
 ```
 
-**描述：**
+**描述:**
 
 Input服务获取对应ID的设备信息。
 
@@ -75,7 +75,7 @@ Input服务获取对应ID的设备信息。
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetStatus](input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### GetInputDeviceList
@@ -85,7 +85,7 @@ INPUT_SUCCESS 表示执行成功。
 int32_t(* InputManager::GetInputDeviceList) (uint32_t *devNum, InputDeviceInfo **devList, uint32_t size)
 ```
 
-**描述：**
+**描述:**
 
 Input服务获取所有Input设备列表的设备信息。
 
@@ -101,7 +101,7 @@ Input服务获取所有Input设备列表的设备信息。
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetStatus](input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### OpenInputDevice
@@ -111,7 +111,7 @@ INPUT_SUCCESS 表示执行成功。
 int32_t(* InputManager::OpenInputDevice) (uint32_t devIndex)
 ```
 
-**描述：**
+**描述:**
 
 Input服务打开对应设备的设备文件。
 
@@ -125,7 +125,7 @@ Input服务打开对应设备的设备文件。
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetStatus](input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。
 
 
 ### ScanInputDevice
@@ -135,7 +135,7 @@ INPUT_SUCCESS 表示执行成功。
 int32_t(* InputManager::ScanInputDevice) (InputDevDesc *staArr, uint32_t arrLen)
 ```
 
-**描述：**
+**描述:**
 
 Input服务用于扫描所有在线设备。
 
@@ -150,4 +150,4 @@ Input服务用于扫描所有在线设备。
 
 INPUT_SUCCESS 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[RetStatus](input.md#retstatus)。
+其他值表示执行失败，具体错误码查看[RetStatus](_input.md#retstatus)。

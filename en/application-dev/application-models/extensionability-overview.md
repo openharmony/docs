@@ -11,17 +11,17 @@ An [ExtensionAbilityType](../reference/apis/js-apis-bundleManager.md#extensionab
 
 - [WorkSchedulerExtensionAbility](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md): ExtensionAbility component of the work_scheduler type, which provides callbacks for Work Scheduler tasks.
 
-- [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod.md): ExtensionAbility component of the input_method type, which provides an input method framework that can be used to hide the keyboard, obtain the list of installed input methods, display the dialog box for input method selection, and more.
+- [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod.md): ExtensionAbility component of the input_method type, which is used to develop input method applications.
 
 - [ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md): ExtensionAbility component of the service type, which provides APIs related to background service scenarios.
 
 - [AccessibilityExtensionAbility](../reference/apis/js-apis-application-accessibilityExtensionAbility.md): ExtensionAbility component of the accessibility type, which provides APIs related to the accessibility feature.
 
-- [DataShareExtensionAbility](../reference/apis/js-apis-application-dataShareExtensionAbility.md): ExtensionAbility component of the data_share type, which provides APIs for data sharing.
+- [DataShareExtensionAbility (for system applications only)](../reference/apis/js-apis-application-dataShareExtensionAbility.md): ExtensionAbility component of the data_share type, which provides APIs for data sharing.
 
 - [StaticSubscriberExtensionAbility](../reference/apis/js-apis-application-staticSubscriberExtensionAbility.md): ExtensionAbility component of the static_subscriber type, which provides APIs for static broadcast.
 
-- [WindowExtensionAbility](../reference/apis/js-apis-application-windowExtensionAbility.md): ExtensionAbility component of the window type, which allows a system application to be embedded in and displayed over another application.
+- [WindowExtensionAbility (for system applications only)](../reference/apis/js-apis-application-windowExtensionAbility.md): ExtensionAbility component of the window type, which allows a system application to be embedded in and displayed over another application.
 
 - [EnterpriseAdminExtensionAbility](../reference/apis/js-apis-EnterpriseAdminExtensionAbility.md): ExtensionAbility component of the enterprise_admin type, which provides APIs for processing enterprise management events, such as application installation events on devices and events indicating too many incorrect screen-lock password attempts.
 
@@ -56,13 +56,11 @@ You do not need to care when to add or delete a widget. The lifecycle of the For
 > **NOTE**
 >
 > For an application, all ExtensionAbility components of the same type run in an independent process, whereas UIAbility, ServiceExtensionAbility, and DataShareExtensionAbility run in another independent process. For details, see [Process Model (Stage Model)](process-model-stage.md).
-> 
+>
 > For example, an application has one UIAbility component, one ServiceExtensionAbility, one DataShareExtensionAbility, two FormExtensionAbility, and one ImeExtensionAbility. When the application is running, there are three processes:
-> 
+>
 > - UIAbility, ServiceExtensionAbility, and DataShareExtensionAbility run in an independent process.
-> 
+>
 > - The two FormExtensionAbility components run in an independent process.
-> 
+>
 > - The two ImeExtensionAbility components run in an independent process.
-
- <!--no_check--> 

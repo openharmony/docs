@@ -71,10 +71,10 @@
 | 名称 | 描述 |
 | ----- | ----------------- |
 | DRAG_SUCCESS | 拖拽成功 |
-| DRAG_FAIL | 拖拽失败 |
-| DRAG_CANCEL | 拖拽取消 |
-| ENABLE_DROP | 组件允许落入 |
-| DISABLE_DROP | 组件不允许落入 |
+| DRAG_FAILED | 拖拽失败 |
+| DRAG_CANCELED | 拖拽取消 |
+| DROP_ENABLED | 组件允许落入 |
+| DROP_DISABLED | 组件不允许落入 |
 
 ## 示例
 

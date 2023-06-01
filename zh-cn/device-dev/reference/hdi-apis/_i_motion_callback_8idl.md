@@ -1,7 +1,7 @@
 # IMotionCallback.idl
 
 
-## **概述**
+## 概述
 
 定义上报手势识别数据回调函数接口。
 
@@ -17,17 +17,17 @@
 
 **相关模块:**
 
-[Motion](motion.md)
+[Motion](_motion.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### 类
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [IMotionCallback](interface_i_motion_callback.md) | 定义上报手势识别数据回调函数。 | 
+| [IMotionCallback](interface_i_motion_callback.md) | interface<br/>定义上报手势识别数据回调函数。 | 
 
 
 ### 关键字

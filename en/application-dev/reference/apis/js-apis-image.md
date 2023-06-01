@@ -879,6 +879,53 @@ async function Demo() {
 }
 ```
 
+### getColorSpace<sup>10+</sup>
+
+getColorSpace(): colorSpaceManager.ColorSpaceManager
+
+Obtains the color space of this image
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Return value**
+
+| Type                               | Description            |
+| ----------------------------------- | ---------------- |
+| [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | Color space obtained.|
+
+**Example**
+
+```js
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+async function Demo() {
+    let csm = pixelmap.getColorSpace();
+}
+```
+
+### setColorSpace<sup>10+</sup>
+
+setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
+
+Sets the color space for this image.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description           |
+| ---------- | ----------------------------------- | ---- | --------------- |
+| colorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | Yes  | Color space to set.|
+
+**Example**
+
+```js
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+async function Demo() {
+    var csm = colorSpaceManager.create(colorSpaceName);
+    pixelmap.setColorSpace(csm);
+}
+```
+
 ### release<sup>7+</sup>
 
 release():Promise\<void>
@@ -937,7 +984,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name| Type  | Mandatory| Description                              |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: JPG, PNG, GIF, BMP, Webp, and RAW.|
+| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, and raw. For details, see [SVG Tags<sup>10+</sup>](#svg-tags). |
 
 **Return value**
 
@@ -975,7 +1022,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name | Type                           | Mandatory| Description                               |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: JPG, PNG, GIF, BMP, Webp, and RAW.|
+| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, and raw. For details, see [SVG Tags<sup>10+</sup>](#svg-tags). |
 | options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image index and default property value.|
 
 **Return value**
@@ -1553,10 +1600,10 @@ let decodeOpts = {
     editable: true,
     desiredSize: { width: 198, height: 202 },
     rotate: 0,
-    desiredPixelFormat: RGBA_8888,
+    desiredPixelFormat: 3,
     index: 0,
 };
-let pixelmaplist = await imageSourceApi.createPixelMapList(decodeOpts);
+let pixelmaplist = imageSourceApi.createPixelMapList(decodeOpts);
 ```
 
 ### createPixelMapList<sup>10+</sup>
@@ -1604,7 +1651,7 @@ let decodeOpts = {
     editable: true,
     desiredSize: { width: 198, height: 202 },
     rotate: 0,
-    desiredPixelFormat: RGBA_8888,
+    desiredPixelFormat: 3,
     index: 0,
 };
 imageSourceApi.createPixelMap(decodeOpts, pixelmaplist => { 
@@ -1651,12 +1698,12 @@ Obtains an array of delay times. This API uses a promise to return the result.
 **Example**
 
 ```js
-let delayTimes = await imageSourceApi.getDelayTime();
+let delayTimes = imageSourceApi.getDelayTime();
 ```
 
 ### getFrameCount<sup>10+</sup>
 
-getFrameCount(callback: AsyncCallback<number>): void;
+getFrameCount(callback: AsyncCallback\<number>): void;
 
 Obtains the number of frames. This API uses an asynchronous callback to return the result.
 
@@ -1693,7 +1740,7 @@ Obtains the number of frames. This API uses a promise to return the result.
 **Example**
 
 ```js
-let frameCount = await imageSourceApi.getFrameCount();
+let frameCount = imageSourceApi.getFrameCount();
 ```
 
 ### release
@@ -2787,7 +2834,50 @@ Describes the color components of an image.
 | pixelStride   | number                           | Yes  | No  | Pixel stride.  |
 | byteBuffer    | ArrayBuffer                      | Yes  | No  | Component buffer.|
 
-## ResponseCode
+## Supplementary Information
+### SVG Tags
+
+The SVG tags are supported since API verison 10. The used version is (SVG) 1.1. Currently, the following tags are supported:
+- a
+- circla
+- clipPath
+- defs
+- ellipse
+- feBlend
+- feColorMatrix
+- feComposite
+- feDiffuseLighting
+- feDisplacementMap
+- feDistantLight
+- feFlood
+- feGaussianBlur
+- feImage
+- feMorphology
+- feOffset
+- fePointLight
+- feSpecularLighting
+- feSpotLight
+- feTurbulence
+- filter
+- g
+- image
+- line
+- linearGradient
+- mask
+- path
+- pattern
+- polygon
+- polyline
+- radialGradient
+- rect
+- stop
+- svg
+- text
+- textPath
+- tspan
+- use
+
+### ResponseCode
 
 Enumerates the response codes returned upon build errors.
 

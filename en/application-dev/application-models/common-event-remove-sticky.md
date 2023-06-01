@@ -1,4 +1,4 @@
-# Removing Sticky Common Events
+# Removing Sticky Common Events (for System Applications Only)
 
 
 ## When to Use
@@ -16,21 +16,26 @@ For details, see [Common Event](../reference/apis/js-apis-commonEventManager.md)
 
 ## How to Develop
 
-1. Import the module.
-   
+1. Request the **ohos.permission.COMMONEVENT_STICKY** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
+
+2. Import the module.
+
    ```ts
    import commonEventManager from '@ohos.commonEventManager';
    ```
 
-2. The sticky common event to be removed must have been released by the application. For details about how to release sticky common events, see [Publishing Common Events](common-event-publish.md).
+3. Call the [removeStickyCommonEvent()](../reference/apis/js-apis-commonEventManager.md#commoneventmanagerremovestickycommonevent10) API to remove the target sticky common event.
+
+   > **NOTE**
+   >
+   > The sticky common event to be removed must have been released by the application. For details about how to release sticky common events, see [Publishing Common Events](common-event-publish.md).
 
    ```ts
-   CommonEventManager.removeStickyCommonEvent("sticky_event", (err) => { // sticky_event indicates the name of the sticky common event to remove.
-       if (err) {
-           console.info(`Remove sticky event AsyncCallback failed, errCode: ${err.code}, errMes: ${err.message}`);
-           return;
-       }
-       console.info(`Remove sticky event AsyncCallback success`);
-       }
+   commonEventManager.removeStickyCommonEvent("sticky_event", (err) => { // sticky_event indicates the name of the target sticky common event.
+     if (err) {
+       console.error(`Failed to remove sticky common event. Code is ${err.code}, message is ${err.message}`);
+       return;
+     }
+     console.info(`Succeeded in removeing sticky event.`);
    });
    ```

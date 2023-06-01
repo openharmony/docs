@@ -9,8 +9,8 @@
   - [传感器开发概述](sensor-overview.md)
   - [传感器开发指导](sensor-guidelines.md)
 - 振动
-  - [振动开发概述](vibrator-overview.md)
-  - [振动开发指导](vibrator-guidelines.md)
+  - [Vibrator开发概述](vibrator-overview.md)
+  - [Vibrator开发指导](vibrator-guidelines.md)
 - 多模输入
   - [输入设备开发指导](inputdevice-guidelines.md)
   - [鼠标光标开发指导](pointerstyle-guidelines.md)
@@ -18,4 +18,4 @@
   - [示例服务器开发概述](sample-server-overview.md)
   - [示例服务器开发指导](sample-server-guidelines.md)
 - 设备状态
-  - [设备状态开发指导](stationary-guidelines.md)
+  - [Stationary开发指导](stationary-guidelines.md)

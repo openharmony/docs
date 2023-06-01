@@ -1,7 +1,7 @@
 # PowerTypes.idl
 
 
-## **概述**
+## 概述
 
 电源相关的数据类型。
 
@@ -20,14 +20,14 @@
 [Power](power.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### 枚举
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [PowerHdfCmd](power.md#powerhdfcmd)&nbsp;{&nbsp;&nbsp;&nbsp;CMD_REGISTER_CALLBCK&nbsp;=&nbsp;0,&nbsp;CMD_START_SUSPEND,&nbsp;CMD_STOP_SUSPEND,&nbsp;CMD_FORCE_SUSPEND,&nbsp;&nbsp;&nbsp;CMD_SUSPEND_BLOCK,&nbsp;CMD_SUSPEND_UNBLOCK,&nbsp;CMD_DUMP&nbsp;} | 枚举电源命令的参数。 | 
+| [PowerHdfCmd](power.md#powerhdfcmd)&nbsp;{&nbsp;CMD_REGISTER_CALLBCK&nbsp;=&nbsp;0,&nbsp;CMD_START_SUSPEND,&nbsp;CMD_STOP_SUSPEND,&nbsp;CMD_FORCE_SUSPEND,&nbsp;&nbsp;&nbsp;CMD_SUSPEND_BLOCK,&nbsp;CMD_SUSPEND_UNBLOCK,&nbsp;CMD_DUMP&nbsp;} | 枚举电源命令的参数。 | 
 | [PowerHdfCallbackCmd](power.md#powerhdfcallbackcmd)&nbsp;{&nbsp;CMD_ON_SUSPEND&nbsp;=&nbsp;0,&nbsp;CMD_ON_WAKEUP&nbsp;} | 枚举电源状态回调的参数。 | 
 | [PowerHdfState](power.md#powerhdfstate)&nbsp;{&nbsp;AWAKE&nbsp;=&nbsp;0,&nbsp;INACTIVE,&nbsp;SLEEP&nbsp;} | 枚举电源的状态。 | 
 

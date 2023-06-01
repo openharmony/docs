@@ -550,7 +550,7 @@ Listens for camera status changes. This API uses an asynchronous callback to ret
 **Example**
 
 ```js
-cameraManager.on('cameraStatus', (cameraStatusInfo) => {
+cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
     console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
     console.log(`status: ${cameraStatusInfo.status}`);
 })
@@ -1679,7 +1679,7 @@ The coordinate system is based on the horizontal device direction with the devic
 
 | Name          | Type                           | Mandatory| Description                |
 | ------------- | -------------------------------| ---- | ------------------- |
-| exposurePoint | [Point](#point)                | Yes  | Exposure point.             |
+| exposurePoint | [Point](#point)                | Yes  | Metering point. The value range of x and y must be within [0,1]. If a value less than 0 is passed, the value **0** is used. If a value greater than **1** is passed, the value **1** is used.            |
 
 **Return value**
 
@@ -1754,7 +1754,7 @@ Before the setting, you are advised to use **[getExposureBiasRange](#getexposure
 
 | Name    | Type                           | Mandatory| Description                |
 | -------- | -------------------------------| ---- | ------------------- |
-| exposureBias   | number                   | Yes  | Exposure bias to set, which must be within the range obtained by running **getExposureBiasRange** interface. If the API call fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| exposureBias   | number                   | Yes  | EV. The supported EV range can be obtained by calling **getExposureBiasRange**. If calling the API fails, an error code defined in [CameraErrorCode](#cameraerrorcode) will be returned. If the value passed is not within the supported range, the nearest critical point is used.|
 
 **Error codes**
 
@@ -1936,7 +1936,7 @@ The coordinate system is based on the horizontal device direction with the devic
 
 | Name     | Type                    | Mandatory| Description                |
 | -------- | ----------------------- | ---- | ------------------- |
-| Point1    | [Point](#point)         | Yes  | Focal point.               |
+| Point1    | [Point](#point)         | Yes  | Focal point. The value range of x and y must be within [0,1]. If a value less than 0 is passed, the value **0** is used. If a value greater than **1** is passed, the value **1** is used.  |
 
 **Return value**
 
@@ -2075,7 +2075,7 @@ Sets a zoom ratio, with a maximum precision of two decimal places.
 
 | Name      | Type                 | Mandatory| Description                |
 | --------- | -------------------- | ---- | ------------------- |
-| zoomRatio | number               | Yes  | Zoom ratio. You can use **getZoomRatioRange** to obtain the supported values.|
+| zoomRatio | number               | Yes  | Zoom ratio. The supported zoom ratio range can be obtained by calling **getZoomRatioRange**. If the value passed is not within the supported range, the nearest critical point is used.|
 
 **Return value**
 
@@ -2735,7 +2735,7 @@ Captures a photo with the specified shooting parameters. This API uses a promise
 
 | Name    | Type                                        | Mandatory| Description     |
 | ------- | ------------------------------------------- | ---- | -------- |
-| setting | [PhotoCaptureSetting](#photocapturesetting) | No  | Shooting settings.|
+| setting | [PhotoCaptureSetting](#photocapturesetting) | No  | Shooting parameters. The input of **undefined** is processed as if no parameters were passed.|
 
 **Return value**
 

@@ -1,7 +1,7 @@
 # IActivityInterface
 
 
-## **概述**
+## 概述
 
 定义对行为识别进行基本操作的接口。
 
@@ -9,10 +9,10 @@
 
 **相关模块:**
 
-[HdiActivityRecognition](activity_recognition.md)
+[HdiActivityRecognition](_hdi_activity_recognition.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 成员函数
@@ -28,7 +28,7 @@
 | [FlushActivity](#flushactivity)&nbsp;() | 数据刷新。 | 
 
 
-## **成员函数说明**
+## 成员函数说明
 
 
 ### DisableActRecognitionEvent()
@@ -38,9 +38,7 @@
 IActivityInterface::DisableActRecognitionEvent ([in] int activity, [in] int eventType )
 ```
 
-**描述：**
-
-取消订阅某个行为事件。
+**描述:**
 
 取消订阅某个之前订阅过的行为事件。
 
@@ -49,7 +47,7 @@ IActivityInterface::DisableActRecognitionEvent ([in] int activity, [in] int even
   | 名称 | 描述 | 
 | -------- | -------- |
 | activity | 取消订阅的行为，参考[EnableActRecognitionEvent](#enableactrecognitionevent)接口的activity参数。 | 
-| eventType | 事件类型，参考[ActRecognitionEventType](activity_recognition.md#actrecognitioneventtype)定义。可以填充1（进入）或2（退出），也可以填充3（同时订阅进入和退出）。 | 
+| eventType | 事件类型，参考[ActRecognitionEventType](_hdi_activity_recognition.md#actrecognitioneventtype)定义。可以填充1（进入）或2（退出），也可以填充3（同时订阅进入和退出）。 | 
 
 **返回:**
 
@@ -65,7 +63,7 @@ IActivityInterface::DisableActRecognitionEvent ([in] int activity, [in] int even
 IActivityInterface::EnableActRecognitionEvent ([in] int activity, [in] int eventType, [in] long maxReportLatencyNs, [in] int powerMode )
 ```
 
-**描述：**
+**描述:**
 
 订阅某个行为事件。
 
@@ -76,9 +74,9 @@ IActivityInterface::EnableActRecognitionEvent ([in] int activity, [in] int event
   | 名称 | 描述 | 
 | -------- | -------- |
 | activity | 订阅的行为，通过[GetSupportActivity](#getsupportactivity)得到设备支持的所有行为，然后将行为列表中需要订阅的行为下标作为参数填充。 | 
-| eventType | 事件类型，参考[ActRecognitionEventType](activity_recognition.md#actrecognitioneventtype)定义。可以填充1（进入）或2（退出），也可以填充3（同时订阅进入和退出）。 | 
+| eventType | 事件类型，参考[ActRecognitionEventType](_hdi_activity_recognition.md#actrecognitioneventtype)定义。可以填充1（进入）或2（退出），也可以填充3（同时订阅进入和退出）。 | 
 | maxReportLatencyNs | 最大上报时间间隔，单位是纳秒。若该时间间隔内有订阅的行为事件发生，则会上报。若存在多个订阅的行为，取最小的时间间隔。 | 
-| powerMode | 功耗模式。参考[ActRecognitionPowerMode](activity_recognition.md#actrecognitionpowermode)定义。 | 
+| powerMode | 功耗模式。参考[ActRecognitionPowerMode](_hdi_activity_recognition.md#actrecognitionpowermode)定义。 | 
 
 **返回:**
 
@@ -94,7 +92,7 @@ IActivityInterface::EnableActRecognitionEvent ([in] int activity, [in] int event
 IActivityInterface::FlushActivity ()
 ```
 
-**描述：**
+**描述:**
 
 数据刷新。
 
@@ -114,7 +112,7 @@ IActivityInterface::FlushActivity ()
 IActivityInterface::GetCurrentActivity ([out] struct ActRecognitionEvent[] event)
 ```
 
-**描述：**
+**描述:**
 
 获取当前的行为事件。
 
@@ -140,7 +138,7 @@ IActivityInterface::GetCurrentActivity ([out] struct ActRecognitionEvent[] event
 IActivityInterface::GetSupportActivity ([out] String[] activity)
 ```
 
-**描述：**
+**描述:**
 
 获取设备支持的行为类型。
 
@@ -148,7 +146,7 @@ IActivityInterface::GetSupportActivity ([out] String[] activity)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| activity | 参数类型为字符串，输出设备支持的行为类型。&nbsp;包括："inVehicle"&nbsp;、"onBicycle"、"walking"、"running"、"still"、"fast_walking"、"high_speed_rail"&nbsp;"unknown"、"elevator"、"relative_still"、"walking_handhold"、"lying_posture"、"plane"、"metro"等。对应[ActRecognitionEventType](activity_recognition.md#actrecognitioneventtype)中的类型。 | 
+| activity | 参数类型为字符串，输出设备支持的行为类型。&nbsp;包括："inVehicle"&nbsp;、"onBicycle"、"walking"、"running"、"still"、"fast_walking"、"high_speed_rail"&nbsp;"unknown"、"elevator"、"relative_still"、"walking_handhold"、"lying_posture"、"plane"、"metro"等。对应[ActRecognitionEventType](_hdi_activity_recognition.md#actrecognitioneventtype)中的类型。 | 
 
 **返回:**
 
@@ -164,7 +162,7 @@ IActivityInterface::GetSupportActivity ([out] String[] activity)
 IActivityInterface::RegisterActRecognitionCallback ([in] IActivityChangedCallback callbackObj)
 ```
 
-**描述：**
+**描述:**
 
 注册回调函数。
 
@@ -190,7 +188,7 @@ IActivityInterface::RegisterActRecognitionCallback ([in] IActivityChangedCallbac
 IActivityInterface::UnregisterActRecognitionCallback ([in] IActivityChangedCallback callbackObj)
 ```
 
-**描述：**
+**描述:**
 
 取消注册回调函数。
 

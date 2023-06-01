@@ -3,8 +3,7 @@
 
 You can publish basic notifications to send SMS messages, prompt messages, and advertisements. Available content types of basic notifications include normal text, long text, multi-line text, and picture-attached.
 
-
-  **Table 1** Basic notification content types
+**Table 1** Basic notification content types
 
 | Type| Description|
 | -------- | -------- |
@@ -13,16 +12,16 @@ You can publish basic notifications to send SMS messages, prompt messages, and a
 | NOTIFICATION_CONTENT_MULTILINE | Multi-line text notification.|
 | NOTIFICATION_CONTENT_PICTURE | Picture-attached notification.|
 
+Notifications are displayed in the notification panel, which is the only supported subscriber to notifications. Below you can see two examples of the basic notification.
 
-Notifications are displayed in the notification panel, which is the only system subscriber to notifications. Below you can see two examples of the basic notification.
+**Figure 1** Examples of the basic notification
 
-**Figure 1** Examples of the basic notification 
 ![en-us_image_0000001466462305](figures/en-us_image_0000001466462305.png)
 
 
 ## Available APIs
 
-The following table describes the APIs for notification publishing. You specify the notification type by setting the [NotificationRequest](../reference/apis/js-apis-notificationManager.md#notificationrequest) parameter in the APIs.
+The following table describes the APIs for notification publishing. You specify the notification type by setting the [NotificationRequest](../reference/apis/js-apis-inner-notification-notificationRequest.md#notificationrequest) parameter in the APIs.
 
 | Name| Description|
 | -------- | -------- |
@@ -48,21 +47,21 @@ The following table describes the APIs for notification publishing. You specify 
       let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
-      	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT, // Basic notification
-      	normal: {
-      	  title: 'test_title',
-      	  text: 'test_text',
-      	  additionalText: 'test_additionalText',
-      	}
+          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT, // Basic notification
+          normal: {
+            title: 'test_title',
+            text: 'test_text',
+            additionalText: 'test_additionalText',
+          }
         }
-      }
+      };
       
       notificationManager.publish(notificationRequest, (err) => {
-          if (err) {
-              console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
-              return;
-          }
-          console.info(`[ANS] publish success.`);
+        if (err) {
+          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in publishing notification.');
       });
       ```
 
@@ -74,25 +73,25 @@ The following table describes the APIs for notification publishing. You specify 
       let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
-      	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // Long-text notification
-      	longText: {
-      	  title: 'test_title',
-      	  text: 'test_text',
-      	  additionalText: 'test_additionalText',
-      	  longText: 'test_longText',
-      	  briefText: 'test_briefText',
-      	  expandedTitle: 'test_expandedTitle',
-      	}
+          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_LONG_TEXT, // Long-text notification
+          longText: {
+            title: 'test_title',
+            text: 'test_text',
+            additionalText: 'test_additionalText',
+            longText: 'test_longText',
+            briefText: 'test_briefText',
+            expandedTitle: 'test_expandedTitle',
+          }
         }
-      }
+      };
       
       // Publish the notification.
       notificationManager.publish(notificationRequest, (err) => {
-          if (err) {
-              console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
-              return;
-          }
-          console.info(`[ANS] publish success.`);
+        if (err) {
+          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in publishing notification.');
       });
       ```
    
@@ -104,24 +103,24 @@ The following table describes the APIs for notification publishing. You specify 
       let notificationRequest: notificationManager.NotificationRequest = {
         id: 1,
         content: {
-      	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE, // Multi-line text notification
-      	multiLine: {
-      	  title: 'test_title',
-      	  text: 'test_text',
-      	  briefText: 'test_briefText',
-      	  longTitle: 'test_longTitle',
-      	  lines: ['line_01', 'line_02', 'line_03', 'line_04'],
-      	}
+          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_MULTILINE, // Multi-line text notification
+          multiLine: {
+            title: 'test_title',
+            text: 'test_text',
+            briefText: 'test_briefText',
+            longTitle: 'test_longTitle',
+            lines: ['line_01', 'line_02', 'line_03', 'line_04'],
+          }
         }
-      }
+      };
       
       // Publish the notification.
       notificationManager.publish(notificationRequest, (err) => {
         if (err) {
-      	console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
-      	return;
+          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          return;
         }
-        console.info(`[ANS] publish success`);
+        console.info('Succeeded in publishing notification.');
       });
       ```
    
@@ -132,27 +131,27 @@ The following table describes the APIs for notification publishing. You specify 
       ```ts
       let imagePixelMap: PixelMap = undefined; // Obtain the PixelMap information.
       let notificationRequest: notificationManager.NotificationRequest = {
-          id: 1,
-          content: {
-      	contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
-              picture: {
-                title: 'test_title',
-                text: 'test_text',
-                additionalText: 'test_additionalText',
-                briefText: 'test_briefText',
-                expandedTitle: 'test_expandedTitle',
-                picture: imagePixelMap
-              }
+        id: 1,
+        content: {
+          contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_PICTURE,
+          picture: {
+            title: 'test_title',
+            text: 'test_text',
+            additionalText: 'test_additionalText',
+            briefText: 'test_briefText',
+            expandedTitle: 'test_expandedTitle',
+            picture: imagePixelMap
           }
-      }
+        }
+      };
       
       // Publish the notification.
       notificationManager.publish(notificationRequest, (err) => {
-          if (err) {
-      	console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
-      	return;
-          }
-          console.info(`[ANS] publish success.`);
+        if (err) {
+          console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+          return;
+        }
+        console.info('Succeeded in publishing notification.');
       });
       ```
    

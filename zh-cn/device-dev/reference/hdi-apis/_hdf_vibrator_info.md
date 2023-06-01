@@ -1,33 +1,37 @@
 # HdfVibratorInfo
 
 
-## **概述**
+## 概述
 
 定义马达参数。
 
 参数包括设置马达振幅和频率以及振幅和频率的范围。
 
+**Since:**
+3.2
+**Version:**
+1.1
 **相关模块:**
 
-[Vibrator](vibrator.md)
+[Vibrator](_vibrator.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [isSupportIntensity](#issupportintensity) | 设置马达振幅。1表示支持，0表示不支持。 | 
-| [isSupportFrequency](#issupportfrequency) | 设置马达频率。1表示支持，0表示不支持。 | 
-| [intensityMaxValue](#intensitymaxvalue) | 最大振幅。 | 
-| [intensityMinValue](#intensityminvalue) | 最小振幅。 | 
-| [frequencyMaxValue](#frequencymaxvalue) | 最大频率。 | 
-| [frequencyMinValue](#frequencyminvalue) | 最小频率。 | 
+| [isSupportIntensity](#issupportintensity) | int<br/>设置马达振幅。1表示支持，0表示不支持。&nbsp; | 
+| [isSupportFrequency](#issupportfrequency) | int<br/>设置马达频率。1表示支持，0表示不支持。&nbsp; | 
+| [intensityMaxValue](#intensitymaxvalue) | int<br/>最大振幅。&nbsp; | 
+| [intensityMinValue](#intensityminvalue) | int<br/>最小振幅。&nbsp; | 
+| [frequencyMaxValue](#frequencymaxvalue) | int<br/>最大频率。&nbsp; | 
+| [frequencyMinValue](#frequencyminvalue) | int<br/>最小频率。&nbsp; | 
 
 
-## **类成员变量说明**
+## 类成员变量说明
 
 
 ### frequencyMaxValue
@@ -36,9 +40,7 @@
 ```
 int HdfVibratorInfo::frequencyMaxValue
 ```
-
-**描述：**
-
+**描述:**
 最大频率。
 
 
@@ -48,9 +50,7 @@ int HdfVibratorInfo::frequencyMaxValue
 ```
 int HdfVibratorInfo::frequencyMinValue
 ```
-
-**描述：**
-
+**描述:**
 最小频率。
 
 
@@ -60,9 +60,7 @@ int HdfVibratorInfo::frequencyMinValue
 ```
 int HdfVibratorInfo::intensityMaxValue
 ```
-
-**描述：**
-
+**描述:**
 最大振幅。
 
 
@@ -72,9 +70,7 @@ int HdfVibratorInfo::intensityMaxValue
 ```
 int HdfVibratorInfo::intensityMinValue
 ```
-
-**描述：**
-
+**描述:**
 最小振幅。
 
 
@@ -84,9 +80,7 @@ int HdfVibratorInfo::intensityMinValue
 ```
 int HdfVibratorInfo::isSupportFrequency
 ```
-
-**描述：**
-
+**描述:**
 设置马达频率。1表示支持，0表示不支持。
 
 
@@ -96,7 +90,5 @@ int HdfVibratorInfo::isSupportFrequency
 ```
 int HdfVibratorInfo::isSupportIntensity
 ```
-
-**描述：**
-
+**描述:**
 设置马达振幅。1表示支持，0表示不支持。

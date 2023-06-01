@@ -26,11 +26,7 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
 | -------- | -------- |
 | getAllSessionDescriptors(callback: AsyncCallback&lt;Array&lt;Readonly&lt;AVSessionDescriptor&gt;&gt;&gt;): void | 获取系统中所有媒体会话的描述符。 | 
 | createController(sessionId: string, callback: AsyncCallback&lt;AVSessionController&gt;): void | 创建媒体会话控制器。 | 
-| getValidCommands(callback: AsyncCallback&lt;Array&lt;AVControlCommandType&gt;&gt;): void | 获取媒体会话支持的有效命令。<br/>音视频应用在接入媒体会话时监听的播控命令，即为媒体会话支持的有效命令，相关信息请参见[媒体会话提供方监听播控命令事件](using-avsession-developer.md)。 | 
-| getLaunchAbility(callback: AsyncCallback&lt;WantAgent&gt;): void | 获取媒体会话中配置的可被拉起的UIAbility。<br/>当用户在媒体会话控制方应用进行界面操作，例如点击了播控中心卡片后，可以拉起对应的应用。 | 
-| sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback&lt;void&gt;): void | 通过会话对应的AVSessionController向会话发送按键命令。 | 
-| sendSystemAVKeyEvent(event: KeyEvent, callback: AsyncCallback&lt;void&gt;): void | 向置顶会话发送按键命令。 | 
-| sendControlCommand(command: AVControlCommand, callback: AsyncCallback&lt;void&gt;): void | 通过会话对应的AVSessionController向会话发送播控命令。 | 
+| sendSystemAVKeyEvent(event: KeyEvent, callback: AsyncCallback&lt;void&gt;): void | 向置顶会话发送按键命令。 |  
 | sendSystemControlCommand(command: AVControlCommand, callback: AsyncCallback&lt;void&gt;): void | 向置顶会话发送播控命令。 | 
 | getHistoricalSessionDescriptors(maxSize: number, callback: AsyncCallback\<Array\<Readonly\<AVSessionDescriptor>>>): void<sup>10+<sup> | 获取历史会话的描述符。 |
 
@@ -38,15 +34,15 @@ OpenHarmony系统预置的播控中心，作为媒体会话控制方与音视频
 
 | 接口名 | 说明 |
 | -------- | -------- |
-| getAVPlaybackState(callback: AsyncCallback&lt;AVPlaybackState&gt;): void | 获取当前会话播放状态相关信息。 |
-| getAVMetadata(callback: AsyncCallback&lt;AVMetadata&gt;): void | 获取会话元数据。 |
-| getOutputDevice(callback: AsyncCallback&lt;OutputDeviceInfo&gt;): void | 获取播放设备信息。 |
-| sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback&lt;void&gt;): void | 发送按键事件到会话。|
-| getLaunchAbility(callback: AsyncCallback&lt;WantAgent&gt;): void | 获取应用在会话中保存的WantAgent对象。 |
-| isActive(callback: AsyncCallback&lt;boolean&gt;): void | 判断会话是否被激活。 |
-| destroy(callback: AsyncCallback&lt;void&gt;): void | 销毁当前控制器，销毁后当前控制器不再可用。 |
-| getValidCommands(callback: AsyncCallback&lt;Array&lt;AVControlCommandType&gt;&gt;): void | 获取会话支持的有效命令。 |
-| sendControlCommand(command: AVControlCommand, callback: AsyncCallback&lt;void&gt;): void | 通过会话控制器发送命令到其对应的会话。 |
+| getAVPlaybackState(callback: AsyncCallback&lt;AVPlaybackState&gt;): void<sup>10+<sup> | 获取当前会话播放状态相关信息。 |
+| getAVMetadata(callback: AsyncCallback&lt;AVMetadata&gt;): void<sup>10+<sup> | 获取会话元数据。 |
+| getOutputDevice(callback: AsyncCallback&lt;OutputDeviceInfo&gt;): void<sup>10+<sup> | 获取播放设备信息。 |
+| sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | 发送按键事件到会话。|
+| getLaunchAbility(callback: AsyncCallback&lt;WantAgent&gt;): void<sup>10+<sup> | 获取应用在会话中保存的WantAgent对象。 |
+| isActive(callback: AsyncCallback&lt;boolean&gt;): void<sup>10+<sup> | 判断会话是否被激活。 |
+| destroy(callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | 销毁当前控制器，销毁后当前控制器不再可用。 |
+| getValidCommands(callback: AsyncCallback&lt;Array&lt;AVControlCommandType&gt;&gt;): void<sup>10+<sup> | 获取会话支持的有效命令。 |
+| sendControlCommand(command: AVControlCommand, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | 通过会话控制器发送命令到其对应的会话。 |
 | sendCommonCommand(command: string, args: {[key: string]: Object}, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | 通过会话控制器发送自定义命令到其对应的会话。 |
 | getAVQueueItems(callback: AsyncCallback&lt;Array&lt;AVQueueItem&gt;&gt;): void<sup>10+<sup> | 获取当前播放列表相关信息。 |
 | getAVQueueTitle(callback: AsyncCallback&lt;string&gt;): void<sup>10+<sup> | 获取当前播放列表的名称。 |

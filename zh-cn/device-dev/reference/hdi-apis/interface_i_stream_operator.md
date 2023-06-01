@@ -1,30 +1,30 @@
 # IStreamOperator
 
 
-## **概述**
+## 概述
 
 定义Camera设备流操作。
 
 对Camera设备执行流的创建、配置与添加参数、属性获取、句柄绑定与解除、图像捕获与取消、流的转换以及流释放操作。
 
-流是指从底层设备输出，经本模块内部各环节处理，最终传递到上层服务或者应用的一组数据序列。 本模块支持的流的类型有预览流，录像流，拍照流等，更多类型可查看[StreamIntent](camera.md#streamintent)。
+流是指从底层设备输出，经本模块内部各环节处理，最终传递到上层服务或者应用的一组数据序列。本模块支持的流的类型有预览流，录像流，拍照流等，更多类型可查看[StreamIntent](_camera.md#streamintent)。
 
 **相关模块:**
 
-[Camera](camera.md)
+[Camera](_camera.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 成员函数
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [IsStreamsSupported](#isstreamssupported)&nbsp;([in]&nbsp;enum&nbsp;[OperationMode](camera.md#operationmode)&nbsp;mode,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;modeSetting,&nbsp;[in]&nbsp;struct&nbsp;[StreamInfo](_stream_info.md)[]&nbsp;infos,&nbsp;[out]&nbsp;enum&nbsp;[StreamSupportType](camera.md#streamsupporttype)&nbsp;type) | 查询是否支持添加参数对应的流。 | 
+| [IsStreamsSupported](#isstreamssupported)&nbsp;([in]&nbsp;enum&nbsp;[OperationMode](_camera.md#operationmode)&nbsp;mode,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;modeSetting,&nbsp;[in]&nbsp;struct&nbsp;[StreamInfo](_stream_info.md)[]&nbsp;infos,&nbsp;[out]&nbsp;enum&nbsp;[StreamSupportType](_camera.md#streamsupporttype)&nbsp;type) | 查询是否支持添加参数对应的流。 | 
 | [CreateStreams](#createstreams)&nbsp;([in]&nbsp;struct&nbsp;[StreamInfo](_stream_info.md)[]&nbsp;streamInfos) | 创建流。 | 
 | [ReleaseStreams](#releasestreams)&nbsp;([in]&nbsp;int[]&nbsp;streamIds) | 释放流。 | 
-| [CommitStreams](#commitstreams)&nbsp;([in]&nbsp;enum&nbsp;[OperationMode](camera.md#operationmode)&nbsp;mode,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;modeSetting) | 配置流。 | 
+| [CommitStreams](#commitstreams)&nbsp;([in]&nbsp;enum&nbsp;[OperationMode](_camera.md#operationmode)&nbsp;mode,&nbsp;[in]&nbsp;unsigned&nbsp;char[]&nbsp;modeSetting) | 配置流。 | 
 | [GetStreamAttributes](#getstreamattributes)&nbsp;([out]&nbsp;struct&nbsp;[StreamAttribute](_stream_attribute.md)[]&nbsp;attributes) | 获取流的属性。通过该接口获取的流属性可能会和[CreateStreams](#createstreams)输入的流信息存在差异。 | 
 | [AttachBufferQueue](#attachbufferqueue)&nbsp;([in]&nbsp;int&nbsp;streamId,&nbsp;[in]&nbsp;BufferProducerSequenceable&nbsp;bufferProducer) | 绑定生产者句柄和指定流。 | 
 | [DetachBufferQueue](#detachbufferqueue)&nbsp;([in]&nbsp;int&nbsp;streamId) | 解除生产者句柄和指定流的绑定关系。 | 
@@ -33,7 +33,7 @@
 | [ChangeToOfflineStream](#changetoofflinestream)&nbsp;([in]&nbsp;int[]&nbsp;streamIds,&nbsp;[in]&nbsp;[IStreamOperatorCallback](interface_i_stream_operator_callback.md)&nbsp;callbackObj,&nbsp;[out]&nbsp;[IOfflineStreamOperator](interface_i_offline_stream_operator.md)&nbsp;offlineOperator) | 将指定流转换成离线流。 | 
 
 
-## **成员函数说明**
+## 成员函数说明
 
 
 ### AttachBufferQueue()
@@ -43,7 +43,7 @@
 IStreamOperator::AttachBufferQueue ([in] int streamId, [in] BufferProducerSequenceable bufferProducer )
 ```
 
-**描述：**
+**描述:**
 
 绑定生产者句柄和指定流。
 
@@ -60,7 +60,7 @@ IStreamOperator::AttachBufferQueue ([in] int streamId, [in] BufferProducerSequen
 
 NO_ERROR 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[CamRetCode](camera.md#camretcode)。
+其他值表示执行失败，具体错误码查看[CamRetCode](_camera.md#camretcode)。
 
 **参见:**
 
@@ -74,7 +74,7 @@ NO_ERROR 表示执行成功。
 IStreamOperator::CancelCapture ([in] int captureId)
 ```
 
-**描述：**
+**描述:**
 
 取消连续捕获。捕获结束时，会调用[OnCaptureEnded](interface_i_stream_operator_callback.md#oncaptureended)来通知调用者捕获的帧计数等信息。
 
@@ -88,7 +88,7 @@ IStreamOperator::CancelCapture ([in] int captureId)
 
 NO_ERROR 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[CamRetCode](camera.md#camretcode)。
+其他值表示执行失败，具体错误码查看[CamRetCode](_camera.md#camretcode)。
 
 **参见:**
 
@@ -102,7 +102,7 @@ NO_ERROR 表示执行成功。
 IStreamOperator::Capture ([in] int captureId, [in] struct CaptureInfo info, [in] boolean isStreaming )
 ```
 
-**描述：**
+**描述:**
 
 捕获图像。
 
@@ -112,7 +112,7 @@ IStreamOperator::Capture ([in] int captureId, [in] struct CaptureInfo info, [in]
 
 - 单次捕获即触发之后只捕获一帧图像数据，用于单次拍照场景。捕获启动时，会调用[OnCaptureStarted](interface_i_stream_operator_callback.md#oncapturestarted)来通知调用者捕获已经启动。
 
-- 连续捕获需调用[CancelCapture](#cancelcapture)来停止捕获。捕获结束时，会调用[OnCaptureEnded](interface_i_stream_operator_callback.md#oncaptureended)来通知调用者捕获的帧计数等信息。 [CaptureInfo](_capture_info.md)的[enableShutterCallback_](_capture_info.md#enableshuttercallback)使能OnFrameShutter，使能后每次捕获触发OnFrameShutter。 对于多个流同时捕获的场景，本模块内部保证同时上报多路流捕获数据。
+- 连续捕获需调用[CancelCapture](#cancelcapture)来停止捕获。捕获结束时，会调用[OnCaptureEnded](interface_i_stream_operator_callback.md#oncaptureended)来通知调用者捕获的帧计数等信息。 [CaptureInfo](_capture_info.md)的enableShutterCallback_使能[OnFrameShutter](interface_i_stream_operator_callback.md#onframeshutter)，使能后每次捕获触发[OnFrameShutter](interface_i_stream_operator_callback.md#onframeshutter)。 对于多个流同时捕获的场景，本模块内部保证同时上报多路流捕获数据。
 
 **参数:**
 
@@ -126,7 +126,7 @@ IStreamOperator::Capture ([in] int captureId, [in] struct CaptureInfo info, [in]
 
 NO_ERROR 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[CamRetCode](camera.md#camretcode)。
+其他值表示执行失败，具体错误码查看[CamRetCode](_camera.md#camretcode)。
 
 **参见:**
 
@@ -140,7 +140,7 @@ NO_ERROR 表示执行成功。
 IStreamOperator::ChangeToOfflineStream ([in] int[] streamIds, [in] IStreamOperatorCallback callbackObj, [out] IOfflineStreamOperator offlineOperator )
 ```
 
-**描述：**
+**描述:**
 
 将指定流转换成离线流。
 
@@ -158,7 +158,7 @@ IStreamOperator::ChangeToOfflineStream ([in] int[] streamIds, [in] IStreamOperat
 
 NO_ERROR 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[CamRetCode](camera.md#camretcode)。
+其他值表示执行失败，具体错误码查看[CamRetCode](_camera.md#camretcode)。
 
 
 ### CommitStreams()
@@ -168,7 +168,7 @@ NO_ERROR 表示执行成功。
 IStreamOperator::CommitStreams ([in] enum OperationMode mode, [in] unsigned char[] modeSetting )
 ```
 
-**描述：**
+**描述:**
 
 配置流。
 
@@ -178,14 +178,14 @@ IStreamOperator::CommitStreams ([in] enum OperationMode mode, [in] unsigned char
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| mode | 流运行的模式，支持的模式定义在[OperationMode](camera.md#operationmode)。 | 
+| mode | 流运行的模式，支持的模式定义在[OperationMode](_camera.md#operationmode)。 | 
 | modeSetting | 流的配置参数，包括帧率，ZOOM等信息。ZOOM：变焦 | 
 
 **返回:**
 
 NO_ERROR 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[CamRetCode](camera.md#camretcode)。
+其他值表示执行失败，具体错误码查看[CamRetCode](_camera.md#camretcode)。
 
 
 ### CreateStreams()
@@ -195,7 +195,7 @@ NO_ERROR 表示执行成功。
 IStreamOperator::CreateStreams ([in] struct StreamInfo[] streamInfos)
 ```
 
-**描述：**
+**描述:**
 
 创建流。
 
@@ -205,13 +205,13 @@ IStreamOperator::CreateStreams ([in] struct StreamInfo[] streamInfos)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| streamInfos | 流信息列表，流信息定义在[StreamInfo](_stream_info.md)。输入的流信息可能会被修改，需通过[GetStreamAttributes](#getstreamattributes)获取最新的流属性。 | 
+| streamInfos | 流信息列表，流信息定义在[StreamInfo](_stream_info.md)。输入的流信息可能会被修改，需通过&nbsp;[GetStreamAttributes](#getstreamattributes)获取最新的流属性。 | 
 
 **返回:**
 
 NO_ERROR 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[CamRetCode](camera.md#camretcode)。
+其他值表示执行失败，具体错误码查看[CamRetCode](_camera.md#camretcode)。
 
 
 ### DetachBufferQueue()
@@ -221,7 +221,7 @@ NO_ERROR 表示执行成功。
 IStreamOperator::DetachBufferQueue ([in] int streamId)
 ```
 
-**描述：**
+**描述:**
 
 解除生产者句柄和指定流的绑定关系。
 
@@ -235,7 +235,7 @@ IStreamOperator::DetachBufferQueue ([in] int streamId)
 
 NO_ERROR 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[CamRetCode](camera.md#camretcode)。
+其他值表示执行失败，具体错误码查看[CamRetCode](_camera.md#camretcode)。
 
 **参见:**
 
@@ -249,7 +249,7 @@ NO_ERROR 表示执行成功。
 IStreamOperator::GetStreamAttributes ([out] struct StreamAttribute[] attributes)
 ```
 
-**描述：**
+**描述:**
 
 获取流的属性。通过该接口获取的流属性可能会和[CreateStreams](#createstreams)输入的流信息存在差异。
 
@@ -263,7 +263,7 @@ IStreamOperator::GetStreamAttributes ([out] struct StreamAttribute[] attributes)
 
 NO_ERROR 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[CamRetCode](camera.md#camretcode)。
+其他值表示执行失败，具体错误码查看[CamRetCode](_camera.md#camretcode)。
 
 
 ### IsStreamsSupported()
@@ -273,7 +273,7 @@ NO_ERROR 表示执行成功。
 IStreamOperator::IsStreamsSupported ([in] enum OperationMode mode, [in] unsigned char[] modeSetting, [in] struct StreamInfo[] infos, [out] enum StreamSupportType type )
 ```
 
-**描述：**
+**描述:**
 
 查询是否支持添加参数对应的流。
 
@@ -289,16 +289,16 @@ IStreamOperator::IsStreamsSupported ([in] enum OperationMode mode, [in] unsigned
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| mode | 流的使用模式，支持的模式参考[OperationMode](camera.md#operationmode)。 | 
+| mode | 流的使用模式，支持的模式参考[OperationMode](_camera.md#operationmode)。 | 
 | modeSetting | 流的配置，包括帧率，3A等配置信息。3A：自动曝光&nbsp;(AE)、自动聚焦&nbsp;(AF)、自动白平衡&nbsp;(AWB) | 
 | infos | 流的配置信息，具体参考[StreamInfo](_stream_info.md)。 | 
-| type | 对动态配置流的支持类型，支持类型定义在[StreamSupportType](camera.md#streamsupporttype)。 | 
+| type | 对动态配置流的支持类型，支持类型定义在[StreamSupportType](_camera.md#streamsupporttype)。 | 
 
 **返回:**
 
 NO_ERROR 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[CamRetCode](camera.md#camretcode)。
+其他值表示执行失败，具体错误码查看[CamRetCode](_camera.md#camretcode)。
 
 
 ### ReleaseStreams()
@@ -308,7 +308,7 @@ NO_ERROR 表示执行成功。
 IStreamOperator::ReleaseStreams ([in] int[] streamIds)
 ```
 
-**描述：**
+**描述:**
 
 释放流。
 
@@ -322,4 +322,4 @@ IStreamOperator::ReleaseStreams ([in] int[] streamIds)
 
 NO_ERROR 表示执行成功。
 
-其他值表示执行失败，具体错误码查看[CamRetCode](camera.md#camretcode)。
+其他值表示执行失败，具体错误码查看[CamRetCode](_camera.md#camretcode)。
