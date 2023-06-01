@@ -115,5 +115,3 @@
     // 销毁对象
     OH_PurgeableMemory_Destroy(pPurgmem);
     ```
-
-## 相关实例
