@@ -107,7 +107,7 @@ extern "C" __attribute__((constructor)) void RegisterModule(void)
 
 ### Parsing the NativeXComponent Instance
 
-**NativeXComponent** provides an instance at the native layer for the **\<XComponent>**, which can be used as a bridge for binding with the **\<XComponent>** at the JS layer. The NDK APIs provided by the **\<XComponent>** depend on this instance. For details about the NKD APIs, see [Native XComponent](../reference/native-apis/_o_h___native_x_component.md).
+**NativeXComponent** provides an instance at the native layer for the **\<XComponent>**, which can be used as a bridge for binding with the **\<XComponent>** at the JS layer. The NDK APIs provided by the **\<XComponent>** depend on this instance. For details about the NDK APIs, see [Native XComponent](../reference/native-apis/_o_h___native_x_component.md).
 
 
 The **NativeXComponent** instance can be obtained by parsing the callback (that is, the **Init** function in [NAPI module registration](#registering-the-n-api-module)) when the module is loaded.
@@ -189,30 +189,33 @@ XComponent({ id: 'xcomponentId1', type: 'surface', libraryname: 'nativerender' }
 - **id**: corresponds to an **\<XComponent>** and must be unique. Generally, you can use the **OH_NativeXComponent_GetXComponentId** API on the native side to obtain the corresponding ID and bind the corresponding **\<XComponent>**.
 
 - **libraryname**: name of the loaded module, which must be the same as the value of **nm_modname** used when the Napi module is registered on the native side.
-  >**NOTE**
+
+  > **NOTE**
   >
-  >   An application loads modules to implement cross-language invoking in either of the following ways:
-  >
+  > An application loads modules to implement cross-language invoking in either of the following modes:
+  > 
   > 1. Use the **import** mode of the NAPI.
   >
-  >    ```ts
-  >    import nativerender from "libnativerender.so"
-  >    ```
+  > ```ts
+  > import nativerender from "libnativerender.so"
+  > ```
   >
-  > 2. Use the **\<XComponent>**, which, in essence, is to use the NAPI mechanism.
-  >    The difference between this loading mode and the **import** loading mode is that when the dynamic library is loaded, the **NativeXComponent** instance of the **\<XComponent>** is exposed to the native layer of the application so that you can use the NDK APIs of the **\<XComponent>**.
+  > 2. Use the **\<XComponent>**.
+  >
+  >    While this mode also uses the NAPI mechanism as the **import** mode, it enables you to use the NDK APIs of the **\<XComponent>**, by having the **NativeXComponent** instance of the **\<XComponent>** exposed to the native layer of the application when the dynamic library is loaded.
 
-- onLoad event
+- **onLoad** event
   - Trigger time: when the surface of the **\<XComponent>** is prepared.
   - **context** parameter: where the native API exposed on the module is mounted. Its usage is similar to the usage of the **context2** instance obtained after the module is directly loaded using **import context2 from "libnativerender.so"**.
   - Time sequence: When the **onLoad** event is subject to the surface. The following figure shows the time sequence of the **onLoad** event and the **OnSurfaceCreated** event on the native side.
 
-     ![onLoad](figures /onLoad.png)
+     ![onLoad](figures/onLoad.png)
 
-- onDestroy event
+- **onDestroy** event
+
   Trigger time: when the **\<XComponent>** is destroyed, in the same manner as that when an ArkUI component is destroyed. The following figure shows the time sequence of the **onDestroy** event and the **OnSurfaceDestroyed** event on the native side.
 
-  ![onDestroy](figures /onDestroy.png)
+  ![onDestroy](figures/onDestroy.png)
 
 
 ### Writing Media Data
@@ -221,7 +224,7 @@ The surface held by the **\<XComponent>** complies with the producer-consumer mo
 
 In OpenHarmony, components that comply with the producer design, such as the camera and video player, can write data to the surface held by the **\<XComponent>** and display the data through the **\<XComponent>**.
 
-![Picture 1](figures /Picture 1.png)
+![picture-1](figures/picture-1.png)
 
 You can bind the **\<XComponent>** to the **XComponentController** to obtain the surface ID (**surfaceId**, which uniquely identifies a surface) and send it to the corresponding component API.
 
