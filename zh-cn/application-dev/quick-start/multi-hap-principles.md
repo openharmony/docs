@@ -16,6 +16,6 @@
 
 - 同一进程内的数据通信，请参见[线程间通信](../application-models/thread-model-stage.md)。
 
-- 跨进程的数据通信，请参见[进程间通信](../application-models/process-model-stage.md)。。
+- 跨进程的数据通信，请参见[进程间通信](../application-models/process-model-stage.md)。
 
 - 多HAP如果运行在同一进程，则多HAP间组件的通信方式与同一HAP内组件的通信方式相同。
