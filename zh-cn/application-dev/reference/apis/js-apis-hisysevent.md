@@ -313,8 +313,8 @@ try {
 | beginTime | number | 是 | 查询的系统事件起始时间（13位时间戳）。 |
 | endTime | number | 是 | 查询的系统事件结束时间（13位时间戳）。 |
 | maxEvents | number | 是 | 查询的系统事件最多条数。 |
-| fromSeq | number | 否   | 查询的开始序列号 |
-| toSeq | number | 否   | 查询的结束序列号 |
+| fromSeq<sup>10+</sup> | number | 否   | 查询的系统事件起始序列号，默认值为-1。 |
+| toSeq<sup>10+</sup> | number | 否   | 查询的系统事件结束序列号，默认值为-1。 |
 
 ## QueryRule 
 
@@ -326,7 +326,7 @@ try {
 | -------- | -------- | -------- | -------- |
 | domain | string | 是 | 查询包含的事件领域。 |
 | names | string[] | 是 | 查询所包含的多个事件名称，每个查询规则对象包含多个系统事件名称。 |
-| condition | string | 否 | 事件的额外参数条件，格式：{"version":"V1","condition":{"and":[{"param":"参数","op":"操作符",<br/>        "value":"比较值"}]}} |
+| condition<sup>10+</sup> | string | 否 | 事件的额外参数条件，格式：{"version":"V1","condition":{"and":[{"param":"参数","op":"操作符","value":"比较值"}]}} |
 
 ## Querier
 
@@ -408,11 +408,11 @@ try {
 }
 ```
 
-## hiSysEvent.exportSysEvents
+## hiSysEvent.exportSysEvents<sup>10+</sup>
 
 exportSysEvents(queryArg: QueryArg, rules: QueryRule[]): number
 
-导出批量系统事件，以文件格式写入应用沙箱固定目录(/data/storage/el2/base/cache/hiview/event/)。
+批量导出系统事件，以文件格式写入应用沙箱固定目录(/data/storage/el2/base/cache/hiview/event/)。
 
 **需要权限：** ohos.permission.READ_DFX_SYSEVENT
 
@@ -475,7 +475,7 @@ try {
     
     // 延迟读取本次导出的事件
     setTimeout(function() {
-    	let eventDir = context.getApplicationContext().cacheDir + '/hiview/event';
+    	let eventDir = '/data/storage/el2/base/cache/hiview/event';
     	let filenames = fs.listFileSync(eventDir);
     	for (let i = 0; i < filenames.length; i++) {
     		if (filenames[i].indexOf(time.toString()) != -1) {
@@ -490,7 +490,7 @@ try {
 }
 ```
 
-## hiSysEvent.subscribe
+## hiSysEvent.subscribe<sup>10+</sup>
 
 subscribe(rules: QueryRule[]): number
 
@@ -552,7 +552,7 @@ try {
 
     // 延迟读取订阅的事件
     setTimeout(function() {
-    	let eventDir = context.getApplicationContext().cacheDir + '/hiview/event';
+    	let eventDir = '/data/storage/el2/base/cache/hiview/event';
     	let filenames = fs.listFileSync(eventDir);
     	for (let i = 0; i < filenames.length; i++) {
     		let res = fs.readTextSync(eventDir + '/' + filenames[i]);
@@ -565,7 +565,7 @@ try {
 }
 ```
 
-## hiSysEvent.unsubscribe
+## hiSysEvent.unsubscribe<sup>10+</sup>
 
 unsubscribe(): void
 
