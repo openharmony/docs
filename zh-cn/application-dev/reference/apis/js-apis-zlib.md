@@ -248,6 +248,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 | -------- | --------------------------------------|
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
+| 900003 | The input source file is not ZIP format or damaged. |
 
 **示例**
 
@@ -298,6 +299,7 @@ decompressFile(inFile: string, outFile: string, options: Options): Promise\<void
 | ------ | ------------------------------------- |
 | 900001 | The input source file is invalid.      |
 | 900002 | The input destination file is invalid. |
+| 900003 | The input source file is not ZIP format or damaged. |
 
 ```typescript
 // 【解压缩 例子2】
