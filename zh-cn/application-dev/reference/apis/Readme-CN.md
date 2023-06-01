@@ -150,6 +150,7 @@
     - [通知服务公共事件定义](common_event/commonEvent-ans.md)
     - [资源调度子系统公共事件定义](common_event/commonEvent-resourceschedule.md)
     - [电话服务子系统公共事件定义](common_event/commonEvent-telephony.md)
+    - [USB子系统公共事件定义](common_event/commonEvent-usb.md)
 - 包管理
   - [@ohos.bundle.appControl (appControl模块)](js-apis-appControl.md)
   - [@ohos.bundle.bundleManager (bundleManager模块)](js-apis-bundleManager.md)
