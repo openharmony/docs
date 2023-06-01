@@ -18,7 +18,6 @@
 | bool OH_PurgeableMemory_Destroy(OH_PurgeableMemory \*purgObj) | 将Purgeable memory对象会被析构掉。 | 
 | bool OH_PurgeableMemory_BeginRead(OH_PurgeableMemory \*purgObj) | 对purgeable对象进行读访问。 | 
 | void OH_PurgeableMemory_EndRead(OH_PurgeableMemory \*purgObj) | 读操作结束，将Purgeable对象的引用计数减1，当引用计数为0的时候， 该Purgeable memory对象可以被系统回收。 | 
-| bool OH_PurgeableMemory_BeginWrite(OH_PurgeableMemory \*purgObj) | 通过NativeWindow对象申请一块NativeWindowBuffer，用以内容生产。 | 
 |bool OH_PurgeableMemory_BeginWrite(OH_PurgeableMemory \*purgObj) | 对purgeable对象进行写访问。|
 |void OH_PurgeableMemory_EndWrite(OH_PurgeableMemory \*purgObj)|写操作结束，将Purgeable对象的引用计数减1，当引用计数为0的时候，该Purgeable memory对象可以被系统回收。|
 |void \*OH_PurgeableMemory_GetContent(OH_PurgeableMemory \*purgObj)|获取PurgeableMemory对象内存数据。|
