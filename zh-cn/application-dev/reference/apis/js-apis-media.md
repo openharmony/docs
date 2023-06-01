@@ -581,7 +581,7 @@ avPlayer.prepare().then(() => {
 
 play(callback: AsyncCallback\<void>): void
 
-通过回调方式开始播放音视频资源，只能在prepared/paused/complete状态调用。
+通过回调方式开始播放音视频资源，只能在prepared/paused/completed状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -615,7 +615,7 @@ avPlayer.play((err) => {
 
 play(): Promise\<void>
 
-通过Promise方式开始播放音视频资源，只能在prepared/paused/complete状态调用。
+通过Promise方式开始播放音视频资源，只能在prepared/paused/completed状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -713,7 +713,7 @@ avPlayer.pause().then(() => {
 
 stop(callback: AsyncCallback\<void>): void
 
-通过回调方式停止播放音视频资源，只能在prepared/playing/paused/complete状态调用。
+通过回调方式停止播放音视频资源，只能在prepared/playing/paused/completed状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -747,7 +747,7 @@ avPlayer.stop((err) => {
 
 stop(): Promise\<void>
 
-通过Promise方式停止播放音视频资源，只能在prepared/playing/paused/complete状态调用。
+通过Promise方式停止播放音视频资源，只能在prepared/playing/paused/completed状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -779,7 +779,7 @@ avPlayer.stop().then(() => {
 
 reset(callback: AsyncCallback\<void>): void
 
-通过回调方式重置播放，只能在initialized/prepared/playing/paused/complete/stopped/error状态调用。
+通过回调方式重置播放，只能在initialized/prepared/playing/paused/completed/stopped/error状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -813,7 +813,7 @@ avPlayer.reset((err) => {
 
 reset(): Promise\<void>
 
-通过Promise方式通过Promise方式重置播放，只能在initialized/prepared/playing/paused/complete/stopped/error状态调用。
+通过Promise方式通过Promise方式重置播放，只能在initialized/prepared/playing/paused/completed/stopped/error状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1032,7 +1032,7 @@ deselectTrack(index: number): void;
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| index  | number | 是   | 轨道序号，可以通过[getTrackDescription](#avplayer_gettrackdescription)获取。 |
+| index  | number | 是   | 轨道序号，可以通过[getCurrentTrack](#avplayer_getcurrenttrack)获取当前生效的轨道。 |
 
 **示例：**
 
@@ -1045,7 +1045,7 @@ avPlayer.deselectTrack(index)
 
 getCurrentTrack(trackType: MediaType, callback: AsyncCallback\<number>): void;
 
-通过回调方式获取当前生效的轨道信息，只能在prepared/playing/paused/complete状态调用。
+通过回调方式获取当前生效的轨道序号，只能在prepared/playing/paused/completed状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1084,7 +1084,7 @@ avPlayer.getCurrentTrack(mediaType  (err, index) => {
 
 getCurrentTrack(trackType: MediaType): Promise\<number>;
 
-通过Promise方式获取当前生效的轨道信息，只能在prepared/playing/paused/complete状态调用。
+通过Promise方式获取当前生效的轨道序号，只能在prepared/playing/paused/completed状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1121,7 +1121,7 @@ avPlayer.getCurrentTrack(mediaType).then((index) => {
 
 seek(timeMs: number, mode?:SeekMode): void
 
-跳转到指定播放位置，只能在prepared/playing/paused/complete状态调用，可以通过[seekDone事件](#seekDone_on)确认是否生效。
+跳转到指定播放位置，只能在prepared/playing/paused/completed状态调用，可以通过[seekDone事件](#seekDone_on)确认是否生效。
 注：直播场景不支持seek。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -1187,7 +1187,7 @@ avPlayer.off('seekDone')
 
 setSpeed(speed: PlaybackSpeed): void
 
-设置倍速模式，只能在prepared/playing/paused/complete状态调用，可以通过[speedDone事件](#speedDone_on)确认是否生效。
+设置倍速模式，只能在prepared/playing/paused/completed状态调用，可以通过[speedDone事件](#speedDone_on)确认是否生效。
 注：直播场景不支持setSpeed。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -1251,7 +1251,7 @@ avPlayer.off('speedDone')
 
 setBitrate(bitrate: number): void
 
-选择要播放的指定比特率，仅对**HLS协议网络流**有效，只能在prepared/playing/paused/complete状态调用，可以通过[bitrateDone](#bitrateDone_on)事件确认是否生效。
+选择要播放的指定比特率，仅对**HLS协议网络流**有效，只能在prepared/playing/paused/completed状态调用，可以通过[bitrateDone](#bitrateDone_on)事件确认是否生效。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1358,7 +1358,7 @@ avPlayer.off('availableBitrates')
 
 setVolume(volume: number): void
 
-设置媒体播放音量，只能在prepared/playing/paused/complete状态调用，可以通过[volumeChange事件](#volumeChange_on)确认是否生效。
+设置媒体播放音量，只能在prepared/playing/paused/completed状态调用，可以通过[volumeChange事件](#volumeChange_on)确认是否生效。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
