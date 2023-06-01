@@ -10,7 +10,7 @@
 
 ## 本文的改进和修订说明
 
-1. 本文档由OpenHarmony 合规SIG主导起草和维护。本文档的最新版本总可以在 [这里](https://gitee.com/openharmony/docs/blob/)找到。
+1. 本文档由OpenHarmony 合规SIG主导起草和维护。本文档的最新版本总可以在 [这里](https://gitee.com/openharmony/docs/blob/ef1b57b55dddba840d62803e8ee6f3e576e70c8d/zh-cn/contribute/%E5%BC%80%E6%BA%90%E5%90%88%E8%A7%84%E7%AD%96%E7%95%A5%E5%8F%8A%E6%8C%87%E5%AF%BC.md)找到。
 2. 任何对于本文中涉及的规则的增加，修改，删除都必须可追溯 。
 3. 最终规则经过社区充分的讨论后，由PMC评审定稿。
 
@@ -45,12 +45,8 @@
 
 #### OpenHarmony社区参与上游社区规范
 
-1. OpenHarmony项目参与上游社区规范，见[这里](https://gitee.com/openharmony/docs/blob/20b5af01b3124d86bbce9cd15b0397df8b48e06b/zh-cn/contribute/%E4%B8%8A%E6%B8%B8%E7%A4%BE%E5%8C%BA%E8%B4%A1%E7%8C%AE%E5%BC%80%E6%BA%90%E5%90%88%E8%A7%84%E6%8C%87%E5%AF%BC.md)
-
-#### OpenHarmony社区第三方采购及免费软件开源合规规范
-
-1. OpenHarmony第三方采购及免费软件开源合规规范
-                                                                                                                                                                
+1. OpenHarmony社区上游开源项目贡献最佳实践及建议，见[这里](https://gitee.com/openharmony/docs/blob/20b5af01b3124d86bbce9cd15b0397df8b48e06b/zh-cn/contribute/%E4%B8%8A%E6%B8%B8%E7%A4%BE%E5%8C%BA%E8%B4%A1%E7%8C%AE%E5%BC%80%E6%BA%90%E5%90%88%E8%A7%84%E6%8C%87%E5%AF%BC.md)
+                                                                                                                                                              
 #### OpenHarmony社区开发开源合规门禁
 
 1. 开源合规开发门禁要求，见[这里](https://gitee.com/openharmony/community/blob/master/sig/sig_qa/%E4%BB%A3%E7%A0%81%E9%97%A8%E7%A6%81%E8%A6%81%E6%B1%82.md#codecheck%E6%A3%80%E6%9F%A5)
@@ -58,13 +54,10 @@
 2. 开源门禁工具说明，见[这里](https://gitee.com/openharmony-sig/tools_oat#oat%E5%BC%80%E6%BA%90%E5%AE%A1%E6%9F%A5%E5%B7%A5%E5%85%B7)
 
 ### 开源版本发布阶段
+
 #### OpenHarmony 开源义务履行
 
-1. OpenHarmony开源软件Notice收集策略说明，见[这里](https://gitee.com/openharmony/build/blob/master/docs/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6Notice%E6%94%B6%E9%9B%86%E7%AD%96%E7%95%A5%E8%AF%B4%E6%98%8E.md)
-
-2. 关于开源软件包的生成,见[这里](https://gitee.com/openharmony/build/blob/master/docs/%E7%94%9F%E6%88%90%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6%E5%8C%85.md)
-
-3. 开源软件声明及开源软件包交付及管理规范
+1. 开源合规交付制品管理规范及指导，见[这里]()
 
 #### OpenHarmony 软件成分清单（SBOM）
 
