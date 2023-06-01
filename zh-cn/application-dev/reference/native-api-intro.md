@@ -51,7 +51,7 @@ Native API在SDK包的位置为$(SDK_ROOT)/native目录，主要有以下几个�
 * 《[Node-API在应用工程中的使用指导](../napi/napi-guidelines.md)》, 如何使用Node-API接口
 
 
-## 使用介绍
+## 使用建议
 
 ### 建议使用Native API的场景
 
@@ -65,3 +65,8 @@ Native API在SDK包的位置为$(SDK_ROOT)/native目录，主要有以下几个�
 
 1. 写一个纯native的的OHOS应用
 2. 希望在尽可能多的OHOS设备上保持兼容的应用
+
+## 维测能力
+
+1. OHOS官方提供lldb remote方式代码调试，详细参看《[lldb参考手册](https://gitee.com/openharmony/third_party_llvm-project/blob/master/lldb/README_zh.md)》
+2. musl库的log维测能力，请参看[libc库](./native-lib/third_party_libc/musl.md)维测章节
