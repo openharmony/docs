@@ -18,9 +18,13 @@
 - output，去除axis中长度为1的维度之后得到的tensor。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
@@ -46,4 +50,5 @@
 long [] Squeeze::axis
 ```
 **描述:**
+
 指定删除的维度。axis可以是一个整数或数组，整数的取值范围为[-n，n)。
