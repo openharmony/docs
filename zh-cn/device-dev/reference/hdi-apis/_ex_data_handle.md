@@ -19,4 +19,4 @@
 | -------- | -------- |
 | [fd](_display.md#fd) | int32_t<br/>句柄&nbsp;fd，-1代表不支持 |
 | [reserveInts](_display.md#reserveints) | uint32_t<br/>reserve数组的个数 |
-| [reserve[0]](_display.md#reserve\[0\]) | int32_t<br/>reserve数组 |
+| [reserve[0]](_display.md#reserve0) | int32_t<br/>reserve数组 |
