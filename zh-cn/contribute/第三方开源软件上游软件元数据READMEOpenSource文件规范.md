@@ -15,8 +15,6 @@
 3. 最终规则经过社区充分的讨论后，由PMC评审定稿。
 
 
-## 术语和缩略语
-1. 开源合规术语与缩略语参考，见[这里]()
 
 ## README.OpenSource 字段规则说明
 README.OpenSource 样例
@@ -27,13 +25,26 @@ README.OpenSource 样例
         "Name": "linux",                   # 上游开源软件名全称
         "License": "GPL-2.0+",             # 上游开源软件中包含的许可证信息
         "License File": "COPYING",         # 许可所在文件
-        "Version Number": "5.10.93",       # 借鉴时该软件的版本
-        "Owner": "xxx@xxx.com",            # 借鉴软件引入及拥有人邮箱
-        "Upstream URL": "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/log/?h=linux-5.10.y",   # 借鉴软件开源地址链接
-        "Description": "linux kernel 5.10" # 对借鉴的开源软件模块的描述
+        "Version Number": "5.10.93",       # 该软件的版本
+        "Owner": "xxx@xxx.com",            # 开源软件OpenHarmony 维护人及邮箱
+        "Upstream URL": "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/log/?h=linux-5.10.y",   # 上游软件包发布地址
+        "Description": "XXXXXXX"           # 开源软件功能描述
+    },
+    {
+        ...
     }
 ]
 ```
 
-1. **Name** :在本代码仓中*包含源码*的上游开源软件全称。 假设A软件依赖B软件，若通过将B软件源码放置在本仓库中，来满足A对B的依赖关系，即A*包含依赖*B， 则A、B软件均需要声明； 若B软件已在OpenHarmony组织下建立其专属代码仓，仅在编译构建时通过GN指定其他代码仓目录进行依赖，不是以*源码形式*存放在本代码仓库的，即A开源软件*编译依赖*B软件，则不用在此处声明。
-2. **License** : 上游开源软件中包含的许可证信息此处不可随意填写，需使用SPDX Identitifer简写，由于存在多许可证的情况，此处使用的许可
+1. **Name** : 在本代码仓中*包含源码*的上游开源软件全称。若有多个软件，则写个{}进行描述，注意：假设A软件依赖B软件，若通过将B软件源码放置在本仓库中，来满足A对B的依赖关系，即A*包含依赖*B， **则A、B软件均需要声明**； 若B软件已在OpenHarmony组织下建立其专属代码仓，仅在编译构建时通过GN指定其他代码仓目录进行依赖，不是以*源码形式*存放在本代码仓库的，即A开源软件*编译依赖*B软件，则不用在此处声明。
+
+2. **License** : 上游开源软件中包含的许可证信息此处不可随意填写，需使用SPDX Identitifer简写，每次只能写一个许可证信息； 若存在许可证二选一的情况，在此明确具体选择了哪个许可证； 若代码仓存在多许可证共存的情况，则需要在本文件的最外层数组[]中，再增加一组开源软件元数据的{}描述，对其他许可证及其对应的文件路径进行描述。
+
+3. **License File** : 许可证文件和本代码仓根目录的相对路径，包含最终的文件名。 多个许可证文件的处理方式，参考**License**字段的处理规则，配合完成。
+
+4. **Version Number** : 上游软件正式发布的版本号
+
+5. **Upstream URL**： 源码引入时上游软件对应版本的源码包的发布地址
+
+6. **Description** : 开源软件功能的简要描述
+
