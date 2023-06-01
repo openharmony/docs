@@ -1,8 +1,8 @@
-# Openharmony社区开源合规规范及指导
+# OpenHarmony社区开源合规规范及指导
 
 ## 目的
 
-本文档定义的规范使Openharmony社区能够从开源软件的使用中受益，同时确保OpenHarmony社区遵守开源软件许可条款和价值，并遵从第三方知识产权，本文档为整个组织提供了遵守开源软件合规的共同框架，目标是确保许可证合规性，并基于业界最佳实践，提升OpenHarmony社区开源合规治理能力，该策略将使社区成员了解如何使用开源软件以及为开源社区进行贡献。
+本文档定义的规范使OpenHarmony社区能够从开源软件的使用中受益，同时确保OpenHarmony社区遵守开源软件许可条款和价值，并遵从第三方知识产权，本文档为整个组织提供了遵守开源软件合规的共同框架，目标是确保许可证合规性，并基于业界最佳实践，提升OpenHarmony社区开源合规治理能力，该策略将使社区成员了解如何使用开源软件以及为开源社区进行贡献。
 
 ## 范围
 
@@ -72,11 +72,12 @@
 
 2. 版本发布开源合规标准，见[这里](https://gitee.com/openharmony/community/blob/master/sig/sig_qa/%E7%89%88%E6%9C%AC%E8%B4%A8%E9%87%8F%E8%A6%81%E6%B1%82.md)
 
-### 二进制合规规范
+
+## 二进制合规规范
 
 1. 二进制合规规范，见[这里]()
 
-### OpenHarmony社区开源合规类issue管理流程
+## OpenHarmony社区开源合规类issue管理流程
 
 1. OpenHarmony社区开源合规issue管理流程指导, 见[这里](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/%E5%BC%80%E6%BA%90%E5%90%88%E8%A7%84%E7%B1%BB%E9%97%AE%E9%A2%98%E7%AE%A1%E7%90%86.md)
 
