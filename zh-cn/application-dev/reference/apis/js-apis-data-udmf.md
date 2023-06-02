@@ -27,6 +27,7 @@ import UDMF from '@ohos.data.UDMF';
 | FILE                       | 'File'                       | 文件类型。     |
 | IMAGE                      | 'File.Media.Image'           | 图片类型。     |
 | VIDEO                      | 'File.Media.Video'           | 视频类型。     |
+| AUDIO                      | 'File.Media.Audio'           | 音频类型。     |
 | FOLDER                     | 'File.Folder'                | 文件夹类型。    |
 | SYSTEM_DEFINED_RECORD      | 'SystemDefinedType'          | 系统服务数据类型。 |
 | SYSTEM_DEFINED_FORM        | 'SystemDefinedType.Form'     | 卡片类型。     |
@@ -305,6 +306,23 @@ let video = new UDMF.Video();
 video.videoUri = 'schema://com.samples.test/files/test.mp4';
 ```
 
+## Audio
+
+音频类型数据，是[File](#file)的子类，用于描述音频文件。
+
+**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
+
+| 名称       | 类型     | 可读 | 可写 | 说明       |
+|----------|--------|----|----|----------|
+| audioUri | string | 是  | 是  | 音频数据uri。 |
+
+**示例：**
+
+```js
+let audio = new UDMF.Audio();
+audio.audioUri = 'schema://com.samples.test/files/test.mp3';
+```
+
 ## Folder
 
 文件夹类型数据，是[File](#file)的子类，用于描述文件夹。
@@ -430,9 +448,9 @@ const color = new ArrayBuffer(96); // 创建pixelmap对象
 let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
 image.createPixelMap(color, opts, (error, pixelmap) => {
     if(error) {
-        console.log('Failed to create pixelmap.');
+        console.error('Failed to create pixelmap.');
     } else {
-        console.log('Succeeded in creating pixelmap.');
+        console.info('Succeeded in creating pixelmap.');
         let arrayBuf = new ArrayBuffer(pixelmap.getPixelBytesNumber());
         pixelmap.readPixelsToBuffer(arrayBuf);
         let u8Array = new Uint8Array(arrayBuf);
@@ -462,4 +480,391 @@ let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 record.applicationDefinedType = 'ApplicationDefinedType';
 record.rawData = u8Array;
 let unifiedData = new UDMF.UnifiedData(record);
+```
+
+## Intention
+
+已接入UDMF的系统服务能力的枚举类型。其主要用途是标识用户向UDMF写入的数据的用途，同时也标明了当前系统内哪些系统服务已经接入了UDMF，通过UDMF实现应用间数据传递的业务。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+| 名称       | 值         | 说明      |
+|----------|-----------|---------|
+| DATA_HUB | 'DataHub' | 公共数据通道。 |
+
+## Options
+
+UDMF提供的数据操作接口可选项，包含intention和key两个可选参数。无默认值，当对应接口不需要此参数时可不填，具体要求参照方法接口的参数说明。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+
+| 名称       | 类型                      | 可读 | 可写 | 必填 | 说明                                                                                                                                                                                        |
+|-----------|-------------------------|----|----|----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| intention | [Intention](#intention) | 是  | 是  | 否  | 表示数据操作相关的业务标签。                                                                                                                                                                            |
+| key       | string                  | 是  | 是  | 否  | UDMF中数据对象的唯一标识符。<br>由udmf:/、intention、bundleName和groupId四部分组成，以'/'连接，比如：udmf://DataHub/com.ohos.test/0123456789。<br>其中udmf:/固定，DataHub为对应枚举的取值，com.ohos.test为包名，0123456789为随机生成的groupId。 |
+
+
+
+## UDMF.insertData
+
+insertData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;string&gt;): void
+
+将数据写入UDMF的公共存储中，并生成数据的唯一标识符，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名      | 类型                         | 必填 | 说明                           |
+|----------|----------------------------|----|------------------------------|
+| options  | [Options](#options)        | 是  | 配置项参数，仅需要intention的值。        |
+| data     | [UnifiedData](#unifieddata) | 是  | 目标数据。                        |
+| callback | AsyncCallback&lt;string&gt; | 是  | 回调函数，返回写入UDMF的数据的唯一标识符key的值。 |
+
+**示例：**
+
+```ts
+import UDMF from '@ohos.data.UDMF';
+
+let plainText = new UDMF.PlainText();
+plainText.textContent = 'hello world!';
+let unifiedData = new UDMF.UnifiedData(plainText);
+
+let options = {
+    intention: UDMF.Intention.DATA_HUB
+}
+try {
+    UDMF.insertData(options, unifiedData, (err, data) => {
+        if (err === undefined) {
+            console.info(`Succeeded in inserting data. key = ${data}`);
+        } else {
+            console.error(`Failed to insert data. code is ${err.code},message is ${err.message} `);
+        }
+    });
+} catch(e) {
+    console.error(`Insert data throws an exception. code is ${e.code},message is ${e.message} `);
+}
+
+```
+
+## UDMF.insertData
+
+insertData(options: Options, data: UnifiedData): Promise&lt;string&gt;
+
+将数据写入UDMF的公共存储中，并生成数据的唯一标识符，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名     | 类型                          | 必填 | 说明                    |
+|---------|-----------------------------|----|-----------------------|
+| options | [Options](#options)         | 是  | 配置项参数，仅需要intention的值。 |
+| data    | [UnifiedData](#unifieddata) | 是  | 目标数据。                 |
+
+**返回值：**
+
+| 类型                    | 说明                                |
+|-----------------------|-----------------------------------|
+| Promise&lt;string&gt; | Promise对象，返回写入UDMF的数据的唯一标识符key的值。 |
+
+**示例：**
+
+```ts
+import UDMF from '@ohos.data.UDMF';
+
+let plainText = new UDMF.PlainText();
+plainText.textContent = 'hello world!';
+let unifiedData = new UDMF.UnifiedData(plainText);
+
+let options = {
+    intention: UDMF.Intention.DATA_HUB
+}
+try {
+    UDMF.insertData(options, unifiedData).then((data) => {
+        console.info(`Succeeded in inserting data. key = ${data}`);
+    }).catch((err) => {
+        console.error(`Failed to insert data. code is ${err.code},message is ${err.message} `);
+    });
+} catch(e) {
+    console.error(`Insert data throws an exception. code is ${e.code},message is ${e.message} `);
+}
+```
+
+## UDMF.updateData
+
+updateData(options: Options, data: UnifiedData, callback: AsyncCallback&lt;void&gt;): void
+
+更新已写入UDMF的公共存储的数据，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名      | 类型                          | 必填 | 说明                                  |
+|----------|-----------------------------|----|-------------------------------------|
+| options  | [Options](#options)         | 是  | 配置项参数，仅需要key的值。                     |
+| data     | [UnifiedData](#unifieddata) | 是  | 目标数据。                               |
+| callback | AsyncCallback&lt;void&gt;   | 是  | 回调函数。当更新数据成功，err为undefined，否则为错误对象。 |
+
+**示例：**
+
+```ts
+import UDMF from '@ohos.data.UDMF';
+
+let plainText = new UDMF.PlainText();
+plainText.textContent = 'hello world!';
+let unifiedData = new UDMF.UnifiedData(plainText);
+
+let options = {
+    key: 'udmf://DataHub/com.ohos.test/0123456789'
+};
+
+try {
+    UDMF.updateData(options, unifiedData, (err) => {
+        if (err === undefined) {
+            console.info('Succeeded in updating data.');
+        } else {
+            console.error('Failed to update data. code is ${err.code},message is ${err.message} `);
+        }
+    });
+} catch(e) {
+    console.error(`Update data throws an exception. code is ${e.code},message is ${e.message} `);
+}
+```
+
+## UDMF.updateData
+
+updateData(options: Options, data: UnifiedData): Promise&lt;void&gt;
+
+更新已写入UDMF的公共存储的数据，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名     | 类型                          | 必填 | 说明              |
+|---------|-----------------------------|----|-----------------|
+| options | [Options](#options)         | 是  | 配置项参数，仅需要key的值。 |
+| data    | [UnifiedData](#unifieddata) | 是  | 目标数据。           |
+
+**返回值：**
+
+| 类型                  | 说明                         |
+|---------------------|----------------------------|
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**示例：**
+
+```ts
+import UDMF from '@ohos.data.UDMF';
+
+let plainText = new UDMF.PlainText();
+plainText.textContent = 'hello world!';
+let unifiedData = new UDMF.UnifiedData(plainText);
+
+let options = {
+    key: 'udmf://DataHub/com.ohos.test/0123456789'
+};
+
+try {
+    UDMF.updateData(options, unifiedData).then(() => {
+        console.info('Succeeded in updating data.');
+    }).catch((err) => {
+        console.error(`Failed to update data. code is ${err.code},message is ${err.message} `);
+    });
+} catch(e) {
+    console.error(`Update data throws an exception. code is ${e.code},message is ${e.message} `);
+}
+```
+
+## UDMF.queryData
+
+queryData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&gt;): void
+
+查询UDMF公共存储的数据，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名      | 类型                                                            | 必填 | 说明                                                                                                                                                               |
+|----------|---------------------------------------------------------------|----|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| options  | [Options](#options)                                           | 是  | 配置项参数，key和intention均为可选，根据传入的参数做相应的校验以返回不同的值。                                                                                                                    |
+| callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | 是  | 回调函数，返回查询到的所有数据。<br>如果options中填入的是key，则返回key对应的数据。<br>如果options中填入的是intention，则返回intention下所有数据。<br>如intention和key均填写了，取两者查询数据的交集，与options只填入key的获取结果一致；如没有交集报错。 |
+
+**示例：**
+
+```ts
+import UDMF from '@ohos.data.UDMF';
+
+let options = {
+    intention: UDMF.Intention.DATA_HUB
+};
+
+try {
+    UDMF.queryData(options, (err, data) => {
+        if (err === undefined) {
+            console.info(`Succeeded in querying data. size = ${data.length}`);
+            for (let i = 0; i < data.length; i++) {
+                let records = data[i].getRecords();
+                for (let j = 0; j < records.length; j++) {
+                    if (records[j].getType() === UDMF.UnifiedDataType.PLAIN_TEXT) {
+                        let text = <UDMF.PlainText>(records[j]);
+                        console.info(`${i + 1}.${text.textContent}`);
+                    }
+                }
+            }
+        } else {
+            console.error(`Failed to query data. code is ${err.code},message is ${err.message} `);
+        }
+    });
+} catch(e) {
+    console.error(`Query data throws an exception. code is ${e.code},message is ${e.message} `);
+}
+```
+
+## UDMF.queryData
+
+queryData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
+
+查询UDMF公共存储的数据，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名     | 类型                  | 必填 | 说明                                            |
+|---------|---------------------|----|-----------------------------------------------|
+| options | [Options](#options) | 是  | 配置项参数，key和intention均为可选，根据传入的参数做相应的校验以返回不同的值。 |
+
+**返回值：**
+
+| 类型                                                      | 说明                                                                                                                                  |
+|---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| Promise&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | Promise对象，返回查询到的所有数据。<br>如果options中填入的是key，则返回key对应的数据。<br>如果options中填入的是intention，则返回intention下所有数据。<br>如intention和key均填写了，取两者查询数据的交集，与options只填入key的获取结果一致；如没有交集报错。 |
+
+**示例：**
+
+```ts
+import UDMF from '@ohos.data.UDMF';
+
+let options = {
+    key: 'udmf://DataHub/com.ohos.test/0123456789'
+};
+
+try {
+    UDMF.queryData(options).then((data) => {
+        console.info(`Succeeded in querying data. size = ${data.length}`);
+        for (let i = 0; i < data.length; i++) {
+            let records = data[i].getRecords();
+            for (let j = 0; j < records.length; j++) {
+                if (records[j].getType() === UDMF.UnifiedDataType.PLAIN_TEXT) {
+                    let text = <UDMF.PlainText>(records[j]);
+                    console.info(`${i + 1}.${text.textContent}`);
+                }
+            }
+        }
+    }).catch((err) => {
+        console.error(`Failed to query data. code is ${err.code},message is ${err.message} `);
+    });
+} catch(e) {
+    console.error(`Query data throws an exception. code is ${e.code},message is ${e.message} `);
+}
+```
+
+## UDMF.deleteData
+
+deleteData(options: Options, callback: AsyncCallback&lt;Array&lt;UnifiedData&gt;&gt;): void
+
+删除UDMF公共存储的数据，返回删除的数据集，使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名      | 类型                                                            | 必填 | 说明                                                                                                                                                                                     |
+|----------|---------------------------------------------------------------|----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| options  | [Options](#options)                                           | 是  | 配置项参数，key和intention均为可选，根据传入的参数做相应的校验以返回不同的值。                                                                                                                                          |
+| callback | AsyncCallback&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | 是  | 回调函数，返回删除的所有数据。<br>如果options中填入的是key，则删除key对应的数据并返回该数据。<br>如果options中填入的是intention，则删除intention下所有数据并返回删除的数据。<br>如intention和key均填写了，取两者数据的交集进行删除，并返回删除的数据，与options只填入key的结果一致；如没有交集报错。 |
+
+**示例：**
+
+```ts
+import UDMF from '@ohos.data.UDMF';
+
+let options = {
+    intention: UDMF.Intention.DATA_HUB
+};
+
+try {
+    UDMF.deleteData(options, (err, data) => {
+        if (err === undefined) {
+            console.info(`Succeeded in deleting data. size = ${data.length}`);
+            for (let i = 0; i < data.length; i++) {
+                let records = data[i].getRecords();
+                for (let j = 0; j < records.length; j++) {
+                    if (records[j].getType() === UDMF.UnifiedDataType.PLAIN_TEXT) {
+                        let text = <UDMF.PlainText>(records[j]);
+                        console.info(`${i + 1}.${text.textContent}`);
+                    }
+                }
+            }
+        } else {
+            console.error(`Failed to delete data. code is ${err.code},message is ${err.message} `);
+        }
+    });
+} catch(e) {
+    console.error(`Delete data throws an exception. code is ${e.code},message is ${e.message} `);
+}
+```
+
+## UDMF.deleteData
+
+deleteData(options: Options): Promise&lt;Array&lt;UnifiedData&gt;&gt;
+
+删除UDMF公共存储的数据，返回删除的数据集，使用Promise异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
+
+**参数：**
+
+| 参数名     | 类型                  | 必填 | 说明     |
+|---------|---------------------|----|--------|
+| options | [Options](#options) | 是  | 配置项参数，key和intention均为可选，根据传入的参数做相应的校验以返回不同的值。 |
+
+**返回值：**
+
+| 类型                                                      | 说明                                                                                                                                                          |
+|---------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Promise&lt;Array&lt;[UnifiedData](#unifieddata)&gt;&gt; | Promise对象，返回删除的所有数据。<br>如果options中填入的是key，则删除key对应的数据并返回该数据。<br>如果options中填入的是intention，则删除intention下所有数据并返回删除的数据。<br>如intention和key均填写了，取两者数据的交集进行删除，并返回删除的数据，与options只填入key的结果一致；如没有交集报错。 |
+
+**示例：**
+
+```ts
+import UDMF from '@ohos.data.UDMF';
+
+let options = {
+    key: 'udmf://DataHub/com.ohos.test/0123456789'
+};
+
+try {
+    UDMF.deleteData(options).then((data) => {
+        console.info(`Succeeded in deleting data. size = ${data.length}`);
+        for (let i = 0; i < data.length; i++) {
+            let records = data[i].getRecords();
+            for (let j = 0; j < records.length; j++) {
+                if (records[j].getType() === UDMF.UnifiedDataType.PLAIN_TEXT) {
+                    let text = <UDMF.PlainText>(records[j]);
+                    console.info(`${i + 1}.${text.textContent}`);
+                }
+            }
+        }
+    }).catch((err) => {
+        console.error(`Failed to delete data. code is ${err.code},message is ${err.message} `);
+    });
+} catch(e) {
+    console.error(`Delete data throws an exception. code is ${e.code},message is ${e.message} `);
+}
 ```
