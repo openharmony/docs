@@ -1,6 +1,6 @@
 # 设置应用页面
 
-本小节以“设置”应用页面为例，介绍如何使用自适应布局能力和响应式布局能力适配不同尺寸窗口。本示例已经在[OpenHarmony应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings)中开源，读者可以根据需要自行下载源码并运行及查看效果。
+本小节以“设置”应用页面为例，介绍如何使用自适应布局能力和响应式布局能力适配不同尺寸窗口。
 
 ## 页面设计
 
@@ -164,3 +164,9 @@ export struct WlanMoreSettingItem {
 * 激活`WlanSetting`中的`WlanMoreSettingItem`，可以加载及显示`WlanMoreSetting`。
 
 Navigation组件支持自动切换单栏和双栏的显示效果，同时可以根据当前状态自动添加返回键及响应系统的返回键事件。借助Navigation组件，开发者不用关心单栏和双栏场景的差异而更关注于应用本身，极大的减少开发工作量及提高开发效率。
+
+## 相关实例
+
+针对“设置”应用页面开发，有以下相关实例可供参考：
+
+设置：[设置页应用示例](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings)
