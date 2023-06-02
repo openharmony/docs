@@ -16,9 +16,13 @@
 - output，将输入的张量沿axis维度堆叠的输出，n+1维tensor，数据类型与精度和输入相同。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
@@ -44,4 +48,5 @@
 long Stack::axis
 ```
 **描述:**
+
 一个整数，指定tensor堆叠的维度。axis可以是负数，axis取值范围为[-(n+1)，(n+1))。
