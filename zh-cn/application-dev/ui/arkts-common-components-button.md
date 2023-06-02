@@ -258,4 +258,4 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
   }
   ```
 
-  ![GIF](figures/GIF.gif)
+  ![floating_button](figures/floating_button.gif)
