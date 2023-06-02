@@ -47,7 +47,6 @@
             - [根据卡片状态刷新不同内容](arkts-ui-widget-update-by-status.md)
             - [使用方刷新卡片内容（仅对系统应用开放）](arkts-ui-widget-content-update.md)
       - [开发基于JS UI的卡片](js-ui-widget-development.md)
-      - [Stage模型服务卡片相关实例](service-widget-development-samples.md)
     - [AbilityStage组件容器](abilitystage.md)
     - [应用上下文Context](application-context-stage.md)
     - 信息传递载体Want
@@ -73,7 +72,6 @@
         - [静态订阅公共事件（仅对系统应用开放）](common-event-static-subscription.md)
         - [取消动态订阅公共事件](common-event-unsubscription.md)
       - [公共事件发布](common-event-publish.md)
-      - [移除粘性公共事件（仅对系统应用开放）](common-event-remove-sticky.md)
     - [后台服务](background-services.md)
   - 了解线程模型
     - [线程模型概述](thread-model-stage.md)
