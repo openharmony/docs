@@ -20,9 +20,13 @@
 - output，n维输出tensor，数据类型和shape和input一致。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)

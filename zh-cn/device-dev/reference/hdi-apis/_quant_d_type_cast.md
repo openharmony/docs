@@ -16,9 +16,13 @@
 - output，类型转换之后的tensor。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
@@ -45,6 +49,7 @@
 long QuantDTypeCast::dstT
 ```
 **描述:**
+
 定义输出的数据类型。
 
 
@@ -55,4 +60,5 @@ long QuantDTypeCast::dstT
 long QuantDTypeCast::srcT
 ```
 **描述:**
+
 定义输入的数据类型。

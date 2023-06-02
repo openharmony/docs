@@ -16,9 +16,13 @@
 - output，输出tensor。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
@@ -44,4 +48,5 @@
 long [] Unsqueeze::axis
 ```
 **描述:**
+
 axis，指定增加的维度。axis可以是一个整数或一组整数，整数的取值范围为[-n，n)。
