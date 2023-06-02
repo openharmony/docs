@@ -85,4 +85,4 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [v2_0](_n_n_rt.md) | package&nbsp;ohos&nbsp;hdi&nbsp;nnrt<br/>NNRt模块的包路径。 | 
+| package ohos.hdi.nnrt.v2_0 | NNRt模块的包路径。 | 
