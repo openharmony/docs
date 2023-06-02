@@ -60,7 +60,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        //通过$rawfile加载本地资源文件
+        // 通过$rawfile加载本地资源文件。
         Web({ src: $rawfile("index.html"), controller: this.controller })
       }
     }
@@ -77,7 +77,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        //通过resource协议加载本地资源文件
+        // 通过resource协议加载本地资源文件。
         Web({ src: "resource://rawfile/index.html", controller: this.controller })
       }
     }
@@ -105,7 +105,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   }
   ```
 
-  2.修改MainAbility.ts。
+  2.修改EntryAbility.ts。
   以filesDir为例，获取沙箱路径。若想获取其他路径，请参考[应用开发路径](../../application-models/application-context-stage.md#获取应用开发路径)。
   ```ts
   // xxx.ts
@@ -241,7 +241,7 @@ javaScriptProxy(javaScriptProxy: { object: object, name: string, methodList: Arr
 | object     | object                                   | 是    | -    | 参与注册的对象。只能声明方法，不能声明属性。    |
 | name       | string                                   | 是    | -    | 注册对象的名称，与window中调用的对象名一致。 |
 | methodList | Array\<string\>                          | 是    | -    | 参与注册的应用侧JavaScript对象的方法。  |
-| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController再维护，建议使用WebviewController替代。 |
+| controller | [WebviewController<sup>9+</sup>](../apis/js-apis-webview.md#webviewcontroller) \| [WebController](#webcontroller) | 是    | -    | 控制器。从API Version 9开始，WebController不再维护，建议使用WebviewController替代。 |
 
 **示例：**
 
@@ -1774,6 +1774,8 @@ onConsole(callback: (event?: { message: ConsoleMessage }) => boolean)
 
 onDownloadStart(callback: (event?: { url: string, userAgent: string, contentDisposition: string, mimetype: string, contentLength: number }) => void)
 
+通知主应用开始下载一个文件。
+
 **参数：**
 
 | 参数名                | 参数类型          | 参数描述                                |
@@ -2248,7 +2250,7 @@ onScaleChange(callback: (event: {oldScale: number, newScale: number}) => void)
 onUrlLoadIntercept(callback: (event?: { data:string | WebResourceRequest }) => boolean)
 
 当Web组件加载url之前触发该回调，用于判断是否阻止此次访问。默认允许加载。
-从API version 10开始再维护，建议使用[onLoadIntercept<sup>10+</sup>](#onloadintercept10)代替。
+从API version 10开始不再维护，建议使用[onLoadIntercept<sup>10+</sup>](#onloadintercept10)代替。
 
 **参数：**
 
@@ -3306,7 +3308,7 @@ onLoadIntercept(callback: (event?: { data: WebResourceRequest }) => boolean)
 
 | 参数名  | 参数类型                                     | 参数描述      |
 | ------- | ---------------------------------------- | --------- |
-| request | [Webresourcerequest](#webresourcerequest) | url请求的相关信息。 |
+| request | [WebResourceRequest](#webresourcerequest) | url请求的相关信息。 |
 
 **返回值：**
 
