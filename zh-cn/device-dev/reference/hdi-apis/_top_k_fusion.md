@@ -18,9 +18,13 @@
 - output1，axis维度的前K个最大值的索引。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
@@ -47,6 +51,7 @@
 long TopKFusion::axis
 ```
 **描述:**
+
 作用的轴
 
 
@@ -57,4 +62,5 @@ long TopKFusion::axis
 boolean TopKFusion::sorted
 ```
 **描述:**
+
 如果为True，按照大到小排序，如果为False，按照小到大排序。
