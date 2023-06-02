@@ -18,9 +18,13 @@
 - output，与x1有相同的数据类型和形状。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
@@ -46,4 +50,5 @@
 enum EltwiseMode Eltwise::mode
 ```
 **描述:**
+
 元素级别操作的类型，详情请参考：[EltwiseMode](_n_n_rt.md#eltwisemode)。
