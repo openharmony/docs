@@ -16,9 +16,13 @@
 - output，softmax的计算结果，一个n维tensor，类型和shape和x一致。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
@@ -44,4 +48,5 @@
 long [] Softmax::axis
 ```
 **描述:**
+
 指定计算softmax的维度。整数取值范围为[-n，n)。
