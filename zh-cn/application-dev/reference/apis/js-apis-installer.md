@@ -751,7 +751,7 @@ try {
 ## BundleInstaller.getSpecifiedDistributionType<sup>10+</sup>
 getSpecifiedDistributionType(bundleName: string): string;
 
-以同步的方法查询指定bundleName的分发类型。
+以同步的方法查询指定bundleName的分发类型，该返回值是在调用install接口时传入的InstallParam中的specifiedDistributionType字段。
 
 **系统接口：** 此接口为系统接口。
 
@@ -797,7 +797,7 @@ try {
 
 getAdditionalInfo(bundleName: string): string;
 
-以同步接口查询指定bundleName的额外信息。
+以同步接口查询指定bundleName的额外信息。该返回值是在调用install接口时传入的InstallParam中的additionalInfo字段。
 
 **系统接口：** 此接口为系统接口。
 
@@ -868,8 +868,8 @@ try {
 | hashParams        | Array<[HashParam](#hashparam)> | 否 | 哈希值参数，默认值为空。         |
 | crowdtestDeadline| number                         | 否                        |[众测](https://developer.huawei.com/consumer/cn/agconnect/crowd-test/)截止日期，默认值为-1。 |
 | sharedBundleDirPaths<sup>10+</sup> | Array\<String> | 否 |共享包文件所在路径，默认值为空。 |
-| specifiedDistributionType<sup>10+</sup> | string | 否 |应用安装时指定的分发类型，默认值为空，最大长度为128字节。 |
-| additionalInfo<sup>10+</sup> | string | 否 |应用安装时的额外信息，默认值为空，最大长度为3000字节。 |
+| specifiedDistributionType<sup>10+</sup> | string | 否 |应用安装时指定的分发类型，默认值为空，最大长度为128字节。该字段通常由操作系统运营方的应用市场指定。 |
+| additionalInfo<sup>10+</sup> | string | 否 |应用安装时的额外信息，默认值为空，最大长度为3000字节。该字段通常由操作系统运营方的应用市场在安装企业应用时指定，用于保存应用的额外信息。 |
 
 ## UninstallParam<sup>10+</sup>
 
