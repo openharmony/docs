@@ -634,6 +634,8 @@ cameraManager.on('cameraMute', (curMuetd) => {
 
 枚举，远端相机设备类型。
 
+此接口为系统接口。
+
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
 | 名称                          | 值       | 说明           |
@@ -654,8 +656,8 @@ cameraManager.on('cameraMute', (curMuetd) => {
 | cameraPosition | [CameraPosition](#cameraposition) | 是   | 相机位置。    |
 | cameraType     | [CameraType](#cameratype)         | 是   | 相机类型。    |
 | connectionType | [ConnectionType](#connectiontype) | 是   | 相机连接类型。 |
-| hostDeviceName | string                            | 是   | 远端设备名称。 |
-| hostDeviceType | [hostDeviceType](#hostdevicetype) | 是   | 远端相机设备类型。 |
+| hostDeviceName | string                            | 是   | 远端设备名称，此接口为系统接口。 |
+| hostDeviceType | [hostDeviceType](#hostdevicetype) | 是   | 远端相机设备类型，此接口为系统接口。 |
 
 ## Size
 
