@@ -112,8 +112,8 @@ struct Index {
 }
 ```
 
-## 相关示例
+## 相关实例
 
-针对WindowExtensionAbility开发，有以下相关示例可供参考：
+针对WindowExtensionAbility开发，有以下相关实例可供参考：
 
 - [`WindowExtAbility`：WindowExtAbility的创建与使用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowExtAbility)
