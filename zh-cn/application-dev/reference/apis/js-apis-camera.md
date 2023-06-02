@@ -3,7 +3,6 @@
 > **说明：**
 >
 > - 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> - 本模块接口为系统接口。
 
 ## 导入模块
 
@@ -118,8 +117,9 @@ let cameraManager = camera.getCameraManager(context);
 | SESSION_NOT_RUNNING  | 7400104    | session 未运行返回。    |
 | SESSION_CONFIG_LOCKED  | 7400105    | session 配置已锁定返回。     |
 | DEVICE_SETTING_LOCKED  | 7400106    | 设备设置已锁定返回。     |
-| CONFILICT_CAMERA  | 7400107    | 设备重复打开返回。     |
+| CONFLICT_CAMERA  | 7400107    | 设备重复打开返回。     |
 | DEVICE_DISABLED  | 7400108    | 安全原因摄像头被禁用。     |
+| DEVICE_PREEMPTED  | 7400109    | 相机被抢占导致无法使用     |
 | SERVICE_FATAL_ERROR  | 7400201    | 相机服务错误返回。     |
 
 ## CameraManager
@@ -630,6 +630,18 @@ cameraManager.on('cameraMute', (curMuetd) => {
 | CAMERA_CONNECTION_USB_PLUGIN | 1    | USB连接的相机。 |
 | CAMERA_CONNECTION_REMOTE     | 2    | 远程连接的相机。 |
 
+## HostDeviceType
+
+枚举，远端相机设备类型。
+
+**系统能力：** SystemCapability.Multimedia.Camera.Core
+
+| 名称                          | 值   | 说明           |
+| ---------------------------- | ---- | ------------- |
+| UNKNOWN_TYPE    | 0    | 未知设备类型。      |
+| PHONE  | 0x0E    | 智能手机相机设备类型。 |
+| TABLET      | 0x11    | 平板电脑相机设备类型。 |
+
 ## CameraDevice
 
 相机设备信息。
@@ -642,6 +654,8 @@ cameraManager.on('cameraMute', (curMuetd) => {
 | cameraPosition | [CameraPosition](#cameraposition) | 是   | 相机位置。    |
 | cameraType     | [CameraType](#cameratype)         | 是   | 相机类型。    |
 | connectionType | [ConnectionType](#connectiontype) | 是   | 相机连接类型。 |
+| hostDeviceName | string                            | 是   | 远端设备名称。 |
+| hostDeviceType | [hostDeviceType](#hostdevicetype) | 是   | 远端相机设备类型。 |
 
 ## Size
 
