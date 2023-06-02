@@ -19,7 +19,7 @@ To use the APIs in this file, **libpixelmap_ndk.z.so** is required.
 
 | Name| Description|
 | -------- | -------- |
-| [image_pixel_map_napi.h](image__pixel__map__napi_8h.md) | Declares the APIs that can lock, access, and unlock a pixel map.<br>File to include:: <multimedia/image_framework/image_pixel_map_napi.h>|
+| [image_pixel_map_napi.h](image__pixel__map__napi_8h.md) | Declares the APIs that can lock, access, and unlock a pixel map.<br>File to include: <multimedia/image_framework/image_pixel_map_napi.h> |
 
 
 ### Structs
