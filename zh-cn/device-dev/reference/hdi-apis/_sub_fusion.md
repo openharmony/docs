@@ -18,9 +18,13 @@
 - output，两个input相减的差。output的shape由x和y共同决定，x和y的shape相同时，output的shape和x、y相同； shape不同时，需要将x或y做broadcast操作后，相减得到output。output的精度为x和y中精度更高的决定。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
@@ -46,4 +50,5 @@
 enum ActivationType SubFusion::activationType
 ```
 **描述:**
+
 激活函数类型，详情请参考：[ActivationType](_n_n_rt.md#activationtype)。
