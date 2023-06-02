@@ -32,8 +32,8 @@ show(options?: TextPickerDialogOptions)
 
 | 名称 | 类型 | 描述 |
 | -------- | -------- | -------- |
-| value | string \| string []<sup>10+</sup> | 选中项的文本内容。<br/>**说明**：当显示文本或图片加文本列表时，value值为选中项中的文本值。（多列的情况，value为数组类型。）<br/>当显示图片列表时，value值为空。 |
-| index | number \| number []<sup>10+</sup> | 选中项在选择范围数组中的索引值。（多列的情况，index为数组类型。） |
+| value | string \| string []<sup>10+</sup> | 选中项的文本内容。<br/>**说明**：当显示文本或图片加文本列表时，value值为选中项中的文本值。（文本选择器显示多列时，value为数组类型。）<br/>当显示图片列表时，value值为空。 |
+| index | number \| number []<sup>10+</sup> | 选中项在选择范围数组中的索引值。（文本选择器显示多列时，index为数组类型。） |
 
 ## 示例
 
@@ -42,7 +42,7 @@ show(options?: TextPickerDialogOptions)
 @Entry
 @Component
 struct TextPickerDialogExample {
-  @State select: number = 2
+  private select: number | number[] = 2
   private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
 
   build() {
