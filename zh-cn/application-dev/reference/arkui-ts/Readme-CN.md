@@ -46,6 +46,7 @@
     - [图像球面效果](ts-universal-attributes-sphericalEffect.md)
     - [图像渐亮效果](ts-universal-attributes-lightUpEffect.md)
     - [图像边缘像素扩展效果](ts-universal-attributes-pixelStretchEffect.md)
+    - [点击回弹](ts-universal-attributes-click-effect.md)
     - 模态转场设置
       - [全屏模态转场](ts-universal-attributes-modal-transition.md)
       - [半模态转场](ts-universal-attributes-sheet-transition.md)
