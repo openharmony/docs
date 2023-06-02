@@ -109,18 +109,18 @@ let cameraManager = camera.getCameraManager(context);
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称                       | 值   | 说明            |
-| ------------------------- | ---- | ------------    |
-| INVALID_ARGUMENT       | 7400101    | 参数缺失或者参数类型不对。   |
-| OPERATION_NOT_ALLOWED    | 7400102    | 操作流程不对，不允许。     |
-| SESSION_NOT_CONFIG    | 7400103    | session 未配置返回。       |
-| SESSION_NOT_RUNNING  | 7400104    | session 未运行返回。    |
-| SESSION_CONFIG_LOCKED  | 7400105    | session 配置已锁定返回。     |
-| DEVICE_SETTING_LOCKED  | 7400106    | 设备设置已锁定返回。     |
-| CONFLICT_CAMERA  | 7400107    | 设备重复打开返回。     |
-| DEVICE_DISABLED  | 7400108    | 安全原因摄像头被禁用。     |
-| DEVICE_PREEMPTED  | 7400109    | 相机被抢占导致无法使用     |
-| SERVICE_FATAL_ERROR  | 7400201    | 相机服务错误返回。     |
+| 名称                       | 值          | 说明            |
+| -------------------------  | ----       | ------------    |
+| INVALID_ARGUMENT           | 7400101    | 参数缺失或者参数类型不对。   |
+| OPERATION_NOT_ALLOWED      | 7400102    | 操作流程不对，不允许。     |
+| SESSION_NOT_CONFIG         | 7400103    | session 未配置返回。       |
+| SESSION_NOT_RUNNING        | 7400104    | session 未运行返回。    |
+| SESSION_CONFIG_LOCKED      | 7400105    | session 配置已锁定返回。     |
+| DEVICE_SETTING_LOCKED      | 7400106    | 设备设置已锁定返回。     |
+| CONFLICT_CAMERA            | 7400107    | 设备重复打开返回。     |
+| DEVICE_DISABLED            | 7400108    | 安全原因摄像头被禁用。     |
+| DEVICE_PREEMPTED           | 7400109    | 相机被抢占导致无法使用     |
+| SERVICE_FATAL_ERROR        | 7400201    | 相机服务错误返回。     |
 
 ## CameraManager
 
@@ -636,11 +636,11 @@ cameraManager.on('cameraMute', (curMuetd) => {
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
-| 名称                          | 值   | 说明           |
-| ---------------------------- | ---- | ------------- |
-| UNKNOWN_TYPE    | 0    | 未知设备类型。      |
-| PHONE  | 0x0E    | 智能手机相机设备类型。 |
-| TABLET      | 0x11    | 平板电脑相机设备类型。 |
+| 名称                          | 值       | 说明           |
+| ---------------------------- | ----     | ------------- |
+| UNKNOWN_TYPE                 | 0        | 未知设备类型。      |
+| PHONE                        | 0x0E     | 智能手机相机设备类型。 |
+| TABLET                       | 0x11     | 平板电脑相机设备类型。 |
 
 ## CameraDevice
 
