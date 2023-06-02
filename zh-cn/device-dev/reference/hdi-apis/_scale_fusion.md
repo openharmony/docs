@@ -20,9 +20,13 @@
 - output， scale的计算结果，一个n维tensor，类型和x一致，shape由axis决定。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
@@ -49,6 +53,7 @@
 enum ActivationType ScaleFusion::activationType
 ```
 **描述:**
+
 激活函数，详情请参考：[ActivationType](_n_n_rt.md#activationtype)。
 
 
@@ -59,4 +64,5 @@ enum ActivationType ScaleFusion::activationType
 long ScaleFusion::axis
 ```
 **描述:**
+
 指定缩放的维度。
