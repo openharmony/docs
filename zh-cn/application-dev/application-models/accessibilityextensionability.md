@@ -10,15 +10,6 @@ AccessibilityExtensionAbility基于ExtensionAbility框架，提供无障碍扩�
 >
 > Model: Stage
 
-本文档将从以下场景来介绍AccessibilityExtensionAbility的基本开发：
-
-- [AccessibilityExtensionAbility概述](#accessibilityextensionability概述)
-- [如何创建一个无障碍扩展服务](#如何创建一个无障碍扩展服务)
-- [如何处理一个无障碍事件](#如何处理一个无障碍事件)
-- [如何声明无障碍扩展服务具备的能力](#如何声明无障碍扩展服务具备的能力)
-- [如何开启自定义的无障碍扩展服务](#如何开启自定义的无障碍扩展服务)
-- [相关示例](#相关示例)
-
 ## AccessibilityExtensionAbility概述
 
 “信息无障碍”译自“Accessibility”，是指任何人在任何情况下都能平等、方便地获取信息并利用信息。其目的是缩小全社会不同阶层、不同地区、不同年龄、不同健康状况的人群在信息理解、信息交互、信息利用方面的数字鸿沟，使其更加方便地参与社会生活，享受数字发展带来的便利。
@@ -133,9 +124,9 @@ onAccessibilityEvent(accessibilityEvent) {
 
 若开启或关闭成功，则会打印`enable ability successfully`或`disable ability successfully`。
 
-## 相关示例
+## 相关实例
 
-针对AccessibilityExtensionAbility开发，有以下相关示例可供参考：
+针对AccessibilityExtensionAbility开发，有以下相关实例可供参考：
 
 [AccessibilityExtAbility的创建和使用（ArkTS）（API 9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/ApplicationModels/AccessibilityExtAbility)
 
