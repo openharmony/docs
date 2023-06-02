@@ -26,7 +26,7 @@ Allows an application to configure Bluetooth on a device, initiate or cancel a s
 
 ## ohos.permission.MANAGE_BLUETOOTH
 
-Allows an application to pair with a Bluetooth device and access the contacts or messages of the device.
+Allows an application to pair with a Bluetooth device and access the Contacts or messages of the device.
 
 **Permission level**: system_basic
 
@@ -994,6 +994,16 @@ Allows the device administrator application to set application running policies.
 
 **Enable via ACL**: TRUE
 
+## ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME
+
+Allows the device administrator application to set the screen off time.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
 ## ohos.permission.NFC_TAG
 
 Allows an application to read NFC tag information.
@@ -1076,7 +1086,7 @@ Allows an application to read cell broadcast messages received by the device.
 
 ## ohos.permission.READ_CONTACTS
 
-Allows an application to read contacts.
+Allows an application to read the Contacts.
 
 **Permission level**: system_basic
 
@@ -1506,7 +1516,7 @@ Allows an application to install, uninstall, enable, and disable certificates an
 
 **Authorization mode**: system_grant
 
-**Enable ACL**: FALSE
+**Enable via ACL**: TRUE
 
 ## ohos.permission.ACCESS_CERT_MANAGER
 
@@ -1871,6 +1881,36 @@ Allows an application to access HiView data.
 ## ohos.permission.WRITE_HIVIEW_SYSTEM
 
 Allows an application to modify HiView data.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.ACCESS_CAST_ENGINE_MIRROR
+
+Allows an application to use the mirror projection capability.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.ACCESS_CAST_ENGINE_STREAM
+
+Allows an application to invoke the local or online media resource projection capability.
+
+**Permission level**: system_basic
+
+**Authorization mode**: system_grant
+
+**Enable via ACL**: TRUE
+
+## ohos.permission.CLOUDDATA_CONFIG
+
+Allows an application to obtain the device-cloud information of the configuration database.
 
 **Permission level**: system_basic
 

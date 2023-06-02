@@ -20,9 +20,9 @@ Creates a time picker, which is in 24-hour format by default.
 
 **Parameters**
 
-| Name     | Type| Mandatory  | Description                    |
-| -------- | ---- | ---- | ------------------------ |
-| selected | Date | No   | Time of the selected item.<br>Default value: current system time|
+| Name  | Type| Mandatory| Description                                                    |
+| -------- | -------- | ---- | ------------------------------------------------------------ |
+| selected | Date     | No  | Time of the selected item.<br>Default value: current system time<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 
 ## Attributes
 

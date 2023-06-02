@@ -20,7 +20,7 @@
       - [AccessibilityExtensionAbility](accessibilityextensionability.md)
       - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
       - [InputMethodExtensionAbility](inputmethodextentionability.md)
-      - [WindowExtensionAbility](windowextensionability.md)
+      - [WindowExtensionAbility (for System Applications Only)](windowextensionability.md)
     - Service Widget Development in Stage Model
       - [Service Widget Overview](service-widget-overview.md)
       - Developing an ArkTS Widget
@@ -36,9 +36,10 @@
             - [Applying Custom Drawing in the Widget](arkts-ui-widget-page-custom-drawing.md)
           - Widget Event Development
             - [Widget Event Capability Overview](arkts-ui-widget-event-overview.md)
-            - [Redirecting to a Specified Page Through the Router Event](arkts-ui-widget-event-router.md)
-            - [Updating Widget Content Through FormExtensionAbility](arkts-ui-widget-event-formextensionability.md)
-            - [Updating Widget Content Through UIAbility](arkts-ui-widget-event-uiability.md)
+            - [Redirecting to a UIAbility Through the router Event](arkts-ui-widget-event-router.md)
+            - [Launching a UIAbility in the Background Through the call Event](arkts-ui-widget-event-call.md)
+            - [Updating Widget Content Through the message Event](arkts-ui-widget-event-formextensionability.md)
+            - [Updating Widget Content Through the router or call Event](arkts-ui-widget-event-uiability.md)
           - Widget Data Interaction
             - [Widget Data Interaction Overview](arkts-ui-widget-interaction-overview.md)
             - [Configuring a Widget to Update Periodically](arkts-ui-widget-update-by-time.md)
@@ -52,7 +53,7 @@
       - [Want Overview](want-overview.md)
       - [Matching Rules of Explicit Want and Implicit Want](explicit-implicit-want-mappings.md)
       - [Common action and entities Values](actions-entities.md)
-      - [Using Explicit Want to Start an Ability](ability-startup-with-explicit-want.md)
+      - [Using Explicit Want to Start an Application Component](ability-startup-with-explicit-want.md)
       - [Using Implicit Want to Open a Website](ability-startup-with-implicit-want.md)
       - [Using Want to Share Data Between Applications](data-share-via-want.md)
     - [Component Startup Rules](component-startup-rules.md)
@@ -71,7 +72,7 @@
         - [Subscribing to Common Events in Static Mode (for System Applications Only)](common-event-static-subscription.md)
         - [Unsubscribing from Common Events](common-event-unsubscription.md)
       - [Publishing Common Events](common-event-publish.md)
-      - [Removing Sticky Common Events](common-event-remove-sticky.md)
+      - [Removing Sticky Common Events (for System Applications Only)](common-event-remove-sticky.md)
     - [Background Services](background-services.md)
   - Thread Model
     - [Thread Model Overview](thread-model-stage.md)

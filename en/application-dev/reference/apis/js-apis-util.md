@@ -547,7 +547,7 @@ A constructor used to create a **TextEncoder** object.
 
 | Name| Type| Mandatory| Description|
 | ----- | ---- | ---- | ---- |
-| encoding | string | No| Encoding format.|
+| encoding | string | No| Encoding format. The default format is **'utf-8'**.|
 
 **Example**
 
@@ -567,7 +567,7 @@ Encodes the input content.
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| input  | string | No  | String to encode.|
+| input  | string | No  | String to encode. The default value is an empty string.|
 
 **Return value**
 
@@ -665,7 +665,7 @@ Encodes the input content.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| input | string | No| String to encode.|
+| input | string | No| String to encode. The default value is an empty string.|
 
 **Return value**
 
@@ -1646,18 +1646,18 @@ Create a class to implement the **compareTo** method. The **Temperature** class 
 
 ```js
 class Temperature{
-    constructor(value){
-       // If TS is used for development, add the following code:
-       // private readonly _temp: Temperature;
+    // If ArkTS is used for development, add the following code:
+    // private readonly _temp: Temperature;
+    constructor(value) {
        this._temp = value;
     }
-    compareTo(value){
+    compareTo(value) {
        return this._temp >= value.getTemp();
     }
-    getTemp(){
+    getTemp() {
        return this._temp;
     }
-    toString(){
+    toString() {
        return this._temp.toString();
     }
 }

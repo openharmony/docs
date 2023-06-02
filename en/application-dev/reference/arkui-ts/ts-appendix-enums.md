@@ -293,12 +293,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name    | Description                                                        |
 | -------- | ------------------------------------------------------------ |
-| Auto     | The default configuration of the container (**\<Flex>** or **\<GridRow>**) is used.                                    |
-| Start    | The items in the container (**\<Flex>** or **\<GridRow>**) are aligned with the cross-start edge.                      |
-| Center   | The items in the container (**\<Flex>** or **\<GridRow>**) are centered along the cross axis.                      |
-| End      | The items in the container (**\<Flex>** or **\<GridRow>**) are aligned with the cross-end edge.                      |
-| Stretch  | The items in the container (**\<Flex>** or **\<GridRow>**) are stretched and padded along the cross axis. If the flex container has the **Wrap** attribute set to **FlexWrap.Wrap** or **FlexWrap.WrapReverse**, the items are stretched to the cross size of the widest element on the current row or column. In other cases, the items with no size set are stretched to the container size.|
-| Baseline | The items in the container (**\<Flex>** or **\<GridRow>**) are aligned in such a manner that their text baselines are aligned along the cross axis.                  |
+| Auto     | The default configuration of the flex container is used.                                    |
+| Start    | The items in the flex container are aligned with the cross-start edge.                      |
+| Center   | The items in the flex container are centered along the cross axis.                      |
+| End      | The items in the flex container are aligned with the cross-end edge.                      |
+| Stretch  | The items in the flex container are stretched and padded along the cross axis. If the flex container has the **Wrap** attribute set to **FlexWrap.Wrap** or **FlexWrap.WrapReverse**, the items are stretched to the cross size of the widest element on the current row or column. In other cases, the items with no size set are stretched to the container size.|
+| Baseline | The items in the flex container are aligned in such a manner that their text baselines are aligned along the cross axis.                  |
 
 ## FlexDirection
 
@@ -414,7 +414,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name                 | Description                                  |
 | --------------------- | -------------------------------------- |
-| None                  | No clipping or ellipsis is used for text overflow.                |
+| None                  | Extra-long text is clipped.              |
 | Clip                  | Extra-long text is clipped.              |
 | Ellipsis              | An ellipsis (...) is used to represent text overflow.|
 | Marquee<sup>10+</sup> | Text continuously scrolls when text overflow occurs.        |
@@ -528,3 +528,11 @@ This API is supported in ArkTS widgets.
 | MAX_LINES_FIRST         | Prioritize the **maxLines** settings.        |
 | MIN_FONT_SIZE_FIRST     | Prioritize the **minFontSize** settings.        |
 | LAYOUT_CONSTRAINT_FIRST | Prioritize the layout constraint settings in terms of height.|
+
+## TransitionEdge<sup>10+<sup>
+| Name| Description|
+| -------- | -------- |
+| TOP | Top edge of the window.|
+| BOTTOM | Bottom edge of the window.|
+| START | Left edge of the window.|
+| END | Right edge of the window.|
