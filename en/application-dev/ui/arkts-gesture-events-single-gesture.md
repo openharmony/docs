@@ -9,13 +9,13 @@ TapGesture(value?:{count?:number; fingers?:number})
 ```
 
 
-Tap gestures support single tap and multiple taps. There are two optional parameters:
+Triggers a tap gesture with one or more taps. This API has two optional parameters:
 
 
-- **count**: number of consecutive taps recognized by the tap gesture. This parameter is optional. The default value is 1. If this parameter is set to an invalid value less than 1, the default value is used. If multiple clicks are configured, the timeout interval for the previous lift and next press is 300 ms.
+- **count**: number of consecutive taps required for gesture recognition. The default value is 1. A value less than 1 evaluates to the default value **1**. If multi-tap is configured, the timeout interval between a lift and the next tap is 300 ms.
 
-- **fingers**: number of fingers that trigger the touch. The minimum value is 1, and the maximum value is 10. The default value is 1. This parameter is optional. When multi-finger is configured, if the number of fingers used for tap does not reach the specified number within 300 ms after the first finger is tapped, the gesture fails to be recognized. Gesture recognition fails if the number of fingers used for tap exceeds the configured number.
-    For example, to bind a double-tap gesture (a tap gesture whose count value is 2) to the Text component, run the following command:
+- **fingers**: number of fingers required for gesture recognition. The value ranges from 1 to 10. The default value is **1**. If the number of fingers used for the tap is less than the specified one within 300 ms after the first finger is tapped, the gesture fails to be recognized. Gesture recognition also fails if the number of fingers used for the tap exceeds the value of **fingers**.
+    The following example binds a double-tap gesture (a tap gesture whose **count** value is **2**) to the **\<Text>** component:
 
   ```ts
   // xxx.ets
@@ -28,7 +28,7 @@ Tap gestures support single tap and multiple taps. There are two optional parame
       Column() {
         Text('Click twice').fontSize(28)
           .gesture(
-            //Bind the TapGesture whose count is 2.
+            // Bind a tap gesture whose count value is 2.
             TapGesture({ count: 2 })
               .onAction((event: GestureEvent) => {
                 this.value = JSON.stringify(event.fingerList[0]);
@@ -55,17 +55,17 @@ LongPressGesture(value?:{fingers?:number; repeat?:boolean; duration?:number})
 ```
 
 
-The touch-and-hold gesture is used to trigger a touch-and-hold gesture event. The minimum quantity of fingers that trigger the touch-and-hold gesture is 1, the minimum touch-and-hold event is 500 milliseconds, and has three optional parameters:
+Triggers a long press gesture, which requires one or more fingers with a minimum 500 ms hold-down time. This API has three optional parameters:
 
 
-- **fingers**: minimum number of fingers required to trigger the touch and hold gesture. The minimum value is 1 and the maximum value is 10. The default value is 1. This parameter is optional.
+- **fingers**: minimum number of fingers required for gesture recognition. The value ranges from 1 to 10. The default value is **1**.
 
-- **repeat**: whether to continuously trigger event callback. The default value is false. This parameter is optional. 
+- **repeat**: whether to continuously trigger the event callback. The default value is **false**.
 
-- **duration**: minimum duration (in milliseconds) required for triggering a long press. The default value is 500. This parameter is optional. 
+- **duration**: minimum hold-down time, in ms. The default value is **500**.
 
 
-The following describes how to bind a touch and hold gesture that can be repeatedly triggered to the Text component:
+The following exemplifies how to bind a long press gesture that can be repeatedly triggered to the **\<Text>** component:
 
 
 
@@ -80,7 +80,7 @@ struct Index {
     Column() {
       Text('LongPress OnAction:' + this.count).fontSize(28)
         .gesture(
-          // Bind the LongPressGesture that can be triggered repeatedly.
+          // Bind the long press gesture that can be triggered repeatedly.
           LongPressGesture({ repeat: true })
             .onAction((event: GestureEvent) => {
               if (event.repeat) {
@@ -113,17 +113,17 @@ PanGestureOptions(value?:{ fingers?:number; direction?:PanDirection; distance?:n
 ```
 
 
-Drag gestures are used to trigger drag gesture events. When the sliding distance reaches the minimum sliding distance (5vp by default), drag gestures are successfully identified. There are three optional parameters:
+Triggers a pan gesture, which requires the minimum movement distance (5 vp by default) of a finger on the screen. This API has three optional parameters:
 
 
-- **fingers**: minimum number of fingers required to trigger a drag gesture. This parameter is optional. The minimum value is 1 and the maximum value is 10. The default value is 1.
+- **fingers**: minimum number of fingers required for gesture recognition. The value ranges from 1 to 10. The default value is **1**.
 
-- **direction**: direction of the gesture that triggers the drag. This parameter is optional. The enumerated values support the AND and OR operations. The default value is **Pandirection.All.**
+- **direction**: pan direction. The enumerated value supports the AND (&amp;) and OR (\|) operations. The default value is **Pandirection.All.**
 
-- **distance**: specifies the minimum drag recognition distance for triggering drag. This parameter is optional. The unit is vp. The default value is 5.
+- **distance**: minimum pan distance required for gesture recognition, in vp. The default value is **5**.
 
 
-Binding a drag gesture to a Text component is used as an example. You can drag a component by modifying the layout position information of the component in the callback function of the drag gesture.
+The following exemplifies how to bind a pan gesture to the **\<Text>** component. You can pan a component by modifying the layout and position information of the component in the **PanGesture** callback.
 
 
 
@@ -145,15 +145,15 @@ struct Index {
         .width(300)
         .padding(20)
         .border({ width: 3 })
-          //Bind the layout position information to the component.
+          // Bind the layout and position information to the component.
         .translate({ x: this.offsetX, y: this.offsetY, z: 0 })
         .gesture(
-          //Bind drag gestures.
+          // Bind the pan gesture to the component.
           PanGesture()
             .onActionStart((event: GestureEvent) => {
               console.info('Pan start');
             })
-              //When the drag gesture is triggered, modify the layout position information of the component based on the callback function.
+              // When the drag gesture is triggered, modify the layout and position information of the component based on the callback.
             .onActionUpdate((event: GestureEvent) => {
               this.offsetX = this.positionX + event.offsetX;
               this.offsetY = this.positionY + event.offsetY;
@@ -176,9 +176,9 @@ struct Index {
 
 >**NOTE**
 >
->Most sliding components, such as List, Grid, Scroll, and Tab, slide through PanGesture. Bind [Drag gesture (PanGesture)] (#Drag gesture pangesture) to subcomponents in the components. [SwipeGesture](#SwipeGesture swipegesture) will cause gesture competition.
+>Most slidable components, such as **\<List>**, **\<Grid>**, **\<Scroll>**, and **\<Tab>**, slide through the pan gesture. Therefore, binding the [pan gesture](#pangesture) or [swipe gesture](#swipegesture) to child components will cause gesture competition.
 >
->When a subcomponent is bound to PanGesture, sliding in the subcomponent area triggers only PanGesture of the subcomponent. If the parent component needs to respond, you need to modify the gesture binding method or transfer messages from the child component to the parent component, or modify the PanGesture parameter distance of the parent and child components to make the dragging more sensitive. When a subcomponent is bound to SwipeGesture, you need to modify the parameters of PanGesture and SwipeGesture to achieve the required effect because the triggering conditions of PanGesture and SwipeGesture are different.
+>When a child component is bound to the pan gesture, sliding in the child component area triggers only the pan gesture of the child component. If the parent component needs to respond, you need to modify the gesture binding method or transfer messages from the child component to the parent component, or modify the **PanGesture** parameter distance of the parent and child components to make the panning more sensitive. When a child component is bound to the swipe gesture, you need to modify the parameters of **PanGesture** and **SwipeGesture** to achieve the required effect because the triggering conditions of **PanGesture** and **SwipeGesture** are different.
 
 
 ## PinchGesture
@@ -323,11 +323,11 @@ SwipeGesture(value?:{fingers?:number; direction?:SwipeDirection; speed?:number})
 Swipe gestures are used to trigger swipe events. A swipe gesture is recognized when the swipe speed is 100 vp/s or higher. There are three optional parameters:
 
 
-- **fingers**: minimum number of fingers required to trigger a swipe gesture. This parameter is optional. The minimum value is 1 and the maximum value is 10. The default value is 1.
+- **fingers**: minimum number of fingers required to trigger a swipe gesture. TThe minimum value is 1 and the maximum value is 10. The default value is 1.
 
-- **direction**: Swipe direction. This parameter is optional. The enumerated values support the AND and OR operations. The default value is **SwipeDirection.All**.
+- **direction**: swipe direction. The enumerated values support the AND and OR operations. The default value is **SwipeDirection.All**.
 
-- **speed**: minimum speed of the swipe gesture, in vp/s.This parameter is optional. The default value is 100.
+- **speed**: minimum speed of the swipe gesture, in vp/s. The default value is **100**.
 
 
 The following describes how to bind a sliding gesture to the Column component to rotate the component:
@@ -357,7 +357,7 @@ struct Index {
       .gesture(
         // Bind the sliding gesture and restrict it to be triggered only when the user slides in the vertical direction.
         SwipeGesture({ direction: SwipeDirection.Vertical })
-          //When the sliding gesture is triggered, obtain the sliding speed and angle to modify the layout parameters of the component.
+          // When the swipe gesture is triggered, the swipe speed and angle are obtained, which can be used to modify the layout parameters.
           .onAction((event: GestureEvent) => {
             this.speed = event.speed;
             this.rotateAngle = event.angle;

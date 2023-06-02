@@ -12,7 +12,8 @@ ArkUI provides the \<[Grid](../reference/arkui-ts/ts-container-grid.md)> contain
 
 Each item in the **\<Grid>** container corresponds to a **\<GridItem>** component, as shown below.
 
-  **Figure 1** Relationship between \<Grid> and \<GridItem> components 
+  **Figure 1** Relationship between \<Grid> and \<GridItem> components
+
 ![en-us_image_0000001511900472](figures/en-us_image_0000001511900472.png)
 
 >**NOTE**
@@ -21,7 +22,8 @@ Each item in the **\<Grid>** container corresponds to a **\<GridItem>** componen
 
 The grid layout is a two-dimensional layout. The **\<Grid>** component allows you to define the number of rows and columns, proportion of each row and column, number of rows or columns that child components span, and the horizontal and vertical alignment. When the **\<Grid>** container size changes, the child components and spacing are adjusted proportionally. By leveraging these layout capabilities, you can build grid layouts of different styles, as shown below.
 
-  **Figure 2** Grid layout 
+  **Figure 2** Grid layout
+
 ![en-us_image_0000001562700473](figures/en-us_image_0000001562700473.png)
 
 The size of the **\<Grid>** component follows its width and height settings (if configured) or adapts to the size of its parent component.
@@ -48,7 +50,8 @@ You can set the number and proportion of rows and columns to determine the overa
 
 The values of **rowsTemplate** and **columnsTemplate** are a string consisting of 'number+fr' segments, separated by spaces. Wherein **frs** indicates the number of rows or columns in the grid layout, and the number before **fr** is used to calculate the proportion of the row or column in the grid width, thereby determining the width of the row or column.
 
-  **Figure 3** Example of the proportion of rows and columns 
+  **Figure 3** Example of the proportion of rows and columns
+
 ![en-us_image_0000001562820833](figures/en-us_image_0000001562820833.png)
 
 The preceding figure shows a grid layout with three rows and three columns. The grid layout is divided into three parts in the vertical direction with each row taking up 1/3, and four parts in the horizontal direction with the first column taking up 1/4, the second column 2/4, and the third column 1/4.
@@ -79,7 +82,7 @@ In real-world applications, an uneven grid layout, where grid cells span a varyi
 
 A common application with an uneven grid layout is the calculator. As shown in the following figure, the **0** key spans the first and second columns, and the **=** key spans the fifth and sixth rows. For a grid layout created using the **\<Grid>** component, the row and column numbers start from 1 and increase continuously.
 
-  **Figure 5** Calculator 
+  **Figure 5** Calculator
 
 ![en-us_image_0000001511421292](figures/en-us_image_0000001511421292.png)
 
@@ -114,7 +117,7 @@ GridItem() {
 
 When neither the number nor proportion is set for rows and columns in a grid layout, you can use the **layoutDirection** attribute to set the main axis direction and thereby specify the arrangement mode of child components. In addition, you can use the **minCount** and **maxCount** attributes to restrict the number of grid cells along the main axis.
 
-  **Figure 6** Main axis direction 
+  **Figure 6** Main axis direction
 
 ![en-us_image_0000001562700469](figures/en-us_image_0000001562700469.png)
 
@@ -140,7 +143,7 @@ Grid() {
 
 The grid layout organizes its internal elements in two-dimensional layout mode, as shown in the following figure.
 
-**Figure 7** General office services 
+**Figure 7** General office services
 
 ![en-us_image_0000001563060729](figures/en-us_image_0000001563060729.png)
 
@@ -206,7 +209,7 @@ struct OfficeService {
 
 The horizontal spacing between two grid cells is called row spacing, and the vertical spacing is called column spacing, as shown in the following figure.
 
-**Figure 8** Row spacing and column spacing 
+**Figure 8** Row spacing and column spacing
 
 ![en-us_image_0000001511580908](figures/en-us_image_0000001511580908.png)
 
@@ -315,7 +318,7 @@ For details about the implementation, see the example in [LazyForEach: Lazy Data
 
 When the grid is rendered in lazy loading mode, to improve the grid scrolling experience and minimize white blocks during grid scrolling, you can use the **cachedCount** parameter of the **\<Grid>** component. This parameter sets the number of grid items preloaded outside of the screen and is valid only in **LazyForEach**.
 
-  Specifically, the number of the grid items to cache before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns. Grid items that exceed the display and cache range are released.
+Specifically, the number of the grid items to cache before and after the currently displayed one equals the value of **cachedCount** multiplied by the number of columns. Grid items that exceed the display and cache range are released.
 
 ```ts
 Grid() {
@@ -328,12 +331,7 @@ Grid() {
 .cachedCount(3)
 ```
 
->**NOTE**
->
->A greater **cachedCount** value may result in higher CPU and memory overhead of the UI. Adjust the value by taking into account both the comprehensive performance and user experience.
-
-##  
-
- 
-
--  
+> **NOTE**
+> 
+> A greater **cachedCount** value may result in higher CPU and memory overhead of the UI. Adjust the value by taking into account both the comprehensive performance and user experience.
+<!--no_check-->

@@ -13,12 +13,15 @@ The **DisplayPriority** or **LayoutWeight** attribute of all child components is
 
 
 - If the total main axis length of the child components is equal to the main axis length of the container in the first layout, no secondary layout is required.
+
   ![layout-performance-1](figures/layout-performance-1.png)
 
 - If the total main axis length of the child components is less than the main axis length of the container in the first layout, the child components with valid **flexGrow** values will trigger secondary layout and be stretched to fill the container.
+
   ![layout-performace-2](figures/layout-performace-2.gif)
 
 - If the total main axis length of the child components is greater than the main axis length of the container in the first layout, the child components with valid **flexShrink** (whose default value **1** is valid) values will trigger secondary layout and shrink to fill the container.
+
   ![layout-performace-3](figures/layout-performace-3.gif)
 
 
@@ -31,9 +34,11 @@ In this scenario, the child components with the same **DisplayPriority** value a
 
 
 - If the total main axis length of the child components is equal to the main axis length of the container in the first layout, no secondary layout is required.
+  
   ![layout-performance-4](figures/layout-performance-4.png)
-
+  
 - If the total main axis length of the child components is less than the main axis length of the container in the first layout, the child components with valid **flexGrow** values will trigger secondary layout and be stretched to fill the container.
+  
   ![layout-performace-5](figures/layout-performace-5.gif)
 
 
@@ -48,6 +53,7 @@ The remaining space in the container is filled by child components for which the
 
 
 - The child components are laid out only once in this process, and secondary layout is not triggered.
+  
   ![layout-performace-6](figures/layout-performace-6.gif)
 
 

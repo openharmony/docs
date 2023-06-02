@@ -13,7 +13,7 @@ You can create a **\<Video>** component by calling the following API:
 Video(value: {src?: string | Resource, currentProgressRate?: number | string | PlaybackSpeed, previewUri?: string | PixelMap | Resource, controller?: VideoController})
 ```
 
-Creates a **\<Video>** component. In this API, **src** indicates the path of the video source, **currentProgressRate** indicates the video playback speed, **previewUri** indicates the path of the preview image, and **controller** indicates the video controller . For details about how to load a video, see [Loading a Video](#loading-a-video).
+Creates a **\<Video>** component. In this API, **src** indicates the path of the video source, **currentProgressRate** indicates the video playback speed, **previewUri** indicates the path of the preview image, and **controller** indicates the video controller . For details about how to load a video, see [Loading Video](#loading-video).
 
 
 ## Loading Video
@@ -24,6 +24,7 @@ The **\<Video>** component supports both local and online videos.
 ### Loading a Local Video
 
 - Common local video
+
   To load a local video, specify the corresponding video file in the local **rawfile** directory, as shown in the following figure.
 
   ![en-us_image_0000001562700409](figures/en-us_image_0000001562700409.png)
@@ -68,6 +69,27 @@ The **\<Video>** component supports both local and online videos.
    }
   }
   ```
+
+### Loading a Video in the Application Sandbox
+
+To load a video in the application sandbox, use a string with the **file:///data/storage** prefix. Ensure that the application has the read permission to the files in the specified path.
+
+```ts
+@Component
+export struct VideoPlayer {
+  private controller: VideoController;
+  private videosrc: string = 'file:///data/storage/el2/base/haps/entry/files/show.mp4'
+
+  build() {
+    Column() {
+      Video({
+        src: this.videosrc,
+        controller: this.controller
+      })
+    }
+  }
+}
+```
 
 
 ### Loading an Online Video
@@ -158,6 +180,7 @@ struct VideoPlayer{
 The video controller is used to control video playback. For details, see [VideoController](../reference/arkui-ts/ts-media-components-video.md#videocontroller).
 
 - Default controller
+
   The default controller supports four basic features: start playback, pause playback, set the video playback position, and play the video in full screen.
 
   ```ts
@@ -184,6 +207,7 @@ The video controller is used to control video playback. For details, see [VideoC
   ```
 
 - Custom controller
+
   To use a custom controller, disable the default controller, and then use components such as \<Button> and \<Slider> to customize the control and display. This type of controller is applicable to scenarios where customization requirements are involved.
 
   ```ts

@@ -9,7 +9,7 @@
 
 - Default focus
 
-  After an application opens or switches to a page, the first focusable component (if any) in the component tree of the page is the default focus. You can [set the default focus](#setting-default-focus) as needed.
+  After an application opens or switches to a page, the first focusable component (if any) in the component tree of the page is the default focus. You can [customize the default focus](#setting-default-focus) as needed.
 
 - Focused
 
@@ -619,7 +619,7 @@ tabIndex(index: number)
 Use **tabIndex** to set the order for sequential Tab navigation. The default value is **0**. In Tab navigation, where Tab/Shift+Tab is used (the arrow keys do not affect the navigation), the focus system automatically obtains all components whose **tabIndex** is greater than 0 and moves focus in ascending or descending order.
 
 
-Take the example provided by [defaultFocus](#setting-default-focus) as an example. The default order for sequential focus navigation is as follows:
+With the example provided in [Setting Default Focus](#setting-default-focus), the default order for sequential focus navigation is as follows:
 
 
 ![en-us_image_0000001511421364](figures/en-us_image_0000001511421364.gif)
