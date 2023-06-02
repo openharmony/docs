@@ -150,6 +150,7 @@
     - [通知服务公共事件定义](common_event/commonEvent-ans.md)
     - [资源调度子系统公共事件定义](common_event/commonEvent-resourceschedule.md)
     - [电话服务子系统公共事件定义](common_event/commonEvent-telephony.md)
+    - [USB子系统公共事件定义](common_event/commonEvent-usb.md)
 - 包管理
   - [@ohos.bundle.appControl (appControl模块)](js-apis-appControl.md)
   - [@ohos.bundle.bundleManager (bundleManager模块)](js-apis-bundleManager.md)
@@ -244,7 +245,7 @@
     - [PermissionRequestResult](js-apis-permissionrequestresult.md)
 
 - 数据管理
-  - [@ohos.data.cloudData（端云协同）](js-apis-data-cloudData.md)
+  - [@ohos.data.cloudData (端云协同)](js-apis-data-cloudData.md)
   - [@ohos.data.dataAbility (DataAbility谓词)](js-apis-data-ability.md)
   - [@ohos.data.dataShare (数据共享)](js-apis-data-dataShare.md)
   - [@ohos.data.dataSharePredicates (数据共享谓词)](js-apis-data-dataSharePredicates.md)

@@ -125,7 +125,7 @@ export default struct PlayListCover {
 
 ## 歌单列表
 
-不同断点下，歌单列表的样式基本一致，但sm和md断点下是歌单列表是单列显示，lg断点下是双列显示。可以通过[List组件](https://gitee.com/fanzhaonan/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md)的lanes属性实现这一效果。
+不同断点下，歌单列表的样式基本一致，但sm和md断点下是歌单列表是单列显示，lg断点下是双列显示。可以通过[List组件](../../reference/arkui-ts/ts-container-list.md)的lanes属性实现这一效果。
 
   
 ```

@@ -1,18 +1,18 @@
 # HdfUserAuth
 
 
-## **概述**
+## 概述
 
 提供用户认证驱动的标准API接口。
 
-用户认证驱动为用户认证服务提供统一的访问接口。获取用户认证驱动代理后，用户认证服务可以调用相关接口注册执行器，管理用户认证凭据， 完成PIN码和生物特征。
+用户认证驱动为用户认证服务提供统一的访问接口。获取用户认证驱动代理后，用户认证服务可以调用相关接口注册执行器，管理用户认证凭据， 完成PIN码和生物特征认证。
 
-**Since：**
+**Since:**
 
 3.2
 
 
-## **汇总**
+## 汇总
 
 
 ### 文件
@@ -27,27 +27,27 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [IUserAuthInterface](interface_i_user_auth_interface.md) | 声明用户认证驱动的API接口。 | 
-| [ExecutorRegisterInfo](_executor_register_info.md) | 执行器注册信息。 | 
-| [ExecutorInfo](_user_executor_info.md) | 执行器信息。 | 
-| [ScheduleInfo](_schedule_info.md) | 调度信息。 | 
-| [AuthSolution](_auth_solution.md) | 认证方案。 | 
-| [ExecutorSendMsg](_executor_send_msg.md) | 执行器发送的消息。 | 
-| [AuthResultInfo](_auth_result_info.md) | 用户身份认证结果信息。 | 
-| [IdentifyResultInfo](_identify_result_info.md) | 用户身份识别结果信息。 | 
-| [EnrollParam](_enroll_param.md) | 注册认证凭据参数。 | 
-| [CredentialInfo](_credential_info.md) | 认证凭据信息。 | 
-| [EnrolledInfo](_enrolled_info.md) | 注册信息。 | 
-| [EnrollResultInfo](_enroll_resultinfo.md) | 录入结果信息。 | 
+| [IUserAuthInterface](interface_i_user_auth_interface.md) | interface<br/>声明用户认证驱动的API接口。 | 
+| [ExecutorRegisterInfo](_executor_register_info.md) | struct<br/>执行器注册信息。 | 
+| [ExecutorInfo](_executor_info_userauth.md) | struct<br/>执行器信息。 | 
+| [ScheduleInfo](_schedule_info.md) | struct<br/>调度信息。 | 
+| [AuthSolution](_auth_solution.md) | struct<br/>认证方案。 | 
+| [ExecutorSendMsg](_executor_send_msg.md) | struct<br/>执行器发送的消息。 | 
+| [AuthResultInfo](_auth_result_info.md) | struct<br/>用户身份认证结果信息。 | 
+| [IdentifyResultInfo](_identify_result_info.md) | struct<br/>用户身份识别结果信息。 | 
+| [EnrollParam](_enroll_param.md) | struct<br/>注册认证凭据参数。 | 
+| [CredentialInfo](_credential_info.md) | struct<br/>认证凭据信息。 | 
+| [EnrolledInfo](_enrolled_info.md) | struct<br/>注册信息。 | 
+| [EnrollResultInfo](_enroll_result_info.md) | struct<br/>录入结果信息。 | 
 
 
 ### 枚举
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [AuthType](#authtype):&nbsp;int&nbsp;{&nbsp;PIN&nbsp;=&nbsp;1,&nbsp;FACE&nbsp;=&nbsp;2,&nbsp;FINGERPRINT&nbsp;=&nbsp;4,&nbsp;ALL&nbsp;=&nbsp;0&nbsp;} | 枚举用户认证凭据类型。 | 
-| [ExecutorRole](#executorrole):&nbsp;int&nbsp;{&nbsp;COLLECTOR&nbsp;=&nbsp;1,&nbsp;VERIFIER&nbsp;=&nbsp;2,&nbsp;ALL_IN_ONE&nbsp;=&nbsp;3&nbsp;} | 枚举执行器角色。 | 
-| [ExecutorSecureLevel](#executorsecurelevel):&nbsp;int&nbsp;{&nbsp;ESL0&nbsp;=&nbsp;0,&nbsp;ESL1&nbsp;=&nbsp;1,&nbsp;ESL2&nbsp;=&nbsp;2,&nbsp;ESL3&nbsp;=&nbsp;3&nbsp;} | 枚举执行器安全等级。 | 
+| [AuthType](#authtype)&nbsp;:&nbsp;int&nbsp;{&nbsp;&nbsp;ALL&nbsp;=&nbsp;0,&nbsp;PIN&nbsp;=&nbsp;1,&nbsp;FACE&nbsp;=&nbsp;2,&nbsp;FINGERPRINT&nbsp;=&nbsp;4&nbsp;} | 枚举用户认证凭据类型。 | 
+| [ExecutorRole](#executorrole)&nbsp;:&nbsp;int&nbsp;{&nbsp;COLLECTOR&nbsp;=&nbsp;1,&nbsp;VERIFIER&nbsp;=&nbsp;2,&nbsp;ALL_IN_ONE&nbsp;=&nbsp;3&nbsp;} | 枚举执行器角色。 | 
+| [ExecutorSecureLevel](#executorsecurelevel)&nbsp;:&nbsp;int&nbsp;{&nbsp;ESL0&nbsp;=&nbsp;0,&nbsp;ESL1&nbsp;=&nbsp;1,&nbsp;ESL2&nbsp;=&nbsp;2,&nbsp;ESL3&nbsp;=&nbsp;3&nbsp;} | 枚举执行器安全等级。 | 
 | [PinSubType](#pinsubtype)&nbsp;:&nbsp;int&nbsp;{&nbsp;PIN_SIX&nbsp;=&nbsp;10000,&nbsp;PIN_NUMBER&nbsp;=&nbsp;10001,&nbsp;PIN_MIX&nbsp;=&nbsp;10002&nbsp;} | 口令认证子类型。 | 
 
 
@@ -58,7 +58,7 @@
 | package&nbsp;ohos.hdi.user_auth.v1_0 | 用户认证接口的包路径 | 
 
 
-## **枚举类型说明**
+## 枚举类型说明
 
 
 ### AuthType
@@ -68,16 +68,16 @@
 enum AuthType : int
 ```
 
-**描述：**
+**描述:**
 
 枚举用户认证凭据类型。
 
   | 枚举值 | 描述 | 
 | -------- | -------- |
+| ALL | 表示包含所有认证凭据类型。 | 
 | PIN | 认证凭据类型为口令。 | 
 | FACE | 认证凭据类型为人脸。 | 
 | FINGERPRINT | 认证凭据类型为指纹。 | 
-| ALL | 表示包含所有认证凭据类型。 | 
 
 
 ### ExecutorRole
@@ -87,7 +87,7 @@ enum AuthType : int
 enum ExecutorRole : int
 ```
 
-**描述：**
+**描述:**
 
 枚举执行器角色。
 
@@ -105,7 +105,7 @@ enum ExecutorRole : int
 enum ExecutorSecureLevel : int
 ```
 
-**描述：**
+**描述:**
 
 枚举执行器安全等级。
 
@@ -124,7 +124,7 @@ enum ExecutorSecureLevel : int
 enum PinSubType : int
 ```
 
-**描述：**
+**描述:**
 
 口令认证子类型。
 
