@@ -203,7 +203,7 @@ isCameraMuteSupported(): boolean
 
 查询当前设备是否支持禁用相机，通过返回值返回结果。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -225,7 +225,7 @@ muteCamera(mute: boolean): void
 
 禁用相机。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -562,7 +562,7 @@ on(type: 'cameraMute', callback: AsyncCallback\<boolean\>): void
 
 禁用回调，通过注册回调函数获取相机禁用状态变化。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -634,7 +634,7 @@ cameraManager.on('cameraMute', (curMuetd) => {
 
 枚举，远端相机设备类型。
 
-此接口为系统接口。
+**系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.Multimedia.Camera.Core
 
@@ -656,8 +656,8 @@ cameraManager.on('cameraMute', (curMuetd) => {
 | cameraPosition | [CameraPosition](#cameraposition) | 是   | 相机位置。    |
 | cameraType     | [CameraType](#cameratype)         | 是   | 相机类型。    |
 | connectionType | [ConnectionType](#connectiontype) | 是   | 相机连接类型。 |
-| hostDeviceName | string                            | 是   | 远端设备名称，此接口为系统接口。 |
-| hostDeviceType | [hostDeviceType](#hostdevicetype) | 是   | 远端相机设备类型，此接口为系统接口。 |
+| hostDeviceName | string                            | 是   | 远端设备名称，**系统接口：** 此接口为系统接口。。 |
+| hostDeviceType | [hostDeviceType](#hostdevicetype) | 是   | 远端相机设备类型，**系统接口：** 此接口为系统接口。。 |
 
 ## Size
 
