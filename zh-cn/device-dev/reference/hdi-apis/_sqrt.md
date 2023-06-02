@@ -16,9 +16,13 @@
 - output，一个n维tensor，类型和shape和x一致。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
