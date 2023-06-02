@@ -54,7 +54,7 @@ The distributed database supports cross-device and cross-application sharing. Th
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2 Beta3| NA |
 | Public SDK | Ohos_sdk_public 3.2.7.5 (API Version 9 Beta3)<br>Ohos_sdk_public&nbsp;3.2.7.6&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3) | This toolkit is intended for application developers and does not contain system APIs that require system permissions.<br>It is provided as standard in DevEco Studio.|
-| Full SDK | Ohos_sdk_full 3.2.7.5 (API Version 9 Beta3)<br>Ohos_sdk_full&nbsp;3.2.7.6&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3) | This toolkit is intended for original equipment manufacturers (OEMs) and contains system APIs that require system permissions.<br>To use the full SDK, manually obtain it from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](../application-dev/quick-start/full-sdk-switch-guide.md).|
+| Full SDK | Ohos_sdk_full 3.2.7.5 (API Version 9 Beta3)<br>Ohos_sdk_full&nbsp;3.2.7.6&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3) | This toolkit is intended for original equipment manufacturers (OEMs) and contains system APIs that require system permissions.<br>To use the full SDK, manually obtain it from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](../application-dev/faqs/full-sdk-switch-guide.md).|
 | (Optional) HUAWEI DevEco Studio| 3.0 Release| Recommended for developing OpenHarmony applications.|
 | (Optional) HUAWEI DevEco Device Tool| 3.0 Release| Recommended for developing OpenHarmony devices.|
 

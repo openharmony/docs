@@ -293,7 +293,7 @@ A floating window is created based on an existing task. It is always displayed i
 
    > **NOTE**
    >
-   > If the task for creating the floating window is reclaimed by the system, the floating window will no longer be displayed. If you want the floating window to be displayed in such a case, apply for a [continuous task](../task-management/background-task-overview.md).
+   > If the task for creating the floating window is reclaimed by the system, the floating window will no longer be displayed. If you want the floating window to be displayed in such a case, apply for a [continuous task](../task-management/continuous-task-dev-guide.md).
 
    ```json
    {

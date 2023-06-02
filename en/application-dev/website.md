@@ -115,6 +115,7 @@
               - Widget Event Development
                 - [Widget Event Capability Overview](application-models/arkts-ui-widget-event-overview.md)
                 - [Redirecting to a Specified Page Through the Router Event](application-models/arkts-ui-widget-event-router.md)
+                - [Launching a UIAbility in the Background Through the call Event](application-models/arkts-ui-widget-event-call.md)
                 - [Updating Widget Content Through FormExtensionAbility](application-models/arkts-ui-widget-event-formextensionability.md)
                 - [Updating Widget Content Through UIAbility](application-models/arkts-ui-widget-event-uiability.md)
               - Widget Data Interaction
@@ -602,6 +603,7 @@
     - [wukong User Guide](application-test/wukong-guidelines.md)
   - [OpenHarmony IDL Specifications and User Guide](IDL/idl-guidelines.md)
   - Native APIs
+    - [Introduction to Native APIs](napi/introduction.md)
     - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
     - [Drawing Development](napi/drawing-guidelines.md)
     - [Raw File Development](napi/rawfile-guidelines.md)
@@ -693,7 +695,7 @@
       - [DataPanel](reference/arkui-ts/ts-basic-components-datapanel.md)
       - [DatePicker](reference/arkui-ts/ts-basic-components-datepicker.md)
       - [Divider](reference/arkui-ts/ts-basic-components-divider.md)
-      - [Formcomponent](reference/arkui-ts/ts-basic-components-formcomponent.md)
+      - [FormComponent](reference/arkui-ts/ts-basic-components-formcomponent.md)
       - [Gauge](reference/arkui-ts/ts-basic-components-gauge.md)
       - [Image](reference/arkui-ts/ts-basic-components-image.md)
       - [ImageAnimator](reference/arkui-ts/ts-basic-components-imageanimator.md)
@@ -1289,7 +1291,7 @@
       - [@ohos.systemTimer (System Timer)](reference/apis/js-apis-system-timer.md)
       - [@ohos.wallpaper (Wallpaper)](reference/apis/js-apis-wallpaper.md)
       - [@ohos.web.webview (Webview)](reference/apis/js-apis-webview.md)
-      - [Console](reference/apis/js-apis-logs.md)
+      - [console (Log)](reference/apis/js-apis-logs.md)
       - [Timer](reference/apis/js-apis-timer.md)
       - application
         - [AccessibilityExtensionContext](reference/apis/js-apis-inner-application-accessibilityExtensionContext.md)
@@ -1332,6 +1334,7 @@
       - [@ohos.configPolicy (Configuration Policy)](reference/apis/js-apis-configPolicy.md)
       - [@ohos.enterprise.accountManager (Account Management)](reference/apis/js-apis-enterprise-accountManager.md)
       - [@ohos.enterprise.adminManager (Enterprise Device Management)](reference/apis/js-apis-enterprise-adminManager.md)
+      - [@ohos.enterprise.applicationManager (Application Management)](reference/apis/js-apis-enterprise-applicationManager.md)
       - [@ohos.enterprise.bundleManager (Bundle Management)](reference/apis/js-apis-enterprise-bundleManager.md)
       - [@ohos.enterprise.dateTimeManager (System Time Management)](reference/apis/js-apis-enterprise-dateTimeManager.md)
       - [@ohos.enterprise.deviceControl (Device Control Management)](reference/apis/js-apis-enterprise-deviceControl.md)

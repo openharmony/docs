@@ -46,7 +46,7 @@ The distributed hardware supports the request and import of credential parameter
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2 Beta4 | NA |
 | Public SDK | Ohos_sdk_public 3.2.9.2 (API Version 9 Beta4) | This toolkit is intended for application developers and does not contain system APIs that require system permissions. It is provided as standard in DevEco Studio.|
-| Full SDK | Ohos_sdk_full 3.2.9.2 (API Version 9 Beta4) | This toolkit is intended for original equipment manufacturers (OEMs) and contains system APIs that require system permissions. To use the Full SDK, you must manually obtain it from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](../application-dev/quick-start/full-sdk-switch-guide.md).|
+| Full SDK | Ohos_sdk_full 3.2.9.2 (API Version 9 Beta4) | This toolkit is intended for original equipment manufacturers (OEMs) and contains system APIs that require system permissions. To use the Full SDK, you must manually obtain it from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](../application-dev/faqs/full-sdk-switch-guide.md).|
 | (Optional) HUAWEI DevEco Studio| 3.1 Canary1 | Recommended for developing OpenHarmony applications|
 | (Optional) HUAWEI DevEco Device Tool| 3.1 Beta1 | Recommended for developing OpenHarmony smart devices|
 
