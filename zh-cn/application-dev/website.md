@@ -125,7 +125,6 @@
                 - [根据卡片状态刷新不同内容](application-models/arkts-ui-widget-update-by-status.md)
                 - [使用方刷新卡片内容（仅对系统应用开放）](application-models/arkts-ui-widget-content-update.md)
           - [开发基于JS UI的卡片](application-models/js-ui-widget-development.md)
-          - [Stage模型服务卡片相关实例](application-models/service-widget-development-samples.md)
         - [AbilityStage组件容器](application-models/abilitystage.md)
         - [应用上下文Context](application-models/application-context-stage.md)
         - 信息传递载体Want
