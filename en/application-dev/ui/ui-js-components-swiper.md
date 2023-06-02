@@ -114,7 +114,7 @@ text{
 }
 ```
 
-![en-us_image_0000001275923021](figures/en-us_image_0000001275923021.gif)
+![en-us_image_0000001181655292](figures/en-us_image_0000001181655292.gif)
 
 > **NOTE**
 > - The **digital** attribute takes effect only when the **indicator** attribute is set to **true**.
@@ -132,17 +132,17 @@ Set the width and height of the **&lt;swiper&gt;** component, the indicator's si
 ```html
 <!-- xxx.hml-->
 <div class="container">
-  <swiper index="1" autoplay="true" interval="2000"  duration="500" >
-    <div class="item" style="background: linear-gradient(to right,#806dd9,#5d44ea,#2eb9d5)">
-      <text>item1</text>
-    </div>
-    <div class="item" style="background: linear-gradient( to right,#2eb9d5,#0e7db4,#2673d9)">
-      <text>item2</text>
-    </div>
-    <div class="item" style="background: linear-gradient( to right,#2673d9,#0c89af,#806dd9)">
-      <text>item3</text>
-    </div>
-  </swiper>
+    <swiper index="1" autoplay="true" interval="2000"  duration="500" >
+        <div class="item" style="background-color: bisque;">
+            <text>item1</text>
+        </div>
+        <div class="item" style="background-color: darkkhaki;">
+            <text>item2</text>
+        </div>
+        <div class="item" style="background-color: cadetblue;">
+            <text>item3</text>
+        </div>
+    </swiper>
 </div>
 ```
 
@@ -180,7 +180,7 @@ text{
 }
 ```
 
-![en-us_image_0000001275803189](figures/en-us_image_0000001275803189.gif)
+![en-us_image_0000001226896657](figures/en-us_image_0000001226896657.gif)
 
 
 ## Binding Events

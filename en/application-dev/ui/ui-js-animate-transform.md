@@ -51,7 +51,7 @@ Create a square and rotate it by 90 degrees to form a rhombus. Cover the lower p
 }
 .door{
   width: 100px;
-  height: 150px;
+  height: 135px;
   background-color: #1033d9;
   transform: translate(150px,-137px);
 }
@@ -198,111 +198,111 @@ Set the rotation center around an element in different transform-origin position
 ```css
 /* xxx.css */
 .container {
-  flex-direction: column;
-  background-color:#F1F3F5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
+    flex-direction: column;
+    background-color:#F1F3F5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 .rect {
-  width: 100px;
-  height: 100px;
-  animation: rotate 3s infinite;
-  margin-left: 100px;
+    width: 100px;
+    height: 100px;
+    animation: rotate 3s infinite;
+    margin-left: 30px;
 }
 .rect1 {
-  background-color: #f76160;
+    background-color: #f76160;
 }
 .rect2 {
-  background-color: #60f76f;
-  /* Change the origin position.*/
-  transform-origin: 10% 10px;
+    background-color: #60f76f;
+/* Change the origin position.*/
+    transform-origin: 10% 10px;
 }
 .rect3 {
-  background-color: #6081f7;
-  /*  Change the origin position.*/
-  transform-origin: right bottom;
+    background-color: #6081f7;
+/* Change the origin position.*/
+    transform-origin: right bottom;
 }
 @keyframes rotate {
-  from {
-    transform: rotate(0deg)
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg)
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 /* 3D sample style */
 .rotate3d {
-  margin-top: 150px;
-  flex-direction: column;
-  background-color:#F1F3F5;
-  display: flex;
-  align-items: center;
-  width: 80%;
-  height: 600px;
-  border-radius: 300px;
-  border: 1px solid #ec0808;
+    margin-top: 150px;
+    flex-direction: column;
+    background-color:#F1F3F5;
+    display: flex;
+    align-items: center;
+    width: 80%;
+    height: 600px;
+    border-radius: 300px;
+    border: 1px solid #ec0808;
 }
 .content {
-  padding-top: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    padding-top: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 /* Use react4 and react5 to shape eyes. */
 .rect4 {
-  width: 100px;
-  height: 100px;
-  animation: rotate3d1 1000ms infinite;
-  background: linear-gradient(#e6c4ec, #be15d9)
+    width: 100px;
+    height: 100px;
+    animation: rotate3d1 1000ms infinite;
+    background-color: darkmagenta;
 }
 .rect5 {
-  width: 100px;
-  height: 100px;
-  animation: rotate3d1 1000ms infinite;
-  margin-left: 100px;
-  background: linear-gradient(#e6c4ec, #be15d9)
+    width: 100px;
+    height: 100px;
+    animation: rotate3d1 1000ms infinite;
+    margin-left: 100px;
+    background-color: darkmagenta;
 }
 .mouse {
-  margin-top: 150px;
-  width: 200px;
-  height: 100px;
-  border-radius: 50px;
-  border: 1px solid #e70303;
-  animation: rotate3d2 1000ms infinite;
+    margin-top: 150px;
+    width: 200px;
+    height: 100px;
+    border-radius: 50px;
+    border: 1px solid #e70303;
+    animation: rotate3d2 1000ms infinite;
 }
 /* Eye animation */
 @keyframes rotate3d1 {
-  0% {
-    transform:rotate3d(0,0,0,0deg)
-  }
-  50% {
-    transform:rotate3d(20,20,20,360deg);
-  }
-  100% {
-    transform:rotate3d(0,0,0,0deg);
-  }
+    0% {
+        transform:rotate3d(0,0,0,0deg)
+    }
+    50% {
+        transform:rotate3d(20,20,20,360deg);
+    }
+    100% {
+        transform:rotate3d(0,0,0,0deg);
+    }
 }
 /* Mouth animation */
 @keyframes rotate3d2 {
-  0% {
-    transform:rotate3d(0,0,0,0deg)
-  }
-  33% {
-    transform:rotate3d(0,0,10,30deg);
-  }
-  66% {
-    transform:rotate3d(0,0,10,-30deg);
-  }
-  100% {
-    transform:rotate3d(0,0,0,0deg);
-  }
+    0% {
+        transform:rotate3d(0,0,0,0deg)
+    }
+    33% {
+        transform:rotate3d(0,0,10,30deg);
+    }
+    66% {
+        transform:rotate3d(0,0,10,-30deg);
+    }
+    100% {
+        transform:rotate3d(0,0,0,0deg);
+    }
 }
 ```
 
-![en-us_image_0000001222807776](figures/en-us_image_0000001222807776.gif)
+![en-us_image_0000001220316305](figures/en-us_image_0000001220316305.gif)
 
 > **NOTE**
 >
@@ -333,90 +333,89 @@ Set the scaling values for the x-axis, y-axis, and z-axis in **scale3d** to impl
 ```css
 /* xxx.css */
 .container {
-  flex-direction: column;
-  background-color:#F1F3F5;
-  width: 100%;
-  position: relative;
+    flex-direction: column;
+    background-color:#F1F3F5;
+    width: 100%;
+    position: relative;
 }
 .circle{
-  margin-top: 400px;
-  margin-left: 40%;
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
-  background:linear-gradient(#dcaec1, #d3a8e3);
-  z-index: 1;  position: absolute;
+    margin-top: 400px;
+    margin-left: 40%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background-color: mediumpurple;
+    z-index: 1;  position: absolute;
 }
 .ripple{
-  margin-top: 400px;
-  margin-left: 40%;
-  position: absolute;  z-index: 0;
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
-  background:linear-gradient(#dcaec1,#d3a8e3);
-  animation: ripple 5s infinite;
+    margin-top: 400px;
+    margin-left: 40%;
+    position: absolute;  z-index: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background-color: blueviolet;
+    animation: ripple 5s infinite;
 }
 /* Set different animation durations for different components. */
 .ripple2{
-  animation-duration: 2.5s;
+    animation-duration: 2.5s;
 }
 @keyframes ripple{
-  0%{
-    transform: scale(1);
-    opacity: 0.5;
-  }
-  50%{
-    transform: scale(3);
-    opacity: 0;
-  }
-  100%{
-    transform: scale(1);
-    opacity: 0.5;
-  }
+    0%{
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50%{
+        transform: scale(3);
+        opacity: 0;
+    }
+    100%{
+        transform: scale(1);
+        opacity: 0.5;
+    }
 }
 text{
-  color: white;
-  text-align: center;
-  height: 100%;
-  width: 100%;
+    color: white;
+    text-align: center;
+    height: 100%;
+    width: 100%;
 }
 .content {
-  margin-top: 700px;
-  margin-left: 33%;
-  width: 200px;
-  height: 100px;
-  animation:rubberBand 1s infinite;
-  /* Set the gradient.*/
-  background:linear-gradient(#e276aa,#ec0d66);
-  position: absolute;
+    margin-top: 700px;
+    margin-left: 33%;
+    width: 200px;
+    height: 100px;
+    animation:rubberBand 1s infinite;
+    background-color: darkmagenta;
+    position: absolute;
 }
 @keyframes rubberBand {
-  0% {
-    transform: scale3d(1, 1, 1);
-  }
-  30% {
-    transform: scale3d(1.25, 0.75, 1.1);
-  }
-  40% {
-    transform: scale3d(0.75, 1.25, 1.2);
-  }
-  50% {
-    transform: scale3d(1.15, 0.85, 1.3);
-  }
-  65% {
-    transform: scale3d(.95, 1.05, 1.2);
-  }
-  75% {
-    transform: scale3d(1.05, .95, 1.1);
-  }
-  100%{
-    transform: scale3d(1, 1, 1);
-  }
+    0% {
+        transform: scale3d(1, 1, 1);
+    }
+    30% {
+        transform: scale3d(1.25, 0.75, 1.1);
+    }
+    40% {
+        transform: scale3d(0.75, 1.25, 1.2);
+    }
+    50% {
+        transform: scale3d(1.15, 0.85, 1.3);
+    }
+    65% {
+        transform: scale3d(.95, 1.05, 1.2);
+    }
+    75% {
+        transform: scale3d(1.05, .95, 1.1);
+    }
+    100%{
+        transform: scale3d(1, 1, 1);
+    }
 }
 ```
 
-![en-us_image_0000001267887837](figures/en-us_image_0000001267887837.gif)
+![en-us_image_0000001220396251](figures/en-us_image_0000001220396251.gif)
 
 > **NOTE**
 >
@@ -465,7 +464,7 @@ The matrix attribute defines a transformation matrix with six input parameters: 
 }
 ```
 
-![en-us_image_0000001267767853](figures/en-us_image_0000001267767853.gif)
+![en-us_image_0000001174756580](figures/en-us_image_0000001174756580.gif)
 
 
 ## Integrating transform Attributes
@@ -486,96 +485,96 @@ You can set multiple **transform** attributes at the same time to apply differen
 ```css
 /* xxx.css */
 .container{
-  width: 100%;
-  height: 100%;
-  flex-direction:column;
-  background-color:#F1F3F5;
-  padding:50px;
+    width: 100%;
+    height: 100%;
+    flex-direction:column;
+    background-color:#F1F3F5;
+    padding:50px;
 }
 .rect1{
-  width: 100px;
-  height: 100px;
-  background:linear-gradient(#e77070,#ee0202);
-  animation: change1 3s infinite forwards;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    animation: change1 3s infinite forwards;
 }
 .rect2{
-  margin-top: 50px;
-  width: 100px;
-  height: 100px;
-  background:linear-gradient(#95a6e8, #2739de);
-  animation: change2 3s infinite forwards;
+    margin-top: 50px;
+    width: 100px;
+    height: 100px;
+    background-color: darkblue;
+    animation: change2 3s infinite forwards;
 }
 .rect3{
-  margin-top: 50px;
-  width: 100px;
-  height: 100px;
-  background:linear-gradient(#142ee2, #8cb1e5);
-  animation: change3 3s infinite;
+    margin-top: 50px;
+    width: 100px;
+    height: 100px;
+    background-color: darkblue;
+    animation: change3 3s infinite;
 }
 .rect4{
-  align-self: center;
-  margin-left: 50px;
-  margin-top: 200px;
-  width: 100px;
-  height: 100px;
-  background:linear-gradient(#e2a8df, #9c67d4,#8245d9,#e251c3);
-  animation: change4 3s infinite;
+    align-self: center;
+    margin-left: 50px;
+    margin-top: 200px;
+    width: 100px;
+    height: 100px;
+    background-color: darkmagenta;
+    animation: change4 3s infinite;
 }
 .rect5{
-  margin-top: 300px;
-  width: 100px;
-  height: 100px;
-  background:linear-gradient(#e7ded7, #486ccd, #94b4d2);
-  animation: change5 3s infinite;
+    margin-top: 300px;
+    width: 100px;
+    height: 100px;
+   background-color: cadetblue;
+    animation: change5 3s infinite;
 }
 /* Use change1 and change2 for comparison. */
 @keyframes change1{
-  0%{
-    transform: translate(0,0);    transform: rotate(0deg)
-  }
-  100%{
-    transform: translate(0,500px);
-    transform: rotate(360deg)
-  }
+    0%{
+        transform: translate(0,0);    transform: rotate(0deg)
+    }
+    100%{
+        transform: translate(0,500px);
+        transform: rotate(360deg)
+    }
 }
 /*change2 and change3 compare the animation effects with different attribute sequences.*/
 @keyframes change2{
-  0%{
-    transform:translate(0,0) rotate(0deg) ;
-  }
-  100%{
-    transform: translate(300px,0) rotate(360deg);
-  }
+    0%{
+        transform:translate(0,0) rotate(0deg) ;
+    }
+    100%{
+        transform: translate(300px,0) rotate(360deg);
+    }
 }
 @keyframes change3{
-  0%{
-    transform:rotate(0deg) translate(0,0);
-  }
-  100%{
-    transform:rotate(360deg)  translate(300px,0);
-  }
+    0%{
+        transform:rotate(0deg) translate(0,0);
+    }
+    100%{
+        transform:rotate(360deg)  translate(300px,0);
+    }
 }
 /* Where the attribute values do not match. */
 @keyframes change4{
-  0%{
-    transform: scale(0.5);
-  }
-  100%{
-    transform:scale(2) rotate(45deg);
-  }
+    0%{
+        transform: scale(0.5);
+    }
+    100%{
+        transform:scale(2) rotate(45deg);
+    }
 }
 /* Multi-attribute format */
 @keyframes change5{
-  0%{
-    transform:scale(0) translate(0,0) rotate(0);
-  }
-  100%{
-    transform: scale(1.5) rotate(360deg) translate(200px,0);
-  }
+    0%{
+        transform:scale(0) translate(0,0) rotate(0);
+    }
+    100%{
+        transform: scale(1.5) rotate(360deg) translate(200px,0);
+    }
 }
 ```
 
-![en-us_image_0000001223127712](figures/en-us_image_0000001223127712.gif)
+![en-us_image_0000001220554911](figures/en-us_image_0000001220554911.gif)
 
 > **NOTE**
 >
