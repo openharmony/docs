@@ -39,14 +39,6 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | bundleName | string                                               | 是   | 指示应用程序的Bundle名称。                                  |
 | callback   | AsyncCallback&lt;[DeviceManager](#devicemanager)&gt; | 是   | DeviceManager实例创建时调用的回调，返回设备管理器对象实例。 |
 
-**错误码：**
-
-以下的错误码的详细介绍请参见[设备管理错误码](../errorcodes/errorcode-device-manager.md)
-
-| 错误码ID | 错误信息                                                        |
-| -------- | --------------------------------------------------------------- |
-| 401      | Input parameter error.                                          |
-
 **示例：**
 
   ```js
@@ -301,14 +293,6 @@ getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): voi
   | -------- | ---------------------------------------- | ---- | --------------------- |
   | callback | AsyncCallback&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | 是    | 获取所有可信设备列表的回调，返回设备信息。 |
 
-**错误码：**
-
-以下的错误码的详细介绍请参见[设备管理错误码](../errorcodes/errorcode-device-manager.md)
-
-| 错误码ID | 错误信息                                                        |
-| -------- | --------------------------------------------------------------- |
-| 401      | Input parameter error.                                          |
-
 **示例：**
 
   ```js
@@ -403,14 +387,6 @@ getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void
   | -------- | ---------------------------------------- | ---- | --------- |
   | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | 是    | 获取本地设备信息。 |
 
-**错误码：**
-
-以下的错误码的详细介绍请参见[设备管理错误码](../errorcodes/errorcode-device-manager.md)
-
-| 错误码ID | 错误信息                                                        |
-| -------- | --------------------------------------------------------------- |
-| 401      | Input parameter error.                                          |
-
 **示例：**
 
   ```js
@@ -474,14 +450,6 @@ getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void
   | networkId| string                                   | 是   | 设备的网络标识。 |
   | callback | AsyncCallback&lt;[DeviceInfo](#deviceinfo)&gt; | 是    | 获取指定设备信息。 |
 
-**错误码：**
-
-以下的错误码的详细介绍请参见[设备管理错误码](../errorcodes/errorcode-device-manager.md)
-
-| 错误码ID | 错误信息                                                        |
-| -------- | --------------------------------------------------------------- |
-| 401      | Input parameter error.                                          |
-
 **示例：**
 
   ```js
@@ -519,14 +487,6 @@ getDeviceInfo(networkId: string): Promise&lt;DeviceInfo&gt;
   | 类型                                       | 说明                    |
   | ---------------------------------------- | --------------------- |
   | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise实例，用于获取异步返回结果。 |
-
-**错误码：**
-
-以下的错误码的详细介绍请参见[设备管理错误码](../errorcodes/errorcode-device-manager.md)
-
-| 错误码ID | 错误信息                                                        |
-| ------- | --------------------------------------------------------------- |
-| 401     | Input parameter error.                                          |
 
 **示例：**
 
@@ -763,14 +723,6 @@ authenticateDevice(deviceInfo: DeviceInfo, authParam: AuthParam, callback: Async
   | authParam  | [AuthParam](#authparam)                  | 是    | 认证参数。   |
   | callback   | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;pinToken&nbsp;?:&nbsp;number}&gt; | 是    | 认证结果回调。 |
 
-**错误码：**
-
-以下的错误码的详细介绍请参见[设备管理错误码](../errorcodes/errorcode-device-manager.md)
-
-| 错误码ID | 错误信息                                                        |
-| -------- | --------------------------------------------------------------- |
-| 401      | Input parameter error.                                          |
-
 **示例：**
 
   ```js
@@ -859,14 +811,6 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string,
   | -------- | ---------------------------------------- | ---- | ------- |
   | authInfo | [AuthInfo](#authinfo)                    | 是    | 认证信息。   |
   | callback | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;level:&nbsp;number}&gt; | 是    | 验证结果回调。 |
-
-**错误码：**
-
-以下的错误码的详细介绍请参见[设备管理错误码](../errorcodes/errorcode-device-manager.md)
-
-| 错误码ID | 错误信息                                                        |
-| -------- | --------------------------------------------------------------- |
-| 401      | Input parameter error.                                          |
 
 **示例：**
 
