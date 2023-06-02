@@ -94,7 +94,7 @@
   import formProvider from '@ohos.app.form.formProvider';
   import formBindingData from '@ohos.app.form.formBindingData';
   import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
-  import dataStorage from '@ohos.data.storage'
+  import dataPreferences from '@ohos.data.preferences';
   
   export default class EntryFormAbility extends FormExtensionAbility {
     onAddForm(want) {
@@ -102,10 +102,10 @@
       let isTempCard: boolean = want.parameters[formInfo.FormParam.TEMPORARY_KEY];
       if (isTempCard === false) { // 如果为常态卡片，直接进行信息持久化
         console.info('Not temp card, init db for:' + formId);
-        let storeDB = dataStorage.getStorageSync(this.context.filesDir + 'myStore')
-        storeDB.putSync('A' + formId, 'false');
-        storeDB.putSync('B' + formId, 'false');
-        storeDB.flushSync();
+        let storeDB = dataPreferences.getPreferences(this.context, 'mystore')
+        storeDB.put('A' + formId, 'false');
+        storeDB.put('B' + formId, 'false');
+        storeDB.flush();
       }
       let formData = {};
       return formBindingData.createFormBindingData(formData);
@@ -113,24 +113,24 @@
   
     onRemoveForm(formId) {
       console.info('onRemoveForm, formId:' + formId);
-      let storeDB = dataStorage.getStorageSync(this.context.filesDir + 'myStore')
-      storeDB.deleteSync('A' + formId);
-      storeDB.deleteSync('B' + formId);
+      let storeDB = dataPreferences.getPreferences(this.context, 'mystore')
+      storeDB.delete('A' + formId);
+      storeDB.delete('B' + formId);
     }
   
     // 如果在添加时为临时卡片，则建议转为常态卡片时进行信息持久化
     onCastToNormalForm(formId) {
       console.info('onCastToNormalForm, formId:' + formId);
-      let storeDB = dataStorage.getStorageSync(this.context.filesDir + 'myStore')
-      storeDB.putSync('A' + formId, 'false');
-      storeDB.putSync('B' + formId, 'false');
-      storeDB.flushSync();
+      let storeDB = dataPreferences.getPreferences(this.context, 'myStore')
+      storeDB.put('A' + formId, 'false');
+      storeDB.put('B' + formId, 'false');
+      storeDB.flush();
     }
   
     onUpdateForm(formId) {
-      let storeDB = dataStorage.getStorageSync(this.context.filesDir + 'myStore')
-      let stateA = storeDB.getSync('A' + formId, 'false').toString()
-      let stateB = storeDB.getSync('B' + formId, 'false').toString()
+      let storeDB = dataPreferences.getPreferences(this.context, 'myStore')
+      let stateA = storeDB.get('A' + formId, 'false').toString()
+      let stateB = storeDB.get('B' + formId, 'false').toString()
       // A状态选中则更新textA
       if (stateA === 'true') {
         let formInfo = formBindingData.createFormBindingData({
@@ -150,17 +150,17 @@
     onFormEvent(formId, message) {
       // 存放卡片状态
       console.info('onFormEvent formId:' + formId + 'msg:' + message);
-      let storeDB = dataStorage.getStorageSync(this.context.filesDir + 'myStore')
+      let storeDB = dataPreferences.getPreferences(this.context, 'myStore')
       let msg = JSON.parse(message)
       if (msg.selectA != undefined) {
         console.info('onFormEvent selectA info:' + msg.selectA);
-        storeDB.putSync('A' + formId, msg.selectA);
+        storeDB.put('A' + formId, msg.selectA);
       }
       if (msg.selectB != undefined) {
         console.info('onFormEvent selectB info:' + msg.selectB);
-        storeDB.putSync('B' + formId, msg.selectB);
+        storeDB.put('B' + formId, msg.selectB);
       }
-      storeDB.flushSync();
+      storeDB.flush();
     }
   };
   ```
