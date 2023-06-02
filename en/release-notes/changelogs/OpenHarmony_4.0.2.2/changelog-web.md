@@ -1,4 +1,4 @@
-# Web Subsystem ChangeLog
+# Web Subsystem Changelog
 
 Compared with earlier versions, OpenHarmony 4.0.2.2 has the following API changes in its web subsystem:
 
@@ -22,7 +22,7 @@ Use the new API **setWebDebuggingAccess**.
 
 ## cl.web.2 Adding of setWebDebuggingAccess
 
-The static API **setWebDebuggingAccess** is added to **WebviewController**. It sets whether to enable web debugging, and the setting takes effect for all **Web** instances.
+Added the static API **setWebDebuggingAccess** to **WebviewController**. It sets whether to enable web debugging works for all **Web** instances.
 
 **Change Impacts**
 
@@ -61,5 +61,3 @@ struct WebComponent {
     }
   }
 }
-
-```

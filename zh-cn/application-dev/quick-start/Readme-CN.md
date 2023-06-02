@@ -24,7 +24,7 @@
       - [HAR](har-package.md)
       - HSP
         - [应用内HSP开发指导](in-app-hsp.md)
-        - [应用间HSP开发指导（仅对系统应用开放）](cross-app-hsp.md)
+        - [应用间HSP开发指导](cross-app-hsp.md)
     - 原子化服务
       - [原子化服务开发指导](atomicService.md)
       - [原子化服务空间管理（仅对系统应用开放）](atomicService-aging.md)

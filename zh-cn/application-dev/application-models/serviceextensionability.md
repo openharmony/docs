@@ -392,7 +392,7 @@ ServiceExtensionAbility服务组件在[onConnect()](../reference/apis/js-apis-ap
         console.info(TAG, 'getBundleNameByUid: ' + callerBundleName);
         // 对客户端包名进行识别
         if (callerBundleName != 'com.example.connectextapp') { // 识别不通过
-          console.info(TAG, 'The caller bundle is not in whitelist, reject');
+          console.info(TAG, 'The caller bundle is not in trustlist, reject');
           return;
         }
         // 识别通过，执行正常业务逻辑

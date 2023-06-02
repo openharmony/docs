@@ -1,7 +1,7 @@
 # Native API标准库
-- [Node_API](third_party_napi/napi.md)
+- [Node-API](third_party_napi/napi.md)
 - [libuv](third_party_libuv/libuv.md)
-- [支持的标准库介绍](third_party_libc/musl.md)
+- [Native API中支持的标准库](third_party_libc/musl.md)
 - 附录
   - [Native api中没有导出的符号列表](third_party_libc/musl-peculiar-symbol.md)
   - [Native api中由于权限管控可能调用失败的符号列表](third_party_libc/musl-permission-control-symbol.md)

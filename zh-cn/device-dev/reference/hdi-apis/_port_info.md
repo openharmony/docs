@@ -1,37 +1,33 @@
 # PortInfo
 
 
-## **概述**
+## 概述
 
 USB设备端口信息。
 
 **Since:**
-
 3.2
-
 **Version:**
-
 1.0
-
 **相关模块:**
 
-[USB](usb.md)
+[USB](_u_s_b.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [portId](#portid) | USB设备端口ID。 | 
-| [powerRole](#powerrole) | USB设备电源角色。 | 
-| [dataRole](#datarole) | USB设备数据角色。 | 
-| [mode](#mode) | USB设备模式。 | 
+| [portId](#portid) | int<br/>USB设备端口ID。&nbsp; | 
+| [powerRole](#powerrole) | int<br/>USB设备电源角色。&nbsp; | 
+| [dataRole](#datarole) | int<br/>USB设备数据角色。&nbsp; | 
+| [mode](#mode) | int<br/>USB设备模式。&nbsp; | 
 
 
-## **类成员变量说明**
+## 类成员变量说明
 
 
 ### dataRole
@@ -40,9 +36,7 @@ USB设备端口信息。
 ```
 int PortInfo::dataRole
 ```
-
-**描述：**
-
+**描述:**
 USB设备数据角色。
 
 
@@ -52,9 +46,7 @@ USB设备数据角色。
 ```
 int PortInfo::mode
 ```
-
-**描述：**
-
+**描述:**
 USB设备模式。
 
 
@@ -64,9 +56,7 @@ USB设备模式。
 ```
 int PortInfo::portId
 ```
-
-**描述：**
-
+**描述:**
 USB设备端口ID。
 
 
@@ -76,7 +66,5 @@ USB设备端口ID。
 ```
 int PortInfo::powerRole
 ```
-
-**描述：**
-
+**描述:**
 USB设备电源角色。

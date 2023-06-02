@@ -2057,7 +2057,7 @@ promise.then(data => {
 
 setCallWaiting\(slotId: number, activate: boolean, callback: AsyncCallback\<void\>\): void
 
-Sets the call waiting switch. This API uses an asynchronous callback to return the result.
+Specifies whether to enable the call waiting service. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2099,7 +2099,7 @@ call.setCallWaiting(0, true, (err) => {
 
 setCallWaiting\(slotId: number, activate: boolean\): Promise\<void\>
 
-Sets the call waiting switch. This API uses a promise to return the result.
+Specifies whether to enable the call waiting service. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2718,6 +2718,91 @@ call.off('mmiCodeResult', data => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
+
+
+## call.on('audioDeviceChange')<sup>10+</sup>
+
+on\(type: 'audioDeviceChange', callback: Callback\<AudioDeviceInfo\>\): void
+
+Subscribes to audio device change events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name  | Type                                            | Mandatory| Description                                               |
+| -------- | ----------------------------------------------- | ---- | --------------------------------------------------- |
+| type     | string                                          | Yes  | Audio device change. This field has a fixed value of **audioDeviceChange**.|
+| callback | Callback<[AudioDeviceInfo](#audiodeviceinfo10)> | Yes  | Callback used to return the result.                                          |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+call.on('audioDeviceChange', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.off('audioDeviceChange')<sup>10+</sup>
+
+off\(type: 'audioDeviceChange', callback?: Callback\<AudioDeviceInfo\>\): void
+
+Unsubscribes from **audioDeviceChange** events. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name  | Type                                                      | Mandatory |                           Description                     |
+| -------- | ---------------------------------------------------------- | ---- | --------------------------------------------------- |
+| type     | string                                                     | Yes  | Audio device change. This field has a fixed value of **audioDeviceChange**.|
+| callback | Callback<[AudioDeviceInfo](#audiodeviceinfo10)>            | No  | Callback used to return the result. If this parameter is not set, no subscription cancellation result will be received.    |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+call.off('audioDeviceChange', data => {
+    console.log(`callback: data->${JSON.stringify(data)}`);
+});
+```
+
 
 ## call.isNewCallAllowed<sup>8+</sup>
 
@@ -3804,7 +3889,7 @@ call.updateImsCallMode(1, 1).then(() => {
 
 enableImsSwitch\(slotId: number, callback: AsyncCallback\<void\>\): void
 
-Enables the IMS switch. This API uses an asynchronous callback to return the result.
+Enables the IMS service. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -3845,7 +3930,7 @@ call.enableImsSwitch(0, (err) => {
 
 enableImsSwitch\(slotId: number\): Promise\<void\>
 
-Enables the IMS switch. This API uses a promise to return the result.
+Enables the IMS service. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -3893,7 +3978,7 @@ call.enableImsSwitch(0).then(() => {
 
 disableImsSwitch\(slotId: number, callback: AsyncCallback\<void\>\): void
 
-Disables the IMS switch. This API uses an asynchronous callback to return the result.
+Disables the IMS service. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -3934,7 +4019,7 @@ call.disableImsSwitch(0, (err) => {
 
 disableImsSwitch\(slotId: number\): Promise\<void\>
 
-Disables the IMS switch. This API uses a promise to return the result.
+Disables the IMS service. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -3982,7 +4067,7 @@ call.disableImsSwitch(0).then(() => {
 
 isImsSwitchEnabled\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 
-Checks whether the IMS switch is enabled. This API uses an asynchronous callback to return the result.
+Checks whether the IMS service is enabled. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -4020,7 +4105,7 @@ call.isImsSwitchEnabled(0, (err, data) => {
 
 isImsSwitchEnabled\(slotId: number\): Promise\<boolean\>
 
-Checks whether the IMS switch is enabled. This API uses a promise to return the result.
+Checks whether the IMS service is enabled. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -4062,6 +4147,472 @@ promise.then(data => {
 });
 ```
 
+
+## call.closeUnfinishedUssd<sup>10+</sup>
+
+closeUnfinishedUssd\(slotId: number, callback: AsyncCallback\<void\>\): void
+
+Cancels the unfinished USSD services. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                                   |
+| -------- | ------------------------- | ---- | -------------------------------------- |
+| slotId   | number                    | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2 |
+| callback | AsyncCallback&lt;void&gt; | Yes  | Callback used to return the result.                             |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                   |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let slotId = 0;
+call.closeUnfinishedUssd(slotId, (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+## call.closeUnfinishedUssd<sup>10+</sup>
+
+closeUnfinishedUssd\(slotId: number\): Promise\<void\>
+
+Cancels the unfinished USSD services. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                   |
+| ------ | ------ | ---- | -------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2 |
+
+**Return value**
+
+| Type               | Description                        |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result. |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let slotId = 0;
+call.closeUnfinishedUssd(slotId).then(() => {
+    console.log(`closeUnfinishedUssd success.`);
+}).catch((err) => {
+    console.error(`closeUnfinishedUssd fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## call.setVoNRState<sup>10+</sup>
+
+setVoNRState\(slotId: number, state: VoNRState, callback: AsyncCallback\<boolean\>\): void
+
+Sets the status of the VoNR switch. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name     | Type                          | Mandatory| Description                                                |
+| ----------- | ----------------------------- | ---- | ---------------------------------------------------- |
+| slotId      | number                        | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2               |
+| state       | [VoNRState](#vonrstate10)     | Yes  | Status of the VoNR switch.                                           |
+| callback    | AsyncCallback&lt;boolean&gt;  | Yes  | Callback used to return the result. Callback used to return the result. The value **true** indicates that the operation is successful, and value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let slotId = 0;
+let state = 1;
+call.setVoNRState(slotId, state, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.setVoNRState<sup>10+</sup>
+
+setVoNRState\(slotId: number, state: VoNRState\): Promise\<boolean\>
+
+Sets the status of the VoNR switch. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name     | Type                          | Mandatory| Description                                       |
+| ----------- | ----------------------------- | ---- | ------------------------------------------- |
+| slotId      | number                        | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2    |
+| state       | [VoNRState](#vonrstate10)     | Yes  | Status of the VoNR switch.                                  |
+
+**Return value**
+
+| Type                  | Description                                         |
+| ---------------------- | --------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result.    |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let slotId = 0;
+let state = 1;
+call.setVoNRState(slotId, state).then(() => {
+    console.log(`setVoNRState success, promise: data->${JSON.stringify(data)}`);
+}).catch((err) => {
+    console.error(`setVoNRState fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## call.getVoNRState<sup>10+</sup>
+
+getVoNRState\(slotId: number, callback: AsyncCallback\<VoNRState\>\): void
+
+Obtains the status of the VoNR switch. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name     |                     Type                     | Mandatory | Description                                                  |
+| ----------- | --------------------------------------------- | ---- | ------------------------------------------------------ |
+| slotId      | number                                        | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                 |
+| callback    | AsyncCallback&lt;[VoNRState](#vonrstate10)&gt;| Yes  | Callback used to return the result.                          |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let slotId = 0;
+call.getVoNRState(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.getVoNRState<sup>10+</sup>
+
+getVoNRState\(slotId: number\): Promise\<VoNRState\>
+
+Obtains the status of the VoNR switch. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name     | Type                          | Mandatory| Description                                       |
+| ----------- | ----------------------------- | ---- | ------------------------------------------- |
+| slotId      | number                        | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2    |
+
+**Return value**
+
+|                 Type                    | Description                                       |
+| ---------------------------------------- | ------------------------------------------- |
+| Promise&lt;[VoNRState](#vonrstate10)&gt; | Promise used to return the result.             |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let slotId = 0;
+let promise = call.getVoNRState(slotId);
+promise.then(data => {
+    console.log(`getVoNRState success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getVoNRState fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## call.canSetCallTransferTime<sup>10+</sup>
+
+canSetCallTransferTime\(slotId: number, callback: AsyncCallback\<boolean\>\): void
+
+Checks whether the call forwarding time can be set. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name     | Type                          | Mandatory| Description                                                 |
+| ----------- | ----------------------------- | ---- | ----------------------------------------------------- |
+| slotId      | number                        | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2                |
+| callback    | AsyncCallback&lt;boolean&gt;  | Yes  | Callback used to return the result. Callback used to return the result. The value **true** indicates that the call forwarding time can be set, and the value **false** indicates the opposite.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let slotId = 0;
+call.canSetCallTransferTime(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## call.canSetCallTransferTime<sup>10+</sup>
+
+canSetCallTransferTime\(slotId: number\): Promise\<boolean\>
+
+Checks whether the call forwarding time can be set. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name     | Type                          | Mandatory| Description                                       |
+| ----------- | ----------------------------- | ---- | ------------------------------------------- |
+| slotId      | number                        | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2    |
+
+**Return value**
+
+| Type                  | Description                                         |
+| ---------------------- | --------------------------------------------- |
+| Promise&lt;boolean&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let slotId = 0;
+call.canSetCallTransferTime(slotId).then(() => {
+    console.log(`canSetCallTransferTime success, promise: data->${JSON.stringify(data)}`);
+}).catch((err) => {
+    console.error(`canSetCallTransferTime fail, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## call.inputDialerSpecialCode<sup>10+</sup>
+
+inputDialerSpecialCode\(inputCode: string, callback: AsyncCallback\<void\>\): void
+
+Performs a secret code broadcast. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required Permissions**: ohos.permission.PLACE_CALL
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name     | Type                        | Mandatory| Description                                      |
+| ----------- | ---------------------------- | ---- | ----------------------------------------- |
+| inputCode   | string                       | Yes  | Secret code, for example, **2846579** (project menu).|
+| callback    | AsyncCallback&lt;void&gt;    | Yes  | Callback used to return the result.                                  |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+
+**Example**
+
+```js
+call.inputDialerSpecialCode('2846579', (err) => {
+    console.log(`callback: err->${JSON.stringify(err)}`);
+});
+```
+
+## call.inputDialerSpecialCode<sup>10+</sup>
+
+inputDialerSpecialCode\(inputCode: string\): Promise\<void\>
+
+Performs a secret code broadcast. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required Permissions**: ohos.permission.PLACE_CALL
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+**Parameters**
+
+| Name     | Type                        | Mandatory| Description                                      |
+| ----------- | ---------------------------- | ---- | ----------------------------------------- |
+| inputCode   | string                       | Yes  | Secret code, for example, **2846579** (project menu).|
+
+**Return value**
+
+| Type               | Description                       |
+| ------------------- | --------------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID| Error Message                                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+
+**Example**
+
+```js
+try {
+    call.inputDialerSpecialCode('2846579');
+    console.log(`inputDialerSpecialCode success`);
+} catch (error) {
+    console.log(`inputDialerSpecialCode fail, promise: err->${JSON.stringify(error)}`);
+}
+```
+
+
 ## DialOptions
 
 Provides an option for determining whether a call is a video call.
@@ -4071,23 +4622,25 @@ Provides an option for determining whether a call is a video call.
 |        Name             | Type                              | Mandatory| Description                                                                                            |
 | ------------------------ | ---------------------------------- | ---- | ----------------------------------------------------------------------------------------------- |
 | extras                   | boolean                            | No  | Indication of a video call. <br>- **true**: video call<br>- **false** (default): voice call  |
-| accountId <sup>8+</sup>  | number                             | No  | Account ID.<br>- **0**: card slot 1<br>- **1**: card slot 2<br>                                                    |
-| videoState <sup>8+</sup> | [VideoStateType](#videostatetype7) | No  | Video state type.                                                                                  |
-| dialScene <sup>8+</sup>  | [DialScene](#dialscene8)           | No  | Dialup scenario.                                                                                      |
-| dialType <sup>8+</sup>   | [DialType](#dialtype8)             | No  | Dialup type.                                                                                      |
+| accountId <sup>8+</sup>  | number                             | No  | Account ID.<br>- **0**: card slot 1<br>- **1**: card slot 2<br> This is a system API.                                  |
+| videoState <sup>8+</sup> | [VideoStateType](#videostatetype7) | No  | Video state type. This is a system API.                                                                 |
+| dialScene <sup>8+</sup>  | [DialScene](#dialscene8)           | No  | Dialup scenario. This is a system API.                                                                     |
+| dialType <sup>8+</sup>   | [DialType](#dialtype8)             | No  | Dialup type. This is a system API.                                                                     |
 
 ## DialCallOptions<sup>9+</sup>
 
 Defines options for initiating a call.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.Telephony.CallManager
 
-|        Name             | Type                              | Mandatory| Description                                                        |
-| ------------------------ | ---------------------------------- | ---- | ------------------------------------------------------------ |
-| accountId <sup>9+</sup>  | number                             | No  | Account ID.<br>- **0**: card slot 1<br>- **1**: card slot 2<br>This is a system API.|
-| videoState <sup>9+</sup> | [VideoStateType](#videostatetype7) | No  | Video state type. This is a system API.                            |
-| dialScene <sup>9+</sup>  | [DialScene](#dialscene8)           | No  | Dialup scenario. This is a system API.                                |
-| dialType <sup>9+</sup>   | [DialType](#dialtype8)             | No  | Dialup type. This is a system API.                                |
+|        Name             | Type                              | Mandatory| Description                                        |
+| ------------------------ | ---------------------------------- | ---- | ------------------------------------------- |
+| accountId <sup>9+</sup>  | number                             | No  | Account ID.<br>- **0**: card slot 1<br>- **1**: card slot 2<br> |
+| videoState <sup>9+</sup> | [VideoStateType](#videostatetype7) | No  | Video state type.                              |
+| dialScene <sup>9+</sup>  | [DialScene](#dialscene8)           | No  | Dialup scenario.                                  |
+| dialType <sup>9+</sup>   | [DialType](#dialtype8)             | No  | Dialup type.                                  |
 
 ## CallState
 
@@ -4138,6 +4691,19 @@ Enumerates IMS call modes.
 | CALL_MODE_SEND_RECEIVE | 3    | Sending and receiving calls.|
 | CALL_MODE_VIDEO_PAUSED | 4    | Pausing video calls.      |
 
+## VoNRState<sup>10+</sup>
+
+Enumerates VoNR switch states.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+| Name                  | Value  | Description              |
+| ---------------------- | ---- | ----------------- |
+| VONR_STATE_OFF         | 0    | Disabled.          |
+| VONR_STATE_ON          | 1    | Enabled.          |
+
 ## AudioDevice<sup>8+</sup>
 
 Enumerates audio devices.
@@ -4153,6 +4719,36 @@ Enumerates audio devices.
 | DEVICE_WIRED_HEADSET | 2    | Wired headset device.|
 | DEVICE_BLUETOOTH_SCO | 3    | Bluetooth SCO device. |
 | DEVICE_MIC           | 4    | Microphone device|
+
+## AudioDeviceType<sup>10+</sup>
+
+Enumerates audio device types.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+| Name                | Value  | Description        |
+| -------------------- | ---- | ----------- |
+| DEVICE_EARPIECE      | 0    | Headset device.    |
+| DEVICE_SPEAKER       | 1    | Speaker device.  |
+| DEVICE_WIRED_HEADSET | 2    | Wired headset device.|
+| DEVICE_BLUETOOTH_SCO | 3    | Bluetooth SCO device. |
+
+## AudioDeviceInfo<sup>10+</sup>
+
+Defines the audio device information.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CallManager
+
+|                Name              |                  Type                | Mandatory |        Description     |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| audioDeviceList <sup>10+</sup>    | [Array\<AudioDevice\>](#audiodevice8) | Yes  | Audio device list.   |
+| currentAudioDevice <sup>10+</sup> | [AudioDevice](#audiodevice8)          | Yes  | Audio device type.   |
+| isMuted <sup>10+</sup>            | boolean                               | Yes  | Whether the audio device is muted.       |
+
 
 ## CallRestrictionType<sup>8+</sup>
 
@@ -4511,7 +5107,7 @@ Enumerates call disconnection causes.
 | BEARER_SERVICE_NOT_IMPLEMENTED<sup>9+</sup>                  | 65   | Bearer service not implemented.                         |
 | ACM_EQUALTO_OR_GREATER_THAN_THE_MAXIMUM_VALUE<sup>9+</sup>   | 68   | ACM greater than or equal to the maximum value.                    |
 | REQUESTED_FACILITY_NOT_IMPLEMENTED<sup>9+</sup>              | 69   | Requested facility not implemented.                       |
-| ONLY_RESTRICTED_DIGITAL_INFO_BEARER_CAPABILITY_IS_AVAILABLE<sup>9+</sup> | 70   | Only restricted digital information capability available.     |
+| ONLY_RESTRICTED_DIGITAL_INFO_BEARER_CAPABILITY_IS_AVAILABLE<sup>9+</sup> | 70   | Only restricted digital information bearer capability available.     |
 | SERVICE_OR_OPTION_NOT_IMPLEMENTED_UNSPECIFIED<sup>9+</sup>   | 79   | Service or option not implemented, unspecified.               |
 | INVALID_TRANSACTION_IDENTIFIER_VALUE<sup>9+</sup>            | 81   | Invalid transaction identifier value.                     |
 | USER_NOT_MEMBER_OF_CUG<sup>9+</sup>                          | 87   | User not member of CUG.                        |

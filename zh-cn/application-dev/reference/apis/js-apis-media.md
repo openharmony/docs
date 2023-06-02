@@ -309,18 +309,19 @@ Codec MIME类型枚举。
 
 **系统能力：** SystemCapability.Multimedia.Media.Core
 
-| 名称                     | 值              | 说明                                                         |
-| ------------------------ | --------------- | ------------------------------------------------------------ |
-| MD_KEY_TRACK_INDEX       | 'track_index'   | 表示轨道序号，其对应键值类型为number。                       |
-| MD_KEY_TRACK_TYPE        | 'track_type'    | 表示轨道类型，其对应键值类型为number，参考[MediaType](#mediatype8)。 |
-| MD_KEY_CODEC_MIME        | 'codec_mime'    | 表示codec_mime类型，其对应键值类型为string。                 |
-| MD_KEY_DURATION          | 'duration'      | 表示媒体时长，其对应键值类型为number，单位为毫秒（ms）。     |
-| MD_KEY_BITRATE           | 'bitrate'       | 表示比特率，其对应键值类型为number，单位为比特率（bps）。    |
-| MD_KEY_WIDTH             | 'width'         | 表示视频宽度，其对应键值类型为number，单位为像素（px）。     |
-| MD_KEY_HEIGHT            | 'height'        | 表示视频高度，其对应键值类型为number，单位为像素（px）。     |
-| MD_KEY_FRAME_RATE        | 'frame_rate'    | 表示视频帧率，其对应键值类型为number，单位为100帧每秒（100fps）。 |
-| MD_KEY_AUD_CHANNEL_COUNT | 'channel_count' | 表示声道数，其对应键值类型为number。                         |
-| MD_KEY_AUD_SAMPLE_RATE   | 'sample_rate'   | 表示采样率，其对应键值类型为number，单位为赫兹（Hz）。       |
+| 名称                          | 值              | 说明                                                         |
+| ----------------------------- | --------------- | ------------------------------------------------------------ |
+| MD_KEY_TRACK_INDEX            | 'track_index'   | 表示轨道序号，其对应键值类型为number。                       |
+| MD_KEY_TRACK_TYPE             | 'track_type'    | 表示轨道类型，其对应键值类型为number，参考[MediaType](#mediatype8)。 |
+| MD_KEY_CODEC_MIME             | 'codec_mime'    | 表示codec_mime类型，其对应键值类型为string。                 |
+| MD_KEY_DURATION               | 'duration'      | 表示媒体时长，其对应键值类型为number，单位为毫秒（ms）。     |
+| MD_KEY_BITRATE                | 'bitrate'       | 表示比特率，其对应键值类型为number，单位为比特率（bps）。    |
+| MD_KEY_WIDTH                  | 'width'         | 表示视频宽度，其对应键值类型为number，单位为像素（px）。     |
+| MD_KEY_HEIGHT                 | 'height'        | 表示视频高度，其对应键值类型为number，单位为像素（px）。     |
+| MD_KEY_FRAME_RATE             | 'frame_rate'    | 表示视频帧率，其对应键值类型为number，单位为100帧每秒（100fps）。 |
+| MD_KEY_AUD_CHANNEL_COUNT      | 'channel_count' | 表示声道数，其对应键值类型为number。                         |
+| MD_KEY_AUD_SAMPLE_RATE        | 'sample_rate'   | 表示采样率，其对应键值类型为number，单位为赫兹（Hz）。       |
+| MD_KEY_LANGUAGE<sup>10+</sup> | "language"      | 表示语言信息，其对应键值类型为string。                       |
 
 ## BufferingInfoType<sup>8+</sup>
 
@@ -580,7 +581,7 @@ avPlayer.prepare().then(() => {
 
 play(callback: AsyncCallback\<void>): void
 
-通过回调方式开始播放音视频资源，只能在prepared/paused/complete状态调用。
+通过回调方式开始播放音视频资源，只能在prepared/paused/completed状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -614,7 +615,7 @@ avPlayer.play((err) => {
 
 play(): Promise\<void>
 
-通过Promise方式开始播放音视频资源，只能在prepared/paused/complete状态调用。
+通过Promise方式开始播放音视频资源，只能在prepared/paused/completed状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -712,7 +713,7 @@ avPlayer.pause().then(() => {
 
 stop(callback: AsyncCallback\<void>): void
 
-通过回调方式停止播放音视频资源，只能在prepared/playing/paused/complete状态调用。
+通过回调方式停止播放音视频资源，只能在prepared/playing/paused/completed状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -746,7 +747,7 @@ avPlayer.stop((err) => {
 
 stop(): Promise\<void>
 
-通过Promise方式停止播放音视频资源，只能在prepared/playing/paused/complete状态调用。
+通过Promise方式停止播放音视频资源，只能在prepared/playing/paused/completed状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -778,7 +779,7 @@ avPlayer.stop().then(() => {
 
 reset(callback: AsyncCallback\<void>): void
 
-通过回调方式重置播放，只能在initialized/prepared/playing/paused/complete/stopped/error状态调用。
+通过回调方式重置播放，只能在initialized/prepared/playing/paused/completed/stopped/error状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -812,7 +813,7 @@ avPlayer.reset((err) => {
 
 reset(): Promise\<void>
 
-通过Promise方式通过Promise方式重置播放，只能在initialized/prepared/playing/paused/complete/stopped/error状态调用。
+通过Promise方式通过Promise方式重置播放，只能在initialized/prepared/playing/paused/completed/stopped/error状态调用。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -906,7 +907,7 @@ avPlayer.release().then(() => {
 })
 ```
 
-### getTrackDescription<sup>9+</sup>
+### getTrackDescription<sup>9+</sup><a name=avplayer_gettrackdescription></a>
 
 getTrackDescription(callback: AsyncCallback\<Array\<MediaDescription>>): void
 
@@ -998,11 +999,129 @@ for (let i = 0; i < arrayDescription.length; i++) {
 }
 ```
 
+### selectTrack<sup>10+</sup><a name=avplayer_selecttrack></a>
+
+selectTrack(index: number): void
+
+选择音频轨道，只能在prepared状态调用，可以通过监听[trackChange事件](#trackchange_on)确认是否生效。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| index  | number | 是   | 轨道序号，可以通过[getTrackDescription](#avplayer_gettrackdescription)获取。 |
+
+**示例：**
+
+```js
+let index = 2
+avPlayer.setBitrate(index)
+```
+
+### deselectTrack<sup>10+</sup><a name=avplayer_deselecttrack></a>
+
+deselectTrack(index: number): void
+
+取消已经选择的音频轨道，取消后会播放默认音频轨道。只能在prepared状态调用，可以通过监听[trackChange事件](#trackchange_on)确认是否生效。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                         |
+| ------ | ------ | ---- | ------------------------------------------------------------ |
+| index  | number | 是   | 轨道序号，可以通过[getCurrentTrack](#avplayer_getcurrenttrack)获取当前生效的轨道序号。 |
+
+**示例：**
+
+```js
+let index = 2
+avPlayer.deselectTrack(index)
+```
+
+### getCurrentTrack<sup>10+</sup><a name=avplayer_getcurrenttrack></a>
+
+getCurrentTrack(trackType: MediaType, callback: AsyncCallback\<number>): void
+
+通过回调方式获取当前生效的轨道序号，只能在prepared/playing/paused/completed状态调用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名    | 类型                    | 必填 | 说明                                                         |
+| --------- | ----------------------- | ---- | ------------------------------------------------------------ |
+| trackType | [MediaType](#mediatype) | 是   | 媒体类型枚举。                                               |
+| callback  | AsyncCallback\<number>  | 是   | 获取当前生效轨道序号回调方法，返回-1表示当前无该媒体类型轨道。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                   |
+| -------- | ------------------------------------------ |
+| 5400102  | Operation not allowed. Return by callback. |
+
+**示例：**
+
+```js
+let mediaType = media.MediaType.MEDIA_TYPE_AUD;
+let trackIndex = null;
+
+avPlayer.getCurrentTrack(mediaType  (err, index) => {
+  if (err == null) {
+    console.info('getCurrentTrack success');
+    trackIndex = index;
+  } else {
+    console.error('getCurrentTrack failed and error is ' + err.message);
+  }
+});
+```
+
+### getCurrentTrack<sup>10+</sup>
+
+getCurrentTrack(trackType: MediaType): Promise\<number>
+
+通过Promise方式获取当前生效的轨道序号，只能在prepared/playing/paused/completed状态调用。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**返回值：**
+
+| 类型             | 说明                                                         |
+| ---------------- | ------------------------------------------------------------ |
+| trackType        | [MediaType](#mediatype)                                      |
+| Promise\<number> | 当前生效的轨道序号Promise返回值，-1表示当前无该媒体类型轨道。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[媒体错误码](../errorcodes/errorcode-media.md)
+
+| 错误码ID | 错误信息                                  |
+| -------- | ----------------------------------------- |
+| 5400102  | Operation not allowed. Return by promise. |
+
+**示例：**
+
+```js
+let mediaType = media.MediaType.MEDIA_TYPE_AUD;
+let trackIndex = null;
+
+avPlayer.getCurrentTrack(mediaType).then((index) => {
+  console.info('getCurrentTrack success');
+  trackIndex = index;
+}).catch((err) => {
+  console.error('getCurrentTrack failed and catch error is ' + err.message);
+});
+```
+
 ### seek<sup>9+</sup><a name=avplayer_seek></a>
 
 seek(timeMs: number, mode?:SeekMode): void
 
-跳转到指定播放位置，只能在prepared/playing/paused/complete状态调用，可以通过[seekDone事件](#seekDone_on)确认是否生效。
+跳转到指定播放位置，只能在prepared/playing/paused/completed状态调用，可以通过[seekDone事件](#seekDone_on)确认是否生效。
 注：直播场景不支持seek。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -1068,7 +1187,7 @@ avPlayer.off('seekDone')
 
 setSpeed(speed: PlaybackSpeed): void
 
-设置倍速模式，只能在prepared/playing/paused/complete状态调用，可以通过[speedDone事件](#speedDone_on)确认是否生效。
+设置倍速模式，只能在prepared/playing/paused/completed状态调用，可以通过[speedDone事件](#speedDone_on)确认是否生效。
 注：直播场景不支持setSpeed。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
@@ -1132,7 +1251,7 @@ avPlayer.off('speedDone')
 
 setBitrate(bitrate: number): void
 
-选择要播放的指定比特率，仅对**HLS协议网络流**有效，只能在prepared/playing/paused/complete状态调用，可以通过[bitrateDone](#bitrateDone_on)事件确认是否生效。
+选择要播放的指定比特率，仅对**HLS协议网络流**有效，只能在prepared/playing/paused/completed状态调用，可以通过[bitrateDone](#bitrateDone_on)事件确认是否生效。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1239,7 +1358,7 @@ avPlayer.off('availableBitrates')
 
 setVolume(volume: number): void
 
-设置媒体播放音量，只能在prepared/playing/paused/complete状态调用，可以通过[volumeChange事件](#volumeChange_on)确认是否生效。
+设置媒体播放音量，只能在prepared/playing/paused/completed状态调用，可以通过[volumeChange事件](#volumeChange_on)确认是否生效。
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
@@ -1602,6 +1721,49 @@ off(type: 'audioInterrupt'): void
 
 ```js
 avPlayer.off('audioInterrupt')
+```
+
+### on('trackChange')<sup>10+</sup><a name = trackchange_on></a>
+
+on(type: 'trackChange', callback: (index: number, isSelect: boolean) => void): void;
+
+监听selectTrack和deselectTrack生效的事件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名   | 类型     | 必填 | 说明                                                  |
+| -------- | -------- | ---- | ----------------------------------------------------- |
+| type     | string   | 是   | 生效轨道变化事件回调类型，支持的事件：'trackChange'。 |
+| callback | function | 是   | 生效轨道变化事件回调方法。                            |
+
+**示例：**
+
+```js
+avPlayer.on('trackChange', (index: number, isSelect: boolean) => {
+  console.info('trackChange success, and index is:' + index + ', isSelect is :' + isSelect)
+})
+```
+
+### off('trackChange')<sup>10+</sup><a name = trackchange_off></a>
+
+off(type: 'trackChange'): void
+
+取消监听生效轨道变化事件。
+
+**系统能力：** SystemCapability.Multimedia.Media.AVPlayer
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                                      |
+| ------ | ------ | ---- | --------------------------------------------------------- |
+| type   | string | 是   | 生效轨道变化事件回调类型，取消注册的事件：'trackChange'。 |
+
+**示例：**
+
+```js
+avPlayer.off('trackChange')
 ```
 
 ## AVPlayerState<sup>9+</sup><a name = avplayerstate></a>

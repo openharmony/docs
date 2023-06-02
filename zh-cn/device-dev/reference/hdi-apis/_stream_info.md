@@ -1,35 +1,35 @@
 # StreamInfo
 
 
-## **概述**
+## 概述
 
 流信息，用于创建流时传入相关的配置参数。
 
 **相关模块:**
 
-[Camera](camera.md)
+[Camera](_camera.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [streamId_](#streamid_) | 流的ID，用于在设备内唯一标识一条流。 | 
-| [width_](#width_) | 图像宽度。 | 
-| [height_](#height_) | 图像高度。 | 
-| [format_](#format_) | 图像格式。 | 
-| [dataspace_](#dataspace_) | 图像颜色空间。 | 
-| [intent_](#intent_) | 流类型。 | 
-| [tunneledMode_](#tunneledmode_) | 隧道模式，值为true时开启，false关闭。 | 
-| [bufferQueue_](#bufferqueue_) | 图形提供的生产者句柄。 | 
-| [minFrameDuration_](#minframeduration_) | 最小帧间隔。 | 
-| [encodeType_](#encodetype_) | 编码类型。 | 
+| [streamId_](#streamid_) | int<br/>流的ID，用于在设备内唯一标识一条流。 | 
+| [width_](#width_) | int<br/>图像宽度。 | 
+| [height_](#height_) | int<br/>图像高度。 | 
+| [format_](#format_) | int<br/>图像格式。 | 
+| [dataspace_](#dataspace_) | int<br/>图像颜色空间。 | 
+| [intent_](#intent_) | enum&nbsp;[StreamIntent](_camera.md#streamintent)<br/>流类型。 | 
+| [tunneledMode_](#tunneledmode_) | boolean<br/>隧道模式。 | 
+| [bufferQueue_](#bufferqueue_) | BufferProducerSequenceable<br/>图形提供的生产者句柄。 | 
+| [minFrameDuration_](#minframeduration_) | int<br/>最小帧间隔。 | 
+| [encodeType_](#encodetype_) | enum&nbsp;[EncodeType](_camera.md#encodetype)<br/>编码类型。 | 
 
 
-## **类成员变量说明**
+## 类成员变量说明
 
 
 ### bufferQueue_
@@ -39,7 +39,7 @@
 BufferProducerSequenceable StreamInfo::bufferQueue_
 ```
 
-**描述：**
+**描述:**
 
 图形提供的生产者句柄。
 
@@ -51,7 +51,7 @@ BufferProducerSequenceable StreamInfo::bufferQueue_
 int StreamInfo::dataspace_
 ```
 
-**描述：**
+**描述:**
 
 图像颜色空间。
 
@@ -63,7 +63,7 @@ int StreamInfo::dataspace_
 enum EncodeType StreamInfo::encodeType_
 ```
 
-**描述：**
+**描述:**
 
 编码类型。
 
@@ -75,7 +75,7 @@ enum EncodeType StreamInfo::encodeType_
 int StreamInfo::format_
 ```
 
-**描述：**
+**描述:**
 
 图像格式。
 
@@ -87,7 +87,7 @@ int StreamInfo::format_
 int StreamInfo::height_
 ```
 
-**描述：**
+**描述:**
 
 图像高度。
 
@@ -99,7 +99,7 @@ int StreamInfo::height_
 enum StreamIntent StreamInfo::intent_
 ```
 
-**描述：**
+**描述:**
 
 流类型。
 
@@ -111,7 +111,7 @@ enum StreamIntent StreamInfo::intent_
 int StreamInfo::minFrameDuration_
 ```
 
-**描述：**
+**描述:**
 
 最小帧间隔。
 
@@ -123,7 +123,7 @@ int StreamInfo::minFrameDuration_
 int StreamInfo::streamId_
 ```
 
-**描述：**
+**描述:**
 
 流的ID，用于在设备内唯一标识一条流。
 
@@ -135,9 +135,11 @@ int StreamInfo::streamId_
 boolean StreamInfo::tunneledMode_
 ```
 
-**描述：**
+**描述:**
 
-隧道模式，值为true时开启，false关闭。 开启隧道模式后，HAL不直接和上层交互，通过图形提供的生产者句柄来传递帧数据， 对于一些IOT设备，可能不需要或者不支持预览流的图像数据缓存流转，此时需要关闭隧道模式。
+隧道模式。
+
+值为true时开启，false关闭。 开启隧道模式后，HAL不直接和上层交互，通过图形提供的生产者句柄来传递帧数据，对于一些IOT设备，可能不需要或者不支持预览流的图像数据缓存流转，此时需要关闭隧道模式。
 
 
 ### width_
@@ -147,6 +149,6 @@ boolean StreamInfo::tunneledMode_
 int StreamInfo::width_
 ```
 
-**描述：**
+**描述:**
 
 图像宽度。

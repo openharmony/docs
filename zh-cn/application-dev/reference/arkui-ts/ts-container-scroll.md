@@ -131,10 +131,11 @@ currentOffset(): { xOffset: number, yOffset: number }
 
 ### scrollToIndex
 
-scrollToIndex(value: number): void
-
+scrollToIndex(value: number, smooth?:boolean): void
 
 滑动到指定Index。
+
+开启smooth动效时，会对经过的所有item进行加载和布局计算，当大量加载item时会导致性能问题。
 
 
 >  **说明：**
@@ -143,10 +144,10 @@ scrollToIndex(value: number): void
 
 **参数：**
 
-| 参数名 | 参数类型 | 必填 | 参数描述                           |
-| ------ | -------- | ---- | ---------------------------------- |
-| value  | number   | 是   | 要滑动到的列表项在列表中的索引值。 |
-
+| 参数名                | 参数类型 | 必填 | 参数描述                                                     |
+| --------------------- | -------- | ---- | ------------------------------------------------------------ |
+| value                 | number   | 是   | 要滑动到的列表项在列表中的索引值。                           |
+| smooth<sup>10+ </sup> | boolean  | 否   | 设置滑动到列表项在列表中的索引值时是否有动效，true表示有动效，false表示没有动效。<br/>默认值：false。<br/>**说明：** <br/>当前仅List组件支持该参数。 |
 
 ### scrollBy<sup>9+</sup>
 

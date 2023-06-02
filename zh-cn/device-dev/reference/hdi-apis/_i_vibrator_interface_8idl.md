@@ -1,7 +1,7 @@
 # IVibratorInterface.idl
 
 
-## **概述**
+## 概述
 
 定义马达的通用API，可用于控制马达执行单次或周期性振动、设置马达振幅与频率。
 
@@ -15,17 +15,17 @@
 
 **相关模块:**
 
-[Vibrator](vibrator.md)
+[Vibrator](_vibrator.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### 类
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [IVibratorInterface](interface_i_vibrator_interface.md) | Vibrator模块向上层服务提供统一的接口。 | 
+| [IVibratorInterface](interface_i_vibrator_interface.md) | interface<br/>Vibrator模块向上层服务提供统一的接口。 | 
 
 
 ### 关键字

@@ -256,7 +256,7 @@ controller: TextInputController = new TextInputController()
 
 适用于：OpenHarmony 3.2 Beta5 API 9
 
-gridCount参数是指弹窗宽度占栅格列数的个数。系统把窗口宽等分，等分的份数即为栅格列数，不同设备栅格列数不同。比如手机屏幕密度值在320vp<=水平宽度<600vp，所以栅格列数是4，则gridCount的有效值在\[1, 4\]。
+gridCount参数是指弹窗宽度占栅格列数的个数。系统把窗口宽等分，等分的份数即为栅格列数，不同设备栅格列数不同。假设设备屏幕密度值在320vp<=水平宽度<600vp，所以栅格列数是4，则gridCount的有效值在\[1, 4\]。
 
 注意：仅采用弹窗默认样式时设置有效。
 
@@ -391,7 +391,7 @@ Text组件当前文本排列方向固定为横向排列，要设置为竖向排�
 @Entry
 @Component
 struct Index15 {
-  private message: string = '本文档适用于HarmonyOS应用开发的初学者。通过构建一个简单的具有页面跳转/返回功能的应用，快速了解工程目录的主要文件，熟悉HarmonyOS应用开发流程。';
+  private message: string = '本文档适用于应用开发的初学者。通过构建一个简单的具有页面跳转/返回功能的应用，快速了解工程目录的主要文件，熟悉应用开发流程。';
   build() {
     Flex({ direction: FlexDirection.Column, wrap: FlexWrap.Wrap }) {
       ForEach(this.message.split(''), (item, index) => {

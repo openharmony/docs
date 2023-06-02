@@ -1,4 +1,4 @@
-# Native API 介绍
+# Native API介绍
 
 Native API是OHOS SDK上提供的一组native开发接口与工具集合，方便开发者使用C或者C++语言实现应用的关键功能。Native API只覆盖了OHOS基础的一些底层能力，如libc，图形库，窗口系统，多媒体，压缩库等，并没有完全提供类似于JS API上的完整的OHOS 平台能力。在应用中使用Native API会编译成动态库打包到应用中。
 

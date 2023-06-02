@@ -17,7 +17,7 @@ import applicationManager from '@ohos.enterprise.applicationManager';
 
 addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
 
-指定设备管理员应用添加应用运行黑名单接口，使用callback形式返回是否添加成功。添加至黑名单的应用不允许在管理员用户下运行，否则允许运行。
+指定设备管理员应用添加应用运行黑名单接口，使用callback形式返回是否添加成功。添加至黑名单的应用不允许在当前用户下运行，否则允许运行。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -302,7 +302,7 @@ applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100).then(()
 
 getDisallowedRunningBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
 
-指定管理员应用获取管理员用户下的应用运行黑名单接口，使用callback形式返回获取应用运行黑名单。
+指定管理员应用获取当前用户下的应用运行黑名单接口，使用callback形式返回获取应用运行黑名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -389,7 +389,7 @@ applicationManager.getDisallowedRunningBundles(wantTemp, 100, (error) => {
 
 getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;;
 
-如果调用接口时传入参数userId，指定管理员应用获取指定用户下应用运行黑名单接口，如果调用接口时没有传入参数userId，指定管理员应用获取当前用户下应用运行黑名单接口，使用promise形式返回获取应用运行黑名单。
+指定管理员应用获取指定用户或当前用户下应用运行黑名单接口，使用promise形式返回获取应用运行黑名单。如果调用接口时传入参数userId，表示获取指定用户下应用运行黑名单，如果调用接口没有传入参数userId，表示获取当前用户下应用运行黑名单。
 
 **需要权限：** ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -408,7 +408,7 @@ getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;s
 
 | 类型                   | 说明                      |
 | --------------------- | ------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回管理员用户下的应用运行黑名单。 |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象，返回当前用户下的应用运行黑名单。 |
 
 **错误码**：
 
