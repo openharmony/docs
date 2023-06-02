@@ -18,9 +18,13 @@
 - output， 输出两输入相除后的结果。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
@@ -46,4 +50,5 @@
 enum ActivationType DivFusion::activationType
 ```
 **描述:**
+
 激活函数类型，详情请参考：[Activation](_activation.md)。
