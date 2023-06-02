@@ -18,9 +18,13 @@
 - output，计算得到内积，当type!=DATA_TYPE_UNKNOWN时，output数据类型由type决定；当type==DATA_TYPE_UNKNOWN时， output的数据类型取决于x1和x2进行计算时转化的数据类型。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)

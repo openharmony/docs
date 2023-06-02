@@ -18,9 +18,13 @@
 - output，x的PReLU激活值。形状和数据类型和x保持一致。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
@@ -46,4 +50,5 @@
 boolean PReLUFusion::channelShared
 ```
 **描述:**
+
 是否开启权重共享，可以用于校验参数合法性。 若weight的是1则channelShared一定为true，否则为false。

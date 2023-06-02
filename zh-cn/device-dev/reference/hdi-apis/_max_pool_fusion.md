@@ -18,9 +18,13 @@
 - output，x1和x2两个tensor对应元素的最大值。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)

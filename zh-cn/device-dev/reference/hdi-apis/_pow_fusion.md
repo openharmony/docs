@@ -22,9 +22,13 @@
 - output，形状由x和y broadcast后的形状决定。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
@@ -51,6 +55,7 @@
 float PowFusion::scale
 ```
 **描述:**
+
 对x的数值进行缩放。
 
 
@@ -61,4 +66,5 @@ float PowFusion::scale
 float PowFusion::shift
 ```
 **描述:**
+
 对x的数值缩放后的值进行增减。

@@ -18,9 +18,13 @@
 - Tensor，m维tensor，OperandType与input相同。如果input和multiples长度相同， 则output和input维数一致，都是n维tensor；如果multiples长度大于n，则用1填充input的维度， 再在各个维度上拷贝相应的次数，得到m维tensor。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
@@ -46,4 +50,5 @@
 long [] TileFusion::dims
 ```
 **描述:**
+
 它和multiples功能相同，1维tensor，指定各个维度拷贝的次数。其长度m不小于x的维数n。

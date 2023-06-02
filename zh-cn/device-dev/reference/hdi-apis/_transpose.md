@@ -18,9 +18,13 @@
 - output，n维tensor，output的数据类型，量化等参数与x相同，shape由x的shape和perm共同决定。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)

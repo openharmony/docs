@@ -186,7 +186,8 @@ enum CoordinateTransformMode : byte
 - COORDINATE_TRANSFORM_MODE_HALF_PIXEL：
   $ old_i = newWidth &gt; 1 ? (new_x + 0.5) \* oldWidth / newWidth - 0.5 : 0 $
 
-  | 枚举值 | 描述 | 
+
+| 枚举值 | 描述 | 
 | -------- | -------- |
 | COORDINATE_TRANSFORM_MODE_ASYMMETRIC | 不进行对齐，直接按照比例缩放 | 
 | COORDINATE_TRANSFORM_MODE_ALIGN_CORNERS | 对齐图像的4个角 | 
@@ -451,7 +452,8 @@ enum PaddingMode : byte
 - paddingMode==PADDING_MODE_SYMMETRIC输出为：
   $[[5. 4. 4. 5. 6. 6. 5.],\\ [2. 1. 1. 2. 3. 3. 2.],\\ [2. 1. 1. 2. 3. 3. 2.],\\ [5. 4. 4. 5. 6. 6. 5.],\\ [8. 7. 7. 8. 9. 9. 8.],\\ [8. 7. 7. 8. 9. 9. 8.],\\ [5. 4. 4. 5. 6. 6. 5.]]\\ $
 
-  | 枚举值 | 描述 | 
+
+| 枚举值 | 描述 | 
 | -------- | -------- |
 | PADDING_MODE_CONSTANT | 使用常量填充，默认值为0。 | 
 | PADDING_MODE_REFLECT | 以数据区的便捷为轴，使填充区和数据区的数据以该轴保持对称。 | 

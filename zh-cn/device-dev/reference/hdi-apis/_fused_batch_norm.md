@@ -24,9 +24,13 @@
 - output，输出运算后的张量。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
@@ -52,4 +56,5 @@
 float FusedBatchNorm::epsilon
 ```
 **描述:**
+
 趋于零的极小值，用于保证除数不为0。
