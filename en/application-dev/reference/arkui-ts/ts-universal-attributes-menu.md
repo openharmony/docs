@@ -4,7 +4,9 @@ A context menu – a vertical list of items – can be bound to a component and 
 
 >  **NOTE**
 >
->  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  - The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  - **CustomBuilder** does not support the use of **bindMenu** and **bindContextMenu** methods. To display a multi-level menu, use the [\<Menu>](ts-basic-components-menu.md) component instead.
 
 
 ## Attributes
@@ -29,7 +31,7 @@ A context menu – a vertical list of items – can be bound to a component and 
 | ------ | -------------------------------- | ---- | ------------------------------------------------------ |
 | title  | string                           | No  | Menu title.                                            |
 | offset | [Position](ts-types.md#position8) | No  | Offset for showing the context menu, which should not cause the menu to extend beyond the screen.|
-| placement | [Placement](ts-appendix-enums.md#placement8) | No| Preferred position of the context menu. If the set position is insufficient for holding the component, it will be automatically adjusted.<br>Default value: **Placement.Bottom**|
+| placement | [Placement](ts-appendix-enums.md#placement8) | No| Preferred position of the context menu. If the set position is insufficient for holding the component, it will be automatically adjusted.<br>**NOTE**<br>Setting **placement** to **undefined** or **null** is equivalent to not setting it at all.|
 | onAppear | () =&gt; void | No| Callback triggered when the menu is displayed.|
 | onDisappear | () =&gt; void | No| Callback triggered when the menu is hidden.|
 
@@ -38,7 +40,7 @@ A context menu – a vertical list of items – can be bound to a component and 
 | Name       | Type                                        | Mandatory| Description                                                        |
 | ----------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
 | offset      | [Position](ts-types.md#position8)            | No  | Offset for showing the context menu, which should not cause the menu to extend beyond the screen.        |
-| placement   | [Placement](ts-appendix-enums.md#placement8) | No  | Preferred position of the context menu. If the set position is insufficient for holding the component, it will be automatically adjusted.<br>Default value: **Placement.Bottom**|
+| placement   | [Placement](ts-appendix-enums.md#placement8) | No  | Preferred position of the context menu. If the set position is insufficient for holding the component, it will be automatically adjusted.<br>**NOTE**<br>Setting **placement** to **undefined** or **null** is equivalent to not setting it at all.|
 | onAppear    | () =&gt; void                      | No  | Callback triggered when the menu is displayed.                                      |
 | onDisappear | () =&gt; void                      | No  | Callback triggered when the menu is hidden.                                      |
 

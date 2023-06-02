@@ -33,7 +33,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | type | [PanelType](#paneltype)| Type of the panel.<br>Default value: **PanelType.Foldable**|
-| mode | [PanelMode](#panelmode) | Initial status of the panel.<br>Default value for the Minibar type: **PanelMode.Mini**<br/>Default value for other types: **PanelMode.Half**<br>Since API version 10, this attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables. |
+| mode | [PanelMode](#panelmode) | Initial status of the panel.<br>Default value for the Minibar type: **PanelMode.Mini**<br/>Default value for other types: **PanelMode.Half**<br>Since API version 10, this attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 | dragBar | boolean | Whether to enable a drag bar. The value **true** means that the drag bar will be displayed, and **false** means the opposite.<br>Default value: **true**|
 | fullHeight | string \| number | Panel height in the **PanelMode.Full** mode.<br>Default value: main axis height of the panel minus 8 vp<br>**NOTE**<br>This attribute cannot be set in percentage.|
 | halfHeight | string \| number | Panel height in the **PanelMode.Half** mode.<br>Default value: half of the main axis height of the panel<br>**NOTE**<br>This attribute cannot be set in percentage.|

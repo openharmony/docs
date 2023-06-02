@@ -1,8 +1,6 @@
-# console (Log Printing)
+# Console
 
-The **console** module provides basic log printing capabilities and supports log printing by log level.
-
-If you want to use more advanced log printing services, for example, filtering logs by the specified ID, you are advised to use [`@ohos.hilog`](js-apis-hilog.md).
+The **console** module provides a simple debugging console, which is similar to the JavaScript console provided by the browser.
 
 > **NOTE**
 >
@@ -10,9 +8,9 @@ If you want to use more advanced log printing services, for example, filtering l
 
 ## console.debug
 
-debug(message: string): void
+debug(message: string, ...arguments: any[]): void
 
-Prints debug-level logs.
+Prints debugging information in formatted output mode.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -20,14 +18,25 @@ Prints debug-level logs.
 
 | Name    | Type    | Mandatory  | Description         |
 | ------- | ------ | ---- | ----------- |
-| message | string | Yes   | Text to print.|
+| message | string | Yes   | Text to be printed.|
+| arguments | any | No   | Arguments in the message or other information to be printed.|
 
+**Example**
+```js
+const number = 5;
+console.debug('count: %d', number);  // Print the debugging information with arguments in the message replaced.
+// count: 5 
+console.debug('count:', number);  // Print the message and other information.
+// count: 5 
+console.debug('count:'); // Print the message only.
+// count: 
+```
 
 ## console.log
 
-log(message: string): void
+log(message: string, ...arguments: any[]): void
 
-Prints debug-level logs.
+Prints log information in formatted output mode.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -35,14 +44,25 @@ Prints debug-level logs.
 
 | Name    | Type    | Mandatory  | Description         |
 | ------- | ------ | ---- | ----------- |
-| message | string | Yes   | Text to print.|
+| message | string | Yes   | Text to be printed.|
+| arguments | any | No   |Arguments in the message or other information to be printed.|
 
+**Example**
+```js
+const number = 5;
+console.log('count: %d', number);  // Print the log information with arguments in the message replaced.
+// count: 5 
+console.log('count:', number);  // Print the message and other information.
+// count: 5 
+console.log('count:'); // Print the message only.
+// count: 
+```
 
 ## console.info
 
-info(message: string): void
+info(message: string, ...arguments: any[]): void
 
-Prints info-level logs.
+Prints log information in formatted output mode. This API is the alias of **console.log ()**.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -50,14 +70,25 @@ Prints info-level logs.
 
 | Name    | Type    | Mandatory  | Description         |
 | ------- | ------ | ---- | ----------- |
-| message | string | Yes   | Text to print.|
+| message | string | Yes   | Text to be printed.|
+| arguments | any | No   | Arguments in the message or other information to be printed.|
 
+**Example**
+```js
+const number = 5;
+console.info('count: %d', number);  // Print the log information with arguments in the message replaced.
+// count: 5 
+console.info('count:', number);  // Print the message and other information.
+// count: 5 
+console.info('count:'); // Print the message only.
+// count: 
+```
 
 ## console.warn
 
-warn(message: string): void
+warn(message: string, ...arguments: any[]): void
 
-Prints warn-level logs.
+Prints warning information in formatted output mode.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -65,14 +96,25 @@ Prints warn-level logs.
 
 | Name    | Type    | Mandatory  | Description         |
 | ------- | ------ | ---- | ----------- |
-| message | string | Yes   | Text to print.|
+| message | string | Yes   | Warning information to be printed.|
+| arguments | any | No   | Arguments in the message or other information to be printed.|
 
+**Example**
+```js
+const str = "name should be string";
+console.warn('warn: %d', str); // Print the warning information with arguments in the message replaced.
+// warn: name should be string
+console.warn('warn:', str);  // Print the message and other information.
+// warn: name should be string
+console.warn('warn:'); // Print the message only.
+// warn: 
+```
 
 ## console.error
 
-error(message: string): void
+error(message: string, ...arguments: any[]): void
 
-Prints error-level logs.
+Prints error information in formatted output mode.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
@@ -80,31 +122,26 @@ Prints error-level logs.
 
 | Name    | Type    | Mandatory  | Description         |
 | ------- | ------ | ---- | ----------- |
-| message | string | Yes   | Text to print.|
+| message | string | Yes   | Error information to be printed.|
+| arguments | any | No   | Arguments in the message or other information to be printed.|
 
 
 **Example**
-
+```js
+const str = "value is not defined";
+console.error('error: %d', str);  // Print the error information with arguments in the message replaced.
+// error: value is not defined
+console.error('error:', str);  // Print the message and other information.
+// error: value is not defined
+console.error('error:'); // Print the message only.
+// error: 
 ```
-export default {    
-  clickConsole(){        
-    var versionCode = 1;        
-    console.info('Hello World. The current version code is ' + versionCode);        
-    console.log(`versionCode: ${versionCode}`);        
-    / / The following is supported since API version 6: console.log('versionCode:%d.', versionCode);   
-  }
-}
-```
-
-Switch to the HiLog window at the bottom of HUAWEI DevEco Studio. Specifically, select the current device and process, set the log level to Info, and enter Hello World in the search box. Logs that meet the search criteria are displayed, as shown in the following figure.
-
-![Printing logs](figures/printing-logs.png)
 
 ## console.assert<sup>10+</sup>
 
 assert(value?: Object, ...arguments: Object[]): void
 
-If **value** is false, the subsequent content will be printed.
+Prints assertion information.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -112,24 +149,26 @@ If **value** is false, the subsequent content will be printed.
 
 | Name    | Type    | Mandatory  | Description         |
 | ------- | ------ | ---- | ----------- |
-| value | Object | No   | Value|
-| arguments | Object | No   | Prints error messages.|
+| value | Object | No   | Result value. If **value** is **false** or left blank, the output starting with "Assertion failed" is printed. If **value** is **true**, no information is printed.|
+| arguments | Object | No   | Other information to be printed when **value** is **false**. If this parameter is left blank, other information is not printed.|
 
 **Example**
-```
-console.assert(true, 'does nothing');
+```js
+console.assert(true, 'does nothing');  // Do not print error information as value is true.
+console.assert(2% 1 == 0,'does nothing');  // Do not print error information as value is true.
 
 console.assert(false, 'console %s work', 'didn\'t');
-// Assertion console:ohos didn't work
+// Assertion failed: console didn't work
 
 console.assert();
 // Assertion failed
 ```
+
 ## console.count<sup>10+</sup>
 
 count(label?: string): void
 
-Adds a counter by the specified label name to count the number of times **console.count()** is called. The default value is **default**.
+Maintains an internal counter. When this counter is invoked, its label name and the corresponding call count are printed.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -137,10 +176,11 @@ Adds a counter by the specified label name to count the number of times **consol
 
 | Name    | Type    | Mandatory  | Description         |
 | ------- | ------ | ---- | ----------- |
-| label | string | No   | Counter label name.|
+| label | string | No   | Counter label name. The default value is **default**.|
+
 
 **Example**
-```
+```js
 console.count()
 // default: 1
 console.count('default')
@@ -150,7 +190,7 @@ console.count('abc')
 console.count('xyz')
 // xyz: 1
 console.count('abc')
-abc: 2
+// abc: 2
 console.count()
 // default: 3
 ```
@@ -159,7 +199,7 @@ console.count()
 
 countReset(label?: string): void
 
-Resets a counter by the specified label name. The default value is **default**.
+Resets a counter based on the specified label name.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -167,10 +207,10 @@ Resets a counter by the specified label name. The default value is **default**.
 
 | Name    | Type    | Mandatory  | Description         |
 | ------- | ------ | ---- | ----------- |
-| label | string | No   | Counter label name.|
+| label | string | No   | Counter label name. The default value is **default**.|
 
 **Example**
-```
+```js
 console.count('abc');
 // abc: 1
 console.countReset('abc');
@@ -190,13 +230,24 @@ Prints content of the specified object.
 
 | Name    | Type    | Mandatory  | Description         |
 | ------- | ------ | ---- | ----------- |
-| dir | Object | No   | Object whose content needs to be printed.|
+| dir | Object | No   | Object whose content needs to be printed. If this parameter is left blank, no information is printed.|
+
+
+**Example**
+```js
+let a = { foo: { bar: { baz: true } }};
+console.dir(a);
+// Object: {"foo":{"bar":{"baz":true}}}
+
+console.dir(); // No information is printed.
+```
+
 
 ## console.dirxml<sup>10+</sup>
 
 dirxml(...arguments: Object[]): void 
 
-Calls **console.log()** and passes the received parameters to it. This API does not produce any content of the XML format.
+Displays an interactive tree of the descendant elements of the specified XML element. This API is implemented by calling **console.log()** internally. It does not produce any XML elements. The usage method is the same as that of **console.log()**.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -204,13 +255,24 @@ Calls **console.log()** and passes the received parameters to it. This API does 
 
 | Name    | Type    | Mandatory  | Description         |
 | ------- | ------ | ---- | ----------- |
-| arguments | Object | No   | Information to be printed.|
+| arguments | Object | Yes   | Information to be printed.|
+
+**Example**
+```js
+const number = 5;
+console.dirxml('count: %d', number);
+// count: 5 
+console.dirxml('count:', number);
+// count: 5 
+console.dirxml('count:');
+// count: 
+```
 
 ## console.group<sup>10+</sup>
 
 group(...arguments: Object[]): void
 
-Creates an inline group so that subsequent lines are indented by the value specified by **groupIndentation**.
+Increases the indentation of subsequent lines by two spaces.
 If the information to be printed is provided, the information is printed without extra indentation.
 
 **System capability**: SystemCapability.Utils.Lang
@@ -220,11 +282,26 @@ If the information to be printed is provided, the information is printed without
 | Name    | Type    | Mandatory  | Description         |
 | ------- | ------ | ---- | ----------- |
 | arguments | Object | No   | Information to be printed.|
+
+**Example**
+```js
+console.log("outter");
+// outter
+console.group();
+console.log("level 1");
+//   level 1
+console.group("in level1");
+//   in level1
+console.log("level 2");
+//     level 2
+```
+
+
 ## console.groupCollapsed<sup>10+</sup>
 
 groupCollapsed(...arguments: Object[]): void
 
-Creates a collapsed inline group.
+Creates a new inline group in collapsed mode. The usage and function of this API are the same as those of **console.group()**.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -234,13 +311,41 @@ Creates a collapsed inline group.
 | ------- | ------ | ---- | ----------- |
 | arguments | Object | No   | Information to be printed.|
 
+
+**Example**
+```js
+console.groupCollapsed("outter");
+// outter
+console.groupCollapsed();
+console.log("level 1");
+//   level 1
+console.groupCollapsed("in level1");
+//   in level1
+console.log("level 2");
+//     level 2
+```
+
 ## console.groupEnd<sup>10+</sup>
 
 groupEnd(): void
 
-Exits an inline group so that subsequent lines are not indented by the value specified by **groupIndentation** .
+Reduces the indentation of subsequent lines by two spaces.
 
 **System capability**: SystemCapability.Utils.Lang
+
+
+**Example**
+```js
+console.log("outter");
+// outter
+console.group();
+console.log("level 1");
+//   level 1
+console.groupEnd();
+console.log("outter");
+// outter
+```
+
 
 ## console.table<sup>10+</sup>
 
@@ -254,10 +359,10 @@ Prints data in a table.
 
 | Name    | Type    | Mandatory  | Description         |
 | ------- | ------ | ---- | ----------- |
-| tableData | Object | No   | Data to be printed in a table.|
+| tableData | Object | No   | Data to be printed in a table. If this parameter is left blank, no information is printed.|
 
 **Example**
-```
+```js
 console.table([1, 2, 3]);
 // ┌─────────┬────────┐
 // │ (index) │ Values │
@@ -281,7 +386,7 @@ console.table({ a: [1, 2, 3, 4, 5], b: 5, c: { e: 5 } });
 
 time(label?: string): void
 
-Starts a timer to track the duration of an operation. The default value is **default**. You can use **console.timeEnd()** to disable the timer and print the result.
+Starts a timer to track the duration of an operation. You can use **console.timeEnd()** to close the timer and print the elapsed time (in ms).
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -289,13 +394,18 @@ Starts a timer to track the duration of an operation. The default value is **def
 
 | Name    | Type    | Mandatory  | Description         |
 | ------- | ------ | ---- | ----------- |
-| label | string | No   | Timer label.|
+| label | string | No   | Timer label. The default value is **default**.|
+
+**Example**
+```js
+console.time('abc');
+```
 
 ## console.timeEnd<sup>10+</sup>
 
 timeEnd(label?: string): void
 
-Stops the timer started by **console.time()** and prints the result. The default value is **default**.
+Stops the timer started by calling **console.time()** and prints the elapsed time (in ms).
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -303,10 +413,10 @@ Stops the timer started by **console.time()** and prints the result. The default
 
 | Name    | Type    | Mandatory  | Description         |
 | ------- | ------ | ---- | ----------- |
-| label | string | No   | Timer label.|
+| label | string | No   | Timer label. The default value is **default**.|
 
 **Example**
-```
+```js
 console.time('abc');
 console.timeEnd('abc');
 // abc: 225.438ms
@@ -316,7 +426,7 @@ console.timeEnd('abc');
 
 timeLog(label?: string, ...arguments: Object[]): void
 
-Prints the elapsed time and other logs for the timer started by **console.time()**.
+Prints the elapsed time and other data parameters for the timer started by **console.time()**.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -324,14 +434,13 @@ Prints the elapsed time and other logs for the timer started by **console.time()
 
 | Name    | Type    | Mandatory  | Description         |
 | ------- | ------ | ---- | ----------- |
-| label | string | No   | Timer label.|
+| label | string | No   | Timer label. The default value is **default**.|
 | arguments | Object | No   | Logs to be printed.|
 
 **Example**
-```
+```js
 console.time('timer1');
-const value = aaa (); // Return 17.
-console.timeLog('timer1', value);
+console.timeLog('timer1', 17);
 // timer1: 365.227ms 17
 console.timeEnd('timer1');
 // timer1: 513.22ms
@@ -349,10 +458,14 @@ Creates a stack trace.
 
 | Name    | Type    | Mandatory  | Description         |
 | ------- | ------ | ---- | ----------- |
-| arguments | Object | No   | Logs to be printed.|
+| arguments | Object | No   | Logs to be printed. If this parameter is left blank, only stack information is printed.|
 
 **Example**
-```
+```js
 console.trace();
+// Trace:
+//     xxxxxxxxxx (current stack information)
 console.trace("Show the trace");
+// Trace: Show the trace
+//     xxxxxxxxxx (current stack information)
 ```

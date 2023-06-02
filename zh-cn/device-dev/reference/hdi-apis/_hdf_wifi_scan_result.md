@@ -1,36 +1,40 @@
 # HdfWifiScanResult
 
 
-## **概述**
+## 概述
 
 WiFi扫描结果。
 
+**Since:**
+3.2
+**Version:**
+1.0
 **相关模块:**
 
-[WLAN](wlan.md)
+[WLAN](_w_l_a_n.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [flags](#flags) | BSS/IBSS的标志位。 | 
-| [bssid](#bssid) | BSSID信息。 | 
-| [caps](#caps) | Capability信息字段（主机字节序排列）。 | 
-| [freq](#freq) | 信道频率。 | 
-| [beaconInt](#beaconint) | Beacon帧间隔。 | 
-| [qual](#qual) | 信号质量。 | 
-| [level](#level) | 信号强度。 | 
-| [age](#age) | 收到最新的Beacon或者探测响应帧数据的时间长度，单位为毫秒。 | 
-| [variable](#variable) | 扫描结果中的变量值。 | 
-| [ie](#ie) | 紧跟的Probe&nbsp;Response中IE字段。 | 
-| [beaconIe](#beaconie) | 紧跟的Beacon中IE字段。 | 
+| [flags](#flags) | int<br/>BSS/IBSS的标志位。&nbsp; | 
+| [bssid](#bssid) | unsigned&nbsp;char[]<br/>BSSID信息。&nbsp; | 
+| [caps](#caps) | short<br/>Capability信息字段（主机字节序排列）。&nbsp; | 
+| [freq](#freq) | int<br/>信道频率。&nbsp; | 
+| [beaconInt](#beaconint) | short<br/>Beacon帧间隔。&nbsp; | 
+| [qual](#qual) | int<br/>信号质量。&nbsp; | 
+| [level](#level) | int<br/>信号强度。&nbsp; | 
+| [age](#age) | unsigned&nbsp;int<br/>收到最新的Beacon或者探测响应帧数据的时间长度，单位为毫秒。&nbsp; | 
+| [variable](#variable) | unsigned&nbsp;char[]<br/>扫描结果中的变量值。&nbsp; | 
+| [ie](#ie) | unsigned&nbsp;char[]<br/>紧跟的Probe&nbsp;Response中IE字段。&nbsp; | 
+| [beaconIe](#beaconie) | unsigned&nbsp;char[]<br/>紧跟的Beacon中IE字段。&nbsp; | 
 
 
-## **类成员变量说明**
+## 类成员变量说明
 
 
 ### age
@@ -39,9 +43,7 @@ WiFi扫描结果。
 ```
 unsigned int HdfWifiScanResult::age
 ```
-
-**描述：**
-
+**描述:**
 收到最新的Beacon或者探测响应帧数据的时间长度，单位为毫秒。
 
 
@@ -51,9 +53,7 @@ unsigned int HdfWifiScanResult::age
 ```
 unsigned char [] HdfWifiScanResult::beaconIe
 ```
-
-**描述：**
-
+**描述:**
 紧跟的Beacon中IE字段。
 
 
@@ -63,9 +63,7 @@ unsigned char [] HdfWifiScanResult::beaconIe
 ```
 short HdfWifiScanResult::beaconInt
 ```
-
-**描述：**
-
+**描述:**
 Beacon帧间隔。
 
 
@@ -75,9 +73,7 @@ Beacon帧间隔。
 ```
 unsigned char [] HdfWifiScanResult::bssid
 ```
-
-**描述：**
-
+**描述:**
 BSSID信息。
 
 
@@ -87,9 +83,7 @@ BSSID信息。
 ```
 short HdfWifiScanResult::caps
 ```
-
-**描述：**
-
+**描述:**
 Capability信息字段（主机字节序排列）。
 
 
@@ -99,9 +93,7 @@ Capability信息字段（主机字节序排列）。
 ```
 int HdfWifiScanResult::flags
 ```
-
-**描述：**
-
+**描述:**
 BSS/IBSS的标志位。
 
 
@@ -111,9 +103,7 @@ BSS/IBSS的标志位。
 ```
 int HdfWifiScanResult::freq
 ```
-
-**描述：**
-
+**描述:**
 信道频率。
 
 
@@ -123,9 +113,7 @@ int HdfWifiScanResult::freq
 ```
 unsigned char [] HdfWifiScanResult::ie
 ```
-
-**描述：**
-
+**描述:**
 紧跟的Probe Response中IE字段。
 
 
@@ -135,9 +123,7 @@ unsigned char [] HdfWifiScanResult::ie
 ```
 int HdfWifiScanResult::level
 ```
-
-**描述：**
-
+**描述:**
 信号强度。
 
 
@@ -147,9 +133,7 @@ int HdfWifiScanResult::level
 ```
 int HdfWifiScanResult::qual
 ```
-
-**描述：**
-
+**描述:**
 信号质量。
 
 
@@ -159,7 +143,5 @@ int HdfWifiScanResult::qual
 ```
 unsigned char [] HdfWifiScanResult::variable
 ```
-
-**描述：**
-
+**描述:**
 扫描结果中的变量值。

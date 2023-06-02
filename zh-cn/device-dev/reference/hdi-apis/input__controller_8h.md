@@ -1,28 +1,24 @@
 # input_controller.h
 
 
-## **概述**
+## 概述
 
 描述Input设备业务控制相关的接口声明。
 
-**Since**:
-
+**Since:**
 1.0
-
-**Version**:
-
+**Version:**
 1.0
-
 **相关模块:**
 
-[Input](input.md)
+[Input](_input.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### 类
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [InputController](_input_controller.md) | 提供Input设备业务控制相关的接口。 | 
+| [InputController](_input_controller.md) | struct<br/>提供Input设备业务控制相关的接口。&nbsp; | 

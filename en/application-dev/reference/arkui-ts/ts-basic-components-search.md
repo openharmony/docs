@@ -20,7 +20,7 @@ Search(options?: { value?: string; placeholder?: ResourceStr; icon?: string; con
 | ----------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value       | string                                               | No  | Text input in the search text box.<br>Since API version 10, this parameter supports two-way binding through [$$](../../quick-start/arkts-two-way-sync.md).|
 | placeholder | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> | No  | Text displayed when there is no input.                                    |
-| icon        | string                                               | No  | Path to the search icon. By default, the system search icon is used.<br>For details about the supported image types, see [Image](ts-basic-components-image.md).|
+| icon        | string                                               | No  | Path to the search icon. By default, the system search icon is used.<br>**NOTE**<br>The icon data source can be a local or online image.<br>- The supported formats include PNG, JPG, BMP, SVG, GIF, and pixelmap.<br>- The Base64 string is supported in the following format: data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], where [base64 data] is a Base64 string.|
 | controller  | SearchController                                     | No  | Controller of the **\<Search>** component.                                      |
 
 ## Attributes

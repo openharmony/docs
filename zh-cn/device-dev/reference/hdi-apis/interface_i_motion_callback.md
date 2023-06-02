@@ -1,32 +1,30 @@
 # IMotionCallback
 
 
-## **概述**
+## 概述
 
 定义上报手势识别数据回调函数。
 
 手势识别用户在订阅手势识别数据时需要注册这个回调函数，只有当使能手势识别后，手势识别数据用户才会收到手势识别数据。 详情可参考[IMotionInterface](interface_i_motion_interface.md)。
 
 **Since:**
-
 3.2
-
 **相关模块:**
 
-[Motion](motion.md)
+[Motion](_motion.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 成员函数
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [OnDataEvent](#ondataevent)&nbsp;([in]&nbsp;struct&nbsp;[HdfMotionEvent](_hdf_motion_event.md)&nbsp;event) | 定义上报手势识别数据回调函数。 | 
+| [OnDataEvent](#ondataevent)&nbsp;([in]&nbsp;struct&nbsp;[HdfMotionEvent](_hdf_motion_event.md)&nbsp;event) | 定义上报手势识别数据回调函数。&nbsp; | 
 
 
-## **成员函数说明**
+## 成员函数说明
 
 
 ### OnDataEvent()
@@ -35,9 +33,7 @@
 ```
 IMotionCallback::OnDataEvent ([in] struct HdfMotionEvent event)
 ```
-
-**描述：**
-
+**描述:**
 定义上报手势识别数据回调函数。
 
 **参数:**

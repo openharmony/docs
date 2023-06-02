@@ -4,7 +4,7 @@
 
 ### Introduction
 
-By default, OpenHarmony provides the power mode feature, which offers the following options: normal mode, performance mode, power-saving mode, and ultra power-saving mode. However, the power mode configuration varies according to hardware specifications of different products. To address this issue, OpenHarmony provides the power mode customization function, allowing you to customize power modes depending on your hardware specifications.
+By default, OpenHarmony provides the power mode feature, which offers the following options: normal mode, performance mode, power-saving mode, and super power-saving mode. However, the power mode configuration varies according to hardware specifications of different products. To address this issue, OpenHarmony provides the power mode customization function, allowing you to customize power modes depending on your hardware specifications.
 
 ### Basic Concepts
 
@@ -16,7 +16,7 @@ OpenHarmony supports the following four power modes, each of which corresponds t
 
 - Power-saving mode: power mode that emphasizes on power saving, such as decreasing the system brightness, reducing the screen-off time, and shortening the time for entering sleep mode.
 
-- Ultra power-saving mode: power mode that emphasizes on ultimate power saving, such as greatly decreasing the system brightness, greatly reducing the screen-off time, and greatly shortening the time for entering sleep mode.
+- Super power-saving mode: power mode that emphasizes on ultimate power saving, such as greatly decreasing the system brightness, greatly reducing the screen-off time, and greatly shortening the time for entering sleep mode.
 
 
 ### Constraints
@@ -59,7 +59,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     | Normal mode| 600 |
     | Power-saving mode| 601 |
     | Performance mode| 602 |
-    | Ultra power-saving mode| 603 |
+    | Super power-saving mode| 603 |
 
     The **switch** node is used to configure items of the power mode.
 
@@ -243,9 +243,9 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
 
     4. Turn on the screen. If the screen turns off after 30 seconds, the setting of the auto sleep time is successful.
 
-5. Set the power mode to the ultra power-saving mode, and verify the setting.
+5. Set the power mode to the super power-saving mode, and verify the setting.
 
-    1. Set the power mode to the ultra power-saving mode.
+    1. Set the power mode to the super power-saving mode.
 
         ```shell
         power-shell setmode 603
@@ -278,8 +278,6 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
 
 ## Reference
 
-During development, you can refer to the [default power mode configuration](https://gitee.com/openharmony/powermgr_power_manager/tree/master/services/native/profile):
-
-[Default configuration](https://gitee.com/openharmony/powermgr_power_manager/blob/master/services/native/profile/power_mode_config.xml)
+During development, you can refer to the [default power mode configuration](https://gitee.com/openharmony/powermgr_power_manager/blob/master/services/native/profile/power_mode_config.xml):
 
 Packing path: `/system/etc/power_config/power_mode_config.xml`

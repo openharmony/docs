@@ -1917,3 +1917,13 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+## ohos.permission.MANAGE_SENSOR
+
+允许不直接使用传感器的应用打开和关闭传感器。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE

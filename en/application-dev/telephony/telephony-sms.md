@@ -31,11 +31,11 @@ The Short Messaging Service (SMS) module provides basic SMS management functions
 
 | Name                                                      | Description                                                   |
 | ------------------------------------------------------------ | ------------------------------------------------------- |
-| createMessage(pdu: Array<number>, specification: string, callback: AsyncCallback<ShortMessage>): void | Creates an SMS message instance based on the PDU and the specified SMS protocol.|
+| createMessage(pdu: Array<number>, specification: string, callback: AsyncCallback\<ShortMessage>): void | Creates an SMS message instance based on the PDU and the specified SMS protocol.|
 | sendMessage(options: SendMessageOptions): void               | Sends text or data SMS messages.                                                     |
-| getDefaultSmsSlotId(callback: AsyncCallback<number>): void   | Obtains the ID of the default SIM card used to send SMS messages.                                               |
-| setSmscAddr(slotId: number, smscAddr: string, callback: AsyncCallback<void>): void | Sets the SMSC address based on the specified slot ID.               |
-| getSmscAddr(slotId: number, callback: AsyncCallback<string>): void | Obtains the SMSC address based on the specified slot ID.                                 |
+| getDefaultSmsSlotId(callback: AsyncCallback\<number>): void   | Obtains the ID of the default SIM card used to send SMS messages.                                               |
+| setSmscAddr(slotId: number, smscAddr: string, callback: AsyncCallback\<void>): void | Sets the SMSC address based on the specified slot ID.               |
+| getSmscAddr(slotId: number, callback: AsyncCallback\<string>): void | Obtains the SMSC address based on the specified slot ID.                                 |
 
 
 ## How to Develop

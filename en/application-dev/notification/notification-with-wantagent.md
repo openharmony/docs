@@ -4,7 +4,7 @@ A [WantAgent](../reference/apis/js-apis-app-ability-wantAgent.md) object encapsu
 
 Below you can see the process of adding a **WantAgent** object to a notification. The notification publisher requests a **WantAgent** object from the Ability Manager Service (AMS), and then sends a notification carrying the **WantAgent** object to the home screen. When the user touches the notification from the notification panel on the home screen, the **WantAgent** object is triggered.
 
-  **Figure 1** Publishing a notification with a WantAgent object
+**Figure 1** Publishing a notification with a WantAgent object
 
 ![notification-with-wantagent](figures/notification-with-wantagent.png)
 
@@ -15,11 +15,11 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
 
 | Name| Description|
 | -------- | -------- |
-|getWantAgent(info: WantAgentInfo, callback: AsyncCallback&lt;WantAgent&gt;): void | Creates a **WantAgent** object.|
-|trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback&lt;CompleteData&gt;): void | Triggers a **WantAgent** object.|
-|cancel(agent: WantAgent, callback: AsyncCallback&lt;void&gt;): void | Cancels a **WantAgent** object.|
-|getWant(agent: WantAgent, callback: AsyncCallback&lt;Want&gt;): void | Obtains a **WantAgent** object.|
-|equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether two **WantAgent** objects are equal.|
+| getWantAgent(info: WantAgentInfo, callback: AsyncCallback&lt;WantAgent&gt;): void | Creates a **WantAgent** object.|
+| trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback&lt;CompleteData&gt;): void | Triggers a **WantAgent** object.|
+| cancel(agent: WantAgent, callback: AsyncCallback&lt;void&gt;): void | Cancels a **WantAgent** object.|
+| getWant(agent: WantAgent, callback: AsyncCallback&lt;Want&gt;): void | Obtains a **WantAgent** object.|
+| equal(agent: WantAgent, otherAgent: WantAgent, callback: AsyncCallback&lt;boolean&gt;): void | Checks whether two **WantAgent** objects are equal.|
 
 
 ## How to Develop
@@ -42,20 +42,20 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
    
    // Set the action type through operationType of WantAgentInfo.
    let wantAgentInfo = {
-       wants: [
-           {
-               deviceId: '',
-               bundleName: 'com.example.myapplication',
-               abilityName: 'EntryAbility',
-               action: '',
-               entities: [],
-               uri: '',
-               parameters: {}
-           }
-       ],
-       operationType: wantAgent.OperationType.START_ABILITY,
-       requestCode: 0,
-       wantAgentFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
+     wants: [
+       {
+         deviceId: '',
+         bundleName: 'com.example.myapplication',
+         abilityName: 'EntryAbility',
+         action: '',
+         entities: [],
+         uri: '',
+         parameters: {}
+       }
+     ],
+     operationType: wantAgent.OperationType.START_ABILITY,
+     requestCode: 0,
+     wantAgentFlags:[wantAgent.WantAgentFlags.CONSTANT_FLAG]
    };
    ```
 
@@ -66,16 +66,16 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
    
    // Set the action type through operationType of WantAgentInfo.
    let wantAgentInfo = {
-       wants: [
-           {
-               action: 'event_name', // Set the action name.
-               parameters: {},
-           }
-       ],
-       operationType: wantAgent.OperationType.SEND_COMMON_EVENT,
-       requestCode: 0,
-       wantAgentFlags: [wantAgent.WantAgentFlags.CONSTANT_FLAG],
-   }
+     wants: [
+       {
+         action: 'event_name', // Set the action name.
+         parameters: {},
+       }
+     ],
+     operationType: wantAgent.OperationType.SEND_COMMON_EVENT,
+     requestCode: 0,
+     wantAgentFlags: [wantAgent.WantAgentFlags.CONSTANT_FLAG],
+   };
    ```
 
 4. Invoke the [getWantAgent()](../reference/apis/js-apis-app-ability-wantAgent.md#wantagentgetwantagent) API to create a **WantAgent** object.
@@ -83,12 +83,12 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
    ```typescript
    // Create a WantAgent object.
    wantAgent.getWantAgent(wantAgentInfo, (err, data) => {
-       if (err) {
-         console.error('[WantAgent]getWantAgent err=' + JSON.stringify(err));
-         return;
-       }
-       console.info('[WantAgent]getWantAgent success');
-       wantAgentObj = data;
+     if (err) {
+       console.error(`Failed to get want agent. Code is ${err.code}, message is ${err.message}`);
+       return;
+     }
+     console.info('Succeeded in geting want agent.');
+     wantAgentObj = data;
    });
    ```
 
@@ -97,25 +97,25 @@ For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/
    ```typescript
    // Create a NotificationRequest object.
    let notificationRequest: notificationManager.NotificationRequest = {
-       content: {
-           contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
-           normal: {
-               title: 'Test_Title',
-               text: 'Test_Text',
-               additionalText: 'Test_AdditionalText',
-           },
+     content: {
+       contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+       normal: {
+         title: 'Test_Title',
+         text: 'Test_Text',
+         additionalText: 'Test_AdditionalText',
        },
-       id: 1,
-       label: 'TEST',
-       wantAgent: wantAgentObj,
+     },
+     id: 1,
+     label: 'TEST',
+     wantAgent: wantAgentObj,
    }
    
    notificationManager.publish(notificationRequest, (err) => {
-       if (err) {
-           console.error(`[ANS] publish failed, code is ${err.code}, message is ${err.message}`);
-           return;
-       }
-       console.info(`[ANS] publish success`);
+     if (err) {
+       console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
+       return;
+     }
+     console.info('Succeeded in publishing notification.');
    });
    ```
 

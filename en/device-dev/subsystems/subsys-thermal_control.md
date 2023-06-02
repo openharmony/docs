@@ -52,7 +52,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     | name="current" | Charging current control | event | - **1**: event sending enabled<br>-**0**: event sending disabled| int | 0 or 1|
     | name="voltage" | Charging voltage control (charging voltage during fast charging and slow charging)| protocol | Supported charging protocols: fast charging (supercharge) and slow charging (buck)| string | sc or buck|
     | name="voltage" | Charging voltage control | event | - **1**: event sending enabled<br>-**0**: event sending disabled| int | 0 or 1|
-    | name="process_ctrl" | Process control (survival status of foreground and background processes)| event | - **1**: event sending enabled<br>-**0**: event sending disabled| int | 0 or 1|
+    | name="process_ctrl" | Process control (survival status of foreground and background processes)| event | - **1**: event sending enabled<br>-**0**: event sending disabled<br>If this parameter is not set, the value is defaulted to **0**.| int | 0 or 1|
     | name="shut_down" | Shutdown control (device shutdown)| event | - **1**: event sending enabled<br>-**0**: event sending disabled| int | 0 or 1|
     | name="thermallevel" | Thermal level control (thermal level reporting)| event | - **1**: event sending enabled<br>-**0**: event sending disabled| int | 0 or 1|
     | name="popup" | Pop-up window control (pop-up window display)| N/A| N/A| N/A| N/A|
@@ -67,7 +67,7 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
         <item name="volume" uid="2001,2002"/>
         <item name="current" protocol="sc,buck" event="1"/>
         <item name="voltage" protocol="sc,buck" event="1"/>
-        <item name="process_ctrl" param="32,64,128,256" event=""/>
+        <item name="process_ctrl" event=""/>
         <item name="shut_down" event="0"/>
         <item name="thermallevel" event="0"/>
         <item name="popup"/>
@@ -143,13 +143,14 @@ The following uses [DAYU200](https://gitee.com/openharmony/vendor_hihope/tree/ma
     name: volume	uid: 2001,2002	strict: 0	enableEvent: 0
     name: current	protocol: sc,buck	strict: 0	enableEvent: 1
     name: voltage	protocol: sc,buck	strict: 0	enableEvent: 1
-    name: process_ctrl	params: 32,64,128,256	strict: 0	enableEvent: 0
+    name: process_ctrl	strict: 0	enableEvent: 0
     name: shut_down	strict: 0	enableEvent: 0
     name: thermallevel	strict: 0	enableEvent: 0
     name: popup	strict: 0	enableEvent: 0
     ```
 
 ## Reference
+
 During development, you can refer to the [default thermal control configuration](https://gitee.com/openharmony/powermgr_thermal_manager/blob/master/services/native/profile/thermal_service_config.xml).
 
 Packing path: `/vendor/etc/thermal_config/hdf`
