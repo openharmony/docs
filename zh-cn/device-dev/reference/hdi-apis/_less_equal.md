@@ -18,9 +18,13 @@
 - output，数据类型为DATA_TYPE_BOOL的tensor；使用量化模型时，output的量化参数不可省略，但量化参数的数值不会对输入结果产生影响。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
