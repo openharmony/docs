@@ -20,9 +20,13 @@
 - output，切片得到的n维tensor。
 
 **Since:**
+
 3.2
+
 **Version:**
+
 1.0
+
 **相关模块:**
 
 [NNRt](_n_n_rt.md)
@@ -48,4 +52,5 @@
 long [] SliceFusion::axes
 ```
 **描述:**
+
 作用的维度。
