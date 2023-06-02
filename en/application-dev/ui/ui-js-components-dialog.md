@@ -269,8 +269,7 @@ Use the **&lt;dialog&gt;** component to implement a schedule. When the dialog bo
 ```js
 // xxx.js
 var info = null;
-import prompt from '@system.prompt';
-import router from '@system.router';
+import promptAction from '@ohos.promptAction';
 export default {
   data: {
     curYear:'',
@@ -293,7 +292,7 @@ export default {
     this.$element('datedialog').show()
   },
   canceldialog(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Event setting canceled.'
     })
   },
@@ -302,7 +301,7 @@ export default {
   },
   cancelschedule(e) {
     this.$element('datedialog').close()
-    prompt.showToast({
+    promptAction.showToast({
       message: 'Event setting canceled.'
     })
   },

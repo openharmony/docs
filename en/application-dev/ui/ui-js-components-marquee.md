@@ -12,7 +12,7 @@ Create a **&lt;marquee&gt;** component in the .hml file under **pages/index**.
 ```html
 <!-- xxx.hml -->
 <div class="container">
-  <marquee style="width: 100%;height: 80px; color: #ffffff; background-color: #0820ef;padding-left: 200px;">This is a marquee.</marquee>
+  <marquee style="width: 100%;height: 80px; color: #ffffff; background-color: #0820ef;padding-left: 200px;">It's a racing lamp.</marquee>
 </div>
 ```
 
