@@ -628,10 +628,14 @@ try {
 | 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
 | CPU                     | 1    | CPU资源，申请后不被挂起。             |
-| COMMON_EVENT            | 2    | 公共事件，申请后挂起状态下不被代理掉。  |
-| TIMER                   | 4    | 计时器，申请后挂起状态下不被代理掉。    |
-| WORK_SCHEDULER          | 8    | 延迟任务，申请后有更长的执行时间。      |
-| BLUETOOTH               | 16   | 蓝牙相关，申请后挂起状态下不被代理掉。  |
-| GPS                     | 32   | GPS相关，申请后挂起状态下不被代理掉。  |
-| AUDIO                   | 64   | 音频资源，申请后挂起状态下不被代理掉。 |
+| COMMON_EVENT            | 2    | 申请后挂起状态下不会代理公共事件。 |
+| TIMER                   | 4    | 计时器，申请后挂起状态不会代理SystemTimer。 |
+| WORK_SCHEDULER          | 8    | WorkScheduler默认采用较宽松管控策略。 |
+| BLUETOOTH               | 16   | 申请后挂起状态不会代理蓝牙。 |
+| GPS                     | 32   | 申请后挂起状态不会代理GPS。 |
+| AUDIO                   | 64   | 申请后挂起状态不会代理音频。 |
+| RUNNING_LOCK | 128 | RUNNING_LOCK资源，申请后挂起状态不会代理RUNNING_BACKGROUND锁。 |
+| SENSOR | 256 | 申请后不拦截Sensor回调。 |
+
+
 
