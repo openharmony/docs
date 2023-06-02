@@ -37,7 +37,7 @@
   - 分布式媒体会话
     - [分布式媒体会话概述](distributed-avsession-overview.md)
     - [使用分布式媒体会话](using-distributed-avsession.md)
-- 相机（仅对系统应用开放）
+- 相机
   - [相机开发概述](camera-overview.md)
   - 相机开发指导
     - [开发准备](camera-preparation.md)
