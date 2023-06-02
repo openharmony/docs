@@ -455,7 +455,7 @@
        - [组件化启动](subsystems/subsys-boot-init-sub-unit.md)
        - [init运行日志规范化](subsystems/subsys-boot-init-log.md)
        - [Seccomp策略使能开发指导](subsystems/subsys-boot-init-seccomp.md)
-       - [DeviceInfo适配说明](subsys-boot-init-deviceInfo.md)
+       - [DeviceInfo适配说明](subsystems/subsys-boot-init-deviceInfo.md)
      - [appspawn应用孵化组件](subsystems/subsys-boot-appspawn.md)
      - [bootstrap服务启动组件](subsystems/subsys-boot-bootstrap.md)
      - [常见问题](subsystems/subsys-boot-faqs.md)
