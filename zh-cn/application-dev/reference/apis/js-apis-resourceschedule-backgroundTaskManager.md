@@ -636,6 +636,3 @@ try {
 | AUDIO                   | 64   | 申请后挂起状态不会代理音频。 |
 | RUNNING_LOCK | 128 | RUNNING_LOCK资源，申请后挂起状态不会代理RUNNING_BACKGROUND锁。 |
 | SENSOR | 256 | 申请后不拦截Sensor回调。 |
-
-
-
