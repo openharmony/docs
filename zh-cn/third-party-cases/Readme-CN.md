@@ -21,7 +21,9 @@
 - [时钟开发示例](time-styles-shift.md)
 - [弹簧动画开发](how-to-develop-spring-animation.md)
 - [水波纹动画开发](water-wave-animation.md)
+- [属性动画示例](property-animation.md)
 - [如何使用OpenGL实现3D图形](how-to-use-opengl-to-draw-3d-graphics.md)
+- [控制页面刷新范围](overall-and-part-refresh.md)
 ### 网络管理
 - [如何请求并加载网络图片](how-to-load-images-from-internet.md)
 
