@@ -113,7 +113,7 @@
    ]
    ```
 
-## 相关示例
+## 相关实例
 
 针对StaticSubscriberExtensionAbility开发，可参考如下实例：
 
