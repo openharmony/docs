@@ -455,6 +455,7 @@
        - [组件化启动](subsystems/subsys-boot-init-sub-unit.md)
        - [init运行日志规范化](subsystems/subsys-boot-init-log.md)
        - [Seccomp策略使能开发指导](subsystems/subsys-boot-init-seccomp.md)
+       - [DeviceInfo适配说明](subsystems/subsys-boot-init-deviceInfo.md)
      - [appspawn应用孵化组件](subsystems/subsys-boot-appspawn.md)
      - [bootstrap服务启动组件](subsystems/subsys-boot-bootstrap.md)
      - [常见问题](subsystems/subsys-boot-faqs.md)
@@ -499,7 +500,8 @@
        - [热场景定制开发指导](subsystems/subsys-thermal_scene.md)
      - 电源管理
        - [电源模式定制开发指导](subsystems/subsys-power-mode-customization.md)
-
+       - [电源默认休眠行为定制开发指导](subsystems/subsys-power-default-sleep-behavior-customization.md)
+       - [唤醒源定制开发指导](subsystems/subsys-power-wakeup-source-customization.md)
 - 专题
   - HPM Part
     - [HPM Part介绍](hpm-part/hpm-part-about.md)
