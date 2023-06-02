@@ -1920,7 +1920,7 @@
 
 ## ohos.permission.MANAGE_SENSOR
 
-允许非订阅方应用操作传感器开关能力。
+允许不直接使用传感器的应用打开和关闭传感器。
 
 **权限级别**：system_basic
 
