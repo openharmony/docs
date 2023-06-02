@@ -443,7 +443,7 @@
       - 分布式媒体会话
         - [分布式媒体会话概述](media/distributed-avsession-overview.md)
         - [使用分布式媒体会话](media/using-distributed-avsession.md)
-    - 相机（仅对系统应用开放）
+    - 相机
       - [相机开发概述](media/camera-overview.md)
       - 相机开发指导
         - [开发准备](media/camera-preparation.md)
