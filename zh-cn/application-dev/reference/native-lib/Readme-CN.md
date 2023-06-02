@@ -1,6 +1,6 @@
 # Native API标准库
 - [libc标准库](third_party_libc/musl.md)
-- [c++标准库](third_party_libc/cxx.md)
+- [c++标准库](third_party_libc/cpp.md)
 - [Node-API](third_party_napi/napi.md)
 - [libuv](third_party_libuv/libuv.md)
 - [OpenSL ES](third_party_opensles/opensles.md)
