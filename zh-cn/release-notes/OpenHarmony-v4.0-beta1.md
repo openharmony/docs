@@ -429,3 +429,5 @@ OpenHarmony 4.0 Beta1的API范围相比3.2 Release，API变更的清单请参见
 | I79752 | 中概率由进程com.ohos.smartperf下的.ohos.smartperf线程导致libark_jsruntime.so出现cppcrash。 | 非核心应用，&nbsp;不影响ARP指标，影响可控。 | 2023年6月30日 |
 | I79P3K | 低概率由进程com.ohos.callui导致jscrash，栈名：onDestroy。 | 低概率，出现jscrash后，应用会被重新安装，不影响电话应用正常功能和使用。 | 2023年6月30日 |
 | I79TCB | 低概率由进程com.ohos.note下的VizCompositorTh线程导致libweb_engine.soTh出现cppcrash。 | 低概率，出现jscrash后，应用会被重新安装，不影响note应用正常功能和使用。 | 2023年6月30日 |
+
+<!--no_check-->
