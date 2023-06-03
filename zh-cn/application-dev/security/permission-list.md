@@ -654,6 +654,16 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.MANAGE_NET_STRATEGY
+
+允许应用程序获取网络策略相关的信息或修改网络策略相关设置。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.SET_ABILITY_CONTROLLER
 
 允许设置ability组件启动和停止控制权。
