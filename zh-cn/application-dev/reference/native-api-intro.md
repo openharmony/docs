@@ -9,7 +9,7 @@ Native API是OpenHarmony SDK上提供的一组native开发接口与工具集合�
 |NDK|Native Develop Kit的缩写，在OHOS上就是Native API；Native API是官方名字，NDK指代相同意思。|
 |SDK CAPI|OHOS Native API中的C语言接口，以及工具链部分，当前OHOS的Native API里面只包含C语言接口，因此Native API与CAPI意思一样，建议交流的时候使用CAPI，防止Native API与napi缩写混用。|
 |Node-API|曾用名napi，是OHOS中提供JS与C跨语言调用的接口，是Native API接口中的一部分. 该接口在Node.js提供的Node-API基础上扩展而来，但不完全与Node.js中的Node-API完全兼容。 |
-|napi|Node-API的曾用名，当前Node-API头文件中的接口仍然以napi_开头，但是为了防止与Native API误用，不建议使用。|
+|napi|Node-API的曾用名，当前Node-API头文件中的接口仍然以napi_开头，不建议使用。|
 ## Native API构成介绍
 
 ### Native API目录结构

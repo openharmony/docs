@@ -5,7 +5,7 @@ C标准函数库在C语言程序设计中，提供符合标准的头文件，以
 
 OpenHarmony采用musl作为C标准库，musl库是一个轻量，快速，简单，免费的开源libc库，详细介绍参考[musl官方参考手册](http://musl.libc.org/manual.html)。
 
-musl与glibc的差异点请参考[wiki](https://wiki.musl-libc.org/functional-differences-from-glibc.html)。
+musl与glibc的差异点请参考[musl与glibc功能对比](https://wiki.musl-libc.org/functional-differences-from-glibc.html)。
 
 ## 标准C库组件介绍
 
@@ -38,13 +38,13 @@ libdl：dlopen等动态链接器接口，当前在OpenHarmony中是一个链接�
 提供了基础的log调试能力，方便开发者需要查看libc库内部异常。维测log的提供动态开关功能，不需要重新编译。在正式发布版本中，不建议使用，会影响运行性能。
 
 #### 1. musl.log功能
-通过hdc shell设置musl.log.enable属性为true来打开musl的log打印。这个接口是libc库里面别的日志的基础。
+设置musl.log.enable属性为true，打开musl的log打印。打印其他日志，需要先打开此开关。
 ```
 setparam musl.log.enable true
 ```
 
 #### 2. 加载器log功能
-如果需要程序引导，dlopen，dlclose等接口的日志，需要打开加载器log；这些log通过musl.log.ld.* param来设置。
+调试程序引导，dlopen，dlclose等加载器接口，需要打开加载器log。用法如下：
 * 使能全部应用的加载器log，谨慎使用
 ```
 setparam musl.log.ld.app true
