@@ -278,7 +278,7 @@ OpenHarmony 4.0 Beta1版本开始提供首批API Level 10接口。
 | -------- | -------- | -------- |
 | OpenHarmony | 4.0&nbsp;Beta1 | NA |
 | Public&nbsp;SDK | Ohos_sdk_public&nbsp;4.0.7.5&nbsp;(API&nbsp;Version&nbsp;10&nbsp;Beta1) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco&nbsp;Studio默认获取的SDK为Public&nbsp;SDK。 |
-| HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 4.0&nbsp;Beta1 | OpenHarmony应用开发推荐使用。 |
+| HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 4.0&nbsp;Beta1 | OpenHarmony应用开发推荐使用。(*待发布*) |
 | HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.1&nbsp;Release | OpenHarmony智能设备集成开发环境推荐使用。 |
 
 
@@ -313,42 +313,66 @@ OpenHarmony 4.0 Beta1版本开始提供首批API Level 10接口。
 
 通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
 
-
-```
-repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.2-Beta5 --no-repo-verify
-repo sync -c
-repo forall -c 'git lfs pull'
-```
+- 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
+   ```
+   repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-4.0-Beta1 --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
+   
+- 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
+   ```
+   repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v4.0-Beta1 --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
 
 **方式二**
 
 通过repo + https 下载。
 
-
-```
-repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony-3.2-Beta5 --no-repo-verify
-repo sync -c
-repo forall -c 'git lfs pull'
-```
+- 从版本分支获取源码。可获取该版本分支的最新源码，包括版本发布后在该分支的合入。
+   ```
+   repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony-4.0-Beta1 --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
+   
+- 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
+   ```
+   repo init -u https://gitee.com/openharmony/manifest -b refs/tags/OpenHarmony-v4.0-Beta1 --no-repo-verify
+   repo sync -c
+   repo forall -c 'git lfs pull'
+   ```
 
 
 ### 从镜像站点获取
 
   **表2** 获取源码路径
 
-| 版本源码 | **版本信息** | **下载站点** | **SHA256校验码** |
-| -------- | -------- | -------- | -------- |
-|  |  |  |  |
-|  |  |  |  |
-
+| 版本源码                                | **版本信息** | **下载站点**                                                 | **SHA256校验码**                                             | **软件包容量** |
+| --------------------------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | -------- |
+| 全量代码（标准、轻量和小型系统）        | 4.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/code-v4.0-Beta1.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/code-v4.0-Beta1.tar.gz.sha256) | 21.8 GB |
+| Hi3861解决方案（二进制）        | 4.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_pegasus.tar.gz.sha256) | 22.9 MB |
+| Hi3516解决方案-LiteOS（二进制） | 4.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_taurus_LiteOS.tar.gz.sha256) | 294.3 MB |
+| Hi3516解决方案-Linux（二进制）  | 4.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_taurus_Linux.tar.gz.sha256) | 174.3 MB |
+| RK3568标准系统解决方案（二进制）        | 4.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/dayu200_standard_arm32.tar.gz.sha256) | 3.9 GB |
+| 标准系统Public SDK包（Mac）             | 4.0.7.5      | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/ohos-sdk-mac-public.tar.gz.sha256) | 712.7 MB |
+| 标准系统Public SDK包（Mac-M1）             | 4.0.7.5      | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 671.1 MB |
+| 标准系统Public SDK包（Windows/Linux）   | 4.0.7.5      | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/ohos-sdk-windows_linux-public.tar.gz.sha256) | 1.6 GB |
 
 ## 更新说明
 
-本版本在OpenHarmony 3.2 Release的基础上有如下变更。
+本版本在OpenHarmony 3.2 Release的基础上有如下变更:
+
+### API 
+
+OpenHarmony 4.0 Beta1的API范围相比3.2 Release，API变更的清单请参见“API差异报告（待发布）”。极少量接口的变更可能影响到已开发的应用（使用API 9或更早版本API开发的应用），变更影响的说明和接口的适配指导请参见“[changelogs](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Beta1/zh-cn/release-notes/changelogs/v4.0-beta1/Readme-CN.md)”。
 
 
 ### 特性变更
 
+详见[版本概述](#版本概述)。
 
 ### 芯片及开发板适配
 
