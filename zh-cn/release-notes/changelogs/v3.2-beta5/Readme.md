@@ -14,7 +14,7 @@
 - [事件通知](changelogs-notification.md)
 - 位置服务
   - [ohos.geoLocationManager](changelogs-ohos-geoLocationManager.md)
-  - [ohos.geoLocation](changelogs-ohos-geoLocation.md)
+  - [ohos.geoLocation](changelogs-ohos-geolocation.md)
   - [system.geolocation](changelogs-system-geolocation.md)
 - [上传下载](changelogs-request.md)
 - [资源调度](changelogs-resourceschedule.md)

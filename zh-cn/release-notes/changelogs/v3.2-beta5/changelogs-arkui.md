@@ -213,7 +213,7 @@
 **适配指导**
 1. 构造子组件时，不对子组件的`@LocalStorageLink`, `@LocalStorageProp`修饰的变量进行。
 如果需要在父组件中修改子组件的`@LocalStorageLink`, `@LocalStorageProp`修饰的变量，则使用LocalStorage提供的API接口方法(比如set方法)赋值。
-2. @ObjectLink的使用指导请参考文档[@ObjectLink使用指导](../../../application-dev/quick-start/arkts-state-mgmt-page-level.md)。
+2. @ObjectLink的使用指导请参考文档@ObjectLink使用指导。
 
 
 ## cl.arkui.LocalStorage.1 get接口返回类型变更

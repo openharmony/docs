@@ -69,7 +69,7 @@ ArkUI子系统alertDialog, actionSheet, customDialog组件及prompt, promptActio
 
 ## cl.arkui.3 自定义组件成员变量初始化的方式与约束校验场景补全
 
-[自定义组件成员变量初始化规则](../../../application-dev/quick-start/arkts-restrictions-and-extensions.md#自定义组件成员变量初始化的方式与约束)请参考文档，此版本修复了某些遗漏场景的校验。
+自定义组件成员变量初始化规则请参考文档，此版本修复了某些遗漏场景的校验。
 
 
 **变更影响**
@@ -86,7 +86,7 @@ ArkUI子系统alertDialog, actionSheet, customDialog组件及prompt, promptActio
 
 ## cl.arkui.4 自定义父子组件成员变量赋值约束校验场景补全
 
-[自定义父子组件成员变量赋值规则](../../../application-dev/quick-start/arkts-restrictions-and-extensions.md#自定义组件成员变量初始化的方式与约束)请参考文档，此版本修复了某些遗漏场景的校验。
+自定义父子组件成员变量赋值规则请参考文档，此版本修复了某些遗漏场景的校验。
 
 
 **变更影响**

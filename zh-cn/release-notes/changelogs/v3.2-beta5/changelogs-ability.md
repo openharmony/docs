@@ -48,7 +48,7 @@ onWindowStageCreate() {
 
 ## cl.ability.2 删除标记为废弃的API9接口
 
-[元能力异常处理整改](../OpenHarmony_3.2.8.3/changelogs-ability.md)将部分API9接口标记为了废弃，根据OpenHarmony接口规范，需要删除标记为废弃的API9接口。
+元能力异常处理整改将部分API9接口标记为了废弃，根据OpenHarmony接口规范，需要删除标记为废弃的API9接口。
 
 **变更影响**
 
@@ -134,7 +134,7 @@ import Ability from '@ohos.app.ability.UIAbility';
 
 此外还需要适配异常处理，具体参考新接口的接口文档。
 
-## cl.ability.2 appRecovery接口中RestartFlag属性名称变更，删除了未支持的属性
+## cl.ability.3 appRecovery接口中RestartFlag属性名称变更，删除了未支持的属性
 
 appRecovery接口中RestartFlag枚举命名从特定故障发生后**不重启**改成了特定故障发生后**重启**。  
 删除了CPP_CRASH_NO_RESTART。

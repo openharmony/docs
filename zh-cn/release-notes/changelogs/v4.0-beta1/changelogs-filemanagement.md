@@ -6,7 +6,7 @@
 
 **变更影响**
 
-基于此前版本开发的应用，需注意d.ts位置的变更及import模块名的变更。现environment模块支持错误码处理，需注意错误码处理的使用。[相关适配指导参考](../OpenHarmony_3.2.8.1/changelogs-filemanagement.md)
+基于此前版本开发的应用，需注意d.ts位置的变更及import模块名的变更。现environment模块支持错误码处理，需注意错误码处理的使用。
 
 **关键接口/组件变更**
 
@@ -28,7 +28,7 @@ import environment from '@ohos.file.environment';
 
 **变更影响**
 
-基于此前版本开发的应用，需注意d.ts位置的变更及import模块名的变更。现securityLabel模块支持错误码处理，需注意错误码处理的使用。[相关适配指导参考](../OpenHarmony_3.2.8.1/changelogs-filemanagement.md)
+基于此前版本开发的应用，需注意d.ts位置的变更及import模块名的变更。现securityLabel模块支持错误码处理，需注意错误码处理的使用。
 
 **关键接口/组件变更**
 
@@ -62,7 +62,7 @@ fs模块下Stat接口ino属性类型变更，由number变更为bigint，以适�
 
 **变更影响**
 
-基于此前版本开发的应用，需注意d.ts位置的变更及import模块名的变更。现fileAccess模块支持错误码处理，需注意错误码处理的使用。[相关适配指导参考](../OpenHarmony_3.2.8.1/changelogs-filemanagement.md)
+基于此前版本开发的应用，需注意d.ts位置的变更及import模块名的变更。现fileAccess模块支持错误码处理，需注意错误码处理的使用。
 
 **关键接口/组件变更**
 
@@ -84,7 +84,7 @@ import fileAccess from '@ohos.file.fileAccess';
 
 **变更影响**
 
-基于此前版本开发的应用，需注意d.ts位置的变更及import模块名的变更。现fileExtensionInfo模块支持错误码处理，需注意错误码处理的使用。[相关适配指导参考](../OpenHarmony_3.2.8.1/changelogs-filemanagement.md)
+基于此前版本开发的应用，需注意d.ts位置的变更及import模块名的变更。现fileExtensionInfo模块支持错误码处理，需注意错误码处理的使用。
 
 **关键接口/组件变更**
 
@@ -106,7 +106,7 @@ import fileExtensionInfo from '@ohos.file.fileExtensionInfo';
 
 **变更影响**
 
-基于此前版本开发的应用，需注意d.ts位置的变更及import模块名的变更。现storageStatistics模块支持错误码处理，需注意错误码处理的使用。[相关适配指导参考](../OpenHarmony_3.2.8.1/changelogs-filemanagement.md)
+基于此前版本开发的应用，需注意d.ts位置的变更及import模块名的变更。现storageStatistics模块支持错误码处理，需注意错误码处理的使用。
 
 **关键接口/组件变更**
 
@@ -128,7 +128,7 @@ import storageStatistics from '@ohos.file.storageStatistics';
 
 **变更影响**
 
-基于此前版本开发的应用，需注意d.ts位置的变更及import模块名的变更。现volumeManager模块支持错误码处理，需注意错误码处理的使用。[相关适配指导参考](../OpenHarmony_3.2.8.1/changelogs-filemanagement.md)
+基于此前版本开发的应用，需注意d.ts位置的变更及import模块名的变更。现volumeManager模块支持错误码处理，需注意错误码处理的使用。
 
 **关键接口/组件变更**
 

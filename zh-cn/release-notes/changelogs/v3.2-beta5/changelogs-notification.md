@@ -2,7 +2,7 @@
 
 ## cl.notification.1 删除标记为废弃的API9接口
 
-[事件通知异常处理整改](../OpenHarmony_3.2.8.3/changelogs-notification.md)将部分API9接口标记为了废弃，根据OpenHarmony接口规范，需要删除标记为废弃的API9接口。
+事件通知异常处理整改将部分API9接口标记为了废弃，根据OpenHarmony接口规范，需要删除标记为废弃的API9接口。
 
 **变更影响**
 
