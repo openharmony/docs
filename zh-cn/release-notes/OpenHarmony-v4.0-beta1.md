@@ -1,3 +1,6 @@
+# OpenHarmony 4.0 Beta1
+
+
 ## 版本概述
 
 OpenHarmony 4.0版本标准系统能力持续完善，ArkUI进一步完善组件能力和效果、应用框架优化了Extension能力、应用包支持不解压安装和跨应用共享、分布式数据管理新增统一数据管理框架（UDMF）、媒体进一步增强音频/媒体播放/媒体控制/相机的能力、事件通知新增应用角标管理、安全基础能力支持更多密钥管理的能力、ArkCompiler更新了c++工具链的相关工具版本、测试框架多个工具能力增强。
@@ -53,7 +56,7 @@ OpenHarmony 4.0 Beta1版本开始提供首批API Level 10接口。
 
 - 支持应用包不解压安装的特性，优化了系统启动性能和应用安装性能。
 
-- 支持跨应用共享包。支持部分系统将自身应用的代码能力提供给三方生态应用使用，同时三方应用不需要在自身的安装包里集成相关内容（包括代码、资源以及.so文件等），从而达到减少生态应用的集成成本以及更新成本的目的。
+- 支持跨应用共享包，用于不同应用间的代码、资源共享。系统应用可以把自身的能力提供给三方生态应用使用，同时三方应用不需要在自身的安装包里集成相关内容（包括代码、资源以及.so文件等），从而达到减少生态应用的集成成本以及更新成本的目的。
 
 - 支持企业应用的安装。校验企业应用的安装权限防止企业应用被随意的分发安装；提供企业应用证书信息查询以方便应用市场对企业应用的管理和吊销。
 
@@ -113,7 +116,7 @@ OpenHarmony 4.0 Beta1版本开始提供首批API Level 10接口。
 
 - 闹钟音量支持独立调整。
 
-- 支持音频焦点，应用播放音频时无需手动申请焦点，系统会在后台自动申请焦点，并自动执行焦点策略（如暂停、淡出、淡出恢复等）；应用仅需要注册焦点事件监听函数，以接收焦点事件并更新状态，如暂停时停止进度条。 
+- 支持音频焦点，应用播放音频时无需手动申请焦点，系统会在后台自动申请焦点，并自动执行焦点策略（如暂停、淡出、淡出恢复等）；应用仅需要注册焦点事件监听函数，以接收焦点事件并更新状态，如暂停时停止进度条。
 
 **播控框架**
 
@@ -168,6 +171,21 @@ OpenHarmony 4.0 Beta1版本开始提供首批API Level 10接口。
 - 支持WIFI连接AP时使用随机MAC的能力。
 
 - 支持WIFI通过静态IP连接AP的能力。
+
+
+### 电源
+
+- 增强系统电量等级查询及上报能力，电量等级支持裁剪和定制。
+
+- 提供有线和无线充电类型上报，提供的充电类型包括普通充电、快速充电和超级快速充电。
+
+- 增强运行锁的管控机制，明确系统电源状态和等级。
+
+- 提供唤醒源设置能力，支持通过电源键、鼠标、键盘、触控板、屏幕、手写笔、皮套等方式唤醒设备。
+
+- 提供休眠源设置能力，支持通过电源键、皮套、及超时自动休眠等方式设置设备休眠。
+
+- 提供电源管理、电池管理、显示亮度管理、耗电统计及热管理的开发指南。
 
 
 ### 安全
@@ -251,3 +269,139 @@ OpenHarmony 4.0 Beta1版本开始提供首批API Level 10接口。
 
 - 调用栈可视化和不同库函数调用占比展示能力，调用栈可视化可以将开发者编译的so符号化结果展示出来，不同库函数的占比通过饼图的方式展示出来。
 
+
+## 配套关系
+
+  **表1** 版本软件和工具配套关系
+
+| 软件 | 版本 | 备注 |
+| -------- | -------- | -------- |
+| OpenHarmony | 4.0&nbsp;Beta1 | NA |
+| Public&nbsp;SDK | Ohos_sdk_public&nbsp;4.0.7.5&nbsp;(API&nbsp;Version&nbsp;10&nbsp;Beta1) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco&nbsp;Studio默认获取的SDK为Public&nbsp;SDK。 |
+| HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 4.0&nbsp;Beta1 | OpenHarmony应用开发推荐使用。 |
+| HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.1&nbsp;Release | OpenHarmony智能设备集成开发环境推荐使用。 |
+
+
+## 源码获取
+
+
+### 前提条件
+
+1. 注册码云gitee帐号。
+
+2. 注册码云SSH公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)。
+
+3. 安装[git客户端](https://gitee.com/link?target=https%3A%2F%2Fgit-scm.com%2Fbook%2Fzh%2Fv2%2F%25E8%25B5%25B7%25E6%25AD%25A5-%25E5%25AE%2589%25E8%25A3%2585-Git)和[git-lfs](https://gitee.com/vcs-all-in-one/git-lfs?_from=gitee_search#downloading)并配置用户信息。
+  
+   ```
+   git config --global user.name "yourname"
+   git config --global user.email "your-email-address"
+   git config --global credential.helper store
+   ```
+
+4. 安装码云repo工具，可以执行如下命令。
+  
+   ```
+   curl -s https://gitee.com/oschina/repo/raw/fork_flow/repo-py3 > /usr/local/bin/repo  #如果没有权限，可下载至其他目录，并将其配置到环境变量中chmod a+x /usr/local/bin/repo
+   pip3 install -i https://repo.huaweicloud.com/repository/pypi/simple requests
+   ```
+
+
+### 通过repo获取
+
+**方式一（推荐）**
+
+通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
+
+
+```
+repo init -u git@gitee.com:openharmony/manifest.git -b OpenHarmony-3.2-Beta5 --no-repo-verify
+repo sync -c
+repo forall -c 'git lfs pull'
+```
+
+**方式二**
+
+通过repo + https 下载。
+
+
+```
+repo init -u https://gitee.com/openharmony/manifest -b OpenHarmony-3.2-Beta5 --no-repo-verify
+repo sync -c
+repo forall -c 'git lfs pull'
+```
+
+
+### 从镜像站点获取
+
+  **表2** 获取源码路径
+
+| 版本源码 | **版本信息** | **下载站点** | **SHA256校验码** |
+| -------- | -------- | -------- | -------- |
+|  |  |  |  |
+|  |  |  |  |
+
+
+## 更新说明
+
+本版本在OpenHarmony 3.2 Release的基础上有如下变更。
+
+
+### 特性变更
+
+
+### 芯片及开发板适配
+
+芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
+
+
+### Samples
+
+  **表3** 新增Samples
+
+| 子系统 | 名称 | 简介 | 开发语言 |
+| -------- | -------- | -------- | -------- |
+| 媒体 | [媒体会话——控制方](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVSession/MediaController)（仅对系统应用开放） | 本示例主要展示了媒体会话（媒体控制方，MediaController）的相关功能，使用\@ohos.multimedia.avsession等接口实现媒体提供方与媒体控制方自定义信息的交互功能。 | ArkTS |
+| 媒体 | [媒体会话——提供方](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVSession/MediaProvider) | 本示例主要展示了媒体会话（媒体提供方，MediaProvider）的相关功能，使用\@ohos.multimedia.avsession等接口实现媒体提供方与媒体控制方自定义信息的交互功能。 | ArkTS |
+| 媒体 | [音频管理](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Audio) | 本示例主要展示了音频的相关功能，使用\@ohos.multimedia.audio等接口实现音频的发声设备的切换与查询和音频焦点功能。 | ArkTS |
+| DFX | [应用故障恢复](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DFX/AppRecovery) | 本示例展示了在应用中如何适配故障恢复相关接口。 | ArkTS |
+
+请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。
+
+
+## 修复缺陷列表
+
+  **表4** 修复缺陷ISSUE列表
+
+| ISSUE单 | 问题描述 |
+| -------- | -------- |
+| I70PRZ | 非沉浸式UI避让失效。 |
+| I72F9P | 高概率由进程ohos.samples.distributedcalc下的IPC_2_29472线程导致libwindow_native_kit.z.so出现cppcrash。 |
+| I6W7ZX | 非沉浸式窗口透桌面。 |
+| I76QTN | 高概率由进程ohos.samples.distributedmusicplayer下的IPC_0_18272线程导致libruntime.z.so出现cppcrash |
+| I71TCX | 无卡拨打电话，拉起CallUI不自动挂断。 |
+| I77PZK | 高概率由进程com.ohos.systemui下的RSRenderThread线程导致libmali-bifrost-g52-g2p0-ohos.so出现cppcrash。 |
+| I73CUZ | prepare_to_wait_event存在竞争，导致UAF。 |
+| I770WV | 预览图片不能备份。 |
+| I6ZDHJ | 全球化接口可选参数传入undefined需要按照默认值处理。 |
+| I71KZA | 全球化接口可选参数传入null时，没有按照默认值处理。 |
+| I6YT0U | 高概率由进程com.ohos.launcher下出现栈为libeventhandler.z.so出现appfreeze问题。 |
+| I6YSE5 | 高概率由进程com.ohos.photos下的com.ohos.photos线程导致librender_service_base.z.so出现cppcrash。 |
+| I77AUK | 分布式任务调度场景connectAbility绑定失败。 |
+| I78J10 | 反复拖拽大文件夹导致桌面无响应。 |
+| I7975U | 打开仿图库应用里的图片再返回的时候页面显示空白。 |
+
+
+## 遗留缺陷列表
+
+  **表5** 遗留缺陷列表
+
+| ISSUE | 问题描述 | 影响 | 计划解决日期 |
+| -------- | -------- | -------- | -------- |
+| I78CH7 | 反复在dock栏添加/移除应用，导致libace.z.so出现内存泄露。 | 移动卡片到合法区域，ArkUI每次泄露99KB，非常用场景，应用重启后泄露问题消失，影响可控。 | 2023年7月15日 |
+| I78CBC | 反复进入某相册的图片宫格浏览界面，导致libace.z.so出现内存泄露。 | 进入某相册的图片宫格浏览界面后返回，ArkUI每次泄露19KB，在应用上点击返回后，泄露问题消失，影响可控。 | 2023年7月15日 |
+| I78C9W | 反复进入大图浏览界面后返回，导致libace.z.so出现内存泄露。 | 从图库进入大图浏览界面后返回，ArkUI模块每次泄露10KB，在应用上点击返回后，泄露问题消失，影响可控。 | 2023年7月15日 |
+| I6U4ZT | 拍照后立刻断电源，图库的第一张图片点击打不开。 | 只有立刻断电场景有问题，需要适配一套新的媒体库接口，影响可控。 | 2023年6月30日 |
+| I79752 | 中概率由进程com.ohos.smartperf下的.ohos.smartperf线程导致libark_jsruntime.so出现cppcrash。 | 非核心应用，&nbsp;不影响ARP指标，影响可控。 | 2023年6月30日 |
+| I79P3K | 低概率由进程com.ohos.callui导致jscrash，栈名：onDestroy。 | 低概率，出现jscrash后，应用会被重新安装，不影响电话应用正常功能和使用。 | 2023年6月30日 |
+| I79TCB | 低概率由进程com.ohos.note下的VizCompositorTh线程导致libweb_engine.soTh出现cppcrash。 | 低概率，出现jscrash后，应用会被重新安装，不影响note应用正常功能和使用。 | 2023年6月30日 |
