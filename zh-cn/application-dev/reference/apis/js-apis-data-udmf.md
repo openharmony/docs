@@ -109,7 +109,7 @@ let text = new UDMF.PlainText();
 text.textContent = 'this is textContent of text';
 let unifiedData = new UDMF.UnifiedData(text);
 
-let link = new UDMF.HyperLink();
+let link = new UDMF.Hyperlink();
 link.url = 'www.XXX.com';
 unifiedData.addRecord(link);
 
@@ -120,8 +120,8 @@ for (let i = 0; i < records.length; i++) {
     let plainText = <UDMF.PlainText> (record);
     console.info(`textContent: ${plainText.textContent}`);
   } else if (record.getType() == UDMF.UnifiedDataType.HYPERLINK) {
-    let hyperLink = <UDMF.HYPERLINK> (record);
-    console.info(`linkUrl: ${hyperLink.url}`);
+    let hyperlink = <UDMF.Hyperlink> (record);
+    console.info(`linkUrl: ${hyperlink.url}`);
   }
 }
 ```
@@ -173,7 +173,7 @@ if (records[0].getType() == UDMF.UnifiedDataType.PLAIN_TEXT) {
 
 ## Text
 
-文本类型数据，是[UnifiedRecord](#unifiedrecord)的子类，也是文本类型数据的基类，用于描述文本类数据，推荐开发者优先使用Text的子类描述数据，如[PlainText](#plaintext)、[HyperLink](#hyperlink)、[HTML](#html)等具体子类。
+文本类型数据，是[UnifiedRecord](#unifiedrecord)的子类，也是文本类型数据的基类，用于描述文本类数据，推荐开发者优先使用Text的子类描述数据，如[PlainText](#plaintext)、[Hyperlink](#hyperlink)、[HTML](#html)等具体子类。
 
 **系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
 
@@ -211,7 +211,7 @@ text.textContent = 'this is textContent';
 text.abstract = 'this is abstract';
 ```
 
-## HyperLink
+## Hyperlink
 
 超链接类型数据，是[Text](#text)的子类，用于描述超链接类型数据。
 
@@ -225,7 +225,7 @@ text.abstract = 'this is abstract';
 **示例：**
 
 ```js
-let link = new UDMF.HyperLink();
+let link = new UDMF.Hyperlink();
 link.url = 'www.XXX.com';
 link.description = 'this is description';
 ```
@@ -335,7 +335,7 @@ SystemDefinedRecord是[UnifiedRecord](#unifiedrecord)的子类，也是OpenHarmo
 **示例：**
 
 ```js
-let sdr = new UDMF.SystenDefinedReocrd();
+let sdr = new UDMF.SystemDefinedRecord();
 let u8Array = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 sdr.details = {
     title: 'recordTitle',
