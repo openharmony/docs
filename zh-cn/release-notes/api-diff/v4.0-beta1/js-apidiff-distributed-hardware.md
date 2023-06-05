@@ -3,7 +3,6 @@
 |新增|NA|模块名: ohos.distributedHardware.deviceManager<br>类名: DeviceInfo<br>方法 or 属性：authForm: AuthForm;|@ohos.distributedHardware.deviceManager.d.ts|
 |新增|NA|类名：DeviceInfo<br>方法or属性：authForm: AuthForm;|@ohos.distributedHardware.deviceManager.d.ts|
 |新增|NA|模块名: ohos.distributedHardware.deviceManager<br>类名: AuthForm|@ohos.distributedHardware.deviceManager.d.ts|
-|新增|NA|类名：AuthForm<br>方法or属性：|@ohos.distributedHardware.deviceManager.d.ts|
 |新增|NA|模块名: ohos.distributedHardware.deviceManager<br>类名: AuthForm<br>方法 or 属性：INVALID_TYPE = -1|@ohos.distributedHardware.deviceManager.d.ts|
 |新增|NA|模块名: ohos.distributedHardware.deviceManager<br>类名: AuthForm<br>方法 or 属性：PEER_TO_PEER = 0|@ohos.distributedHardware.deviceManager.d.ts|
 |新增|NA|模块名: ohos.distributedHardware.deviceManager<br>类名: AuthForm<br>方法 or 属性：IDENTICAL_ACCOUNT = 1|@ohos.distributedHardware.deviceManager.d.ts|

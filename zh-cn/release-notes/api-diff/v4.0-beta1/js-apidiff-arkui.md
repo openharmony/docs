@@ -49,9 +49,7 @@
 |新增|NA|模块名: button<br>类名: LabelStyle<br>方法 or 属性: font?: Font;|button.d.ts|
 |新增|NA|模块名: button<br>类名: ButtonAttribute<br>方法 or 属性: labelStyle(value: LabelStyle): ButtonAttribute;|button.d.ts|
 |新增|NA|模块名: canvas<br>类名: CanvasPattern|canvas.d.ts|
-|新增|NA|类名：CanvasPattern<br>方法or属性：|canvas.d.ts|
 |新增|NA|模块名: canvas<br>类名: CanvasPattern<br>方法 or 属性：setTransform(transform?: Matrix2D): void;|canvas.d.ts|
-|新增|NA|类名：CanvasPattern<br>方法or属性：setTransform(transform?: Matrix2D): void;|canvas.d.ts|
 |新增|NA|类名：CanvasRenderer<br>方法or属性：fillStyle: string \| number \| CanvasGradient \| CanvasPattern;|canvas.d.ts|
 |新增|NA|类名：CanvasRenderer<br>方法or属性：strokeStyle: string \| number \| CanvasGradient \| CanvasPattern;|canvas.d.ts|
 |新增|NA|类名：CanvasRenderer<br>方法or属性：createConicGradient(<br>    startAngle: number,<br>    x: number,<br>    y: number<br>  ): CanvasGradient;|canvas.d.ts|
@@ -65,7 +63,6 @@
 |新增|NA|模块名: checkboxgroup<br>类名: CheckboxGroupAttribute<br>方法 or 属性: mark(value: MarkStyle): CheckboxGroupAttribute;|checkboxgroup.d.ts|
 |新增|NA|类名：global<br>方法or属性：declare const AnimatableExtend: MethodDecorator & ((value: Object) => MethodDecorator);|common.d.ts|
 |新增|NA|模块名: common<br>类名: AnimatableArithmetic|common.d.ts|
-|新增|NA|类名：AnimatableArithmetic<br>方法or属性：|common.d.ts|
 |新增|NA|模块名: common<br>类名: AnimatableArithmetic<br>方法 or 属性：plus(rhs: AnimatableArithmetic\<T>): AnimatableArithmetic\<T>;|common.d.ts|
 |新增|NA|类名：AnimatableArithmetic<br>方法or属性：plus(rhs: AnimatableArithmetic\<T>): AnimatableArithmetic\<T>;|common.d.ts|
 |新增|NA|模块名: common<br>类名: AnimatableArithmetic<br>方法 or 属性：subtract(rhs: AnimatableArithmetic\<T>): AnimatableArithmetic\<T>;|common.d.ts|
@@ -76,43 +73,24 @@
 |新增|NA|类名：AnimatableArithmetic<br>方法or属性：equals(rhs: AnimatableArithmetic\<T>): boolean;|common.d.ts|
 |新增|NA|类名：global<br>方法or属性：declare const Recycle: ClassDecorator;|common.d.ts|
 |新增|NA|模块名: common<br>类名: TransitionEdge|common.d.ts|
-|新增|NA|类名：TransitionEdge<br>方法or属性：|common.d.ts|
 |新增|NA|模块名: common<br>类名: TransitionEdge<br>方法 or 属性：TOP|common.d.ts|
-|新增|NA|类名：TransitionEdge<br>方法or属性：TOP|common.d.ts|
 |新增|NA|模块名: common<br>类名: TransitionEdge<br>方法 or 属性：BOTTOM|common.d.ts|
-|新增|NA|类名：TransitionEdge<br>方法or属性：BOTTOM|common.d.ts|
 |新增|NA|模块名: common<br>类名: TransitionEdge<br>方法 or 属性：START|common.d.ts|
-|新增|NA|类名：TransitionEdge<br>方法or属性：START|common.d.ts|
 |新增|NA|模块名: common<br>类名: TransitionEdge<br>方法 or 属性：END|common.d.ts|
-|新增|NA|类名：TransitionEdge<br>方法or属性：END|common.d.ts|
 |新增|NA|模块名: common<br>类名: TransitionEffect|common.d.ts|
-|新增|NA|类名：TransitionEffect<br>方法or属性：|common.d.ts|
 |新增|NA|模块名: common<br>类名: TransitionEffect<br>方法 or 属性：static readonly IDENTITY: TransitionEffect\<"identity">;|common.d.ts|
-|新增|NA|类名：TransitionEffect<br>方法or属性：static readonly IDENTITY: TransitionEffect\<"identity">;|common.d.ts|
 |新增|NA|模块名: common<br>类名: TransitionEffect<br>方法 or 属性：static readonly OPACITY: TransitionEffect\<"opacity">;|common.d.ts|
-|新增|NA|类名：TransitionEffect<br>方法or属性：static readonly OPACITY: TransitionEffect\<"opacity">;|common.d.ts|
 |新增|NA|模块名: common<br>类名: TransitionEffect<br>方法 or 属性：static readonly SLIDE: TransitionEffect\<<br>    "asymmetric",<br>    {<br>      appear: TransitionEffect\<"move", TransitionEdge>;<br>      disappear: TransitionEffect\<"move", TransitionEdge>;<br>    }<br>  >;|common.d.ts|
-|新增|NA|类名：TransitionEffect<br>方法or属性：static readonly SLIDE: TransitionEffect\<<br>    "asymmetric",<br>    {<br>      appear: TransitionEffect\<"move", TransitionEdge>;<br>      disappear: TransitionEffect\<"move", TransitionEdge>;<br>    }<br>  >;|common.d.ts|
 |新增|NA|模块名: common<br>类名: TransitionEffect<br>方法 or 属性：static readonly SLIDE_SWITCH: TransitionEffect\<"slideSwitch">;|common.d.ts|
-|新增|NA|类名：TransitionEffect<br>方法or属性：static readonly SLIDE_SWITCH: TransitionEffect\<"slideSwitch">;|common.d.ts|
 |新增|NA|模块名: common<br>类名: TransitionEffect<br>方法 or 属性：static translate(options: TranslateOptions): TransitionEffect\<"translate">;|common.d.ts|
-|新增|NA|类名：TransitionEffect<br>方法or属性：static translate(options: TranslateOptions): TransitionEffect\<"translate">;|common.d.ts|
 |新增|NA|模块名: common<br>类名: TransitionEffect<br>方法 or 属性：static rotate(options: RotateOptions): TransitionEffect\<"rotate">;|common.d.ts|
-|新增|NA|类名：TransitionEffect<br>方法or属性：static rotate(options: RotateOptions): TransitionEffect\<"rotate">;|common.d.ts|
 |新增|NA|模块名: common<br>类名: TransitionEffect<br>方法 or 属性：static scale(options: ScaleOptions): TransitionEffect\<"scale">;|common.d.ts|
-|新增|NA|类名：TransitionEffect<br>方法or属性：static scale(options: ScaleOptions): TransitionEffect\<"scale">;|common.d.ts|
 |新增|NA|模块名: common<br>类名: TransitionEffect<br>方法 or 属性：static opacity(alpha: number): TransitionEffect\<"opacity">;|common.d.ts|
-|新增|NA|类名：TransitionEffect<br>方法or属性：static opacity(alpha: number): TransitionEffect\<"opacity">;|common.d.ts|
 |新增|NA|模块名: common<br>类名: TransitionEffect<br>方法 or 属性：static move(edge: TransitionEdge): TransitionEffect\<"move">;|common.d.ts|
-|新增|NA|类名：TransitionEffect<br>方法or属性：static move(edge: TransitionEdge): TransitionEffect\<"move">;|common.d.ts|
 |新增|NA|模块名: common<br>类名: TransitionEffect<br>方法 or 属性：static asymmetric(<br>    appear: TransitionEffect,<br>    disappear: TransitionEffect<br>  ): TransitionEffect\<"asymmetric">;|common.d.ts|
-|新增|NA|类名：TransitionEffect<br>方法or属性：static asymmetric(<br>    appear: TransitionEffect,<br>    disappear: TransitionEffect<br>  ): TransitionEffect\<"asymmetric">;|common.d.ts|
 |新增|NA|模块名: common<br>类名: TransitionEffect<br>方法 or 属性：constructor(type: Type, effect: Effect);|common.d.ts|
-|新增|NA|类名：TransitionEffect<br>方法or属性：constructor(type: Type, effect: Effect);|common.d.ts|
 |新增|NA|模块名: common<br>类名: TransitionEffect<br>方法 or 属性：animation(value: AnimateParam): TransitionEffect;|common.d.ts|
-|新增|NA|类名：TransitionEffect<br>方法or属性：animation(value: AnimateParam): TransitionEffect;|common.d.ts|
 |新增|NA|模块名: common<br>类名: TransitionEffect<br>方法 or 属性：combine(transitionEffect: TransitionEffect): TransitionEffect;|common.d.ts|
-|新增|NA|类名：TransitionEffect<br>方法or属性：combine(transitionEffect: TransitionEffect): TransitionEffect;|common.d.ts|
 |新增|NA|类名：SourceTool<br>方法or属性：Finger|common.d.ts|
 |新增|NA|类名：SourceTool<br>方法or属性：Pen|common.d.ts|
 |新增|NA|类名：BlurStyle<br>方法or属性：BackgroundThin|common.d.ts|
@@ -124,45 +102,25 @@
 |新增|NA|类名：BlurStyle<br>方法or属性：BACKGROUND_THICK|common.d.ts|
 |新增|NA|类名：BlurStyle<br>方法or属性：BACKGROUND_ULTRA_THICK|common.d.ts|
 |新增|NA|模块名: common<br>类名: ThemeColorMode|common.d.ts|
-|新增|NA|类名：ThemeColorMode<br>方法or属性：|common.d.ts|
 |新增|NA|模块名: common<br>类名: ThemeColorMode<br>方法 or 属性：System|common.d.ts|
-|新增|NA|类名：ThemeColorMode<br>方法or属性：System|common.d.ts|
 |新增|NA|模块名: common<br>类名: ThemeColorMode<br>方法 or 属性：Light|common.d.ts|
-|新增|NA|类名：ThemeColorMode<br>方法or属性：Light|common.d.ts|
 |新增|NA|模块名: common<br>类名: ThemeColorMode<br>方法 or 属性：Dark|common.d.ts|
-|新增|NA|类名：ThemeColorMode<br>方法or属性：Dark|common.d.ts|
 |新增|NA|模块名: common<br>类名: ThemeColorMode<br>方法 or 属性：SYSTEM|common.d.ts|
-|新增|NA|类名：ThemeColorMode<br>方法or属性：SYSTEM|common.d.ts|
 |新增|NA|模块名: common<br>类名: ThemeColorMode<br>方法 or 属性：LIGHT|common.d.ts|
-|新增|NA|类名：ThemeColorMode<br>方法or属性：LIGHT|common.d.ts|
 |新增|NA|模块名: common<br>类名: ThemeColorMode<br>方法 or 属性：DARK|common.d.ts|
-|新增|NA|类名：ThemeColorMode<br>方法or属性：DARK|common.d.ts|
 |新增|NA|模块名: common<br>类名: AdaptiveColor|common.d.ts|
-|新增|NA|类名：AdaptiveColor<br>方法or属性：|common.d.ts|
 |新增|NA|模块名: common<br>类名: AdaptiveColor<br>方法 or 属性：Default|common.d.ts|
-|新增|NA|类名：AdaptiveColor<br>方法or属性：Default|common.d.ts|
 |新增|NA|模块名: common<br>类名: AdaptiveColor<br>方法 or 属性：Average|common.d.ts|
-|新增|NA|类名：AdaptiveColor<br>方法or属性：Average|common.d.ts|
 |新增|NA|模块名: common<br>类名: AdaptiveColor<br>方法 or 属性：DEFAULT|common.d.ts|
-|新增|NA|类名：AdaptiveColor<br>方法or属性：DEFAULT|common.d.ts|
 |新增|NA|模块名: common<br>类名: AdaptiveColor<br>方法 or 属性：AVERAGE|common.d.ts|
-|新增|NA|类名：AdaptiveColor<br>方法or属性：AVERAGE|common.d.ts|
 |新增|NA|模块名: common<br>类名: ModalTransition|common.d.ts|
-|新增|NA|类名：ModalTransition<br>方法or属性：|common.d.ts|
 |新增|NA|模块名: common<br>类名: ModalTransition<br>方法 or 属性：Default|common.d.ts|
-|新增|NA|类名：ModalTransition<br>方法or属性：Default|common.d.ts|
 |新增|NA|模块名: common<br>类名: ModalTransition<br>方法 or 属性：None|common.d.ts|
-|新增|NA|类名：ModalTransition<br>方法or属性：None|common.d.ts|
 |新增|NA|模块名: common<br>类名: ModalTransition<br>方法 or 属性：Alpha|common.d.ts|
-|新增|NA|类名：ModalTransition<br>方法or属性：Alpha|common.d.ts|
 |新增|NA|模块名: common<br>类名: ModalTransition<br>方法 or 属性：DEFAULT|common.d.ts|
-|新增|NA|类名：ModalTransition<br>方法or属性：DEFAULT|common.d.ts|
 |新增|NA|模块名: common<br>类名: ModalTransition<br>方法 or 属性：NONE|common.d.ts|
-|新增|NA|类名：ModalTransition<br>方法or属性：NONE|common.d.ts|
 |新增|NA|模块名: common<br>类名: ModalTransition<br>方法 or 属性：ALPHA|common.d.ts|
-|新增|NA|类名：ModalTransition<br>方法or属性：ALPHA|common.d.ts|
 |新增|NA|模块名: common<br>类名: BackgroundBlurStyleOptions|common.d.ts|
-|新增|NA|类名：BackgroundBlurStyleOptions<br>方法or属性：|common.d.ts|
 |新增|NA|模块名: common<br>类名: BackgroundBlurStyleOptions<br>方法 or 属性：colorMode?: ThemeColorMode;|common.d.ts|
 |新增|NA|类名：BackgroundBlurStyleOptions<br>方法or属性：colorMode?: ThemeColorMode;|common.d.ts|
 |新增|NA|模块名: common<br>类名: BackgroundBlurStyleOptions<br>方法 or 属性：adaptiveColor?: AdaptiveColor;|common.d.ts|
@@ -172,77 +130,40 @@
 |新增|NA|模块名: common<br>类名: PickerTextStyle|common.d.ts|
 |新增|NA|类名：PickerTextStyle<br>方法or属性：|common.d.ts|
 |新增|NA|模块名: common<br>类名: PickerTextStyle<br>方法 or 属性：color?: ResourceColor;|common.d.ts|
-|新增|NA|类名：PickerTextStyle<br>方法or属性：color?: ResourceColor;|common.d.ts|
 |新增|NA|模块名: common<br>类名: PickerTextStyle<br>方法 or 属性：font?: Font;|common.d.ts|
-|新增|NA|类名：PickerTextStyle<br>方法or属性：font?: Font;|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowType|common.d.ts|
-|新增|NA|类名：ShadowType<br>方法or属性：|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowType<br>方法 or 属性：COLOR|common.d.ts|
-|新增|NA|类名：ShadowType<br>方法or属性：COLOR|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowType<br>方法 or 属性：BLUR|common.d.ts|
-|新增|NA|类名：ShadowType<br>方法or属性：BLUR|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowOptions|common.d.ts|
-|新增|NA|类名：ShadowOptions<br>方法or属性：|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowOptions<br>方法 or 属性：radius: number \| Resource;|common.d.ts|
-|新增|NA|类名：ShadowOptions<br>方法or属性：radius: number \| Resource;|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowOptions<br>方法 or 属性：type?: ShadowType;|common.d.ts|
-|新增|NA|类名：ShadowOptions<br>方法or属性：type?: ShadowType;|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowOptions<br>方法 or 属性：color?: Color \| string \| Resource;|common.d.ts|
-|新增|NA|类名：ShadowOptions<br>方法or属性：color?: Color \| string \| Resource;|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowOptions<br>方法 or 属性：offsetX?: number \| Resource;|common.d.ts|
-|新增|NA|类名：ShadowOptions<br>方法or属性：offsetX?: number \| Resource;|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowOptions<br>方法 or 属性：offsetY?: number \| Resource;|common.d.ts|
-|新增|NA|类名：ShadowOptions<br>方法or属性：offsetY?: number \| Resource;|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowStyle|common.d.ts|
-|新增|NA|类名：ShadowStyle<br>方法or属性：|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowStyle<br>方法 or 属性：OuterDefaultXS|common.d.ts|
-|新增|NA|类名：ShadowStyle<br>方法or属性：OuterDefaultXS|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowStyle<br>方法 or 属性：OuterDefaultSM|common.d.ts|
-|新增|NA|类名：ShadowStyle<br>方法or属性：OuterDefaultSM|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowStyle<br>方法 or 属性：OuterDefaultMD|common.d.ts|
-|新增|NA|类名：ShadowStyle<br>方法or属性：OuterDefaultMD|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowStyle<br>方法 or 属性：OuterDefaultLG|common.d.ts|
-|新增|NA|类名：ShadowStyle<br>方法or属性：OuterDefaultLG|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowStyle<br>方法 or 属性：OuterFloatingSM|common.d.ts|
-|新增|NA|类名：ShadowStyle<br>方法or属性：OuterFloatingSM|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowStyle<br>方法 or 属性：OuterFloatingMD|common.d.ts|
-|新增|NA|类名：ShadowStyle<br>方法or属性：OuterFloatingMD|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowStyle<br>方法 or 属性：OUTER_DEFAULT_XS|common.d.ts|
-|新增|NA|类名：ShadowStyle<br>方法or属性：OUTER_DEFAULT_XS|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowStyle<br>方法 or 属性：OUTER_DEFAULT_SM|common.d.ts|
-|新增|NA|类名：ShadowStyle<br>方法or属性：OUTER_DEFAULT_SM|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowStyle<br>方法 or 属性：OUTER_DEFAULT_MD|common.d.ts|
-|新增|NA|类名：ShadowStyle<br>方法or属性：OUTER_DEFAULT_MD|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowStyle<br>方法 or 属性：OUTER_DEFAULT_LG|common.d.ts|
-|新增|NA|类名：ShadowStyle<br>方法or属性：OUTER_DEFAULT_LG|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowStyle<br>方法 or 属性：OUTER_FLOATING_SM|common.d.ts|
-|新增|NA|类名：ShadowStyle<br>方法or属性：OUTER_FLOATING_SM|common.d.ts|
 |新增|NA|模块名: common<br>类名: ShadowStyle<br>方法 or 属性：OUTER_FLOATING_MD|common.d.ts|
-|新增|NA|类名：ShadowStyle<br>方法or属性：OUTER_FLOATING_MD|common.d.ts|
 |新增|NA|模块名: common<br>类名: SheetSize|common.d.ts|
-|新增|NA|类名：SheetSize<br>方法or属性：|common.d.ts|
 |新增|NA|模块名: common<br>类名: SheetSize<br>方法 or 属性：MEDIUM|common.d.ts|
-|新增|NA|类名：SheetSize<br>方法or属性：MEDIUM|common.d.ts|
 |新增|NA|模块名: common<br>类名: SheetSize<br>方法 or 属性：LARGE|common.d.ts|
-|新增|NA|类名：SheetSize<br>方法or属性：LARGE|common.d.ts|
 |新增|NA|模块名: common<br>类名: DragBehavior|common.d.ts|
-|新增|NA|类名：DragBehavior<br>方法or属性：|common.d.ts|
 |新增|NA|模块名: common<br>类名: DragBehavior<br>方法 or 属性：COPY|common.d.ts|
-|新增|NA|类名：DragBehavior<br>方法or属性：COPY|common.d.ts|
 |新增|NA|模块名: common<br>类名: DragBehavior<br>方法 or 属性：MOVE|common.d.ts|
-|新增|NA|类名：DragBehavior<br>方法or属性：MOVE|common.d.ts|
 |新增|NA|模块名: common<br>类名: DragRet|common.d.ts|
-|新增|NA|类名：DragRet<br>方法or属性：|common.d.ts|
 |新增|NA|模块名: common<br>类名: DragRet<br>方法 or 属性：DRAG_SUCCESS|common.d.ts|
-|新增|NA|类名：DragRet<br>方法or属性：DRAG_SUCCESS|common.d.ts|
 |新增|NA|模块名: common<br>类名: DragRet<br>方法 or 属性：DRAG_FAILED|common.d.ts|
-|新增|NA|类名：DragRet<br>方法or属性：DRAG_FAILED|common.d.ts|
 |新增|NA|模块名: common<br>类名: DragRet<br>方法 or 属性：DRAG_CANCELED|common.d.ts|
-|新增|NA|类名：DragRet<br>方法or属性：DRAG_CANCELED|common.d.ts|
 |新增|NA|模块名: common<br>类名: DragRet<br>方法 or 属性：DROP_ENABLED|common.d.ts|
-|新增|NA|类名：DragRet<br>方法or属性：DROP_ENABLED|common.d.ts|
-|新增|NA|模块名: common<br>类名: DragRet<br>方法 or 属性：DROP_DISABLED|common.d.ts|
-|新增|NA|类名：DragRet<br>方法or属性：DROP_DISABLED|common.d.ts|
 |新增|NA|类名：DragEvent<br>方法or属性：dragBehavior: DragBehavior;|common.d.ts|
 |新增|NA|类名：DragEvent<br>方法or属性：useCustomDropAnimation: boolean;|common.d.ts|
 |新增|NA|类名：DragEvent<br>方法or属性：setData(unifiedData: UnifiedData): void;|common.d.ts|
@@ -252,17 +173,11 @@
 |新增|NA|类名：DragEvent<br>方法or属性：getResult(): DragRet;|common.d.ts|
 |新增|NA|类名：DragEvent<br>方法or属性：getPreviewRect(): Rectangle;|common.d.ts|
 |新增|NA|模块名: common<br>类名: SheetStyle|common.d.ts|
-|新增|NA|类名：SheetStyle<br>方法or属性：|common.d.ts|
 |新增|NA|模块名: common<br>类名: SheetStyle<br>方法 or 属性：height?: SheetSize \| Length;|common.d.ts|
-|新增|NA|类名：SheetStyle<br>方法or属性：height?: SheetSize \| Length;|common.d.ts|
 |新增|NA|模块名: common<br>类名: SheetStyle<br>方法 or 属性：dragBar?: boolean;|common.d.ts|
-|新增|NA|类名：SheetStyle<br>方法or属性：dragBar?: boolean;|common.d.ts|
 |新增|NA|模块名: common<br>类名: PopupMessageOptions|common.d.ts|
-|新增|NA|类名：PopupMessageOptions<br>方法or属性：|common.d.ts|
 |新增|NA|模块名: common<br>类名: PopupMessageOptions<br>方法 or 属性：textColor?: ResourceColor;|common.d.ts|
-|新增|NA|类名：PopupMessageOptions<br>方法or属性：textColor?: ResourceColor;|common.d.ts|
 |新增|NA|模块名: common<br>类名: PopupMessageOptions<br>方法 or 属性：font?: Font;|common.d.ts|
-|新增|NA|类名：PopupMessageOptions<br>方法or属性：font?: Font;|common.d.ts|
 |新增|NA|类名：PopupOptions<br>方法or属性：placement?: Placement;|common.d.ts|
 |新增|NA|类名：PopupOptions<br>方法or属性：primaryButton?: {<br>    /**<br>     * Button text value<br>     * @since 7<br>     */<br>    /**<br>     * Button text value<br>     * @crossplatform<br>     * @since 10<br>     */<br>    value: string;<br><br>    /**<br>     * action<br>     * @since 7<br>     */<br>    /**<br>     * action<br>     * @crossplatform<br>     * @since 10<br>     */<br>    action: () => void;<br>  };|common.d.ts|
 |新增|NA|类名：PopupOptions<br>方法or属性：secondaryButton?: {<br>    /**<br>     * Button text value<br>     * @since 7<br>     */<br>    /**<br>     * Button text value<br>     * @crossplatform<br>     * @since 10<br>     */<br>    value: string;<br><br>    /**<br>     * action<br>     * @since 7<br>     */<br>    /**<br>     * action<br>     * @crossplatform<br>     * @since 10<br>     */<br>    action: () => void;<br>  };|common.d.ts|
@@ -272,37 +187,21 @@
 |新增|NA|类名：CustomPopupOptions<br>方法or属性：mask?: boolean \| { color: ResourceColor };|common.d.ts|
 |新增|NA|类名：CustomPopupOptions<br>方法or属性：targetSpace?: Length|common.d.ts|
 |新增|NA|模块名: common<br>类名: ContextMenuOptions|common.d.ts|
-|新增|NA|类名：ContextMenuOptions<br>方法or属性：|common.d.ts|
 |新增|NA|模块名: common<br>类名: ContextMenuOptions<br>方法 or 属性：offset?: Position;|common.d.ts|
-|新增|NA|类名：ContextMenuOptions<br>方法or属性：offset?: Position;|common.d.ts|
 |新增|NA|模块名: common<br>类名: ContextMenuOptions<br>方法 or 属性：placement?: Placement;|common.d.ts|
-|新增|NA|类名：ContextMenuOptions<br>方法or属性：placement?: Placement;|common.d.ts|
 |新增|NA|模块名: common<br>类名: ContextMenuOptions<br>方法 or 属性：onAppear?: () => void;|common.d.ts|
-|新增|NA|类名：ContextMenuOptions<br>方法or属性：onAppear?: () => void;|common.d.ts|
 |新增|NA|模块名: common<br>类名: ContextMenuOptions<br>方法 or 属性：onDisappear?: () => void;|common.d.ts|
-|新增|NA|类名：ContextMenuOptions<br>方法or属性：onDisappear?: () => void;|common.d.ts|
 |新增|NA|模块名: common<br>类名: MenuOptions|common.d.ts|
-|新增|NA|类名：MenuOptions<br>方法or属性：|common.d.ts|
 |新增|NA|模块名: common<br>类名: MenuOptions<br>方法 or 属性：title?: ResourceStr;|common.d.ts|
-|新增|NA|类名：MenuOptions<br>方法or属性：title?: ResourceStr;|common.d.ts|
 |新增|NA|模块名: common<br>类名: ProgressMask|common.d.ts|
-|新增|NA|类名：ProgressMask<br>方法or属性：|common.d.ts|
 |新增|NA|模块名: common<br>类名: ProgressMask<br>方法 or 属性：constructor(value: number, total: number, color: ResourceColor);|common.d.ts|
-|新增|NA|类名：ProgressMask<br>方法or属性：constructor(value: number, total: number, color: ResourceColor);|common.d.ts|
 |新增|NA|模块名: common<br>类名: ProgressMask<br>方法 or 属性：updateProgress(value: number): void;|common.d.ts|
-|新增|NA|类名：ProgressMask<br>方法or属性：updateProgress(value: number): void;|common.d.ts|
 |新增|NA|模块名: common<br>类名: ProgressMask<br>方法 or 属性：updateColor(value: ResourceColor): void;|common.d.ts|
-|新增|NA|类名：ProgressMask<br>方法or属性：updateColor(value: ResourceColor): void;|common.d.ts|
 |新增|NA|模块名: common<br>类名: PixelStretchEffectOptions|common.d.ts|
-|新增|NA|类名：PixelStretchEffectOptions<br>方法or属性：|common.d.ts|
 |新增|NA|模块名: common<br>类名: PixelStretchEffectOptions<br>方法 or 属性：top?: Length;|common.d.ts|
-|新增|NA|类名：PixelStretchEffectOptions<br>方法or属性：top?: Length;|common.d.ts|
 |新增|NA|模块名: common<br>类名: PixelStretchEffectOptions<br>方法 or 属性：bottom?: Length;|common.d.ts|
-|新增|NA|类名：PixelStretchEffectOptions<br>方法or属性：bottom?: Length;|common.d.ts|
 |新增|NA|模块名: common<br>类名: PixelStretchEffectOptions<br>方法 or 属性：left?: Length;|common.d.ts|
-|新增|NA|类名：PixelStretchEffectOptions<br>方法or属性：left?: Length;|common.d.ts|
 |新增|NA|模块名: common<br>类名: PixelStretchEffectOptions<br>方法 or 属性：right?: Length;|common.d.ts|
-|新增|NA|类名：PixelStretchEffectOptions<br>方法or属性：right?: Length;|common.d.ts|
 |新增|NA|类名：CommonMethod<br>方法or属性：foregroundColor(value: ResourceColor \| ColoringStrategy): T;|common.d.ts|
 |新增|NA|类名：CommonMethod<br>方法or属性：onDragEnd(event: (event: DragEvent, extraParams?: string) => void): T;|common.d.ts|
 |新增|NA|类名：CommonMethod<br>方法or属性：allowDrop(value: Array\<UnifiedDataType>): T;|common.d.ts|
@@ -341,71 +240,38 @@
 |新增|NA|类名：DatePickerDialogOptions<br>方法or属性：textStyle?: PickerTextStyle;|date_picker.d.ts|
 |新增|NA|类名：DatePickerDialogOptions<br>方法or属性：selectedTextStyle?: PickerTextStyle;|date_picker.d.ts|
 |新增|NA|模块名: enums<br>类名: ColoringStrategy|enums.d.ts|
-|新增|NA|类名：ColoringStrategy<br>方法or属性：|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: ColoringStrategy<br>方法 or 属性：INVERT = "invert"|enums.d.ts|
-|新增|NA|类名：ColoringStrategy<br>方法or属性：INVERT = "invert"|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: TextAlign<br>方法 or 属性：Justify|enums.d.ts|
-|新增|NA|类名：TextAlign<br>方法or属性：Justify|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: TextAlign<br>方法 or 属性：JUSTIFY|enums.d.ts|
-|新增|NA|类名：TextAlign<br>方法or属性：JUSTIFY|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: TextOverflow<br>方法 or 属性：Marquee|enums.d.ts|
-|新增|NA|类名：TextOverflow<br>方法or属性：Marquee|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: TextOverflow<br>方法 or 属性：MARQUEE|enums.d.ts|
-|新增|NA|类名：TextOverflow<br>方法or属性：MARQUEE|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: TextHeightAdaptivePolicy|enums.d.ts|
-|新增|NA|类名：TextHeightAdaptivePolicy<br>方法or属性：|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: TextHeightAdaptivePolicy<br>方法 or 属性：MAX_LINES_FIRST|enums.d.ts|
-|新增|NA|类名：TextHeightAdaptivePolicy<br>方法or属性：MAX_LINES_FIRST|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: TextHeightAdaptivePolicy<br>方法 or 属性：MIN_FONT_SIZE_FIRST|enums.d.ts|
-|新增|NA|类名：TextHeightAdaptivePolicy<br>方法or属性：MIN_FONT_SIZE_FIRST|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: TextHeightAdaptivePolicy<br>方法 or 属性：LAYOUT_CONSTRAINT_FIRST|enums.d.ts|
-|新增|NA|类名：TextHeightAdaptivePolicy<br>方法or属性：LAYOUT_CONSTRAINT_FIRST|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: ModifierKey|enums.d.ts|
-|新增|NA|类名：ModifierKey<br>方法or属性：|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: ModifierKey<br>方法 or 属性：CTRL|enums.d.ts|
-|新增|NA|类名：ModifierKey<br>方法or属性：CTRL|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: ModifierKey<br>方法 or 属性：SHIFT|enums.d.ts|
-|新增|NA|类名：ModifierKey<br>方法or属性：SHIFT|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: ModifierKey<br>方法 or 属性：ALT|enums.d.ts|
-|新增|NA|类名：ModifierKey<br>方法or属性：ALT|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: FunctionKey|enums.d.ts|
-|新增|NA|类名：FunctionKey<br>方法or属性：|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: FunctionKey<br>方法 or 属性：ESC|enums.d.ts|
-|新增|NA|类名：FunctionKey<br>方法or属性：ESC|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: FunctionKey<br>方法 or 属性：F1|enums.d.ts|
-|新增|NA|类名：FunctionKey<br>方法or属性：F1|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: FunctionKey<br>方法 or 属性：F2|enums.d.ts|
-|新增|NA|类名：FunctionKey<br>方法or属性：F2|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: FunctionKey<br>方法 or 属性：F3|enums.d.ts|
-|新增|NA|类名：FunctionKey<br>方法or属性：F3|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: FunctionKey<br>方法 or 属性：F4|enums.d.ts|
-|新增|NA|类名：FunctionKey<br>方法or属性：F4|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: FunctionKey<br>方法 or 属性：F5|enums.d.ts|
-|新增|NA|类名：FunctionKey<br>方法or属性：F5|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: FunctionKey<br>方法 or 属性：F6|enums.d.ts|
-|新增|NA|类名：FunctionKey<br>方法or属性：F6|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: FunctionKey<br>方法 or 属性：F7|enums.d.ts|
-|新增|NA|类名：FunctionKey<br>方法or属性：F7|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: FunctionKey<br>方法 or 属性：F8|enums.d.ts|
-|新增|NA|类名：FunctionKey<br>方法or属性：F8|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: FunctionKey<br>方法 or 属性：F9|enums.d.ts|
-|新增|NA|类名：FunctionKey<br>方法or属性：F9|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: FunctionKey<br>方法 or 属性：F10|enums.d.ts|
-|新增|NA|类名：FunctionKey<br>方法or属性：F10|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: FunctionKey<br>方法 or 属性：F11|enums.d.ts|
-|新增|NA|类名：FunctionKey<br>方法or属性：F11|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: FunctionKey<br>方法 or 属性：F12|enums.d.ts|
-|新增|NA|类名：FunctionKey<br>方法or属性：F12|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: ImageSpanAlignment|enums.d.ts|
-|新增|NA|类名：ImageSpanAlignment<br>方法or属性：|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: ImageSpanAlignment<br>方法 or 属性：BASELINE|enums.d.ts|
-|新增|NA|类名：ImageSpanAlignment<br>方法or属性：BASELINE|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: ImageSpanAlignment<br>方法 or 属性：BOTTOM|enums.d.ts|
-|新增|NA|类名：ImageSpanAlignment<br>方法or属性：BOTTOM|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: ImageSpanAlignment<br>方法 or 属性：CENTER|enums.d.ts|
-|新增|NA|类名：ImageSpanAlignment<br>方法or属性：CENTER|enums.d.ts|
 |新增|NA|模块名: enums<br>类名: ImageSpanAlignment<br>方法 or 属性：TOP|enums.d.ts|
-|新增|NA|类名：ImageSpanAlignment<br>方法or属性：TOP|enums.d.ts|
 |新增|NA|模块名: form_component<br>类名: FormComponentAttribute<br>方法 or 属性: onLoad(callback: () => void): FormComponentAttribute;|form_component.d.ts|
 |新增|NA|类名：GridAttribute<br>方法or属性：edgeEffect(value: EdgeEffect): GridAttribute;|grid.d.ts|
 |新增|NA|类名：GridRowAttribute<br>方法or属性：alignItems(value: ItemAlign): GridRowAttribute;|grid_row.d.ts|
@@ -419,23 +285,14 @@
 |新增|NA|模块名: image_span<br>类名: global<br>方法 or 属性: declare const ImageSpan: ImageSpanInterface;|image_span.d.ts|
 |新增|NA|模块名: image_span<br>类名: global<br>方法 or 属性: declare const ImageSpanInstance: ImageSpanAttribute;|image_span.d.ts|
 |新增|NA|模块名: list<br>类名: ChainEdgeEffect|list.d.ts|
-|新增|NA|类名：ChainEdgeEffect<br>方法or属性：|list.d.ts|
 |新增|NA|模块名: list<br>类名: ChainEdgeEffect<br>方法 or 属性：DEFAULT|list.d.ts|
-|新增|NA|类名：ChainEdgeEffect<br>方法or属性：DEFAULT|list.d.ts|
 |新增|NA|模块名: list<br>类名: ChainEdgeEffect<br>方法 or 属性：STRETCH|list.d.ts|
-|新增|NA|类名：ChainEdgeEffect<br>方法or属性：STRETCH|list.d.ts|
 |新增|NA|模块名: list<br>类名: ChainAnimationOptions|list.d.ts|
-|新增|NA|类名：ChainAnimationOptions<br>方法or属性：|list.d.ts|
 |新增|NA|模块名: list<br>类名: ChainAnimationOptions<br>方法 or 属性：minSpace: Length;|list.d.ts|
-|新增|NA|类名：ChainAnimationOptions<br>方法or属性：minSpace: Length;|list.d.ts|
 |新增|NA|模块名: list<br>类名: ChainAnimationOptions<br>方法 or 属性：maxSpace: Length;|list.d.ts|
-|新增|NA|类名：ChainAnimationOptions<br>方法or属性：maxSpace: Length;|list.d.ts|
 |新增|NA|模块名: list<br>类名: ChainAnimationOptions<br>方法 or 属性：conductivity?: number;|list.d.ts|
-|新增|NA|类名：ChainAnimationOptions<br>方法or属性：conductivity?: number;|list.d.ts|
 |新增|NA|模块名: list<br>类名: ChainAnimationOptions<br>方法 or 属性：intensity?: number;|list.d.ts|
-|新增|NA|类名：ChainAnimationOptions<br>方法or属性：intensity?: number;|list.d.ts|
 |新增|NA|模块名: list<br>类名: ChainAnimationOptions<br>方法 or 属性：edgeEffect?: ChainEdgeEffect;|list.d.ts|
-|新增|NA|类名：ChainAnimationOptions<br>方法or属性：edgeEffect?: ChainEdgeEffect;|list.d.ts|
 |新增|NA|类名：ListAttribute<br>方法or属性：chainAnimationOptions(value: ChainAnimationOptions): ListAttribute;|list.d.ts|
 |新增|NA|模块名: matrix2d<br>类名: Matrix2D|matrix2d.d.ts|
 |新增|NA|模块名: matrix2d<br>类名: Matrix2D<br>方法 or 属性: scaleX?: number;|matrix2d.d.ts|
@@ -459,62 +316,37 @@
 |新增|NA|类名：MenuItemAttribute<br>方法or属性：labelFont(value: Font): MenuItemAttribute;|menu_item.d.ts|
 |新增|NA|类名：MenuItemAttribute<br>方法or属性：labelFontColor(value: ResourceColor): MenuItemAttribute;|menu_item.d.ts|
 |新增|NA|模块名: navigation<br>类名: NavPathInfo|navigation.d.ts|
-|新增|NA|类名：NavPathInfo<br>方法or属性：|navigation.d.ts|
 |新增|NA|模块名: navigation<br>类名: NavPathInfo<br>方法 or 属性：constructor(name: string, param: unknown);|navigation.d.ts|
-|新增|NA|类名：NavPathInfo<br>方法or属性：constructor(name: string, param: unknown);|navigation.d.ts|
 |新增|NA|模块名: navigation<br>类名: NavPathInfo<br>方法 or 属性：name: string;|navigation.d.ts|
-|新增|NA|类名：NavPathInfo<br>方法or属性：name: string;|navigation.d.ts|
 |新增|NA|模块名: navigation<br>类名: NavPathInfo<br>方法 or 属性：param?: unknown;|navigation.d.ts|
-|新增|NA|类名：NavPathInfo<br>方法or属性：param?: unknown;|navigation.d.ts|
 |新增|NA|模块名: navigation<br>类名: NavPathStack|navigation.d.ts|
-|新增|NA|类名：NavPathStack<br>方法or属性：|navigation.d.ts|
 |新增|NA|模块名: navigation<br>类名: NavPathStack<br>方法 or 属性：constructor();|navigation.d.ts|
 |新增|NA|模块名: navigation<br>类名: NavPathStack<br>方法 or 属性：push(info: NavPathInfo): void;|navigation.d.ts|
-|新增|NA|类名：NavPathStack<br>方法or属性：push(info: NavPathInfo): void;|navigation.d.ts|
 |新增|NA|模块名: navigation<br>类名: NavPathStack<br>方法 or 属性：pushName(name: string, param: unknown): void;|navigation.d.ts|
-|新增|NA|类名：NavPathStack<br>方法or属性：pushName(name: string, param: unknown): void;|navigation.d.ts|
 |新增|NA|模块名: navigation<br>类名: NavPathStack<br>方法 or 属性：pop(): NavPathInfo \| undefined;|navigation.d.ts|
-|新增|NA|类名：NavPathStack<br>方法or属性：pop(): NavPathInfo \| undefined;|navigation.d.ts|
 |新增|NA|模块名: navigation<br>类名: NavPathStack<br>方法 or 属性：popTo(name: string): number;|navigation.d.ts|
-|新增|NA|类名：NavPathStack<br>方法or属性：popTo(name: string): number;|navigation.d.ts|
 |新增|NA|模块名: navigation<br>类名: NavPathStack<br>方法 or 属性：popToIndex(index: number): void;|navigation.d.ts|
-|新增|NA|类名：NavPathStack<br>方法or属性：popToIndex(index: number): void;|navigation.d.ts|
 |新增|NA|模块名: navigation<br>类名: NavPathStack<br>方法 or 属性：moveToTop(name: string): number;|navigation.d.ts|
-|新增|NA|类名：NavPathStack<br>方法or属性：moveToTop(name: string): number;|navigation.d.ts|
 |新增|NA|模块名: navigation<br>类名: NavPathStack<br>方法 or 属性：moveIndexToTop(index: number): void;|navigation.d.ts|
-|新增|NA|类名：NavPathStack<br>方法or属性：moveIndexToTop(index: number): void;|navigation.d.ts|
 |新增|NA|模块名: navigation<br>类名: NavPathStack<br>方法 or 属性：clear(): void;|navigation.d.ts|
-|新增|NA|类名：NavPathStack<br>方法or属性：clear(): void;|navigation.d.ts|
 |新增|NA|模块名: navigation<br>类名: NavPathStack<br>方法 or 属性：getAllPathName(): Array\<string>;|navigation.d.ts|
-|新增|NA|类名：NavPathStack<br>方法or属性：getAllPathName(): Array\<string>;|navigation.d.ts|
 |新增|NA|模块名: navigation<br>类名: NavPathStack<br>方法 or 属性：getParamByIndex(index: number): unknown \| undefined;|navigation.d.ts|
-|新增|NA|类名：NavPathStack<br>方法or属性：getParamByIndex(index: number): unknown \| undefined;|navigation.d.ts|
 |新增|NA|模块名: navigation<br>类名: NavPathStack<br>方法 or 属性：getParamByName(name: string): Array\<unknown>;|navigation.d.ts|
-|新增|NA|类名：NavPathStack<br>方法or属性：getParamByName(name: string): Array\<unknown>;|navigation.d.ts|
 |新增|NA|模块名: navigation<br>类名: NavPathStack<br>方法 or 属性：getIndexByName(name: string): Array\<number>;|navigation.d.ts|
-|新增|NA|类名：NavPathStack<br>方法or属性：getIndexByName(name: string): Array\<number>;|navigation.d.ts|
 |新增|NA|模块名: navigation<br>类名: NavPathStack<br>方法 or 属性：size(): number;|navigation.d.ts|
-|新增|NA|类名：NavPathStack<br>方法or属性：size(): number;|navigation.d.ts|
 |新增|NA|类名：NavigationInterface<br>方法or属性：(pathInfos: NavPathStack): NavigationAttribute;|navigation.d.ts|
 |新增|NA|类名：NavigationAttribute<br>方法or属性：navDestination(builder: (name: string, param: unknown) => void): NavigationAttribute;|navigation.d.ts|
 |新增|NA|类名：NavDestinationAttribute<br>方法or属性：onShown(callback: (param: unknown) => void): NavDestinationAttribute;|nav_destination.d.ts|
 |新增|NA|类名：NavDestinationAttribute<br>方法or属性：onHidden(callback: () => void): NavDestinationAttribute;|nav_destination.d.ts|
 |新增|NA|类名：NavDestinationAttribute<br>方法or属性：onBackPressed(callback: () => boolean): NavDestinationAttribute;|nav_destination.d.ts|
 |新增|NA|模块名: nav_router<br>类名: RouteInfo|nav_router.d.ts|
-|新增|NA|类名：RouteInfo<br>方法or属性：|nav_router.d.ts|
 |新增|NA|模块名: nav_router<br>类名: RouteInfo<br>方法 or 属性：name: string;|nav_router.d.ts|
-|新增|NA|类名：RouteInfo<br>方法or属性：name: string;|nav_router.d.ts|
 |新增|NA|模块名: nav_router<br>类名: RouteInfo<br>方法 or 属性：param?: unknown;|nav_router.d.ts|
-|新增|NA|类名：RouteInfo<br>方法or属性：param?: unknown;|nav_router.d.ts|
 |新增|NA|类名：NavRouterInterface<br>方法or属性：(value: RouteInfo): NavRouterAttribute;|nav_router.d.ts|
 |新增|NA|模块名: nav_router<br>类名: NavRouteMode|nav_router.d.ts|
-|新增|NA|类名：NavRouteMode<br>方法or属性：|nav_router.d.ts|
 |新增|NA|模块名: nav_router<br>类名: NavRouteMode<br>方法 or 属性：PUSH_WITH_RECREATE|nav_router.d.ts|
-|新增|NA|类名：NavRouteMode<br>方法or属性：PUSH_WITH_RECREATE|nav_router.d.ts|
 |新增|NA|模块名: nav_router<br>类名: NavRouteMode<br>方法 or 属性：PUSH|nav_router.d.ts|
-|新增|NA|类名：NavRouteMode<br>方法or属性：PUSH|nav_router.d.ts|
 |新增|NA|模块名: nav_router<br>类名: NavRouteMode<br>方法 or 属性：REPLACE|nav_router.d.ts|
-|新增|NA|类名：NavRouteMode<br>方法or属性：REPLACE|nav_router.d.ts|
 |新增|NA|类名：NavRouterAttribute<br>方法or属性：mode(mode: NavRouteMode): NavRouterAttribute;|nav_router.d.ts|
 |新增|NA|模块名: radio<br>类名: RadioStyle|radio.d.ts|
 |新增|NA|模块名: radio<br>类名: RadioStyle<br>方法 or 属性: checkedBackgroundColor?: ResourceColor;|radio.d.ts|
@@ -522,43 +354,24 @@
 |新增|NA|模块名: radio<br>类名: RadioStyle<br>方法 or 属性: indicatorColor?: ResourceColor;|radio.d.ts|
 |新增|NA|模块名: radio<br>类名: RadioAttribute<br>方法 or 属性: radioStyle(value?: RadioStyle): RadioAttribute;|radio.d.ts|
 |新增|NA|模块名: refresh<br>类名: RefreshOptions|refresh.d.ts|
-|新增|NA|类名：RefreshOptions<br>方法or属性：|refresh.d.ts|
 |新增|NA|模块名: refresh<br>类名: RefreshOptions<br>方法 or 属性：refreshing: boolean;|refresh.d.ts|
-|新增|NA|类名：RefreshOptions<br>方法or属性：refreshing: boolean;|refresh.d.ts|
 |新增|NA|模块名: refresh<br>类名: RefreshOptions<br>方法 or 属性：offset?: number \| string;|refresh.d.ts|
-|新增|NA|类名：RefreshOptions<br>方法or属性：offset?: number \| string;|refresh.d.ts|
 |新增|NA|模块名: refresh<br>类名: RefreshOptions<br>方法 or 属性：friction?: number \| string;|refresh.d.ts|
-|新增|NA|类名：RefreshOptions<br>方法or属性：friction?: number \| string;|refresh.d.ts|
 |新增|NA|模块名: refresh<br>类名: RefreshOptions<br>方法 or 属性：builder?: CustomBuilder;|refresh.d.ts|
-|新增|NA|类名：RefreshOptions<br>方法or属性：builder?: CustomBuilder;|refresh.d.ts|
 |新增|NA|模块名: search<br>类名: CancelButtonStyle|search.d.ts|
-|新增|NA|类名：CancelButtonStyle<br>方法or属性：|search.d.ts|
 |新增|NA|模块名: search<br>类名: CancelButtonStyle<br>方法 or 属性：CONSTANT|search.d.ts|
-|新增|NA|类名：CancelButtonStyle<br>方法or属性：CONSTANT|search.d.ts|
 |新增|NA|模块名: search<br>类名: CancelButtonStyle<br>方法 or 属性：INVISIBLE|search.d.ts|
-|新增|NA|类名：CancelButtonStyle<br>方法or属性：INVISIBLE|search.d.ts|
 |新增|NA|模块名: search<br>类名: CancelButtonStyle<br>方法 or 属性：INPUT|search.d.ts|
-|新增|NA|类名：CancelButtonStyle<br>方法or属性：INPUT|search.d.ts|
 |新增|NA|模块名: search<br>类名: IconOptions|search.d.ts|
-|新增|NA|类名：IconOptions<br>方法or属性：|search.d.ts|
 |新增|NA|模块名: search<br>类名: IconOptions<br>方法 or 属性：size?: Length;|search.d.ts|
-|新增|NA|类名：IconOptions<br>方法or属性：size?: Length;|search.d.ts|
 |新增|NA|模块名: search<br>类名: IconOptions<br>方法 or 属性：color?: ResourceColor;|search.d.ts|
-|新增|NA|类名：IconOptions<br>方法or属性：color?: ResourceColor;|search.d.ts|
 |新增|NA|模块名: search<br>类名: IconOptions<br>方法 or 属性：src?: ResourceStr;|search.d.ts|
-|新增|NA|类名：IconOptions<br>方法or属性：src?: ResourceStr;|search.d.ts|
 |新增|NA|模块名: search<br>类名: CaretStyle|search.d.ts|
-|新增|NA|类名：CaretStyle<br>方法or属性：|search.d.ts|
 |新增|NA|模块名: search<br>类名: CaretStyle<br>方法 or 属性：width?: Length,|search.d.ts|
-|新增|NA|类名：CaretStyle<br>方法or属性：width?: Length,|search.d.ts|
 |新增|NA|模块名: search<br>类名: CaretStyle<br>方法 or 属性：color?: ResourceColor,|search.d.ts|
-|新增|NA|类名：CaretStyle<br>方法or属性：color?: ResourceColor,|search.d.ts|
 |新增|NA|模块名: search<br>类名: SearchButtonOption|search.d.ts|
-|新增|NA|类名：SearchButtonOption<br>方法or属性：|search.d.ts|
 |新增|NA|模块名: search<br>类名: SearchButtonOption<br>方法 or 属性：fontSize?: Length;|search.d.ts|
-|新增|NA|类名：SearchButtonOption<br>方法or属性：fontSize?: Length;|search.d.ts|
 |新增|NA|模块名: search<br>类名: SearchButtonOption<br>方法 or 属性：fontColor?: ResourceColor;|search.d.ts|
-|新增|NA|类名：SearchButtonOption<br>方法or属性：fontColor?: ResourceColor;|search.d.ts|
 |新增|NA|类名：SearchAttribute<br>方法or属性：fontColor(value: ResourceColor): SearchAttribute;|search.d.ts|
 |新增|NA|类名：SearchAttribute<br>方法or属性：searchIcon(value: IconOptions): SearchAttribute;|search.d.ts|
 |新增|NA|类名：SearchAttribute<br>方法or属性：cancelButton(value: { style?: CancelButtonStyle, icon?: IconOptions }): SearchAttribute;|search.d.ts|
@@ -623,23 +436,15 @@
 |新增|NA|模块名: sec_location_button<br>类名: global<br>方法 or 属性: declare const SecLocationButton: SecLocationButtonInterface;|sec_location_button.d.ts|
 |新增|NA|模块名: sec_location_button<br>类名: global<br>方法 or 属性: declare const SecLocationButtonInstance: SecLocationButtonAttribute;|sec_location_button.d.ts|
 |新增|NA|模块名: select<br>类名: ArrowPosition|select.d.ts|
-|新增|NA|类名：ArrowPosition<br>方法or属性：|select.d.ts|
 |新增|NA|模块名: select<br>类名: ArrowPosition<br>方法 or 属性：END = 0|select.d.ts|
-|新增|NA|类名：ArrowPosition<br>方法or属性：END = 0|select.d.ts|
 |新增|NA|模块名: select<br>类名: ArrowPosition<br>方法 or 属性：START = 1|select.d.ts|
-|新增|NA|类名：ArrowPosition<br>方法or属性：START = 1|select.d.ts|
 |新增|NA|类名：SelectAttribute<br>方法or属性：space(value: Length): SelectAttribute;|select.d.ts|
 |新增|NA|类名：SelectAttribute<br>方法or属性：arrowPosition(value: ArrowPosition): SelectAttribute;|select.d.ts|
 |新增|NA|模块名: sidebar<br>类名: DividerStyle|sidebar.d.ts|
-|新增|NA|类名：DividerStyle<br>方法or属性：|sidebar.d.ts|
 |新增|NA|模块名: sidebar<br>类名: DividerStyle<br>方法 or 属性：strokeWidth: Length;|sidebar.d.ts|
-|新增|NA|类名：DividerStyle<br>方法or属性：strokeWidth: Length;|sidebar.d.ts|
 |新增|NA|模块名: sidebar<br>类名: DividerStyle<br>方法 or 属性：color?: ResourceColor;|sidebar.d.ts|
-|新增|NA|类名：DividerStyle<br>方法or属性：color?: ResourceColor;|sidebar.d.ts|
 |新增|NA|模块名: sidebar<br>类名: DividerStyle<br>方法 or 属性：startMargin?: Length;|sidebar.d.ts|
-|新增|NA|类名：DividerStyle<br>方法or属性：startMargin?: Length;|sidebar.d.ts|
 |新增|NA|模块名: sidebar<br>类名: DividerStyle<br>方法 or 属性：endMargin?: Length;|sidebar.d.ts|
-|新增|NA|类名：DividerStyle<br>方法or属性：endMargin?: Length;|sidebar.d.ts|
 |新增|NA|类名：SideBarContainerAttribute<br>方法or属性：divider(value: DividerStyle \| null): SideBarContainerAttribute;|sidebar.d.ts|
 |新增|NA|模块名: slider<br>类名: SliderBlockType|slider.d.ts|
 |新增|NA|模块名: slider<br>类名: SliderBlockType<br>方法 or 属性: DEFAULT|slider.d.ts|
@@ -657,101 +462,57 @@
 |新增|NA|模块名: slider<br>类名: SliderAttribute<br>方法 or 属性: blockStyle(value: SliderBlockStyle): SliderAttribute;|slider.d.ts|
 |新增|NA|模块名: slider<br>类名: SliderAttribute<br>方法 or 属性: stepSize(value: Length): SliderAttribute;|slider.d.ts|
 |新增|NA|模块名: swiper<br>类名: Indicator|swiper.d.ts|
-|新增|NA|类名：Indicator<br>方法or属性：|swiper.d.ts|
 |新增|NA|模块名: swiper<br>类名: Indicator<br>方法 or 属性：left(value: Length): T;|swiper.d.ts|
-|新增|NA|类名：Indicator<br>方法or属性：left(value: Length): T;|swiper.d.ts|
 |新增|NA|模块名: swiper<br>类名: Indicator<br>方法 or 属性：top(value: Length): T;|swiper.d.ts|
-|新增|NA|类名：Indicator<br>方法or属性：top(value: Length): T;|swiper.d.ts|
 |新增|NA|模块名: swiper<br>类名: Indicator<br>方法 or 属性：right(value: Length): T;|swiper.d.ts|
-|新增|NA|类名：Indicator<br>方法or属性：right(value: Length): T;|swiper.d.ts|
 |新增|NA|模块名: swiper<br>类名: Indicator<br>方法 or 属性：bottom(value: Length): T;|swiper.d.ts|
-|新增|NA|类名：Indicator<br>方法or属性：bottom(value: Length): T;|swiper.d.ts|
 |新增|NA|模块名: swiper<br>类名: Indicator<br>方法 or 属性：static dot(): DotIndicator;|swiper.d.ts|
-|新增|NA|类名：Indicator<br>方法or属性：static dot(): DotIndicator;|swiper.d.ts|
 |新增|NA|模块名: swiper<br>类名: Indicator<br>方法 or 属性：static digit(): DigitIndicator;|swiper.d.ts|
-|新增|NA|类名：Indicator<br>方法or属性：static digit(): DigitIndicator;|swiper.d.ts|
 |新增|NA|模块名: swiper<br>类名: DotIndicator|swiper.d.ts|
-|新增|NA|类名：DotIndicator<br>方法or属性：|swiper.d.ts|
 |新增|NA|模块名: swiper<br>类名: DotIndicator<br>方法 or 属性：constructor();|swiper.d.ts|
 |新增|NA|模块名: swiper<br>类名: DotIndicator<br>方法 or 属性：itemWidth(value: Length): DotIndicator;|swiper.d.ts|
-|新增|NA|类名：DotIndicator<br>方法or属性：itemWidth(value: Length): DotIndicator;|swiper.d.ts|
 |新增|NA|模块名: swiper<br>类名: DotIndicator<br>方法 or 属性：itemHeight(value: Length): DotIndicator;|swiper.d.ts|
-|新增|NA|类名：DotIndicator<br>方法or属性：itemHeight(value: Length): DotIndicator;|swiper.d.ts|
 |新增|NA|模块名: swiper<br>类名: DotIndicator<br>方法 or 属性：selectedItemWidth(value: Length): DotIndicator;|swiper.d.ts|
-|新增|NA|类名：DotIndicator<br>方法or属性：selectedItemWidth(value: Length): DotIndicator;|swiper.d.ts|
 |新增|NA|模块名: swiper<br>类名: DotIndicator<br>方法 or 属性：selectedItemHeight(value: Length): DotIndicator;|swiper.d.ts|
-|新增|NA|类名：DotIndicator<br>方法or属性：selectedItemHeight(value: Length): DotIndicator;|swiper.d.ts|
 |新增|NA|模块名: swiper<br>类名: DotIndicator<br>方法 or 属性：mask(value: boolean): DotIndicator;|swiper.d.ts|
-|新增|NA|类名：DotIndicator<br>方法or属性：mask(value: boolean): DotIndicator;|swiper.d.ts|
 |新增|NA|模块名: swiper<br>类名: DotIndicator<br>方法 or 属性：color(value: ResourceColor): DotIndicator;|swiper.d.ts|
-|新增|NA|类名：DotIndicator<br>方法or属性：color(value: ResourceColor): DotIndicator;|swiper.d.ts|
 |新增|NA|模块名: swiper<br>类名: DotIndicator<br>方法 or 属性：selectedColor(value: ResourceColor): DotIndicator;|swiper.d.ts|
-|新增|NA|类名：DotIndicator<br>方法or属性：selectedColor(value: ResourceColor): DotIndicator;|swiper.d.ts|
 |新增|NA|模块名: swiper<br>类名: DigitIndicator|swiper.d.ts|
-|新增|NA|类名：DigitIndicator<br>方法or属性：|swiper.d.ts|
 |新增|NA|模块名: swiper<br>类名: DigitIndicator<br>方法 or 属性：constructor();|swiper.d.ts|
 |新增|NA|模块名: swiper<br>类名: DigitIndicator<br>方法 or 属性：fontColor(value: ResourceColor): DigitIndicator;|swiper.d.ts|
-|新增|NA|类名：DigitIndicator<br>方法or属性：fontColor(value: ResourceColor): DigitIndicator;|swiper.d.ts|
 |新增|NA|模块名: swiper<br>类名: DigitIndicator<br>方法 or 属性：selectedFontColor(value: ResourceColor): DigitIndicator;|swiper.d.ts|
-|新增|NA|类名：DigitIndicator<br>方法or属性：selectedFontColor(value: ResourceColor): DigitIndicator;|swiper.d.ts|
 |新增|NA|模块名: swiper<br>类名: DigitIndicator<br>方法 or 属性：digitFont(value: Font): DigitIndicator;|swiper.d.ts|
-|新增|NA|类名：DigitIndicator<br>方法or属性：digitFont(value: Font): DigitIndicator;|swiper.d.ts|
 |新增|NA|模块名: swiper<br>类名: DigitIndicator<br>方法 or 属性：selectedDigitFont(value: Font): DigitIndicator;|swiper.d.ts|
-|新增|NA|类名：DigitIndicator<br>方法or属性：selectedDigitFont(value: Font): DigitIndicator;|swiper.d.ts|
 |新增|NA|类名：SwiperDisplayMode<br>方法or属性：STRETCH|swiper.d.ts|
 |新增|NA|类名：SwiperDisplayMode<br>方法or属性：AUTO_LINEAR|swiper.d.ts|
 |新增|NA|类名：SwiperAttribute<br>方法or属性：prevMargin(value: Length): SwiperAttribute;|swiper.d.ts|
 |新增|NA|类名：SwiperAttribute<br>方法or属性：nextMargin(value: Length): SwiperAttribute;|swiper.d.ts|
 |新增|NA|模块名: tabs<br>类名: DividerStyle|tabs.d.ts|
-|新增|NA|类名：DividerStyle<br>方法or属性：|tabs.d.ts|
 |新增|NA|模块名: tabs<br>类名: DividerStyle<br>方法 or 属性：strokeWidth: Length;|tabs.d.ts|
-|新增|NA|类名：DividerStyle<br>方法or属性：strokeWidth: Length;|tabs.d.ts|
 |新增|NA|模块名: tabs<br>类名: DividerStyle<br>方法 or 属性：color?: ResourceColor;|tabs.d.ts|
-|新增|NA|类名：DividerStyle<br>方法or属性：color?: ResourceColor;|tabs.d.ts|
 |新增|NA|模块名: tabs<br>类名: DividerStyle<br>方法 or 属性：startMargin?: Length;|tabs.d.ts|
-|新增|NA|类名：DividerStyle<br>方法or属性：startMargin?: Length;|tabs.d.ts|
 |新增|NA|模块名: tabs<br>类名: DividerStyle<br>方法 or 属性：endMargin?: Length;|tabs.d.ts|
-|新增|NA|类名：DividerStyle<br>方法or属性：endMargin?: Length;|tabs.d.ts|
 |新增|NA|类名：TabsAttribute<br>方法or属性：fadingEdge(value: boolean): TabsAttribute;|tabs.d.ts|
 |新增|NA|类名：TabsAttribute<br>方法or属性：divider(value: DividerStyle \| null): TabsAttribute;|tabs.d.ts|
 |新增|NA|模块名: tab_content<br>类名: SelectedMode|tab_content.d.ts|
-|新增|NA|类名：SelectedMode<br>方法or属性：|tab_content.d.ts|
 |新增|NA|模块名: tab_content<br>类名: SelectedMode<br>方法 or 属性：INDICATOR|tab_content.d.ts|
-|新增|NA|类名：SelectedMode<br>方法or属性：INDICATOR|tab_content.d.ts|
 |新增|NA|模块名: tab_content<br>类名: SelectedMode<br>方法 or 属性：BOARD|tab_content.d.ts|
-|新增|NA|类名：SelectedMode<br>方法or属性：BOARD|tab_content.d.ts|
 |新增|NA|模块名: tab_content<br>类名: IndicatorStyle|tab_content.d.ts|
-|新增|NA|类名：IndicatorStyle<br>方法or属性：|tab_content.d.ts|
 |新增|NA|模块名: tab_content<br>类名: IndicatorStyle<br>方法 or 属性：color?: ResourceColor;|tab_content.d.ts|
-|新增|NA|类名：IndicatorStyle<br>方法or属性：color?: ResourceColor;|tab_content.d.ts|
 |新增|NA|模块名: tab_content<br>类名: IndicatorStyle<br>方法 or 属性：height?: Length;|tab_content.d.ts|
-|新增|NA|类名：IndicatorStyle<br>方法or属性：height?: Length;|tab_content.d.ts|
 |新增|NA|模块名: tab_content<br>类名: IndicatorStyle<br>方法 or 属性：width?: Length;|tab_content.d.ts|
-|新增|NA|类名：IndicatorStyle<br>方法or属性：width?: Length;|tab_content.d.ts|
 |新增|NA|模块名: tab_content<br>类名: IndicatorStyle<br>方法 or 属性：borderRadius?: Length;|tab_content.d.ts|
-|新增|NA|类名：IndicatorStyle<br>方法or属性：borderRadius?: Length;|tab_content.d.ts|
 |新增|NA|模块名: tab_content<br>类名: IndicatorStyle<br>方法 or 属性：marginTop?: Length;|tab_content.d.ts|
-|新增|NA|类名：IndicatorStyle<br>方法or属性：marginTop?: Length;|tab_content.d.ts|
 |新增|NA|模块名: tab_content<br>类名: BoardStyle|tab_content.d.ts|
-|新增|NA|类名：BoardStyle<br>方法or属性：|tab_content.d.ts|
 |新增|NA|模块名: tab_content<br>类名: BoardStyle<br>方法 or 属性：borderRadius?: Length;|tab_content.d.ts|
-|新增|NA|类名：BoardStyle<br>方法or属性：borderRadius?: Length;|tab_content.d.ts|
 |新增|NA|模块名: tab_content<br>类名: LabelStyle|tab_content.d.ts|
-|新增|NA|类名：LabelStyle<br>方法or属性：|tab_content.d.ts|
 |新增|NA|模块名: tab_content<br>类名: LabelStyle<br>方法 or 属性：overflow?: TextOverflow;|tab_content.d.ts|
-|新增|NA|类名：LabelStyle<br>方法or属性：overflow?: TextOverflow;|tab_content.d.ts|
 |新增|NA|模块名: tab_content<br>类名: LabelStyle<br>方法 or 属性：maxLines?: number;|tab_content.d.ts|
-|新增|NA|类名：LabelStyle<br>方法or属性：maxLines?: number;|tab_content.d.ts|
 |新增|NA|模块名: tab_content<br>类名: LabelStyle<br>方法 or 属性：minFontSize?: number \| ResourceStr;|tab_content.d.ts|
-|新增|NA|类名：LabelStyle<br>方法or属性：minFontSize?: number \| ResourceStr;|tab_content.d.ts|
 |新增|NA|模块名: tab_content<br>类名: LabelStyle<br>方法 or 属性：maxFontSize?: number \| ResourceStr;|tab_content.d.ts|
-|新增|NA|类名：LabelStyle<br>方法or属性：maxFontSize?: number \| ResourceStr;|tab_content.d.ts|
 |新增|NA|模块名: tab_content<br>类名: LabelStyle<br>方法 or 属性：heightAdaptivePolicy?: TextHeightAdaptivePolicy;|tab_content.d.ts|
-|新增|NA|类名：LabelStyle<br>方法or属性：heightAdaptivePolicy?: TextHeightAdaptivePolicy;|tab_content.d.ts|
 |新增|NA|模块名: tab_content<br>类名: LabelStyle<br>方法 or 属性：font?: Font;|tab_content.d.ts|
-|新增|NA|类名：LabelStyle<br>方法or属性：font?: Font;|tab_content.d.ts|
 |新增|NA|类名：SubTabBarStyle<br>方法or属性：static of(content: ResourceStr): SubTabBarStyle;|tab_content.d.ts|
-|新增|NA|类名：SubTabBarStyle<br>方法or属性：indicator(value: IndicatorStyle): SubTabBarStyle;|tab_content.d.ts|
 |新增|NA|类名：SubTabBarStyle<br>方法or属性：selectedMode(value: SelectedMode): SubTabBarStyle;|tab_content.d.ts|
 |新增|NA|类名：SubTabBarStyle<br>方法or属性：board(value: BoardStyle): SubTabBarStyle;|tab_content.d.ts|
 |新增|NA|类名：SubTabBarStyle<br>方法or属性：labelStyle(value: LabelStyle): SubTabBarStyle;|tab_content.d.ts|
@@ -765,19 +526,14 @@
 |新增|NA|类名：TextAreaAttribute<br>方法or属性：enableKeyboardOnFocus(value: boolean): TextAreaInterface;|text_area.d.ts|
 |新增|NA|类名：TextInputController<br>方法or属性：setTextSelection(selectionStart: number, selectionEnd: number): void;|text_input.d.ts|
 |新增|NA|模块名: text_input<br>类名: CaretStyle|text_input.d.ts|
-|新增|NA|类名：CaretStyle<br>方法or属性：|text_input.d.ts|
 |新增|NA|模块名: text_input<br>类名: CaretStyle<br>方法 or 属性：width?: Length;|text_input.d.ts|
-|新增|NA|类名：CaretStyle<br>方法or属性：width?: Length;|text_input.d.ts|
 |新增|NA|类名：TextInputAttribute<br>方法or属性：caretStyle(value: CaretStyle): TextInputAttribute;|text_input.d.ts|
 |新增|NA|类名：TextInputAttribute<br>方法or属性：selectedBackgroundColor(value: ResourceColor): TextInputAttribute;|text_input.d.ts|
 |新增|NA|类名：TextInputAttribute<br>方法or属性：caretPosition(value: number): TextInputAttribute;|text_input.d.ts|
 |新增|NA|类名：TextInputAttribute<br>方法or属性：enableKeyboardOnFocus(value: boolean): TextInputAttribute;|text_input.d.ts|
 |新增|NA|模块名: text_picker<br>类名: TextPickerRangeContent|text_picker.d.ts|
-|新增|NA|类名：TextPickerRangeContent<br>方法or属性：|text_picker.d.ts|
 |新增|NA|模块名: text_picker<br>类名: TextPickerRangeContent<br>方法 or 属性：icon: string \| Resource;|text_picker.d.ts|
-|新增|NA|类名：TextPickerRangeContent<br>方法or属性：icon: string \| Resource;|text_picker.d.ts|
 |新增|NA|模块名: text_picker<br>类名: TextPickerRangeContent<br>方法 or 属性：text?: string \| Resource;|text_picker.d.ts|
-|新增|NA|类名：TextPickerRangeContent<br>方法or属性：text?: string \| Resource;|text_picker.d.ts|
 |新增|NA|类名：TextPickerOptions<br>方法or属性：range: string[] \| Resource \| TextPickerRangeContent[];|text_picker.d.ts|
 |新增|NA|类名：TextPickerAttribute<br>方法or属性：disappearTextStyle(value: PickerTextStyle): TextPickerAttribute;|text_picker.d.ts|
 |新增|NA|类名：TextPickerAttribute<br>方法or属性：textStyle(value: PickerTextStyle): TextPickerAttribute;|text_picker.d.ts|
@@ -792,19 +548,12 @@
 |新增|NA|类名：TimePickerDialogOptions<br>方法or属性：textStyle?: PickerTextStyle;|time_picker.d.ts|
 |新增|NA|类名：TimePickerDialogOptions<br>方法or属性：selectedTextStyle?: PickerTextStyle;|time_picker.d.ts|
 |新增|NA|模块名: units<br>类名: MarkStyle|units.d.ts|
-|新增|NA|类名：MarkStyle<br>方法or属性：|units.d.ts|
 |新增|NA|模块名: units<br>类名: MarkStyle<br>方法 or 属性：strokeColor?: ResourceColor;|units.d.ts|
-|新增|NA|类名：MarkStyle<br>方法or属性：strokeColor?: ResourceColor;|units.d.ts|
 |新增|NA|模块名: units<br>类名: MarkStyle<br>方法 or 属性：size?: Length;|units.d.ts|
-|新增|NA|类名：MarkStyle<br>方法or属性：size?: Length;|units.d.ts|
 |新增|NA|模块名: units<br>类名: MarkStyle<br>方法 or 属性：strokeWidth?: Length;|units.d.ts|
-|新增|NA|类名：MarkStyle<br>方法or属性：strokeWidth?: Length;|units.d.ts|
 |新增|NA|模块名: web<br>类名: WebMediaOptions|web.d.ts|
-|新增|NA|类名：WebMediaOptions<br>方法or属性：|web.d.ts|
 |新增|NA|模块名: web<br>类名: WebMediaOptions<br>方法 or 属性：resumeInterval?: number;|web.d.ts|
-|新增|NA|类名：WebMediaOptions<br>方法or属性：resumeInterval?: number;|web.d.ts|
 |新增|NA|模块名: web<br>类名: WebMediaOptions<br>方法 or 属性：audioExclusive?: boolean;|web.d.ts|
-|新增|NA|类名：WebMediaOptions<br>方法or属性：audioExclusive?: boolean;|web.d.ts|
 |新增|NA|类名：ClientAuthenticationHandler<br>方法or属性：confirm(authUri: string): void;|web.d.ts|
 |新增|NA|类名：WebAttribute<br>方法or属性：mediaOptions(options: WebMediaOptions): WebAttribute;|web.d.ts|
 |新增|NA|类名：WebAttribute<br>方法or属性：allowWindowOpenMethod(flag: boolean): WebAttribute;|web.d.ts|

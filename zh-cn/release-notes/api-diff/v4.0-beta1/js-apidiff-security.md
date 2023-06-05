@@ -4,7 +4,6 @@
 |新增|NA|类名：HuksKeyStorageType<br>方法or属性：HUKS_STORAGE_ONLY_USED_IN_HUKS = 2|@ohos.security.huks.d.ts|
 |新增|NA|类名：HuksKeyStorageType<br>方法or属性：HUKS_STORAGE_KEY_EXPORT_ALLOWED = 3|@ohos.security.huks.d.ts|
 |新增|NA|模块名: ohos.security.huks<br>类名: HuksRsaPssSaltLenType|@ohos.security.huks.d.ts|
-|新增|NA|类名：HuksRsaPssSaltLenType<br>方法or属性：|@ohos.security.huks.d.ts|
 |新增|NA|模块名: ohos.security.huks<br>类名: HuksRsaPssSaltLenType<br>方法 or 属性：HUKS_RSA_PSS_SALT_LEN_DIGEST = 0|@ohos.security.huks.d.ts|
 |新增|NA|模块名: ohos.security.huks<br>类名: HuksRsaPssSaltLenType<br>方法 or 属性：HUKS_RSA_PSS_SALT_LEN_MAX = 1|@ohos.security.huks.d.ts|
 |新增|NA|模块名: ohos.security.huks<br>类名: HuksTag<br>方法 or 属性：HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG = HuksTagType.HUKS_TAG_TYPE_UINT \| 29|@ohos.security.huks.d.ts|

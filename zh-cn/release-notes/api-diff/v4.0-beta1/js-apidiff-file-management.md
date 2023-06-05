@@ -35,33 +35,19 @@
 |新增|NA|类名：FileInfo<br>方法or属性：relativePath: string;|@ohos.file.fileAccess.d.ts|
 |新增|NA|类名：RootInfo<br>方法or属性：relativePath: string;|@ohos.file.fileAccess.d.ts|
 |新增|NA|模块名: ohos.file.fileAccess<br>类名: CopyResult|@ohos.file.fileAccess.d.ts|
-|新增|NA|类名：CopyResult<br>方法or属性：|@ohos.file.fileAccess.d.ts|
 |新增|NA|模块名: ohos.file.fileAccess<br>类名: CopyResult<br>方法 or 属性：sourceUri: string;|@ohos.file.fileAccess.d.ts|
-|新增|NA|类名：CopyResult<br>方法or属性：sourceUri: string;|@ohos.file.fileAccess.d.ts|
 |新增|NA|模块名: ohos.file.fileAccess<br>类名: CopyResult<br>方法 or 属性：destUri: string;|@ohos.file.fileAccess.d.ts|
-|新增|NA|类名：CopyResult<br>方法or属性：destUri: string;|@ohos.file.fileAccess.d.ts|
 |新增|NA|模块名: ohos.file.fileAccess<br>类名: CopyResult<br>方法 or 属性：errCode: number;|@ohos.file.fileAccess.d.ts|
-|新增|NA|类名：CopyResult<br>方法or属性：errCode: number;|@ohos.file.fileAccess.d.ts|
 |新增|NA|模块名: ohos.file.fileAccess<br>类名: CopyResult<br>方法 or 属性：errMsg: string;|@ohos.file.fileAccess.d.ts|
-|新增|NA|类名：CopyResult<br>方法or属性：errMsg: string;|@ohos.file.fileAccess.d.ts|
 |新增|NA|模块名: ohos.file.fileAccess<br>类名: FileKey|@ohos.file.fileAccess.d.ts|
-|新增|NA|类名：FileKey<br>方法or属性：|@ohos.file.fileAccess.d.ts|
 |新增|NA|模块名: ohos.file.fileAccess<br>类名: FileKey<br>方法 or 属性：DISPLAY_NAME = 'display_name'|@ohos.file.fileAccess.d.ts|
-|新增|NA|类名：FileKey<br>方法or属性：DISPLAY_NAME = 'display_name'|@ohos.file.fileAccess.d.ts|
 |新增|NA|模块名: ohos.file.fileAccess<br>类名: FileKey<br>方法 or 属性：DATE_ADDED = 'date_added'|@ohos.file.fileAccess.d.ts|
-|新增|NA|类名：FileKey<br>方法or属性：DATE_ADDED = 'date_added'|@ohos.file.fileAccess.d.ts|
 |新增|NA|模块名: ohos.file.fileAccess<br>类名: FileKey<br>方法 or 属性：DATE_MODIFIED = 'date_modified'|@ohos.file.fileAccess.d.ts|
-|新增|NA|类名：FileKey<br>方法or属性：DATE_MODIFIED = 'date_modified'|@ohos.file.fileAccess.d.ts|
 |新增|NA|模块名: ohos.file.fileAccess<br>类名: FileKey<br>方法 or 属性：RELATIVE_PATH = 'relative_path'|@ohos.file.fileAccess.d.ts|
-|新增|NA|类名：FileKey<br>方法or属性：RELATIVE_PATH = 'relative_path'|@ohos.file.fileAccess.d.ts|
 |新增|NA|模块名: ohos.file.fileAccess<br>类名: FileKey<br>方法 or 属性：FILE_SIZE = 'size'|@ohos.file.fileAccess.d.ts|
-|新增|NA|类名：FileKey<br>方法or属性：FILE_SIZE = 'size'|@ohos.file.fileAccess.d.ts|
 |新增|NA|模块名: ohos.file.fileAccess<br>类名: FileKey<br>方法 or 属性：WIDTH = 'width'|@ohos.file.fileAccess.d.ts|
-|新增|NA|类名：FileKey<br>方法or属性：WIDTH = 'width'|@ohos.file.fileAccess.d.ts|
 |新增|NA|模块名: ohos.file.fileAccess<br>类名: FileKey<br>方法 or 属性：HEIGHT = 'height'|@ohos.file.fileAccess.d.ts|
-|新增|NA|类名：FileKey<br>方法or属性：HEIGHT = 'height'|@ohos.file.fileAccess.d.ts|
 |新增|NA|模块名: ohos.file.fileAccess<br>类名: FileKey<br>方法 or 属性：DURATION = 'duration'|@ohos.file.fileAccess.d.ts|
-|新增|NA|类名：FileKey<br>方法or属性：DURATION = 'duration'|@ohos.file.fileAccess.d.ts|
 |新增|NA|类名：FileAccessHelper<br>方法or属性：copy(sourceUri: string, destUri: string, force?: boolean): Promise\<Array\<CopyResult>>;|@ohos.file.fileAccess.d.ts|
 |新增|NA|类名：FileAccessHelper<br>方法or属性：copy(sourceUri: string, destUri: string, callback: AsyncCallback\<Array\<CopyResult>>): void;|@ohos.file.fileAccess.d.ts|
 |新增|NA|类名：FileAccessHelper<br>方法or属性：copy(sourceUri: string, destUri: string, force: boolean, callback: AsyncCallback\<Array\<CopyResult>>): void;|@ohos.file.fileAccess.d.ts|
@@ -85,77 +71,41 @@
 |新增|NA|模块名: ohos.file.fs<br>类名: WatchEventListener<br>方法 or 属性：(event: WatchEvent): void;|@ohos.file.fs.d.ts|
 |新增|NA|类名：WatchEventListener<br>方法or属性：(event: WatchEvent): void;|@ohos.file.fs.d.ts|
 |新增|NA|模块名: ohos.file.fs<br>类名: WatchEvent|@ohos.file.fs.d.ts|
-|新增|NA|类名：WatchEvent<br>方法or属性：|@ohos.file.fs.d.ts|
 |新增|NA|模块名: ohos.file.fs<br>类名: WatchEvent<br>方法 or 属性：readonly fileName: string;|@ohos.file.fs.d.ts|
-|新增|NA|类名：WatchEvent<br>方法or属性：readonly fileName: string;|@ohos.file.fs.d.ts|
 |新增|NA|模块名: ohos.file.fs<br>类名: WatchEvent<br>方法 or 属性：readonly event: number;|@ohos.file.fs.d.ts|
-|新增|NA|类名：WatchEvent<br>方法or属性：readonly event: number;|@ohos.file.fs.d.ts|
 |新增|NA|模块名: ohos.file.fs<br>类名: WatchEvent<br>方法 or 属性：readonly cookie: number;|@ohos.file.fs.d.ts|
-|新增|NA|类名：WatchEvent<br>方法or属性：readonly cookie: number;|@ohos.file.fs.d.ts|
 |新增|NA|模块名: ohos.file.fs<br>类名: Watcher|@ohos.file.fs.d.ts|
-|新增|NA|类名：Watcher<br>方法or属性：|@ohos.file.fs.d.ts|
 |新增|NA|模块名: ohos.file.fs<br>类名: Watcher<br>方法 or 属性：start(): void;|@ohos.file.fs.d.ts|
-|新增|NA|类名：Watcher<br>方法or属性：start(): void;|@ohos.file.fs.d.ts|
 |新增|NA|模块名: ohos.file.fs<br>类名: Watcher<br>方法 or 属性：stop(): void;|@ohos.file.fs.d.ts|
-|新增|NA|类名：Watcher<br>方法or属性：stop(): void;|@ohos.file.fs.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: PhotoSubType|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：PhotoSubType<br>方法or属性：|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: PhotoSubType<br>方法 or 属性：DEFAULT|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：PhotoSubType<br>方法or属性：DEFAULT|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: PhotoSubType<br>方法 or 属性：SCREENSHOT|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：PhotoSubType<br>方法or属性：SCREENSHOT|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: PhotoSubType<br>方法 or 属性：CAMERA|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：PhotoSubType<br>方法or属性：CAMERA|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: PositionType|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：PositionType<br>方法or属性：|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: PositionType<br>方法 or 属性：LOCAL = 1|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：PositionType<br>方法or属性：LOCAL = 1|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: PositionType<br>方法 or 属性：CLOUD|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：PositionType<br>方法or属性：CLOUD|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: PositionType<br>方法 or 属性：BOTH|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：PositionType<br>方法or属性：BOTH|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: FileAsset<br>方法 or 属性：setHidden(hiddenState: boolean, callback: AsyncCallback\<void>): void;|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：FileAsset<br>方法or属性：setHidden(hiddenState: boolean, callback: AsyncCallback\<void>): void;|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: FileAsset<br>方法 or 属性：setHidden(hiddenState: boolean): Promise\<void>;|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：FileAsset<br>方法or属性：setHidden(hiddenState: boolean): Promise\<void>;|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: ImageVideoKey<br>方法 or 属性：POSITION|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：ImageVideoKey<br>方法or属性：POSITION|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: ImageVideoKey<br>方法 or 属性：DATE_TRASHED|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：ImageVideoKey<br>方法or属性：DATE_TRASHED|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: ImageVideoKey<br>方法 or 属性：HIDDEN|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：ImageVideoKey<br>方法or属性：HIDDEN|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: PhotoCreateOptions|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：PhotoCreateOptions<br>方法or属性：|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: PhotoCreateOptions<br>方法 or 属性：subType?: PhotoSubType;|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：PhotoCreateOptions<br>方法or属性：subType?: PhotoSubType;|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: FetchResult<br>方法 or 属性：getAllObject(callback: AsyncCallback\<Array\<T>>): void;|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：FetchResult<br>方法or属性：getAllObject(callback: AsyncCallback\<Array\<T>>): void;|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: FetchResult<br>方法 or 属性：getAllObject(): Promise\<Array\<T>>;|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：FetchResult<br>方法or属性：getAllObject(): Promise\<Array\<T>>;|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: AlbumType|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：AlbumType<br>方法or属性：|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: AlbumType<br>方法 or 属性：USER = 0|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：AlbumType<br>方法or属性：USER = 0|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: AlbumType<br>方法 or 属性：SYSTEM = 1024|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：AlbumType<br>方法or属性：SYSTEM = 1024|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: AlbumSubType|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：AlbumSubType<br>方法or属性：|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: AlbumSubType<br>方法 or 属性：USER_GENERIC = 1|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：AlbumSubType<br>方法or属性：USER_GENERIC = 1|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: AlbumSubType<br>方法 or 属性：FAVORITE = 1025|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：AlbumSubType<br>方法or属性：FAVORITE = 1025|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: AlbumSubType<br>方法 or 属性：VIDEO|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：AlbumSubType<br>方法or属性：VIDEO|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: AlbumSubType<br>方法 or 属性：HIDDEN|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：AlbumSubType<br>方法or属性：HIDDEN|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: AlbumSubType<br>方法 or 属性：TRASH|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：AlbumSubType<br>方法or属性：TRASH|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: AlbumSubType<br>方法 or 属性：SCREENSHOT|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：AlbumSubType<br>方法or属性：SCREENSHOT|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: AlbumSubType<br>方法 or 属性：CAMERA|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：AlbumSubType<br>方法or属性：CAMERA|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: AlbumSubType<br>方法 or 属性：ANY = 2147483647|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：AlbumSubType<br>方法or属性：ANY = 2147483647|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|类名：AbsAlbum<br>方法or属性：readonly albumType: AlbumType;|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|类名：AbsAlbum<br>方法or属性：readonly albumSubType: AlbumSubType;|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|类名：AbsAlbum<br>方法or属性：coverUri: string;|@ohos.filemanagement.userFileManager.d.ts|
@@ -202,33 +152,19 @@
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: UserFileManager<br>方法 or 属性：off(uri: string, callback?: Callback\<ChangeData>): void;|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|类名：UserFileManager<br>方法or属性：off(uri: string, callback?: Callback\<ChangeData>): void;|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: NotifyType|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：NotifyType<br>方法or属性：|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: NotifyType<br>方法 or 属性：NOTIFY_ADD|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：NotifyType<br>方法or属性：NOTIFY_ADD|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: NotifyType<br>方法 or 属性：NOTIFY_UPDATE|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：NotifyType<br>方法or属性：NOTIFY_UPDATE|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: NotifyType<br>方法 or 属性：NOTIFY_REMOVE|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：NotifyType<br>方法or属性：NOTIFY_REMOVE|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: NotifyType<br>方法 or 属性：NOTIFY_ALBUM_ADD_ASSET|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：NotifyType<br>方法or属性：NOTIFY_ALBUM_ADD_ASSET|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: NotifyType<br>方法 or 属性：NOTIFY_ALBUM_REMOVE_ASSET|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：NotifyType<br>方法or属性：NOTIFY_ALBUM_REMOVE_ASSET|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: DefaultChangeUri|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：DefaultChangeUri<br>方法or属性：|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: DefaultChangeUri<br>方法 or 属性：DEFAULT_PHOTO_URI|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：DefaultChangeUri<br>方法or属性：DEFAULT_PHOTO_URI|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: DefaultChangeUri<br>方法 or 属性：DEFAULT_ALBUM_URI|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：DefaultChangeUri<br>方法or属性：DEFAULT_ALBUM_URI|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: DefaultChangeUri<br>方法 or 属性：DEFAULT_AUDIO_URI|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：DefaultChangeUri<br>方法or属性：DEFAULT_AUDIO_URI|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: ChangeData|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：ChangeData<br>方法or属性：|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: ChangeData<br>方法 or 属性：type: NotifyType;|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：ChangeData<br>方法or属性：type: NotifyType;|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: ChangeData<br>方法 or 属性：uris: Array\<string>;|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：ChangeData<br>方法or属性：uris: Array\<string>;|@ohos.filemanagement.userFileManager.d.ts|
 |新增|NA|模块名: ohos.filemanagement.userFileManager<br>类名: ChangeData<br>方法 or 属性：subUris: Array\<string>;|@ohos.filemanagement.userFileManager.d.ts|
-|新增|NA|类名：ChangeData<br>方法or属性：subUris: Array\<string>;|@ohos.filemanagement.userFileManager.d.ts|
 |model有变化|类名：FileAccessHelper<br>model:@StageModelOnly|类名：FileAccessHelper<br>model:N/A|@ohos.file.fileAccess.d.ts|
 |model有变化|类名：FileAccessHelper<br>方法 or 属性：getRoots(): Promise\<RootIterator>;<br>model:@StageModelOnly|类名：FileAccessHelper<br>方法 or 属性：getRoots(): Promise\<RootIterator>;<br>model:N/A|@ohos.file.fileAccess.d.ts|
 |新增(权限)|类名：FileInfo<br>方法 or 属性：uri: string;<br>权限:N/A|类名：FileInfo<br>方法 or 属性：uri: string;<br>权限:ohos.permission.FILE_ACCESS_MANAGER|@ohos.file.fileAccess.d.ts|

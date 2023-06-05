@@ -36,12 +36,10 @@
 |新增|NA|类名：notificationManager<br>方法or属性：function on(type: 'checkNotification', callback: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void;|@ohos.notificationManager.d.ts|
 |新增|NA|类名：notificationManager<br>方法or属性：function off(type: 'checkNotification', callback?: (checkInfo: NotificationCheckInfo) => NotificationCheckResult): void;|@ohos.notificationManager.d.ts|
 |新增|NA|模块名: ohos.notificationManager<br>类名: NotificationCheckInfo|@ohos.notificationManager.d.ts|
-|新增|NA|类名：NotificationCheckInfo<br>方法or属性：|@ohos.notificationManager.d.ts|
 |新增|NA|模块名: ohos.notificationManager<br>类名: NotificationCheckInfo<br>方法 or 属性：bundleName: string;|@ohos.notificationManager.d.ts|
 |新增|NA|模块名: ohos.notificationManager<br>类名: NotificationCheckInfo<br>方法 or 属性：notificationId: number;|@ohos.notificationManager.d.ts|
 |新增|NA|模块名: ohos.notificationManager<br>类名: NotificationCheckInfo<br>方法 or 属性：contentType: ContentType;|@ohos.notificationManager.d.ts|
 |新增|NA|模块名: ohos.notificationManager<br>类名: NotificationCheckResult|@ohos.notificationManager.d.ts|
-|新增|NA|类名：NotificationCheckResult<br>方法or属性：|@ohos.notificationManager.d.ts|
 |新增|NA|模块名: ohos.notificationManager<br>类名: NotificationCheckResult<br>方法 or 属性：code: number;|@ohos.notificationManager.d.ts|
 |新增|NA|模块名: ohos.notificationManager<br>类名: NotificationCheckResult<br>方法 or 属性：message: string;|@ohos.notificationManager.d.ts|
 |新增|NA|模块名: ohos.reminderAgentManager<br>类名: ActionButtonType<br>方法 or 属性：ACTION_BUTTON_TYPE_CUSTOM = 2|@ohos.reminderAgentManager.d.ts|
@@ -52,7 +50,6 @@
 |新增|NA|类名：ReminderRequest<br>方法or属性：autoDeletedTime?: number;|@ohos.reminderAgentManager.d.ts|
 |新增|NA|类名：NotificationSubscriber<br>方法or属性：onBadgeChanged?: (data: BadgeNumberCallbackData) => void;|notificationSubscriber.d.ts|
 |新增|NA|模块名: notificationSubscriber<br>类名: BadgeNumberCallbackData|notificationSubscriber.d.ts|
-|新增|NA|类名：BadgeNumberCallbackData<br>方法or属性：|notificationSubscriber.d.ts|
 |新增|NA|模块名: notificationSubscriber<br>类名: BadgeNumberCallbackData<br>方法 or 属性：readonly bundle: string;|notificationSubscriber.d.ts|
 |新增|NA|模块名: notificationSubscriber<br>类名: BadgeNumberCallbackData<br>方法 or 属性：readonly uid: number;|notificationSubscriber.d.ts|
 |新增|NA|模块名: notificationSubscriber<br>类名: BadgeNumberCallbackData<br>方法 or 属性：readonly badgeNumber: number;|notificationSubscriber.d.ts|
