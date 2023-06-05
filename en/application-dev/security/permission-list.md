@@ -1917,13 +1917,3 @@ Allows an application to obtain the device-cloud information of the configuratio
 **Authorization mode**: system_grant
 
 **Enable via ACL**: TRUE
-
-## ohos.permission.UPLOAD_SESSION_MANAGER
-
-Allows an application to manage the upload sessions.
-
-**Permission level**: system_core
-
-**Authorization mode**: system_grant
-
-**Enable via ACL**: TRUE
