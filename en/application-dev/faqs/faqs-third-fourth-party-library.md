@@ -2,19 +2,19 @@
 
 ## How do I obtain available third-party libraries?
 
-Applicable to: OpenHarmony 3.1 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.1 Beta5 (API version 9)
 
 The three-party and four-party libraries that can be obtained through ohpm are summarized in the [OpenHarmony-TPC/tpc_resource repository](https://gitee.com/openharmony-tpc/tpc_resource). You can access this repository, and find the desired component based on the directory index.
 
 ## Which third-party libraries are related to network requests?
 
-Applicable to: OpenHarmony 3.1 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.1 Beta5 (API version 9)
 
 The following third-party libraries are related to network requests: [Axios](https://gitee.com/openharmony-sig/axios), httpclient, and okdownload. For details, see the [OpenHarmony-TPC/tpc_resource repository](https://gitee.com/openharmony-tpc/tpc_resource).
 
 ## How do I use ohpm to import third- and fourth-party libraries?
 
-Applicable to: OpenHarmony 3.1 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.1 Beta5 (API version 9)
 
 **Solution**
 

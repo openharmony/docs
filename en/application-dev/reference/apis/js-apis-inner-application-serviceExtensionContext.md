@@ -1559,3 +1559,84 @@ try {
   console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
 }
   ```
+
+## ServiceExtensionContext.startAbilityByCallWithAccount<sup>10+</sup>
+
+startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;;
+
+Starts an ability with the account ID specified and obtains the caller object for communicating with the ability.
+
+Observe the following when using this API:
+ - If an application needs to call this API to start an ability that belongs to another user, it must have the **ohos.permission.ABILITY_BACKGROUND_COMMUNICATION** and **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permissions.
+ - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - The rules for using this API in the same-device and cross-device scenarios are different. For details, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
+| accountId | number | Yes| ID of a system account. The value **-1** indicates the current user. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;Caller&gt; | Promise used to return the caller object to communicate with.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Visibility verification failed. |
+| 16000005 | Static permission denied. The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | Crowdtest App Expiration. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal Error. |
+| 16200001 | The caller has been released.        |
+
+**Example**
+
+  ```ts
+  let caller;
+
+  // ID of a system account. The value -1 indicates the current user.
+  let accountId = -1;
+
+  // Specify the ability to start.
+  let want = {
+      bundleName: 'com.acts.actscalleeabilityrely',
+      moduleName: 'entry',
+      abilityName: 'EntryAbility'
+      deviceId: ''
+      parameters: {
+        // If the value of 'ohos.aafwk.param.callAbilityToForeground' is true, the ability is started in the foreground. If the value is false or not set, the ability is started in the background.
+        'ohos.aafwk.param.callAbilityToForeground': true
+      }
+  };
+
+  try {
+    this.context.startAbilityByCallWithAccount(want, accountId)
+      .then((obj) => {
+        // Carry out normal service processing.
+        caller = obj;
+        console.log('startAbilityByCallWithAccount succeed');
+      }).catch((error) => {
+        // Process service logic errors.
+        console.error('startAbilityByCallWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+      });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+  }
+  ```
