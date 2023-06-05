@@ -6,7 +6,7 @@
 
 **变更影响**
 
-基于OpenHarmony4.0.8.1及之后的SDK版本开发的系统应用，冻结后RunningLock锁释放，提高进入休眠概率。
+基于OpenHarmony4.0.8.1及之后的SDK版本开发的系统应用，可设置冻结后RunningLock锁释放，提高进入休眠概率。
 
 **关键接口/组件变更**
 
@@ -55,7 +55,7 @@ runningLock.create('running_lock_test', runningLock.RunningLockType.BACKGROUND)
 
 **变更影响**
 
-基于OpenHarmony4.0.8.1及之后的SDK版本开发的系统应用，可设置提醒自动消失。
+基于OpenHarmony4.0.8.1及之后的SDK版本开发的系统应用，可设置冻结后Sensor冻结后适配处理，降低系统功耗。
 
 **关键接口/组件变更**
 
