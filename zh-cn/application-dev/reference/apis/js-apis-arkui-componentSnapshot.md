@@ -1,4 +1,4 @@
-# @ohos.arkui.componentSnapshot（组件截图）
+# @ohos.arkui.componentSnapshot (组件截图)
 
 本模块提供获取组件截图的能力，包括已加载的组件的截图和没有加载的组件的截图。组件截图只能够截取组件大小的区域，如果组件的绘制超出了它的区域，或子组件的绘制超出了父组件的区域，这些在组件区域外绘制的内容不会在截图中呈现。
 
@@ -29,10 +29,10 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 
 **参数：**
 
-| 参数名   | 类型                                | 必填 | 说明                                                                           |
-| -------- | ----------------------------------- | ---- | ------------------------------------------------------------------------------ |
-| id       | string                              | 是   | 目标组件的[ID 标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
-| callback | AsyncCallback&lt;image.PixelMap&gt; | 是   | 截图返回结果的回调。                                                             |
+| 参数名      | 类型                                  | 必填   | 说明                                       |
+| -------- | ----------------------------------- | ---- | ---------------------------------------- |
+| id       | string                              | 是    | 目标组件的[ID 标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| callback | AsyncCallback&lt;image.PixelMap&gt; | 是    | 截图返回结果的回调。                               |
 
 **示例：**
 
@@ -84,21 +84,21 @@ get(id: string): Promise<image.PixelMap>
 
 **参数：**
 
-| 参数名  | 类型                                                    | 必填 | 说明                 |
-| ------- | ------------------------------------------------------- | ---- | -------------------- |
-| id       | string                              | 是   | 目标组件的[ID 标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| 参数名  | 类型     | 必填   | 说明                                       |
+| ---- | ------ | ---- | ---------------------------------------- |
+| id   | string | 是    | 目标组件的[ID 标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
 
 **返回值：**
 
-| 类型                          | 说明           |
-| ----------------------------- | -------------- |
+| 类型                            | 说明       |
+| ----------------------------- | -------- |
 | Promise&lt;image.PixelMap&gt; | 截图返回的结果。 |
 
 **错误码：** 
 
-| 错误码ID | 错误信息            |
-| -------- | ------------------- |
-| 100001   | if id is not valid. |
+| 错误码ID  | 错误信息                |
+| ------ | ------------------- |
+| 100001 | if id is not valid. |
 
 **示例：**
 
@@ -154,10 +154,10 @@ createFromBuilder(builder: CustomBuilder, callback: AsyncCallback<image.PixelMap
 
 **参数：**
 
-| 参数名   | 类型                                                    | 必填 | 说明                 |
-| -------- | ------------------------------------------------------- | ---- | -------------------- |
-| builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是   | 自定义组件构建函数。 |
-| callback | AsyncCallback&lt;image.PixelMap&gt;                     | 是   | 截图返回结果的回调。   |
+| 参数名      | 类型                                       | 必填   | 说明         |
+| -------- | ---------------------------------------- | ---- | ---------- |
+| builder  | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。 |
+| callback | AsyncCallback&lt;image.PixelMap&gt;      | 是    | 截图返回结果的回调。 |
 
 **示例：**
 
@@ -220,21 +220,21 @@ createFromBuilder(builder: CustomBuilder): Promise<image.PixelMap>
 
 **参数：**
 
-| 参数名  | 类型                                                    | 必填 | 说明                 |
-| ------- | ------------------------------------------------------- | ---- | -------------------- |
-| builder | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是   | 自定义组件构建函数。 |
+| 参数名     | 类型                                       | 必填   | 说明         |
+| ------- | ---------------------------------------- | ---- | ---------- |
+| builder | [CustomBuilder](../arkui-ts/ts-types.md#custombuilder8) | 是    | 自定义组件构建函数。 |
 
 **返回值：**
 
-| 类型                          | 说明           |
-| ----------------------------- | -------------- |
+| 类型                            | 说明       |
+| ----------------------------- | -------- |
 | Promise&lt;image.PixelMap&gt; | 截图返回的结果。 |
 
 **错误码：** 
 
-| 错误码ID | 错误信息                                  |
-| -------- | ----------------------------------------- |
-| 100001   | if builder is not a valid build function. |
+| 错误码ID  | 错误信息                                     |
+| ------ | ---------------------------------------- |
+| 100001 | if builder is not a valid build function. |
 
 **示例：**
 

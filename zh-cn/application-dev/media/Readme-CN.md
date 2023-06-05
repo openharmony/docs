@@ -19,7 +19,7 @@
     - [音频录制开发概述](audio-recording-overview.md)
     - [使用AVRecorder开发音频录制功能](using-avrecorder-for-recording.md)
     - [使用AudioCapturer开发音频录制功能](using-audiocapturer-for-recording.md)
-    - [使用OpenSLES开发音频录制功能](using-opensl-es-for-recording.md)
+    - [使用OpenSL ES开发音频录制功能](using-opensl-es-for-recording.md)
     - [管理麦克风](mic-management.md)
     - [音频录制流管理](audio-recording-stream-management.md)
     - [音频输入设备管理](audio-input-device-management.md)
@@ -28,7 +28,7 @@
     - [开发音频通话功能](audio-call-development.md)
   - [视频播放](video-playback.md)
   - [视频录制](video-recording.md)
-- 媒体会话（仅对系统应用开放）
+- 媒体会话
   - [媒体会话概述](avsession-overview.md)
   - 本地媒体会话
     - [本地媒体会话概述](local-avsession-overview.md)
@@ -37,7 +37,7 @@
   - 分布式媒体会话
     - [分布式媒体会话概述](distributed-avsession-overview.md)
     - [使用分布式媒体会话](using-distributed-avsession.md)
-- 相机（仅对系统应用开放）
+- 相机
   - [相机开发概述](camera-overview.md)
   - 相机开发指导
     - [开发准备](camera-preparation.md)

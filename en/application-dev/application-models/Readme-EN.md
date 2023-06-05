@@ -36,9 +36,10 @@
             - [Applying Custom Drawing in the Widget](arkts-ui-widget-page-custom-drawing.md)
           - Widget Event Development
             - [Widget Event Capability Overview](arkts-ui-widget-event-overview.md)
-            - [Redirecting to a Specified Page Through the Router Event](arkts-ui-widget-event-router.md)
-            - [Updating Widget Content Through FormExtensionAbility](arkts-ui-widget-event-formextensionability.md)
-            - [Updating Widget Content Through UIAbility](arkts-ui-widget-event-uiability.md)
+            - [Redirecting to a UIAbility Through the router Event](arkts-ui-widget-event-router.md)
+            - [Launching a UIAbility in the Background Through the call Event](arkts-ui-widget-event-call.md)
+            - [Updating Widget Content Through the message Event](arkts-ui-widget-event-formextensionability.md)
+            - [Updating Widget Content Through the router or call Event](arkts-ui-widget-event-uiability.md)
           - Widget Data Interaction
             - [Widget Data Interaction Overview](arkts-ui-widget-interaction-overview.md)
             - [Configuring a Widget to Update Periodically](arkts-ui-widget-update-by-time.md)

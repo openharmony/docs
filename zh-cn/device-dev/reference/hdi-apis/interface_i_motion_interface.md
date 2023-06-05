@@ -1,7 +1,7 @@
 # IMotionInterface
 
 
-## **概述**
+## 概述
 
 提供Motion设备基本控制操作接口。
 
@@ -9,10 +9,10 @@
 
 **相关模块:**
 
-[Motion](motion.md)
+[Motion](_motion.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 成员函数
@@ -25,7 +25,7 @@
 | [Unregister](#unregister)&nbsp;([in]&nbsp;[IMotionCallback](interface_i_motion_callback.md)&nbsp;callbackObj) | 订阅者取消注册手势识别数据回调函数。 | 
 
 
-## **成员函数说明**
+## 成员函数说明
 
 
 ### DisableMotion()
@@ -35,7 +35,7 @@
 IMotionInterface::DisableMotion ([in] int motionType)
 ```
 
-**描述：**
+**描述:**
 
 去使能手势识别。
 
@@ -43,7 +43,13 @@ IMotionInterface::DisableMotion ([in] int motionType)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| motionType | 手势识别类型，详见[HdfMotionTypeTag](motion.md#hdfmotiontypetag)。 | 
+| motionType | 手势识别类型，详见[HdfMotionTypeTag](_motion.md#hdfmotiontypetag)。 | 
+
+**返回:**
+
+如果操作成功，则返回0。
+
+如果操作失败，则返回负值。
 
 
 ### EnableMotion()
@@ -53,7 +59,7 @@ IMotionInterface::DisableMotion ([in] int motionType)
 IMotionInterface::EnableMotion ([in] int motionType)
 ```
 
-**描述：**
+**描述:**
 
 使能手势识别。
 
@@ -61,7 +67,7 @@ IMotionInterface::EnableMotion ([in] int motionType)
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| motionType | 手势识别类型，详见[HdfMotionTypeTag](motion.md#hdfmotiontypetag)。 | 
+| motionType | 手势识别类型，详见[HdfMotionTypeTag](_motion.md#hdfmotiontypetag)。 | 
 
 **返回:**
 
@@ -77,7 +83,7 @@ IMotionInterface::EnableMotion ([in] int motionType)
 IMotionInterface::Register ([in] IMotionCallback callbackObj)
 ```
 
-**描述：**
+**描述:**
 
 订阅者注册手势识别数据回调函数，如果注册成功，系统会将获取到的手势识别数据上报给订阅者。
 
@@ -101,7 +107,7 @@ IMotionInterface::Register ([in] IMotionCallback callbackObj)
 IMotionInterface::Unregister ([in] IMotionCallback callbackObj)
 ```
 
-**描述：**
+**描述:**
 
 订阅者取消注册手势识别数据回调函数。
 

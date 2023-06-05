@@ -51,61 +51,9 @@ Create a **&lt;tabs&gt;** component in the .hml file under **pages/index**.
 ![en-us_image_0000001223287676](figures/en-us_image_0000001223287676.gif)
 
 
-## Setting the Tabs Orientation
-
-By default, the active tab of a **&lt;tabs&gt;** component is the one with the specified **index**. To show the **&lt;tabs&gt;** vertically, set the **vertical** attribute to **true**.
-
-```html
-<!-- xxx.hml -->
-<div class="container" style="background-color:#F1F3F5;">
-  <tabs index="1"  vertical="true">
-    <tab-bar >
-      <text>item1</text>
-      <text style="margin-top: 50px;">item2</text>
-    </tab-bar>
-    <tab-content>
-      <div>
-        <image src="common/images/bg-tv.jpg" style="object-fit: contain;"> </image>
-      </div>
-      <div>
-        <image src="common/images/img1.jpg" style="object-fit: contain;"> </image>
-      </div>
-    </tab-content>
-  </tabs>
-</div>
-```
-
-![en-us_image_0000001222967756](figures/en-us_image_0000001222967756.gif)
-
-Set the **mode** attribute to enable the child components of the **&lt;tab-bar&gt;** to be evenly distributed. Set the **scrollable** attribute to disable scrolling of the **&lt;tab-content&gt;**.
-
-```html
-<!-- xxx.hml -->
-<div class="container" style="background-color:#F1F3F5;">
-  <tabs style="margin-top: 30px;">
-    <tab-bar mode="fixed">
-      <text>item1</text>
-      <text>item2</text>
-    </tab-bar>
-    <tab-content scrollable="false">
-      <div>
-        <image src="common/images/bg-tv.jpg" style="object-fit: contain;"> </image>
-      </div>
-      <div>
-        <image src="common/images/img2.jpg" style="object-fit: contain;"> </image>
-      </div>
-    </tab-content>
-  </tabs>
-</div>
-```
-
-![en-us_image_0000001267647857](figures/en-us_image_0000001267647857.gif)
-
-
 ## Setting Styles
 
 Set the background color, border, and tab-content layout of the **&lt;tabs&gt;** component.
-
 ```html
 <!-- xxx.hml -->
 <div class="container">

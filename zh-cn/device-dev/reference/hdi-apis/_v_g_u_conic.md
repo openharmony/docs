@@ -1,7 +1,7 @@
 # VGUConic
 
 
-## **概述**
+## 概述
 
 圆锥渐变。
 
@@ -10,12 +10,12 @@
 [Display](_display.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [cx](_display.md#cx) | 圆弧中心x坐标 | 
-| [cy](_display.md#cy) | 圆弧中心y坐标 | 
+| [cx](_display.md#cx) | [VGUScalar](_display.md#vguscalar)<br/>圆弧中心x坐标 | 
+| [cy](_display.md#cy) | [VGUScalar](_display.md#vguscalar)<br/>圆弧中心y坐标 | 

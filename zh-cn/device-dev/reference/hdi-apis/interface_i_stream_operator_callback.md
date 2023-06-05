@@ -1,7 +1,7 @@
 # IStreamOperatorCallback
 
 
-## **概述**
+## 概述
 
 定义Camera设备流回调操作。
 
@@ -9,10 +9,10 @@
 
 **相关模块:**
 
-[Camera](camera.md)
+[Camera](_camera.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 成员函数
@@ -25,7 +25,7 @@
 | [OnFrameShutter](#onframeshutter)&nbsp;([in]&nbsp;int&nbsp;captureId,&nbsp;[in]&nbsp;int[]&nbsp;streamIds,&nbsp;[in]&nbsp;unsigned&nbsp;long&nbsp;timestamp) | 帧捕获回调。 | 
 
 
-## **成员函数说明**
+## 成员函数说明
 
 
 ### OnCaptureEnded()
@@ -35,7 +35,7 @@
 IStreamOperatorCallback::OnCaptureEnded ([in] int captureId, [in] struct CaptureEndedInfo[] infos )
 ```
 
-**描述：**
+**描述:**
 
 捕获结束回调，在捕获结束时调用。
 
@@ -58,7 +58,7 @@ IStreamOperatorCallback::OnCaptureEnded ([in] int captureId, [in] struct Capture
 IStreamOperatorCallback::OnCaptureError ([in] int captureId, [in] struct CaptureErrorInfo[] infos )
 ```
 
-**描述：**
+**描述:**
 
 捕获错误回调，在捕获过程中发生错误时调用。
 
@@ -77,7 +77,7 @@ IStreamOperatorCallback::OnCaptureError ([in] int captureId, [in] struct Capture
 IStreamOperatorCallback::OnCaptureStarted ([in] int captureId, [in] int[] streamIds )
 ```
 
-**描述：**
+**描述:**
 
 捕获开始回调，在捕获开始时调用。
 
@@ -100,11 +100,11 @@ IStreamOperatorCallback::OnCaptureStarted ([in] int captureId, [in] int[] stream
 IStreamOperatorCallback::OnFrameShutter ([in] int captureId, [in] int[] streamIds, [in] unsigned long timestamp )
 ```
 
-**描述：**
+**描述:**
 
 帧捕获回调。
 
-通过**Capture**的输入参数[CaptureInfo](_capture_info.md)的enableShutterCallback_使能该回调， 使能后每次捕获均会触发此回调。
+通过[Capture](interface_i_stream_operator.md#capture)的输入参数[CaptureInfo](_capture_info.md)的enableShutterCallback_使能该回调， 使能后每次捕获均会触发此回调。
 
 **参数:**
 
@@ -116,4 +116,4 @@ IStreamOperatorCallback::OnFrameShutter ([in] int captureId, [in] int[] streamId
 
 **参见:**
 
-Capture
+[Capture](interface_i_stream_operator.md#capture)

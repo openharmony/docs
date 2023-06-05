@@ -10,10 +10,10 @@
 ## 属性
 
 
-| 名称           | 参数说明                                                     | 描述                                                         |
-| -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| width          | [Length](ts-types.md#length)                                 | 设置组件自身的宽度，缺省时使用元素自身内容需要的宽度。若子组件的宽大于父组件的宽，则会画出父组件的范围。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br />从API version 10开始，该接口支持calc计算特性。 |
-| height         | [Length](ts-types.md#length)                                 | 设置组件自身的高度，缺省时使用元素自身内容需要的高度。若子组件的高大于父组件的高，则会画出父组件的范围。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br />从API version 10开始，该接口支持calc计算特性。 |
+| 名称             | 参数说明                                     | 描述                                       |
+| -------------- | ---------------------------------------- | ---------------------------------------- |
+| width          | [Length](ts-types.md#length)             | 设置组件自身的宽度，缺省时使用元素自身内容需要的宽度。若子组件的宽大于父组件的宽，则会画出父组件的范围。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br />从API version 10开始，该接口支持calc计算特性。 |
+| height         | [Length](ts-types.md#length)             | 设置组件自身的高度，缺省时使用元素自身内容需要的高度。若子组件的高大于父组件的高，则会画出父组件的范围。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br />从API version 10开始，该接口支持calc计算特性。 |
 | size           | {<br/>width?:&nbsp;[Length](ts-types.md#length),<br/>height?:&nbsp;[Length](ts-types.md#length)<br/>} | 设置高宽尺寸。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br />从API version 10开始，该接口支持calc计算特性。 |
 | padding        | [Padding](ts-types.md#padding)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 设置内边距属性。<br/>参数为Length类型时，四个方向内边距同时生效。<br>默认值：0 <br>padding设置百分比时，上下左右内边距均以父容器的width作为基础值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br />从API version 10开始，该接口支持calc计算特性。 |
 | margin         | [Margin](ts-types.md#margin)&nbsp;\|&nbsp;[Length](ts-types.md#length) | 设置外边距属性。<br/>参数为Length类型时，四个方向外边距同时生效。<br>默认值：0 <br>margin设置百分比时，上下左右外边距均以父容器的width作为基础值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br />从API version 10开始，该接口支持calc计算特性。 |
@@ -21,14 +21,14 @@
 
 ## constraintSize取值对width/height影响
 
-|大小排列|结果|
-|-----|------|
-|minWidth/minHeight < width/height< maxWidth/maxHeight|width/height|
-|minWidth/minHeight < maxWidth/maxHeight  < width/height| maxWidth/maxHeight|
-|maxWidth/maxHeight < minWidth/minHeight  < width/height| minWidth/minHeight|
-|maxWidth/maxHeight < width/height< minWidth/minHeight| minWidth/minHeight|
-|width/height      < maxWidth/maxHeight  < minWidth/minHeight| minWidth/minHeight|
-|width/height       < minWidth/minHeight  < maxWidth/maxHeight| minWidth/minHeight|
+| 大小排列                                     | 结果                 |
+| ---------------------------------------- | ------------------ |
+| minWidth/minHeight < width/height< maxWidth/maxHeight | width/height       |
+| minWidth/minHeight < maxWidth/maxHeight  < width/height | maxWidth/maxHeight |
+| maxWidth/maxHeight < minWidth/minHeight  < width/height | minWidth/minHeight |
+| maxWidth/maxHeight < width/height< minWidth/minHeight | minWidth/minHeight |
+| width/height      < maxWidth/maxHeight  < minWidth/minHeight | minWidth/minHeight |
+| width/height       < minWidth/minHeight  < maxWidth/maxHeight | minWidth/minHeight |
 ## 示例
 
 ```ts

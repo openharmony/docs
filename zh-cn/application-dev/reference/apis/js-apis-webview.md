@@ -63,42 +63,6 @@ struct WebComponent {
 
 通过WebMessagePort可以进行消息的发送以及接收。
 
-### close
-
-close(): void
-
-关闭该消息端口。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-**示例：**
-
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview'
-
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-  msgPort: web_webview.WebMessagePort[] = null;
-
-  build() {
-    Column() {
-      Button('close')
-        .onClick(() => {
-          if (this.msgPort && this.msgPort[1]) {
-            this.msgPort[1].close();
-          } else {
-            console.error("msgPort is null, Please initialize first");
-          }
-        })
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
-
 ### postMessageEvent
 
 postMessageEvent(message: WebMessage): void
@@ -448,6 +412,56 @@ function postStringToApp() {
 }
 ```
 
+### close
+
+close(): void
+
+关闭该消息端口。在使用close前，请先使用[createWebMessagePorts](#createwebmessageports)创建消息端口。
+
+**系统能力：** SystemCapability.Web.Webview.Core
+
+**示例：**
+
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview'
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  msgPort: web_webview.WebMessagePort[] = null;
+
+  build() {
+    Column() {
+      // 先使用createWebMessagePorts创建端口。
+      Button('createWebMessagePorts')
+        .onClick(() => {
+          try {
+            this.msgPort = this.controller.createWebMessagePorts();
+            console.log("createWebMessagePorts size:" + this.msgPort.length)
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }
+        })
+      Button('close')
+        .onClick(() => {
+          try {
+            if (this.msgPort && this.msgPort[1]) {
+              this.msgPort[1].close();
+            } else {
+              console.error("msgPort is null, Please initialize first");
+            }
+          } catch (error) {
+            console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+          }      
+        })
+      Web({ src: 'www.example.com', controller: this.controller })
+    }
+  }
+}
+```
+
 ## WebviewController
 
 通过WebviewController可以控制Web组件各种行为。一个WebviewController对象只能控制一个Web组件，且必须在Web组件和WebviewController绑定后，才能调用WebviewController上的方法（静态方法除外）。
@@ -473,7 +487,6 @@ export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         console.log("EntryAbility onCreate")
         web_webview.WebviewController.initializeWebEngine()
-        globalThis.abilityWant = want
         console.log("EntryAbility onCreate done")
     }
 }
@@ -516,30 +529,11 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-### 创建对象
-
-```ts
-// xxx.ets
-import web_webview from '@ohos.web.webview';
-
-@Entry
-@Component
-struct WebComponent {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
-
-  build() {
-    Column() {
-      Web({ src: 'www.example.com', controller: this.controller })
-    }
-  }
-}
-```
-
 ### setWebDebuggingAccess
 
 static setWebDebuggingAccess(webDebuggingAccess: boolean): void
 
-设置是否启用网页调试功能。
+设置是否启用网页调试功能。详情请参考[Devtools工具](../../web/web-debugging-with-devtools.md)。
 
 **系统能力：** SystemCapability.Web.Webview.Core
 
@@ -617,7 +611,7 @@ struct WebComponent {
       Button('loadUrl')
         .onClick(() => {
           try {
-            //需要加载的URL是string类型
+            // 需要加载的URL是string类型。
             this.controller.loadUrl('www.example.com');
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -643,7 +637,7 @@ struct WebComponent {
       Button('loadUrl')
         .onClick(() => {
           try {
-            //带参数headers
+            // 带参数headers。
             this.controller.loadUrl('www.example.com', [{headerKey: "headerKey", headerValue: "headerValue"}]);
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -656,6 +650,7 @@ struct WebComponent {
 ```
 
 加载本地网页，加载本地资源文件有三种方式。
+
 1.$rawfile方式。
 ```ts
 // xxx.ets
@@ -671,7 +666,7 @@ struct WebComponent {
       Button('loadUrl')
         .onClick(() => {
           try {
-            //通过$rawfile加载本地资源文件
+            // 通过$rawfile加载本地资源文件。
             this.controller.loadUrl($rawfile('xxx.html'));
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -682,6 +677,7 @@ struct WebComponent {
   }
 }
 ```
+
 2.resources协议。
 ```ts
 // xxx.ets
@@ -697,7 +693,7 @@ struct WebComponent {
       Button('loadUrl')
         .onClick(() => {
           try {
-            //通过resource协议加载本地资源文件
+            // 通过resource协议加载本地资源文件。
             this.controller.loadUrl("resource://rawfile/xxx.html");
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -3640,7 +3636,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             let state = this.controller.serializeWebState();
-            // globalThis.cacheDir从MainAbility.ts中获取。
+            // globalThis.cacheDir从EntryAbility.ts中获取。
             let path = globalThis.cacheDir;
             path += '/WebState';
             // 以同步方法打开文件。
@@ -3657,14 +3653,14 @@ struct WebComponent {
 }
 ```
 
-2.修改MainAbility.ts。
+2.修改EntryAbility.ts。
 获取应用缓存文件路径。
 ```ts
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
 
-export default class MainAbility extends UIAbility {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         // 通过在globalThis对象上绑定cacheDir，可以实现UIAbility组件与Page之间的数据同步。
         globalThis.cacheDir = this.context.cacheDir;
@@ -3712,7 +3708,7 @@ struct WebComponent {
       Button('RestoreWebState')
         .onClick(() => {
           try {
-            // globalThis.cacheDir从MainAbility.ts中获取。
+            // globalThis.cacheDir从EntryAbility.ts中获取。
             let path = globalThis.cacheDir;
             path += '/WebState';
             // 以同步方法打开文件。
@@ -3739,14 +3735,14 @@ struct WebComponent {
 }
 ```
 
-2.修改MainAbility.ts。
+2.修改EntryAbility.ts。
 获取应用缓存文件路径。
 ```ts
 // xxx.ts
 import UIAbility from '@ohos.app.ability.UIAbility';
 import web_webview from '@ohos.web.webview';
 
-export default class MainAbility extends UIAbility {
+export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
         // 通过在globalThis对象上绑定cacheDir，可以实现UIAbility组件与Page之间的数据同步。
         globalThis.cacheDir = this.context.cacheDir;
@@ -6230,6 +6226,9 @@ Web組件使用HTTPDNS的模式。
 
 | 名称          | 值 | 说明                                      |
 | ------------- | -- |----------------------------------------- |
-| Off           | 0 |不使用HTTPDNS， 可以用于撤销之前使用的HTTPDNS配置。|
-| Auto          | 1 |自动模式，用于解析的设定dns服务器不可用时，可自动回落至系统DNS。|
-| SecureOnly    | 2 |强制使用设定的HTTPDNS服务器进行域名解析。|
+| Off<sup>(deprecated)</sup>           | 0 |不使用HTTPDNS， 可以用于撤销之前使用的HTTPDNS配置。<br>从API version 10开始不再维护，建议使用OFF代替。|
+| Auto<sup>(deprecated)</sup>          | 1 |自动模式，用于解析的设定dns服务器不可用时，可自动回落至系统DNS。<br>从API version 10开始不再维护，建议使用AUTO代替。|
+| SecureOnly<sup>(deprecated)</sup>    | 2 |强制使用设定的HTTPDNS服务器进行域名解析。<br>从API version 10开始不再维护，建议使用SECURE_ONLY代替。|
+| OFF                                  | 0 |不使用HTTPDNS， 可以用于撤销之前使用的HTTPDNS配置。|
+| AUTO                                 | 1 |自动模式，用于解析的设定dns服务器不可用时，可自动回落至系统DNS。|
+| SECURE_ONLY                          | 2 |强制使用设定的HTTPDNS服务器进行域名解析。|

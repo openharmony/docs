@@ -1,7 +1,7 @@
 # IOfflineStreamOperator.idl
 
 
-## **概述**
+## 概述
 
 离线流的操作接口。
 
@@ -15,20 +15,20 @@
 
 **相关模块:**
 
-[Camera](camera.md)
+[Camera](_camera.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### 类
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [IOfflineStreamOperator](interface_i_offline_stream_operator.md) | 定义Camera设备离线流操作。 | 
+| [IOfflineStreamOperator](interface_i_offline_stream_operator.md) | interface<br/>定义Camera设备离线流操作。 | 
 
 
-### 关键字
+### 变量
 
   | 名称 | 描述 | 
 | -------- | -------- |

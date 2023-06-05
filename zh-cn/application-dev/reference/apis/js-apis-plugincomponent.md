@@ -4,7 +4,7 @@
 
 >  **说明：**
 >
-> - 本模块首批接口从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  - 本模块首批接口从API Version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 
 ## 导入模块
 
@@ -18,10 +18,10 @@ Plugin组件模板参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数       | 类型   | 必填 | 描述                        |
-| ---------- | ------ | ---- | --------------------------- |
-| source     | string | 是   | 组件模板名。                |
-| bundleName | string | 是   | 提供者Ability的bundleName。 |
+| 参数         | 类型     | 必填   | 描述                     |
+| ---------- | ------ | ---- | ---------------------- |
+| source     | string | 是    | 组件模板名。                 |
+| bundleName | string | 是    | 提供者Ability的bundleName。 |
 
 
 ## PluginComponentManager
@@ -33,14 +33,14 @@ Plugin组件模板参数。
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 
-| 取值范围              | 说明                                     |
-| --------------------- | ---------------------------------------- |
+| 取值范围                  | 说明                   |
+| --------------------- | -------------------- |
 | [key: string]         | 关键字，数据类型为字符串，可取空字符串。 |
-| number                | 键值，表示值类型为数字。                 |
+| number                | 键值，表示值类型为数字。         |
 | string                | 键值，表示值类型为字符串，可取空字符串。 |
-| boolean               | 键值，表示值类型为布尔值。               |
-| []                    | 键值，可取值为[]。                       |
-| [KVObject](#kvobject) | 键值，表示值类型为KVObject。             |
+| boolean               | 键值，表示值类型为布尔值。        |
+| []                    | 键值，可取值为[]。           |
+| [KVObject](#kvobject) | 键值，表示值类型为KVObject。   |
 
 
 ### PushParameters
@@ -51,13 +51,13 @@ Plugin组件模板参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                | 必填 | 说明                                                           |
-| --------- | ----------------------------------- | ---- | -------------------------------------------------------------- |
-| want      | [Want](js-apis-application-want.md) | 是   | 组件使用者Ability信息。                                        |
-| name      | string                              | 是   | 组件名称。                                                     |
-| data      | [KVObject](#kvobject)               | 是   | 组件数据值。                                                   |
-| extraData | [KVObject](#kvobject)               | 是   | 附加数据值。                                                   |
-| jsonPath  | string                              | 否   | 存放模板路径的[external.json](#externaljson文件说明)件的路径。 |
+| 名称        | 类型                                  | 必填   | 说明                                       |
+| --------- | ----------------------------------- | ---- | ---------------------------------------- |
+| want      | [Want](js-apis-application-want.md) | 是    | 组件使用者Ability信息。                          |
+| name      | string                              | 是    | 组件名称。                                    |
+| data      | [KVObject](#kvobject)               | 是    | 组件数据值。                                   |
+| extraData | [KVObject](#kvobject)               | 是    | 附加数据值。                                   |
+| jsonPath  | string                              | 否    | 存放模板路径的[external.json](#externaljson文件说明)件的路径。 |
 
 ### PushParameterForStage
 
@@ -69,14 +69,14 @@ Plugin组件模板参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                                | 必填 | 说明                                                             |
-| --------- | ----------------------------------- | ---- | ---------------------------------------------------------------- |
-| owner     | [Want](js-apis-application-want.md) | 是   | 组件提供方Ability信息。                                          |
-| target    | [Want](js-apis-application-want.md) | 是   | 组件使用者Ability信息。                                          |
-| name      | string                              | 是   | 组件名称。                                                       |
-| data      | [KVObject](#kvobject)               | 是   | 组件数据值。                                                     |
-| extraData | [KVObject](#kvobject)               | 是   | 附加数据值。                                                     |
-| jsonPath  | string                              | 否   | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。 |
+| 名称        | 类型                                  | 必填   | 说明                                       |
+| --------- | ----------------------------------- | ---- | ---------------------------------------- |
+| owner     | [Want](js-apis-application-want.md) | 是    | 组件提供方Ability信息。                          |
+| target    | [Want](js-apis-application-want.md) | 是    | 组件使用者Ability信息。                          |
+| name      | string                              | 是    | 组件名称。                                    |
+| data      | [KVObject](#kvobject)               | 是    | 组件数据值。                                   |
+| extraData | [KVObject](#kvobject)               | 是    | 附加数据值。                                   |
+| jsonPath  | string                              | 否    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。 |
 
 ### RequestParameters
 
@@ -86,12 +86,12 @@ Plugin组件模板参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型                                | 必填 | 说明                                                                                                                  |
-| -------- | ----------------------------------- | ---- | --------------------------------------------------------------------------------------------------------------------- |
-| want     | [Want](js-apis-application-want.md) | 是   | 组件提供者Ability信息。                                                                                               |
-| name     | string                              | 是   | 请求组件名称。                                                                                                        |
-| data     | [KVObject](#kvobject)               | 是   | 附加数据。                                                                                                            |
-| jsonPath | string                              | 否   | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。jsonPath字段不为空或者未设置的时候不触发Request通信。 |
+| 名称       | 类型                                  | 必填   | 说明                                       |
+| -------- | ----------------------------------- | ---- | ---------------------------------------- |
+| want     | [Want](js-apis-application-want.md) | 是    | 组件提供者Ability信息。                          |
+| name     | string                              | 是    | 请求组件名称。                                  |
+| data     | [KVObject](#kvobject)               | 是    | 附加数据。                                    |
+| jsonPath | string                              | 否    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。jsonPath字段不为空或者未设置的时候不触发Request通信。 |
 
 ### RequestParameterForStage
 
@@ -103,13 +103,13 @@ Plugin组件模板参数。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称     | 类型                                | 必填 | 说明                                                                                                                  |
-| -------- | ----------------------------------- | ---- | --------------------------------------------------------------------------------------------------------------------- |
-| owner    | [Want](js-apis-application-want.md) | 是   | 组件使用者Ability信息。                                                                                               |
-| target   | [Want](js-apis-application-want.md) | 是   | 组件提供者Ability信息。                                                                                               |
-| name     | string                              | 是   | 请求组件名称。                                                                                                        |
-| data     | [KVObject](#kvobject)               | 是   | 附加数据。                                                                                                            |
-| jsonPath | string                              | 否   | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。jsonPath字段不为空或者未设置的时候不触发Request通信。 |
+| 名称       | 类型                                  | 必填   | 说明                                       |
+| -------- | ----------------------------------- | ---- | ---------------------------------------- |
+| owner    | [Want](js-apis-application-want.md) | 是    | 组件使用者Ability信息。                          |
+| target   | [Want](js-apis-application-want.md) | 是    | 组件提供者Ability信息。                          |
+| name     | string                              | 是    | 请求组件名称。                                  |
+| data     | [KVObject](#kvobject)               | 是    | 附加数据。                                    |
+| jsonPath | string                              | 否    | 存放模板路径的[external.json](#externaljson文件说明)文件的路径。jsonPath字段不为空或者未设置的时候不触发Request通信。 |
 
 ### RequestCallbackParameters
 
@@ -117,11 +117,11 @@ PluginManager.Request方法时候接收到的回调结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称              | 类型                                                | 必填 | 说明       |
-| ----------------- | --------------------------------------------------- | ---- | ---------- |
-| componentTemplate | [PluginComponentTemplate](#plugincomponenttemplate) | 是   | 组件模板。 |
-| data              | [KVObject](#kvobject)                               | 是   | 组件数据。 |
-| extraData         | [KVObject](#kvobject)                               | 是   | 附加数据。 |
+| 名称                | 类型                                       | 必填   | 说明    |
+| ----------------- | ---------------------------------------- | ---- | ----- |
+| componentTemplate | [PluginComponentTemplate](#plugincomponenttemplate) | 是    | 组件模板。 |
+| data              | [KVObject](#kvobject)                    | 是    | 组件数据。 |
+| extraData         | [KVObject](#kvobject)                    | 是    | 附加数据。 |
 
 ### RequestEventResult
 
@@ -129,11 +129,11 @@ PluginManager.Request方法时候接收到的回调结果。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 名称      | 类型                  | 必填 | 说明       |
-| --------- | --------------------- | ---- | ---------- |
-| template  | string                | 否   | 组件模板。 |
-| data      | [KVObject](#kvobject) | 否   | 组件数据。 |
-| extraData | [KVObject](#kvobject) | 否   | 附加数据。 |
+| 名称        | 类型                    | 必填   | 说明    |
+| --------- | --------------------- | ---- | ----- |
+| template  | string                | 否    | 组件模板。 |
+| data      | [KVObject](#kvobject) | 否    | 组件数据。 |
+| extraData | [KVObject](#kvobject) | 否    | 附加数据。 |
 
 ### OnPushEventCallback
 
@@ -144,12 +144,12 @@ OnPushEventCallback = (source: Want, template: PluginComponentTemplate, data: KV
 
 **参数：**
 
-| 参数      | 类型                                                | 必填 | 说明                                     |
-| --------- | --------------------------------------------------- | ---- | ---------------------------------------- |
-| source    | [Want](js-apis-application-want.md)                 | 是   | Push请求发送方相关信息。                 |
-| template  | [PluginComponentTemplate](#plugincomponenttemplate) | 是   | Push请求发送方相关信息请求组件模板名称。 |
-| data      | [KVObject](#kvobject)                               | 是   | 数据。                                   |
-| extraData | [KVObject](#kvobject)                               | 是   | 附加数据。                               |
+| 参数        | 类型                                       | 必填   | 说明                     |
+| --------- | ---------------------------------------- | ---- | ---------------------- |
+| source    | [Want](js-apis-application-want.md)      | 是    | Push请求发送方相关信息。         |
+| template  | [PluginComponentTemplate](#plugincomponenttemplate) | 是    | Push请求发送方相关信息请求组件模板名称。 |
+| data      | [KVObject](#kvobject)                    | 是    | 数据。                    |
+| extraData | [KVObject](#kvobject)                    | 是    | 附加数据。                  |
 
 **示例：**
 
@@ -172,11 +172,11 @@ OnRequestEventCallback = (source: Want, name: string, data: KVObject) => Request
 
 **参数：**
 
-| 参数      | 类型                                | 必填 | 说明                        |
-| --------- | ----------------------------------- | ---- | --------------------------- |
-| source    | [Want](js-apis-application-want.md) | 是   | request请求发送方相关信息。 |
-| name      | string                              | 是   | 模板名称。                  |
-| extraData | [KVObject](#kvobject)               | 是   | 附加数据。                  |
+| 参数        | 类型                                  | 必填   | 说明                |
+| --------- | ----------------------------------- | ---- | ----------------- |
+| source    | [Want](js-apis-application-want.md) | 是    | request请求发送方相关信息。 |
+| name      | string                              | 是    | 模板名称。             |
+| extraData | [KVObject](#kvobject)               | 是    | 附加数据。             |
 
 **示例：**
 
@@ -200,10 +200,10 @@ push(param: PushParameters , callback: AsyncCallback&lt;void&gt;): void
 **模型约束：** 此接口仅适用于FA模型。
 
 **参数：**
-| 参数名   | 类型                              | 必填 | 说明                     |
-| -------- | --------------------------------- | ---- | ------------------------ |
-| param    | [PushParameters](#pushparameters) | 是   | 组件使用者的详细信息。   |
-| callback | AsyncCallback&lt;void&gt;         | 是   | 此次接口调用的异步回调。 |
+| 参数名      | 类型                                | 必填   | 说明           |
+| -------- | --------------------------------- | ---- | ------------ |
+| param    | [PushParameters](#pushparameters) | 是    | 组件使用者的详细信息。  |
+| callback | AsyncCallback&lt;void&gt;         | 是    | 此次接口调用的异步回调。 |
 
 **示例：**
 
@@ -241,10 +241,10 @@ push(param: PushParameterForStage, callback: AsyncCallback&lt;void&gt;): void
 **模型约束：** 此接口仅适用于Stage模型。
 
 **参数：**
-| 参数名   | 类型                                            | 必填 | 说明                     |
-| -------- | ----------------------------------------------- | ---- | ------------------------ |
-| param    | [PushParameterForStage](#pushparameterforstage) | 是   | 组件使用者的详细信息。   |
-| callback | AsyncCallback&lt;void&gt;                       | 是   | 此次接口调用的异步回调。 |
+| 参数名      | 类型                                       | 必填   | 说明           |
+| -------- | ---------------------------------------- | ---- | ------------ |
+| param    | [PushParameterForStage](#pushparameterforstage) | 是    | 组件使用者的详细信息。  |
+| callback | AsyncCallback&lt;void&gt;                | 是    | 此次接口调用的异步回调。 |
 
 **示例：**
 
@@ -289,10 +289,10 @@ request(param: RequestParameters, callback: AsyncCallback&lt;RequestCallbackPara
 
 **参数：**
 
-| 参数名   | 类型                                                                                           | 必填 | 说明                                                             |
-| -------- | ---------------------------------------------------------------------------------------------- | ---- | ---------------------------------------------------------------- |
-| param    | [RequestParameters](#requestparameters)                                                        | 是   | 组件模板的详细请求信息。                                         |
-| callback | AsyncCallback&lt;[RequestCallbackParameters](#requestcallbackparameters)&nbsp;\|&nbsp;void&gt; | 是   | 此次请求的异步回调，&nbsp;通过回调接口的参数返回接受请求的数据。 |
+| 参数名      | 类型                                       | 必填   | 说明                                  |
+| -------- | ---------------------------------------- | ---- | ----------------------------------- |
+| param    | [RequestParameters](#requestparameters)  | 是    | 组件模板的详细请求信息。                        |
+| callback | AsyncCallback&lt;[RequestCallbackParameters](#requestcallbackparameters)&nbsp;\|&nbsp;void&gt; | 是    | 此次请求的异步回调，&nbsp;通过回调接口的参数返回接受请求的数据。 |
 
 **示例：**
 
@@ -332,10 +332,10 @@ request(param: RequestParameterForStage, callback: AsyncCallback&lt;RequestCallb
 
 **参数：**
 
-| 参数名   | 类型                                                                                           | 必填 | 说明                                                             |
-| -------- | ---------------------------------------------------------------------------------------------- | ---- | ---------------------------------------------------------------- |
-| param    | [RequestParameterForStage](#requestparameterforstage)                                          | 是   | 组件模板的详细请求信息。                                         |
-| callback | AsyncCallback&lt;[RequestCallbackParameters](#requestcallbackparameters)&nbsp;\|&nbsp;void&gt; | 是   | 此次请求的异步回调，&nbsp;通过回调接口的参数返回接受请求的数据。 |
+| 参数名      | 类型                                       | 必填   | 说明                                  |
+| -------- | ---------------------------------------- | ---- | ----------------------------------- |
+| param    | [RequestParameterForStage](#requestparameterforstage) | 是    | 组件模板的详细请求信息。                        |
+| callback | AsyncCallback&lt;[RequestCallbackParameters](#requestcallbackparameters)&nbsp;\|&nbsp;void&gt; | 是    | 此次请求的异步回调，&nbsp;通过回调接口的参数返回接受请求的数据。 |
 
 **示例：**
 
@@ -371,10 +371,10 @@ on(eventType: string, callback: OnPushEventCallback | OnRequestEventCallback ): 
 
 **参数：**
 
-| 参数名    | 类型                                                                                                       | 必填 | 说明                                                                                                                                                           |
-| --------- | ---------------------------------------------------------------------------------------------------------- | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| eventType | string                                                                                                     | 是   | 监听的事件类型，&nbsp;可选值为："push"&nbsp;、"request"。<br/>"push”：指组件提供者向使用者主动推送数据。<br/>"request”：指组件使用者向提供者主动请求数据。     |
-| callback  | [OnPushEventCallback](#onpusheventcallback)&nbsp;\|&nbsp;[OnRequestEventCallback](#onrequesteventcallback) | 是   | 对应监听回调，push事件对应回调类型为[OnPushEventCallback](#onpusheventcallback)，request事件对应回调类型为[OnRequestEventCallback](#onrequesteventcallback) 。 |
+| 参数名       | 类型                                       | 必填   | 说明                                       |
+| --------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| eventType | string                                   | 是    | 监听的事件类型，&nbsp;可选值为："push"&nbsp;、"request"。<br/>"push”：指组件提供者向使用者主动推送数据。<br/>"request”：指组件使用者向提供者主动请求数据。 |
+| callback  | [OnPushEventCallback](#onpusheventcallback)&nbsp;\|&nbsp;[OnRequestEventCallback](#onrequesteventcallback) | 是    | 对应监听回调，push事件对应回调类型为[OnPushEventCallback](#onpusheventcallback)，request事件对应回调类型为[OnRequestEventCallback](#onrequesteventcallback) 。 |
 
 
 **示例：**

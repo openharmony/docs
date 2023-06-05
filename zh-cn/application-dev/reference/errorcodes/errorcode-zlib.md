@@ -42,3 +42,24 @@ The input destination file is invalid.
 
 1. 检查目标文件路径是否正确，如果不正确，填写正确的沙箱路径。
 2. 检查目标文件目录是否存在，如果不存在，新建这个路径。
+
+## 900003 传入的源文件格式错误或者已损坏
+
+**错误信息**
+
+The input source file is not ZIP format or damaged.
+
+**错误描述**
+
+当调用decompressFile接口时，传入源文件的压缩格式有误或者已损坏。
+
+
+**可能原因**
+
+1. 当调用decompressFile接口时，传入的源文件压缩格式有误。
+2. 当调用decompressFile接口时，传入的源文件不完整或已损坏。
+
+**处理步骤**
+
+1. 检查源文件压缩格斯是否为ZIP格式。
+2. 检查源文件是否完整，如果是网络下载的，需要确保文件下载完成后再调用decompress接口。

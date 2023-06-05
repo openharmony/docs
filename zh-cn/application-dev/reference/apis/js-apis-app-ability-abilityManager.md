@@ -388,7 +388,7 @@ abilityManager.getTopAbility().then((data) => {
 
 acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Object}>): void;
 
-获取目标设备的分享数据（callback形式）。
+获取目标设备的分享数据（callback形式）。其中，missionId是分享数据目标应用的missionId，启动应用后通过hdc shell aa dump -a 命令查看或者使用[missionManager.getMissionInfos()](js-apis-app-ability-missionManager.md#getmissioninfos)方法获取，callback是目标应用onShare()生命周期方法回调的分享数据，分享数据填充可看[UIAbility.onShare()](js-apis-app-ability-uiAbility.md#onshare)。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -411,14 +411,17 @@ acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Obje
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
-
-abilityManager.acquireShareData(1, (err, data) => { 
-    if (err) {
-        console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log(`acquireShareData success, data: ${JSON.stringify(data)}`);
-    }
-});
+try {
+    abilityManager.acquireShareData(1, (err, wantParam) => { 
+        if (err) {
+            console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
+        } else {
+            console.log(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
+        }
+    });
+} catch (paramError) {
+    console.error(`error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}`);
+}
 
 ```
 
@@ -426,7 +429,7 @@ abilityManager.acquireShareData(1, (err, data) => {
 
 acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
 
-获取目标设备的分享数据（Promise形式）。
+获取目标设备的分享数据（Promise形式）。其中，missionId是分享数据目标应用的missionId，启动应用后通过hdc shell aa dump -a 命令查看或者使用[missionManager.getMissionInfos()](js-apis-app-ability-missionManager.md#getmissionInfos)方法获取，Promise<{[key: string]: Object}>是目标应用onShare()生命周期方法回调的分享数据，分享数据填充可看[UIAbility.onShare()](js-apis-app-ability-uiAbility.md#onshare)。
  
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -449,8 +452,8 @@ acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
 try {
-    abilityManager.acquireShareData(1).then((data) => {
-    console.log(`acquireShareData success, data: ${JSON.stringify(data)}`);
+    abilityManager.acquireShareData(1).then((wantParam) => {
+    console.log(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
     }).catch((err) => {
     console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
     });

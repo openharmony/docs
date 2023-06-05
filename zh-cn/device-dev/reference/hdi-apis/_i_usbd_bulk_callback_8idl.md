@@ -1,7 +1,7 @@
 # IUsbdBulkCallback.idl
 
 
-## **概述**
+## 概述
 
 USB驱动批量传输读/写数据的回调。
 
@@ -15,17 +15,17 @@ USB驱动批量传输读/写数据的回调。
 
 **相关模块:**
 
-[USB](usb.md)
+[USB](_u_s_b.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### 类
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [IUsbdBulkCallback](interface_i_usbd_bulk_callback.md) | USB驱动的回调函数。 | 
+| [IUsbdBulkCallback](interface_i_usbd_bulk_callback.md) | interface<br/>USB驱动的回调函数。 | 
 
 
 ### 关键字

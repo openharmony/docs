@@ -654,6 +654,16 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.MANAGE_NET_STRATEGY
+
+允许应用程序获取网络策略相关的信息或修改网络策略相关设置。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.SET_ABILITY_CONTROLLER
 
 允许设置ability组件启动和停止控制权。
@@ -1911,6 +1921,16 @@
 ## ohos.permission.CLOUDDATA_CONFIG
 
 允许应用获取配置数据库端云信息能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.MANAGE_SENSOR
+
+允许不直接使用传感器的应用打开和关闭传感器。
 
 **权限级别**：system_basic
 
