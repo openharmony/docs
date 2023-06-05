@@ -17,6 +17,8 @@
 
 **适配指导**<br>
 
+申请后挂起状态不会代理RUNNING_BACKGROUND锁,不拦截Sensor回调
+
 ```ts
 import backgroundTaskManager from '@ohos.resourceschedule.backgroundTaskManager';
 
