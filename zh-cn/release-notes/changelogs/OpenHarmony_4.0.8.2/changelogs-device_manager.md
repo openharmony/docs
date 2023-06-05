@@ -16,7 +16,7 @@
 | @ohos.distributedHardware.deviceManager       | deviceManager        | **function** getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt; | ohos.permission.ACCESS_SERVICE_DM     |
 | @ohos.distributedHardware.deviceManager       | deviceManager        | **function** getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): void | ohos.permission.ACCESS_SERVICE_DM     |
 | @ohos.distributedHardware.deviceManager       | deviceManager        | **function** getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt; | ohos.permission.ACCESS_SERVICE_DM     |
-| @ohos.distributedHardware.deviceManager       | deviceManager        | **function** getLocalDeviceInfoSync(): [DeviceInfo](#deviceinfo) | ohos.permission.ACCESS_SERVICE_DM     |
+| @ohos.distributedHardware.deviceManager       | deviceManager        | **function** getLocalDeviceInfoSync(): DeviceInfo | ohos.permission.ACCESS_SERVICE_DM     |
 | @ohos.distributedHardware.deviceManager       | deviceManager        | **function** getLocalDeviceInfo(callback:AsyncCallback&lt;DeviceInfo&gt;): void | ohos.permission.ACCESS_SERVICE_DM     |
 | @ohos.distributedHardware.deviceManager       | deviceManager        | **function** getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt; | ohos.permission.ACCESS_SERVICE_DM     |
 | @ohos.distributedHardware.deviceManager       | deviceManager        | **function** getDeviceInfo(networkId: string, callback:AsyncCallback&lt;DeviceInfo&gt;): void | ohos.permission.ACCESS_SERVICE_DM    |
