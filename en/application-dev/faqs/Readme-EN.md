@@ -2,9 +2,9 @@
 
 - [Full SDK Compilation](full-sdk-compile-guide.md)
 - [Switching to Full SDK](full-sdk-switch-guide.md)
-- [Ability Development](faqs-ability.md)
-- [ArkUI Development](faqs-arkui.md)
-- [ArkUI Development (ArkTS Syntax)](faqs-arkui-arkts.md)
+- [Application Model Development](faqs-ability.md)
+- ArkUI Framework Development (ArkTS)
+  - [ArkUI Development (ArkTS Syntax)](faqs-arkui-arkts.md)
 - [Web Development](faqs-arkui-web.md)
 - [Bundle Management Development](faqs-bundle-management.md)
 - [Resource Manager Development](faqs-globalization.md)
