@@ -630,7 +630,7 @@ try {
 | CPU                     | 1    | CPU资源，申请后不被挂起。             |
 | COMMON_EVENT            | 2    | 申请后挂起状态下不会代理公共事件。 |
 | TIMER                   | 4    | 计时器，申请后挂起状态不会代理SystemTimer。 |
-| WORK_SCHEDULER          | 8    | [WorkScheduler默认采用较宽松管控策略。(详见 延迟任务调度约束)](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/task-management/background-task-overview.md#%E5%BB%B6%E8%BF%9F%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E7%BA%A6%E6%9D%9F) |
+| WORK_SCHEDULER          | 8    | [WorkScheduler默认采用较宽松管控策略。(详见 延迟任务调度约束)](../zh-cn/application-dev/task-management/background-task-overview.md#%E5%BB%B6%E8%BF%9F%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E7%BA%A6%E6%9D%9F) |
 | BLUETOOTH               | 16   | 申请后挂起状态不会代理蓝牙。 |
 | GPS                     | 32   | 申请后挂起状态不会代理GPS。 |
 | AUDIO                   | 64   | 申请后挂起状态不会代理音频。 |
