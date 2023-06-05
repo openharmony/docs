@@ -155,7 +155,7 @@ getType(): string
 
 | 类型   | 说明                                                   |
 | ------ |------------------------------------------------------|
-| string | 当前数据记录对应的具体数据类型，见[UnifiedDataType](#UnifiedDataType)。|
+| string | 当前数据记录对应的具体数据类型，见[UnifiedDataType](#unifieddatatype)。|
 
 **示例：**
 
