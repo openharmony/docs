@@ -79,7 +79,7 @@ let request = {
 let res;
 try {
     res = backgroundTaskManager.applyEfficiencyResources(request);//申请Sensor能效资源
-    console.info("xuhanyang the result of request is: " + res);
+    console.info("the result of request is: " + res);
 } catch (error) {
     console.error(`Operation applyEfficiencyResources failed. code is ${error.code} message is ${error.message}`);
 }
