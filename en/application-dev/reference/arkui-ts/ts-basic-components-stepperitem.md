@@ -24,7 +24,7 @@ StepperItem()
 | -------- | -------- | -------- |
 | prevLabel | string | Text label of the button on the left, which is not displayed on the first page. When the **\<Stepper>** contains more than one page, the default value for all pages except the first page is **Back**.|
 | nextLabel | string | Text label of the button on the right. The default value is **Start** for the last page and **Next** for the other pages.|
-| status | ItemState | Display status of **nextLabel** in the stepper.<br>Default value: **ItemState.Normal**|
+| status | [ItemState](#itemstate) | Display status of **nextLabel** in the stepper. Optional.<br>Default value: **ItemState.Normal**|
 
 ## ItemState
 
