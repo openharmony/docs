@@ -28,8 +28,8 @@ Native API在SDK包的位置为$(SDK_ROOT)/native目录，主要有以下几个�
 
 |接口分类|接口功能|引入版本|
 |--|--|--|
-|[标准C库](third_party_libc/musl.md)|以musl为基础提供的标准c库接口，当前提供了1500+的接口|8|
-|[标准C++库](third_party_libc/cpp.md)|c++运行时库libc++_shared，此库在打包的时候需要打包或者静态链接到应用中|8|
+|[标准C库](native-lib/third_party_libc/musl.md)|以musl为基础提供的标准c库接口，当前提供了1500+的接口|8|
+|[标准C++库](native-lib/third_party_libc/cpp.md)|c++运行时库libc++_shared，此库在打包的时候需要打包或者静态链接到应用中|8|
 |日志|打印日志到系统的hilog接口|8|
 |Node-API|ArkUI提供的，方便应用开发接入JS应用环境的一组类Node-API（也叫napi），是属于Native API的一部分|8|
 |XComponent|ArkUI XComponent组件中的surface与触屏事件接口，方便开发者开发高性能图形应用|8|
