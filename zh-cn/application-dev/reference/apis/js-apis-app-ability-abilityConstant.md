@@ -65,13 +65,13 @@ Ability上次退出原因，该类型为枚举，可配合[Ability](js-apis-app-
 | ----------------------------- | ---- | ------------------------------------------------------------ |
 | UNKNOWN          | 0    | 未知原因。 |
 | ABILITY_NOT_RESPONDING          | 1    | ability未响应。从API version 9 开始支持，从API version 10 开始废弃，建议使用APP_FREEZE替代。 |
-| NORMAL | 2    | 正常退出。 |
-| CPP_CRASH<sup>10+</sup>  | 3    | CPP崩溃。 |
-| JS_ERROR<sup>10+</sup>  | 4    | JS错误。 |
-| APP_FREEZE<sup>10+</sup>  | 5    | watchdog检测到App主线程无响应。 |
-| PERFORMANCE_CONTROL<sup>10+</sup>  | 6    | 性能管控。 |
-| RESOURCE_CONTROL<sup>10+</sup>  | 7    | 资源管控。 |
-| UPGRADE<sup>10+</sup>  | 8    | 升级应用。 |
+| NORMAL | 2    | 用户主动关闭，应用程序正常退出。 |
+| CPP_CRASH<sup>10+</sup>  | 3    | 本机异常信号导致应用程序退出。 |
+| JS_ERROR<sup>10+</sup>  | 4    | JS错误导致应用程序退出 |
+| APP_FREEZE<sup>10+</sup>  | 5    | watchdog检测到App主线程无响应，由于Freeze导致应用程序退出 |
+| PERFORMANCE_CONTROL<sup>10+</sup>  | 6    | 由于系统性能问题（如设备内存不足）导致应用程序退出。 |
+| RESOURCE_CONTROL<sup>10+</sup>  | 7    | 由于系统资源违规使用（超过cpu/io/内存使用量）导致应用程序退出。 |
+| UPGRADE<sup>10+</sup>  | 8    | 应用程序因升级而退出。 |
 
 **示例：**
 
