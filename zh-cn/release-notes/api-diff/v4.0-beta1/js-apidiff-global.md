@@ -2,7 +2,6 @@
 | ---- | ------ | ------ | -------- |
 |新增|NA|类名：TimeZone<br>方法or属性：static getTimezonesByLocation(longitude: number, latitude: number): Array\<TimeZone>;|@ohos.i18n.d.ts|
 |新增|NA|模块名: ohos.i18n<br>类名: NormalizerMode|@ohos.i18n.d.ts|
-|新增|NA|类名：NormalizerMode<br>方法or属性：|@ohos.i18n.d.ts|
 |新增|NA|模块名: ohos.i18n<br>类名: NormalizerMode<br>方法 or 属性：NFC = 1|@ohos.i18n.d.ts|
 |新增|NA|模块名: ohos.i18n<br>类名: NormalizerMode<br>方法 or 属性：NFD = 2|@ohos.i18n.d.ts|
 |新增|NA|模块名: ohos.i18n<br>类名: NormalizerMode<br>方法 or 属性：NFKC = 3|@ohos.i18n.d.ts|

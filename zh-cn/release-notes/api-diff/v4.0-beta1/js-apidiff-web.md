@@ -6,7 +6,7 @@
 |新增|NA|模块名: ohos.web.webview<br>类名: SecureDnsMode<br>方法 or 属性：Auto = 1|@ohos.web.webview.d.ts|
 |新增|NA|模块名: ohos.web.webview<br>类名: SecureDnsMode<br>方法 or 属性：SecureOnly = 2|@ohos.web.webview.d.ts|
 |新增|NA|模块名: ohos.web.webview<br>类名: WebMessageType|@ohos.web.webview.d.ts|
-|新增|NA|类名：WebMessageType<br>方法or属性：|@ohos.web.webview.d.ts|
+|新增|NA|类名：WebMessageType|@ohos.web.webview.d.ts|
 |新增|NA|模块名: ohos.web.webview<br>类名: WebMessageType<br>方法 or 属性：NOT_SUPPORT|@ohos.web.webview.d.ts|
 |新增|NA|模块名: ohos.web.webview<br>类名: WebMessageType<br>方法 or 属性：STRING|@ohos.web.webview.d.ts|
 |新增|NA|模块名: ohos.web.webview<br>类名: WebMessageType<br>方法 or 属性：NUMBER|@ohos.web.webview.d.ts|
