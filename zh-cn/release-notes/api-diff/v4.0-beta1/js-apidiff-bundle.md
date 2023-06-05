@@ -15,9 +15,7 @@
 |新增|NA|模块名: ohos.bundle.bundleManager<br>类名: ExtensionAbilityType<br>方法 or 属性：DRIVER = 18|@ohos.bundle.bundleManager.d.ts|
 |新增|NA|类名：ExtensionAbilityType<br>方法or属性：DRIVER = 18|@ohos.bundle.bundleManager.d.ts|
 |新增|NA|模块名: ohos.bundle.bundleManager<br>类名: CompatiblePolicy|@ohos.bundle.bundleManager.d.ts|
-|新增|NA|类名：CompatiblePolicy<br>方法or属性：|@ohos.bundle.bundleManager.d.ts|
 |新增|NA|模块名: ohos.bundle.bundleManager<br>类名: CompatiblePolicy<br>方法 or 属性：BACKWARD_COMPATIBILITY = 1|@ohos.bundle.bundleManager.d.ts|
-|新增|NA|类名：CompatiblePolicy<br>方法or属性：BACKWARD_COMPATIBILITY = 1|@ohos.bundle.bundleManager.d.ts|
 |新增|NA|类名：bundleManager<br>方法or属性：function getAllSharedBundleInfo(callback: AsyncCallback\<Array\<SharedBundleInfo>>): void;|@ohos.bundle.bundleManager.d.ts|
 |新增|NA|类名：bundleManager<br>方法or属性：function getAllSharedBundleInfo(): Promise\<Array\<SharedBundleInfo>>;|@ohos.bundle.bundleManager.d.ts|
 |新增|NA|类名：bundleManager<br>方法or属性：function getSharedBundleInfo(bundleName: string, moduleName: string, callback: AsyncCallback\<Array\<SharedBundleInfo>>): void;|@ohos.bundle.bundleManager.d.ts|
@@ -35,11 +33,8 @@
 |新增|NA|类名：ApplicationType<br>方法or属性：PPT = 'PPT Viewer'|@ohos.bundle.defaultAppManager.d.ts|
 |新增|NA|类名：InstallParam<br>方法or属性：sharedBundleDirPaths?: Array\<String>;|@ohos.bundle.installer.d.ts|
 |新增|NA|模块名: ohos.bundle.installer<br>类名: UninstallParam|@ohos.bundle.installer.d.ts|
-|新增|NA|类名：UninstallParam<br>方法or属性：|@ohos.bundle.installer.d.ts|
 |新增|NA|模块名: ohos.bundle.installer<br>类名: UninstallParam<br>方法 or 属性：bundleName: string;|@ohos.bundle.installer.d.ts|
-|新增|NA|类名：UninstallParam<br>方法or属性：bundleName: string;|@ohos.bundle.installer.d.ts|
 |新增|NA|模块名: ohos.bundle.installer<br>类名: UninstallParam<br>方法 or 属性：versionCode?: number;|@ohos.bundle.installer.d.ts|
-|新增|NA|类名：UninstallParam<br>方法or属性：versionCode?: number;|@ohos.bundle.installer.d.ts|
 |新增|NA|模块名: ohos.bundle.overlay<br>类名: overlay|@ohos.bundle.overlay.d.ts|
 |新增|NA|模块名: ohos.bundle.overlay<br>类名: overlay<br>方法 or 属性: function setOverlayEnabled(moduleName: string, isEnabled: boolean, callback: AsyncCallback\<void>): void;|@ohos.bundle.overlay.d.ts|
 |新增|NA|模块名: ohos.bundle.overlay<br>类名: overlay<br>方法 or 属性: function setOverlayEnabled(moduleName: string, isEnabled: boolean): Promise\<void>;|@ohos.bundle.overlay.d.ts|

@@ -125,47 +125,26 @@
 |新增|NA|类名：wifiManager<br>方法or属性：function deletePersistentP2pGroup(netId: number): void;|@ohos.wifiManager.d.ts|
 |新增|NA|类名：wifiManager<br>方法or属性：function setP2pDeviceName(devName: string): void;|@ohos.wifiManager.d.ts|
 |新增|NA|模块名: ohos.wifiManager<br>类名: WifiBandType|@ohos.wifiManager.d.ts|
-|新增|NA|类名：WifiBandType<br>方法or属性：|@ohos.wifiManager.d.ts|
 |新增|NA|模块名: ohos.wifiManager<br>类名: WifiBandType<br>方法 or 属性：WIFI_BAND_NONE|@ohos.wifiManager.d.ts|
-|新增|NA|类名：WifiBandType<br>方法or属性：WIFI_BAND_NONE|@ohos.wifiManager.d.ts|
 |新增|NA|模块名: ohos.wifiManager<br>类名: WifiBandType<br>方法 or 属性：WIFI_BAND_2G|@ohos.wifiManager.d.ts|
-|新增|NA|类名：WifiBandType<br>方法or属性：WIFI_BAND_2G|@ohos.wifiManager.d.ts|
 |新增|NA|模块名: ohos.wifiManager<br>类名: WifiBandType<br>方法 or 属性：WIFI_BAND_5G|@ohos.wifiManager.d.ts|
-|新增|NA|类名：WifiBandType<br>方法or属性：WIFI_BAND_5G|@ohos.wifiManager.d.ts|
 |新增|NA|模块名: ohos.wifiManager<br>类名: WifiBandType<br>方法 or 属性：WIFI_BAND_6G|@ohos.wifiManager.d.ts|
-|新增|NA|类名：WifiBandType<br>方法or属性：WIFI_BAND_6G|@ohos.wifiManager.d.ts|
 |新增|NA|模块名: ohos.wifiManager<br>类名: WifiBandType<br>方法 or 属性：WIFI_BAND_60G|@ohos.wifiManager.d.ts|
-|新增|NA|类名：WifiBandType<br>方法or属性：WIFI_BAND_60G|@ohos.wifiManager.d.ts|
 |新增|NA|模块名: ohos.wifiManager<br>类名: WifiStandard|@ohos.wifiManager.d.ts|
-|新增|NA|类名：WifiStandard<br>方法or属性：|@ohos.wifiManager.d.ts|
 |新增|NA|模块名: ohos.wifiManager<br>类名: WifiStandard<br>方法 or 属性：WIFI_STANDARD_UNDEFINED|@ohos.wifiManager.d.ts|
-|新增|NA|类名：WifiStandard<br>方法or属性：WIFI_STANDARD_UNDEFINED|@ohos.wifiManager.d.ts|
 |新增|NA|模块名: ohos.wifiManager<br>类名: WifiStandard<br>方法 or 属性：WIFI_STANDARD_11A|@ohos.wifiManager.d.ts|
-|新增|NA|类名：WifiStandard<br>方法or属性：WIFI_STANDARD_11A|@ohos.wifiManager.d.ts|
 |新增|NA|模块名: ohos.wifiManager<br>类名: WifiStandard<br>方法 or 属性：WIFI_STANDARD_11B|@ohos.wifiManager.d.ts|
-|新增|NA|类名：WifiStandard<br>方法or属性：WIFI_STANDARD_11B|@ohos.wifiManager.d.ts|
 |新增|NA|模块名: ohos.wifiManager<br>类名: WifiStandard<br>方法 or 属性：WIFI_STANDARD_11G|@ohos.wifiManager.d.ts|
-|新增|NA|类名：WifiStandard<br>方法or属性：WIFI_STANDARD_11G|@ohos.wifiManager.d.ts|
 |新增|NA|模块名: ohos.wifiManager<br>类名: WifiStandard<br>方法 or 属性：WIFI_STANDARD_11N|@ohos.wifiManager.d.ts|
-|新增|NA|类名：WifiStandard<br>方法or属性：WIFI_STANDARD_11N|@ohos.wifiManager.d.ts|
 |新增|NA|模块名: ohos.wifiManager<br>类名: WifiStandard<br>方法 or 属性：WIFI_STANDARD_11AC|@ohos.wifiManager.d.ts|
-|新增|NA|类名：WifiStandard<br>方法or属性：WIFI_STANDARD_11AC|@ohos.wifiManager.d.ts|
 |新增|NA|模块名: ohos.wifiManager<br>类名: WifiStandard<br>方法 or 属性：WIFI_STANDARD_11AX|@ohos.wifiManager.d.ts|
-|新增|NA|类名：WifiStandard<br>方法or属性：WIFI_STANDARD_11AX|@ohos.wifiManager.d.ts|
 |新增|NA|模块名: ohos.wifiManager<br>类名: WifiStandard<br>方法 or 属性：WIFI_STANDARD_11AD|@ohos.wifiManager.d.ts|
-|新增|NA|类名：WifiStandard<br>方法or属性：WIFI_STANDARD_11AD|@ohos.wifiManager.d.ts|
 |新增|NA|模块名: ohos.wifiManager<br>类名: WifiLinkedInfo<br>方法 or 属性：rxLinkSpeed: number;|@ohos.wifiManager.d.ts|
-|新增|NA|类名：WifiLinkedInfo<br>方法or属性：rxLinkSpeed: number;|@ohos.wifiManager.d.ts|
 |新增|NA|模块名: ohos.wifiManager<br>类名: WifiLinkedInfo<br>方法 or 属性：maxSupportedTxLinkSpeed: number;|@ohos.wifiManager.d.ts|
-|新增|NA|类名：WifiLinkedInfo<br>方法or属性：maxSupportedTxLinkSpeed: number;|@ohos.wifiManager.d.ts|
 |新增|NA|模块名: ohos.wifiManager<br>类名: WifiLinkedInfo<br>方法 or 属性：maxSupportedRxLinkSpeed: number;|@ohos.wifiManager.d.ts|
-|新增|NA|类名：WifiLinkedInfo<br>方法or属性：maxSupportedRxLinkSpeed: number;|@ohos.wifiManager.d.ts|
 |新增|NA|模块名: ohos.wifiManager<br>类名: WifiLinkedInfo<br>方法 or 属性：channelWidth: WifiChannelWidth;|@ohos.wifiManager.d.ts|
-|新增|NA|类名：WifiLinkedInfo<br>方法or属性：channelWidth: WifiChannelWidth;|@ohos.wifiManager.d.ts|
 |新增|NA|模块名: ohos.wifiManager<br>类名: WifiLinkedInfo<br>方法 or 属性：wifiStandard: WifiStandard;|@ohos.wifiManager.d.ts|
-|新增|NA|类名：WifiLinkedInfo<br>方法or属性：wifiStandard: WifiStandard;|@ohos.wifiManager.d.ts|
 |新增|NA|模块名: ohos.wifiManager<br>类名: HotspotConfig<br>方法 or 属性：channel: number;|@ohos.wifiManager.d.ts|
-|新增|NA|类名：HotspotConfig<br>方法or属性：channel: number;|@ohos.wifiManager.d.ts|
 |删除|模块名：ohos.wifiManager<br>类名:wifiManager<br>方法 or 属性:function getScanResults(): Promise\<Array\<WifiScanInfo>>;|NA|@ohos.wifiManager.d.ts|
 |删除|模块名：ohos.wifiManager<br>类名:wifiManager<br>方法 or 属性:function getScanResults(callback: AsyncCallback\<Array\<WifiScanInfo>>): void;|NA|@ohos.wifiManager.d.ts|
 |删除|模块名：ohos.wifiManager<br>类名:wifiManager<br>方法 or 属性:function getScanResultsSync(): Array\<WifiScanInfo>;|NA|@ohos.wifiManager.d.ts|

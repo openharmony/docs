@@ -9,19 +9,12 @@
 |新增|NA|模块名: ohos.effectKit<br>类名: ColorPicker<br>方法 or 属性：isBlackOrWhiteOrGrayColor(color: number): boolean;|@ohos.effectKit.d.ts|
 |新增|NA|类名：ColorPicker<br>方法or属性：isBlackOrWhiteOrGrayColor(color: number): boolean;|@ohos.effectKit.d.ts|
 |新增|NA|模块名: ohos.multimedia.audio<br>类名: AudioVolumeType<br>方法 or 属性：ALARM = 4|@ohos.multimedia.audio.d.ts|
-|新增|NA|类名：AudioVolumeType<br>方法or属性：ALARM = 4|@ohos.multimedia.audio.d.ts|
 |新增|NA|模块名: ohos.multimedia.audio<br>类名: AudioVolumeType<br>方法 or 属性：ACCESSIBILITY = 5|@ohos.multimedia.audio.d.ts|
-|新增|NA|类名：AudioVolumeType<br>方法or属性：ACCESSIBILITY = 5|@ohos.multimedia.audio.d.ts|
 |新增|NA|模块名: ohos.multimedia.audio<br>类名: AudioVolumeType<br>方法 or 属性：ULTRASONIC = 10|@ohos.multimedia.audio.d.ts|
-|新增|NA|类名：AudioVolumeType<br>方法or属性：ULTRASONIC = 10|@ohos.multimedia.audio.d.ts|
 |新增|NA|模块名: ohos.multimedia.audio<br>类名: ContentType<br>方法 or 属性：CONTENT_TYPE_ULTRASONIC = 9|@ohos.multimedia.audio.d.ts|
-|新增|NA|类名：ContentType<br>方法or属性：CONTENT_TYPE_ULTRASONIC = 9|@ohos.multimedia.audio.d.ts|
 |新增|NA|模块名: ohos.multimedia.audio<br>类名: StreamUsage<br>方法 or 属性：STREAM_USAGE_ALARM = 4|@ohos.multimedia.audio.d.ts|
-|新增|NA|类名：StreamUsage<br>方法or属性：STREAM_USAGE_ALARM = 4|@ohos.multimedia.audio.d.ts|
 |新增|NA|模块名: ohos.multimedia.audio<br>类名: StreamUsage<br>方法 or 属性：STREAM_USAGE_ACCESSIBILITY = 8|@ohos.multimedia.audio.d.ts|
-|新增|NA|类名：StreamUsage<br>方法or属性：STREAM_USAGE_ACCESSIBILITY = 8|@ohos.multimedia.audio.d.ts|
 |新增|NA|模块名: ohos.multimedia.audio<br>类名: StreamUsage<br>方法 or 属性：STREAM_USAGE_SYSTEM = 9|@ohos.multimedia.audio.d.ts|
-|新增|NA|类名：StreamUsage<br>方法or属性：STREAM_USAGE_SYSTEM = 9|@ohos.multimedia.audio.d.ts|
 |新增|NA|类名：AudioRendererFilter<br>方法or属性：uid?: number;|@ohos.multimedia.audio.d.ts|
 |新增|NA|模块名: ohos.multimedia.audio<br>类名: AudioRoutingManager<br>方法 or 属性：getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: AsyncCallback\<AudioDeviceDescriptors>): void;|@ohos.multimedia.audio.d.ts|
 |新增|NA|类名：AudioRoutingManager<br>方法or属性：getPreferOutputDeviceForRendererInfo(rendererInfo: AudioRendererInfo, callback: AsyncCallback\<AudioDeviceDescriptors>): void;|@ohos.multimedia.audio.d.ts|
@@ -50,29 +43,17 @@
 |新增|NA|类名：AVSession<br>方法or属性：on(type: 'skipToQueueItem', callback: (itemId: number) => void): void;|@ohos.multimedia.avsession.d.ts|
 |新增|NA|类名：AVSession<br>方法or属性：off(type: 'skipToQueueItem', callback?: (itemId: number) => void): void;|@ohos.multimedia.avsession.d.ts|
 |新增|NA|模块名: ohos.multimedia.avsession<br>类名: AVMediaDescription|@ohos.multimedia.avsession.d.ts|
-|新增|NA|类名：AVMediaDescription<br>方法or属性：|@ohos.multimedia.avsession.d.ts|
 |新增|NA|模块名: ohos.multimedia.avsession<br>类名: AVMediaDescription<br>方法 or 属性：mediaId: string;|@ohos.multimedia.avsession.d.ts|
-|新增|NA|类名：AVMediaDescription<br>方法or属性：mediaId: string;|@ohos.multimedia.avsession.d.ts|
 |新增|NA|模块名: ohos.multimedia.avsession<br>类名: AVMediaDescription<br>方法 or 属性：title?: string;|@ohos.multimedia.avsession.d.ts|
-|新增|NA|类名：AVMediaDescription<br>方法or属性：title?: string;|@ohos.multimedia.avsession.d.ts|
 |新增|NA|模块名: ohos.multimedia.avsession<br>类名: AVMediaDescription<br>方法 or 属性：subtitle?: string;|@ohos.multimedia.avsession.d.ts|
-|新增|NA|类名：AVMediaDescription<br>方法or属性：subtitle?: string;|@ohos.multimedia.avsession.d.ts|
 |新增|NA|模块名: ohos.multimedia.avsession<br>类名: AVMediaDescription<br>方法 or 属性：description?: string;|@ohos.multimedia.avsession.d.ts|
-|新增|NA|类名：AVMediaDescription<br>方法or属性：description?: string;|@ohos.multimedia.avsession.d.ts|
 |新增|NA|模块名: ohos.multimedia.avsession<br>类名: AVMediaDescription<br>方法 or 属性：icon?: image.PixelMap \| string;|@ohos.multimedia.avsession.d.ts|
-|新增|NA|类名：AVMediaDescription<br>方法or属性：icon?: image.PixelMap \| string;|@ohos.multimedia.avsession.d.ts|
 |新增|NA|模块名: ohos.multimedia.avsession<br>类名: AVMediaDescription<br>方法 or 属性：iconUri?: string;|@ohos.multimedia.avsession.d.ts|
-|新增|NA|类名：AVMediaDescription<br>方法or属性：iconUri?: string;|@ohos.multimedia.avsession.d.ts|
 |新增|NA|模块名: ohos.multimedia.avsession<br>类名: AVMediaDescription<br>方法 or 属性：extras?: { [key: string]: Object };|@ohos.multimedia.avsession.d.ts|
-|新增|NA|类名：AVMediaDescription<br>方法or属性：extras?: { [key: string]: Object };|@ohos.multimedia.avsession.d.ts|
 |新增|NA|模块名: ohos.multimedia.avsession<br>类名: AVMediaDescription<br>方法 or 属性：mediaUri?: string;|@ohos.multimedia.avsession.d.ts|
-|新增|NA|类名：AVMediaDescription<br>方法or属性：mediaUri?: string;|@ohos.multimedia.avsession.d.ts|
 |新增|NA|模块名: ohos.multimedia.avsession<br>类名: AVQueueItem|@ohos.multimedia.avsession.d.ts|
-|新增|NA|类名：AVQueueItem<br>方法or属性：|@ohos.multimedia.avsession.d.ts|
 |新增|NA|模块名: ohos.multimedia.avsession<br>类名: AVQueueItem<br>方法 or 属性：itemId: number;|@ohos.multimedia.avsession.d.ts|
-|新增|NA|类名：AVQueueItem<br>方法or属性：itemId: number;|@ohos.multimedia.avsession.d.ts|
 |新增|NA|模块名: ohos.multimedia.avsession<br>类名: AVQueueItem<br>方法 or 属性：description?: AVMediaDescription;|@ohos.multimedia.avsession.d.ts|
-|新增|NA|类名：AVQueueItem<br>方法or属性：description?: AVMediaDescription;|@ohos.multimedia.avsession.d.ts|
 |新增|NA|类名：AVPlaybackState<br>方法or属性：activeItemId?: number;|@ohos.multimedia.avsession.d.ts|
 |新增|NA|类名：AVPlaybackState<br>方法or属性：extras?: {[key: string]: Object};|@ohos.multimedia.avsession.d.ts|
 |新增|NA|类名：AVSessionController<br>方法or属性：getAVQueueTitle(callback: AsyncCallback\<string>): void;|@ohos.multimedia.avsession.d.ts|
@@ -116,11 +97,8 @@
 |新增|NA|类名：AVPlayer<br>方法or属性：dataSrc?: AVDataSrcDescriptor;|@ohos.multimedia.media.d.ts|
 |新增|NA|类名：AVPlayer<br>方法or属性：audioRendererInfo?: audio.AudioRendererInfo;|@ohos.multimedia.media.d.ts|
 |新增|NA|模块名: ohos.multimedia.media<br>类名: AVDataSrcDescriptor|@ohos.multimedia.media.d.ts|
-|新增|NA|类名：AVDataSrcDescriptor<br>方法or属性：|@ohos.multimedia.media.d.ts|
 |新增|NA|模块名: ohos.multimedia.media<br>类名: AVDataSrcDescriptor<br>方法 or 属性：fileSize: number;|@ohos.multimedia.media.d.ts|
-|新增|NA|类名：AVDataSrcDescriptor<br>方法or属性：fileSize: number;|@ohos.multimedia.media.d.ts|
 |新增|NA|模块名: ohos.multimedia.media<br>类名: AVDataSrcDescriptor<br>方法 or 属性：callback: (buffer: ArrayBuffer, length: number, pos?: number) => number;|@ohos.multimedia.media.d.ts|
-|新增|NA|类名：AVDataSrcDescriptor<br>方法or属性：callback: (buffer: ArrayBuffer, length: number, pos?: number) => number;|@ohos.multimedia.media.d.ts|
 |新增|NA|模块名: ohos.multimedia.systemSoundManager<br>类名: systemSoundManager|@ohos.multimedia.systemSoundManager.d.ts|
 |新增|NA|模块名: ohos.multimedia.systemSoundManager<br>类名: RingtoneType|@ohos.multimedia.systemSoundManager.d.ts|
 |新增|NA|模块名: ohos.multimedia.systemSoundManager<br>类名: RingtoneType<br>方法 or 属性: RINGTONE_TYPE_DEFAULT = 0|@ohos.multimedia.systemSoundManager.d.ts|

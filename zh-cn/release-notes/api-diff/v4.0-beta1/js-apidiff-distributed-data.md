@@ -25,41 +25,23 @@
 |新增|NA|模块名: ohos.data.dataShare<br>类名: TemplateId<br>方法 or 属性：bundleNameOfOwner: string;|@ohos.data.dataShare.d.ts|
 |新增|NA|类名：TemplateId<br>方法or属性：bundleNameOfOwner: string;|@ohos.data.dataShare.d.ts|
 |新增|NA|模块名: ohos.data.dataShare<br>类名: PublishedItem|@ohos.data.dataShare.d.ts|
-|新增|NA|类名：PublishedItem<br>方法or属性：|@ohos.data.dataShare.d.ts|
 |新增|NA|模块名: ohos.data.dataShare<br>类名: PublishedItem<br>方法 or 属性：key: string;|@ohos.data.dataShare.d.ts|
-|新增|NA|类名：PublishedItem<br>方法or属性：key: string;|@ohos.data.dataShare.d.ts|
 |新增|NA|模块名: ohos.data.dataShare<br>类名: PublishedItem<br>方法 or 属性：data: string \| Ashmem;|@ohos.data.dataShare.d.ts|
-|新增|NA|类名：PublishedItem<br>方法or属性：data: string \| Ashmem;|@ohos.data.dataShare.d.ts|
 |新增|NA|模块名: ohos.data.dataShare<br>类名: PublishedItem<br>方法 or 属性：subscriberId: string;|@ohos.data.dataShare.d.ts|
-|新增|NA|类名：PublishedItem<br>方法or属性：subscriberId: string;|@ohos.data.dataShare.d.ts|
 |新增|NA|模块名: ohos.data.dataShare<br>类名: RdbDataChangeNode|@ohos.data.dataShare.d.ts|
-|新增|NA|类名：RdbDataChangeNode<br>方法or属性：|@ohos.data.dataShare.d.ts|
 |新增|NA|模块名: ohos.data.dataShare<br>类名: RdbDataChangeNode<br>方法 or 属性：uri: string;|@ohos.data.dataShare.d.ts|
-|新增|NA|类名：RdbDataChangeNode<br>方法or属性：uri: string;|@ohos.data.dataShare.d.ts|
 |新增|NA|模块名: ohos.data.dataShare<br>类名: RdbDataChangeNode<br>方法 or 属性：templateId: TemplateId;|@ohos.data.dataShare.d.ts|
-|新增|NA|类名：RdbDataChangeNode<br>方法or属性：templateId: TemplateId;|@ohos.data.dataShare.d.ts|
 |新增|NA|模块名: ohos.data.dataShare<br>类名: RdbDataChangeNode<br>方法 or 属性：data: Array\<string>;|@ohos.data.dataShare.d.ts|
-|新增|NA|类名：RdbDataChangeNode<br>方法or属性：data: Array\<string>;|@ohos.data.dataShare.d.ts|
 |新增|NA|模块名: ohos.data.dataShare<br>类名: PublishedDataChangeNode|@ohos.data.dataShare.d.ts|
-|新增|NA|类名：PublishedDataChangeNode<br>方法or属性：|@ohos.data.dataShare.d.ts|
 |新增|NA|模块名: ohos.data.dataShare<br>类名: PublishedDataChangeNode<br>方法 or 属性：bundleName: string;|@ohos.data.dataShare.d.ts|
-|新增|NA|类名：PublishedDataChangeNode<br>方法or属性：bundleName: string;|@ohos.data.dataShare.d.ts|
 |新增|NA|模块名: ohos.data.dataShare<br>类名: PublishedDataChangeNode<br>方法 or 属性：data: Array\<PublishedItem>;|@ohos.data.dataShare.d.ts|
-|新增|NA|类名：PublishedDataChangeNode<br>方法or属性：data: Array\<PublishedItem>;|@ohos.data.dataShare.d.ts|
 |新增|NA|模块名: ohos.data.dataShare<br>类名: Template|@ohos.data.dataShare.d.ts|
-|新增|NA|类名：Template<br>方法or属性：|@ohos.data.dataShare.d.ts|
 |新增|NA|模块名: ohos.data.dataShare<br>类名: Template<br>方法 or 属性：predicates: { [key: string]: string };|@ohos.data.dataShare.d.ts|
-|新增|NA|类名：Template<br>方法or属性：predicates: { [key: string]: string };|@ohos.data.dataShare.d.ts|
 |新增|NA|模块名: ohos.data.dataShare<br>类名: Template<br>方法 or 属性：scheduler: string;|@ohos.data.dataShare.d.ts|
-|新增|NA|类名：Template<br>方法or属性：scheduler: string;|@ohos.data.dataShare.d.ts|
 |新增|NA|模块名: ohos.data.dataShare<br>类名: OperationResult|@ohos.data.dataShare.d.ts|
-|新增|NA|类名：OperationResult<br>方法or属性：|@ohos.data.dataShare.d.ts|
 |新增|NA|模块名: ohos.data.dataShare<br>类名: OperationResult<br>方法 or 属性：key: string;|@ohos.data.dataShare.d.ts|
-|新增|NA|类名：OperationResult<br>方法or属性：key: string;|@ohos.data.dataShare.d.ts|
 |新增|NA|模块名: ohos.data.dataShare<br>类名: OperationResult<br>方法 or 属性：result: number;|@ohos.data.dataShare.d.ts|
-|新增|NA|类名：OperationResult<br>方法or属性：result: number;|@ohos.data.dataShare.d.ts|
 |新增|NA|类名：DataShareHelper<br>方法or属性：addTemplate(uri: string, subscriberId: string, template: Template): void;|@ohos.data.dataShare.d.ts|
-|新增|NA|类名：DataShareHelper<br>方法or属性：delTemplate(uri: string, subscriberId: string): void;|@ohos.data.dataShare.d.ts|
 |新增|NA|类名：DataShareHelper<br>方法or属性：on(<br>      type: 'rdbDataChange',<br>      uris: Array\<string>,<br>      templateId: TemplateId,<br>      callback: AsyncCallback\<RdbDataChangeNode><br>    ): Array\<OperationResult>;|@ohos.data.dataShare.d.ts|
 |新增|NA|类名：DataShareHelper<br>方法or属性：off(<br>      type: 'rdbDataChange',<br>      uris: Array\<string>,<br>      templateId: TemplateId,<br>      callback?: AsyncCallback\<RdbDataChangeNode><br>    ): Array\<OperationResult>;|@ohos.data.dataShare.d.ts|
 |新增|NA|类名：DataShareHelper<br>方法or属性：on(<br>      type: 'publishedDataChange',<br>      uris: Array\<string>,<br>      subscriberId: string,<br>      callback: AsyncCallback\<PublishedDataChangeNode><br>    ): Array\<OperationResult>;|@ohos.data.dataShare.d.ts|
@@ -74,19 +56,12 @@
 |新增|NA|类名：ValueType<br>方法or属性：type ValueType = null \| number \| string \| boolean \| Uint8Array;|@ohos.data.relationalStore.d.ts|
 |新增|NA|类名：SubscribeType<br>方法or属性：SUBSCRIBE_TYPE_CLOUD|@ohos.data.relationalStore.d.ts|
 |新增|NA|模块名: ohos.data.relationalStore<br>类名: ConflictResolution|@ohos.data.relationalStore.d.ts|
-|新增|NA|类名：ConflictResolution<br>方法or属性：|@ohos.data.relationalStore.d.ts|
 |新增|NA|模块名: ohos.data.relationalStore<br>类名: ConflictResolution<br>方法 or 属性：ON_CONFLICT_NONE = 0|@ohos.data.relationalStore.d.ts|
-|新增|NA|类名：ConflictResolution<br>方法or属性：ON_CONFLICT_NONE = 0|@ohos.data.relationalStore.d.ts|
 |新增|NA|模块名: ohos.data.relationalStore<br>类名: ConflictResolution<br>方法 or 属性：ON_CONFLICT_ROLLBACK = 1|@ohos.data.relationalStore.d.ts|
-|新增|NA|类名：ConflictResolution<br>方法or属性：ON_CONFLICT_ROLLBACK = 1|@ohos.data.relationalStore.d.ts|
 |新增|NA|模块名: ohos.data.relationalStore<br>类名: ConflictResolution<br>方法 or 属性：ON_CONFLICT_ABORT = 2|@ohos.data.relationalStore.d.ts|
-|新增|NA|类名：ConflictResolution<br>方法or属性：ON_CONFLICT_ABORT = 2|@ohos.data.relationalStore.d.ts|
 |新增|NA|模块名: ohos.data.relationalStore<br>类名: ConflictResolution<br>方法 or 属性：ON_CONFLICT_FAIL = 3|@ohos.data.relationalStore.d.ts|
-|新增|NA|类名：ConflictResolution<br>方法or属性：ON_CONFLICT_FAIL = 3|@ohos.data.relationalStore.d.ts|
 |新增|NA|模块名: ohos.data.relationalStore<br>类名: ConflictResolution<br>方法 or 属性：ON_CONFLICT_IGNORE = 4|@ohos.data.relationalStore.d.ts|
-|新增|NA|类名：ConflictResolution<br>方法or属性：ON_CONFLICT_IGNORE = 4|@ohos.data.relationalStore.d.ts|
 |新增|NA|模块名: ohos.data.relationalStore<br>类名: ConflictResolution<br>方法 or 属性：ON_CONFLICT_REPLACE = 5|@ohos.data.relationalStore.d.ts|
-|新增|NA|类名：ConflictResolution<br>方法or属性：ON_CONFLICT_REPLACE = 5|@ohos.data.relationalStore.d.ts|
 |新增|NA|类名：RdbStore<br>方法or属性：version: number;|@ohos.data.relationalStore.d.ts|
 |新增|NA|模块名: ohos.data.UDMF<br>类名: UDMF|@ohos.data.UDMF.d.ts|
 |新增|NA|模块名: ohos.data.UDMF<br>类名: UnifiedDataType|@ohos.data.UDMF.d.ts|
