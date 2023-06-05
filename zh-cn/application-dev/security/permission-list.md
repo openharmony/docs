@@ -1958,3 +1958,13 @@
 
 **ACL使能**：FALSE
 
+## ohos.permission.UPLOAD_SESSION_MANAGER
+
+允许应用管理上传任务会话。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
