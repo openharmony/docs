@@ -1947,3 +1947,13 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+## ohos.permission.PREPARE_APP_TERMINATE
+
+允许应用执行预关闭动作。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
