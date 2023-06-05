@@ -145,7 +145,7 @@ sum.cpp源码
 |--------|------|------|
 |OHOS_STL|c++_shared/c++_static|默认是c++_shared，用来控制是动态链接libc++_shared.so还是静态链接libc++_static.a，对于同一个应用中的全部native库需要采用同一种链接方式，这个是由c++运行时中一些全局状态导致的|
 |OHOS_ARCH|armeabi-v7a/arm64-v8a/x86_64|设置native需要支持的ABI，当前支持三种ABI|
-|OHOS_PLATFORM|OHOS|平台选择，当前只支持OHOS|
+|OHOS_PLATFORM|OHOS|平台选择，当前只支持OpenHarmony平台|
 |CMAKE_TOOLCHAIN_FILE|工具链文件|就是ohos.toolchain.cmake文件，里面根据上面参数指定了对应平台的交叉编译参数|
 
 ### 3.4、命令行构建
