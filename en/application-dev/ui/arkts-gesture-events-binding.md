@@ -1,7 +1,7 @@
 # Gesture Binding
 
 
-Different gesture events are bound to each component and the event response mode is designed. When gesture recognition is successful, the ArkUI framework notifies the component of the gesture recognition result through event callback.
+You can bind to each component different gesture events and design the logic for responding to these events. When a gesture is successfully recognized, the ArkUI framework notifies the component of the gesture recognition result through event callback.
 
 
 ## gesture (Common Gesture Binding Method)
@@ -11,9 +11,9 @@ Different gesture events are bound to each component and the event response mode
 .gesture(gesture: GestureType, mask?: GestureMask)
 ```
 
-Binds a gesture to the specified component. **gesture** is a general gesture binding method.
+**gesture** is a frequently used API for binding a gesture to a component.
 
-For example, the tap gesture TapGesture can be bound to the **\<Text>** component by using the **gesture** method.
+For example, you can use it to bind the tap gesture to the **\<Text>** component.
 
 
 ```ts
@@ -24,7 +24,7 @@ struct Index {
   build() {
     Column() {
       Text('Gesture').fontSize(28)
-        // Use the gesture method to bind the TapGesture.
+        // Use the gesture API to bind the tap gesture.
         .gesture(
           TapGesture()
             .onAction(() => {
@@ -45,11 +45,11 @@ struct Index {
 .priorityGesture(gesture: GestureType, mask?: GestureMask)
 ```
 
-Binds gestures that are preferentially recognized to a component.
+The **priorityGesture** API binds gestures that are preferentially recognized to a component.
 
-By default, when a parent component and a child component use gesture to bind gestures of the same type, the child component preferentially identifies gestures bound by using gesture. When the parent component uses priorityGesture to bind gestures of the same type as the child component, the parent component preferentially identifies gestures bound through priorityGesture.
+By default, the child component preferentially recognizes the gesture specified by **gesture**, and the parent component preferentially recognizes the gesture specified by **priorityGesture** (if set).
 
-For example, when the parent component Column and child component Text are bound to the TapGesture gesture at the same time, and the parent component is bound in the form of a priority gesture priorityGesture, the TapGesture bound to the parent component is preferentially responded.
+In the following example, the parent component **\<Column>** and child component **\<Text>** are both bound to the tap gesture. As the **\<Column>** is bound to the gesture through **priorityGesture**, the tap gesture recognized by the parent component is preferentially responded to.
 
 
 
@@ -69,7 +69,7 @@ struct Index {
     }
     .height(200)
     .width(250)
-    // When this parameter is set to priorityGesture, the TapGesture gesture event of the Text component is ignored when the text area is tapped, and the TapGesture gesture event of the parent component Column is preferentially responded.
+    // When the tap gesture is bound to the parent <Column> component through priorityGesture, the tap gesture event of the <Text> component is ignored when the text area is tapped, and the tap gesture event of the<Column> component is preferentially responded to.
     .priorityGesture(
       TapGesture()
         .onAction(() => {
@@ -87,9 +87,9 @@ struct Index {
 .parallelGesture(gesture: GestureType, mask?: GestureMask)
 ```
 
-Binds the same gesture that can be responded to at the same time to the parent and child components.
+The **parallelGesture** API binds to a component the gesture that can be triggered together with the child component gesture.
 
-By default, the gesture event does not bubble up. When a parent component and a child component are bound to a same gesture, the gesture events bound to the parent component and the child component compete with each other, and a gesture event of at most one component can be responded to. When the parent component is bound to parallel gesture parallelGesture, the same gesture events of the parent and child components can be triggered to implement a bubbling effect.
+By default, the gesture event does not bubble up. When a parent component and a child component are bound to a same gesture, the gesture events bound to the parent component and the child component compete with each other, and a gesture event of at most one component can be responded to. When **parallelGesture** is set, the same gesture events can be triggered for the parent and child components, thereby implementing a bubbling effect.
 
 
 
@@ -109,7 +109,7 @@ struct Index {
     }
     .height(200)
     .width(250)
-    // If this parameter is set to parallelGesture, the TapGesture gesture events of the parent component Column and child component Text are responded when the text area is clicked.
+    // When parallelGesture is set, the tap gestures on the <Column> component and on the child <Text> component are both recognized.
     .parallelGesture(
       TapGesture()
         .onAction(() => {
@@ -122,4 +122,4 @@ struct Index {
 
 >**NOTE**
 >
->When the parent component and the child component are bound to both the click gesture event and the double-click gesture event, both the parent component and the child component respond only to the click gesture event.
+>When the parent component and the child component are bound to both the click gesture and the double-click gesture, both the parent component and the child component respond only to the click gesture.

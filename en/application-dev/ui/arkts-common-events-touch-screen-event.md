@@ -1,7 +1,7 @@
 # Touchscreen Event
 
 
-A touchscreen event refer to a callback event triggered when a finger or stylus is pressed, slides, or is lifted from a component. Touchscreen events include the [click event](#click-event), [drag event](#drag-event), and [touch event](#touch-event).
+Touchscreen events are events triggered when a finger or stylus is placed on, moved along, or lifted from a component. They can be classified as [click event](#click-event), [drag event](#drag-event), or [touch event](#touch-event).
 
 
 **Figure 1** Touchscreen event principles
@@ -12,19 +12,14 @@ A touchscreen event refer to a callback event triggered when a finger or stylus 
 
 ## Click Event
 
-A click event refers to a complete press and lift action performed by using a finger or a stylus. When a click event occurs, the following callback is triggered:
-
-
+A click event is triggered when a complete press and lift action performed by using a finger or a stylus. When a click event occurs, the following callback is triggered:
 
 ```ts
 onClick(event: (event?: ClickEvent) => void)
 ```
 
 
-The **event** parameter provides the coordinates of the click event relative to the window or component and the event source where the click occurs.
-
-
-  For example, the click event of a button is used to control the display and hiding of an image.
+The **event** parameter provides the coordinates of the click relative to the window or component as well as the event source where the click occurs, for example, a button, a click on which shows or hides an image.
 
 ```ts
 @Entry
@@ -42,7 +37,7 @@ struct IfElseTransition {
           } else {
             this.btnMsg = 'show';
           }
-          // Click the button to control the display and hiding of the image.
+          // Click the button to show or hide the image.
           this.flag = !this.flag;
         })
       if (this.flag) {
@@ -56,7 +51,7 @@ struct IfElseTransition {
 
 ## Drag Event
 
-A drag event is triggered when a user presses and holds a component (&gt;=500 ms) using a finger or stylus and drags the component to the drop target. The process of triggering a drag event is as follows:
+A drag event is triggered when a user long presses a component (&gt;=500 ms) using a finger or stylus and drags the component to the drop target. The following figure illustrates the process of triggering a drag event.
 
 
 ![en-us_image_0000001562820825](figures/en-us_image_0000001562820825.png)
@@ -70,11 +65,11 @@ The drag event provides the following [APIs](../reference/arkui-ts/ts-universal-
 
 | API                                    | Description                                      |
 | ---------------------------------------- | ---------------------------------------- |
-| onDragStart(event:&nbsp;(event?:&nbsp;DragEvent,&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;CustomBuilder&nbsp;\|&nbsp;DragItemInfo) | Triggered when dragging starts. Currently, only custom **pixelmap** objects and custom components are supported.          |
-| onDragEnter(event:&nbsp;(event?:&nbsp;DragEvent,&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | Triggered when the dragged item enters a valid drop target. **DragEvent** indicates the position where the drag occurs. **extraParmas** indicates the additional information about the drag event.|
-| onDragLeave(event:&nbsp;(event?:&nbsp;DragEvent,&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | Triggered when the dragged item leaves a valid drop target. **DragEvent** indicates the position where the drag occurs. **extraParmas** indicates the additional information about the drag event.|
-| onDragMove(event:&nbsp;(event?:&nbsp;DragEvent,&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | Triggered when the dragged item moves in a valid drop target. **DragEvent** indicates the position where the drag occurs. **extraParmas** indicates the additional information about the drag event.|
-| onDrop(event:&nbsp;(event?:&nbsp;DragEvent,&nbsp;extraParams?:&nbsp;string)&nbsp;=&gt;&nbsp;void) | Triggered when the dragged item is dropped on a valid drop target. **DragEvent** indicates the position where the drag occurs. **extraParmas** indicates the additional information about the drag event.|
+| onDragStart(event: (event?: DragEvent, extraParams?: string) =&gt; CustomBuilder \| DragItemInfo) | Triggered when dragging starts. Currently, only custom **pixelmap** objects and custom components are supported.          |
+| onDragEnter(event: (event?: DragEvent, extraParams?: string) =&gt; void) | Triggered when the dragged item enters a valid drop target.<br/>**DragEvent**: position where the drag occurs.<br>**extraParmas**: custom information about the drag event. |
+| onDragLeave(event: (event?: DragEvent, extraParams?: string) =&gt; void) | Triggered when the dragged item leaves a valid drop target.<br/>**DragEvent**: position where the drag occurs.<br>**extraParmas**: custom information about the drag event. |
+| onDragMove(event: (event?: DragEvent, extraParams?: string) =&gt; void) | Triggered when the dragged item moves in a valid drop target.<br/>**DragEvent**: position where the drag occurs.<br>**extraParmas**: custom information about the drag event. |
+| onDrop(event: (event?: DragEvent, extraParams?: string) =&gt; void) | Triggered when the dragged item is dropped on a valid drop target.<br/>**DragEvent**: position where the drag occurs.<br>**extraParmas**: custom information about the drag event. |
 
 
 The following is an example of dragging a component out of a window in cross-window dragging:
@@ -87,11 +82,7 @@ import image from '@ohos.multimedia.image';
 @Entry
 @Component
 struct Index {
-  @State text: string = ''
-  @State bool1: boolean = false
-  @State bool2: boolean = false
   @State visible: Visibility = Visibility.Visible
-  @State pixelMap: PixelMap = undefined
   private pixelMapReader = undefined
 
   aboutToAppear() {
@@ -115,7 +106,6 @@ struct Index {
     const promise = image.createPixelMap(color, opts);
     promise.then((data) => {
       console.info('create pixmap has info message: ' + JSON.stringify(data))
-      this.pixelMap = data;
       this.pixelMapReader = data;
     })
   }
@@ -151,8 +141,6 @@ struct Index {
         .visibility(this.visible)
         .onDragStart(() => {                    // Triggered when cross-window dragging starts.
           console.info('Text onDrag start')
-          this.bool1 = true
-          this.text = 'TextDrag'
           return { pixelMap: this.pixelMapReader, extraInfo: 'custom extra info.' }
         })
         .onDrop((event: DragEvent, extraParams: string) => {
@@ -247,20 +235,20 @@ struct Index {
 
 ## Touch Event
 
-When a finger or stylus touches a component, a touch event corresponding to the action is triggered, such as a press (Down), slide (Move), or lift (Up) event.
+A touch event is triggered when a finger or stylus is placed on, moved along, or lifted from a component.
 
 
 ```ts
 onTouch(event: (event?: TouchEvent) => void)
 ```
 
-- If **event.type** is **TouchType.Down**, the finger or stylus is pressed.
+- If **event.type** is **TouchType.Down**, the finger or stylus is placed on the component.
 
-- If** event.type** is **TouchType.Up**, the finger or stylus is lifted.
+- If **event.type** is **TouchType.Up**, the finger or stylus is lifted from the component.
 
-- If **event.type** is **TouchType.Move**, the finger or stylus is pressed and moved.
+- If **event.type** is **TouchType.Move**, the finger or stylus is moved along the component.
 
-The touch event may be triggered by multiple fingers at the same time. Information such as the location of the finger that triggers the event, unique identifier of the finger, finger information changed, and an input device source may be obtained by using the **event** parameter.
+The touch event supports single and multi-touch interactions. Information about the touch event can be obtained using the **event** parameter, such as the location of the finger that triggers the event, unique identifier of the finger, finger information changed, and the input device source.
 
 
 ```ts

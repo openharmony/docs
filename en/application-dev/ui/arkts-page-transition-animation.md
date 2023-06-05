@@ -1,10 +1,10 @@
 # Page Transition Animation
 
 
-During page redirection, one page disappears and the other page appears. In this case, you can configure the page transition parameters of each page to customize the page transition effect. [Page transition](../reference/arkui-ts/ts-page-transition-animation.md) effect is written in the **pageTransition** API. PageTransitionEnter and PageTransitionExit are used to specify the animation effect of page entry and exit.
+During page redirection, one page disappears and the other page appears. You can customize the [page transition effects](../reference/arkui-ts/ts-page-transition-animation.md) for these pages through the **pageTransition** API. Specifically, **PageTransitionEnter** defines the page entrance animation, while **PageTransitionExit** defines the page exit animation.
 
 
-PageTransitionEnter's interface is:
+API of **PageTransitionEnter**:
 
 
 
@@ -13,7 +13,7 @@ PageTransitionEnter({type?: RouteType,duration?: number,curve?: Curve | string,d
 ```
 
 
-The interface of PageTransitionExit is:
+API of **PageTransitionExit**:
 
 
 
@@ -22,24 +22,24 @@ PageTransitionExit({type?: RouteType,duration?: number,curve?: Curve | string,de
 ```
 
 
-Defines the PageTransitionEnter and PageTransitionExit components. The slide, translate, scale, and opacity attributes can be used to define different page transition effects. For PageTransitionEnter, these effects indicate the start value during entry. For PageTransitionExit, these effects indicate the end value during exit. This method is similar to that for configuring component transition. In addition, PageTransitionEnter provides the onEnter interface to call back the entry animation of a customized page, and PageTransitionExit provides the onExit interface to call back the exit animation of a customized page.
+Both **PageTransitionEnter** and **PageTransitionExit** contain the **slide**, **translate**, **scale**, and **opacity** attributes. For **PageTransitionEnter**, these attributes indicate the start values for page entrance. For **PageTransitionExit**, these attributes indicate the end values for page exit. In this sense, configuration of page transition is similar to that of component transition. **PageTransitionEnter** provides the **onEnter** callback, and **PageTransitionExit** provides the **onExit** callback.
 
 
-The type parameter in the preceding interface indicates the type of the route that takes effect, which may be confused by developers. One of the two pages must exit and the other must enter. If you switch from page A to page B through the router.pushUrl operation, page A exits and the exit animation is displayed. Page B enters and the entry animation is displayed. If the router.back operation is performed to return from page B to page A, page B exits and the exit animation is displayed. Page A enters and the entry animation is displayed. That is, PageTransitionEnter of a page may be an entry animation of a new page caused by a new page (push, stack), or an entry animation of an old page in a page stack caused by a page return (back, pop, stack). To distinguish the two types of entry animations, the type parameter is provided so that developers can define all types of page transition effects.
+In the preceding APIs, the **type** parameter indicates the route type used in page navigation. Each page transition involves exit of one page and entrance of the other. If you switch from page A to page B through the **router.pushUrl** operation, page A exits, with the exit animation applied; and page B enters, with the entrance animation applied. If you switch from page B back to page A through the **router.back** operation, page B exits, , with the exit animation applied; and page A enters, with the entrance animation applied. That is, **PageTransitionEnter** of a page may be an entrance animation of a new page (pushed to the stack) or of an existing page (popped from the stack). To distinguish these two types of entrance animations, the **type** parameter is provided.
 
 
-## Set type to RouteType.None.
+## Setting type to RouteType.None
 
-If the value of type is RouteType.None, the push and pop operations on the page stack are valid. The default value of type is RouteType.None.
+When **type** is set to **RouteType.None** (default value), the page transition animations work for both the push and pop operations in the page stack.
 
 
 ```ts
 // page A
 pageTransition() {
-  // Define the effect when the page is displayed. The page slides in from the left for 1200 ms. The effect takes effect no matter whether the push or pop operation is performed on the page stack.
+  // Configure the page entrance animation to sliding in from the left, with the duration of 1200 ms. The settings take effect no matter whether the push or pop operation is performed on the page stack.
   PageTransitionEnter({ type: RouteType.None, duration: 1200 })
     .slide(SlideEffect.Left)
-  // Define the effect when the page exits. The page slides out to the left for 1000 ms. The effect takes effect no matter whether the push or pop operation is performed on the page stack.
+  // Configure the page exit animation to sliding out from the left, with the duration of 1000 ms. The settings take effect no matter whether the push or pop operation is performed on the page stack.
   PageTransitionExit({ type: RouteType.None, duration: 1000 })
     .slide(SlideEffect.Left)
 }
@@ -50,48 +50,48 @@ pageTransition() {
 ```ts
 // page B
 pageTransition() {
-  // Define the effect when the page is displayed. The page slides in from the right for 1000 ms. The effect takes effect no matter whether the push or pop operation is performed on the page stack.
+  // Configure the page entrance animation to sliding in from the right, with the duration of 1000 ms. The settings take effect no matter whether the push or pop operation is performed on the page stack.
   PageTransitionEnter({ type: RouteType.None, duration: 1000 })
     .slide(SlideEffect.Right)
-  // Define the effect when the page exits. The page slides out to the right for 1200 ms. The effect takes effect no matter whether the push or pop operation is performed on the page stack.
+  // Configure the page exit animation to sliding out from the right, with the duration of 1200 ms. The settings take effect no matter whether the push or pop operation is performed on the page stack.
   PageTransitionExit({ type: RouteType.None, duration: 1200 })
     .slide(SlideEffect.Right)
 }
 ```
 
 
-Assume that the page stack is in the standard instance mode, that is, duplicate pages are allowed in the page stack. There may be four scenarios. The following table lists the page transition effects.
+Assume that the page stack is in the multi-instance mode, that is, duplicate pages are allowed in the page stack. There may be four scenarios. The following table lists the page transition effects.
 
 
-| Route operations                        | Transition effect of page A                           | Transition effect of page B                           |
+| Route Operation                        | Page A Transition Effect                           | Page B Transition Effect                           |
 | ---------------------------- | ---------------------------------- | ---------------------------------- |
-| router.pushUrl. The new page B is displayed from page A.| Exit the page. The PageTransitionExit takes effect and slides to the left to display the screen. | The page is displayed. PageTransitionEnter takes effect and slides from the right to the screen.|
-| router.back: Return from page B to page A.      | The page is displayed, PageTransitionEnter takes effect, and you can slide from the left to the screen.| Exit the page. The PageTransitionExit takes effect and slides out of the screen to the right. |
-| router.pushUrl. The new page A is displayed from page B.| The page is displayed, PageTransitionEnter takes effect, and you can slide from the left to the screen.| Exit the page. The PageTransitionExit takes effect and slides out of the screen to the right. |
-| router.back: Return from page A to page B.      | Exit the page. The PageTransitionExit takes effect and slides to the left to display the screen. | The page is displayed. PageTransitionEnter takes effect and slides from the right to the screen.|
+| **router.pushUrl** – redirection from page A to new page B.| The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the left of the screen. | The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the right of the screen.|
+| **router.back** – redirection from page B back to page A.      | The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the left of the screen.| The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the right of the screen. |
+| **router.pushUrl** – redirection from page B to new page A.| The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the left of the screen.| The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the right of the screen. |
+| **router.back** – redirection from page A back to page B.      | The page exits. The animation defined by **PageTransitionExit** is applied. In the example, the page slides out from the left of the screen. | The page enters. The animation defined by **PageTransitionEnter** is applied. In the example, the page slides in from the right of the screen.|
 
 
-If you want the page accessed by pushUrl to always slide in from the right and the page exited by back to always slide out from the right, the third and fourth cases in the preceding table do not meet the requirements. In this case, you need to define the transition effects of the four pages.
+If you want the page accessed by **router.pushUrl** to always slide in from the right and the page exited by **router.back** to always slide out from the right, the third and fourth cases in the preceding table do not meet the requirements. In this case, you need to define four page transition effects.
 
 
-## Set type to RouteType.Push or RouteType.Pop.
+## Setting type to RouteType.Push or RouteType.Pop
 
-If type is set to RouteType.Push, this parameter is valid only for the push operation of the page stack. If type is set to RouteType.Pop, this parameter is valid only for the pop operation of the page stack.
+When **type** is set to **RouteType.Push**, the page transition animations work for only both the push operations in the page stack. When **type** is set to **RouteType.Pop**, the page transition animations work for only both the pop operations in the page stack.
 
 
 ```ts
 // page A
 pageTransition() {
-  // Define the effect when the page is entered. The page slides in from the right for 1200 ms. The effect takes effect only when the push operation is performed on the page stack.
+  // Configure the page entrance animation to sliding in from the right, with the duration of 1200 ms. The settings take effect only when the push operation is performed on the page stack.
   PageTransitionEnter({ type: RouteType.Push, duration: 1200 })
     .slide(SlideEffect.Right)
-  // Define the effect when the page is entered. The page slides in from the left for 1200 ms. The effect takes effect only when the pop operation is performed on the page stack.
+  // Configure the page entrance animation to sliding in from the left, with the duration of 1200 ms. The settings take effect only when the pop operation is performed on the page stack.
   PageTransitionEnter({ type: RouteType.Pop, duration: 1200 })
     .slide(SlideEffect.Left)
-  // Define the effect when the page exits. The page slides out to the left for 1000 ms. The effect takes effect only when the push operation is performed on the page stack.
+  // Configure the page exit animation to sliding out from the left, with the duration of 1000 ms. The settings take effect only when the push operation is performed on the page stack.
   PageTransitionExit({ type: RouteType.Push, duration: 1000 })
     .slide(SlideEffect.Left)
-  // Define the effect when the page exits. The page slides out to the right for 1000 ms. The effect takes effect only when the pop operation is performed on the page stack.
+  // Configure the page exit animation to sliding out from the right, with the duration of 1000 ms. The settings take effect only when the pop operation is performed on the page stack.
   PageTransitionExit({ type: RouteType.Pop, duration: 1000 })
     .slide(SlideEffect.Right)
 }
@@ -102,41 +102,41 @@ pageTransition() {
 ```ts
 // page B
 pageTransition() {
-  // Define the effect when the page is entered. The page slides in from the right for 1000 ms. The effect takes effect only when the push operation is performed on the page stack.
+  // Configure the page entrance animation to sliding in from the right, with the duration of 1000 ms. The settings take effect only when the push operation is performed on the page stack.
   PageTransitionEnter({ type: RouteType.Push, duration: 1000 })
     .slide(SlideEffect.Right)
-  //Define the effect when the page is entered. The page slides in from the left for 1000 ms. The effect takes effect only when the pop operation is performed on the page stack.
+  // Configure the page entrance animation to sliding in from the left, with the duration of 1000 ms. The settings take effect only when the pop operation is performed on the page stack.
   PageTransitionEnter({ type: RouteType.Pop, duration: 1000 })
     .slide(SlideEffect.Left)
-  // Define the effect when the page exits. The page slides out to the left for 1200 ms. The effect takes effect only when the push operation is performed on the page stack.
+  // Configure the page exit animation to sliding out from the left, with the duration of 1200 ms. The settings take effect only when the push operation is performed on the page stack.
   PageTransitionExit({ type: RouteType.Push, duration: 1200 })
     .slide(SlideEffect.Left)
-  // Define the effect when the page exits. The page slides out to the right for 1200 ms. The effect takes effect only when the pop operation is performed on the page stack.
+  // Configure the page exit animation to sliding out from the right, with the duration of 1200 ms. The settings take effect only when the pop operation is performed on the page stack.
   PageTransitionExit({ type: RouteType.Pop, duration: 1200 })
     .slide(SlideEffect.Right)
 }
 ```
 
 
-The preceding code completely defines all possible page transition styles. Assume that the page stack is in the standard instance mode, that is, duplicate pages are allowed in the page stack. There may be four scenarios. The following table lists the page transition effects.
+The preceding code defines page transition effects for all possibles scenarios. Assume that the page stack is in the multi-instance mode, that is, duplicate pages are allowed in the page stack. There may be four scenarios. The following table lists the page transition effects.
 
 
-| Route operations                        | Transition effect of page A                                 | Transition effect of page B                                 |
+| Route Operation                        | Page A Transition Effect                                 | Page B Transition Effect                                 |
 | ---------------------------- | ---------------------------------------- | ---------------------------------------- |
-| router.pushUrl. The new page B is displayed from page A.| The page exits. The transition style of PageTransitionExit whose type is RouteType.Push takes effect. The screen slides out to the left.| The page is displayed. The transition style of PageTransitionEnter whose type is RouteType.Push takes effect. The page slides from the right to the screen.|
-| router.back: Return from page B to page A.      | The page is displayed. The transition style of PageTransitionEnter whose type is RouteType.Pop takes effect. Slide from the left to the screen.| The page exits. The transition style of PageTransitionExit whose type is RouteType.Pop takes effect. The screen slides out to the right.|
-| router.pushUrl. The new page A is displayed from page B.| The page is displayed. The transition style of PageTransitionEnter whose type is RouteType.Push takes effect. The page slides from the right to the screen.| The page exits. The transition style of PageTransitionExit whose type is RouteType.Push takes effect. The screen slides out to the left.|
-| router.back: Return from page A to page B.      | The page exits. The transition style of PageTransitionExit whose type is RouteType.Pop takes effect. The screen slides out to the right.| The page is displayed. The transition style of PageTransitionEnter whose type is RouteType.Pop takes effect. Slide from the left to the screen.|
+| **router.pushUrl** – redirection from page A to new page B.| The page exits. The transition style of **PageTransitionExit** whose **type** is **RouteType.Push** takes effect. The page slides out from the left of the screen.| The page enters. The transition style of **PageTransitionEnter** whose **type** is **RouteType.Push** takes effect. The page slides in from the right of the screen.|
+| **router.back** – redirection from page B back to page A.      | The page enters. The transition style of **PageTransitionEnter** whose **type** is **RouteType.Pop** takes effect. The page slides in from the left of the screen.| The page exits. The transition style of **PageTransitionExit** whose **type** is **RouteType.Pop** takes effect. The page slides out from the right of the screen.|
+| **router.pushUrl** – redirection from page B to new page A.| The page enters. The transition style of **PageTransitionEnter** whose **type** is **RouteType.Push** takes effect. The page slides in from the right of the screen.| The page exits. The transition style of **PageTransitionExit** whose **type** is **RouteType.Push** takes effect. The page slides out from the left of the screen.|
+| **router.back** – redirection from page A back to page B.      | The page exits. The transition style of **PageTransitionExit** whose **type** is **RouteType.Pop** takes effect. The page slides out from the right of the screen.| The page enters. The transition style of **PageTransitionEnter** whose **type** is **RouteType.Pop** takes effect. The page slides in from the left of the screen.|
 
 
 >**NOTE**
 >
->    1. The transition style of each page can be independently configured by developers. However, the transition involves two pages. Developers need to consider the transition effect of the two pages, for example, the transition duration.
+>    1. The transition style of each page can be independently configured. However, as each transition involves two pages, take into account the smoothness between page transitions, for example, the transition duration.
 >
->    2. If no matching page transition style is defined, the page uses the default page transition style.
+>    2. If no page transition style is defined, a page uses the default page transition style.
 
 
-## Disable the transition of a page.
+## Disabling Page Transition
 
 
 ```ts
@@ -147,17 +147,17 @@ pageTransition() {
 ```
 
 
-You can set the page transition duration to 0 so that no page transition animation is displayed on the page.
+You can disable the transition animation of a page by setting the page transition duration to 0.
 
 
-## Example Scenario
+## Example
 
-The following describes an example of a page transition animation that defines all four page transition styles.
+In the following example, page transition animations are defined for all four page transition scenarios.
 
 
 
 ```ts
-// page A
+// PageTransitionSrc1
 import router from '@ohos.router';
 @Entry
 @Component
@@ -168,18 +168,18 @@ struct PageTransitionSrc1 {
         .width('90%')
         .height('80%')
         .objectFit(ImageFit.Fill)
-        .syncLoad(true) //Load the image synchronously so that the image has been loaded when the page is displayed.
+        .syncLoad(true) // Load the image synchronously so that the image has been loaded when the page is displayed.
         .margin(30)
 
       Row({ space: 10 }) {
         Button("pushUrl")
           .onClick(() => {
-            //Route to the next page and perform the push operation.
+            // Navigate to the next page, which is a push operation.
             router.pushUrl({ url: 'pages/myTest/pageTransitionDst1' });
           })
         Button("back")
           .onClick(() => {
-            //Return to the previous page, which is equivalent to the pop operation.
+            // Return to the previous page, which is equivalent to the pop operation.
             router.back();
           })
       }.justifyContent(FlexAlign.Center)
@@ -189,16 +189,16 @@ struct PageTransitionSrc1 {
   }
 
   pageTransition() {
-    //Define the effect when the page is entered. The page slides in from the right for 1000 ms. The effect takes effect only when the push operation is performed on the page stack.
+    // Configure the page entrance animation to sliding in from the right, with the duration of 1000 ms. The settings take effect only when the push operation is performed on the page stack.
     PageTransitionEnter({ type: RouteType.Push, duration: 1000 })
       .slide(SlideEffect.Right)
-    //Define the effect when the page is entered. The page slides in from the left for 1000 ms. The effect takes effect only when the pop operation is performed on the page stack.
+    // Configure the page entrance animation to sliding in from the left, with the duration of 1000 ms. The settings take effect only when the pop operation is performed on the page stack.
     PageTransitionEnter({ type: RouteType.Pop, duration: 1000 })
       .slide(SlideEffect.Left)
-    //Define the effect when the page exits. The page slides out to the left for 1000 ms. The effect takes effect only when the push operation is performed on the page stack.
+    // Configure the page exit animation to sliding out from the left, with the duration of 1000 ms. The settings take effect only when the push operation is performed on the page stack.
     PageTransitionExit({ type: RouteType.Push, duration: 1000 })
       .slide(SlideEffect.Left)
-    //Define the effect when the page exits. The page slides out to the right for 1000 ms. The effect takes effect only when the pop operation is performed on the page stack.
+    // Configure the page exit animation to sliding out from the right, with the duration of 1000 ms. The settings take effect only when the pop operation is performed on the page stack.
     PageTransitionExit({ type: RouteType.Pop, duration: 1000 })
       .slide(SlideEffect.Right)
   }
@@ -209,7 +209,7 @@ struct PageTransitionSrc1 {
 
 
 ```ts
-// page B
+// PageTransitionDst1
 import router from '@ohos.router';
 @Entry
 @Component
@@ -220,18 +220,18 @@ struct PageTransitionDst1 {
         .width('90%')
         .height('80%')
         .objectFit(ImageFit.Fill)
-        .syncLoad(true) //Load the image synchronously so that the image has been loaded when the page is displayed.
+        .syncLoad(true) // Load the image synchronously so that the image has been loaded when the page is displayed.
         .margin(30)
 
       Row({ space: 10 }) {
         Button("pushUrl")
           .onClick(() => {
-            //Route to the next page and perform the push operation.
+            // Navigate to the next page, which is a push operation.
             router.pushUrl({ url: 'pages/myTest/pageTransitionSrc1' });
           })
         Button("back")
           .onClick(() => {
-            //Return to the previous page, which is equivalent to the pop operation.
+            // Return to the previous page, which is equivalent to the pop operation.
             router.back();
           })
       }.justifyContent(FlexAlign.Center)
@@ -241,16 +241,16 @@ struct PageTransitionDst1 {
   }
 
   pageTransition() {
-    //Define the effect when the page is entered. The page slides in from the right for 1000 ms. The effect takes effect only when the push operation is performed on the page stack.
+    // Configure the page entrance animation to sliding in from the right, with the duration of 1000 ms. The settings take effect only when the push operation is performed on the page stack.
     PageTransitionEnter({ type: RouteType.Push, duration: 1000 })
       .slide(SlideEffect.Right)
-    //Define the effect when the page is entered. The page slides in from the left for 1000 ms. The effect takes effect only when the pop operation is performed on the page stack.
+    // Configure the page entrance animation to sliding in from the left, with the duration of 1000 ms. The settings take effect only when the pop operation is performed on the page stack.
     PageTransitionEnter({ type: RouteType.Pop, duration: 1000 })
       .slide(SlideEffect.Left)
-    //Define the effect when the page exits. The page slides out to the left for 1000 ms. The effect takes effect only when the push operation is performed on the page stack.
+    // Configure the page exit animation to sliding out from the left, with the duration of 1000 ms. The settings take effect only when the push operation is performed on the page stack.
     PageTransitionExit({ type: RouteType.Push, duration: 1000 })
       .slide(SlideEffect.Left)
-    //Define the effect when the page exits. The page slides out to the right for 1000 ms. The effect takes effect only when the pop operation is performed on the page stack.
+    // Configure the page exit animation to sliding out from the right, with the duration of 1000 ms. The settings take effect only when the pop operation is performed on the page stack.
     PageTransitionExit({ type: RouteType.Pop, duration: 1000 })
       .slide(SlideEffect.Right)
   }
@@ -262,12 +262,12 @@ struct PageTransitionDst1 {
 ![pageTransition_PushPop](figures/pageTransition_PushPop.gif)
 
 
-The following describes an example of the page transition animation whose type is None.
+In the following example, **type** is set to **RouteType.None**.
 
 
 
 ```ts
-// page A
+// PageTransitionSrc2
 import router from '@ohos.router';
 @Entry
 @Component
@@ -278,18 +278,18 @@ struct PageTransitionSrc2 {
         .width('90%')
         .height('80%')
         .objectFit(ImageFit.Fill)
-        .syncLoad(true) //Load the image synchronously so that the image has been loaded when the page is displayed.
+        .syncLoad(true) // Load the image synchronously so that the image has been loaded when the page is displayed.
         .margin(30)
 
       Row({ space: 10 }) {
         Button("pushUrl")
           .onClick(() => {
-            //Route to the next page and perform the push operation.
+            // Navigate to the next page, which is a push operation.
             router.pushUrl({ url: 'pages/myTest/pageTransitionDst2' });
           })
         Button("back")
           .onClick(() => {
-            //Return to the previous page, which is equivalent to the pop operation.
+            // Return to the previous page, which is equivalent to the pop operation.
             router.back();
           })
       }.justifyContent(FlexAlign.Center)
@@ -299,10 +299,10 @@ struct PageTransitionSrc2 {
   }
 
   pageTransition() {
-    //Define the effect when the page is displayed. The page slides in from the left for 1000 ms. The effect takes effect no matter whether the push or pop operation is performed on the page stack.
+    // Configure the page entrance animation to sliding in from the left, with the duration of 1000 ms. The settings take effect no matter whether the push or pop operation is performed on the page stack.
     PageTransitionEnter({ duration: 1000 })
       .slide(SlideEffect.Left)
-    //Define the effect when the page exits. Compared with the normal page position, the page position is shifted by 100 vp in the x direction and 100 vp in the y direction. The transparency changes to 0. The duration is 1200 ms. The effect takes effect regardless of whether the push or pop operation is performed on the page stack.
+    // Configure the page exit animation to translating by 100 vp along the x- and y-axes and changing the opacity to 0, with the duration of 1200 ms. The settings take effect no matter whether the push or pop operation is performed on the page stack.
     PageTransitionExit({ duration: 1200 })
       .translate({ x: 100.0, y: 100.0 })
       .opacity(0)
@@ -313,7 +313,7 @@ struct PageTransitionSrc2 {
 
 
 ```ts
-// page B
+// PageTransitionDst2
 import router from '@ohos.router';
 @Entry
 @Component
@@ -324,18 +324,18 @@ struct PageTransitionDst2 {
         .width('90%')
         .height('80%')
         .objectFit(ImageFit.Fill)
-        .syncLoad(true) //Load the image synchronously so that the image has been loaded when the page is displayed.
+        .syncLoad(true) // Load the image synchronously so that the image has been loaded when the page is displayed.
         .margin(30)
 
       Row({ space: 10 }) {
         Button("pushUrl")
           .onClick(() => {
-            //Route to the next page and perform the push operation.
+            // Navigate to the next page, which is a push operation.
             router.pushUrl({ url: 'pages/myTest/pageTransitionSrc2' });
           })
         Button("back")
           .onClick(() => {
-            //Return to the previous page, which is equivalent to the pop operation.
+            // Return to the previous page, which is equivalent to the pop operation.
             router.back();
           })
       }.justifyContent(FlexAlign.Center)
@@ -345,10 +345,10 @@ struct PageTransitionDst2 {
   }
 
   pageTransition() {
-    //Define the effect when the page is displayed. The page slides in from the left for 1200 ms. The effect takes effect no matter whether the push or pop operation is performed on the page stack.
+    // Configure the page entrance animation to sliding in from the left, with the duration of 1200 ms. The settings take effect no matter whether the push or pop operation is performed on the page stack.
     PageTransitionEnter({ duration: 1200 })
       .slide(SlideEffect.Left)
-    //Define the effect when the page exits. Compared with the normal page position, the page position is shifted by 100 vp in the x direction and 100 vp in the y direction. The transparency changes to 0. The duration is 1000 ms. The effect takes effect regardless of whether the push or pop operation is performed on the page stack.
+    // Configure the page exit animation to translating by 100 vp along the x- and y-axes and changing the opacity to 0, with the duration of 1000 ms. The settings take effect no matter whether the push or pop operation is performed on the page stack.
     PageTransitionExit({ duration: 1000 })
       .translate({ x: 100.0, y: 100.0 })
       .opacity(0)
