@@ -29,14 +29,14 @@ A description regarding system APIs will be provided in the document.
 A common application is an application whose application type is **hos_normal_app** in the HarmonyAppProvision configuration file. **hos_normal_app** is the default value for project creation.
 
 The public SDK, which does not include system APIs, is provided as standard in DevEco Studio. To use the system APIs, you must:
-- Switch the public SDK to the full SDK by following the instructions provided in [Guide to Switching to Full SDK](../../faqs/full-sdk-switch-guide.md).
-- Change the value of **app-feature** in the HarmonyAppProvision configuration file to **hos_system_app**. For details, see [HarmonyAppProvision Configuration File](../../security/app-provision-structure.md).
+- Switch the public SDK to the full SDK by following the instructions provided in [Switching to Full SDK](../../faqs/full-sdk-switch-guide.md).
+- Change the value of **app-feature** in the HarmonyAppProvision configuration file to **hos_system_app** (indicating a system application). For details, see [HarmonyAppProvision Configuration File](../../security/app-provision-structure.md).
 
 ## Permission Description
 
-By default, applications can access limited system resources. However, in some cases, an application needs to access excess data (including personal data) and functions of the system or another application to implement extended functions. For details, see [Access Control (Permission) Overview](../../security/accesstoken-overview.md).
+By default, applications can access limited system resources. However, in some cases, an application needs to access excess data (including personal data) and functions of the system or another application to implement extended functions. For details, see [Access Control Overview](../../security/accesstoken-overview.md).
 
-To call APIs to access these resources, you must apply for the corresponding permissions by following the instructions provided in [Applying for Permissions](../../security/accesstoken-guidelines.md).
+To call APIs to access these resources, you must apply for the corresponding permissions by following the instructions provided in [Access Control Development](../../security/accesstoken-guidelines.md).
 
 - If an application can call an API only after it has obtained a specific permission, the following description is provided for the API: "**Required permissions**: ohos.permission.xxxx"
 - If an application can call an API without any permission, no special description is provided.

@@ -495,7 +495,7 @@ For details, see [DevEco Studio Version Change History](https://developer.harmon
 | OpenHarmony | 3.2 Release | NA |
 | Public SDK | Ohos_sdk_public 3.2.11.9 (API Version 9 Release) | This toolkit is intended for application developers and does not contain system APIs that require system permissions. It is provided as standard in DevEco Studio.|
 | (Optional) HUAWEI DevEco Studio| 3.1 Beta2 | Recommended for developing OpenHarmony applications How to obtain:<br>[Windows(64-bit)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/f3/v3/uJyuq3syQ2ak4hE1QZmAug/devecostudio-windows-3.1.0.400.zip?HW-CC-KV=V1&HW-CC-Date=20230408T013335Z&HW-CC-Expire=315360000&HW-CC-Sign=96262721EDC9B34E6F62E66884AB7AE2A94C2A7B8C28D6F7FC891F46EB211A70)<br>[Mac(X86)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/b7/v3/4z3mLQPCQR-g5KlC56SC1w/devecostudio-mac-3.1.0.400.zip?HW-CC-KV=V1&HW-CC-Date=20230408T013430Z&HW-CC-Expire=315360000&HW-CC-Sign=93E83FD1F1CE504EF8F098E08955A938FDA4E4926A2555CF1E02DC8D57210D76)<br>[Mac(ARM)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/2e/v3/Fl9IY6PiQxqc3tnI2cftiw/devecostudio-mac-arm-3.1.0.400.zip?HW-CC-KV=V1&HW-CC-Date=20230408T013540Z&HW-CC-Expire=315360000&HW-CC-Sign=0906243123734033AAD34A7A005ED7671F00CAA693B6E674F81A094A0159ECCE) |
-| (Optional) HUAWEI DevEco Device Tool| 3.1 Release | Recommended for developing OpenHarmony smart devices<br>[Click here](https://device.harmonyos.com/cn/develop/ide/).|
+| (Optional) HUAWEI DevEco Device Tool| 3.1 Release | Recommended for developing OpenHarmony smart devices<br>[Click here](https://device.harmonyos.com/en/develop/ide/). |
 
 ## Source Code Acquisition
 

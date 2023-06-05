@@ -2,7 +2,7 @@
 
 ## How do I obtain the frame data of a camera when using the XComponent to display the preview output stream of the camera?
 
-Applicable to: OpenHarmony 3.2 (API version 9, stage model)
+Applicable to: OpenHarmony 3.2 (API version 9)
 
 **Symptom**
 
@@ -35,7 +35,7 @@ Create a dual-channel preview to obtain the frame data.
 
 ## How do I obtain the preview image of the front camera?
 
-Applicable to: OpenHarmony 3.2 (API version 9, stage model)
+Applicable to: OpenHarmony 3.2 (API version 9)
 
 **Solution**
 
@@ -76,7 +76,7 @@ Applicable to: OpenHarmony 3.2 (API version 9, stage model)
 
 ## How do I set the camera focal length?
 
-Applicable to: OpenHarmony 3.2 (API version 9, stage model)
+Applicable to: OpenHarmony 3.2 (API version 9)
 
 **Solution**
 
@@ -86,7 +86,7 @@ Applicable to: OpenHarmony 3.2 (API version 9, stage model)
 
 ## How do I play music in the background?
 
-Applicable to: OpenHarmony 3.2 (API version 9, stage model)
+Applicable to: OpenHarmony 3.2 (API version 9)
 
 **Symptom**
 
@@ -105,7 +105,7 @@ Music cannot be played in the background.
 
 ## What should I do when multiple video components cannot be used for playback?
 
-Applicable to: OpenHarmony 3.2 (API version 9, stage model)
+Applicable to: OpenHarmony 3.2 (API version 9)
 
 **Symptom**
 
@@ -115,10 +115,9 @@ A large number of video components are created. They cannot play media normally 
 
 A maximum of 13 media player instances can be created.
 
-
 ## How do I invoke the image library directly?
 
-Applicable to: OpenHarmony 3.2 (API version 9, stage model)
+Applicable to: OpenHarmony 3.2 (API version 9)
 
 **Solution**
 
@@ -133,3 +132,69 @@ let want = {
 let context = getContext(this) as common.UIAbilityContext;
 context.startAbility(want);
 ```
+
+## How do I apply for the media read/write permission on a device?
+
+Applicable to: OpenHarmony 3.2 (API version 9, stage model)
+
+**Solution**
+
+1. Configure the permissions **ohos.permission.READ\_MEDIA** and **ohos.permission.WRITE\_MEDIA** in the **module.json5** file.
+
+    Example:
+
+    ```
+    {
+      "module" : {
+        "requestPermissions":[
+          {
+            "name" : "ohos.permission.READ_MEDIA",
+            "reason": "$string:reason"
+          },
+          {
+            "name" : "ohos.permission.WRITE_MEDIA",
+            "reason": "$string:reason"
+          }
+        ]
+      }
+    }
+    ```
+
+2. Call **requestPermissionsFromUser** to request the permissions from end users in the form of a dialog box. This operation is required because the grant mode of both permissions is **user\_grant**.
+
+    ```
+    let context = getContext(this) as common.UIAbilityContext;
+    let atManager = abilityAccessCtrl.createAtManager();
+    let permissions: Array<string> = ['ohos.permission.READ_MEDIA','ohos.permission.WRITE_MEDIA']
+    atManager.requestPermissionsFromUser(context, permissions)
+    .then((data) => {
+        console.log("Succeed to request permission from user with data: " + JSON.stringify(data))
+    }).catch((error) => {
+        console.log("Failed to request permission from user with error: " + JSON.stringify(error))
+    })
+    ```
+
+## How do I obtain the camera status?
+
+Applicable to: OpenHarmony 3.2 (API version 9, stage model)
+
+**Solution**
+
+The **cameraManager** class provides a listener to subscribe to the camera status.
+
+```
+cameraManager.on('cameraStatus', (cameraStatusInfo) => {
+  console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
+  console.log(`status: ${cameraStatusInfo.status}`);
+})
+```
+CameraStatus: Enumerates the camera statuses.
+
+- **CAMERA_STATUS_APPEAR** (0): A camera appears.
+- **CAMERA_STATUS_DISAPPEAR** (1): The camera disappears.
+- **CAMERA_STATUS_AVAILABLE** (2): The camera is available.
+- **CAMERA_STATUS_UNAVAILABLE** (3): The camera is unavailable.
+
+**Reference**
+
+[CameraStatus](../reference/apis/js-apis-camera.md#oncamerastatus)
