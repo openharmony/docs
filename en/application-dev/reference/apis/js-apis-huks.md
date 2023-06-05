@@ -77,6 +77,25 @@ Generates a key. This API uses an asynchronous callback to return the result.
 | options  | [HuksOptions](#huksoptions) | Yes  | Tags required for generating the key. The algorithm, key purpose, and key length are mandatory.|
 | callback | AsyncCallback\<void>        | Yes  | Callback invoked to return the result. If no error is captured, the key is successfully generated. In this case, the API does not return the key content because the key is always protected in a TEE. If an error is captured, an exception occurs in the generation process.|
 
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000012 | external error. |
+| 12000013 | queried credential does not exist. |
+| 12000014 | memory is insufficient. |
+| 12000015 | call service failed. |
+
 **Example**
 
 ```js
@@ -131,6 +150,25 @@ Generates a key. This API uses a promise to return the result. Because the key i
 | -------- | --------------------------- | ---- | ------------------------ |
 | keyAlias | string                      | Yes  | Alias of the key.              |
 | options  | [HuksOptions](#huksoptions) | Yes  | Tags required for generating the key. The algorithm, key purpose, and key length are mandatory.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000012 | external error. |
+| 12000013 | queried credential does not exist. |
+| 12000014 | memory is insufficient. |
+| 12000015 | call service failed. |
 
 **Example**
 
@@ -188,6 +226,20 @@ Deletes a key. This API uses an asynchronous callback to return the result.
 | options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).                     |
 | callback | AsyncCallback\<void>        | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned.|
 
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 **Example**
 
 ```js
@@ -223,6 +275,20 @@ Deletes a key. This API uses a promise to return the result.
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | keyAlias | string                      | Yes  | Key alias passed in when the key was generated.|
 | options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).           |
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **Example**
 
@@ -291,6 +357,26 @@ Imports a key in plaintext. This API uses an asynchronous callback to return the
 | options  | [HuksOptions](#huksoptions) | Yes  | Tags required for the import and key to import. The algorithm, key purpose, and key length are mandatory.|
 | callback | AsyncCallback\<void>        | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned.|
 
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000013 | queried credential does not exist. |
+| 12000014 | memory is insufficient. |
+| 12000015 | call service failed. |
+
 **Example**
 
 ```js
@@ -357,6 +443,26 @@ Imports a key in plaintext. This API uses a promise to return the result.
 | -------- | --------------------------- | ---- | ----------------------------------- |
 | keyAlias | string                      | Yes  | Alias of the key.                         |
 | options  | [HuksOptions](#huksoptions) | Yes  | Tags required for the import and key to import. The algorithm, key purpose, and key length are mandatory.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000013 | queried credential does not exist. |
+| 12000014 | memory is insufficient. |
+| 12000015 | call service failed. |
 
 **Example**
 
@@ -427,6 +533,25 @@ Obtains the certificate used to verify a key. This API uses an asynchronous call
 | keyAlias | string                                               | Yes  | Alias of the key. The certificate to be obtained stores the key.         |
 | options  | [HuksOptions](#huksoptions)                          | Yes  | Parameters and data required for obtaining the certificate.           |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 201 | check permission failed. |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **Example**
 
@@ -555,6 +680,25 @@ Obtains the certificate used to verify a key. This API uses a promise to return 
 | ---------------------------------------------- | --------------------------------------------- |
 | Promise<[HuksReturnResult](#huksreturnresult9)> | Promise used to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned.|
 
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 201 | check permission failed. |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 **Example**
 
 ```js
@@ -677,6 +821,26 @@ Imports a wrapped key. This API uses an asynchronous callback to return the resu
 | wrappingKeyAlias | string                      | Yes  | Alias of the data used to unwrap the key imported.   |
 | options          | [HuksOptions](#huksoptions) | Yes  | Tags required for the import and the wrapped key to import. The algorithm, key purpose, and key length are mandatory.|
 | callback         | AsyncCallback\<void>        | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000013 | queried credential does not exist. |
+| 12000014 | memory is insufficient. |
+| 12000015 | call service failed. |
 
 **Example**
 
@@ -893,6 +1057,26 @@ Imports a wrapped key. This API uses a promise to return the result.
 | wrappingKeyAlias | string                      | Yes  | Alias of the data used to unwrap the key imported.   |
 | options          | [HuksOptions](#huksoptions) | Yes  | Tags required for the import and the wrapped key to import. The algorithm, key purpose, and key length are mandatory.|
 
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000013 | queried credential does not exist. |
+| 12000014 | memory is insufficient. |
+| 12000015 | call service failed. |
+
 **Example**
 
 ```js
@@ -927,6 +1111,24 @@ Exports a key. This API uses an asynchronous callback to return the result.
 | keyAlias | string                                               | Yes  | Key alias, which must be the same as the alias used when the key was generated.                |
 | options  | [HuksOptions](#huksoptions)                          | Yes  | Empty object (leave this parameter empty).                                    |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned; otherwise, an error code is returned. **outData** contains the public key exported.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **Example**
 
@@ -970,6 +1172,24 @@ Exports a key. This API uses a promise to return the result.
 | ---------------------------------------------- | ------------------------------------------------------------ |
 | Promise<[HuksReturnResult](#huksreturnresult9)> | Promise used to return the result. If the operation is successful, no **err** value is returned and **outData** contains the public key exported. If the operation fails, an error code is returned. |
 
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 **Example**
 
 ```js
@@ -1006,6 +1226,24 @@ Obtains key properties. This API uses an asynchronous callback to return the res
 | keyAlias | string                                               | Yes  | Key alias, which must be the same as the alias used when the key was generated.                |
 | options  | [HuksOptions](#huksoptions)                          | Yes  | Empty object (leave this parameter empty).                                    |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the result. If the operation is successful, no **err** value is returned and **properties** contains the parameters required for generating the key. If the operation fails, an error code is returned. |
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **Example**
 
@@ -1049,6 +1287,24 @@ Obtains key properties. This API uses a promise to return the result.
 | ----------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<[HuksReturnResult](#huksreturnresult9)> | Promise used to return the result. If the operation is successful, no **err** value is returned and **properties** contains the parameters required for generating the key. If the operation fails, an error code is returned. |
 
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 **Example**
 
 ```js
@@ -1086,9 +1342,28 @@ Checks whether a key exists. This API uses an asynchronous callback to return th
 | options  | [HuksOptions](#huksoptions) | Yes  | Empty object (leave this parameter empty).               |
 | callback | AsyncCallback\<boolean>     | Yes  | Callback invoked to return the result. If the key exists, **data** is **true**. If the key does not exist, **error** is the error code.|
 
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 **Example**
 
 ```js
+import huks from '@ohos.security.huks';
+import promptAction from '@ohos.promptAction';
+
 /* Set options to emptyOptions. */
 let keyAlias = 'keyAlias';
 let emptyOptions = {
@@ -1130,9 +1405,28 @@ Checks whether a key exists. This API uses a promise to return the result.
 | ----------------- | --------------------------------------- |
 | Promise\<boolean> | Promise used to return the result. If the key exists, then() performs subsequent operations. If the key does not exist, error() performs the related service operations.|
 
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 **Example**
 
 ```js
+import huks from '@ohos.security.huks';
+import promptAction from '@ohos.promptAction';
+
 /* Set options to emptyOptions. */
 let keyAlias = 'keyAlias';
 let emptyOptions = {
@@ -1167,6 +1461,25 @@ Initializes the data for a key operation. This API uses an asynchronous callback
 | options  | [HuksOptions](#huksoptions)                             | Yes  | Parameter set used for the **initSession** operation.                                |
 | callback | AsyncCallback\<[HuksSessionHandle](#hukssessionhandle9)> | Yes  | Callback invoked to return a session handle for subsequent operations.|
 
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000010 | the number of sessions has reached limit. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 ## huks.initSession<sup>9+</sup>
 
 initSession(keyAlias: string, options: HuksOptions) : Promise\<HuksSessionHandle>
@@ -1188,6 +1501,25 @@ Initializes the data for a key operation. This API uses a promise to return the 
 | ----------------------------------- | -------------------------------------------------- |
 | Promise\<[HuksSessionHandle](#hukssessionhandle9)> | Promise used to return a session handle for subsequent operations.|
 
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000010 | the number of sessions has reached limit. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 ## huks.updateSession<sup>9+</sup>
 
 updateSession(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void
@@ -1204,6 +1536,26 @@ Updates the key operation by segment. This API uses an asynchronous callback to 
 | options  | [HuksOptions](#huksoptions)                          | Yes  | Parameter set used for the **updateSession** operation.                          |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the **updateSession** operation result.|
 
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000007 | this credential is already invalidated permanently. |
+| 12000008 | verify authtoken failed. |
+| 12000009 | authtoken is already timeout. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 ## huks.updateSession<sup>9+</sup>
 
@@ -1221,6 +1573,27 @@ Updates the key operation by segment. This API uses an asynchronous callback to 
 | options  | [HuksOptions](#huksoptions)                          | Yes  | Parameter set used for the **updateSession** operation.                      |
 | token    | Uint8Array                                           | Yes  | Token of the **updateSession** operation.                         |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the **updateSession** operation result.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000007 | this credential is already invalidated permanently. |
+| 12000008 | verify authtoken failed. |
+| 12000009 | authtoken is already timeout. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 ## huks.updateSession<sup>9+</sup>
 
@@ -1244,6 +1617,27 @@ Updates the key operation by segment. This API uses a promise to return the resu
 | ----------------------------------- | -------------------------------------------------- |
 | Promise<[HuksReturnResult](#huksreturnresult9)> | Promise used to return the **updateSession** operation result.|
 
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000007 | this credential is already invalidated permanently. |
+| 12000008 | verify authtoken failed. |
+| 12000009 | authtoken is already timeout. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 ## huks.finishSession<sup>9+</sup>
 
 finishSession(handle: number, options: HuksOptions, callback: AsyncCallback\<HuksReturnResult>) : void
@@ -1261,6 +1655,27 @@ Completes the key operation and releases resources. This API uses an asynchronou
 | token    | Uint8Array                                           | Yes  | Token of the **finishSession** operation.                         |
 | callback | AsyncCallback<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the **finishSession** operation result.|
 
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000007 | this credential is already invalidated permanently. |
+| 12000008 | verify authtoken failed. |
+| 12000009 | authtoken is already timeout. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 ## huks.finishSession<sup>9+</sup>
 
 finishSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void
@@ -1277,6 +1692,27 @@ Completes the key operation and releases resources. This API uses an asynchronou
 | options  | [HuksOptions](#huksoptions)                           | Yes  | Parameter set used for the **finishSession** operation.                          |
 | token    | Uint8Array                                            | Yes  | Token of the **finishSession** operation.                         |
 | callback | AsyncCallback\<[HuksReturnResult](#huksreturnresult9)> | Yes  | Callback invoked to return the **finishSession** operation result.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000007 | this credential is already invalidated permanently. |
+| 12000008 | verify authtoken failed. |
+| 12000009 | authtoken is already timeout. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 ## huks.finishSession<sup>9+</sup>
 
@@ -1300,6 +1736,27 @@ Completes the key operation and releases resources. This API uses a promise to r
 | ----------------------------------- | -------------------------------------------------- |
 | Promise\<[HuksReturnResult](#huksreturnresult9)> | Promise used to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000001 | algorithm mode is not supported. |
+| 12000002 | algorithm param is missing. |
+| 12000003 | algorithm param is invalid. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000007 | this credential is already invalidated permanently. |
+| 12000008 | verify authtoken failed. |
+| 12000009 | authtoken is already timeout. |
+| 12000011 | queried entity does not exist. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
+
 ## huks.abortSession<sup>9+</sup>
 
 abortSession(handle: number, options: HuksOptions, callback: AsyncCallback\<void>) : void
@@ -1315,6 +1772,20 @@ Aborts a key operation. This API uses an asynchronous callback to return the res
 | handle   | number                      | Yes  | Handle for the **abortSession** operation.                        |
 | options  | [HuksOptions](#huksoptions) | Yes  | Parameter set used for the **abortSession** operation.                      |
 | callback | AsyncCallback\<void>        | Yes  | Callback that returns no value. |
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **Example**
 
@@ -1465,6 +1936,20 @@ Aborts a key operation. This API uses a promise to return the result.
 | Type                               | Description                                              |
 | ----------------------------------- | -------------------------------------------------- |
 | Promise\<void>             | Promise used to return the **abortSession** operation result.|
+
+**Error codes**
+
+For details about the error codes, see [HUKS Error Codes](../errorcodes/errorcode-huks.md).
+
+| ID| Error Message     |
+| -------- | ------------- |
+| 401 | argument is invalid. |
+| 801 | api is not supported. |
+| 12000004 | operating file failed. |
+| 12000005 | IPC communication failed. |
+| 12000006 | error occured in crypto engine. |
+| 12000012 | external error. |
+| 12000014 | memory is insufficient. |
 
 **Example**
 
@@ -1773,10 +2258,12 @@ Enumerates the key storage modes.
 
 **System capability**: SystemCapability.Security.Huks
 
-| Name                   | Value  | Description                          |
-| ----------------------- | ---- | ------------------------------ |
-| HUKS_STORAGE_TEMP       | 0    | The key is managed locally.    |
-| HUKS_STORAGE_PERSISTENT | 1    | The key is managed by the HUKS service.|
+| Name                                         | Value  | Description                          |
+| --------------------------------------------  | ---- | ------------------------------ |
+| HUKS_STORAGE_TEMP                             | 0    | The key is managed locally.    |
+| HUKS_STORAGE_PERSISTENT                       | 1    | The key is managed by the HUKS service.|
+| HUKS_STORAGE_ONLY_USED_IN_HUKS<sup>10+</sup>  | 2    | The key is stored only in the HUKS.      |
+| HUKS_STORAGE_KEY_EXPORT_ALLOWED<sup>10+</sup> | 3    | The key is exported from the HUKS and is not stored.|
 
 ## HuksSendType
 
@@ -1811,6 +2298,17 @@ Enumerates the types of keys to import. By default, a public key is imported. Th
 | HUKS_KEY_TYPE_PUBLIC_KEY  | 0    | Public key    |
 | HUKS_KEY_TYPE_PRIVATE_KEY | 1    | Private key    |
 | HUKS_KEY_TYPE_KEY_PAIR    | 2    | Public and private key pair|
+
+## HuksRsaPssSaltLenType<sup>10+</sup>
+
+Enumerates the **salt_len** types to set when PSS padding is used in RSA signing or signature verification.
+
+**System capability**: SystemCapability.Security.Huks
+
+| Name                                      | Value  | Description                        |
+| ------------------------------------------ | ---- | ---------------------------- |
+| HUKS_RSA_PSS_SALT_LEN_DIGEST<sup>10+</sup> | 0    | **salt_len** is set to the digest length.|
+| HUKS_RSA_PSS_SALT_LEN_MAX<sup>10+</sup>    | 1    | **salt_len** is set to the maximum length.|
 
 ## HuksUserAuthType<sup>9+</sup>
 
@@ -1920,6 +2418,8 @@ Enumerates the tags used to invoke parameters.
 | HUKS_TAG_DERIVE_KEY_SIZE                     | HuksTagType.HUKS_TAG_TYPE_UINT \| 24     | Size of the derived key.                  |
 | HUKS_TAG_IMPORT_KEY_TYPE<sup>9+</sup>        | HuksTagType.HUKS_TAG_TYPE_UINT \| 25     | Type of the imported key.                    |
 | HUKS_TAG_UNWRAP_ALGORITHM_SUITE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 26     | Algorithm suite required for encrypted imports.                |
+| HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG<sup>10+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \|29 | Storage type of the derived key or agreed key.|
+| HUKS_TAG_RSA_PSS_SALT_LEN_TYPE<sup>10+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \|30 | Type of the **rsa_pss_salt_length**.|
 | HUKS_TAG_ACTIVE_DATETIME<sup>(deprecated)</sup>                 | HuksTagType.HUKS_TAG_TYPE_ULONG \| 201   | Parameter originally reserved for certificate management. It is deprecated because certificate management is no longer implemented in this module.                                |
 | HUKS_TAG_ORIGINATION_EXPIRE_DATETIME<sup>(deprecated)</sup>         | HuksTagType.HUKS_TAG_TYPE_ULONG \| 202   | Parameter originally reserved for certificate management. It is deprecated because certificate management is no longer implemented in this module.                                |
 | HUKS_TAG_USAGE_EXPIRE_DATETIME<sup>(deprecated)</sup>               | HuksTagType.HUKS_TAG_TYPE_ULONG \| 203   | Parameter originally reserved for certificate management. It is deprecated because certificate management is no longer implemented in this module.                                |
@@ -1934,6 +2434,7 @@ Enumerates the tags used to invoke parameters.
 | HUKS_TAG_KEY_SECURE_SIGN_TYPE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 308 | Signature type of the key generated or imported.|
 | HUKS_TAG_CHALLENGE_TYPE<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 309 | Type of the challenge generated for a key. For details, see [HuksChallengeType](#hukschallengetype9).|
 | HUKS_TAG_CHALLENGE_POS<sup>9+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \| 310 | Position of the 8-byte valid value in a custom challenge. For details, see [HuksChallengePosition](#hukschallengeposition9).|
+| HUKS_TAG_KEY_AUTH_PURPOSE<sup>10+</sup> | HuksTagType.HUKS_TAG_TYPE_UINT \|311 | Key authentication purpose.|
 | HUKS_TAG_ATTESTATION_CHALLENGE               | HuksTagType.HUKS_TAG_TYPE_BYTES \| 501   | Challenge value used in the attestation.           |
 | HUKS_TAG_ATTESTATION_APPLICATION_ID          | HuksTagType.HUKS_TAG_TYPE_BYTES \| 502   | Application ID used in the attestation.   |
 | HUKS_TAG_ATTESTATION_ID_BRAND                | HuksTagType.HUKS_TAG_TYPE_BYTES \| 503   | Brand of the device.                     |
