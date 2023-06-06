@@ -2407,7 +2407,7 @@ try {
 
  on(type: 'notifyVisible', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
 
-订阅卡片新增事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+订阅通知卡片可见的事件。使用callback异步回调，返回所有通知卡片变更为可见的卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
 
 **需要权限**：ohos.permission.REQUIRE_FORM
 
@@ -2415,11 +2415,11 @@ try {
 
 **参数：**
 
-| 参数名     | 类型                                     | 必填 | 说明                                                         |
-| ---------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| type       | string                                   | 是   | 填写'notifyVisible'，表示卡片可见性变更为可见。              |
-| callback   | Callback&lt;formInfo.RunningFormInfo&gt; | 是   | 回调函数。返回新增卡片的RunningFormInfo。                    |
-| bundleName | string                                   | 否   | 指定订阅卡片使用方包的bundleName。缺省则订阅所有卡片使用方的卡片新增事件。 |
+| 参数名     | 类型                                            | 必填 | 说明                                                         |
+| ---------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type       | string                                          | 是   | 填写'notifyVisible'，表示订阅通知卡片可见的事件。            |
+| callback   | Callback<Array&lt;formInfo.RunningFormInfo&gt;> | 是   | 回调函数。返回订阅通知卡片可见的RunningFormInfo。            |
+| bundleName | string                                          | 否   | 指定订阅通知卡片使用方的bundleName。缺省则订阅所有通知卡片使用方的卡片可见的事件。 |
 
 **示例：**
 
@@ -2438,7 +2438,7 @@ formHost.on('notifyVisible', callback, bundleName);
 
  off(type: "notifyVisible", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
 
-取消订阅卡片新增事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+取消订阅通知卡片可见的事件。
 
 **需要权限**：ohos.permission.REQUIRE_FORM
 
@@ -2446,11 +2446,11 @@ formHost.on('notifyVisible', callback, bundleName);
 
 **参数：**
 
-| 参数名     | 类型                                     | 必填 | 说明                                                         |
-| ---------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| type       | string                                   | 是   | 填写'notifyVisible'，表示卡片可见性变更为可见。              |
-| callback   | Callback&lt;formInfo.RunningFormInfo&gt; | 否   | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br> 需与对应on('notifyVisible')的callback一致。 |
-| bundleName | string                                   | 否   | 指定订阅卡片使用方包的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 缺省则订阅所有卡片使用方的卡片删除事件，与注册时未填写bundleName的on接口相对应。 |
+| 参数名     | 类型                                            | 必填 | 说明                                                         |
+| ---------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type       | string                                          | 是   | 填写'notifyVisible'，表示取消订阅通知卡片为可见的事件。      |
+| callback   | Callback<Array&lt;formInfo.RunningFormInfo&gt;> | 否   | 入参，注册时注册进去的callback。缺省时，表示注销对应已注册订阅的回调。<br> 需与对应on('notifyVisible')的callback一致。 |
+| bundleName | string                                          | 否   | 指定卡片使用方包的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 缺省则与注册时未填写bundleName的on接口相对应，取消注册时未填写bundleName的订阅。 |
 
 **示例：**
 
@@ -2476,7 +2476,7 @@ formHost.off('notifyVisible', callback, bundleName);
 
  on(type: 'notifyInvisible', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
 
-订阅卡片新增事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+订阅通知卡片不可见的事件。使用callback异步回调，返回所有通知的卡片不可见的卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
 
 **需要权限**：ohos.permission.REQUIRE_FORM
 
@@ -2486,9 +2486,9 @@ formHost.off('notifyVisible', callback, bundleName);
 
 | 参数名     | 类型                                     | 必填 | 说明                                                         |
 | ---------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| type       | string                                   | 是   | 填写'notifyInvisible'，表示卡片可见性变更为不可见。          |
-| callback   | Callback&lt;formInfo.RunningFormInfo&gt; | 是   | 回调函数。返回新增卡片的RunningFormInfo。                    |
-| bundleName | string                                   | 否   | 指定订阅卡片使用方包的bundleName。缺省则订阅所有卡片使用方的卡片新增事件。 |
+| type       | string                                   | 是   | 填写'notifyInvisible'，表示订阅卡片不可见的事件。            |
+| callback   | Callback&lt;formInfo.RunningFormInfo&gt; | 是   | 回调函数。返回订阅通知卡片不可见的RunningFormInfo。          |
+| bundleName | string                                   | 否   | 指定订阅通知卡片使用方的bundleName。缺省则订阅所有通知卡片使用方的卡片不可见的事件。 |
 
 **示例：**
 
@@ -2507,7 +2507,7 @@ formHost.on('notifyInvisible', callback, bundleName);
 
  off(type: "notifyInvisible", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
 
-取消订阅卡片新增事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+取消订阅通知卡片不可见事件。
 
 **需要权限**：ohos.permission.REQUIRE_FORM
 
@@ -2518,8 +2518,8 @@ formHost.on('notifyInvisible', callback, bundleName);
 | 参数名     | 类型                                     | 必填 | 说明                                                         |
 | ---------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | type       | string                                   | 是   | 填写'notifyInvisible'，表示卡片可见性变更为不可见。          |
-| callback   | Callback&lt;formInfo.RunningFormInfo&gt; | 否   | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br> 需与对应on('notifyInvisible')的callback一致。 |
-| bundleName | string                                   | 否   | 指定订阅卡片使用方包的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 缺省则订阅所有卡片使用方的卡片删除事件，与注册时未填写bundleName的on接口相对应。 |
+| callback   | Callback&lt;formInfo.RunningFormInfo&gt; | 否   | 入参，注册时注册进去的callback。缺省时，表示注销对应已注册事件回调。<br/> 需与对应on('notifyVisible')的callback一致。 |
+| bundleName | string                                   | 否   | 指定卡片使用方包的bundleName。<br/> 填写该参数时，与注册时填写bundleName的on接口对应。<br/> 缺省则与注册时未填写bundleName的on接口相对应，取消注册时未填写bundleName的订阅。 |
 
 **示例：**
 
