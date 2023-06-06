@@ -54,8 +54,8 @@ Swiper(controller?: SwiperController)
 
 | 名称 | 描述 |
 | ----------- | ------------------------------------------ |
-| Stretch     | Swiper滑动一页的宽度为Swiper组件自身的宽度。|
-| AutoLinear  | Swiper滑动一页的宽度为子组件宽度中的最大值。|
+| Stretch<sup>(deprecated)</sup>     | Swiper滑动一页的宽度为Swiper组件自身的宽度。<br>从API verdion 10开始不再维护，建议使用STRETCH代替。|
+| AutoLinear<sup>(deprecated)</sup>   | Swiper滑动一页的宽度为子组件宽度中的最大值。<br>从API verdion 10开始不再维护，建议使用AUTO_LINEAR代替。|
 
 ## SwiperController
 

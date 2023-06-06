@@ -41,12 +41,12 @@
 
 | 名称   | 描述                                   |
 | ------ | -------------------------------------- |
-| OuterDefaultXS  | 超小阴影。 |
-| OuterDefaultSM | 小阴影。 |
-| OuterDefaultMD    | 中阴影。 |
-| OuterDefaultLG    | 大阴影。 |
-| OuterFloatingSM    | 浮动小阴影。 |
-| OuterFloatingMD    | 浮动中阴影。 |
+| OUTER_DEFAULT_XS  | 超小阴影。 |
+| OUTER_DEFAULT_SM | 小阴影。 |
+| OUTER_DEFAULT_MD    | 中阴影。 |
+| OUTER_DEFAULT_LG    | 大阴影。 |
+| OUTER_FLOATING_SM    | 浮动小阴影。 |
+| OUTER_FLOATING_MD    | 浮动中阴影。 |
 
 ## 示例
 
