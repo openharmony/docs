@@ -579,6 +579,17 @@ async function createTonePlayerBefore(){
 | STATE_RELEASED | 4      | 释放状态。       |
 | STATE_PAUSED   | 5      | 暂停状态。       |
 
+## AudioEffectMode<sup>10+</sup>
+
+枚举，音效模式。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+| 名称               | 值     | 说明       |
+| ------------------ | ------ | ---------- |
+| EFFECT_NONE        | 0      | 关闭音效。 |
+| EFFECT_DEFAULT     | 1      | 默认音效。 |
+
 ## AudioRendererRate<sup>8+</sup>
 
 枚举，音频渲染速度。
