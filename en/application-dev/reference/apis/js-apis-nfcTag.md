@@ -53,6 +53,7 @@ Before developing applications related to tag read and write, you must declare N
 > - The **name** field under **metadata** is mandatory. It must be **tag-tech** and cannot be changed.
 > - The **value** field under **metadata** is mandatory. It can be **NfcA**, **NfcB**, **NfcF**, **NfcV**, **IsoDep**, **Ndef**, **MifareClassic**, **MifareUL**, **NdefFormatable** or any of their combinations. Incorrect settings of this field will cause a parsing failure.
 > - The **name** field under **requestPermissions** is mandatory. It must be **ohos.permission.NFC_TAG** and cannot be changed.
+
 ## **Modules to Import**
 
 ```js
@@ -98,7 +99,7 @@ onCreate(want, launchParam) {
     if (isNfcATag) {
         var nfcA;
         try {
-            nfcA = tag.getNfcATag(taginfo);
+            nfcA = tag.getNfcATag(tagInfo);
         } catch (error) {
             console.log("tag.getNfcATag caught error: " + error);
         }
@@ -109,7 +110,7 @@ onCreate(want, launchParam) {
     if (isIsoDepTag) {
         var isoDep;
         try {
-            isoDep = tag.getIsoDep(taginfo);
+            isoDep = tag.getIsoDep(tagInfo);
         } catch (error) {
             console.log("tag.getIsoDep caught error: " + error);
         }
@@ -139,8 +140,8 @@ Obtains an **NfcATag** object, which allows access to the tags that use the NFC-
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
+| **Type**                               | **Description**       |
+| ------------------------------------- | ------------- |
 | [NfcATag](js-apis-nfctech.md#nfcatag) | **NfcATag** object obtained.|
 
 ## tag.getNfcA<sup>9+</sup>
@@ -159,16 +160,16 @@ Obtains an **NfcATag** object, which allows access to the tags that use the NFC-
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
+| **Type**                               | **Description**       |
+| ------------------------------------- | ------------- |
 | [NfcATag](js-apis-nfctech.md#nfcatag) | **NfcATag** object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
 
-| ID| Error Message|
-| ------- | -------|
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
 | 3100201 | Tag running state is abnormal in service. |
 
 ## tag.getNfcBTag
@@ -190,9 +191,9 @@ Obtains an **NfcBTag** object, which allows access to the tags that use the NFC-
 
 **Return value**
 
-| **Type**| **Description**        |
-| -------- | ---------------- |
-| [NfcBTag](js-apis-nfctech.md#nfcbtag)  | **NfcBTag** object obtained.|
+| **Type**                               | **Description**       |
+| ------------------------------------- | ------------- |
+| [NfcBTag](js-apis-nfctech.md#nfcbtag) | **NfcBTag** object obtained.|
 
 ## tag.getNfcB<sup>9+</sup>
 
@@ -210,16 +211,16 @@ Obtains an **NfcBTag** object, which allows access to the tags that use the NFC-
 
 **Return value**
 
-| **Type**| **Description**        |
-| -------- | ---------------- |
-| [NfcBTag](js-apis-nfctech.md#nfcbtag)  | **NfcBTag** object obtained.|
+| **Type**                               | **Description**       |
+| ------------------------------------- | ------------- |
+| [NfcBTag](js-apis-nfctech.md#nfcbtag) | **NfcBTag** object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
 
-| ID| Error Message|
-| ------- | -------|
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
 | 3100201 | Tag running state is abnormal in service. |
 
 ## tag.getNfcFTag
@@ -241,9 +242,9 @@ Obtains an **NfcFTag** object, which allows access to the tags that use the NFC-
 
 **Return value**
 
-| **Type**| **Description**        |
-| -------- | ---------------- |
-| [NfcFTag](js-apis-nfctech.md#nfcftag)  | **NfcFTag** object obtained.|
+| **Type**                               | **Description**       |
+| ------------------------------------- | ------------- |
+| [NfcFTag](js-apis-nfctech.md#nfcftag) | **NfcFTag** object obtained.|
 
 ## tag.getNfcF<sup>9+</sup>
 
@@ -261,16 +262,16 @@ Obtains an **NfcFTag** object, which allows access to the tags that use the NFC-
 
 **Return value**
 
-| **Type**| **Description**        |
-| -------- | ---------------- |
-| [NfcFTag](js-apis-nfctech.md#nfcftag)  | **NfcFTag** object obtained.|
+| **Type**                               | **Description**       |
+| ------------------------------------- | ------------- |
+| [NfcFTag](js-apis-nfctech.md#nfcftag) | **NfcFTag** object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
 
-| ID| Error Message|
-| ------- | -------|
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
 | 3100201 | Tag running state is abnormal in service. |
 
 ## tag.getNfcVTag
@@ -292,9 +293,9 @@ Obtains an **NfcVTag** object, which allows access to the tags that use the NFC-
 
 **Return value**
 
-| **Type**| **Description**        |
-| -------- | ---------------- |
-| [NfcVTag](js-apis-nfctech.md#nfcvtag)  | **NfcVTag** object obtained.|
+| **Type**                               | **Description**       |
+| ------------------------------------- | ------------- |
+| [NfcVTag](js-apis-nfctech.md#nfcvtag) | **NfcVTag** object obtained.|
 
 ## tag.getNfcV<sup>9+</sup>
 
@@ -312,16 +313,16 @@ Obtains an **NfcVTag** object, which allows access to the tags that use the NFC-
 
 **Return value**
 
-| **Type**| **Description**        |
-| -------- | ---------------- |
-| [NfcVTag](js-apis-nfctech.md#nfcvtag)  | **NfcVTag** object obtained.|
+| **Type**                               | **Description**       |
+| ------------------------------------- | ------------- |
+| [NfcVTag](js-apis-nfctech.md#nfcvtag) | **NfcVTag** object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
 
-| ID| Error Message|
-| ------- | -------|
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
 | 3100201 | Tag running state is abnormal in service. |
 
 ## tag.getIsoDep<sup>9+</sup>
@@ -334,22 +335,22 @@ Obtains an **IsoDepTag** object, which allows access to the tags that use the IS
 
 **Parameters**
 
-| Name      | Type                       | Mandatory  | Description                                      |
-| --------- | ------------------------- | ---- | ---------------------------------------- |
-| taginfo      | [TagInfo](#taginfo)                   | Yes| Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.  |
+| Name    | Type                 | Mandatory  | Description                                      |
+| ------- | ------------------- | ---- | ---------------------------------------- |
+| taginfo | [TagInfo](#taginfo) | Yes   | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
 
 **Return value**
 
-| **Type**| **Description**           |
-| ---------- | ------------------|
-| [IsoDepTag](js-apis-nfctech.md#isodeptag9)  | **IsoDepTag** object obtained.|
+| **Type**                                  | **Description**                             |
+| ---------------------------------------- | ----------------------------------- |
+| [IsoDepTag](js-apis-nfctech.md#isodeptag9) | **IsoDepTag** object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
 
-| ID| Error Message|
-| ------- | -------|
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
 | 3100201 | Tag running state is abnormal in service. |
 
 ## tag.getNdef<sup>9+</sup>
@@ -362,27 +363,27 @@ Obtains an **NdefTag** object, which allows access to the tags in the NFC Data E
 
 **Parameters**
 
-| Name      | Type                       | Mandatory  | Description                                      |
-| --------- | ------------------------- | ---- | ---------------------------------------- |
-| taginfo      | [TagInfo](#taginfo)                   | Yes   | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.  |
+| Name    | Type                 | Mandatory  | Description                                      |
+| ------- | ------------------- | ---- | ---------------------------------------- |
+| taginfo | [TagInfo](#taginfo) | Yes   | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
 
 **Return value**
 
-| **Type**| **Description**       |
-| ---------| -------------- |
-| [NdefTag](js-apis-nfctech.md#ndeftag9)  | **NdefTag** object obtained.|
+| **Type**                                | **Description**                         |
+| -------------------------------------- | ------------------------------- |
+| [NdefTag](js-apis-nfctech.md#ndeftag9) | **NdefTag** object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
 
-| ID| Error Message|
-| ------- | -------|
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
 | 3100201 | Tag running state is abnormal in service. |
 
 ## tag.getMifareClassic<sup>9+</sup>
 
-getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfctech.md#mifareclassictag-9)
+getMifareClassic(tagInfo: [TagInfo](#taginfo)): [MifareClassicTag](js-apis-nfctech.md#mifareclassictag9)
 
 Obtains a **MifareClassicTag** object, which allows access to the tags that use MIFARE Classic.
 
@@ -390,22 +391,22 @@ Obtains a **MifareClassicTag** object, which allows access to the tags that use 
 
 **Parameters**
 
-| Name      | Type                       | Mandatory  | Description                                      |
-| --------- | ------------------------- | ---- | ---------------------------------------- |
-| taginfo      | [TagInfo](#taginfo)                   | Yes   | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.                             |
+| Name    | Type                 | Mandatory  | Description                                      |
+| ------- | ------------------- | ---- | ---------------------------------------- |
+| taginfo | [TagInfo](#taginfo) | Yes   | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
 
 **Return value**
 
-| **Type**| **Description**                         |
-| ----------------- | ------------------------|
-| [MifareClassicTag](js-apis-nfctech.md#mifareclassictag-9)  | **MifareClassicTag** object obtained.|
+| **Type**                                  | **Description**                                  |
+| ---------------------------------------- | ---------------------------------------- |
+| [MifareClassicTag](js-apis-nfctech.md#mifareclassictag-9) | **MifareClassicTag** object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
 
-| ID| Error Message|
-| ------- | -------|
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
 | 3100201 | Tag running state is abnormal in service. |
 
 ## tag.getMifareUltralight<sup>9+</sup>
@@ -417,22 +418,22 @@ Obtains a **MifareUltralightTag** object, which allows access to the tags that u
 **System capability**: SystemCapability.Communication.NFC.Tag
 
 **Parameters**
-| Name      | Type                       | Mandatory  | Description                                      |
-| --------- | ------------------------- | ---- | ---------------------------------------- |
-| taginfo      | [TagInfo](#taginfo)                   | Yes   | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.  |
+| Name    | Type                 | Mandatory  | Description                                      |
+| ------- | ------------------- | ---- | ---------------------------------------- |
+| taginfo | [TagInfo](#taginfo) | Yes   | Tag information including the technology type and related parameters, which are obtained from **tag.getTagInfo(want: Want)**.|
 
 **Return value**
 
-| **Type**| **Description**                               |
-| -------------------- | ---------------------------|
-| [MifareUltralightTag](js-apis-nfctech.md#mifareultralighttag9)  | **MifareUltralightTag** object obtained.|
+| **Type**                                  | **Description**                                  |
+| ---------------------------------------- | ---------------------------------------- |
+| [MifareUltralightTag](js-apis-nfctech.md#mifareultralighttag9) | **MifareUltralightTag** object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
 
-| ID| Error Message|
-| ------- | -------|
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
 | 3100201 | Tag running state is abnormal in service. |
 
 ## tag.getNdefFormatable<sup>9+</sup>
@@ -445,16 +446,16 @@ Obtains an **NdefFormatableTag** object, which allows access to the tags that ar
 
 **Return value**
 
-| **Type**| **Description**                            |
-| ------------------ | --------------------------|
-| [NdefFormatableTag](js-apis-nfctech.md#ndefformatabletag)  | **NdefFormatableTag** object obtained.|
+| **Type**                                  | **Description**                                  |
+| ---------------------------------------- | ---------------------------------------- |
+| [NdefFormatableTag](js-apis-nfctech.md#ndefformatabletag) | **NdefFormatableTag** object obtained.|
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
 
-| ID| Error Message|
-| ------- | -------|
+| ID  | Error Message                                    |
+| ------- | ---------------------------------------- |
 | 3100201 | Tag running state is abnormal in service. |
 
 ## tag.getTagInfo<sup>9+</sup>
@@ -467,14 +468,14 @@ Obtains **TagInfo** from **Want**, which is initialized by the NFC service and c
 
 **Parameters**
 
-| Name      | Type                       | Mandatory  | Description                                      |
-| --------- | ------------------------- | ---- | ---------------------------------------- |
-| want      | [Want](js-apis-app-ability-want.md#Want)                   | Yes   | Data obtained from the parameters of the **onCreate** entry function when an ability is dispatched.                             |
+| Name | Type                                      | Mandatory  | Description                               |
+| ---- | ---------------------------------------- | ---- | --------------------------------- |
+| want | [Want](js-apis-app-ability-want.md#Want) | Yes   | Data obtained from the parameters of the **onCreate** entry function when an ability is dispatched.|
 
 **Return value**
 
-| **Type**| **Description**                            |
-| ------------------ | --------------------------|
+| **Type**             | **Description**                     |
+| ------------------- | --------------------------- |
 | [TagInfo](#taginfo) | **TagInfo** object obtained.|
 
 
@@ -488,14 +489,14 @@ Creates an NDEF record based on the specified URI.
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
-| -------- | ----------------------- | ---- | -------------------------------------- |
-| uri | string | Yes| Data to write to the NDEF record.|
+| Name | Type    | Mandatory  | Description                    |
+| ---- | ------ | ---- | ---------------------- |
+| uri  | string | Yes   | Data to write to the NDEF record.|
 
 **Return value**
 
-| **Type**| **Description**                            |
-| ------------------ | --------------------------|
+| **Type**                    | **Description**                                  |
+| -------------------------- | ---------------------------------------- |
 | [NdefRecord](#ndefrecord9) | NDEF record created. For details, see *NFCForum-TS-NDEF_1.0*.|
 
 **Example**
@@ -527,15 +528,15 @@ Creates an NDEF record based on the specified text data and encoding type.
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
-| -------- | ----------------------- | ---- | -------------------------------------- |
-| text | string | Yes  | Text to write to the NDEF record.|
-| locale | string | Yes  | Encoding mode of the text.|
+| Name   | Type    | Mandatory  | Description                      |
+| ------ | ------ | ---- | ------------------------ |
+| text   | string | Yes   | Text to write to the NDEF record.|
+| locale | string | Yes   | Encoding mode of the text.            |
 
 **Return value**
 
-| **Type**| **Description**                            |
-| ------------------ | --------------------------|
+| **Type**                    | **Description**                                  |
+| -------------------------- | ---------------------------------------- |
 | [NdefRecord](#ndefrecord9) | NDEF record created. For details, see *NFCForum-TS-NDEF_1.0*.|
 
 **Example**
@@ -569,15 +570,15 @@ Creates an NDEF record based on the specified MIME data and type.
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
-| -------- | ----------------------- | ---- | -------------------------------------- |
-| mimeType | string | Yes  | MIME type that complies with RFC rules, for example, **text/plain** or **image/jpeg**.|
-| mimeData | number[] | Yes  | MIME data, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
+| Name     | Type      | Mandatory  | Description                                      |
+| -------- | -------- | ---- | ---------------------------------------- |
+| mimeType | string   | Yes   | MIME type that complies with RFC rules, for example, **text/plain** or **image/jpeg**.|
+| mimeData | number[] | Yes   | MIME data, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.   |
 
 **Return value**
 
-| **Type**| **Description**                            |
-| ------------------ | --------------------------|
+| **Type**                    | **Description**                                  |
+| -------------------------- | ---------------------------------------- |
 | [NdefRecord](#ndefrecord9) | NDEF record created. For details, see *NFCForum-TS-NDEF_1.0*.|
 
 **Example**
@@ -609,16 +610,16 @@ Creates an NDEF record based on application-specific data.
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
-| -------- | ----------------------- | ---- | -------------------------------------- |
-| domainName | string | Yes  | Bundle name of the application or domain name of the organization that releases the applications.|
-| type | string | Yes  | Type of the application data.|
-| externalData | number[] | Yes  | Application data, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
+| Name         | Type      | Mandatory  | Description                                 |
+| ------------ | -------- | ---- | ----------------------------------- |
+| domainName   | string   | Yes   | Bundle name of the application or domain name of the organization that releases the applications.            |
+| type         | string   | Yes   | Type of the application data.                         |
+| externalData | number[] | Yes   | Application data, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
 **Return value**
 
-| **Type**| **Description**                            |
-| ------------------ | --------------------------|
+| **Type**                    | **Description**                                  |
+| -------------------------- | ---------------------------------------- |
 | [NdefRecord](#ndefrecord9) | NDEF record created. For details, see *NFCForum-TS-NDEF_1.0*.|
 
 **Example**
@@ -652,14 +653,14 @@ Converts an NDEF message to bytes.
 
 **Parameters**
 
-| Name  | Type                   | Mandatory| Description                                  |
-| -------- | ----------------------- | ---- | -------------------------------------- |
-| ndefMessage | [NdefMessage](js-apis-nfctech.md#ndefmessage9) | Yes  | NDEF message to convert.|
+| Name        | Type                                      | Mandatory  | Description         |
+| ----------- | ---------------------------------------- | ---- | ----------- |
+| ndefMessage | [NdefMessage](js-apis-nfctech.md#ndefmessage9) | Yes   | NDEF message to convert.|
 
 **Return value**
 
-| **Type**| **Description**                            |
-| ------------------ | --------------------------|
+| **Type**  | **Description**                                  |
+| -------- | ---------------------------------------- |
 | number[] | NDEF message in bytes, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
 **Example**
@@ -693,14 +694,14 @@ Creates an NDEF message from raw byte data. The data must comply with the NDEF r
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| data | number[] | Yes| Raw byte data, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**. The data must comply with the NDEF record format.|
+| **Name**| **Type**  | **Mandatory**| **Description**                                  |
+| ------- | -------- | ------ | ---------------------------------------- |
+| data    | number[] | Yes     | Raw byte data, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**. The data must comply with the NDEF record format.|
 
 **Return value**
 
-| **Type**| **Description**                            |
-| ------------------ | --------------------------|
+| **Type**                                  | **Description**                                  |
+| ---------------------------------------- | ---------------------------------------- |
 | [NdefMessage](js-apis-nfctech.md#ndefmessage9) | NDEF message created. For details, see *NFCForum-TS-NDEF_1.0*.|
 
 **Example**
@@ -727,14 +728,14 @@ Creates an NDEF message from the NDEF records list.
 
 **Parameters**
 
-| **Name**| **Type**| **Mandatory**| **Description**|
-| -------- | -------- | -------- | -------- |
-| ndefRecords | [NdefRecord](js-apis-nfcTag.md#ndefrecord9)[] | Yes| NDEF record list used to create the NDEF message. For details, see *NFCForum-TS-NDEF_1.0*.|
+| **Name**    | **Type**                                  | **Mandatory**| **Description**                                  |
+| ----------- | ---------------------------------------- | ------ | ---------------------------------------- |
+| ndefRecords | [NdefRecord](js-apis-nfcTag.md#ndefrecord9)[] | Yes     | NDEF record list used to create the NDEF message. For details, see *NFCForum-TS-NDEF_1.0*.|
 
 **Return value**
 
-| **Type**| **Description**                            |
-| ------------------ | --------------------------|
+| **Type**                                  | **Description**                                  |
+| ---------------------------------------- | ---------------------------------------- |
 | [NdefMessage](js-apis-nfctech.md#ndefmessage9) | NDEF message created. For details, see *NFCForum-TS-NDEF_1.0*.|
 
 **Example**
@@ -762,67 +763,66 @@ Defines the **TagInfo** object, which provides information about the tag technol
 
 **Required permissions**: ohos.permission.NFC_TAG
 
-| **Name**| **Type**| **Readable**| **Writable**| **Description**|
-| -------- | -------- | -------- | -------- | -------- |
-| uid<sup>9+</sup> | number[] | Yes| No| Tag unique identifier (UID), which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
-| technology<sup>9+</sup> | number[] | Yes| No| Supported technologies. Each number is a constant indicating the supported technology.|
-| supportedProfiles | number[] | Yes| No|  Supported profiles. This parameter is not supported since API version 9. Use [technology](#taginfo).|
-| extrasData<sup>9+</sup> | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)[] | Yes| No|  Extended attribute value of the tag technology.<br>**System API**: This is a system API.|
-| tagRfDiscId<sup>9+</sup> | number | Yes| No|  ID allocated when the tag is discovered.<br>**System API**: This is a system API.|
-| remoteTagService<sup>9+</sup> | [rpc.RemoteObject](js-apis-rpc.md#remoteobject) | Yes| No| Remote object of the NFC service process used for interface communication between the client and the service.<br>**System API**: This is a system API.|
-
+| **Name**                       | **Type**                                  | **Readable**| **Writable**| **Description**                                  |
+| ----------------------------- | ---------------------------------------- | ------ | ------ | ---------------------------------------- |
+| uid<sup>9+</sup>              | number[]                                 | Yes     | No     | Tag unique identifier (UID), which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.   |
+| technology<sup>9+</sup>       | number[]                                 | Yes     | No     | Supported technologies. Each number is a constant indicating the supported technology.         |
+| supportedProfiles             | number[]                                 | Yes     | No     | Supported profiles. This parameter is not supported since API version 9. Use [tag.TagInfo#technology](#tagtaginfo) instead.|
+| extrasData<sup>9+</sup>       | [PacMap](js-apis-inner-ability-dataAbilityHelper.md#pacmap)[] | Yes     | No     | Extended attribute value of the tag technology.<br>**System API**: This is a system API.   |
+| tagRfDiscId<sup>9+</sup>      | number                                   | Yes     | No     | ID allocated when the tag is discovered.<br>**System API**: This is a system API.     |
+| remoteTagService<sup>9+</sup> | [rpc.RemoteObject](js-apis-rpc.md#remoteobject) | Yes     | No     | Remote object of the NFC service process used for interface communication between the client and the service.<br>**System API**: This is a system API.|
 ## NdefRecord<sup>9+</sup>
 Defines an NDEF record. For details, see *NFCForum-TS-NDEF_1.0*.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-| **Name**| **Type**| **Readable**| **Writable**| **Description**|
-| -------- | -------- | -------- | -------- | -------- |
-| tnf | number | Yes| No| Type name field (TNF) of the NDEF record.|
-| rtdType| number[] | Yes| No| Record type definition (RTD) of the NDEF record. It consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
-| id | number[] | Yes| No| NDEF record ID, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
-| payload | number[] | Yes| No| NDEF payload, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
+| **Name** | **Type**  | **Readable**| **Writable**| **Description**                                  |
+| ------- | -------- | ------ | ------ | ---------------------------------------- |
+| tnf     | number   | Yes     | No     | Type name field (TNF) of the NDEF record.       |
+| rtdType | number[] | Yes     | No     | Record type definition (RTD) of the NDEF record. It consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
+| id      | number[] | Yes     | No     | NDEF record ID, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
+| payload | number[] | Yes     | No     | NDEF payload, which consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
 ## Technology Type Definition
 Enumerates the tag technology types.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-| **Name**| **Value**|  **Description**|
-| -------- | -------- | -------- |
-| NFC_A | 1 | NFC-A (ISO 14443-3A).|
+| **Name**                      | **Value**| **Description**                  |
+| ---------------------------- | ----- | ------------------------ |
+| NFC_A                        | 1     | NFC-A (ISO 14443-3A). |
 | NFC_B  | 2 | NFC-B (ISO 14443-3B).|
-| ISO_DEP | 3 | ISO-DEP (ISO 14443-4).|
-| NFC_F  | 4 | NFC-F (JIS 6319-4).|
-| NFC_V | 5 | NFC-V (ISO 15693).|
-| NDEF  | 6 | NDEF.|
-| NDEF_FORMATABLE<sup>9+</sup> | 7 | NDEF formattable.|
-| MIFARE_CLASSIC | 8 | MIFARE Classic.|
-| MIFARE_ULTRALIGHT | 9 | MIFARE Ultralight.|
+| ISO_DEP                      | 3     | ISO-DEP (ISO 14443-4).|
+| NFC_F                        | 4     | NFC-F (JIS 6319-4).   |
+| NFC_V                        | 5     | NFC-V (ISO 15693).    |
+| NDEF                         | 6     | NDEF.                 |
+| NDEF_FORMATABLE<sup>9+</sup> | 7     | NDEF formattable.           |
+| MIFARE_CLASSIC               | 8     | MIFARE Classic.       |
+| MIFARE_ULTRALIGHT            | 9     | MIFARE Ultralight.     |
 
 ## TnfType<sup>9+</sup>
 Enumerates the TNF types. For details, see *NFCForum-TS-NDEF_1.0*.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-| **Name**| **Value**|  **Description**|
-| -------- | -------- | -------- |
-| TNF_EMPTY | 0x0 | Empty.|
-| TNF_WELL_KNOWN  | 0x1 | NFC Forum Well Known Type [NFC RTD].|
-| TNF_MEDIA | 0x2 | Media-type as defined in RFC 2046 [RFC 2046].|
-| TNF_ABSOLUTE_URI  | 0x3 | Absolute URI as defined in RFC 3986 [RFC 3986].|
-| TNF_EXT_APP | 0x4 | NFC Forum external type [NFC RTD].|
-| TNF_UNKNOWN  | 0x5 | Unknown.|
-| TNF_UNCHANGED | 0x6 | Unchanged (see section 2.3.3 in *NFCForum-TS-NDEF_1.0*).|
+| **Name**          | **Value**| **Description**                                  |
+| ---------------- | ----- | ---------------------------------------- |
+| TNF_EMPTY        | 0x0   | Empty.                                  |
+| TNF_WELL_KNOWN   | 0x1   | NFC Forum Well Known Type [NFC RTD].    |
+| TNF_MEDIA        | 0x2   | Media-type as defined in RFC 2046 [RFC 2046].|
+| TNF_ABSOLUTE_URI | 0x3   | Absolute URI as defined in RFC 3986 [RFC 3986].|
+| TNF_EXT_APP      | 0x4   | NFC Forum external type [NFC RTD].      |
+| TNF_UNKNOWN      | 0x5   | Unknown.                                |
+| TNF_UNCHANGED    | 0x6   | Unchanged (see section 2.3.3 in *NFCForum-TS-NDEF_1.0*).          |
 
 ## NDEF Record RTD
 Enumerates the NDEF record types. For details about the RTD, see *NFCForum-TS-NDEF_1.0*.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-| **Name**| **Value**|  **Description**|
-| -------- | -------- | -------- |
-| RTD_TEXT<sup>9+</sup> | [0x54] | NDEF record of the text type.|
+| **Name**               | **Value** | **Description**            |
+| --------------------- | ------ | ------------------ |
+| RTD_TEXT<sup>9+</sup> | [0x54] | NDEF record of the text type. |
 | RTD_URI<sup>9+</sup>  | [0x55] | NDEF record of the URI type.|
 
 ## NfcForumType<sup>9+</sup>
@@ -830,46 +830,47 @@ Enumerates the NFC Forum tag types.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-| **Name**| **Value**|  **Description**|
-| -------- | -------- | -------- |
-| NFC_FORUM_TYPE_1 | 1 |  NFC Forum tag type 1.|
-| NFC_FORUM_TYPE_2 | 2 |  NFC Forum tag type 2.|
-| NFC_FORUM_TYPE_3  | 3 |  NFC Forum tag type 3.|
-| NFC_FORUM_TYPE_4  | 4 |  NFC Forum tag type 4.|
-| MIFARE_CLASSIC  | 101 |   MIFARE Classic.|
+| **Name**          | **Value**| **Description**           |
+| ---------------- | ----- | ----------------- |
+| NFC_FORUM_TYPE_1 | 1     | NFC Forum tag type 1.        |
+| NFC_FORUM_TYPE_2 | 2     | NFC Forum tag type 2.        |
+| NFC_FORUM_TYPE_3 | 3     | NFC Forum tag type 3.        |
+| NFC_FORUM_TYPE_4 | 4     | NFC Forum tag type 4.        |
+| MIFARE_CLASSIC   | 101   | MIFARE Classic.|
 
 ## MifareClassicType<sup>9+</sup>
 Enumerates the MIFARE Classic tag types.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-| **Name**| **Value**|  **Description**|
-| -------- | -------- | -------- |
-| TYPE_UNKNOWN | 0 |  Unknown type.|
-| TYPE_CLASSIC | 1 |  MIFARE Classic.|
-| TYPE_PLUS   | 2 |  MIFARE Plus.|
-| TYPE_PRO  | 3 |  MIFARE Pro.|
+| **Name**      | **Value**| **Description**           |
+| ------------ | ----- | ----------------- |
+| TYPE_UNKNOWN | 0     | Unknown type.     |
+| TYPE_CLASSIC | 1     | MIFARE Classic.|
+| TYPE_PLUS    | 2     | MIFARE Plus.   |
+| TYPE_PRO     | 3     | MIFARE Pro.    |
 
 ## MifareClassicSize<sup>9+</sup>
 Enumerates the sizes of a MIFARE Classic tag.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-| **Name**| **Value**|  **Description**|
-| -------- | -------- | -------- |
-| MC_SIZE_MINI | 320 |  Each tag has 5 sectors, and each sector has 4 blocks.|
-| MC_SIZE_1K  | 1024 |  Each tag has 16 sectors, and each sector has 4 blocks.|
-| MC_SIZE_2K   | 2048 |  Each tag has 32 sectors, and each sector has 4 blocks.|
-| MC_SIZE_4K   | 4096 |  Each tag has 40 sectors, and each sector has 4 blocks.|
+| **Name**      | **Value**| **Description**            |
+| ------------ | ----- | ------------------ |
+| MC_SIZE_MINI | 320   | Each tag has 5 sectors, and each sector has 4 blocks. |
+| MC_SIZE_1K   | 1024  | Each tag has 16 sectors, and each sector has 4 blocks.|
+| MC_SIZE_2K   | 2048  | Each tag has 32 sectors, and each sector has 4 blocks.|
+| MC_SIZE_4K   | 4096  | Each tag has 40 sectors, and each sector has 4 blocks.|
 
 ## MifareUltralightType<sup>9+</sup>
 Enumerates the MIFARE Ultralight tag types.
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
-| **Name**| **Value**|  **Description**|
-| -------- | -------- | -------- |
-| TYPE_UNKNOWN  | 0 |  Unknown type.|
-| TYPE_ULTRALIGHT   | 1 |  MIFARE Ultralight.|
-| TYPE_ULTRALIGHT_C    | 2 |  MIFARE Ultralight C.|
+| **Name**           | **Value**| **Description**                |
+| ----------------- | ----- | ---------------------- |
+| TYPE_UNKNOWN      | 0     | Unknown type.        |
+| TYPE_ULTRALIGHT   | 1     | MIFARE Ultralight.  |
+| TYPE_ULTRALIGHT_C | 2     | MIFARE Ultralight C.|
 
+<!--no_check-->
