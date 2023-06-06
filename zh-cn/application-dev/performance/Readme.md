@@ -30,6 +30,6 @@
 
     - 应用将布局渲染到屏幕上的流畅度影响用户对质量的感知。建议移除多余的嵌套层次减少视图嵌套层次。
 
-  - [减少动画丢帧](http://https://gitee.com/sqsyqqy/docs/blob/master/zh-cn/application-dev/performance/reduce-frame-loss-and-frame-freezing/reduce-animation-frame-loss.md)
+  - [减少动画丢帧](http://gitee.com/sqsyqqy/docs/blob/master/zh-cn/application-dev/performance/reduce-frame-loss-and-frame-freezing/reduce-animation-frame-loss.md)
   
     -  应用播放动画的流畅度是影响用户体验的重要因素。建议通过使用系统提供的动效API来减少动画丢帧。
