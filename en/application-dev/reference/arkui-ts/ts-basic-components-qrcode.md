@@ -22,7 +22,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | string | Yes| Content of the QR code.|
+| value | string | Yes| Content of the QR code. A maximum of 256 characters are supported. If the number of characters exceeds 256, the first 256 characters are used.<br>**NOTE**<br>The string cannot be **null**, **undefined**, or empty.|
 
 ## Attributes
 

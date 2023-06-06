@@ -56,14 +56,16 @@ Provides the constant values of function keys, edit boxes, and the cursor.
 
 getInputMethodAbility(): InputMethodAbility
 
-Obtains an [InputMethodAbility](#inputmethodability) instance for the input method. The input method can use the obtained instance to subscribe to a soft keyboard display/hide request event, create/destroy an input method panel, and the like.
+Obtains an [InputMethodAbility](#inputmethodability) instance for the input method.
+
+The input method can use the obtained instance to subscribe to a soft keyboard display/hide request event.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
-| Type                                   | Description        |
-| --------------------------------------- | ------------ |
+| Type                                     | Description              |
+| ----------------------------------------- | ------------------ |
 | [InputMethodAbility](#inputmethodability) | **InputMethodAbility** instance.|
 
 **Example**
@@ -82,8 +84,8 @@ Obtains a [KeyboardDelegate](#keyboarddelegate) instance for the input method. T
 
 **Return value**
 
-| Type                                 | Description            |
-| ------------------------------------- | ---------------- |
+| Type                                 | Description                    |
+| ------------------------------------- | ------------------------ |
 | [KeyboardDelegate](#keyboarddelegate) | **KeyboardDelegate** instance.|
 
 **Example**
@@ -100,14 +102,14 @@ Obtains an [InputMethodEngine](#inputmethodengine) instance for the input method
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getInputMethodAbility()](#inputmethodenginegetinputmethodability9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getInputMethodAbility()](#inputmethodenginegetinputmethodability9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
-| Type                                   | Description        |
-| --------------------------------------- | ------------ |
+| Type                                     | Description              |
+| ----------------------------------------- | ------------------ |
 | [InputMethodEngine](#inputmethodengine) | **InputMethodAbility** instance.|
 
 **Example**
@@ -124,14 +126,14 @@ Obtains a [KeyboardDelegate](#keyboarddelegate) instance for the input method. T
 
 > **NOTE**
 >
->This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getKeyboardDelegate()](#inputmethodenginegetkeyboarddelegate9).
+>This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getKeyboardDelegate()](#inputmethodenginegetkeyboarddelegate9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Return value**
 
-| Type                                 | Description            |
-| ------------------------------------- | ---------------- |
+| Type                                 | Description                    |
+| ------------------------------------- | ------------------------ |
 | [KeyboardDelegate](#keyboarddelegate) | **KeyboardDelegate** instance.|
 
 **Example**
@@ -384,7 +386,7 @@ inputMethodEngine.getInputMethodAbility().off('setCallingWindow', () => {
 
 on(type: 'keyboardShow'|'keyboardHide', callback: () => void): void
 
-Enables listening for a keyboard event. This API uses an asynchronous callback to return the result.
+Enables listening for a keyboard visibility event. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -410,7 +412,7 @@ inputMethodEngine.getInputMethodAbility().on('keyboardHide', () => {
 
 off(type: 'keyboardShow'|'keyboardHide', callback?: () => void): void
 
-Disables listening for a keyboard event. This API uses an asynchronous callback to return the result.
+Disables listening for a keyboard visibility event. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -442,9 +444,9 @@ Enables listening for the input method subtype setting event. This API uses an a
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Listening type.<br>The value **'setSubtype'** indicates the input method subtype setting event.|
+| Name   | Type| Mandatory | Description|
+| -------- | --- | ---- | --- |
+| type     | string | Yes  | Listening type.<br>The value **'setSubtype'** indicates the input method subtype setting event.|
 | callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | Yes  | Callback used to return the input method subtype.                          |
 
 **Example**
@@ -465,9 +467,9 @@ Disables listening for the input method subtype setting event. This API uses an 
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Listening type.<br>The value **'setSubtype'** indicates the input method subtype setting event.|
+| Name  | Type | Mandatory| Description  |
+| ------- | ----- | ---- | ---- |
+| type     | string | Yes  | Listening type.<br>The value **'setSubtype'** indicates the input method subtype setting event.|
 | callback | (inputMethodSubtype: [InputMethodSubtype](js-apis-inputmethod-subtype.md)) => void | No  | Callback used to return the input method subtype. |
 
 **Example**
@@ -522,9 +524,9 @@ Disables listening for a keyboard event. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name  | Type                                     | Mandatory| Description                                                        |
-| -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                    | Yes  | Listening type.<br>The value **'keyDown'** indicates the keydown event.<br>The value **'keyUp'** indicates the keyup event.|
+| Name   | Type    | Mandatory | Description |
+| -------- | ------- | ---- | ----- |
+| type     | string  | Yes  | Listening type.<br>The value **'keyDown'** indicates the keydown event.<br>The value **'keyUp'** indicates the keyup event.|
 | callback | (event: [KeyEvent](#keyevent)) => boolean | No  | Callback used to return the key information. |
 
 **Example**
@@ -550,9 +552,9 @@ Enables listening for the cursor change event. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name  | Type                                          | Mandatory| Description                                                        |
-| -------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                         | Yes  | Listening type.<br>The value **'cursorContextChange'** indicates the cursor change event.|
+| Name   | Type | Mandatory | Description |
+| -------- | ---- | ---- | ----- |
+| type     | string | Yes  | Listening type.<br>The value **'cursorContextChange'** indicates the cursor change event.|
 | callback | (x: number, y: number, height: number) => void | Yes  | Callback used to return the cursor information.<br>- **x**: x coordinate of the top of the cursor.<br>- **y**: x coordinate of the bottom of the cursor.<br>- **height**: height of the cursor.|
 
 **Example**
@@ -575,9 +577,9 @@ Cancels listening for cursor context changes. This API uses an asynchronous call
 
   **Parameters**
 
-| Name  | Type                                        | Mandatory| Description                                                        |
-| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                                       | Yes  | Listening type.<br>The value **'cursorContextChange'** indicates the cursor change event.|
+| Name   | Type | Mandatory | Description  |
+| -------- | ---- | ---- | ------ |
+| type     | string  | Yes  | Listening type.<br>The value **'cursorContextChange'** indicates the cursor change event.|
 | callback | (x: number, y:number, height:number) => void | No  | Callback used to return the cursor information.<br>- **x**: x coordinate of the top of the cursor.<br>- **y**: x coordinate of the bottom of the cursor.<br>- **height**: height of the cursor.<br>|
 
 
@@ -598,9 +600,9 @@ Enables listening for the text selection change event. This API uses an asynchro
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Listening type.<br>The value **'selectionChange'** indicates the text selection change event.|
+| Name   | Type  | Mandatory| Description  |
+| -------- | ----- | ---- | ---- |
+| type     | string  | Yes  | Listening type.<br>The value **'selectionChange'** indicates the text selection change event.|
 | callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | Yes  | Callback used to return the text selection information.<br>- **oldBegin**: start of the selected text before the change.<br>- **oldEnd**: end of the selected text before the change.<br>- **newBegin**: start of the selected text after the change.<br>- **newEnd**: end of the selected text after the change.|
 
 **Example**
@@ -624,9 +626,9 @@ Cancels listening for text selection changes. This API uses an asynchronous call
 
 **Parameters**
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | Yes  | Listening type.<br>The value **'selectionChange'** indicates the text selection change event.|
+| Name  | Type | Mandatory| Description    |
+| -------- | ------- | ---- | ------- |
+| type     | string  | Yes  | Listening type.<br>The value **'selectionChange'** indicates the text selection change event.|
 | callback | (oldBegin: number, oldEnd: number, newBegin: number, newEnd: number) => void | No  | Callback used to return the text selection information.<br>- **oldBegin**: start of the selected text before the change.<br>- **oldEnd**: end of the selected text before the change.<br>- **newBegin**: start of the selected text after the change.<br>- **newEnd**: end of the selected text after the change.<br>|
 
 **Example**
@@ -651,7 +653,7 @@ Enables listening for the text change event. This API uses an asynchronous callb
 | Name  | Type  | Mandatory| Description                                                        |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
 | type     | string | Yes  | Listening type.<br>The value **'textChange'** indicates the text change event.|
-| callback | (text: string) => void | Yes  | Callback used to return the text content.                                  |
+| callback | (text: string) => void | Yes  | Callback used to return the text content.|
 
 **Example**
 
@@ -762,7 +764,7 @@ Hides the keyboard. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [hide](#hide9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [hide](#hide9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -792,7 +794,7 @@ Hides the keyboard. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [hide](#hide9-1).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [hide](#hide9-1) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -828,7 +830,7 @@ Sends the function key. This API uses an asynchronous callback to return the res
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | number | Yes| Action of the function key.<br>**0**: invalid key.<br>**1**: confirm key (Enter key).|
+| action | number | Yes| Action of the function key.<br>- **0**: invalid key.<br>- **1**: confirm key (Enter key).|
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -872,7 +874,7 @@ Sends the function key. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | number | Yes| Action of the function key.<br>**0**: invalid key.<br>**1**: confirm key (Enter key).|
+| action | number | Yes| Action of the function key.<br>- **0**: invalid key.<br>- **1**: confirm key (Enter key).|
 
 **Return value**
 
@@ -1073,7 +1075,7 @@ try {
         console.error('Failed to getForward: ' + JSON.stringify(err));
     });
 } catch (err) {
-    console.error('Failed to getForward: ' + JSON.stringify(err));
+  console.error(`Failed to getBackward: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1098,7 +1100,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                |
 | -------- | -------------------------- |
-| 12800002 | Input method engine error. |
+| 12800002 | input method engine error. |
 | 12800003 | input method client error. |
 
 **Example**
@@ -1166,7 +1168,7 @@ try {
         console.error('Failed to delete Forward: ' + JSON.stringify(err));
     });
 } catch (err) {
-    console.error('Failed to delete Forward: ' + JSON.stringify(err));
+  console.error(`Failed to deleteForward: ${JSON.stringify(err)}`);
 }
 ```
 
@@ -1219,7 +1221,7 @@ try {
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
 
-Deletes the fixed-length text after the cursor. This API uses an asynchronous callback to return the result.
+Deletes the fixed-length text after the cursor. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1514,14 +1516,14 @@ Describes the attribute of a key.
 
 | Name     | Type| Readable| Writable| Description        |
 | --------- | -------- | ---- | ---- | ------------ |
-| keyCode   | number   | Yes  | No  | Key value.|
-| keyAction | number   | Yes  | No  | Key status.|
+| keyCode   | number   | Yes  | No  | Key value. For detail, see [KeyCode](js-apis-keycode.md#keycode).|
+| keyAction | number   | Yes  | No  | Key event type.<br>- **2**: keydown event.<br>- **3**: keyup event.|
 
 ## TextInputClient<sup>(deprecated)</sup>
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [InputClient](#inputclient9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [InputClient](#inputclient9) instead.
 
 In the following API examples, you must first use **[on('inputStart')](#oninputstart)** to obtain a **TextInputClient** instance, and then call the APIs using the obtained instance.
 
@@ -1533,7 +1535,7 @@ Obtains the specific-length text before the cursor. This API uses an asynchronou
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getForward](#getforward9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getForward](#getforward9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1565,7 +1567,7 @@ Obtains the specific-length text before the cursor. This API uses a promise to r
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getForward](#getforward9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getForward](#getforward9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1600,7 +1602,7 @@ Obtains the specific-length text after the cursor. This API uses an asynchronous
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getBackward](#getbackward9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getBackward](#getbackward9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1632,7 +1634,7 @@ Obtains the specific-length text after the cursor. This API uses a promise to re
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getBackward](#getbackward9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getBackward](#getbackward9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1667,7 +1669,7 @@ Deletes the fixed-length text before the cursor. This API uses an asynchronous c
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [deleteForward](#deleteforward9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [deleteForward](#deleteforward9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1703,7 +1705,7 @@ Deletes the fixed-length text before the cursor. This API uses a promise to retu
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [deleteForward](#deleteforward9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [deleteForward](#deleteforward9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1742,18 +1744,18 @@ Deletes the fixed-length text after the cursor. This API uses an asynchronous ca
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [deleteBackward](#deletebackward9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [deleteBackward](#deletebackward9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-  **Parameters**
+**Parameters**
 
 | Name  | Type                        | Mandatory| Description          |
 | -------- | ---------------------------- | ---- | -------------- |
 | length   | number                       | Yes  | Text length.    |
 | callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
-  **Example**
+**Example**
 
 ```js
 let length = 1;
@@ -1774,11 +1776,11 @@ textInputClient.deleteBackward(length, (err, result) => {
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
 
-Deletes the fixed-length text after the cursor. This API uses an asynchronous callback to return the result.
+Deletes the fixed-length text after the cursor. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [deleteBackward](#deletebackward9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [deleteBackward](#deletebackward9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1816,18 +1818,18 @@ Sends the function key. This API uses an asynchronous callback to return the res
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [sendKeyFunction](#sendkeyfunction9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [sendKeyFunction](#sendkeyfunction9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
-  **Parameters**
+**Parameters**
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | number | Yes| Action of the function key.<br>**0**: invalid key.<br>**1**: confirm key (Enter key).|
+| action | number | Yes| Action of the function key.<br>- **0**: invalid key.<br>- **1**: confirm key (Enter key).|
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
-  **Example**
+**Example**
 
 ```js
 let action = 1;
@@ -1852,7 +1854,7 @@ Sends the function key. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [sendKeyFunction](#sendkeyfunction9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [sendKeyFunction](#sendkeyfunction9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1860,7 +1862,7 @@ Sends the function key. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | number | Yes| Action of the function key.<br>**0**: invalid key.<br>**1**: confirm key (Enter key).|
+| action | number | Yes| Action of the function key.<br>- **0**: invalid key.<br>- **1**: confirm key (Enter key).|
 
 **Return value**
 
@@ -1891,7 +1893,7 @@ Inserts text. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [insertText](#inserttext9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [insertText](#inserttext9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1926,7 +1928,7 @@ Inserts text. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [insertText](#inserttext9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [insertText](#inserttext9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -1964,14 +1966,14 @@ Obtains the attribute of the edit box. This API uses an asynchronous callback to
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getEditorAttribute](#geteditorattribute9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getEditorAttribute](#geteditorattribute9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
-| Name                        | Type                         | Mandatory                           | Description                                                        |
-| ------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Name   | Type  | Mandatory | Description  |
+| -------- | ----- | ----- | ----- |
 | callback | AsyncCallback&lt;[EditorAttribute](#editorattribute)&gt; | Yes|  Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the attribute of the edit box. Otherwise, **err** is an error object.|
 
 **Example**
@@ -1995,7 +1997,7 @@ Obtains the attribute of the edit box. This API uses a promise to return the res
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getEditorAttribute](#geteditorattribute9).
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [getEditorAttribute](#geteditorattribute9) instead.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 

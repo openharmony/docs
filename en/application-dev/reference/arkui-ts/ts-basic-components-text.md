@@ -30,7 +30,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name                      | Type                           | Description                                              |
 | ----------------------- | ----------------------------------- | ------------------------------------------- |
-| textAlign               | [TextAlign](ts-appendix-enums.md#textalign) | Horizontal alignment mode of the text.<br>Default value: **TextAlign.Start**<br>**NOTE**<br>The text takes up the full width of the **\<Text>** component. To set the vertical alignment for the text, use the [align](ts-universal-attributes-location.md) attribute.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| textAlign               | [TextAlign](ts-appendix-enums.md#textalign) | Horizontal alignment mode of the text.<br>Default value: **TextAlign.Start**<br>**NOTE**<br>The text takes up the full width of the **\<Text>** component. To set vertical alignment for the text, use the [align](ts-universal-attributes-location.md) attribute. The **align** attribute alone does not control the horizontal position of the text. In other words, **Alignment.TopStart**, **Alignment.Top**, and **Alignment.TopEnd** produce the same effect, top-aligning the text; **Alignment.Start**, **Alignment.Center**, and **Alignment.End** produce the same effect, centered-aligning the text vertically; **Alignment.BottomStart**, **Alignment.Bottom**, and **Alignment.BottomEnd** produce the same effect, bottom-aligning the text. Yet, it can work with the **textAlign** attribute to jointly determine the horizontal position of the text.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | textOverflow            | {overflow: [TextOverflow](ts-appendix-enums.md#textoverflow)} | Display mode when the text is too long.<br>Default value: **{overflow: TextOverflow.Clip}**<br>**NOTE**<br/>Text is clipped at the transition between words. To clip text in the middle of a word, add **\u200B** between characters.<br>This attribute must be used with `maxLines` to take effect.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | maxLines                | number | Maximum number of lines in the text.<br>Default value: **Infinity**<br>**NOTE**<br/>By default, text is automatically folded. If this attribute is specified, the text will not exceed the specified number of lines. If there is extra text, you can use **textOverflow** to specify how it is displayed.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | lineHeight              | string \| number \| [Resource](ts-types.md#resource)  | Text line height. If the value is less than or equal to **0**, the line height is not limited and the font size is adaptive. If the value of the number type, the unit fp is used.<br>Since API version 9, this API is supported in ArkTS widgets.|
@@ -109,7 +109,7 @@ struct TextExample1 {
       Text('TextOverflow+maxLines').fontSize(9).fontColor(0xCCCCCC)
       // Clip the text when the value of maxLines is exceeded.
       Text('This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content. This is the setting of textOverflow to Clip text content This is the setting of textOverflow to None text content.')
-        .textOverflow({ overflow: TextOverflow.None })
+        .textOverflow({ overflow: TextOverflow.Clip })
         .maxLines(1)
         .fontSize(12)
         .border({ width: 1 })

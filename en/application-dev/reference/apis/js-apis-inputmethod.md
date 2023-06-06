@@ -60,7 +60,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                    |
 | -------- | ------------------------------ |
-| 12800006 | Input method controller error. |
+| 12800006 | input method controller error. |
 
 **Example**
 
@@ -88,7 +88,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800007 | Input method settings extension error. |
+| 12800007 | input method settings extension error. |
 
 **Example**
 
@@ -119,8 +119,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800005 | Configuration persisting error.        |
-| 12800008 | Input method manager service error. |
+| 12800005 | configuration persisting error.        |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -176,8 +176,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800005 | Configuration persisting error.        |
-| 12800008 | Input method manager service error. |
+| 12800005 | configuration persisting error.        |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -248,8 +248,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800005 | Configuration persisting error.        |
-| 12800008 | Input method manager service error. |
+| 12800005 | configuration persisting error.        |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -309,8 +309,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800005 | Configuration persisting error.        |
-| 12800008 | Input method manager service error. |
+| 12800005 | configuration persisting error.        |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -384,8 +384,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800005 | Configuration persisting error.        |
-| 12800008 | Input method manager service error. |
+| 12800005 | configuration persisting error.        |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -438,8 +438,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800005 | Configuration persisting error.        |
-| 12800008 | Input method manager service error. |
+| 12800005 | configuration persisting error.        |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -447,7 +447,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 let im = inputMethod.getCurrentInputMethod();
 let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
-    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, imSubType).then((result) => {
+    inputMethod.switchCurrentInputMethodAndSubtype(im, imSubType).then((result) => {
         if (result) {
             console.info('Succeeded in switching currentInputMethodAndSubtype.');
         } else {
@@ -533,8 +533,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -576,8 +576,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -619,8 +619,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -656,8 +656,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -691,8 +691,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -728,8 +728,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -876,8 +876,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800001 | Package manager error.                 |
-| 12800008 | Input method manager service error. |
+| 12800001 | package manager error.                 |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -928,8 +928,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800001 | Package manager error.                 |
-| 12800008 | Input method manager service error. |
+| 12800001 | package manager error.                 |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -972,8 +972,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800001 | Package manager error.                 |
-| 12800008 | Input method manager service error. |
+| 12800001 | package manager error.                 |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -1011,8 +1011,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800001 | Package manager error.                 |
-| 12800008 | Input method manager service error. |
+| 12800001 | package manager error.                 |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -1049,8 +1049,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800001 | Package manager error.                 |
-| 12800008 | Input method manager service error. |
+| 12800001 | package manager error.                 |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -1088,8 +1088,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800001 | Package manager error.                 |
-| 12800008 | Input method manager service error. |
+| 12800001 | package manager error.                 |
+| 12800008 | input method manager service error. |
 
 **Return value**
 
@@ -1131,7 +1131,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800008 | Input method manager service error. |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -1169,7 +1169,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800008 | Input method manager service error. |
+| 12800008 | input method manager service error. |
 
 **Example**
 

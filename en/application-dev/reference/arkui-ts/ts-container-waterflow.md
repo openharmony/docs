@@ -14,6 +14,9 @@ The **\<WaterFlow>** component is a container that consists of cells formed by r
 
 The [\<FlowItem>](ts-container-flowitem.md) child component is supported.
 
+>  **NOTE**
+>
+>  When the **visibility** attribute of a child component in **\<WaterFlow >** is set to **None**, the child component is not displayed, but still takes up cells.
 
 ## APIs
 
@@ -257,9 +260,11 @@ struct WaterflowDemo {
               Text("N" + item).fontSize(12).height('16')
               Image('res/waterFlowTest(' + item % 5 + ').jpg')
                 .objectFit(ImageFit.Fill)
+                .width('100%')
+                .layoutWeight(1)
             }
           }
-          .width(this.itemWidthArray[item])
+          .width('100%')
           .height(this.itemHeightArray[item])
           .backgroundColor(this.colors[item % 5])
         }, item => item)
