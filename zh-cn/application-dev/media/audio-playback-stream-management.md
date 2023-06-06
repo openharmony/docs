@@ -119,5 +119,5 @@
 
 # 音频场景音效查询
 
-对于播放音频类的应用，开发者需要关注该应用的音频流使用什么音效模式并做出相应的操作，比如音乐App播放时，应选择音乐场景下的模式。参考[使用AudioStreamManager开发音效查询功能](../reference/apis/js-apis-audio.md#audiostreammanager9)
+对于播放音频类的应用，开发者需要关注该应用的音频流使用什么音效模式并做出相应的操作，比如音乐App播放时，应选择音乐场景下的模式。参考[使用AudioStreamManager开发音效查询功能](../reference/apis/js-apis-audio.md#getAudioEffectInfoArray10)
 
