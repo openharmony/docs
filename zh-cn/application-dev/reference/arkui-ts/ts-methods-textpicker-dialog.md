@@ -21,9 +21,9 @@ show(options?: TextPickerDialogOptions)
 | selected | number | 否 |  设置选中项的索引值。<br>默认值：0 |
 | value       | string           | 否    | 设置选中项的文本内容。当设置了selected参数时，该参数不生效。如果设置的value值不在range范围内，则默认取range第一个元素。|
 | defaultPickerItemHeight | number \| string | 否 | 设置选择器中选项的高度。 |
-| disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。 |
-| textStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。 |
-| selectedTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置选中项的文本颜色、字号、字体粗细。 |
+| disappearTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中最上和最下两个选项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>corlor: '#ff182431',<br/>font: {<br/>size: '14fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| textStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置所有选项中除了最上、最下及选中项以外的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>corlor: '#ff182431',<br/>font: {<br/>size: '16fp', <br/>weight: FontWeight.Regular<br/>}<br/>} |
+| selectedTextStyle<sup>10+</sup> | [PickerTextStyle](ts-basic-components-datepicker.md#pickertextstyle10类型说明) | 否 | 设置选中项的文本颜色、字号、字体粗细。<br/>默认值：<br/>{<br/>corlor: '#ff007dff',<br/>font: {<br/>size: '20vp', <br/>weight: FontWeight.Medium<br/>}<br/>} |
 | onAccept | (value: [TextPickerResult](#textpickerresult对象说明)) => void | 否 |  点击弹窗中的“确定”按钮时触发该回调。 |
 | onCancel | () => void | 否 | 点击弹窗中的“取消”按钮时触发该回调。 |
 | onChange | (value: [TextPickerResult](#textpickerresult对象说明)) => void | 否 |  滑动弹窗中的选择器使当前选中项改变时触发该回调。 |
@@ -46,27 +46,29 @@ struct TextPickerDialogExample {
   private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
 
   build() {
-    Column() {
-      Button("TextPickerDialog")
-        .margin(20)
-        .onClick(() => {
-          TextPickerDialog.show({
-            range: this.fruits,
-            selected: this.select,
-            onAccept: (value: TextPickerResult) => {
-              // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
-              this.select = value.index
-              console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
-            },
-            onCancel: () => {
-              console.info("TextPickerDialog:onCancel()")
-            },
-            onChange: (value: TextPickerResult) => {
-              console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
-            }
+    Row() {
+      Column() {
+        Button("TextPickerDialog")
+          .margin(20)
+          .onClick(() => {
+            TextPickerDialog.show({
+              range: this.fruits,
+              selected: this.select,
+              onAccept: (value: TextPickerResult) => {
+                // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
+                this.select[0] = value.index
+                console.info("TextPickerDialog:onAccept()" + JSON.stringify(value))
+              },
+              onCancel: () => {
+                console.info("TextPickerDialog:onCancel()")
+              },
+              onChange: (value: TextPickerResult) => {
+                console.info("TextPickerDialog:onChange()" + JSON.stringify(value))
+              }
+            })
           })
-        })
-    }.width('100%')
+      }.width('100%')
+    }.height('100%')
   }
 }
 ```
