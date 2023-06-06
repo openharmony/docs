@@ -209,6 +209,9 @@ try {
 **接口说明**
 
 根据开发流程，在导入加密密钥过程中，需要依次调用HUKS的生成密钥、导出公钥、导入加密密钥、删除密钥接口。
+
+**表1** 加密导入的接口介绍
+
 | 接口名                      | 描述                 |
 | -------------------------------------- | ----------------------------|
 |generateKeyItem(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<void>) : void| 生成新密钥|
@@ -1697,8 +1700,7 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
 
 2. 使用密钥时，先初始化密钥会话，然后根据密钥生成/导入阶段指定的挑战值类型属性是否需要获取挑战值，或组装新的挑战值。
         
-  **表6** 使用密钥的接口介绍
-
+    **表6** 使用密钥的接口介绍
 	| 接口名                      | 描述                 |
 	| -------------------------------------- | ----------------------------|
 	|initSession(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksSessionHandle>) : void| 初始化密钥会话，获取挑战值|
@@ -2087,7 +2089,7 @@ HUKS提供了全面完善的密钥访问控制能力，确保存储在HUKS中的
 
 新增用于细粒度用户身份认证访问控制的HuksTag：[HUKS_TAG_KEY_AUTH_PURPOSE](../reference/apis/js-apis-huks.md#hukstag)，该Tag值取值范围为枚举类[HuksKeyAlg](../reference/apis/js-apis-huks.md#hukskeyalg)。
 
-**表8** 细粒度用户身份认证访问控制Tag类型介绍
+**表7** 细粒度用户身份认证访问控制Tag类型介绍
 | 名称                      | 描述                 |
 | -------------------------------------- | ----------------------------|
 |HUKS_TAG_KEY_AUTH_PURPOSE| 表示密钥认证用途的tag，用于设置某种算法用途下需要用户身份认证访问控制|
