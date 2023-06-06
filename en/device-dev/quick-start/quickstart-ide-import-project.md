@@ -24,8 +24,6 @@ A remote connection from the Windows environment to the Ubuntu environment has b
 
 ## Procedure
 
-Source code from a mirror site can be of the OpenHarmony-v1.1.4-LTS, OpenHarmony-v3.0.3-LTS, or OpenHarmony-v3.1-Release version.
-
 1. Open DevEco Device Tool, go to the home page, and click **New Project**.
 
    ![en-us_image_0000001272258726](figures/en-us_image_0000001272258726.png)
