@@ -460,6 +460,132 @@ try {
 }
 ```
 
+## inputDevice.setKeyboardRepeatDelay<sup>10+</sup>
+
+setKeyboardRepeatDelay(delay: number, callback: AsyncCallback&lt;void&gt;): void
+
+设置键盘按键的重复时延，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| delay    | number                    | 是    | 键盘按键重复延迟时间。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
+
+**示例**：
+
+```js
+try {
+  inputDevice.setKeyboardRepeatDelay(5, (error) => {
+    if (error) {
+      console.log(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`Set keyboard repeat delay success`);
+  });
+} catch (error) {
+  console.log(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.setKeyboardRepeatDelay<sup>10+</sup>
+
+setKeyboardRepeatDelay(delay: number): Promise&lt;void&gt;
+
+设置键盘按键的重复时延，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| delay | number | 是    | 键盘按键重复延迟时间。|
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise对象。 |
+
+**示例**：
+
+```js
+try {
+  inputDevice.setKeyboardRepeatDelay(5).then(() => {
+    console.log(`Set keyboard repeat delay success`);
+  });
+} catch (error) {
+  console.log(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.setKeyboardRepeatRate<sup>10+</sup>
+
+setKeyboardRepeatRate(rate: number, callback: AsyncCallback&lt;void&gt;): void
+
+设置键盘按键的重复速率，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数名     | 类型   | 必填 | 说明                                                         |
+| -------- | ------ | ---- | ------------------------------------------------------------ |
+| rate    | number                    | 是    | 键盘按键重复速率。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
+
+**示例**：
+
+```js
+try {
+  inputDevice.setKeyboardRepeatRate(5, (error) => {
+    if (error) {
+      console.log(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`Set keyboard repeat rate success`);
+  });
+} catch (error) {
+  console.log(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## inputDevice.setKeyboardRepeatRate<sup>10+</sup>
+
+setKeyboardRepeatRate(rate: number): Promise&lt;void&gt;
+
+设置键盘按键的重复速率，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| rate | number | 是    | 键盘按键重复速率。|
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise对象。 |
+
+**示例**：
+
+```js
+try {
+  inputDevice.setKeyboardRepeatRate(5).then(() => {
+    console.log(`Set keyboard repeat rate success`);
+  });
+} catch (error) {
+  console.log(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
 ## DeviceListener<sup>9+</sup>
 
 输入设备热插拔的描述信息。
