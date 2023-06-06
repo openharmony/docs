@@ -45,6 +45,17 @@ Camera模块主要包含服务、设备的初始化，数据通路的搭建，�
 
 Camera模块主要针对相机预览、拍照、视频流等场景，对这些场景下的相机操作进行封装，使开发者更易操作相机硬件，提高开发效率。
 
+### HCS配置文件<a name="5"></a>
+
+Camera模块HCS配置文件路径：/vendor/hihope/rk3568/hdf_config/uhdf/camera
+
+1. ./hdi_impl/camera_host_config.hcs 主要是metadata TAG配置
+2. ./pipeline_core/config.hcs 主要是node 节点配置
+    编译后在/drivers/periphera/camra/vdi_base/common/pipeline_core/pipeline_impl/src/strategy/config目录下生产congfig.c和congfig.h文件
+3. ./pipeline_core/ipp_algo_config.hcs 为ipp node 拍照配置
+4. ./pipeline_core/params.hcs 各种流配置
+    编译后在/drivers/periphera/camra/vdi_base/common/pipeline_core/pipeline_impl/src/strategy/config目录下生产params.c和params.h文件
+
 ### 接口说明<a name="6"></a>
 
 注：以下接口列举的为IDL接口描述生成的对应C++语言函数接口，接口声明见idl文件（/drivers/interface/camera/v1_0/，链接：https://gitee.com/openharmony/drivers_interface/tree/master/camera）。         
@@ -67,7 +78,6 @@ Camera模块主要针对相机预览、拍照、视频流等场景，对这些�
   | ---------------------------------------------------------- | ------------------------------------------------------------ |
   | 设备发生错误时调用，由调用者实现，用于返回错误信息给调用者 | int32_t OnError(ErrorType type, int32_t errorCode)              |
   | 上报camera设备相关的metadata的回调                         | int32_t OnResult(uint64_t timestamp, const std::vector<uint8_t>& result) |
-
 
 - icamera_host.h
 
