@@ -44,14 +44,14 @@
 
 部分谓词接口的系统接口说明取消，涉及的接口有：
 
-- equalTo(field: string, value: ValueType): DataSharePredicates;
+- equalTo(field: string, value: ValueType): DataSharePredicates
 
-- and(): DataSharePredicates;
+- and(): DataSharePredicates
 
-- orderByAsc(field: string): DataSharePredicates;
+- orderByAsc(field: string): DataSharePredicates
 
-- orderByDesc(field: string): DataSharePredicates;
+- orderByDesc(field: string): DataSharePredicates
 
-- limit(total: number, offset: number): DataSharePredicates;
+- limit(total: number, offset: number): DataSharePredicates
 
-- in(field: string, value: Array<ValueType>): DataSharePredicates;
+- in(field: string, value: Array<ValueType>): DataSharePredicates
