@@ -3364,6 +3364,92 @@ audioStreamManager.isActive(audio.AudioVolumeType.MEDIA).then((value) => {
 });
 ```
 
+### getAudioEffectInfoArray<sup>10+</sup>
+
+getAudioEffectInfoArray(content: ContentType, usage: StreamUsage, callback: AsyncCallback&lt;AudioEffectInfoArray&gt;): void
+
+获取当前音效模式的信息。使用callback异步回调。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名    | 类型                                | 必填     | 说明                         |
+| -------- | ----------------------------------- | -------- | --------------------------- |
+| content  | <a href="#contenttype">ContentType</a>                         | 是     |  音频内容类型。                  |
+| usage    | <a href="#streamusage">StreamUsage</a>                         | 是     |  音频流使用类型。                |
+| callback | AsyncCallback<[AudioEffectInfoArray](#audioeffectinfoarray10)> | 是     |  回调函数，返回当前音效模式的信息。|
+
+**示例：**
+
+```js
+audioStreamManager.getAudioEffectInfoArray(audio.ContentType.CONTENT_TYPE_MUSIC, audio.StreamUsage.STREAM_USAGE_MEDIA, async (err, AudioEffectInfoArray) => {
+  console.info('getAudioEffectInfoArray **** Get Callback Called ****');
+  if (err) {
+    console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
+    return;
+  } else {
+    if (AudioEffectInfoArray == null) {
+      console.error(`getAudioEffectInfoArray is null ptr.`);
+      return;
+    }
+    console.info(`The contentType of ${CONTENT_TYPE_MUSIC} and the streamUsage of ${STREAM_USAGE_MEDIA} 's effect mode are: `);
+    for (let i = 0; i < AudioEffectInfoArray.length; i++) {
+      for (const key in audio.AudioEffectMode) {
+        if (audio.AudioEffectMode[key] === AudioEffectInfoArray[i]) {
+          console.info(`${key},  `);
+        }
+      }
+    }
+  }
+});
+```
+
+### getAudioEffectInfoArray<sup>10+</sup>
+
+getAudioEffectInfoArray(content: ContentType, usage: StreamUsage): Promise&lt;AudioEffectInfoArray&gt;
+
+获取当前音效模式的信息。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名    | 类型                                | 必填     | 说明                         |
+| -------- | ----------------------------------- | -------- | --------------------------- |
+| content  | <a href="#contenttype">ContentType</a>                         | 是     |  音频内容类型。                  |
+| usage    | <a href="#streamusage">StreamUsage</a>                         | 是     |  音频流使用类型。                |
+
+**返回值：**
+
+| 类型                                                                      | 说明                                    |
+| --------------------------------------------------------------------------| --------------------------------------- |
+| Promise<[AudioEffectInfoArray](#audioeffectinfoarray10)>                  | Promise对象，返回当前音效模式的信息。      |
+
+**示例：**
+
+```js
+async function getAudioEffectInfoArray(){
+  await audioStreamManager.getAudioEffectInfoArray().then( function (AudioEffectInfoArray) {
+    console.info(`getAudioEffectInfoArray ######### Get Promise is called ##########`);
+    if (AudioEffectInfoArray == null) {
+      console.error(`getAudioEffectInfoArray is null ptr.`);
+      return;
+    }
+    console.info(`The contentType of ${CONTENT_TYPE_MUSIC} and the streamUsage of ${STREAM_USAGE_MEDIA} 's effect mode are: `);
+    for (let i = 0; i < AudioEffectInfoArray.length; i++) {
+      for (const key in audio.AudioEffectMode) {
+        if (audio.AudioEffectMode[key] === AudioEffectInfoArray[i]) {
+          console.info(`${key},  `);
+        }
+      }
+    }
+  }).catch((err) => {
+    console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
+  });
+}
+```
+
 ## AudioRoutingManager<sup>9+</sup>
 
 音频路由管理。在使用AudioRoutingManager的接口前，需要使用[getRoutingManager](#getroutingmanager9)获取AudioRoutingManager实例。
