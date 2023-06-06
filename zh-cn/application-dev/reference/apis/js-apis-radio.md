@@ -1830,6 +1830,10 @@ getNrOptionMode\(callback: AsyncCallback\<NrOptionMode\>\): void
 
 获取Nr选项模式 。使用callback异步回调。
 
+> **说明：**
+>
+> 从 API version 8开始支持，从API version 10开始废弃。建议使用[getNROptionMode](#radiogetnroptionmode10)替代。
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
@@ -1867,6 +1871,10 @@ radio.getNrOptionMode((err, data) => {
 getNrOptionMode\(slotId: number, callback: AsyncCallback\<NrOptionMode\>\): void
 
 获取Nr选项模式 。使用callback异步回调。
+
+> **说明：**
+>
+> 从 API version 8开始支持，从API version 10开始废弃。建议使用[getNROptionMode](#radiogetnroptionmode10)替代。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1907,6 +1915,10 @@ radio.getNrOptionMode(slotId, (err, data) => {
 getNrOptionMode\(slotId?: number\): Promise\<NrOptionMode\>
 
 获取Nr选项模式 。使用Promise异步回调。
+
+> **说明：**
+>
+> 从 API version 8开始支持，从API version 10开始废弃。建议使用[getNROptionMode](#radiogetnroptionmode10)替代。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2671,6 +2683,190 @@ promise.then(data => {
 ```
 
 
+## radio.setNROptionMode<sup>10+</sup>
+
+setNROptionMode\(slotId: number, mode: NROptionMode, callback: AsyncCallback\<void\>\): void
+
+获取Nr选项模式 。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                                              | 必填 | 说明                                   |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------- |
+| slotId   | number                                           | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2  |
+| mode     | [NROptionMode](#nroptionmode10)                  | 是   | NR的选择模式。                          |
+| callback | AsyncCallback\<void\>                            | 是   | 回调函数。                              |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let slotId = 0;
+radio.setNROptionMode(slotId, 1, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.setNROptionMode<sup>10+</sup>
+
+setNROptionMode\(slotId: number, mode: NROptionMode\): Promise\<void\>
+
+获取Nr选项模式 。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 |              类型               | 必填 | 说明                                   |
+| ------ | ------------------------------- | ---- | ------------------------------------- |
+| slotId | number                          | 否   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| mode   | [NROptionMode](#nroptionmode10) | 是   | NR的选择模式。                         |
+
+**返回值：**
+
+|        类型       |            说明         |
+| ----------------- | ----------------------- |
+| Promise\<void\>   | 以Promise形式返回结果。  |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                      |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let slotId = 0;
+let promise = radio.setNROptionMode(slotId, 1);
+promise.then(data => {
+    console.log(`setNROptionMode success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`setNROptionMode failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## radio.getNROptionMode<sup>10+</sup>
+
+getNROptionMode\(slotId: number, callback: AsyncCallback\<NROptionMode\>\): void
+
+获取Nr选项模式 。使用callback异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                                              | 必填 | 说明                                   |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------- |
+| slotId   | number                                           | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2  |
+| callback | AsyncCallback\<[NROptionMode](#nroptionmode10)\> | 是   | 回调函数。                              |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                  错误信息                     |
+| -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let slotId = 0;
+radio.getNROptionMode(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getNROptionMode<sup>10+</sup>
+
+getNROptionMode\(slotId: number\): Promise\<NROptionMode\>
+
+获取Nr选项模式 。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名 | 类型   | 必填 | 说明                                   |
+| ------ | ------ | ---- | ------------------------------------- |
+| slotId | number | 否   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+
+**返回值：**
+
+| 类型                                      | 说明                    |
+| ----------------------------------------- | ----------------------- |
+| Promise\<[NROptionMode](#nroptionmode10)\> | 以Promise形式返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let slotId = 0;
+let promise = radio.getNROptionMode(slotId);
+promise.then(data => {
+    console.log(`getNROptionMode success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getNROptionMode failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
 ## RadioTechnology
 
 无线接入技术。
@@ -2951,6 +3147,10 @@ WCDMA小区信息。
 
 NR的选择模式。
 
+> **说明：**
+>
+> 从 API version 8开始支持，从API version 10开始废弃。建议使用[NROptionMode](#nroptionmode10)替代。
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力**：SystemCapability.Telephony.CoreService
@@ -2961,6 +3161,21 @@ NR的选择模式。
 | NR_OPTION_NSA_ONLY   | 1    | 仅非独立组网的NR选择模式。         |
 | NR_OPTION_SA_ONLY    | 2    | 仅独立组网的NR选择模式。           |
 | NR_OPTION_NSA_AND_SA | 3    | 非独立组网和独立组网的NR选择模式。 |
+
+## NROptionMode<sup>10+</sup>
+
+NR的选择模式。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+| 名称                 | 值   | 说明                              |
+| -------------------- | ---- | --------------------------------- |
+| NR_OPTION_UNKNOWN    | 0    | 未知的NR选择模式。                 |
+| NR_OPTION_NSA_ONLY   | 1    | 仅非独立组网的NR选择模式。         |
+| NR_OPTION_SA_ONLY    | 2    | 仅独立组网的NR选择模式。           |
+| NR_OPTION_NSA_AND_SA | 3    | 非独立组网和独立组网的NR选择模式。  |
 
 ## NetworkSearchResult
 
