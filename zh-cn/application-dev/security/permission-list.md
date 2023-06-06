@@ -1970,7 +1970,7 @@
 
 ## ohos.permission.PREPARE_APP_TERMINATE
 
-允许应用执行预关闭动作。
+允许应用关闭前执行自定义的预关闭动作。
 
 **权限级别**：normal
 
