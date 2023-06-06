@@ -48,7 +48,7 @@ Progress有5种可选类型，在创建时通过设置ProgressType枚举类型�
 - 环形无刻度样式进度条
 
   ```ts
-  // 从左往右，1号环形进度条，默认前景色为蓝色，默认strokeWidth进度条宽度为2.0vp
+  // 从左往右，1号环形进度条，默认前景色为蓝色渐变，默认strokeWidth进度条宽度为2.0vp
   Progress({ value: 40, total: 150, type: ProgressType.Ring }).width(100).height(100)
   // 从左往右，2号环形进度条
   Progress({ value: 40, total: 150, type: ProgressType.Ring }).width(100).height(100)
@@ -97,7 +97,7 @@ Progress有5种可选类型，在创建时通过设置ProgressType枚举类型�
   ```ts
   Progress({ value: 10, total: 150, type: ProgressType.Capsule }).width(100).height(50)
   Progress({ value: 20, total: 150, type: ProgressType.Capsule }).width(50).height(100).color(Color.Grey)
-  Progress({ value: 50, total: 150, type: ProgressType.Capsule }).width(50).height(100).backgroundColor(Color.Black)
+  Progress({ value: 50, total: 150, type: ProgressType.Capsule }).width(50).height(100).color(Color.Blue).backgroundColor(Color.Black)
   ```
 
   ![progress_captule](figures/progress_captule.png)
@@ -115,8 +115,7 @@ struct ProgressCase1 {
   build() {
     Column() {
       Column() {
-        Progress({value:0, total:100, type:ProgressType.Capsule}).width(200).height(50)
-          .style({strokeWidth:50}).value(this.progressValue)
+        Progress({value:0, total:100, type:ProgressType.Capsule}).width(200).height(50).value(this.progressValue)
         Row().width('100%').height(5)
         Button("进度条+5")
           .onClick(()=>{
