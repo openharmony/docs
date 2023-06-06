@@ -30,6 +30,7 @@
 | targetSpace<sup>10+</sup>             | [Length](ts-types.md#length)                                 | 否   | 设置popup与目标的间隙。                                      |
 | placement<sup>10+</sup>               | [Placement](ts-appendix-enums.md#placement8)                 | 否   | 设置popup组件相对于目标的显示位置，默认值为Placement.Bottom。<br />如果同时设置了`placementOnTop`和`placement`，则以`placement`的设置生效。 |
 | offset<sup>10+</sup>                  | [Position](ts-types.md#position8)                            | 否   | 设置popup组件相对于placement设置的显示位置的偏移。           |
+| enableArrow<sup>10+</sup>             | boolean | 否   | 设置是否显示箭头。<br/>默认值：true |
 
 ## PopupMessageOptions<sup>10+</sup>类型说明
 
