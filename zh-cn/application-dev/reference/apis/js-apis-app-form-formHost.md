@@ -2402,3 +2402,139 @@ try {
   console.error(`catch error, code: ${error.code}, message: ${error.message}`);
 }
 ```
+
+## on('notifyVisible')<sup>10+</sup>
+
+ on(type: 'notifyVisible', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
+
+订阅卡片新增事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名     | 类型                                     | 必填 | 说明                                                         |
+| ---------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| type       | string                                   | 是   | 填写'notifyVisible'，表示卡片可见性变更为可见。              |
+| callback   | Callback&lt;formInfo.RunningFormInfo&gt; | 是   | 回调函数。返回新增卡片的RunningFormInfo。                    |
+| bundleName | string                                   | 否   | 指定订阅卡片使用方包的bundleName。缺省则订阅所有卡片使用方的卡片新增事件。 |
+
+**示例：**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+let bundleName = 'ohos.samples.FormApplication';
+let callback = function(data) {
+  console.log('form change visibility, data: ${JSON.stringify(data)');
+}
+
+formHost.on('notifyVisible', callback);
+formHost.on('notifyVisible', callback, bundleName);
+```
+
+## off('notifyVisible')<sup>10+</sup>
+
+ off(type: "notifyVisible", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
+
+取消订阅卡片新增事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名     | 类型                                     | 必填 | 说明                                                         |
+| ---------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| type       | string                                   | 是   | 填写'notifyVisible'，表示卡片可见性变更为可见。              |
+| callback   | Callback&lt;formInfo.RunningFormInfo&gt; | 否   | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br> 需与对应on('notifyVisible')的callback一致。 |
+| bundleName | string                                   | 否   | 指定订阅卡片使用方包的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 缺省则订阅所有卡片使用方的卡片删除事件，与注册时未填写bundleName的on接口相对应。 |
+
+**示例：**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+let bundleName = 'ohos.samples.FormApplication';
+let callback = function(data) {
+  console.log('form change visibility, data: ${JSON.stringify(data)');
+}
+
+formHost.off('notifyVisible', callback);
+formHost.off('notifyVisible', callback, bundleName);
+```
+
+> **说明：**
+> on('notifyVisible', callback)与off('notifyVisible', callback)相对应；
+> on('notifyVisible', callback, bundleName)与off('notifyVisible', callback, bundleName)相对应；
+> 订阅（on）只能由自己对应的取消订阅接口（off）取消。
+
+
+
+## on('notifyInvisible')<sup>10+</sup>
+
+ on(type: 'notifyInvisible', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
+
+订阅卡片新增事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名     | 类型                                     | 必填 | 说明                                                         |
+| ---------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| type       | string                                   | 是   | 填写'notifyInvisible'，表示卡片可见性变更为不可见。          |
+| callback   | Callback&lt;formInfo.RunningFormInfo&gt; | 是   | 回调函数。返回新增卡片的RunningFormInfo。                    |
+| bundleName | string                                   | 否   | 指定订阅卡片使用方包的bundleName。缺省则订阅所有卡片使用方的卡片新增事件。 |
+
+**示例：**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+let bundleName = 'ohos.samples.FormApplication';
+let callback = function(data) {
+  console.log('form change invisibility, data: ${JSON.stringify(data)');
+}
+
+formHost.on('notifyInvisible', callback);
+formHost.on('notifyInvisible', callback, bundleName);
+```
+
+## off('notifyInvisible')<sup>10+</sup>
+
+ off(type: "notifyInvisible", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
+
+取消订阅卡片新增事件。使用callback异步回调，返回当前新增卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+
+**需要权限**：ohos.permission.REQUIRE_FORM
+
+**系统能力**：SystemCapability.Ability.Form
+
+**参数：**
+
+| 参数名     | 类型                                     | 必填 | 说明                                                         |
+| ---------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
+| type       | string                                   | 是   | 填写'notifyInvisible'，表示卡片可见性变更为不可见。          |
+| callback   | Callback&lt;formInfo.RunningFormInfo&gt; | 否   | 回调函数。返回卡片RunningFormInfo。缺省时，表示注销对应已注册事件回调。<br> 需与对应on('notifyInvisible')的callback一致。 |
+| bundleName | string                                   | 否   | 指定订阅卡片使用方包的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 缺省则订阅所有卡片使用方的卡片删除事件，与注册时未填写bundleName的on接口相对应。 |
+
+**示例：**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+let bundleName = 'ohos.samples.FormApplication';
+let callback = function(data) {
+  console.log('form change invisibility, data: ${JSON.stringify(data)');
+}
+
+formHost.off('notifyInvisible', callback);
+formHost.off('notifyInvisible', callback, bundleName);
+```
+
+> **说明：**
+> on('notifyInvisible', callback)与off('notifyInvisible', callback)相对应；
+> on('notifyInvisible', callback, bundleName)与off('notifyInvisible', callback, bundleName)相对应；
+> 订阅（on）只能由自己对应的取消订阅接口（off）取消。
