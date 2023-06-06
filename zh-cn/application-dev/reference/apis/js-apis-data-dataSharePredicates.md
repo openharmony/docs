@@ -7,8 +7,7 @@
 > **说明：** 
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
->
-> 本模块接口为系统接口。
+
 
 
 ## 导入模块
@@ -58,6 +57,8 @@ notEqualTo(field: string, value: ValueType): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
+**系统接口：**  此接口为系统接口。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
@@ -88,6 +89,8 @@ beginWrap(): DataSharePredicates
 
 目前仅RDB支持该谓词。
 
+**系统接口：**  此接口为系统接口。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **返回值：**
@@ -116,6 +119,8 @@ endWrap(): DataSharePredicates
 
 目前仅RDB支持该谓词。
 
+**系统接口：**  此接口为系统接口。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **返回值：**
@@ -143,6 +148,8 @@ or(): DataSharePredicates
 该接口用于将或条件添加到谓词中。
 
 目前仅RDB及KVDB(schema)支持该谓词。
+
+**系统接口：**  此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -194,6 +201,8 @@ contains(field: string, value: string): DataSharePredicates
 
 目前仅RDB支持该谓词。
 
+**系统接口：**  此接口为系统接口。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
@@ -223,6 +232,8 @@ beginsWith(field: string, value: string): DataSharePredicates
 该接口用于配置谓词以匹配值以指定字符串起始的字段。
 
 目前仅RDB支持该谓词。
+
+**系统接口：**  此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -254,6 +265,8 @@ endsWith(field: string, value: string): DataSharePredicates
 
 目前仅RDB支持该谓词。
 
+**系统接口：**  此接口为系统接口。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
@@ -284,6 +297,8 @@ isNull(field: string): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
+**系统接口：**  此接口为系统接口。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
@@ -313,6 +328,8 @@ isNotNull(field: string): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
+**系统接口：**  此接口为系统接口。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
@@ -341,6 +358,8 @@ like(field: string, value: string): DataSharePredicates
 该接口用于配置谓词以匹配指定通配符表达式的字段。
 
 目前仅RDB及KVDB(schema)支持该谓词。
+
+**系统接口：**  此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -372,6 +391,8 @@ unlike(field: string, value: string): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
+**系统接口：**  此接口为系统接口。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
@@ -402,6 +423,8 @@ glob(field: string, value: string): DataSharePredicates
 
 目前仅RDB支持该谓词。
 
+**系统接口：**  此接口为系统接口。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
@@ -431,6 +454,8 @@ between(field: string, low: ValueType, high: ValueType): DataSharePredicates
 该接口用于配置谓词以匹配值在指定范围内的字段。包含两端边界值，为左闭右闭区间。
 
 目前仅RDB支持该谓词。
+
+**系统接口：**  此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -463,6 +488,8 @@ notBetween(field: string, low: ValueType, high: ValueType): DataSharePredicates
 
 目前仅RDB支持该谓词。
 
+**系统接口：**  此接口为系统接口。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
@@ -494,6 +521,8 @@ greaterThan(field: string, value: ValueType): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
+**系统接口：**  此接口为系统接口。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
@@ -523,6 +552,8 @@ lessThan(field: string, value: ValueType): DataSharePredicates
 该接口用于配置谓词以匹配值小于指定值的字段。
 
 目前仅RDB及KVDB(schema)支持该谓词。
+
+**系统接口：**  此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -554,6 +585,8 @@ greaterThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
+**系统接口：**  此接口为系统接口。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
@@ -583,6 +616,8 @@ lessThanOrEqualTo(field: string, value: ValueType): DataSharePredicates
 该接口用于配置谓词以匹配值小于或等于指定值的字段。
 
 目前仅RDB及KVDB(schema)支持该谓词。
+
+**系统接口：**  此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -672,6 +707,8 @@ distinct(): DataSharePredicates
 
 目前仅RDB支持该谓词。
 
+**系统接口：**  此接口为系统接口。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **返回值：**
@@ -725,6 +762,8 @@ groupBy(fields: Array&lt;string&gt;): DataSharePredicates
 
 目前仅RDB支持该谓词。
 
+**系统接口：**  此接口为系统接口。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
@@ -753,6 +792,8 @@ indexedBy(field: string): DataSharePredicates
 该接口用于配置谓词按指定索引列查询结果。
 
 目前仅RDB支持该谓词。
+
+**系统接口：**  此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
@@ -813,6 +854,8 @@ notIn(field: string, value: Array&lt;ValueType&gt;): DataSharePredicates
 
 目前仅RDB及KVDB(schema)支持该谓词。
 
+**系统接口：**  此接口为系统接口。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
@@ -843,6 +886,8 @@ prefixKey(prefix: string): DataSharePredicates
 
 目前仅KVDB支持该谓词。
 
+**系统接口：**  此接口为系统接口。
+
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
 **参数：**
@@ -871,6 +916,8 @@ inKeys(keys: Array&lt;string&gt;): DataSharePredicates
 该接口用于配置谓词以匹配键在指定范围内的字段。
 
 目前仅KVDB支持该谓词。
+
+**系统接口：**  此接口为系统接口。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Core
 
