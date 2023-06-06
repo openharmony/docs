@@ -57,7 +57,9 @@ Provides the constant values of function keys, edit boxes, and the cursor.
 getInputMethodAbility(): InputMethodAbility
 
 Obtains an [InputMethodAbility](#inputmethodability) instance for the input method.
+
 This API can be called only by an input method.
+
 The input method can use the obtained instance to subscribe to a soft keyboard display/hide request event, create/destroy an input method panel, and the like.
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
@@ -494,7 +496,7 @@ This API can be called only by an input method. Only one SOFT_KEYBOARD panel and
 
 | Name  | Type       | Mandatory| Description                    |
 | ------- | ----------- | ---- | ------------------------ |
-| ctx     | [BaseContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-baseContext.md) | Yes  | Context of the current input method.|
+| ctx     | [BaseContext](js-apis-inner-application-baseContext.md) | Yes  | Context of the current input method.|
 | info    | [PanelInfo](#panelinfo10)   | Yes  | Information about the input method panel.|
 | callback | AsyncCallback\<[Panel](#panel10)> | Yes  | Callback used to return the result. If the operation is successful, the created input method panel is returned. |
 
@@ -538,7 +540,7 @@ This API can be called only by an input method. Only one SOFT_KEYBOARD panel and
 
 | Name  | Type       | Mandatory| Description                    |
 | ------- | ----------- | ---- | ------------------------ |
-| ctx     | [BaseContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-baseContext.md) | Yes  | Context of the current input method.|
+| ctx     | [BaseContext](js-apis-inner-application-baseContext.md) | Yes  | Context of the current input method.|
 | info    | [PanelInfo](#panelinfo10)   | Yes  | Information about the input method panel.|
 
 **Return value**
@@ -953,7 +955,7 @@ Loads content from a page linked to LocalStorage to this panel. This API uses an
 | Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | Yes  | Path of the page from which the content will be loaded.|
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | Storage unit that provides storage for mutable and immutable state variables in the application.|
+| storage | [LocalStorage](../arkui-ts/ts-state-management.md#localstorage9) | Yes  | Storage unit that provides storage for mutable and immutable state variables in the application.|
 | callback | AsyncCallback\<void> | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.|
 
 **Example**
@@ -987,7 +989,7 @@ Loads content from a page linked to LocalStorage to this panel. This API uses a 
 | Name  | Type                  | Mandatory| Description    |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | Yes  | Path of the page from which the content will be loaded.|
-| storage | [LocalStorage](../../quick-start/arkts-localstorage.md) | Yes  | Storage unit that provides storage for mutable and immutable state variables in the application.|
+| storage | [LocalStorage](../arkui-ts/ts-state-management.md#localstorage9) | Yes  | Storage unit that provides storage for mutable and immutable state variables in the application.|
 
 **Return value**
 
@@ -1067,7 +1069,7 @@ The panel width cannot exceed the screen width, and the panel height cannot be h
 
 | Type  | Description                            |
 | ------- | ------------------------------ |
-| Promise<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
@@ -1139,7 +1141,7 @@ This API does not work on panels in the FLG_FIXED state.
 
 | Type  | Description                            |
 | ------- | ------------------------------ |
-| Promise<void> | Promise that returns no value. |
+| Promise\<void> | Promise that returns no value. |
 
 **Example**
 
@@ -1558,7 +1560,7 @@ Sends the function key. This API uses a promise to return the result.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| action | number | Yes| Action of the function key.<br>**0**: invalid key.<br>**1**: confirm key (Enter key).|
+| action | number | Yes| Action of the function key.<br>- **0**: invalid key.<br>- **1**: confirm key (Enter key).|
 
 **Return value**
 
@@ -2521,8 +2523,8 @@ Describes the attribute of a key.
 
 | Name     | Type| Readable| Writable| Description        |
 | --------- | -------- | ---- | ---- | ------------ |
-| keyCode   | number   | Yes  | No  | Key value.|
-| keyAction | number   | Yes  | No  | Key status.|
+| keyCode   | number   | Yes  | No  | Key value. For detail, see [KeyCode](js-apis-keycode.md#keycode).|
+| keyAction | number   | Yes  | No  | Key event type.<br>- **2**: keydown event.<br>- **3**: keyup event.|
 
 ## PanelFlag<sup>10+</sup>
 
