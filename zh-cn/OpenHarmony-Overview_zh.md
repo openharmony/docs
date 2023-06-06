@@ -1,5 +1,8 @@
 # OpenHarmony开源项目
 
+> **说明**：
+> 您当前正在浏览OpenHarmony 4.0 Beta1版本的配套文档，请获取与该版本[配套的SDK](release-notes/OpenHarmony-v4.0-beta1.md#配套关系)进行开发。
+
 ## 项目介绍
 
 OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及运营的开源项目，目标是面向全场景、全连接、全智能时代，基于开源的方式，搭建一个智能终端设备操作系统的框架和平台，促进万物互联产业的繁荣发展。
