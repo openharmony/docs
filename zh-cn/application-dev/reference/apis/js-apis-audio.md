@@ -3386,8 +3386,8 @@ getAudioEffectInfoArray(content: ContentType, usage: StreamUsage, callback: Asyn
 
 | 参数名    | 类型                                | 必填     | 说明                         |
 | -------- | ----------------------------------- | -------- | --------------------------- |
-| content  | <a href="#contenttype">ContentType</a>                         | 是     |  音频内容类型。                  |
-| usage    | <a href="#streamusage">StreamUsage</a>                         | 是     |  音频流使用类型。                |
+| content  | [ContentType](#contenttype)                                    | 是     |  音频内容类型。                  |
+| usage    | [StreamUsage](#streamusage)                                    | 是     |  音频流使用类型。                |
 | callback | AsyncCallback<[AudioEffectInfoArray](#audioeffectinfoarray10)> | 是     |  回调函数，返回当前音效模式的信息。|
 
 **示例：**
@@ -3427,8 +3427,8 @@ getAudioEffectInfoArray(content: ContentType, usage: StreamUsage): Promise&lt;Au
 
 | 参数名    | 类型                                | 必填     | 说明                         |
 | -------- | ----------------------------------- | -------- | --------------------------- |
-| content  | <a href="#contenttype">ContentType</a>                         | 是     |  音频内容类型。                  |
-| usage    | <a href="#streamusage">StreamUsage</a>                         | 是     |  音频流使用类型。                |
+| content  | [ContentType](#contenttype)                                    | 是     |  音频内容类型。                  |
+| usage    | [StreamUsage](#streamusage)                                    | 是     |  音频流使用类型。                |
 
 **返回值：**
 
