@@ -533,7 +533,16 @@
 | MIN_FONT_SIZE_FIRST     | 设置文本高度自适应方式为以缩小字体优先。     |
 | LAYOUT_CONSTRAINT_FIRST | 设置文本高度自适应方式为以布局约束（高度）优先。 |
 
+## ObscuredReasons<sup>10+</sup>
+
+该接口支持在ArkTS卡片中使用。
+
+| 名称        | 描述                     |
+| ----------- | ------------------------ |
+| PLACEHOLDER | 显示的数据为通用占位符。 |
+
 ## TransitionEdge<sup>10+<sup>
+
 | 名称     | 描述     |
 | ------ | ------ |
 | TOP    | 窗口的上边缘 |
