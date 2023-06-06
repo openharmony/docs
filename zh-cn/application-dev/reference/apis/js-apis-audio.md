@@ -550,6 +550,16 @@ async function createTonePlayerBefore(){
 | STREAM_USAGE_NOTIFICATION_RINGTONE        | 6      | 通知铃声。 |
 | STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8     | 无障碍。   |
 | STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9     | 系统音(如屏幕锁定或按键音)。<br/>此接口为系统接口。 |
+## AudioEffectMode
+
+枚举，音效模式。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Core
+
+| 名称                                      |  值    | 说明        |
+| ------------------------------------------| ------ | ---------- |
+| EFFECT_NONE                               | 0      | 直通音效。  |
+| EFFECT_DEFAULT                            | 1      | 默认音效。  |
 
 ## InterruptRequestType<sup>9+</sup>
 
@@ -4243,6 +4253,10 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
   }
 });
 ```
+
+## AudioEffectInfoArray<sup>10+</sup>
+
+数组类型，[AudioEffectMode](#audioeffectmode)数组，只读。
 
 ## AudioDeviceDescriptors
 
