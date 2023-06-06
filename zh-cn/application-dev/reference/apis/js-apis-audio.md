@@ -4401,6 +4401,109 @@ audioRenderer.getAudioStreamId().then((streamid) => {
 });
 ```
 
+### setAudioEffectMode<sup>10+</sup>
+
+setAudioEffectMode(mode: AudioEffectMode, callback: AsyncCallback\<void>): void
+
+设置当前音效模式。使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                     |
+| -------- | ---------------------------------------- | ---- | ------------------------ |
+| mode     | [AudioEffectMode](#audioeffectmode10) | 是   | 音效模式。             |
+| callback | AsyncCallback\<void>                     | 是   | 用于返回执行结果的回调。 |
+
+**示例：**
+
+```js
+audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT, (err) => {
+  if (err) {
+    console.error('Failed to set params');
+  } else {
+    console.info('Callback invoked to indicate a successful audio effect mode setting.');
+  }
+});
+```
+
+### setAudioEffectMode<sup>10+</sup>
+
+setAudioEffectMode(mode: AudioEffectMode): Promise\<void>
+
+设置当前音效模式。使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名 | 类型                                     | 必填 | 说明         |
+| ------ | ---------------------------------------- | ---- | ------------ |
+| mode   | [AudioEffectMode](#audioeffectmode10) | 是   | 音效模式。 |
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise用于返回执行结果。 |
+
+**示例：**
+
+```js
+audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT).then(() => {
+  console.info('setAudioEffectMode SUCCESS');
+}).catch((err) => {
+  console.error(`ERROR: ${err}`);
+});
+```
+
+### getAudioEffectMode<sup>10+</sup>
+
+getAudioEffectMode(callback: AsyncCallback\<AudioEffectMode>): void
+
+获取当前音效模式。使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                                                    | 必填 | 说明               |
+| -------- | ------------------------------------------------------- | ---- | ------------------ |
+| callback | AsyncCallback<[AudioEffectMode](#audioeffectmode10)> | 是   | 回调返回当前音效模式。 |
+
+**示例：**
+
+```js
+audioRenderer.getAudioEffectMode((err, effectmode) => {
+  console.info(`getAudioEffectMode: ${effectmode}`);
+});
+```
+
+### getAudioEffectMode<sup>8+</sup>
+
+getAudioEffectMode(): Promise\<AudioEffectMode>
+
+获取当前音效模式。使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                                              | 说明                      |
+| ------------------------------------------------- | ------------------------- |
+| Promise<[AudioEffectMode](#audioeffectmode10)> | Promise回调返回当前音效模式。 |
+
+**示例：**
+
+```js
+audioRenderer.getAudioEffectMode().then((effectmode) => {
+  console.info(`getAudioEffectMode: ${effectmode}`);
+}).catch((err) => {
+  console.error(`ERROR: ${err}`);
+});
+```
+
 ### start<sup>8+</sup>
 
 start(callback: AsyncCallback<void\>): void
