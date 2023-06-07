@@ -1,4 +1,4 @@
-# InputMethodExtensionAbility Development
+# InputMethodExtensionAbility
 
 ## When to Use
 [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md), inherited from [ExtensionAbility](extensionability-overview.md), is used for developing input method applications.
