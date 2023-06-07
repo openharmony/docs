@@ -2,13 +2,13 @@
 
 ## How do I read an XML file in rawfile and convert the data in it to the string type?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
 Call **getRawFileContent** of the **ResourceManager** module to obtain the data in the XML file, and then use **String.fromCharCode** to convert the data to the string type.
 
-**Sample Code**
+**Example**
 
 ```
 resourceManager.getRawFileContent('test.xml', (error, value) => {
@@ -21,7 +21,7 @@ resourceManager.getRawFileContent('test.xml', (error, value) => {
 });
 ```
 
-**Reference**
+**Reference Link**
 
 [Resource Manager](../reference/apis/js-apis-resource-manager.md)
 
@@ -33,7 +33,7 @@ Applicable to: OpenHarmony 3.1 Beta 5 (API version 9)
 
 The stage model allows an application to obtain a **ResourceManager** object based on **context** and call its resource management APIs without first importing the required bundle. This mode does not apply to the FA model.
 
-**Sample Code**
+**Example**
 
 ```
 const context = getContext(this) as any
@@ -63,13 +63,13 @@ To obtain the path of the **resource** directory, try either of the following wa
 
 2. Use **ResourceManager** for access. This method applies to dynamic access, during which the **resource** directory dynamically changes when the application is running.
 
-**Reference**
+**Reference Link**
 
 [Resource Categories and Access](../quick-start/resource-categories-and-access.md) and [Resource Manager](../reference/apis/js-apis-resource-manager.md)
 
 ## Why does getPluralString return an incorrect value?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Symptom**
 
@@ -81,19 +81,19 @@ The **getPluralString** API is effective only when the system language is Englis
 
 ## How do I obtain the customized string fields in the resources directory?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
 Use **getStringValue** of the **ResourceManager** module.
 
-**Reference**
+**Reference Link**
 
 [Resource Manager](../reference/apis/js-apis-resource-manager.md#getstringvalue9)
 
 ## How do I reference resources such as images and text in AppScope?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -101,18 +101,50 @@ Reference resources in the **\$r\('app.type.name'\)** format. Wherein, **type** 
 
 ## How do I convert resources to strings?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
 For a qualifier directory, use **this.context.resourceManager.getStringSync\(\$r\('app.string.test'\).id\)** to covert resources to strings synchronously. Note that the **\$r\('app.string.test', 2\)** mode is not supported.
 
-**Reference**
+**Reference Link**
 
 [Resource Manager](../reference/apis/js-apis-resource-manager.md#getstringsync9)
 
 ## Can $ be used to reference constants in the form\_config.json file?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **\$** cannot be used to reference constants in the **form\_config.json** file.
+
+## How does ArkTS parse XML files?
+
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+
+**Solution**
+
+1.  Create the following XML file in the **rawfile** directory:
+
+    ```
+    <?xml version="1.0" encoding="utf-8"?>
+    <user>
+        <name>Jacky</name>
+        <age>18</age>
+    </user>
+    ```
+
+2.  Use **resourceManager.getRawFileContent** to obtain the byte arrays of the XML file.
+
+    ```
+    import resourceManager from '@ohos.resourceManager';
+    resourceManager.getRawFileContent("test.xml", (error, value) => {
+      if (error != null) {
+        console.log("error is " + error);
+        return
+      }
+      let arrayBuffer = value.buffer; // unit8Array
+      var xmpParser = new xml.XmlPullParser(arrayBuffer);
+      var tagName = ""
+      //do something
+    }
+    ```
