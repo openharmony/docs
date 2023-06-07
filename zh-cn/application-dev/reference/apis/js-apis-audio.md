@@ -554,7 +554,7 @@ async function createTonePlayerBefore(){
 
 枚举，音效模式。
 
-**系统能力：** SystemCapability.Multimedia.Audio.Core
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
 | 名称                                      |  值    | 说明        |
 | ------------------------------------------| ------ | ---------- |
@@ -4256,7 +4256,7 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 
 ## AudioEffectInfoArray<sup>10+</sup>
 
-数组类型，[AudioEffectMode](#audioeffectmode)数组，只读。
+待查询ContentType和StreamUsage组合场景下的音效模式数组类型，[AudioEffectMode](#audioeffectmode)数组，只读。
 
 ## AudioDeviceDescriptors
 
