@@ -721,6 +721,9 @@ on(type: 'dataReceive', callback: Callback\<ArrayBuffer\>): void
 
 订阅HTTP流式响应数据接收事件。
 
+> **说明：**
+> 暂不支持订阅HTTP流式数据上传的相关事件。
+
 **系统能力**：SystemCapability.Communication.NetStack
 
 **参数：**
@@ -765,6 +768,9 @@ httpRequest.off('dataReceive');
 ### on('dataEnd')<sup>10+</sup>
 
 on(type: 'dataEnd', callback: Callback\<void\>): void
+
+> **说明：**
+> 暂不支持订阅HTTP流式数据上传的相关事件。
 
 订阅HTTP流式响应数据接收完毕事件。
 
@@ -813,7 +819,7 @@ httpRequest.off('dataEnd');
 
 on(type: 'dataProgress', callback: Callback\<{ receiveSize: number, totalSize: number }\>): void
 
-订阅HTTP流式响应数据下载进度事件。
+订阅HTTP流式响应数据接收进度事件。
 
 > **说明：**
 > 暂不支持订阅HTTP流式响应数据上传的相关事件。
@@ -839,7 +845,7 @@ httpRequest.on('dataProgress', (data) => {
 
 off(type: 'dataProgress', callback?: Callback\<{ receiveSize: number, totalSize: number }\>): void
 
-取消订阅HTTP流式响应数据下载进度事件。
+取消订阅HTTP流式响应数据接收进度事件。
 
 > **说明：**
 > 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
