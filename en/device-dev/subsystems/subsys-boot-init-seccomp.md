@@ -1,9 +1,13 @@
 # Seccomp Policy Development
+
 ## Overview
+
 ### Introduction
+
 Secure computing mode (Seccomp) is a security mechanism provided by the Linux kernel. In the Linux system, a large number of system calls can be opened to user-mode programs without any restrictions. However, not all of these system calls are necessarily needed for user-mode programs. In this case, abuse of system calls can lead to system threats. For example, if a process has a security vulnerability, an attacker can run a shellcode segment to trigger system calls that are not triggered during normal execution, resulting in privilege escalation or private information leakage. To prevent such security risks, Seccomp limits the scope of system calls that can be used by programs, so as to reduce system exposure and improve security.
 
 ### Operating Mechanism
+
 1. Basic mechanism
 
     Seccomp policies exist in the form of policy files. During compilation and building, a policy file is parsed to generate a source file that contains the BPF instruction policies, and then the source file is compiled into a dynamic policy library. During startup of a user-mode process, Seccomp system calls are invoked to load the BPF instruction policies into the kernel through the dynamic policy library.
@@ -15,6 +19,7 @@ Secure computing mode (Seccomp) is a security mechanism provided by the Linux ke
 
 
 ### Constraints
+
 - System restrictions<br>The system used must be a standard system, and the options listed below must be enabled in the kernel. You can find the kernel option configuration file of the product in **//kernel/linux/config/{linux_version}/arch/{target_cpu}/configs/**.
     ```shell
     CONFIG_HAVE_ARCH_SECCOMP=y
@@ -31,9 +36,13 @@ Secure computing mode (Seccomp) is a security mechanism provided by the Linux ke
     - Personalized Seccomp policies can be enabled for the native service processes incubated by the init process.
 
 ## Enabling Seccomp
+
 ### When to Use
+
 To meet product security requirements, you can enable Seccomp to limit the scope of system calls that can be invoked by processes. The development procedure below describes how to enable the basic functions and policies of Seccomp. Note that the basic functions must meet the feature restrictions described in [Constraints](#constraints). For details about the basic policy file, see [Policy File Overview](#policy-file-overview).
+
 ### How to Develop
+
 1. Add the following field to **vendor/Product vendor/Product name/config.json**:
     ```c
     "build_seccomp": true
@@ -68,6 +77,7 @@ To meet product security requirements, you can enable Seccomp to limit the scope
 3. Burn the image into the device.
 
 ### Debugging and Verification
+
 Check whether Seccomp is enabled for application processes and system service processes.
 1. Run the shell command to obtain the process ID (that is, **target pid**) of the target process.
     ```
@@ -95,9 +105,13 @@ Check whether Seccomp is enabled for application processes and system service pr
     |  Seccomp_filters  |  Number of Seccomp policies set for a process. |
 
 ## Customizing Seccomp Policies for a Process
+
 ### When to Use
+
 If the basic Seccomp policy has been enabled for a product, you can customize Seccomp policies for native service processes incubated by the init process to adapt to diversified security requirements. In this case, the Seccomp policies of other native service processes remain unchanged.
+
 ### How to Develop
+
 1. Collect statistics on the system calls required by the 32-bit and 64-bit systems by using the static analysis and Strace statistics methods described in [System Call Statistic Methods](#system-call-statistic-methods). In this way, you will obtain the initial Seccomp policy.
 2. Write a policy file. For details, see [How to Write a Common Policy File](#how-to-write-a-common-policy-file).
 3. Write and build the **BUILD.gn** file.
@@ -152,7 +166,7 @@ If the basic Seccomp policy has been enabled for a product, you can customize Se
     ```shell
     ./build.sh --product-name *product name* --ccache --build-target xxxx_seccomp_filter --target-cpu *specified CPU*
     ```
-    If an error message that contains the following information is reported, the process needs to use the system calls in the baseline blocklist. In such a case, you need to declare the corresponding system call in **privileged_process.seccomp.policy**. For details, see [How to Write a Privileged Process Policy File](#how-to-write-a-privileged-policy-file). After the declaration is done, try again until the build is successful.
+    If an error message that contains the following information is reported, the process needs to use the system calls in the baseline blocklist. In such a case, you need to declare the corresponding system call in **privileged_process.seccomp.policy**. For details, see [How to Write a Privileged Process Policy File](#how-to-write-a-privileged-process-policy-file). After the declaration is done, try again until the build is successful.
     ```shell
     xx of allow list is in block list
     ```
@@ -166,12 +180,15 @@ If the basic Seccomp policy has been enabled for a product, you can customize Se
 6. Use the [audit statistics](#audit-statistics) method to check and supplement the Seccomp policies. Repeat steps 4 to 6 until the process can run properly.
 
 ### Debugging and Verification
-1. If Seccomp is not enabled for the target process, [check the Seccomp status](#commissioning-and-verification) of the target process.
+
+1. If Seccomp is not enabled for the target process, [check the Seccomp status](#debugging-and-verification) of the target process.
 2. If the process is terminated and audit log information is present in the kernel logs, the Seccomp policy is enabled but the policy list is incomplete. You can find an example audit log in [Audit Statistics](#audit-statistics).
 3. If the process is not terminated, comment out the system calls (for example, **setuid**) related to the specified uid in the Seccomp policy file. Rebuild the dynamic policy library, push the library to the image, and restart the process. Then, check whether the process is terminated by Seccomp. If the process is terminated, Seccomp has been enabled.
 
 ## FAQs
+
 ### How do I determine whether a process termination is caused by Seccomp?
+
 **Symptom**
 
 If a process is terminated under certain conditions, how do I determine whether the issue is caused by Seccomp?
@@ -207,6 +224,7 @@ Use either of the following methods:
     ```
 
 ## Reference
+
 ### Seccomp source code directory
 ```
 base/startup/init/services/modules/seccomp
@@ -229,6 +247,7 @@ base/startup/init/services/modules/seccomp
 ```
 
 ### Policy File Overview
+
 - Location<br>Basic policy files are stored in **//base/startup/init/services/modules/seccomp/seccomp_policy**.
 - Basic policy files
 
@@ -244,6 +263,7 @@ base/startup/init/services/modules/seccomp
     |  privileged_process.seccomp.policy  | Privileged process policy file. If certain processes need to use the system calls on the baseline blocklist, you need to declare the corresponding process identifiers and baseline blocklists in this file.|
 
 ### How to Write a Common Policy File
+
 - To declare a configuration item, write **@** followed by the configuration item, for example, **@returnValue**.
 - Add the content of a configuration item from the next line of this configuration item to the beginning of the next configuration item.
 - To comment out a line, add a pound sign (#) at the beginning of this line.
@@ -298,6 +318,7 @@ swapon;all
 ```
 
 ### How to Write a Privileged Process Policy File
+
 - To declare a configuration item, write **@** followed by the configuration item, for example, **@allowBlockList**.
 - Add the content of a configuration item from the next line of this configuration item to the beginning of the next configuration item.
 - To comment out a line, add a pound sign (#) at the beginning of this line.
@@ -326,6 +347,7 @@ swapon;all
 ```
 
 ### System Call Statistic Methods
+
 **Table 6** Comparison of statistic methods
 |  Statistic Method |  Description |  Advantage |  Disadvantage |
 |  ---  |  ---  |  ---  |  ---  |
@@ -334,6 +356,7 @@ swapon;all
 |  Audit statistics | After the Seccomp policy is enabled for a process, Seccomp intercepts invalid system calls and records audit log information containing the system call numbers into kernel logs. Collect the logs after the trace is complete, and use a script to parse the logs and generate a Seccomp policy file.|  This method can be used as a supplement to the preceding methods. |  Logs may be lost.<br>System calls can be completely collected only when all code branches are traversed. |
 
 #### Static Analysis
+
 1. Prepare the environment.
     1. Prepare a Linux environment.
     2. Download the cross compilers arm-linux-musleabi and aarch64-linux-musl.
@@ -433,10 +456,13 @@ swapon;all
         ```
 
 #### Strace Statistics
+
 1. Use the cross compilers arm-linux-musleabi and aarch64-linux-musl to build the Strace tool for the 32-bit and 64-bit architectures, respectively.
 2. [Trace the service process](#tracing-the-service-process) to obtain the Strace logs.
 3. [Parse Strace logs](#parsing-strace-logs) by using scripts to obtain the Seccomp policy file.
+
 ##### Tracing the Service Process
+
 1. Modify the embedded code in the init repository. Specifically, add the following content to **//base/startup/init/services/init/init_common_service.c** before executing the **SetSystemseccompPolicy** function to set the Seccomp policy.  If the line starts with a plus sign (+), the line is added; if the line starts with a hyphen (-), the line is deleted. **xxxx** must be the same as the value of **Services name** in the [boot configuration file](subsys-boot-init-cfg.md) of the process.
     ```c
     --- a/services/init/init_common_service.c
@@ -485,6 +511,7 @@ swapon;all
     ```
 
 ##### Parsing Strace Logs
+
 1. Copy the dependency files to the Strace log folder for later use. The dependency files are those generated in step 2 in [Static Analysis](#static-analysis).
     ```shell
     cp out/*product name* /gen/base/startup/init/services/modules/seccomp/gen_system_filter/libsyscall_to_nr_arm* base/startup/init/services/modules/seccomp/scripts/tools/strace/
@@ -521,6 +548,7 @@ swapon;all
     ```
 
 #### Audit Statistics
+
 1. Enable the initial Seccomp policy. For details, see [Customizing Seccomp Policies for a Process](#customizing-seccomp-policies-for-a-process).
 2. Obtain logs.
     1. Create a folder for storing logs.
@@ -586,6 +614,7 @@ swapon;all
         ```
 
 ### Combining Multiple Policy Files
+
 During [colltatistics on system calls](#system-call-statistic-methods), multiple policy files may be generated. In these policy files, system calls may be repeated or disordered. To solve these problems, you can combine policy files to sort system calls by arm64/arm and by system call number in ascending order.
 
 **Table 11** Parameters in the merge_policy.py script file
