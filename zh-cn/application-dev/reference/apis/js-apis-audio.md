@@ -4591,7 +4591,7 @@ audioRenderer.getAudioEffectMode((err, effectmode) => {
 });
 ```
 
-### getAudioEffectMode<sup>8+</sup>
+### getAudioEffectMode<sup>10+</sup>
 
 getAudioEffectMode(): Promise\<AudioEffectMode>
 
