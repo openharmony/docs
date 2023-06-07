@@ -4,7 +4,7 @@
 - [术语](glossary.md)
 - 版本说明
   - OpenHarmony 4.x Releases
-    - [OpenHarmony v4.0 Release (2023-06-03)](release-notes/OpenHarmony-v4.0-beta1.md)
+    - [OpenHarmony v4.0 Beta1 (2023-06-03)](release-notes/OpenHarmony-v4.0-beta1.md)
   - OpenHarmony 3.x Releases
     - [OpenHarmony v3.2 Release (2023-04-09)](release-notes/OpenHarmony-v3.2-release.md)
       - [OpenHarmony v3.2.1 Release (2023-05-22)](release-notes/OpenHarmony-v3.2.1-release.md)
