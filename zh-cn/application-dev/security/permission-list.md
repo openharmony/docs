@@ -1006,7 +1006,7 @@
 
 ## ohos.permission.ENTERPRISE_GET_SETTINGS
 
-允许设备管理员查询设置应用数据。
+允许设备管理员查询“设置”应用数据。
 
 **权限级别**：system_basic
 
