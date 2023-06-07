@@ -181,13 +181,10 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 | [Synced Sketchpad (eTS)](https://gitee.com/openharmony/codelabs/tree/master/Distributed/DistributeDatabaseDrawEts)| This codelab shows how to implement synchronous writing and interaction between multiple devices based on the distributed feature.| eTS |
 | [Distributed Database](https://gitee.com/openharmony/codelabs/tree/master/Data/JsDistributedData)| This codelab shows how to use the Distributed Data Service APIs to facilitate consistent data access between devices.| JS |
 | [Relational Database](https://gitee.com/openharmony/codelabs/tree/master/Data/JSRelationshipData)| This codelab shows how to quickly develop database-related application services based on the relational database and data management capability.| JS |
-| [Simplified Declarative UI Paradigm (eTS)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SimpleGalleryEts)| This codelab shows how to implement a gallery app based on OpenHarmony eTS UI components.| eTS |
-| [One-Time Development for Multi-device Deployment (eTS)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/MultiDeploymentEts)| This codelab shows how to implement one-time layout development for multi-device deployment based on OpenHarmony eTS UI components.| eTS |
 | [Shopping (eTS)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts)| This codelab shows how to implement a shopping app based on OpenHarmony eTS UI components.| eTS |
 | [Intra- and Inter-page Navigation](https://gitee.com/openharmony/codelabs/tree/master/Ability/PageAbility)| This codelab shows how to switch between pages and within a page.| eTS |
 | [Transition Animation (eTS)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TransitionAnimtaionEts)| This codelab shows how to implement page transition, component transition, and transition of shared elements based on OpenHarmony eTS UI components.| eTS |
 | [slider Usage (eTS)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SliderApplicationEts)| This codelab shows how to use the OpenHarmony eTS UI component **\<slider>** to implement the animation effect when users adjust the size and speed of the windmill.| eTS |
-| [Liquid Layout (eTS)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/FlowLayoutEts)| This codelab shows how to implement the liquid layout based on the OpenHarmony eTS UI components.| eTS |
 | [Dialog Box (eTS)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialogEts)| This codelab shows how to implement an alert dialog box and custom dialog box based on OpenHarmony eTS UI components.| eTS |
 
 
