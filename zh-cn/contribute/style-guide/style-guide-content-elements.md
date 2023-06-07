@@ -163,9 +163,9 @@
 
 ## 术语及缩略语
 
-【规则】术语/缩略语名称要同“[OpenHarmony术语表](https://gitee.com/openharmony/docs/blob/master/zh-cn/glossary.md)”保持一致，且全文统一。
+【规则】术语/缩略语名称要同“[OpenHarmony术语表](../../glossary.md)”保持一致，且全文统一。
 
-【规则】对于“[OpenHarmony术语表](https://gitee.com/openharmony/docs/blob/master/zh-cn/glossary.md)”中未涵盖的行业通用术语/缩略语（如IP，MAC等），要同国际、国家、行业标准中的名称保持一致。
+【规则】对于“[OpenHarmony术语表](../../glossary.md)”中未涵盖的行业通用术语/缩略语（如IP，MAC等），要同国际、国家、行业标准中的名称保持一致。
 
 【规则】禁止随意缩写英文单词，自创缩略语。
 
@@ -173,7 +173,7 @@
 
 【规则】中文文档中，缩略语全称中对应的字母大写。
 
-【规则】“[OpenHarmony术语表](https://gitee.com/openharmony/docs/blob/master/zh-cn/glossary.md)”中，术语名以“英文全称 (缩略语)；中文全称”的形式写作；术语解释直接陈述术语内涵，不需要重复术语名。
+【规则】“[OpenHarmony术语表](../../glossary.md)”中，术语名以“英文全称 (缩略语)；中文全称”的形式写作；术语解释直接陈述术语内涵，不需要重复术语名。
 
 | **正例**                                                     | **反例**                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
