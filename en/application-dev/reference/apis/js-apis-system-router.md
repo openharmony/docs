@@ -343,8 +343,8 @@ Defines the page routing parameters.
 
 | Name  | Type| Mandatory| Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| uri    | string   | Yes  | URI of the target page, in either of the following formats:<br>1. Absolute path, which is provided by the **pages** list in the **config.json** file. Example:<br>- pages/index/index<br> - pages/detail/detail<br>2. Specific path. If the URI is a slash (/), the home page is displayed.|
-| params | object   | No  | Data that needs to be passed to the target page during redirection. The target page can use **router.getParams()** to obtain the passed parameters, for example, **this.keyValue** (**keyValue** is the value of a key in **params**). In the web-like paradigm, these parameters can be directly used on the target page. If the field specified by **key** already exists on the target page, the passed value of the key will be displayed.|
+| uri<sup>7+</sup> | string   | Yes  | URI of the target page, in either of the following formats:<br>1. Absolute path, which is provided by the **pages** list in the **config.json** file. Example:<br>- pages/index/index<br> - pages/detail/detail<br>2. Specific path. If the URI is a slash (/), the home page is displayed.|
+| params<sup>7+</sup> | object   | No  | Data that needs to be passed to the target page during redirection. The target page can use **router.getParams()** to obtain the passed parameters, for example, **this.keyValue** (**keyValue** is the value of a key in **params**). In the web-like paradigm, these parameters can be directly used on the target page. If the field specified by **key** already exists on the target page, the passed value of the key will be displayed.|
 
 
 ## BackRouterOptions
@@ -355,8 +355,8 @@ Defines the parameters for routing back.
 
 | Name  | Type| Mandatory| Description                                                        |
 | ------ | -------- | ---- | ------------------------------------------------------------ |
-| uri    | string   | No  | URI of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If this parameter is not set, the application returns to the previous page.<br>**System capability**: SystemCapability.ArkUI.ArkUI.Full|
-| params | object   | No  | Data that needs to be passed to the target page during redirection.<br>**System capability**: SystemCapability.ArkUI.ArkUI.Lite|
+| uri<sup>7+</sup> | string   | No  | URI of the page to return to. If the specified page does not exist in the page stack, the application does not respond. If this parameter is not set, the application returns to the previous page.<br>**System capability**: SystemCapability.ArkUI.ArkUI.Full|
+| params<sup>7+</sup> | object   | No  | Data that needs to be passed to the target page during redirection.<br>**System capability**: SystemCapability.ArkUI.ArkUI.Lite|
 
 ## RouterState
 
