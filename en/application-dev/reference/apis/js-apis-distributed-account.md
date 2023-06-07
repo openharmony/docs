@@ -62,12 +62,14 @@ Obtains distributed account information. This API uses an asynchronous callback 
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   try {
     accountAbility.getOsAccountDistributedInfo((err, data) => {
-      console.log("getOsAccountDistributedInfo err: " + JSON.stringify(err));
-      console.log('Query account info name: ' + data.name);
-      console.log('Query account info id: ' + data.id);
+      if (err) {
+        console.log('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+      } else {
+        console.log('distributed information: ' + JSON.stringify(data));
+      }
     });
-  } catch (e) {
-    console.log("getOsAccountDistributedInfo exception: " + JSON.stringify(e));
+  } catch (err) {
+    console.log('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -98,15 +100,96 @@ Obtains distributed account information. This API uses a promise to return the r
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   try {
     accountAbility.getOsAccountDistributedInfo().then((data) => {
-        console.log('Query account info name: ' + data.name);
-        console.log('Query account info id: ' + data.id);
+        console.log('distributed information: ' + JSON.stringify(data));
     }).catch((err) => {
-        console.log("getOsAccountDistributedInfo err: "  + JSON.stringify(err));
+        console.log('getOsAccountDistributedInfo exception: '  + JSON.stringify(err));
     });
-  } catch (e) {
-    console.log("getOsAccountDistributedInfo exception: " + JSON.stringify(e));
+  } catch (err) {
+    console.log('getOsAccountDistributedInfo exception: ' + JSON.stringify(err));
   }
   ```
+
+### getOsAccountDistributedInfoByLocalId<sup>10+</sup>
+
+getOsAccountDistributedInfoByLocalId(localId: number, callback: AsyncCallback&lt;DistributedInfo&gt;): void
+
+Obtains distributed information about an OS account. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | localId | number | Yes| ID of the target OS account.|
+  | callback | AsyncCallback&lt;[DistributedInfo](#distributedinfo)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **undefined** and **data** is the distributed account information obtained. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+
+**Example**
+  ```js
+  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  try {
+    accountAbility.getOsAccountDistributedInfoByLocalId(100, (err, data) => {
+      if (err) {
+        console.log('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+      } else {
+        console.log('distributed information: ' + JSON.stringify(data));
+      }
+    });
+  } catch (err) {
+    console.log('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### getOsAccountDistributedInfoByLocalId<sup>10+</sup>
+
+getOsAccountDistributedInfoByLocalId(localId: number): Promise&lt;DistributedInfo&gt;
+
+Obtains distributed information about an OS account. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS or ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+
+**Return value**
+
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;[DistributedInfo](#distributedinfo)&gt; | Promise used to return the distributed account information obtained.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300003 | Account not found. |
+
+**Example**
+  ```js
+  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  try {
+    accountAbility.getOsAccountDistributedInfoByLocalId(100).then((data) => {
+        console.log('distributed information: ' + JSON.stringify(data));
+    }).catch((err) => {
+        console.log('getOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
+    });
+  } catch (err) {
+      console.log('getOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+  }
+  ```
+
 ### queryOsAccountDistributedInfo<sup>(deprecated)</sup>
 
 queryOsAccountDistributedInfo(callback: AsyncCallback&lt;DistributedInfo&gt;): void
@@ -130,9 +213,11 @@ Obtains distributed account information. This API uses an asynchronous callback 
   ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo((err, data) => {
-      console.log("queryOsAccountDistributedInfo err: " + JSON.stringify(err));
-      console.log('Query account info name: ' + data.name);
-      console.log('Query account info id: ' + data.id);
+    if (err) {
+      console.log('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+    } else {
+      console.log('distributed information: ' + JSON.stringify(data));
+    }
   });
   ```
 
@@ -160,10 +245,9 @@ Obtains distributed account information. This API uses a promise to return the r
   ```js
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   accountAbility.queryOsAccountDistributedInfo().then((data) => {
-      console.log('Query account info name: ' + data.name);
-      console.log('Query account info id: ' + data.id);
+      console.log('distributed information: ' + JSON.stringify(data));
   }).catch((err) => {
-      console.log("queryOsAccountDistributedInfoerr: "  + JSON.stringify(err));
+      console.log('queryOsAccountDistributedInfo exception: '  + JSON.stringify(err));
   });
   ```
 
@@ -198,10 +282,14 @@ Sets the distributed account information. This API uses an asynchronous callback
   let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
     accountAbility.setOsAccountDistributedInfo(accountInfo, (err) => {
-        console.log("setOsAccountDistributedInfo err: " + JSON.stringify(err));
+      if (err) {
+        console.log('setOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+      } else {
+        console.log('setOsAccountDistributedInfo successfully');
+      }
     });
-  } catch (e) {
-    console.log("setOsAccountDistributedInfo exception: " + JSON.stringify(e));
+  } catch (err) {
+      console.log('setOsAccountDistributedInfo exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -241,14 +329,109 @@ Sets the distributed account information. This API uses a promise to return the 
   let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   try {
     accountAbility.setOsAccountDistributedInfo(accountInfo).then(() => {
-        console.log('setOsAccountDistributedInfo Success');
+        console.log('setOsAccountDistributedInfo successfully');
     }).catch((err) => {
-        console.log("setOsAccountDistributedInfo err: "  + JSON.stringify(err));
+        console.log('setOsAccountDistributedInfo exception: '  + JSON.stringify(err));
     });
-  } catch (e) {
-    console.log("setOsAccountDistributedInfo exception: " + JSON.stringify(e));
+  } catch (err) {
+      console.log('setOsAccountDistributedInfo exception: ' + JSON.stringify(err));
   }
   ```
+### setOsAccountDistributedInfoByLocalId<sup>10+</sup>
+
+setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: DistributedInfo, callback: AsyncCallback&lt;void&gt;): void
+
+Sets the distributed information for an OS account. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | localId | number | Yes| ID of the target OS account.|
+  | accountInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to set.|
+  | callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the result. If the distributed information is set successfully, **err** is **undefined**. Otherwise, **err** is an error object.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid distributedInfo. |
+| 12300003 | Account identified by localId or by distributedInfo not found. |
+| 12300008 | Restricted OS account. |
+
+**Example**
+  ```js
+  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
+  try {
+    accountAbility.setOsAccountDistributedInfoByLocalId(100, accountInfo, (err) => {
+      if (err) {
+        console.log('setOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+      } else {
+        console.log('setOsAccountDistributedInfoByLocalId successfully');
+      }
+    });
+  } catch (err) {
+      console.log('setOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+  }
+  ```
+
+### setOsAccountDistributedInfoByLocalId<sup>10+</sup>
+
+setOsAccountDistributedInfoByLocalId(localId: number, distributedInfo: DistributedInfo): Promise&lt;void&gt;
+
+Sets the distributed information for an OS account. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+**Required permissions**: ohos.permission.MANAGE_DISTRIBUTED_ACCOUNTS
+
+**Parameters**
+
+  | Name| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | localId | number | Yes| ID of the target OS account.|
+  | distributedInfo | [DistributedInfo](#distributedinfo) | Yes| Distributed account information to set.|
+
+**Return value**
+
+  | Type| Description|
+  | -------- | -------- |
+  | Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | ------------------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid distributedInfo. |
+| 12300003 | Account identified by localId or by distributedInfo not found. |
+| 12300008 | Restricted OS account. |
+
+**Example**
+  ```js
+  const accountAbility = account_distributedAccount.getDistributedAccountAbility();
+  let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
+  try {
+    accountAbility.setOsAccountDistributedInfoByLocalId(100, accountInfo).then(() => {
+        console.log('setOsAccountDistributedInfoByLocalId successfully');
+    }).catch((err) => {
+        console.log('setOsAccountDistributedInfoByLocalId exception: '  + JSON.stringify(err));
+    });
+  } catch (err) {
+      console.log('setOsAccountDistributedInfoByLocalId exception: ' + JSON.stringify(err));
+  }
+  ```
+
 ### updateOsAccountDistributedInfo<sup>(deprecated)</sup>
 
 updateOsAccountDistributedInfo(accountInfo: DistributedInfo, callback: AsyncCallback&lt;void&gt;): void
@@ -275,7 +458,11 @@ Updates the distributed account information. This API uses an asynchronous callb
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo, (err) => {
-      console.log("queryOsAccountDistributedInfo err: " + JSON.stringify(err));
+    if (err) {
+      console.log('queryOsAccountDistributedInfo exception: ' + JSON.stringify(err));
+    } else {
+      console.log('queryOsAccountDistributedInfo successfully');
+    }
   });
   ```
 
@@ -308,22 +495,34 @@ Updates the distributed account information. This API uses a promise to return t
   const accountAbility = account_distributedAccount.getDistributedAccountAbility();
   let accountInfo = {id: '12345', name: 'ZhangSan', event: 'Ohos.account.event.LOGIN'};
   accountAbility.updateOsAccountDistributedInfo(accountInfo).then(() => {
-      console.log('updateOsAccountDistributedInfo Success');
+      console.log('updateOsAccountDistributedInfo successfully');
    }).catch((err) => {
-      console.log("updateOsAccountDistributedInfo err: "  + JSON.stringify(err));
+      console.log('updateOsAccountDistributedInfo exception: '  + JSON.stringify(err));
   });
   ```
 ## DistributedInfo
 
-Defines distributed OS account information.
+Defines the distributed information about an OS account.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| name | string | Yes| Name of the distributed account. It must be a non-null string.|
-| id | string | Yes| UID of the distributed account. It must be a non-null string.|
-| event | string | Yes| Login state of the distributed account. The state can be login, logout, token invalid, or logoff, which correspond to the following strings respectively:<br>-&nbsp;Ohos.account.event.LOGIN<br>-&nbsp;Ohos.account.event.LOGOUT<br>-&nbsp;Ohos.account.event.TOKEN_INVALID<br>-&nbsp;Ohos.account.event.LOGOFF |
-| nickname<sup>9+</sup> | string | No| Nickname of the distributed account. It must be a non-null string.|
-| avatar<sup>9+</sup> | string | No| Avatar of the distributed account. It must be a non-null string.|
-| scalableData<sup>8+</sup> | object | No| Extended information about the distributed account, passed in key-value (KV) pairs.<br>**NOTE**<br>This parameter is reserved and not used in the setters and getters.|
+| Name| Type| Read-only| Mandatory| Description|
+| -------- | -------- | -------- |-------- | -------- |
+| name | string | No|Yes| Name of the distributed account. It must be a non-null string.|
+| id | string | No|Yes| UID of the distributed account. It must be a non-null string.|
+| event | string | No|Yes| Login state of the distributed account. The state can be login, logout, token invalid, or logoff, which correspond to the following strings respectively:<br>-&nbsp;Ohos.account.event.LOGIN<br>-&nbsp;Ohos.account.event.LOGOUT<br>-&nbsp;Ohos.account.event.TOKEN_INVALID<br>-&nbsp;Ohos.account.event.LOGOFF |
+| nickname<sup>9+</sup> | string | No|No| Nickname of the distributed account. By default, no value is passed.|
+| avatar<sup>9+</sup> | string | No|No| Avatar of the distributed account. By default, no value is passed.|
+| status<sup>10+</sup> | [DistributedAccountStatus](#distributedaccountstatus10) | Yes|No| Status of the distributed account. The value is of the enumerated type. The default status is unlogged.|
+| scalableData<sup>8+</sup> | object | No|No| Extended information about the distributed account, passed in key-value (KV) pairs based on service requirements. By default, no value is passed.|
+
+## DistributedAccountStatus<sup>10+</sup>
+
+Enumerates the statuses of a distributed account.
+
+**System capability**: SystemCapability.Account.OsAccount
+
+| Name | Value| Description       |
+| ---- | ------ | ----------- |
+| NOT_LOGGED_IN   | 0  | The account has not logged in.|
+| LOGGED_IN  | 1  | The account has logged in.|

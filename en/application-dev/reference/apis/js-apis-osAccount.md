@@ -2433,7 +2433,7 @@ Unsubscribes from the OS account activation states, including the states of the 
 | -------- | -------------------------- | ---- | ------------------------------------------------------------ |
 | type     | 'activate' \| 'activating' | Yes  | Type of the event to unsubscribe from. The value **activate** means an event indicating that an OS account is activated, and **activating** means an event indicating that an OS account is being activated.|
 | name     | string                     | Yes  | Subscription name, which can be customized. The value cannot be empty or exceed 1024 bytes, and must be the same as the value passed by **on()**.|
-| callback | Callback&lt;number&gt;     | No  | Callback to unregister. By default, **0** is returned.                     |
+| callback | Callback&lt;number&gt;     | No  | Callback for the OS account activation state events. By default, no value is passed, which unsubscribes from all the callbacks for the OS account activation state events.                     |
 
 **Error codes**
 
@@ -5649,7 +5649,7 @@ Obtains authentication information of the specified type. This API uses a promis
 
 | Name   | Type                               | Mandatory| Description     |
 | -------- | ----------------------------------- | ---- | -------- |
-| authType | [AuthType](#authtype8)              | No  | Authentication credential type.|
+| authType | [AuthType](#authtype8)              | No  | Authentication type. By default, no value is passed, which means to obtain information about all authentication types.|
 
 **Return value**
 
@@ -5929,12 +5929,14 @@ Defines the executor property.
 
 **System capability**: SystemCapability.Account.OsAccount
 
-| Name       | Type                                    | Mandatory  | Description             |
-| ------------ | ---------------------------------------- | ----- | ----------------- |
-| result       | number                                   | Yes   | Result.        |
-| authSubType  | [AuthSubType](#authsubtype8) | Yes   | Authentication credential subtype.|
-| remainTimes  | number                                   | No   | Number of remaining authentication times.    |
-| freezingTime | number                                   | No   | Freezing time.    |
+| Name        | Type                        |  Readable| Writable| Description             |
+| ------------ | ---------------------------- | ----- | -----|----------------- |
+| result       | number                       | Yes   | Yes  | Result.        |
+| authSubType  | [AuthSubType](#authsubtype8) | Yes   | Yes  | Authentication credential subtype.|
+| remainTimes  | number                       | Yes   | Yes  | Number of remaining authentication times.    |
+| freezingTime | number                       | Yes   | Yes  | Freezing time.    |
+| enrollmentProgress<sup>10+</sup> | string   | Yes   | Yes  | Enrollment progress. By default, no value is passed.|
+| sensorInfo<sup>10+</sup> | string           | Yes   | Yes  | Sensor information. By default, no value is passed.|
 
 ## AuthResult<sup>8+</sup>
 
@@ -5946,9 +5948,9 @@ Defines the authentication result information.
 
 | Name       | Type       | Mandatory  | Description             |
 | ------------ | ----------- | ----- | ----------------- |
-| token        | Uint8Array  | No   | Authentication token.    |
-| remainTimes  | number      | No   | Number of remaining authentication times.    |
-| freezingTime | number      | No   | Freezing time.    |
+| token        | Uint8Array  | No   | Authentication token. By default, no value is passed.     |
+| remainTimes  | number      | No   | Number of remaining authentication times. By default, no value is passed.     |
+| freezingTime | number      | No   | Freezing time. By default, no value is passed.     |
 
 ## CredentialInfo<sup>8+</sup>
 
@@ -5974,7 +5976,7 @@ Defines the request result information.
 
 | Name       | Type       | Mandatory  | Description             |
 | ------------ | ----------- | ----- | ----------------- |
-| credentialId | Uint8Array  | No   | Credential ID.    |
+| credentialId | Uint8Array  | No   | Credential ID. By default, no value is passed.     |
 
 ## EnrolledCredInfo<sup>8+</sup>
 
@@ -6004,6 +6006,8 @@ Enumerates the types of properties to obtain.
 | AUTH_SUB_TYPE | 1      | Authentication credential subtype.|
 | REMAIN_TIMES  | 2      | Remaining time.  |
 | FREEZING_TIME | 3      | Freezing time.  |
+| ENROLLMENT_PROGRESS<sup>10+</sup> | 4      | Enrollment progress.  |
+| SENSOR_INFO<sup>10+</sup> | 5      | Sensor information.  |
 
 ## SetPropertyType<sup>8+</sup>
 
@@ -6047,6 +6051,9 @@ Enumerates the authentication credential subtypes.
 | PIN_MIXED  | 10002 | Custom mixed credentials.|
 | FACE_2D    | 20000 | 2D face credential.  |
 | FACE_3D    | 20001 | 3D face credential.  |
+| FINGERPRINT_CAPACITIVE<sup>10+</sup>    | 30000 | Capacitive fingerprint.  |
+| FINGERPRINT_OPTICAL<sup>10+</sup>    | 30001 | Optical fingerprint.  |
+| FINGERPRINT_ULTRASONIC<sup>10+</sup>    | 30002 | Ultrasonic fingerprint.  |
 | DOMAIN_MIXED<sup>9+</sup>    | 10240001 | Mixed domain authentication credentials.  |
 
 ## AuthTrustLevel<sup>8+</sup>
@@ -6136,6 +6143,8 @@ Enumerates the tip codes for fingerprint authentication.
 | FINGERPRINT_TIP_PARTIAL       | 3     | Only part of the fingerprint image is detected.                        |
 | FINGERPRINT_TIP_TOO_FAST      | 4     | The fingerprint image is incomplete due to quick motion.                 |
 | FINGERPRINT_TIP_TOO_SLOW      | 5     | Failed to read the fingerprint image due to lack of motion.               |
+| FINGERPRINT_TIP_FINGER_DOWN<sup>10+</sup>   | 6     | Press your finger.                 |
+| FINGERPRINT_TIP_FINGER_UP<sup>10+</sup>     | 7     | Lift your finger.               |
 
 ## OsAccountInfo
 
@@ -6148,16 +6157,16 @@ Defines the OS account information.
 | localId                        | number                                                       | Yes  | ID of the target OS account.                     |
 | localName                      | string                                                       | Yes  | OS account name.                   |
 | type                           | [OsAccountType](#osaccounttype)                              | Yes  | OS account type.                     |
-| constraints                    | Array&lt;string&gt;                                          | No  | [Constraints](#constraints) on the OS account.|
+| constraints                    | Array&lt;string&gt;                                          | No  | OS account [Constraints](#constraints). By default, no value is passed.|
 | isVerified<sup>8+</sup>        | boolean                                                      | Yes  | Whether to verify the OS account.                     |
-| photo<sup>8+</sup>             | string                                                       | No  | Profile photo of the OS account.                     |
+| photo<sup>8+</sup>             | string                                                       | No  | OS account avatar. By default, no value is passed.                     |
 | createTime<sup>8+</sup>        | number                                                       | Yes  | Time when the OS account was created.                 |
-| lastLoginTime<sup>8+</sup>     | number                                                       | No  | Last login time of the OS account.         |
+| lastLoginTime<sup>8+</sup>     | number                                                       | No  | Last login time of the OS account. By default, no value is passed.         |
 | serialNumber<sup>8+</sup>      | number                                                       | Yes  | SN of the OS account.                     |
 | isActived<sup>8+</sup>         | boolean                                                      | Yes  | Whether the OS account is activated.                 |
 | isCreateCompleted<sup>8+</sup> | boolean                                                      | Yes  | Whether the OS account information is complete.             |
-| distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | No  | Distributed account information.                   |
-| domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | No  | Domain account information.                       |
+| distributedInfo                | [distributedAccount.DistributedInfo](js-apis-distributed-account.md) | No  | Distributed account information. By default, no value is passed.                   |
+| domainInfo<sup>8+</sup>        | [DomainAccountInfo](#domainaccountinfo8)                      | No  | Domain account information. By default, no value is passed.                       |
 
 ## DomainAccountInfo<sup>8+</sup>
 
@@ -6169,7 +6178,7 @@ Defines the domain account information.
 | ----------- | ------ | ---- | ---------- |
 | domain      | string | Yes  | Domain name.    |
 | accountName | string | Yes  | Domain account name.|
-| accountId<sup>10+</sup> | string | No  | Domain account ID.<br>**System API**: This is a system API.|
+| accountId<sup>10+</sup> | string | No  | Domain account ID.<br>**System API**: It is a system API and is left blank by default.|
 
 ## Constraints
 
