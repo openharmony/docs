@@ -148,7 +148,6 @@
   import UIAbility from '@ohos.app.ability.UIAbility';
   import formBindingData from '@ohos.app.form.formBindingData';
   import formProvider from '@ohos.app.form.formProvider';
-  import formInfo from '@ohos.app.form.formInfo';
   
   const MSG_SEND_METHOD: string = 'funA';
   
