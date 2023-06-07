@@ -1,6 +1,6 @@
 # @ohos.secureElement( 安全单元的通道管理)
 
-本模块主要用于操作及管理安全单元（SecureElement，简称SE）。文档中出现的SE服务为SEService实例，参见[newSEService](#secureElement.newSEService)。
+本模块主要用于操作及管理安全单元（SecureElement，简称SE）。文档中出现的SE服务为SEService实例，参见[newSEService](#secureelementnewseservice)。
 
 对于文档中出现以下类型说明：
 
@@ -33,20 +33,20 @@ import secureElement from '@ohos.secureElement';
 
 ## secureElement.newSEService
 
-newSEService(type: 'serviceState', callback: Callback<[ServiceState](#secureElement.ServiceState)>): SEService
+newSEService(type: 'serviceState', callback: Callback<[ServiceState](#secureelementservicestate)>): SEService
 
 建立一个可用于连接到系统中所有可用SE的新连接（服务）。连接过程较为耗时，所以此方法仅提供异步方式进行的。
 
-仅当指定的回调或者当[isConnected](#SEService.isConnected)方法返回true时，该返回SEService对象是可用的。
+仅当指定的回调或者当[isConnected](#seserviceisconnected)方法返回true时，该返回SEService对象是可用的。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
 **参数：**
 
-| **参数名** | **类型**                                              | **说明**             |
-| ---------- | ----------------------------------------------------- | -------------------- |
-| type       | string                                                | 'serviceState'       |
-| callback   | Callback<[ServiceState](#secureElement.ServiceState)> | 返回SE服务状态的回调 |
+| **参数名** | **类型**                                             | **说明**             |
+| ---------- | ---------------------------------------------------- | -------------------- |
+| type       | string                                               | 'serviceState'       |
+| callback   | Callback<[ServiceState](#secureelementservicestate)> | 返回SE服务状态的回调 |
 
 **返回值：**
 
@@ -167,7 +167,7 @@ try {
 
 shutdown(): void
 
-释放该service分配的所有SE资源。此后[isConnected](#SEService.isConnected)将返回false。
+释放该service分配的所有SE资源。此后[isConnected](#seserviceisconnected)将返回false。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -775,7 +775,7 @@ try {
 
 ## Session.openLogicalChannel
 
-openLogicalChannel(aid: number[]): Promise<[Channel](#Channel)>
+openLogicalChannel(aid: number[]): Promise<Channel>
 
 打开指定SE的逻辑Channel对象。
 
@@ -830,7 +830,7 @@ try {
 
 ## Session.openLogicalChannel
 
- openLogicalChannel(aid:number[], callback: AsyncCallback<[Channel](#Channel)>): void
+ openLogicalChannel(aid:number[], callback: AsyncCallback<Channel>): void
 
 打开指定SE的逻辑Channel对象。
 
