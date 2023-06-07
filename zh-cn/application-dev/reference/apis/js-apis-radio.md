@@ -1824,7 +1824,7 @@ promise.then(data => {
 });
 ```
 
-## radio.getNrOptionMode<sup>8+</sup>
+## radio.getNrOptionMode<sup>(deprecated)</sup>
 
 getNrOptionMode\(callback: AsyncCallback\<NrOptionMode\>\): void
 
@@ -1842,7 +1842,7 @@ getNrOptionMode\(callback: AsyncCallback\<NrOptionMode\>\): void
 
 | 参数名   | 类型                                            | 必填 | 说明       |
 | -------- | ----------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | 是   | 回调函数。 |
+| callback | AsyncCallback\<[NrOptionMode](#nroptionmodedeprecated)\> | 是   | 回调函数。 |
 
 **错误码：**
 
@@ -1866,7 +1866,7 @@ radio.getNrOptionMode((err, data) => {
 ```
 
 
-## radio.getNrOptionMode<sup>8+</sup>
+## radio.getNrOptionMode<sup>(deprecated)</sup>
 
 getNrOptionMode\(slotId: number, callback: AsyncCallback\<NrOptionMode\>\): void
 
@@ -1883,9 +1883,9 @@ getNrOptionMode\(slotId: number, callback: AsyncCallback\<NrOptionMode\>\): void
 **参数：**
 
 | 参数名   | 类型                                            | 必填 | 说明                                   |
-| -------- | ----------------------------------------------- | ---- | -------------------------------------- |
+| -------- | ----------------------------------------------- | ---- | ------------------------------------- |
 | slotId   | number                                          | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
-| callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | 是   | 回调函数。                             |
+| callback | AsyncCallback\<[NrOptionMode](#nroptionmodedeprecated)\> | 是   | 回调函数。                    |
 
 **错误码：**
 
@@ -1910,7 +1910,7 @@ radio.getNrOptionMode(slotId, (err, data) => {
 ```
 
 
-## radio.getNrOptionMode<sup>8+</sup>
+## radio.getNrOptionMode<sup>(deprecated)</sup>
 
 getNrOptionMode\(slotId?: number\): Promise\<NrOptionMode\>
 
@@ -1932,9 +1932,9 @@ getNrOptionMode\(slotId?: number\): Promise\<NrOptionMode\>
 
 **返回值：**
 
-| 类型                                      | 说明                    |
-| ----------------------------------------- | ----------------------- |
-| Promise\<[NrOptionMode](#nroptionmode8)\> | 以Promise形式返回结果。 |
+| 类型                                               | 说明                    |
+| -------------------------------------------------- | ----------------------- |
+| Promise\<[NrOptionMode](#nroptionmodedeprecated)\> | 以Promise形式返回结果。  |
 
 **错误码：**
 
@@ -2687,7 +2687,7 @@ promise.then(data => {
 
 setNROptionMode\(slotId: number, mode: NROptionMode, callback: AsyncCallback\<void\>\): void
 
-获取Nr选项模式 。使用callback异步回调。
+设置Nr选项模式 。使用callback异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2731,7 +2731,7 @@ radio.setNROptionMode(slotId, 1, (err, data) => {
 
 setNROptionMode\(slotId: number, mode: NROptionMode\): Promise\<void\>
 
-获取Nr选项模式 。使用Promise异步回调。
+设置Nr选项模式 。使用Promise异步回调。
 
 **系统接口：** 此接口为系统接口。
 
@@ -2743,7 +2743,7 @@ setNROptionMode\(slotId: number, mode: NROptionMode\): Promise\<void\>
 
 | 参数名 |              类型               | 必填 | 说明                                   |
 | ------ | ------------------------------- | ---- | ------------------------------------- |
-| slotId | number                          | 否   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId | number                          | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 | mode   | [NROptionMode](#nroptionmode10) | 是   | NR的选择模式。                         |
 
 **返回值：**
@@ -2833,7 +2833,7 @@ getNROptionMode\(slotId: number\): Promise\<NROptionMode\>
 
 | 参数名 | 类型   | 必填 | 说明                                   |
 | ------ | ------ | ---- | ------------------------------------- |
-| slotId | number | 否   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
+| slotId | number | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2 |
 
 **返回值：**
 
@@ -3143,7 +3143,7 @@ WCDMA小区信息。
 | mcc    | string |  是  | 移动国家码。 |
 | mnc    | string |  是  | 移动网号。   |
 
-## NrOptionMode<sup>8+</sup>
+## NrOptionMode<sup>(deprecated)</sup>
 
 NR的选择模式。
 
