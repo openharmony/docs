@@ -181,12 +181,9 @@ For details about the adaptation status, see [SIG_DevBoard](https://gitee.com/op
 | [Synced Sketchpad (ArkTS)](https://gitee.com/openharmony/codelabs/tree/master/Distributed/DistributeDatabaseDrawEts)| This codelab shows how to implement synchronous writing and interaction between multiple devices based on the distributed feature.| ArkTS |
 | [Distributed Database](https://gitee.com/openharmony/codelabs/tree/master/Data/JsDistributedData)| This codelab shows how to use the Distributed Data Service APIs to facilitate consistent data access between devices.| JS |
 | [Relational Database](https://gitee.com/openharmony/codelabs/tree/master/Data/JSRelationshipData)| This codelab shows how to quickly develop database-related application services based on the relational database and data management capability.| JS |
-| [Simplified Declarative UI Paradigm (ArkTS)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SimpleGalleryEts) | This codelab shows how to implement a gallery app based on OpenHarmony ArkUI components. | ArkTS |
-| [One-Time Development for Multi-device Deployment (ArkTS)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/Multi_device) | This codelab shows how to implement one-time layout development for multi-device deployment based on OpenHarmony ArkTS UI components. | ArkTS |
 | [Shopping (ArkTS)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts) | This codelab shows how to implement a shopping app based on OpenHarmony ArkTS UI components. | ArkTS |
 | [Transition Animation (ArkTS)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TransitionAnimation) | This codelab shows how to implement page transition, component transition, and transition of shared elements based on OpenHarmony ArkUI components. | ArkTS |
 | [slider Usage (ArkTS)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SliderExample) | This codelab shows how to use the OpenHarmony ArkUI component **\<slider>** to implement the animation effect when users adjust the size and speed of the windmill. | ArkTS |
-| [Liquid Layout (ArkTS)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/FlowLayoutEts) | This codelab shows how to implement the liquid layout based on the OpenHarmony ArkTS UI components. | ArkTS |
 | [Dialog Box (ArkTS)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialogEts) | This codelab shows how to implement an alert dialog box and custom dialog box based on OpenHarmony ArkTS UI components. | ArkTS |
 
 
