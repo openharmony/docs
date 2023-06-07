@@ -66,7 +66,7 @@ try {
     this.nfcSEService = secureElement.newSEService("serviceState", (state) =>
         {
             if (state == secureElement.ServiceState.DISCONNECTED) {
-           	    this.result = "Service state is Disconnected";
+                this.result = "Service state is Disconnected";
             } else {
            	    this.result = "Service state is connected";
             }
@@ -109,7 +109,8 @@ import secureElement from '@ohos.secureElement';
 
 // get SEService
 try {
-    this.nfcSEService = secureElement.newSEService("serviceState", (state) => 				         {
+    this.nfcSEService = secureElement.newSEService("serviceState", (state) =>
+        {
             if (state == secureElement.ServiceState.DISCONNECTED) {
            	    this.result = "Service state is Disconnected";
             } else {
@@ -160,7 +161,7 @@ import secureElement from '@ohos.secureElement';
 
 try {
     let ret: boolean;
-    // 有效this.nfcSEService,获取方式参考newService
+    // 有效this.nfcSEService,获取方式参考newSEService
     ret = this.nfcSEService.isConnected();
     if (ret) {
         this.result = '获取连接状态：connected';
@@ -202,7 +203,7 @@ import secureElement from '@ohos.secureElement';
 @State nfcSEService: secureElement.SEService = null;
 
 try {
-    // 有效this.nfcSEService,获取方式参考newService
+    // 有效this.nfcSEService,获取方式参考newSEService
     this.nfcSEService.shutdown();
     this.result = "shutdown成功";
 } catch (e) {
@@ -241,7 +242,7 @@ import secureElement from '@ohos.secureElement';
 
 this.result = "版本名称："
 try {
-    // 有效this.nfcSEService,获取方式参考newService
+    // 有效this.nfcSEService,获取方式参考newSEService
     this.result += this.nfcSEService.getVersion();
 } catch (e) {
     this.result += "getVersion异常：" + e.message;
@@ -745,12 +746,12 @@ aidArray: number[] = [720, 1080]
 try {
     // this.nfcOmaSession:有效的Session，获取方式参考Reader.openSession
     this.nfcOmaSession.openBasicChannel(this.aidArray, (error, data) => {
-  	    if (error) {
-     	    this.result = "openBasicChannel2失败：" + JSON.stringify(error);
-     	    return;
+        if (error) {
+            this.result = "openBasicChannel2失败：" + JSON.stringify(error);
+            return;
         }
-  	    this.nfcOmaChannel = data;
-  	    this.result = "openBasicChannel2获取channel成功";
+        this.nfcOmaChannel = data;
+        this.result = "openBasicChannel2获取channel成功";
     });
 } catch (e) {
     this.result = "openBasicChannel2出现异常:" + e.message;
@@ -1057,8 +1058,8 @@ if (this.nfcOmaSession) {
             this.nfcOmaChannel = channel;
             this.result = "openLogicChannel3获取channel成功";
         }).catch((err) => {
-        this.result = "openLogicChannel3 出现异常";
-    });
+            this.result = "openLogicChannel3 出现异常";
+        });
 } catch (e) {
     this.result = "openLogicChannel3出现异常:" + e.message;
 }
