@@ -1,6 +1,6 @@
 # Blank
 
-The **\<Blank>** component is able to automatically fill the empty spaces in the container along the main axis. It is valid only when the parent container is **\<Row>** or **\<Column>**.
+The **\<Blank>** component is able to automatically fill the empty spaces in the container along the main axis. It works only when the parent component is **\<Row>**, **\<Column>**, or **\<Flex>**.
 
 >  **NOTE**
 >
@@ -30,7 +30,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
-| color | [ResourceColor](ts-types.md#resourcecolor) | Color to fill the empty spaces.<br>Default value: **Color.Transparent**<br>Since API version 9, this API is supported in ArkTS widgets. |
+| color | [ResourceColor](ts-types.md#resourcecolor) | Color to fill the empty spaces.<br>Default value: **Color.Transparent**<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## Events
 
@@ -50,7 +50,7 @@ struct BlankExample {
       Row() {
         Text('Bluetooth').fontSize(18)
         Blank()
-        Toggle({ type: ToggleType.Switch })
+        Toggle({ type: ToggleType.Switch }).margin({ top: 14, bottom: 14, left: 6, right: 6 })
       }.width('100%').backgroundColor(0xFFFFFF).borderRadius(15).padding({ left: 12 })
     }.backgroundColor(0xEFEFEF).padding(20)
   }
@@ -80,16 +80,16 @@ struct BlankExample {
       Row() {
         Text('Bluetooth').fontSize(18)
         Blank().color(Color.Yellow)
-        Toggle({ type: ToggleType.Switch })
+        Toggle({ type: ToggleType.Switch }).margin({ top: 14, bottom: 14, left: 6, right: 6 })
       }.backgroundColor(0xFFFFFF).borderRadius(15).padding({ left: 12 })
 
       Row() {
         Text('Bluetooth').fontSize(18)
         // Set the minimum width to 160.
         Blank('160').color(Color.Yellow)
-        Toggle({ type: ToggleType.Switch })
+        Toggle({ type: ToggleType.Switch }).margin({ top: 14, bottom: 14, left: 6, right: 6 })
       }.backgroundColor(0xFFFFFF).borderRadius(15).padding({ left: 12 })
-      
+
     }.backgroundColor(0xEFEFEF).padding(20).width('100%')
   }
 }
