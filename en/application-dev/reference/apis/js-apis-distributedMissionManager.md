@@ -368,8 +368,8 @@ Continues a mission on a remote device. This API uses an asynchronous callback t
 
 | Name      | Type                                     | Mandatory  | Description   |
 | --------- | --------------------------------------- | ---- | ----- |
-| parameter | [ContinueDeviceInfo](#js-apis-inner-application-continueDeviceInfo.md) | Yes   | Parameters required for mission continuation.|
-| options | [ContinueCallback](#js-apis-inner-application-continueCallback.md) | Yes   | Callback invoked when the mission continuation is complete.|
+| parameter | [ContinueDeviceInfo](js-apis-inner-application-continueDeviceInfo.md) | Yes   | Parameters required for mission continuation.|
+| options | [ContinueCallback](js-apis-inner-application-continueCallback.md) | Yes   | Callback invoked when the mission continuation is complete.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
@@ -426,8 +426,8 @@ Continues a mission on a remote device. This API uses a promise to return the re
 
 | Name      | Type                                     | Mandatory  | Description   |
 | --------- | --------------------------------------- | ---- | ----- |
-| parameter | [ContinueDeviceInfo](#js-apis-inner-application-continueDeviceInfo.md) | Yes   | Parameters required for mission continuation.|
-| options | [ContinueCallback](#js-apis-inner-application-continueCallback.md) | Yes   | Callback invoked when the mission continuation is complete.|
+| parameter | [ContinueDeviceInfo](js-apis-inner-application-continueDeviceInfo.md) | Yes   | Parameters required for mission continuation.|
+| options | [ContinueCallback](js-apis-inner-application-continueCallback.md) | Yes   | Callback invoked when the mission continuation is complete.|
 
 **Return value**
 
