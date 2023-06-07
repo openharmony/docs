@@ -837,7 +837,6 @@
       - [Matrix2D](reference/arkui-ts/ts-components-canvas-matrix2d.md)
       - [OffscreenCanvasRenderingContext2D对象](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
       - [Path2D对象](reference/arkui-ts/ts-components-canvas-path2d.md)
-      - [Lottie](reference/arkui-ts/ts-components-canvas-lottie.md)
     - 动画
       - [属性动画](reference/arkui-ts/ts-animatorproperty.md)
       - [显式动画](reference/arkui-ts/ts-explicit-animation.md)
@@ -1219,6 +1218,7 @@
       - [@ohos.animator (动画)](reference/apis/js-apis-animator.md)
       - [@ohos.arkui.componentSnapshot (组件截图)](reference/apis/js-apis-arkui-componentSnapshot.md)
       - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
+      - [@ohos.arkui.UIContext (UIContext)](reference/apis/js-apis-arkui-UIContext.md)
       - [@ohos.curves (插值计算)](reference/apis/js-apis-curve.md)
       - [@ohos.font (注册自定义字体)](reference/apis/js-apis-font.md)
       - [@ohos.matrix4 (矩阵变换)](reference/apis/js-apis-matrix4.md)
