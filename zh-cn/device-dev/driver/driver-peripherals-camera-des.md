@@ -1031,13 +1031,14 @@ Camera驱动的开发过程主要包含以下步骤：
    1. 执行全量编译命令./build.sh --product-name rk3568 --ccache，生成可执行二进制文件ohos_camera_demo，路径为：out/rk3568/packages/phone/vendor/bin/。        
    2. 将可执行文件ohos_camera_demo导入开发板，修改权限直接运行即可。
 
-### HCS配置文件<a name="5"></a>
+## 参考<a name="4"></a>
 
-HCS文件以默认配置为主，开发人员可根据需求自行修改。Camera模块HCS配置文件路径：/vendor/hihope/rk3568/hdf_config/uhdf/camera
+针对camera模块openharmony提供了默认的hcs配置。开发者若有特殊需求可自行修改相关的HCS配置文件。
+Camera模块HCS配置文件路径：/vendor/hihope/rk3568/hdf_config/uhdf/camera，其中：
 
-1. ./hdi_impl/camera_host_config.hcs 主要是metadata TAG配置
-2. ./pipeline_core/config.hcs 主要是node 节点配置
++  ./hdi_impl/camera_host_config.hcs 主要是metadata TAG配置
++  ./pipeline_core/config.hcs 主要是node 节点配置
     编译后在/drivers/periphera/camra/vdi_base/common/pipeline_core/pipeline_impl/src/strategy/config目录下生产congfig.c和congfig.h文件
-3. ./pipeline_core/ipp_algo_config.hcs 为ipp node 拍照配置
-4. ./pipeline_core/params.hcs 各种流配置
++  ./pipeline_core/ipp_algo_config.hcs 为ipp node 拍照配置
++  ./pipeline_core/params.hcs 各种流配置
     编译后在/drivers/periphera/camra/vdi_base/common/pipeline_core/pipeline_impl/src/strategy/config目录下生产params.c和params.h文件
