@@ -7,7 +7,7 @@
 ## 15500010 Failed to Delete the User Preference Persistence File
 **Error Message**
 
-Failed to delete preferences.
+Failed to delete preferences file.
 
 **Description**
 
