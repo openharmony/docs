@@ -822,7 +822,7 @@ on(type: 'dataProgress', callback: Callback\<{ receiveSize: number, totalSize: n
 订阅HTTP流式响应数据接收进度事件。
 
 > **说明：**
-> 暂不支持订阅HTTP流式响应数据上传的相关事件。
+> 暂不支持订阅HTTP流式数据上传的相关事件。
 
 **系统能力**：SystemCapability.Communication.NetStack
 
