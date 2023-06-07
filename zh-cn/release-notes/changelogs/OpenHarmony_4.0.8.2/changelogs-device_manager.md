@@ -1,7 +1,7 @@
 # 设备管理ChangeLog
 ## cl.device_manager.1 接口权限变更
 
-从Opeharmonny 4.0.8.2版本开始，全部接口新增权限校验。
+从Opeharmonny 4.0.8.2版本开始，部分接口新增权限校验。
 
 **变更影响**
 
