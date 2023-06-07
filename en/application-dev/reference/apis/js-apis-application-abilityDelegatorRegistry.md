@@ -4,7 +4,7 @@ The **AbilityDelegatorRegistry** module provides APIs for storing the global reg
 
 > **NOTE**
 > 
-> The APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs of this module are supported since API version 8 and deprecated since API version 9. You are advised to use [@ohos.app.ability.abilityDelegatorRegistry](js-apis-app-ability-abilityDelegatorRegistry.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
