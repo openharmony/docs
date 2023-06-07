@@ -1,6 +1,6 @@
 # @ohos.secureElement( 安全单元的通道管理)
 
-本模块主要用于操作及管理安全单元SE，SE是SecureElement简称 ，文档中出现的SE服务为SEService实例，参见[newSEService](#secureElement.newSEService)。
+本模块主要用于操作及管理安全单元（SecureElement，简称SE）。文档中出现的SE服务为SEService实例，参见[newSEService](#secureElement.newSEService)。
 
 对于文档中出现以下类型说明：
 
@@ -35,9 +35,9 @@ import secureElement from '@ohos.secureElement';
 
 newSEService(type: 'serviceState', callback: Callback<[ServiceState](#secureElement.ServiceState)>): SEService
 
-建立一个可用于连接到系统中所有可用SE的新连接（服务）。连接过程可能很长，所以它是以异步方式进行的。
+建立一个可用于连接到系统中所有可用SE的新连接（服务）。连接过程较为耗时，所以此方法仅提供异步方式进行的。
 
-仅当指定的回调或者如果[isConnected](#SEService.isConnected)方法返回true时，该返回SEService对象是可用的。
+仅当指定的回调或者当[isConnected](#SEService.isConnected)方法返回true时，该返回SEService对象是可用的。
 
 **系统能力：**  SystemCapability.Communication.SecureElement
 
@@ -64,14 +64,13 @@ import secureElement from '@ohos.secureElement';
 
 this.result = "Service state is Unkown";
 try {
-    this.nfcSEService = secureElement.newSEService("serviceState", (state) =>
-        {
-            if (state == secureElement.ServiceState.DISCONNECTED) {
-                this.result = "Service state is Disconnected";
-            } else {
-                this.result = "Service state is Connected";
-            }
-        });
+    this.nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            this.result = "Service state is Disconnected";
+        } else {
+            this.result = "Service state is Connected";
+        }
+    });
 } catch (e) {
     this.result = "newSEService occurs exception:" + e.message;
 }
@@ -104,21 +103,20 @@ import secureElement from '@ohos.secureElement';
 
 // get SEService
 try {
-    this.nfcSEService = secureElement.newSEService("serviceState", (state) =>
-        {
-            if (state == secureElement.ServiceState.DISCONNECTED) {
-                this.result = "Service state is Disconnected";
-            } else {
-                this.result = "Service state is Connected";
-            }
-        });
+    this.nfcSEService = secureElement.newSEService("serviceState", (state) => {
+        if (state == secureElement.ServiceState.DISCONNECTED) {
+            this.result = "Service state is Disconnected";
+        } else {
+            this.result = "Service state is Connected";
+        }
+    });
 } catch (e) {
     this.result = "newSEService excpetion:" + e.message;
 }
 
 try {
     this.nfcOmaReaderList = this.nfcSEService.getReaders();
-    if (this.nfcOmaReaderList) {
+    if (this.nfcOmaReaderList != null && this.nfcOmaReaderList.length > 0) {
         this.nfcOmaReader = this.nfcOmaReaderList[0];
         this.result = "get reader successfully";
     } else {
@@ -606,7 +604,7 @@ try {
     getPromise.then((channel) => {
         this.nfcOmaChannel = channel;
         this.result = "openBasicChannel1 get channel successfully";
-    }).catch((err) => {
+    }).catch ((err) => {
         this.result = "openBasicChannel1 exception:" + err.message;
     });
 } catch (e) {
@@ -714,7 +712,7 @@ try {
     getPromise.then((channel) => {
         this.nfcOmaChannel = channel;
         this.result = "openBasicChannel3 get channel successfully";
-    }).catch((err) => {
+    }).catch ((err) => {
         this.result = "openBasicChannel3 exception";
     });
 } catch (e) {
@@ -822,7 +820,7 @@ try {
     getPromise.then((channel) => {
         this.nfcOmaChannel = channel;
    	    this.result = "openLogicChannel1 get channel successfully";
-    }).catch((err) => {
+    }).catch ((err) => {
         this.result = "openLogicChannel1 exception:" + err.message;
     });
 } catch (e) {
@@ -931,7 +929,7 @@ if (this.nfcOmaSession) {
         getPromise.then((channel) => {
             this.nfcOmaChannel = channel;
             this.result = "openLogicChannel3 get channel successfully";
-        }).catch((err) => {
+        }).catch ((err) => {
             this.result = "openLogicChannel3 exception";
         })
 } catch (e) {
@@ -1223,7 +1221,7 @@ try {
             this.result += " ";
         }
         this.result += "]";
-    }).catch((err) => {
+    }).catch ((err) => {
         this.result = "transmit1 exception:" + err.code;
     })
 } catch (e) {
@@ -1279,7 +1277,7 @@ try {
         }
         this.result += "]";
     });
-} catch(e) {
+} catch (e) {
     this.result = "transit2 exception:" + e.message;
 }
 ```
