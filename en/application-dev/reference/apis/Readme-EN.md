@@ -145,9 +145,12 @@
     - [NotificationTemplate](js-apis-inner-notification-notificationTemplate.md)
     - [NotificationUserInput](js-apis-inner-notification-notificationUserInput.md)
   - Common Events
+    - [Common Events of the Ability Subsystem](common_event/commonEvent-ability.md)
     - [Common Events of the Bundle Management Subsystem](common_event/commonEvent-bundleManager.md)
     - [Common Events of the Notification Service](common_event/commonEvent-ans.md)
+    - [Common Events of the Resource Scheduling Subsystem](common_event/commonEvent-resourceschedule.md)
     - [Common Events of the Telephony Subsystem](common_event/commonEvent-telephony.md)
+    - [Common Events of the USB Subsystem](common_event/commonEvent-usb.md)
 - Bundle Management
   - [@ohos.bundle.appControl (appControl)](js-apis-appControl.md)
   - [@ohos.bundle.bundleManager (bundleManager)](js-apis-bundleManager.md)
@@ -211,9 +214,9 @@
   - [@ohos.multimedia.image (Image Processing)](js-apis-image.md)
   - [@ohos.multimedia.media (Media)](js-apis-media.md)
   - [@ohos.multimedia.systemSoundManager (System Sound Management)](js-apis-systemSoundManager.md)
-  - multimedia
+  - Multimedia
     - [ringtonePlayer (Ringtone Player)](js-apis-inner-multimedia-ringtonePlayer.md)
-
+  
 - Resource Manager
   - [@ohos.i18n (Internationalization)](js-apis-i18n.md)
   - [@ohos.intl (Internationalization)](js-apis-intl.md)
