@@ -2739,6 +2739,7 @@ close(callback: AsyncCallback\<void\>): void
 
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
+| 401 | Parameter error.                                 |
 | 2303501 | SSL is null.                                 |
 | 2303505 | Error occurred in the tls system call.       |
 | 2303506 | Error clearing tls connection.               |
@@ -2774,6 +2775,7 @@ close(): Promise\<void\>
 
 | 错误码ID | 错误信息                                      |
 | ------- | -------------------------------------------- |
+| 401 | Parameter error.                                 |
 | 2303501 | SSL is null.                                 |
 | 2303505 | Error occurred in the tls system call.       |
 | 2303506 | Error clearing tls connection.               |

@@ -394,6 +394,12 @@ createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 | ----------------------------- |---------------------------------|
 | DiscoveryService | 基于指定serviceType和Context的发现服务对象。 |
 
+**错误码：**
+
+| 错误码ID      | 错误信息 |
+|---------|---|
+| 401     | Parameter error. |
+
 **示例**
 
 FA模型示例：
