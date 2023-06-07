@@ -1,7 +1,5 @@
-# 文档示例代码风格
-本文参考了业界的标准规范和最佳实践，旨在提高文档示例代码的可读性、可维护性，以及风格一致性，以增强开发者的使用体验。
-
-本文旨在为OpenHarmony指南和API参考中的设计和内容作者提供示例代码风格指导。适用于包括ArkTS、JavaScript和C等编程语言的示例代码片段。
+# 示例代码风格
+本文参考了业界的标准规范和最佳实践，旨在提高OpenHarmony文档示例代码的可读性、可维护性，以及风格一致性，适用于包括ArkTS、JavaScript和C/C++等编程语言的示例代码片段。
 
 ## 代码规范
 
@@ -9,7 +7,7 @@
 
 【描述】
 
-文档的示例代码需要遵循[JavaScript语言编程规范](../OpenHarmony-JavaScript-coding-style-guide.md)、[C语言编程规范](../OpenHarmony-c-coding-style-guide.md)基本的编码规范，包括命名规范、代码格式和代码规范等。
+文档的示例代码需要遵循[JavaScript语言编程规范](../OpenHarmony-JavaScript-coding-style-guide.md)、[C语言编程规范](../OpenHarmony-c-coding-style-guide.md)和[C++语言编程规范](../OpenHarmony-cpp-coding-style-guide.md)基本的编码规范，包括命名规范、代码格式和代码规范等。
 
 ### 【规则】每个接口（包括方法和组件）均需要提供示例代码
 
@@ -149,47 +147,7 @@ Text('Hello World')
 
 代码染色是指在编辑器中对代码进行不同颜色的标记，以区分不同语法元素的功能。例如在编辑器中对不同的关键字、变量名、注释等使用不同的颜色进行标记，可以让代码更加易读易懂。
 
-【正例】
-
-```ts
-let message: string = 'Hello World';
-console.info(message);
-```
-
-```json
-{
-  "module": {
-    ...
-    "abilities": [
-      {
-        "launchType": "singleton",
-        ...
-      }
-    ]
-  }
-}
-```
-
-【反例】
-
-```
-let message: string = 'Hello World';
-console.info(message);
-```
-
-```
-{
-  "module": {
-    ...
-    "abilities": [
-      {
-        "launchType": "singleton",
-        ...
-      }
-    ]
-  }
-}
-```
+![代码块示例](figures/code-block-example.png)
 
 ### 【规则】代码格式化
 
