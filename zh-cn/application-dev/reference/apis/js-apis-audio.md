@@ -550,6 +550,16 @@ async function createTonePlayerBefore(){
 | STREAM_USAGE_NOTIFICATION_RINGTONE        | 6      | 通知铃声。 |
 | STREAM_USAGE_ACCESSIBILITY<sup>10+</sup>  | 8     | 无障碍。   |
 | STREAM_USAGE_SYSTEM<sup>10+</sup>         | 9     | 系统音(如屏幕锁定或按键音)。<br/>此接口为系统接口。 |
+## AudioEffectMode
+
+枚举，音效模式。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+| 名称                                      |  值    | 说明        |
+| ------------------------------------------| ------ | ---------- |
+| EFFECT_NONE                               | 0      | 直通音效。  |
+| EFFECT_DEFAULT                            | 1      | 默认音效。  |
 
 ## InterruptRequestType<sup>9+</sup>
 
@@ -3375,6 +3385,92 @@ audioStreamManager.isActive(audio.AudioVolumeType.MEDIA).then((value) => {
 });
 ```
 
+### getAudioEffectInfoArray<sup>10+</sup>
+
+getAudioEffectInfoArray(content: ContentType, usage: StreamUsage, callback: AsyncCallback&lt;AudioEffectInfoArray&gt;): void
+
+获取当前音效模式的信息。使用callback异步回调。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名    | 类型                                | 必填     | 说明                         |
+| -------- | ----------------------------------- | -------- | --------------------------- |
+| content  | [ContentType](#contenttype)                                    | 是     |  音频内容类型。                  |
+| usage    | [StreamUsage](#streamusage)                                    | 是     |  音频流使用类型。                |
+| callback | AsyncCallback<[AudioEffectInfoArray](#audioeffectinfoarray10)> | 是     |  回调函数，返回当前音效模式的信息。|
+
+**示例：**
+
+```js
+audioStreamManager.getAudioEffectInfoArray(audio.ContentType.CONTENT_TYPE_MUSIC, audio.StreamUsage.STREAM_USAGE_MEDIA, async (err, AudioEffectInfoArray) => {
+  console.info('getAudioEffectInfoArray **** Get Callback Called ****');
+  if (err) {
+    console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
+    return;
+  } else {
+    if (AudioEffectInfoArray == null) {
+      console.error(`getAudioEffectInfoArray is null ptr.`);
+      return;
+    }
+    console.info(`The contentType of ${CONTENT_TYPE_MUSIC} and the streamUsage of ${STREAM_USAGE_MEDIA} 's effect mode are: `);
+    for (let i = 0; i < AudioEffectInfoArray.length; i++) {
+      for (const key in audio.AudioEffectMode) {
+        if (audio.AudioEffectMode[key] === AudioEffectInfoArray[i]) {
+          console.info(`${key},  `);
+        }
+      }
+    }
+  }
+});
+```
+
+### getAudioEffectInfoArray<sup>10+</sup>
+
+getAudioEffectInfoArray(content: ContentType, usage: StreamUsage): Promise&lt;AudioEffectInfoArray&gt;
+
+获取当前音效模式的信息。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名    | 类型                                | 必填     | 说明                         |
+| -------- | ----------------------------------- | -------- | --------------------------- |
+| content  | [ContentType](#contenttype)                                    | 是     |  音频内容类型。                  |
+| usage    | [StreamUsage](#streamusage)                                    | 是     |  音频流使用类型。                |
+
+**返回值：**
+
+| 类型                                                                      | 说明                                    |
+| --------------------------------------------------------------------------| --------------------------------------- |
+| Promise<[AudioEffectInfoArray](#audioeffectinfoarray10)>                  | Promise对象，返回当前音效模式的信息。      |
+
+**示例：**
+
+```js
+async function getAudioEffectInfoArray(){
+  await audioStreamManager.getAudioEffectInfoArray().then( function (AudioEffectInfoArray) {
+    console.info(`getAudioEffectInfoArray ######### Get Promise is called ##########`);
+    if (AudioEffectInfoArray == null) {
+      console.error(`getAudioEffectInfoArray is null ptr.`);
+      return;
+    }
+    console.info(`The contentType of ${CONTENT_TYPE_MUSIC} and the streamUsage of ${STREAM_USAGE_MEDIA} 's effect mode are: `);
+    for (let i = 0; i < AudioEffectInfoArray.length; i++) {
+      for (const key in audio.AudioEffectMode) {
+        if (audio.AudioEffectMode[key] === AudioEffectInfoArray[i]) {
+          console.info(`${key},  `);
+        }
+      }
+    }
+  }).catch((err) => {
+    console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
+  });
+}
+```
+
 ## AudioRoutingManager<sup>9+</sup>
 
 音频路由管理。在使用AudioRoutingManager的接口前，需要使用[getRoutingManager](#getroutingmanager9)获取AudioRoutingManager实例。
@@ -4168,6 +4264,10 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
   }
 });
 ```
+
+## AudioEffectInfoArray<sup>10+</sup>
+
+待查询ContentType和StreamUsage组合场景下的音效模式数组类型，[AudioEffectMode](#audioeffectmode)数组，只读。
 
 ## AudioDeviceDescriptors
 
