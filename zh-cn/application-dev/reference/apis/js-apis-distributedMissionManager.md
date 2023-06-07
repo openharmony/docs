@@ -368,8 +368,8 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
-| parameter | [ContinueDeviceInfo](#js-apis-inner-application-continueDeviceInfo.md) | 是    | 迁移信息。 |
-| options | [ContinueCallback](#js-apis-inner-application-continueCallback.md) | 是    | 迁移任务完成回调函数。 |
+| parameter | [ContinueDeviceInfo](js-apis-inner-application-continueDeviceInfo.md) | 是    | 迁移信息。 |
+| options | [ContinueCallback](js-apis-inner-application-continueCallback.md) | 是    | 迁移任务完成回调函数。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 执行结果回调函数。 |
 
 **错误码：**
@@ -426,8 +426,8 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
-| parameter | [ContinueDeviceInfo](#js-apis-inner-application-continueDeviceInfo.md) | 是    | 迁移信息。 |
-| options | [ContinueCallback](#js-apis-inner-application-continueCallback.md) | 是    | 迁移任务完成回调函数。 |
+| parameter | [ContinueDeviceInfo](js-apis-inner-application-continueDeviceInfo.md) | 是    | 迁移信息。 |
+| options | [ContinueCallback](js-apis-inner-application-continueCallback.md) | 是    | 迁移任务完成回调函数。 |
 
 **返回值：**
 
