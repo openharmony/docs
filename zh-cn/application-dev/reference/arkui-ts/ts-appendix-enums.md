@@ -410,7 +410,7 @@
 | Start                 | 水平对齐首部。 |
 | Center                | 水平居中对齐。 |
 | End                   | 水平对齐尾部。 |
-| Justify<sup>10+</sup> | 双端对齐。   |
+| JUSTIFY<sup>10+</sup> | 双端对齐。   |
 
 ## TextOverflow
 
@@ -421,7 +421,7 @@
 | None                  | 文本超长时裁剪显示。          |
 | Clip                  | 文本超长时进行裁剪显示。        |
 | Ellipsis              | 文本超长时显示不下的文本用省略号代替。 |
-| Marquee<sup>10+</sup> | 文本超长时以跑马灯的方式展示。     |
+| MARQUEE<sup>10+</sup> | 文本超长时以跑马灯的方式展示。     |
 
 ## TextDecorationType
 
@@ -505,25 +505,25 @@
 | Thin                 | 轻薄材质模糊。   |
 | Regular              | 普通厚度材质模糊。 |
 | Thick                | 厚材质模糊。    |
-| BackgroundThin       | 近距景深模糊。   |
-| BackgroundRegular    | 中距景深模糊。   |
-| BackgroundThick      | 远距景深模糊。   |
-| BackgroundUltraThick | 超远距景深模糊。  |
+| BACKGROUND_THIN       | 近距景深模糊。   |
+| BACKGROUND_REGULAR    | 中距景深模糊。   |
+| BACKGROUND_THICK      | 远距景深模糊。   |
+| BACKGROUND_ULTRA_THICK | 超远距景深模糊。  |
 
 ## ThemeColorMode<sup>10+</sup>
 
 | 名称     | 描述         |
 | ------ | ---------- |
-| System | 跟随系统深浅色模式。 |
-| Light  | 固定使用浅色模式。  |
-| Dark   | 固定使用深色模式。  |
+| SYSTEM | 跟随系统深浅色模式。 |
+| LIGHT  | 固定使用浅色模式。  |
+| DARK   | 固定使用深色模式。  |
 
 ## AdaptiveColor<sup>10+</sup>
 
 | 名称      | 描述                        |
 | ------- | ------------------------- |
-| Default | 不使用取色模糊。使用默认的颜色作为蒙版颜色。    |
-| Average | 使用取色模糊。将取色区域的颜色平均值作为蒙版颜色。 |
+| DEFAULT | 不使用取色模糊。使用默认的颜色作为蒙版颜色。    |
+| AVERAGE | 使用取色模糊。将取色区域的颜色平均值作为蒙版颜色。 |
 
 ## TextHeightAdaptivePolicy<sup>10+</sup>
 
