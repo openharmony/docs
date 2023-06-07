@@ -60,7 +60,7 @@
   }
 
   function FunBCall(data) {
-    console.log('FunACall param:' + JSON.stringify(data.readString()));
+    console.log('FunBCall param:' + JSON.stringify(data.readString()));
     return null;
   }
   
@@ -76,6 +76,8 @@
         }
     }
 
+    ...
+  
     // 进程退出时，解除监听
     onDestroy() {
         try {
