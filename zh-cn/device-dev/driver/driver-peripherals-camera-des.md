@@ -53,7 +53,7 @@ Camera模块主要针对相机预览、拍照、视频流等场景，对这些�
 
   | 功能描述                     | 接口名称                                                     |
   | ---------------------------- | ------------------------------------------------------------ |
-  | 获取流控制器                 | int32_t GetStreamOperator(const sptr<IStreamOperatorCallback>& callbackObj,<br>sptr<IStreamOperator>& streamOperator) |
+  | 获取流控制器                 | int32_t GetStreamOperator(const sptr<OHOS::HDI::Camera::V2_0::IStreamOperatorCallback>& callbackObj,<br>sptr<OHOS::HDI::Camera::V2_0::IStreamOperator>& streamOperator) |
   | 更新设备控制参数             | int32_t UpdateSettings(const std::vector<uint8_t>& settings) |
   | 设置Result回调模式和回调函数 | int32_t SetResultMode(ResultCallbackMode mode) |
   | 获取使能的ResultMeta         | int32_t GetEnabledResults(std::vector<int32_t>& results) |
@@ -72,11 +72,12 @@ Camera模块主要针对相机预览、拍照、视频流等场景，对这些�
 
   | 功能描述                       | 接口名称                                                     |
   | ------------------------------ | ------------------------------------------------------------ |
-  | 设置ICameraHost回调接口        | int32_t SetCallback(const sptr<ICameraHostCallback>& callbackObj) |
+  | 设置ICameraHost回调接口        | int32_t SetCallback(const sptr<OHOS::HDI::Camera::V2_0::ICameraHostCallback>& callbackObj) |
   | 获取当前可用的Camera设备ID列表 | int32_t GetCameraIds(std::vector<std::string>& cameraIds) |
   | 获取Camera设备能力集合         | int32_t GetCameraAbility(const std::string& cameraId, std::vector<uint8_t>& cameraAbility) |
-  | 打开Camera设备                 | int32_t OpenCamera(const std::string& cameraId, const sptr<ICameraDeviceCallback>& callbackObj,<br>sptr<ICameraDevice>& device) |
+  | 打开Camera设备                 | int32_t OpenCamera(const std::string& cameraId, <br>const sptr<OHOS::HDI::Camera::V2_0::ICameraDeviceCallback>& callbackObj, sptr<OHOS::HDI::Camera::V2_0::ICameraDevice>& device) |
   | 打开或关闭闪光灯               | int32_t SetFlashlight(const std::string& cameraId, bool isEnable) |
+  | 打开或关闭闪光灯               | int32_t PreLaunch(const PrelaunchConfig& config) |
 
 - icamera_host_callback.h
 
@@ -107,7 +108,7 @@ Camera模块主要针对相机预览、拍照、视频流等场景，对这些�
   | 解除生产者句柄和指定流的绑定关系 | int32_t DetachBufferQueue(int32_t streamId)                   |
   | 捕获图像                         | int32_t Capture(int32_t captureId, const CaptureInfo& info, bool isStreaming) |
   | 取消捕获                         | int32_t CancelCapture(int32_t captureId)                      |
-  | 将指定流转换成离线流             | int32_t ChangeToOfflineStream(const std::vector<int32_t>& streamIds,<br>const sptr<IStreamOperatorCallback>& callbackObj,<br>sptr<IOfflineStreamOperator>& offlineOperator) |
+  | 将指定流转换成离线流             | int32_t ChangeToOfflineStream(const std::vector<int32_t>& streamIds,<br>const sptr<OHOS::HDI::Camera::V2_0::IStreamOperatorCallback>&,<br>sptr<OHOS::HDI::Camera::V2_0::IOfflineStreamOperator>& offlineOperator) |
 
 - istream_operator_callback.h
 
