@@ -164,7 +164,7 @@ To use the full SDK that contains system APIs, you must download the full code, 
 
 For details about the API changes, see [API Differences](api-diff/v3.2-beta5/Readme-EN.md).
 
-
+For details about the API changes of each subsystem, see [Changelogs](changelogs/v3.2-beta5/Readme-EN.md). 
 
 ### Chip and Development Board Adaptation
 
