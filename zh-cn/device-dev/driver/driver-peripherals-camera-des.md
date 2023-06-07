@@ -53,7 +53,7 @@ Camera模块主要针对相机预览、拍照、视频流等场景，对这些�
 
   | 功能描述                     | 接口名称                                                     |
   | ---------------------------- | ------------------------------------------------------------ |
-  | 获取流控制器                 | int32_t GetStreamOperator(const sptr<OHOS::HDI::Camera::V2_0::IStreamOperatorCallback>& callbackObj,<br>sptr<OHOS::HDI::Camera::V2_0::IStreamOperator>& streamOperator) |
+  | 获取流控制器                 | int32_t GetStreamOperator(<br>const sptr<OHOS::HDI::Camera::V2_0::IStreamOperatorCallback>& callbackObj,<br>sptr<OHOS::HDI::Camera::V2_0::IStreamOperator>& streamOperator) |
   | 更新设备控制参数             | int32_t UpdateSettings(const std::vector<uint8_t>& settings) |
   | 设置Result回调模式和回调函数 | int32_t SetResultMode(ResultCallbackMode mode) |
   | 获取使能的ResultMeta         | int32_t GetEnabledResults(std::vector<int32_t>& results) |
