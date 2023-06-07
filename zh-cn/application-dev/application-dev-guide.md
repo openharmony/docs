@@ -1,7 +1,7 @@
 # 应用开发导读
 
 > **说明**：
-> 您当前正在浏览OpenHarmony 4.0 Beta1版本的配套文档，请获取与该版本[配套的SDK](release-notes/OpenHarmony-v4.0-beta1.md#配套关系)开发应用。
+> 您当前正在浏览OpenHarmony 4.0 Beta1版本的配套文档，请获取与该版本[配套的SDK](../release-notes/OpenHarmony-v4.0-beta1.md#配套关系)开发应用。
 
 应用开发文档用于指导开发者通过OpenHarmony提供的接口完成应用开发。当前应用开发文档提供了在标准系统上开发应用的JS接口。
 
