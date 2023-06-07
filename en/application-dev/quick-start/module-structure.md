@@ -7,23 +7,23 @@ The **module** tag contains the HAP configuration.
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| mainAbility | Ability whose icon is displayed in the Service Center. When the resident process is started, the **mainAbility** is started.| String| Yes (initial value: left empty)|
-| package | Package name of the HAP file, which must be unique in the application. The value is a string with a maximum of 127 bytes, in the reverse domain name notation. It is recommended that the value be the same as the project directory of the HAP file.  | String| No|
-| name | Class name of the HAP file. The value is a string with a maximum of 255 bytes, in the reverse domain name notation. The prefix must be the same as the **package** value specified for this module. Alternatively, the value can start with a period (.) followed by the class name.| String| Yes (initial value: left empty)|
-| description | Description of the HAP file. The value is a string with a maximum of 255 bytes. If the value exceeds the limit or needs to support multiple languages, you can use a resource index to the description.| String| Yes (initial value: left empty)|
-| supportedModes | Modes supported by the application. Currently, only the **drive** mode is defined. This attribute applies only to head units.| String array| Yes (initial value: left empty)|
-|deviceType | Type of device on which the ability can run. The device types predefined in the system include **tablet**, **tv**, **car**, and **wearable**.| String array| No|
-|distro | Distribution description of the HAP file.| Object| No|
-|metaData | Metadata of the HAP file.| Object| Yes (initial value: left empty)|
-| abilities | All abilities in the current module. The value is an array of objects, each of which represents an ability.| Object array| Yes (initial value: left empty)|
-| js | A set of JS modules developed using ArkUI. The value is an array of objects, each of which represents a JS module.| Object array| Yes (initial value: left empty)|
-| shortcuts | Shortcuts of the application. The value is an array of objects, each of which represents a shortcut object.| Object array| Yes (initial value: left empty)|
-| reqPermissions | Permissions that the application requests from the system when it is running.| Object array| Yes (initial value: left empty)|
-| colorMode | Color mode of the application. The options are as follows:<br>- **dark**: Resources applicable for the dark mode are used.<br>- **light**: Resources applicable for the light mode are used.<br>- **auto**: Resources are used based on the color mode of the system.| String| Yes (initial value: **auto**)|
+| mainAbility     | Ability whose icon is displayed in the Service Center. When the resident process is started, the **mainAbility** is started.| String| Yes (initial value: left empty)|
+| package         | Package name of the HAP file, which must be unique in the application. The value is a string with a maximum of 127 bytes, in the reverse domain name notation. It is recommended that the value be the same as the project directory of the HAP file.  | String| No|
+| name            | Class name of the HAP file. The value is a string with a maximum of 255 bytes, in the reverse domain name notation. The prefix must be the same as the **package** value specified for this module. Alternatively, the value can start with a period (.) followed by the class name.| String| Yes (initial value: left empty)|
+| description     | Description of the HAP file. The value is a string with a maximum of 255 bytes. If the value exceeds the limit or needs to support multiple languages, you can use a resource index to the description.| String| Yes (initial value: left empty)|
+| supportedModes  | Modes supported by the application. Currently, only the **drive** mode is defined. This attribute applies only to head units.| String array| Yes (initial value: left empty)|
+|deviceType       | Type of device on which the ability can run. The device types predefined in the system include **tablet**, **tv**, **car**, and **wearable**.| String array| No|
+|distro           | Distribution description of the HAP file.| Object| No|
+|metaData         | Metadata of the HAP file.| Object| Yes (initial value: left empty)|
+| abilities       | All abilities in the current module. The value is an array of objects, each of which represents an ability.| Object array| Yes (initial value: left empty)|
+| js              | A set of JS modules developed using ArkUI. The value is an array of objects, each of which represents a JS module.| Object array| Yes (initial value: left empty)|
+| shortcuts       | Shortcuts of the application. The value is an array of objects, each of which represents a shortcut object.| Object array| Yes (initial value: left empty)|
+| reqPermissions  | Permissions that the application requests from the system when it is running.| Object array| Yes (initial value: left empty)|
+| colorMode       | Color mode of the application. The options are as follows:<br>- **dark**: Resources applicable for the dark mode are used.<br>- **light**: Resources applicable for the light mode are used.<br>- **auto**: Resources are used based on the color mode of the system.| String| Yes (initial value: **auto**)|
 | distributionFilter | Distribution rules of the application. This attribute defines the rules for distributing HAP files based on different device specifications, so that precise matching can be performed when the application market distributes applications. Distribution rules cover three factors: API version, screen shape, and screen resolution. During distribution, a unique HAP is determined based on the mapping between **deviceType** and these three factors.| Object| Yes (initial value: left empty) Set this attribute when an application has multiple entry modules.|
-|commonEvents | Information about the common event static subscriber, which must contain the subscriber name, required permissions, and list of the common events subscribed to. When a subscribed event is sent, the static subscriber is started. Unlike the dynamic subscriber, the static subscriber does not need to proactively call the common event subscription API in the service code, and may not be running when the common event is published.| Object array| Yes (initial value: left empty)|
-| entryTheme | Keyword of an OpenHarmony internal theme. Set it to the resource index of the name.| String| Yes (initial value: left empty)|
-|testRunner | Test runner configuration.| Object| Yes (initial value: left empty)|
+|commonEvents        | Information about the common event static subscriber, which must contain the subscriber name, required permissions, and list of the common events subscribed to. When a subscribed event is sent, the static subscriber is started. Unlike the dynamic subscriber, the static subscriber does not need to proactively call the common event subscription API in the service code, and may not be running when the common event is published.| Object array| Yes (initial value: left empty)|
+| entryTheme         | Keyword of an OpenHarmony internal theme. Set it to the resource index of the name.| String| Yes (initial value: left empty)|
+|testRunner          | Test runner configuration.| Object| Yes (initial value: left empty)|
 
 Example of the **module** tag structure:
 
@@ -128,7 +128,7 @@ Example of the **distro** attribute structure:
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| description | Description of the parameter. The value can be a string or a resource index to descriptions in multiple languages. The value can contain a maximum of 255 characters.| String| Yes (initial value: left empty)|
+| description | Description of the parameter. The value can be a string or a resource index to descriptions in multiple languages. The value can contain a maximum of 255 bytes.| String| Yes (initial value: left empty)|
 | name | Name of the parameter passed for calling the ability. The value can contain a maximum of 255 bytes.| String| No|
 | type | Type of the parameter passed for calling the ability, for example, **Integer**.| String| No|
 
@@ -138,8 +138,8 @@ Example of the **distro** attribute structure:
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| description | Description of the return value. The value can be a string or a resource index to descriptions in multiple languages. The value can contain a maximum of 255 characters.| String| Yes (initial value: left empty)|
-| name | Name of the return value. The value can contain a maximum of 255 characters.| String| Yes (initial value: left empty)|
+| description | Description of the return value. The value can be a string or a resource index to descriptions in multiple languages. The value can contain a maximum of 255 bytes.| String| Yes (initial value: left empty)|
+| name | Name of the return value. The value can contain a maximum of 255 bytes.| String| Yes (initial value: left empty)|
 | type | Type of the return value, for example, **Integer**.| String| No|
 
 ## Internal Structure of the customizeData Attribute
@@ -190,85 +190,15 @@ Example of the metadata attribute:
 
 ## Internal Structure of the abilities Attribute
 
-**By default, application icons cannot be hidden from the home screen in OpenHarmony.**
-
-The OpenHarmony system imposes a strict rule on the presence of application icons. If no icon is configured in the HAP file of an application, the system creates a default icon for the application and displays it on the home screen.
-
-Touching this icon will direct the user to the application details screen in **Settings**, as shown in Figure 1.
-
-To hide an application icon from the home screen, you must configure the **AllowAppDesktopIconHide** privilege. For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
-
-**Objectives**:
-
-This requirement on application icons is intended to prevent malicious applications from deliberately configuring no icon to block uninstallation attempts.
-
-**Setting the application icon to be displayed on the home screen**:
-
-Set **icon**, **label**, and **skills** under **abilities** in the **config.json** file. In addition, make sure the **skills** configuration contains **ohos.want.action.home** and **entity.system.home**.
-
-```
-{
-  "module":{
-
-    ...
-
-    "abilities": [{
-      "icon": "$media:icon",
-      "label": "Login",
-      "skills": [{
-        "actions": ["ohos.want.action.home"],
-        "entities": ["entity.system.home"],
-        "uris": []
-      }]
-    }],
-
-    ...
-
-  }
-}
-```
-
-**Display rules of application icons and labels on the home screen:**
-* The HAP file contains Page ability configuration.
-  * The application icon on the home screen is set under **abilities** in the **config.json** file.
-    * The application does not have the privilege to hide its icon from the home screen.
-      * The application icon displayed on the home screen is the icon configured for the Page ability.
-      * The application label displayed on the home screen is the label configured for the Page ability. If no label is configured, the bundle name is returned.
-      * The name of the Page ability is displayed.
-      * When the user touches the home screen icon, the home screen of the Page ability is displayed.
-    * The application has the privilege to hide its icon from the home screen.
-      * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.
-  * The application icon on the home screen is not set under **abilities** in the **config.json** file.
-    * The application does not have the privilege to hide its icon from the home screen.
-      * The application icon displayed on the home screen is the default icon.
-      * The application label displayed on the home screen is the bundle name of the application.
-      * Touching the application icon on the home screen will direct the user to the application details screen shown in Figure 1.
-    * The application has the privilege to hide its icon from the home screen.
-      * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.
-* The HAP file does not contain Page ability configuration.
-  * The application does not have the privilege to hide its icon from the home screen.
-    * The application icon displayed on the home screen is the default icon.
-    * The application label displayed on the home screen is the bundle name of the application.
-    * Touching the application icon on the home screen will direct the user to the application details screen shown in Figure 1.
-  * The application has the privilege to hide its icon from the home screen.
-    * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.
-
-Note: The label displayed on the application details screen may be different from that displayed on the home screen. For non-Page abilities, it is the entry label set (if any).<br><br>
-
-**Figure 1** Application details screen
-
-![Application details screen](figures/application_details.jpg)
-
-
 **Table 8** Internal structure of the abilities attribute
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | process | Name of the process running the application or ability. If the **process** attribute is configured in the **deviceConfig** tag, all abilities of the application run in this process. You can set the **process** attribute for a specific ability in the **abilities** attribute, so that the ability can run in the particular process. If this attribute is set to the name of the process running other applications, all these applications can run in the same process, provided they have the same unified user ID and the same signature. The value can contain a maximum of 31 bytes.| String| Yes (initial value: left empty)|
-| name | Ability name. The value can be a reverse domain name, in the format of "*bundleName*.*className*", for example, **"com.example.myapplication.EntryAbility"**. Alternatively, the value can start with a period (.) followed by the class name, for example, **".EntryAbility"**.<br>The ability name must be unique in an application. Note: If you use DevEco Studio to create the project, an ability named **EntryAbility** will be created by default, and its configuration will be saved to the **config.json** file. If you use other IDEs, the value of this attribute can be customized. The value can contain a maximum of 127 bytes.| String| No|
+| name | Ability name. The value can be a reverse domain name, in the format of "*bundleName*.*className*", for example, **"com.example.myapplication.EntryAbility"**. Alternatively, the value can start with a period (.) followed by the class name, for example, **".EntryAbility"**.<br>The ability name must be unique in an application.<br/>**NOTE**<br/>If you use DevEco Studio to create the project, an ability named **EntryAbility** will be created by default, and its configuration will be saved to the **config.json** file. If you use other IDEs, the value of this attribute can be customized. The value can contain a maximum of 127 bytes. | String| No|
 | description | Description of the ability. The value can be a string or a resource index to descriptions in multiple languages. The value can contain a maximum of 255 bytes.| String| Yes (initial value: left empty)|
-| icon | Index to the ability icon file. Example value: **$media:ability_icon**. In the **skills** attribute of the ability, if the **actions** value contains **action.system.home** and the **entities** value contains **entity.system.home**, the icon of the ability is also used as the icon of the application. If multiple abilities address this condition, the icon of the first candidate ability is used as the application icon.<br>Note: The **icon** and **label** values of an application are visible to users. Ensure that at least one of them is different from any existing icons or labels.| String| Yes (initial value: left empty)|
-| label | Ability name displayed to users. The value can be a name string or a resource index to names in multiple languages, for example, **$string:ability_label**. In the **skills** attribute of the ability, if the **actions** value contains **action.system.home** and the **entities** value contains **entity.system.home**, the label of the ability is also used as the label of the application. If multiple abilities address this condition, the label of the first candidate ability is used as the application label.<br>Note: The **icon** and **label** values of an application are visible to users. Ensure that at least one of them is different from any existing icons or labels. The value can be a reference to a string defined in a resource file or a string enclosed in brackets ({}). The value can contain a maximum of 255 characters.| String| Yes (initial value: left empty)|
+| icon | Index to the ability icon file. Example value: **$media:ability_icon**. In the **skills** attribute of the ability, if the **actions** value contains **action.system.home** and the **entities** value contains **entity.system.home**, the icon of the ability is also used as the icon of the application. If multiple abilities address this condition, the icon of the first candidate ability is used as the application icon.<br>**NOTE**<br>The **icon** and **label** values of an application are visible to users. Ensure that at least one of them is different from any existing icons or labels. | String| Yes (initial value: left empty)|
+| label | Ability name displayed to users. The value can be a name string or a resource index to names in multiple languages, for example, **$string:ability_label**. In the **skills** attribute of the ability, if the **actions** value contains **action.system.home** and the **entities** value contains **entity.system.home**, the label of the ability is also used as the label of the application. If multiple abilities address this condition, the label of the first candidate ability is used as the application label.<br>**NOTE**<br/>The **icon** and **label** values of an application are visible to users. Ensure that at least one of them is different from any existing icons or labels. The value can be a reference to a string defined in a resource file or a string enclosed in brackets ({}). The value can contain a maximum of 255 bytes. | String| Yes (initial value: left empty)|
 | uri | Uniform Resource Identifier (URI) of the ability. The value can contain a maximum of 255 bytes.| String| Yes (No for abilities using the Data template)|
 | launchType | Launch type of the ability. The value can be **standard** or **singleton**.<br>**standard**: Multiple **Ability** instances can be created during startup. Most abilities can use this type.<br>**singleton**: Only a single **Ability** instance can be created across all task stacks during startup. For example, a globally unique incoming call screen uses the singleton launch type. This attribute applies only to the default, tablet, smart TV, head unit, and wearable device types.| String| Yes (initial value: **"singleton"**)|
 | visible | Whether the ability can be called by other applications.<br>**true**: The ability can be called by other applications.<br>**false**: The ability cannot be called by other applications.| Boolean| Yes (initial value: **false**)|
@@ -293,6 +223,66 @@ Note: The label displayed on the application details screen may be different fro
 | startWindowIcon | Index to the icon file of the ability startup page. This attribute applies only to the ability using the Page template. Example: **$media:icon**.| String| Yes (initial value: left empty)|
 | startWindowBackground | Index to the background color resource file of the ability startup page. This attribute applies only to the ability using the Page template. Example: **$color:red**.| String| Yes (initial value: left empty)|
 | removeMissionAfterTerminate | Whether to remove the relevant task from the task list after the ability is destroyed. This attribute applies only to the ability using the Page template. The value **true** means to remove the relevant task from the task list after the ability is destroyed, and **false** means the opposite.| Boolean| Yes (initial value: **false**)|
+
+
+**By default, application icons cannot be hidden from the home screen in OpenHarmony.**
+
+OpenHarmony strictly controls applications without icons to prevent malicious applications from deliberately configuring no icon to block uninstall attempts.
+
+**Setting the application icon to be displayed on the home screen**:
+
+Set **icon**, **label**, and **skills** under **abilities** in the **config.json** file. Make sure the **skills** configuration contains **ohos.want.action.home** and **entity.system.home**.
+
+```
+{
+  "module":{
+
+    ...
+
+    "abilities": [{
+      "icon": "$media:icon",
+      "label": "Login",
+      "skills": [{
+        "actions": ["ohos.want.action.home"],
+        "entities": ["entity.system.home"],
+        "uris": []
+      }]
+    }],
+
+    ...
+
+  }
+}
+```
+
+To hide an application icon from the home screen, you must configure the **AllowAppDesktopIconHide** privilege. For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md). The rules for displaying the entry icon and entry label are as follows:
+* The HAP file contains Page ability configuration.
+  * The application icon on the home screen is set under **abilities** in the **config.json** file.
+    * The application does not have the privilege to hide its icon from the home screen.
+      * The system uses the icon configured for the Page ability as the entry icon and displays it on the home screen. Touching this icon will direct the user to the home page of the Page ability.
+      * The system uses the label configured for the PageAbility as the entry label and displays it on the home screen. If no label is configured, the bundle name is returned.
+    * The application has the privilege to hide its icon from the home screen.
+      * The application information is not returned when the home screen queries the information, and the entry icon and label of the application are not displayed on the home screen.
+  * The application icon on the home screen is not set under **abilities** in the **config.json** file.
+    * The application does not have the privilege to hide its icon from the home screen.
+      * The system uses the default icon as the entry icon and displays it on the home screen. Touching this icon will direct the user to the application details screen under application management, as shown in Figure 1.
+      * The system uses the bundle name of the application as the entry label and displays it on the home screen.
+    * The application has the privilege to hide its icon from the home screen.
+      * The application information is not returned when the home screen queries the information, and the entry icon and label of the application are not displayed on the home screen.
+* The HAP file does not contain Page ability configuration.
+  * The application does not have the privilege to hide its icon from the home screen.
+    * The system uses the default icon as the entry icon and displays it on the home screen. Touching this icon will direct the user to the application details screen under application management, as shown in Figure 1.
+    * The system uses the bundle name of the application as the entry label and displays it on the home screen.
+  * The application has the privilege to hide its icon from the home screen.
+    * The application information is not returned when the home screen queries the information, and the entry icon and label of the application are not displayed on the home screen.
+
+**Figure 1** Application details screen
+
+![Application details screen](figures/application_details.jpg)
+
+> **NOTE**
+>
+> The label displayed on the application details screen may be different from the one displayed on the home screen. These two are the same if the entry icon and label are configured for the non-Page ability.
 
 ## Internal Structure of the uriPermission Attribute
 
