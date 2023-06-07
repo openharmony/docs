@@ -137,7 +137,7 @@ Queries the group of this application. This API uses a promise to return the res
 
 **Return value**
 
-| Type             | Description                          |
+| Type             | Description                         |
 | --------------- | --------------------------- |
 | Promise&lt;number&gt; | Promise used to return the group.|
 
@@ -559,6 +559,7 @@ Queries events of this application based on the specified start time and end tim
 **System API**: This is a system API.
 
 **Parameters**
+
 | Name     | Type                                      | Mandatory  | Description                                     |
 | -------- | ---------------------------------------- | ---- | --------------------------------------- |
 | begin    | number                                   | Yes   | Start time, in milliseconds.                                  |
@@ -609,6 +610,7 @@ Queries events of this application based on the specified start time and end tim
 **System API**: This is a system API.
 
 **Parameters**
+
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
 | begin | number | Yes   | Start time, in milliseconds.|
@@ -1549,7 +1551,7 @@ Provides the usage duration information of an application.
 | ------------------------ | ------ | ---- | ---------------------------------------- |
 | bundleName               | string | No   | Bundle name of the application.                                   |
 | abilityPrevAccessTime    | number | No   | Last time when the application was used.                            |
-| abilityInFgTotalTime     | number | No  | Total time that the application runs in the foreground.                            |
+| abilityInFgTotalTime     | number | No   | Total time that the application runs in the foreground.                            |
 | id                       | number | Yes   | User ID.|
 | abilityPrevSeenTime      | number | No   | Last time when the application was visible in the foreground.|
 | abilitySeenTotalTime     | number | No   | Total time that the application is visible in the foreground.|
@@ -1568,9 +1570,9 @@ Provides information about an application event.
 
 | Name                  | Type    | Mandatory  | Description                                      |
 | --------------------- | ------ | ---- | ---------------------------------------- |
-| bundleName            | string | Yes   | Bundle name of the application.                                   |
-| eventId             | number | Yes   | Application event type.                                 |
-| eventOccurredTime     | number | Yes   | Timestamp when the application event occurs.                             |
+| bundleName            | string | No   | Bundle name of the application.                                   |
+| eventId             | number | No   | Application event type.                                 |
+| eventOccurredTime     | number | No   | Timestamp when the application event occurs.                             |
 | appGroup | number | No   | Usage priority group of the application.|
 | indexOfLink           | string | No   | Shortcut ID.|
 | nameOfClass           | string | No   | Class name.|
@@ -1585,7 +1587,7 @@ Provides the usage duration information of an application.
 
 | Name                           | Type                                      | Mandatory  | Description            |
 | ------------------------------ | ---------------------------------------- | ---- | -------------- |
-| [key: string]: BundleStatsInfo | [key: string]: [BundleStatsInfo](#bundlestatsinfo) | Yes   | Usage duration information by application.|
+| [key: string] | [BundleStatsInfo](#bundlestatsinfo) | Yes   | Usage duration information by application.|
 
 ## DeviceEventStats
 

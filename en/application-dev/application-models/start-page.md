@@ -12,7 +12,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 async function restartAbility() {
     let wantInfo = {
         bundleName: "com.sample.MyApplication",
-        abilityName: "MainAbility",
+        abilityName: "EntryAbility",
         parameters: {
             page: "pages/second"
         }
@@ -83,13 +83,13 @@ struct Index {
   @State message: string = 'Hello World'
 
   build() {
-    // ...
+    ...
     Button("startAbility")
       .onClick(() => {
         featureAbility.startAbility({
           want: {
             bundleName: "com.exm.myapplication",
-            abilityName: "com.exm.myapplication.MainAbility",
+            abilityName: "com.exm.myapplication.EntryAbility",
             parameters: { page: "pages/page1" }
           }
         }).then((data) => {
@@ -98,13 +98,13 @@ struct Index {
           console.info("startAbility failed errcode:" + err.code)
         })
       })
-    // ...
+    ...
     Button("page2")
       .onClick(() => {
         featureAbility.startAbility({
           want: {
             bundleName: "com.exm.myapplication",
-            abilityName: "com.exm.myapplication.MainAbility",
+            abilityName: "com.exm.myapplication.EntryAbility",
             parameters: { page: "pages/page2" }
           }
         }).then((data) => {
@@ -113,7 +113,7 @@ struct Index {
           console.info("startAbility failed errcode:" + err.code)
         })
       })
-    // ...
+    ...
   }
 }
 ```
@@ -136,7 +136,7 @@ export default {
     })
   },
   onDestroy() {
-    // ...
+    ...
   },
 }
 ```

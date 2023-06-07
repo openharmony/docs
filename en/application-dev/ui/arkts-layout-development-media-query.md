@@ -51,7 +51,7 @@ The media query condition consists of the media type (optional), logical operato
 
 ### Syntax
 
-Syntax rules include [media-type](#media-type), [media-logic-operations](#media-logic-operations), and [media-feature]. (#media-feature).
+Syntax rules include [media-type](#media-type), [media-logic-operations](#media-logic-operations), and [media-feature](#media-feature).
 
 
 ```ts
@@ -84,11 +84,11 @@ You can use logical operators (**and**, **or**, **not**, and **only**) to compos
 
 | Type            | Description                                      |
 | -------------- | ---------------------------------------- |
-| and            | The **and** operator is used to combine multiple media features into one media query, in a logical AND operation. The query is valid only when all media features are true. It can also combine media types and media functions. For example, **screen&nbsp;and&nbsp;(device-type:&nbsp;wearable)&nbsp;and&nbsp;(max-height:&nbsp;600)** evaluates to **true** when the device type is wearable and the maximum height of the application is 600 pixel units.|
+| and            | The **and** operator is used to combine multiple media features into one media query, in a logical AND operation. The query is valid only when all media features are true. It can also combine media types and media functions. For example, **screen and (device-type: wearable) and (max-height: 600)** evaluates to **true** when the device type is wearable and the maximum height of the application is 600 pixel units.|
 | or             | The **or** operator is used to combine multiple media features into one media query, in a logical OR operation. The query is valid if a media feature is true. For example, **screen and (max-height: 1000) or (round-screen: true)** indicates that the query is valid when the maximum height of the application is 1000 pixel units or the device screen is round.|
-| not            | The **not** operator is used to perform a logical negation for a media query. **true** is returned if the query condition is not met. Otherwise, **false** is returned. For example, **not&nbsp;screen&nbsp;and&nbsp;(min-height:&nbsp;50)&nbsp;and&nbsp;(max-height:&nbsp;600)** evaluates to **true** when the height of the application is less than 50 pixel units or greater than 600 pixel units.<br>You must specify the media type when using the **not** operator.|
-| only           | The **only** operator applies the selected style only when the entire expression is matched. It can be used to prevent ambiguity on browsers of earlier versions. The statements that contain both media types and media features produce ambiguity when they are received by some browsers of earlier versions. For example, regarding **screen&nbsp;and&nbsp;(min-height:&nbsp;50)**, the browsers of earlier versions would mislead this sentence into **screen**, causing the fact that the specified style is applied when only the media type is matched. In this case, the **only** operator can be used to avoid this issue.<br>You must specify the media type when using the **only** operator.|
-| comma (,&nbsp;) | The **or** operator is used to combine multiple media features into one media query, in a logical OR operation. The query is valid if a media feature is true. The effect of a comma operator is equivalent to that of the **or** operator. For example, **screen and (min-height: 1000), (round-screen: true)** indicates that the query is valid when the minimum height of the application is 1000 pixel units or the device screen is round.|
+| not            | The **not** operator is used to perform a logical negation for a media query. **true** is returned if the query condition is not met. Otherwise, **false** is returned. For example, **not screen and (min-height: 50) and (max-height: 600)** evaluates to **true** when the height of the application is less than 50 pixel units or greater than 600 pixel units.<br>You must specify the media type when using the **not** operator.|
+| only           | The **only** operator applies the selected style only when the entire expression is matched. It can be used to prevent ambiguity on browsers of earlier versions. The statements that contain both media types and media features produce ambiguity when they are received by some browsers of earlier versions. For example, regarding **screen and (min-height: 50)**, the browsers of earlier versions would mislead this sentence into **screen**, causing the fact that the specified style is applied when only the media type is matched. In this case, the **only** operator can be used to avoid this issue.<br>You must specify the media type when using the **only** operator.|
+| comma (, ) | The **or** operator is used to combine multiple media features into one media query, in a logical OR operation. The query is valid if a media feature is true. The effect of a comma operator is equivalent to that of the **or** operator. For example, **screen and (min-height: 1000), (round-screen: true)** indicates that the query is valid when the minimum height of the application is 1000 pixel units or the device screen is round.|
 
 Media range operators include <=, >=, <, and >. For details, see the following table.
 
@@ -110,12 +110,12 @@ The media features include the width and height of the application display area,
 
 | Type               | Description                                      |
 | ----------------- | ---------------------------------------- |
-| height            | Height of the drawing area of the application.                            |
-| min-height        | Minimum height of the drawing area of the application.                          |
-| max-height        | Maximum height of the drawing area of the application.                          |
-| width             | Width of the drawing area of the application.                            |
-| min-width         | Minimum width of the drawing area of the application.                          |
-| max-width         | Maximum width of the drawing area of the application.                          |
+| height            | Height of the drawing area of the application.                           |
+| min-height        | Minimum height of the drawing area of the application.                         |
+| max-height        | Maximum height of the drawing area of the application.                         |
+| width             | Width of the drawing area of the application.                           |
+| min-width         | Minimum width of the drawing area of the application.                         |
+| max-width         | Maximum width of the drawing area of the application.                         |
 | resolution        | Resolution of the device. The unit can be dpi, dppx, or dpcm.  <br>- **dpi** indicates the number of physical pixels per inch. 1 dpi ≈ 0.39 dpcm.<br>- **dpcm** indicates the number of physical pixels per centimeter. 1 dpcm ≈ 2.54 dpi.<br>- **dppx** indicates the number of physical pixels in each pixel. (This unit is calculated based on this formula: 96 px = 1 inch, which is different from the calculation method of the px unit on the page.) 1 dppx = 96 dpi.|
 | min-resolution    | Minimum device resolution.                               |
 | max-resolution    | Maximum device resolution.                               |
@@ -256,8 +256,3 @@ struct MediaQueryExample {
 
 ![landscape](figures/landscape.jpg)
 
-##  
-
- 
-
- 

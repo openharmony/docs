@@ -146,7 +146,7 @@ screenlock.unlock().then((data) => {
 
 lock(callback: AsyncCallback&lt;boolean&gt;): void
 
-锁定屏幕。使用callback异步回调。
+锁定屏幕，仅系统锁屏应用可调用。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -182,7 +182,7 @@ screenlock.lock((err, data) => {
 
 lock(): Promise&lt;boolean&gt;
 
-锁定屏幕。使用Promise异步回调。
+锁定屏幕，仅系统锁屏应用可调用。使用Promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -258,7 +258,7 @@ try {
 
 sendScreenLockEvent(event: String, parameter: number, callback: AsyncCallback&lt;boolean&gt;): void
 
-应用发送事件到锁屏服务。使用callback异步回调。
+应用发送事件到锁屏服务，仅系统锁屏应用可调用。使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 
@@ -296,7 +296,7 @@ screenlock.sendScreenLockEvent('unlockScreenResult', 0, (err, result) => {
 
 sendScreenLockEvent(event: String, parameter: number): Promise&lt;boolean&gt;
 
-应用发送事件到锁屏服务。使用Promise异步回调。
+应用发送事件到锁屏服务，仅系统锁屏应用可调用。使用Promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.ScreenLock
 

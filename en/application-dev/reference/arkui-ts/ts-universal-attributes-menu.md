@@ -1,10 +1,12 @@
 # Menu Control
 
-A menu – a vertical list of items – can be bound to a component and displayed by long-pressing, clicking, or right-clicking the component.
+A context menu – a vertical list of items – can be bound to a component and displayed by long-pressing, clicking, or right-clicking the component.
 
 >  **NOTE**
 >
->  The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>  - The APIs of this module are supported since API version 7. Updates will be marked with a superscript to indicate their earliest API version.
+>
+>  - **CustomBuilder** does not support the use of **bindMenu** and **bindContextMenu** methods. To display a multi-level menu, use the [\<Menu>](ts-basic-components-menu.md) component instead.
 
 
 ## Attributes

@@ -40,6 +40,8 @@ Creates the context based on the bundle name.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
+**System API**: This is a system API and cannot be called by third-party applications.
+
 **Parameters**
 
 | Name      | Type                    | Mandatory  | Description           |
@@ -101,6 +103,8 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 Creates the context based on the bundle name and module name.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 

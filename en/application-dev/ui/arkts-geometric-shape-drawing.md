@@ -8,13 +8,13 @@ The drawing components are used to draw graphs on the page. The **\<Shape>** com
 
 A drawing component can be created in either of the following ways:
 
-- Drawing components use **\<Shape>** as their parent to implement the effect similar to SVG. The API is called in the following format:
+- Create a drawing component with **\<Shape>** as their parent to implement the effect similar to SVG. The API used is as follows:
 
   ```ts
   Shape(value?: PixelMap)
   ```
 
-  Create a drawing component with a parent component. The **value** parameter is used to set the drawing target. You can draw a graph in the specified **PixelMap** object. If the **value** parameter is not set, the graph is drawn in the current drawing target.
+  In the API, the **value** parameter sets the drawing target. You can draw a graph in the specified **PixelMap** object. If the **value** parameter is not set, the graph is drawn in the current drawing target.
 
   ```ts
   Shape() {
@@ -23,13 +23,13 @@ A drawing component can be created in either of the following ways:
   ```
 
 
-- The **\<Shape>** component is used independently to draw a specific shape. Seven shapes are supported: [Circle](../reference/arkui-ts/ts-drawing-components-circle.md), [Ellipse](../reference/arkui-ts/ts-drawing-components-ellipse.md), [Line](../reference/arkui-ts/ts-drawing-components-line.md), [Polyine](../reference/arkui-ts/ts-drawing-components-polyline.md), [Polygon](../reference/arkui-ts/ts-drawing-components-polygon.md), [Path](../reference/arkui-ts/ts-drawing-components-path.md), and [Rect](../reference/arkui-ts/ts-drawing-components-rect.md). The following uses the **Circle** API as an example:
+- Create an independent drawing component to draw a specific shape. Seven shapes are supported: [Circle](../reference/arkui-ts/ts-drawing-components-circle.md), [Ellipse](../reference/arkui-ts/ts-drawing-components-ellipse.md), [Line](../reference/arkui-ts/ts-drawing-components-line.md), [Polyine](../reference/arkui-ts/ts-drawing-components-polyline.md), [Polygon](../reference/arkui-ts/ts-drawing-components-polygon.md), [Path](../reference/arkui-ts/ts-drawing-components-path.md), and [Rect](../reference/arkui-ts/ts-drawing-components-rect.md). The following uses the **Circle** API as an example:
 
   ```ts
   Circle(options?: {width?: string | number, height?: string | number}
   ```
 
-    Draws a circle on a page. The **width** parameter indicates the width of the circle, and the **height** parameter indicates the height of the circle. The diameter of the circle is determined by the minimum width and height.
+    This API draws a circle on a page. The **width** parameter indicates the width of the circle, and the **height** parameter indicates the height of the circle. The diameter of the circle is determined by the minimum width and height.
 
   ```ts
   Circle({ width: 150, height: 150 })
@@ -101,7 +101,7 @@ The following three examples describe how to use the viewport:
     .backgroundColor("#F5DC62")
   ```
 
-  ![viewport (2) ](figures/viewport (2) .jpg)
+  ![viewport-2](figures/viewport-2.jpg)
 
 - Create a shape component whose width and height are both 300, with a yellow background and a viewport whose width and height are both 300. Fill the viewport with a blue rectangle, draw a circle with a radius of 75 in the viewport, and move the viewport 150 to the right and below respectively.
 
@@ -117,7 +117,7 @@ The following three examples describe how to use the viewport:
 
   ```
 
-  ![viewport (3) ](figures/viewport (3) .jpg)
+  ![viewport-3](figures/viewport-3.jpg)
 
 
 ## Setting Styles

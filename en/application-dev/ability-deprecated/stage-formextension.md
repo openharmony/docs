@@ -135,7 +135,7 @@ To create a widget in the stage model, you need to implement lifecycle callbacks
   | Name   | Description                                                        | Data Type  | Default Value Allowed          |
   | ----------- | ------------------------------------------------------------ | ---------- | -------------------- |
   | name        | Name of the Extension ability. This field must be specified.                | String    | No                  |
-  | srcEnty    | Path of the Extension ability lifecycle code. This field must be specified.| String    | No                  |
+  | srcEnty     | Path of the Extension ability lifecycle code. This field must be specified.| String    | No                  |
   | description | Description of the Extension ability. The value can be a string or a resource index to descriptions in multiple languages.| String    | Yes (initial value: left empty)|
   | icon        | Index of the Extension ability icon file.                  | String    | Yes (initial value: left empty)|
   | label       | Descriptive information about the Extension ability presented externally. The value can be a string or a resource index to the description.| String    | Yes (initial value: left empty)|
@@ -242,7 +242,7 @@ You should override **onDestroy** to implement widget data deletion.
        }
 ```
 
-For details about how to implement persistent data storage, see [Lightweight Data Store Development](../database/database-preference-guidelines.md).
+For details about how to implement persistent data storage, see [Persisting Preferences Data](../database/data-persistence-by-preferences.md).
 
 The **Want** object passed in by the widget host to the widget provider contains a flag that specifies whether the requested widget is normal or temporary.
 

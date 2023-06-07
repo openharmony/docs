@@ -80,7 +80,7 @@ Instructs the **WorkSchedulerService** to stop the specified task.
 | Name       | Type                   | Mandatory  | Description        |
 | ---------- | --------------------- | ---- | ---------- |
 | work       | [WorkInfo](#workinfo) | Yes   | Task to stop. |
-| needCancel | boolean               | No   | Whether to cancel the task.|
+| needCancel | boolean               | No   | Whether to cancel the task. The default value is **false**.|
 
 **Error codes**
 
@@ -118,7 +118,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
   }
 ```
 
-## workScheduler.getWorkStatus:callback
+## workScheduler.getWorkStatus
 getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 Obtains the latest task status. This API uses an asynchronous callback to return the result.
@@ -130,7 +130,7 @@ Obtains the latest task status. This API uses an asynchronous callback to return
 | Name     | Type                                   | Mandatory  | Description                                      |
 | -------- | ------------------------------------- | ---- | ---------------------------------------- |
 | workId   | number                                | Yes   | Task ID.                                |
-| callback | AsyncCallback\<[WorkInfo](#workinfo)> | Yes   | Callback used to return the result. Returns the task status obtained from the **WorkSchedulerService** if the specified task ID is valid; throws an exception otherwise. |
+| callback | AsyncCallback\<[WorkInfo](#workinfo)> | Yes   | Callback used to return the result. Returns the task status obtained from the **WorkSchedulerService** if the specified task ID is valid; throws an exception otherwise.|
 
 **Error codes**
 
@@ -161,7 +161,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
   }
 ```
 
-## workScheduler.getWorkStatus:promise
+## workScheduler.getWorkStatus
 getWorkStatus(workId: number): Promise\<WorkInfo>
 
 Obtains the latest task status. This API uses a promise to return the result.
@@ -178,7 +178,7 @@ Obtains the latest task status. This API uses a promise to return the result.
 
 | Type                             | Description                                      |
 | ------------------------------- | ---------------------------------------- |
-| Promise\<[WorkInfo](#workinfo)> | Promise used to return the result. Returns the task status obtained from the **WorkSchedulerService** if the specified task ID is valid; throws an exception otherwise. |
+| Promise\<[WorkInfo](#workinfo)> | Promise used to return the result. Returns the task status obtained from the **WorkSchedulerService** if the specified task ID is valid; throws an exception otherwise.|
 
 **Error codes**
 
@@ -207,7 +207,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
   }
 ```
 
-## workScheduler.obtainAllWorks:callback
+## workScheduler.obtainAllWorks
 obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
 Obtains all tasks associated with this application. This API uses an asynchronous callback to return the result.
@@ -252,8 +252,8 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
   }
 ```
 
-## workScheduler.obtainAllWorks:promise
-obtainAllWorks(): Promise<Array\<WorkInfo>>
+## workScheduler.obtainAllWorks
+obtainAllWorks(): Promise\<Array\<WorkInfo>>
 
 Obtains all tasks associated with this application. This API uses a promise to return the result.
 
@@ -317,7 +317,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
   }
 ```
 
-## workScheduler.isLastWorkTimeOut:callback
+## workScheduler.isLastWorkTimeOut
 isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
 Checks whether the last execution of the specified task timed out. This API uses an asynchronous callback to return the result.
@@ -364,7 +364,7 @@ For details about the error codes, see [workScheduler Error Codes](../errorcodes
   }
 ```
 
-## workScheduler.isLastWorkTimeOut:promise
+## workScheduler.isLastWorkTimeOut
 isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 Checks whether the last execution of the specified task timed out. This API uses a promise to return the result.
@@ -432,7 +432,7 @@ Provides detailed information about the task. For details about the constraints 
 | isPersisted     | boolean                           | No   | Whether to enable persistent storage for the task.       |
 | isDeepIdle      | boolean                           | No   | Whether the device needs to enter the idle state.    |
 | idleWaitTime    | number                            | No   | Time to wait in the idle state.          |
-| parameters      | {[key: string]: number | string | boolean}              | No   | Carried parameters.          |
+| parameters      | {[key: string]: number \| string \| boolean}              | No   | Carried parameters.          |
 
 ## NetworkType
 Enumerates the network types that can trigger the task.

@@ -22,7 +22,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | No| Current progress.<br>Default value: **0**|
+| value | number | No| Current progress.<br>Default value: min|
 | min | number | No| Minimum value.<br>Default value: **0**|
 | max | number | No| Maximum value.<br>Default value: **100**<br>**NOTE**<br>If the value of **min** is greater than or equal to the value of **max**, the default value **0** is used for **min** and the default value **100** is used for **max**.<br>If the value is not within the [min, max] range, the value of **min** or **max**, whichever is closer.|
 | step | number | No| Step of the slider.<br>Default value: **1**<br>Value range: [0.01, max]<br>**NOTE**<br>If this parameter is set to a value less than 0 or a percentage, the default value is used.|
@@ -48,7 +48,7 @@ Except touch target attributes, the universal attributes are supported.
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | Color of the selected part of the slider track.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | showSteps | boolean | Whether to display the current step.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | showTips | boolean | Whether to display a bubble to indicate the percentage when the user drags the slider.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>When **direction** is set to **Axis.Horizontal**, the bubble is displayed right above the slider. When **direction** is set to **Axis.Vertical**, the bubble is displayed on the left of the slider.<br>The drawing area of the bubble is the overlay of the slider.<br>If no margin is set for the slider or the margin is not large enough, the bubble will be clipped.|
-| trackThickness      | [Length](ts-types.md#length) | Track thickness of the slider.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| trackThickness      | [Length](ts-types.md#length) | Track thickness of the slider.<br>Default value: **4.0vp** when **style** is set to **[SliderStyle](#sliderstyle).OutSet**; **20.0vp** when **style** is set to **[SliderStyle](#sliderstyle).InSet**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>A value less than 0 evaluates to the default value.|
 
 
 ## Events

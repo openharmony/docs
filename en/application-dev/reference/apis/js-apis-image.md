@@ -879,6 +879,53 @@ async function Demo() {
 }
 ```
 
+### getColorSpace<sup>10+</sup>
+
+getColorSpace(): colorSpaceManager.ColorSpaceManager
+
+Obtains the color space of this image
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Return value**
+
+| Type                               | Description            |
+| ----------------------------------- | ---------------- |
+| [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | Color space obtained.|
+
+**Example**
+
+```js
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+async function Demo() {
+    let csm = pixelmap.getColorSpace();
+}
+```
+
+### setColorSpace<sup>10+</sup>
+
+setColorSpace(colorSpace: colorSpaceManager.ColorSpaceManager): void
+
+Sets the color space for this image.
+
+**System capability**: SystemCapability.Multimedia.Image.Core
+
+**Parameters**
+
+| Name    | Type                               | Mandatory| Description           |
+| ---------- | ----------------------------------- | ---- | --------------- |
+| colorSpace | [colorSpaceManager.ColorSpaceManager](js-apis-colorSpaceManager.md#colorspacemanager) | Yes  | Color space to set.|
+
+**Example**
+
+```js
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager';
+async function Demo() {
+    var csm = colorSpaceManager.create(colorSpaceName);
+    pixelmap.setColorSpace(csm);
+}
+```
+
 ### release<sup>7+</sup>
 
 release():Promise\<void>
@@ -937,7 +984,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name| Type  | Mandatory| Description                              |
 | ------ | ------ | ---- | ---------------------------------- |
-| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: JPG, PNG, GIF, BMP, Webp, and RAW.|
+| uri    | string | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, and raw. For details, see [SVG Tags<sup>10+</sup>](#svg-tags). |
 
 **Return value**
 
@@ -975,7 +1022,7 @@ Creates an **ImageSource** instance based on the URI.
 
 | Name | Type                           | Mandatory| Description                               |
 | ------- | ------------------------------- | ---- | ----------------------------------- |
-| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: JPG, PNG, GIF, BMP, Webp, and RAW.|
+| uri     | string                          | Yes  | Image path. Currently, only the application sandbox path is supported.<br>Currently, the following formats are supported: .jpg, .png, .gif, .bmp, .webp, and raw. For details, see [SVG Tags<sup>10+</sup>](#svg-tags). |
 | options | [SourceOptions](#sourceoptions9) | Yes  | Image properties, including the image index and default property value.|
 
 **Return value**
@@ -1489,8 +1536,8 @@ Creates a **PixelMap** object based on the default parameters. This API uses an 
 
 ```js
 imageSourceApi.createPixelMap((err, pixelmap) => {
-                    console.info('Succeeded in creating pixelmap object.');
-                })
+    console.info('Succeeded in creating pixelmap object.');
+})
 ```
 
 ### createPixelMap<sup>7+</sup>
@@ -1523,6 +1570,177 @@ let decodingOptions = {
 imageSourceApi.createPixelMap(decodingOptions, pixelmap => { 
     console.log('Succeeded in creating pixelmap object.');
 })
+```
+
+### createPixelMapList<sup>10+</sup>
+
+createPixelMapList(options?: DecodingOptions): Promise<Array\<PixelMap>>;
+
+Creates an array of **PixelMap** objects based on image decoding parameters. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name  | Type                                 | Mandatory| Description                      |
+| -------- | ------------------------------------- | ---- | -------------------------- |
+| options  | [DecodingOptions](#decodingoptions7)  | No  | Image decoding parameters.                |
+
+**Return value**
+
+| Type                            | Description                 |
+| -------------------------------- | --------------------- |
+| Promise<Array<[PixelMap](#pixelmap7)>> | Promise used to return an array of **PixeMap** objects.|
+
+**Example**
+
+```js
+let decodeOpts = {
+    sampleSize: 1,
+    editable: true,
+    desiredSize: { width: 198, height: 202 },
+    rotate: 0,
+    desiredPixelFormat: 3,
+    index: 0,
+};
+let pixelmaplist = imageSourceApi.createPixelMapList(decodeOpts);
+```
+
+### createPixelMapList<sup>10+</sup>
+
+createPixelMapList(callback: AsyncCallback<Array\<PixelMap>>): void
+
+Creates an array of **PixelMap** objects based on the default parameters. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name    | Type                                 | Mandatory| Description                      |
+| -------- | ------------------------------------- | ---- | -------------------------- |
+| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | Yes  | Callback used to return an array of **PixeMap** objects.|
+
+**Example**
+
+```js
+imageSourceApi.createPixelMap( pixelmaplist => {
+    console.info('Succeeded in creating pixelmaplist object.');
+})
+```
+
+### createPixelMapList<sup>10+</sup>
+
+createPixelMapList(options: DecodingOptions, callback: AsyncCallback<Array\<PixelMap>>): void;
+
+Creates an array of **PixelMap** objects based on image decoding parameters. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                              |
+| -------- | -------------------- | ---- | ---------------------------------- |
+| options | [DecodingOptions](#decodingoptions7) | Yes| Image decoding parameters.|
+| callback | AsyncCallback<Array<[PixelMap](#pixelmap7)>> | Yes  | Callback used to return an array of **PixeMap** objects.|
+
+**Example**
+
+```js
+let decodeOpts = {
+    sampleSize: 1,
+    editable: true,
+    desiredSize: { width: 198, height: 202 },
+    rotate: 0,
+    desiredPixelFormat: 3,
+    index: 0,
+};
+imageSourceApi.createPixelMap(decodeOpts, pixelmaplist => { 
+    console.log('Succeeded in creating pixelmaplist object.');
+})
+```
+
+### getDelayTime<sup>10+</sup>
+
+getDelayTime(callback: AsyncCallback<Array\<number>>): void;
+
+Obtains an array of delay times. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                              |
+| -------- | -------------------- | ---- | ---------------------------------- |
+| callback | AsyncCallback<Array\<number>> | Yes  | Callback used to return an array of delay times.|
+
+**Example**
+
+```js
+imageSourceApi.getDelayTime( delayTimes => {
+    console.log('Succeeded in getting delay time.');
+});
+```
+
+### getDelayTime<sup>10+</sup>
+
+getDelayTime(): Promise<Array\<number>>;
+
+Obtains an array of delay times. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Return value**
+
+| Type          | Description                       |
+| -------------- | --------------------------- |
+| Promise<Array\<number>> | Promise used to return an array of delay times.|
+
+**Example**
+
+```js
+let delayTimes = imageSourceApi.getDelayTime();
+```
+
+### getFrameCount<sup>10+</sup>
+
+getFrameCount(callback: AsyncCallback\<number>): void;
+
+Obtains the number of frames. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Parameters**
+
+| Name  | Type                | Mandatory| Description                              |
+| -------- | -------------------- | ---- | ---------------------------------- |
+| callback | AsyncCallback\<number> | Yes  | Callback used to return the number of frames.|
+
+**Example**
+
+```js
+imageSourceApi.getFrameCount( frameCount => {
+    console.log('Succeeded in getting frame count.');
+});
+```
+
+### getFrameCount<sup>10+</sup>
+
+getFrameCount(): Promise\<number>;
+
+Obtains the number of frames. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Image.ImageSource
+
+**Return value**
+
+| Type          | Description                       |
+| -------------- | --------------------------- |
+| Promise\<number> | Promise used to return the number of frames.|
+
+**Example**
+
+```js
+let frameCount = imageSourceApi.getFrameCount();
 ```
 
 ### release
@@ -2616,7 +2834,50 @@ Describes the color components of an image.
 | pixelStride   | number                           | Yes  | No  | Pixel stride.  |
 | byteBuffer    | ArrayBuffer                      | Yes  | No  | Component buffer.|
 
-## ResponseCode
+## Supplementary Information
+### SVG Tags
+
+The SVG tags are supported since API verison 10. The used version is (SVG) 1.1. Currently, the following tags are supported:
+- a
+- circla
+- clipPath
+- defs
+- ellipse
+- feBlend
+- feColorMatrix
+- feComposite
+- feDiffuseLighting
+- feDisplacementMap
+- feDistantLight
+- feFlood
+- feGaussianBlur
+- feImage
+- feMorphology
+- feOffset
+- fePointLight
+- feSpecularLighting
+- feSpotLight
+- feTurbulence
+- filter
+- g
+- image
+- line
+- linearGradient
+- mask
+- path
+- pattern
+- polygon
+- polyline
+- radialGradient
+- rect
+- stop
+- svg
+- text
+- textPath
+- tspan
+- use
+
+### ResponseCode
 
 Enumerates the response codes returned upon build errors.
 

@@ -1,4 +1,4 @@
-# AccessibilityExtensionAbility开发指南
+# AccessibilityExtensionAbility
 
 AccessibilityExtensionAbility基于ExtensionAbility框架，提供无障碍扩展服务，开发者可以基于AccessibilityExtensionAbility模板开发自己的辅助功能应用，协助用户完成一些快捷的交互过程。
 

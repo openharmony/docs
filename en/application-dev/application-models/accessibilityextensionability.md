@@ -12,13 +12,27 @@ The **AccessibilityExtensionAbility** module provides accessibility extension ca
 
 This document is organized as follows:
 
-- [AccessibilityExtensionAbility Development](#accessibilityextensionability-development)
-  - [Creating an Accessibility Extension Service](#creating-an-accessibility-extension-service)
-    - [Creating a Project](#creating-a-project)
-    - [Creating an AccessibilityExtAbility File](#creating-an-accessibilityextability-file)
-  - [Processing an Accessibility Event](#processing-an-accessibility-event)
-  - [Declaring Capabilities of Accessibility Extension Services](#declaring-capabilities-of-accessibility-extension-services)
-  - [Enabling a Custom Accessibility Extension Service](#enabling-a-custom-accessibility-extension-service)
+- [AccessibilityExtensionAbility Overview](#accessibilityextensionability-overview)
+- [Creating an Accessibility Extension Service](#creating-an-accessibility-extension-service)
+- [Processing an Accessibility Event](#processing-an-accessibility-event)
+- [Declaring Capabilities of Accessibility Extension Services](#declaring-capabilities-of-accessibility-extension-services)
+- [Enabling a Custom Accessibility Extension Service](#enabling-a-custom-accessibility-extension-service)
+
+## AccessibilityExtensionAbility Overview
+
+Accessibility is about giving equal access to everyone so that they can access and use information equally and conveniently under any circumstances. It helps narrow the digital divide between people of different classes, regions, ages, and health status in terms of information understanding, information exchange, and information utilization, so that they can participate in social life more conveniently and enjoy the benefits of technological advances.
+
+AccessibilityExtensionAbility is an accessibility extension service framework. It allows you to develop your own extension services and provides a standard mechanism for exchanging information between applications and extension services. You can make use of the provided capabilities and APIs to develop accessibility features for users with disabilities or physical limitations. For example, you can develop a screen reader for users with vision impairments.
+
+Below shows the AccessibilityExtensionAbility framework.
+
+![AccessibilityFramework](figures/AccessibilityFramework.png)
+
+1. Accessibility app: extension service application developed based on the AccessibilityExtensionAbility framework, for example, a screen reader application.
+2. Target app: application assisted by the accessibility app.
+3. AccessibilityAbilityManagerService (AAMS): main service of the AccessibilityExtensionAbility framework, which is used to manage the lifecycle of accessibility apps and provide a bridge for information exchange between accessibility apps and target apps.
+4. AccessibilityAbility (AAkit): ability that is used by the accessibility app to build an extension service ability operating environment and that provides interfaces for the accessibility app to query and operate the target app, including performing click/long press operations.
+5. AccessibilitySystemAbilityClient (ASACkit): used by the target app to send accessibility events, such as content change events, to AAMS, and respond to the instructions (such as performing click/long press operations) sent by the accessibility app through AAMS.
 
 ## Creating an Accessibility Extension Service
 
@@ -40,15 +54,15 @@ import AccessibilityExtensionAbility from '@ohos.application.AccessibilityExtens
 
 class AccessibilityExtAbility extends AccessibilityExtensionAbility {
     onConnect() {
-        console.log('AccessibilityExtAbility onConnect');
+        console.info('AccessibilityExtAbility onConnect');
     }
 
     onDisconnect() {
-        console.log('AccessibilityExtAbility onDisconnect');
+        console.info('AccessibilityExtAbility onDisconnect');
     }
 
     onAccessibilityEvent(accessibilityEvent) {
-        console.log('AccessibilityExtAbility onAccessibilityEvent: ' + JSON.stringify(accessibilityEvent));
+        console.info('AccessibilityExtAbility onAccessibilityEvent: ' + JSON.stringify(accessibilityEvent));
     }
 }
 
@@ -69,9 +83,9 @@ You can process the service logic for accessibility events in the **onAccessibil
 
 ```typescript
 onAccessibilityEvent(accessibilityEvent) {
-    console.log('AccessibilityExtAbility onAccessibilityEvent: ' + JSON.stringify(accessibilityEvent));
+    console.info('AccessibilityExtAbility onAccessibilityEvent: ' + JSON.stringify(accessibilityEvent));
     if (accessibilityEvent.eventType === 'pageStateUpdate') {
-        console.log('AccessibilityExtAbility onAccessibilityEvent: pageStateUpdate');
+        console.info('AccessibilityExtAbility onAccessibilityEvent: pageStateUpdate');
         // TODO: Develop custom logic.
     }
 }
@@ -119,3 +133,4 @@ To enable or disable an accessibility extension service, run the following comma
 In the preceding commands, **AccessibilityExtAbility** indicates the name of the accessibility extension service, **com.example.demo** indicates the bundle name, and **rg** indicates the capabilities (**r** is short for retrieve).
 
 If the service is enabled or disabled successfully, the message "enable ability successfully" or "disable ability successfully" is displayed.
+

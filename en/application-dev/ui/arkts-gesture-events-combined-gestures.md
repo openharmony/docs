@@ -10,18 +10,18 @@ GestureGroup(mode:GestureMode, ...gesture:GestureType[])
 ```
 
 
-- **mode**:  declare a type of the combined gesture. This parameter is mandatory and belongs to the GestureMode enumeration class.
+- **mode**: recognition mode of combined gestures. This parameter is mandatory and belongs to the **GestureMode** enumeration class.
 
 - **gesture**: array consisting of multiple gestures. This parameter is mandatory.  .
 
 
 ## Continuous Recognition
 
-For continuous recognition, **GestureMode** corresponding to the combined gesture is **Sequence**. Continuous recognition of combined gestures will recognize gestures according to the registration sequence of gestures until all gestures are recognized successfully. When one gesture in the continuously recognized combined gestures fails to be recognized, all gestures fail to be recognized.
+For continuous recognition, the value of **GestureMode** is **Sequence**. In this gesture mode, gestures registered in the combined gestures will be recognized according to the registration sequence until they are all recognized successfully. If any of the registered gestures fails to be recognized, all gestures fail to be recognized.
 
-A continuous gesture formed by combining a touch-and-hold gesture and a drag gesture is used as an example.
+In the following example, the combined gestures for continuous recognition are the long press gesture and pan gesture.
 
-The translate attribute is bound to a Column component. You can modify the attribute to move the component. Then, bind the sequence gesture combined by LongPressGesture and PanGesture to the component. When LongPressGesture is triggered, the displayed number is updated. When a user drags a widget after touching and holding the widget, the widget is dragged based on the callback function of the drag gesture.
+The **translate** attribute is bound to a **\<Column>** component. You can set the attribute to translate the component. Then, bind **LongPressGesture** and **PanGesture** to the component in the **Sequence** gesture mode. When a long press gesture is recognized, the displayed number is updated. When the user drags the component after the long press gesture, the component is dragged based on the callback function of the pan gesture.
 
 
 
@@ -42,17 +42,17 @@ struct Index {
       Text('sequence gesture\n' + 'LongPress onAction:' + this.count + '\nPanGesture offset:\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
         .fontSize(28)
     }
-    //Bind the translate attribute to move the component.
+    // Bind the translate attribute to translate the component.
     .translate({ x: this.offsetX, y: this.offsetY, z: 0 })
     .height(250)
     .width(300)
-    // The following combined gestures are identified in sequence. When the touch and hold gesture event is not triggered normally, the drag gesture event is not triggered.
+    // The following combined gestures are recognized in sequence. When the long press gesture event is not triggered correctly, the pan gesture event is not triggered.
     .gesture(
-      // Declare that the type of the combined gesture is the Sequence type.
+      // Set the gesture mode to Sequence.
       GestureGroup(GestureMode.Sequence,
-        // The first gesture triggered by the combined gesture is a touch-and-hold gesture, and the touch-and-hold gesture can be responded to for multiple times.
+        // The first gesture recognized in the combined gestures is the long press gesture, which can be responded to for multiple times.
         LongPressGesture({ repeat: true })
-          // Increase the count displayed on the Text component when the touch and hold gesture is successfully recognized.
+          // When the long press gesture is successfully recognized, the value of count displayed on the <Text> component is increased.
           .onAction((event: GestureEvent) => {
             if (event.repeat) {
               this.count++;
@@ -62,13 +62,13 @@ struct Index {
           .onActionEnd(() => {
             console.info('LongPress end');
           }),
-        // The PanGesture gesture is triggered when you drag the slider after touching and holding the slider.
+        // The pan gesture is triggered when the component is dragged after the long press gesture is recognized.
         PanGesture()
           .onActionStart(() => {
             this.borderStyles = BorderStyle.Dashed;
             console.info('pan start');
           })
-            // When the gesture is triggered, the dragging distance is obtained according to the callback, and the displacement distance of the component is modified to move the component.
+            // When the gesture is triggered, the pan distance is obtained based on the callback, and the displacement distance of the component is modified. In this way, the component is translated.
           .onActionUpdate((event: GestureEvent) => {
             this.offsetX = this.positionX + event.offsetX;
             this.offsetY = this.positionY + event.offsetY;
@@ -91,14 +91,14 @@ struct Index {
 
 >**NOTE**
 >
->The drag event is a typical continuous recognition combined gesture event, and is formed by combining a touch and hold gesture event and a slide gesture event. The drag event is triggered only when the user touches and holds the gesture for a preset period of time. If the touch and hold event is not reached or the slider is not performed after the touch and hold event, the drag event fails to be identified.
+>The drag event is a typical use case of continuous recognition with the long press gesture and pan gesture combined. It is triggered only when the user performs the pan gesture within the preset time frame after a long press gesture is recognized. If the long press gesture is not recognized or the pan gesture is not performed within the preset time frame, the drag event will not be triggered.
 
 
 ## Parallel Recognition
 
-For parallel recognition, **GestureMode** corresponding to the combined gesture is **Parallel**. Parallel recognition of gestures registered in the combined gestures will be recognized at the same time until all gestures are recognized. The gestures in the gesture combination are recognized in parallel without affecting each other.
+For parallel recognition, the value of **GestureMode** is **Parallel**. In this gesture mode, gestures registered in the combined gestures will be recognized at the same time until they are all recognized successfully. The gestures are recognized in parallel without affecting each other.
 
-For example, a parallel recognition gesture formed by a tap gesture and a double-tap gesture is bound to a Column component. Because the tap gesture and the double-tap gesture are recognized in parallel, the two gestures may be recognized at the same time, and the two gestures do not interfere with each other.
+For example, if the tap gesture and the double-tap gesture are bound to the \**<Column>** component in parallel recognition mode, they can be recognized at the same time, and the recognition of these two gestures does not interfere with each other. 
 
 
 
@@ -117,7 +117,7 @@ struct Index {
     }
     .height(200)
     .width(250)
-    // The following combined gestures are parallel. After the tap gesture is recognized successfully, if you tap the gesture again within the specified time, the double-tap gesture will also be recognized successfully.
+    // The following combined gestures are recognized in parallel mode. After a tap gesture is recognized successfully, if another tap gesture is recognized within the specified time frame, a double-tap gesture will also be recognized.
     .gesture(
       GestureGroup(GestureMode.Parallel,
         TapGesture({ count: 1 })
@@ -140,20 +140,20 @@ struct Index {
 
 >**NOTE**
 >
->After a tap gesture and a double-tap gesture form a parallel recognition combined gesture, when a tap is performed in an area, the tap gesture and the double-tap gesture are recognized at the same time.
+>After a tap gesture and a double-tap gesture are combined for parallel recognition, when taps are performed in an area, the tap gesture and the double-tap gesture are recognized at the same time.
 >
->When there is only a single tap, the tap gesture is recognized successfully, but the double-tap gesture fails to be recognized.
+>When there is only a single tap, the tap gesture is recognized, but the double-tap gesture fails to be recognized.
 >
->When there are two clicks, if the interval between the two clicks is within a specified period (300 ms by default), two click events and one double-click event are triggered.
+>When there are two taps and the interval between the two taps is within a specified period (300 ms by default), two tap events and one double-tap event are triggered.
 >
->When there are two clicks, if the interval between the two clicks exceeds the specified time, the two clicks are triggered but the double-click event is not triggered.
+>When there are two taps, but the interval between the two taps exceeds the specified time, two tap events are triggered but the double-tap event is not triggered.
 
 
 ## Exclusive Recognition
 
-For exclusive recognition, **GestureMode** corresponding to the combined gesture is **Exclusive**. The gestures registered in the mutually exclusive recognition combination gesture are recognized at the same time. If one gesture is recognized successfully, the gesture recognition ends, and all other gestures fail to be recognized.
+For exclusive recognition, the value of **GestureMode** is **Exclusive**. In this gesture mode, gestures registered in the combined gesture are recognized at the same time. If one gesture is recognized successfully, the gesture recognition ends, and all other gestures fail to be recognized.
 
-A mutually exclusive recognition combination gesture formed by binding a click gesture and a double-tap gesture to a Column component is used as an example. Because a click gesture can be triggered only once and a double-tap gesture needs to be triggered twice, each click event is consumed by the click gesture and cannot be accumulated into a double-tap gesture, the double-tap gesture cannot be triggered.
+For example, if the tap gesture and the double-tap gesture are bound to the \**<Column>** component in exclusive recognition mode, only a tap gesture event can be triggered. This is because a tap gesture requires a single tap to be triggered, and a double-tap gesture event requires two taps to be triggered; each tap event is consumed by the tap gesture and cannot be accumulated into a double-tap gesture.
 
 
 
@@ -172,7 +172,7 @@ struct Index {
     }
     .height(200)
     .width(250)
-    //The following combined gestures are mutually exclusive. After the tap gesture is recognized successfully, the double-tap gesture fails to be recognized.
+    // The following combined gestures are mutually exclusive. After the tap gesture is recognized successfully, the double-tap gesture fails to be recognized.
     .gesture(
       GestureGroup(GestureMode.Exclusive,
         TapGesture({ count: 1 })
@@ -195,8 +195,8 @@ struct Index {
 
 >**NOTE**
 >
->After the tapping gesture and the double-tap gesture form a mutually exclusive recognition combination gesture, when tapping is performed in the area, the tapping gesture and the double-tap gesture are recognized at the same time.
+>After a tap gesture and a double-tap gesture are combined for exclusive recognition, when taps are performed in an area, the tap gesture and the double-tap gesture are recognized at the same time.
 >
->When there is only a single tap, the tap gesture is recognized successfully, but the double-tap gesture fails to be recognized.
+>When there is only a single tap, the tap gesture is recognized, but the double-tap gesture fails to be recognized.
 >
->When there are two taps, the tap gesture declares that the recognition is successful when the tap gesture is tapped for the first time. In this case, the double-tap gesture has failed. Even if the second tap is performed within the specified time, the double-tap gesture event is not responded. In this case, the second recognition success of the tap gesture event is triggered.
+>When there are two taps, the gesture recognition is declared as successful when the first tap gesture is recognized. In this case, the double-tap gesture fails to be recognized. Even if the second tap is performed within the specified time, the double-tap gesture event is not responded to. Instead, another tap gesture event is triggered.

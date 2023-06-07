@@ -1,4 +1,4 @@
-# @ohos.taskpool（使用任务池）
+# @ohos.taskpool（启动任务池）
 
 任务池（taskpool）作用是为应用程序提供一个多线程的运行环境，降低整体资源的消耗、提高系统的整体性能，且您无需关心线程实例的生命周期。您可以使用任务池API创建后台任务（Task），并对所创建的任务进行如任务执行、任务取消的操作。理论上您可以使用任务池API创建数量不受限制的任务，但是出于内存因素不建议您这样做。此外，不建议您在任务中执行阻塞操作，特别是无限期阻塞操作，长时间的阻塞操作占据工作线程，可能会阻塞其他任务调度，影响您的应用性能。
 
@@ -60,12 +60,12 @@ Task的构造函数。
 
 ```ts
 @Concurrent
-function func(args) {
-    console.log("func: " + args);
+function printArgs(args) {
+    console.log("printArgs: " + args);
     return args;
 }
 
-let task = new taskpool.Task(func, "this is my first Task");
+let task = new taskpool.Task(printArgs, "this is my first Task");
 ```
 
 ### 属性
@@ -112,17 +112,17 @@ execute(func: Function, ...args: unknown[]): Promise\<unknown>
 
 ```ts
 @Concurrent
-function func(args) {
-    console.log("func: " + args);
+function printArgs(args) {
+    console.log("printArgs: " + args);
     return args;
 }
 
-async function taskpoolTest() {
-  let value = await taskpool.execute(func, 100);
+async function taskpoolExecute() {
+  let value = await taskpool.execute(printArgs, 100);
   console.log("taskpool result: " + value);
 }
 
-taskpoolTest();
+taskpoolExecute();
 ```
 
 ## taskpool.execute
@@ -160,18 +160,18 @@ execute(task: Task, priority?: Priority): Promise\<unknown>
 
 ```ts
 @Concurrent
-function func(args) {
-    console.log("func: " + args);
+function printArgs(args) {
+    console.log("printArgs: " + args);
     return args;
 }
 
-async function taskpoolTest() {
-  let task = new taskpool.Task(func, 100);
+async function taskpoolExecute() {
+  let task = new taskpool.Task(printArgs, 100);
   let value = await taskpool.execute(task);
   console.log("taskpool result: " + value);
 }
 
-taskpoolTest();
+taskpoolExecute();
 ```
 
 ## taskpool.cancel
@@ -200,14 +200,14 @@ cancel(task: Task): void
 **任务取消成功示例：**
 
 ```ts
-function func(args) {
-    "use concurrent";
-    console.log("func: " + args);
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
     return args;
 }
 
-async function taskpoolTest() {
-  let task = new taskpool.Task(func, 100);
+async function taskpoolCancel() {
+  let task = new taskpool.Task(printArgs, 100);
   taskpool.execute(task);
   try {
     taskpool.cancel(task);
@@ -216,20 +216,20 @@ async function taskpoolTest() {
   }
 }
 
-taskpoolTest();
+taskpoolCancel();
 ```
 
 **已执行的任务取消失败示例：**
 
 ```ts
-function func(args) {
-    "use concurrent";
-    console.log("func: " + args);
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
     return args;
 }
 
-async function taskpoolTest() {
-  let task = new taskpool.Task(func, 100);
+async function taskpoolCancel() {
+  let task = new taskpool.Task(printArgs, 100);
   let value = taskpool.execute(task);
   let start = new Date().getTime();
   while (new Date().getTime() - start < 1000) { // 延时1s，确保任务已执行
@@ -243,25 +243,25 @@ async function taskpoolTest() {
   }
 }
 
-taskpoolTest();
+taskpoolCancel();
 ```
 
 **正在执行的任务取消失败示例：**
 
 ```ts
-function func(args) {
-    "use concurrent";
-    console.log("func: " + args);
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
     return args;
 }
 
-async function taskpoolTest() {
-  let task1 = new taskpool.Task(func, 100);
-  let task2 = new taskpool.Task(func, 200);
-  let task3 = new taskpool.Task(func, 300);
-  let task4 = new taskpool.Task(func, 400);
-  let task5 = new taskpool.Task(func, 500);
-  let task6 = new taskpool.Task(func, 600);
+async function taskpoolCancel() {
+  let task1 = new taskpool.Task(printArgs, 100);
+  let task2 = new taskpool.Task(printArgs, 200);
+  let task3 = new taskpool.Task(printArgs, 300);
+  let task4 = new taskpool.Task(printArgs, 400);
+  let task5 = new taskpool.Task(printArgs, 500);
+  let task6 = new taskpool.Task(printArgs, 600);
 
   let res1 = taskpool.execute(task1);
   let res2 = taskpool.execute(task2);
@@ -276,7 +276,7 @@ async function taskpoolTest() {
   }
 }
 
-taskpoolTest();
+taskpoolCancel();
 ```
 
 ## 其他说明
@@ -288,7 +288,7 @@ taskpoolTest();
 - 仅支持在Stage模型且module的compileMode为esmodule的project中使用taskpool api。确认module的compileMode方法：查看当前module的build-profile.json5，在buildOption中补充"compileMode": "esmodule"。
 - taskpool任务只支持引用入参传递或者import的变量，不支持使用闭包变量，使用装饰器@Concurrent进行拦截。
 - taskpool任务只支持普通函数或者async函数，不支持类成员函数或者匿名函数，使用装饰器@Concurrent进行拦截。
-- 装饰器@Concurrent仅支持在ets文件使用，在ts文件中创建taskpool任务需使用"use concurrent"。
+- 装饰器@Concurrent仅支持在ets文件使用。
 
 ### 简单使用
 
@@ -297,14 +297,14 @@ taskpoolTest();
 ```ts
 // 支持普通函数、引用入参传递
 @Concurrent
-function func(args) {
-    console.log("func: " + args);
+function printArgs(args) {
+    console.log("printArgs: " + args);
     return args;
 }
 
-async function taskpoolTest() {
+async function taskpoolExecute() {
   // taskpool.execute(task)
-  let task = new taskpool.Task(func, "create task, then execute");
+  let task = new taskpool.Task(printArgs, "create task, then execute");
   let val1 = await taskpool.execute(task);
   console.log("taskpool.execute(task) result: " + val1);
 
@@ -313,7 +313,7 @@ async function taskpoolTest() {
   console.log("taskpool.execute(function) result: " + val2);
 }
 
-taskpoolTest();
+taskpoolExecute();
 ```
 
 **示例二**
@@ -328,24 +328,24 @@ export var c = 2000;
 import { c } from "./b";
 
 @Concurrent
-function test(a) {
+function printArgs(a) {
     console.log(a);
     console.log(c);
     return a;
 }
 
-async function taskpoolTest() {
+async function taskpoolExecute() {
   // taskpool.execute(task)
-  let task = new taskpool.Task(test, "create task, then execute");
+  let task = new taskpool.Task(printArgs, "create task, then execute");
   let val1 = await taskpool.execute(task);
   console.log("taskpool.execute(task) result: " + val1);
 
   // taskpool.execute(function)
-  let val2 = await taskpool.execute(test, "execute task by func");
+  let val2 = await taskpool.execute(printArgs, "execute task by func");
   console.log("taskpool.execute(function) result: " + val2);
 }
 
-taskpoolTest();
+taskpoolExecute();
 ```
 
 **示例三**
@@ -353,57 +353,52 @@ taskpoolTest();
 ```ts
 // 支持async函数
 @Concurrent
-async function task() {
+async function delayExcute() {
   let ret = await Promise.all([
     new Promise(resolve => setTimeout(resolve, 1000, "resolved"))
   ]);
   return ret;
 }
 
-async function taskpoolTest() {
-  taskpool.execute(task).then((result) => {
+async function taskpoolExecute() {
+  taskpool.execute(delayExcute).then((result) => {
     console.log("TaskPoolTest task result: " + result);
   });
 }
 
-taskpoolTest();
+taskpoolExecute();
 ```
 
 **示例四**
 
 ```ts
-// 在ts文件中创建taskpool任务需使用"use concurrent"
-// c.ts
-function test1(n) {
-    "use concurrent"
-    return n;
+// c.ets
+@Concurrent
+function strSort(inPutArr) {
+  let newArr = inPutArr.sort();
+  return newArr;
 }
-export async function taskpoolTest1() {
-    console.log("taskpoolTest1 start");
-    var task = new taskpool.Task(test1, 100);
+export async function func1() {
+    console.log("taskpoolTest start");
+    let strArray = ['c test string', 'b test string', 'a test string'];
+    var task = new taskpool.Task(strSort, strArray);
     var result = await taskpool.execute(task);
-    console.log("taskpoolTest1 result:" + result);
+    console.log("func1 result:" + result);
 }
 
-async function test2() {
-    "use concurrent"
-    var ret = await Promise.all([
-        new Promise(resolve => setTimeout(resolve, 1000, "resolved"))
-    ]);
-    return ret;
-}
-export async function taskpoolTest2() {
+export async function func2() {
     console.log("taskpoolTest2 start");
-    taskpool.execute(test2).then((result) => {
-        console.log("TaskPoolTest2 result: " + result);
+    let strArray = ['c test string', 'b test string', 'a test string'];
+    taskpool.execute(strSort, strArray).then((result) => {
+        console.log("func2 result: " + result);
     });
 }
 ```
 
 ```ts
-// a.ets(与c.ts在同一目录中)
+// a.ets(与c.ets在同一目录中)
 import { taskpoolTest1, taskpoolTest2 } from "./c";
 
-taskpoolTest1();
-taskpoolTest2();
+func1();
+func2();
 ```
