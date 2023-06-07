@@ -6143,8 +6143,8 @@ onAcquireInfo?: (module: number, acquire: number, extraInfo: any) => void;
 | FINGERPRINT_TIP_PARTIAL       | 3     | 表示仅检测到部分指纹图像。                         |
 | FINGERPRINT_TIP_TOO_FAST      | 4     | 表示指纹图像由于快速运动而不完整。                  |
 | FINGERPRINT_TIP_TOO_SLOW      | 5     | 表示由于缺少运动，指纹图像无法读取。                |
-| FINGERPRINT_TIP_FINGER_DOWN<sup>10+</sup>   | 6     | 表示手指向下。                  |
-| FINGERPRINT_TIP_FINGER_UP<sup>10+</sup>     | 7     | 表示手指向上。                |
+| FINGERPRINT_TIP_FINGER_DOWN<sup>10+</sup>   | 6     | 表示手指落下。                  |
+| FINGERPRINT_TIP_FINGER_UP<sup>10+</sup>     | 7     | 表示手指抬起。                |
 
 ## OsAccountInfo
 
