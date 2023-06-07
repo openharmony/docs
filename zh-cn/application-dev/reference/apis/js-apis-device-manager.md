@@ -30,8 +30,6 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 创建一个设备管理器实例。
 
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM，仅系统应用可用。
-
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
 **参数：**

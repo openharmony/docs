@@ -11,7 +11,6 @@
 
 | 模块名                    | 类名                | 方法/属性/枚举/常量                                          | 新增权限 |
 | ------------------------- | ------------------- | ------------------------------------------------------------ | -------- |
-| @ohos.distributedHardware.deviceManager        | deviceManager        | **function** createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager&gt;): void | ohos.permission.ACCESS_SERVICE_DM     |
 | @ohos.distributedHardware.deviceManager       | deviceManager        | **function** release(): void | ohos.permission.ACCESS_SERVICE_DM     |
 | @ohos.distributedHardware.deviceManager       | deviceManager        | **function** getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt; | ohos.permission.ACCESS_SERVICE_DM     |
 | @ohos.distributedHardware.deviceManager       | deviceManager        | **function** getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): void | ohos.permission.ACCESS_SERVICE_DM     |
