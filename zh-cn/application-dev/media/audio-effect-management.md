@@ -92,7 +92,7 @@
 ## 音频场景全局音效查询
 
 主要包括全局音效查询相应ContentType和StreamUsage对应场景的音效模式。
-对于播放音频类的应用，开发者需要关注该应用的音频流使用什么音效模式并做出相应的操作，比如音乐App播放时，应选择音乐场景下的模式。在进行应用开发的过程中，开发者需要使用getStreamManager()创建一个AudioStreamManager实例.
+对于播放音频类的应用，开发者需要关注该应用的音频流使用什么音效模式并做出相应的操作，比如音乐App播放时，应选择音乐场景下的模式。在使用查询接口前，开发者需要使用getStreamManager()创建一个AudioStreamManager实例。
 
 ### 获取全局音效查询接口
 
@@ -104,7 +104,7 @@
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
    ```
-   
+
 2.管理播放实例音效的接口getAudioEffectInfoArray()查询音效模式。
 
 ### 查询当前ContentType和StreamUsage对应场景的音效模式
