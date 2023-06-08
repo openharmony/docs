@@ -44,27 +44,43 @@ struct DatePickerExample {
 **示例：**
 
 ```ts
+let NextID: number = 0;
+
+@Observed
+class ClassA {
+  public id: number;
+  public c: number;
+
+  constructor(c: number) {
+    this.id = NextID++;
+    this.c = c;
+  }
+}
+
 @Entry
 @Component
 struct LocalStorageComponent {
-    build() {
-        Column() {
-            Child({
-              /* ArkTS:ERROR Property 'simpleVarName' in the custom component 'Child' cannot
-                initialize here (forbidden to specify). */
-              simpleVarName: 1,
-              /* ArkTS:ERROR Property 'objectName' in the custom component 'Child' cannot
-                initialize here (forbidden to specify). */
-              objectName: new ClassA("x")
-            })
-        }
+  build() {
+    Column() {
+      Child({
+        /* ArkTS:ERROR Property 'simpleVarName' in the custom component 'Child' cannot
+          initialize here (forbidden to specify). */
+        simpleVarName: 1,
+        /* ArkTS:ERROR Property 'objectName' in the custom component 'Child' cannot
+          initialize here (forbidden to specify). */
+        objectName: new ClassA(1)
+      })
     }
+  }
 }
+
 @Component
 struct Child {
-    @LocalStorageLink("storageSimpleProp") simpleVarName: number = 0;
-    @LocalStorageProp("storageObjectProp") objectName: ClassA = new ClassA("x");
-    build() {}
+  @LocalStorageLink("storageSimpleProp") simpleVarName: number = 0;
+  @LocalStorageProp("storageObjectProp") objectName: ClassA = new ClassA(1);
+
+  build() {
+  }
 }
 ```
 
