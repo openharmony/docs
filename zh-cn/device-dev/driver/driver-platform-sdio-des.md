@@ -7,26 +7,54 @@
 SDIO是安全数字输入输出接口（Secure Digital Input and Output）的缩写，是从SD内存卡接口的基础上演化出来的一种外设接口。SDIO接口兼容以前的SD卡，并且可以连接支持SDIO接口的其他设备。
 
 SDIO接口定义了操作SDIO的通用方法集合，包括：
+
 - 打开/关闭SDIO控制器
+
 - 独占/释放HOST
+
 - 使能/去使能设备
+
 - 申请/释放中断
+
 - 读写、获取/设置公共信息
 
 ### 运作机制
 
 在HDF框架中，SDIO的接口适配模式采用独立服务模式。在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。独立服务模式可以直接借助HDFDeviceManager的服务管理能力，但需要为每个设备单独配置设备节点，若设备过多可能增加内存占用。
 
-SDIO总线有两端，其中一端是主机端（HOST），另一端是设备端（DEVICE）。所有的通信都是由HOST端发出命令开始的，在DEVICE端只要能解析HOST的命令，就可以同HOST进行通信了。SDIO的HOST可以连接多个DEVICE，如下图所示：
+独立服务模式下，核心层不会统一发布一个服务供上层使用，因此这种模式下驱动要为每个控制器发布一个服务，具体表现为：
+
+- 驱动适配者需要实现HdfDriverEntry的Bind钩子函数以绑定服务。
+
+- device_info.hcs文件中deviceNode的policy字段为1或2，不能为0。
+
+SDIO模块各分层作用：
+
+- 接口层提供打开SDIO设备、设置块的大小、读取数据、写数据、设置公共信息、获取公共信息、刷新数据、独占HOST、释放Host、使能SDIO功能设备、去使能SDIO功能设备、申请中断、释放中断关闭SDIO设备的接口。
+
+- 核心层主要提供SDIO控制器的添加、移除及管理的能力，通过钩子函数与适配层交互。
+
+- 适配层主要是将钩子函数的功能实例化，实现具体的功能。
+
+**图 1** SDIO独立服务模式结构图
+
+![SDIO独立服务模式结构图](figures/独立服务模式结构图.png)
+
+SDIO总线有两端，其中一端是主机端（HOST），另一端是设备端（DEVICE）。所有的通信都是由HOST端发出命令开始的，在DEVICE端只要能解析HOST的命令，就可以同HOST进行通信了。SDIO的HOST可以连接多个DEVICE，如图2所示：
+
 - CLK信号：HOST给DEVICE的时钟信号。
+
 - VDD信号：电源信号。
+
 - VSS信号：Ground信号。
+
 - D0-3信号：4条数据线，其中，DAT1信号线复用为中断线，在1BIT模式下DAT0用来传输数据，在4BIT模式下DAT0-DAT3用来传输数据。
+
 - CMD信号：用于HOST发送命令和DEVICE回复响应。
 
-**图1** SDIO的HOST-DEVICE连接示意图
+**图 2** SDIO的HOST-DEVICE连接示意图
 
-![image](figures/SDIO的HOST-DEVICE连接示意图.png "SDIO的HOST-DEVICE连接示意图")
+![SDIO的HOST-DEVICE连接示意图](figures/SDIO的HOST-DEVICE连接示意图.png)
 
 ### 约束与限制
 
@@ -42,9 +70,9 @@ SDIO的应用比较广泛，目前，有许多手机都支持SDIO功能，并且
 
 SDIO模块提供的主要接口如表1所示，具体API详见//drivers/hdf_core/framework/include/platform/sdio_if.h。
 
-**表1** SDIO驱动API接口功能介绍
+**表 1** SDIO驱动API接口功能介绍
 
-|  接口名  | 接口描述 |
+| 接口名 | 接口描述 |
 | -------- | -------- |
 | DevHandle SdioOpen(int16_t mmcBusNum, struct SdioFunctionConfig \*config) | 打开指定总线号的SDIO控制器 |
 | void SdioClose(DevHandle handle) | 关闭SDIO控制器 |
@@ -67,11 +95,11 @@ SDIO模块提供的主要接口如表1所示，具体API详见//drivers/hdf_core
 
 ### 使用流程
 
-使用SDIO的一般流程如下图所示。
+使用SDIO的一般流程如图3所示。
 
-  **图2** SDIO使用流程图
+**图 3** SDIO使用流程图
 
-  ![image](figures/SDIO使用流程图.png "SDIO使用流程图")
+![SDIO使用流程图](figures/SDIO使用流程图.png)
 
 #### 打开SDIO控制器
 
@@ -81,17 +109,17 @@ SDIO模块提供的主要接口如表1所示，具体API详见//drivers/hdf_core
 DevHandle SdioOpen(int16_t mmcBusNum, struct SdioFunctionConfig *config);
 ```
 
-  **表2** SdioOpen函数的参数和返回值描述
+**表 2** SdioOpen函数的参数和返回值描述
 
 | 参数 | 参数描述 | 
 | -------- | -------- |
-| mmcBusNum | 总线号 | 
-| config | SDIO功能配置信息 | 
+| mmcBusNum | int16_t类型，总线号 | 
+| config | 结构体指针，SDIO功能配置信息 | 
 | **返回值** | **返回值描述** | 
 | NULL | 获取SDIO控制器的设备句柄失败 | 
 | 设备句柄 | SDIO控制器的设备句柄 | 
 
-  打开SDIO控制器的示例如下：
+打开SDIO控制器的示例如下：
 
 ```c
 DevHandle handle = NULL;
@@ -99,10 +127,11 @@ struct SdioFunctionConfig config;
 config.funcNr = 1;
 config.vendorId = 0x123;
 config.deviceId = 0x456;
-/* 打开总线号为1的SDIO控制器 */
+// 打开总线号为1的SDIO控制器
 handle = SdioOpen(1, &config);
 if (handle == NULL) {
-    HDF_LOGE("SdioOpen: failed!\n");
+    HDF_LOGE("SdioOpen: open sdio fail!\n");
+	return NULL;
 }
 ```
 
@@ -114,16 +143,16 @@ if (handle == NULL) {
 void SdioClaimHost(DevHandle handle);
 ```
 
-  **表3** SdioClaimHost函数的参数描述
+**表 3** SdioClaimHost函数的参数描述
 
 | 参数 | 参数描述 | 
 | -------- | -------- |
-| handle | SDIO控制器的设备句柄 | 
+| handle | DevHandle类型，SDIO控制器的设备句柄 | 
 
 独占HOST示例如下：
 
 ```c
-SdioClaimHost(handle); /* 独占HOST */
+SdioClaimHost(handle); // 独占HOST
 ```
 
 #### 使能SDIO设备
@@ -134,62 +163,64 @@ SdioClaimHost(handle); /* 独占HOST */
 int32_t SdioEnableFunc(DevHandle handle);
 ```
 
-  **表4** SdioEnableFunc函数的参数和返回值描述
+**表 4** SdioEnableFunc函数的参数和返回值描述
 
 | 参数 | 参数描述 | 
 | -------- | -------- |
-| handle | SDIO控制器的设备句柄 | 
+| handle | DevHandle类型，SDIO控制器的设备句柄 | 
 | **返回值** | **返回值描述** | 
-| 0 | SDIO使能成功 | 
+| HDF_SUCCESS | SDIO使能成功 | 
 | 负数 | SDIO使能失败 | 
 
 使能SDIO设备的示例如下：
 
 ```c
 int32_t ret;
-/* 使能SDIO设备 */
+// 使能SDIO设备
 ret = SdioEnableFunc(handle);
-if (ret != 0) {
-    HDF_LOGE("SdioEnableFunc: failed, ret %d\n", ret);
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("SdioEnableFunc: sdio enable func fail, ret:%d\n", ret);
+	return ret;
 }
 ```
 
 #### 注册SDIO中断
 
-在通信之前，还需要注册SDIO中断，注册SDIO中断函数如下图所示：
+在通信之前，还需要注册SDIO中断，注册SDIO中断函数如下所示：
 
 ```c
 int32_t SdioClaimIrq(DevHandle handle, SdioIrqHandler *handler);
 ```
 
-  **表5** SdioClaimIrq函数的参数和返回值描述
+**表 5** SdioClaimIrq函数的参数和返回值描述
 
 | 参数 | 参数描述 | 
 | -------- | -------- |
-| handle | SDIO控制器的设备句柄 | 
-| handler | 中断服务函数指针 | 
+| handle | DevHandle类型，SDIO控制器的设备句柄 | 
+| handler | 函数指针，中断服务函数 | 
 | **返回值** | **返回值描述** | 
-| 0 | 注册中断成功 | 
-| 负数 | 注册中断失败 | 
+| HDF_SUCCESS | 注册SDIO中断成功 | 
+| 负数 | 注册SDIO中断失败 | 
 
   注册SDIO中的示例如下：
 
 ```c
-/* 中断服务函数需要根据各自平台的情况去实现 */
+// 中断服务函数需要根据各自平台的情况去实现
 static void SdioIrqFunc(void *data)
 {
     if (data == NULL) {
         HDF_LOGE("SdioIrqFunc: data is NULL.\n");
         return;
     }
-    /* 需要开发者自行添加具体实现 */
+    // 需要开发者自行添加具体实现
 }
 
 int32_t ret;
-/* 注册SDIO中断 */
+// 注册SDIO中断
 ret = SdioClaimIrq(handle, SdioIrqFunc);
-if (ret != 0) {
-    HDF_LOGE("SdioClaimIrq: failed, ret %d\n", ret);
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("SdioClaimIrq: sdio claim irq fail, ret:%d\n", ret);
+    return ret;
 }
 ```
 
@@ -197,201 +228,207 @@ if (ret != 0) {
 
 - 向SDIO设备增量写入指定长度的数据
 
-  对应的接口函数如下所示：
+    对应的接口函数如下所示：
 
-  ```c
-  int32_t SdioWriteBytes(DevHandle handle, uint8_t *data, uint32_t addr, uint32_t size);
-  ```
+    ```c
+    int32_t SdioWriteBytes(DevHandle handle, uint8_t *data, uint32_t addr, uint32_t size);
+    ```
 
-  **表6** SdioWriteBytes函数的参数和返回值描述
+    **表 6** SdioWriteBytes函数的参数和返回值描述
 
-  | 参数 | 参数描述 | 
-  | -------- | -------- |
-  | handle | SDIO控制器的设备句柄 | 
-  | data | 待写入数据的指针 | 
-  |   addr | 待写入数据的起始地址 | 
-  | size | 待写入数据的长度 | 
-  | **返回值** | **返回值描述** | 
-  | 0 | SDIO写数据成功 | 
-  | 负数 | SDIO写数据失败 | 
+    | 参数 | 参数描述 | 
+    | -------- | -------- |
+    | handle | DevHandle类型，SDIO控制器的设备句柄 | 
+    | data | uint8_t类型指针，待写入数据 | 
+    | addr | uint32_t类型，待写入数据的起始地址 | 
+    | size | uint32_t类型，待写入数据的长度 | 
+    | **返回值** | **返回值描述** | 
+    | HDF_SUCCESS | SDIO写数据成功 | 
+    | 负数 | SDIO写数据失败 | 
 
-  向SDIO设备增量写入指定长度的数据的示例如下：
+    向SDIO设备增量写入指定长度的数据的示例如下：
 
-  ```c
-  int32_t ret;
-  uint8_t wbuff[] = {1,2,3,4,5};
-  uint32_t addr = 0x100 + 0x09;
-  /* 向SDIO设备起始地址0x109，增量写入5个字节的数据 */
-  ret = SdioWriteBytes(handle, wbuff, addr, sizeof(wbuff) / sizeof(wbuff[0]));
-  if (ret != 0) {
-      HDF_LOGE("SdioWriteBytes: failed, ret %d\n", ret);
-  }
-  ```
+    ```c
+    int32_t ret;
+    uint8_t wbuff[] = {1,2,3,4,5};
+    uint32_t addr = 0x100 + 0x09;
+    // 向SDIO设备起始地址0x109，增量写入5个字节的数据
+    ret = SdioWriteBytes(handle, wbuff, addr, sizeof(wbuff) / sizeof(wbuff[0]));
+    if (ret != HDF_SUCCESS) {
+        HDF_LOGE("SdioWriteBytes: sdio write bytes fail, ret:%d\n", ret);
+        return ret;
+    }
+    ```
 
 - 从SDIO设备增量读取指定长度的数据
 
-  对应的接口函数如下所示：
+    对应的接口函数如下所示：
 
-  ```c
-  int32_t SdioReadBytes(DevHandle handle, uint8_t *data, uint32_t addr, uint32_t size);
-  ```
+    ```c
+    int32_t SdioReadBytes(DevHandle handle, uint8_t *data, uint32_t addr, uint32_t size);
+    ```
 
-  **表7** SdioReadBytes函数的参数和返回值描述
+    **表 7** SdioReadBytes函数的参数和返回值描述
 
-  | 参数 | 参数描述 | 
-  | -------- | -------- |
-  | handle | SDIO控制器的设备句柄 | 
-  | data | 接收读取数据的指针 | 
-  | addr | 待读取数据的起始地址 | 
-  | size | 待读取数据的长度 | 
-  | **返回值** | **返回值描述** | 
-  | 0 | SDIO读数据成功 | 
-  | 负数 | SDIO读数据失败 | 
+    | 参数 | 参数描述 | 
+    | -------- | -------- |
+    | handle | DevHandle类型，SDIO控制器的设备句柄 | 
+    | data | uint8_t类型指针，接收读取数据 | 
+    | addr | uint32_t类型，待读取数据的起始地址 | 
+    | size | uint32_t类型，待读取数据的长度 | 
+    | **返回值** | **返回值描述** | 
+    | HDF_SUCCESS | SDIO读数据成功 | 
+    | 负数 | SDIO读数据失败 | 
 
-  从SDIO设备增量读取指定长度的数据的示例如下：
+    从SDIO设备增量读取指定长度的数据的示例如下：
 
-  ```c
-  int32_t ret;
-  uint8_t rbuff[5] = {0};
-  uint32_t addr = 0x100 + 0x09;
-  /* 从SDIO设备起始地址0x109，增量读取5个字节的数据 */
-  ret = SdioReadBytes(handle, rbuff, addr, 5);
-  if (ret != 0) {
-      HDF_LOGE("SdioReadBytes: failed, ret %d\n", ret);
-  }
-  ```
+    ```c
+    int32_t ret;
+    uint8_t rbuff[5] = {0};
+    uint32_t addr = 0x100 + 0x09;
+    // 从SDIO设备起始地址0x109，增量读取5个字节的数据
+    ret = SdioReadBytes(handle, rbuff, addr, 5);
+    if (ret != HDF_SUCCESS) {
+        HDF_LOGE("SdioReadBytes: sdio read bytes fail, ret:%d\n", ret);
+        return ret;
+    }
+    ```
 
 - 向SDIO设备的固定地址写入指定长度的数据
 
-  对应的接口函数如下所示：
+    对应的接口函数如下所示：
 
-  ```c
-  int32_t SdioWriteBytesToFixedAddr(DevHandle handle, uint8_t *data, uint32_t addr, uint32_t size, uint32_t scatterLen);
-  ```
+    ```c
+    int32_t SdioWriteBytesToFixedAddr(DevHandle handle, uint8_t *data, uint32_t addr, uint32_t size, uint32_t scatterLen);
+    ```
 
-    **表8** SdioWriteBytesToFixedAddr函数的参数和返回值描述
+    **表 8** SdioWriteBytesToFixedAddr函数的参数和返回值描述
   
-  | 参数 | 参数描述 | 
-  | -------- | -------- |
-  | handle | SDIO控制器的设备句柄 | 
-  | data | 待写入数据的指针 | 
-  | addr | 待写入数据的固定地址 | 
-  | size | 待写入数据的长度 | 
-  | scatterLen | 集散表的长度。如果该字段不为0，则data为集散表类型。 | 
-  | **返回值** | **返回值描述** | 
-  | 0 | SDIO写数据成功 | 
-  | 负数 | SDIO写数据失败 | 
+    | 参数 | 参数描述 | 
+    | -------- | -------- |
+    | handle | DevHandle类型，SDIO控制器的设备句柄 | 
+    | data | uint8_t类型指针，待写入数据 | 
+    | addr | uint32_t类型，待写入数据的固定地址 | 
+    | size | uint32_t类型，待写入数据的长度 | 
+    | scatterLen | uint32_t类型，集散表的长度。如果该字段不为0，则data为集散表类型。 | 
+    | **返回值** | **返回值描述** | 
+    | HDF_SUCCESS | SDIO写数据成功 | 
+    | 负数 | SDIO写数据失败 | 
 
-  向SDIO设备的固定地址写入指定长度的数据的示例如下：
+    向SDIO设备的固定地址写入指定长度的数据的示例如下：
 
-  ```c
-  int32_t ret;
-  uint8_t wbuff[] = {1，2，3，4，5};
-  uint32_t addr = 0x100 + 0x09;
-  /* 向SDIO设备固定地址0x109写入5个字节的数据 */
-  ret = SdioWriteBytesToFixedAddr(handle, wbuff, addr, sizeof(wbuff) / sizeof(wbuff[0]), 0);
-  if (ret != 0) {
-      HDF_LOGE("SdioWriteBytesToFixedAddr: failed, ret %d\n", ret);
-  }
-  ```
+    ```c
+    int32_t ret;
+    uint8_t wbuff[] = {1, 2, 3, 4, 5};
+    uint32_t addr = 0x100 + 0x09;
+    // 向SDIO设备固定地址0x109写入5个字节的数据
+    ret = SdioWriteBytesToFixedAddr(handle, wbuff, addr, sizeof(wbuff) / sizeof(wbuff[0]), 0);
+    if (ret != HDF_SUCCESS) {
+        HDF_LOGE("SdioWriteBytesToFixedAddr: sdio write bytes to fixed addr fail, ret:%d\n", ret);
+        return ret;
+    }
+    ```
 
 - 从SDIO设备的固定地址读取指定长度的数据
 
-  对应的接口函数如下所示：
+    对应的接口函数如下所示：
 
-  ```c
-  int32_t SdioReadBytesFromFixedAddr(DevHandle handle, uint8_t *data, uint32_t addr, uint32_t size, uint32_t scatterLen);
-  ```
+    ```c
+    int32_t SdioReadBytesFromFixedAddr(DevHandle handle, uint8_t *data, uint32_t addr, uint32_t size, uint32_t scatterLen);
+    ```
 
-    **表9** SdioReadBytesFromFixedAddr函数的参数和返回值描述
+    **表 9** SdioReadBytesFromFixedAddr函数的参数和返回值描述
   
-  | 参数 | 参数描述 | 
-  | -------- | -------- |
-  | handle | SDIO控制器的设备句柄 | 
-  | data | 接收读取数据的指针 | 
-  | addr | 待读取数据的起始地址 | 
-  | size | 待读取数据的长度 | 
-  | scatterLen | 集散表的长度。如果该字段不为0，则data为集散表类型。 | 
-  | **返回值** | **返回值描述** | 
-  | 0 | SDIO读数据成功 | 
-  | 负数 | SDIO读数据失败 | 
+    | 参数 | 参数描述 | 
+    | -------- | -------- |
+    | handle | DevHandle类型，SDIO控制器的设备句柄 | 
+    | data | uint8_t类型指针，接收读取数据 | 
+    | addr | uint32_t类型，待读取数据的起始地址 | 
+    | size | uint32_t类型，待读取数据的长度 | 
+    | scatterLen | uint32_t类型，集散表的长度。如果该字段不为0，则data为集散表类型。 | 
+    | **返回值** | **返回值描述** | 
+    | HDF_SUCCESS | SDIO读数据成功 | 
+    | 负数 | SDIO读数据失败 | 
 
-  从SDIO设备的固定地址读取指定长度的数据的示例如下：
+    从SDIO设备的固定地址读取指定长度的数据的示例如下：
 
-  ```c
-  int32_t ret;
-  uint8_t rbuff[5] = {0};
-  uint32_t addr = 0x100 + 0x09;
-  /* 从SDIO设备固定地址0x109中读取5个字节的数据 */
-  ret = SdioReadBytesFromFixedAddr(handle, rbuff, addr, 5, 0);
-  if (ret != 0) {
-      HDF_LOGE("SdioReadBytesFromFixedAddr: failed, ret %d\n", ret);
-  }
-  ```
+    ```c
+    int32_t ret;
+    uint8_t rbuff[5] = {0};
+    uint32_t addr = 0x100 + 0x09;
+    // 从SDIO设备固定地址0x109中读取5个字节的数据 
+    ret = SdioReadBytesFromFixedAddr(handle, rbuff, addr, 5, 0);
+    if (ret != HDF_SUCCESS) {
+        HDF_LOGE("SdioReadBytesFromFixedAddr: sdio read bytes from fixed addr fail, ret:%d\n", ret);
+        return ret;
+    }
+    ```
 
 - 向SDIO function 0的指定地址空间写入指定长度的数据
 
-  当前只支持写入一个字节的数据，对应的接口函数如下所示：
+    当前只支持写入一个字节的数据，对应的接口函数如下所示：
 
-  ```c
-  int32_t SdioWriteBytesToFunc0(DevHandle handle, uint8_t *data, uint32_t addr, uint32_t size);
-  ```
+    ```c
+    int32_t SdioWriteBytesToFunc0(DevHandle handle, uint8_t *data, uint32_t addr, uint32_t size);
+    ```
 
-  **表10** SdioWriteBytesToFunc0函数的参数和返回值描述
+    **表 10** SdioWriteBytesToFunc0函数的参数和返回值描述
 
-  | 参数 | 参数描述 | 
-  | -------- | -------- |
-  | handle | SDIO控制器的设备句柄 | 
-  | data | 待写入数据的指针 | 
-  | addr | 待写入数据的起始地址 | 
-  | size | 待写入数据的长度 | 
-  | **返回值** | **返回值描述** | 
-  | 0 | SDIO写数据成功 | 
-  | 负数 | SDIO写数据失败 | 
+    | 参数 | 参数描述 | 
+    | -------- | -------- |
+    | handle | DevHandle类型，SDIO控制器的设备句柄 | 
+    | data | uint8_t类型指针，待写入数据 | 
+    | addr | uint32_t类型，待写入数据的起始地址 | 
+    | size | uint32_t类型，待写入数据的长度 | 
+    | **返回值** | **返回值描述** | 
+    | HDF_SUCCESS | SDIO写数据成功 | 
+    | 负数 | SDIO写数据失败 | 
 
-  向SDIO function 0的指定地址空间写入指定长度的数据的示例如下：
+    向SDIO function 0的指定地址空间写入指定长度的数据的示例如下：
 
-  ```c
-  int32_t ret;
-  uint8_t wbuff = 1;
-  /* 向SDIO function 0地址0x2中写入1字节的数据 */
-  ret = SdioWriteBytesToFunc0(handle, &wbuff, 0x2, 1);
-  if (ret != 0) {
-      HDF_LOGE("SdioWriteBytesToFunc0: failed, ret %d\n", ret);
-  }
-  ```
+    ```c
+    int32_t ret;
+    uint8_t wbuff = 1;
+    // 向SDIO function 0地址0x2中写入1字节的数据
+    ret = SdioWriteBytesToFunc0(handle, &wbuff, 0x2, 1);
+    if (ret != HDF_SUCCESS) {
+        HDF_LOGE("SdioWriteBytesToFunc0: sdio write bytes to func0 fail, ret:%d\n", ret);
+        return ret;
+    }
+    ```
 
 - 从SDIO function 0的指定地址空间读取指定长度的数据
 
-  当前只支持读取一个字节的数据，对应的接口函数如下所示：
+    当前只支持读取一个字节的数据，对应的接口函数如下所示：
 
-  ```c
-  int32_t SdioReadBytesFromFunc0(DevHandle handle, uint8_t *data, uint32_t addr, uint32_t size);
-  ```
+    ```c
+    int32_t SdioReadBytesFromFunc0(DevHandle handle, uint8_t *data, uint32_t addr, uint32_t size);
+    ```
 
-  **表11** SdioReadBytesFromFunc0函数的参数和返回值描述
+    **表 11** SdioReadBytesFromFunc0函数的参数和返回值描述
 
-  | 参数 | 参数描述 | 
-  | -------- | -------- |
-  | handle | SDIO控制器的设备句柄 | 
-  | data | 接收读取数据的指针 | 
-  | addr | 待读取数据的起始地址 | 
-  | size | 待读取数据的长度 | 
-  | **返回值** | **返回值描述** | 
-  | 0 | SDIO读数据成功 | 
-  | 负数 | SDIO读数据失败 | 
+    | 参数 | 参数描述 | 
+    | -------- | -------- |
+    | handle | DevHandle类型，SDIO控制器的设备句柄 | 
+    | data | uint8_t类型指针，接收读取数据 | 
+    | addr | uint32_t类型，待读取数据的起始地址 | 
+    | size | uint32_t类型，待读取数据的长度 | 
+    | **返回值** | **返回值描述** | 
+    | HDF_SUCCESS | SDIO读数据成功 | 
+    | 负数 | SDIO读数据失败 | 
 
-  从SDIO function 0的指定地址空间读取指定长度的数据的示例如下：
+    从SDIO function 0的指定地址空间读取指定长度的数据的示例如下：
 
-  ```c
-  int32_t ret;
-  uint8_t rbuff;
-  /* 从SDIO function 0设备地址0x2中读取1字节的数据 */
-  ret = SdioReadBytesFromFunc0(handle, &rbuff, 0x2, 1);
-  if (ret != 0) {
-      HDF_LOGE("SdioReadBytesFromFunc0: failed, ret %d\n", ret);
-  }
-  ```
+    ```c
+    int32_t ret;
+    uint8_t rbuff;
+    /* 从SDIO function 0设备地址0x2中读取1字节的数据 */
+    ret = SdioReadBytesFromFunc0(handle, &rbuff, 0x2, 1);
+    if (ret != 0) {
+        HDF_LOGE("SdioReadBytesFromFunc0: sdio read bytes from func0 fail, ret:%d\n", ret);
+        return ret;
+    }
+    ```
 
 #### 释放SDIO中断
 
@@ -399,23 +436,24 @@ if (ret != 0) {
 
 int32_t SdioReleaseIrq(DevHandle handle);
 
-  **表12** SdioReleaseIrq函数的参数和返回值描述
+**表 12** SdioReleaseIrq函数的参数和返回值描述
 
 | 参数 | 参数描述 | 
 | -------- | -------- |
-| handle | SDIO控制器的设备句柄 | 
+| handle | DevHandle类型，SDIO控制器的设备句柄 | 
 | **返回值** | **返回值描述** | 
-| 0 | 释放SDIO中断成功 | 
+| HDF_SUCCESS | 释放SDIO中断成功 | 
 | 负数 | 释放SDIO中断失败 | 
 
 释放SDIO中断的示例如下：
 
 ```c
 int32_t ret;
-/* 释放SDIO中断 */
+// 释放SDIO中断
 ret = SdioReleaseIrq(handle);
-if (ret != 0) {
-    HDF_LOGE("SdioReleaseIrq: failed, ret %d\n", ret);
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("SdioReleaseIrq: sdio release irq fail, ret:%d\n", ret);
+    return ret;
 }
 ```
 
@@ -425,23 +463,24 @@ if (ret != 0) {
 
 int32_t SdioDisableFunc(DevHandle handle);
 
-  **表13** SdioDisableFunc函数的参数和返回值描述
+**表 13** SdioDisableFunc函数的参数和返回值描述
 
 | 参数 | 参数描述 | 
 | -------- | -------- |
-| handle | SDIO控制器的设备句柄 | 
+| handle | DevHandle类型，SDIO控制器的设备句柄 | 
 | **返回值** | **返回值描述** | 
-| 0 | 去使能SDIO设备成功 | 
+| HDF_SUCCESS | 去使能SDIO设备成功 | 
 | 负数 | 去使能SDIO设备失败 | 
 
 去使能SDIO设备的示例如下：
 
 ```c
 int32_t ret;
-/* 去使能SDIO设备 */
+// 去使能SDIO设备
 ret = SdioDisableFunc(handle);
-if (ret != 0) {
-    HDF_LOGE("SdioDisableFunc: failed, ret %d\n", ret);
+if (ret != HDF_SUCCESS) {
+    HDF_LOGE("SdioDisableFunc: sdio disable func fail, ret:%d\n", ret);
+    return ret;
 }
 ```
 
@@ -453,16 +492,16 @@ if (ret != 0) {
 void SdioReleaseHost(DevHandle handle);
 ```
 
-  **表14** SdioReleaseHost函数的参数描述
+**表 14** SdioReleaseHost函数的参数描述
 
 | 参数 | 参数描述 | 
 | -------- | -------- |
-| handle | SDIO控制器的设备句柄 | 
+| handle | DevHandle类型，SDIO控制器的设备句柄 | 
 
 释放HOST的示例如下：
 
 ```c
-SdioReleaseHost(handle); /* 释放HOST */
+SdioReleaseHost(handle); // 释放HOST
 ```
 
 #### 关闭SDIO控制器
@@ -475,16 +514,16 @@ void SdioClose(DevHandle handle);
 
 该函数会释放掉申请的资源。
 
-  **表15** SdioClose函数的参数描述
+**表 15** SdioClose函数的参数描述
 
 | 参数 | 参数描述 | 
 | -------- | -------- |
-| handle | SDIO控制器的设备句柄 | 
+| handle | DevHandle类型，SDIO控制器的设备句柄 | 
 
 关闭SDIO控制器的示例如下：
 
 ```c
-SdioClose(handle); /* 关闭SDIO控制器 */
+SdioClose(handle); // 关闭SDIO控制器
 ```
 
 ### 使用实例
