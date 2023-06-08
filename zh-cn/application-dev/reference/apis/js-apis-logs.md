@@ -12,6 +12,8 @@ debug(message: string, ...arguments: any[]): void
 
 以格式化输出方式打印调试信息。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -38,6 +40,8 @@ console.debug('count:'); // 仅打印message
 log(message: string, ...arguments: any[]): void
 
 以格式化输出方式打印日志信息。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -66,6 +70,8 @@ info(message: string, ...arguments: any[]): void
 
 以格式化输出方式打印日志信息。(console.log()的别名）。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -93,6 +99,8 @@ warn(message: string, ...arguments: any[]): void
 
 以格式化输出方式打印警告信息。
 
+从API version 9开始，该接口支持在ArkTS卡片中使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 **参数：**
@@ -119,6 +127,8 @@ console.warn('warn:'); // 仅打印message
 error(message: string, ...arguments: any[]): void
 
 以格式化输出方式打印错误信息。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
