@@ -552,7 +552,7 @@
       - [分布式文件系统概述](file-management/distributed-fs-overview.md)
       - [设置分布式文件数据等级](file-management/set-security-label.md)
       - [跨设备文件访问](file-management/file-access-across-devices.md)
-  - 任务管理
+  - 后台任务（Background Task）管理
     - 后台任务
       - [后台任务概述](task-management/background-task-overview.md)
       - [短时任务开发指导](task-management/transient-task-dev-guide.md)
