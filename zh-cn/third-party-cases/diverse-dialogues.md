@@ -451,3 +451,7 @@ struct Index {
 }
 ```
 ## 参考
+- [警告弹框](../application-dev/reference/arkui-ts/ts-methods-alert-dialog-box.md)
+- [日期滑动选择器弹窗](../application-dev/reference/arkui-ts/ts-methods-datepicker-dialog.md)
+- [文本滑动选择器弹窗](../application-dev/reference/arkui-ts/ts-methods-textpicker-dialog.md
+- [自定义弹窗](../application-dev/ui/arkts-common-components-custom-dialog.md)
