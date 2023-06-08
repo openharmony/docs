@@ -203,7 +203,7 @@ OpenHarmony是由开放原子开源基金会（OpenAtom Foundation）孵化及�
 | Hi3516解决方案-LiteOS（二进制） | 4.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_taurus_LiteOS.tar.gz.sha256) | 287.6 MB |
 | Hi3516解决方案-Linux（二进制）  | 4.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_taurus_Linux.tar.gz.sha256) | 186.4 MB |
 | RK3568标准系统解决方案（二进制）        | 4.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/dayu200_standard_arm32.tar.gz.sha256) | 4.5 GB |
-| RELEASE-NOTES | 3.2 Release| [站点](../../release-notes/OpenHarmony-v4.0-beta1.md) | - | - |
+| RELEASE-NOTES | 4.0 Beta1 | [站点](../../release-notes/OpenHarmony-v4.0-beta1.md) | - | - |
 | **编译工具链** | **版本信息** | **下载站点** | **SHA256校验码** | **软件包容量** |
 | 编译工具链获取清单 | - | [站点](https://repo.huaweicloud.com/openharmony/os/2.0/tool_chain/) | - | - |
 
