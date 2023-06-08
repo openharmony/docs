@@ -21,10 +21,3 @@
 |新增|NA|模块名: ohos.multimodalInput.shortKey<br>类名: shortKey<br>方法 or 属性: function setKeyDownDuration(businessKey: string, delay: number, callback: AsyncCallback\<void>): void;|@ohos.multimodalInput.shortKey.d.ts|
 |新增|NA|模块名: ohos.multimodalInput.shortKey<br>类名: shortKey<br>方法 or 属性: function setKeyDownDuration(businessKey: string, delay: number): Promise\<void>;|@ohos.multimodalInput.shortKey.d.ts|
 |删除|模块名：ohos.multimodalInput.inputDevice<br>类名:AxisType<br>方法 or 属性:type AxisType = 'touchMajor' \| 'touchMinor' \| 'orientation' \| 'x' \| 'y' \| 'pressure' \| 'toolMinor' \| 'toolMajor' \| 'NULL';|NA|@ohos.multimodalInput.inputDevice.d.ts|
-|起始版本有变化|类名：KeyOptions<br>起始版本：N/A|类名：KeyOptions<br>起始版本：8|@ohos.multimodalInput.inputConsumer.d.ts|
-|起始版本有变化|类名：KeyOptions<br>方法 or 属性：preKeys: Array\<number>;<br>起始版本：N/A|类名：KeyOptions<br>方法 or 属性：preKeys: Array\<number>;<br>起始版本：8|@ohos.multimodalInput.inputConsumer.d.ts|
-|起始版本有变化|类名：KeyOptions<br>方法 or 属性：finalKey: number;<br>起始版本：N/A|类名：KeyOptions<br>方法 or 属性：finalKey: number;<br>起始版本：8|@ohos.multimodalInput.inputConsumer.d.ts|
-|起始版本有变化|类名：KeyOptions<br>方法 or 属性：isFinalKeyDown: boolean;<br>起始版本：N/A|类名：KeyOptions<br>方法 or 属性：isFinalKeyDown: boolean;<br>起始版本：8|@ohos.multimodalInput.inputConsumer.d.ts|
-|起始版本有变化|类名：KeyOptions<br>方法 or 属性：finalKeyDownDuration: number;<br>起始版本：N/A|类名：KeyOptions<br>方法 or 属性：finalKeyDownDuration: number;<br>起始版本：8|@ohos.multimodalInput.inputConsumer.d.ts|
-|新增(权限)|类名：TouchEventReceiver<br>权限:N/A|类名：TouchEventReceiver<br>权限:ohos.permission.INPUT_MONITORING|@ohos.multimodalInput.inputMonitor.d.ts|
-|SysCap有变化|类名：inputDeviceCooperate<br>SysCap:N/A|类名：inputDeviceCooperate<br>SysCap:SystemCapability.MultimodalInput.Input.Cooperator|@ohos.multimodalInput.inputDeviceCooperate.d.ts|
