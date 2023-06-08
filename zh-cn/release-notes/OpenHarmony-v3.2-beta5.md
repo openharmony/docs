@@ -139,7 +139,7 @@ ArkUI适配了根据资源名称获取资源的能力。
 
 从本版本起，仅发布Public SDK，开发者可从镜像站点获取或通过DevEco Studio下载Public SDK用于应用开发。
 
-包含系统接口的全量SDK（Full SDK）需下载全量代码后编译构建出SDK文件，并在DevEco Studio中替换。通过源码编译Full SDK的指导请参见[Full-SDK编译指南](../application-dev/quick-start/full-sdk-compile-guide.md)。
+包含系统接口的全量SDK（Full SDK）需下载全量代码后编译构建出SDK文件，并在DevEco Studio中替换。通过源码编译Full SDK的指导请参见[Full-SDK编译指南](../application-dev/faqs/full-sdk-compile-guide.md)。
 
 
 ### 特性变更
@@ -162,7 +162,7 @@ ArkUI适配了根据资源名称获取资源的能力。
 | 文件存储 | - 新增应用文件统一URI处理能力。<br/>- 新增支持公共数据的临时授权和统一的打开入口。<br/>主要涉及以下需求：<br/>I687C8【新增能力】支持应用文件统一URI处理能力<br/>I64U8W【基础能力】支持公共数据的临时授权和统一open入口 | NA |
 | 元能力 | - 新增常驻进程重启优化。<br/>- 支持卡片数据库切换。<br/>- 支持异步onConnected等能力。<br/>主要涉及以下需求：<br/>I65M3F 【基础能力】执行ShellCommand命令管控<br/>I65V83  【基础能力】ServiceExtensionAbility支持异步onConnected生命周期<br/>I61H21  【基础能力】卡片本地数据库切换<br/>I63UJ5   【元能力】【ability_runtime】API8及以前API 支持异常处理<br/>I6BDCW 【基础能力】应用加载禁止加载data目录下的代码<br/>I6BDDU 【基础能力】FA模型默认启动方式为Standard<br/>I6BDE2 【基础能力】常驻应用异常频繁重启保护 | NA |
 
-API变更清单请参考：[API差异报告](api-change/v3.2-beta5/Readme.md)
+API变更清单请参考：[API差异报告](api-diff/v3.2-beta5/Readme-CN.md)
 
 各子系统API详细变更说明请参考：[变更说明](changelogs/v3.2-beta5/Readme.md)
 

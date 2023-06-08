@@ -153,7 +153,6 @@
   - [Matrix2D](ts-components-canvas-matrix2d.md)
   - [OffscreenCanvasRenderingContext2D对象](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D对象](ts-components-canvas-path2d.md)
-  - [Lottie](ts-components-canvas-lottie.md)
 - 动画
   - [属性动画](ts-animatorproperty.md)
   - [显式动画](ts-explicit-animation.md)
