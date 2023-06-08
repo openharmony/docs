@@ -5,6 +5,7 @@ The **accountManager** module provides APIs for account management of enterprise
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs of this module can be called only after a [device administrator application](js-apis-enterprise-adminManager.md#adminmanagerenableadmin) is enabled.
 
 ## Modules to Import
 
@@ -36,7 +37,7 @@ Forbids a device administrator application to create local user accounts. This A
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |
+| ID| Error Message                                                                      |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -48,7 +49,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-accountManager.disallowAddLocalAccount(admin, true, (error) => {
+accountManager.disallowAddLocalAccount(wantTemp, true, (error) => {
     if (error != null) {
         console.log("error code:" + error.code + " error message:" + error.message);
     }
@@ -84,7 +85,7 @@ Forbids a device administrator application to create local user accounts. This A
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |
+| ID| Error Message                                                                    |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|

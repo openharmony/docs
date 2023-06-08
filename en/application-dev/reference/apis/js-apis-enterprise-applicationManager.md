@@ -17,7 +17,7 @@ import applicationManager from '@ohos.enterprise.applicationManager';
 
 addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
 
-Adds applications to the application blocklist using the specified device administrator application. This API uses an asynchronous callback to return the result. The applications added to the blocklist cannot run under the administrator user.
+Adds applications to the application blocklist using the specified device administrator application. This API uses an asynchronous callback to return the result. The applications added to the blocklist cannot run under the current user.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -37,7 +37,7 @@ Adds applications to the application blocklist using the specified device admini
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |
+| ID| Error Message                                                                      |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -84,7 +84,7 @@ Adds applications to the application list for a user using the specified device 
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |
+| ID| Error Message                                                                    |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -135,7 +135,7 @@ Adds applications to the application blocklist using the specified device admini
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |
+| ID| Error Message                                                                    |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -180,7 +180,7 @@ Removes applications from the application blocklist using the specified device a
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |
+| ID| Error Message                                                                      |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -226,7 +226,7 @@ Removes applications from the application blocklist of a user using the specifie
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |
+| ID| Error Message                                                                    |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -277,7 +277,7 @@ Removes applications from the application blocklist using the specified device a
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |
+| ID| Error Message                                                                    |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -302,7 +302,7 @@ applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100).then(()
 
 getDisallowedRunningBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
 
-Obtains the application blocklist of the administrator user using the specified device administrator application. This API uses an asynchronous callback to return the result.
+Obtains the application blocklist of the current user using the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -321,7 +321,7 @@ Obtains the application blocklist of the administrator user using the specified 
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |
+| ID| Error Message                                                                      |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -365,7 +365,7 @@ Obtains the application blocklist of a user using the specified device administr
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |
+| ID| Error Message                                                                      |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -389,7 +389,7 @@ applicationManager.getDisallowedRunningBundles(wantTemp, 100, (error) => {
 
 getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;;
 
-Obtains the application blocklist using the specified device administrator application. This API uses a promise to return the result. If **userId** is passed in when this API is called, the device administrator application obtains the application blocklist of the specified user. If **userId** is not passed in, the device administrator application obtains the application blocklist of the current user. 
+Obtains the application blocklist of the current user using the specified device administrator application. This API uses a promise to return the result. If **userId** is passed in, the application blocklist of the specified user is obtained. If **userId** is not passed in, the application blocklist of the current user is obtained.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -408,13 +408,13 @@ Obtains the application blocklist using the specified device administrator appli
 
 | Type                  | Description                     |
 | --------------------- | ------------------------- |
-| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the application blocklist of the administrator user.|
+| Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the application blocklist of the current user.|
 
 **Error codes**
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |
+| ID| Error Message                                                                    |          
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |

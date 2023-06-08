@@ -1,10 +1,11 @@
 # @ohos.enterprise.deviceInfo (Device Information Management)
 
-The **deviceInfo** module provides APIs for enterprise device information management, including the API for obtaining device serial numbers. These APIs can only be called by device administrator applications.
+The deviceInfo module provides APIs for enterprise device information management, including the API for obtaining device serial numbers. Only the enterprise device administrator applications can call the APIs provided by this module.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> The APIs of this module can be called only after a [device administrator application](js-apis-enterprise-adminManager.md#adminmanagerenableadmin) is enabled.
 
 ## Modules to Import
 
@@ -16,7 +17,7 @@ import deviceInfo from '@ohos.enterprise.deviceInfo';
 
 getDeviceSerial(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
-Configures a device administrator application to obtain the device serial number. This API uses an asynchronous callback to return the result.
+Obtains the device serial number through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -29,7 +30,7 @@ Configures a device administrator application to obtain the device serial number
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)     | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;string&gt;            | Yes   | Callback used to return the result.<br> If the operation is successful, **err** is **null** and **data** is the device serial number obtained. If the operation fails, **err** is an error object.      |
+| callback | AsyncCallback&lt;string&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the device serial number obtained. If the operation fails, **err** is an error object.      |
 
 **Error codes**
 
@@ -60,7 +61,7 @@ deviceInfo.getDeviceSerial(wantTemp, (error, result) => {
 
 getDeviceSerial(admin: Want): Promise&lt;string&gt;
 
-Configures a device administrator application to obtain the device serial number. This API uses a promise to return the result.
+Obtains the device serial number through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -107,7 +108,7 @@ deviceInfo.getDeviceSerial(wantTemp).then((result) => {
 
 getDisplayVersion(admin: Want, callback: AsyncCallback&lt;string&gt;): void;
 
-Configures a device administrator application to obtain the device version number. This API uses an asynchronous callback to return the result.
+Obtains the device version number through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -120,7 +121,7 @@ Configures a device administrator application to obtain the device version numbe
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;string&gt;            | Yes   | Callback used to return the result.<br> If the operation is successful, **err** is **null** and **data** is the device version number obtained. If the operation fails, **err** is an error object.      |
+| callback | AsyncCallback&lt;string&gt;            | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the device version number obtained. If the operation fails, **err** is an error object.      |
 
 **Error codes**
 
@@ -151,7 +152,7 @@ deviceInfo.getDisplayVersion(wantTemp, (error, result) => {
 
 getDisplayVersion(admin: Want): Promise&lt;string&gt;
 
-Configures a device administrator application to obtain the device version number. This API uses a promise to return the result.
+Obtains the device version number through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -198,7 +199,7 @@ deviceInfo.getDisplayVersion(wantTemp).then((result) => {
 
 getDeviceName(admin: Want, callback: AsyncCallback&lt;string&gt;): void
 
-Configures a device administrator application to obtain the device name. This API uses an asynchronous callback to return the result.
+Obtains the device name through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
@@ -211,7 +212,7 @@ Configures a device administrator application to obtain the device name. This AP
 | Name     | Type                                      | Mandatory  | Description                      |
 | -------- | ---------------------------------------- | ---- | ------------------------------- |
 | admin    | [Want](js-apis-app-ability-want.md)      | Yes   | Device administrator application.                 |
-| callback | AsyncCallback&lt;string&gt;              | Yes   | Callback used to return the result.<br> If the operation is successful, **err** is **null** and **data** is the device name obtained. If the operation fails, **err** is an error object.      |
+| callback | AsyncCallback&lt;string&gt;              | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **null** and **data** is the device name obtained. If the operation fails, **err** is an error object.      |
 
 **Error codes**
 
@@ -242,7 +243,7 @@ deviceInfo.getDeviceName(wantTemp, (error, result) => {
 
 getDeviceName(admin: Want): Promise&lt;string&gt;
 
-Configures a device administrator application to obtain the device name. This API uses a promise to return the result.
+Obtains the device name through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_DEVICE_INFO
 
