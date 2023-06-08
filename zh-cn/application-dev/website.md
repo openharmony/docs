@@ -653,6 +653,13 @@
     - [案例应用](key-features/multi-device-app-dev/case.md)
     - [常见问题](key-features/multi-device-app-dev/faq.md)
   - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
+  - Native API的相关指导
+    - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
+    - [Drawing开发指导](napi/drawing-guidelines.md)
+    - [Rawfile开发指导](napi/rawfile-guidelines.md)
+    - [NativeWindow开发指导](napi/native-window-guidelines.md)
+    - [使用MindSpore Lite引擎进行模型推理](napi/mindspore-lite-guidelines.md)
+    - [Neural Network Runtime对接AI推理框架开发指导](napi/neural-network-runtime-guidelines.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - 调试工具
