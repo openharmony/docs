@@ -75,9 +75,9 @@ Progress(options: {value: number, total?: number, type?: ProgressType})
 | 名称          | 参数类型 | 必填 | 描述 |
 | ------------- | ------- | ---- | -------- |
 | borderColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 内描边颜色。<br/>默认值：'\#33006cde' |
-| borderWidth | [Length](ts-types.md#length) | 否 | 内描边宽度。<br/>默认值：1Vp |
+| borderWidth | [Length](ts-types.md#length) | 否 | 内描边宽度（不支持百分比设置）。<br/>默认值：1Vp |
 | content | string | 否 | 文本内容，应用可自定义。 |
-| font | [Font](ts-types.md#font) | 否 | 文本样式。<br/>默认值：<br/>- 文本大小：12Fp <br/>其他文本参数跟随text组件的主题值。|
+| font | [Font](ts-types.md#font) | 否 | 文本样式。<br/>默认值：<br/>- 文本大小（不支持百分比设置）：12Fp <br/>其他文本参数跟随text组件的主题值。|
 | fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 文本颜色。<br/>默认值：'\#ff182431' |
 | enableScanEffect | boolean | 否 | 扫光效果的开关。<br/>默认值：false |
 
