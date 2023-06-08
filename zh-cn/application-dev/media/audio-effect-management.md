@@ -94,10 +94,9 @@
 主要包括查询StreamUsage对应场景支持的音效模式。
 对于播放音频类的应用，开发者需要关注该应用的音频流使用什么音效模式并做出相应的操作，比如音乐App播放时，应选择音乐场景下的模式。在使用查询接口前，开发者需要使用getStreamManager()创建一个AudioStreamManager实例。
 
-### 获取全局音效查询接口
+### 获取音频流管理接口
 
-1.创建AudioStreamManager实例。
-在使用AudioStreamManager的API前，需要使用getStreamManager()创建一个AudioStreamManager实例。
+1.创建AudioStreamManager实例。在使用AudioStreamManager的API前，需要使用getStreamManager()创建一个AudioStreamManager实例。
 
    ```ts
    import audio from '@ohos.multimedia.audio';
@@ -105,12 +104,10 @@
    let audioStreamManager = audioManager.getStreamManager();
    ```
 
-2.管理播放实例音效的接口getAudioEffectInfoArray()查询音效模式。
-
-### 查询当前ContentType和StreamUsage对应场景的音效模式
+### 查询对应场景的音效模式
 
   ```ts
-  audioStreamManager.getAudioEffectInfoArray(audio.ContentType.CONTENT_TYPE_MUSIC, audio.StreamUsage.STREAM_USAGE_MEDIA, async (err, AudioEffectInfoArray) => {
+  audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_UNKNOWN, async (err, AudioEffectInfoArray) => {
     if (err) {
       console.error(`Failed to get effect info array`);
       return;    
