@@ -250,75 +250,51 @@
 （预留事件，暂未支持）表示分布式帐号token令牌无效的动作。
 ## [COMMON_EVENT_DISTRIBUTED_ACCOUNT_LOGOFF](./common_event/commonEvent-account.md)
 （预留事件，暂未支持）表示分布式帐号注销的动作。
-## COMMON_EVENT_WIFI_POWER_STATE
+
+## [COMMON_EVENT_WIFI_POWER_STATE](./common_event/commonEvent-wifi.md)
 Wi-Fi状态公共事件的动作，如启用和禁用。
-- 值： usual.event.wifi.POWER_STATE
-- 订阅者所需权限： 无
 
-## COMMON_EVENT_WIFI_SCAN_FINISHED
+## [COMMON_EVENT_WIFI_SCAN_FINISHED](./common_event/commonEvent-wifi.md)
 表示Wi-Fi接入点已被扫描并证明可用的公共事件的操作。
-- 值： usual.event.wifi.SCAN_FINISHED
-- 订阅者所需权限： ohos.permission.LOCATION
 
-## COMMON_EVENT_WIFI_RSSI_VALUE
+## [COMMON_EVENT_WIFI_SCAN_STATE](./common_event/commonEvent-wifi.md)
+表示Wi-Fi扫描接入点状态改变的公共事件的操作。
+
+## [COMMON_EVENT_WIFI_RSSI_VALUE](./common_event/commonEvent-wifi.md)
 表示Wi-Fi信号强度（RSSI）改变的公共事件的动作。
-- 值： usual.event.wifi.RSSI_VALUE
-- 订阅者所需权限： ohos.permission.GET_WIFI_INFO
 
-## COMMON_EVENT_WIFI_CONN_STATE
+## [COMMON_EVENT_WIFI_CONN_STATE](./common_event/commonEvent-wifi.md)
 Wi-Fi连接状态发生改变的公共事件的动作
-- 值： usual.event.wifi.CONN_STATE
-- 订阅者所需权限： 无
 
-## COMMON_EVENT_WIFI_HOTSPOT_STATE
+## [COMMON_EVENT_WIFI_HOTSPOT_STATE](./common_event/commonEvent-wifi.md)
 Wi-Fi热点状态的公共事件的动作，如启用或禁用。
-- 值： usual.event.wifi.HOTSPOT_STATE
-- 订阅者所需权限： 无
 
-## COMMON_EVENT_WIFI_AP_STA_JOIN
+## [COMMON_EVENT_WIFI_AP_STA_JOIN](./common_event/commonEvent-wifi.md)
 客户端加入当前设备Wi-Fi热点的普通事件的动作。
-- 值： usual.event.wifi.WIFI_HS_STA_JOIN
-- 订阅者所需权限： ohos.permission.GET_WIFI_INFO
 
-## COMMON_EVENT_WIFI_AP_STA_LEAVE
+## [COMMON_EVENT_WIFI_AP_STA_LEAVE](./common_event/commonEvent-wifi.md)
 客户端已断开与当前设备Wi-Fi热点的连接的公共事件的动作。
-- 值： usual.event.wifi.WIFI_HS_STA_LEAVE
-- 订阅者所需权限： ohos.permission.GET_WIFI_INFO
 
-## COMMON_EVENT_WIFI_MPLINK_STATE_CHANGE
+## [COMMON_EVENT_WIFI_MPLINK_STATE_CHANGE](./common_event/commonEvent-wifi.md)
 表示MPLink（增强Wi-Fi功能）状态已更改的公共事件的动作。
-- 值： usual.event.wifi.mplink.STATE_CHANGE
-- 订阅者所需权限： ohos.permission.MPLINK_CHANGE_STATE
 
-## COMMON_EVENT_WIFI_P2P_CONN_STATE
- Wi-Fi P2P连接状态改变的公共事件的动作。
-- 值： usual.event.wifi.p2p.CONN_STATE_CHANGE
-- 订阅者所需权限： ohos.permission.GET_WIFI_INFO和ohos.permission.LOCATION
+## [COMMON_EVENT_WIFI_P2P_CONN_STATE](./common_event/commonEvent-wifi.md)
+Wi-Fi P2P连接状态改变的公共事件的动作。
 
-## COMMON_EVENT_WIFI_P2P_STATE_CHANGED
+## [COMMON_EVENT_WIFI_P2P_STATE_CHANGED](./common_event/commonEvent-wifi.md)
 Wi-Fi P2P状态公共事件的动作，如启用和禁用。
-- 值： usual.event.wifi.p2p.STATE_CHANGE
-- 订阅者所需权限： ohos.permission.GET_WIFI_INFO
 
-## COMMON_EVENT_WIFI_P2P_PEERS_STATE_CHANGED
+## [COMMON_EVENT_WIFI_P2P_PEERS_STATE_CHANGED](./common_event/commonEvent-wifi.md)
 Wi-Fi P2P对等体状态变化。
-- 值： usual.event.wifi.p2p.DEVICES_CHANGE
-- 订阅者所需权限： ohos.permission.GET_WIFI_INFO
 
-## COMMON_EVENT_WIFI_P2P_PEERS_DISCOVERY_STATE_CHANGED
+## [COMMON_EVENT_WIFI_P2P_PEERS_DISCOVERY_STATE_CHANGED](./common_event/commonEvent-wifi.md)
 Wi-Fi P2P发现状态变化。
-- 值： usual.event.wifi.p2p.PEER_DISCOVERY_STATE_CHANGE
-- 订阅者所需权限： ohos.permission.GET_WIFI_INFO
 
-## COMMON_EVENT_WIFI_P2P_CURRENT_DEVICE_STATE_CHANGED
+## [COMMON_EVENT_WIFI_P2P_CURRENT_DEVICE_STATE_CHANGED](./common_event/commonEvent-wifi.md)
 Wi-Fi P2P当前设备状态变化。
-- 值： usual.event.wifi.p2p.CURRENT_DEVICE_CHANGE
-- 订阅者所需权限： ohos.permission.GET_WIFI_INFO
 
-## COMMON_EVENT_WIFI_P2P_GROUP_STATE_CHANGED
+## [COMMON_EVENT_WIFI_P2P_GROUP_STATE_CHANGED](./common_event/commonEvent-wifi.md)
 Wi-Fi P2P群组信息已更改。
-- 值： usual.event.wifi.p2p.GROUP_STATE_CHANGED
-- 订阅者所需权限： ohos.permission.GET_WIFI_INFO
 
 ## COMMON_EVENT_BLUETOOTH_HANDSFREE_AG_CONNECT_STATE_UPDATE
 （预留事件，暂未支持）蓝牙免提通信连接状态公共事件的动作。
