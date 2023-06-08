@@ -28,7 +28,7 @@
     - [Developing Audio Call](audio-call-development.md)
   - [Video Playback](video-playback.md)
   - [Video Recording](video-recording.md)
-- AVSession (for System Applications Only)
+- AVSession
   - [AVSession Overview](avsession-overview.md)
   - Local AVSession
     - [Local AVSession Overview](local-avsession-overview.md)
@@ -37,7 +37,7 @@
   - Distributed AVSession
     - [Distributed AVSession Overview](distributed-avsession-overview.md)
     - [Using Distributed AVSession](using-distributed-avsession.md)
-- Camera (for System Applications Only)
+- Camera
   - [Camera Overview](camera-overview.md)
   - Camera Development
     - [Camera Development Preparations](camera-preparation.md)
