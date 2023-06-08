@@ -385,16 +385,19 @@
 
 - 定制管理
   - [@ohos.configPolicy (配置策略)](js-apis-configPolicy.md)
-  - [@ohos.enterprise.accountManager（帐户管理）](js-apis-enterprise-accountManager.md)
+
+- 企业设备管理
+  - [企业设备管理概述](企业设备管理概述.md)
+  - [@ohos.enterprise.accountManager (帐户管理)](js-apis-enterprise-accountManager.md)
   - [@ohos.enterprise.adminManager (企业设备管理)](js-apis-enterprise-adminManager.md)
-  - [@ohos.enterprise.applicationManager（应用管理）](js-apis-enterprise-applicationManager.md)
-  - [@ohos.enterprise.bundleManager（包管理）](js-apis-enterprise-bundleManager.md)
+  - [@ohos.enterprise.applicationManager (应用管理)](js-apis-enterprise-applicationManager.md)
+  - [@ohos.enterprise.bundleManager (包管理)](js-apis-enterprise-bundleManager.md)
   - [@ohos.enterprise.dateTimeManager (系统时间管理)](js-apis-enterprise-dateTimeManager.md)
   - [@ohos.enterprise.deviceControl (设备控制管理)](js-apis-enterprise-deviceControl.md)
-  - [@ohos.enterprise.deviceInfo（设备信息管理）](js-apis-enterprise-deviceInfo.md)
-  - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](js-apis-EnterpriseAdminExtensionAbility.md)
-  - [@ohos.enterprise.networkManager（网络管理）](js-apis-enterprise-networkManager.md)
-  - [@ohos.enterprise.wifiManager（WiFi管理）](js-apis-enterprise-wifiManager.md)
+  - [@ohos.enterprise.deviceInfo (设备信息管理)](js-apis-enterprise-deviceInfo.md)
+  - [@ohos.enterprise.EnterpriseAdminExtensionAbility (企业设备管理扩展能力)](js-apis-EnterpriseAdminExtensionAbility.md)
+  - [@ohos.enterprise.networkManager (网络管理)](js-apis-enterprise-networkManager.md)
+  - [@ohos.enterprise.wifiManager (WiFi管理)](js-apis-enterprise-wifiManager.md)
 
 - 语言基础类库
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
