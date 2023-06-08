@@ -225,13 +225,22 @@
    ```js
    let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
    predicates.equalTo('NAME', 'Rose');
-   store.query(predicates, ['ID', 'NAME', 'AGE', 'SALARY', 'CODES'], (err, resultSet) => {
+   store.query(predicates, ['ID', 'NAME', 'AGE', 'SALARY'], (err, resultSet) => {
      if (err) {
        console.error(`Failed to query data. Code:${err.code}, message:${err.message}`);
        return;
      }
-     console.info(`ResultSet column names: ${resultSet.columnNames}`);
-     console.info(`ResultSet column count: ${resultSet.columnCount}`);
+     console.info(`ResultSet column names: ${resultSet.columnNames}, column count: ${resultSet.columnCount}`);
+     // resultSet是一个数据集合的游标，默认指向第-1个记录，有效的数据从0开始。
+     while (resultSet.goToNextRow()) {
+       const id = resultSet.getLong(resultSet.getColumnIndex("ID"));
+       const name = resultSet.getString(resultSet.getColumnIndex("NAME"));
+       const age = resultSet.getLong(resultSet.getColumnIndex("AGE"));
+       const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
+       console.info(`id=${id}, name=${name}, age=${age}, salary=${salary}`);
+     }
+     // 释放数据集的内存
+     resultSet.close();
    })
    ```
 
