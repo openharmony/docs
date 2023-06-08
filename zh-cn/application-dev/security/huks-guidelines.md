@@ -1,9 +1,6 @@
 
 # 通用密钥库开发指导
 
-## 官方sample
-HUKS 官方sample已上架，包含端到端密钥操作流程，[点击前往](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/Huks);
-
 ## 生成新密钥
 
 HUKS提供为业务安全随机生成密钥的能力。通过HUKS生成的密钥，密钥的全生命周期明文不会出安全环境，能保证任何人都无法接触获取到密钥的明文。即使生成密钥的业务自身，后续也只能通过HUKS提供的接口请求执行密钥操作，获取操作结果，但无法接触到密钥自身。
@@ -2720,3 +2717,6 @@ async function AttestKeyTest() {
 2. Property 'finishSession' does not exist on type 'typeof huks'. Did you mean 'finish'?
 
    不能在huks库中找到finishSession，finishSession是API9版本的，请更新SDK版本或替换新版本的security.huks.d.ts文件。
+
+## 相关实例
+[通用密钥库系统](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/Huks): 本示例使用huks相关接口实现了对任意输入内容进行加密和解密的功能
