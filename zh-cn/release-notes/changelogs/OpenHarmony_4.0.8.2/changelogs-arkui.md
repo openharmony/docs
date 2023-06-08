@@ -39,11 +39,9 @@ struct DatePickerExample {
 
 ## cl.arkui.2 自定义组件成员变量初始化的规则与约束。
 
-`@LocalStorageLink`, `@LocalStorageProp`修饰的变量不允许在父组件初始化。
-
-**变更影响**
-
 不允许从父组件初始化`@LocalStorageLink`, `@LocalStorageProp`修饰的变量。
+
+**示例：**
 
 ```ts
 @Entry
