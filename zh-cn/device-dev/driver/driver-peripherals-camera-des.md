@@ -53,20 +53,20 @@ Camera模块主要针对相机预览、拍照、视频流等场景，对这些�
 
   | 功能描述                     | 接口名称                                                     |
   | ---------------------------- | ------------------------------------------------------------ |
-  | 获取流控制器                 | int32_t GetStreamOperator_V1_1(<br>const sptr\<OHOS::HDI::Camera::V1_0::IStreamOperatorCallback\>& callbackObj,<br>sptr<OHOS::HDI::Camera::V1_1::IStreamOperator>& streamOperator) |
+  | 获取流控制器                 | int32_t GetStreamOperator_V1_1(<br>const sptr\<OHOS::HDI::Camera::V1_0::IStreamOperatorCallback\>& callbackObj,<br>sptr<OHOS::HDI::Camera::V1_1::IStreamOperator>& streamOperator<br>) |
 
 - icamera_host.h
 
   | 功能描述                       | 接口名称                                                     |
   | ------------------------------ | ------------------------------------------------------------ |
-  | 打开Camera设备                 | int32_t OpenCamera_V1_1(const std::string& cameraId, <br>const sptr\<OHOS::HDI::Camera::V1_0::ICameraDeviceCallback\>& callbackObj, <br>sptr\<OHOS::HDI::Camera::V1_1::ICameraDevice\>& device) |
+  | 打开Camera设备                 | int32_t OpenCamera_V1_1(<br>const std::string& cameraId, <br>const sptr\<OHOS::HDI::Camera::V1_0::ICameraDeviceCallback\>& callbackObj, <br>sptr\<OHOS::HDI::Camera::V1_1::ICameraDevice\>& device<br>) |
   | 预启动摄像头设备               | int32_t PreLaunch(const PrelaunchConfig& config) |
 
 - istream_operator.h
 
   | 功能描述                         | 接口名称                                                     |
   | -------------------------------- | ------------------------------------------------------------ |
-  | 查询是否支持添加参数对应的流     | int32_t IsStreamsSupported_V1_1(<br>OperationMode mode,<br>const std::vector<uint8_t>& modeSetting,<br>const std::vector<StreamInfo_V1_1>& infos,<br>StreamSupportType& type) |
+  | 查询是否支持添加参数对应的流     | int32_t IsStreamsSupported_V1_1(<br>OperationMode mode,<br>const std::vector<uint8_t>& modeSetting,<br>const std::vector<StreamInfo_V1_1>& infos,<br>StreamSupportType& type<br>) |
   | 创建流                           | int32_t CreateStreams_V1_1(const std::vector<StreamInfo_V1_1>& streamInfos) |
 
 
