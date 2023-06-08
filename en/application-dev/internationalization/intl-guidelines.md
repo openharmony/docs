@@ -111,7 +111,7 @@ The [i18n](../reference/apis/js-apis-i18n.md) module provides enhanced I18N capa
    let dateTimeFormat = new Intl.DateTimeFormat();
    ```
 
-     Alternatively, use your own locale and formatting parameters to create a **DateTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [DateTimeOptions](../reference/apis/js-apis-intl.md#datetimeoptions6).
+     Alternatively, use your own locale and formatting parameters to create a **DateTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [DateTimeOptions](../reference/apis/js-apis-intl.md#datetimeoptions9).
    
    ```js
    let options = {dateStyle: "full", timeStyle: "full"};
