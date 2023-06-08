@@ -1,6 +1,9 @@
 
 # 通用密钥库开发指导
 
+## 官方sample
+HUKS 官方sample已上架，包含端到端密钥操作流程，[点击前往](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Security/Huks);
+
 ## 生成新密钥
 
 HUKS提供为业务安全随机生成密钥的能力。通过HUKS生成的密钥，密钥的全生命周期明文不会出安全环境，能保证任何人都无法接触获取到密钥的明文。即使生成密钥的业务自身，后续也只能通过HUKS提供的接口请求执行密钥操作，获取操作结果，但无法接触到密钥自身。
