@@ -850,3 +850,6 @@ window.getLastWindow(this.context, (error, win) => {
 | MIDDLE_BTN_SOUTH_EAST            | 36   | 向东南滚动  |![MID_Btn_South_East.png](./figures/MID_Btn_South_East.png)|
 | MIDDLE_BTN_SOUTH_WEST            | 37   | 向西南滚动  |![MID_Btn_South_West.png](./figures/MID_Btn_South_West.png)|
 | MIDDLE_BTN_NORTH_SOUTH_WEST_EAST | 38   | 四向锥形移动 |![MID_Btn_North_South_West_East.png](./figures/MID_Btn_North_South_West_East.png)|
+| HORIZONTAL_TEXT_CURSOR | 39 | 垂直文本选择 |![Horizontal_Text_Cursor.png](./figures/Horizontal_Text_Cursor.png)|
+| CURSOR_CROSS | 40 | 十字光标 |![Cursor_Cross.png](./figures/Cursor_Cross.png)|
+| CURSOR_CIRCLE | 41 | 圆形光标 |![Cursor_Circle.png](./figures/Cursor_Circle.png)|
