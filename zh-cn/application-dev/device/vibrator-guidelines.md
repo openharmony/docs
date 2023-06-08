@@ -314,4 +314,5 @@ Json共包含2个属性。"MetaData"：文件头信息，可在相应属性中�
 
 针对振动开发，有以下相关实例可供参考：
 
-- [`Vibrator`：振动（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Vibrator)
+- [`Vibrator`：振动（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Vibrator/BasicVibration)
+- [`CustomHaptic`：自定义振动（ArkTS）（API10）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Vibrator/CustomHaptic)
