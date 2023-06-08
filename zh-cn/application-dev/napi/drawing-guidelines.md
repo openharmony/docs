@@ -128,10 +128,7 @@ Native Drawing模块提供了一系列的接口用于基本图形和字体的绘
     ```c++
     // 画完后获取像素地址，地址指向的内存包含画布画的像素数据
     void* bitmapAddr = OH_Drawing_BitmapGetPixels(cBitmap);
-    auto ret = memcpy_s(addr, addrSize, bitmapAddr, addrSize);
-    if (ret != EOK) {
-        LOGI("memcpy_s failed");
-    }
+    std::copy(addr, addr + addrSize, static_cast<uint8_t*>(bitmapAddr));
     // 销毁canvas对象
     OH_Drawing_CanvasDestory(cCanvas);
     // 销毁bitmap对象
