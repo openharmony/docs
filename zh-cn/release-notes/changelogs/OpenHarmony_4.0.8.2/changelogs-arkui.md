@@ -22,7 +22,7 @@ struct DatePickerExample {
 
 **变更影响**
 
-如果状态装饰器变量没有显式声明变量类型，声明any，编译拦截报错。
+如果状态装饰器变量没有显式声明变量类型，声明any，编译拦截等级由WARN变成ERROR。
 
 ```ts
 // ArkTS:ERROR Please define an explicit type, not any.
@@ -68,6 +68,10 @@ struct Child {
 }
 ```
 
+**变更影响**
+
+如果父组件初始化`@LocalStorageLink`, `@LocalStorageProp`修饰的变量，编译拦截等级由WARN变成ERROR。
+
 **关键的接口/组件变更**
 
 不涉及。
@@ -77,3 +81,4 @@ struct Child {
 构造子组件时，不对子组件的`@LocalStorageLink`, `@LocalStorageProp`修饰的变量进行赋值。
 
 如果需要在父组件中修改子组件的`@LocalStorageLink`, `@LocalStorageProp`修饰的变量，则使用LocalStorage提供的API接口方法(比如set方法)赋值。
+
