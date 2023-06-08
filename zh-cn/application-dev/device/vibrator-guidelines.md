@@ -254,12 +254,12 @@ Json共包含2个属性。"MetaData"：文件头信息，可在相应属性中�
 6. 启动和停止自定义振动
 
    ```js
-    import vibrator from '@ohos.vibrator';
-    import resourceManager from '@ohos.resourceManager';
+   import vibrator from '@ohos.vibrator';
+   import resourceManager from '@ohos.resourceManager';
 
-    const FILE_NAME = "xxx.json";
+   const FILE_NAME = "xxx.json";
 
-    async function openResource(fileName) {
+   async function openResource(fileName) {
         let fileDescriptor = undefined;
         let mgr = await resourceManager.getResourceManager();
         await mgr.getRawFd(fileName).then(value => {
@@ -269,21 +269,21 @@ Json共包含2个属性。"MetaData"：文件头信息，可在相应属性中�
             console.log('openResource err: ' + error);
         });
         return fileDescriptor;
-    }
+   }
 
-    async function closeResource(fileName) {
+   async function closeResource(fileName) {
         let mgr = await resourceManager.getResourceManager();
         await mgr.closeRawFd(fileName).then(()=> {
             console.log('closeResource success fileName: ' + fileName);
         }).catch(error => {
             console.log('closeResource err: ' + error);
         });
-    }
+   }
 
-    // 获取振动文件资源描述符
-    let rawFd = openResource(FILE_NAME);
-    // 使用startVibration、stopVibration需要添加ohos.permission.VIBRATE权限
-    try {
+   // 获取振动文件资源描述符
+   let rawFd = openResource(FILE_NAME);
+   // 使用startVibration、stopVibration需要添加ohos.permission.VIBRATE权限
+   try {
         // 启动自定义振动
         vibrator.startVibration({
             type: "file",
@@ -303,11 +303,11 @@ Json共包含2个属性。"MetaData"：文件头信息，可在相应属性中�
             }
             console.log('Callback returned to indicate successful.');
         })
-    } catch (error) {
+   } catch (error) {
         console.info('errCode: ' + error.code + ' ,msg: ' + error.message);
-    }
-    // 关闭振动文件资源
-    closeResource(FILE_NAME);
+   }
+   // 关闭振动文件资源
+   closeResource(FILE_NAME);
    ```
 
 ## 相关实例
