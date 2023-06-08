@@ -1149,6 +1149,8 @@
         - continuation
           - [continuationExtraParams](reference/apis/js-apis-continuation-continuationExtraParams.md)
           - [continuationResult](reference/apis/js-apis-continuation-continuationResult.md)
+    - AI
+      - [@ohos.ai.mindSporeLite (推理能力)](reference/apis/js-apis-mindSporeLite.md)
     - 公共事件与通知
       - [系统公共事件定义](reference/apis/commonEventManager-definitions.md)
       - [@ohos.commonEventManager (公共事件模块)(推荐)](reference/apis/js-apis-commonEventManager.md)
@@ -1272,6 +1274,8 @@
       - [@ohos.userIAM.userAuth (用户认证)](reference/apis/js-apis-useriam-userauth.md)
       - security
         - [PermissionRequestResult](reference/apis/js-apis-permissionrequestresult.md)
+    - AI
+      - [使用MindSpore Lite引擎进行模型推理](ai/mindspore-lite-js-guidelines.md)
     - 数据管理
       - [@ohos.data.cloudData (端云协同)](reference/apis/js-apis-data-cloudData.md)
       - [@ohos.data.dataAbility (DataAbility谓词)](reference/apis/js-apis-data-ability.md)
