@@ -328,6 +328,7 @@ struct WebComponent {
 }
 ```
 
+加载的html文件。
 ```html
 <!--index.html-->
 <!DOCTYPE html>
@@ -447,7 +448,7 @@ struct WebComponent {
       Button('close')
         .onClick(() => {
           try {
-            if (this.msgPort && this.msgPort[1]) {
+            if (this.msgPort && this.msgPort.length == 2) {
               this.msgPort[1].close();
             } else {
               console.error("msgPort is null, Please initialize first");
@@ -667,7 +668,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             // 通过$rawfile加载本地资源文件。
-            this.controller.loadUrl($rawfile('xxx.html'));
+            this.controller.loadUrl($rawfile('index.html'));
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -694,7 +695,7 @@ struct WebComponent {
         .onClick(() => {
           try {
             // 通过resource协议加载本地资源文件。
-            this.controller.loadUrl("resource://rawfile/xxx.html");
+            this.controller.loadUrl("resource://rawfile/index.html");
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -707,8 +708,9 @@ struct WebComponent {
 
 3.通过沙箱路径加载本地文件，可以参考[web](../arkui-ts/ts-basic-components-web.md#web)加载沙箱路径的示例代码。
 
+加载的html文件。
 ```html
-<!-- xxx.html -->
+<!-- index.html -->
 <!DOCTYPE html>
 <html>
   <body>
@@ -1339,6 +1341,23 @@ struct Index {
 }
 ```
 
+加载的html文件。
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <body>
+        Hello world!
+    </body>
+    <script type="text/javascript">
+    function htmlTest() {
+        str = objName.test("test function")
+        console.log('objName.test result:'+ str)
+    }
+</script>
+</html>
+
 ### runJavaScript
 
 runJavaScript(script: string, callback : AsyncCallback\<string>): void
@@ -1400,6 +1419,24 @@ struct WebComponent {
     }
   }
 }
+```
+
+加载的html文件。
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <meta charset="utf-8">
+  <body>
+      Hello world!
+  </body>
+  <script type="text/javascript">
+  function test() {
+      console.log('Ark WebComponent')
+      return "This value is from index.html"
+  }
+  </script>
+</html>
 ```
 
 ### runJavaScript
@@ -1466,6 +1503,23 @@ struct WebComponent {
 }
 ```
 
+加载的html文件。
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <meta charset="utf-8">
+  <body>
+      Hello world!
+  </body>
+  <script type="text/javascript">
+  function test() {
+      console.log('Ark WebComponent')
+      return "This value is from index.html"
+  }
+  </script>
+</html>
+```
 
 ### runJavaScriptExt<sup>10+</sup>
 
@@ -1565,8 +1619,11 @@ struct WebComponent {
     }
   }
 }
+```
 
-//index.html
+加载的html文件。
+```html
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en-gb">
 <body>
@@ -1677,8 +1734,11 @@ struct WebComponent {
     }
   }
 }
+```
 
-//index.html
+加载的html文件。
+```html
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en-gb">
 <body>
@@ -2174,14 +2234,15 @@ struct WebComponent {
             console.error(`ErrorCode: ${error.code}, Message: ${error.message}`);
           }
         })
-      Web({ src: $rawfile('xxx.html'), controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
 ```
 
+加载的html文件。
 ```html
-<!--xxx.html-->
+<!--index.html-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -2969,14 +3030,15 @@ struct WebComponent {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
 ```
 
+加载的html文件。
 ```html
-<!--xxx.html-->
+<!--index.html-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -3041,14 +3103,15 @@ struct WebComponent {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
 ```
 
+加载的html文件。
 ```html
-<!--xxx.html-->
+<!--index.html-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -3113,14 +3176,15 @@ struct WebComponent {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
         })
-      Web({ src: 'www.example.com', controller: this.controller })
+      Web({ src: $rawfile('index.html'), controller: this.controller })
     }
   }
 }
 ```
 
+加载的html文件。
 ```html
-<!--xxx.html-->
+<!--index.html-->
 <!DOCTYPE html>
 <html>
 <head>
