@@ -113,6 +113,8 @@
     - continuation
       - [continuationExtraParams](js-apis-continuation-continuationExtraParams.md)
       - [continuationResult](js-apis-continuation-continuationResult.md)
+- AI
+  - [@ohos.ai.mindSporeLite (推理能力)](js-apis-mindSporeLite.md)
 
 - 公共事件与通知
   - [系统公共事件定义](commonEventManager-definitions.md)
