@@ -1123,9 +1123,12 @@
         - [NotificationTemplate](reference/apis/js-apis-inner-notification-notificationTemplate.md)
         - [NotificationUserInput](reference/apis/js-apis-inner-notification-notificationUserInput.md)
       - Common Events
+        - [Common Events of the Ability Subsystem](reference/apis/common_event/commonEvent-ability.md)
         - [Common Events of the Bundle Management Subsystem](reference/apis/common_event/commonEvent-bundleManager.md)
-        - [Common Events of the Notification Service](reference/apis/common_event/commonEvent-ans.md)
+        - [ͨCommon Events of the Notification Service](reference/apis/common_event/commonEvent-ans.md)
+        - [Common Events of the Resource Scheduling Subsystem](reference/apis/common_event/commonEvent-resourceschedule.md)
         - [Common Events of the Telephony Subsystem](reference/apis/common_event/commonEvent-telephony.md)
+        - [Common Events of the USB Subsystem](reference/apis/common_event/commonEvent-usb.md)
     - Bundle Management
       - [@ohos.bundle.appControl(appControl)](reference/apis/js-apis-appControl.md)
       - [@ohos.bundle.bundleManager (bundleManager)](reference/apis/js-apis-bundleManager.md)

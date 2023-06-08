@@ -552,7 +552,7 @@
       - [分布式文件系统概述](file-management/distributed-fs-overview.md)
       - [设置分布式文件数据等级](file-management/set-security-label.md)
       - [跨设备文件访问](file-management/file-access-across-devices.md)
-  - 任务管理
+  - 后台任务（Background Task）管理
     - 后台任务
       - [后台任务概述](task-management/background-task-overview.md)
       - [短时任务开发指导](task-management/transient-task-dev-guide.md)
@@ -653,8 +653,7 @@
     - [案例应用](key-features/multi-device-app-dev/case.md)
     - [常见问题](key-features/multi-device-app-dev/faq.md)
   - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
-  - Native API相关指导
-    - [Native API介绍](napi/introduction.md)
+  - Native API的相关指导
     - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
     - [Drawing开发指导](napi/drawing-guidelines.md)
     - [Rawfile开发指导](napi/rawfile-guidelines.md)

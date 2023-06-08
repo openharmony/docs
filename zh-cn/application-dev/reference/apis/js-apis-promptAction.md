@@ -6,7 +6,7 @@
 >
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 >
-> 该模块不支持在[UIAbility](./js-apis-app-ability-uiAbility.md)中使用。
+> 该模块不支持在[UIAbility](./js-apis-app-ability-uiAbility.md)中使用，需要在创建组件实例后使用。
 
 ## 导入模块
 

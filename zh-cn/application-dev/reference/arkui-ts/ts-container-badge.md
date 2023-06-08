@@ -28,7 +28,7 @@
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| count | number | 是 | 设置提醒消息数。<br/>**说明：** <br/>小于等于0时不显示信息标记。 |
+| count | number | 是 | 设置提醒消息数。<br/>**说明：** <br/>小于等于0时不显示信息标记。<br/>取值范围：[-2147483648,2147483647]，非整数时会舍去小数部分取整数部分，如5.5取5。 |
 | position | [BadgePosition](#badgeposition枚举说明) | 否 | 设置提示点显示位置。<br/>默认值：BadgePosition.RightTop |
 | maxCount | number | 否 | 最大消息数，超过最大消息时仅显示maxCount+。<br/>默认值：99 |
 | style | [BadgeStyle](#badgestyle对象说明) | 是 | Badge组件可设置样式，支持设置文本颜色、尺寸、圆点颜色和尺寸。 |
