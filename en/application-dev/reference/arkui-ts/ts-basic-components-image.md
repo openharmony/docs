@@ -29,7 +29,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name | Type                                    | Mandatory  | Description                                    |
 | ---- | ---------------------------------------- | ---- | ---------------------------------------- |
-| src  |  [PixelMap](../apis/js-apis-image.md#pixelmap7) \|ResourceStr\| [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | Yes   | Image source. Both local and online images are supported.<br>When using an image referenced using a relative path, for example, **Image("common/test.jpg")**, the **\<Image>** component cannot be called across bundles or modules. Therefore, you are advised to use **\$r** to reference image resources that need to be used globally.<br>- The following image formats are supported: PNG, JPG, BMP, SVG, GIF.<br>\- Base64 strings are supported. The value format is data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], where [base64 data] is a Base64 string.<br/>\- Strings with the **datashare://** path prefix are supported, which are used to access the image path provided by a Data ability.<br/>\- Strings with the **file:///data/storage** prefix are supported, which are used to read image resources in the **files** folder in the installation directory of the application. Ensure that the application has the read permission to the files in the specified path.<br/>\- [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) objects are supported.<br/>**NOTE**<br/>- ArkTS widgets support GIF images, but the images are played only once when they are displayed.<br/>- ArkTS widgets do not support the **http://**, **datashare://**, or **file://data/storage** path prefixes.<br>- ArkTS widgets do not support the [PixelMap](../apis/js-apis-image.md#pixelmap7) type.|
+| src  |  [PixelMap](../apis/js-apis-image.md#pixelmap7) \| ResourceStr\| [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | Yes   | Image source. Both local and online images are supported.<br>When using an image referenced using a relative path, for example, **Image("common/test.jpg")**, the **\<Image>** component cannot be called across bundles or modules. Therefore, you are advised to use **\$r** to reference image resources that need to be used globally.<br>- The following image formats are supported: PNG, JPG, BMP, SVG, GIF.<br>\- Base64 strings are supported. The value format is data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], where [base64 data] is a Base64 string.<br/>\- Strings with the **datashare://** prefix are supported, which are used to access the image path provided by a Data ability.<br/>\- Strings with the **file:///data/storage** prefix are supported, which are used to read image resources in the **files** folder in the installation directory of the current application. Ensure that the application has the read permission to the files in the specified path.<br/>\- [DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) objects are supported.<br/>- For details, see [Displaying Images](../../ui/arkts-graphics-display.md).<br/>**NOTE**<br/>- ArkTS widgets support GIF animations, but the animations only play once on display.<br/>- ArkTS widgets do not support the strings with the **http://**, **datashare://**, or **file:///data/storage** prefix.<br>- ArkTS widgets do not support the [PixelMap](../apis/js-apis-image.md#pixelmap7) type.|
 
 ## Attributes
 
@@ -56,7 +56,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 >
 >  To use shortcut keys to copy the image, the image must be in focus. To enable the image to gain focus, set both the **focusable** and **focusOnTouch** attributes to **true**.
 >
->  For SVG images, only the following tags are included in the supported list: **svg**, **rect**, **circle**, **ellipse**, **path**, **line**, **polyline**, **polygon**, and **animate**.
+>  For SVG images, only the following tags are included in the supported list: **svg**, **rect**, **circle**, **ellipse**, **path**, **line**, **polyline**, and **polygon**.
 
 ### ImageInterpolation
 
@@ -93,6 +93,8 @@ In addition to the [universal events](ts-universal-events-click.md), the followi
 ### Loading Images
 
 Load and display different types of images and set the scale mode of the images.
+
+The **overlay** attribute sets the mask text of an image. For details, see [Overlay](ts-universal-attributes-overlay.md).
 
 ```ts
 @Entry
@@ -225,7 +227,7 @@ struct Index {
 ```
 
 > **NOTE**
-> 
+>
 > For details about the request mode, timeout, and additional request parameters for loading online images, see [request()](../../reference/apis/js-apis-http.md) in the HTTP module.
 
 ### Setting Attributes
@@ -416,4 +418,86 @@ struct LoadImageExample {
   }
 }
 ```
-<!--no_check-->
+
+### Applying a Filter to an Image
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct colorFilterExample {
+  @State colorFilterR: number = 0
+  @State colorFilterG: number = 0
+  @State colorFilterB: number = 0
+  @State colorFilterA: number = 0
+
+  build() {
+    Row() {
+      Column() {
+        Image($r('app.media.sky'))
+          .width(200)
+          .height(200)
+        Image($r('app.media.sky'))
+          .width(200)
+          .height(200)
+          .colorFilter([
+          this.colorFilterR, 0, this.colorFilterR, 0, 0,
+            0, this.colorFilterG, this.colorFilterG, 0, 0,
+          this.colorFilterB, 0, this.colorFilterB, 0, 0,
+            0, 0, this.colorFilterA, 0, 0
+          ])
+
+        Row() {
+          Text('R')
+          Slider({
+            min: 0,
+            max: 1,
+            step: 0.01
+          })
+            .onChange((valueR) => {
+              this.colorFilterR = valueR
+            })
+        }
+
+        Row() {
+          Text('G')
+          Slider({
+            min: 0,
+            max: 1,
+            step: 0.01
+          })
+            .onChange((valueG) => {
+              this.colorFilterG = valueG
+            })
+        }
+
+        Row() {
+          Text('B')
+          Slider({
+            min: 0,
+            max: 1,
+            step: 0.01
+          })
+            .onChange((valueB) => {
+              this.colorFilterB = valueB
+            })
+        }
+
+        Row() {
+          Text('A')
+          Slider({
+            min: 0,
+            max: 1,
+            step: 0.01
+          })
+            .onChange((valueA) => {
+              this.colorFilterA = valueA
+            })
+        }
+      }.width('90%').alignItems(HorizontalAlign.Center)
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+![colorFilter](figures/colorFilter.gif)

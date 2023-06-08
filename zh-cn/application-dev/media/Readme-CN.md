@@ -54,7 +54,8 @@
   - [图片开发概述](image-overview.md)
   - [图片解码](image-decoding.md)
   - 图片处理
-    - [图像变换](image-transformation.md)
+    - [图像变换(ArkTS)](image-transformation.md)
+    - [图像变换(Native)](image-transformation-native.md)
     - [位图操作](image-pixelmap-operation.md)
   - [图片编码](image-encoding.md)
   - [图片工具](image-tool.md)

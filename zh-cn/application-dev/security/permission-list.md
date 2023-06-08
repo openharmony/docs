@@ -1014,6 +1014,26 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.ENTERPRISE_INSTALL_BUNDLE
+
+允许设备管理员安装和卸载包。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_GET_SETTINGS
+
+允许设备管理员查询“设置”应用数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.NFC_TAG
 
 允许应用读取Tag卡片。
@@ -1933,6 +1953,46 @@
 允许不直接使用传感器的应用打开和关闭传感器。
 
 **权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.DEVICE_STANDBY_EXEMPTION
+
+允许应用在系统待机模式正常使用资源。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.RESTRICT_APPLICATION_ACTIVE
+
+允许待机续航部件发布一个自定义的限网事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.UPLOAD_SESSION_MANAGER
+
+允许应用管理上传任务会话。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.PREPARE_APP_TERMINATE
+
+允许应用关闭前执行自定义的预关闭动作。
+
+**权限级别**：normal
 
 **授权方式**：system_grant
 

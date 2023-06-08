@@ -774,8 +774,8 @@
       - [Shape](reference/arkui-ts/ts-drawing-components-shape.md)
     - Canvas Components
       - [Canvas](reference/arkui-ts/ts-components-canvas-canvas.md)
-      - [CanvasRenderingContext2D](reference/arkui-ts/ts-canvasrenderingcontext2d.md)
       - [CanvasGradient](reference/arkui-ts/ts-components-canvas-canvasgradient.md)
+      - [CanvasRenderingContext2D](reference/arkui-ts/ts-canvasrenderingcontext2d.md)
       - [ImageBitmap](reference/arkui-ts/ts-components-canvas-imagebitmap.md)
       - [ImageData](reference/arkui-ts/ts-components-canvas-imagedata.md)
       - [OffscreenCanvasRenderingConxt2D](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
@@ -1185,6 +1185,9 @@
       - [@ohos.multimedia.camera (Camera Management)](reference/apis/js-apis-camera.md)
       - [@ohos.multimedia.image (Image Processing)](reference/apis/js-apis-image.md)
       - [@ohos.multimedia.media (Media)](reference/apis/js-apis-media.md)
+      - [@ohos.multimedia.systemSoundManager (System Sound Management)](reference/apis/js-apis-systemSoundManager.md)
+      - multimedia
+        - [ringtonePlayer (Ringtone Player)](reference/apis/js-apis-inner-multimedia-ringtonePlayer.md)
     - Resource Manager
       - [@ohos.i18n (Internationalization)](reference/apis/js-apis-i18n.md)
       - [@ohos.intl (Internationalization)](reference/apis/js-apis-intl.md)
@@ -1285,6 +1288,7 @@
       - [@ohos.InputMethodExtensionAbility (InputMethodExtensionAbility)](reference/apis/js-apis-inputmethod-extension-ability.md)
       - [@ohos.InputMethodExtensionContext (InputMethodExtensionContext)](reference/apis/js-apis-inputmethod-extension-context.md)
       - [@ohos.InputMethodSubtype (Input Method Subtype)](reference/apis/js-apis-inputmethod-subtype.md)
+      - [@ohos.logLibrary (Log Library)](reference/apis/js-apis-loglibrary.md)
       - [@ohos.pasteboard (Pasteboard)](reference/apis/js-apis-pasteboard.md)
       - [@ohos.screenLock (Screenlock)](reference/apis/js-apis-screen-lock.md)
       - [@ohos.systemDateTime (System Time and Time Zone)](reference/apis/js-apis-system-date-time.md)
@@ -1315,6 +1319,7 @@
        - [@ohos.multimodalInput.mouseEvent (Mouse Event)](reference/apis/js-apis-mouseevent.md)
        - [@ohos.multimodalInput.pointer (Mouse Pointer)](reference/apis/js-apis-pointer.md)
        - [@ohos.multimodalInput.touchEvent (Touch Event)](reference/apis/js-apis-touchevent.md)
+      - [@ohos.multimodalInput.shortKey (Shortcut Key)](reference/apis/js-apis-shortKey.md)
        - [@ohos.power (System Power Management)](reference/apis/js-apis-power.md)
        - [@ohos.runningLock (Runninglock)](reference/apis/js-apis-runninglock.md)
        - [@ohos.sensor (Sensor)](reference/apis/js-apis-sensor.md)
@@ -1494,6 +1499,7 @@
       - [Application Event Logging Error Codes](reference/errorcodes/errorcode-hiappevent.md)
       - [HiSysEvent Error Codes](reference/errorcodes/errorcode-hisysevent.md)
       - [HiDebug Error Codes](reference/errorcodes/errorcode-hiviewdfx-hidebug.md)
+      - [Log Library Error Codes](reference/errorcodes/errorcode-loglibrary.md)
       - [Input Method Framework Error Codes](reference/errorcodes/errorcode-inputmethod-framework.md)
       - [Pasteboard Error Codes](reference/errorcodes/errorcode-pasteboard.md)
       - [Screen Lock Management Error Codes](reference/errorcodes/errorcode-screenlock.md)
@@ -1615,7 +1621,7 @@
       - [OH_Huks_PubKeyInfo](reference/native-apis/_o_h___huks___pub_key_info.md)
       - [OH_Huks_Result](reference/native-apis/_o_h___huks___result.md)
     - Standard Libraries Supported by Native APIs
-      - [Node_API](reference/native-lib/third_party_napi/napi.md)
+      - [Node-API](reference/native-lib/third_party_napi/napi.md)
       - [libuv](reference/native-lib/third_party_libuv/libuv.md)
       - [Native Standard Libraries Supported by Openharmony](reference/native-lib/third_party_libc/musl.md)
       - Appendix
@@ -1649,4 +1655,3 @@
   - [SDK Usage](faqs/faqs-sdk.md)
   - [Usage of Third- and Fourth-Party Libraries](faqs/faqs-third-fourth-party-library.md)
 
- <!--no_check--> 

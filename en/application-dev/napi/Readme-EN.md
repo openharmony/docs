@@ -1,7 +1,7 @@
 # Native APIs
 
 - [Introduction to Native APIs](introduction.md)
-- [Using N-APIs in Application Projects](napi-guidelines.md)
+- [Using Native APIs in Application Projects](napi-guidelines.md)
 - [Drawing Development](drawing-guidelines.md)
 - [Raw File Development](rawfile-guidelines.md)
 - [Native Window Development](native-window-guidelines.md)

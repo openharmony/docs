@@ -22,9 +22,9 @@ Checks whether this application is undergoing a stability test. This API uses an
 
 **Parameters**
 
-| Type| Description|
-| -------- | -------- |
-|AsyncCallback&lt;boolean&gt; |Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.|
+  | Type| Description| 
+  | -------- | -------- |
+  |AsyncCallback&lt;boolean&gt; |Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.| 
 
 **Error codes**
 
@@ -59,9 +59,9 @@ Checks whether this application is undergoing a stability test. This API uses a 
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.|
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is undergoing a stability test, and **false** means the opposite.| 
 
 **Error codes**
 
@@ -94,9 +94,9 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.|
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;boolean&gt; | Promise used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.| 
 
 **Error codes**
 
@@ -128,9 +128,9 @@ Checks whether this application is running on a RAM constrained device. This API
 
 **Parameters**
 
-| Type| Description|
-| -------- | -------- |
-| AsyncCallback&lt;boolean&gt; |Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.|
+  | Type| Description| 
+  | -------- | -------- |
+  | AsyncCallback&lt;boolean&gt; |Callback used to return the API call result and the result **true** or **false**. You can perform error handling or custom processing in this callback. The value **true** means that the application is running on a RAM constrained device, and **false** means the opposite.| 
 
 **Error codes**
 
@@ -164,9 +164,9 @@ Obtains the memory size of this application. This API uses a promise to return t
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the API call result and the memory size. You can perform error handling or custom processing in this callback.|
+  | Type| Description| 
+  | -------- | -------- |
+  | Promise&lt;number&gt; | Promise used to return the API call result and the memory size. You can perform error handling or custom processing in this callback.| 
 
 **Error codes**
 
@@ -198,9 +198,9 @@ Obtains the memory size of this application. This API uses an asynchronous callb
 
 **Parameters**
 
-| Type| Description|
-| -------- | -------- |
-|AsyncCallback&lt;number&gt; |Callback used to return the API call result and the memory size. You can perform error handling or custom processing in this callback.|
+  | Type| Description| 
+  | -------- | -------- |
+  |AsyncCallback&lt;number&gt; |Callback used to return the API call result and the memory size. You can perform error handling or custom processing in this callback.| 
 
 **Error codes**
 
@@ -294,6 +294,82 @@ appManager.getRunningProcessInformation((err, data) => {
         console.error('getRunningProcessInformation fail, err: ${JSON.stringify(err)}');
     } else {
         console.log('The process running information is: ${JSON.stringify(data)}');
+    }
+});
+```
+
+## appManager.isSharedBundleRunning
+
+isSharedBundleRunning(bundleName: string, versionCode: number): Promise\<boolean>;
+
+Checks whether the shared library is in use. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.GET_RUNNING_INFO
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name       | Type                                      | Mandatory  | Description            |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| bundleName    | string   | Yes   | Bundle name of the shared library.|
+| versionCode   | number   | Yes   | Version number of the shared library.     |
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the shared library is in use, and **false** means the opposite.|
+
+**Example**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+appManager.isSharedBundleRunning(bundleName, versionCode).then((data) => {
+    console.log('The shared bundle running is: ${JSON.stringify(data)}');
+}).catch((error) => {
+    console.error('error: ${JSON.stringify(error)}');
+});
+```
+
+## appManager.isSharedBundleRunning
+
+isSharedBundleRunning(bundleName: string, versionCode: number, callback: AsyncCallback\<boolean>): void;
+
+Checks whether the shared library is in use. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.GET_RUNNING_INFO
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API.
+
+**Parameters**
+
+| Name       | Type                                      | Mandatory  | Description            |
+| --------- | ---------------------------------------- | ---- | -------------- |
+| bundleName    | string   | Yes   | Bundle name of the shared library.|
+| versionCode   | number   | Yes   | Version number of the shared library.     |
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+|AsyncCallback\<boolean>> | Callback used to return the result. The value **true** means that the shared library is in use, and **false** means the opposite.|
+
+**Example**
+
+```ts
+import appManager from '@ohos.app.ability.appManager';
+
+appManager.isSharedBundleRunning(bundleName, versionCode, (err, data) => {
+    if (err) {
+        console.error('err: ${JSON.stringify(err)}');
+    } else {
+        console.log('The shared bundle running is: ${JSON.stringify(data)}');
     }
 });
 ```
@@ -641,7 +717,7 @@ Obtains applications that are running in the foreground. This API uses a promise
 
 | Type| Description|
 | -------- | -------- |
-| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | Promise used to return an array holding the application state data. |
+| Promise\<Array\<[AppStateData](js-apis-inner-application-appStateData.md)>> | Promise used to return an array holding the application state data.|
 
 **Error codes**
 
@@ -731,11 +807,11 @@ Kills a process by bundle name and account ID. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Bundle name.|
-| accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
-| callback | AsyncCallback\<void\> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.|
+  | Name| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | bundleName | string | Yes| Bundle name.| 
+  | accountId | number | Yes| ID of a system account. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).| 
+  | callback | AsyncCallback\<void\> | Yes| Callback used to return the API call result. You can perform error handling or custom processing in this callback.| 
 
 **Error codes**
 
