@@ -462,6 +462,7 @@ try {
 | -------------------------------- | ------------------------------ |
 | [VibrateTime](#vibratetime9)     | 按照指定持续时间触发马达振动。 |
 | [VibratePreset](#vibratepreset9) | 按照预置振动类型触发马达振动。 |
+| [VibrateFromFile](#vibratefromfile10) | 按照振动配置文件触发马达振动。 |
 
 ## VibrateTime<sup>9+</sup>
 
@@ -485,6 +486,29 @@ try {
 | type     | "preset" | 按照预置振动效果触发马达振动。 |
 | effectId | -        | 预置的振动效果ID。             |
 | count    | -        | 重复振动的次数。               |
+
+## VibrateFromFile<sup>10+</sup>
+
+自定义振动类型，仅部分设备支持。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+
+| 名称     | 值       | 说明                           |
+| -------- | -------- | ------------------------------ |
+| type     | "file" | 按照振动配置文件触发马达振动。 |
+| hapticFd | -        | 振动配置文件的描述符，类型为[HapticFileDescriptor](#hapticfiledescriptor10)。             |
+
+## HapticFileDescriptor<sup>10+</sup>
+
+自定义振动配置文件描述符，必须确认资源文件可用，可通过[文件管理API](js-apis-file-fs.md#fsopen)从沙箱路径获取或者通过[资源管理API](js-apis-resource-manager.md#getrawfd9)从HAP资源获取。使用场景：振动序列被存储在一个文件中，需要根据偏移量和长度进行振动，振动序列存储格式，请参考[自定义振动格式](../../device/vibrator-guidelines.md#自定义振动支持的格式)。
+
+**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+
+| 名称     | 类型      |  必填  | 说明                           |
+| -------- | -------- |--------| ------------------------------ |
+| fd       | number   |  是    | 文件描述符。                  |
+| offset   | number   |  否    | 文件指针起始偏移量，默认值为文件起始位置。             |
+| length   | number   |  否    | 文件长度，默认值为从偏移位置至文件结尾的大小。                             |
 
 ## VibrateAttribute<sup>9+</sup>
 
