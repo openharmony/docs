@@ -4,7 +4,7 @@
 
 所有的状态装饰器变量需要显式声明变量类型，不允许声明any。
 
-   示例：
+    **示例：** 
 
    ```ts
    // xxx.ets
@@ -22,7 +22,7 @@
 
 **变更影响**
 
-如果状态装饰器变量没有显式声明变量类型，声明any，编译拦截报错；
+如果状态装饰器变量没有显式声明变量类型，声明any，编译拦截报错。
 
    ```ts
    // ArkTS:ERROR Please define an explicit type, not any.
@@ -39,11 +39,11 @@
 
 ## cl.arkui.2 自定义组件成员变量初始化的规则与约束。
 
-不允许从父组件初始化`@LocalStorageLink`, `@LocalStorageProp`修饰的变量。
+`@LocalStorageLink`, `@LocalStorageProp`修饰的变量不允许从父组件初始化。
 
 **变更影响**
 
-不允许从父组件初始化`@LocalStorageLink`, `@LocalStorageProp`修饰的变量。
+父组件初始化`@LocalStorageLink`, `@LocalStorageProp`修饰的变量，编译报错。
 
    ```ts
    @Entry
@@ -76,5 +76,5 @@
 
 **适配指导**
 
-构造子组件时，不对子组件的`@LocalStorageLink`, `@LocalStorageProp`修饰的变量进行。
-   如果需要在父组件中修改子组件的`@LocalStorageLink`, `@LocalStorageProp`修饰的变量，则使用LocalStorage提供的API接口方法(比如set方法)赋值。
+构造子组件时，不对子组件的`@LocalStorageLink`, `@LocalStorageProp`修饰的变量进行赋值。
+如果需要在父组件中修改子组件的`@LocalStorageLink`, `@LocalStorageProp`修饰的变量，则使用LocalStorage提供的API接口方法(比如set方法)赋值。
