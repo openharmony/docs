@@ -671,30 +671,20 @@ Wi-Fi P2P群组信息已更改。
 - 值： usual.event.data.DISK_EJECT
 - 订阅者所需权限： ohos.permission.STORAGE_MANAGER
 
-## COMMON_EVENT_VOLUME_REMOVED<sup>9+<sup>
+## [COMMON_EVENT_VOLUME_REMOVED<sup>9+<sup>](./common_event/commonEvent-filemanagement.md)
 外部存储设备状态变更为移除时发送此公共事件。
-- 值： usual.event.data.VOLUME_REMOVED
-- 订阅者所需权限： ohos.permission.STORAGE_MANAGER
 
-## COMMON_EVENT_VOLUME_UNMOUNTED<sup>9+<sup>
+## [COMMON_EVENT_VOLUME_UNMOUNTED<sup>9+<sup>](./common_event/commonEvent-filemanagement.md)
 外部存储设备状态变更为卸载时发送此公共事件。
-- 值： usual.event.data.VOLUME_UNMOUNTED
-- 订阅者所需权限： ohos.permission.STORAGE_MANAGER
 
-## COMMON_EVENT_VOLUME_MOUNTED<sup>9+<sup>
+## [COMMON_EVENT_VOLUME_MOUNTED<sup>9+<sup>](./common_event/commonEvent-filemanagement.md)
 外部存储设备状态变更为挂载时发送此公共事件。
-- 值： usual.event.data.VOLUME_MOUNTED
-- 订阅者所需权限： ohos.permission.STORAGE_MANAGER
 
-## COMMON_EVENT_VOLUME_BAD_REMOVAL<sup>9+<sup>
+## [COMMON_EVENT_VOLUME_BAD_REMOVAL<sup>9+<sup>](./common_event/commonEvent-filemanagement.md)
 外部存储设备状态变更为挂载状态下移除时发送此公共事件。
-- 值： usual.event.data.VOLUME_BAD_REMOVAL
-- 订阅者所需权限： ohos.permission.STORAGE_MANAGER
 
-## COMMON_EVENT_VOLUME_EJECT<sup>9+<sup>
+## [COMMON_EVENT_VOLUME_EJECT<sup>9+<sup>](./common_event/commonEvent-filemanagement.md)
 用户已表示希望删除外部存储介质时发送此公共事件。
-- 值： usual.event.data.VOLUME_EJECT
-- 订阅者所需权限： ohos.permission.STORAGE_MANAGER
 
 ## COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED
 （预留事件，暂未支持）表示帐户可见更改的公共事件的动作。
