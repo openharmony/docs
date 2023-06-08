@@ -183,13 +183,10 @@ _[Changelog](api-change/v3.1-beta/changelog-v3.1-beta.md)_
 | [分布式手写板（eTS）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/DistributeDatabaseDrawEts) | 基于分布式能力，实现多设备同步书写互动。 | eTS |
 | [分布式数据库](https://gitee.com/openharmony/codelabs/tree/master/Data/JsDistributedData) | 基于分布式数据接口，实现多种设备上一致的数据访问体验。 | JS |
 | [关系型数据库](https://gitee.com/openharmony/codelabs/tree/master/Data/JSRelationshipData) | 基于关系型数据库和数据管理能力，实现数据库相关应用服务的快速开发。 | JS |
-| [极简声明式UI范式（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SimpleGalleryEts) | 基于OpenHarmony&nbsp;eTS&nbsp;UI，实现一个图库应用。 | eTS |
-| [一次开发多端部署（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/MultiDeploymentEts) | 基于OpenHarmony&nbsp;eTS&nbsp;UI，实现一次布局，多端部署。 | eTS |
 | [购物应用（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts) | 基于OpenHarmony&nbsp;eTS&nbsp;UI丰富的组件实现购物商城应用。 | eTS |
 | [Page内和Page间导航跳转](https://gitee.com/openharmony/codelabs/tree/master/Ability/PageAbility) | 入门教程，学习如何完成Page内和Page间的页面导航跳转。 | eTS |
 | [转场动画的使用（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TransitionAnimtaionEts) | 基于OpenHarmony&nbsp;eTS&nbsp;UI转场动画，实现了页面间转场、组件内转场以及共享元素转场。 | eTS |
 | [基础组件Slider的使用（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SliderApplicationEts) | 基于OpenHarmony&nbsp;eTS&nbsp;UI，使用slider组件，实现可调节风车大小和转速的动画效果。 | eTS |
-| [流式布局（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/FlowLayoutEts) | 基于OpenHarmony&nbsp;eTS&nbsp;UI，实现流式布局效果。 | eTS |
 | [弹窗（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialogEts) | 基于OpenHarmony&nbsp;eTS&nbsp;UI，实现警告弹窗和自定义弹窗。 | eTS |
 
 
