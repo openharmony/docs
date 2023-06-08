@@ -985,12 +985,14 @@ Camera驱动的开发过程主要包含以下步骤：
 
 ## 参考<a name="4"></a>
 
-针对camera模块openharmony提供了默认的hcs配置。开发者若有特殊需求可自行修改相关的HCS配置文件。
+针对Camera模块0penHarmony提供了默认的HCS配置。开发者若有特殊需求可自行修改相关的HCS配置文件。
 Camera模块HCS配置文件路径：'/vendor/hihope/rk3568/hdf_config/uhdf/camera'，其中：
 
-+  './hdi_impl/camera_host_config.hcs' 主要是metadata TAG配置
-+  './pipeline_core/config.hcs' 主要是node 节点配置
+-  './hdi_impl/camera_host_config.hcs' 主要是metadata TAG配置
+-  './pipeline_core/config.hcs' 主要是node 节点配置
+
     编译后在'/drivers/periphera/camra/vdi_base/common/pipeline_core/pipeline_impl/src/strategy/config'目录下生产'congfig.c'和'congfig.h'文件
-+  './pipeline_core/ipp_algo_config.hcs' 为ipp node 拍照配置
-+  './pipeline_core/params.hcs' 各种流配置
+-  './pipeline_core/ipp_algo_config.hcs' 为ipp node 拍照配置
+-  './pipeline_core/params.hcs' 各种流配置
+
     编译后在'/drivers/periphera/camra/vdi_base/common/pipeline_core/pipeline_impl/src/strategy/config'目录下生产'params.c'和'params.h'文件
