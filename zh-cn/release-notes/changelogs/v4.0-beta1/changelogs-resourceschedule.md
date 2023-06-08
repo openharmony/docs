@@ -1,36 +1,5 @@
 # 资源调度子系统ChangeLog
 
-## cl.resourceschedule.workScheduler.1
-
-WorkSchedulerExtensionAbility提供默认的WorkSchedulerExtensionContext。
-
-**变更影响**
-
-基于OpenHarmony4.0.5.1及之后的SDK版本开发的应用，可使用默认的context属性作为WorkSchedulerExtension的上下文环境。
-
-**关键接口/组件变更**
-
-@ohos.WorkSchedulerExtensionAbility.d.ts中新增context属性。新增文件application/WorkSchedulerExtensionContext.d.ts，继承自ExtensionContext。
-
-| 模块名 | 类名 | 方法/属性/枚举/常量 | 变更类型 | 
-|  -- | -- | -- | -- |
-| @ohos.WorkSchedulerExtensionAbility.d.ts | WorkSchedulerExtensionAbility | context: WorkSchedulerExtensionContext; | 新增 | 
-| application/WorkSchedulerExtensionContext.d.ts | WorkSchedulerExtensionContext | - | 新增 | 
-
-**适配指导**<br>
-
-通过WorkSchedulerExtensionAbility子类实例来获取WorkSchedulerExtensionContext。
-
-```ts
-import WorkSchedulerExtensionAbility from '@ohos.WorkSchedulerExtensionAbility';
-
-class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
-    onWorkStart(workInfo) {
-        let WorkSchedulerExtensionContext = this.context; // 获取WorkSchedulerExtensionContext
-    }
-}
-```
-
 
 ## cl.resourceschedule.reminderAgent.1  
 
@@ -42,12 +11,12 @@ class MyWorkSchedulerExtensionAbility extends WorkSchedulerExtensionAbility {
 
 **关键接口/组件变更**
 
-| 模块名 | 类名 | 方法/属性/枚举/常量 | 变更类型 | 
+| 模块名 | 类名 | 方法/属性/枚举/常量 | 变更类型 |
 |  -- | -- | -- | -- |
-| reminderAgentManager | ActionButtonType  | ACTION_BUTTON_TYPE_CUSTOM = 2 | 新增 | 
-| reminderAgentManager | ActionButton  | wantAgent?: WantAgent | 新增 | 
-| reminderAgentManager | WantAgent  | uri?: string | 新增 | 
-| reminderAgentManager | ReminderRequest   | actionButton?: [ActionButton?, ActionButton?, ActionButton?] | 变更 | 
+| reminderAgentManager | ActionButtonType  | ACTION_BUTTON_TYPE_CUSTOM = 2 | 新增 |
+| reminderAgentManager | ActionButton  | wantAgent?: WantAgent | 新增 |
+| reminderAgentManager | WantAgent  | uri?: string | 新增 |
+| reminderAgentManager | ReminderRequest   | actionButton?: [ActionButton?, ActionButton?, ActionButton?] | 变更 |
 
 **适配指导**<br>
 
@@ -75,33 +44,5 @@ let targetReminderAgent: reminderAgentManager.ReminderRequestAlarm = {
             }
         },
     ]
-}
-```
-
-## cl.resourceschedule.reminderAgent.2  
-
-提醒代理支持设置通知自动消失和自动消失时间。
-
-**变更影响**
-
-基于OpenHarmony4.0.7.1及之后的SDK版本开发的系统应用，可设置提醒自动消失。
-
-**关键接口/组件变更**
-
-| 模块名 | 类名 | 方法/属性/枚举/常量 | 变更类型 | 
-|  -- | -- | -- | -- |
-| reminderAgentManager | ReminderRequest | tapDismissed?: boolean | 新增 | 
-| reminderAgentManager | ReminderRequest | autoDeletedTime?: number | 新增 | 
-
-**适配指导**<br>
-
-```ts
-import reminderAgentManager from '@ohos.reminderAgentManager';
-
-let targetReminderAgent: reminderAgentManager.ReminderRequestAlarm = {
-    reminderType: reminderAgentManager.ReminderType.REMINDER_TYPE_ALARM, // 提醒类型为闹钟类型
-    ...
-    tapDismissed: true,
-    autoDeletedTime: 300,
 }
 ```
