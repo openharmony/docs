@@ -56,7 +56,7 @@ HiLog is recommended because it supports log classification and processing in a 
 
 The value of the **domain** parameter in the HiLog API ranges from **0x0** to **0xFFFF**. You are advised to customize the value as required.
 
-## What is the maximum length of a log record when HiLog Is used? Is it configurable?
+## What is the maximum length of a log record when HiLog is used? Is it configurable?
 
 Applicable to: OpenHarmony 3.2 Beta (API version 9) 
 

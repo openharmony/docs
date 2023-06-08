@@ -1,4 +1,4 @@
-# console
+# Console
 
 The **console** module provides a simple debugging console, which is similar to the JavaScript console provided by the browser.
 
