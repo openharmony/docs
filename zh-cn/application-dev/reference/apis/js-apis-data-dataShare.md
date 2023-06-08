@@ -375,7 +375,7 @@ delTemplate(uri: string, subscriberId: string): void
 
 | 参数名     | 类型        | 必填 | 说明                       |
 | -------- | -------------| ---- | ------------------------- |
-| uri      | string       | 是   | 指示要插入的数据的路径。     |
+| uri      | string       | 是   | 指示要删除的数据的路径。     |
 | subscriberId | string   | 是   | 订阅者ID，每个订阅者的ID是唯一的。          |
 
 **错误码：**
@@ -558,7 +558,7 @@ let result: Array<dataShare.OperationResult> = dataShareHelper.off("publishedDat
 
 publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version: number, callback: AsyncCallback&lt;Array&lt;OperationResult&gt;&gt;): void
 
-发布数据，将数据数据更新至数据库。
+发布数据，将数据更新至数据库。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -616,7 +616,7 @@ try {
 
 publish(data: Array&lt;PublishedItem&gt;, bundleName: string, callback: AsyncCallback&lt;Array&lt;OperationResult&gt;&gt;): void
 
-发布数据，将数据数据更新至数据库。
+发布数据，将数据更新至数据库。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -653,7 +653,7 @@ dataShareHelper.publish(data, "com.acts.ohos.data.datasharetest", publishCallbac
 
 publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version?: number): Promise&lt;Array&lt;OperationResult&gt;&gt;
 
-发布数据，将数据数据更新至数据库。
+发布数据，将数据更新至数据库。
 
 **系统能力：**  SystemCapability.DistributedDataManager.DataShare.Consumer
 
