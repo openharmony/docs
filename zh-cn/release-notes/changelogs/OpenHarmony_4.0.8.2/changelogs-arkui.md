@@ -22,7 +22,7 @@ struct DatePickerExample {
 
 **变更影响**
 
-如果状态装饰器变量没有显式声明变量类型，声明any，编译拦截报错；
+如果状态装饰器变量没有显式声明变量类型，声明any，编译拦截报错。
 
 ```ts
 // ArkTS:ERROR Please define an explicit type, not any.
