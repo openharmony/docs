@@ -187,8 +187,11 @@ zh-cn/application-dev/dfx/errormanager-guidelines.md @littlejerry1 @ccllee @chen
 zh-cn/application-dev/key-features/multi-device-app-dev/ @lingminghw @crazyracing0726
 zh-cn/application-dev/database/ @ge-yafang @feng-aiwen @gong-a-shi @logic42
 zh-cn/application-dev/napi/native-window-guidelines.md @ge-yafang @zhangqiang183  @zhouyaoying @zxg-gitee @nobuggers
-zh-cn/application-dev/napi/mindspore-lite-guidelines.md @ge-yafang @grbuzhidao @jianghui58 @auraxu
-zh-cn/application-dev/napi/mindspore-lite-offline-model-guidelines.md @ge-yafang @grbuzhidao @jianghui58 @auraxu
+zh-cn/application-dev/napi/mindspore-lite-guidelines.md @ge-yafang @principal87 @jianghui58
+zh-cn/application-dev/napi/mindspore-lite-offline-model-guidelines.md @ge-yafang @principal87 @jianghui58
+zh-cn/application-dev/reference/apis/js-apis-mindSporeLite.md  @ge-yafang @principal87 @jianghui58
+zh-cn/application-dev/ai/mindspore-lite-js-guidelines.md @ge-yafang @principal87 @jianghui58
+zh-cn/application-dev/napi/neural-network-runtime-guidelines.md @ge-yafang @principal87 @win10wei
 zh-cn/application-dev/napi/rawfile_guidelines.md @ningningW
 zh-cn/application-dev/background-agent-scheduled-reminder/ @RayShih
 zh-cn/application-dev/background-task-management/ @ningningW @wangwenli_wolf @tangtiantian2021 @nan-xiansen
