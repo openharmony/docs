@@ -24,11 +24,15 @@
 - [属性动画示例](property-animation.md)
 - [如何使用OpenGL实现3D图形](how-to-use-opengl-to-draw-3d-graphics.md)
 - [控制页面刷新范围](overall-and-part-refresh.md)
+- [常见对话弹框的使用](diverse-dialogues.md)
 ### 网络管理
 - [如何请求并加载网络图片](how-to-load-images-from-internet.md)
 
 ### 窗口管理
 - [如何实现沉浸模式](immersion-mode.md)
+
+### 媒体
+- [常见图片编辑](image-edit.md)
 
 
 
