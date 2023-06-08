@@ -53,71 +53,22 @@ Camera模块主要针对相机预览、拍照、视频流等场景，对这些�
 
   | 功能描述                     | 接口名称                                                     |
   | ---------------------------- | ------------------------------------------------------------ |
-  | 获取流控制器                 | int32_t GetStreamOperator(<br>const sptr<OHOS::HDI::Camera::V2_0::IStreamOperatorCallback>& callbackObj,<br>sptr<OHOS::HDI::Camera::V2_0::IStreamOperator>& streamOperator) |
-  | 更新设备控制参数             | int32_t UpdateSettings(const std::vector<uint8_t>& settings) |
-  | 设置Result回调模式和回调函数 | int32_t SetResultMode(ResultCallbackMode mode) |
-  | 获取使能的ResultMeta         | int32_t GetEnabledResults(std::vector<int32_t>& results) |
-  | 使能具体的ResultMeta         | int32_t EnableResult(const std::vector<int32_t>& results) |
-  | 禁止具体的ResultMeta         | int32_t DisableResult(const std::vector<int32_t>& results) |    
-  | 关闭Camera设备               | int32_t Close()                                                 |
-
-- icamera_device_callback.h
-
-  | 功能描述                                                   | 接口名称                                                     |
-  | ---------------------------------------------------------- | ------------------------------------------------------------ |
-  | 设备发生错误时调用，由调用者实现，用于返回错误信息给调用者 | int32_t OnError(ErrorType type, int32_t errorCode)              |
-  | 上报camera设备相关的metadata的回调                         | int32_t OnResult(uint64_t timestamp, const std::vector<uint8_t>& result) |
+  | 获取流控制器                 | int32_t GetStreamOperator_V1_1(<br>const sptr<OHOS::HDI::Camera::V1_0::IStreamOperatorCallback>& callbackObj,<br>sptr<OHOS::HDI::Camera::V1_1::IStreamOperator>& streamOperator) |
 
 - icamera_host.h
 
   | 功能描述                       | 接口名称                                                     |
   | ------------------------------ | ------------------------------------------------------------ |
-  | 设置ICameraHost回调接口        | int32_t SetCallback(const sptr<OHOS::HDI::Camera::V2_0::ICameraHostCallback>& callbackObj) |
-  | 获取当前可用的Camera设备ID列表 | int32_t GetCameraIds(std::vector<std::string>& cameraIds) |
-  | 获取Camera设备能力集合         | int32_t GetCameraAbility(const std::string& cameraId, std::vector<uint8_t>& cameraAbility) |
-  | 打开Camera设备                 | int32_t OpenCamera(const std::string& cameraId, <br>const sptr<OHOS::HDI::Camera::V2_0::ICameraDeviceCallback>& callbackObj, sptr<OHOS::HDI::Camera::V2_0::ICameraDevice>& device) |
-  | 打开或关闭闪光灯               | int32_t SetFlashlight(const std::string& cameraId, bool isEnable) |
-  | 打开或关闭闪光灯               | int32_t PreLaunch(const PrelaunchConfig& config) |
-
-- icamera_host_callback.h
-
-  | 功能描述               | 接口名称                                                     |
-  | ---------------------- | ------------------------------------------------------------ |
-  | Camera设备状态变化上报 | int32_t OnCameraStatus(const std::string& cameraId, CameraStatus status) |
-  | 闪光灯状态变化回调     | int32_t OnFlashlightStatus(const std::string& cameraId, FlashlightStatus status) |
-  | Camera事件回调     | int32_t OnCameraEvent(const std::string& cameraId, CameraEvent event) |
-
-- ioffline_stream_operator.h
-
-  | 功能描述       | 接口名称                                                     |
-  | -------------- | ------------------------------------------------------------ |
-  | 取消捕获请求   | int32_t CancelCapture(int32_t captureId)                      |
-  | 释放流         | int32_t ReleaseStreams(const std::vector<int32_t>& streamIds) |
-  | 释放所有离线流 | int32_t Release()                                         |
+  | 打开Camera设备                 | int32_t OpenCamera_V1_1(const std::string& cameraId, <br>const sptr<OHOS::HDI::Camera::V1_0::ICameraDeviceCallback>& callbackObj, <br>sptr<OHOS::HDI::Camera::V1_1::ICameraDevice>& device) |
+  | 预启动摄像头设备               | int32_t PreLaunch(const PrelaunchConfig& config) |
 
 - istream_operator.h
 
   | 功能描述                         | 接口名称                                                     |
   | -------------------------------- | ------------------------------------------------------------ |
-  | 查询是否支持添加参数对应的流     | int32_t IsStreamsSupported(<br>OperationMode mode,<br>const std::vector<uint8_t>& modeSetting,<br>const std::vector<StreamInfo>& infos,<br> StreamSupportType& type) |
-  | 创建流                           | int32_t CreateStreams(const std::vector<StreamInfo>& streamInfos) |
-  | 释放流                           | int32_t ReleaseStreams(const std::vector<int32_t>& streamIds) |
-  | 配置流                           | int32_t CommitStreams(OperationMode mode, const std::vector<uint8_t>& modeSetting) |
-  | 获取流的属性                     | int32_t GetStreamAttributes(std::vector<StreamAttribute>& attributes) |
-  | 绑定生产者句柄和指定流           | int32_t AttachBufferQueue(int32_t streamId, const sptr<BufferProducerSequenceable>& bufferProducer) |
-  | 解除生产者句柄和指定流的绑定关系 | int32_t DetachBufferQueue(int32_t streamId)                   |
-  | 捕获图像                         | int32_t Capture(int32_t captureId, const CaptureInfo& info, bool isStreaming) |
-  | 取消捕获                         | int32_t CancelCapture(int32_t captureId)                      |
-  | 将指定流转换成离线流             | int32_t ChangeToOfflineStream(const std::vector<int32_t>& streamIds,<br>const sptr<OHOS::HDI::Camera::V2_0::IStreamOperatorCallback>&,<br>sptr<OHOS::HDI::Camera::V2_0::IOfflineStreamOperator>& offlineOperator) |
+  | 查询是否支持添加参数对应的流     | int32_t IsStreamsSupported_V1_1(<br>OperationMode mode,<br>const std::vector<uint8_t>& modeSetting,<br>const std::vector<StreamInfo_V1_1>& infos,<br>StreamSupportType& type) |
+  | 创建流                           | int32_t CreateStreams_V1_1(const std::vector<StreamInfo_V1_1>& streamInfos) |
 
-- istream_operator_callback.h
-
-  | 功能描述                                 | 接口名称                                                     |
-  | ---------------------------------------- | ------------------------------------------------------------ |
-  | 捕获开始回调，在捕获开始时调用           | int32_t OnCaptureStarted(int32_t captureId, const std::vector<int32_t>& streamIds) |
-  | 捕获结束回调，在捕获结束时调用           | int32_t OnCaptureEnded(int32_t captureId, const std::vector<CaptureEndedInfo>& infos) |
-  | 捕获错误回调，在捕获过程中发生错误时调用 | int32_t OnCaptureError(int32_t captureId, const std::vector<CaptureErrorInfo>& infos) |
-  | 帧捕获回调                               | int32_t OnFrameShutter(int32_t captureId, const std::vector<int32_t>& streamIds, uint64_t timestamp) |
 
 ### 开发步骤<a name="7"></a>
 Camera驱动的开发过程主要包含以下步骤：
@@ -1035,11 +986,11 @@ Camera驱动的开发过程主要包含以下步骤：
 ## 参考<a name="4"></a>
 
 针对camera模块openharmony提供了默认的hcs配置。开发者若有特殊需求可自行修改相关的HCS配置文件。
-Camera模块HCS配置文件路径：/vendor/hihope/rk3568/hdf_config/uhdf/camera，其中：
+Camera模块HCS配置文件路径：'/vendor/hihope/rk3568/hdf_config/uhdf/camera'，其中：
 
-+  ./hdi_impl/camera_host_config.hcs 主要是metadata TAG配置
-+  ./pipeline_core/config.hcs 主要是node 节点配置
-    编译后在/drivers/periphera/camra/vdi_base/common/pipeline_core/pipeline_impl/src/strategy/config目录下生产congfig.c和congfig.h文件
-+  ./pipeline_core/ipp_algo_config.hcs 为ipp node 拍照配置
-+  ./pipeline_core/params.hcs 各种流配置
-    编译后在/drivers/periphera/camra/vdi_base/common/pipeline_core/pipeline_impl/src/strategy/config目录下生产params.c和params.h文件
++  './hdi_impl/camera_host_config.hcs' 主要是metadata TAG配置
++  './pipeline_core/config.hcs' 主要是node 节点配置
+    编译后在'/drivers/periphera/camra/vdi_base/common/pipeline_core/pipeline_impl/src/strategy/config'目录下生产'congfig.c'和'congfig.h'文件
++  './pipeline_core/ipp_algo_config.hcs' 为ipp node 拍照配置
++  './pipeline_core/params.hcs' 各种流配置
+    编译后在'/drivers/periphera/camra/vdi_base/common/pipeline_core/pipeline_impl/src/strategy/config'目录下生产'params.c'和'params.h'文件
