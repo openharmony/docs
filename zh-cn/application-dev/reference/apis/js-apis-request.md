@@ -94,6 +94,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
   | Promise&lt;[UploadTask](#uploadtask)&gt; | 返回上传任务。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
@@ -142,6 +143,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
   | callback | AsyncCallback&lt;[UploadTask](#uploadtask)&gt; | 是 | 回调函数，异步返回UploadTask对象。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
@@ -377,7 +379,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
 off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&gt;  void): void
 
-删除上传任务进度监听，同步方法。
+取消订阅上传任务进度监听，同步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -404,7 +406,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
 off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
-删除上传任务HTTP标头监听，同步方法。
+取消订阅上传任务HTTP标头监听，同步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -430,7 +432,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
  off(type:'complete' | 'fail', callback?: Callback&lt;Array&lt;TaskState&gt;&gt;): void;
 
-删除上传任务完成或失败监听，同步方法。
+取消订阅上传任务完成或失败监听，同步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -632,7 +634,7 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 | -------- | -------- | -------- | -------- |
 | filename | string | 是 | multipart提交时，请求头中的文件名。 |
 | name | string | 是 | multipart提交时，表单项目的名称，缺省为file。 |
-| uri | string | 是 | 文件的本地存储路径。<br/>仅支持“internal”协议类型，“internal://cache/”为必填字段，示例：<br/>internal://cache/path/to/file.txt |
+| uri | string | 是 | 文件的本地存储路径。<br/>仅支持"internal"协议类型，"internal://cache/"为必填字段，示例：<br/>internal://cache/path/to/file.txt |
 | type | string | 是 | 文件的内容类型，默认根据文件名或路径的后缀获取。 |
 
 
@@ -673,13 +675,14 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
   | Promise&lt;[DownloadTask](#downloadtask)&gt; | 返回下载任务。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 13400001 | file operation error. |
   | 13400002 | bad file path. |
-  | 13400003 | task manager service error. |
+  | 13400003 | task service ability error. |
 
 **示例：**
 
@@ -717,13 +720,14 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
   | callback | AsyncCallback&lt;[DownloadTask](#downloadtask)&gt; | 是 | 下载接口的回调函数。 |
 
 **错误码：**
+
 以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
 
   | 错误码ID | 错误信息 |
   | -------- | -------- |
   | 13400001 | file operation error. |
   | 13400002 | bad file path. |
-  | 13400003 | task manager service error. |
+  | 13400003 | task service ability error. |
 
 **示例：**
 
@@ -859,7 +863,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 
 off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt; void): void
 
-删除下载任务进度监听，同步方法。
+取消订阅下载任务进度监听，同步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -923,7 +927,7 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 
 off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 
-删除下载任务相关的监听，同步方法。
+取消订阅下载任务相关的监听，同步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -993,7 +997,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 
 off(type: 'fail', callback?: (err: number) =&gt; void): void
 
-删除下载任务失败监听，同步方法。
+取消订阅下载任务失败监听，同步方法。
 
 **需要权限**：ohos.permission.INTERNET
 
@@ -1674,7 +1678,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 **系统能力**: SystemCapability.MiscServices.Download
 
 | 名称 | 类型 |必填 |  说明 |
-| -------- | ------ |---------------- |
+| -------- | -------- | -------- | -------- |
 | downloadId | number |是 | 下载任务ID。 |
 | failedReason | number|是 | 下载失败原因，可以是任何[下载任务的错误码](#下载任务的错误码)常量。 |
 | fileName | string |是| 下载的文件名。 |
@@ -1686,4 +1690,1058 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | downloadTotalBytes | number |是| 下载的文件的总大小（int&nbsp;bytes）。 |
 | description | string |是| 待下载任务的描述信息。 |
 | downloadedBytes | number |是| 实时下载大小（int&nbsp;&nbsp;bytes）。 |
+
+## Action<sup>10+</sup>  
+
+定义操作选项。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+| 名称 | 值 |说明 |
+| -------- | -------- |-------- |
+| DOWNLOAD | 0 |表示下载任务。 |
+| UPLOAD | 1 |表示上传任务。 |
+
+
+## Mode<sup>10+</sup>  
+定义模式选项。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+| 名称 | 值 |说明 |
+| -------- | -------- |-------- |
+| BACKGROUND | 0 |表示后台任务。 |
+| FOREGROUND | 1 |表示前端任务。 |
+
+## Network<sup>10+</sup>  
+
+定义网络选项。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+| 名称 | 值 |说明 |
+| -------- | -------- |-------- |
+| ANY | 0 |表示不限网络类型。 |
+| WIFI | 1 |表示无线网络。 |
+| CELLULAR | 2 |表示蜂窝数据网络。 |
+
+## FileSpec<sup>10+</sup> 
+表单项的文件信息。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| path | string | 是 | 文件路径，包括如下两种：<br/>- 位于调用方的缓存文件夹下的相对路径。<br/>- 具备访问uri路径权限的应用可使用的uri路径。 |
+| mimeType | string | 否 | 文件的mimetype，默认值包括如下两种：<br/>- 上传时，通过文件名或uri的后缀获得。<br/>- 下载时，响应时为"Content-Type"，不响应为"octet-stream"。 |
+| filename | string | 否 | 文件名，默认值通过路径获取。 |
+| extras | Object | 否 | 文件信息的附加内容。 |
+
+
+## FormItem<sup>10+</sup> 
+任务的表单项信息。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| name | string | 是 | 表单参数名。 |
+| value | string \| [FileSpec](#filespec10) \| Array&lt;[FileSpec](#filespec10)&gt; | 是 | 表单参数值。 |
+
+
+## Conf<sup>10+</sup> 
+上传/下载任务的配置信息。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| action | [Action](#action10) | 是 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。 |
+| url | string | 是 | 资源地址，其最大长度为2048个字符。 |
+| title | string | 否 | 任务标题，其最大长度为256个字符，默认值为空。 |
+| description | string | 否 | 任务的详细信息，其最大长度为1024个字符，默认值为空字符串。 |
+| mode | [Mode](#mode10) | 否 | 任务模式,默认为后台任务。<br/>-对于前端任务，有回调通知。<br/>-对于后台任务，有系统通知、检测网络连接、恢复、自动重试功能。 |
+| overwrite | boolean | 否 | 下载过程中路径已存在时的解决方案选择，默认为false。<br/>- true，覆盖已存在的文件。<br/>- false，下载失败。 |
+| method | string | 否 | 上传或下载的HTTP标准方法，包括GET、POST和PUT，不区分大小写。<br/>-上传时，使用PUT或POST，默认值为PUT。<br/>-下载时，使用GET或POST，默认值为GET。 |
+| headers | object | 否 | 添加要包含在任务中的HTTPS标志头。<br/>-对于上传请求，默认的Content-Type为"multipart/form-data"。<br/>-对于下载请求，默认的Content-Type为"application/json"。 |
+| data | string \| Array&lt;[FormItem](#formitem10)&gt; | 否 | -下载时，data为字符串类型，通常使用json(object将被转换为json文本)，默认为空。<br/>-上传时，data是表单项数组Array&lt;[FormItem](#formitem10)&gt;，默认为空。 |
+| saveas | string | 否 | 保存下载文件的路径，包括如下两种：<br/>-相对路径，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"，位于调用方的缓存路径下。<br/>-uri路径，类似"datashare://bundle/xxx/yyy/zzz.html"，具备访问url路径权限的应用可使用，当前暂不支持。<br/>默认为相对路径，即下载至应用当前缓存路径下。 |
+| network | [Network](#network10) | 否 | 网络选项，当前支持无线网络WIFI和蜂窝数据网络CELLULAR，默认为ANY（WIFI或CELLULAR）。 |
+| metered | boolean | 否 | 是否允许在按流量计费的网络中工作，默认为false。 |
+| roaming | boolean | 否 | 是否允许在漫游网络中工作，默认为true。 |
+| retry | boolean | 否 | 是否为后台任务启用自动重试，仅应用于后台任务，默认为true。 |
+| redirect | boolean | 否 | 是否允许重定向，默认为true。 |
+| index | number | 否 | 任务的路径索引，通常用于任务断点续传，默认为0。 |
+| begins | number | 否 | 文件起点，通常用于断点续传。默认值为0，取值为闭区间。<br/>-下载时，请求读取服务器开始下载文件时的起点位置（http协议中设置"Range"选项）。<br/>-上传时，在上传开始时读取。 |
+| ends | number | 否 | 文件终点，通常用于断点续传。默认值为-1，取值为闭区间。<br/>-下载时，请求读取服务器开始下载文件时的结束位置（http协议中设置"Range"选项）。<br/>-上传时，在上传时结束读取。 |
+| gauge | boolean | 否 | 后台任务的过程进度通知策略，仅应用于后台任务，默认值为false。<br/>-false：代表仅完成或失败的通知。<br/>-true，发出每个进度已完成或失败的通知。 |
+| precise | boolean | 否 | -如果设置为true，在上传/下载无法获取文件大小时任务失败。<br/>-如果设置为false，将文件大小设置为-1时任务继续。<br/>默认值为false。 |
+| token | string | 否 | 当创建了一个带有token的任务后，token则为正常查询期间必须提供的，否则将无法通过查询进行检索。其最小为8个字节，最大为2048个字节。默认为空。 |
+| extras | object | 否 | 配置的附加功能，默认为空。 |
+
+## State<sup>10+</sup>  
+
+定义任务当前的状态。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+| 名称 | 值 |说明 |
+| -------- | -------- |-------- |
+| INITIALIZED | 0x00 |通过配置信息（[Conf](#conf10)）创建初始化任务。 |
+| WAITING | 0x10 |表示任务缺少运行或重试的资源与网络状态不匹配。 |
+| RUNNING | 0x20 |表示正在处理的任务。 |
+| RETRYING | 0x21 |表示任务至少失败一次，现在正在再次处理中。 |
+| PAUSED | 0x30 |表示任务暂停，通常后续会恢复任务。 |
+| STOPPED | 0x31 |表示任务停止。 |
+| COMPLETED | 0x40 |表示任务完成。 |
+| FAILED | 0x41 |表示任务失败。 |
+| REMOVED | 0x50 |表示任务移除。 |
+
+
+## Progress<sup>10+</sup> 
+任务进度的数据结构。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| state | [State](#state10) | 是 | 任务当前的状态。 |
+| index | number | 是 | 任务中当前正在处理的文件索引。 |
+| processed | number | 是 | 任务中当前文件的已处理数据大小，单位为B。|
+| sizes | Array&lt;number&gt; | 是 | 任务中文件的大小，单位为B。 |
+| extras | object | 否 | 交互的额外内容，例如来自服务器的响应的header和body。 |
+
+
+## Broken<sup>10+</sup>  
+
+定义任务失败的原因。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+| 名称 | 值 |说明 |
+| -------- | -------- |-------- |
+| OTHERS | 0xFF |表示其他故障。 |
+| DISCONNECTED | 0x00 |表示网络断开连接。 |
+| TIMEOUT | 0x10 |表示任务超时。 |
+| PROTOCOL | 0x20 |表示协议错误，例如:服务器内部错误（500）、无法处理的数据区间（416）等。 |
+| FSIO | 0x40 |表示文件系统io错误，例如打开/查找/读取/写入/关闭。 |
+
+
+## TaskInfo<sup>10+</sup> 
+查询结果的任务信息数据结构，提供普通查询和高级查询，两种字段的可见范围不同。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| uid | string | 否 | 应用程序的UID，仅用于系统查询。<br/>**系统接口**：此接口为系统接口。|
+| bundle | string | 否 | 应用程序的包名，仅用于系统查询。<br/>**系统接口**：此接口为系统接口。|
+| url | string | 否 | 任务的url，仅适用于普通应用查询，系统查询返回空字串。 |
+| data | string \| Array&lt;[FormItem](#formitem10)&gt; | 否 | 任务值。 |
+| tid | string | 是 | 任务id。 |
+| title | string | 是 | 任务标题。 |
+| description | string | 是 | 任务描述。 |
+| action | [Action](#action10) | 是 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。 |
+| mode | [Mode](#mode10) | 是 | 指定任务模式。<br/>-FOREGROUND表示前端任务。<br/>-BACKGROUND表示后台任务。 |
+| mimeType | string | 是 | 任务配置中的mimetype。 |
+| progress | [Progress](#progress10) | 是 | 任务的过程进度。 |
+| gauge | boolean | 是 | 后台任务的进度通知策略。 |
+| ctime | string | 是 | UTC模式中创建任务的日期和时间，由当前设备的系统生成的。|
+| mtime | string | 是 | UTC模式中修改任务的日期和时间，由当前设备的系统生成的。|
+| retry | boolean | 是 | 任务的重试开关，仅应用于后台任务。 |
+| tries | number | 是 | 任务的尝试次数。 |
+| broken | [Broken](#broken10) | 是 | 任务的失败原因。<br/>-OTHERS表示其他故障。<br/>-DISCONNECT表示网络断开连接。<br/>-TIMEOUT表示任务超时。<br/>-PROTOCOL表示协议错误。<br/>-FSIO表示文件系统io错误。|
+| reason | string | 是 | 等待/失败/停止/暂停任务的原因。|
+| extras | string | 否 | 任务的额外部分。|
+
+
+## Task<sup>10+</sup> 
+上传或下载任务。使用该方法前需要先获取Task对象，promise形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10-1)获取，callback形式通过[request.agent.create<sup>10+</sup>](#requestagentcreate10)获取。
+
+### 属性
+包括任务id和任务的配置信息。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| tid | string | 是 | 任务id，在系统上是唯一的，由系统自动生成。 |
+| conf | [Conf](#conf10) | 是 | 任务的配置信息。 |
+
+
+### on('progress'|'completed'|'failed')<sup>10+</sup>
+
+on(event: "progress" | "completed" | "failed", callback: (progress: Progress) =&gt; void): void
+
+订阅任务相关的监听。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | event | string | 是 | 订阅的事件类型。<br>- 取值为'progress'，表示任务进度；<br/>- 取值为'completed'，表示任务已完成；<br/>- 取值为'failed'，表示任务失败。 |
+  | callback | function | 是 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 21900005 | task mode error. |
+
+**示例：**
+
+  ```js
+  let attachments = [{
+                       name: "taskOnTest",
+                       value: {
+                         filename: "taskOnTest.avi",
+                         mimetype: "application/octet-stream",
+                         path: "./taskOnTest.avi",
+                       }
+                     }];
+  let conf = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskOnTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.BACKGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let createOnCallback = (progress) => {
+    console.info('upload task completed.');
+  };
+  request.agent.create(globalThis.abilityContext, conf).then((task)=> {
+    task.on('progress', createOnCallback);
+    task.on('completed', createOnCallback);
+    task.on('failed', createOnCallback);
+    console.info(`create a upload task successfully. result: ${task.tid}`);
+  }).catch((err) => {
+    console.error(`Failed to create a upload task, because: ${JSON.stringify(err)}`);
+  });
+  ```
+
+
+### off('progress'|'completed'|'failed')<sup>10+</sup>
+
+off(event: "progress" | "completed" | "failed", callback?: (progress: Progress) =&gt; void): void
+
+取消订阅任务相关的监听。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | evt | string | 是 | 订阅的事件类型。<br>- 取值为'progress'，表示任务进度；<br/>- 取值为'completed'，表示任务已完成；<br/>- 取值为'failed'，表示任务失败。 |
+  | callback | function | 否 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构|
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 21900005 | task mode error. |
+
+**示例：**
+
+  ```js
+  let attachments = [{
+                       name: "taskOffTest",
+                       value: {
+                         filename: "taskOffTest.avi",
+                         mimetype: "application/octet-stream",
+                         path: "./taskOffTest.avi",
+                       }
+                     }];
+  let conf = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskOffTest',
+    description: 'Sample code for event listening',
+    mode: request.agent.Mode.BACKGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  let createOffCallback = (progress) => {
+    console.info('upload task completed.');
+  };
+  request.agent.create(globalThis.abilityContext, conf).then((task)=> {
+    task.on('progress', createOffCallback);
+    task.on('completed', createOffCallback);
+    task.on('failed', createOffCallback);
+    task.off('progress', createOffCallback);
+    task.off('completed', createOffCallback);
+    task.off('failed', createOffCallback);
+    console.info(`create a upload task successfully. result: ${task.tid}`);
+  }).catch((err) => {
+    console.error(`Failed to create a upload task, because: ${JSON.stringify(err)}`);
+  });
+  ```
+
+
+### start<sup>10+</sup>
+
+start(callback: AsyncCallback&lt;void&gt;): void
+
+启动任务，无法启动已初始化的任务。使用callback异步回调。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | function | 是 | 回调函数，开启任务成功，err为undefined，否则为错误对象 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900007 | task state error. |
+
+**示例：**
+
+  ```js
+  let conf = {
+    action: request.agent.Action.DOWNLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskStartTest',
+    description: 'Sample code for start the download task',
+    mode: request.agent.Mode.BACKGROUND,
+    overwrite: false,
+    method: "GET",
+    data: "",
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  request.agent.create(globalThis.abilityContext, conf).then((task) => {
+    task.start((err) => {
+      if (err) {
+        console.error(`Failed to start the download task, because: ${JSON.stringify(err)}`);
+        return;
+      }
+      console.info(`start a download task successfully. `);
+    })
+    console.info(`create a download task successfully. result: ${task.tid}`);
+  }).catch((err) => {
+    console.error(`Failed to create a download task, because: ${JSON.stringify(err)}`);
+  });
+  ```
+
+
+### start<sup>10+</sup>
+
+start(): Promise&lt;void&gt;
+
+启动任务，无法启动已初始化的任务。使用Promise异步回调。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900007 | task state error. |
+
+**示例：**
+
+  ```js
+  let conf = {
+    action: request.agent.Action.DOWNLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskStartTest',
+    description: 'Sample code for start the download task',
+    mode: request.agent.Mode.BACKGROUND,
+    overwrite: false,
+    method: "GET",
+    data: "",
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  request.agent.create(globalThis.abilityContext, conf).then((task) => {
+    task.start().then(() => {
+      console.info(`start a download task successfully. `);
+    }).catch((err) => {
+      console.error(`Failed to start the download task, because: ${JSON.stringify(err)}`);
+    });
+    console.info(`create a download task successfully. result: ${task.tid}`);
+  }).catch((err) => {
+    console.error(`Failed to create a download task, because: ${JSON.stringify(err)}`);
+  });
+  ```
+
+
+### pause<sup>10+</sup>
+
+pause(callback: AsyncCallback&lt;void&gt;): void
+
+暂停任务，可以暂停正在等待/正在运行/正在重试的后台任务。使用callback异步回调。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | function | 是 | 回调函数，暂停任务成功，err为undefined，否则为错误对象 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900005 | task mode error. |
+  | 21900007 | task state error. |
+
+**示例：**
+
+  ```js
+  let conf = {
+    action: request.agent.Action.DOWNLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskPauseTest',
+    description: 'Sample code for pause the download task',
+    mode: request.agent.Mode.BACKGROUND,
+    overwrite: false,
+    method: "GET",
+    data: "",
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  request.agent.create(globalThis.abilityContext, conf).then((task) => {
+    task.pause((err) => {
+      if (err) {
+        console.error(`Failed to pause the download task, because: ${JSON.stringify(err)}`);
+        return;
+      }
+      console.info(`pause a download task successfully. `);
+    })
+    console.info(`create a download task successfully. result: ${task.tid}`);
+  }).catch((err) => {
+    console.error(`Failed to create a download task, because: ${JSON.stringify(err)}`);
+  });
+  ```
+
+
+### pause<sup>10+</sup>
+
+pause(): Promise&lt;void&gt;
+
+暂停任务，可以暂停正在等待/正在运行/正在重试的后台任务。使用Promise异步回调。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900005 | task mode error. |
+  | 21900007 | task state error. |
+
+**示例：**
+
+  ```js
+  let conf = {
+    action: request.agent.Action.DOWNLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskPauseTest',
+    description: 'Sample code for pause the download task',
+    mode: request.agent.Mode.BACKGROUND,
+    overwrite: false,
+    method: "GET",
+    data: "",
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  request.agent.create(globalThis.abilityContext, conf).then((task) => {
+    task.pause().then(() => {
+      console.info(`pause a upload task successfully. `);
+    }).catch((err) => {
+      console.error(`Failed to pause the upload task, because: ${JSON.stringify(err)}`);
+    });
+    console.info(`create a upload task successfully. result: ${task.tid}`);
+  }).catch((err) => {
+    console.error(`Failed to create a upload task, because: ${JSON.stringify(err)}`);
+  });
+  ```
+
+
+### resume<sup>10+</sup>
+
+resume(callback: AsyncCallback&lt;void&gt;): void
+
+重新启动任务，可以恢复暂停的后台任务。使用callback异步回调。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | function | 是 | 回调函数，重新启动任务成功，err为undefined，否则为错误对象 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900005 | task mode error. |
+  | 21900007 | task state error. |
+
+**示例：**
+
+  ```js
+  let conf = {
+    action: request.agent.Action.DOWNLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskResumeTest',
+    description: 'Sample code for resume the download task',
+    mode: request.agent.Mode.BACKGROUND,
+    overwrite: false,
+    method: "GET",
+    data: "",
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  request.agent.create(globalThis.abilityContext, conf).then((task) => {
+    task.resume().then(() => {
+      console.info(`resume a download task successfully. `);
+    }).catch((err) => {
+      console.error(`Failed to resume the download task, because: ${JSON.stringify(err)}`);
+    });
+    console.info(`create a download task successfully. result: ${task.tid}`);
+  }).catch((err) => {
+    console.error(`Failed to create a download task, because: ${JSON.stringify(err)}`);
+  });
+  ```
+
+
+### resume<sup>10+</sup>
+
+resume(): Promise&lt;void&gt;
+
+重新启动任务，可以恢复暂停的后台任务。使用Promise异步回调。
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900005 | task mode error. |
+  | 21900007 | task state error. |
+
+**示例：**
+
+  ```js
+  let conf = {
+    action: request.agent.Action.DOWNLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskResumeTest',
+    description: 'Sample code for resume the download task',
+    mode: request.agent.Mode.BACKGROUND,
+    overwrite: false,
+    method: "GET",
+    data: "",
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  request.agent.create(globalThis.abilityContext, conf).then((task) => {
+    task.resume((err) => {
+      if (err) {
+        console.error(`Failed to resume the download task, because: ${JSON.stringify(err)}`);
+        return;
+      }
+      console.info(`resume a download task successfully. `);
+    })
+    console.info(`create a download task successfully. result: ${task.tid}`);
+  }).catch((err) => {
+    console.error(`Failed to create a download task, because: ${JSON.stringify(err)}`);
+  });
+  ```
+
+
+### stop<sup>10+</sup>
+
+stop(callback: AsyncCallback&lt;void&gt;): void
+
+停止任务，可以停止正在运行/正在等待/正在重试的任务。使用callback异步回调。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | callback | function | 是 | 回调函数，重新启动任务成功，err为undefined，否则为错误对象 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900007 | task state error. |
+
+**示例：**
+
+  ```js
+  let conf = {
+    action: request.agent.Action.DOWNLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskStopTest',
+    description: 'Sample code for stop the download task',
+    mode: request.agent.Mode.BACKGROUND,
+    overwrite: false,
+    method: "GET",
+    data: "",
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  request.agent.create(globalThis.abilityContext, conf).then((task) => {
+    task.stop().then(() => {
+      console.info(`stop a download task successfully. `);
+    }).catch((err) => {
+      console.error(`Failed to stop the download task, because: ${JSON.stringify(err)}`);
+    });
+    console.info(`create a download task successfully. result: ${task.tid}`);
+  }).catch((err) => {
+    console.error(`Failed to create a download task, because: ${JSON.stringify(err)}`);
+  });
+  ```
+
+
+### stop<sup>10+</sup>
+
+stop(): Promise&lt;void&gt;
+
+停止任务，可以停止正在运行/正在等待/正在重试的任务。使用Promise异步回调。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900007 | task state error. |
+
+**示例：**
+
+  ```js
+  let conf = {
+    action: request.agent.Action.DOWNLOAD,
+    url: 'http://127.0.0.1',
+    title: 'taskStopTest',
+    description: 'Sample code for stop the download task',
+    mode: request.agent.Mode.BACKGROUND,
+    overwrite: false,
+    method: "GET",
+    data: "",
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  request.agent.create(globalThis.abilityContext, conf).then((task) => {
+    task.stop((err) => {
+      if (err) {
+        console.error(`Failed to stop the download task, because: ${JSON.stringify(err)}`);
+        return;
+      }
+      console.info(`stop a download task successfully. `);
+    })
+    console.info(`create a download task successfully. result: ${task.tid}`);
+  }).catch((err) => {
+    console.error(`Failed to create a download task, because: ${JSON.stringify(err)}`);
+  });
+  ```
+
+## request.agent.create<sup>10+</sup>
+
+create(context: BaseContext, conf: Conf, callback: AsyncCallback&lt;Task&gt;): void
+
+创建要上传或下载的任务，并将其排入队列，使用callback异步回调。
+
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | conf | [Conf](#conf10) | 是 | 上传/下载任务的配置信息。 |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
+  | callback | AsyncCallback&lt;[Task](#task10)&gt; | 是 | 回调函数，返回创建任务的配置信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400001 | file operation error. |
+  | 13400003 | task service ability error. |
+  | 21900004 | application task queue full error. |
+  | 21900005 | task mode error. |
+
+**示例：**
+
+  ```js
+  let attachments = [{
+                       name: "reeateTest",
+                       value: {
+                         filename: "reeateTest.avi",
+                         mimetype: "application/octet-stream",
+                         path: "./reeateTest.avi",
+                       }
+                     }];
+  let conf = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1',
+    title: 'reeateTest',
+    description: 'Sample code for reeate task',
+    mode: request.agent.Mode.BACKGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  request.agent.create(globalThis.abilityContext, conf, (err, task) => {
+    if (err) {
+      console.error(`Failed to create a upload task, because: ${err.message}`);
+      return;
+    }
+    console.info(`create a upload task successfully. result: ${task.conf}`);
+  });
+  ```
+
+
+## request.agent.create<sup>10+</sup>
+
+create(context: BaseContext, conf: Conf): Promise&lt;Task&gt;
+
+创建要上传或下载的任务，并将其排入队列。使用Promise异步回调。
+
+
+**需要权限**：ohos.permission.INTERNET
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
+  | conf | [Conf](#conf10) | 是 | 上传/下载任务的配置信息。 |
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;[Task](#task10)&gt; | Promise对象。返回任务配置信息的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400001 | file operation error. |
+  | 13400003 | task service ability error. |
+  | 21900004 | application task queue full error. |
+  | 21900005 | task mode error. |
+
+**示例：**
+
+  ```js
+  let attachments = [{
+                       name: "reeateTest",
+                       value: {
+                         filename: "reeateTest.avi",
+                         mimetype: "application/octet-stream",
+                         path: "./reeateTest.avi",
+                       }
+                     }];
+  let conf = {
+    action: request.agent.Action.UPLOAD,
+    url: 'http://127.0.0.1',
+    title: 'reeateTest',
+    description: 'Sample code for reeate task',
+    mode: request.agent.Mode.BACKGROUND,
+    overwrite: false,
+    method: "PUT",
+    data: attachments,
+    saveas: "./",
+    network: request.agent.Network.CELLULAR,
+    metered: false,
+    roaming: true,
+    retry: true,
+    redirect: true,
+    index: 0,
+    begins: 0,
+    ends: -1,
+    gauge: false,
+    precise: false,
+    token: "it is a secret"
+  };
+  request.agent.create(globalThis.abilityContext, conf).then((task)=> {
+    console.info(`create a upload task successfully. result: ${task.conf}`);
+  }).catch((err) => {
+    console.error(`Failed to create a upload task, because: ${err.message}`);
+  });
+  ```
+
+
+## request.agent.remove<sup>10+</sup>
+
+remove(id: string, callback: AsyncCallback&lt;void&gt;): void
+
+移除属于调用方的指定任务，如果正在处理中，该任务将被迫停止。使用callback异步回调。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | id | string | 是 | 任务id。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，删除指定任务成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900006 | task not found error. |
+
+**示例：**
+
+  ```js
+  request.agent.remove("id", (err) => {
+    if (err) {
+      console.error(`Failed to remove a upload task, because: ${JSON.stringify(err)}`);
+      return;
+    }
+    console.info(`remove a upload task successfully.`);
+  });
+  ```
+
+
+## request.agent.remove<sup>10+</sup>
+
+remove(id: string): Promise&lt;void&gt;
+
+移除属于调用方的指定任务，如果正在处理中，该任务将被迫停止，使用Promise异步回调。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | id | string | 是 | 任务id。 |
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;void&gt; | Promise对象。无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900006 | task not found error. |
+
+**示例：**
+
+  ```js
+  request.agent.remove("id").then(() => {
+    console.info(`remove a upload task successfully. `);
+  }).catch((err) => {
+    console.error(`Failed to remove a upload task, because: ${JSON.stringify(err)}`);
+  });
+  ```
+
 <!--no_check-->
