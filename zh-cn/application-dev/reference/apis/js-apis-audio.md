@@ -3400,7 +3400,7 @@ audioStreamManager.getAudioEffectInfoArray(audio.ContentType.CONTENT_TYPE_MUSIC,
     console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
     return;
   } else {
-    console.info(`The contentType of ${CONTENT_TYPE_MUSIC} and the streamUsage of ${STREAM_USAGE_MEDIA} 's effect mode are: ${audioEffectInfoArray}`);
+    console.info(`The contentType of ${CONTENT_TYPE_MUSIC} and the streamUsage of ${STREAM_USAGE_MEDIA} 's effect modes are: ${audioEffectInfoArray}`);
   }
 });
 ```
@@ -3431,7 +3431,7 @@ getAudioEffectInfoArray(content: ContentType, usage: StreamUsage): Promise&lt;Au
 ```js
 audioStreamManager.getAudioEffectInfoArray().then((audioEffectInfoArray) => {
   console.info(`getAudioEffectInfoArray ######### Get Promise is called ##########`);
-  console.info(`The contentType of ${CONTENT_TYPE_MUSIC} and the streamUsage of ${STREAM_USAGE_MEDIA} 's effect mode are: ${audioEffectInfoArray}`);
+  console.info(`The contentType of ${CONTENT_TYPE_MUSIC} and the streamUsage of ${STREAM_USAGE_MEDIA} 's effect modes are: ${audioEffectInfoArray}`);
 }).catch((err) => {
   console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
 });
