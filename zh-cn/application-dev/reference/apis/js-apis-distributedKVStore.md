@@ -227,7 +227,7 @@ appendChild(child: FieldNode): boolean
 **示例：**
 
 ```js
-import ddm from '@ohos.data.distributedKVStore';
+import distributedKVStore from '@ohos.data.distributedKVStore';
 
 try {
     let node = new distributedKVStore.FieldNode("root");
@@ -3826,7 +3826,7 @@ backup(file:string, callback: AsyncCallback&lt;void&gt;):void
 let kvStore;
 let file = "BK001";
 try {
-    kvStore.backup(file, function(err) => {
+    kvStore.backup(file, (err) => {
         if (err) {
             console.error(`Failed to backup.code is ${err.code},message is ${err.message} `);
         } else {
@@ -4218,7 +4218,7 @@ try {
         console.error(`Failed to commit.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occurred.ode is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -6566,7 +6566,6 @@ try {
                 return;
             }
             console.info('Succeeded in getting resultSize');
-            ;
         });
     });
 } catch (e) {
@@ -6630,7 +6629,6 @@ try {
     query.prefixKey("batch_test");
     kvStore.getResultSize('localDeviceId', query).then((resultSize) => {
         console.info('Succeeded in getting resultSize');
-        ;
     }).catch((err) => {
         console.error(`Failed to get resultSize.code is ${err.code},message is ${err.message}`);
     });
