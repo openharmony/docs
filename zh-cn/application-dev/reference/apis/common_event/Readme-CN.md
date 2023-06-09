@@ -7,3 +7,4 @@
 - [电话服务子系统公共事件定义](commonEvent-telephony.md)
 - [USB子系统公共事件定义](commonEvent-usb.md)
 - [Wifi子系统公共事件定义](commonEvent-wifi.md)
+- [文件管理子系统公共事件定义](commonEvent-filemanagement.md)
