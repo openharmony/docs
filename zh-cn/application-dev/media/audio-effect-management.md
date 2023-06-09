@@ -12,13 +12,13 @@
 
 1. 步骤一：导入音频接口。
 
-  ```ts
+  ```js
   import audio from '@ohos.multimedia.audio';
   ```
 
 2. 步骤二：配置音频渲染参数并创建AudioRenderer实例，音频渲染参数的详细信息可以查看[AudioRendererOptions](../reference/apis/js-apis-audio.md#audiorendereroptions8)，创建AudioRenderer实例时会默认挂载EFFECT_DEFAULT模式音效。
 
-  ```ts
+  ```js
   let audioStreamInfo = {
     samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
     channels: audio.AudioChannel.CHANNEL_1,
@@ -50,7 +50,7 @@
 
 ### 查询当前播放实例的音效模式
 
-  ```ts
+  ```js
   audioRenderer.getAudioEffectMode((err, effectmode) => {
     if (err) {
       console.error(`Failed to get params, code is ${err.code}, message is ${err.message}`);
@@ -65,7 +65,7 @@
 
 关闭系统音效：
 
-  ```ts
+  ```js
   audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_NONE, (err) => {
     if (err) {
       console.error(`Failed to set params, code is ${err.code}, message is ${err.message}`);
@@ -78,7 +78,7 @@
 
 开启系统音效默认模式：
 
-  ```ts
+  ```js
   audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT, (err) => {
     if (err) {
       console.error(`Failed to set params, code is ${err.code}, message is ${err.message}`);
@@ -98,7 +98,7 @@
 
 1.创建AudioStreamManager实例。在使用AudioStreamManager的API前，需要使用getStreamManager()创建一个AudioStreamManager实例。
 
-   ```ts
+   ```js
    import audio from '@ohos.multimedia.audio';
    let audioManager = audio.getAudioManager();
    let audioStreamManager = audioManager.getStreamManager();
@@ -106,7 +106,7 @@
 
 ### 查询对应场景的音效模式
 
-  ```ts
+  ```js
   audioStreamManager.getAudioEffectInfoArray(audio.ContentType.CONTENT_TYPE_MUSIC, audio.StreamUsage.STREAM_USAGE_MEDIA, async (err, audioEffectInfoArray) => {
     if (err) {
       console.error(`Failed to get effect info array`);
