@@ -23,8 +23,9 @@
 ## 开发步骤
 由于本例重点讲解图片编辑，所以开发步骤会着重讲解相关实现，不相关的内容不做介绍，全量代码可参考完整代码章节。
 1. 对图片进行解码。
-先通过上下文context获取到资源管理器resourceManager，然后通过资源管理器获取到图片数据，然后获取图片的ArrayBuffer，最后通过ArrayBuffer创建imageSource，获取到pixelMap，完成图片解码。
-具体代码如下：
+
+    先通过上下文context获取到资源管理器resourceManager，然后通过资源管理器获取到图片数据，然后获取图片的ArrayBuffer，最后通过ArrayBuffer创建imageSource，获取到pixelMap，完成图片解码。
+    具体代码如下：
     ```ts
     async get_pixelmap(){
       // 获取resourceManager资源管理
@@ -41,8 +42,9 @@
     }
     ```
 2. 编辑pixelMap。
-分别通过以下方法对pixelMap进行裁剪、缩放、偏移、旋转、翻转、调节透明度等操作：crop、scale、translate、rotate、flip、opacity。
-具体代码如下：
+
+    分别通过以下方法对pixelMap进行裁剪、缩放、偏移、旋转、翻转、调节透明度等操作：crop、scale、translate、rotate、flip、opacity。
+    具体代码如下：
     ```ts
     // 对pixelMap进行裁剪
     async crop_image(){
@@ -82,8 +84,9 @@
     }
     ```
 3. 通过Image组件将编辑后的pixelMap渲染显示出来。
-第2步中将编辑好的pixelMap传递给状态变量imagePixelMap，本步中直接将imagePixelMap传入Image组件进行渲染显示。
-具体代码如下：
+
+    第2步中将编辑好的pixelMap传递给状态变量imagePixelMap，本步中直接将imagePixelMap传入Image组件进行渲染显示。
+    具体代码如下：
     ```ts
     if(!this.edit){
       Row(){
