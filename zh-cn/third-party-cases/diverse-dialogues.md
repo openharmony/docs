@@ -34,8 +34,9 @@
 ## 开发步骤
 由于本例重点讲解对话框的使用，所以开发步骤会着重讲解相关实现，不相关的内容不做介绍，全量代码可参考完整代码章节。
 1. 首先，使用AlertDialog实现警告弹窗。
-通过message参数设置告警信息，alignment设置弹窗在界面中垂直方向的对齐方式；通过primaryButton和secondaryButton添加按钮。
-具体代码如下：
+
+    通过message参数设置告警信息，alignment设置弹窗在界面中垂直方向的对齐方式；通过primaryButton和secondaryButton添加按钮。
+    具体代码如下：
 
     ```ts
     alertDialog(context: Context.UIAbilityContext) {
@@ -69,8 +70,9 @@
     }
     ```
 2. 使用DatePickerDialog实现日期滑动选择器弹窗。
-通过start和end分别设置日期区间的起始时间和末尾时间；通过lunar设置使用农历还是阳历；使用onAccept监听选择的日期，本例中通过变量selectedDate将选中的日期设置给参数selected，这样弹窗弹出时的日期就默认为上次选中的日期。
-具体代码如下：
+
+    通过start和end分别设置日期区间的起始时间和末尾时间；通过lunar设置使用农历还是阳历；使用onAccept监听选择的日期，本例中通过变量selectedDate将选中的日期设置给参数selected，这样弹窗弹出时的日期就默认为上次选中的日期。
+    具体代码如下：
 
     ```ts
     datePickerDialog(dateCallback) {
@@ -95,8 +97,9 @@
     }
     ```
 3. 使用TextPickerDialog实现文本滑动选择器弹窗。
-通过range设置文本选择项，使用onAccept监听选择的文本项，本例中通过变量selectedGender将选中的性别的索引设置给参数selected，这样弹窗弹出时的性别就默认为上次选中的性别。
-具体代码如下：
+
+    通过range设置文本选择项，使用onAccept监听选择的文本项，本例中通过变量selectedGender将选中的性别的索引设置给参数selected，这样弹窗弹出时的性别就默认为上次选中的性别。
+    具体代码如下：
 
     ```ts
     textPickerDialog(sexArray: Resource, sexCallback) {
@@ -123,8 +126,9 @@
     }
     ```
 4. 使用CustomDialogController实现自定义弹窗。
-当现有弹窗不能满足业务诉求时，开发者可以自行设计弹窗的样式。在实现自定义弹窗时，需要将弹窗的UI放在被@CustomDialog修饰的自定义组件中，然后使用CustomDialogController的实例来控制弹窗的弹出和关闭。
-具体代码如下：
+
+    当现有弹窗不能满足业务诉求时，开发者可以自行设计弹窗的样式。在实现自定义弹窗时，需要将弹窗的UI放在被@CustomDialog修饰的自定义组件中，然后使用CustomDialogController的实例来控制弹窗的弹出和关闭。
+    具体代码如下：
     ```ts
     // 使用@CustomDialog修饰自定义弹窗
     @CustomDialog
