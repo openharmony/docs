@@ -1,4 +1,4 @@
-# 弹框的使用
+# 弹窗的使用
 
 ## 场景说明
 应用中经常用到弹窗，比如警告弹窗、日期选择弹窗、文本选择弹窗以及其他自定义弹窗等等。本例将为大家介绍如何使用不同的弹窗。
@@ -8,11 +8,11 @@
 
 ![multi-dialogue](figures/multi-dialogue.gif)
 
-示例中共涉及四类对话框：
-- 告警弹框：提示信息尚未保存。
-- 日期选择弹框：选择出生日期。
-- 文本选择弹框：选择性别。
-- 自定义弹框：填写兴趣爱好。
+示例中共涉及四类弹窗：
+- 警告弹窗：提示信息尚未保存。
+- 日期滑动选择器弹窗：选择出生日期。
+- 文本滑动选择器弹窗：选择性别。
+- 自定义弹窗：填写兴趣爱好。
 
 ## 运行环境
 本例基于以下环境开发，开发者也可以基于其他适配的版本进行开发：
@@ -22,37 +22,38 @@
 
 
 ## 实现思路
-本例中涉及的4类弹框及实现方案如下：
-- 告警弹框：使用AlertDialog实现。
-- 日期选择弹框：使用DatePickerDialog实现。
-- 文本选择弹框：使用TextPickerDialog实现。
-- 自定义弹框：使用CustomDialogController实现。
+本例中涉及的4类弹窗及实现方案如下：
+- 警告弹窗：使用AlertDialog实现。
+- 日期滑动选择器弹窗：使用DatePickerDialog实现。
+- 文本滑动选择器弹窗：使用TextPickerDialog实现。
+- 自定义弹窗：使用CustomDialogController实现。
 
 ## 开发步骤
 由于本例重点讲解对话框的使用，所以开发步骤会着重讲解相关实现，不相关的内容不做介绍，全量代码可参考完整代码章节。
-1. 首先，使用AlertDialog实现告警弹框。
-通过‘message’参数设置告警信息，‘alignment’设置弹框在界面中垂直方向的对齐方式；通过'primaryButton'和'secondaryButton'添加按钮。
+1. 首先，使用AlertDialog实现警告弹窗。
+通过message参数设置告警信息，alignment设置弹窗在界面中垂直方向的对齐方式；通过primaryButton和secondaryButton添加按钮。
 具体代码如下：
+
     ```ts
     alertDialog(context: Context.UIAbilityContext) {
       AlertDialog.show({
         // 通过message设置告警信息
         message: '当前数据未保存，是否确认离开？',
-        // 通过alignment设置弹框在界面垂直方向的对齐方式，此处设置为底部对齐
+        // 通过alignment设置弹窗在界面垂直方向的对齐方式，此处设置为底部对齐
         alignment: DialogAlignment.Bottom,
         // 通过offset设置基于对齐位置的便宜量
         offset: {
           dx: 0,
           dy: -20
         },
-        // 弹框中左起第一个按钮
+        // 弹窗中左起第一个按钮
         primaryButton: {
           value: '取消',
           action: () => {
             console.info('Callback cancel button is clicked');
           }
         },
-        // 弹框中左起第二个按钮
+        // 弹窗中左起第二个按钮
         secondaryButton: {
           value: '确定',
           action: () => {
@@ -64,9 +65,10 @@
       });
     }
     ```
-2. 使用DatePickerDialog实现日期选择弹框。
-通过start和end分别设置日期区间的起始时间和末尾时间；通过lunar设置使用农历还是阳历；使用onAccept监听选择的日期，本例中通过变量selectedDate将选中的日期设置给参数selected，这样弹框弹出时的日期就默认为上次选中的日期。
+2. 使用DatePickerDialog实现日期滑动选择器弹窗。
+通过start和end分别设置日期区间的起始时间和末尾时间；通过lunar设置使用农历还是阳历；使用onAccept监听选择的日期，本例中通过变量selectedDate将选中的日期设置给参数selected，这样弹窗弹出时的日期就默认为上次选中的日期。
 具体代码如下：
+
     ```ts
     datePickerDialog(dateCallback) {
       DatePickerDialog.show({
@@ -89,9 +91,10 @@
       });
     }
     ```
-3. 使用TextPickerDialog实现文本选择弹框。
-通过range设置文本选择项，使用onAccept监听选择的文本项，本例中通过变量selectedGender将选中的性别的索引设置给参数selected，这样弹框弹出时的性别就默认为上次选中的性别。
+3. 使用TextPickerDialog实现文本滑动选择器弹窗。
+通过range设置文本选择项，使用onAccept监听选择的文本项，本例中通过变量selectedGender将选中的性别的索引设置给参数selected，这样弹窗弹出时的性别就默认为上次选中的性别。
 具体代码如下：
+
     ```ts
     textPickerDialog(sexArray: Resource, sexCallback) {
       // 判断文本项的列表是否为空
@@ -116,11 +119,11 @@
       });
     }
     ```
-4. 使用CustomDialogController实现自定义弹框。
-当现有弹框不能满足业务诉求时，开发者可以自行设计弹框的样式。在实现自定义弹框时，需要将弹框的UI放在被@CustomDialog修饰的自定义组件中，然后使用CustomDialogController的实例来控制弹框的弹出和关闭。
+4. 使用CustomDialogController实现自定义弹窗。
+当现有弹窗不能满足业务诉求时，开发者可以自行设计弹窗的样式。在实现自定义弹窗时，需要将弹窗的UI放在被@CustomDialog修饰的自定义组件中，然后使用CustomDialogController的实例来控制弹窗的弹出和关闭。
 具体代码如下：
     ```ts
-    // 使用@CustomDialog修饰自定义弹框
+    // 使用@CustomDialog修饰自定义弹窗
     @CustomDialog
     struct CustomDialogFrame{
       ...
@@ -137,7 +140,7 @@
           Flex({ justifyContent: FlexAlign.SpaceAround }) {
             Button('取消')
               .onClick(() => {
-                // 点击‘取消’，弹框关闭
+                // 点击‘取消’，弹窗关闭
                 this.controller.close()
               })
               .backgroundColor('')
@@ -145,7 +148,7 @@
             Button('保存')
               .onClick(() => {
                 this.inputValue = this.textValue
-                // 点击‘保存’，弹框关闭
+                // 点击‘保存’，弹窗关闭
                 this.controller.close()
               })
               .backgroundColor(0xffffff)
@@ -155,9 +158,9 @@
       }
     }
     ...
-      // 实例化自定义弹框
+      // 实例化自定义弹窗
       customDialogController: CustomDialogController = new CustomDialogController({
-        // 使用上文创建的自定义弹框进行实例化
+        // 使用上文创建的自定义弹窗进行实例化
         builder: CustomDialogFrame({
           textValue: $textValue,
           inputValue: $inputValue
@@ -451,7 +454,7 @@ struct Index {
 }
 ```
 ## 参考
-- [警告弹框](../application-dev/reference/arkui-ts/ts-methods-alert-dialog-box.md)
+- [警告弹窗](../application-dev/reference/arkui-ts/ts-methods-alert-dialog-box.md)
 - [日期滑动选择器弹窗](../application-dev/reference/arkui-ts/ts-methods-datepicker-dialog.md)
 - [文本滑动选择器弹窗](../application-dev/reference/arkui-ts/ts-methods-textpicker-dialog.md)
 - [自定义弹窗](../application-dev/ui/arkts-common-components-custom-dialog.md)
