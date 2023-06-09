@@ -226,7 +226,7 @@ The **metadata** tag represents the custom metadata of the HAP file. The tag val
 
 ## abilities
 
-UIAbility configuration of the module, which is valid only for the current UIAbility component.
+The **abilities** tag represents the UIAbility configuration of the module, which is valid only for the current UIAbility component.
 
 **By default, application icons cannot be hidden from the home screen in OpenHarmony.**
 
@@ -242,7 +242,7 @@ This requirement on application icons is intended to prevent malicious applicati
 
 **Setting the application icon to be displayed on the home screen**:
 
-Set **icon**, **label**, and **skills** under **abilities** in the **module.json5** file. In addition, make sure the **skills** configuration contains **ohos.want.action.home** and **entity.system.home**.
+Set **icon**, **label**, and **skills** under **abilities** in the **module.json5** file. Make sure the **skills** configuration contains **ohos.want.action.home** and **entity.system.home**.
 
 ```
 {
