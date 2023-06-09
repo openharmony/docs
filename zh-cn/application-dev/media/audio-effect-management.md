@@ -1,6 +1,6 @@
 # 音效管理
 
-音效管理主要包括播放实例音效管理和全局音效查询两部分，播放实例音效管理主要包括查询和设置当前音频播放流的音效模式，全局音效查询支持查询StreamUsage对应场景支持的音效模式。
+音效管理主要包括播放实例音效管理和全局音效查询两部分，播放实例音效管理主要包括查询和设置当前音频播放流的音效模式，全局音效查询支持查询ContentType和StreamUsage对应场景支持的音效模式。
 
 ## 播放实例音效管理
 
@@ -91,8 +91,8 @@
 
 ## 全局查询音效模式
 
-主要包括查询StreamUsage对应场景支持的音效模式。
-对于播放音频类的应用，开发者需要关注该应用的音频流使用什么音效模式并做出相应的操作，比如音乐App播放时，应选择音乐场景下的模式。在使用查询接口前，开发者需要使用getStreamManager()创建一个AudioStreamManager实例。
+主要包括全局音效查询相应ContentType和StreamUsage对应场景的音效模式。
+对于播放音频类的应用，开发者需要关注该应用的音频流使用什么音效模式并做出相应的操作，比如音乐App播放时，应选择音乐场景下的模式。在使用查询接口前，开发者需要使用getStreamManager()创建一个AudioStreamManager音频流管理实例。
 
 ### 获取音频流管理接口
 
@@ -107,12 +107,12 @@
 ### 查询对应场景的音效模式
 
   ```ts
-  audioStreamManager.getAudioEffectInfoArray(audio.StreamUsage.STREAM_USAGE_UNKNOWN, async (err, AudioEffectInfoArray) => {
+  audioStreamManager.getAudioEffectInfoArray(audio.ContentType.CONTENT_TYPE_MUSIC, audio.StreamUsage.STREAM_USAGE_MEDIA, async (err, audioEffectInfoArray) => {
     if (err) {
       console.error(`Failed to get effect info array`);
       return;    
     } else {
-      console.info(`getAudioEffectInfoArray: ${getAudioEffectInfoArray}`);
+      console.info(`getAudioEffectInfoArray: ${audioEffectInfoArray}`);
     }
   });
   ```

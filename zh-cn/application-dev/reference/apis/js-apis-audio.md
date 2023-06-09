@@ -3394,13 +3394,13 @@ getAudioEffectInfoArray(content: ContentType, usage: StreamUsage, callback: Asyn
 **示例：**
 
 ```js
-audioStreamManager.getAudioEffectInfoArray(audio.ContentType.CONTENT_TYPE_MUSIC, audio.StreamUsage.STREAM_USAGE_MEDIA, async (err, AudioEffectInfoArray) => {
+audioStreamManager.getAudioEffectInfoArray(audio.ContentType.CONTENT_TYPE_MUSIC, audio.StreamUsage.STREAM_USAGE_MEDIA, async (err, audioEffectInfoArray) => {
   console.info('getAudioEffectInfoArray **** Get Callback Called ****');
   if (err) {
     console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
     return;
   } else {
-    console.info(`The contentType of ${CONTENT_TYPE_MUSIC} and the streamUsage of ${STREAM_USAGE_MEDIA} 's effect mode are: ${AudioEffectInfoArray}`);
+    console.info(`The contentType of ${CONTENT_TYPE_MUSIC} and the streamUsage of ${STREAM_USAGE_MEDIA} 's effect mode are: ${audioEffectInfoArray}`);
   }
 });
 ```
@@ -3417,8 +3417,8 @@ getAudioEffectInfoArray(content: ContentType, usage: StreamUsage): Promise&lt;Au
 
 | 参数名    | 类型                                | 必填     | 说明                         |
 | -------- | ----------------------------------- | -------- | --------------------------- |
-| content  | [ContentType](#contenttype)                                    | 是     |  音频内容类型。                  |
-| usage    | [StreamUsage](#streamusage)                                    | 是     |  音频流使用类型。                |
+| content  | [ContentType](#contenttype)         | 是     |  音频内容类型。                 |
+| usage    | [StreamUsage](#streamusage)         | 是     |  音频流使用类型。               |
 
 **返回值：**
 
@@ -3429,14 +3429,12 @@ getAudioEffectInfoArray(content: ContentType, usage: StreamUsage): Promise&lt;Au
 **示例：**
 
 ```js
-async function getAudioEffectInfoArray(){
-  await audioStreamManager.getAudioEffectInfoArray().then( function (AudioEffectInfoArray) {
-    console.info(`getAudioEffectInfoArray ######### Get Promise is called ##########`);
-    console.info(`The contentType of ${CONTENT_TYPE_MUSIC} and the streamUsage of ${STREAM_USAGE_MEDIA} 's effect mode are: ${AudioEffectInfoArray}`);
-  }).catch((err) => {
-    console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
-  });
-}
+audioStreamManager.getAudioEffectInfoArray().then((audioEffectInfoArray) => {
+  console.info(`getAudioEffectInfoArray ######### Get Promise is called ##########`);
+  console.info(`The contentType of ${CONTENT_TYPE_MUSIC} and the streamUsage of ${STREAM_USAGE_MEDIA} 's effect mode are: ${audioEffectInfoArray}`);
+}).catch((err) => {
+  console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
+});
 ```
 
 ## AudioRoutingManager<sup>9+</sup>
@@ -4235,7 +4233,7 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 
 ## AudioEffectInfoArray<sup>10+</sup>
 
-待查询ContentType和StreamUsage组合场景下的音效模式数组类型，[AudioEffectMode](#audioeffectmode)数组，只读。
+待查询ContentType和StreamUsage组合场景下的音效模式数组类型，[AudioEffectMode](#audioeffectmode10)数组，只读。
 
 ## AudioDeviceDescriptors
 
@@ -4492,8 +4490,8 @@ setAudioEffectMode(mode: AudioEffectMode, callback: AsyncCallback\<void>): void
 
 | 参数名   | 类型                                     | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| mode     | [AudioEffectMode](#audioeffectmode10) | 是   | 音效模式。             |
-| callback | AsyncCallback\<void>                     | 是   | 用于返回执行结果的回调。 |
+| mode     | [AudioEffectMode](#audioeffectmode10)    | 是   | 音效模式。               |
+| callback | AsyncCallback\<void>                     | 是   | 用于返回执行结果的回调。  |
 
 **示例：**
 
@@ -4519,7 +4517,7 @@ setAudioEffectMode(mode: AudioEffectMode): Promise\<void>
 
 | 参数名 | 类型                                     | 必填 | 说明         |
 | ------ | ---------------------------------------- | ---- | ------------ |
-| mode   | [AudioEffectMode](#audioeffectmode10) | 是   | 音效模式。 |
+| mode   | [AudioEffectMode](#audioeffectmode10)   | 是   | 音效模式。 |
 
 **返回值：**
 
@@ -4555,7 +4553,11 @@ getAudioEffectMode(callback: AsyncCallback\<AudioEffectMode>): void
 
 ```js
 audioRenderer.getAudioEffectMode((err, effectmode) => {
-  console.info(`getAudioEffectMode: ${effectmode}`);
+  if (err) {
+    console.error('Failed to get params');
+  } else {
+    console.info(`getAudioEffectMode: ${effectmode}`);
+  }
 });
 ```
 
