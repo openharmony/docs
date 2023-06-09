@@ -172,6 +172,10 @@ export default function abilityTest() {
 
 ![](figures/TestResult.PNG)
 
+**查看测试用例覆盖率**
+
+执行完测试用例后可以查看测试用例覆盖率，具体操作请参考[OpenHarmony Test代码覆盖率统计](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section1989615417457)
+
 ### CMD执行
 
 将应用测试包安装到测试设备上，在cmd窗口中执行aa命令，完成对用例测试。
@@ -276,7 +280,7 @@ export default function abilityTest() {
   hdc shell aa test -b xxx -p xxx -s unittest OpenHarmonyTestRunner   -s stress 1000
 ```
 
-查看测试结果
+**查看测试结果**
 
 - cmd模式执行过程,会打印如下相关日志信息。
 
