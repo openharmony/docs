@@ -178,7 +178,7 @@ export default function abilityTest() {
 
 > **说明：**
 >
-> 使用cmd的方式，需要配置好hdc相关的环境变量（可给链接）。
+> 使用cmd的方式，需要配置好hdc相关的环境变量。
 
 **aa test命令执行配置参数**
 
@@ -206,8 +206,6 @@ export default function abilityTest() {
 | stress       | 指定要执行用例的执行次数                                    |  正整数                                         | -s stress 1000                            |
 
 **cmd窗口执行test命令**
-
-> 使用cmd的方式，需要配置好hdc相关的环境变量
 
 - 打开cmd窗口
 - 执行 aa test 命令
@@ -331,7 +329,7 @@ OHOS_REPORT_STATUS: taskconsuming=16029
 | Ignore | 当前未执行用例个数。 |
 | taskconsuming| 执行当前测试用例总耗时。 |
 
-> 当处于breakOnError模式，用例发生错误时,注意查看Ignore以及中断说明
+> 当处于breakOnError模式，用例发生错误时,注意查看Ignore以及中断说明。
 
 ## 相关实例
 
