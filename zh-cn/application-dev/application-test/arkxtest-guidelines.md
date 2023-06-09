@@ -68,7 +68,7 @@ DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.
 
 3、断言接口调用，设置测试代码中的检查点，如无检查点，则不可认为一个完整的测试脚本。
 
-如下示例代码实现的场景是：启动测试页面，检查设备当前显示的页面是否为与预期页面。
+如下示例代码实现的场景是：启动测试页面，检查设备当前显示的页面是否为预期页面。
 
 ```TS
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
@@ -308,7 +308,7 @@ OHOS_REPORT_STATUS: consuming=4
 | OHOS_REPORT_STATUS: stream | 当前用例发生错误时，记录错误信息。 |
 | OHOS_REPORT_STATUS: test| 当前用例执行的it name。 |
 | OHOS_REPORT_STATUS_CODE | 当前用例执行结果状态。0表示通过，1表示错误，2表示失败。|
-| OHOS_REPORT_STATUS: consuming | 当前用例执行消耗的时长。 |
+| OHOS_REPORT_STATUS: consuming | 当前用例执行消耗的时长（ms）。 |
 
 - cmd执行完成后,会打印如下相关日志信息。
 
@@ -327,7 +327,7 @@ OHOS_REPORT_STATUS: taskconsuming=16029
 | Error | 当前执行用例发生错误用例个数。  |
 | Pass | 当前执行用例通过用例个数 。|
 | Ignore | 当前未执行用例个数。 |
-| taskconsuming| 执行当前测试用例总耗时。 |
+| taskconsuming| 执行当前测试用例总耗时（ms）。 |
 
 > 当处于breakOnError模式，用例发生错误时,注意查看Ignore以及中断说明。
 
