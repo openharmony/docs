@@ -579,6 +579,17 @@ async function createTonePlayerBefore(){
 | STATE_RELEASED | 4      | 释放状态。       |
 | STATE_PAUSED   | 5      | 暂停状态。       |
 
+## AudioEffectMode<sup>10+</sup>
+
+枚举，音效模式。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+| 名称               | 值     | 说明       |
+| ------------------ | ------ | ---------- |
+| EFFECT_NONE        | 0      | 关闭音效。 |
+| EFFECT_DEFAULT     | 1      | 默认音效。 |
+
 ## AudioRendererRate<sup>8+</sup>
 
 枚举，音频渲染速度。
@@ -3362,6 +3373,68 @@ audioStreamManager.isActive(audio.AudioVolumeType.MEDIA).then((value) => {
 });
 ```
 
+### getAudioEffectInfoArray<sup>10+</sup>
+
+getAudioEffectInfoArray(content: ContentType, usage: StreamUsage, callback: AsyncCallback&lt;AudioEffectInfoArray&gt;): void
+
+获取当前音效模式的信息。使用callback异步回调。
+
+**系统能力**: SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名    | 类型                                | 必填     | 说明                         |
+| -------- | ----------------------------------- | -------- | --------------------------- |
+| content  | [ContentType](#contenttype)                                    | 是     |  音频内容类型。                  |
+| usage    | [StreamUsage](#streamusage)                                    | 是     |  音频流使用类型。                |
+| callback | AsyncCallback<[AudioEffectInfoArray](#audioeffectinfoarray10)> | 是     |  回调函数，返回当前音效模式的信息。|
+
+**示例：**
+
+```js
+audioStreamManager.getAudioEffectInfoArray(audio.ContentType.CONTENT_TYPE_MUSIC, audio.StreamUsage.STREAM_USAGE_MEDIA, async (err, audioEffectInfoArray) => {
+  console.info('getAudioEffectInfoArray **** Get Callback Called ****');
+  if (err) {
+    console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
+    return;
+  } else {
+    console.info(`The contentType of ${CONTENT_TYPE_MUSIC} and the streamUsage of ${STREAM_USAGE_MEDIA} 's effect modes are: ${audioEffectInfoArray}`);
+  }
+});
+```
+
+### getAudioEffectInfoArray<sup>10+</sup>
+
+getAudioEffectInfoArray(content: ContentType, usage: StreamUsage): Promise&lt;AudioEffectInfoArray&gt;
+
+获取当前音效模式的信息。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名    | 类型                                | 必填     | 说明                         |
+| -------- | ----------------------------------- | -------- | --------------------------- |
+| content  | [ContentType](#contenttype)         | 是     |  音频内容类型。                 |
+| usage    | [StreamUsage](#streamusage)         | 是     |  音频流使用类型。               |
+
+**返回值：**
+
+| 类型                                                                      | 说明                                    |
+| --------------------------------------------------------------------------| --------------------------------------- |
+| Promise<[AudioEffectInfoArray](#audioeffectinfoarray10)>                  | Promise对象，返回当前音效模式的信息。      |
+
+**示例：**
+
+```js
+audioStreamManager.getAudioEffectInfoArray().then((audioEffectInfoArray) => {
+  console.info(`getAudioEffectInfoArray ######### Get Promise is called ##########`);
+  console.info(`The contentType of ${CONTENT_TYPE_MUSIC} and the streamUsage of ${STREAM_USAGE_MEDIA} 's effect modes are: ${audioEffectInfoArray}`);
+}).catch((err) => {
+  console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
+});
+```
+
 ## AudioRoutingManager<sup>9+</sup>
 
 音频路由管理。在使用AudioRoutingManager的接口前，需要使用[getRoutingManager](#getroutingmanager9)获取AudioRoutingManager实例。
@@ -4152,6 +4225,10 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
 });
 ```
 
+## AudioEffectInfoArray<sup>10+</sup>
+
+待查询ContentType和StreamUsage组合场景下的音效模式数组类型，[AudioEffectMode](#audioeffectmode10)数组，只读。
+
 ## AudioDeviceDescriptors
 
 设备属性数组类型，为[AudioDeviceDescriptor](#audiodevicedescriptor)的数组，只读。
@@ -4390,6 +4467,113 @@ getAudioStreamId(): Promise<number\>
 ```js
 audioRenderer.getAudioStreamId().then((streamid) => {
   console.info(`Renderer getAudioStreamId: ${streamid}`);
+}).catch((err) => {
+  console.error(`ERROR: ${err}`);
+});
+```
+
+### setAudioEffectMode<sup>10+</sup>
+
+setAudioEffectMode(mode: AudioEffectMode, callback: AsyncCallback\<void>): void
+
+设置当前音效模式。使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                                     | 必填 | 说明                     |
+| -------- | ---------------------------------------- | ---- | ------------------------ |
+| mode     | [AudioEffectMode](#audioeffectmode10)    | 是   | 音效模式。               |
+| callback | AsyncCallback\<void>                     | 是   | 用于返回执行结果的回调。  |
+
+**示例：**
+
+```js
+audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT, (err) => {
+  if (err) {
+    console.error('Failed to set params');
+  } else {
+    console.info('Callback invoked to indicate a successful audio effect mode setting.');
+  }
+});
+```
+
+### setAudioEffectMode<sup>10+</sup>
+
+setAudioEffectMode(mode: AudioEffectMode): Promise\<void>
+
+设置当前音效模式。使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名 | 类型                                     | 必填 | 说明         |
+| ------ | ---------------------------------------- | ---- | ------------ |
+| mode   | [AudioEffectMode](#audioeffectmode10)   | 是   | 音效模式。 |
+
+**返回值：**
+
+| 类型           | 说明                      |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise用于返回执行结果。 |
+
+**示例：**
+
+```js
+audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT).then(() => {
+  console.info('setAudioEffectMode SUCCESS');
+}).catch((err) => {
+  console.error(`ERROR: ${err}`);
+});
+```
+
+### getAudioEffectMode<sup>10+</sup>
+
+getAudioEffectMode(callback: AsyncCallback\<AudioEffectMode>): void
+
+获取当前音效模式。使用callback方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**参数：**
+
+| 参数名   | 类型                                                    | 必填 | 说明               |
+| -------- | ------------------------------------------------------- | ---- | ------------------ |
+| callback | AsyncCallback<[AudioEffectMode](#audioeffectmode10)> | 是   | 回调返回当前音效模式。 |
+
+**示例：**
+
+```js
+audioRenderer.getAudioEffectMode((err, effectmode) => {
+  if (err) {
+    console.error('Failed to get params');
+  } else {
+    console.info(`getAudioEffectMode: ${effectmode}`);
+  }
+});
+```
+
+### getAudioEffectMode<sup>10+</sup>
+
+getAudioEffectMode(): Promise\<AudioEffectMode>
+
+获取当前音效模式。使用Promise方式异步返回结果。
+
+**系统能力：** SystemCapability.Multimedia.Audio.Renderer
+
+**返回值：**
+
+| 类型                                              | 说明                      |
+| ------------------------------------------------- | ------------------------- |
+| Promise<[AudioEffectMode](#audioeffectmode10)> | Promise回调返回当前音效模式。 |
+
+**示例：**
+
+```js
+audioRenderer.getAudioEffectMode().then((effectmode) => {
+  console.info(`getAudioEffectMode: ${effectmode}`);
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });

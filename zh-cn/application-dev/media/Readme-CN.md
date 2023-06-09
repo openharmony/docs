@@ -12,6 +12,7 @@
     - [使用TonePlayer开发音频播放功能（仅对系统应用开放）](using-toneplayer-for-playback.md)
     - [多音频播放的并发策略](audio-playback-concurrency.md)
     - [播放音量管理](volume-management.md)
+    - [音效管理](audio-effect-management.md)
     - [音频播放流管理](audio-playback-stream-management.md)
     - [音频输出设备管理](audio-output-device-management.md)
     - [分布式音频播放（仅对系统应用开放）](distributed-audio-playback.md)
