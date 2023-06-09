@@ -474,4 +474,4 @@ Defines the parameters that need to be specified for bundle installation, uninst
 | installFlag                    | number                         | No                       | Installation flag. The value **0** means initial installation and **1** means overwrite installation.|
 | isKeepData                     | boolean                        | No                      | Whether to retain the data directory during bundle uninstall.|
 | hashParams        | Array<[HashParam](#hashparam)> | No| Hash parameters.        |
-| crowdtestDeadline| number                         | No                       |End date of crowdtesting.|
+| crowdtestDeadline| number                         | No                       | End date of crowdtesting. The default value is **-1**, indicating that no end date is specified for crowdtesting.|
