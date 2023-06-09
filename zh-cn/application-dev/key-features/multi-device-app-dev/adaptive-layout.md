@@ -424,8 +424,8 @@ struct ScaleCapabilitySample {
         .border({ width: 2, color: "#66F1CCB8"})  // 边框，仅用于展示效果
       }
       .backgroundColor("#FFFFFF")
-      .height(this.sliderWidth)
-      .width(this.sliderHeight)
+      .height(this.sliderHeight)
+      .width(this.sliderWidth)
 
       this.slider()
     }.width('100%')
