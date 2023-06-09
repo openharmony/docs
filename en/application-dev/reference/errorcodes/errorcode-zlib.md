@@ -42,3 +42,24 @@ This error code is reported when the destination file passed in the **compressFi
 
 1. Check whether the destination file path is correct. If not, enter the correct sandbox path.
 2. Check whether the destination folder exists. If not, create the folder.
+
+## 900003 Source File in Incorrect Format or Damaged
+
+**Error Message**
+
+The input source file is not ZIP format or damaged.
+
+**Description**
+
+This error code is reported when the format of the source file is incorrect or the source file is damaged when the **decompressFile** API is called.
+
+
+**Possible Causes**
+
+1. When the **decompressFile** API is called, the format of the source file is incorrect.
+2. When the **decompressFile** API is called, the source file is incomplete or damaged.
+
+**Solution**
+
+1. Check whether the source file format is ZIP.
+2. Check whether the source file is complete. If the file is downloaded from the network, ensure that the file download is complete before calling the **decompressFile** API.
