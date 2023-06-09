@@ -143,7 +143,7 @@ buffer数组。
 | ------------ | ---- | ---------------- |
 | COMMON_PARAMS_SPEC | 0 | 表示公私钥中包含的公共参数。使用此类型的参数可以调用[generateKeyPair](#generatekeypair-2)随机生成密钥对。 |
 | PRIVATE_KEY_SPEC | 1 | 表示私钥中包含的参数。使用此类型的参数可以调用[generatePriKey](#generateprikey)生成指定的私钥。 |
-| PUBLIC_KEY_SPEC | 2 | 表示公钥中包含的参数。使用此类型的参数可以调用[generatePubKey](#generatepubKkey)生成指定的公钥。 |
+| PUBLIC_KEY_SPEC | 2 | 表示公钥中包含的参数。使用此类型的参数可以调用[generatePubKey](#generatepubkey)生成指定的公钥。 |
 | KEY_PAIR_SPEC | 3 | 表示公私钥中包含的全量参数。使用此类型的参数可以调用[generateKeyPair](#generatekeypair-2)生成指定的密钥对。 |
 
 ## CipherSpecItem<sup>10+</sup>
