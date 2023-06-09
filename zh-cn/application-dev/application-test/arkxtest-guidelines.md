@@ -10,7 +10,7 @@ OpenHarmony的自动化测试框架arkxtest，作为工具集的重要组成部�
 
 测试框架分为单元测试框架和UI测试框架。<br>单元测试框架是测试框架的基础底座，提供了最基本的用例识别、调度、执行及结果汇总的能力。<br>UI测试框架主要对外提供了UiTest API供开发人员在对应测试场景调用，而其脚本的运行基础仍是单元测试框架。
 
-- 单元测试框架
+### 单元测试框架
 
   图1.单元测试框架主要功能
 
@@ -24,7 +24,7 @@ OpenHarmony的自动化测试框架arkxtest，作为工具集的重要组成部�
 >
 > 单元测试框架中的函数具体含义请参考[函数定义](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_zh.md#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)。
 
-- UI测试框架
+### UI测试框架
 
   图3.UI测试框架主要功能
 
