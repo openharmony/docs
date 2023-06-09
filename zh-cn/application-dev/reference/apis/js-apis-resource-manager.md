@@ -3249,6 +3249,387 @@ getDrawableDescriptorByName(resName: string, density?: number): DrawableDescript
   }
   ```
 
+### getColor<sup>10+</sup>
+
+getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
+
+用户获取指定资源ID对应的颜色值，使用callback形式返回其对应的颜色值。
+
+**系统能力：** SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名      | 类型                          | 必填   | 说明              |
+| -------- | --------------------------- | ---- | --------------- |
+| resId    | number                      | 是    | 资源ID值           |
+| callback | AsyncCallback&lt;number&gt; | 是    | 异步回调，用于返回获取的颜色值（十进制） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the module resId invalid.             |
+| 9001002  | If the resource not found by resId.      |
+| 9001006  | If the resource re-ref too much.         |
+
+**示例Stage：**
+  ```ts
+    try {
+        this.context.resourceManager.getColor($r('app.color.test').id, (error, value) => {
+          if (error != null) {
+              console.log("error is " + error);
+          } else {
+              let str = value;
+          }
+      });
+    } catch (error) {
+        console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`)
+    }
+  ```
+
+### getColor<sup>10+</sup>
+
+getColor(resId: number): Promise&lt;number&gt;
+
+用户获取指定资源ID对应的颜色值，使用Promise形式返回对应其对应的颜色值。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resId | number | 是    | 资源ID值 |
+
+**返回值：**
+
+| 类型                    | 说明          |
+| --------------------- | ----------- |
+| Promise&lt;number&gt; | 资源ID值对应的颜色值（十进制） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**示例：**
+  ```ts
+  try {
+    this.context.resourceManager.getColor($r('app.color.test').id).then(value => {
+        let str = value;
+    }).catch(error => {
+        console.log("getColor promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getColor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColor<sup>10+</sup>
+
+getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
+
+用户获取指定resource对象对应的颜色值，使用callback形式返回其对应的颜色值。
+
+**系统能力：** SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名      | 类型                          | 必填   | 说明              |
+| -------- | --------------------------- | ---- | --------------- |
+| resource | [Resource](#resource9)      | 是    | 资源信息            |
+| callback | AsyncCallback&lt;number&gt; | 是    | 异步回调，用于返回获取的颜色值（十进制） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**示例：**
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.color.test').id
+  };
+  try {
+    this.context.resourceManager.getColor(resource, (error, value) => {
+        if (error != null) {
+            console.log("error is " + error);
+        } else {
+            let str = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColor<sup>10+</sup>
+
+getColor(resource: Resource): Promise&lt;number&gt;;
+
+用户获取指定resource对象对应的颜色值，使用Promise形式返回其对应的颜色值。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名      | 类型                     | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
+| resource | [Resource](#resource9) | 是    | 资源信息 |
+
+**返回值：**
+
+| 类型                    | 说明               |
+| --------------------- | ---------------- |
+| Promise&lt;number&gt; | resource对象对应的颜色值（十进制） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**示例：**
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.color.test').id
+  };
+  try {
+    this.context.resourceManager.getColor(resource).then(value => {
+      let str = value;
+    }).catch(error => {
+      console.log("getColor promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColorByName<sup>10+</sup>
+
+getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
+
+用户获取指定资源名称对应的颜色值，使用callback形式返回其对应的颜色值。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名      | 类型                          | 必填   | 说明              |
+| -------- | --------------------------- | ---- | --------------- |
+| resName  | string                      | 是    | 资源名称            |
+| callback | AsyncCallback&lt;number&gt; | 是    | 异步回调，用于返回获取的颜色值（十进制） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+| 9001006  | If the resource re-ref too much.            |
+
+**示例：**
+  ```ts
+  try {
+    this.context.resourceManager.getColorByName("test", (error, value) => {
+        if (error != null) {
+             console.log("error is " + error);
+        } else {
+            let string = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getColorByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColorByName<sup>10+</sup>
+
+getStringByName(resName: string): Promise&lt;number&gt;
+
+用户获取指定资源名称对应的颜色值，使用Promise形式返回其对应的颜色值。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
+| resName | string | 是    | 资源名称 |
+
+**返回值：**
+
+| 类型                    | 说明         |
+| --------------------- | ---------- |
+| Promise&lt;number&gt; | 资源名称对应的颜色值（十进制） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+| 9001006  | If the resource re-ref too much.            |
+
+**示例：**
+  ```ts
+  try {
+    this.context.resourceManager.getColorByName("test").then(value => {
+        let string = value;
+    }).catch(error => {
+        console.log("getColorByName promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getColorByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColorSync<sup>10+</sup>
+
+getColorSync(resId: number) : number;
+
+用户获取指定资源ID对应的颜色值，使用同步方式返回其对应的颜色值。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resId | number | 是    | 资源ID值 |
+
+**返回值：**
+
+| 类型     | 说明          |
+| ------ | ----------- |
+| number | 资源ID值对应的颜色值（十进制） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**示例：**
+  ```ts
+  try {
+    this.context.resourceManager.getColorSync($r('app.color.test').id);
+  } catch (error) {
+    console.error(`getColorSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColorSync<sup>10+</sup>
+
+getColorSync(resource: Resource): number
+
+用户获取指定resource对象对应的颜色值，使用同步方式返回其对应的颜色值。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名      | 类型                     | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
+| resource | [Resource](#resource9) | 是    | 资源信息 |
+
+**返回值：**
+
+| 类型     | 说明               |
+| ------ | ---------------- |
+| number | resource对象对应的颜色值（十进制） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**示例：**
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.color.test').id
+  };
+  try {
+    this.context.resourceManager.getColorSync(resource);
+  } catch (error) {
+    console.error(`getColorSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColorByNameSync<sup>10+</sup>
+
+getColorByNameSync(resName: string) : number;
+
+用户获取指定资源名称对应的颜色值，使用同步方式返回其对应的颜色值。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
+| resName | string | 是    | 资源名称 |
+
+**返回值：**
+
+| 类型     | 说明         |
+| ------ | ---------- |
+| number | 资源名称对应的颜色值（十进制） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+| 9001006  | If the resource re-ref too much.            |
+
+**示例：**
+  ```ts
+  try {
+    this.context.resourceManager.getColorByNameSync("test");
+  } catch (error) {
+    console.error(`getColorByNameSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
 ### getString<sup>(deprecated)</sup>
 
 getString(resId: number, callback: AsyncCallback&lt;string&gt;): void
