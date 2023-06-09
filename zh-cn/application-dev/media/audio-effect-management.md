@@ -4,7 +4,7 @@
 
 ## 播放实例音效管理
 
-主要包括查询和设置当前音频播放流的音效模式，音效模式包括EFFECT_NONE关闭音效模式和EFFECT_DEFAULT默认音效模式。默认音效模式会根据创建音频流的StreamUsage自动加载对应场景的音效。
+主要包括查询和设置当前音频播放流的音效模式，音效模式包括EFFECT_NONE关闭音效模式和EFFECT_DEFAULT默认音效模式。默认音效模式会根据创建音频流的ContentType和StreamUsage自动加载对应场景的音效。
 
 ### 获取播放实例
 
