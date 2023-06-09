@@ -141,14 +141,14 @@ buffer数组。
 
 | 名称         | 值   | 说明             |
 | ------------ | ---- | ---------------- |
-| COMMON_PARAMS_SPEC | 0 | 表示公私钥中包含的公共参数。使用此类型的参数可以调用generateKeyPair // todo 随机生成密钥对。 |
-| PRIVATE_KEY_SPEC | 1 | 表示私钥中包含的参数。使用此类型的参数可以调用generatePriKey生成指定的私钥。 |
-| PUBLIC_KEY_SPEC | 2 | 表示公钥中包含的参数。使用此类型的参数可以调用generatePubKey生成指定的公钥。 |
-| KEY_PAIR_SPEC | 3 | 表示公私钥中包含的全量参数。使用此类型的参数可以调用generateKeyPair生成指定的密钥对。 |
+| COMMON_PARAMS_SPEC | 0 | 表示公私钥中包含的公共参数。使用此类型的参数可以调用[generateKeyPair](#generatekeypair-2)随机生成密钥对。 |
+| PRIVATE_KEY_SPEC | 1 | 表示私钥中包含的参数。使用此类型的参数可以调用[generatePriKey](#generateprikey)生成指定的私钥。 |
+| PUBLIC_KEY_SPEC | 2 | 表示公钥中包含的参数。使用此类型的参数可以调用[generatePubKey](#generatepubKkey)生成指定的公钥。 |
+| KEY_PAIR_SPEC | 3 | 表示公私钥中包含的全量参数。使用此类型的参数可以调用[generateKeyPair](#generatekeypair-2)生成指定的密钥对。 |
 
 ## CipherSpecItem<sup>10+</sup>
 
-表示加解密参数的枚举，这些加解密参数支持通过[setCipherSpec](#setcipherspec)接口设置/通过[getCipherSpec](#getcipherspec)接口获取。<br/>当前只支持RSA算法。
+表示加解密参数的枚举，这些加解密参数支持通过[setCipherSpec](#setcipherspec10)接口设置/通过[getCipherSpec](#getcipherspec10)接口获取。<br/>当前只支持RSA算法，详细规格请参考框架概述[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -161,7 +161,7 @@ buffer数组。
 
 ## SignSpecItem<sup>10+</sup>
 
-表示签名验签参数的枚举，这些签名验签参数支持通过[setSignSpec](#setsignspec)、[setVerifySpec](#setverifyspec)接口设置/通过[getSignSpec](#getsignspec)、[getVerifySpec](#getverifyspec)接口获取。<br/>当前只支持RSA算法。
+表示签名验签参数的枚举，这些签名验签参数支持通过[setSignSpec](#setsignspec10)、[setVerifySpec](#setverifyspec10)接口设置/通过[getSignSpec](#getsignspec10)、[getVerifySpec](#getverifyspec10)接口获取。<br/>当前只支持RSA算法，详细规格请参考框架概述[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -175,18 +175,18 @@ buffer数组。
 
 ## AsyKeySpec<sup>10+</sup>
 
-指定非对称密钥参数的基本接口，用于创建密钥生成器。在指定非对称密钥参数时需要构造其子类对象，并将子类对象传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec)方法创建密钥生成器。构造子类对象时，所有bigint类型的密钥参数均采用大端写法，并使用正数。
+指定非对称密钥参数的基本接口，用于创建密钥生成器。在指定非对称密钥参数时需要构造其子类对象，并将子类对象传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。构造子类对象时，所有bigint类型的密钥参数均采用大端写法，并使用正数。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | algName | string | 是   | 是   | 指定非对称密钥的算法名称，比如"RSA"、"DSA"、"ECC"。 |
-| specType | [AsyKeySpecType](#asykeyspectype) | 是   | 是 | 指定密钥参数类型，用于区分公/私钥参数。 |
+| specType | [AsyKeySpecType](#asykeyspectype10) | 是   | 是 | 指定密钥参数类型，用于区分公/私钥参数。 |
 
 ## DSACommonParamsSpec<sup>10+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec)的子类，用于指定DSA算法中公私钥包含的公共参数，随机生成公/私钥。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec)方法创建密钥生成器。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定DSA算法中公私钥包含的公共参数，随机生成公/私钥。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -198,24 +198,24 @@ buffer数组。
 
 ## DSAPubKeySpec<sup>10+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec)的子类，用于指定DSA算法中公钥包含的参数。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec)方法创建密钥生成器。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定DSA算法中公钥包含的参数。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [DSACommonParamsSpec](#dsacommonparamsspec) | 是   | 是   | 指定DSA算法中公私钥都包含的公共参数。 |
+| params | [DSACommonParamsSpec](#dsacommonparamsspec10) | 是   | 是   | 指定DSA算法中公私钥都包含的公共参数。 |
 | pk | bigint | 是   | 是   | 指定DSA算法的公钥。 |
 
 ## DSAKeyPairSpec<sup>10+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec)的子类，用于指定DSA算法中公私钥包含的全量参数。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec)方法创建密钥生成器。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定DSA算法中公私钥包含的全量参数。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [DSACommonParamsSpec](#dsacommonparamsspec) | 是   | 是   | 指定DSA算法中公私钥都包含的公共参数。 |
+| params | [DSACommonParamsSpec](#dsacommonparamsspec10) | 是   | 是   | 指定DSA算法中公私钥都包含的公共参数。 |
 | sk | bigint | 是   | 是   | 指定DSA算法的私钥sk。 |
 | pk | bigint | 是   | 是   | 指定DSA算法的公钥pk。 |
 
@@ -231,7 +231,7 @@ buffer数组。
 
 ## ECFieldFp<sup>10+</sup>
 
-指定椭圆曲线素数域。是[ECField](#ecfield)的子类。
+指定椭圆曲线素数域。是[ECField](#ecfield10)的子类。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -252,56 +252,56 @@ buffer数组。
 
 ## ECCCommonParamsSpec<sup>10+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec)的子类，用于指定ECC算法中公私钥包含的公共参数，随机生成公/私钥。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec)方法创建密钥生成器。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ECC算法中公私钥包含的公共参数，随机生成公/私钥。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| field | [ECField](#ecfield) | 是   | 是   | 指定椭圆曲线的域（当前只支持Fp域）。 |
+| field | [ECField](#ecfield10) | 是   | 是   | 指定椭圆曲线的域（当前只支持Fp域）。 |
 | a | bigint | 是   | 是   | 指定椭圆曲线的第一个系数a。 |
 | b | bigint | 是   | 是   | 指定椭圆曲线的第二个系数b。 |
-| g | [Point](#point) | 是   | 是   | 指定基点g。 |
+| g | [Point](#point10) | 是   | 是   | 指定基点g。 |
 | n | bigint | 是   | 是   | 指定基点g的阶数n。 |
 | h | number | 是   | 是   | 指定余因子h。 |
 
 ## ECCPriKeySpec<sup>10+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec)的子类，用于指定ECC算法中私钥包含的参数。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec)方法创建密钥生成器。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ECC算法中私钥包含的参数。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [ECCCommonParamsSpec](#ecccommonparamsspec) | 是   | 是   | 指定ECC算法中公私钥都包含的公共参数。 |
+| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | 是   | 是   | 指定ECC算法中公私钥都包含的公共参数。 |
 | sk | bigint | 是   | 是   | 指定ECC算法的私钥sk。 |
 
 ## ECCPubKeySpec<sup>10+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec)的子类，用于指定ECC算法中公钥包含的参数。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec)方法创建密钥生成器。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ECC算法中公钥包含的参数。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [ECCCommonParamsSpec](#ecccommonparamsspec) | 是   | 是   | 指定ECC算法中公私钥都包含的公共参数。 |
-| pk | [Point](#point) | 是   | 是   | 指定ECC算法的公钥pk。 |
+| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | 是   | 是   | 指定ECC算法中公私钥都包含的公共参数。 |
+| pk | [Point](#point10) | 是   | 是   | 指定ECC算法的公钥pk。 |
 
 ## ECCKeyPairSpec<sup>10+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec)的子类，用于指定ECC算法中公私钥包含的全量参数。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec)方法创建密钥生成器。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定ECC算法中公私钥包含的全量参数。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [ECCCommonParamsSpec](#ecccommonparamsspec) | 是   | 是   | 指定ECC算法中公私钥都包含的公共参数。 |
+| params | [ECCCommonParamsSpec](#ecccommonparamsspec10) | 是   | 是   | 指定ECC算法中公私钥都包含的公共参数。 |
 | sk | bigint | 是   | 是   | 指定ECC算法的私钥sk。 |
-| pk | [Point](#point) | 是   | 是   | 指定ECC算法的公钥pk。 |
+| pk | [Point](#point10) | 是   | 是   | 指定ECC算法的公钥pk。 |
 
 ## RSACommonParamsSpec<sup>10+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec)的子类，用于指定RSA算法中公私钥包含的公共参数，随机生成公/私钥。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec)方法创建密钥生成器。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定RSA算法中公私钥包含的公共参数，随机生成公/私钥。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -311,24 +311,24 @@ buffer数组。
 
 ## RSAPubKeySpec<sup>10+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec)的子类，用于指定RSA算法中公钥包含的参数。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec)方法创建密钥生成器。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定RSA算法中公钥包含的参数。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [RSACommonParamsSpec](#rsacommonparamsspec) | 是   | 是   | 指定RSA算法中公私钥都包含的公共参数。 |
+| params | [RSACommonParamsSpec](#rsacommonparamsspec10) | 是   | 是   | 指定RSA算法中公私钥都包含的公共参数。 |
 | pk | bigint | 是   | 是   | 指定RSA算法的公钥pk。 |
 
 ## RSAKeyPairSpec<sup>10+</sup>
 
-密钥参数[AsyKeySpec](#asykeyspec)的子类，用于指定RSA算法中公私钥包含的全量参数。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec)方法创建密钥生成器。
+密钥参数[AsyKeySpec](#asykeyspec10)的子类，用于指定RSA算法中公私钥包含的全量参数。<br/>在使用密钥参数生成密钥时，将其传入[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法创建密钥生成器。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 | 名称    | 类型   | 可读 | 可写 | 说明                                                         |
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
-| params | [RSACommonParamsSpec](#rsacommonparamsspec) | 是   | 是   | 指定RSA算法中公私钥都包含的公共参数。 |
+| params | [RSACommonParamsSpec](#rsacommonparamsspec10) | 是   | 是   | 指定RSA算法中公私钥都包含的公共参数。 |
 | sk | bigint | 是   | 是   | 指定RSA算法的私钥sk。 |
 | pk | bigint | 是   | 是   | 指定RSA算法的公钥pk。 |
 
@@ -350,6 +350,9 @@ buffer数组。
 getEncoded(): DataBlob
 
 以同步方法，获取密钥数据的字节流。密钥可以为对称密钥，公钥或者私钥。其中，公钥格式满足ASN.1语法、X.509规范、DER编码格式；私钥格式满足ASN.1语法，PKCS#8规范、DER编码方式。
+
+> **说明：**<br>
+> RSA算法使用密钥参数生成私钥时，私钥对象不支持getEncoded。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -417,7 +420,7 @@ console.info("key hex:" + uint8ArrayToShowStr(encodedKey.data));    // 输出全
 
 ## PubKey
 
-公钥，是Key的子类，在非对称加解密、验签、密钥协商时需要将其对象作为输入使用。<br/>公钥可以通过非对称密钥生成器[AsyKeyGenerator](#asykeygenerator)、[AsyKeyGeneratorBySpec](#asykeygeneratorbyspec)来生成。
+公钥，是Key的子类，在非对称加解密、验签、密钥协商时需要将其对象作为输入使用。<br/>公钥可以通过非对称密钥生成器[AsyKeyGenerator](#asykeygenerator)、[AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10)来生成。
 
 ### 属性
 
@@ -440,7 +443,7 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
 | 参数名 | 类型                  | 必填 | 说明                 |
 | ---- | --------------------- | ---- | -------------------- |
-| item  | [AsyKeySpecItem](#asykeyspecitem) | 是   | 指定的密钥参数。 |
+| item  | [AsyKeySpecItem](#asykeyspecitem10) | 是   | 指定的密钥参数。 |
 
 **返回值：**
 
@@ -466,7 +469,7 @@ console.info("ecc item --- p: " + p.toString(16));
 
 ## PriKey
 
-私钥，是Key的子类，在非对称加解密、签名、密钥协商时需要将其作为输入使用。<br/>私钥可以通过非对称密钥生成器[AsyKeyGenerator](#asykeygenerator)、[AsyKeyGeneratorBySpec](#asykeygeneratorbyspec)来生成。
+私钥，是Key的子类，在非对称加解密、签名、密钥协商时需要将其作为输入使用。<br/>私钥可以通过非对称密钥生成器[AsyKeyGenerator](#asykeygenerator)、[AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10)来生成。
 
 ### 属性
 
@@ -504,7 +507,7 @@ getAsyKeySpec(itemType: AsyKeySpecItem): bigint | string | number
 
 | 参数名 | 类型                  | 必填 | 说明                 |
 | ---- | --------------------- | ---- | -------------------- |
-| item  | [AsyKeySpecItem](#asykeyspecitem) | 是   | 指定的密钥参数类型。 |
+| item  | [AsyKeySpecItem](#asykeyspecitem10) | 是   | 指定的密钥参数类型。 |
 
 **返回值：**
 
@@ -530,7 +533,7 @@ console.info("ecc item --- p: " + p.toString(16));
 
 ## KeyPair
 
-非对称密钥对，包含：公钥与私钥。<br/>可以通过非对称密钥生成器[AsyKeyGenerator](#asykeygenerator)、[AsyKeyGeneratorBySpec](#asykeygeneratorbyspec)来生成。
+非对称密钥对，包含：公钥与私钥。<br/>可以通过非对称密钥生成器[AsyKeyGenerator](#asykeygenerator)、[AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10)来生成。
 
 > **说明：** 
 > 
@@ -989,13 +992,13 @@ createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec
 
 | 参数名  | 类型   | 必填 | 说明                             |
 | ------- | ------ | ---- | -------------------------------- |
-| asyKeySpec | [AsyKeySpec](#asykeyspec) | 是   | 密钥参数。非对称密钥生成器根据指定的这些参数生成公/私钥。 |
+| asyKeySpec | [AsyKeySpec](#asykeyspec10) | 是   | 密钥参数。非对称密钥生成器根据指定的这些参数生成公/私钥。 |
 
 **返回值：**
 
 | 类型                                            | 说明                       |
 | ----------------------------------------------- | -------------------------- |
-| [AsyKeyGeneratorBySpec](#asykeygeneratorbyspec) | 返回非对称密钥生成器实例。 |
+| [AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10) | 返回非对称密钥生成器实例。 |
 
 **错误码：**
 
@@ -1040,7 +1043,7 @@ let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPa
 
 ## AsyKeyGeneratorBySpec<sup>10+</sup>
 
-非对称密钥生成器。在使用该类的方法前，需要先使用[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec)方法构建一个AsyKeyGeneratorBySpec实例。
+非对称密钥生成器。在使用该类的方法前，需要先使用[createAsyKeyGeneratorBySpec()](#cryptoframeworkcreateasykeygeneratorbyspec10)方法构建一个AsyKeyGeneratorBySpec实例。
 
 ### 属性
 
@@ -1733,7 +1736,7 @@ setCipherSpec(itemType: CipherSpecItem, itemValue: Uint8Array): void
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| itemType     | [CipherSpecItem](#cipherspecitem)           | 是   | 用于指定需要设置的加解密参数。 |
+| itemType     | [CipherSpecItem](#cipherspecitem10)           | 是   | 用于指定需要设置的加解密参数。 |
 | itemValue | Uint8Array | 是   | 用于指定加解密参数的具体值。 |
 
 **错误码：**
@@ -1767,7 +1770,7 @@ getCipherSpec(itemType: CipherSpecItem): string | Uint8Array
 
 | 参数名 | 类型     | 必填 | 说明       |
 | ------ | -------- | ---- | ---------- |
-| itemType   | [CipherSpecItem](#cipherspecitem) | 是   | 用于指定需要获取的加解密参数。 |
+| itemType   | [CipherSpecItem](#cipherspecitem10) | 是   | 用于指定需要获取的加解密参数。 |
 
 **返回值：**
 
@@ -1790,7 +1793,7 @@ getCipherSpec(itemType: CipherSpecItem): string | Uint8Array
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 let cipher; // 此处省略生成Cipher实例的过程
-let md = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_STR);
+let mdName = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_STR);
 ```
 
 ## cryptoFramework.createSign
@@ -1805,7 +1808,7 @@ Sign实例生成。<br/>支持的规格详见框架概述“[签名验签规格]
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 指定签名算法：RSA或ECC，使用RSA PKCS1模式时需要设置摘要，使用RSA PSS模式时需要设置摘要和掩码摘要。 |
+| algName | string | 是   | 指定签名算法：RSA，ECC或DSA。使用RSA PKCS1模式时需要设置摘要，使用RSA PSS模式时需要设置摘要和掩码摘要。 |
 
 **返回值**：
 
@@ -1828,16 +1831,22 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let signer1 = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
 
-let singer2 = cryptoFramework.createSign("RSA1024|PSS|SHA256|MGF1_SHA256")
+let singer2 = cryptoFramework.createSign("RSA1024|PSS|SHA256|MGF1_SHA256");
+
+let singer3 = cryptoFramework.createSign("ECC224|SHA256");
+
+let singer4 = cryptoFramework.createSign("DSA2048|SHA256");
 ```
 
 ## Sign
 
-Sign类，使用Sign方法之前需要创建该类的实例进行操作，通过createSign(algName: string): Sign方法构造此实例。Sign类不支持重复初始化，当业务方需要使用新密钥签名时，需要重新创建新Sign对象并调用init初始化。
+Sign类，使用Sign方法之前需要创建该类的实例进行操作，通过createSign(algName: string): Sign方法构造此实例。按序调用本类中的init、update、sign方法完成签名操作。签名操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+
+Sign类不支持重复初始化，当业务方需要使用新密钥签名时，需要重新创建新Sign对象并调用init初始化。
 
 业务方使用时，在createSign时确定签名的模式，调用init接口设置密钥。
 
-当待签名数据较短时，可在init初始化后直接调用sign接口传入原文数据进行签名。
+当待签名数据较短时，可在init初始化后，（无需update）直接调用sign接口传入原文数据进行签名。
 
 当待签名数据较长时，可通过update接口分段传入切分后的原文数据，最后调用sign接口对整体原文数据进行签名。
 
@@ -1908,10 +1917,10 @@ init(priKey: PriKey): Promise\<void>
 
 update(data: DataBlob, callback: AsyncCallback\<void>): void
 
-追加待签名数据，callback方式。
+追加待签名数据，通过注册回调函数完成更新。 <br/>必须在对[Sign](#sign)实例使用[init()](#init-2)初始化后，才能使用本函数。
 
 > **说明：** 
-> Sign多次调用update的代码示例详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+> 根据数据量，可以不调用update（即[init](#init-2)完成后直接调用[sign](#sign-1)）或多次调用update。<br/>算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的签名操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>签名使用多次update操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1935,10 +1944,10 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 
 update(data: DataBlob): Promise\<void>
 
-追加待签名数据，promise方式。
+追加待签名数据，通过promise方式完成更新。 <br/>必须在对[Sign](#sign)实例使用[init()](#init-3)初始化后，才能使用本函数。
 
 > **说明：** 
-> Sign多次调用update的代码示例详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+> 根据数据量，可以不调用update（即[init](#init-3)完成后直接调用[sign](#sign-2)）或多次调用update。<br/>算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的签名操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>签名使用多次update操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1967,7 +1976,7 @@ update(data: DataBlob): Promise\<void>
 
 sign(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 
-对数据进行签名，返回签名结果，callback方式。
+对数据进行签名，通过注册回调函数获取签名结果。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1991,7 +2000,7 @@ sign(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 
 sign(data: DataBlob): Promise\<DataBlob>
 
-对数据进行签名，返回签名结果，promise方式。
+对数据进行签名，通过promise方式返回签名结果。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2100,7 +2109,7 @@ function signMessagePromise() {
 
 setSignSpec(itemType: SignSpecItem, itemValue: number): void
 
-设置签名参数。常用的签名参数可以直接通过[createSign](#cryptoframeworkcreatesign) 来指定，剩余参数可以通过本接口指定。
+设置签名参数。常用的签名参数可以直接通过[createSign](#cryptoframeworkcreatesign) 来指定，剩余参数可以通过本接口指定。当前只支持RSA算法。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2108,7 +2117,7 @@ setSignSpec(itemType: SignSpecItem, itemValue: number): void
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| itemType     | [SignSpecItem](#signspecitem)              | 是   | 用于指定需要设置的签名参数。 |
+| itemType     | [SignSpecItem](#signspecitem10)              | 是   | 用于指定需要设置的签名参数。 |
 | itemValue | number | 是   | 用于指定签名参数的具体值。 |
 
 **错误码：**
@@ -2134,7 +2143,7 @@ signer.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
 
 getSignSpec(itemType: SignSpecItem): string | number
 
-获取签名参数。
+获取签名参数。当前只支持RSA算法。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2180,7 +2189,7 @@ Verify实例生成。<br/>支持的规格详见框架概述“[签名验签规�
 
 | 参数名  | 类型   | 必填 | 说明                                                         |
 | ------- | ------ | ---- | ------------------------------------------------------------ |
-| algName | string | 是   | 指定签名算法：RSA或ECC，使用RSA PKCS1模式时需要设置摘要，使用RSA PSS模式时需要设置摘要和掩码摘要。 |
+| algName | string | 是   | 指定签名算法：RSA，ECC或DSA。使用RSA PKCS1模式时需要设置摘要，使用RSA PSS模式时需要设置摘要和掩码摘要。 |
 
 **返回值**：
 
@@ -2208,17 +2217,15 @@ let verifyer2 = cryptoFramework.createVerify("RSA1024|PSS|SHA256|MGF1_SHA256")
 
 ## Verify
 
-Verify类，使用Verify方法之前需要创建该类的实例进行操作，通过createVerify(algName: string): Verify方法构造此实例。
+Verify类，使用Verify方法之前需要创建该类的实例进行操作，通过createVerify(algName: string): Verify方法构造此实例。按序调用本类中的init、update、verify方法完成签名操作。验签操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
 
 Verify类不支持重复初始化，当业务方需要使用新密钥验签时，需要重新创建新Verify对象并调用init初始化。
 
 业务方使用时，在createVerify时确定验签的模式，调用init接口设置密钥。
 
-当签名数据较短时，可在init初始化后直接调用verify接口传入签名数据和原文进行验签。
+当被签名的消息较短时，可在init初始化后，（无需update）直接调用verify接口传入被签名的消息和签名(signatureData)进行验签。
 
-当签名数据较长时，可通过update接口分段传入签名数据，最后调用verify接口对整体签名数据进行验签。
-
-当使用update分段传入签名数据时，verify接口的签名数据支持传null，业务方可在循环中调用update接口，循环结束后调用verify传入原文进行验签。
+当被签名的消息较长时，可通过update接口分段传入被签名的消息，最后调用verify接口对消息全文进行验签。verify接口的data入参支持传null，业务方可在循环中调用update接口，循环结束后调用verify传入签名(signatureData)进行验签。
 
 ### 属性
 
@@ -2227,8 +2234,6 @@ Verify类不支持重复初始化，当业务方需要使用新密钥验签时�
 | 名称    | 类型   | 可读 | 可写 | 说明                         |
 | ------- | ------ | ---- | ---- | ---------------------------- |
 | algName | string | 是   | 否   | 验签指定的算法名称。 |
-
-
 
 ### init
 
@@ -2287,10 +2292,10 @@ init(pubKey: PubKey): Promise\<void>
 
 update(data: DataBlob, callback: AsyncCallback\<void>): void
 
-追加待验签数据，callback方式。
+追加待验签数据，通过注册回调函数完成更新。 <br/>必须在对[Verify](#verify)实例使用[init()](#init-4)初始化后，才能使用本函数。
 
 > **说明：** 
-> Verify多次调用update的代码示例详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+> 根据数据量，可以不调用update（即[init](#init-4)完成后直接调用[verify](#verify-1)）或多次调用update。<br/>算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的验签操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>验签使用多次update操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2314,10 +2319,10 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 
 update(data: DataBlob): Promise\<void>
 
-追加待验签数据，promise方式。
+追加待验签数据，通过Promise方式完成更新。 <br/>必须在对[Verify](#verify)实例使用[init()](#init-5)初始化后，才能使用本函数。
 
 > **说明：** 
-> Verify多次调用update的代码示例详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+> 根据数据量，可以不调用update（即[init](#init-5)完成后直接调用[verify](#verify-2)）或多次调用update。<br/>算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的验签操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>验签使用多次update操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2440,7 +2445,9 @@ verifyInitPromise.then(() => {
 
 setVerifySpec(itemType: SignSpecItem, itemValue: number): void
 
-设置验签参数。常用的签名参数可以直接通过[createVerify](#cryptoframeworkcreateverify) 来指定，剩余参数可以通过本接口指定。
+设置验签参数。常用的签名参数可以直接通过[createVerify](#cryptoframeworkcreateverify) 来指定，剩余参数可以通过本接口指定。当前只支持RSA算法。
+
+验签的参数应当与签名的参数保持一致。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2448,7 +2455,7 @@ setVerifySpec(itemType: SignSpecItem, itemValue: number): void
 
 | 参数名   | 类型                 | 必填 | 说明       |
 | -------- | -------------------- | ---- | ---------- |
-| itemType     | [SignSpecItem](#signspecitem)              | 是   | 用于指定需要设置的验签参数。 |
+| itemType     | [SignSpecItem](#signspecitem10)              | 是   | 用于指定需要设置的验签参数。 |
 | itemValue | number | 是   | 用于指定验签参数的具体值。 |
 
 **错误码：**
@@ -2474,13 +2481,17 @@ verifyer.setVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
 
 getVerifySpec(itemType: SignSpecItem): string | number
 
+获取验签参数。当前只支持RSA算法。
+
+验签的参数应当与签名的参数保持一致。
+
 **系统能力：** SystemCapability.Security.CryptoFramework
 
 **参数：**
 
 | 参数名 | 类型     | 必填 | 说明       |
 | ------ | -------- | ---- | ---------- |
-| itemType   | [SignSpecItem](#signspecitem)  | 是   | 用于指定需要获取的验签参数。 |
+| itemType   | [SignSpecItem](#signspecitem10)  | 是   | 用于指定需要获取的验签参数。 |
 
 **返回值：**
 
@@ -3540,12 +3551,16 @@ try {
     console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);
 }
 
-var generateRand = rand.generateRandomSync(12);
-generateRand.then(randData => {
-    console.error("[Sync]: rand result: " + randData.data);
-}).catch(error => {
-    console.error("[Sync]: error: " + error.message);
-});
+try {
+  let randData = random.generateRandomSync(12);
+  if (randData != null) {
+    console.info("[Sync]: rand result: " + randData.data);
+  } else {
+    console.error("[Sync]: get rand result fail!");
+  }
+} catch (error) {
+  console.error("[Sync]: error: " + error.message);
+}
 ```
 
 ### setSeed
