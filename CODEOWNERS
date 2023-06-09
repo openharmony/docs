@@ -187,7 +187,8 @@ zh-cn/application-dev/dfx/errormanager-guidelines.md @RayShih
 zh-cn/application-dev/key-features/multi-device-app-dev/ @lingminghw
 zh-cn/application-dev/database/ @ge-yafang
 zh-cn/application-dev/napi/native-window-guidelines.md @ge-yafang
-zh-cn/application-dev/napi/mindspore-lite-guidelines.md @ge-yafang
+zh-cn/application-dev/napi/mindspore-lite-guidelines.md @ge-yafang 
+zh-cn/application-dev/napi/neural-network-runtime-guidelines.md @ge-yafang 
 zh-cn/application-dev/napi/rawfile_guidelines.md @ningningW
 zh-cn/application-dev/background-agent-scheduled-reminder/ @RayShih
 zh-cn/application-dev/background-task-management/ @ningningW
