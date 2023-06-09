@@ -33,29 +33,41 @@ PC端以Smartperf-Host网站的形式进行发布，内部分为Trace Streamer�
 ```
 ## 功能介绍
 - 网页加载trace
-使用Smartperf-Host加载保存在本地的trace文件（htrace、ftrace等）并显示数据到泳道图中，trace数据分析详见《[网页加载trace说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_systemtrace.md)》。
+
+  使用Smartperf-Host加载保存在本地的trace文件（htrace、ftrace等）并显示数据到泳道图中，trace数据分析详见《[网页加载trace说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_systemtrace.md)》。
 - 网页抓取trace
-使用Smartperf-Host在线抓取trace，可以自定义抓取内容、抓取时长、trace保存路径，详见《[网页抓取trace说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_web_record.md)》。
+
+  使用Smartperf-Host在线抓取trace，可以自定义抓取内容、抓取时长、trace保存路径，详见《[网页抓取trace说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_web_record.md)》。
 - 设备抓取trace
-在设备端抓取trace，可以自定义抓取内容、抓取时长、trace保存路径，详见《[设备端抓取trace说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_device_record.md)》。
+
+  在设备端抓取trace，可以自定义抓取内容、抓取时长、trace保存路径，详见《[设备端抓取trace说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_device_record.md)》。
 - Ability Monitor抓取
-使用Smartperf-Host抓取应用的CPU、内存、磁盘IO和网络的使用情况，详见《[Ability Monitor抓取和展示说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_ability_monitor.md)》。
+
+  使用Smartperf-Host抓取应用的CPU、内存、磁盘IO和网络的使用情况，详见《[Ability Monitor抓取和展示说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_ability_monitor.md)》。
 - Native Memory抓取
-使用Smartperf-Host抓取应用的Native Memory（C和C++部分）的分配和释放情况，详见《[Native Memory抓取和展示说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_native_memory.md)》。
+
+  使用Smartperf-Host抓取应用的Native Memory（C和C++部分）的分配和释放情况，详见《[Native Memory抓取和展示说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_native_memory.md)》。
 - Hiperf抓取
-使用Smartperf-Host抓取应用的cpu使用量、方法的调用栈等，详见《[HiPerf的抓取和展示说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_hiperf.md)》。
+
+  使用Smartperf-Host抓取应用的cpu使用量、方法的调用栈等，详见《[HiPerf的抓取和展示说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_hiperf.md)》。
 - HiSystemEvent抓取
-使用Smartperf-Host抓取应用的各个子类别功耗占比（CPU、网络、定位等）、应用的资源申请使用记录（WorkScheduler、Runninglock、Alarm、Location Request）、应用功耗异常事件显示、功耗关联系统状态显示（电池电量、屏幕状态），详见《[HiSystemEvent的抓取和展示说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_hisystemevent.md)》。
+
+  使用Smartperf-Host抓取应用的各个子类别功耗占比（CPU、网络、定位等）、应用的资源申请使用记录（WorkScheduler、Runninglock、Alarm、Location Request）、应用功耗异常事件显示、功耗关联系统状态显示（电池电量、屏幕状态），详见《[HiSystemEvent的抓取和展示说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_hisystemevent.md)》。
 - FileSystem抓取
-使用Smartperf-Host抓取所有文件系统系统调用信息、读写调用次数等，详见《[FileSystem的抓取和展示说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_filesystem.md)》。
+
+  使用Smartperf-Host抓取所有文件系统系统调用信息、读写调用次数等，详见《[FileSystem的抓取和展示说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_filesystem.md)》。
 - 页内存抓取
-使用Smartperf-Host抓取页内存相关事件的开始时间、持续时间、触发进程、触发线程、事件类型、内存地址、内存大小等，详见《[页内存的抓取和展示说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_page_fault.md)》。
+
+  使用Smartperf-Host抓取页内存相关事件的开始时间、持续时间、触发进程、触发线程、事件类型、内存地址、内存大小等，详见《[页内存的抓取和展示说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_page_fault.md)》。
 - Bio抓取
-使用Smartperf-Host抓取每次IO访问的起始时间、总延迟、进程、每4k数据的平均延迟、线程、操作（写数据、页面换入、Metadata）、访问量、路径等、Block number、优先级、Backtrace调用栈，详见《[Bio的抓取和展示说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_bio.md)》。
+
+  使用Smartperf-Host抓取每次IO访问的起始时间、总延迟、进程、每4k数据的平均延迟、线程、操作（写数据、页面换入、Metadata）、访问量、路径等、Block number、优先级、Backtrace调用栈，详见《[Bio的抓取和展示说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_bio.md)》。
 - 进程Smaps抓取
-使用Smartperf-Host抓取单个进程的smaps数据（类别、Pss、Rss、Vss等），数据源为/proc/$pid/smaps，详见《[进程smaps的抓取和展示说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_smaps.md)》。
+
+  使用Smartperf-Host抓取单个进程的smaps数据（类别、Pss、Rss、Vss等），数据源为/proc/$pid/smaps，详见《[进程smaps的抓取和展示说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_smaps.md)》。
 - Sql分析和Metrics说明
-Smartperf-Host网站trace解析完成后在线数据库使用说明，详见《[Sql分析和Metrics说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_sql_metrics.md)》。
+
+  Smartperf-Host网站trace解析完成后在线数据库使用说明，详见《[Sql分析和Metrics说明](https://gitee.com/openharmony-sig/developtools_smartperf_host/blob/master/ide/src/doc/md/quickstart_sql_metrics.md)》。
 ## 编译指南
 项目编译主要包括两部分，Trace Streamer编译和Smartperf-Host编译部署。
 ### 构建约束
