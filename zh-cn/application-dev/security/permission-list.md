@@ -1034,6 +1034,46 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.ENTERPRISE_MANAGE_CERTIFICATE
+
+允许设备管理员管理证书。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_RESTRICT_POLICY
+
+允许设备管理员下发和获取限制类策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_MANAGE_USB
+
+允许设备管理员管理USB。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_MANAGE_NETWORK
+
+允许设备管理员管理网络。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.NFC_TAG
 
 允许应用读取Tag卡片。
