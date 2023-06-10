@@ -1,6 +1,6 @@
 # 加解密算法库框架开发指导
 
-> **说明**
+> **说明：**
 >
 > 本开发指导基于API version 9，OH SDK版本3.2.7以上，适用于JS语言开发
 
@@ -15,8 +15,10 @@
 3. 根据指定数据生成算法库密钥对象（也就是将外部或存储的二进制数据转换为算法库的密钥对象）。该对象可用于后续的加解密等操作。
 4. 获取算法库密钥对象的二进制数据，用于存储或传输。
 5. 对于非对称密钥，获取密钥对象的参数属性，用于存储或运输。
-> **说明**：密钥对象Key包括对称密钥SymKey和非对称密钥（公钥PubKey和私钥PriKey），其中公钥和私钥组成密钥对KeyPair。密钥之间的具体关系可参考[API参考](../reference/apis/js-apis-cryptoFramework.md)。
 
+> **说明：**
+>
+> 密钥对象Key包括对称密钥SymKey和非对称密钥（公钥PubKey和私钥PriKey），其中公钥和私钥组成密钥对KeyPair。密钥之间的具体关系可参考[API参考](../reference/apis/js-apis-cryptoFramework.md)。
 
 ### 接口及参数说明
 
@@ -40,15 +42,16 @@
 | Key | getEncoded() : DataBlob;  | 获取Key密钥对象的二进制数据（Key的子类实例包括对称密钥SymKey、公钥PubKey、私钥PriKey） |
 
 ### 随机生成RSA密钥对，并获得二进制数据
+
 示例1：随机生成非对称密钥KeyPair，并获得二进制数据（场景1、3）
 
-1. 创建非对称密钥生成器；
-2. 通过非对称密钥生成器随机生成非对称密钥；
-3. 获取密钥对象的二进制数据；
+1. 创建非对称密钥生成器。
+2. 通过非对称密钥生成器随机生成非对称密钥。
+3. 获取密钥对象的二进制数据。
 
 以使用Promise方式随机生成RSA密钥（1024位，素数个数为2）为例：
 
-```javascript
+```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 function generateAsyKey() {
@@ -70,15 +73,16 @@ function generateAsyKey() {
 ```
 
 ### 随机生成AES密钥，并获得二进制数据
+
 示例2：随机生成对称密钥SymKey，并获得二进制数据（场景1、3）
 
-1. 创建对称密钥生成器；
-2. 通过对称密钥生成器随机生成对称密钥；
-3. 获取算法库密钥对象的二进制数据；
+1. 创建对称密钥生成器。
+2. 通过对称密钥生成器随机生成对称密钥。
+3. 获取算法库密钥对象的二进制数据。
 
 以使用Promise方式随机生成AES密钥（256位）为例：
 
-```javascript
+```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 // 字节流以16进制输出
@@ -108,7 +112,7 @@ function testGenerateAesKey() {
 1. 获取RSA公钥或私钥二进制数据，公钥需满足ASN.1语法、X.509规范、DER编码格式，私钥需满足ASN.1语法、PKCS#8规范、DER编码格式。
 2. 创建AsyKeyGenerator对象，调用convertKey方法，传入公钥二进制和私钥二进制（二者非必选项，可只传入其中一个），转换为KeyPair对象。
 
-```javascript
+```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 function convertAsyKey() {
@@ -124,18 +128,18 @@ function convertAsyKey() {
 }
 ```
 
-**说明**
-
- 当前convertKey操作，公钥只支持转换满足X.509规范的DER格式，私钥只支持PKCS#8规范的DER格式；
-
+> **说明：**
+>
+> 当前convertKey操作，公钥只支持转换满足X.509规范的DER格式，私钥只支持PKCS#8规范的DER格式。
 
 ### 根据ECC密钥二进制数据，生成密钥对
+
 示例4：根据指定的ECC非对称密钥二进制数据，生成KeyPair对象（场景2、3）
 
 1. 获取ECC二进制密钥数据，封装成DataBlob对象。
 2. 调用convertKey方法，传入公钥二进制和私钥二进制（二者非必选项，可只传入其中一个），转换为KeyPair对象。
 
-```javascript
+```js
 function convertEccAsyKey() {
     let pubKeyArray = new Uint8Array([48,89,48,19,6,7,42,134,72,206,61,2,1,6,8,42,134,72,206,61,3,1,7,3,66,0,4,83,96,142,9,86,214,126,106,247,233,92,125,4,128,138,105,246,162,215,71,81,58,202,121,26,105,211,55,130,45,236,143,55,16,248,75,167,160,167,106,2,152,243,44,68,66,0,167,99,92,235,215,159,239,28,106,124,171,34,145,124,174,57,92]);
     let priKeyArray = new Uint8Array([48,49,2,1,1,4,32,115,56,137,35,207,0,60,191,90,61,136,105,210,16,27,4,171,57,10,61,123,40,189,28,34,207,236,22,45,223,10,189,160,10,6,8,42,134,72,206,61,3,1,7]);
@@ -152,15 +156,16 @@ function convertEccAsyKey() {
 ```
 
 ### 根据3DES密钥二进制数据，生成密钥
+
 示例5：根据指定的对称密钥二进制数据，生成SymKey对象（场景2、3）
 
-1. 创建对称密钥生成器；
-2. 通过对称密钥生成器，根据指定的对称密钥二进制数据，生成SymKey对象；
-3. 获取算法库密钥对象的二进制数据；
+1. 创建对称密钥生成器。
+2. 通过对称密钥生成器，根据指定的对称密钥二进制数据，生成SymKey对象。
+3. 获取算法库密钥对象的二进制数据。
 
 以使用callback方式生成3DES密钥（3DES密钥只能为192位）为例：
 
-```javascript
+```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 // 字节流以16进制输出
@@ -201,18 +206,19 @@ function testConvertAesKey() {
   }
 }
 ```
+
 ## 非对称密钥对象根据参数生成与获取参数
 
 ### 场景说明
 
 使用密钥生成操作中，典型的场景有：
-
 1. 根据非对称密钥参数生成指定的算法库密钥对象。该对象可用于后续的加解密等操作。
 2. 对于非对称密钥，获取密钥对象的参数属性，用于存储或运输。
-> **说明**：<br>
+
+> **说明：**
+>
 > 1. 从API version 10开始， 支持使用密钥参数来生成非对称密钥。
 > 2. 非对称密钥（公钥PubKey和私钥PriKey），其中公钥和私钥组成密钥对KeyPair。非对称密钥参数具体可参考[API参考](../reference/apis/js-apis-cryptoFramework.md)。
-
 
 ### 接口及参数说明
 
@@ -232,14 +238,16 @@ function testConvertAesKey() {
 | PubKey | getAsyKeySpec(itemType: AsyKeySpecItem): bigint \| string \| number;  | 获取非对称密钥公钥对象的密钥参数属性 |
 
 ### 根据参数生成ECC密钥对，并获得密钥参数开发步骤
+
 示例1：根据参数生成ECC密钥对，并获得密钥参数（场景1、2）
 
-1. 创建根据密钥参数的非对称密钥生成器；
-2. 通过根据密钥参数的非对称密钥生成器由指定密钥参数生成非对称密钥对；
-3. 获取密钥对象的密钥参数属性；
+1. 创建根据密钥参数的非对称密钥生成器。
+2. 通过根据密钥参数的非对称密钥生成器由指定密钥参数生成非对称密钥对。
+3. 获取密钥对象的密钥参数属性。
 
 以使用Promise方式根据密钥参数生成ECC密钥为例：
-```javascript
+
+```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 // 打印bigint信息
@@ -346,14 +354,15 @@ function testEccUseCommKeySpecGet()
 ```
 
 ### 根据参数生成RSA公钥，并获得密钥参数属性
+
 示例2：根据参数生成RSA公钥，并获得密钥参数（场景1、2）
 
-1. 创建根据密钥参数的非对称密钥生成器；
-2. 通过根据密钥参数的非对称密钥生成器由指定密钥参数生成非对称密钥的公钥；
-3. 获取密钥对象的密钥参数属性；
+1. 创建根据密钥参数的非对称密钥生成器。
+2. 通过根据密钥参数的非对称密钥生成器由指定密钥参数生成非对称密钥的公钥。
+3. 获取密钥对象的密钥参数属性。
 
 以使用Callback方式根据密钥参数生成RSA公钥为例：
-``` javascript
+```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 // RSA公钥密钥参数生成函数
@@ -406,11 +415,12 @@ function rsaUsePubKeySpecGetCallback() {
 ### 场景说明
 
 在数据存储或传输场景中，可以使用加解密操作用于保证数据的机密性，防止敏感数据泄露。使用加解密操作中，典型的场景有：
-1. 使用对称密钥的加解密操作
-2. 使用非对称密钥的加解密操作
-3. 使用RSA, PKCS1_OAEP填充模式时，获取、设置CipherSpecItem参数
+1. 使用对称密钥的加解密操作。
+2. 使用非对称密钥的加解密操作。
+3. 使用RSA, PKCS1_OAEP填充模式时，获取、设置CipherSpecItem参数。
 
-> **说明**：<br>
+> **说明：**
+>
 > 1. 从API version 10开始， 支持RSA使用PKCS1_OAEP填充模式时，获取、设置[CipherSpecItem](../reference/apis/js-apis-cryptoFramework.md#cipherspecitem10)参数。
 > 2. 从API version 10开始，支持加解密时字符串参数不带密钥长度。
 
@@ -441,7 +451,7 @@ function rsaUsePubKeySpecGetCallback() {
 3. 创建加解密生成器。
 4. 通过加解密生成器加密或解密数据。
 
-``` javascript
+```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 var globalCipher;
@@ -570,7 +580,7 @@ function testAesGcm() {
 示例2：使用3DES对称密钥的加解密操作
 
 1. 创建对称密钥生成器。
-2. 通过已有二进制数据生成密钥
+2. 通过已有二进制数据生成密钥。
 3. 创建加解密生成器。
 4. 通过加解密生成器加密或解密数据。
 
@@ -703,13 +713,13 @@ function test3DesEcb() {
 示例3：使用AES对称密钥的分段update()加解密操作
 
 1. 创建对称密钥生成器。
-2. 通过已有二进制数据生成密钥
+2. 通过已有二进制数据生成密钥。
 3. 创建加解密生成器。
 4. 通过加解密生成器加密或解密数据。
 
 以AES GCM以promise方式，分段update()实现加解密为例：
 
-```javascript
+```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 var globalCipher;
@@ -848,14 +858,16 @@ function testAesMultiUpdate() {
   })
 }
 ```
+
 ### RSA加解密开发步骤
+
 示例4：使用RSA非对称密钥的加解密操作
 
 1. 生成RSA密钥。通过createAsyKeyGenerator接口创建AsyKeyGenerator对象，并生成RSA非对称密钥。
 2. 生成Cipher对象。通过createCipher接口创建Cipher对象，执行初始化操作，设置密钥及加解密模式。
 3. 执行加解密操作。通过调用Cipher对象提供的doFinal接口，执行加密操作生成密文或执行解密操作生成明文。
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let plan = "This is cipher test.";
@@ -991,13 +1003,16 @@ function decryptMessageCallback() {
   });
 }
 ```
+
 ### RSA分段加解密开发步骤
+
 示例5：使用RSA非对称密钥的分段加解密操作
 
 1. 生成RSA密钥。通过createAsyKeyGenerator接口创建AsyKeyGenerator对象，并生成RSA非对称密钥。
 2. 生成Cipher对象。通过createCipher接口创建Cipher对象，执行初始化操作，设置密钥及加解密模式。
 3. 执行加解密操作。通过调用Cipher对象提供的doFinal接口，执行加密操作生成密文或执行解密操作生成明文，多次调用doFinal实现分段。
-```javascript
+
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 // 可理解的字符串转成字节流
@@ -1081,19 +1096,21 @@ function encryptLongMessagePromise() {
 }
 ```
 
-**说明**
-
-1. 使用RSA加解密时，Cipher对象不可重复调用init方法初始化，在创建了一个加密Cipher对象后，如果要进行解密，则需要重新创建另一个Cipher对象执行解密操作。
-2. RSA加密有长度限制，允许加密明文的最大长度见[加解密算法库框架概述](cryptoFramework-overview.md)中的基本概念加解密章节。
-3. RSA解密每次允许解密的密文长度为，RSA密钥的位数/8。
+> **说明：**
+>
+> 1. 使用RSA加解密时，Cipher对象不可重复调用init方法初始化，在创建了一个加密Cipher对象后，如果要进行解密，则需要重新创建另一个Cipher对象执行解密操作。
+> 2. RSA加密有长度限制，允许加密明文的最大长度见[加解密算法库框架概述](cryptoFramework-overview.md)中的基本概念加解密章节。
+> 3. RSA解密每次允许解密的密文长度为，RSA密钥的位数/8。
 
 ### RSA加解密PKCS1_OAEP模式开发步骤
+
 示例6：使用RSA非对称密钥使用PKCS1_OAEP模式的以Promise形式的加解密操作
 
-1. 根据密钥参数生成RSA密钥。通过createAsyKeyGeneratorBySpec接口创建AsyKeyGeneratorBySpec对象，并生成RSA非对称密钥对。（也可以使用createAsyKeyGenerator接口随机生成或转换得到RSA密钥对象）
+1. 根据密钥参数生成RSA密钥。通过createAsyKeyGeneratorBySpec接口创建AsyKeyGeneratorBySpec对象，并生成RSA非对称密钥对（也可以使用createAsyKeyGenerator接口随机生成或转换得到RSA密钥对象）。
 2. 生成Cipher对象。通过createCipher接口创建Cipher对象，执行初始化操作，设置密钥及加解密模式，在Update前通过setCipherSpec设置PKCS1_OAEP填充字节流P。
 3. 执行加解密操作。通过调用Cipher对象提供的doFinal接口，执行加密操作生成密文或执行解密操作生成明文，需要加解密Cipher对象的字节流P一致。
-``` javascript
+
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 // 可理解的字符串转成字节流
@@ -1192,7 +1209,6 @@ function rsaUseSpecDecryptOAEPPromise() {
 }
 ```
 
-
 ## 使用签名验签操作
 
 ### 场景说明
@@ -1202,7 +1218,8 @@ function rsaUseSpecDecryptOAEPPromise() {
 2. 使用ECC签名验签操作
 3. 使用RSA签名验签，PSS模式时，获取、设置SignSpecItem参数。
 
-> **说明**：<br>
+> **说明：**
+>
 > 1. 从API version 10开始，支持RSA使用PSS填充模式时，获取、设置[SignSpecItem](../reference/apis/js-apis-cryptoFramework.md#signspecitem10)参数。
 > 2. 从API version 10开始，支持签名验签时字符串参数不带密钥长度。
 
@@ -1234,12 +1251,14 @@ function rsaUseSpecDecryptOAEPPromise() {
 ### RSA签名验签开发步骤
 
 示例1：使用RSA签名验签操作
+
 1. 生成RSA密钥。通过createAsyKeyGenerator接口创建AsyKeyGenerator对象，并生成RSA非对称密钥。
 2. 生成Sign对象。通过createSign接口创建Sign对象，执行初始化操作并设置签名私钥。
 3. 执行签名操作。通过Sign类提供的update接口，添加签名数据，并调用sign接口生成数据的签名。
 4. 生成Verify对象。通过createVerify接口创建Verify对象，执行初始化操作并设置验签公钥。
 5. 执行验签操作。通过Verify类提供的update接口，添加签名数据，并调用verify接口传入签名进行验签。
-```javascript
+
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 // 可理解的字符串转成字节流
@@ -1320,13 +1339,14 @@ function verifyMessageCallback() {
 ### ECDSA签名验签开发步骤
 
 示例2：使用ECDSA操作
+
 1. 生成ECC密钥。通过createAsyKeyGenerator接口创建AsyKeyGenerator对象，并生成ECC非对称密钥。
 2. 生成Sign对象。通过createSign接口创建Sign对象，执行初始化操作并设置签名私钥。
 3. 执行签名操作。通过Sign类提供的update接口，添加签名数据，并调用doFinal接口生成数据的签名。
 4. 生成Verify对象。通过createVerify接口创建Verify对象，执行初始化操作并设置验签公钥。
 5. 执行验签操作。通过Verify类提供的update接口，添加签名数据，并调用doFinal接口传入签名进行验签。
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 // 可理解的字符串转成字节流
@@ -1407,13 +1427,14 @@ function verifyMessageCallback() {
 ### RSA分段签名验签开发步骤
 
 示例3：使用RSA签名验签操作
+
 1. 生成RSA密钥。通过createAsyKeyGenerator接口创建AsyKeyGenerator对象，并生成RSA非对称密钥。
 2. 生成Sign对象。通过createSign接口创建Sign对象，执行初始化操作并设置签名私钥。
 3. 执行签名操作。通过Sign类提供的update接口，多次添加签名数据，并调用sign接口生成数据的签名，完成分段签名。
 4. 生成Verify对象。通过createVerify接口创建Verify对象，执行初始化操作并设置验签公钥。
 5. 执行验签操作。多次通过Verify类提供的update接口，添加签名数据，并调用verify接口传入签名进行验签，完成分段验签。
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 // 可理解的字符串转成字节流
@@ -1489,7 +1510,7 @@ function signLongMessagePromise() {
 4. 生成Verify对象。通过createVerify接口创建Verify对象，执行初始化操作并设置验签公钥，可以获得、设置PSS模式相关参数，验签成功需要保证盐值长度一致。
 5. 执行验签操作。通过Verify类提供的update接口，添加签名数据，并调用verify接口传入签名进行验签。
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 // 可理解的字符串转成字节流
@@ -1585,7 +1606,8 @@ function verifyMessageCallbackPSS() {
 
 通信双方可以在一个公开的信道上通过相互传送一些消息，共同建立一个安全的共享秘密密钥。
 
-> **说明**：<br>
+> **说明：**
+>
 > 从API version 10开始，支持密钥协商时字符串参数不带密钥长度。
 
 ### 接口及参数说明
@@ -1603,7 +1625,7 @@ function verifyMessageCallbackPSS() {
 1. 生成ECC密钥。通过createAsyKeyGenerator接口创建AsyKeyGenerator对象，并生成ECC非对称密钥。
 2. 基于ECC密钥的私钥及公钥执行ECDH操作。
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let globalKeyPair;
@@ -1664,12 +1686,12 @@ function ecdhCallback() {
 
 ### 摘要算法开发步骤
 
-1. 设置算法，通过接口`createMd`生成摘要操作实例
-2. 接受用户数据，通过接口`update`，更新摘要，此步骤可重复，算法库不限制单次update的长度
-3. 通过接口`digest`，返回摘要计算结果
-4. 获取当前摘要算法名与摘要计算长度
+1. 设置算法，通过接口`createMd`生成摘要操作实例。
+2. 接受用户数据，通过接口`update`，更新摘要，此步骤可重复，算法库不限制单次update的长度。
+3. 通过接口`digest`，返回摘要计算结果。
+4. 获取当前摘要算法名与摘要计算长度。
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 // 可理解的字符串转成字节流
@@ -1743,12 +1765,12 @@ function doMdByCallback() {
 
 ### 分段摘要算法开发步骤
 
-1. 设置算法，通过接口`createMd`生成摘要操作实例
-2. 接受用户数据，多次通过接口`update`，更新摘要，实现分段
-3. 通过接口`digest`，返回摘要计算结果
-4. 获取当前摘要算法名与摘要计算长度
+1. 设置算法，通过接口`createMd`生成摘要操作实例。
+2. 接受用户数据，多次通过接口`update`，更新摘要，实现分段。
+3. 通过接口`digest`，返回摘要计算结果。
+4. 获取当前摘要算法名与摘要计算长度。
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 // 可理解的字符串转成字节流
@@ -1759,7 +1781,6 @@ function stringToUint8Array(str) {
   }
   return new Uint8Array(arr);
 }
-
 
 // 使用Promise方式，完成分段摘要
 async function doLoopMdPromise() {
@@ -1813,7 +1834,7 @@ async function doLoopMdPromise() {
 
 消息认证码操作主要应用于身份认证的场景：
 
-Mac(message authentication code)可以对消息进行完整性校验，通过使用双方共享的密钥，识别出信息伪装篡改等行为
+Mac(message authentication code)可以对消息进行完整性校验，通过使用双方共享的密钥，识别出信息伪装篡改等行为。
 
 用户指定摘要算法（如SHA256）生成消息认证码Mac实例，输入对称密钥初始化Mac，并传入单段或多段需要摘要的信息，进行消息认证码计算，并获取消息认证码计算结果，在指定算法后可获取当前算法名与消息认证码计算长度（字节）。
 
@@ -1835,13 +1856,13 @@ Mac(message authentication code)可以对消息进行完整性校验，通过使
 
 ### HMAC开发步骤
 
-1. 设置算法，通过接口`createMac`生成消息认证码操作实例
-2. 接受输入对称密钥，通过接口`init`，初始化Mac
-3. 接受数据，通过接口`update`，更新Mac，此步骤可重复
-4. 通过接口`doFinal`，返回Mac计算结果
-5. 获取当前摘要算法名与Mac计算长度
+1. 设置算法，通过接口`createMac`生成消息认证码操作实例。
+2. 接受输入对称密钥，通过接口`init`，初始化Mac。
+3. 接受数据，通过接口`update`，更新Mac，此步骤可重复。
+4. 通过接口`doFinal`，返回Mac计算结果。
+5. 获取当前摘要算法名与Mac计算长度。
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 // 可理解的字符串转成字节流
@@ -1941,14 +1962,16 @@ function doHmacByCallback() {
 ```
 
 ### 分段HMAC开发步骤
-以HMAC更新MAC时多次调用update实现分段为例：
-1. 设置算法，通过接口`createMac`生成消息认证码操作实例
-2. 接受输入对称密钥，通过接口`init`，初始化Mac
-3. 接受数据，多次通过接口`update`，以实现分段：
-4. 通过接口`doFinal`，返回Mac计算结果
-5. 获取当前摘要算法名与Mac计算长度
 
-```javascript
+以HMAC更新MAC时多次调用update实现分段为例：
+
+1. 设置算法，通过接口`createMac`生成消息认证码操作实例。
+2. 接受输入对称密钥，通过接口`init`，初始化Mac。
+3. 接受数据，多次通过接口`update`，以实现分段。
+4. 通过接口`doFinal`，返回Mac计算结果。
+5. 获取当前摘要算法名与Mac计算长度。
+
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 function stringToUint8Array(str) {
@@ -2018,7 +2041,6 @@ function doLoopHmacPromise() {
 }
 ```
 
-
 ## 使用随机数操作
 
 ### 场景说明
@@ -2029,6 +2051,7 @@ function doLoopHmacPromise() {
 - 用户使用生成的随机数作为参数，进行种子设置。
 
 ### 接口及参数说明
+
 详细接口说明可参考[API参考](../reference/apis/js-apis-cryptoFramework.md)。
 
 | 实例名          | 接口名                                                       | 描述                                       |
@@ -2041,11 +2064,11 @@ function doLoopHmacPromise() {
 
 ### 开发步骤
 
-1. 通过接口`createRandom`生成随机数操作实例
-2. 接受输入长度，通过接口`generateRandom`，生成指定长度的随机数
-3. 接受DataBlob数据，通过接口`setSeed`，为随机数生成池设置种子
+1. 通过接口`createRandom`生成随机数操作实例。
+2. 接受输入长度，通过接口`generateRandom`，生成指定长度的随机数。
+3. 接受DataBlob数据，通过接口`setSeed`，为随机数生成池设置种子。
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 // 通过Promise方式生成随机数

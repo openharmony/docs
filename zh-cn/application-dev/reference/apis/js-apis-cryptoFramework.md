@@ -8,7 +8,7 @@
 
 ## 导入模块
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 ```
 
@@ -46,7 +46,8 @@ buffer数组。
 | ------- | ------ | ---- | ---- | ------------------------------------------------------------ |
 | algName | string | 是   | 是   | 指明对称加解密参数的算法模式。可选值如下:<br/>- "IvParamsSpec": 适用于CBC\|CTR\|OFB\|CFB模式<br/>- "GcmParamsSpec": 适用于GCM模式<br/>- "CcmParamsSpec": 适用于CCM模式 |
 
-> **说明：** 
+> **说明：**
+>
 > 由于[init()](#init-2)的params参数是ParamsSpec类型（父类），而实际需要传入具体的子类对象（如IvParamsSpec），因此在构造子类对象时应设置其父类ParamsSpec的algName参数，使算法库在init()时知道传入的是哪种子类对象。
 
 ## IvParamsSpec
@@ -59,7 +60,8 @@ buffer数组。
 | ---- | --------------------- | ---- | ---- | ------------------------------------------------------------ |
 | iv   | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数iv。常见取值如下：<br/>- AES的CBC\|CTR\|OFB\|CFB模式：iv长度为16字节<br/>- 3DES的CBC\|OFB\|CFB模式：iv长度为8字节 |
 
-> **说明：** 
+> **说明：**
+>
 > 传入[init()](#init-2)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
 
 ## GcmParamsSpec
@@ -74,7 +76,8 @@ buffer数组。
 | aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为8字节。                             |
 | authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为16字节。<br/>采用GCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，取出其末尾16字节作为解密时[init()](#init-2)方法的入参[GcmParamsSpec](#gcmparamsspec)中的的authTag。 |
 
-> **说明：** 
+> **说明：**
+>
 > 传入[init()](#init-2)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
 
 ## CcmParamsSpec
@@ -89,7 +92,8 @@ buffer数组。
 | aad     | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数aad，长度为8字节。                             |
 | authTag | [DataBlob](#datablob) | 是   | 是   | 指明加解密参数authTag，长度为12字节。<br/>采用CCM模式加密时，需要获取[doFinal()](#dofinal-2)输出的[DataBlob](#datablob)，取出其末尾12字节作为解密时[init()](#init-2)方法的入参[CcmParamsSpec](#ccmparamsspec)中的authTag。 |
 
-> **说明：** 
+> **说明：**
+>
 > 传入[init()](#init-2)方法前需要指定其algName属性（来源于父类[ParamsSpec](#paramsspec)）。
 
 ## CryptoMode
@@ -143,7 +147,7 @@ buffer数组。
 | ------------ | ---- | ---------------- |
 | COMMON_PARAMS_SPEC | 0 | 表示公私钥中包含的公共参数。使用此类型的参数可以调用[generateKeyPair](#generatekeypair-2)随机生成密钥对。 |
 | PRIVATE_KEY_SPEC | 1 | 表示私钥中包含的参数。使用此类型的参数可以调用[generatePriKey](#generateprikey)生成指定的私钥。 |
-| PUBLIC_KEY_SPEC | 2 | 表示公钥中包含的参数。使用此类型的参数可以调用[generatePubKey](#generatepubkey)生成指定的公钥。 |
+| PUBLIC_KEY_SPEC | 2 | 表示公钥中包含的参数。使用此类型的参数可以调用[generatePubKey](#generatepubKkey)生成指定的公钥。 |
 | KEY_PAIR_SPEC | 3 | 表示公私钥中包含的全量参数。使用此类型的参数可以调用[generateKeyPair](#generatekeypair-2)生成指定的密钥对。 |
 
 ## CipherSpecItem<sup>10+</sup>
@@ -351,7 +355,8 @@ getEncoded(): DataBlob
 
 以同步方法，获取密钥数据的字节流。密钥可以为对称密钥，公钥或者私钥。其中，公钥格式满足ASN.1语法、X.509规范、DER编码格式；私钥格式满足ASN.1语法，PKCS#8规范、DER编码方式。
 
-> **说明：**<br>
+> **说明：**
+>
 > RSA算法使用密钥参数生成私钥时，私钥对象不支持getEncoded。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
@@ -364,7 +369,8 @@ getEncoded(): DataBlob
 
 **错误码：**
 
-> **说明：**<br>
+> **说明：**
+>
 > 从API version 10开始，该接口支持抛出错误码。
 
 | 错误码ID | 错误信息               |
@@ -535,9 +541,10 @@ console.info("ecc item --- p: " + p.toString(16));
 
 非对称密钥对，包含：公钥与私钥。<br/>可以通过非对称密钥生成器[AsyKeyGenerator](#asykeygenerator)、[AsyKeyGeneratorBySpec](#asykeygeneratorbyspec10)来生成。
 
-> **说明：** 
-> 
-> KeyPair对象中的pubKey对象和priKey对象，作为KeyPair对象中的一个参数存在，当离开KeyPair对象作用域时，其内部对象可能被析构。<br/>业务方使用时应持有KeyPair对象的引用，而非内部pubKey或priKey对象的引用。
+> **说明：**
+>
+> KeyPair对象中的pubKey对象和priKey对象，作为KeyPair对象中的一个参数存在，当离开KeyPair对象作用域时，其内部对象可能被析构。<br/>
+> 业务方使用时应持有KeyPair对象的引用，而非内部pubKey或priKey对象的引用。
 
 ### 属性
 
@@ -787,12 +794,12 @@ createAsyKeyGenerator(algName: string): AsyKeyGenerator
 | 错误码ID | 错误信息               |
 | -------- | ---------------------- |
 | 401 | invalid parameters. |
-| 801 | this operation is not supported. |
-| 17620001 | memory error. |
+| 801<sup>10+</sup> | this operation is not supported. |
+| 17620001<sup>10+</sup> | memory error. |
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
@@ -834,7 +841,7 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
@@ -846,7 +853,6 @@ asyKeyGenerator.generateKeyPair((err, keyPair) => {
   console.info("generateKeyPair: success.");
 })
 ```
-
 
 ### generateKeyPair
 
@@ -872,7 +878,7 @@ generateKeyPair(): Promise\<KeyPair>
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
@@ -910,7 +916,7 @@ convertKey(pubKey: DataBlob, priKey: DataBlob, callback: AsyncCallback\<KeyPair\
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let pubKeyArray = new Uint8Array([48,89,48,19,6,7,42,134,72,206,61,2,1,6,8,42,134,72,206,61,3,1,7,3,66,0,4,83,96,142,9,86,214,126,106,247,233,92,125,4,128,138,105,246,162,215,71,81,58,202,121,26,105,211,55,130,45,236,143,55,16,248,75,167,160,167,106,2,152,243,44,68,66,0,167,99,92,235,215,159,239,28,106,124,171,34,145,124,174,57,92]);
@@ -958,7 +964,7 @@ convertKey(pubKey: DataBlob, priKey: DataBlob): Promise\<KeyPair>
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let pubKeyArray = new Uint8Array([48,89,48,19,6,7,42,134,72,206,61,2,1,6,8,42,134,72,206,61,3,1,7,3,66,0,4,83,96,142,9,86,214,126,106,247,233,92,125,4,128,138,105,246,162,215,71,81,58,202,121,26,105,211,55,130,45,236,143,55,16,248,75,167,160,167,106,2,152,243,44,68,66,0,167,99,92,235,215,159,239,28,106,124,171,34,145,124,174,57,92]);
@@ -1010,7 +1016,7 @@ createAsyKeyGeneratorBySpec(asyKeySpec: AsyKeySpec): AsyKeyGeneratorBySpec
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 // 设置DSA1024中公私钥都包含的公共参数
@@ -1077,7 +1083,7 @@ generateKeyPair(callback: AsyncCallback\<KeyPair>): void
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyPairSpec; // asyKeyPairSpec为全量密钥参数，此处省略生成过程
@@ -1115,7 +1121,7 @@ generateKeyPair(): Promise\<KeyPair>
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyPairSpec; // asyKeyPairSpec为全量密钥参数，此处省略生成过程
@@ -1152,7 +1158,7 @@ generatePriKey(callback: AsyncCallback\<PriKey>): void
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyPairSpec; // asyKeyPairSpec为全量密钥参数
@@ -1190,7 +1196,7 @@ generatePriKey(): Promise\<PriKey>
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyPairSpec; // asyKeyPairSpec为全量密钥参数
@@ -1227,7 +1233,7 @@ generatePubKey(callback: AsyncCallback\<PubKey>): void
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyPairSpec; // asyKeyPairSpec为全量密钥参数，此处省略生成过程
@@ -1265,7 +1271,7 @@ generatePubKey(): Promise\<PubKey>
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyPairSpec; // asyKeyPairSpec为全量密钥参数，此处省略生成过程
@@ -1292,7 +1298,8 @@ createCipher(transformation: string): Cipher
 | -------------- | ------ | ---- | ------------------------------------------------------------ |
 | transformation | string | 是   | 待生成Cipher的算法名称（含密钥长度）、加密模式以及填充方法的组合。<br/>具体取值详见框架概述“[加解密规格](../../security/cryptoFramework-overview.md#加解密规格)”一节中的“字符串参数”。 |
 
-> **说明：** 
+> **说明：**
+>
 > 1. 目前对称加解密中，PKCS5和PKCS7的实现相同，其padding长度和分组长度保持一致（即PKCS5和PKCS7在3DES中均按照8字节填充，在AES中均按照16字节填充），另有NoPadding表示不填充。<br/>开发者需要自行了解密码学不同分组模式的差异，以便选择合适的参数规格。例如选择ECB和CBC模式时，建议启用填充，否则必须确保明文长度是分组大小的整数倍；选择其他模式时，可以不启用填充，此时密文长度和明文长度一致（即可能不是分组大小的整数倍）。
 > 2. 使用RSA进行非对称加解密时，必须创建两个Cipher对象分别进行加密和解密操作，而不能对同一个Cipher对象进行加解密。对称加解密没有此要求（即只要算法规格一样，可以对同一个Cipher对象进行加解密操作）。
 
@@ -1312,7 +1319,7 @@ createCipher(transformation: string): Cipher
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let cipherAlgName = '3DES192|ECB|PKCS7';
@@ -1438,9 +1445,12 @@ update(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 
 分段更新加密或者解密数据操作，通过注册回调函数获取加/解密数据。 <br/>必须在对[Cipher](#cipher)实例使用[init()](init-2)初始化后，才能使用本函数。
 
-> **说明：** 
+> **说明：**
+>
 > 1. 在进行对称加解密操作的时候，如果开发者对各个分组模式不够熟悉，建议对每次update和doFinal的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文/明文。这是因为选择的分组模式等各项规格都可能对update和[doFinal](#dofinal-2)结果产生影响。<br/>（例如对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组作为基本单位进行加/解密，并输出本次update新产生的加/解密分组结果。<br/>可以理解为，update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，把当前还没被加/解密的数据留着，等下一次update/doFinal传入数据的时候，拼接起来继续凑分组。<br/>最后doFinal的时候，会把剩下的还没加/解密的数据，根据[createCipher](#cryptoframeworkcreatecipher)时设置的padding模式进行填充，补齐到分组的整数倍长度，再输出剩余加解密结果。<br/>而对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度和明文长度相同的情况等。）
-> 2. 根据数据量，可以不调用update（即[init](#init-2)完成后直接调用[doFinal](#dofinal-2)）或多次调用update。<br/>算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，采用多次update的方式传入数据。<br/>AES使用多次update操作的示例代码详见开发指导“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”。
+> 2. 根据数据量，可以不调用update（即[init](#init-2)完成后直接调用[doFinal](#dofinal-2)）或多次调用update。<br/>
+>    算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，采用多次update的方式传入数据。<br/>
+>    AES使用多次update操作的示例代码详见开发指导“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”。
 > 3. RSA非对称加解密不支持update操作。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
@@ -1496,9 +1506,12 @@ update(data: DataBlob): Promise\<DataBlob>
 
 分段更新加密或者解密数据操作，通过通过Promise获取加/解密数据。<br/>必须在对[Cipher](#cipher)实例使用[init()](init-2)初始化后，才能使用本函数。
 
-> **说明：** 
+> **说明：**
+>
 > 1. 在进行对称加解密操作的时候，如果开发者对各个分组模式不够熟悉，建议对每次update和doFinal的结果都判断是否为null，并在结果不为null时取出其中的数据进行拼接，形成完整的密文/明文。这是因为选择的分组模式等各项规格都可能对update和[doFinal](#dofinal-2)结果产生影响。<br/>（例如对于ECB和CBC模式，不论update传入的数据是否为分组长度的整数倍，都会以分组作为基本单位进行加/解密，并输出本次update新产生的加/解密分组结果。<br/>可以理解为，update只要凑满一个新的分组就会有输出，如果没有凑满则此次update输出为null，把当前还没被加/解密的数据留着，等下一次update/doFinal传入数据的时候，拼接起来继续凑分组。<br/>最后doFinal的时候，会把剩下的还没加/解密的数据，根据[createCipher](#cryptoframeworkcreatecipher)时设置的padding模式进行填充，补齐到分组的整数倍长度，再输出剩余加解密结果。<br/>而对于可以将分组密码转化为流模式实现的模式，还可能出现密文长度和明文长度相同的情况等。）
-> 2. 根据数据量，可以不调用update（即[init](#init-2)完成后直接调用[doFinal](#dofinal-2)）或多次调用update。<br/>算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，可以采用多次update的方式传入数据。<br/>AES使用多次update操作的示例代码详见开发指导“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”。
+> 2. 根据数据量，可以不调用update（即[init](#init-2)完成后直接调用[doFinal](#dofinal-2)）或多次调用update。<br/>
+>    算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的对称加解密，可以采用多次update的方式传入数据。<br/>
+>    AES使用多次update操作的示例代码详见开发指导“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”。
 > 3. RSA非对称加解密不支持update操作。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
@@ -1563,7 +1576,8 @@ doFinal(data: DataBlob, callback: AsyncCallback\<DataBlob>): void
 
 （2）在RSA非对称加解密中，doFinal加/解密本次传入的数据，通过注册回调函数获取加密或者解密数据。如果数据量较大，可以多次调用doFinal，拼接结果得到完整的明文/密文。
 
->  **说明：** 
+> **说明：** 
+>
 >  1. 对称加解密中，调用doFinal标志着一次加解密流程已经完成，即[Cipher](#cipher)实例的状态被清除，因此当后续开启新一轮加解密流程时，需要重新调用[init()](init-2)并传入完整的参数列表进行初始化<br/>（比如即使是对同一个Cipher实例，采用同样的对称密钥，进行加密然后解密，则解密中调用init的时候仍需填写params参数，而不能直接省略为null）。
 >  2. 如果遇到解密失败，需检查加解密数据和[init](#init-2)时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec等。
 >  3. doFinal的结果可能为null，因此使用.data字段访问doFinal结果的具体数据前，请记得先判断结果是否为null，避免产生异常。
@@ -1618,7 +1632,8 @@ doFinal(data: DataBlob): Promise\<DataBlob>
 
 （2）在RSA非对称加解密中，doFinal加/解密本次传入的数据，通过Promise获取加密或者解密数据。如果数据量较大，可以多次调用doFinal，拼接结果得到完整的明文/密文。
 
->  **说明：** 
+> **说明：**
+>
 >  1. 对称加解密中，调用doFinal标志着一次加解密流程已经完成，即[Cipher](#cipher)实例的状态被清除，因此当后续开启新一轮加解密流程时，需要重新调用[init()](init-2)并传入完整的参数列表进行初始化<br/>（比如即使是对同一个Cipher实例，采用同样的对称密钥，进行加密然后解密，则解密中调用init的时候仍需填写params参数，而不能直接省略为null）。
 >  2. 如果遇到解密失败，需检查加解密数据和[init](#init-2)时的参数是否匹配，包括GCM模式下加密得到的authTag是否填入解密时的GcmParamsSpec等。
 >  3. doFinal的结果可能为null，因此使用.data字段访问doFinal结果的具体数据前，请记得先判断结果是否为null，避免产生异常。
@@ -1668,7 +1683,7 @@ cipher.doFinal(data)
 
 **使用RSA加密的callback完整示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 function stringToUint8Array(str) {
@@ -1695,7 +1710,7 @@ rsaGenerator.generateKeyPair(function (err, keyPair) {
 
 **使用RSA加密的promise完整示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 function stringToUint8Array(str) {
@@ -1721,7 +1736,8 @@ keyGenPromise.then(rsaKeyPair => {
 });
 ```
 
-> **说明：** 
+> **说明：**
+>
 > 更多加解密流程的完整示例可参考开发指导中的“[使用加解密操作](../../security/cryptoFramework-guidelines.md#使用加解密操作)”一节。
 
 ### setCipherSpec<sup>10+</sup>
@@ -1750,7 +1766,7 @@ setCipherSpec(itemType: CipherSpecItem, itemValue: Uint8Array): void
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 let cipher; // 此处省略生成Cipher实例的过程
@@ -1789,7 +1805,7 @@ getCipherSpec(itemType: CipherSpecItem): string | Uint8Array
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from '@ohos.security.cryptoFramework';
 
 let cipher; // 此处省略生成Cipher实例的过程
@@ -1826,7 +1842,7 @@ Sign实例生成。<br/>支持的规格详见框架概述“[签名验签规格]
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let signer1 = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
@@ -1919,8 +1935,11 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 
 追加待签名数据，通过注册回调函数完成更新。 <br/>必须在对[Sign](#sign)实例使用[init()](#init-2)初始化后，才能使用本函数。
 
-> **说明：** 
-> 根据数据量，可以不调用update（即[init](#init-2)完成后直接调用[sign](#sign-1)）或多次调用update。<br/>算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的签名操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>签名使用多次update操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+> **说明：**
+>
+> 根据数据量，可以不调用update（即[init](#init-2)完成后直接调用[sign](#sign-1)）或多次调用update。<br/>
+> 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的签名操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
+> 签名使用多次update操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -1946,8 +1965,11 @@ update(data: DataBlob): Promise\<void>
 
 追加待签名数据，通过promise方式完成更新。 <br/>必须在对[Sign](#sign)实例使用[init()](#init-3)初始化后，才能使用本函数。
 
-> **说明：** 
-> 根据数据量，可以不调用update（即[init](#init-3)完成后直接调用[sign](#sign-2)）或多次调用update。<br/>算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的签名操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>签名使用多次update操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+> **说明：**
+>
+> 根据数据量，可以不调用update（即[init](#init-3)完成后直接调用[sign](#sign-2)）或多次调用update。<br/>
+> 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的签名操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
+> 签名使用多次update操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2027,7 +2049,7 @@ sign(data: DataBlob): Promise\<DataBlob>
 
 **callback示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 function stringToUint8Array(str) {
@@ -2066,7 +2088,7 @@ function signMessageCallback() {
 
 **promise示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 function stringToUint8Array(str) {
@@ -2131,7 +2153,7 @@ setSignSpec(itemType: SignSpecItem, itemValue: number): void
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let signer; // 此处省略生成Sign实例的过程
@@ -2170,7 +2192,7 @@ getSignSpec(itemType: SignSpecItem): string | number
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let signer; // 此处省略生成Sign实例的过程
@@ -2207,7 +2229,7 @@ Verify实例生成。<br/>支持的规格详见框架概述“[签名验签规�
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let verifyer1 = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
@@ -2294,8 +2316,11 @@ update(data: DataBlob, callback: AsyncCallback\<void>): void
 
 追加待验签数据，通过注册回调函数完成更新。 <br/>必须在对[Verify](#verify)实例使用[init()](#init-4)初始化后，才能使用本函数。
 
-> **说明：** 
-> 根据数据量，可以不调用update（即[init](#init-4)完成后直接调用[verify](#verify-1)）或多次调用update。<br/>算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的验签操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>验签使用多次update操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+> **说明：**
+>
+> 根据数据量，可以不调用update（即[init](#init-4)完成后直接调用[verify](#verify-1)）或多次调用update。<br/>
+> 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的验签操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
+> 验签使用多次update操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2321,8 +2346,11 @@ update(data: DataBlob): Promise\<void>
 
 追加待验签数据，通过Promise方式完成更新。 <br/>必须在对[Verify](#verify)实例使用[init()](#init-5)初始化后，才能使用本函数。
 
-> **说明：** 
-> 根据数据量，可以不调用update（即[init](#init-5)完成后直接调用[verify](#verify-2)）或多次调用update。<br/>算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的验签操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>验签使用多次update操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
+> **说明：**
+>
+> 根据数据量，可以不调用update（即[init](#init-5)完成后直接调用[verify](#verify-2)）或多次调用update。<br/>
+> 算法库目前没有对update（单次或累计）的数据量设置大小限制，建议对于大数据量的验签操作，采用多次update的方式传入数据，避免一次性申请过大内存。<br/>
+> 验签使用多次update操作的示例代码详见开发指导“[使用签名验签操作](../../security/cryptoFramework-guidelines.md#使用签名验签操作)”。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
 
@@ -2404,7 +2432,7 @@ verify(data: DataBlob, signatureData: DataBlob): Promise\<boolean>
 
 **callback示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let globalKeyPair; // globalKeyPair为使用非对称密钥生成器生成的非对称密钥对象，此处省略生成过程
@@ -2423,7 +2451,7 @@ verifyer.init(globalKeyPair.pubKey, function (err, data) {
 
 **promise示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let globalKeyPair; // globalKeyPair为使用非对称密钥生成器生成的非对称密钥对象，此处省略生成过程
@@ -2469,7 +2497,7 @@ setVerifySpec(itemType: SignSpecItem, itemValue: number): void
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let verifyer; // 此处省略生成Verify实例的过程
@@ -2510,7 +2538,7 @@ getVerifySpec(itemType: SignSpecItem): string | number
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let verifyer; // 此处省略生成Verify实例的过程
@@ -2547,7 +2575,7 @@ KeyAgreement实例生成。<br/>支持的规格详见框架概述“[密钥协�
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
@@ -2623,7 +2651,7 @@ generateSecret(priKey: PriKey, pubKey: PubKey): Promise\<DataBlob>
 
 **callback示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let globalKeyPair; // globalKeyPair为使用非对称密钥生成器生成的非对称密钥对象，此处省略生成过程
@@ -2639,7 +2667,7 @@ keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey, function
 
 **promise示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let globalKeyPair; // globalKeyPair为使用非对称密钥生成器生成的非对称密钥对象，此处省略生成过程
@@ -2681,7 +2709,7 @@ createMd(algName: string): Md
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 var md;
@@ -2711,7 +2739,8 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 传入消息进行Md更新计算。
 
-> **说明：** 
+> **说明：**
+>
 > Md算法多次调用update更新的代码示例详见开发指导“[使用摘要操作](../../security/cryptoFramework-guidelines.md#使用摘要操作)”。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
@@ -2732,7 +2761,7 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 var md;
@@ -2757,7 +2786,8 @@ update(input: DataBlob): Promise\<void>
 
 传入消息进行Md更新计算。
 
-> **说明：** 
+> **说明：**
+>
 > Md算法多次调用update更新的代码示例详见开发指导“[使用摘要操作](../../security/cryptoFramework-guidelines.md#使用摘要操作)”。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
@@ -2781,7 +2811,7 @@ update(input: DataBlob): Promise\<void>
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 var md;
@@ -2822,7 +2852,7 @@ digest(callback: AsyncCallback\<DataBlob>): void
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 var md;
@@ -2871,7 +2901,7 @@ digest(): Promise\<DataBlob>
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 var md;
@@ -2916,7 +2946,7 @@ getMdLength(): number
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 var md;
@@ -2970,7 +3000,7 @@ createMac(algName: string): Mac
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 var mac;
@@ -3018,7 +3048,7 @@ init(key: SymKey, callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 var mac;
@@ -3070,7 +3100,7 @@ init(key: SymKey): Promise\<void>
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 var mac;
@@ -3099,7 +3129,8 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 传入消息进行Mac更新计算。
 
-> **说明：** 
+> **说明：**
+>
 > Hmac算法多次调用update更新的代码示例详见开发指导“[使用消息认证码操作](../../security/cryptoFramework-guidelines.md#使用消息认证码操作)”。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
@@ -3120,7 +3151,7 @@ update(input: DataBlob, callback: AsyncCallback\<void>): void
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 var KeyBlob;
@@ -3155,7 +3186,8 @@ update(input: DataBlob): Promise\<void>
 
 传入消息进行Mac更新计算。
 
-> **说明：** 
+> **说明：**
+>
 > Hmac算法多次调用update更新的代码示例详见开发指导“[使用消息认证码操作](../../security/cryptoFramework-guidelines.md#使用消息认证码操作)”。
 
 **系统能力：** SystemCapability.Security.CryptoFramework
@@ -3181,7 +3213,7 @@ update(input: DataBlob): Promise\<void>
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 var mac;
@@ -3231,7 +3263,7 @@ doFinal(callback: AsyncCallback\<DataBlob>): void
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 var KeyBlob;
@@ -3290,7 +3322,7 @@ doFinal(): Promise\<DataBlob>
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 var mac;
@@ -3343,7 +3375,7 @@ getMacLength(): number
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 var mac;
@@ -3398,7 +3430,7 @@ createRandom(): Random
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 try {
@@ -3445,7 +3477,7 @@ generateRandom(len: number, callback: AsyncCallback\<DataBlob>): void
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 var rand;
@@ -3493,7 +3525,7 @@ generateRandom(len: number): Promise\<DataBlob>
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 var rand;
@@ -3541,7 +3573,7 @@ generateRandomSync(len: number): DataBlob
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 var rand;
@@ -3583,7 +3615,7 @@ setSeed(seed: DataBlob): void
 
 **示例：**
 
-```javascript
+```js
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
 var rand;
