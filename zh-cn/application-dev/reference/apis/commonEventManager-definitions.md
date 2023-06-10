@@ -13,50 +13,32 @@
 - 值： usual.event.LOCKED_BOOT_COMPLETED
 - 订阅者所需权限： ohos.permission.RECEIVER_STARTUP_COMPLETED
 
-## COMMON_EVENT_SHUTDOWN
+## [COMMON_EVENT_SHUTDOWN](./common_event/commonEvent-powermgr.md)
 表示设备正在关闭并将继续最终关闭的公共事件的操作。
-- 值： usual.event.SHUTDOWN
-- 订阅者所需权限： 无
 
-## COMMON_EVENT_BATTERY_CHANGED
+## [COMMON_EVENT_BATTERY_CHANGED](./common_event/commonEvent-powermgr.md)
 表示电池充电状态、电平和其他信息发生变化的公共事件的动作。
-- 值： usual.event.BATTERY_CHANGED
-- 订阅者所需权限： 无
 
-## COMMON_EVENT_BATTERY_LOW
+## [COMMON_EVENT_BATTERY_LOW](./common_event/commonEvent-powermgr.md)
 表示电池电量低的普通事件的动作。
-- 值： usual.event.BATTERY_LOW
-- 订阅者所需权限： 无
 
-## COMMON_EVENT_BATTERY_OKAY
+## [COMMON_EVENT_BATTERY_OKAY](./common_event/commonEvent-powermgr.md)
 表示电池退出低电平状态的公共事件的动作。
-- 值： usual.event.BATTERY_OKAY
-- 订阅者所需权限： 无
 
-## COMMON_EVENT_POWER_CONNECTED
+## [COMMON_EVENT_POWER_CONNECTED](./common_event/commonEvent-powermgr.md)
 设备连接到外部电源的公共事件的动作。
-- 值： usual.event.POWER_CONNECTED
-- 订阅者所需权限： 无
 
-## COMMON_EVENT_POWER_DISCONNECTED
+## [COMMON_EVENT_POWER_DISCONNECTED](./common_event/commonEvent-powermgr.md)
 设备与外部电源断开的公共事件的动作。
-- 值： usual.event.POWER_DISCONNECTED
-- 订阅者所需权限： 无
 
-## COMMON_EVENT_SCREEN_OFF
+## [COMMON_EVENT_SCREEN_OFF](./common_event/commonEvent-powermgr.md)
 表示设备屏幕关闭且设备处于睡眠状态的普通事件的动作。
-- 值： usual.event.SCREEN_OFF
-- 订阅者所需权限： 无
 
-## COMMON_EVENT_SCREEN_ON
+## [COMMON_EVENT_SCREEN_ON](./common_event/commonEvent-powermgr.md)
 表示设备屏幕打开且设备处于交互状态的公共事件的操作。
-- 值： usual.event.SCREEN_ON
-- 订阅者所需权限： 无
 
-## COMMON_EVENT_THERMAL_LEVEL_CHANGED
+## [COMMON_EVENT_THERMAL_LEVEL_CHANGED](./common_event/commonEvent-powermgr.md)
 表示设备热状态的公共事件的动作。
-- 值： usual.event.THERMAL_LEVEL_CHANGED
-- 订阅者所需权限： 无
 
 ## COMMON_EVENT_USER_PRESENT<sup>(deprecated)</sup>
 （预留事件，暂未支持）用户解锁设备的公共事件的动作。
@@ -520,29 +502,22 @@ Wi-Fi P2P群组信息已更改。
 - 值： usual.event.nfc.action.RF_FIELD_OFF_DETECTED
 - 订阅者所需权限： ohos.permission.MANAGE_SECURE_SETTINGS
 
-## COMMON_EVENT_DISCHARGING
+## [COMMON_EVENT_DISCHARGING](./common_event/commonEvent-powermgr.md)
 表示系统停止为电池充电的公共事件的动作。
-- 值： usual.event.DISCHARGING
-- 订阅者所需权限： 无
 
-## COMMON_EVENT_CHARGING
+## [COMMON_EVENT_CHARGING](./common_event/commonEvent-powermgr.md)
 表示系统开始为电池充电的公共事件的动作。
-- 值： usual.event.CHARGING
-- 订阅者所需权限： 无
 
-## COMMON_EVENT_CHARGE_TYPE_CHANGED
+## [COMMON_EVENT_CHARGE_TYPE_CHANGED](./common_event/commonEvent-powermgr.md)
 表示系统充电类型改变的公共事件的动作。仅限系统应用使用。
-- 值： usual.event.CHARGE_TYPE_CHANGED
-- 订阅者所需权限： 无
 
 ## [COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED](./common_event/commonEvent-resourceschedule.md)
 表示系统待机空闲模式已更改的公共事件的动作。
 ## [COMMON_EVENT_DEVICE_IDLE_EXEMPTION_LIST_UPDATED<sup>10+<sup>](./common_event/commonEvent-resourceschedule.md)
 表示系统待机空闲模式下豁免应用程序列表已更新的公共事件的动作。仅限系统应用使用。
-## COMMON_EVENT_POWER_SAVE_MODE_CHANGED
+
+## [COMMON_EVENT_POWER_SAVE_MODE_CHANGED](./common_event/commonEvent-powermgr.md)
 表示系统节能模式更改的公共事件的动作。
-- 值： usual.event.POWER_SAVE_MODE_CHANGED
-- 订阅者所需权限： 无
 
 ## [COMMON_EVENT_USER_ADDED](./common_event/commonEvent-account.md)
 表示用户已添加到系统中的公共事件的动作。
