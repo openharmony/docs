@@ -36,11 +36,13 @@ GridItem()
 >
 >  只有在设置columnTemplate和rowTemplate的Grid中，设置合理的rowStart/rowEnd/columnStart/columnEnd四个属性的GridItem才能按照指定的行列号布局。
 >
->  在设置columnTemplate和rowTemplate的Grid中，单独设置行号rowStart/rowEnd或列号columnStart/columnEnd的GridItem会占用指定的行数(rowEnd-rowStart+1)或列数(columnEnd-columnStart+1)。
+>  在设置columnTemplate和rowTemplate的Grid中，单独设置行号rowStart/rowEnd或列号columnStart/columnEnd的GridItem会按照一行一列进行布局。
 >
->  在只设置columnTemplate的Grid中设置列号columnStart/columnEnd的GridItem按照指定的列数布局。
+>  在只设置columnTemplate的Grid中设置列号columnStart/columnEnd的GridItem按照列数布局。在该区域位置存在GridItem布局，则直接换行进行放置。
 >
->  在只设置rowTemplate的Grid中设置行号rowStart/rowEnd的GridItem按照指定的行数布局。
+>  在只设置rowTemplate的Grid中设置行号rowStart/rowEnd的GridItem按照行数布局。在该区域位置存在GridItem布局，则直接换列进行放置。
+>
+>  在只设置columnTemplate的Grid中，在GridItem上设置了不合理的值，GridItem按照一行一列进行布局。
 >
 >  columnTemplate和rowTemplate都不设置的Grid中GridItem的行列号属性无效。
 
