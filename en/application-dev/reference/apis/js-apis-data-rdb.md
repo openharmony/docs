@@ -9,9 +9,8 @@ This module provides the following RDB-related functions:
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> 
-> The APIs of this module are no longer maintained since API version 9. You are advised to use [@ohos.data.relationalStore](js-apis-data-relationalStore.md).
+> - The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs of this module are no longer maintained since API version 9. You are advised to use [@ohos.data.relationalStore](js-apis-data-relationalStore.md).
 
 
 ## Modules to Import
@@ -1174,7 +1173,7 @@ predicates.notIn("NAME", ["Lisa", "Rose"])
 
 Provides methods to manage an RDB store.
 
-Before using the APIs of this class, use [executeSql](#executesql8) to initialize the database table structure and related data.
+Before using the APIs of this class, use [executeSql](#executesql) to initialize the database table structure and related data.
 
 ### insert
 
@@ -1830,7 +1829,7 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 
 Obtains the distributed table name of a remote device based on the local table name of the device. The distributed table name is required when the RDB store of a remote device is queried.
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > The value of **device** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications. 
 
@@ -1879,7 +1878,7 @@ rdbStore.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableNa
 
 Obtains the distributed table name of a remote device based on the local table name of the device. The distributed table name is required when the RDB store of a remote device is queried.
 
-> **NOTE**<br/>
+> **NOTE**
 >
 > The value of **device** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications. 
 
@@ -2045,7 +2044,7 @@ Registers an observer for this RDB store. When the data in the RDB store changes
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| The value is'dataChange', which indicates a data change event.|
 | type | [SubscribeType](#subscribetype8) | Yes| Subscription type to register.|
-| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Observer that listens for the data changes in the RDB store.|
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Observer that listens for the data changes in the RDB store. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed.|
 
 **Example**
 
@@ -2076,7 +2075,7 @@ Unregisters the observer of the specified type from the RDB store. This API uses
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| The value is'dataChange', which indicates a data change event.|
 | type | [SubscribeType](#subscribetype8)    | Yes| Subscription type to unregister.|
-| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Data change observer registered.|
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Data change observer to unregister. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed.|
 
 **Example**
 

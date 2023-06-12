@@ -38,10 +38,11 @@ Obtains an RDB store. This API uses an asynchronous callback to return the resul
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**           |
-| ------------ | ----------------------- |
-| 14800010     | If failed delete database by invalid database name.  |
-| 14800011     | If failed open database by database corrupted.     |
+| **ID**| **Error Message**                                     |
+| ------------ | ------------------------------------------------- |
+| 14800010     | Failed to open or delete database by invalid database path. |
+| 14800011     | Failed open database, database corrupted.         |
+| 14800000     | The inner error is occurred.                      |
 
 **Example**
 
@@ -64,7 +65,7 @@ const STORE_CONFIG = {
 relationalStore.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
   store = rdbStore;
   if (err) {
-    console.error(`Get RdbStore failed, err: ${err}`);
+    console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Get RdbStore successfully.`);
@@ -87,7 +88,7 @@ class EntryAbility extends UIAbility {
     relationalStore.getRdbStore(this.context, STORE_CONFIG, function (err, rdbStore) {
       store = rdbStore;
       if (err) {
-        console.error(`Get RdbStore failed, err: ${err}`);
+        console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
       }
       console.info(`Get RdbStore successfully.`);
@@ -121,10 +122,11 @@ Obtains an RDB store. This API uses a promise to return the result. You can set 
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**           |
-| ------------ | ----------------------- |
-| 14800010     | If failed delete database by invalid database name. |
-| 14800011     | If failed open database by database corrupted.     |
+| **ID**| **Error Message**                                     |
+| ------------ | ------------------------------------------------- |
+| 14800010     | Failed to open or delete database by invalid database path. |
+| 14800011     | Failed open database, database corrupted.         |
+| 14800000     | The inner error is occurred.                      |
 
 **Example**
 
@@ -148,7 +150,7 @@ promise.then(async (rdbStore) => {
   store = rdbStore;
   console.info(`Get RdbStore successfully.`);
 }).catch((err) => {
-  console.error(`Get RdbStore failed, err: ${err}`);
+  console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -170,7 +172,7 @@ class EntryAbility extends UIAbility {
       store = rdbStore;
       console.info(`Get RdbStore successfully.`)
     }).catch((err) => {
-      console.error(`Get RdbStore failed, err: ${err}`);
+      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
   }
 }
@@ -196,9 +198,10 @@ Deletes an RDB store. This API uses an asynchronous callback to return the resul
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**           |
-| ------------ | ----------------------- |
-| 14800010     | If failed delete database by invalid database name. |
+| **ID**| **Error Message**                                     |
+| ------------ | ------------------------------------------------- |
+| 14800010     | Failed to open or delete database by invalid database path. |
+| 14800000     | The inner error is occurred.                      |
 
 **Example**
 
@@ -212,7 +215,7 @@ let context = featureAbility.getContext()
 
 relationalStore.deleteRdbStore(context, "RdbTest.db", function (err) {
   if (err) {
-    console.error(`Delete RdbStore failed, err: ${err}`);
+    console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Delete RdbStore successfully.`);
@@ -228,7 +231,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage){
     relationalStore.deleteRdbStore(this.context, "RdbTest.db", function (err) {
       if (err) {
-        console.error(`Delete RdbStore failed, err: ${err}`);
+        console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
       }
       console.info(`Delete RdbStore successfully.`);
@@ -262,9 +265,10 @@ Deletes an RDB store. This API uses a promise to return the result.
 
 For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
 
-| **ID**| **Error Message**           |
-| ------------ | ----------------------- |
-| 14800010     | If failed delete database by invalid database name. |
+| **ID**| **Error Message**                                     |
+| ------------ | ------------------------------------------------- |
+| 14800010     | Failed to open or delete database by invalid database path. |
+| 14800000     | The inner error is occurred.                      |
 
 **Example**
 
@@ -280,7 +284,7 @@ let promise = relationalStore.deleteRdbStore(context, "RdbTest.db");
 promise.then(()=>{
   console.info(`Delete RdbStore successfully.`);
 }).catch((err) => {
-  console.error(`Delete RdbStore failed, err: ${err}`);
+  console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -295,7 +299,7 @@ class EntryAbility extends UIAbility {
     promise.then(()=>{
       console.info(`Delete RdbStore successfully.`);
     }).catch((err) => {
-      console.error(`Delete RdbStore failed, err: ${err}`);
+      console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
   }
 }
@@ -311,7 +315,7 @@ Defines the RDB store configuration.
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | name          | string        | Yes  | Database file name.                                           |
 | securityLevel | [SecurityLevel](#securitylevel) | Yes  | Security level of the RDB store.                                       |
-| encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br> The value **true** means to encrypt the RDB store;<br> the value **false** means the opposite.|
+| encrypt       | boolean       | No  | Whether to encrypt the RDB store.<br> The value **true** means to encrypt the RDB store;<br> the value **false** (default) means the opposite.|
 
 ## SecurityLevel
 
@@ -319,7 +323,7 @@ Enumerates the RDB store security levels.
 
 > **NOTE**
 >
-> To perform data synchronization operations, the RDB store security level must be lower than or equal to that of the peer device. For details, see the [Cross-Device Data Synchronization Mechanism](../../database/sync-app-data-across-devices-overview.md#cross-device-data-synchronization-mechanism).
+> To perform data synchronization operations, the RDB store security level must be lower than or equal to that of the peer device. For details, see the [Access Control Mechanism in Cross-Device Synchronization](../../database/access-control-by-device-and-data-level.md#access-control-mechanism-in-cross-device-synchronization).
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -344,7 +348,7 @@ Defines the data types allowed.
 
 ## ValuesBucket
 
-Defines the types of the key and value in a KV pair.
+Defines the types of the key and value in a KV pair. This type is not multi-thread safe. If a **ValuesBucket** instance is operated by multiple threads at the same time in an application, use a lock for the instance.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -377,7 +381,7 @@ Defines the subscription type.
 
 ## RdbPredicates
 
-Defines the predicates for an RDB store. This class determines whether the conditional expression for the RDB store is true or false.
+Defines the predicates for an RDB store. This class determines whether the conditional expression for the RDB store is true or false. This type is not multi-thread safe. If a **RdbPredicates** instance is operated by multiple threads at the same time in an application, use a lock for the instance.
 
 ### constructor
 
@@ -1264,7 +1268,7 @@ const valueBucket = {
 };
 store.insert("EMPLOYEE", valueBucket, function (err, rowId) {
   if (err) {
-    console.error(`Insert is failed, err: ${err}`);
+    console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Insert is successful, rowId = ${rowId}`);
@@ -1293,6 +1297,14 @@ Inserts a row of data into a table. This API uses a promise to return the result
 | --------------------- | ------------------------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the row ID will be returned. Otherwise, **-1** will be returned.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
@@ -1306,7 +1318,7 @@ let promise = store.insert("EMPLOYEE", valueBucket);
 promise.then((rowId) => {
   console.info(`Insert is successful, rowId = ${rowId}`);
 }).catch((err) => {
-  console.error(`Insert is failed, err: ${err}`);
+  console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1326,6 +1338,14 @@ Batch inserts data into a table. This API uses an asynchronous callback to retur
 | table    | string                                     | Yes  | Name of the target table.                                            |
 | values   | Array&lt;[ValuesBucket](#valuesbucket)&gt; | Yes  | An array of data to insert.                                |
 | callback | AsyncCallback&lt;number&gt;                | Yes  | Callback invoked to return the result. If the operation is successful, the number of inserted data records is returned. Otherwise, **-1** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -1352,7 +1372,7 @@ const valueBucket3 = {
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
 store.batchInsert("EMPLOYEE", valueBuckets, function(err, insertNum) {
   if (err) {
-    console.error(`batchInsert is failed, err: ${err}`);
+    console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
@@ -1379,6 +1399,14 @@ Batch inserts data into a table. This API uses a promise to return the result.
 | Type                 | Description                                                       |
 | --------------------- | ----------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the result. If the operation is successful, the number of inserted data records is returned. Otherwise, **-1** is returned.|
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -1407,7 +1435,7 @@ let promise = store.batchInsert("EMPLOYEE", valueBuckets);
 promise.then((insertNum) => {
   console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
 }).catch((err) => {
-  console.error(`batchInsert is failed, err: ${err}`);
+  console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1427,6 +1455,15 @@ Updates data in the RDB store based on the specified **RdbPredicates** object. T
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Update conditions specified by the **RdbPredicates** object.                   |
 | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the number of rows updated.                  |
 
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
@@ -1440,7 +1477,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 store.update(valueBucket, predicates, function (err, rows) {
   if (err) {
-    console.error(`Updated failed, err: ${err}`);
+    console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Updated row count: ${rows}`);
@@ -1469,6 +1506,14 @@ Updates data based on the specified **RdbPredicates** object. This API uses a pr
 | --------------------- | ----------------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the number of rows updated.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
@@ -1484,7 +1529,7 @@ let promise = store.update(valueBucket, predicates);
 promise.then(async (rows) => {
   console.info(`Updated row count: ${rows}`);
 }).catch((err) => {
-  console.error(`Updated failed, err: ${err}`);
+  console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1497,6 +1542,8 @@ Updates data based on the specified **DataSharePredicates** object. This API use
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System API**: This is a system API.
 
 **Parameters**
@@ -1507,6 +1554,14 @@ Updates data based on the specified **DataSharePredicates** object. This API use
 | values     | [ValuesBucket](#valuesbucket)                                | Yes  | Rows of data to update in the RDB store. The key-value pair is associated with the column name in the target table.|
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Update conditions specified by the **DataSharePredicates** object.               |
 | callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the number of rows updated.                  |
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -1522,7 +1577,7 @@ let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 store.update("EMPLOYEE", valueBucket, predicates, function (err, rows) {
   if (err) {
-    console.error(`Updated failed, err: ${err}`);
+    console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Updated row count: ${rows}`);
@@ -1536,6 +1591,8 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 Updates data based on the specified **DataSharePredicates** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System API**: This is a system API.
 
@@ -1553,6 +1610,14 @@ Updates data based on the specified **DataSharePredicates** object. This API use
 | --------------------- | ----------------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the number of rows updated.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
@@ -1569,7 +1634,7 @@ let promise = store.update("EMPLOYEE", valueBucket, predicates);
 promise.then(async (rows) => {
   console.info(`Updated row count: ${rows}`);
 }).catch((err) => {
-  console.error(`Updated failed, err: ${err}`);
+  console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1588,6 +1653,14 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 | predicates | [RdbPredicates](#rdbpredicates) | Yes  | Conditions specified by the **RdbPredicates** object for deleting data.|
 | callback   | AsyncCallback&lt;number&gt;          | Yes  | Callback invoked to return the number of rows deleted. |
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
@@ -1595,7 +1668,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 store.delete(predicates, function (err, rows) {
   if (err) {
-    console.error(`Delete failed, err: ${err}`);
+    console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Delete rows: ${rows}`);
@@ -1622,6 +1695,14 @@ Deletes data from the RDB store based on the specified **RdbPredicates** object.
 | --------------------- | ------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the number of rows deleted. |
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
@@ -1631,7 +1712,7 @@ let promise = store.delete(predicates);
 promise.then((rows) => {
   console.info(`Delete rows: ${rows}`);
 }).catch((err) => {
-  console.error(`Delete failed, err: ${err}`);
+  console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1643,6 +1724,8 @@ Deletes data from the RDB store based on the specified **DataSharePredicates** o
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
 
+**Model restriction**: This API can be used only in the stage model.
+
 **System API**: This is a system API.
 
 **Parameters**
@@ -1653,6 +1736,14 @@ Deletes data from the RDB store based on the specified **DataSharePredicates** o
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | Yes  | Conditions specified by the **DataSharePredicates** object for deleting data.|
 | callback   | AsyncCallback&lt;number&gt;                                  | Yes  | Callback invoked to return the number of rows deleted. |
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
@@ -1661,7 +1752,7 @@ let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 store.delete("EMPLOYEE", predicates, function (err, rows) {
   if (err) {
-    console.error(`Delete failed, err: ${err}`);
+    console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Delete rows: ${rows}`);
@@ -1675,6 +1766,8 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promi
 Deletes data from the RDB store based on the specified **DataSharePredicates** object. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System API**: This is a system API.
 
@@ -1691,6 +1784,14 @@ Deletes data from the RDB store based on the specified **DataSharePredicates** o
 | --------------------- | ------------------------------- |
 | Promise&lt;number&gt; | Promise used to return the number of rows deleted.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
@@ -1701,7 +1802,7 @@ let promise = store.delete("EMPLOYEE", predicates);
 promise.then((rows) => {
   console.info(`Delete rows: ${rows}`);
 }).catch((err) => {
-  console.error(`Delete failed, err: ${err}`);
+  console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1721,6 +1822,14 @@ Queries data from the RDB store based on specified conditions. This API uses an 
 | columns    | Array&lt;string&gt;                                          | Yes  | Columns to query. If this parameter is not specified, the query applies to all columns.           |
 | callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
@@ -1728,7 +1837,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
   if (err) {
-    console.error(`Query failed, err: ${err}`);
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
@@ -1757,6 +1866,14 @@ Queries data from the RDB store based on specified conditions. This API uses a p
 | ------------------------------------------------------- | -------------------------------------------------- |
 | Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
   ```js
@@ -1767,7 +1884,7 @@ promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
   console.info(`ResultSet column count: ${resultSet.columnCount}`);
 }).catch((err) => {
-  console.error(`Query failed, err: ${err}`);
+  console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
   ```
 
@@ -1778,6 +1895,8 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 Queries data from the RDB store based on specified conditions. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System API**: This is a system API.
 
@@ -1790,6 +1909,14 @@ Queries data from the RDB store based on specified conditions. This API uses an 
 | columns    | Array&lt;string&gt;                                          | Yes  | Columns to query. If this parameter is not specified, the query applies to all columns.           |
 | callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
@@ -1798,7 +1925,7 @@ let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
 store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
   if (err) {
-    console.error(`Query failed, err: ${err}`);
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
@@ -1813,6 +1940,8 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 Queries data from the RDB store based on specified conditions. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Model restriction**: This API can be used only in the stage model.
 
 **System API**: This is a system API.
 
@@ -1830,6 +1959,14 @@ Queries data from the RDB store based on specified conditions. This API uses a p
 | ------------------------------------------------------- | -------------------------------------------------- |
 | Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
@@ -1841,7 +1978,7 @@ promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
   console.info(`ResultSet column count: ${resultSet.columnCount}`);
 }).catch((err) => {
-  console.error(`Query failed, err: ${err}`);
+  console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1867,6 +2004,14 @@ Queries data from the RDB store of a remote device based on specified conditions
 | columns    | Array&lt;string&gt;                          | Yes  | Columns to query. If this parameter is not specified, the query applies to all columns.         |
 | callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
@@ -1889,7 +2034,7 @@ predicates.greaterThan("id", 0);
 store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
   function(err, resultSet) {
     if (err) {
-      console.error(`Failed to remoteQuery, err: ${err}`);
+      console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info(`ResultSet column names: ${resultSet.columnNames}`);
@@ -1925,6 +2070,14 @@ Queries data from the RDB store of a remote device based on specified conditions
 | ------------------------------------------------------------ | -------------------------------------------------- |
 | Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
@@ -1949,7 +2102,7 @@ promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
   console.info(`ResultSet column count: ${resultSet.columnCount}`);
 }).catch((err) => {
-  console.error(`Failed to remoteQuery, err: ${err}`);
+  console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1969,12 +2122,20 @@ Queries data using the specified SQL statement. This API uses an asynchronous ca
 | bindArgs | Array&lt;[ValueType](#valuetype)&gt;         | Yes  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, the value of this parameter must be an empty array.|
 | callback | AsyncCallback&lt;[ResultSet](#resultset)&gt; | Yes  | Callback invoked to return the result. If the operation is successful, a **ResultSet** object will be returned.   |
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
 store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], function (err, resultSet) {
   if (err) {
-    console.error(`Query failed, err: ${err}`);
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
@@ -2003,6 +2164,14 @@ Queries data using the specified SQL statement. This API uses a promise to retur
 | ------------------------------------------------------- | -------------------------------------------------- |
 | Promise&lt;[ResultSet](#resultset)&gt; | Promise used to return the result. If the operation is successful, a **ResultSet** object will be returned.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
@@ -2011,7 +2180,7 @@ promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
   console.info(`ResultSet column count: ${resultSet.columnCount}`);
 }).catch((err) => {
-  console.error(`Query failed, err: ${err}`);
+  console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -2031,13 +2200,21 @@ Executes an SQL statement that contains specified arguments but returns no value
 | bindArgs | Array&lt;[ValueType](#valuetype)&gt; | Yes  | Arguments in the SQL statement. The value corresponds to the placeholders in the SQL parameter statement. If the SQL parameter statement is complete, the value of this parameter must be an empty array.|
 | callback | AsyncCallback&lt;void&gt;            | Yes  | Callback invoked to return the result.                                      |
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
 const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = ?"
 store.executeSql(SQL_DELETE_TABLE, ['zhangsan'], function(err) {
   if (err) {
-    console.error(`ExecuteSql failed, err: ${err}`);
+    console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Delete table done.`);
@@ -2065,6 +2242,14 @@ Executes an SQL statement that contains specified arguments but returns no value
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
@@ -2073,7 +2258,7 @@ let promise = store.executeSql(SQL_DELETE_TABLE);
 promise.then(() => {
     console.info(`Delete table done.`);
 }).catch((err) => {
-    console.error(`ExecuteSql failed, err: ${err}`);
+    console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -2084,6 +2269,14 @@ beginTransaction():void
 Starts the transaction before executing an SQL statement.
 
 **System capability**: SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -2096,7 +2289,7 @@ const STORE_CONFIG = {
 };
 relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, store) {
   if (err) {
-    console.error(`GetRdbStore failed, err: ${err}`);
+    console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   store.beginTransaction();
@@ -2130,7 +2323,7 @@ const STORE_CONFIG = {
 };
 relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, store) {
   if (err) {
-     console.error(`GetRdbStore failed, err: ${err}`);
+     console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
      return;
   }
   store.beginTransaction();
@@ -2164,7 +2357,7 @@ const STORE_CONFIG = {
 };
 relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, store) {
   if (err) {
-    console.error(`GetRdbStore failed, err: ${err}`);
+    console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   try {
@@ -2179,7 +2372,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, store) {
 	await store.insert("test", valueBucket);
     store.commit();
   } catch (err) {
-    console.error(`Transaction failed, err: ${err}`);
+    console.error(`Transaction failed, code is ${err.code},message is ${err.message}`);
     store.rollBack();
   }
 })
@@ -2200,12 +2393,20 @@ Backs up an RDB store. This API uses an asynchronous callback to return the resu
 | destName | string                    | Yes  | Name of the RDB store backup file.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.  |
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
 store.backup("dbBackup.db", function(err) {
   if (err) {
-    console.error(`Backup failed, err: ${err}`);
+    console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Backup success.`);
@@ -2226,6 +2427,14 @@ Backs up an RDB store. This API uses a promise to return the result.
 | -------- | ------ | ---- | ------------------------ |
 | destName | string | Yes  | Name of the RDB store backup file.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Return value**
 
 | Type               | Description                     |
@@ -2239,7 +2448,7 @@ let promiseBackup = store.backup("dbBackup.db");
 promiseBackup.then(()=>{
   console.info(`Backup success.`);
 }).catch((err)=>{
-  console.error(`Backup failed, err: ${err}`);
+  console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -2258,12 +2467,20 @@ Restores an RDB store from a backup file. This API uses an asynchronous callback
 | srcName  | string                    | Yes  | Name of the RDB store backup file.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.  |
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
 store.restore("dbBackup.db", function(err) {
   if (err) {
-    console.error(`Restore failed, err: ${err}`);
+    console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Restore success.`);
@@ -2290,6 +2507,14 @@ Restores an RDB store from a backup file. This API uses a promise to return the 
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
@@ -2297,7 +2522,7 @@ let promiseRestore = store.restore("dbBackup.db");
 promiseRestore.then(()=>{
   console.info(`Restore success.`);
 }).catch((err)=>{
-  console.error(`Restore failed, err: ${err}`);
+  console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -2318,12 +2543,20 @@ Sets distributed tables. This API uses an asynchronous callback to return the re
 | tables   | Array&lt;string&gt;       | Yes  | Names of the distributed tables to set.|
 | callback | AsyncCallback&lt;void&gt; | Yes  | Callback invoked to return the result.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
 store.setDistributedTables(["EMPLOYEE"], function (err) {
   if (err) {
-    console.error(`SetDistributedTables failed, err: ${err}`);
+    console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`SetDistributedTables successfully.`);
@@ -2352,6 +2585,14 @@ Sets distributed tables. This API uses a promise to return the result.
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
@@ -2359,7 +2600,7 @@ let promise = store.setDistributedTables(["EMPLOYEE"]);
 promise.then(() => {
   console.info(`SetDistributedTables successfully.`);
 }).catch((err) => {
-  console.error(`SetDistributedTables failed, err: ${err}`);
+  console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -2385,6 +2626,14 @@ Obtains the distributed table name of a remote device based on the local table n
 | table    | string                      | Yes  | Local table name of the remote device.                                        |
 | callback | AsyncCallback&lt;string&gt; | Yes  | Callback invoked to return the result. If the operation succeeds, the distributed table name of the remote device is returned.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
@@ -2404,7 +2653,7 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
 
 store.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
     if (err) {
-        console.error(`ObtainDistributedTableName failed, err: ${err}`);
+        console.error(`ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`);
         return;
     }
     console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
@@ -2438,6 +2687,14 @@ Obtains the distributed table name of a remote device based on the local table n
 | --------------------- | ----------------------------------------------------- |
 | Promise&lt;string&gt; | Promise used to return the result. If the operation succeeds, the distributed table name of the remote device is returned.|
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
@@ -2459,7 +2716,7 @@ let promise = store.obtainDistributedTableName(deviceId, "EMPLOYEE");
 promise.then((tableName) => {
   console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
 }).catch((err) => {
-  console.error(`ObtainDistributedTableName failed, err: ${err}`);
+  console.error(`ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -2480,6 +2737,14 @@ Synchronizes data between devices. This API uses an asynchronous callback to ret
 | mode       | [SyncMode](#syncmode)                             | Yes  | Data synchronization mode. The value can be **push** or **pull**.                              |
 | predicates | [RdbPredicates](#rdbpredicates)               | Yes  | **RdbPredicates** object that specifies the data and devices to synchronize.                                        |
 | callback   | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | Yes  | Callback invoked to send the synchronization result to the caller. <br>**string** indicates the device ID. <br>**number** indicates the synchronization status of that device. The value **0** indicates a successful synchronization. Other values indicate a synchronization failure. |
+
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **Example**
 
@@ -2504,7 +2769,7 @@ let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
 store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
   if (err) {
-    console.error(`Sync failed, err: ${err}`);
+    console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Sync done.`);
@@ -2537,6 +2802,14 @@ Synchronizes data between devices. This API uses a promise to return the result.
 | -------------------------------------------- | ------------------------------------------------------------ |
 | Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise used to send the synchronization result. <br>**string** indicates the device ID. <br>**number** indicates the synchronization status of that device. The value **0** indicates a successful synchronization. Other values indicate a synchronization failure. |
 
+**Error codes**
+
+For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode-data-rdb.md).
+
+| **ID**| **Error Message**                                |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **Example**
 
 ```js
@@ -2565,7 +2838,7 @@ promise.then((result) =>{
     console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
   }
 }).catch((err) => {
-  console.error(`Sync failed, err: ${err}`);
+  console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -2583,7 +2856,7 @@ Registers an observer for this RDB store. When the data in the RDB store changes
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | Yes  | Event to observe. The value is **dataChange**, which indicates a data change event. |
 | type     | [SubscribeType](#subscribetype)    | Yes  | Subscription type to register.|
-| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes  | Callback invoked to return the data change. |
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes  | Callback invoked to return the data change. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed.|
 
 **Example**
 
@@ -2596,7 +2869,7 @@ function storeObserver(devices) {
 try {
   store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
 } catch (err) {
-  console.error(`Register observer failed, err: ${err}`);
+  console.error(`Register observer failed, code is ${err.code},message is ${err.message}`);
 }
 ```
 
@@ -2614,7 +2887,7 @@ Unregisters the observer of the specified type from the RDB store. This API uses
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
 | event    | string                              | Yes  | Event to observe. The value is **dataChange**, which indicates a data change event. |
 | type     | [SubscribeType](#subscribetype)     | Yes  | Subscription type to unregister.                              |
-| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes  | Callback for the data change. |
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes  | Callback for the data change. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed.|
 
 **Example**
 
@@ -2627,7 +2900,7 @@ function storeObserver(devices) {
 try {
   store.off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
 } catch (err) {
-  console.error(`Unregister observer failed, err: ${err}`);
+  console.error(`Unregister observer failed, code is ${err.code},message is ${err.message}`);
 }
 ```
 
@@ -2767,7 +3040,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 | **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty, or the specified location is invalid. |
 
 **Example**
 
@@ -2778,7 +3051,7 @@ promise.then((resultSet) => {
   resultSet.goTo(1);
   resultSet.close();
 }).catch((err) => {
-  console.error(`query failed, err: ${err}`);
+  console.error(`query failed, code is ${err.code},message is ${err.message}`);
 });
   ```
 
@@ -2808,7 +3081,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 | **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is  empty, or the specified location is invalid. |
 
 **Example**
 
@@ -2819,7 +3092,7 @@ promise.then((resultSet) => {
   resultSet.goToRow(5);
   resultSet.close();
 }).catch((err) => {
-  console.error(`query failed, err: ${err}`);
+  console.error(`query failed, code is ${err.code},message is ${err.message}`);
 });
   ```
 
@@ -2844,7 +3117,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 | **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is  empty, or the specified location is invalid. |
 
 **Example**
 
@@ -2855,7 +3128,7 @@ promise.then((resultSet) => {
   resultSet.goToFirstRow();
   resultSet.close();
 }).catch((err) => {
-  console.error(`query failed, err: ${err}`);
+  console.error(`query failed, code is ${err.code},message is ${err.message}`);
 });
   ```
 
@@ -2879,7 +3152,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 | **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is  empty, or the specified location is invalid. |
 
 **Example**
 
@@ -2890,7 +3163,7 @@ promise.then((resultSet) => {
   resultSet.goToLastRow();
   resultSet.close();
 }).catch((err) => {
-  console.error(`query failed, err: ${err}`);
+  console.error(`query failed, code is ${err.code},message is ${err.message}`);
 });
   ```
 
@@ -2914,7 +3187,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 | **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is  empty, or the specified location is invalid. |
 
 **Example**
 
@@ -2925,7 +3198,7 @@ promise.then((resultSet) => {
   resultSet.goToNextRow();
   resultSet.close();
 }).catch((err) => {
-  console.error(`query failed, err: ${err}`);
+  console.error(`query failed, code is ${err.code},message is ${err.message}`);
 });
   ```
 
@@ -2949,7 +3222,7 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 | **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is  empty, or the specified location is invalid. |
 
 **Example**
 
@@ -2960,7 +3233,7 @@ promise.then((resultSet) => {
   resultSet.goToPreviousRow();
   resultSet.close();
 }).catch((err) => {
-  console.error(`query failed, err: ${err}`);
+  console.error(`query failed, code is ${err.code},message is ${err.message}`);
 });
   ```
 
@@ -3150,7 +3423,7 @@ let promiseClose = store.query(predicatesClose, ["ID", "NAME", "AGE", "SALARY", 
 promiseClose.then((resultSet) => {
   resultSet.close();
 }).catch((err) => {
-  console.error(`resultset close failed, err: ${err}`);
+  console.error(`resultset close failed, code is ${err.code},message is ${err.message}`);
 });
   ```
 
@@ -3160,4 +3433,4 @@ For details about the error codes, see [RDB Error Codes](../errorcodes/errorcode
 
 | **ID**| **Error Message**                                                |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is  empty, or the specified location is invalid. |
