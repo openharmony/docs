@@ -985,7 +985,7 @@ terminateSelf(callback: AsyncCallback&lt;void&gt;): void;
 
 terminateSelf(): Promise&lt;void&gt;;
 
-停止自身。通过Promise返回结果。
+停止ability自身。通过Promise返回结果。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
