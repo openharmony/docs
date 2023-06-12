@@ -48,25 +48,19 @@
 >
 > 从API Version 10 开始废弃。
 
-## COMMON_EVENT_TIME_TICK
+## [COMMON_EVENT_TIME_TICK](./common_event/commonEvent-time.md)
 表示系统时间更改的公共事件的动作。
-- 值： usual.event.TIME_TICK
-- 订阅者所需权限： 无
 
-## COMMON_EVENT_TIME_CHANGED
+## [COMMON_EVENT_TIME_CHANGED](./common_event/commonEvent-time.md)
 设置系统时间的公共事件的动作。
-- 值： usual.event.TIME_CHANGED
-- 订阅者所需权限： 无
 
 ## COMMON_EVENT_DATE_CHANGED
 （预留事件，暂未支持）表示系统日期已更改的公共事件的动作。
 - 值： usual.event.DATE_CHANGED
 - 订阅者所需权限： 无
 
-## COMMON_EVENT_TIMEZONE_CHANGED
+## [COMMON_EVENT_TIMEZONE_CHANGED](./common_event/commonEvent-time.md)
 表示系统时区更改的公共事件的动作。
-- 值： usual.event.TIMEZONE_CHANGED
-- 订阅者所需权限： 无
 
 ## COMMON_EVENT_CLOSE_SYSTEM_DIALOGS
 （预留事件，暂未支持）表示用户关闭临时系统对话框的公共事件的动作。
@@ -718,19 +712,13 @@ Wi-Fi P2P群组信息已更改。
 提示未接来电。
 ## [COMMON_EVENT_RADIO_STATE_CHANGE<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 提示设备modem上下电状态变化。
-## COMMON_EVENT_SCREEN_LOCKED <sup>10+<sup>
+## [COMMON_EVENT_SCREEN_LOCKED <sup>10+<sup>](./common_event/commonEvent-screenlock.md)
 
 表示屏幕锁定的公共事件。
 
-- 值： usual.event.SCREEN_LOCKED
-- 订阅者所需权限： 无
-
-## COMMON_EVENT_SCREEN_UNLOCKED<sup>10+<sup>
+## [COMMON_EVENT_SCREEN_UNLOCKED<sup>10+<sup>](./common_event/commonEvent-screenlock.md)
 
 表示屏幕解锁的公共事件。
-
-- 值：usual.event.SCREEN_UNLOCKED
-- 订阅者所需权限：无
 
 ## [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT<sup>10+<sup>](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)
 
