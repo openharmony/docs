@@ -100,7 +100,7 @@
   - PKCS5：填充字符由一个字节序列组成，每个字节填充该填充字节序列的长度，规定是8字节填充。
   - PKCS7：填充字符和PKCS5填充方法一致，但是可以在1-255字节之间任意填充。
 
-  > **说明：** 
+  > **说明：**
   >
   > ECB、CBC加密模式，明文长度不是64位整数倍，必须使用填充方法补足。<br/>
   > 由于需要填充至分组大小，所以实际算法库中的PKCS5和PKCS7都是以分组大小作为填充长度的，即3DES加密填充至8字节。
@@ -110,16 +110,11 @@
   RSA为块加密算法，加密长度需要在固定长度进行，实际应用中会使用各种padding模式做数据填充。算法库目前提供了RSA加解密常用的三种模式：NoPadding、PKCS1和PKCS1_OAEP。下文中描述了各个padding的区别：
   - NoPadding：不带填充，输入的数据必须与RSA钥模一样长，输出数据长度与RSA钥模一样长。
   - PKCS1：即RFC3447规范中的RSAES-PKCS1-V1_5模式（对应于OpenSSL中的RSA_PKCS1_PADDING）在进行RSA运算时需要将源数据D转化为Encryption block（EB），加密时，输入的数据最大长度 <= RSA钥模 - 11，输出数据长度与RSA钥模一样长。
-  - PKCS1_OAEP：即RFC3447规范中的RSAES-OAEP模式（对应于OpenSSL中的RSA_PKCS1_OAEP_PADDING），是PKCS#1推出的新填充方式，此模式需要设置两个摘要（md和mgf1_md），加密时，输入的数据必须小于RSA钥模 - md摘要长度 - mgf1_md摘要长度 - 2（摘要长度以字节为单位），输出数据长度与RSA钥模一样长；此模式还可额外设置pSource字节流，来定义OAEP填充的编码输入P，并且可以获取PKCS1_OAEP的相关参数。
-
-  PKCS1_OAEP的相关参数包括：
-
-  md: 摘要算法。
-
-  mgf: 掩码生成算法，目前仅支持MGF1。
-
-  mgf1_md: mgf1摘要算法。
-
+  - PKCS1_OAEP：即RFC3447规范中的RSAES-OAEP模式（对应于OpenSSL中的RSA_PKCS1_OAEP_PADDING），是PKCS#1推出的新填充方式，此模式需要设置两个摘要（md和mgf1_md），加密时，输入的数据必须小于RSA钥模 - md摘要长度 - mgf1_md摘要长度 - 2（摘要长度以字节为单位），输出数据长度与RSA钥模一样长；此模式还可额外设置pSource字节流，来定义OAEP填充的编码输入P，并且可以获取PKCS1_OAEP的相关参数。<br><br>
+  PKCS1_OAEP的相关参数包括：<br>
+  md: 摘要算法。<br>
+  mgf: 掩码生成算法，目前仅支持MGF1。<br>
+  mgf1_md: mgf1摘要算法。<br>
   pSource: 字节流，用于编码输入。
 
   > **说明：**
@@ -132,18 +127,12 @@
 
   算法库框架目前提供了两种RSA签名验签的padding模式：PKCS1和PSS。下面对两种模式做详细描述：
   - PKCS1: 即RFC3447规范中的RSASSA-PKCS1-V1_5模式（对应于OpenSSL中的RSA_PKCS1_PADDING），在签名验签时，使用该模式时需要设置摘要（md），摘要算法输出的长度（字节）需要小于RSA的钥模。
-  - PSS: 即RFC3447规范中的RSASSA-PSS模式（对应于OpenSSL中的RSA_PKCS1_PSS_PADDING），此模式需要设置两个摘要（md和mgf1_md），且md和mgf1_md长度之和（字节）需要小于RSA的钥模；此模式还可额外设置以字节为单位的盐长度(saltLen)，并且可以获取PSS的相关参数。
-
-  PSS的相关参数包括：
-
-  md: 摘要算法。
-
-  mgf: 掩码生成算法，目前仅支持MGF1。
-
-  mgf1_md: MGF1算法中使用的摘要算法。
-
-  saltLen: 盐长度，以字节为单位。
-
+  - PSS: 即RFC3447规范中的RSASSA-PSS模式（对应于OpenSSL中的RSA_PKCS1_PSS_PADDING），此模式需要设置两个摘要（md和mgf1_md），且md和mgf1_md长度之和（字节）需要小于RSA的钥模；此模式还可额外设置以字节为单位的盐长度(saltLen)，并且可以获取PSS的相关参数。<br><br>
+  PSS的相关参数包括：<br>
+  md: 摘要算法。<br>
+  mgf: 掩码生成算法，目前仅支持MGF1。<br>
+  mgf1_md: MGF1算法中使用的摘要算法。<br>
+  saltLen: 盐长度，以字节为单位。<br>
   trailer_field：用于编码操作的整数，其值只支持为1。
 
   > **说明：**
@@ -266,7 +255,7 @@ HMAC（Hash-based Message Authentication Code）是一种基于密钥的消息�
   |sk|    |    |×    |√    |
 
   > **说明：**
-  > 
+  >
   > 密钥参数用于在创建非对称密钥生成器时，指定密钥规格。</br>
   > 上表说明了算法库对于指定公/私钥参数生成RSA密钥的支持情况。</br>
     打√的表示需要指定这一列中的具体属性，来构成密钥参数。</br>
