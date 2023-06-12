@@ -7,6 +7,8 @@
 
 - 符合规范的[设计交付件](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/key-features/multi-device-app-dev/design-delivery.md)样例，[OpenHarmony天气应用UX设计交付件V1.0.zip](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/key-features/multi-device-app-dev/OpenHarmony_%E5%A4%A9%E6%B0%94%E5%BA%94%E7%94%A8UX%E8%AE%BE%E8%AE%A1%E4%BA%A4%E4%BB%98%E4%BB%B6_V1.0.zip)
 
+- OpenHarmony[图标](visual-icons.md)资源，OpenHarmony_Icons.zip
+
 
 系统资源分层设计表列出了当前OpenHarmony中可用系统资源id及其在不同类型设备上的取值，它由六张子表组成，各个子表的含义如下所示。
 
