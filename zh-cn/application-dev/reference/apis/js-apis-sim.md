@@ -687,7 +687,9 @@ getSimAccountInfo\(slotId: number, callback: AsyncCallback\<IccAccountInfo\>\): 
 
 获取SIM卡账户信息。使用callback异步回调。
 
-**系统接口：** 此接口为系统接口。
+>**说明：**
+>
+>如果没有GET_TELEPHONY_STATE权限，获取到的ICCID和号码信息为空。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -731,7 +733,9 @@ getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 
 获取SIM卡账户信息。使用Promise异步回调。
 
-**系统接口：** 此接口为系统接口。
+>**说明：**
+>
+>如果没有GET_TELEPHONY_STATE权限，获取到的ICCID和号码信息为空。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -782,7 +786,9 @@ getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\
 
 获取活跃SIM卡账户信息列表。使用callback异步回调。
 
-**系统接口：** 此接口为系统接口。
+>**说明：**
+>
+>如果没有GET_TELEPHONY_STATE权限，获取到的ICCID和号码信息为空。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -823,7 +829,9 @@ getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>;
 
 获取活跃SIM卡账户信息列表。使用Promise异步回调。
 
-**系统接口：** 此接口为系统接口。
+>**说明：**
+>
+>如果没有GET_TELEPHONY_STATE权限，获取到的ICCID和号码信息为空。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -3988,6 +3996,80 @@ try {
 } catch (error) {
     console.log(`getOpName failed, promise: err->${JSON.stringify(error)}`);
 }
+```
+
+## sim.getDefaultVoiceSimId<sup>10+</sup>
+
+getDefaultVoiceSimId\(callback: AsyncCallback\<number\>\): void
+
+获取默认语音业务的SIM卡ID。使用callback异步回调。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**参数：**
+
+| 参数名   | 类型                        | 必填 | 说明       |
+| -------- | --------------------------- | ---- | ---------- |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。<br/>- 1：SIM卡1<br/>- 2：SIM卡2 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
+
+**示例：**
+
+```js
+sim.getDefaultVoiceSimId((err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+## sim.getDefaultVoiceSimId<sup>10+</sup>
+
+getDefaultVoiceSimId\(\): Promise\<number\>
+
+获取默认语音业务的SIM卡ID。使用Promise异步回调。
+
+**系统能力**：SystemCapability.Telephony.CoreService
+
+**返回值：**
+
+| 类型              | 说明                                    |
+| ----------------- | --------------------------------------- |
+| Promise\<number\> | 以Promise形式返回默认语音业务的SIM卡ID。<br/>- 1：SIM卡1<br/>- 2：SIM卡2 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300004  | Do not have sim card.                        |
+| 8300999  | Unknown error code.                          |
+| 8301001  | SIM card is not activated.                   |
+
+**示例：**
+
+```js
+let promise = sim.getDefaultVoiceSimId();
+promise.then(data => {
+    console.log(`getDefaultVoiceSimId success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.log(`getDefaultVoiceSimId failed, promise: err->${JSON.stringify(err)}`);
+});
 ```
 
 ## SimState

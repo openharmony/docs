@@ -849,6 +849,85 @@ observer.off('simStateChange', callback);
 observer.off('simStateChange');
 ```
 
+## observer.on('iccAccountInfoChange')<sup>10+</sup>
+
+on\(type: 'iccAccountInfoChange', callback: Callback\<void\>\): void;
+
+订阅卡账户变化事件，使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Telephony.StateRegistry
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 卡账户变化事件，参数固定为'iccAccountInfoChange'。                 |
+| callback | Callback\<void\> | 是   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+observer.on('iccAccountInfoChange', data => {
+    console.log("on iccAccountInfoChange, data:" + JSON.stringify(data));
+});
+```
+
+
+## observer.off('iccAccountInfoChange')<sup>10+</sup>
+
+off\(type: 'iccAccountInfoChange', callback?: Callback\<void\>\): void;
+
+移除订阅卡账户变化事件，使用callback方式作为异步方法。
+
+>**说明：**
+>
+>可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+
+**系统能力**：SystemCapability.Telephony.StateRegistry
+
+**参数：**
+
+| 参数名   | 类型                                                         | 必填 | 说明                                                         |
+| -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type     | string                                                       | 是   | 卡账户变化事件，参数固定为'iccAccountInfoChange'。                 |
+| callback | Callback\<void\> | 否   | 回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let callback = data => {
+    console.log("on iccAccountInfoChange, data:" + JSON.stringify(data));
+}
+observer.on('iccAccountInfoChange', callback);
+// 可以指定传入on中的callback取消一个订阅，也可以不指定callback清空所有订阅。
+observer.off('iccAccountInfoChange', callback);
+observer.off('iccAccountInfoChange');
+```
+
 
 ## LockReason<sup>8+</sup>
 
