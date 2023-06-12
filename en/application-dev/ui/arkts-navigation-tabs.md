@@ -333,7 +333,7 @@ For non-custom navigation bars, tabs and tab content are linked by default. For 
 
   **Figure 11** Lack of linkage between tabs and tab content 
 
-![lack-of-linkage](figures /lack-of-linkage.gif)
+![lack-of-linkage](figures/lack-of-linkage.gif)
 
 
 To manually switch between the tabs, use the **onChange** API provided by the **\<Tabs>** component to listen for the index change and pass the index of the active tab to **currentIndex**.
