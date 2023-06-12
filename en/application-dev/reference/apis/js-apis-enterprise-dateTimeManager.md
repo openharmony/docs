@@ -1,11 +1,11 @@
 # @ohos.enterprise.dateTimeManager (System Time Management)
 
-The dateTimeManager module provides APIs for system time management. Only the enterprise device administrator applications can call the APIs provided by this module.
+The **dateTimeManager** module provides APIs for system time management. Only the enterprise device administrator applications can call the APIs provided by this module.
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The APIs of this module can be called only after a [device administrator application](js-apis-enterprise-adminManager.md#adminmanagerenableadmin) is enabled.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs of this module can be called only after a [device administrator application](js-apis-enterprise-adminManager.md#adminmanagerenableadmin) is enabled.
 
 ## Modules to Import
 

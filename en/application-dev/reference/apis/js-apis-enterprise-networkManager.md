@@ -4,8 +4,8 @@ The **networkManager** module provides APIs for network management of enterprise
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The APIs of this module can be called only after a [device administrator application](js-apis-enterprise-adminManager.md#adminmanagerenableadmin) is enabled.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs of this module can be called only after a [device administrator application](js-apis-enterprise-adminManager.md#adminmanagerenableadmin) is enabled.
 
 ## Modules to Import
 
@@ -17,7 +17,7 @@ import networkManager from '@ohos.enterprise.networkManager';
 
 getAllNetworkInterfaces(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
 
-Obtains all active network interfaces using the specified device administrator application. This API uses an asynchronous callback to return the result.
+Obtains all active network interfaces through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -36,7 +36,7 @@ Obtains all active network interfaces using the specified device administrator a
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -61,7 +61,7 @@ networkManager.getAllNetworkInterfaces(wantTemp, (error, result) => {
 
 getAllNetworkInterfaces(admin: Want): Promise&lt;Array&lt;string&gt;&gt;
 
-Obtains all active network interfaces using the specified device administrator application. This API uses a promise to return the result.
+Obtains all active network interfaces through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -85,7 +85,7 @@ Obtains all active network interfaces using the specified device administrator a
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -108,7 +108,7 @@ networkManager.getAllNetworkInterfaces(wantTemp).then((result) => {
 
 getIpAddress(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the device IP address based on the given network interface using the specified device administrator application. This API uses an asynchronous callback to return the result.
+Obtains the device IP address based on the given network interface through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -128,7 +128,7 @@ Obtains the device IP address based on the given network interface using the spe
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -153,7 +153,7 @@ networkManager.getIpAddress(wantTemp, "eth0", (error, result) => {
 
 getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 
-Obtains the device IP address based on the given network interface using the specified device administrator application. This API uses a promise to return the result.
+Obtains the device IP address based on the given network interface through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -178,7 +178,7 @@ Obtains the device IP address based on the given network interface using the spe
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -201,7 +201,7 @@ networkManager.getIpAddress(wantTemp, "eth0").then((result) => {
 
 getMac(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&gt;): void
 
-Obtains the device MAC address based on the given network interface using the specified device administrator application. This API uses an asynchronous callback to return the result.
+Obtains the device MAC address based on the given network interface through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -221,7 +221,7 @@ Obtains the device MAC address based on the given network interface using the sp
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -246,7 +246,7 @@ networkManager.getMac(wantTemp, "eth0", (error, result) => {
 
 getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 
-Obtain the device MAC address based on the given network interface using the specified device administrator application. This API uses a promise to return the result.
+Obtain the device MAC address based on the given network interface through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -271,7 +271,7 @@ Obtain the device MAC address based on the given network interface using the spe
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -294,7 +294,7 @@ networkManager.getMac(wantTemp, "eth0").then((result) => {
 
 isNetworkInterfaceDisabled(admin: Want, networkInterface: string, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether a network interface is disabled using the specified device administrator application. This API uses an asynchronous callback to return the result.
+Checks whether a network interface is disabled through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -314,7 +314,7 @@ Checks whether a network interface is disabled using the specified device admini
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -339,7 +339,7 @@ networkManager.isNetworkInterfaceDisabled(wantTemp, "eth0", (error, result) => {
 
 isNetworkInterfaceDisabled(admin: Want, networkInterface: string): Promise&lt;boolean&gt;
 
-Checks whether a network interface is disabled using the specified device administrator application. This API uses a promise to return the result.
+Checks whether a network interface is disabled through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_GET_NETWORK_INFO
 
@@ -364,7 +364,7 @@ Checks whether a network interface is disabled using the specified device admini
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | The application is not an administrator application of the device.                       |
 | 9200002 | The administrator application does not have permission to manage the device.|
@@ -387,7 +387,7 @@ networkManager.isNetworkInterfaceDisabled(wantTemp, "eth0").then((result) => {
 
 setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-Sets a network interface using the specified device administrator application. This API uses an asynchronous callback to return the result.
+Sets a network interface through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_NETWORK
 
@@ -433,7 +433,7 @@ networkManager.setNetworkInterfaceDisabled(wantTemp, "eth0", true, (error) => {
 
 setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: boolean): Promise&lt;void&gt;
 
-Sets a network interface using the specified device administrator application. This API uses a promise to return the result.
+Sets a network interface through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_NETWORK
 

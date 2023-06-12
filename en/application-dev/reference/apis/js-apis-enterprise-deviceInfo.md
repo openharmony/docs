@@ -1,11 +1,11 @@
 # @ohos.enterprise.deviceInfo (Device Information Management)
 
-The deviceInfo module provides APIs for enterprise device information management, including the API for obtaining device serial numbers. Only the enterprise device administrator applications can call the APIs provided by this module.
+The **deviceInfo** module provides APIs for enterprise device information management, including the API for obtaining device serial numbers. Only the enterprise device administrator applications can call the APIs provided by this module.
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The APIs of this module can be called only after a [device administrator application](js-apis-enterprise-adminManager.md#adminmanagerenableadmin) is enabled.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs of this module can be called only after a [device administrator application](js-apis-enterprise-adminManager.md#adminmanagerenableadmin) is enabled.
 
 ## Modules to Import
 
@@ -36,7 +36,7 @@ Obtains the device serial number through the specified device administrator appl
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -85,7 +85,7 @@ Obtains the device serial number through the specified device administrator appl
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -127,7 +127,7 @@ Obtains the device version number through the specified device administrator app
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -176,7 +176,7 @@ Obtains the device version number through the specified device administrator app
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -218,7 +218,7 @@ Obtains the device name through the specified device administrator application. 
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                      |          
+| ID| Error Message                                                                      |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |
@@ -267,7 +267,7 @@ Obtains the device name through the specified device administrator application. 
 
 For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
-| ID| Error Message                                                                    |          
+| ID| Error Message                                                                    |
 | ------- | ---------------------------------------------------------------------------- |
 | 9200001 | the application is not an administrator of the device.                        |
 | 9200002 | the administrator application does not have permission to manage the device. |

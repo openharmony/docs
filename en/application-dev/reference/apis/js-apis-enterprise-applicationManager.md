@@ -1,6 +1,6 @@
 # @ohos.enterprise.applicationManager (Application Management)
 
-The **applicationManager** module provides application management capabilities, including adding applications to or removing applications from an application blocklist, and obtaining the application blocklist. The application blocklist contains the applications that are forbidden to run. Only the enterprise device administrator applications can call the APIs provided by this module.
+The **applicationManager** module provides application management capabilities, including adding, removing, and obtaining the applications that are forbidden to run. Only the enterprise device administrator applications can call the APIs provided by this module.
 
 > **NOTE**
 >
@@ -17,7 +17,7 @@ import applicationManager from '@ohos.enterprise.applicationManager';
 
 addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
 
-Adds applications to the application blocklist using the specified device administrator application. This API uses an asynchronous callback to return the result. The applications added to the blocklist cannot run under the current user.
+Adds a list of applications that are forbidden to run by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -63,7 +63,7 @@ applicationManager.addDisallowedRunningBundles(wantTemp, appIds, (error) => {
 
 addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
 
-Adds applications to the application list for a user using the specified device administrator application. This API uses an asynchronous callback to return the result. The applications added to the blocklist cannot run under the user specified by **userId**.
+Adds a list of applications that are forbidden to run by a given user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -109,7 +109,7 @@ applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100, (error) =>
 
 addDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
 
-Adds applications to the application blocklist using the specified device administrator application. This API uses a promise to return the result. If **userId** is passed in when this API is called, the added applications cannot run under the specified user. If **userId** is not passed in, the added applications cannot run under the current user.
+Adds a list of applications that are forbiddedn to run by the specified user (if **userId** is passed in) or current user (if **userId** is not passed in) through the specified device administrator application.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -160,7 +160,7 @@ applicationManager.addDisallowedRunningBundles(wantTemp, appIds, 100).then(() =>
 
 removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, callback: AsyncCallback&lt;void&gt;): void;
 
-Removes applications from the application blocklist using the specified device administrator application. This API uses an asynchronous callback to return the result. If an application blocklist exists, the applications in the blocklist cannot run under the current user.
+Removes a list of applications that are forbiddedn to run by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -205,7 +205,7 @@ applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, (error) => {
 
 removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId: number, callback: AsyncCallback&lt;void&gt;): void;
 
-Removes applications from the application blocklist of a user using the specified device administrator application. This API uses an asynchronous callback to return the result. If an application blocklist exists, the applications in the blocklist cannot run under the user specified by **userId**.
+Removes a list of applications that are forbiddedn to run by the specified user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -251,7 +251,7 @@ applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100, (error)
 
 removeDisallowedRunningBundles(admin: Want, appIds: Array\<string>, userId?: number): Promise&lt;void&gt;;
 
-Removes applications from the application blocklist using the specified device administrator application. This API uses a promise to return the result. If **userId** is passed in when this API is called to remove applications from the blocklist, the applications in the blocklist cannot run under the specified user. If **userId** is not passed in, the applications in the blocklist cannot run under the current user.
+Removes a list of applications that are forbiddedn to run by the specified user (if **userId** is passed in) or current user (if **userId** is not passed in) through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -302,7 +302,7 @@ applicationManager.removeDisallowedRunningBundles(wantTemp, appIds, 100).then(()
 
 getDisallowedRunningBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
 
-Obtains the application blocklist of the current user using the specified device administrator application. This API uses an asynchronous callback to return the result.
+Obtains the list of applications that are firbidded to run by the current user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -345,7 +345,7 @@ applicationManager.getDisallowedRunningBundles(wantTemp, (error) => {
 
 getDisallowedRunningBundles(admin: Want, userId: number, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void;
 
-Obtains the application blocklist of a user using the specified device administrator application. This API uses an asynchronous callback to return the result.
+Obtains the list of applications that are firbidded to run by the specified user through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
@@ -389,7 +389,7 @@ applicationManager.getDisallowedRunningBundles(wantTemp, 100, (error) => {
 
 getDisallowedRunningBundles(admin: Want, userId?: number): Promise&lt;Array&lt;string&gt;&gt;;
 
-Obtains the application blocklist of the current user using the specified device administrator application. This API uses a promise to return the result. If **userId** is passed in, the application blocklist of the specified user is obtained. If **userId** is not passed in, the application blocklist of the current user is obtained.
+Obtains the list of applications that are firbidded to run by the specified user (if **userId** is passed in) or current user (if **userId** is not passed in) through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 

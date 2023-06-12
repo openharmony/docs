@@ -4,8 +4,8 @@ The **deviceControl** module provides APIs for device control, which can be call
 
 > **NOTE**
 > 
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The APIs of this module can be called only after a [device administrator application](js-apis-enterprise-adminManager.md#adminmanagerenableadmin) is enabled.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs of this module can be called only after a [device administrator application](js-apis-enterprise-adminManager.md#adminmanagerenableadmin) is enabled.
 
 ## Modules to Import
 
@@ -78,7 +78,7 @@ Restores factory settings. This API uses a promise to return the result.
 
 | Type  | Description                                 |
 | ----- | ----------------------------------- |
-| Promise\<void> | Promise that returns no value. Throws an error object when the operation fails.|
+| Promise\<void> | Promise that returns no value. If the operation fails, an error object is thrown.|
 
 **Error codes**
 
