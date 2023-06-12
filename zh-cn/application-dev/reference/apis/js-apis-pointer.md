@@ -854,11 +854,11 @@ window.getLastWindow(this.context, (error, win) => {
 | CURSOR_CROSS | 40 | 十字光标 |![Cursor_Cross.png](./figures/Cursor_Cross.png)|
 | CURSOR_CIRCLE | 41 | 圆形光标 |![Cursor_Circle.png](./figures/Cursor_Circle.png)|
 
-## pointer.setTouchpadScrollSwitch<sup>10+</sup>
+## pointer.setTouchpadScrollSwitch\<sup>10+</sup>
 
-setTouchpadScrollSwitch(state: boolean, callback: AsyncCallback<void>): void
+setTouchpadScrollSwitch(state: boolean, callback: AsyncCallback\<void>): void
 
-设置触控板滚轴能力是否开启，使用AsyncCallback异步方式返回结果。
+设置触控板滚轴开关，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -868,8 +868,8 @@ setTouchpadScrollSwitch(state: boolean, callback: AsyncCallback<void>): void
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| state | boolean | 是    | true开启，false关闭，默认开启   |
-| callback | AsyncCallback<void> | 是    | 回调函数。 |
+| state | boolean | 是    | 滚轴开关开启的状态，true代表开启，false代表关闭，默认为开启   |
+| callback | AsyncCallback\<void> | 是    | 回调函数。 |
 
 **示例**：
 
@@ -889,9 +889,9 @@ try {
 
 ## pointer.setTouchpadScrollSwitch<sup>10+</sup>
 
-setTouchpadScrollSwitch(state: boolean): Promise<void>
+setTouchpadScrollSwitch(state: boolean): Promise\<void>
 
-设置触控板滚轴能力是否开启，使用Promise异步方式返回结果。
+设置触控板滚轴开关，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -901,7 +901,7 @@ setTouchpadScrollSwitch(state: boolean): Promise<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| state | boolean| 是    |  true开启，false关闭，默认开启 |
+| state | boolean| 是    |  滚轴开关开启的状态，true代表开启，false代表关闭，默认为开启 |
 
 **返回值**：
 
@@ -923,7 +923,7 @@ try {
 
 ## pointer.getTouchpadScrollSwitch<sup>10+</sup>
 
-getTouchpadScrollSwitch(callback:  AsyncCallback<boolead>): void
+getTouchpadScrollSwitch(callback:  AsyncCallback\<boolead>): void
 
 获取触控板滚轴能力开启状态，使用AsyncCallback异步方式返回结果。
 
@@ -935,7 +935,7 @@ getTouchpadScrollSwitch(callback:  AsyncCallback<boolead>): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback<boolean> | 是    | 回调函数，异步返回触控板滚轴能力开启状态。 |
+| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板滚轴能力开启状态。 |
 
 **示例**：
 
@@ -951,7 +951,7 @@ try {
 
 ## pointer.getTouchpadScrollSwitch<sup>10+</sup>
 
-getTouchpadScrollSwitch(): Promise<boolean>
+getTouchpadScrollSwitch(): Promise\<boolean>
 
 获取触控板滚轴能力开启状态，使用Promise异步方式返回结果。
 
@@ -963,7 +963,7 @@ getTouchpadScrollSwitch(): Promise<boolean>
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise<boolean> | Promise实例，异步返回触控板滚轴能力开启状态。 |
+| Promise\<boolean> | Promise实例，异步返回触控板滚轴能力开启状态。 |
 
 **示例**：
 
@@ -979,7 +979,7 @@ try {
 
 ## pointer.setTouchpadScrollDirection<sup>10+</sup>
 
-setTouchpadScrollDirection(state: boolean, callback: AsyncCallback<void>): void
+setTouchpadScrollDirection(state: boolean, callback: AsyncCallback\<void>): void
 
 设置触控板滚轴的方向，使用AsyncCallback异步方式返回结果。
 
@@ -991,8 +991,8 @@ setTouchpadScrollDirection(state: boolean, callback: AsyncCallback<void>): void
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| state | boolean | 是    | true正方向，false反方向，默认为true   |
-| callback | AsyncCallback<void> | 是    | 回调函数。 |
+| state | boolean | 是    | state为触控板滚轴的方向。true与手指滑动的方向一致，false与手指滑动的方向相反，默认为true。   |
+| callback | AsyncCallback\<void> | 是    | 回调函数。 |
 
 **示例**：
 
@@ -1012,7 +1012,7 @@ try {
 
 ## pointer.setTouchpadScrollDirection<sup>10+</sup>
 
-setTouchpadScrollDirection(state: boolean): Promise<void>
+setTouchpadScrollDirection(state: boolean): Promise\<void>
 
 设置触控板滚轴的方向，使用AsyncCallback异步方式返回结果。
 
@@ -1024,13 +1024,13 @@ setTouchpadScrollDirection(state: boolean): Promise<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| state | boolean| 是    |  true正方向，false反方向，默认为true   |
+| state | boolean| 是    |  state为触控板滚轴的方向。true与手指滑动的方向一致，false与手指滑动的方向相反，默认为true。     |
 
 **返回值**：
 
 | 参数                  | 说明               |
 | ------------------- | ---------------- |
-| Promise<void> | Promise对象。 |
+| Promise\<void> | Promise对象。 |
 
 **示例**：
 
@@ -1046,7 +1046,7 @@ try {
 
 ## pointer.getTouchpadScrollDirection<sup>10+</sup>
 
-getTouchpadScrollDirection(callback:  AsyncCallback<boolead>): void
+getTouchpadScrollDirection(callback:  AsyncCallback\<boolean>): void
 
 获取触控板滚轴方向，使用AsyncCallback异步方式返回结果。
 
@@ -1058,7 +1058,7 @@ getTouchpadScrollDirection(callback:  AsyncCallback<boolead>): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback<boolean> | 是    | 回调函数，异步返回触控板滚轴方向。 |
+| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板滚轴方向。 |
 
 **示例**：
 
@@ -1074,7 +1074,7 @@ try {
 
 ## pointer.getTouchpadScrollDirection<sup>10+</sup>
 
-getTouchpadScrollDirection(): Promise<boolean>
+getTouchpadScrollDirection(): Promise\<boolean>
 
 获取触控板滚轴方向，使用Promise异步方式返回结果。
 
@@ -1086,7 +1086,7 @@ getTouchpadScrollDirection(): Promise<boolean>
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise<boolean> | Promise实例，异步返回触控板滚轴方向。 |
+| Promise\<boolean> | Promise实例，异步返回触控板滚轴方向。 |
 
 **示例**：
 
@@ -1102,9 +1102,9 @@ try {
 
 ## pointer.setTouchpadTapSwitch<sup>10+</sup>
 
-setTouchpadTapSwitch(state: boolean, callback: AsyncCallback<void>): void
+setTouchpadTapSwitch(state: boolean, callback: AsyncCallback\<void>): void
 
-设置触控板轻触能力是否开启，使用AsyncCallback异步方式返回结果。
+设置触控板轻触功能开关，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -1114,8 +1114,8 @@ setTouchpadTapSwitch(state: boolean, callback: AsyncCallback<void>): void
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| state | boolean | 是    | true开启，false关闭，默认开启   |
-| callback | AsyncCallback<void> | 是    | 回调函数。 |
+| state | boolean | 是    |触控板轻触功能开关开启状态。 true代表轻触开启，false代表轻触关闭，默认开启。   |
+| callback | AsyncCallback\<void> | 是    | 回调函数。 |
 
 **示例**：
 
@@ -1135,9 +1135,9 @@ try {
 
 ## pointer.setTouchpadTapSwitch <sup>10+</sup>
 
-setTouchpadTapSwitch(state: boolean): Promise<void>
+setTouchpadTapSwitch(state: boolean): Promise\<void>
 
-设置触控板轻触能力是否开启，使用Promise异步方式返回结果。
+设置触控板轻触功能开关，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -1147,13 +1147,13 @@ setTouchpadTapSwitch(state: boolean): Promise<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| state | boolean| 是    |  true开启，false关闭，默认开启 |
+| state | boolean| 是    |  触控板轻触功能开关开启状态。 true代表轻触开启，false代表轻触关闭，默认开启。  |
 
 **返回值**：
 
 | 参数                  | 说明               |
 | ------------------- | ---------------- |
-| Promise<void> | Promise对象。 |
+| Promise\<void> | Promise对象。 |
 
 **示例**：
 
@@ -1169,7 +1169,7 @@ try {
 
 ## pointer.getTouchpadTapSwitch<sup>10+</sup>
 
-getTouchpadTapSwitch(callback:  AsyncCallback<boolead>): void
+getTouchpadTapSwitch(callback:  AsyncCallback\<boolean>): void
 
 获取触控板轻触能力开启状态，使用AsyncCallback异步方式返回结果。
 
@@ -1181,7 +1181,7 @@ getTouchpadTapSwitch(callback:  AsyncCallback<boolead>): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback<boolean> | 是    | 回调函数，异步返回触控板轻触能力开启状态。 |
+| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板轻触功能开启状态。 |
 
 **示例**：
 
@@ -1197,9 +1197,9 @@ try {
 
 ## pointer.getTouchpadTapSwitch<sup>10+</sup>
 
-getTouchpadTapSwitch(): Promise<boolean>
+getTouchpadTapSwitch(): Promise\<boolean>
 
-获取触控板滚轴能力开启状态，使用Promise异步方式返回结果。
+获取触控板轻触功能开启状态，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -1209,7 +1209,7 @@ getTouchpadTapSwitch(): Promise<boolean>
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise<boolean> | Promise实例，异步返回触控板轻触能力开启状态。 |
+| Promise\<boolean> | Promise实例，异步返回触控板轻触功能开启状态。 |
 
 **示例**：
 
@@ -1225,7 +1225,7 @@ try {
 
 ## pointer.setTouchpadPointerSpeed<sup>10+</sup>
 
-setTouchpadPointerSpeed(speed: number, callback: AsyncCallback<void>): void
+setTouchpadPointerSpeed(speed: number, callback: AsyncCallback\<void>): void
 
 设置触控板光标移动速度，使用AsyncCallback异步方式返回结果。
 
@@ -1237,8 +1237,8 @@ setTouchpadPointerSpeed(speed: number, callback: AsyncCallback<void>): void
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| speed | number                    | 是    | 光标移动速度1-11，默认5   |
-| callback | AsyncCallback<void> | 是    | 回调函数。 |
+| speed | number                    | 是    |speed代表光标移动速度。speed取值范围[1,11]，默认5。  |
+| callback | AsyncCallback\<void> | 是    | 回调函数。 |
 
 **示例**：
 
@@ -1258,7 +1258,7 @@ try {
 
 ## pointer.setTouchpadPointerSpeed<sup>10+</sup>
 
-setTouchpadPointerSpeed(speed: number): Promise<void>
+setTouchpadPointerSpeed(speed: number): Promise\<void>
 
 设置触控板光标移动速度，使用Promise异步方式返回结果。
 
@@ -1270,13 +1270,13 @@ setTouchpadPointerSpeed(speed: number): Promise<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| speed| number | 是    | 光标移动速度1-11，默认5   |
+| speed| number | 是    | speed代表光标移动速度。speed取值范围[1,11]，默认5。    |
 
 **返回值**：
 
 | 参数                  | 说明               |
 | ------------------- | ---------------- |
-| Promise<void> | Promise对象。 |
+| Promise\<void> | Promise对象。 |
 
 **示例**：
 
@@ -1292,7 +1292,7 @@ try {
 
 ## pointer.getTouchpadPointerSpeed<sup>10+</sup>
 
-getTouchpadPointerSpeed(callback: AsyncCallback<number>): void
+getTouchpadPointerSpeed(callback: AsyncCallback\<number>): void
 
 获取触控板光标移动速度，使用AsyncCallback异步方式返回结果。
 
@@ -1304,7 +1304,7 @@ getTouchpadPointerSpeed(callback: AsyncCallback<number>): void
 
 | 参数名       | 类型                          | 必填   | 说明             |
 | -------- | --------------------------- | ---- | -------------- |
-| callback | AsyncCallback<number> | 是    | 回调函数，异步返回触控板光标移动速度。 |
+| callback | AsyncCallback\<number> | 是    | 回调函数，异步返回触控板光标移动速度。 |
 
 **示例**：
 
@@ -1320,7 +1320,7 @@ try {
 
 ## pointer.getTouchpadPointerSpeed<sup>10+</sup>
 
-getTouchpadPointerSpeed(): Promise<number>
+getTouchpadPointerSpeed(): Promise\<number>
 
 获取触控板光标移动速度，使用Promise异步方式返回结果。
 
@@ -1332,7 +1332,7 @@ getTouchpadPointerSpeed(): Promise<number>
 
 | 参数                    | 说明                  |
 | --------------------- | ------------------- |
-| Promise<number> | Promise实例，异步返回触控板光标移动速度。 |
+| Promise\<number> | Promise实例，异步返回触控板光标移动速度。 |
 
 **示例**：
 
