@@ -1,5 +1,5 @@
-# Common Events of the Resource Scheduling Subsystem
-This document lists the common system events provided by the resource scheduling subsystem to applications. Applications can use [APIs](../js-apis-commonEventManager.md) to subscribe to common system events.
+# Common Events of the Resource Scheduler Subsystem
+This document lists the common system events provided by the resource scheduler subsystem to applications. Applications can use [APIs](../js-apis-commonEventManager.md) to subscribe to common system events.
 
 ## COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED
 Indicates that the system idle mode has changed.

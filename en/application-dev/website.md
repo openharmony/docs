@@ -26,7 +26,7 @@
         - [HAR](quick-start/har-package.md)
         - HSP
           - [In-Application HSP Development](quick-start/in-app-hsp.md)
-          - [Inter-Application HSP Development (for System Applications Only)](quick-start/cross-app-hsp.md)
+          - [Inter-Application HSP Development](quick-start/cross-app-hsp.md)
       - Quick Fix
         - [Quick Fix Overview](quick-start/quickfix-principles.md)
         - [CLI-based Quick Fix Development](quick-start/quickfix-debug.md)
@@ -98,7 +98,7 @@
           - [AccessibilityExtensionAbility](application-models/accessibilityextensionability.md)
           - [EnterpriseAdminExtensionAbility](application-models/enterprise-extensionAbility.md)
           - [InputMethodExtensionAbility](application-models/inputmethodextentionability.md)
-          - [WindowExtensionAbility](application-models/windowextensionability.md)
+          - [WindowExtensionAbility (for System Applications Only)](application-models/windowextensionability.md)
         - Service Widget Development in Stage Model
           - [Service Widget Overview](application-models/service-widget-overview.md)
           - Developing an ArkTS Widget
@@ -150,7 +150,7 @@
             - [Subscribing to Common Events in Static Mode (for System Applications Only)](application-models/common-event-static-subscription.md)
             - [Unsubscribing from Common Events](application-models/common-event-unsubscription.md)
           - [Publishing Common Events](application-models/common-event-publish.md)
-          - [Removing Sticky Common Events](application-models/common-event-remove-sticky.md)
+          - [Removing Sticky Common Events (for System Applications Only)](application-models/common-event-remove-sticky.md)
         - [Background Services](application-models/background-services.md)
       - Thread Model
         - [Thread Model Overview](application-models/thread-model-stage.md)
@@ -434,7 +434,7 @@
         - [Developing Audio Call](media/audio-call-development.md)
       - [Video Playback](media/video-playback.md)
       - [Video Recording](media/video-recording.md)
-    - AVSession (for System Applications Only)
+    - AVSession
       - [AVSession Overview](media/avsession-overview.md)
       - Local AVSession
         - [Local AVSession Overview](media/local-avsession-overview.md)
@@ -443,7 +443,7 @@
       - Distributed AVSession
         - [Distributed AVSession Overview](media/distributed-avsession-overview.md)
         - [Using Distributed AVSession](media/using-distributed-avsession.md)
-    - Camera (for System Applications Only)
+    - Camera
       - [Camera Overview](media/camera-overview.md)
       - Camera Development
         - [Camera Development Preparations](media/camera-preparation.md)
@@ -542,8 +542,8 @@
       - Selecting and Saving User Files (FilePicker)
         - [Selecting User Files](file-management/select-user-file.md)
         - [Saving User Files](file-management/save-user-file.md)
-      - [Developing a FileManager Application (Available Only for System Applications)](file-management/dev-user-file-manager.md)
-      - [Managing External Storage Devices (Available Only for System Applications)](file-management/manage-external-storage.md)
+      - [Developing a FileManager Application (for System Applications Only)](file-management/dev-user-file-manager.md)
+      - [Managing External Storage Devices (for System Applications Only)](file-management/manage-external-storage.md)
     - Distributed File System
       - [Distributed File System Overview](file-management/distributed-fs-overview.md)
       - [Setting the Security Level of a Distributed File](file-management/set-security-label.md)
@@ -603,7 +603,6 @@
     - [wukong User Guide](application-test/wukong-guidelines.md)
   - [OpenHarmony IDL Specifications and User Guide](IDL/idl-guidelines.md)
   - Native APIs
-    - [Introduction to Native APIs](napi/introduction.md)
     - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
     - [Drawing Development](napi/drawing-guidelines.md)
     - [Raw File Development](napi/rawfile-guidelines.md)
@@ -669,12 +668,8 @@
         - [Touch Target](reference/arkui-ts/ts-universal-attributes-touch-target.md)
         - [Polymorphic Style](reference/arkui-ts/ts-universal-attributes-polymorphic-style.md)
         - [Hit Test Control](reference/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
-        - [Background Blur](reference/arkui-ts/ts-universal-attributes-backgroundBlurStyle.md)
         - [restoreId](reference/arkui-ts/ts-universal-attributes-restoreId.md)
         - [Foreground Color](reference/arkui-ts/ts-universal-attributes-foreground-color.md)
-        - [Spherical Effect](reference/arkui-ts/ts-universal-attributes-sphericalEffect.md)
-        - [Light Up Effect](reference/arkui-ts/ts-universal-attributes-lightUpEffect.md)
-        - [Pixel Stretch Effect](reference/arkui-ts/ts-universal-attributes-pixelStretchEffect.md)
         - [Text Style](reference/arkui-ts/ts-universal-attributes-text-style.md)
       - Gesture Processing
         - [Gesture Binding Methods](reference/arkui-ts/ts-gesture-settings.md)
@@ -780,7 +775,6 @@
       - [ImageData](reference/arkui-ts/ts-components-canvas-imagedata.md)
       - [OffscreenCanvasRenderingConxt2D](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
       - [Path2D](reference/arkui-ts/ts-components-canvas-path2d.md)
-      - [Lottie](reference/arkui-ts/ts-components-canvas-lottie.md)
     - Animation
       - [AnimatorProperty](reference/arkui-ts/ts-animatorproperty.md)
       - [Explicit Animation](reference/arkui-ts/ts-explicit-animation.md)
@@ -1123,9 +1117,12 @@
         - [NotificationTemplate](reference/apis/js-apis-inner-notification-notificationTemplate.md)
         - [NotificationUserInput](reference/apis/js-apis-inner-notification-notificationUserInput.md)
       - Common Events
+        - [Common Events of the Ability Subsystem](reference/apis/common_event/commonEvent-ability.md)
         - [Common Events of the Bundle Management Subsystem](reference/apis/common_event/commonEvent-bundleManager.md)
         - [Common Events of the Notification Service](reference/apis/common_event/commonEvent-ans.md)
+        - [Common Events of the Resource Scheduler Subsystem](reference/apis/common_event/commonEvent-resourceschedule.md)
         - [Common Events of the Telephony Subsystem](reference/apis/common_event/commonEvent-telephony.md)
+        - [Common Events of the USB Subsystem](reference/apis/common_event/commonEvent-usb.md)
     - Bundle Management
       - [@ohos.bundle.appControl(appControl)](reference/apis/js-apis-appControl.md)
       - [@ohos.bundle.bundleManager (bundleManager)](reference/apis/js-apis-bundleManager.md)
@@ -1212,6 +1209,7 @@
       - security
         - [PermissionRequestResult](reference/apis/js-apis-permissionrequestresult.md)
     - Data Management
+      - [@ohos.data.cloudData (Device-Cloud Synergy)](reference/apis/js-apis-data-cloudData.md)
       - [@ohos.data.dataAbility (DataAbility Predicates)](reference/apis/js-apis-data-ability.md)
       - [@ohos.data.dataShare (DataShare)](reference/apis/js-apis-data-dataShare.md)
       - [@ohos.data.dataSharePredicates (DataShare Predicates)](reference/apis/js-apis-data-dataSharePredicates.md)
