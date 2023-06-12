@@ -37,6 +37,8 @@ Motion驱动的主要工作是为上层MSDP服务提供稳定的使能/去使能
 
 **表1** 接口功能介绍
 
+注：以下接口列举的为IDL接口描述生成的对应C++语言函数接口，接口声明见idl文件[/drivers/interface/motion/v1_0/](https://gitee.com/openharmony/drivers_interface/tree/master/motion) 。
+
 | 接口名                                                       | 功能介绍                     |
 | ------------------------------------------------------------ | ---------------------------- |
 | int32_t EnableMotion(int32_t motionType)                     | 使能一种手势识别类型，只有数据订阅者使能手势识别后，才能获取订阅的手势识别数据。 |
@@ -49,29 +51,30 @@ Motion驱动的主要工作是为上层MSDP服务提供稳定的使能/去使能
 开发步骤分为两个大步骤。
 
 1. 基于HDF驱动框架，完成手势识别用户态驱动开发。
+
 2. 厂商实现EnableMotion、DisableMotion、Register和Unregister接口功能。
 
 手势识别目录结构及各部分功能简介。
 
-```undefined
-/drivers/peripheral/motion               # 此目录具体实现需要厂商根据自己的器件进行开发
-├── hdi_service                          # 手势识别模块对上层MSDP服务提供的驱动能力
-├── test                                 # 手势识别模块测试代码
-│   └── unittest\hdi                     # 手势识别模块HDI单元测试代码
+```
+/drivers/peripheral/motion           // 此目录具体实现需要厂商根据自己的器件进行开发
+├── hdi_service              		 // motion模块对上层服务提供的驱动能力
+├── test                             // motion模块测试代码
+   └── unittest\hdi                  // motion模块hdi单元测试代码
 ```
 
-下面结合DEMO实例，介绍如何基于HDF驱动框架，进行手势识别用户态驱动开发。具体实现请参考[motion_interface_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/motion/hdi_service/motion_interface_driver.cpp)。
+下面结合DEMO实例，介绍如何基于HDF驱动框架，进行手势识别用户态驱动开发。具体实现请参考[motion_if_driver.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/motion/hdi_service/motion_if_driver.cpp)。
 
 手势识别用户态驱动开发， 主要完成Bind、Init、Release、Dispatch函数接口实现。其中Bind函数为驱动绑定对外提供的服务能力，Init函数为系统加载驱动前需要的一些初始化的操作，Release函数的主要作用为当系统加载驱动调用Init函数失败时对资源进行回收操作，Dispatch函数为服务能力的具体实现，在Bind函数中进行绑定。
 
-```c++
-// 自定义的HdfMotionInterfaceHost对象
+```c
+/* 自定义的HdfMotionInterfaceHost对象 */
 struct HdfMotionInterfaceHost {
     struct IDeviceIoService ioService;
     OHOS::sptr<OHOS::IRemoteObject> stub;
 };
 
-// 服务接口调用响应接口
+/* 服务接口调用响应接口 */
 static int32_t MotionInterfaceDriverDispatch(struct HdfDeviceIoClient *client, int cmdId, struct HdfSBuf *data,
     struct HdfSBuf *reply)
 {
@@ -93,14 +96,14 @@ static int32_t MotionInterfaceDriverDispatch(struct HdfDeviceIoClient *client, i
     return hdfMotionInterfaceHost->stub->SendRequest(cmdId, *dataParcel, *replyParcel, option);
 }
 
-// 初始化接口
+/* 初始化接口 */
 int HdfMotionInterfaceDriverInit(struct HdfDeviceObject *deviceObject)
 {
     HDF_LOGI("HdfMotionInterfaceDriverInit enter");
     return HDF_SUCCESS;
 }
 
-// Motion驱动对外提供的服务绑定到HDF框架
+/* Motion驱动对外提供的服务绑定到HDF框架 */
 int HdfMotionInterfaceDriverBind(struct HdfDeviceObject *deviceObject)
 {
     HDF_LOGI("HdfMotionInterfaceDriverBind enter");
@@ -132,7 +135,7 @@ int HdfMotionInterfaceDriverBind(struct HdfDeviceObject *deviceObject)
     return HDF_SUCCESS;
 }
 
-// 释放Motion驱动中的资源
+/* 释放Motion驱动中的资源 */
 void HdfMotionInterfaceDriverRelease(struct HdfDeviceObject *deviceObject)
 {
     HDF_LOGI("HdfMotionInterfaceDriverRelease enter");
@@ -141,7 +144,7 @@ void HdfMotionInterfaceDriverRelease(struct HdfDeviceObject *deviceObject)
     hdfMotionInterfaceHost = nullptr;
 }
 
-// 注册Motion驱动入口数据结构体对象
+/* 注册Motion驱动入口数据结构体对象 */
 struct HdfDriverEntry g_motioninterfaceDriverEntry = {
     .moduleVersion = 1,
     .moduleName = "motion_service",
@@ -150,7 +153,7 @@ struct HdfDriverEntry g_motioninterfaceDriverEntry = {
     .Release = HdfMotionInterfaceDriverRelease,
 };
 
-// 调用HDF_INIT将驱动入口注册到HDF框架中，在加载驱动时HDF框架会先调用Bind函数，再调用Init函数加载该驱动，当Init调用异常时，HDF框架会调用Release释放驱动资源并退出。
+/* 调用HDF_INIT将驱动入口注册到HDF框架中，在加载驱动时HDF框架会先调用Bind函数，再调用Init函数加载该驱动，当Init调用异常时，HDF框架会调用Release释放驱动资源并退出 */
 HDF_INIT(g_userAuthInterfaceDriverEntry);
 ```
 
