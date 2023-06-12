@@ -18,7 +18,7 @@ import ability from '@ohos.ability.ability';
 使用前根据具体情况引入如下模块
 ```ts
 import ohos_data_ability from '@ohos.data.dataAbility';
-import ohos_data_rdb from '@ohos.data.rdb';
+import relationalStore from '@ohos.data.relationalStore'
 ```
 
 ## DataAbilityHelper.openFile
