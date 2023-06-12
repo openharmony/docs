@@ -347,11 +347,11 @@ Forcibly converts the content in a **PasteData** object to text. This API uses a
 
 ```js
 var record = pasteboard.createUriRecord("dataability:///com.example.myapplication1/user.txt");
-record.convertToText((err, data) => {    
-    if (err) {        
-        console.error('Failed to convert to text. Cause: ' + JSON.stringify(err));        
-        return;   
-      }
+record.convertToText((err, data) => {
+    if (err) {
+        console.error('Failed to convert to text. Cause: ' + JSON.stringify(err));
+        return;
+    }
     console.info('Succeeded in converting to text. Data: ' + JSON.stringify(data));
 });
 ```
@@ -359,9 +359,9 @@ record.convertToText((err, data) => {
 
 ## PasteData
 
-Provides **PasteData** APIs.
+Implements a **PasteData** object. Paste data contains one or more data records ([PasteDataRecord](#pastedatarecord7)) and property description objects ([PasteDataProperty](#pastedataproperty7)).
 
-Before calling any **PasteData** API, you must obtain a **PasteData** object. 
+Before calling any API in **PasteData**, you must use [createPlainTextData()](#pasteboardcreateplaintextdata), [createHtmlData()](#pasteboardcreatehtmldata7), [createUriData()](#pasteboardcreateuridata7), [createWantData()](#pasteboardcreatewantdata7), or [getPasteData()](#getpastedata) to create a **PasteData** object.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -431,8 +431,8 @@ Obtains the Want object of the primary record.
 **Example**
 
 ```js
-var object = { 
-    bundleName: "com.example.aafwk.test",    
+var object = {
+    bundleName: "com.example.aafwk.test",
     abilityName: "com.example.aafwk.test.TwoAbility"
 };
 var pasteData = pasteboard.createWantData(object);
@@ -531,8 +531,8 @@ The pasteboard supports a maximum number of 128 data records.
 
 ```js
 var pasteData = pasteboard.createPlainTextData("hello");
-var object = { 
-    bundleName: "com.example.aafwk.test",    
+var object = {
+    bundleName: "com.example.aafwk.test",
     abilityName: "com.example.aafwk.test.TwoAbility"
 };
 pasteData.addWantRecord(object);
@@ -1088,9 +1088,9 @@ Clears the system pasteboard. This API uses a promise to return the result.
 **Example**
 
 ```js
-systemPasteboard.clear().then((data) => { 
+systemPasteboard.clear().then((data) => {
     console.info('Succeeded in clearing the PasteData.');
-}).catch((err) => {    
+}).catch((err) => {
     console.error('Failed to clear the PasteData. Cause: ' + JSON.stringify(err));
 });
 ```
