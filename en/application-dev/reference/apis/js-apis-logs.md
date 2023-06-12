@@ -12,6 +12,8 @@ debug(message: string, ...arguments: any[]): void
 
 Prints debugging information in formatted output mode.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -19,9 +21,10 @@ Prints debugging information in formatted output mode.
 | Name    | Type    | Mandatory  | Description         |
 | ------- | ------ | ---- | ----------- |
 | message | string | Yes   | Text to be printed.|
-| arguments | any | No   | Arguments in the message or other information to be printed.|
+| arguments | any[] | No   | Arguments in the message or other information to be printed.|
 
 **Example**
+
 ```js
 const number = 5;
 console.debug('count: %d', number);  // Print the debugging information with arguments in the message replaced.
@@ -38,6 +41,8 @@ log(message: string, ...arguments: any[]): void
 
 Prints log information in formatted output mode.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -45,9 +50,10 @@ Prints log information in formatted output mode.
 | Name    | Type    | Mandatory  | Description         |
 | ------- | ------ | ---- | ----------- |
 | message | string | Yes   | Text to be printed.|
-| arguments | any | No   |Arguments in the message or other information to be printed.|
+| arguments | any[] | No   |Arguments in the message or other information to be printed.|
 
 **Example**
+
 ```js
 const number = 5;
 console.log('count: %d', number);  // Print the log information with arguments in the message replaced.
@@ -64,6 +70,8 @@ info(message: string, ...arguments: any[]): void
 
 Prints log information in formatted output mode. This API is the alias of **console.log ()**.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -71,9 +79,10 @@ Prints log information in formatted output mode. This API is the alias of **cons
 | Name    | Type    | Mandatory  | Description         |
 | ------- | ------ | ---- | ----------- |
 | message | string | Yes   | Text to be printed.|
-| arguments | any | No   | Arguments in the message or other information to be printed.|
+| arguments | any[] | No   | Arguments in the message or other information to be printed.|
 
 **Example**
+
 ```js
 const number = 5;
 console.info('count: %d', number);  // Print the log information with arguments in the message replaced.
@@ -90,6 +99,8 @@ warn(message: string, ...arguments: any[]): void
 
 Prints warning information in formatted output mode.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -97,9 +108,10 @@ Prints warning information in formatted output mode.
 | Name    | Type    | Mandatory  | Description         |
 | ------- | ------ | ---- | ----------- |
 | message | string | Yes   | Warning information to be printed.|
-| arguments | any | No   | Arguments in the message or other information to be printed.|
+| arguments | any[] | No   | Arguments in the message or other information to be printed.|
 
 **Example**
+
 ```js
 const str = "name should be string";
 console.warn('warn: %d', str); // Print the warning information with arguments in the message replaced.
@@ -116,6 +128,8 @@ error(message: string, ...arguments: any[]): void
 
 Prints error information in formatted output mode.
 
+Since API version 9, this API is supported in ArkTS widgets.
+
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
 **Parameters**
@@ -123,10 +137,11 @@ Prints error information in formatted output mode.
 | Name    | Type    | Mandatory  | Description         |
 | ------- | ------ | ---- | ----------- |
 | message | string | Yes   | Error information to be printed.|
-| arguments | any | No   | Arguments in the message or other information to be printed.|
+| arguments | any[] | No   | Arguments in the message or other information to be printed.|
 
 
 **Example**
+
 ```js
 const str = "value is not defined";
 console.error('error: %d', str);  // Print the error information with arguments in the message replaced.
@@ -153,6 +168,7 @@ Prints assertion information.
 | arguments | Object | No   | Other information to be printed when **value** is **false**. If this parameter is left blank, other information is not printed.|
 
 **Example**
+
 ```js
 console.assert(true, 'does nothing');  // Do not print error information as value is true.
 console.assert(2% 1 == 0,'does nothing');  // Do not print error information as value is true.
@@ -180,6 +196,7 @@ Maintains an internal counter. When this counter is invoked, its label name and 
 
 
 **Example**
+
 ```js
 console.count()
 // default: 1
@@ -210,6 +227,7 @@ Resets a counter based on the specified label name.
 | label | string | No   | Counter label name. The default value is **default**.|
 
 **Example**
+
 ```js
 console.count('abc');
 // abc: 1
@@ -234,6 +252,7 @@ Prints content of the specified object.
 
 
 **Example**
+
 ```js
 let a = { foo: { bar: { baz: true } }};
 console.dir(a);
@@ -258,6 +277,7 @@ Displays an interactive tree of the descendant elements of the specified XML ele
 | arguments | Object | Yes   | Information to be printed.|
 
 **Example**
+
 ```js
 const number = 5;
 console.dirxml('count: %d', number);
@@ -284,6 +304,7 @@ If the information to be printed is provided, the information is printed without
 | arguments | Object | No   | Information to be printed.|
 
 **Example**
+
 ```js
 console.log("outter");
 // outter
@@ -313,6 +334,7 @@ Creates a new inline group in collapsed mode. The usage and function of this API
 
 
 **Example**
+
 ```js
 console.groupCollapsed("outter");
 // outter
@@ -335,6 +357,7 @@ Reduces the indentation of subsequent lines by two spaces.
 
 
 **Example**
+
 ```js
 console.log("outter");
 // outter
@@ -362,6 +385,7 @@ Prints data in a table.
 | tableData | Object | No   | Data to be printed in a table. If this parameter is left blank, no information is printed.|
 
 **Example**
+
 ```js
 console.table([1, 2, 3]);
 // ┌─────────┬────────┐
@@ -382,6 +406,7 @@ console.table({ a: [1, 2, 3, 4, 5], b: 5, c: { e: 5 } });
 // │    c    │   │   │   │   │   │ 5 │        │
 // └─────────┴───┴───┴───┴───┴───┴───┴────────┘
 ```
+
 ## console.time<sup>10+</sup>
 
 time(label?: string): void
@@ -397,6 +422,7 @@ Starts a timer to track the duration of an operation. You can use **console.time
 | label | string | No   | Timer label. The default value is **default**.|
 
 **Example**
+
 ```js
 console.time('abc');
 ```
@@ -416,6 +442,7 @@ Stops the timer started by calling **console.time()** and prints the elapsed tim
 | label | string | No   | Timer label. The default value is **default**.|
 
 **Example**
+
 ```js
 console.time('abc');
 console.timeEnd('abc');
@@ -438,6 +465,7 @@ Prints the elapsed time and other data parameters for the timer started by **con
 | arguments | Object | No   | Logs to be printed.|
 
 **Example**
+
 ```js
 console.time('timer1');
 console.timeLog('timer1', 17);
@@ -461,6 +489,7 @@ Creates a stack trace.
 | arguments | Object | No   | Logs to be printed. If this parameter is left blank, only stack information is printed.|
 
 **Example**
+
 ```js
 console.trace();
 // Trace:
