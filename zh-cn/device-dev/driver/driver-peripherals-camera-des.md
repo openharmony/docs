@@ -985,14 +985,13 @@ Camera驱动的开发过程主要包含以下步骤：
 
 ## 参考<a name="4"></a>
 
-针对Camera模块0penHarmony提供了默认的HCS配置。开发者若有特殊需求可自行修改相关的HCS配置文件。
-Camera模块HCS配置文件路径：'/vendor/hihope/rk3568/hdf_config/uhdf/camera'，其中：
+针对Camera模块0penHarmony提供了默认的HCS配置。开发者若有特殊需求可自行修改相关的HCS配置文件。Camera模块HCS配置文件路径：`/vendor/hihope/rk3568/hdf_config/uhdf/camera`，其中：
 
--  `./hdi_impl/camera_host_config.hcs` 主要是metadata TAG配置
--  `./pipeline_core/config.hcs` 主要是node 节点配置
+-  `./hdi_impl/camera_host_config.hcs` 相机静态能力:包括镜头位置、镜头类型、连接类型、支持的曝光模式等，需要根据产品的具体规格来配置
+-  `./pipeline_core/config.hcs` 主要是pipeline的连接方式，pipeline配置中包含支持的pipeline类型，每一种pipeline中包含的节点以及节点之间的连接关系
 
-    编译后在'/drivers/periphera/camra/vdi_base/common/pipeline_core/pipeline_impl/src/strategy/config'目录下生产'congfig.c'和'congfig.h'文件
--  `./pipeline_core/ipp_algo_config.hcs` 为ipp node 拍照配置
--  `./pipeline_core/params.hcs` 各种流配置
+    编译后在`/drivers/periphera/camra/vdi_base/common/pipeline_core/pipeline_impl/src/strategy/config`目录下生产`congfig.c`和`congfig.h`文件
+-  `./pipeline_core/ipp_algo_config.hcs` 算法配置文件
+-  `./pipeline_core/params.hcs` 场景、流类型名及其id定义，pipeline内部是以流id区分流类型的，所以此处需要添加定义
 
-    编译后在'/drivers/periphera/camra/vdi_base/common/pipeline_core/pipeline_impl/src/strategy/config'目录下生产'params.c'和'params.h'文件
+    编译后在`/drivers/periphera/camra/vdi_base/common/pipeline_core/pipeline_impl/src/strategy/config`目录下生产`params.c`和`params.h`文件
