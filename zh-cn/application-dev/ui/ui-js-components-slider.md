@@ -219,4 +219,4 @@ export default{
 
 - [`JsComponentCollection`：组件集合（JS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/JsComponentClollection/JsComponentCollection)
 
-- [slider（JS）（API8）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/SliderApplication)
+- [slider组件的使用（JS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/JSUI/SliderApplication)

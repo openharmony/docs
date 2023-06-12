@@ -167,4 +167,3 @@ httpRequest.request2(
 针对HTTP数据请求，有以下相关实例可供参考：
 
 - [`Http:`数据请求（ArkTS）（API9））](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http)
-- [使用HTTP实现与服务端通信（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/SmartChatEtsOH)
