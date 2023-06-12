@@ -11,7 +11,7 @@
 
 - @ohos.data.dataAbility
 
-- @ohos.data.rdb
+- @ohos.data.relationalStore
 
 
 访问DataAbility的示例代码如下：
