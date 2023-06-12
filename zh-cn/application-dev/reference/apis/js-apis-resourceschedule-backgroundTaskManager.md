@@ -51,10 +51,10 @@ requestSuspendDelay(reason: string, callback: Callback&lt;void&gt;): DelaySuspen
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed for a transient task. |
-| 9900002 | Transient task verification failed. |
+| 9900001 | Caller information verification failed. |
+| 9900002 | Background task verification failed. |
 
 **示例**：
 
@@ -99,10 +99,10 @@ getRemainingDelayTime(requestId: number, callback: AsyncCallback&lt;number&gt;):
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed.  |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed for a transient task. |
-| 9900002 | Transient task verification failed. |
+| 9900001 | Caller information verification failed. |
+| 9900002 | Background task verification failed. |
 
 
 **示例**：
@@ -155,10 +155,10 @@ getRemainingDelayTime(requestId: number): Promise&lt;number&gt;
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed for a transient task. |
-| 9900002 | Transient task verification failed. |
+| 9900001 | Caller information verification failed. |
+| 9900002 | Background task verification failed. |
 
 **示例**：
 
@@ -200,10 +200,10 @@ cancelSuspendDelay(requestId: number): void
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9900001 | Caller information verification failed for a transient task. |
-| 9900002 | Transient task verification failed. |
+| 9900001 | Caller information verification failed. |
+| 9900002 | Background task verification failed. |
 
 **示例**：
 
@@ -246,9 +246,9 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Continuous task verification failed. |
+| 9800005 | Background task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -329,9 +329,9 @@ startBackgroundRunning(context: Context, bgMode: BackgroundMode, wantAgent: Want
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Continuous task verification failed. |
+| 9800005 | Background task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -399,9 +399,9 @@ stopBackgroundRunning(context: Context, callback: AsyncCallback&lt;void&gt;): vo
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Continuous task verification failed. |
+| 9800005 | Background task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -460,9 +460,9 @@ stopBackgroundRunning(context: Context): Promise&lt;void&gt;
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 9800005 | Continuous task verification failed. |
+| 9800005 | Background task verification failed. |
 | 9800006 | Notification verification failed. |
 | 9800007 | Task storage failed. |
 
@@ -513,9 +513,9 @@ applyEfficiencyResources(request: [EfficiencyResourcesRequest](#efficiencyresour
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed when applying for efficiency resources. |
+| 18700001 | Caller information verification failed. |
 
 **示例**：
 
@@ -556,9 +556,9 @@ resetAllEfficiencyResources(): void
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. | |
+| 9800003 | Inner transact failed. | |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed when applying for efficiency resources. |
+| 18700001 | Caller information verification failed. |
 
 **示例**：
 
@@ -628,10 +628,11 @@ try {
 | 名称                     | 值  | 说明                    |
 | ----------------------- | ---- | --------------------- |
 | CPU                     | 1    | CPU资源，申请后不被挂起。             |
-| COMMON_EVENT            | 2    | 公共事件，申请后挂起状态下不被代理掉。  |
-| TIMER                   | 4    | 计时器，申请后挂起状态下不被代理掉。    |
-| WORK_SCHEDULER          | 8    | 延迟任务，申请后有更长的执行时间。      |
-| BLUETOOTH               | 16   | 蓝牙相关，申请后挂起状态下不被代理掉。  |
-| GPS                     | 32   | GPS相关，申请后挂起状态下不被代理掉。  |
-| AUDIO                   | 64   | 音频资源，申请后挂起状态下不被代理掉。 |
-
+| COMMON_EVENT            | 2    | 申请后挂起状态下不会代理公共事件。 |
+| TIMER                   | 4    | 计时器，申请后挂起状态不会代理SystemTimer。 |
+| WORK_SCHEDULER          | 8    | [WorkScheduler默认采用较宽松管控策略。(详见 延迟任务调度约束)](../../task-management/background-task-overview.md#延迟任务调度约束) |
+| BLUETOOTH               | 16   | 申请后挂起状态不会代理蓝牙。 |
+| GPS                     | 32   | 申请后挂起状态不会代理GPS。 |
+| AUDIO                   | 64   | 申请后挂起状态不会代理音频。 |
+| RUNNING_LOCK | 128 | RUNNING_LOCK资源，申请后挂起状态不会代理RUNNING_BACKGROUND锁。 |
+| SENSOR | 256 | 申请后不拦截Sensor回调。 |

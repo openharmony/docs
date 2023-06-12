@@ -5,14 +5,12 @@
 
 [Context](../reference/apis/js-apis-inner-application-context.md)是应用中对象的上下文，其提供了应用的一些基础信息，例如resourceManager（资源管理）、applicationInfo（当前应用信息）、dir（应用开发路径）、area（文件分区）等，以及应用的一些基本方法，例如createBundleContext()、getApplicationContext()等。UIAbility组件和各种ExtensionAbility派生类组件都有各自不同的Context类。分别有基类Context、ApplicationContext、AbilityStageContext、UIAbilityContext、ExtensionContext、ServiceExtensionContext等Context。
 
-- 各类Context的继承关系
-
+- 各类Context的继承关系  
   ![context-inheritance](figures/context-inheritance.png)
-
-- 各类Context的持有关系
-
+  
+- 各类Context的持有关系  
   ![context-holding](figures/context-holding.png)
-
+  
 - 各类Context的获取方式
   - 获取[UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md)。每个UIAbility中都包含了一个Context属性，提供操作应用组件、获取应用组件的配置信息等能力。
     
@@ -21,7 +19,7 @@
      export default class EntryAbility extends UIAbility {
        onCreate(want, launchParam) {
          let uiAbilityContext = this.context;
-         // ...
+         ...
        }
      }
      ```
@@ -36,7 +34,7 @@
      export default class MyService extends ServiceExtensionAbility {
        onCreate(want) {
          let serviceExtensionContext = this.context;
-         // ...
+         ...
        }
      }
      ```
@@ -47,7 +45,7 @@
      export default class MyAbilityStage extends AbilityStage {
        onCreate() {
          let abilityStageContext = this.context;
-         // ...
+         ...
        }
      }
      ```
@@ -58,7 +56,7 @@
      export default class EntryAbility extends UIAbility {
        onCreate(want, launchParam) {
          let applicationContext = this.context.getApplicationContext();
-         // ...
+         ...
        }
      }
      ```
@@ -84,18 +82,17 @@
 
 | 属性名称 | 参数类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| bundleCodeDir       | string   | 是   | 否   | 安装文件路径。应用在内部存储上的安装路径。不能拼接路径访问资源文件，请使用[资源管理接口](../reference/apis/js-apis-resource-manager.md)访问资源。                   |
-| cacheDir | string | 是 | 否 | 应用缓存文件路径。应用在内部存储上的缓存路径。<br/>对应于“设置&nbsp;&gt;&nbsp;应用管理”，找到对应应用的“存储”中的缓存内容。 |
-| filesDir            | string   | 是   | 否   | 应用通用文件路径。应用在内部存储上的文件路径。<br/>本目录下存放的文件可能会被应用迁移或者备份的时候同步到其他目录中。 |
-| preferencesDir      | string   | 是   | 是   | 应用首选项文件路径。指示应用程序首选项目录。                 |
-| tempDir             | string   | 是   | 否   | 应用临时文件路径。<br/>在应用卸载后，系统会删除存储在此目录中的文件。 |
+| bundleCodeDir       | string   | 是   | 否   | 安装文件路径。应用在内部存储上的安装路径。                   |
+| cacheDir | string | 是 | 否 | 缓存文件路径。应用在内部存储上的缓存路径。<br/>对应于“设置&nbsp;&gt;&nbsp;应用管理”，找到对应应用的“存储”中的缓存内容。 |
+| filesDir            | string   | 是   | 否   | 通用文件路径。应用在内部存储上的文件路径。<br/>本目录下存放的文件可能会被应用迁移或者备份的时候同步到其他目录中。 |
+| preferencesDir      | string   | 是   | 是   | 首选项文件路径。指示应用程序首选项目录。                 |
+| tempDir             | string   | 是   | 否   | 临时文件路径。<br/>在应用卸载后，系统会删除存储在此目录中的文件。 |
 | databaseDir         | string   | 是   | 否   | 数据库路径。获取本地数据库存储路径。                         |
-| distributedFilesDir | string | 是 | 否 | 应用分布式文件路径。 |
+| distributedFilesDir | string | 是 | 否 | 分布式文件路径。 |
 
 获取路径的能力是基类Context中提供的能力，因此在ApplicationContext、AbilityStageContext、UIAbilityContext和ExtensionContext中均可以获取，在各类Context中获取到的路径会有一些差别，具体差别如下图所示。
 
-**图1** Context中获取的应用开发路径
-
+**图1** Context中获取的应用开发路径  
 ![context-dir](figures/context-dir.png)
 
 - 通过ApplicationContext获取的应用级别路径。应用全局信息建议存放的路径，存放在此路径的文件内容仅在应用卸载时会被删除。
@@ -135,7 +132,7 @@ export default class EntryAbility extends UIAbility {
     let bundleCodeDir = this.context.bundleCodeDir;
     let distributedFilesDir = this.context.distributedFilesDir;
     let preferencesDir = this.context.preferencesDir;
-    // ...
+    ...
   }
 }
 ```
@@ -201,7 +198,7 @@ export default class EntryAbility extends UIAbility {
       let bundleName2 = 'com.example.application';
       let context2 = this.context.createBundleContext(bundleName2);
       let label2 = context2.applicationInfo.label;
-      // ...
+      ...
     }
   }
   ```
@@ -223,7 +220,7 @@ export default class EntryAbility extends UIAbility {
       let bundleName2 = 'com.example.application';
       let moduleName2 = 'module1';
       let context2 = this.context.createModuleContext(bundleName2, moduleName2);
-      // ...
+      ...
     }
   }
   ```
@@ -237,7 +234,7 @@ export default class EntryAbility extends UIAbility {
     onCreate(want, launchParam) {
       let moduleName2 = 'module1';
       let context2 = this.context.createModuleContext(moduleName2);
-      // ...
+      ...
     }
   }
   ```
@@ -265,53 +262,53 @@ export default class EntryAbility extends UIAbility {
     let abilityLifecycleCallback = {
       // 当UIAbility创建时被调用
       onAbilityCreate(uiAbility) {
-        console.log(TAG, `onAbilityCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.info(TAG, `onAbilityCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       },
       // 当窗口创建时被调用
       onWindowStageCreate(uiAbility, windowStage: window.WindowStage) {
-        console.log(TAG, `onWindowStageCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
-        console.log(TAG, `onWindowStageCreate windowStage: ${JSON.stringify(windowStage)}`);
+        console.info(TAG, `onWindowStageCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.info(TAG, `onWindowStageCreate windowStage: ${JSON.stringify(windowStage)}`);
       },
       // 当窗口处于活动状态时被调用
       onWindowStageActive(uiAbility, windowStage: window.WindowStage) {
-        console.log(TAG, `onWindowStageActive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
-        console.log(TAG, `onWindowStageActive windowStage: ${JSON.stringify(windowStage)}`);
+        console.info(TAG, `onWindowStageActive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.info(TAG, `onWindowStageActive windowStage: ${JSON.stringify(windowStage)}`);
       },
       // 当窗口处于非活动状态时被调用
       onWindowStageInactive(uiAbility, windowStage: window.WindowStage) {
-        console.log(TAG, `onWindowStageInactive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
-        console.log(TAG, `onWindowStageInactive windowStage: ${JSON.stringify(windowStage)}`);
+        console.info(TAG, `onWindowStageInactive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.info(TAG, `onWindowStageInactive windowStage: ${JSON.stringify(windowStage)}`);
       },
       // 当窗口被销毁时被调用
       onWindowStageDestroy(uiAbility, windowStage: window.WindowStage) {
-        console.log(TAG, `onWindowStageDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
-        console.log(TAG, `onWindowStageDestroy windowStage: ${JSON.stringify(windowStage)}`);
+        console.info(TAG, `onWindowStageDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.info(TAG, `onWindowStageDestroy windowStage: ${JSON.stringify(windowStage)}`);
       },
       // 当UIAbility被销毁时被调用
       onAbilityDestroy(uiAbility) {
-        console.log(TAG, `onAbilityDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.info(TAG, `onAbilityDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       },
       // 当UIAbility从后台转到前台时触发回调
       onAbilityForeground(uiAbility) {
-        console.log(TAG, `onAbilityForeground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.info(TAG, `onAbilityForeground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       },
       // 当UIAbility从前台转到后台时触发回调
       onAbilityBackground(uiAbility) {
-        console.log(TAG, `onAbilityBackground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.info(TAG, `onAbilityBackground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       },
       // 当UIAbility迁移时被调用
       onAbilityContinue(uiAbility) {
-        console.log(TAG, `onAbilityContinue uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.info(TAG, `onAbilityContinue uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       }
     }
     // 获取应用上下文
     let applicationContext = this.context.getApplicationContext();
     // 注册应用内生命周期回调
     this.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
-    console.log(TAG, `register callback number: ${this.lifecycleId}`);
+    console.info(TAG, `register callback number: ${this.lifecycleId}`);
   }
 
-  // ...
+  ...
 
   onDestroy() {
     // 获取应用上下文

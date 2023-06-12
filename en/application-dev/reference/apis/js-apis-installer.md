@@ -17,6 +17,7 @@ import installer from '@ohos.bundle.installer';
 | Permission                          | Permission Level   | Description            |
 | ------------------------------ | ----------- | ---------------- |
 | ohos.permission.INSTALL_BUNDLE | system_core | Permission to install or uninstall bundles.|
+| ohos.permission.GET_BUNDLE_INFO_PRIVILEGED | system_basic | Permission to query information about all bundles.|
 
 For details, see [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
 
@@ -122,6 +123,10 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | 17700036 | Failed to install the HSP because lacks appropriate permissions. |
 | 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
 | 17700041 | Failed to install because enterprise device management disallow install. |
+| 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
+| 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
+| 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
+| 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 
 **Example**
 
@@ -185,6 +190,10 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | 17700036 | Failed to install the HSP because lacks appropriate permissions. |
 | 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
 | 17700041 | Failed to install because enterprise device management disallow install. |
+| 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
+| 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
+| 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
+| 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 
 **Example**
 
@@ -226,7 +235,7 @@ Installs a bundle. This API uses a promise to return the result.
 | Name      | Type                         | Mandatory| Description                                                        |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | hapFilePaths | Array\<string\>               | Yes  | Paths where the HAP files of the bundle are stored, which are the data directories. If only one directory is passed, the HAP files in the directory must belong to the same bundle and have the same signature.|
-| installParam | [InstallParam](#installparam) | No  | Parameters required for the installation.                                    |
+| installParam | [InstallParam](#installparam) | No  | Parameters required for the installation. For details about their default values, see [InstallParam](#installparam).                                    |
 
 **Return value**
 
@@ -252,6 +261,10 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | 17700036 | Failed to install the HSP because lacks appropriate permissions. |
 | 17700039 | Failed to install because disallow install a shared bundle by hapFilePaths. |
 | 17700041 | Failed to install because enterprise device management disallow install. |
+| 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
+| 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
+| 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
+| 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 
 **Example**
 
@@ -310,6 +323,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | 17700004 | The specified user ID is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
+| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
 
 **Example**
 
@@ -367,6 +381,7 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | 17700001 | The specified bundle name is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
+| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
 
 **Example**
 
@@ -407,7 +422,7 @@ Uninstalls a bundle. This API uses a promise to return the result.
 | Name      | Type                         | Mandatory| Description                                                        |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName | string                          | Yes  | Name of the target bundle.                                          |
-| installParam | [InstallParam](#installparam) | No  | Parameters required for the uninstall.                                    |
+| installParam | [InstallParam](#installparam) | No  | Parameters required for the uninstall. For details about their default values, see [InstallParam](#installparam).                                    |
 
 **Return value**
 
@@ -422,9 +437,10 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | ID| Error Message                                                    |
 | -------- | ------------------------------------------------------------ |
 | 17700001 | The specified bundle name is not found. |
-| 17700004 | The specified userId is not existed. |
+| 17700004 | The specified user ID is not found. |
 | 17700020 | The specified bundle is pre-installed bundle which cannot be uninstalled. |
 | 17700040 | The specified bundle is a shared bundle which cannot be uninstalled. |
+| 17700045 | Failed to uninstall because enterprise device management disallow uninstall. |
 
 **Example**
 ```ts
@@ -577,7 +593,7 @@ Rolls back a bundle to the initial installation state. This API uses a promise t
 | Name      | Type                         | Mandatory| Description                                                        |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | bundleName | string                          | Yes  | Name of the target bundle.                                          |
-| installParam | [InstallParam](#installparam) | No  | Parameters required for the recovery.                                    |
+| installParam | [InstallParam](#installparam) | No  | Parameters required for the recovery. For details about their default values, see [InstallParam](#installparam).                                    |
 
 **Return value**
 
@@ -732,6 +748,98 @@ try {
     console.error('getBundleInstaller failed. Cause: ' + error.message);
 }
 ```
+
+## BundleInstaller.getSpecifiedDistributionType<sup>10+</sup>
+getSpecifiedDistributionType(bundleName: string): string;
+
+Obtains the distribution type of a bundle in synchronous mode. The return value is the **specifiedDistributionType** field value in **InstallParam** passed when **install** is called.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name        | Type                               | Mandatory| Description                        |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| bundleName | string | Yes  | Bundle name.|
+
+**Return value**
+
+| Type         | Description                                  |
+| ------------- | -------------------------------------- |
+| string | Distribution type of the bundle.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17700001 | The specified bundleName is not found. |
+
+**Example**
+```ts
+import installer from '@ohos.bundle.installer';
+let bundleName = "com.example.myapplication";
+
+try {
+    let type = installer.getSpecifiedDistributionType(bundleName);
+    console.info('getSpecifiedDistributionType successfully, type:' + type);
+} catch (error) {
+    console.error('getSpecifiedDistributionType failed. Cause: ' + error.message);
+}
+```
+
+
+## BundleInstaller.getAdditionalInfo<sup>10+</sup>
+
+getAdditionalInfo(bundleName: string): string;
+
+Obtains additional information about a bundle in synchronous mode. The return value is the **additionalInfo** field value in **InstallParam** passed when **install** is called.
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
+**System capability**: SystemCapability.BundleManager.BundleFramework.Core
+
+**Parameters**
+
+| Name        | Type                               | Mandatory| Description                        |
+| -------------- | ----------------------------------- | ---- | ---------------------------- |
+| bundleName | string | Yes  | Bundle name.|
+
+**Return value**
+
+| Type         | Description                                  |
+| ------------- | -------------------------------------- |
+| string | Additional information about the bundle.|
+
+**Error codes**
+
+For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 17700001 | The specified bundleName is not found. |
+
+**Example**
+
+```ts
+import installer from '@ohos.bundle.installer';
+let bundleName = "com.example.myapplication";
+
+try {
+    let info = installer.getAdditionalInfo(bundleName);
+    console.info('getAdditionalInfo successfully, additionInfo:' + info);
+} catch (error) {
+    console.error('getAdditionalInfo failed. Cause: ' + error.message);
+}
+```
+
 ## HashParam
 
 Defines the hash parameters for bundle installation and uninstall.
@@ -755,12 +863,14 @@ Defines the parameters that need to be specified for bundle installation, uninst
 
 | Name                       | Type                          | Mandatory                        | Description              |
 | ------------------------------ | ------------------------------ | ------------------ | ------------------ |
-| userId                         | number                         | No                       | User ID. You can use [queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#getOsAccountLocalId) to obtain the user of the current process.|
-| installFlag                    | number                         | No                       | Installation flag. The value **0** means initial installation and **1** means overwrite installation.|
-| isKeepData                     | boolean                        | No                      | Whether to retain the data directory during bundle uninstall.|
-| hashParams        | Array<[HashParam](#hashparam)> | No| Hash parameters.        |
-| crowdtestDeadline| number                         | No                       |End date of crowdtesting.|
-| sharedBundleDirPaths<sup>10+</sup> | Array\<String> | No|Paths of the shared bundle files.|
+| userId                         | number                         | No                       | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. You can call [queryOsAccountLocalIdFromProcess](js-apis-osAccount.md#getOsAccountLocalId) to obtain the user ID of the current process.|
+| installFlag                    | number                         | No                       | Installation flag. The value **0** means initial installation and **1** means overwrite installation. The default value is **0**.|
+| isKeepData                     | boolean                        | No                      | Whether to retain the data directory during bundle uninstall. The default value is **false**.|
+| hashParams        | Array<[HashParam](#hashparam)> | No| Hash parameters. By default, no value is passed.        |
+| crowdtestDeadline| number                         | No                       | End date of crowdtesting. The default value is **-1**, indicating that no end date is specified for crowdtesting.|
+| sharedBundleDirPaths<sup>10+</sup> | Array\<String> | No|Paths of the shared bundle files. By default, no value is passed.|
+| specifiedDistributionType<sup>10+</sup> | string | No|Distribution type specified during application installation. By default, no value is passed. The maximum length is 128 bytes. This field is usually specified by the application market of the operating system operator.|
+| additionalInfo<sup>10+</sup> | string | No|Additional information during application installation (usually an enterprise application). By default, no value is passed. The maximum length is 3,000 bytes. This field is usually specified by the application market of the operating system operator.|
 
 ## UninstallParam<sup>10+</sup>
 
@@ -773,4 +883,4 @@ Defines the parameters required for the uninstallation of a shared bundle.
 | Name       | Type  | Mandatory| Description                                                        |
 | ----------- | ------ | ---- | ------------------------------------------------------------ |
 | bundleName  | string | Yes  | Name of the shared bundle.                                                |
-| versionCode | number | No  | Version number of the shared bundle. If this parameter is not set, all shared bundles of the specified name are uninstalled.|
+| versionCode | number | No  | Version number of the shared bundle. By default, no value is passed, and all shared bundles of the specified name are uninstalled.|

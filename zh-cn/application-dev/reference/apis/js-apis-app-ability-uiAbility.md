@@ -315,7 +315,7 @@ class MyUIAbility extends UIAbility {
 
 onShare(wantParam:{ [key: string]: Object }): void;
 
-ability分享数据。
+ability设置分享数据。其中，ohos.extra.param.key.contentTitle表示分享框中对分享内容title的描述，ohos.extra.param.key.shareAbstract表示分享框中对携带内容的摘要描述，ohos.extra.param.key.shareUrl表示服务的在线地址。以上三项分享数据均是开发者填充，且为Object对象，对象的key分别为title，abstract，url。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -332,9 +332,9 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 class MyUIAbility extends UIAbility {
     onShare(wantParams) {
         console.log('onShare');
-        wantParams['ohos.extra.param.key.contentTitle'] = {title: "W3"};
-        wantParams['ohos.extra.param.key.shareAbstract'] = {abstract: "communication for huawei employee"};
-        wantParams['ohos.extra.param.key.shareUrl'] = {url: "w3.huawei.com"};
+        wantParams['ohos.extra.param.key.contentTitle'] = {title: "OA"};
+        wantParams['ohos.extra.param.key.shareAbstract'] = {abstract: "communication for company employee"};
+        wantParams['ohos.extra.param.key.shareUrl'] = {url: "oa.example.com"};
     }
 }
   ```
@@ -371,7 +371,7 @@ call(method: string, data: rpc.Parcelable): Promise&lt;void&gt;;
 | ------- | -------------------------------- |
 | 16200001 | Caller released. The caller has been released. |
 | 16200002 | Callee invalid. The callee does not exist. |
-| 16000050 | Internal Error. |
+| 16000050 | Internal error. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
@@ -452,7 +452,7 @@ callWithResult(method: string, data: rpc.Parcelable): Promise&lt;rpc.MessageSequ
 | ------- | -------------------------------- |
 | 16200001 | Caller released. The caller has been released. |
 | 16200002 | Callee invalid. The callee does not exist. |
-| 16000050 | Internal Error. |
+| 16000050 | Internal error. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
@@ -597,9 +597,9 @@ release(): void;
   }
   ```
 
-  ## Caller.onRemoteStateChange
+## Caller.onRemoteStateChange<sup>10+</sup>
 
- onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
+onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
 
 注册协同场景下跨设备组件状态变化监听通知。
 
@@ -650,7 +650,7 @@ release(): void;
 
 ## Caller.on
 
- on(type: 'release', callback: OnReleaseCallback): void;
+on(type: 'release', callback: OnReleaseCallback): void;
 
 注册通用组件服务端Stub（桩）断开监听通知。
 
@@ -667,6 +667,7 @@ release(): void;
 
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
 | 16200001 | Caller released. The caller has been released. |
 
 以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
@@ -711,6 +712,12 @@ off(type: 'release', callback: OnReleaseCallback): void;
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听releaseCall事件，固定为'release'。 |
 | callback | [OnReleaseCallback](#onreleasecallback) | 是 | 返回off回调结果。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
 
 **示例：**
     
@@ -903,7 +910,7 @@ off(method: string): void;
 | -------- | -------- | -------- | -------- | -------- |
 | (msg: string) | 是 | 否 | function | 调用者注册的侦听器函数接口的原型。 |
 
-## OnRemoteStateChangeCallback
+## OnRemoteStateChangeCallback<sup>10+</sup>
 
 (msg: string): void;
 

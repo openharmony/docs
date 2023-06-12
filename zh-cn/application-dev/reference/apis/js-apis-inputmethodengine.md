@@ -377,7 +377,7 @@ off(type: 'setCallingWindow', callback: (wid:number) => void): void
 **示例：**
 
 ```js
-inputMethodEngine.getInputMethodAbility().off('setCallingWindow', () => {
+inputMethodEngine.getInputMethodAbility().off('setCallingWindow', (wid) => {
   console.log('inputMethodAbility delete setCallingWindow notification.');
 });
 ```
@@ -494,7 +494,7 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
-| ctx     | [BaseContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
+| ctx     | [BaseContext](js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
 | info    | [PanelInfo](#panelinfo10)   | 是   | 输入法面板信息。 |
 | callback | AsyncCallback\<[Panel](#panel10)> | 是   | 回调函数。当输入法面板创建成功，返回当前创建的输入法面板对象。  |
 
@@ -538,7 +538,7 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
 | 参数名   | 类型        | 必填 | 说明                     |
 | ------- | ----------- | ---- | ------------------------ |
-| ctx     | [BaseContext](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
+| ctx     | [BaseContext](js-apis-inner-application-baseContext.md) | 是   | 当前输入法应用上下文信息。 |
 | info    | [PanelInfo](#panelinfo10)   | 是   | 输入法面板信息。 |
 
 **返回值：**
@@ -953,7 +953,7 @@ setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | 是   | 设置加载页面的路径。 |
-| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
+| storage | [LocalStorage](../arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
@@ -987,7 +987,7 @@ setUiContent(path: string, storage: LocalStorage): Promise\<void>
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | 是   | 设置加载页面的路径。 |
-| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
+| storage | [LocalStorage](../arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
 
 **返回值：**
 
@@ -1067,7 +1067,7 @@ resize(width: number, height: number): Promise\<void>;
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise<void> | 无返回结果的Promise对象。  |
+| Promise\<void> | 无返回结果的Promise对象。  |
 
 **示例：**
 
@@ -1122,7 +1122,7 @@ try {
 
 moveTo(x: number, y: number): Promise\<void>
 
-移动面板位置，使用callback异步回调。
+移动面板位置。使用promise异步回调。
 
 对FLG_FIXED状态的panel不产生实际移动效果。
 
@@ -1139,7 +1139,7 @@ moveTo(x: number, y: number): Promise\<void>
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise<void> | 无返回结果的Promise对象。  |
+| Promise\<void> | 无返回结果的Promise对象。  |
 
 **示例：**
 
@@ -1186,7 +1186,7 @@ panel.show((err) => {
 
 show(): Promise\<void>
 
-显示当前面板，使用callback异步回调。
+显示当前面板，使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1237,7 +1237,7 @@ panel.hide((err) => {
 
 hide(): Promise\<void>
 
-隐藏当前面板，使用callback异步回调。
+隐藏当前面板，使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1905,7 +1905,7 @@ try {
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
 
-删除光标后固定长度的文本。使用callback异步回调。
+删除光标后固定长度的文本。使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2521,8 +2521,8 @@ try {
 
 | 名称      | 类型 | 可读 | 可写 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
-| keyCode   | number   | 是   | 否   | 按键的键值。 |
-| keyAction | number   | 是   | 否   | 按键的状态。 |
+| keyCode   | number   | 是   | 否   | 按键的键值。键码值说明参考[KeyCode](js-apis-keycode.md#keycode)。 |
+| keyAction | number   | 是   | 否   | 按键事件类型。<br/>- 当值为2时，表示按下事件；<br/>- 当值为3时，表示抬起事件。 |
 
 ## PanelFlag<sup>10+</sup>
 
@@ -2814,7 +2814,7 @@ textInputClient.deleteBackward(length, (err, result) => {
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
 
-删除光标后固定长度的文本。使用callback异步回调。
+删除光标后固定长度的文本。使用promise异步回调。
 
 > **说明：**
 >

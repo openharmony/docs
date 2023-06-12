@@ -9,7 +9,7 @@ This module provides the following functions:
 - [Query<sup>8+</sup>](#query8): provides methods to query data from the database through a **Query** instance by using predicates.
 - [KVStore](#kvstore): provides methods to add data, delete data, and observe data changes and data synchronization through a **KVStore** instance.
 - [SingleKVStore](#singlekvstore): provides methods to query and synchronize data in a single KV store. This class inherits from [KVStore](#kvstore), and data is not distinguished by device.
-- [DeviceKVStore<sup>8+</sup> ](#devicekvstore8): provides methods to query and synchronize data in a device KV store. This class inherits from [KVStore](#kvstore), and data is distinguished by device.
+- [DeviceKVStore<sup>8+</sup>](#devicekvstore8): provides methods to query and synchronize data in a device KV store. This class inherits from [KVStore](#kvstore), and data is distinguished by device.
 
 >**NOTE**
 >
@@ -128,8 +128,8 @@ Defines user information.
 
 | Name| Type| Mandatory| Description|
 | ----- | ------ |------ | ------ |
-| userId | string | No | User ID.|
-| userType | [UserType](#usertype) | No | User type.|
+| userId | string | No | User ID. The default value is **0**.|
+| userType | [UserType](#usertype) | No | User type. The default value is **0**.|
 
 
 ## UserType
@@ -267,7 +267,7 @@ const options = {
     backup: false,
     autoSync: true,
     kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
-    schema: '',
+    schema: undefined,
     securityLevel: distributedData.SecurityLevel.S2,
 }
 try {
@@ -317,7 +317,7 @@ const options = {
     backup: false,
     autoSync: true,
     kvStoreType: distributedData.KVStoreType.SINGLE_VERSION,
-    schema: '',
+    schema: undefined,
     securityLevel: distributedData.SecurityLevel.S2,
 }
 try {
@@ -365,7 +365,7 @@ const options = {
     backup : false,
     autoSync : true,
     kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-    schema : '',
+    schema : undefined,
     securityLevel : distributedData.SecurityLevel.S2,
 }
 try {
@@ -414,7 +414,7 @@ const options = {
     backup : false,
     autoSync : true,
     kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-    schema : '',
+    schema : undefined,
     securityLevel : distributedData.SecurityLevel.S2,
 }
 try {
@@ -548,7 +548,7 @@ Unsubscribes from service status changes.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | event  | string | Yes   | Event to unsubscribe from. The value is **distributedDataServiceDie**, which indicates a service status change event.|
-| deathCallback  | Callback&lt;void&gt;  | No   | Callback for the service status change event.|
+| deathCallback  | Callback&lt;void&gt;  | No   | Callback for the service status change event. If the callback is not specified, all subscriptions to the service status change event are canceled.|
 
 
 **Example**
@@ -574,13 +574,13 @@ Provides KV store configuration.
 
 | Name | Type| Mandatory  | Description                   |
 | -----  | ------  | ------  | -------------------|
-| createIfMissing  | boolean | No| Whether to create a KV store if no database file exists. By default, a KV store is created.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
-| encrypt  | boolean | No|Whether to encrypt database files. By default, database files are not encrypted.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core    |
-| backup  | boolean | No|Whether to back up database files. By default, database files are backed up. <br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
-| autoSync  | boolean | No|Whether to automatically synchronize database files. The value **false** (default) means to manually synchronize database files; the value **true** means to automatically synchronize database files.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC    |
-| kvStoreType | [KVStoreType](#kvstoretype) | No|Type of the KV store to create. By default, a device KV store is created. The device KV store stores data for multiple devices that collaborate with each other.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
-| securityLevel | [SecurityLevel](#securitylevel) | No|Security level of the KV store. By default, the security level is not set.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
-| schema<sup>8+</sup> | [Schema](#schema8) | No| Schema used to define the values stored in a KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
+| createIfMissing  | boolean | No| Whether to create a KV store if the database file does not exist. The default value is **true**, which means to create a KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
+| encrypt  | boolean | No|Whether to encrypt the KV store. The default value is **false**, which means the KV store is not encrypted.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core    |
+| backup  | boolean | No|Whether to back up the KV store. The default value is **true**, which means to back up the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
+| autoSync  | boolean | No|Whether to automatically synchronize database files. The default value is **false**, which means the database files are manually synchronized.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC    |
+| kvStoreType | [KVStoreType](#kvstoretype) | No|Type of the KV store to create. The default value is **DEVICE_COLLABORATION**, which indicates a device KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
+| securityLevel | [SecurityLevel](#securitylevel) | Yes|Security level (S1 to S4) of the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
+| schema<sup>8+</sup> | [Schema](#schema8) | No| Schema used to define the values stored in the KV store. The default value is **undefined**, which means no schema is used.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
 
 
 ## KVStoreType
@@ -601,12 +601,12 @@ Enumerates the KV store security levels.
 
 | Name | Value| Description                   |
 | ---   | ----  | ----------------------- |
-| NO_LEVEL  | 0 | No security level is set for the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore  |
-| S0  | 1 | The KV store security level is public.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
-| S1  | 2 | The KV store security level is low. If data leakage occurs, minor impact will be caused on the database. For example, a KV store that contains system data such as wallpapers.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
-| S2  | 3 | The KV store security level is medium. If data leakage occurs, moderate impact will be caused on the database. For example, a KV store that contains information created by users or call records, such as audio or video clips.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
-| S3  | 5 | The KV store security level is high. If data leakage occurs, major impact will be caused on the database. For example, a KV store that contains information such as user fitness, health, and location data.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
-| S4  | 6 | The KV store security level is critical. If data leakage occurs, severe impact will be caused on the database. For example, a KV store that contains information such as authentication credentials and financial data.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
+| NO_LEVEL  | 0 | No security level is set for the KV store (deprecated).<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore  |
+| S0  | 1 | The KV store security level is public (deprecated).<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
+| S1  | 2 | The KV store security level is low. If data leakage occurs, minor impact will be caused. For example, a KV store that contains system data such as wallpapers.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
+| S2  | 3 | The KV store security level is medium. If data leakage occurs, moderate impact will be caused. For example, a KV store that contains information created by users or call records such as audio or video clips.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
+| S3  | 5 | The KV store security level is high. If data leakage occurs, major impact will be caused. For example, a KV store that contains information such as user fitness, health, and location data.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
+| S4  | 6 | The KV store security level is critical. If data leakage occurs, severe impact will be caused. For example, a KV store that contains information such as authentication credentials and financial data.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
 
 
 ## Constants
@@ -1686,7 +1686,7 @@ Creates a **Query** object with the AND condition.
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -1716,7 +1716,7 @@ Creates a **Query** object with the OR condition.
 
 | Type   | Description      |
 | ------  | -------   |
-| [Query](#query8) |**Query** object Created.|
+| [Query](#query8) |**Query** object created.|
 
 **Example**
 
@@ -2295,7 +2295,7 @@ Unsubscribes from data changes.
 | Name  | Type                                                     | Mandatory| Description                                                    |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
 | event    | string                                                    | Yes  | Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.|
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback for the data change event.|
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback for the data change event. If the callback is not specified, all subscriptions to the data change event are canceled.|
 
 
 
@@ -2333,7 +2333,7 @@ Unsubscribes from synchronization complete events.
 | Name      | Type                                         | Mandatory| Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
 | event        | string                                        | Yes  | Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   |Callback for the synchronization complete event.   |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback for the synchronization complete event. If the callback is not specified, all subscriptions to the synchronization complete event are canceled.|
 
 **Example**
 
@@ -3768,7 +3768,7 @@ sync(deviceIds: string[], mode: SyncMode, delayMs?: number): void
 Synchronizes the KV store manually.
 > **NOTE**
 >
-> The value of **deviceIds** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceIds** is the **networkId** in [DeviceInfo](js-apis-device-manager.md#deviceinfo), which is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -3778,9 +3778,9 @@ Synchronizes the KV store manually.
 
 | Name   | Type                 | Mandatory| Description                                          |
 | --------- | --------------------- | ---- | ---------------------------------------------- |
-| deviceIds | string[]              | Yes  | List of IDs of the devices in the same networking environment to be synchronized.|
+| deviceIds | string[]              | Yes  | List of **networkId**s of the devices in the same networking environment to be synchronized.|
 | mode      | [SyncMode](#syncmode) | Yes  | Synchronization mode.                                    |
-| delayMs   | number                | No  | Allowed synchronization delay time, in ms.    |
+| delayMs   | number                | No  | Delay time allowed, in milliseconds. The default value is **0**.    |
 
 **Example**
 
@@ -3799,7 +3799,7 @@ deviceManager.createDeviceManager('bundleName', (err, value) => {
     if (devManager != null) {
       var devices = devManager.getTrustedDeviceListSync();
       for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].deviceId;
+        deviceIds[i] = devices[i].networkId;
       }
     }
     try {
@@ -3895,7 +3895,7 @@ Unsubscribes from data changes.
 | Name  | Type                                                     | Mandatory| Description                                                    |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
 | event    | string                                                    | Yes  | Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.|
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback for the data change event.|
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback for the data change event. If the callback is not specified, all subscriptions to the data change event are canceled.|
 
 **Example**
 
@@ -3931,7 +3931,7 @@ Unsubscribes from synchronization complete events.
 | Name      | Type                                         | Mandatory| Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
 | event        | string                                        | Yes  | Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback for the synchronization complete event.                |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback for the synchronization complete event. If the callback is not specified, all subscriptions to the synchronization complete event are canceled. |
 
 **Example**
 
@@ -5246,7 +5246,7 @@ Synchronizes the KV store manually.
 
 > **NOTE**
 >
-> The value of **deviceIds** is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
+> **deviceIds** is the **networkId** in [DeviceInfo](js-apis-device-manager.md#deviceinfo), which is obtained by [deviceManager.getTrustedDeviceListSync](js-apis-device-manager.md#gettrusteddevicelistsync). The APIs of the **deviceManager** module are system interfaces and available only to system applications.
 
 **Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC
 
@@ -5256,9 +5256,9 @@ Synchronizes the KV store manually.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
-| deviceIds    |string[]               | Yes   |IDs of the devices to be synchronized.|
+| deviceIds    |string[]               | Yes   |**networkId**s of the devices to be synchronized.|
 | mode            |[SyncMode](#syncmode)  | Yes   |Synchronization mode. |
-| delayMs  |number                 | No   |Allowed synchronization delay time, in ms. |
+| delayMs  |number                 | No   |Allowed synchronization delay time, in ms. The default value is **0**. |
 
 **Example**
 
@@ -5277,7 +5277,7 @@ deviceManager.createDeviceManager('bundleName', (err, value) => {
     if (devManager != null) {
       var devices = devManager.getTrustedDeviceListSync();
       for (var i = 0; i < devices.length; i++) {
-        deviceIds[i] = devices[i].deviceId;
+        deviceIds[i] = devices[i].networkId;
       }
     }
     try {
@@ -5373,7 +5373,7 @@ Unsubscribes from data changes.
 | Name  | Type                                                     | Mandatory| Description                                                    |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
 | event    | string                                                    | Yes  | Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.|
-| listener |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback for the data change event.|
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback for the data change event. If the callback is not specified, all subscriptions to the data change event are canceled.|
 
 **Example**
 
@@ -5409,7 +5409,7 @@ Unsubscribes from synchronization complete events.
 | Name      | Type                                         | Mandatory| Description                                                      |
 | ------------ | --------------------------------------------- | ---- | ---------------------------------------------------------- |
 | event        | string                                        | Yes  | Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback for the synchronization complete event.                |
+| syncCallback | Callback&lt;Array&lt;[string, number]&gt;&gt; | No  | Callback for the synchronization complete event. If the callback is not specified, all subscriptions to the synchronization complete event are canceled. |
 
 **Example**
 

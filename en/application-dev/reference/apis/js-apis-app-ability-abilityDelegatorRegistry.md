@@ -1,6 +1,6 @@
 # @ohos.app.ability.abilityDelegatorRegistry (AbilityDelegatorRegistry)
 
-**AbilityDelegatorRegistry**, a module of the [Test Framework](../../ability-deprecated/ability-delegator.md), is used to obtain [AbilityDelegator](js-apis-inner-application-abilityDelegator.md) and [AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md) objects. **AbilityDelegator** provides APIs for creating **AbilityMonitor** objects, which can be used to listen for ability lifecycle changes. **AbilityDelegatorArgs** provides APIs for obtaining test parameters.
+**AbilityDelegatorRegistry**, a module of the [arkXtest User Guide](../../application-test/arkxtest-guidelines.md), is used to obtain [AbilityDelegator](js-apis-inner-application-abilityDelegator.md) and [AbilityDelegatorArgs](js-apis-inner-application-abilityDelegatorArgs.md) objects. **AbilityDelegator** provides APIs for creating **AbilityMonitor** objects, which can be used to listen for ability lifecycle changes. **AbilityDelegatorArgs** provides APIs for obtaining test parameters.
 
 > **NOTE**
 > 
@@ -53,10 +53,10 @@ let want = {
     abilityName: 'EntryAbility'
 };
 abilityDelegator.startAbility(want, (err) => {
-    if (!err || err.code === 0) {
-        console.log('Success start ability.');
-    } else {
+    if (err) {
         console.error('Failed start ability, error: ${JSON.stringify(err)}');
+    } else {
+        console.log('Success start ability.');
     }
 });
 ```

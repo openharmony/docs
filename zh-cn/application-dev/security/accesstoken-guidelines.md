@@ -1,4 +1,4 @@
-# 访问控制授权申请
+# 访问控制授权申请指导
 
 ## 场景介绍
 
@@ -24,11 +24,11 @@
 | 标签      | 是否必填 | 说明                                                         |
 | --------- | -------- | ------------------------------------------------------------ |
 | name      | 是       | 权限名称。                                                   |
-| reason    | 否       | 描述申请权限的原因。<br />> **说明**：当申请的权限为user_grant权限时，此字段必填。 |
-| usedScene | 否       | 描述权限使用的场景和时机。<br />> **说明**：当申请的权限为user_grant权限时，此字段必填。 |
+| reason    | 否       | 描述申请权限的原因。<br/>> **说明**：当申请的权限为user_grant权限时，此字段必填。 |
+| usedScene | 否       | 描述权限使用的场景和时机。<br/>> **说明**：当申请的权限为user_grant权限时，此字段必填。 |
 | abilities | 否       | 标识需要使用到该权限的Ability，标签为数组形式。<br/>**适用模型**：Stage模型 |
 | ability   | 否       | 标识需要使用到该权限的Ability，标签为数组形式。<br/>**适用模型**：FA模型 |
-| when      | 否       | 标识权限使用的时机，值为`inuse/always`。<br />- inuse：表示为仅允许前台使用。<br />- always：表示前后台都可使用。 |
+| when      | 否       | 标识权限使用的时机，值为`inuse/always`。<br/>- inuse：表示为仅允许前台使用。<br/>- always：表示前后台都可使用。 |
 
 ### Stage模型
 
@@ -152,14 +152,14 @@
        let appInfo: bundleManager.ApplicationInfo = bundleInfo.appInfo;
        tokenId = appInfo.accessTokenId;
      } catch (err) {
-       console.error(`getBundleInfoForSelf failed, code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to get bundle info for self. Code is ${err.code}, message is ${err.message}`);
      }
    
      // 校验应用是否被授予权限
      try {
        grantStatus = await atManager.checkAccessToken(tokenId, permission);
      } catch (err) {
-       console.error(`checkAccessToken failed, code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to check access token. Code is ${err.code}, message is ${err.message}`);
      }
    
      return grantStatus;
@@ -214,8 +214,7 @@
          }
          // 授权成功
        }).catch((err) => {
-         console.error(`requestPermissionsFromUser failed, code is ${err.code}, message is ${err.message}`);
-       })
+         console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
    
        // ...
      }
@@ -249,7 +248,7 @@
          }
          // 授权成功
        }).catch((err) => {
-         console.error(`requestPermissionsFromUser failed, code is ${err.code}, message is ${err.message}`);
+         console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
        })
      }
    
@@ -308,7 +307,9 @@ reqPermissions() {
 - `app_signature`字段配置为应用的指纹信息。指纹信息的配置参见[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md#install_list_capabilityjson中配置)。
 - `permissions`字段中`name`配置为需要预授权的`user_grant`类型的权限名；`permissions`字段中`userCancellable`表示为用户是否能够取消该预授权，配置为true，表示支持用户取消授权，为false则表示不支持用户取消授权。
 
-> **说明**：当前仅支持预置应用配置该文件。
+> **说明**：
+> 
+> 当前仅支持预置应用配置该文件。
 
 ```json
 [

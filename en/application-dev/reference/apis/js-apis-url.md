@@ -23,7 +23,7 @@ A constructor used to create a **URLParams** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string, string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object|
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string, string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object<br>The default value is **null**.|
 
 **Example**
 
@@ -150,7 +150,7 @@ Traverses the key-value pairs in the **URLSearchParams** instance by using a cal
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the key-value pairs in the **URLSearchParams** instance.|
-| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this object.|
 
 **Table 1** callbackFn parameter description
 
@@ -225,7 +225,7 @@ Checks whether a key has a value.
 ```js
 let urlObject = Url.URL.parseURL('https://developer.exampleUrl/?fod=1&bard=2');
 let paramsObject = new Url.URLParams(urlObject.search.slice(1)); 
-paramsObject.has('bard') === true;
+let result = paramsObject.has('bard');
 ```
 
 
@@ -336,7 +336,7 @@ Obtains an ES6 iterator. Each item of the iterator is a JavaScript array, and th
 
 ```js
 const paramsObject = new Url.URLParams('fod=bay&edg=bap');
-for (const [name, value] of paramsObject) {
+for (const [name, value] of paramsObject[Symbol.iterator]()) {
     console.log(name, value); 
 } 
 ```
@@ -404,7 +404,7 @@ Creates a URL.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | url | string | Yes| Input object.|
-| base | string \| URL | No| Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object|
+| base | string \| URL | No| Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object<br>The default value is an empty string or an empty object.|
 
 **Example**
 
@@ -444,7 +444,7 @@ Parses a URL.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | url | string | Yes| Input object.|
-| base | string \| URL | No| Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object|
+| base | string \| URL | No| Input parameter, which can be any of the following:<br>- **string**: string<br>- **URL**: string or object<br>The default value is an empty string or an empty object.|
 
 **Error codes**
 
@@ -460,7 +460,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 ```js
 let mm = 'https://username:password@host:8080';
 let url = Url.URL.parseURL(mm); 
-url.toString(); // Output 'https://username:password@host:8080/';
+let result = url.toString(); // Output 'https://username:password@host:8080/'
 ```
 
 ### tostring
@@ -481,7 +481,7 @@ Converts the parsed URL into a string.
 
 ```js
 const url = Url.URL.parseURL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-url.toString();
+let result = url.toString();
 ```
 
 ### toJSON
@@ -501,7 +501,7 @@ Converts the parsed URL into a JSON string.
 **Example**
 ```js
 const url = Url.URL.parseURL('https://username:password@host:8080/directory/file?query=pppppp#qwer=da');
-url.toJSON();
+let result = url.toJSON();
 ```
 
 ## URLSearchParams<sup>(deprecated)</sup>
@@ -522,7 +522,7 @@ A constructor used to create a **URLSearchParams** instance.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string, string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object|
+| init | string[][] \| Record&lt;string, string&gt; \| string \| URLSearchParams | No| Input parameter objects, which include the following:<br>- **string[][]**: two-dimensional string array<br>- **Record&lt;string, string&gt;**: list of objects<br>- **string**: string<br>- **URLSearchParams**: object<br>The default value is **null**.|
 
 **Example**
 
@@ -665,7 +665,7 @@ Traverses the key-value pairs in the **URLSearchParams** instance by using a cal
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | Yes| Callback invoked to traverse the key-value pairs in the **URLSearchParams** instance.|
-| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked.|
+| thisArg | Object | No| Value of **this** to use when **callbackFn** is invoked. The default value is this object.|
 
 **Table 1** callbackFn parameter description
 

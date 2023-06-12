@@ -232,7 +232,6 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
-| 17700004 | The specified user ID is not found.       |
 | 17700023 | The specified default app does not exist. |
 | 17700025 | The specified type is invalid.            |
 
@@ -415,7 +414,6 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
-| 17700004 | The specified user ID is not found.            |
 | 17700025 | The specified type is invalid.                 |
 | 17700028 | The specified ability does not match the type. |
 
@@ -574,7 +572,6 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 17700004 | The specified user ID is not found. |
 | 17700025 | The specified type is invalid.      |
 
 **Example**

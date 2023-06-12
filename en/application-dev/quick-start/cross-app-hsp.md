@@ -17,34 +17,31 @@ An inter-application HSP works by combining the following parts:
 HSP: contains the actual implementation code, including the JS/TS code, C++ libraries, resources, and configuration files. It is either released to the application market or integrated into the system version.
 
 ### Integrating the HAR in an Inter-Application HSP
-Define the interfaces to be exported in the **index.d.ets** file in the HAR, which is the entry to the declaration file exported by the inter-application HSP. The path of the **index.d.ets** file is as follows:
+Define the interfaces to be exported in the **index.ets** file in the HAR, which is the entry to the declaration file exported by the inter-application HSP. The path to the **index.ets** file is as follows:
 ```
-src
-├── main
-|    └── module.json5
-├── index.d.ets
+liba
+├── src
+│   └── main
+│       ├── ets
+│       │   ├── pages
+│       │   └── index.ets
+│       ├── resources
+│       └── module.json5
 └── oh-package.json5
 ```
-Below is an example of the **index.d.ets** file content:
+In the entry file **index.ets**, declare the APIs to be exposed.
+
+Below is an example:
+
 ```ts
-@Component
-export declare struct UIComponent {
-  build():void;
-}
-
-export declare function hello(): string;
-
-export declare function foo1(): string;
-
-export declare function foo2(): string;
-
-export declare function nativeHello(): string;
+// liba/src/main/ets/index.ets
+export { hello, foo1, foo2, nativeMulti, UIComponent } from './ui/MyUIComponent'
 ```
-In the example, **UIComponent** is an ArkUI component, **hello()**, **foo1()**, and **foo2()** are TS methods, and **nativeHello()** is a native method. Specific implementation is as follows:
+In the example, **UIComponent** is an ArkUI component, **hello()**, **foo1()**, and **foo2()** are TS methods, and **nativeMulti()** is a native method. Specific implementation is as follows:
 #### ArkUI Components
 The following is an implementation example of ArkUI components in the HSP:
 ```ts
-// lib/src/main/ets/ui/MyUIComponent.ets
+// liba/src/main/ets/ui/MyUIComponent.ets
 @Component
 export struct UIComponent {
   @State message: string = 'Hello World'
@@ -63,6 +60,7 @@ export struct UIComponent {
 #### **TS Methods**
 The following is an implementation example of TS methods in the HSP:
 ```ts
+// liba/src/main/ets/ui/MyUIComponent.ets
 export function hello(name: string): string {
   return "hello + " + name;
 }
@@ -74,50 +72,22 @@ export function foo1() {
 export function foo2() {
   return "foo2";
 }
+
 ```
 #### **Native Methods**
-The following is an implementation example of native methods in the HSP:
-```C++
-#include "napi/native_api.h"
-#include <js_native_api.h>
-#include <js_native_api_types.h>
-#include <string>
+The HSP can contain .so files compiled in C++. The HSP indirectly exports the native method in the .so file. In this example, the **multi** API in the **libnative.so** file is exported.
 
-const std::string libname = "liba";
-const std::string version = "v10001";
+```ts
+// liba/src/main/ets/ui/MyUIComponent.ets
+import native from "libnative.so"
 
-static napi_value Hello(napi_env env, napi_callback_info info) {
-    napi_value ret;
-    std::string msg = libname + ":native hello, " + version;
-    napi_create_string_utf8(env, msg.c_str(), msg.length(), &ret);
-    return ret;
-}
-
-EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
-    napi_property_descriptor desc[] = {
-        {"nativeHello", nullptr, Hello, nullptr, nullptr, nullptr, napi_default, nullptr}};
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
-    return exports;
-}
-EXTERN_C_END
-
-static napi_module demoModule = {
-    .nm_version = 1,
-    .nm_flags = 0,
-    .nm_filename = nullptr,
-    .nm_register_func = Init,
-    .nm_modname = "liba",
-    .nm_priv = ((void *)0),
-    .reserved = {0},
-};
-
-extern "C" __attribute__((constructor)) void RegisterLibaModule(void) {
-    napi_module_register(&demoModule);
+export function nativeMulti(a: number, b: number) {
+    return native.multi(a, b);
 }
 ```
+
 ### Using the Capabilities Exported from the HAR
-To start with, [configure dependency](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-development-npm-package-0000001222578434#section89674298391) on the HAR. The dependency information will then be generated in the **module.json5** file of the corresponding module, as shown in the following:
+To start with, [configure dependency](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/creating_har_api9-0000001518082393-V3#section611662614153) on the HAR. The dependency information will then be generated in the **module.json5** file of the corresponding module, as shown in the following:
 ```json
 "dependencies": [
       {
@@ -180,7 +150,7 @@ struct Index {
 #### Referencing Native Methods in the HAR
 To reference the native methods exported from the HAR, use **import** as follows:
 ``` ts
-import { nativeHello } from 'liba'
+import { nativeMulti } from 'liba'
 
 @Component
 struct Index {
@@ -190,7 +160,7 @@ struct Index {
         Button('Button')
           .onClick(()=>{
             // Reference the native method in the HAR.
-            nativeHello();
+            nativeMulti();
         })
       }
       .width('100%')
@@ -200,18 +170,13 @@ struct Index {
 }
 ```
 
-## Inter-Application HSP Distribution
+## Inter-Application HSP Distribution (for System Applications Only)
 Inter-application HSPs are not completely integrated into an application. They are distributed by being preset in the system version or installed with an application on the device. To be specific:
 1. Some frequently-used inter-application HSPs are preset in the system version.
 2. When a user downloads an application from the application market, if the application market detects that the application depends on one or more inter-application HSPs and any of these HSPs are not installed on the target device, it will download the application as well as the missing HSPs for the user. In this way, the application can use the features shared through the HSPs properly.
 
 ### Inter-Application HSP Debugging Mode
 You can debug an inter-application HSP after it is distributed to a device. If the aforementioned distribution methods are not applicable, you can distribute the HSP by running **bm** commands. The procedure is as follows:
-
-> **NOTE**
->
-> Do not reverse steps 2 and 3. Otherwise, your application will fail to be installed due to a lack of the required inter-application HSP. For more information about the **bm** commands, see [Bundle Management](../../readme/bundle-management.md).
-
 1. Obtain the inter-application HSP installation package.
 2. Run the following **bm** command to install the inter-application HSP.
 ```
@@ -222,3 +187,7 @@ bm install -s sharebundle.hsp
 bm install -p feature.hap
 ```
 4. Start your application and start debugging.
+
+> **NOTE**
+>
+> Do not reverse steps 2 and 3. Otherwise, your application will fail to be installed due to a lack of the required inter-application HSP. For more information about the **bm** commands, see [bm Commands](../../readme/bundle-management.md#bm-commands).

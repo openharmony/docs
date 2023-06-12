@@ -103,7 +103,7 @@ promise.then(data => {
 
 ## radio.getNetworkState
 
-getNetworkState\(callback: AsyncCallback<NetworkState\>\): void
+getNetworkState\(callback: AsyncCallback\<NetworkState\>\): void
 
 Obtains the network status. This API uses an asynchronous callback to return the result.
 
@@ -141,7 +141,7 @@ radio.getNetworkState((err, data) => {
 
 ## radio.getNetworkState
 
-getNetworkState\(slotId: number, callback: AsyncCallback<NetworkState\>\): void
+getNetworkState\(slotId: number, callback: AsyncCallback\<NetworkState\>\): void
 
 Obtains the network status. This API uses an asynchronous callback to return the result.
 
@@ -181,7 +181,7 @@ radio.getNetworkState(slotId, (err, data) => {
 
 ## radio.getNetworkState
 
-getNetworkState\(slotId?: number\): Promise<NetworkState\>
+getNetworkState\(slotId?: number\): Promise\<NetworkState\>
 
 Obtains the network status. This API uses a promise to return the result.
 
@@ -229,7 +229,7 @@ promise.then(data => {
 
 ## radio.getNetworkSelectionMode
 
-getNetworkSelectionMode\(slotId: number, callback: AsyncCallback<NetworkSelectionMode\>\): void
+getNetworkSelectionMode\(slotId: number, callback: AsyncCallback\<NetworkSelectionMode\>\): void
 
 Obtains the network selection mode of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -266,7 +266,7 @@ radio.getNetworkSelectionMode(slotId, (err, data) => {
 
 ## radio.getNetworkSelectionMode
 
-getNetworkSelectionMode\(slotId: number\): Promise<NetworkSelectionMode\>
+getNetworkSelectionMode\(slotId: number\): Promise\<NetworkSelectionMode\>
 
 Obtains the network selection mode of the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -311,7 +311,7 @@ promise.then(data => {
 
 ## radio.getISOCountryCodeForNetwork<sup>7+</sup>
 
-getISOCountryCodeForNetwork\(slotId: number, callback: AsyncCallback<string\>\): void
+getISOCountryCodeForNetwork\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 Obtains the ISO country code of the network with which the SIM card in the specified slot is registered. This API uses an asynchronous callback to return the result.
 
@@ -348,7 +348,7 @@ radio.getISOCountryCodeForNetwork(slotId, (err, data) => {
 
 ## radio.getISOCountryCodeForNetwork<sup>7+</sup>
 
-getISOCountryCodeForNetwork\(slotId: number\): Promise<string\>
+getISOCountryCodeForNetwork\(slotId: number\): Promise\<string\>
 
 Obtains the ISO country code of the network with which the SIM card in the specified slot is registered. This API uses a promise to return the result.
 
@@ -403,7 +403,7 @@ Obtains the ID of the slot in which the primary card is located. This API uses a
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<number\> | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -445,7 +445,6 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
-| 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 | 8300999  | Unknown error code.                          |
@@ -464,7 +463,7 @@ promise.then(data => {
 
 ## radio.getSignalInformation<sup>7+</sup>
 
-getSignalInformation\(slotId: number, callback: AsyncCallback<Array<SignalInformation\>\>\): void
+getSignalInformation\(slotId: number, callback: AsyncCallback\<Array\<SignalInformation\>\>\): void
 
 Obtains a list of signal strengths of the network with which the SIM card in the specified slot is registered. This API uses an asynchronous callback to return the result.
 
@@ -501,7 +500,7 @@ radio.getSignalInformation(slotId, (err, data) => {
 
 ## radio.getSignalInformation<sup>7+</sup>
 
-getSignalInformation\(slotId: number\): Promise<Array<SignalInformation\>\>
+getSignalInformation\(slotId: number\): Promise\<Array\<SignalInformation\>\>
 
 Obtains a list of signal strengths of the network with which the SIM card in the specified slot is registered. This API uses a promise to return the result.
 
@@ -654,7 +653,7 @@ console.log("Result: "+ result);
 
 ## radio.isRadioOn<sup>7+</sup>
 
-isRadioOn\(callback: AsyncCallback<boolean\>\): void
+isRadioOn\(callback: AsyncCallback\<boolean\>\): void
 
 Checks whether the radio service is enabled on the primary SIM card. This API uses an asynchronous callback to return the result.
 
@@ -692,7 +691,7 @@ radio.isRadioOn((err, data) => {
 
 ## radio.isRadioOn<sup>7+</sup>
 
-isRadioOn\(slotId: number, callback: AsyncCallback<boolean\>\): void
+isRadioOn\(slotId: number, callback: AsyncCallback\<boolean\>\): void
 
 Checks whether the radio service is enabled on the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -732,7 +731,7 @@ radio.isRadioOn(slotId, (err, data) => {
 
 ## radio.isRadioOn<sup>7+</sup>
 
-isRadioOn\(slotId?: number\): Promise<boolean\>
+isRadioOn\(slotId?: number\): Promise\<boolean\>
 
 Checks whether the radio service is enabled on the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -780,7 +779,7 @@ promise.then(data => {
 
 ## radio.getOperatorName<sup>7+</sup>
 
-getOperatorName\(slotId: number, callback: AsyncCallback<string\>\): void
+getOperatorName\(slotId: number, callback: AsyncCallback\<string\>\): void
 
 Obtains the carrier name for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -817,7 +816,7 @@ radio.getOperatorName(slotId, (err, data) => {
 
 ## radio.getOperatorName<sup>7+</sup>
 
-getOperatorName\(slotId: number\): Promise<string\>
+getOperatorName\(slotId: number\): Promise\<string\>
 
 Obtains the carrier name for the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -861,7 +860,7 @@ promise.then(data => {
 
 ## radio.setPrimarySlotId<sup>8+</sup>
 
-setPrimarySlotId(slotId: number, callback: AsyncCallback<void\>): void
+setPrimarySlotId\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 Sets the ID of the slot in which the primary card is located. This API uses an asynchronous callback to return the result.
 
@@ -885,6 +884,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -933,6 +933,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -954,7 +955,7 @@ promise.then(() => {
 
 ## radio.getIMEI<sup>8+</sup>
 
-getIMEI(callback: AsyncCallback<string\>): void
+getIMEI\(callback: AsyncCallback\<string\>\): void
 
 Obtains the IMEI of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
 
@@ -977,6 +978,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -994,9 +996,9 @@ radio.getIMEI((err, data) => {
 
 ## radio.getIMEI<sup>8+</sup>
 
-getIMEI(slotId: number, callback: AsyncCallback<string\>): void
+getIMEI\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the IMEI of the SIM card in the specified card slot. This API uses an asynchronous callback to return the result.
+Obtains the IMEI of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1018,6 +1020,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1036,7 +1039,7 @@ radio.getIMEI(slotId, (err, data) => {
 
 ## radio.getIMEI<sup>8+</sup>
 
-getIMEI(slotId?: number): Promise<string\>
+getIMEI\(slotId?: number\): Promise\<string\>
 
 Obtains the IMEI of the SIM card in the specified card slot. This API uses a promise to return the result.
 
@@ -1065,6 +1068,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1085,7 +1089,7 @@ promise.then(data => {
 
 ## radio.getMEID<sup>8+</sup>
 
-getMEID(callback: AsyncCallback<string\>): void
+getMEID\(callback: AsyncCallback\<string\>\): void
 
 Obtains the MEID of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
 
@@ -1108,6 +1112,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1125,9 +1130,9 @@ radio.getMEID((err, data) => {
 
 ## radio.getMEID<sup>8+</sup>
 
-getMEID(slotId: number, callback: AsyncCallback<string\>): void
+getMEID\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the MEID of the SIM card in the specified card slot. This API uses an asynchronous callback to return the result.
+Obtains the MEID of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1149,6 +1154,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1167,7 +1173,7 @@ radio.getMEID(slotId, (err, data) => {
 
 ## radio.getMEID<sup>8+</sup>
 
-getMEID(slotId?: number): Promise<string\>
+getMEID\(slotId?: number\): Promise\<string\>
 
 Obtains the MEID of the SIM card in the specified card slot. This API uses a promise to return the result.
 
@@ -1196,6 +1202,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1216,7 +1223,7 @@ promise.then(data => {
 
 ## radio.getUniqueDeviceId<sup>8+</sup>
 
-getUniqueDeviceId(callback: AsyncCallback<string\>): void
+getUniqueDeviceId\(callback: AsyncCallback\<string\>\): void
 
 Obtains the unique device ID of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
 
@@ -1239,6 +1246,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1256,9 +1264,9 @@ radio.getUniqueDeviceId((err, data) => {
 
 ## radio.getUniqueDeviceId<sup>8+</sup>
 
-getUniqueDeviceId(slotId: number, callback: AsyncCallback<string\>): void
+getUniqueDeviceId\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the unique device ID of the SIM card in the specified card slot. This API uses an asynchronous callback to return the result.
+Obtains the unique device ID of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1280,6 +1288,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1298,7 +1307,7 @@ radio.getUniqueDeviceId(slotId, (err, data) => {
 
 ## radio.getUniqueDeviceId<sup>8+</sup>
 
-getUniqueDeviceId(slotId?: number): Promise<string\>
+getUniqueDeviceId\(slotId?: number\): Promise\<string\>
 
 Obtains the unique device ID of the SIM card in the specified card slot. This API uses a promise to return the result.
 
@@ -1327,6 +1336,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1347,7 +1357,7 @@ promise.then(data => {
 
 ## radio.sendUpdateCellLocationRequest<sup>8+</sup>
 
-sendUpdateCellLocationRequest\(callback: AsyncCallback<void\>\): void
+sendUpdateCellLocationRequest\(callback: AsyncCallback\<void\>\): void
 
 Sends a cell location update request. This API uses an asynchronous callback to return the result.
 
@@ -1370,6 +1380,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1386,7 +1397,7 @@ radio.sendUpdateCellLocationRequest((err) => {
 
 ## radio.sendUpdateCellLocationRequest<sup>8+</sup>
 
-sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\): void
+sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 Sends a cell location update request for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -1410,6 +1421,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1427,7 +1439,7 @@ radio.sendUpdateCellLocationRequest(slotId, (err) => {
 
 ## radio.sendUpdateCellLocationRequest<sup>8+</sup>
 
-sendUpdateCellLocationRequest\(slotId?: number): Promise<void\>
+sendUpdateCellLocationRequest\(slotId?: number\): Promise\<void\>
 
 Sends a cell location update request for the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -1456,6 +1468,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1475,7 +1488,7 @@ radio.sendUpdateCellLocationRequest(slotId).then(() => {
 
 ## radio.getCellInformation<sup>8+</sup>
 
-getCellInformation(callback: AsyncCallback<Array<CellInformation\>>): void
+getCellInformation\(callback: AsyncCallback\<Array\<CellInformation\>\>\): void
 
 Obtains cell information. This API uses an asynchronous callback to return the result.
 
@@ -1498,6 +1511,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1515,7 +1529,7 @@ radio.getCellInformation((err, data) => {
 
 ## radio.getCellInformation<sup>8+</sup>
 
-getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation\>\>): void
+getCellInformation\(slotId: number, callback: AsyncCallback\<Array\<CellInformation\>\>\): void
 
 Obtains cell information for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -1539,6 +1553,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1557,7 +1572,7 @@ radio.getCellInformation(slotId, (err, data) => {
 
 ## radio.getCellInformation<sup>8+</sup>
 
-getCellInformation(slotId?: number): Promise<Array<CellInformation\>\>
+getCellInformation\(slotId?: number\): Promise\<Array\<CellInformation\>\>
 
 Obtains cell information for the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -1586,6 +1601,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1606,7 +1622,7 @@ promise.then(data => {
 
 ## radio.setNetworkSelectionMode
 
-setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCallback<void\>\): void
+setNetworkSelectionMode\(options: NetworkSelectionModeOptions, callback: AsyncCallback\<void\>\): void
 
 Sets the network selection mode. This API uses an asynchronous callback to return the result.
 
@@ -1630,6 +1646,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1658,7 +1675,7 @@ radio.setNetworkSelectionMode(networkSelectionModeOptions, (err) => {
 
 ## radio.setNetworkSelectionMode
 
-setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise<void\>
+setNetworkSelectionMode\(options: NetworkSelectionModeOptions\): Promise\<void\>
 
 Sets the network selection mode. This API uses a promise to return the result.
 
@@ -1687,6 +1704,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1718,7 +1736,7 @@ promise.then(() => {
 
 ## radio.getNetworkSearchInformation
 
-getNetworkSearchInformation\(slotId: number, callback: AsyncCallback<NetworkSearchResult\>\): void
+getNetworkSearchInformation\(slotId: number, callback: AsyncCallback\<NetworkSearchResult\>\): void
 
 Obtains network search information for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -1742,6 +1760,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1758,7 +1777,7 @@ radio.getNetworkSearchInformation(0, (err, data) => {
 
 ## radio.getNetworkSearchInformation
 
-getNetworkSearchInformation\(slotId: number\): Promise<NetworkSearchResult\>
+getNetworkSearchInformation\(slotId: number\): Promise\<NetworkSearchResult\>
 
 Obtains network search information for the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -1787,6 +1806,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1806,7 +1826,7 @@ promise.then(data => {
 
 ## radio.getNrOptionMode<sup>8+</sup>
 
-getNrOptionMode(callback: AsyncCallback<NrOptionMode\>): void
+getNrOptionMode\(callback: AsyncCallback\<NrOptionMode\>\): void
 
 Obtains the NR option mode. This API uses an asynchronous callback to return the result.
 
@@ -1826,6 +1846,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1843,7 +1864,7 @@ radio.getNrOptionMode((err, data) => {
 
 ## radio.getNrOptionMode<sup>8+</sup>
 
-getNrOptionMode(slotId: number, callback: AsyncCallback<NrOptionMode\>): void
+getNrOptionMode\(slotId: number, callback: AsyncCallback\<NrOptionMode\>\): void
 
 Obtains the NR option mode for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -1864,6 +1885,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1882,7 +1904,7 @@ radio.getNrOptionMode(slotId, (err, data) => {
 
 ## radio.getNrOptionMode<sup>8+</sup>
 
-getNrOptionMode(slotId?: number): Promise<NrOptionMode\>
+getNrOptionMode\(slotId?: number\): Promise\<NrOptionMode\>
 
 Obtains the NR option mode for the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -1908,6 +1930,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1928,7 +1951,7 @@ promise.then(data => {
 
 ## radio.turnOnRadio<sup>7+</sup>
 
-turnOnRadio(callback: AsyncCallback<void\>): void
+turnOnRadio\(callback: AsyncCallback\<void\>\): void
 
 Turns on the radio function. This API uses an asynchronous callback to return the result.
 
@@ -1951,6 +1974,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1968,7 +1992,7 @@ radio.turnOnRadio((err) => {
 
 ## radio.turnOnRadio<sup>7+</sup>
 
-turnOnRadio(slotId: number, callback: AsyncCallback<void\>): void
+turnOnRadio\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 Turns on the radio function for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -1992,6 +2016,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2010,7 +2035,7 @@ radio.turnOnRadio(slotId, (err) => {
 
 ## radio.turnOnRadio<sup>7+</sup>
 
-turnOnRadio(slotId?: number): Promise<void\>
+turnOnRadio(slotId?: number): Promise\<void\>
 
 Turns on the radio function for the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -2039,6 +2064,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2058,7 +2084,7 @@ radio.turnOnRadio(slotId).then(() => {
 
 ## radio.turnOffRadio<sup>7+</sup>
 
-turnOffRadio(callback: AsyncCallback<void\>): void
+turnOffRadio\(callback: AsyncCallback\<void\>\): void
 
 Turns off the radio function. This API uses an asynchronous callback to return the result.
 
@@ -2081,6 +2107,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2098,7 +2125,7 @@ radio.turnOffRadio((err) => {
 
 ## radio.turnOffRadio<sup>7+</sup>
 
-turnOffRadio(slotId: number, callback: AsyncCallback<void\>): void
+turnOffRadio\(slotId: number, callback: AsyncCallback\<void\>\): void
 
 Turns off the radio function for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -2122,6 +2149,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2140,7 +2168,7 @@ radio.turnOffRadio(slotId, (err) => {
 
 ## radio.turnOffRadio<sup>7+</sup>
 
-turnOffRadio(slotId?: number): Promise<void\>
+turnOffRadio\(slotId?: number\): Promise\<void\>
 
 Turns off the radio function for the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -2169,6 +2197,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2188,7 +2217,7 @@ radio.turnOffRadio(slotId).then(() => {
 
 ## radio.setPreferredNetwork<sup>8+</sup>
 
-setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback: AsyncCallback<void\>\): void
+setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode, callback: AsyncCallback\<void\>\): void
 
 Sets the preferred network for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -2213,6 +2242,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2230,7 +2260,7 @@ radio.setPreferredNetwork(slotId, radio.PreferredNetworkMode.PREFERRED_NETWORK_M
 
 ## radio.setPreferredNetwork<sup>8+</sup>
 
-setPreferredNetwork(slotId: number, networkMode: PreferredNetworkMode): Promise<void\>
+setPreferredNetwork\(slotId: number, networkMode: PreferredNetworkMode\): Promise\<void\>
 
 Sets the preferred network for the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -2260,6 +2290,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                    |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2279,7 +2310,7 @@ radio.setPreferredNetwork(slotId, radio.PreferredNetworkMode.PREFERRED_NETWORK_M
 
 ## radio.getPreferredNetwork<sup>8+</sup>
 
-getPreferredNetwork\(slotId: number, callback: AsyncCallback<PreferredNetworkMode\>\): void
+getPreferredNetwork\(slotId: number, callback: AsyncCallback\<PreferredNetworkMode\>\): void
 
 Obtains the preferred network for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -2303,6 +2334,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2319,7 +2351,7 @@ radio.getPreferredNetwork(0, (err, data) => {
 
 ## radio.getPreferredNetwork<sup>8+</sup>
 
-getPreferredNetwork(slotId: number): Promise<PreferredNetworkMode\>
+getPreferredNetwork\(slotId: number\): Promise\<PreferredNetworkMode\>
 
 Obtains the preferred network for the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -2348,6 +2380,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2367,7 +2400,7 @@ promise.then(data => {
 
 ## radio.getImsRegInfo<sup>9+</sup>
 
-getImsRegInfo(slotId: number, imsType: ImsServiceType, callback: AsyncCallback<ImsRegInfo\>): void
+getImsRegInfo\(slotId: number, imsType: ImsServiceType, callback: AsyncCallback\<ImsRegInfo\>\): void
 
 Obtains the IMS registration status of the specified IMS service type for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
@@ -2392,6 +2425,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2408,7 +2442,7 @@ radio.getImsRegInfo(0, radio.ImsServiceType.TYPE_VIDEO, (err, data) => {
 
 ## radio.getImsRegInfo<sup>9+</sup>
 
-getImsRegInfo(slotId: number, imsType: ImsServiceType): Promise<ImsRegInfo\>
+getImsRegInfo\(slotId: number, imsType: ImsServiceType\): Promise\<ImsRegInfo\>
 
 Obtains the IMS registration status of the specified IMS service type for the SIM card in the specified slot. This API uses a promise to return the result.
 
@@ -2438,6 +2472,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2457,7 +2492,7 @@ promise.then(data => {
 
 ## radio.on('imsRegStateChange')<sup>9+</sup>
 
-on(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback: Callback<ImsRegInfo\>): void
+on\(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback: Callback\<ImsRegInfo\>\): void
 
 Enables listening for **imsRegStateChange** events. This API uses an asynchronous callback to return the result.
 
@@ -2483,6 +2518,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2499,7 +2535,7 @@ radio.on('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 ## radio.off('imsRegStateChange')<sup>9+</sup>
 
-off(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback?: Callback<ImsRegInfo\>): void
+off\(type: 'imsRegStateChange', slotId: number, imsType: ImsServiceType, callback?: Callback\<ImsRegInfo\>\): void
 
 Disables listening for **imsRegStateChange** events. This API uses an asynchronous callback to return the result.
 
@@ -2516,7 +2552,7 @@ Disables listening for **imsRegStateChange** events. This API uses an asynchrono
 | type     | string                               | Yes  | IMS registration status changes.    |
 | slotId   | number                               | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | imsType  | [ImsServiceType](#imsservicetype9)   | Yes  | IMS service type.                         |
-| callback | Callback<[ImsRegInfo](#imsreginfo9)> | No  | Callback used to return the result.                            |
+| callback | Callback<[ImsRegInfo](#imsreginfo9)> | No  | Callback used to return the result. If this parameter is not set, the API unsubscribes from all callbacks.|
 
 **Error codes**
 
@@ -2525,6 +2561,7 @@ For details about the following error codes, see [Telephony Error Codes](../../r
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
 | 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -2538,6 +2575,101 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
     console.log(`callback: data->${JSON.stringify(data)}`);
 });
 ```
+
+
+## radio.getBasebandVersion<sup>10+</sup>
+
+getBasebandVersion\(slotId: number, callback: AsyncCallback\<string\>\): void
+
+Obtains the baseband version of the device. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                   | Mandatory| Description                                  |
+| -------- | ----------------------- | ---- | ------------------------------------- |
+| slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| callback | AsyncCallback\<string\> | Yes  | Callback used to return the result. Baseband version of the device.           |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let slotId = 0;
+radio.getBasebandVersion(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getBasebandVersion<sup>10+</sup>
+
+getBasebandVersion\(slotId: number\): Promise\<string\>
+
+Obtains the baseband version of the device. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.GET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                    | Mandatory| Description                                 |
+| -------- | ----------------------- | ---- | ------------------------------------- |
+| slotId   | number                  | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type             | Description                                   |
+| ----------------- | -------------------------------------- |
+| Promise\<string\> | Promise used to return the result.     |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let slotId = 0;
+let promise = radio.getBasebandVersion(slotId);
+promise.then(data => {
+    console.log(`getBasebandVersion success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getBasebandVersion failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
 
 ## RadioTechnology
 

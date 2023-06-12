@@ -12,9 +12,9 @@ Create a **\<grid-container>** component in the .hml file under **pages/index** 
 ```html
 <!-- index.hml -->
 <div class="container">
-  <grid-container id="mygrid" columns="5" gutter="20px" style="background-color: pink;">
+  <grid-container id="mygrid" gutter="20px" style="background-color: pink;">
     <grid-row style="height:100px;justify-content:space-around;width: 80%;background-color: #f67002;margin-left: 
-      10%; margin-right: 10%;"></grid-row>
+      10%;"></grid-row>
     <grid-row style="height:300px;justify-content:space-around;background-color: #ffcf00;width: 100%;"></grid-row>
     <grid-row style="height:150px;justify-content:space-around;background-color: #032cf8;width: 100%;"></grid-row>
   </grid-container>
@@ -27,8 +27,7 @@ Create a **\<grid-container>** component in the .hml file under **pages/index** 
 .container{
   flex-direction: column;
   background-color: #F1F3F5;
-  width: 100%;
-  height: 100%;
+  margin-top: 500px;
   justify-content: center;
   align-items: center;
 }
@@ -49,14 +48,14 @@ Touch the **\<grid-container>** component to call the **getColumns**, **getColum
 ```html
 <!-- index.hml -->
 <div class="container">
-  <grid-container id="mygrid" columns="6" gutter="20px" style="background-color: pink;padding-top: 100px;" 
+  <grid-container id="mygrid" gutter="20px" style="background-color: pink;padding-top: 100px;" 
     onclick="getColumns" onlongpress="getSizeType">
     <grid-row style="height:100px;justify-content:space-around;background-color: #4cedf3;width: 20%;margin-left: 
-      40%; margin-right: 40%;"></grid-row>
+      40%;"></grid-row>
     <grid-row style="height:150px;justify-content:space-around;background-color: #4cbff3;width: 50%;margin-left:
-      25%; margin-right: 25%;"></grid-row>
+      25%;"></grid-row>
     <grid-row style="height:200px;justify-content:space-around;background-color: #465ff6;width: 80%;margin-left: 
-      10%; margin-right: 10%;"></grid-row>
+      10%;"></grid-row>
     <grid-row style="height:200px;justify-content:space-around;background-color: #5011ec;width: 100%;"></grid-row>
   </grid-container>
 </div>
@@ -68,8 +67,7 @@ Touch the **\<grid-container>** component to call the **getColumns**, **getColum
 .container{
   flex-direction: column;
   background-color: #F1F3F5;
-  width: 100%;
-  height: 100%;
+  margin-top: 400px;
   justify-content: center;
   align-items: center;
 }
@@ -108,7 +106,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001231843088](figures/en-us_image_0000001231843088.gif)
+![en-us_image_0000001227135613](figures/en-us_image_0000001227135613.gif)
 
 
 ## Adding \<grid-col>
@@ -164,7 +162,7 @@ After adding a **\<grid-row>** child component to **\<grid-container>**, add a *
 text{
   color: white;
   font-size: 40px;
-
+}
 ```
 
 ![en-us_image_0000001231683124](figures/en-us_image_0000001231683124.png)
@@ -219,7 +217,7 @@ text{
 
 ```js
 // index.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     list:[
@@ -230,7 +228,7 @@ export default {
     fresh:false
   },
   refresh(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message: 'refreshing'
     })
     var that = this;
@@ -238,7 +236,7 @@ export default {
     setTimeout(function () {
       that.fresh = false;
       that.list.unshift({src: 'common/images/4.png',id:'4'});
-      prompt.showToast({
+      promptAction.showToast({
         message: 'succeed'
       })
     }, 2000)

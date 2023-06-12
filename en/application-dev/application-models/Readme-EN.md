@@ -17,18 +17,43 @@
     - ExtensionAbility Component
       - [ExtensionAbility Component Overview](extensionability-overview.md)
       - [ServiceExtensionAbility](serviceextensionability.md)
-      - [FormExtensionAbility (Widget)](widget-development-stage.md)
       - [AccessibilityExtensionAbility](accessibilityextensionability.md)
       - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
       - [InputMethodExtensionAbility](inputmethodextentionability.md)
-      - [WindowExtensionAbility](windowextensionability.md)
+      - [WindowExtensionAbility (for System Applications Only)](windowextensionability.md)
+    - Service Widget Development in Stage Model
+      - [Service Widget Overview](service-widget-overview.md)
+      - Developing an ArkTS Widget
+        - [ArkTS Widget Working Principles](arkts-ui-widget-working-principles.md)
+        - [ArkTS Widget Related Modules](arkts-ui-widget-modules.md)
+        - ArkTS Widget Development
+          - [Creating an ArkTS Widget](arkts-ui-widget-creation.md)
+          - [Configuring Widget Configuration Files](arkts-ui-widget-configuration.md)
+          - [Widget Lifecycle Management](arkts-ui-widget-lifecycle.md)
+          - Widget Page Development
+            - [Widget Page Capability Overview](arkts-ui-widget-page-overview.md)
+            - [Using Animations in the Widget](arkts-ui-widget-page-animation.md)
+            - [Applying Custom Drawing in the Widget](arkts-ui-widget-page-custom-drawing.md)
+          - Widget Event Development
+            - [Widget Event Capability Overview](arkts-ui-widget-event-overview.md)
+            - [Redirecting to a UIAbility Through the router Event](arkts-ui-widget-event-router.md)
+            - [Launching a UIAbility in the Background Through the call Event](arkts-ui-widget-event-call.md)
+            - [Updating Widget Content Through the message Event](arkts-ui-widget-event-formextensionability.md)
+            - [Updating Widget Content Through the router or call Event](arkts-ui-widget-event-uiability.md)
+          - Widget Data Interaction
+            - [Widget Data Interaction Overview](arkts-ui-widget-interaction-overview.md)
+            - [Configuring a Widget to Update Periodically](arkts-ui-widget-update-by-time.md)
+            - [Updating Local and Online Images in the Widget](arkts-ui-widget-image-update.md)
+            - [Updating Widget Content by State](arkts-ui-widget-update-by-status.md)
+            - [Updating Widget Content by Widget Host (for System Applications Only)](arkts-ui-widget-content-update.md)
+      - [Developing a JS Widget](js-ui-widget-development.md)
     - [AbilityStage Component Container](abilitystage.md)
     - [Context](application-context-stage.md)
     - Want
       - [Want Overview](want-overview.md)
       - [Matching Rules of Explicit Want and Implicit Want](explicit-implicit-want-mappings.md)
       - [Common action and entities Values](actions-entities.md)
-      - [Using Explicit Want to Start an Ability](ability-startup-with-explicit-want.md)
+      - [Using Explicit Want to Start an Application Component](ability-startup-with-explicit-want.md)
       - [Using Implicit Want to Open a Website](ability-startup-with-implicit-want.md)
       - [Using Want to Share Data Between Applications](data-share-via-want.md)
     - [Component Startup Rules](component-startup-rules.md)
@@ -37,8 +62,8 @@
       - [Cross-Device Migration (for System Applications Only)](hop-cross-device-migration.md)
       - [Multi-device Collaboration (for System Applications Only)](hop-multi-device-collaboration.md)
     - [Subscribing to System Environment Variable Changes](subscribe-system-environment-variable-changes.md)
-  - IPC
-    - [Process Model](process-model-stage.md)
+  - Process Model
+    - [Process Model Overview](process-model-stage.md)
     - Common Events
       - [Introduction to Common Events](common-event-overview.md)
       - Common Event Subscription
@@ -47,14 +72,15 @@
         - [Subscribing to Common Events in Static Mode (for System Applications Only)](common-event-static-subscription.md)
         - [Unsubscribing from Common Events](common-event-unsubscription.md)
       - [Publishing Common Events](common-event-publish.md)
+      - [Removing Sticky Common Events (for System Applications Only)](common-event-remove-sticky.md)
     - [Background Services](background-services.md)
-  - Inter-Thread Communication
-    - [Thread Model](thread-model-stage.md)
+  - Thread Model
+    - [Thread Model Overview](thread-model-stage.md)
     - [Using Emitter for Inter-Thread Communication](itc-with-emitter.md)
     - [Using Worker for Inter-Thread Communication](itc-with-worker.md)
   - Mission Management
     - [Mission Management Scenarios](mission-management-overview.md)
-    - [Mission Management and Launch Type](mission-management-launch-type.md)
+    - [Mission and Launch Type](mission-management-launch-type.md)
     - [Page Stack and MissionList](page-mission-stack.md)
     - [Setting the Icon and Name of a Mission Snapshot](mission-set-icon-name-for-task-snapshot.md)
   - [Application Configuration File](config-file-stage.md)
@@ -94,12 +120,12 @@
     - [Context](application-context-fa.md)
     - [Want](want-fa.md)
     - [Component Startup Rules](component-startup-rules-fa.md)
-  - IPC
-    - [Process Model](process-model-fa.md)
+  - Process Model
+    - [Process Model Overview](process-model-fa.md)
     - [Common Events](common-event-fa.md)
     - [Background Services](rpc.md)
-  - Inter-Thread Communication
-    - [Thread Model](thread-model-fa.md)
+  - Thread Model
+    - [Thread Model Overview](thread-model-fa.md)
     - [Inter-Thread Communication](itc-fa-overview.md)
   - [Mission Management](mission-management-fa.md)
   - [Application Configuration File](config-file-fa.md)

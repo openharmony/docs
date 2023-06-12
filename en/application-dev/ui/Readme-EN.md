@@ -1,36 +1,68 @@
 # UI Development
 
 - [ArkUI Overview](arkui-overview.md)
-- ArkTS-based Declarative Development Paradigm
-    - [Overview](ui-ts-overview.md)
-    - [Declarative UI Development Guidelines](ui-ts-developing-intro.md)
-    - Declarative UI Development Examples
-      - [Creating a Simple Page](ui-ts-creating-simple-page.md)
-      - Building a Comprehensive Example
-        - [Building a Food Data Model](ui-ts-building-data-model.md)
-        - [Building a Food Category List Layout](ui-ts-building-category-list-layout.md)
-        - [Building a Food Category Grid Layout](ui-ts-building-category-grid-layout.md)
-        - [Implementing Page Redirection and Data Transmission](ui-ts-page-redirection-data-transmission.md)    
-      - Adding a  Splash Screen Animation
-        - [Using the Drawing Feature](ui-ts-drawing-feature.md)
-        - [Using the Animation Feature](ui-ts-animation-feature.md)
-    - [Common Components](ui-ts-components-intro.md)
-    - Common Layout Development
-        - Adaptive Layouts
-            - [Linear Layout](ui-ts-layout-linear.md)
-            - [Statck Layout](ui-ts-layout-stack.md)
-            - [Flex Layout](ui-ts-layout-flex.md)
-            - [Grid Layout](ui-ts-layout-grid.md)
-        - Responsive Layouts
-            - [Grid Layout](ui-ts-layout-grid-container-new.md)
-            - [Media Query](ui-ts-layout-mediaquery.md)
-    - [Custom Component Lifecycle Callbacks](ui-ts-custom-component-lifecycle-callbacks.md)
-    - [Web Component Development](ui-ts-components-web.md)
-    - [Recommendations for Improving Performance](ui-ts-performance-improvement-recommendation.md)
-- JavaScript-compatible Web-like Development Paradigm
-    - [Overview](ui-js-overview.md)
-    - Framework Overview
-        - [File Organization](js-framework-file.md)
+- UI Development (ArkTS-based Declarative Development Paradigm)
+  - [UI Development (ArkTS-based Declarative Development Paradigm) Overview](arkts-ui-development-overview.md)
+  - Layout Development
+    - [Layout Overview](arkts-layout-development-overview.md)
+    - Building a Layout
+      - [Linear Layout](arkts-layout-development-linear.md)
+      - [Stack Layout](arkts-layout-development-stack-layout.md)
+      - [Flex Layout](arkts-layout-development-flex-layout.md)
+      - [Relative Layout](arkts-layout-development-relative-layout.md)
+      - [Responsive Grid Layout](arkts-layout-development-grid-layout.md)
+      - [Media Query](arkts-layout-development-media-query.md)
+      - [Creating a List](arkts-layout-development-create-list.md)
+      - [Creating a Grid](arkts-layout-development-create-grid.md)
+      - [Creating a Swiper](arkts-layout-development-create-looping.md)
+    - [Improving Layout Performance](arkts-layout-development-performance-boost.md)
+  - Adding a Component
+    - Adding a Common Component
+      - [Button](arkts-common-components-button.md)
+      - [Radio Button](arkts-common-components-radio-button.md)
+      - [Toggle](arkts-common-components-switch.md)
+      - [Progress Indicator](arkts-common-components-progress-indicator.md)
+      - [Text Display](arkts-common-components-text-display.md)
+      - [Text Input](arkts-common-components-text-input.md)
+      - [Custom Dialog Box](arkts-common-components-custom-dialog.md)
+      - [Video Playback](arkts-common-components-video-player.md)
+      - [XComponent](arkts-common-components-xcomponent.md)
+    - Adding a Bubble and Menu
+      - [Bubble](arkts-popup-and-menu-components-popup.md)
+      - [Menu](arkts-popup-and-menu-components-menu.md)
+  - Setting Page Routing and Component Navigation
+    - [Page Routing](arkts-routing.md)
+    - Component Navigation
+      - [Navigation](arkts-navigation-navigation.md)
+      - [Tabs](arkts-navigation-tabs.md)
+  - Using Graphics
+    - [Displaying Images](arkts-graphics-display.md)
+    - [Drawing Geometric Shapes](arkts-geometric-shape-drawing.md)
+    - [Drawing Custom Graphics on the Canvas](arkts-drawing-customization-on-canvas.md)
+  - Using Animation
+    - [Animation Overview](arkts-animation-overview.md)
+    - Animation Within a Page
+      - [Layout Update Animation](arkts-layout-update-animation.md)
+      - [Transition Animation Within a Component](arkts-transition-animation-within-component.md)
+      - [Spring Curve Animation](arkts-spring-animation.md)
+    - Animation Between Pages
+      - [Zoom Animation](arkts-zoom-animation.md)
+      - [Page Transition Animation](arkts-page-transition-animation.md)
+  - Using Interaction Events
+    - [Interaction Event Overview](arkts-event-overview.md)
+    - Universal Events
+      - [Touchscreen Event](arkts-common-events-touch-screen-event.md)
+      - [Keyboard and Mouse Event](arkts-common-events-device-input-event.md)
+      - [Focus Event](arkts-common-events-focus-event.md)
+    - Gesture Events
+      - [Gesture Binding](arkts-gesture-events-binding.md)
+      - [Single Gesture](arkts-gesture-events-single-gesture.md)
+      - [Combined Gestures](arkts-gesture-events-combined-gestures.md)
+  - [Recommendations for Improving Performance](arkts-performance-improvement-recommendation.md)
+- UI Development (JavaScript-compatible Web-like Development Paradigm)
+  - [UI Development (JavaScript-compatible Web-like Development Paradigm) Overview](ui-js-overview.md)
+  - Framework Overview
+    - [File Organization](js-framework-file.md)
         - ["js" Tag](js-framework-js-tag.md)
         - [app.js](js-framework-js-file.md)
         - Syntax

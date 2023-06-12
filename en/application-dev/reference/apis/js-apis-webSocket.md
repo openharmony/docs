@@ -67,7 +67,7 @@ ws.connect(defaultIpAddress, (err, value) => {
 });
 ```
 
-## webSocket.createWebSocket
+## webSocket.createWebSocket<sup>6+</sup>
 
 createWebSocket(): WebSocket
 
@@ -87,11 +87,11 @@ Creates a WebSocket connection. You can use this API to create or close a WebSoc
 let ws = webSocket.createWebSocket();
 ```
 
-## WebSocket
+## WebSocket<sup>6+</sup>
 
 Defines a **WebSocket** object. Before invoking WebSocket APIs, you need to call [webSocket.createWebSocket](#websocketcreatewebsocket) to create a **WebSocket** object.
 
-### connect
+### connect<sup>6+</sup>
 
 connect(url: string, callback: AsyncCallback\<boolean\>): void
 
@@ -132,7 +132,7 @@ ws.connect(url, (err, value) => {
 });
 ```
 
-### connect
+### connect<sup>6+</sup>
 
 connect(url: string, options: WebSocketRequestOptions, callback: AsyncCallback\<boolean\>): void
 
@@ -179,7 +179,7 @@ ws.connect(url, {
 });
 ```
 
-### connect
+### connect<sup>6+</sup>
 
 connect(url: string, options?: WebSocketRequestOptions): Promise\<boolean\>
 
@@ -225,7 +225,7 @@ promise.then((value) => {
 });
 ```
 
-### send
+### send<sup>6+</sup>
 
 send(data: string | ArrayBuffer, callback: AsyncCallback\<boolean\>): void
 
@@ -265,7 +265,7 @@ ws.connect(url, (err, value) => {
 });
 ```
 
-### send
+### send<sup>6+</sup>
 
 send(data: string | ArrayBuffer): Promise\<boolean\>
 
@@ -309,7 +309,7 @@ ws.connect(url, (err, value) => {
 });
 ```
 
-### close
+### close<sup>6+</sup>
 
 close(callback: AsyncCallback\<boolean\>): void
 
@@ -345,7 +345,7 @@ ws.close((err, value) => {
 });
 ```
 
-### close
+### close<sup>6+</sup>
 
 close(options: WebSocketCloseOptions, callback: AsyncCallback\<boolean\>): void
 
@@ -385,7 +385,7 @@ ws.close({
 });
 ```
 
-### close
+### close<sup>6+</sup>
 
 close(options?: WebSocketCloseOptions): Promise\<boolean\>
 
@@ -429,7 +429,7 @@ promise.then((value) => {
 });
 ```
 
-### on('open')
+### on('open')<sup>6+</sup>
 
 on(type: 'open', callback: AsyncCallback\<Object\>): void
 
@@ -453,7 +453,7 @@ ws.on('open', (err, value) => {
 });
 ```
 
-### off('open')
+### off('open')<sup>6+</sup>
 
 off(type: 'open', callback?: AsyncCallback\<Object\>): void
 
@@ -483,7 +483,7 @@ ws.on('open', callback1);
 ws.off('open', callback1);
 ```
 
-### on('message')
+### on('message')<sup>6+</sup>
 
 on(type: 'message', callback: AsyncCallback\<string | ArrayBuffer\>): void
 
@@ -510,7 +510,7 @@ ws.on('message', (err, value) => {
 });
 ```
 
-### off('message')
+### off('message')<sup>6+</sup>
 
 off(type: 'message', callback?: AsyncCallback\<string | ArrayBuffer\>): void
 
@@ -536,7 +536,7 @@ let ws = webSocket.createWebSocket();
 ws.off('message');
 ```
 
-### on('close')
+### on('close')<sup>6+</sup>
 
 on(type: 'close', callback: AsyncCallback\<{ code: number, reason: string }\>): void
 
@@ -560,7 +560,7 @@ ws.on('close', (err, value) => {
 });
 ```
 
-### off('close')
+### off('close')<sup>6+</sup>
 
 off(type: 'close', callback?: AsyncCallback\<{ code: number, reason: string }\>): void
 
@@ -585,7 +585,7 @@ let ws = webSocket.createWebSocket();
 ws.off('close');
 ```
 
-### on('error')
+### on('error')<sup>6+</sup>
 
 on(type: 'error', callback: ErrorCallback): void
 
@@ -609,7 +609,7 @@ ws.on('error', (err) => {
 });
 ```
 
-### off('error')
+### off('error')<sup>6+</sup>
 
 off(type: 'error', callback?: ErrorCallback): void
 

@@ -46,37 +46,38 @@
    
    ```ts
    let subscriber = {
-       onConsume: function (data) {
-           let req = data.request;
-           console.info('[ANS] onConsume callback req.id: ' + req.id);
-       },
-       onCancel: function (data) {
-           let req = data.request;
-           console.info('[ANS] onCancel callback req.id: : ' + req.id);
-       },
-       onUpdate: function (data) {
-           console.info('[ANS] onUpdate in test');
-       },
-       onConnect: function () {
-           console.info('[ANS] onConnect in test');
-       },
-       onDisconnect: function () {
-           console.info('[ANS] onDisConnect in test');
-       },
-       onDestroy: function () {
-           console.info('[ANS] onDestroy in test');
-       },
+     onConsume: function (data) {
+       let req = data.request;
+       console.info(`onConsume callback. req.id: ${req.id}`);
+     },
+     onCancel: function (data) {
+       let req = data.request;
+       console.info(`onCancel callback. req.id: ${req.id}`);
+     },
+     onUpdate: function (data) {
+       let req = data.request;
+       console.info(`onUpdate callback. req.id: ${req.id}`);
+     },
+     onConnect: function () {
+       console.info(`onConnect callback.}`);
+     },
+     onDisconnect: function () {
+       console.info(`onDisconnect callback.}`);
+     },
+     onDestroy: function () {
+       console.info(`onDestroy callback.}`);
+     },
    };
    ```
-
+   
 4. 发起通知订阅。
    
    ```ts
    notificationSubscribe.subscribe(subscriber, (err, data) => { // callback形式调用异步接口
      if (err) {
-       console.error(`[ANS] subscribe failed, code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to subscribe notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info(`[ANS] subscribeTest success : + ${data}`);
+     console.info(`Succeeded in subscribing to notification. Data: ${data}`);
    });
    ```

@@ -41,6 +41,8 @@ createBundleContext(bundleName: string): Context;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
 | 名称       | 类型                     | 必填   | 说明            |
@@ -102,6 +104,8 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 根据Bundle名称和模块名称创建上下文。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 

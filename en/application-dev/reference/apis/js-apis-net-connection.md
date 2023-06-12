@@ -11,11 +11,11 @@ The network connection management module provides basic network management capab
 import connection from '@ohos.net.connection'
 ```
 
-## connection.createNetConnection
+## connection.createNetConnection<sup>8+</sup>
 
 createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection
 
-Creates a **NetConnection** object. **netSpecifier** specifies the network, and **timeout** specifies the timeout interval in ms. **timeout** is configurable only when **netSpecifier** is specified. If neither of them is present, the default network is used.
+Creates a **NetConnection** object. **netSpecifier** specifies the network, and **timeout** specifies the timeout duration in ms. **timeout** is configurable only when **netSpecifier** is specified. If neither of them is present, the default network is used.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
@@ -23,8 +23,8 @@ Creates a **NetConnection** object. **netSpecifier** specifies the network, and 
 
 | Name      | Type                         | Mandatory| Description                                                        |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| netSpecifier | [NetSpecifier](#netspecifier) | No  | Network specifier. If this parameter is not set, the default network is used.                  |
-| timeout      | number                        | No  | Timeout interval for obtaining the network specified by **netSpecifier**. This parameter is valid only when **netSpecifier** is set.|
+| netSpecifier | [NetSpecifier](#netspecifier) | No  | Network specifier, which specifies the characteristics of a network. If this parameter is not set or is set to **undefined**, the default network is used.                  |
+| timeout      | number                        | No  | Timeout duration for obtaining the network specified by **netSpecifier**. This parameter is valid only when **netSpecifier** is specified. The default value is **0** if **netSpecifier** is **undefined**.|
 
 **Return value**
 
@@ -46,7 +46,7 @@ let netConnectionCellular = connection.createNetConnection({
 })
 ```
 
-## connection.getDefaultNet
+## connection.getDefaultNet<sup>8+</sup>
 
 getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 
@@ -79,7 +79,7 @@ connection.getDefaultNet(function (error, data) {
 })
 ```
 
-## connection.getDefaultNet
+## connection.getDefaultNet<sup>8+</sup>
 
 getDefaultNet(): Promise\<NetHandle>
 
@@ -444,7 +444,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## connection.getAllNets
+## connection.getAllNets<sup>8+</sup>
 
 getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 
@@ -477,7 +477,7 @@ connection.getAllNets(function (error, data) {
 });
 ```
 
-## connection.getAllNets
+## connection.getAllNets<sup>8+</sup>
 
 getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 
@@ -509,7 +509,7 @@ connection.getAllNets().then(function (data) {
 });
 ```
 
-## connection.getConnectionProperties
+## connection.getConnectionProperties<sup>8+</sup>
 
 getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void
 
@@ -547,7 +547,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## connection.getConnectionProperties
+## connection.getConnectionProperties<sup>8+</sup>
 
 getConnectionProperties(netHandle: NetHandle): Promise\<ConnectionProperties>
 
@@ -589,7 +589,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## connection.getNetCapabilities
+## connection.getNetCapabilities<sup>8+</sup>
 
 getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilities>): void
 
@@ -627,7 +627,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## connection.getNetCapabilities
+## connection.getNetCapabilities<sup>8+</sup>
 
 getNetCapabilities(netHandle: NetHandle): Promise\<NetCapabilities>
 
@@ -734,7 +734,7 @@ connection.isDefaultNetMetered().then(function (data) {
 })
 ```
 
-## connection.hasDefaultNet
+## connection.hasDefaultNet<sup>8+</sup>
 
 hasDefaultNet(callback: AsyncCallback\<boolean>): void
 
@@ -767,7 +767,7 @@ connection.hasDefaultNet(function (error, data) {
 })
 ```
 
-## connection.hasDefaultNet
+## connection.hasDefaultNet<sup>8+</sup>
 
 hasDefaultNet(): Promise\<boolean>
 
@@ -799,7 +799,7 @@ connection.hasDefaultNet().then(function (data) {
 })
 ```
 
-## connection.enableAirplaneMode
+## connection.enableAirplaneMode<sup>8+</sup>
 
 enableAirplaneMode(callback: AsyncCallback\<void>): void
 
@@ -821,6 +821,7 @@ Enables the airplane mode. This API uses an asynchronous callback to return the 
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
+| 202 | Non-system applications use system APIs.|
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -832,7 +833,7 @@ connection.enableAirplaneMode(function (error) {
 })
 ```
 
-## connection.enableAirplaneMode
+## connection.enableAirplaneMode<sup>8+</sup>
 
 enableAirplaneMode(): Promise\<void>
 
@@ -854,6 +855,7 @@ Enables the airplane mode. This API uses a promise to return the result.
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
+| 202 | Non-system applications use system APIs.|
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -865,7 +867,7 @@ connection.enableAirplaneMode().then(function (error) {
 })
 ```
 
-## connection.disableAirplaneMode
+## connection.disableAirplaneMode<sup>8+</sup>
 
 disableAirplaneMode(callback: AsyncCallback\<void>): void
 
@@ -887,6 +889,7 @@ Disables the airplane mode. This API uses an asynchronous callback to return the
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
+| 202 | Non-system applications use system APIs.|
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -898,7 +901,7 @@ connection.disableAirplaneMode(function (error) {
 })
 ```
 
-## connection.disableAirplaneMode
+## connection.disableAirplaneMode<sup>8+</sup>
 
 disableAirplaneMode(): Promise\<void>
 
@@ -920,6 +923,7 @@ Disables the airplane mode. This API uses a promise to return the result.
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
+| 202 | Non-system applications use system APIs.|
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -931,7 +935,7 @@ connection.disableAirplaneMode().then(function (error) {
 })
 ```
 
-## connection.reportNetConnected
+## connection.reportNetConnected<sup>8+</sup>
 
 reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
 
@@ -968,7 +972,7 @@ connection.getDefaultNet().then(function (netHandle) {
 });
 ```
 
-## connection.reportNetConnected
+## connection.reportNetConnected<sup>8+</sup>
 
 reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 
@@ -1009,7 +1013,7 @@ connection.getDefaultNet().then(function (netHandle) {
 });
 ```
 
-## connection.reportNetDisconnected
+## connection.reportNetDisconnected<sup>8+</sup>
 
 reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1046,7 +1050,7 @@ connection.getDefaultNet().then(function (netHandle) {
 });
 ```
 
-## connection.reportNetDisconnected
+## connection.reportNetDisconnected<sup>8+</sup>
 
 reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 
@@ -1087,7 +1091,7 @@ connection.getDefaultNet().then(function (netHandle) {
 });
 ```
 
-## connection.getAddressesByName
+## connection.getAddressesByName<sup>8+</sup>
 
 getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
 
@@ -1124,7 +1128,7 @@ connection.getAddressesByName(host, function (error, data) {
 })
 ```
 
-## connection.getAddressesByName
+## connection.getAddressesByName<sup>8+</sup>
 
 getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
@@ -1174,7 +1178,7 @@ Represents the network connection handle.
 > When a device changes to the network disconnected state, the **netLost** event will be triggered.
 > When a device switches from a Wi-Fi network to a cellular network, the **netLost** event will be first triggered to indicate that the Wi-Fi network is lost and then the **netAvaliable** event will be triggered to indicate that the cellular network is available.
 
-### register
+### register<sup>8+</sup>
 
 register(callback: AsyncCallback\<void>): void
 
@@ -1195,9 +1199,10 @@ Registers a listener for network status changes.
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
-| 2101008 | The callback is not exists.      |
+| 2101008 | The same callback exists.     |
 | 2101022 | The number of requests exceeded the maximum. |
 
 **Example**
@@ -1208,7 +1213,7 @@ netConnection.register(function (error) {
 })
 ```
 
-### unregister
+### unregister<sup>8+</sup>
 
 unregister(callback: AsyncCallback\<void>): void
 
@@ -1226,9 +1231,11 @@ Unregisters the listener for network status changes.
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
+| 201 | Permission denied.|
+| 401 | Parameter error.         |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
-| 2101007 | The same callback exists.      |
+| 2101007 | The callback is not exists.      |
 
 **Example**
 
@@ -1238,7 +1245,7 @@ netConnection.unregister(function (error) {
 })
 ```
 
-### on('netAvailable')
+### on('netAvailable')<sup>8+</sup>
 
 on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 
@@ -1277,7 +1284,7 @@ netCon.unregister(function (error) {
 })
 ```
 
-### on('netBlockStatusChange')
+### on('netBlockStatusChange')<sup>8+</sup>
 
 on(type: 'netBlockStatusChange', callback: Callback&lt;{ netHandle: NetHandle, blocked: boolean }&gt;): void
 
@@ -1316,7 +1323,7 @@ netCon.unregister(function (error) {
 })
 ```
 
-### on('netCapabilitiesChange')
+### on('netCapabilitiesChange')<sup>8+</sup>
 
 on(type: 'netCapabilitiesChange', callback: Callback<{ netHandle: NetHandle, netCap: NetCapabilities }>): void
 
@@ -1355,7 +1362,7 @@ netCon.unregister(function (error) {
 })
 ```
 
-### on('netConnectionPropertiesChange')
+### on('netConnectionPropertiesChange')<sup>8+</sup>
 
 on(type: 'netConnectionPropertiesChange', callback: Callback<{ netHandle: NetHandle, connectionProperties:
 ConnectionProperties }>): void
@@ -1395,7 +1402,7 @@ netCon.unregister(function (error) {
 })
 ```
 
-### on('netLost')
+### on('netLost')<sup>8+</sup>
 
 on(type: 'netLost', callback: Callback\<NetHandle>): void
 
@@ -1434,7 +1441,7 @@ netCon.unregister(function (error) {
 })
 ```
 
-### on('netUnavailable')
+### on('netUnavailable')<sup>8+</sup>
 
 on(type: 'netUnavailable', callback: Callback\<void>): void
 
@@ -1473,7 +1480,7 @@ netCon.unregister(function (error) {
 })
 ```
 
-## NetHandle
+## NetHandle<sup>8+</sup>
 
 Defines the handle of the data network.
 
@@ -1640,7 +1647,7 @@ connection.getDefaultNet().then((netHandle) => {
 })
 ```
 
-### getAddressesByName
+### getAddressesByName<sup>8+</sup>
 
 getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
 
@@ -1679,7 +1686,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-### getAddressesByName
+### getAddressesByName<sup>8+</sup>
 
 getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
@@ -1722,7 +1729,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-### getAddressByName
+### getAddressByName<sup>8+</sup>
 
 getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 
@@ -1761,7 +1768,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-### getAddressByName
+### getAddressByName<sup>8+</sup>
 
 getAddressByName(host: string): Promise\<NetAddress>
 
@@ -1804,7 +1811,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## NetCap
+## NetCap<sup>8+</sup>
 
 Defines the network capability.
 
@@ -1818,7 +1825,7 @@ Defines the network capability.
 | NET_CAPABILITY_NOT_VPN | 15 | The network does not use a virtual private network (VPN).|
 | NET_CAPABILITY_VALIDATED | 16   | The Internet access capability of the network is successfully verified by the connection management module.|
 
-## NetBearType
+## NetBearType<sup>8+</sup>
 
 Enumerates network types.
 
@@ -1840,9 +1847,9 @@ Defines the global HTTP proxy configuration of the network.
 | ------ | ------ | --- |------------------------- |
 | host  | string | No |  Host name of the proxy server.|
 | port  | number | No |  Host port.|
-| exclusionList  | Array<string> | No |  List of hosts that do not use the proxy server.|
+| exclusionList  | Array<string> | No |  Exclusion list of hosts that do not use the proxy server. The length of the combined elements in the list cannot exceed 96 bytes.<br>For example, the length of **baidu.com,zhihu.com** is 20 bytes.|
 
-## NetSpecifier
+## NetSpecifier<sup>8+</sup>
 
 Provides an instance that bears data network capabilities.
 
@@ -1853,7 +1860,7 @@ Provides an instance that bears data network capabilities.
 | netCapabilities         | [NetCapabilities](#netcapabilities) |  Yes | Network transmission capabilities and bearer types of the data network.                               |
 | bearerPrivateIdentifier | string                              |  No |  Network identifier. The identifier of a Wi-Fi network is **wifi**, and that of a cellular network is **slot0** (corresponding to SIM card 1).|
 
-## NetCapabilities
+## NetCapabilities<sup>8+</sup>
 
 Defines the network capability set.
 
@@ -1866,7 +1873,7 @@ Defines the network capability set.
 | networkCap            | Array\<[NetCap](#netcap)>           |  No|  Network capability.          |
 | bearerTypes           | Array\<[NetBearType](#netbeartype)> |  Yes|  Network type.              |
 
-## ConnectionProperties
+## ConnectionProperties<sup>8+</sup>
 
 Defines the network connection properties.
 
@@ -1881,7 +1888,7 @@ Defines the network connection properties.
 | dnses     | Array\<[NetAddress](#netaddress)> | Yes|Network address. For details, see [NetAddress](#netaddress).|
 | mtu           | number                             | Yes|Maximum transmission unit (MTU).  |
 
-## RouteInfo
+## RouteInfo<sup>8+</sup>
 
 Defines network route information.
 
@@ -1895,7 +1902,7 @@ Defines network route information.
 | hasGateway     | boolean                     | Yes|Whether a gateway is present.    |
 | isDefaultRoute | boolean                     | Yes|Whether the route is the default route.|
 
-## LinkAddress
+## LinkAddress<sup>8+</sup>
 
 Defines network link information.
 
@@ -1906,7 +1913,7 @@ Defines network link information.
 | address      | [NetAddress](#netaddress) | Yes| Link address.          |
 | prefixLength | number                    | Yes|Length of the link address prefix.|
 
-## NetAddress
+## NetAddress<sup>8+</sup>
 
 Defines a network address.
 

@@ -253,7 +253,7 @@ resourceManager.getResourceManager((error, mgr) => {
 
 | 名称     | 类型    | 可读   | 可写  | 说明           |
 | ------ | ------  | ---- | ---- | ------------------ |
-| fd     | number  | 是    | 否 | rawfile的descriptor |
+| fd     | number  | 是    | 否 | rawfile所在hap的文件描述符 |
 | offset | number  | 是    | 否 | rawfile的起始偏移量      |
 | length | number  | 是    | 否 | rawfile的文件长度       |
 
@@ -343,9 +343,9 @@ getStringValue(resId: number): Promise&lt;string&gt;
 | --------------------- | ----------- |
 | Promise&lt;string&gt; | 资源ID值对应的字符串 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -382,9 +382,9 @@ getStringValue(resource: Resource, callback: AsyncCallback&lt;string&gt;): void
 | resource | [Resource](#resource9)      | 是    | 资源信息            |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -434,9 +434,9 @@ getStringValue(resource: Resource): Promise&lt;string&gt;
 | --------------------- | ---------------- |
 | Promise&lt;string&gt; | resource对象对应的字符串 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -478,9 +478,9 @@ getStringArrayValue(resId: number, callback: AsyncCallback&lt;Array&lt;string&gt
 | resId    | number                                   | 是    | 资源ID值             |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 异步回调，用于返回获取的字符串数组 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -524,9 +524,9 @@ getStringArrayValue(resId: number): Promise&lt;Array&lt;string&gt;&gt;
 | ---------------------------------- | ------------- |
 | Promise&lt;Array&lt;string&gt;&gt; | 资源ID值对应的字符串数组 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -562,9 +562,9 @@ getStringArrayValue(resource: Resource, callback: AsyncCallback&lt;Array&lt;stri
 | resource | [Resource](#resource9)                   | 是    | 资源信息              |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 异步回调，用于返回获取的字符串数组 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -612,9 +612,9 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
 | ---------------------------------- | ------------------ |
 | Promise&lt;Array&lt;string&gt;&gt; | resource对象对应的字符串数组 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -640,7 +640,6 @@ getStringArrayValue(resource: Resource): Promise&lt;Array&lt;string&gt;&gt;
   }
   ```
 
-
 ### getMediaContent<sup>9+</sup>
 
 getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
@@ -656,9 +655,9 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 | resId    | number                          | 是    | 资源ID值              |
 | callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -680,6 +679,45 @@ getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
   }
   ```
 
+### getMediaContent<sup>10+</sup>
+
+getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
+
+用户获取指定资源ID对应的指定屏幕密度媒体文件内容，使用callback形式返回字节数组。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名      | 类型                              | 必填   | 说明                 |
+| -------- | ------------------------------- | ---- | ------------------ |
+| resId    | number                          | 是    | 资源ID值              |
+| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**示例：** 
+  ```ts
+  try {
+    this.context.resourceManager.getMediaContent($r('app.media.test').id, 120, (error, value) => {
+        if (error != null) {
+            console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+        } else {
+            let media = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
 
 ### getMediaContent<sup>9+</sup>
 
@@ -701,9 +739,9 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
 | ------------------------- | -------------- |
 | Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -717,6 +755,49 @@ getMediaContent(resId: number): Promise&lt;Uint8Array&gt;
           let media = value;
       }).catch(error => {
           console.log("getMediaContent promise error is " + error);
+      });
+  } catch (error) {
+    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getMediaContent<sup>10+</sup>
+
+getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
+
+用户获取指定资源ID对应的指定屏幕密度媒体文件内容，使用Promise形式返回字节数组。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resId | number | 是    | 资源ID值 |
+| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+
+**返回值：**
+
+| 类型                        | 说明             |
+| ------------------------- | -------------- |
+| Promise&lt;Uint8Array&gt; | 资源ID值对应的媒体文件内容 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**示例：** 
+  ```ts
+  try {
+      this.context.resourceManager.getMediaContent($r('app.media.test').id, 120).then(value => {
+          let media = value;
+      }).catch(error => {
+          console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
       });
   } catch (error) {
     console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
@@ -738,9 +819,9 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
 | resource | [Resource](#resource9)          | 是    | 资源信息               |
 | callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -758,6 +839,51 @@ getMediaContent(resource: Resource, callback: AsyncCallback&lt;Uint8Array&gt;): 
     this.context.resourceManager.getMediaContent(resource, (error, value) => {
         if (error != null) {
           console.log("error is " + error);
+        } else {
+          let media = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getMediaContent<sup>10+</sup>
+
+getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
+
+用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用callback形式返回字节数组。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名      | 类型                              | 必填   | 说明                 |
+| -------- | ------------------------------- | ---- | ------------------ |
+| resource | [Resource](#resource9)          | 是    | 资源信息               |
+| [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**示例：** 
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.media.test').id
+  };
+  try {
+    this.context.resourceManager.getMediaContent(resource, 120, (error, value) => {
+        if (error != null) {
+          console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
         } else {
           let media = value;
         }
@@ -787,9 +913,9 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
 | ------------------------- | ------------------- |
 | Promise&lt;Uint8Array&gt; | resource对象对应的媒体文件内容 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -814,6 +940,53 @@ getMediaContent(resource: Resource): Promise&lt;Uint8Array&gt;
   }
   ```
 
+### getMediaContent<sup>10+</sup>
+
+getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
+
+用户获取指定resource对象对应的指定屏幕密度媒体文件内容，使用Promise形式返回字节数组。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名      | 类型                     | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
+| resource | [Resource](#resource9) | 是    | 资源信息 |
+| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+
+**返回值：**
+
+| 类型                        | 说明                  |
+| ------------------------- | ------------------- |
+| Promise&lt;Uint8Array&gt; | resource对象对应的媒体文件内容 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**示例：** 
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.media.test').id
+  };
+  try {
+    this.context.resourceManager.getMediaContent(resource, 120).then(value => {
+      let media = value;
+    }).catch(error => {
+      console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+    });
+  } catch (error) {
+    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
 
 ### getMediaContentBase64<sup>9+</sup>
 
@@ -830,9 +1003,9 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
 | resId    | number                      | 是    | 资源ID值                    |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -854,6 +1027,45 @@ getMediaContentBase64(resId: number, callback: AsyncCallback&lt;string&gt;): voi
   }
   ```
 
+### getMediaContentBase64<sup>10+</sup>
+
+getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt;string&gt;): void
+
+用户获取指定资源ID对应的指定屏幕密度图片资源Base64编码，使用callback形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名      | 类型                          | 必填   | 说明                       |
+| -------- | --------------------------- | ---- | ------------------------ |
+| resId    | number                      | 是    | 资源ID值                    |
+| [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**示例：** 
+  ```ts
+  try {
+    this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120, (error, value) => {
+        if (error != null) {
+            console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+        } else {
+            let media = value;
+        }
+    });       
+  } catch (error) {
+    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
 
 ### getMediaContentBase64<sup>9+</sup>
 
@@ -875,9 +1087,9 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
 | --------------------- | -------------------- |
 | Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -894,7 +1106,50 @@ getMediaContentBase64(resId: number): Promise&lt;string&gt;
     });
   } catch (error) {
     console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
-  } 
+  }
+  ```
+
+### getMediaContentBase64<sup>10+</sup>
+
+getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
+
+用户获取指定资源ID对应的指定屏幕密度图片资源Base64编码，使用Promise形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resId | number | 是    | 资源ID值 |
+| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+
+**返回值：**
+
+| 类型                    | 说明                   |
+| --------------------- | -------------------- |
+| Promise&lt;string&gt; | 资源ID值对应的图片资源Base64编码 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**示例：** 
+  ```ts
+  try {
+    this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120).then(value => {
+        let media = value;
+    }).catch(error => {
+        console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    });
+  } catch (error) {
+    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 ### getMediaContentBase64<sup>9+</sup>
@@ -912,9 +1167,9 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
 | resource | [Resource](#resource9)      | 是    | 资源信息                     |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -932,6 +1187,51 @@ getMediaContentBase64(resource: Resource, callback: AsyncCallback&lt;string&gt;)
     this.context.resourceManager.getMediaContentBase64(resource, (error, value) => {
         if (error != null) {
             console.log("error is " + error);
+        } else {
+            let media = value;
+        }
+    });
+  } catch (error) {
+    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getMediaContentBase64<sup>10+</sup>
+
+getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallback&lt;string&gt;): void
+
+用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用callback形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名      | 类型                          | 必填   | 说明                       |
+| -------- | --------------------------- | ---- | ------------------------ |
+| resource | [Resource](#resource9)      | 是    | 资源信息                     |
+| [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**示例：** 
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.media.test').id
+  };
+  try {
+    this.context.resourceManager.getMediaContentBase64(resource, 120, (error, value) => {
+        if (error != null) {
+            console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
         } else {
             let media = value;
         }
@@ -961,9 +1261,9 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
 | --------------------- | ------------------------- |
 | Promise&lt;string&gt; | resource对象对应的图片资源Base64编码 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -988,6 +1288,53 @@ getMediaContentBase64(resource: Resource): Promise&lt;string&gt;
   }
   ```
 
+### getMediaContentBase64<sup>10+</sup>
+
+getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt;
+
+用户获取指定resource对象对应的指定屏幕密度图片资源Base64编码，使用Promise形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名      | 类型                     | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
+| resource | [Resource](#resource9) | 是    | 资源信息 |
+| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+
+**返回值：**
+
+| 类型                    | 说明                        |
+| --------------------- | ------------------------- |
+| Promise&lt;string&gt; | resource对象对应的图片资源Base64编码 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**示例：** 
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.media.test').id
+  };
+  try {
+    this.context.resourceManager.getMediaContentBase64(resource, 120).then(value => {
+        let media = value;
+    }).catch(error => {
+        console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    });
+  } catch (error) {
+    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
 
 ### getConfiguration
 
@@ -1117,9 +1464,9 @@ getPluralStringValue(resId: number, num: number, callback: AsyncCallback&lt;stri
 | num      | number                      | 是    | 数量值                             |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据指定数量获取指定ID字符串表示的单复数字符串 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1164,9 +1511,9 @@ getPluralStringValue(resId: number, num: number): Promise&lt;string&gt;
 | --------------------- | ------------------------- |
 | Promise&lt;string&gt; | 根据提供的数量获取对应ID字符串表示的单复数字符串 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1203,9 +1550,9 @@ getPluralStringValue(resource: Resource, num: number, callback: AsyncCallback&lt
 | num      | number                      | 是    | 数量值                                  |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据指定数量获取指定resource对象表示的单复数字符串 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1255,9 +1602,9 @@ getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 | --------------------- | ------------------------------ |
 | Promise&lt;string&gt; | 根据提供的数量获取对应resource对象表示的单复数字符串 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1299,9 +1646,9 @@ getRawFileContent(path: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 | path     | string                          | 是    | rawfile文件路径             |
 | callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的rawfile文件内容 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1343,9 +1690,9 @@ getRawFileContent(path: string): Promise&lt;Uint8Array&gt;
 | ------------------------- | ----------- |
 | Promise&lt;Uint8Array&gt; | rawfile文件内容 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1380,9 +1727,9 @@ getRawFd(path: string, callback: AsyncCallback&lt;RawFileDescriptor&gt;): void
 | path     | string                                   | 是    | rawfile文件路径                      |
 | callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | 是    | 异步回调，用于返回获取的rawfile文件的descriptor |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1425,9 +1772,9 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
 | ---------------------------------------- | ------------------- |
 | Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | rawfile文件descriptor |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1446,6 +1793,86 @@ getRawFd(path: string): Promise&lt;RawFileDescriptor&gt;
   } catch (error) {
     console.error(`promise getRawFd failed, error code: ${error.code}, message: ${error.message}.`);
   };
+  ```
+
+### getRawFileList<sup>10+</sup>
+
+getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): void;
+
+用户获取resources/rawfile目录下文件夹及文件列表，使用callback形式返回文件列表的字符串数组。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名      | 类型                              | 必填   | 说明                      |
+| -------- | ------------------------------- | ---- | ----------------------- |
+| path     | string                          | 是    | rawfile文件夹路径             |
+| callback | AsyncCallback&lt;Array\<string\>&gt; | 是 | 异步回调，用于返回获取rawfile文件目录下的文件列表 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001005  | If the resource not found by path.       |
+
+**示例：** 
+  ```ts
+  try { // 传入""表示获取rawfile根目录下的文件列表
+    this.context.resourceManager.getRawFileList("", (error, value) => {
+        if (error != null) {
+            console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`)
+        } else {
+            let rawFile = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+      
+  ```
+
+### getRawFileList<sup>10+</sup>
+
+getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
+
+用户获取resources/rawfile目录下文件夹及文件列表，使用Promise形式返回文件列表字符串数组。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名  | 类型     | 必填   | 说明          |
+| ---- | ------ | ---- | ----------- |
+| path | string | 是    | rawfile文件夹路径 |
+
+**返回值：**
+
+| 类型                        | 说明          |
+| ------------------------- | ----------- |
+| Promise&lt;Array\<string\>&gt; | rawfile文件目录下的文件列表 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001005  | If the resource not found by path.          |
+
+**示例：** 
+  ```ts
+  try { // 传入""表示获取rawfile根目录下的文件列表
+    this.context.resourceManager.getRawFileList("").then(value => {
+        let rawFile = value;
+    }).catch(error => {
+        console.error(`promise getRawFileList failed, error code: ${error.code}, message: ${error.message}.`)
+    });
+  } catch (error) {
+    console.error(`promise getRawFileList failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 ### closeRawFileDescriptor<sup>8+</sup>
@@ -1521,9 +1948,9 @@ closeRawFd(path: string, callback: AsyncCallback&lt;void&gt;): void
 | path     | string                    | 是    | rawfile文件路径 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 异步回调        |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1563,9 +1990,9 @@ closeRawFd(path: string): Promise&lt;void&gt;
 | ------------------- | ---- |
 | Promise&lt;void&gt; | 无返回值 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1614,9 +2041,9 @@ getStringByName(resName: string, callback: AsyncCallback&lt;string&gt;): void
 | resName  | string                      | 是    | 资源名称            |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的字符串 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1660,9 +2087,9 @@ getStringByName(resName: string): Promise&lt;string&gt;
 | --------------------- | ---------- |
 | Promise&lt;string&gt; | 资源名称对应的字符串 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1698,9 +2125,9 @@ getStringArrayByName(resName: string, callback: AsyncCallback&lt;Array&lt;string
 | resName  | string                                   | 是    | 资源名称              |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是    | 异步回调，用于返回获取的字符串数组 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1743,9 +2170,9 @@ getStringArrayByName(resName: string): Promise&lt;Array&lt;string&gt;&gt;
 | ---------------------------------- | ------------ |
 | Promise&lt;Array&lt;string&gt;&gt; | 资源名称对应的字符串数组 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1781,15 +2208,14 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 | resName  | string                          | 是    | 资源名称               |
 | callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
 
 **示例：** 
   ```ts
@@ -1797,6 +2223,46 @@ getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
     this.context.resourceManager.getMediaByName("test", (error, value) => {
         if (error != null) {
             console.log("error is " + error);
+        } else {
+            let media = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getMediaByName<sup>10+</sup>
+
+getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
+
+用户获取指定资源ID对应的指定屏幕密度媒体文件内容，使用callback形式返回字节数组。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名      | 类型                              | 必填   | 说明                 |
+| -------- | ------------------------------- | ---- | ------------------ |
+| resName  | string                          | 是    | 资源名称               |
+| [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+| callback | AsyncCallback&lt;Uint8Array&gt; | 是    | 异步回调，用于返回获取的媒体文件内容 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+
+**示例：** 
+  ```ts
+  try {
+    this.context.resourceManager.getMediaByName("test", 120, (error, value) => {
+        if (error != null) {
+            console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
         } else {
             let media = value;
         }
@@ -1826,15 +2292,14 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
 | ------------------------- | ------------- |
 | Promise&lt;Uint8Array&gt; | 资源名称对应的媒体文件内容 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
 
 **示例：** 
   ```ts
@@ -1843,6 +2308,49 @@ getMediaByName(resName: string): Promise&lt;Uint8Array&gt;
         let media = value;
     }).catch(error => {
         console.log("getMediaByName promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getMediaByName<sup>10+</sup>
+
+getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
+
+用户获取指定资源名称对应的指定屏幕密度媒体文件内容，使用Promise形式返回字节数组。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
+| resName | string | 是    | 资源名称 |
+| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+
+**返回值：**
+
+| 类型                        | 说明            |
+| ------------------------- | ------------- |
+| Promise&lt;Uint8Array&gt; | 资源名称对应的媒体文件内容 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+
+**示例：** 
+  ```ts
+  try {
+    this.context.resourceManager.getMediaByName("test", 120).then(value => {
+        let media = value;
+    }).catch(error => {
+        console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
     console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`)
@@ -1864,15 +2372,14 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
 | resName  | string                      | 是    | 资源名称                     |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
 
 **示例：** 
   ```ts
@@ -1880,6 +2387,46 @@ getMediaBase64ByName(resName: string, callback: AsyncCallback&lt;string&gt;): vo
     this.context.resourceManager.getMediaBase64ByName("test", (error, value) => {
         if (error != null) {
             console.log("error is " + error);
+        } else {
+            let media = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getMediaBase64ByName<sup>10+</sup>
+
+getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&lt;string&gt;): void
+
+用户获取指定资源名称对应的指定屏幕密度图片资源Base64编码，使用callback形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名      | 类型                          | 必填   | 说明                       |
+| -------- | --------------------------- | ---- | ------------------------ |
+| resName  | string                      | 是    | 资源名称                     |
+| [density](#screendensity)  | number        | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+| callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，用于返回获取的图片资源Base64编码 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+
+**示例：** 
+  ```ts
+  try {
+    this.context.resourceManager.getMediaBase64ByName("test", 120, (error, value) => {
+        if (error != null) {
+            console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
         } else {
             let media = value;
         }
@@ -1909,15 +2456,14 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
 | --------------------- | ------------------- |
 | Promise&lt;string&gt; | 资源名称对应的图片资源Base64编码 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
 
 **示例：** 
   ```ts
@@ -1926,6 +2472,49 @@ getMediaBase64ByName(resName: string): Promise&lt;string&gt;
         let media = value;
     }).catch(error => {
         console.log("getMediaBase64ByName promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getMediaBase64ByName<sup>10+</sup>
+
+getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
+
+用户获取指定资源名称对应的指定屏幕密度图片资源Base64编码，使用Promise形式返回字符串。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：** 
+
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
+| resName | string | 是    | 资源名称 |
+| [density](#screendensity)  | number                          | 是    | 资源获取需要的屏幕密度，0表示默认屏幕密度    |
+
+**返回值：**
+
+| 类型                    | 说明                  |
+| --------------------- | ------------------- |
+| Promise&lt;string&gt; | 资源名称对应的图片资源Base64编码 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+
+**示例：** 
+  ```ts
+  try {
+    this.context.resourceManager.getMediaBase64ByName("test", 120).then(value => {
+        let media = value;
+    }).catch(error => {
+        console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
     console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`)
@@ -1948,9 +2537,9 @@ getPluralStringByName(resName: string, num: number, callback: AsyncCallback&lt;s
 | num      | number                      | 是    | 数量值                           |
 | callback | AsyncCallback&lt;string&gt; | 是    | 异步回调，返回根据传入的数量值获取资源名称对应的字符串资源 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -1995,9 +2584,9 @@ getPluralStringByName(resName: string, num: number): Promise&lt;string&gt;
 | --------------------- | ---------------------- |
 | Promise&lt;string&gt; | 根据传入的数量值获取资源名称对应的字符串资源 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2038,9 +2627,9 @@ getStringSync(resId: number): string
 | ------ | ----------- |
 | string | 资源ID值对应的字符串 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2078,9 +2667,9 @@ getStringSync(resId: number, ...args: Array<string | number>): string
 | ------ | ---------------------------- |
 | string | 资源ID值对应的格式化字符串|
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ----------------------------------------------- |
@@ -2118,9 +2707,9 @@ getStringSync(resource: Resource): string
 | ------ | ---------------- |
 | string | resource对象对应的字符串 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2163,9 +2752,9 @@ getStringSync(resource: Resource, ...args: Array<string | number>): string
 | ------ | ---------------------------- |
 | string | resource对象对应的格式化字符串|
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2208,9 +2797,9 @@ getStringByNameSync(resName: string): string
 | ------ | ---------- |
 | string | 资源名称对应的字符串 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2248,9 +2837,9 @@ getStringByNameSync(resName: string, ...args: Array<string | number>): string
 | ------ | ---------------------------- |
 | string | 资源名称对应的格式化字符串|
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2288,9 +2877,9 @@ getBoolean(resId: number): boolean
 | ------- | ------------ |
 | boolean | 资源ID值对应的布尔结果 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2326,9 +2915,9 @@ getBoolean(resource: Resource): boolean
 | ------- | ----------------- |
 | boolean | resource对象对应的布尔结果 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2370,9 +2959,9 @@ getBooleanByName(resName: string): boolean
 | ------- | ----------- |
 | boolean | 资源名称对应的布尔结果 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2407,11 +2996,11 @@ getNumber(resId: number): number
 
 | 类型     | 说明         |
 | ------ | ---------- | 
-| number | 资源ID值对应的数值。Integer对应的是原数值，float对应的是真实像素点值 |
-
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+| number | 资源ID值对应的数值。Integer对应的是原数值，float对应的是真实像素点值，具体参考示例代码 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2452,11 +3041,11 @@ getNumber(resource: Resource): number
 
 | 类型     | 说明              |
 | ------ | --------------- |
-| number | resource对象对应的数值。Integer对应的是原数值，float对应的是真实像素点值 |
-
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+| number | resource对象对应的数值。Integer对应的是原数值，float对应的是真实像素点值, 具体参考示例代码 |
 
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2498,9 +3087,9 @@ getNumberByName(resName: string): number
 | ------ | --------- |
 | number | 资源名称对应的数值 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2544,9 +3133,9 @@ getDrawableDescriptor(resId: number, density?: number): DrawableDescriptor;
 | ------ | ---------- |
 | DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2588,9 +3177,9 @@ getDrawableDescriptor(resource: Resource, density?: number): DrawableDescriptor;
 | ------- | ----------------- |
 | DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2637,9 +3226,9 @@ getDrawableDescriptorByName(resName: string, density?: number): DrawableDescript
 | ------ | --------- |
 | DrawableDescriptor | 资源ID值对应的DrawableDescriptor对象 |
 
-以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
-
 **错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
 
 | 错误码ID | 错误信息 |
 | -------- | ---------------------------------------- |
@@ -2657,6 +3246,387 @@ getDrawableDescriptorByName(resName: string, density?: number): DrawableDescript
     this.context.resourceManager.getDrawableDescriptorByName('icon', 120);
   } catch (error) {
     console.error(`getDrawableDescriptor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColor<sup>10+</sup>
+
+getColor(resId: number, callback: AsyncCallback&lt;number&gt;): void;
+
+用户获取指定资源ID对应的颜色值，使用callback形式返回其对应的颜色值。
+
+**系统能力：** SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名      | 类型                          | 必填   | 说明              |
+| -------- | --------------------------- | ---- | --------------- |
+| resId    | number                      | 是    | 资源ID值           |
+| callback | AsyncCallback&lt;number&gt; | 是    | 异步回调，用于返回获取的颜色值（十进制） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the module resId invalid.             |
+| 9001002  | If the resource not found by resId.      |
+| 9001006  | If the resource re-ref too much.         |
+
+**示例Stage：**
+  ```ts
+    try {
+        this.context.resourceManager.getColor($r('app.color.test').id, (error, value) => {
+          if (error != null) {
+              console.log("error is " + error);
+          } else {
+              let str = value;
+          }
+      });
+    } catch (error) {
+        console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`)
+    }
+  ```
+
+### getColor<sup>10+</sup>
+
+getColor(resId: number): Promise&lt;number&gt;
+
+用户获取指定资源ID对应的颜色值，使用Promise形式返回对应其对应的颜色值。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resId | number | 是    | 资源ID值 |
+
+**返回值：**
+
+| 类型                    | 说明          |
+| --------------------- | ----------- |
+| Promise&lt;number&gt; | 资源ID值对应的颜色值（十进制） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**示例：**
+  ```ts
+  try {
+    this.context.resourceManager.getColor($r('app.color.test').id).then(value => {
+        let str = value;
+    }).catch(error => {
+        console.log("getColor promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getColor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColor<sup>10+</sup>
+
+getColor(resource: Resource, callback: AsyncCallback&lt;number&gt;): void;
+
+用户获取指定resource对象对应的颜色值，使用callback形式返回其对应的颜色值。
+
+**系统能力：** SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名      | 类型                          | 必填   | 说明              |
+| -------- | --------------------------- | ---- | --------------- |
+| resource | [Resource](#resource9)      | 是    | 资源信息            |
+| callback | AsyncCallback&lt;number&gt; | 是    | 异步回调，用于返回获取的颜色值（十进制） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**示例：**
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.color.test').id
+  };
+  try {
+    this.context.resourceManager.getColor(resource, (error, value) => {
+        if (error != null) {
+            console.log("error is " + error);
+        } else {
+            let str = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColor<sup>10+</sup>
+
+getColor(resource: Resource): Promise&lt;number&gt;;
+
+用户获取指定resource对象对应的颜色值，使用Promise形式返回其对应的颜色值。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名      | 类型                     | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
+| resource | [Resource](#resource9) | 是    | 资源信息 |
+
+**返回值：**
+
+| 类型                    | 说明               |
+| --------------------- | ---------------- |
+| Promise&lt;number&gt; | resource对象对应的颜色值（十进制） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**示例：**
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.color.test').id
+  };
+  try {
+    this.context.resourceManager.getColor(resource).then(value => {
+      let str = value;
+    }).catch(error => {
+      console.log("getColor promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`callback getColor failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColorByName<sup>10+</sup>
+
+getColorByName(resName: string, callback: AsyncCallback&lt;number&gt;): void
+
+用户获取指定资源名称对应的颜色值，使用callback形式返回其对应的颜色值。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名      | 类型                          | 必填   | 说明              |
+| -------- | --------------------------- | ---- | --------------- |
+| resName  | string                      | 是    | 资源名称            |
+| callback | AsyncCallback&lt;number&gt; | 是    | 异步回调，用于返回获取的颜色值（十进制） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+| 9001006  | If the resource re-ref too much.            |
+
+**示例：**
+  ```ts
+  try {
+    this.context.resourceManager.getColorByName("test", (error, value) => {
+        if (error != null) {
+             console.log("error is " + error);
+        } else {
+            let string = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getColorByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColorByName<sup>10+</sup>
+
+getStringByName(resName: string): Promise&lt;number&gt;
+
+用户获取指定资源名称对应的颜色值，使用Promise形式返回其对应的颜色值。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
+| resName | string | 是    | 资源名称 |
+
+**返回值：**
+
+| 类型                    | 说明         |
+| --------------------- | ---------- |
+| Promise&lt;number&gt; | 资源名称对应的颜色值（十进制） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+| 9001006  | If the resource re-ref too much.            |
+
+**示例：**
+  ```ts
+  try {
+    this.context.resourceManager.getColorByName("test").then(value => {
+        let string = value;
+    }).catch(error => {
+        console.log("getColorByName promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getColorByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColorSync<sup>10+</sup>
+
+getColorSync(resId: number) : number;
+
+用户获取指定资源ID对应的颜色值，使用同步方式返回其对应的颜色值。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名   | 类型     | 必填   | 说明    |
+| ----- | ------ | ---- | ----- |
+| resId | number | 是    | 资源ID值 |
+
+**返回值：**
+
+| 类型     | 说明          |
+| ------ | ----------- |
+| number | 资源ID值对应的颜色值（十进制） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**示例：**
+  ```ts
+  try {
+    this.context.resourceManager.getColorSync($r('app.color.test').id);
+  } catch (error) {
+    console.error(`getColorSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColorSync<sup>10+</sup>
+
+getColorSync(resource: Resource): number
+
+用户获取指定resource对象对应的颜色值，使用同步方式返回其对应的颜色值。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名      | 类型                     | 必填   | 说明   |
+| -------- | ---------------------- | ---- | ---- |
+| resource | [Resource](#resource9) | 是    | 资源信息 |
+
+**返回值：**
+
+| 类型     | 说明               |
+| ------ | ---------------- |
+| number | resource对象对应的颜色值（十进制） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+| 9001006  | If the resource re-ref too much.            |
+
+**示例：**
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.color.test').id
+  };
+  try {
+    this.context.resourceManager.getColorSync(resource);
+  } catch (error) {
+    console.error(`getColorSync failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getColorByNameSync<sup>10+</sup>
+
+getColorByNameSync(resName: string) : number;
+
+用户获取指定资源名称对应的颜色值，使用同步方式返回其对应的颜色值。
+
+**系统能力**：SystemCapability.Global.ResourceManager
+
+**参数：**
+
+| 参数名     | 类型     | 必填   | 说明   |
+| ------- | ------ | ---- | ---- |
+| resName | string | 是    | 资源名称 |
+
+**返回值：**
+
+| 类型     | 说明         |
+| ------ | ---------- |
+| number | 资源名称对应的颜色值（十进制） |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[资源管理错误码](../errorcodes/errorcode-resource-manager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+| 9001006  | If the resource re-ref too much.            |
+
+**示例：**
+  ```ts
+  try {
+    this.context.resourceManager.getColorByNameSync("test");
+  } catch (error) {
+    console.error(`getColorByNameSync failed, error code: ${error.code}, message: ${error.message}.`)
   }
   ```
 

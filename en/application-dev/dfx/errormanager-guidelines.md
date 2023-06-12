@@ -23,8 +23,7 @@ When an asynchronous callback is used, the return value can be processed directl
 
 | API                        | Description                                                        |
 | ------------------------------ | ------------------------------------------------------------ |
-| onUnhandledException(errMsg: string): void | Called when an uncaught exception is reported after the application is registered.|
-| onException?(errObject: Error): void | Called when an application exception is reported to the JavaScript layer after the application is registered.|
+| onUnhandledException(errMsg: string): void | Called when an application generates an uncaught exception after being registered.|
 
 
 ### Result Codes for Unregistering an Observer
@@ -44,13 +43,6 @@ let registerId = -1;
 let callback = {
     onUnhandledException: function (errMsg) {
         console.log(errMsg);
-    },
-    onException: function (errorObj) {
-        console.log('onException, name: ', errorObj.name);
-        console.log('onException, message: ', errorObj.message);
-        if (typeof(errorObj.stack) === 'string') {
-            console.log('onException, stack: ', errorObj.stack);
-        }
     }
 }
 

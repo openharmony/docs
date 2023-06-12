@@ -7,12 +7,18 @@ The **ApplicationContext** module provides application-level context. You can us
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module can be used only in the stage model.
 
+## Modules to Import
+
+```ts
+import common from '@ohos.app.ability.common';
+```
+
 ## Usage
 
 Before calling any APIs in **ApplicationContext**, obtain an **ApplicationContext** instance through the **context** instance.
 
 ```ts
-let applicationContext = this.context.getApplicationContext();
+let applicationContext: common.ApplicationContext = this.context.getApplicationContext();
 ```
 
 ## ApplicationContext.on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback)
@@ -303,7 +309,6 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-let applicationContext = this.context.getApplicationContext();
 applicationContext.getRunningProcessInformation().then((data) => {
     console.log('The process running information is: ${JSON.stringify(data)}');
 }).catch((error) => {
@@ -341,7 +346,6 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-let applicationContext = this.context.getApplicationContext();
 applicationContext.getRunningProcessInformation((err, data) => {
     if (err) {
         console.error('getRunningProcessInformation faile, err: ${JSON.stringify(err)}');
@@ -376,7 +380,6 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-let applicationContext = this.context.getApplicationContext();
 applicationContext.killAllProcesses();
 ```
 
@@ -405,7 +408,6 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
 ```ts
-let applicationContext = this.context.getApplicationContext();
 applicationContext.killAllProcesses(error => {
     if (error) {
         console.error('killAllProcesses fail, error: ${JSON.stringify(error)}');

@@ -2,6 +2,10 @@
 
 The **ErrorObserver** module defines an observer to listen for application errors. It can be used as an input parameter in [ErrorManager.on](js-apis-app-ability-errorManager.md#errormanageron) to listen for errors that occur in the current application.
 
+> **NOTE**
+> 
+> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 ## Modules to Import
 
 ```ts
@@ -40,7 +44,7 @@ try {
 }
 ```
 
-## ErrorObserver.onException
+## ErrorObserver.onException<sup>10+</sup>
 
 onException?(errObject: Error): void;
 

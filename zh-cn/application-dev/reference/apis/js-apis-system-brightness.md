@@ -28,7 +28,7 @@ getValue(options?: GetBrightnessOptions): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [GetBrightnessOptions](#getbrightnessoptions) | 否   | 获取屏幕亮度的参数对象。 |
+| options | [GetBrightnessOptions](#getbrightnessoptions) | 否   | 获取屏幕亮度的参数对象。可选，默认为空。 |
 
 **示例：**
 
@@ -56,7 +56,7 @@ setValue(options?: SetBrightnessOptions): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [SetBrightnessOptions](#setbrightnessoptions) | 否   | 设置屏幕亮度的参数对象。 |
+| options | [SetBrightnessOptions](#setbrightnessoptions) | 否   | 设置屏幕亮度的参数对象。可选，默认为空。 |
 
 **示例：**
 
@@ -85,7 +85,7 @@ getMode(options?: GetBrightnessModeOptions): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [GetBrightnessModeOptions](#getbrightnessmodeoptions) | 否 | 获取屏幕亮度模式的参数对象。 |
+| options | [GetBrightnessModeOptions](#getbrightnessmodeoptions) | 否 | 获取屏幕亮度模式的参数对象。可选，默认为空。 |
 
 **示例：**
 
@@ -112,7 +112,7 @@ setMode(options?: SetBrightnessModeOptions): void
 **参数：**
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [SetBrightnessModeOptions](#setbrightnessmodeoptions) | 否   | 设置屏幕亮度模式的参数对象。 |
+| options | [SetBrightnessModeOptions](#setbrightnessmodeoptions) | 否   | 设置屏幕亮度模式的参数对象。可选，默认为空。 |
 
 **示例：**
 
@@ -143,7 +143,7 @@ setKeepScreenOn(options?: SetKeepScreenOnOptions): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [SetKeepScreenOnOptions](#setkeepscreenonoptions) | 否 | 设置屏幕常亮的参数对象。 |
+| options | [SetKeepScreenOnOptions](#setkeepscreenonoptions) | 否 | 设置屏幕常亮的参数对象。可选，默认为空。 |
 
 **示例：**
 

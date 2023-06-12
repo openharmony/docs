@@ -18,7 +18,7 @@ None
 
 ## Child Components
 
-Only the **[\<list-item>](../arkui-js/js-components-container-list-item.md)** component is supported.
+Only the [\<list-item>](../arkui-js/js-components-container-list-item.md) child component is supported.
 
 
 ## Attributes
@@ -31,7 +31,7 @@ In addition to the [universal attributes](../arkui-js/js-components-common-attri
 
 >  **NOTE**
 >
-> **id** in the universal attributes is used to identify a group. The input parameters of related functions and event information in the list also use **id** to uniquely identify a group.
+>  The universal attribute **id** is used to identify a group. The input parameters of related functions and event information in the list also use **id** to uniquely identify a group.
 
 
 ## Styles
@@ -126,48 +126,55 @@ The [universal methods](../arkui-js/js-components-common-methods.md) are support
 // xxx.js
 import promptAction from '@ohos.promptAction';
 export default {
-  data: {
-    direction: 'column',
-    list: [],
-    listAdd: []
-  },
-  onInit() {
-    this.list = []
-    this.listAdd = []
-    for (var i = 1; i <= 3; i++) {
-      var dataItem = {
-        value: 'GROUP' + i,
-      };
-      this.list.push(dataItem);
+    data: {
+        direction: 'column',
+        list: [],
+        listAdd: []
+    },
+    onInit() {
+        this.list = []
+        this.listAdd = []
+        for (var i = 1; i <= 3; i++) {
+            var dataItem = {
+                value: 'GROUP' + i,
+            };
+            this.list.push(dataItem);
+        }
+    },
+    collapseOne(e) {
+        this.$element('mylist').collapseGroup({
+            groupid: 'GROUP1'
+        })
+    },
+    expandOne(e) {
+        this.$element('mylist').expandGroup({
+            groupid: 'GROUP1'
+        })
+    },
+    collapseAll(e) {
+        this.$element('mylist').collapseGroup({
+            groupid: ''
+        })
+    },
+    expandAll(e) {
+        this.$element('mylist').expandGroup({
+            groupid: ''
+        })
+    },
+    collapse(e) {
+        promptAction.showToast({
+            message: 'Close ' + e.groupid
+        })
+    },
+    expand(e) {
+        promptAction.showToast({
+            message: 'Open ' + e.groupid
+        })
     }
-  },
-  collapseOne(e) {
-    this.$element('mylist').collapseGroup({
-      groupid: 'GROUP1'
-    })
-  },
-  expandOne(e) {
-    this.$element('mylist').expandGroup({
-      groupid: 'GROUP1'
-    })
-  },
-  collapseAll(e) {
-    this.$element('mylist').collapseGroup()
-  },
-  expandAll(e) {
-    this.$element('mylist').expandGroup()
-  },
-  collapse(e) {
-    promptAction.showToast({
-      message: 'Close ' + e.groupid
-    })
-  },
-  expand(e) {
-    promptAction.showToast({
-      message: 'Open ' + e.groupid
-    })
-  }
 }
+
+
+
 ```
 
 ![list6](figures/list6.gif)

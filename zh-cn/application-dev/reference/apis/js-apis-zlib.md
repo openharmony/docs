@@ -139,9 +139,10 @@ compressFile(inFile: string, outFile: string, options: Options, callback: AsyncC
 | options                 | [Options](#options) | 是   | 压缩的配置参数。                                               |
 | AsyncCallback<**void**> | callback            | 否   | 压缩时的回调函数。                                             |
 
-**相关错误码**
+**错误码：**
 
 以下错误码的详细介绍请参见[ohos.zlib错误码](../errorcodes/errorcode-zlib.md)。
+
 | 错误码ID | 错误信息                               |
 | -------- | --------------------------------------|
 | 900001   | The input source file is invalid.      |
@@ -188,7 +189,7 @@ compressFile(inFile: string, outFile: string, options: Options): Promise\<void>;
 | outFile | string              | 是   | 指定的压缩结果的文件路径。                                           |
 | options | [Options](#options) | 是   | 压缩的配置参数。                                               |
 
-**相关错误码**
+**错误码：**
 
 以下错误码的详细介绍请参见[ohos.zlib错误码](../errorcodes/errorcode-zlib.md)。
 
@@ -239,7 +240,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 | options                 | [Options](#options) | 是   | 解压的配置参数。                                             |
 | AsyncCallback<**void**> | callback            | 否   | 解压的回调函数。                                             |
 
-**相关错误码**
+**错误码：**
 
 以下错误码的详细介绍请参见[ohos.zlib错误码](../errorcodes/errorcode-zlib.md)。
 
@@ -247,6 +248,7 @@ decompressFile(inFile: string, outFile: string, options: Options, callback: Asyn
 | -------- | --------------------------------------|
 | 900001   | The input source file is invalid.      |
 | 900002   | The input destination file is invalid. |
+| 900003 | The input source file is not ZIP format or damaged. |
 
 **示例**
 
@@ -289,7 +291,7 @@ decompressFile(inFile: string, outFile: string, options: Options): Promise\<void
 | outFile | string              | 是   | 指定的解压后的文件夹路径，文件夹目录路径需要在系统中存在，不存在则会解压失败。路径必须为沙箱路径，沙箱路径可以通过context获取，具体方法可参考[application/context（Stage模型）](js-apis-inner-application-context.md)或 [app/context（FA模型）](js-apis-inner-app-context.md)。 |
 | options | [Options](#options) | 是   | 解压时的配置参数。                                           |
 
-**相关错误码**
+**错误码：**
 
 以下错误码的详细介绍请参见[ohos.zlib错误码](../errorcodes/errorcode-zlib.md)。
 
@@ -297,6 +299,7 @@ decompressFile(inFile: string, outFile: string, options: Options): Promise\<void
 | ------ | ------------------------------------- |
 | 900001 | The input source file is invalid.      |
 | 900002 | The input destination file is invalid. |
+| 900003 | The input source file is not ZIP format or damaged. |
 
 ```typescript
 // 【解压缩 例子2】

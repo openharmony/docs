@@ -13,7 +13,7 @@ OpenHarmony 3.1.4 Release provides enhanced system security over OpenHarmony 3.1
 | Software/Tool| Version| Remarks|
 | -------- | -------- | -------- |
 | OpenHarmony | 3.1.4 Release| NA |
-| Full SDK | Ohos_sdk_full&nbsp;3.1.9.7&nbsp;(API&nbsp;Version&nbsp;8&nbsp;Relese) | This toolkit is intended for original equipment manufacturers (OEMs) and contains system APIs that require system permissions.<br>To use the Full SDK, you must manually obtain it from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](../application-dev/quick-start/full-sdk-switch-guide.md).|
+| Full SDK | Ohos_sdk_full 3.1.9.7 (API Version 8 Relese) | This toolkit is intended for original equipment manufacturers (OEMs) and contains system APIs that require system permissions.<br>To use the Full SDK, you must manually obtain it from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](../application-dev/faqs/full-sdk-switch-guide.md).|
 | Public SDK | Ohos_sdk_public 3.1.9.7 (API Version 8 Release)| This toolkit is intended for application developers and does not contain system APIs that require system permissions.<br>It is provided as standard in DevEco Studio 3.0 Beta4 or later.|
 | (Optional) HUAWEI DevEco Studio| 3.1 Preview for OpenHarmony| Recommended for developing OpenHarmony applications|
 | (Optional) HUAWEI DevEco Device Tool| 3.0 Release| Recommended for developing OpenHarmony smart devices|
@@ -104,7 +104,7 @@ This version does not involve API updates.
 
 ### Chip and Development Board Adaptation
 
-For details about the adaptation status, see [SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard.md).
+For details about the adaptation status, see [SIG_DevBoard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard.md).
 
 
 ### Resolved Issues

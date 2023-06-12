@@ -132,6 +132,7 @@ Called when this UIAbility is destroyed to clear resources.
 
 **Example**
     
+
   ```ts
   class MyUIAbility extends UIAbility {
       onDestroy() {
@@ -140,6 +141,16 @@ Called when this UIAbility is destroyed to clear resources.
   }
   ```
 
+After the **onDestroy** lifecycle callback is executed, the application may exit. As a result, the asynchronous function in **onDestroy** may fail to be executed correctly, for example, asynchronously writing data to the database. The asynchronous lifecycle can be used to ensure that the subsequent lifecycle continues after the asynchronous **onDestroy** is complete.
+
+  ```ts
+class MyUIAbility extends UIAbility {
+    async onDestroy() {
+        console.log('onDestroy');
+        // Call the asynchronous function.
+    }
+}
+  ```
 
 ## UIAbility.onForeground
 
@@ -304,7 +315,7 @@ class MyUIAbility extends UIAbility {
 
 onShare(wantParam:{ [key: string]: Object }): void;
 
-Called when an ability shares data.
+Called when this UIAbility sets data to share. **ohos.extra.param.key.contentTitle** indicates the title of the content to share in the sharing box, and **ohos.extra.param.key.shareAbstract** provides an abstract description of the content, **ohos.extra.param.key.shareUrl** indicates the online address of the service. You need to set these three items as objects, with the key set to **title**, **abstract**, and **url**, respectively.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.AbilityCore
 
@@ -321,9 +332,9 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 class MyUIAbility extends UIAbility {
     onShare(wantParams) {
         console.log('onShare');
-        wantParams['ohos.extra.param.key.contentTitle'] = {title: "W3"};
-        wantParams['ohos.extra.param.key.shareAbstract'] = {abstract: "communication for huawei employee"};
-        wantParams['ohos.extra.param.key.shareUrl'] = {url: "w3.huawei.com"};
+        wantParams['ohos.extra.param.key.contentTitle'] = {title: "OA"};
+        wantParams['ohos.extra.param.key.shareAbstract'] = {abstract: "communication for company employee"};
+        wantParams['ohos.extra.param.key.shareUrl'] = {url: "oa.example.com"};
     }
 }
   ```
@@ -360,7 +371,7 @@ Sends sequenceable data to the target ability.
 | ------- | -------------------------------- |
 | 16200001 | Caller released. The caller has been released. |
 | 16200002 | Callee invalid. The callee does not exist. |
-| 16000050 | Internal Error. |
+| 16000050 | Internal error. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
@@ -441,7 +452,7 @@ Sends sequenceable data to the target ability and obtains the sequenceable data 
 | ------- | -------------------------------- |
 | 16200001 | Caller released. The caller has been released. |
 | 16200002 | Callee invalid. The callee does not exist. |
-| 16000050 | Internal Error. |
+| 16000050 | Internal error. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
@@ -586,9 +597,9 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   }
   ```
 
-  ## Caller.onRemoteStateChange
+## Caller.onRemoteStateChange<sup>10+</sup>
 
- onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
+onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
 
 Registers a callback that is invoked when the remote ability state changes in the collaboration scenario.
 
@@ -639,7 +650,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ## Caller.on
 
- on(type: 'release', callback: OnReleaseCallback): void;
+on(type: 'release', callback: OnReleaseCallback): void;
 
 Registers a callback that is invoked when the stub on the target ability is disconnected.
 
@@ -656,6 +667,7 @@ Registers a callback that is invoked when the stub on the target ability is disc
 
 | ID| Error Message|
 | ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
 | 16200001 | Caller released. The caller has been released. |
 
 For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
@@ -700,6 +712,12 @@ Deregisters a callback that is invoked when the stub on the target ability is di
 | -------- | -------- | -------- | -------- |
 | type | string | Yes| Event type. The value is fixed at **release**.|
 | callback | [OnReleaseCallback](#onreleasecallback) | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 401 | If the input parameter is not valid parameter. |
 
 **Example**
     
@@ -892,7 +910,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 | -------- | -------- | -------- | -------- | -------- |
 | (msg: string) | Yes| No| function | Prototype of the listener function registered by the caller.|
 
-## OnRemoteStateChangeCallback
+## OnRemoteStateChangeCallback<sup>10+</sup>
 
 (msg: string): void;
 

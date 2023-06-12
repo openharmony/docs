@@ -11,11 +11,11 @@
 import connection from '@ohos.net.connection'
 ```
 
-## connection.createNetConnection
+## connection.createNetConnection<sup>8+</sup>
 
 createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnection
 
-返回一个NetConnection对象，netSpecifier指定关注的网络的各项特征，timeout是超时时间(单位是毫秒)，netSpecifier是timeout的必要条件，两者都没有则表示关注默认网络。
+返回一个NetConnection对象，netSpecifier指定关注的网络的各项特征；timeout是超时时间(单位是毫秒)；netSpecifier是timeout的必要条件，两者都没有则表示关注默认网络。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -23,8 +23,8 @@ createNetConnection(netSpecifier?: NetSpecifier, timeout?: number): NetConnectio
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| netSpecifier | [NetSpecifier](#netspecifier) | 否   | 指定网络的各项特征，不指定则关注默认网络。                   |
-| timeout      | number                        | 否   | 获取netSpecifier指定的网络时的超时时间，仅netSpecifier存在时生效。 |
+| netSpecifier | [NetSpecifier](#netspecifier) | 否   | 指定网络的各项特征，不指定或为undefined时关注默认网络。                   |
+| timeout      | number                        | 否   | 获取netSpecifier指定的网络时的超时时间，仅netSpecifier存在时生效，undefined时默认值为0。 |
 
 **返回值：**
 
@@ -46,7 +46,7 @@ let netConnectionCellular = connection.createNetConnection({
 })
 ```
 
-## connection.getDefaultNet
+## connection.getDefaultNet<sup>8+</sup>
 
 getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 
@@ -67,6 +67,7 @@ getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -79,7 +80,7 @@ connection.getDefaultNet(function (error, data) {
 })
 ```
 
-## connection.getDefaultNet
+## connection.getDefaultNet<sup>8+</sup>
 
 getDefaultNet(): Promise\<NetHandle>
 
@@ -100,6 +101,7 @@ getDefaultNet(): Promise\<NetHandle>
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -132,6 +134,7 @@ getDefaultNetSync(): NetHandle
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -161,6 +164,8 @@ getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
+| 401     | Parameter error.             |
+| 202     | Non-system applications use system APIs.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -193,6 +198,8 @@ getGlobalHttpProxy(): Promise\<HttpProxy>;
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
+| 401     | Parameter error.             |
+| 202     | Non-system applications use system APIs.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -231,6 +238,7 @@ setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
+| 202     | Non-system applications use system APIs.               |
 | 2100001 | Invalid parameter value.                |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
@@ -280,6 +288,7 @@ setGlobalHttpProxy(httpProxy: HttpProxy): Promise\<void>;
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
+| 202     | Non-system applications use system APIs.               |
 | 2100001 | Invalid parameter value.                |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
@@ -319,6 +328,7 @@ getAppNet(callback: AsyncCallback\<NetHandle>): void
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
+| 401 | Parameter error.|
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -349,6 +359,7 @@ getAppNet(): Promise\<NetHandle>;
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
+| 401 | Parameter error.|
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -444,7 +455,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## connection.getAllNets
+## connection.getAllNets<sup>8+</sup>
 
 getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 
@@ -465,6 +476,7 @@ getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -477,7 +489,7 @@ connection.getAllNets(function (error, data) {
 });
 ```
 
-## connection.getAllNets
+## connection.getAllNets<sup>8+</sup>
 
 getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 
@@ -498,6 +510,7 @@ getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -509,7 +522,7 @@ connection.getAllNets().then(function (data) {
 });
 ```
 
-## connection.getConnectionProperties
+## connection.getConnectionProperties<sup>8+</sup>
 
 getConnectionProperties(netHandle: NetHandle, callback: AsyncCallback\<ConnectionProperties>): void
 
@@ -547,7 +560,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## connection.getConnectionProperties
+## connection.getConnectionProperties<sup>8+</sup>
 
 getConnectionProperties(netHandle: NetHandle): Promise\<ConnectionProperties>
 
@@ -589,7 +602,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## connection.getNetCapabilities
+## connection.getNetCapabilities<sup>8+</sup>
 
 getNetCapabilities(netHandle: NetHandle, callback: AsyncCallback\<NetCapabilities>): void
 
@@ -627,7 +640,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## connection.getNetCapabilities
+## connection.getNetCapabilities<sup>8+</sup>
 
 getNetCapabilities(netHandle: NetHandle): Promise\<NetCapabilities>
 
@@ -690,6 +703,7 @@ isDefaultNetMetered(callback: AsyncCallback\<boolean>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -723,6 +737,7 @@ isDefaultNetMetered(): Promise\<boolean>
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -734,7 +749,7 @@ connection.isDefaultNetMetered().then(function (data) {
 })
 ```
 
-## connection.hasDefaultNet
+## connection.hasDefaultNet<sup>8+</sup>
 
 hasDefaultNet(callback: AsyncCallback\<boolean>): void
 
@@ -755,6 +770,7 @@ hasDefaultNet(callback: AsyncCallback\<boolean>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -767,7 +783,7 @@ connection.hasDefaultNet(function (error, data) {
 })
 ```
 
-## connection.hasDefaultNet
+## connection.hasDefaultNet<sup>8+</sup>
 
 hasDefaultNet(): Promise\<boolean>
 
@@ -788,6 +804,7 @@ hasDefaultNet(): Promise\<boolean>
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -799,7 +816,7 @@ connection.hasDefaultNet().then(function (data) {
 })
 ```
 
-## connection.enableAirplaneMode
+## connection.enableAirplaneMode<sup>8+</sup>
 
 enableAirplaneMode(callback: AsyncCallback\<void>): void
 
@@ -821,6 +838,9 @@ enableAirplaneMode(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 202     | Non-system applications use system APIs.              |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -832,7 +852,7 @@ connection.enableAirplaneMode(function (error) {
 })
 ```
 
-## connection.enableAirplaneMode
+## connection.enableAirplaneMode<sup>8+</sup>
 
 enableAirplaneMode(): Promise\<void>
 
@@ -854,6 +874,9 @@ enableAirplaneMode(): Promise\<void>
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 202     | Non-system applications use system APIs.              |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -865,7 +888,7 @@ connection.enableAirplaneMode().then(function (error) {
 })
 ```
 
-## connection.disableAirplaneMode
+## connection.disableAirplaneMode<sup>8+</sup>
 
 disableAirplaneMode(callback: AsyncCallback\<void>): void
 
@@ -887,6 +910,9 @@ disableAirplaneMode(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 202     | Non-system applications use system APIs.              |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -898,7 +924,7 @@ connection.disableAirplaneMode(function (error) {
 })
 ```
 
-## connection.disableAirplaneMode
+## connection.disableAirplaneMode<sup>8+</sup>
 
 disableAirplaneMode(): Promise\<void>
 
@@ -920,6 +946,9 @@ disableAirplaneMode(): Promise\<void>
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
+| 201     | Permission denied.             |
+| 202     | Non-system applications use system APIs.              |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -931,7 +960,7 @@ connection.disableAirplaneMode().then(function (error) {
 })
 ```
 
-## connection.reportNetConnected
+## connection.reportNetConnected<sup>8+</sup>
 
 reportNetConnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
 
@@ -968,7 +997,7 @@ connection.getDefaultNet().then(function (netHandle) {
 });
 ```
 
-## connection.reportNetConnected
+## connection.reportNetConnected<sup>8+</sup>
 
 reportNetConnected(netHandle: NetHandle): Promise&lt;void&gt;
 
@@ -1009,7 +1038,7 @@ connection.getDefaultNet().then(function (netHandle) {
 });
 ```
 
-## connection.reportNetDisconnected
+## connection.reportNetDisconnected<sup>8+</sup>
 
 reportNetDisconnected(netHandle: NetHandle, callback: AsyncCallback&lt;void&gt;): void
 
@@ -1046,7 +1075,7 @@ connection.getDefaultNet().then(function (netHandle) {
 });
 ```
 
-## connection.reportNetDisconnected
+## connection.reportNetDisconnected<sup>8+</sup>
 
 reportNetDisconnected(netHandle: NetHandle): Promise&lt;void&gt;
 
@@ -1087,7 +1116,7 @@ connection.getDefaultNet().then(function (netHandle) {
 });
 ```
 
-## connection.getAddressesByName
+## connection.getAddressesByName<sup>8+</sup>
 
 getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
 
@@ -1124,7 +1153,7 @@ connection.getAddressesByName(host, function (error, data) {
 })
 ```
 
-## connection.getAddressesByName
+## connection.getAddressesByName<sup>8+</sup>
 
 getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
@@ -1174,7 +1203,7 @@ connection.getAddressesByName(host).then(function (data) {
 > 设备从有网络到无网络状态会触发netLost事件；
 > 设备从WiFi到蜂窝会触发netLost事件（WiFi丢失）之后触发 netAvaliable事件（蜂窝可用）；
 
-### register
+### register<sup>8+</sup>
 
 register(callback: AsyncCallback\<void>): void
 
@@ -1195,9 +1224,10 @@ register(callback: AsyncCallback\<void>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
-| 2101008 | The callback is not exists.      |
+| 2101008 | The same callback exists.     |
 | 2101022 | The number of requests exceeded the maximum. |
 
 **示例：**
@@ -1208,7 +1238,7 @@ netConnection.register(function (error) {
 })
 ```
 
-### unregister
+### unregister<sup>8+</sup>
 
 unregister(callback: AsyncCallback\<void>): void
 
@@ -1226,9 +1256,11 @@ unregister(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
+| 201 | Permission denied.|
+| 401 | Parameter error.         |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
-| 2101007 | The same callback exists.      |
+| 2101007 | The callback is not exists.      |
 
 **示例：**
 
@@ -1238,7 +1270,7 @@ netConnection.unregister(function (error) {
 })
 ```
 
-### on('netAvailable')
+### on('netAvailable')<sup>8+</sup>
 
 on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 
@@ -1277,7 +1309,7 @@ netCon.unregister(function (error) {
 })
 ```
 
-### on('netBlockStatusChange')
+### on('netBlockStatusChange')<sup>8+</sup>
 
 on(type: 'netBlockStatusChange', callback: Callback&lt;{ netHandle: NetHandle, blocked: boolean }&gt;): void
 
@@ -1316,7 +1348,7 @@ netCon.unregister(function (error) {
 })
 ```
 
-### on('netCapabilitiesChange')
+### on('netCapabilitiesChange')<sup>8+</sup>
 
 on(type: 'netCapabilitiesChange', callback: Callback<{ netHandle: NetHandle, netCap: NetCapabilities }>): void
 
@@ -1355,7 +1387,7 @@ netCon.unregister(function (error) {
 })
 ```
 
-### on('netConnectionPropertiesChange')
+### on('netConnectionPropertiesChange')<sup>8+</sup>
 
 on(type: 'netConnectionPropertiesChange', callback: Callback<{ netHandle: NetHandle, connectionProperties:
 ConnectionProperties }>): void
@@ -1395,7 +1427,7 @@ netCon.unregister(function (error) {
 })
 ```
 
-### on('netLost')
+### on('netLost')<sup>8+</sup>
 
 on(type: 'netLost', callback: Callback\<NetHandle>): void
 
@@ -1434,7 +1466,7 @@ netCon.unregister(function (error) {
 })
 ```
 
-### on('netUnavailable')
+### on('netUnavailable')<sup>8+</sup>
 
 on(type: 'netUnavailable', callback: Callback\<void>): void
 
@@ -1473,7 +1505,7 @@ netCon.unregister(function (error) {
 })
 ```
 
-## NetHandle
+## NetHandle<sup>8+</sup>
 
 数据网络的句柄。
 
@@ -1640,7 +1672,7 @@ connection.getDefaultNet().then((netHandle) => {
 })
 ```
 
-### getAddressesByName
+### getAddressesByName<sup>8+</sup>
 
 getAddressesByName(host: string, callback: AsyncCallback\<Array\<NetAddress>>): void
 
@@ -1679,7 +1711,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-### getAddressesByName
+### getAddressesByName<sup>8+</sup>
 
 getAddressesByName(host: string): Promise\<Array\<NetAddress>>
 
@@ -1722,7 +1754,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-### getAddressByName
+### getAddressByName<sup>8+</sup>
 
 getAddressByName(host: string, callback: AsyncCallback\<NetAddress>): void
 
@@ -1761,7 +1793,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-### getAddressByName
+### getAddressByName<sup>8+</sup>
 
 getAddressByName(host: string): Promise\<NetAddress>
 
@@ -1804,7 +1836,7 @@ connection.getDefaultNet().then(function (netHandle) {
 })
 ```
 
-## NetCap
+## NetCap<sup>8+</sup>
 
 网络具体能力。
 
@@ -1818,7 +1850,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | NET_CAPABILITY_NOT_VPN | 15 | 表示网络不使用VPN（Virtual&nbsp;Private&nbsp;Network，虚拟专用网络）。 |
 | NET_CAPABILITY_VALIDATED | 16   | 表示该网络访问Internet的能力被网络管理成功验证，该能力由网络管理模块设置。 |
 
-## NetBearType
+## NetBearType<sup>8+</sup>
 
 网络类型。
 
@@ -1840,9 +1872,9 @@ connection.getDefaultNet().then(function (netHandle) {
 | ------ | ------ | --- |------------------------- |
 | host  | string | 否  |  代理服务器主机名。 |
 | port  | number | 否  |  主机端口。 |
-| exclusionList  | Array<string> | 否  |  不使用代理服务器的屏蔽列表。 |
+| exclusionList  | Array<string> | 否  |  不使用代理服务器的屏蔽列表，列表内元素拼接后长度不可超过96字节。<br>例如：“baidu.com,zhihu.com”为20字节。 |
 
-## NetSpecifier
+## NetSpecifier<sup>8+</sup>
 
 提供承载数据网络能力的实例。
 
@@ -1853,7 +1885,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | netCapabilities         | [NetCapabilities](#netcapabilities) |  是  | 存储数据网络的传输能力和承载类型。                                |
 | bearerPrivateIdentifier | string                              |  否  |  网络标识符，Wi-Fi网络的标识符是"wifi"，蜂窝网络的标识符是"slot0"（对应SIM卡1）。 |
 
-## NetCapabilities
+## NetCapabilities<sup>8+</sup>
 
 网络的能力集。
 
@@ -1866,7 +1898,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | networkCap            | Array\<[NetCap](#netcap)>           |  否 |  网络具体能力。           |
 | bearerTypes           | Array\<[NetBearType](#netbeartype)> |  是 |  网络类型。               |
 
-## ConnectionProperties
+## ConnectionProperties<sup>8+</sup>
 
 网络连接信息。
 
@@ -1881,7 +1913,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | dnses     | Array\<[NetAddress](#netaddress)> | 是 |网络地址，参考[NetAddress](#netaddress)。 |
 | mtu           | number                             | 是 |最大传输单元。   |
 
-## RouteInfo
+## RouteInfo<sup>8+</sup>
 
 网络路由信息。
 
@@ -1895,7 +1927,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | hasGateway     | boolean                     | 是 |是否有网关。     |
 | isDefaultRoute | boolean                     | 是 |是否为默认路由。 |
 
-## LinkAddress
+## LinkAddress<sup>8+</sup>
 
 网络链路信息。
 
@@ -1906,7 +1938,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | address      | [NetAddress](#netaddress) | 是 | 链路地址。           |
 | prefixLength | number                    | 是 |链路地址前缀的长度。 |
 
-## NetAddress
+## NetAddress<sup>8+</sup>
 
 网络地址。
 

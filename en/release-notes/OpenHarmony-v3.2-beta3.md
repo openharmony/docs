@@ -54,7 +54,7 @@ The distributed database supports cross-device and cross-application sharing. Th
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2 Beta3| NA |
 | Public SDK | Ohos_sdk_public 3.2.7.5 (API Version 9 Beta3)<br>Ohos_sdk_public&nbsp;3.2.7.6&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3) | This toolkit is intended for application developers and does not contain system APIs that require system permissions.<br>It is provided as standard in DevEco Studio.|
-| Full SDK | Ohos_sdk_full 3.2.7.5 (API Version 9 Beta3)<br>Ohos_sdk_full&nbsp;3.2.7.6&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3) | This toolkit is intended for original equipment manufacturers (OEMs) and contains system APIs that require system permissions.<br>To use the full SDK, manually obtain it from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](../application-dev/quick-start/full-sdk-switch-guide.md).|
+| Full SDK | Ohos_sdk_full 3.2.7.5 (API Version 9 Beta3)<br>Ohos_sdk_full&nbsp;3.2.7.6&nbsp;(API&nbsp;Version&nbsp;9&nbsp;Beta3) | This toolkit is intended for original equipment manufacturers (OEMs) and contains system APIs that require system permissions.<br>To use the full SDK, manually obtain it from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](../application-dev/faqs/full-sdk-switch-guide.md).|
 | (Optional) HUAWEI DevEco Studio| 3.0 Release| Recommended for developing OpenHarmony applications.|
 | (Optional) HUAWEI DevEco Device Tool| 3.0 Release| Recommended for developing OpenHarmony devices.|
 
@@ -181,7 +181,7 @@ For details about the API changes, see the following:
 
 ### Chip and Development Board Adaptation
 
-For details about the adaptation status, see [SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard.md).
+For details about the adaptation status, see [SIG_DevBoard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard.md).
 
 
 ### Samples
@@ -193,7 +193,7 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 | ArkUI development framework| [HealthyDiet](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/HealthyDiet)| This sample app helps you keep food records and view food information. After you add food records, including the food type, weight, and meal time, the app can calculate nutrition data (calories, proteins, fats, and carbon water) for the meals and display the data in a bar chart.| ArkTS |
 | ArkUI development framework| [MusicAlbum](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/MusicAlbum)| This sample shows the home page of a music album app. The adaptive layout and responsive layout are used to ensure that the app can be properly displayed on devices irrespective of screen sizes.| ArkTS |
 | Ability framework and file management subsystem| [CustomShare](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/CustomShare) | Using this sample app, you can share texts, links, and images with third-party applications and display them in these applications.| ArkTS |
-| Ability framework| [GalleryForm](https://gitee.com/openharmony/applications_app_samples/tree/master/ability/GalleryForm)| This sample demonstrates the display of **Gallery** images in a widget and periodic update of the widget.| ArkTS |
+| Ability framework| [GalleryForm](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility) | This sample demonstrates the display of **Gallery** images in a widget and periodic update of the widget.| ArkTS |
 | ArkUI development framework| [AppMarket](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/AppMarket) | This sample shows the home page of an application market, which contains the tab bar, banner, featured apps, and featured games.| ArkTS |
 | ArkUI development framework| [Weather](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Weather) | This sample demonstrates one-time development for multi-device deployment by showing how to develop a weather app and deploy it across different devices. The demo app includes the following: home page, **Manage City** page, **Add City** page, and **Update Time** page.| ArkTS |
 | Multimedia subsystem| [MediaCollections](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/FileManagement/MediaCollections) | This sample shows the capabilities of online streaming, audio and video playback control, and volume adjustment.| ArkTS |

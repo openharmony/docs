@@ -214,7 +214,7 @@ N/A
 
    To change these variables from the parent component, use the API provided by the **LocalStorage** (such as the **set** API) to assign values to them.
 
-2. For details about how to use **@ObjectLink**, see [@Observed and @ObjectLink](../../../application-dev/quick-start/arkts-state-mgmt-page-level.md).
+2. For details about how to use **@ObjectLink**, see [@Observed and @ObjectLink](../../../application-dev/quick-start/arkts-observed-and-objectlink.md).
 
 ## cl.arkui.3 Change of the onScrollBegin Event of the \<List> and \<Scroll> Components
 
@@ -231,8 +231,8 @@ The **onScrollBegin** event is deprecated and must be replaced with the **onScro
 | onScrollBegin(event: (dx: number, dy: number) => { dxRemain: number, dyRemain: number }) | onScrollFrameBegin(event: (offset: number, state: ScrollState) => { offsetRemain: number }) |
 
 For details about the **onScrollFrameBegin** event, see the following:
-- [Scroll](https://gitee.com/openharmony/docs/blob/master/en/application-dev/reference/arkui-ts/ts-container-scroll.md#events)
-- [List](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/arkui-ts/ts-container-list.md#events)
+- [Scroll](../../../application-dev/reference/arkui-ts/ts-container-scroll.md#events)
+- [List](../../../application-dev/reference/arkui-ts/ts-container-list.md#events)
 
 **Adaptation Guide**
 

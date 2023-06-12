@@ -8,7 +8,7 @@ Figure 1 Mission snapshot of a UIAbility
 
 ![](figures/mission-list-recent.png)
 
-You can also use [UIAbilityContext.setMissionIcon()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionicon) and [UIAbilityContext.setMissionLabel()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel) to customize the icon and name for a mission snapshot. For example, for a UIAbility instance with the launch type set to **standard**, you can configure the icon and name for each mission snapshot based on different functions.
+You can also use [UIAbilityContext.setMissionIcon()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionicon) and [UIAbilityContext.setMissionLabel()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel) to customize the icon and name for a mission snapshot. For example, for a UIAbility instance in multiton mode, you can configure the icon and name for each mission snapshot based on different functions.
 
 This document describes the following operations:
 
@@ -21,8 +21,10 @@ Call [UIAbilityContext.setMissionIcon()](../reference/apis/js-apis-inner-applica
 ```ts
 let imagePixelMap: PixelMap = undefined; // Obtain the PixelMap information.
 
-this.context.setMissionIcon(imagePixelMap, (err) => {
-  console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
+context.setMissionIcon(imagePixelMap, (err) => {
+  if (err.code) {
+    console.error(`Failed to set mission icon. Code is ${err.code}, message is ${err.message}`);
+  }
 })
 ```
 
@@ -38,9 +40,9 @@ Call [UIAbilityContext.setMissionLabel()](../reference/apis/js-apis-inner-applic
 
 ```ts
 this.context.setMissionLabel('test').then(() => {
-  console.info('setMissionLabel succeeded.');
+  console.info('Succeeded in seting mission label.');
 }).catch((err) => {
-  console.error(`setMissionLabel failed, code is ${err.code}, message is ${err.message}`);
+  console.error(`Failed to set mission label. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 

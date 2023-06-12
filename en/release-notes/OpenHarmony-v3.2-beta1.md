@@ -176,7 +176,7 @@ This version has the following updates to OpenHarmony 3.1 Release.
 
 ### Chip and Development Board Adaptation
 
-For details about the adaptation status, see [SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard.md).
+For details about the adaptation status, see [SIG_DevBoard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard.md).
 
 
 ### Samples
@@ -185,14 +185,12 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 
 | Subsystem| Sample| Introduction| Programming Language|
 | -------- | -------- | -------- | -------- |
-| ArkUI | [MouseEvent](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/MouseEvent) | This sample simulates a minesweeper game that calls mouse event-related APIs.| ArkTS |
 | ArkUI | [Vibrator](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DeviceManagement/Vibrator) | This sample simulates the countdown scenario to show the use of the vibrator APIs.| ArkTS |
 | DFX | [FaultLogger](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DFX/FaultLogger) | This sample illustrates how to obtain fault information of an application in ArkTS.| ArkTS |
-| ArkUI | [Gallery](https://gitee.com/openharmony/applications_app_samples/tree/master/ETSUI/Gallery) | This sample demonstrates the functions of different components such as universal events, universal attributes, and gestures.| ArkTS |
-| Graphics| [JsWebGL](https://gitee.com/openharmony/applications_app_samples/tree/master/Graphics/JsWebGL) | This sample shows how to use WebGL APIs to draw pentagrams and rectangles by invoking GPU resources.| JS |
-| ArkUI | [ArkTSClock](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/ArkTSClock) | This sample exemplifies how to implement a simple clock application using the ArkTS UI capability.| ArkTS |
+| ArkUI | [ComponentCollection](https://gitee.com/openharmony/applications_app_samples/tree/master/code/UI/ArkTsComponentClollection/ComponentCollection) | This sample illustrates all the components, animations, and global methods of ArkUI.| ArkTS |
+| ArkUI | [ArkTSClock](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Tools/ArkTSClock) | This sample exemplifies how to implement a simple clock application using the ArkTS UI capability. | ArkTS |
 | Network management| [Http](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Http) | This sample simulates Postman, which requires the input of an API address and outputs the data obtained, to show the use of the data request APIs.| ArkTS |
-| Network management| [Socket](https://gitee.com/openharmony/applications_app_samples/tree/master/Network/Socket) | This sample demonstrates the application of Socket in network communication, including connection authentication and chat communication between two devices.| ArkTS |
+| Network management| [Socket](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Socket) | This sample demonstrates the application of Socket in network communication, including connection authentication and chat communication between two devices.| ArkTS |
 | Distributed data management| [DistributedRdb](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/DistributedAppDev/DistributedRdb) | This sample shows how to add, delete, modify, query, and synchronize data in the distributed relational database with ArkTS.| ArkTS |
 | Ability| [WorkScheduler](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/TaskManagement/WorkScheduler) | This sample simulates the update process starting from downloading and saving an update package to sending a notification and installing the update package. Being processed by the background task management, the download task continues after the application exits. It stops until the download is complete.| ArkTS |
 | Ability| [AbilityStartMode](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/ApplicationModels/AbilityStartMode) | This sample shows how to implement the standard, singleton, and specified ability launch modes in the stage model.| ArkTS |
@@ -204,7 +202,6 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 | ArkUI | [Game2048](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Game2048) | This sample shows how to develop a 2048 game using the **\<Grid>** component.| ArkTS |
 | Typical Setting Page of One-Time Development for Multi-Device Deployment| [Settings](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/MultiDeviceAppDev/Settings) | This sample shows a typical page for setting an application. The page has different display effects in the small window and large window, reflecting the capability of one-time development for multi-device deployment.| ArkTS |
 | Distributed data management| [Preference](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DataManagement/Preferences) | This sample shows the theme switching function of preferences.| ArkTS |
-| ArkUI | [NativeAPI](https://gitee.com/openharmony/app_samples/tree/master/Native/NativeAPI) | This sample shows how to call C++ APIs in ArkTS and how C++ APIs call back JS APIs to play the Gomoku game. The native APIs implement the calculation logic, and ArkTS implements UI rendering and re-rendering.| ArkTS/C++ |
 | Globalization| [International](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/Internationalnation/International) | This sample shows how to use APIs related to i18n, intl, and resourceManager in ArkTS to set the system language, region, time, and time zone. It also provides locale setting examples.| ArkTS |
 
 For more information, visit [Samples](https://gitee.com/openharmony/applications_app_samples).

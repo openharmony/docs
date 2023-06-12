@@ -37,7 +37,7 @@ import inputMethod from '@ohos.inputMethod';
 | labelId<sup>10+</sup>    | string | 是 | 否 | 非必填。输入法对外显示名称资源号。|
 | icon<sup>9+</sup>    | string | 是 | 否 | 非必填。输入法图标数据。|
 | iconId<sup>9+</sup>    | number | 是 | 否 | 非必填。输入法图标资源号。 |
-| extra<sup>10+</sup>    | object | 是 | 是 | 非必填。输入法扩展信息。|
+| extra<sup>9+</sup>    | object | 是 | 是 | 输入法扩展信息。<br/>- API version 10起：非必填；<br/>- API version 9：必填。|
 | packageName<sup>(deprecated)</sup> | string | 是 | 否 | 输入法包名。必填。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用name替代。 |
 | methodId<sup>(deprecated)</sup> | string | 是 | 否 | 输入法唯一标识。必填。<br/>**说明：** 从API version 8开始支持，从API version 9开始废弃，建议使用id替代。 |
 
@@ -61,7 +61,7 @@ getController(): InputMethodController
 
 | 错误码ID | 错误信息                     |
 | -------- | ------------------------------ |
-| 12800006 | Input method controller error. |
+| 12800006 | input method controller error. |
 
 **示例：**
 
@@ -89,7 +89,7 @@ getSetting(): InputMethodSetting
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800007 | Input method settings extension error. |
+| 12800007 |  settings extension error. |
 
 **示例：**
 
@@ -120,8 +120,8 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800005 | Configuration persisting error.        |
-| 12800008 | Input method manager service error. |
+| 12800005 | configuration persisting error.        |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -170,8 +170,8 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800005 | Configuration persisting error.        |
-| 12800008 | Input method manager service error. |
+| 12800005 | configuration persisting error.        |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -212,13 +212,13 @@ getCurrentInputMethod(): InputMethodProperty
 let currentIme = inputMethod.getCurrentInputMethod();
 ```
 
-## inputMethod.switchCurrentInputMethodSubtype<sup>10+</sup>
+## inputMethod.switchCurrentInputMethodSubtype<sup>9+</sup>
 
 switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallback\<boolean>): void
 
 在当前输入法应用内切换子类型。使用callback异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。<br/>**说明：** 从API version 10开始，如果调用者为当前输入法应用，则不需要此权限。
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY<br/>**说明：** <br/>- API version 10起，允许系统应用及当前输入法应用调用；<br/>- API version 9，仅系统应用可用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -235,8 +235,8 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800005 | Configuration persisting error.        |
-| 12800008 | Input method manager service error. |
+| 12800005 | configuration persisting error.        |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -268,13 +268,13 @@ try {
 }
 ```
 
-## inputMethod.switchCurrentInputMethodSubtype<sup>10+</sup>
+## inputMethod.switchCurrentInputMethodSubtype<sup>9+</sup>
 
 switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&gt;
 
 在当前输入法应用内切换子类型。使用promise异步回调。
 
-**需要权限：** ohos.permission.CONNECT_IME_ABILITY，仅系统应用可用。<br/>**说明：** 从API version 10开始，如果调用者为当前输入法应用，则不需要此权限。
+**需要权限：** ohos.permission.CONNECT_IME_ABILITY<br/>**说明：** <br/>- API version 10起，允许系统应用及当前输入法应用调用；<br/>- API version 9，仅系统应用可用。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -296,8 +296,8 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800005 | Configuration persisting error.        |
-| 12800008 | Input method manager service error. |
+| 12800005 | configuration persisting error.        |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -371,8 +371,8 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800005 | Configuration persisting error.        |
-| 12800008 | Input method manager service error. |
+| 12800005 | configuration persisting error.        |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -425,8 +425,8 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800005 | Configuration persisting error.        |
-| 12800008 | Input method manager service error. |
+| 12800005 | configuration persisting error.        |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -634,6 +634,20 @@ let inputMethodSetting = inputMethod.getInputMethodSetting();
 | -------- | -------- | -------- | -------- | -------- |
 | direction  | [Direction](#direction10) | 是 | 是 | 进行选中文本动作时光标移动的方向。|
 
+## InputWindowInfo<sup>10+</sup>
+
+输入法软键盘的窗口信息。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| name  | string | 是 | 是 | 输入法窗口的名称。|
+| left  | number | 是 | 是 | 输入法窗口左上顶点的横坐标，单位为px。|
+| top  | number | 是 | 是 | 输入法窗口左上顶点的纵坐标，单位为px。|
+| width  | number | 是 | 是 | 输入法窗口的宽度，单位为px。|
+| height  | number | 是 | 是 | 输入法窗口的高度，单位为px。|
+
 ## InputMethodController
 
 下列API示例中都需使用[getController](#inputmethodgetcontroller9)获取到InputMethodController实例，再通过此实例调用对应方法。
@@ -662,8 +676,8 @@ attach(showKeyboard: boolean, textConfig: TextConfig, callback: AsyncCallback&lt
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -716,8 +730,8 @@ attach(showKeyboard: boolean, textConfig: TextConfig): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -761,9 +775,9 @@ showTextInput(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
-| 12800009 | Input method client is detached. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+| 12800009 | input method client is detached. |
 
 **示例：**
 
@@ -799,9 +813,9 @@ showTextInput(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
-| 12800009 | Input method client is detached. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+| 12800009 | input method client is detached. |
 
 **示例：**
 
@@ -837,9 +851,9 @@ hideTextInput(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
-| 12800009 | Input method client is detached.             |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+| 12800009 | input method client is detached.             |
 
 **示例：**
 
@@ -877,9 +891,9 @@ hideTextInput(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
-| 12800009 | Input method client is detached. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+| 12800009 | input method client is detached. |
 
 **示例：**
 
@@ -911,8 +925,8 @@ detach(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -946,8 +960,8 @@ detach(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -982,9 +996,9 @@ setCallingWindow(windowId: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
-| 12800009 | Input method client is detached.             |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+| 12800009 | input method client is detached.             |
 
 **示例：**
 
@@ -1031,9 +1045,9 @@ setCallingWindow(windowId: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
-| 12800009 | Input method client is detached. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+| 12800009 | input method client is detached. |
 
 **示例：**
 
@@ -1073,9 +1087,9 @@ updateCursor(cursorInfo: CursorInfo, callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
-| 12800009 | Input method client is detached.             |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+| 12800009 | input method client is detached.             |
 
 **示例：**
 
@@ -1121,9 +1135,9 @@ updateCursor(cursorInfo: CursorInfo): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
-| 12800009 | Input method client is detached. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+| 12800009 | input method client is detached. |
 
 **示例：**
 
@@ -1162,9 +1176,9 @@ changeSelection(text: string, start: number, end: number, callback: AsyncCallbac
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
-| 12800009 | Input method client is detached.             |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+| 12800009 | input method client is detached.             |
 
 **示例：**
 
@@ -1210,9 +1224,9 @@ changeSelection(text: string, start: number, end: number): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
-| 12800009 | Input method client is detached. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+| 12800009 | input method client is detached. |
 
 **示例：**
 
@@ -1249,9 +1263,9 @@ updateAttribute(attribute: InputAttribute, callback: AsyncCallback&lt;void&gt;):
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
-| 12800009 | Input method client is detached.             |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+| 12800009 | input method client is detached.             |
 
 **示例：**
 
@@ -1295,9 +1309,9 @@ updateAttribute(attribute: InputAttribute): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
-| 12800009 | Input method client is detached. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
+| 12800009 | input method client is detached. |
 
 **示例：**
 
@@ -1335,8 +1349,8 @@ stopInputSession(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -1380,8 +1394,8 @@ stopInputSession(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -1425,8 +1439,8 @@ showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -1464,8 +1478,8 @@ showSoftKeyboard(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -1501,8 +1515,8 @@ hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -1540,8 +1554,8 @@ hideSoftKeyboard(): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -1644,7 +1658,7 @@ on(type: 'insertText', callback: (text: string) => void): void;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800009 | Input method client is detached. |
+| 12800009 | input method client is detached. |
 
 **示例：**
 
@@ -1699,7 +1713,7 @@ on(type: 'deleteLeft' | 'deleteRight', callback: (length: number) => void): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800009 | Input method client is detached. |
+| 12800009 | input method client is detached. |
 
 **示例：**
 
@@ -1763,7 +1777,7 @@ on(type: 'sendKeyboardStatus', callback: (keyBoardStatus: KeyboardStatus) => voi
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800009 | Input method client is detached. |
+| 12800009 | input method client is detached. |
 
 **示例：**
 
@@ -1818,7 +1832,7 @@ on(type: 'sendFunctionKey', callback: (functionKey: FunctionKey) => void): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800009 | Input method client is detached. |
+| 12800009 | input method client is detached. |
 
 **示例：**
 
@@ -1873,7 +1887,7 @@ on(type: 'moveCursor', callback: (direction: Direction) => void): void
 
 | 错误码ID | 错误信息                           |
 | -------- | -------------------------------- |
-| 12800009 | Input method client is detached. |
+| 12800009 | input method client is detached. |
 
 **示例：**
 
@@ -1928,7 +1942,7 @@ on(type: 'handleExtendAction', callback: (action: ExtendAction) => void): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800009 | Input method client is detached. |
+| 12800009 | input method client is detached. |
 
 **示例：**
 
@@ -2096,6 +2110,54 @@ off(type: 'imeChange', callback?: (inputMethodProperty: InputMethodProperty, inp
 inputMethodSetting.off('imeChange');
 ```
 
+### on('imeShow'|'imeHide')<sup>10+</sup>
+
+on(type: 'imeShow'|'imeHide', callback: (info: Array\<InputWindowInfo>) => void): void
+
+订阅输入法软键盘显示或隐藏事件。使用callback异步回调。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型 | 必填 | 说明 |
+| -------- | ---- | ---- | ---- |
+| type     | string | 是 | 设置监听类型。<br/>- type为`imeShow`时表示订阅输入法软键盘显示事件。<br/>- type为`imeHide`时表示订阅输入法软键盘隐藏事件。 |
+| callback | (info: Array\<InputWindowInfo>) => void | 是 | 回调函数，返回输入法软键盘信息。 |
+
+**示例：**
+
+```js
+inputMethodSetting.on('imeShow', (info) => {
+    console.info('Succeeded in subscribing imeShow event.');
+});
+```
+
+### off('imeShow'|'imeHide')<sup>10+</sup>
+
+off(type: 'imeShow'|'imeHide', callback?: (info: Array\<InputWindowInfo>) => void): void
+
+取消订阅输入法软键盘显示或隐藏事件。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型 | 必填 | 说明   |
+| -------- | ---- | ---- | ------ |
+| type     | string | 是 | 设置监听类型。<br/>- type为`imeShow`时表示取消订阅输入法软键盘显示事件。<br/>- type为`imeHide`时表示取消订阅输入法软键盘隐藏事件。 |
+| callback | (info: Array\<InputWindowInfo>) => void  | 否 | 取消订阅的回调函数。当该参数不填写时，取消订阅type对应的所有回调事件。 |
+
+**示例：**
+
+```js
+inputMethodSetting.off('imeShow');
+```
+
 ### listInputMethodSubtype<sup>9+</sup>
 
 listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: AsyncCallback&lt;Array&lt;InputMethodSubtype&gt;&gt;): void
@@ -2117,8 +2179,8 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty, callback: Async
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800001 | Package manager error.                 |
-| 12800008 | Input method manager service error. |
+| 12800001 | package manager error.                 |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -2166,8 +2228,8 @@ listInputMethodSubtype(inputMethodProperty: InputMethodProperty): Promise&lt;Arr
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800001 | Package manager error.                 |
-| 12800008 | Input method manager service error. |
+| 12800001 | package manager error.                 |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -2207,8 +2269,8 @@ listCurrentInputMethodSubtype(callback: AsyncCallback&lt;Array&lt;InputMethodSub
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800001 | Package manager error.                 |
-| 12800008 | Input method manager service error. |
+| 12800001 | package manager error.                 |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -2246,8 +2308,8 @@ listCurrentInputMethodSubtype(): Promise&lt;Array&lt;InputMethodSubtype&gt;&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800001 | Package manager error.                 |
-| 12800008 | Input method manager service error. |
+| 12800001 | package manager error.                 |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -2286,8 +2348,8 @@ getInputMethods(enable: boolean, callback: AsyncCallback&lt;Array&lt;InputMethod
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800001 | Package manager error.                 |
-| 12800008 | Input method manager service error. |
+| 12800001 | package manager error.                 |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -2327,8 +2389,8 @@ getInputMethods(enable: boolean): Promise&lt;Array&lt;InputMethodProperty&gt;&gt
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800001 | Package manager error.                 |
-| 12800008 | Input method manager service error. |
+| 12800001 | package manager error.                 |
+| 12800008 |input method manager service error. |
 
 **返回值：**
 
@@ -2370,7 +2432,7 @@ showOptionalInputMethods(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800008 | Input method manager service error. |
+| 12800008 | input method manager service error. |
 
 **示例：**
 
@@ -2408,7 +2470,7 @@ showOptionalInputMethods(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息                             |
 | -------- | -------------------------------------- |
-| 12800008 | Input method manager service error. |
+| 12800008 | input method manager service error. |
 
 **示例：**
 

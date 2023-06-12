@@ -113,6 +113,7 @@ Enumerates the types of Extension abilities.
 | THUMBNAIL        | 13  | ThumbnailExtensionAbility: provides thumbnails for files. This ability is reserved.|
 | PREVIEW          | 14  | PreviewExtensionAbility: provides APIs for file preview so that other applications can be embedded and displayed in the current application. This ability is reserved.|
 | PRINT<sup>10+</sup> | 15 | PrintExtensionAbility: provides APIs for printing images. Printing documents is not supported yet.|
+| PUSH<sup>10+</sup> | 17 | **PushExtensionAbility**: provides APIs for pushing scenario-specific messages. This ability is reserved.|
 | DRIVER<sup>10+</sup> | 18 | DriverExtensionAbility: provides APIs for the peripheral driver. This type of ability is not supported yet.|
 | UNSPECIFIED      | 255 | No type is specified. It is used together with **queryExtensionAbilityInfo** to query all types of Extension abilities.|
 
@@ -401,7 +402,6 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | ID| Error Message                             |
 | -------- | ------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified user ID is not found.    |
 | 17700026 | The specified bundle is disabled.      |
 
 **Example**
@@ -446,7 +446,7 @@ No permission is required for obtaining the caller's own information.
 | ----------- | ------ | ---- | ---------------------------- |
 | bundleName  | string | Yes  | Bundle name.|
 | bundleFlags | [number](#bundleflag) | Yes  | Type of the bundle information to obtain.      |
-| userId      | number | No  | User ID. |
+| userId      | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. |
 
 **Return value**
 
@@ -587,7 +587,6 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | ID| Error Message                            |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **Example**
@@ -631,7 +630,7 @@ No permission is required for obtaining the caller's own information.
 | ---------- | ------ | ---- | ---------------------------- |
 | bundleName | string | Yes  | Bundle name.|
 | appFlags   | [number](#applicationflag) | Yes  | Type of the application information to obtain.   |
-| userId     | number | No  | User ID.|
+| userId     | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.|
 
 **Return value**
 
@@ -737,14 +736,6 @@ Obtains the information about all bundles based on the given bundle flags. This 
 | bundleFlags | [number](#bundleflag) | Yes  | Type of the bundle information to obtain.  |
 | callback | AsyncCallback<Array\<[BundleInfo](js-apis-bundleManager-bundleInfo.md)>> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of bundle information obtained. Otherwise, **err** is an error object.|
 
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
-
-| ID| Error Message                        |
-| -------- | ---------------------------------- |
-| 17700004 | The specified user ID is not found. |
-
 **Example**
 
 ```ts
@@ -782,7 +773,7 @@ Obtains the information about all bundles based on the given bundle flags and us
 | Name    | Type  | Mandatory| Description                                            |
 | ----------- | ------ | ---- | -------------------------------------------------- |
 | bundleFlags | [number](#bundleflag) | Yes  | Type of the bundle information to obtain.                  |
-| userId      | number | No  | User ID.                        |
+| userId      | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.                     |
 
 **Return value**
 
@@ -884,14 +875,6 @@ Obtains the information about all applications based on the given application fl
 | appFlags | [number](#applicationflag) | Yes  | Type of the application information to obtain.                      |
 | callback | AsyncCallback<Array\<[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)>> | Yes| Callback used to return the result. If the operation is successful, **err** is **null** and **data** is the array of application information obtained. Otherwise, **err** is an error object.|
 
-**Error codes**
-
-For details about the error codes, see [Bundle Error Codes](../errorcodes/errorcode-bundle.md).
-
-| ID| Error Message                        |
-| -------- | ---------------------------------- |
-| 17700004 | The specified user ID is not found. |
-
 **Example**
 
 ```ts
@@ -929,7 +912,7 @@ Obtains the information about all applications based on the given application fl
 | Name | Type  | Mandatory| Description                                                     |
 | -------- | ------ | ---- | ---------------------------------------------------------- |
 | appFlags | [number](#applicationflag) | Yes  | Type of the application information to obtain.                      |
-| userId   | number | No  | User ID.                                 |
+| userId   | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.                       |
 
 **Return value**
 
@@ -1050,7 +1033,6 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | -------- | -------------------------------------- |
 | 17700001 | The specified bundleName is not found. |
 | 17700003 | The specified ability is not found.    |
-| 17700004 | The specified userId is invalid.       |
 | 17700026 | The specified bundle is disabled.      |
 | 17700029 | The specified ability is disabled.     |
 
@@ -1096,7 +1078,7 @@ Obtains the ability information based on the given want, ability flags, and user
 | ------------ | ------ | ---- | ------------------------------------------------------- |
 | want         | Want   | Yes  | Want containing the bundle name to query.                |
 | abilityFlags | [number](#abilityflag) | Yes  | Type of the ability information to obtain.|
-| userId       | number | No  | User ID.                              |
+| userId       | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.                      |
 
 **Return value**
 
@@ -1247,7 +1229,6 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | -------- | -------------------------------------------- |
 | 17700001 | The specified bundleName is not found.       |
 | 17700003 | The specified extensionAbility is not found. |
-| 17700004 | The specified userId is invalid.       |
 | 17700026 | The specified bundle is disabled.            |
 
 **Example**
@@ -1294,7 +1275,7 @@ Obtains the Extension ability information based on the given want, Extension abi
 | want                  | Want                                          | Yes  | Want containing the bundle name to query.                   |
 | extensionAbilityType  | [ExtensionAbilityType](#extensionabilitytype) | Yes  | Type of the Extension ability.                             |
 | extensionAbilityFlags | [number](#extensionabilityflag)               | Yes  | Type of the Extension ability information to obtain.|
-| userId                | number                                        | No  | User ID.                                             |
+| userId                | number                                        | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0.                                             |
 
 **Return value**
 
@@ -2171,7 +2152,6 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 | ID| Error Message                            |
 | -------- | --------------------------------------|
 | 17700001 | The specified bundleName is not found. |
-| 17700004 | The specified user ID is not found.     |
 | 17700026 | The specified bundle is disabled.      |
 
 **Example**
@@ -2211,7 +2191,7 @@ Obtains the Want used to launch the bundle based on the given bundle name and us
 | Name    | Type  | Mandatory| Description                      |
 | ---------- | ------ | ---- | ------------------------- |
 | bundleName | string | Yes  | Bundle name.|
-| userId     | number | No  | User ID.              |
+| userId     | number | No  | User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. |
 
 **Return value**
 
@@ -2313,7 +2293,7 @@ Obtains the JSON strings of the configuration file based on the given module ame
 | ------------ | ------ | ---- | -------------------------- |
 | moduleName   | string | Yes  | Module name.  |
 | abilityName  | string | Yes  | Ability name. |
-| metadataName | string | No  | Metadata name.|
+| metadataName | string | No  | Metadata name. By default, no value is passed.|
 
 **Return value**
 
@@ -2433,7 +2413,7 @@ Obtains the JSON strings of the configuration file based on the given module ame
 | -------------------- | ------ | ---- | ---------------------------------- |
 | moduleName           | string | Yes  | Module name.          |
 | extensionAbilityName | string | Yes  | Extension ability name.|
-| metadataName         | string | No  | Metadata name.        |
+| metadataName         | string | No  | Metadata name. By default, no value is passed.        |
 
 **Return value**
 
@@ -2948,7 +2928,7 @@ try {
 
 ### bundleManager.getSharedBundleInfo<sup>10+</sup>
 
-function getSharedBundleInfo(bundleName: string, moduleName: string): Promise\<Array\<SharedBundleInfo\>\>;
+getSharedBundleInfo(bundleName: string, moduleName: string): Promise\<Array\<SharedBundleInfo\>\>;
 
 Obtains the shared bundle information based on the given bundle name. This API uses a promise to return the result.
 
@@ -3038,7 +3018,7 @@ try {
 
 ### bundleManager.getAllSharedBundleInfo<sup>10+</sup>
 
-function getAllSharedBundleInfo(): Promise\<Array\<SharedBundleInfo\>\>;
+getAllSharedBundleInfo(): Promise\<Array\<SharedBundleInfo\>\>;
 
 Obtains the information about all shared bundles. This API uses a promise to return the result.
 
@@ -3186,7 +3166,7 @@ Obtains the provision configuration file information based on the given bundle n
 | Name  | Type        | Mandatory| Description         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | bundleName | string | Yes| Bundle name.|
-| userId | number | No| User ID, which can be obtained by calling [getOsAccountLocalId](js-apis-osAccount.md#getosaccountlocalid9).|
+| userId | number | No| User ID. The default value is the user ID of the caller. The value must be greater than or equal to 0. You can call [getOsAccountLocalId](js-apis-osAccount.md#getosaccountlocalid9) to obtain the user ID on the current device.|
 
 
 **Return value**
@@ -3232,5 +3212,3 @@ try {
     hilog.error(0x0000, 'testTag', 'getAppProvisionInfo failed. Cause: %{public}s', err.message);
 }
 ```
-
- <!--no_check--> 

@@ -6,7 +6,7 @@ The launch type of the UIAbility component refers to the state of the UIAbility 
 
 - [Singleton](#singleton)
 
-- [Standard](#standard)
+- [Multiton](#multiton)
 
 - [Specified](#specified)
 
@@ -17,9 +17,9 @@ The launch type of the UIAbility component refers to the state of the UIAbility 
 
 Each time [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called, if a UIAbility instance of this type already exists in the application process, the instance is reused. Therefore, only one UIAbility instance of this type exists in the system, that is, displayed in **Recents**.
 
-**Figure 1** Demonstration effect in singleton mode 
+**Figure 1** Demonstration effect in singleton mode
 
-![uiability-launch-type1](figures/uiability-launch-type1.png)  
+![uiability-launch-type1](figures/uiability-launch-type1.gif)  
 
 > **NOTE**
 >
@@ -31,11 +31,11 @@ To use the singleton mode, set **launchType** in the [module.json5 configuration
 ```json
 {
   "module": {
-    // ...
+    ...
     "abilities": [
       {
         "launchType": "singleton",
-        // ...
+        ...
       }
     ]
   }
@@ -43,25 +43,25 @@ To use the singleton mode, set **launchType** in the [module.json5 configuration
 ```
 
 
-## Standard
+## Multiton
 
-In standard mode, each time [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called, a new UIAbility instance of this type is created in the application process. Multiple UIAbility instances of this type are displayed in **Recents**.  
+In multiton mode, each time [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called, a new UIAbility instance of this type is created in the application process. Multiple UIAbility instances of this type are displayed in **Recents**.  
 
-**Figure 2** Demonstration effect in standard mode
+**Figure 2** Demonstration effect in multiton mode
 
-![standard-mode](figures/standard-mode.png)  
+![uiability-launch-type2](figures/uiability-launch-type2.gif)  
 
-To use the standard mode, set **launchType** in the [module.json5 configuration file](../quick-start/module-configuration-file.md) to **standard**.
+To use the multiton mode, set **launchType** in the [module.json5 file](../quick-start/module-configuration-file.md) to **multiton**.
 
 
 ```json
 {
   "module": {
-    // ...
+    ...
     "abilities": [
       {
-        "launchType": "standard",
-        // ...
+        "launchType": "multiton",
+        ...
       }
     ]
   }
@@ -73,9 +73,9 @@ To use the standard mode, set **launchType** in the [module.json5 configuration 
 
 The **specified** mode is used in some special scenarios. For example, in a document application, you want a document instance to be created each time you create a document, but you want to use the same document instance when you repeatedly open an existing document.
 
-**Figure 3** Demonstration effect in specified mode 
+**Figure 3** Demonstration effect in specified mode
 
-![uiability-launch-type2](figures/uiability-launch-type2.png)  
+![uiability-launch-type3](figures/uiability-launch-type3.gif)  
 
 For example, there are two UIAbility components: EntryAbility and SpecifiedAbility (with the launch type **specified**). You are required to start SpecifiedAbility from EntryAbility.
 
@@ -84,11 +84,11 @@ For example, there are two UIAbility components: EntryAbility and SpecifiedAbili
    ```json
    {
      "module": {
-       // ...
+       ...
        "abilities": [
          {
            "launchType": "specified",
-           // ...
+           ...
          }
        ]
      }
@@ -101,23 +101,24 @@ For example, there are two UIAbility components: EntryAbility and SpecifiedAbili
    // Configure an independent key for each UIAbility instance.
    // For example, in the document usage scenario, use the document path as the key.
    function getInstance() {
-       // ...
+     ...
    }
    
+   let context =...; // context is the UIAbilityContext of the initiator UIAbility.
    let want = {
-       deviceId: '', // An empty deviceId indicates the local device.
-       bundleName: 'com.example.myapplication',
-       abilityName: 'SpecifiedAbility',
-       moduleName: 'module1', // moduleName is optional.
-       parameters: {// Custom information.
-           instanceKey: getInstance(),
-       },
+     deviceId: '', // An empty deviceId indicates the local device.
+     bundleName: 'com.example.myapplication',
+     abilityName: 'SpecifiedAbility',
+     moduleName: 'specified', // moduleName is optional.
+     parameters: {// Custom information.
+       instanceKey: getInstance(),
+     },
    }
-   // context is the UIAbilityContext of the initiator UIAbility.
-   this.context.startAbility(want).then(() => {
-       // ...
+   
+   context.startAbility(want).then(() => {
+     console.info('Succeeded in starting ability.');
    }).catch((err) => {
-       // ...
+     console.error(`Failed to start ability. Code is ${err.code}, message is ${err.message}`);
    })
    ```
 
@@ -129,16 +130,16 @@ For example, there are two UIAbility components: EntryAbility and SpecifiedAbili
    import AbilityStage from '@ohos.app.ability.AbilityStage';
    
    export default class MyAbilityStage extends AbilityStage {
-       onAcceptWant(want): string {
-           // In the AbilityStage instance of the callee, a key value corresponding to a UIAbility instance is returned for UIAbility whose launch type is specified.
-           // In this example, SpecifiedAbility of module1 is returned.
-           if (want.abilityName === 'SpecifiedAbility') {
-               // The returned key string is a custom string.
-               return `SpecifiedAbilityInstance_${want.parameters.instanceKey}`;
-           }
-   
-           return '';
+     onAcceptWant(want): string {
+       // In the AbilityStage instance of the callee, a key value corresponding to a UIAbility instance is returned for UIAbility whose launch type is specified.
+       // In this example, SpecifiedAbility of module1 is returned.
+       if (want.abilityName === 'SpecifiedAbility') {
+         // The returned key string is a custom string.
+         return `SpecifiedAbilityInstance_${want.parameters.instanceKey}`;
        }
+   
+       return '';
+     }
    }
    ```
 
@@ -155,3 +156,4 @@ For example, there are two UIAbility components: EntryAbility and SpecifiedAbili
    2. Close the process of file A in **Recents**. UIAbility instance 1 is destroyed. Return to the home screen and open file A again. A new UIAbility instance is started, for example, UIAbility instance 2.
    3. Return to the home screen and open file B. A new UIAbility instance is started, for example, UIAbility instance 3.
    4. Return to the home screen and open file A again. UIAbility instance 2 is started. This is because the system automatically matches the key of the UIAbility instance and starts the UIAbility instance that has a matching key. In this example, UIAbility instance 2 has the same key as file A. Therefore, the system pulls back UIAbility instance 2 and focuses it without creating a new instance.
+

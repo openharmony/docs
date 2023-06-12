@@ -11,6 +11,10 @@ The **<Panel\>** component is a slidable panel that presents lightweight content
 
 Supported
 
+>  **NOTE**
+>
+>  Built-in components and custom components are allowed, with support for ([if/else](../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)) rendering control.
+
 
 ## APIs
 
@@ -20,19 +24,20 @@ Panel(show: boolean)
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| show | boolean | Yes| Whether the panel is shown.|
-
+| show | boolean | Yes| Whether the panel is shown.<br>**NOTE**<br>The panel is hidden and does not take up space in the layout if this parameter is set to **false** or [Visible.None](ts-universal-attributes-visibility.md) is set.|
 
 ## Attributes
+
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
 | Name| Type| Description|
 | -------- | -------- | -------- |
 | type | [PanelType](#paneltype)| Type of the panel.<br>Default value: **PanelType.Foldable**|
-| mode | [PanelMode](#panelmode) | Initial status of the panel.|
+| mode | [PanelMode](#panelmode) | Initial status of the panel.<br>Default value for the Minibar type: **PanelMode.Mini**<br/>Default value for other types: **PanelMode.Half**<br>Since API version 10, this attribute supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 | dragBar | boolean | Whether to enable a drag bar. The value **true** means that the drag bar will be displayed, and **false** means the opposite.<br>Default value: **true**|
-| fullHeight | string \| number | Panel height in the **PanelMode.Full** mode.|
-| halfHeight | string \| number | Panel height in the **PanelMode.Half** mode. The default value is half of the screen height.|
-| miniHeight | string \| number | Panel height in the **PanelMode.Mini** mode.|
+| fullHeight | string \| number | Panel height in the **PanelMode.Full** mode.<br>Default value: main axis height of the panel minus 8 vp<br>**NOTE**<br>This attribute cannot be set in percentage.|
+| halfHeight | string \| number | Panel height in the **PanelMode.Half** mode.<br>Default value: half of the main axis height of the panel<br>**NOTE**<br>This attribute cannot be set in percentage.|
+| miniHeight | string \| number | Panel height in the **PanelMode.Mini** mode.<br>Default value: **48**<br>Unit: vp<br>**NOTE**<br>This attribute cannot be set in percentage.|
 | show | boolean | Whether to show the panel.|
 | backgroundMask<sup>9+</sup>|[ResourceColor](ts-types.md#resourcecolor)|Background mask of the panel.|
 
@@ -52,8 +57,9 @@ Panel(show: boolean)
 | Half | Displays a **foldable** or **temporary** panel in a medium-sized (halfscreen-like) area. This attribute does not take effect for **minibar** panels.|
 | Full | Displays a panel in a large (fullscreen-like) area.|
 
-
 ## Events
+
+In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
 | Name| Description|
 | -------- | -------- |

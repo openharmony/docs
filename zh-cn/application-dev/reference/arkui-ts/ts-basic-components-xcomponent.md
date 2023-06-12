@@ -45,7 +45,7 @@
 
 ## 事件
 
-仅type为"surface"时以下事件有效。不支持不支持[通用事件](ts-universal-events-click.md)和[手势](ts-gesture-settings.md)。
+仅type为"surface"时以下事件有效。不支持[通用事件](ts-universal-events-click.md)和[手势](ts-gesture-settings.md)。
 
 ### onLoad
 

@@ -1,4 +1,4 @@
-# @ohos.power (Power Manager)
+# @ohos.power (Power Management)
 
 The **power** module provides APIs for rebooting and shutting down the system, as well as querying the screen status.
 
@@ -36,7 +36,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -72,7 +72,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -98,7 +98,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -133,7 +133,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -161,7 +161,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -193,7 +193,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -231,7 +231,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -275,7 +275,7 @@ For details about the error codes, see [Power Manager Error Codes](../errorcodes
 
 | ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 

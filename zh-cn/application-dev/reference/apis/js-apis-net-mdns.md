@@ -11,7 +11,7 @@ MDNS即多播DNS（Multicast DNS），提供局域网内的本地服务添加、
 import mdns from '@ohos.net.mdns'
 ```
 
-## mdns.addLocalService
+## mdns.addLocalService<sup>10+</sup>
 
 addLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void
 
@@ -100,7 +100,7 @@ mdns.addLocalService(context, localServiceInfo, function (error, data) {
 });
 ```
 
-## mdns.addLocalService
+## mdns.addLocalService<sup>10+</sup>
 
 addLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<LocalServiceInfo>
 
@@ -192,7 +192,7 @@ mdns.addLocalService(context, localServiceInfo).then(function (data) {
 });
 ```
 
-## mdns.removeLocalService
+## mdns.removeLocalService<sup>10+</sup>
 
 removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void
 
@@ -216,7 +216,7 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: As
 | 2100002 | Operation failed. Cannot connect to service. |
 | 2100003 | System internal error. |
 | 2204002 | Callback not found. |
-| 2204008 | Service instance duplicated. |
+| 2204008 | Service instance not found. |
 | 2204010 | Send packet failed. |
 
 > **错误码说明：**
@@ -281,7 +281,7 @@ mdns.removeLocalService(context, localServiceInfo, function (error, data) {
 });
 ```
 
-## mdns.removeLocalService
+## mdns.removeLocalService<sup>10+</sup>
 
 removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<LocalServiceInfo>
 
@@ -310,7 +310,7 @@ removeLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<Lo
 | 2100002 | Operation failed. Cannot connect to service. |
 | 2100003 | System internal error. |
 | 2204002 | Callback not found. |
-| 2204008 | Service instance duplicated. |
+| 2204008 | Service instance not found. |
 | 2204010 | Send packet failed. |
 
 > **错误码说明：**
@@ -373,7 +373,7 @@ mdns.removeLocalService(context, localServiceInfo).then(function (data) {
 });
 ```
 
-## mdns.createDiscoveryService
+## mdns.createDiscoveryService<sup>10+</sup>
 
 createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 
@@ -393,6 +393,12 @@ createDiscoveryService(context: Context, serviceType: string): DiscoveryService
 | Type                         | Description                     |
 | ----------------------------- |---------------------------------|
 | DiscoveryService | 基于指定serviceType和Context的发现服务对象。 |
+
+**错误码：**
+
+| 错误码ID      | 错误信息 |
+|---------|---|
+| 401     | Parameter error. |
 
 **示例**
 
@@ -423,7 +429,7 @@ let serviceType = "_print._tcp";
 let discoveryService = mdns.createDiscoveryService(context, serviceType);
 ```
 
-## mdns.resolveLocalService
+## mdns.resolveLocalService<sup>10+</sup>
 
 resolveLocalService(context: Context, serviceInfo: LocalServiceInfo, callback: AsyncCallback\<LocalServiceInfo>): void
 
@@ -512,7 +518,7 @@ mdns.resolveLocalService(context, localServiceInfo, function (error, data) {
 });
 ```
 
-## mdns.resolveLocalService
+## mdns.resolveLocalService<sup>10+</sup>
 
 resolveLocalService(context: Context, serviceInfo: LocalServiceInfo): Promise\<LocalServiceInfo>
 
@@ -603,11 +609,11 @@ mdns.resolveLocalService(context, localServiceInfo).then(function (data) {
   console.log(JSON.stringify(data));
 });
 ```
-## DiscoveryService
+## DiscoveryService<sup>10+</sup>
 
 指定服务类型的发现服务对象。
 
-### startSearchingMDNS
+### startSearchingMDNS<sup>10+</sup>
 
 startSearchingMDNS(): void
 
@@ -644,7 +650,7 @@ let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.startSearchingMDNS();
 ```
 
-### stopSearchingMDNS
+### stopSearchingMDNS<sup>10+</sup>
 
 stopSearchingMDNS(): void
 
@@ -681,7 +687,7 @@ let discoveryService = mdns.createDiscoveryService(context, serviceType);
 discoveryService.stopSearchingMDNS();
 ```
 
-### on('discoveryStart')
+### on('discoveryStart')<sup>10+</sup>
 
 on(type: 'discoveryStart', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void
 
@@ -710,7 +716,7 @@ discoveryService.on('discoveryStart', (data) => {
 discoveryService.stopSearchingMDNS();
 ```
 
-### on('discoveryStop')
+### on('discoveryStop')<sup>10+</sup>
 
 on(type: 'discoveryStop', callback: Callback<{serviceInfo: LocalServiceInfo, errorCode?: MdnsError}>): void
 
@@ -739,7 +745,7 @@ discoveryService.on('discoveryStop', (data) => {
 discoveryService.stopSearchingMDNS();
 ```
 
-### on('serviceFound')
+### on('serviceFound')<sup>10+</sup>
 
 on(type: 'serviceFound', callback: Callback\<LocalServiceInfo>): void
 
@@ -768,7 +774,7 @@ discoveryService.on('serviceFound', (data) => {
 discoveryService.stopSearchingMDNS();
 ```
 
-### on('serviceLost')
+### on('serviceLost')<sup>10+</sup>
 
 on(type: 'serviceLost', callback: Callback\<LocalServiceInfo>): void
 
@@ -797,7 +803,7 @@ discoveryService.on('serviceLost', (data) => {
 discoveryService.stopSearchingMDNS();
 ```
 
-## LocalServiceInfo
+## LocalServiceInfo<sup>10+</sup>
 
 mDNS服务信息
 
@@ -811,7 +817,7 @@ mDNS服务信息
 | host           |  [NetAddress](js-apis-net-connection.md#netaddress) |  否 |  mDNS服务设备的IP地址。采用设备的IP，添加服务和移除服务时候不生效。               |
 | serviceAttribute     | serviceAttribute\<[ServiceAttribute](#serviceattribute)> |  否 |  mDNS服务属性信息。               |
 
-## ServiceAttribute
+## ServiceAttribute<sup>10+</sup>
 
 mDNS服务属性信息
 

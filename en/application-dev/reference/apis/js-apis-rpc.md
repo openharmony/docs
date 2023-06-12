@@ -41,14 +41,13 @@ The APIs of this module return exceptions since API version 9. The following tab
 ## MessageSequence<sup>9+</sup>
 
 Provides APIs for reading and writing data in specific format. 
-
 During RPC or IPC, the sender can use the **write()** method provided by **MessageSequence** to write data in specific format to a **MessageSequence** object. The receiver can use the **read()** method provided by **MessageSequence** to read data in specific format from a **MessageSequence** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
 
 ### create
 
-  static create(): MessageSequence
+static create(): MessageSequence
 
-  Creates a **MessageSequence** object. This API is a static method.
+Creates a **MessageSequence** object. This API is a static method.
 
 **System capability**: SystemCapability.Communication.IPC.Core
 
@@ -99,9 +98,9 @@ Serializes a remote object and writes it to this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | -------- | ------- |
-  | 1900008 | proxy or remote object is invalid |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900008  | proxy or remote object is invalid |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -140,9 +139,9 @@ Reads the remote object from **MessageSequence**. You can use this API to deseri
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900008 | proxy or remote object is invalid |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900008  | proxy or remote object is invalid |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -182,8 +181,8 @@ Writes an interface token to this **MessageSequence** object. The remote object 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -216,8 +215,8 @@ Reads the interface token from this **MessageSequence** object. The interface to
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | ----- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -268,7 +267,7 @@ Obtains the capacity of this **MessageSequence** object.
 
 **Return value**
 
-  | Type  | Description|
+  | Type  | Description |
   | ------ | ----- |
   | number | **MessageSequence** capacity obtained, in bytes.|
 
@@ -290,7 +289,7 @@ Sets the size of the data contained in this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description|
+  | Name| Type  | Mandatory| Description  |
   | ------ | ------ | ---- | ------ |
   | size   | number | Yes  | Data size to set, in bytes.|
 
@@ -326,8 +325,8 @@ Sets the storage capacity of this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | -------- | ------ |
-  | 1900011 | parcel memory alloc failed |
+  | -------- | -------- |
+  | 1900011  | parcel memory alloc failed |
 
 **Example**
 
@@ -352,7 +351,7 @@ Obtains the writable capacity (in bytes) of this **MessageSequence** object.
 
 **Return value**
 
-  | Type| Description|
+  | Type  | Description  |
   | ------ | ------ |
   | number | Writable capacity of the **MessageSequence** instance, in bytes.|
 
@@ -378,7 +377,7 @@ Obtains the readable capacity of this **MessageSequence** object.
 
 **Return value**
 
-  | Type| Description|
+  | Type  | Description   |
   | ------ | ------- |
   | number | Readable capacity of the **MessageSequence** instance, in bytes.|
 
@@ -404,7 +403,7 @@ Obtains the read position of this **MessageSequence** object.
 
 **Return value**
 
-  | Type| Description|
+  | Type  | Description  |
   | ------ | ------ |
   | number | Read position obtained.|
 
@@ -426,7 +425,7 @@ Obtains the write position of this **MessageSequence** object.
 
 **Return value**
 
-  | Type| Description|
+  | Type  | Description |
   | ------ | ----- |
   | number | Write position obtained.|
 
@@ -449,7 +448,7 @@ Moves the read pointer to the specified position.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name| Type  | Mandatory| Description   |
   | ------ | ------ | ---- | ------- |
   | pos    | number | Yes  | Position from which data is to read.|
 
@@ -481,7 +480,7 @@ Moves the write pointer to the specified position.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name| Type  | Mandatory| Description |
   | ------ | ------ | ---- | ----- |
   | pos    | number | Yes  | Position from which data is to write.|
 
@@ -511,17 +510,17 @@ Writes a byte value to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type  | Mandatory| Description|
-  | ----- | ------ | ---- | ----- |
-  | val | number | Yes| Byte value to write.|
+  | Name| Type  | Mandatory| Description |
+  | ------ | ------ | ---- | ----- |
+  | val    | number | Yes  | Byte value to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | -------- | ------- |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------  |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -545,7 +544,7 @@ Reads the byte value from this **MessageSequence** object.
 
 **Return value**
 
-  | Type  | Description|
+  | Type  | Description |
   | ------ | ----- |
   | number | Byte value read.|
 
@@ -587,16 +586,16 @@ Writes a short integer to this **MessageSequence** object.
 **Parameters**
 
   | Name| Type  | Mandatory| Description|
-  | ------ | ------ | --- | --- |
-  | val | number | Yes| Short integer to write.|
+  | ------ | ------ | ---  | ---  |
+  | val    | number | Yes  | Short integer to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | ------ |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -629,8 +628,8 @@ Reads the short integer from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -670,8 +669,8 @@ Writes an integer to this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | -------- | ------- |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -704,8 +703,8 @@ Reads the integer from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | ------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -745,8 +744,8 @@ Writes a long integer to this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | ------- |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -779,8 +778,8 @@ Reads the long integer from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -811,17 +810,17 @@ Writes a floating-point number to this **MessageSequence** object.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | ----- | ---- | ---- | ----- |
-  | val | number | Yes| Floating-point number to write.|
+  | Name| Type  | Mandatory| Description |
+  | ------ | ------ | ---- | ----- |
+  | val    | number | Yes  | Floating-point number to write.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | ------- |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -854,8 +853,8 @@ Reads the floating-pointer number from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -895,8 +894,8 @@ Writes a double-precision floating-point number to this **MessageSequence** obje
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -929,8 +928,8 @@ Reads the double-precision floating-point number from this **MessageSequence** o
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -970,8 +969,8 @@ Writes a Boolean value to this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | ------- |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -1004,8 +1003,8 @@ Reads the Boolean value from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | -------- | ------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -1045,8 +1044,8 @@ Writes a character to this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -1079,8 +1078,8 @@ Reads the character from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------ | --------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -1120,8 +1119,8 @@ Writes a string to this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -1154,8 +1153,8 @@ Reads the string from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -1195,8 +1194,8 @@ Writes a **Parcelable** object to this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -1241,16 +1240,16 @@ Reads a **Parcelable** object from this **MessageSequence** object to the specif
 
   | Name| Type                     | Mandatory| Description                                     |
   | ------ | ------------------------- | ---- | ----------------------------------------- |
-  | dataIn | Parcelable | Yes  | **Parcelable** object to read.|
+  | dataIn | Parcelable                | Yes  | **Parcelable** object to read.|
 
 **Error codes**
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | -------- | ------- |
-  | 1900010 | read data from message sequence failed |
-  | 1900012 | call js callback function failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
+  | 1900012  | call js callback function failed |
 
 **Example**
 
@@ -1304,8 +1303,8 @@ Writes a byte array to this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -1339,8 +1338,8 @@ Reads a byte array from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -1381,8 +1380,8 @@ Reads the byte array from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | -------- | ------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -1423,8 +1422,8 @@ Writes a short array to this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ----- | ----- |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -1457,8 +1456,8 @@ Reads a short array from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------ | ------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -1498,8 +1497,8 @@ Reads the short array from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | -------- | ------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -1539,8 +1538,8 @@ Writes an integer array to this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ----- | --------- |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -1573,8 +1572,8 @@ Reads an integer array from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -1614,8 +1613,8 @@ Reads the integer array from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ----- | ------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -1655,8 +1654,8 @@ Writes a long array to this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | -------  | ----- |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -1689,8 +1688,8 @@ Reads a long array from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | ------ |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -1730,8 +1729,8 @@ Reads the long array from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -1771,8 +1770,8 @@ Writes a floating-point array to this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -1805,8 +1804,8 @@ Reads a floating-point array from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -1846,8 +1845,8 @@ Reads the floating-point array from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -1887,8 +1886,8 @@ Writes a double-precision floating-point array to this **MessageSequence** objec
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -1921,8 +1920,8 @@ Reads a double-precision floating-point array from this **MessageSequence** obje
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -1962,8 +1961,8 @@ Reads the double-precision floating-point array from this **MessageSequence** ob
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -2003,8 +2002,8 @@ Writes a Boolean array to this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -2037,8 +2036,8 @@ Reads a Boolean array from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -2078,8 +2077,8 @@ Reads the Boolean array from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -2119,8 +2118,8 @@ Writes a character array to this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | -------- | ------ |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -2153,8 +2152,8 @@ Reads a character array from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -2194,8 +2193,8 @@ Reads the character array from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -2236,8 +2235,8 @@ Writes a string array to this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -2270,8 +2269,8 @@ Reads a string array from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -2311,8 +2310,8 @@ Reads the string array from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -2346,8 +2345,8 @@ Writes information to this **MessageSequence** object indicating that no excepti
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -2388,15 +2387,17 @@ Reads the exception information from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
-  Obtain the service.
+  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -2414,7 +2415,11 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
+  
+  // Use this method to connect to the ability for the FA model.
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
@@ -2468,8 +2473,8 @@ Writes a **Parcelable** array to this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -2524,9 +2529,9 @@ Reads a **Parcelable** array from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
-  | 1900012 | call js callback function failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
+  | 1900012  | call js callback function failed |
 
 **Example**
 
@@ -2585,8 +2590,8 @@ Writes an array of **IRemoteObject** objects to this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | ------- |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -2632,8 +2637,8 @@ Reads an array of **IRemoteObject** objects from this **MessageSequence** object
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -2685,8 +2690,8 @@ Reads the **IRemoteObject** object array from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -2731,11 +2736,11 @@ Closes a file descriptor. This API is a static method.
 **Example**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
-      rpc.MessageSequence.closeFileDescriptor(fd);
+      rpc.MessageSequence.closeFileDescriptor(file.fd);
   } catch(error) {
       console.info("rpc close file descriptor fail, errorCode " + error.code);
       console.info("rpc close file descriptor fail, errorMessage" + error.message);
@@ -2767,17 +2772,17 @@ Duplicates a file descriptor. This API is a static method.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | ------- |
-  | 1900013 | call os dup function failed |
+  | -------- | -------- |
+  | 1900013  | call os dup function failed |
 
 **Example**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
-      let newFd = rpc.MessageSequence.dupFileDescriptor(fd);
+      let newFd = rpc.MessageSequence.dupFileDescriptor(file.fd);
   } catch(error) {
       console.info("rpc dup file descriptor fail, errorCode " + error.code);
       console.info("rpc dup file descriptor fail, errorMessage" + error.message);
@@ -2802,13 +2807,13 @@ Checks whether this **MessageSequence** object contains file descriptors.
 
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
   let r1 = sequence.containFileDescriptors();
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
-      sequence.writeFileDescriptor(fd);
+      sequence.writeFileDescriptor(file.fd);
   } catch(error) {
       console.info("rpc write file descriptor fail, errorCode " + error.code);
       console.info("rpc write file descriptor fail, errorMessage" + error.message);
@@ -2841,18 +2846,18 @@ Writes a file descriptor to this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | -------- | ------ |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
-      sequence.writeFileDescriptor(fd);
+      sequence.writeFileDescriptor(file.fd);
   } catch(error) {
       console.info("rpc write file descriptor fail, errorCode " + error.code);
       console.info("rpc write file descriptor fail, errorMessage" + error.message);
@@ -2878,18 +2883,18 @@ Reads the file descriptor from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let sequence = new rpc.MessageSequence();
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   try {
-      sequence.writeFileDescriptor(fd);
+      sequence.writeFileDescriptor(file.fd);
   } catch(error) {
       console.info("rpc write file descriptor fail, errorCode " + error.code);
       console.info("rpc write file descriptor fail, errorMessage" + error.message);
@@ -2921,8 +2926,8 @@ Writes an anonymous shared object to this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | ------- |
-  | 1900003 | write to ashmem failed |
+  | -------- | ------- |
+  | 1900003  | write to ashmem failed |
 
 **Example**
 
@@ -2963,8 +2968,8 @@ Reads the anonymous shared object from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900004 | read from ashmem failed |
+  | -------- | -------- |
+  | 1900004  | read from ashmem failed |
 
 **Example**
 
@@ -3034,8 +3039,8 @@ Writes raw data to this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | ------ |
-  | 1900009 | write data to message sequence failed |
+  | -------- | -------- |
+  | 1900009  | write data to message sequence failed |
 
 **Example**
 
@@ -3075,8 +3080,8 @@ Reads raw data from this **MessageSequence** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900010 | read data from message sequence failed |
+  | -------- | -------- |
+  | 1900010  | read data from message sequence failed |
 
 **Example**
 
@@ -3103,7 +3108,6 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
 >This class is no longer maintained since API version 9. You are advised to use [MessageSequence](#messagesequence9).
 
 Provides APIs for reading and writing data in specific format. 
-
 During RPC, the sender can use the **write()** method provided by **MessageParcel** to write data in specific format to a **MessageParcel** object. The receiver can use the **read()** method provided by **MessageParcel** to read data in specific format from a **MessageParcel** object. The data formats include basic data types and arrays, IPC objects, interface tokens, and custom sequenceable objects.
 
 ### create
@@ -4031,8 +4035,8 @@ Writes a sequenceable object to this **MessageParcel** object.
 
 **Return value**
 
-  | Type   | Description                             |
-  | ------- | --------------------------------- |
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
@@ -4072,14 +4076,14 @@ Reads member variables from this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type                         | Mandatory| Description                                   |
-  | ------ | ----------------------------- | ---- | --------------------------------------- |
+  | Name| Type                         | Mandatory   | Description                                          |
+  | ------ | ----------------------------- | ------- | ---------------------------------------------- |
   | dataIn | [Sequenceable](#sequenceabledeprecated) | Yes  | Object that reads member variables from the **MessageParcel** object.|
 
 **Return value**
 
-  | Type   | Description                                       |
-  | ------- | ------------------------------------------- |
+  | Type   | Description                                    |
+  | ------- | ---------------------------------------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
@@ -4128,8 +4132,8 @@ Writes a byte array to this **MessageParcel** object.
 
 **Return value**
 
-  | Type   | Description                             |
-  | ------- | --------------------------------- |
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
@@ -4207,8 +4211,8 @@ Writes a short array to this **MessageParcel** object.
 
 **Return value**
 
-  | Type   | Description                         |
-  | ------- | ----------------------------- |
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
@@ -4283,8 +4287,8 @@ Writes an integer array to this **MessageParcel** object.
 
 **Return value**
 
-  | Type   | Description                         |
-  | ------- | ----------------------------- |
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
@@ -4429,14 +4433,14 @@ Writes a FloatArray to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name| Type| Mandatory| Description |
   | ---------- | -------- | ---- | --- |
   | floatArray | number[] | Yes  | Floating-point array to write. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
 
 **Return value**
 
-  | Type   | Description                         |
-  | ------- | ----------------------------- |
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
@@ -4457,7 +4461,7 @@ Reads a FloatArray from this **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
+  | Name| Type    | Mandatory| Description  |
   | ------ | -------- | ---- | ------ |
   | dataIn | number[] | Yes  | Floating-point array to read. The system processes Float data as that of the Double type. Therefore, the total number of bytes occupied by a FloatArray must be calculated as the Double type.|
 
@@ -4511,8 +4515,8 @@ Writes a DoubleArray to this **MessageParcel** object.
 
 **Return value**
 
-  | Type   | Description                         |
-  | ------- | ----------------------------- |
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
@@ -4587,8 +4591,8 @@ Writes a Boolean array to this **MessageParcel** object.
 
 **Return value**
 
-  | Type   | Description                             |
-  | ------- | --------------------------------- |
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
@@ -4663,8 +4667,8 @@ Writes a character array to this **MessageParcel** object.
 
 **Return value**
 
-  | Type   | Description                             |
-  | ------- | --------------------------------- |
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
@@ -4733,14 +4737,14 @@ Writes a string array to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name     | Type    | Mandatory| Description|
+  | Name     | Type    | Mandatory| Description            |
   | ----------- | -------- | ---- | ---------------- |
   | stringArray | string[] | Yes  | String array to write. The length of a single element in the array must be less than 40960 bytes.|
 
 **Return value**
 
   | Type   | Description|
-  | ------- | --------------------------------- |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
@@ -4850,11 +4854,13 @@ Reads the exception information from this **MessageParcel** object.
 **System capability**: SystemCapability.Communication.IPC.Core
 
 **Example**
- 
-  Obtain the service.
+
+  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -4872,7 +4878,11 @@ Reads the exception information from this **MessageParcel** object.
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
+  
+  // Use this method to connect to the ability for the FA model.
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
@@ -4918,8 +4928,8 @@ Writes a sequenceable array to this **MessageParcel** object.
 
 **Return value**
 
-  | Type   | Description                             |
-  | ------- | --------------------------------- |
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
@@ -5008,14 +5018,14 @@ Writes an array of **IRemoteObject** objects to this **MessageParcel** object.
 
 **Parameters**
 
-  | Name     | Type           | Mandatory| Description|
+  | Name     | Type           | Mandatory| Description |
   | ----------- | --------------- | ---- | ----- |
   | objectArray | IRemoteObject[] | Yes  | Array of **IRemoteObject** objects to write.|
 
 **Return value**
 
   | Type   | Description                                                                                                                |
-  | ------- | -------------------------------------------------------------------------------------------------------------------- |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
@@ -5060,7 +5070,7 @@ Reads an **IRemoteObject** array from this **MessageParcel** object.
 
 **Parameters**
 
-  | Name | Type           | Mandatory| Description|
+  | Name | Type           | Mandatory| Description     |
   | ------- | --------------- | ---- | --------- |
   | objects | IRemoteObject[] | Yes  | **IRemoteObject** array to read.|
 
@@ -5107,8 +5117,8 @@ Reads the **IRemoteObject** array from this **MessageParcel** object.
 
 **Return value**
 
-  | Type| Description|
-  | --------------- | -------- |
+  | Type           | Description                       |
+  | --------------- | --------------------------- |
   | IRemoteObject[] | **IRemoteObject** object array obtained.|
 
 **Example**
@@ -5162,10 +5172,10 @@ Closes a file descriptor. This API is a static method.
 **Example**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
-  rpc.MessageParcel.closeFileDescriptor(fd);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  rpc.MessageParcel.closeFileDescriptor(file.fd);
   ```
 
 ### dupFileDescriptor<sup>8+</sup>
@@ -5191,10 +5201,10 @@ Duplicates a file descriptor. This API is a static method.
 **Example**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
-  let newFd = rpc.MessageParcel.dupFileDescriptor(fd);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let newFd = rpc.MessageParcel.dupFileDescriptor(file.fd);
   ```
 
 ### containFileDescriptors<sup>8+</sup>
@@ -5207,19 +5217,19 @@ Checks whether this **MessageParcel** object contains file descriptors.
 
 **Return value**
 
-  | Type   | Description                                                              |
-  | ------- | ------------------------------------------------------------------ |
+  | Type   | Description                                         |
+  | ------- | --------------------------------------------- |
   | boolean |Returns **true** if the **MessageParcel** object contains file descriptors; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
   let r1 = parcel.containFileDescriptors();
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
-  let writeResult = parcel.writeFileDescriptor(fd);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let writeResult = parcel.writeFileDescriptor(file.fd);
   console.log("RpcTest: parcel writeFd result is : " + writeResult);
   let containFD = parcel.containFileDescriptors();
   console.log("RpcTest: parcel after write fd containFd result is : " + containFD);
@@ -5241,18 +5251,18 @@ Writes a file descriptor to this **MessageParcel** object.
 
 **Return value**
 
-  | Type   | Description                                     |
-  | ------- | ----------------------------------------- |
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
-  let writeResult = parcel.writeFileDescriptor(fd);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let writeResult = parcel.writeFileDescriptor(file.fd);
   console.log("RpcTest: parcel writeFd result is : " + writeResult);
   ```
 
@@ -5273,11 +5283,11 @@ Reads the file descriptor from this **MessageParcel** object.
 **Example**
 
   ```ts
-  import fileio from '@ohos.fileio';
+  import fs from '@ohos.file.fs';
   let parcel = new rpc.MessageParcel();
   let filePath = "path/to/file";
-  let fd = fileio.openSync(filePath, 0o2| 0o100, 0o666);
-  let writeResult = parcel.writeFileDescriptor(fd);
+  let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let writeResult = parcel.writeFileDescriptor(file.fd);
   let readFD = parcel.readFileDescriptor();
   console.log("RpcTest: parcel read fd is : " + readFD);
   ```
@@ -5298,8 +5308,8 @@ Writes an anonymous shared object to this **MessageParcel** object.
 
 **Return value**
 
-  | Type   | Description                                                                |
-  | ------- | -------------------------------------------------------------------- |
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
@@ -5375,8 +5385,8 @@ Writes raw data to this **MessageParcel** object.
 
 **Return value**
 
-  | Type   | Description                                     |
-  | ------- | ----------------------------------------- |
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
@@ -5439,8 +5449,8 @@ Marshals this **Parcelable** object into a **MessageSequence** object.
 
 **Return value**
 
-  | Type   | Description                                     |
-  | ------- | ----------------------------------------- |
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 **Example**
 
@@ -5488,8 +5498,8 @@ Unmarshals this **Parcelable** object from a **MessageSequence** object.
 
 **Return value**
 
-  | Type   | Description                                         |
-  | ------- | --------------------------------------------- |
+  | Type   | Description                                    |
+  | ------- | ---------------------------------------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
@@ -5538,14 +5548,14 @@ Marshals the sequenceable object into a **MessageParcel** object.
 
 **Parameters**
 
-  | Name | Type                           | Mandatory| Description                                     |
-  | ------- | ------------------------------- | ---- | ----------------------------------------- |
+  | Name | Type                                     | Mandatory| Description                                     |
+  | ------- | ----------------------------------------- | ---- | ----------------------------------------- |
   | dataOut | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object to which the sequenceable object is to be marshaled.|
 
 **Return value**
 
-  | Type   | Description                                     |
-  | ------- | ----------------------------------------- |
+  | Type   | Description                             |
+  | ------- | --------------------------------  |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 **Example**
 
@@ -5587,14 +5597,14 @@ Unmarshals this sequenceable object from a **MessageParcel** object.
 
 **Parameters**
 
-  | Name| Type                           | Mandatory| Description                                         |
-  | ------ | ------------------------------- | ---- | --------------------------------------------- |
+  | Name| Type                                     | Mandatory| Description                                         |
+  | ------ | ----------------------------------------- | ---- | --------------------------------------------- |
   | dataIn | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object in which the sequenceable object is to be unmarshaled.|
 
 **Return value**
 
-  | Type   | Description                                         |
-  | ------- | --------------------------------------------- |
+  | Type   | Description                                    |
+  | ------- | ---------------------------------------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
@@ -5641,8 +5651,8 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
 
 **Return value**
 
-  | Type | Description|
-  | ---- | ----- |
+  | Type | Description |
+  | ----- | ----- |
   | [IRemoteObject](#iremoteobject) | Returns the **RemoteObject** if it is the caller; returns the [IRemoteObject](#iremoteobject), the holder of this **RemoteProxy** object, if the caller is a [RemoteProxy](#remoteproxy) object.|
 
 **Example**
@@ -5658,20 +5668,22 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
 
 **Example**
 
-  Obtain the service.
+  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
-      onConnect: function (elementName, remoteProxy) {
+      onConnect: function(elementName, remoteProxy) {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
-      onDisconnect: function (elementName) {
+      onDisconnect: function(elementName) {
           console.log("RpcClient: onDisconnect");
       },
-      onFailed: function () {
+      onFailed: function() {
           console.log("RpcClient: onFailed");
       }
   };
@@ -5679,11 +5691,15 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
+  
+  // Use this method to connect to the ability for the FA model.
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
-  
+
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **asObject()** of the proxy object is called to obtain the proxy or remote object.
-  
+
   ```ts
   class TestProxy {
       remote: rpc.RemoteObject;
@@ -5695,7 +5711,6 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
       }
   }
   let iRemoteObject = new TestProxy(proxy).asObject();
-
   ```
 
 ## DeathRecipient
@@ -5806,17 +5821,17 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-  | Name | Type| Mandatory| Description |
-  | ------- | ------------------------------- | ---- | ---- |
-  | code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | Name | Type                                     | Mandatory| Description                                                                                  |
+  | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                                    | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
   | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-  | options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-  | Type   | Description                                         |
-  | ------- | --------------------------------------------- |
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
 
 
@@ -5832,12 +5847,12 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-  | Name | Type                           | Mandatory| Description                                                                                  |
-  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | Name | Type                                     | Mandatory| Description                                                                                  |
+  | ------- | ----------------------------------------  | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                                    | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
   | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-  | options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
@@ -5856,12 +5871,12 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Parameters**
 
-  | Name | Type                           | Mandatory| Description                                                                                  |
-  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | Name | Type                                | Mandatory| Description                                                                                  |
+  | ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                               | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
   | reply   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
-  | options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | options | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
@@ -5880,13 +5895,13 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Parameters**
 
-  | Name  | Type                              | Mandatory| Description                                                                                  |
-  | -------- | ---------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code     | number                             | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | Name  | Type                                | Mandatory| Description                                                                                  |
+  | -------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
+  | code     | number                               | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data     | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
   | reply    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
-  | options  | [MessageOption](#messageoption)    | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-  | callback | AsyncCallback&lt;RequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
+  | options  | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | callback | AsyncCallback&lt;RequestResult&gt;   | Yes  | Callback for receiving the sending result.                                                                  |
 
 ### sendRequest<sup>8+(deprecated)</sup>
 
@@ -5900,13 +5915,13 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-  | Name  | Type                                  | Mandatory| Description                                                                                  |
-  | -------- | -------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code     | number                                 | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-  | data     | [MessageParcel](#messageparceldeprecated)        | Yes  | **MessageParcel** object holding the data to send.                                             |
-  | reply    | [MessageParcel](#messageparceldeprecated)        | Yes  | **MessageParcel** object that receives the response.                                                     |
-  | options  | [MessageOption](#messageoption)        | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-  | callback | AsyncCallback&lt;SendRequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
+  | Name  | Type                                     | Mandatory| Description                                                                                  |
+  | -------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code     | number                                    | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data     | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+  | reply    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+  | options  | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | callback | AsyncCallback&lt;SendRequestResult&gt;    | Yes  | Callback for receiving the sending result.                                                                  |
 
 ### registerDeathRecipient<sup>9+</sup>
 
@@ -5928,8 +5943,8 @@ Registers a callback for receiving death notifications of the remote object. The
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900008 | proxy or remote object is invalid |
+  | -------- | -------- |
+  | 1900008  | proxy or remote object is invalid |
 
 ### addDeathrecipient<sup>(deprecated)</sup>
 
@@ -5950,8 +5965,8 @@ Adds a callback for receiving death notifications of the remote object. This met
 
 **Return value**
 
-  | Type   | Description                                         |
-  | ------- | --------------------------------------------- |
+  | Type   | Description                                    |
+  | ------- | ---------------------------------------- |
   | boolean | Returns **true** if the callback is added successfully; returns **false** otherwise.|
 
 
@@ -5975,8 +5990,8 @@ Unregisters the callback used to receive death notifications of the remote objec
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900008 | proxy or remote object is invalid |
+  | -------- | -------- |
+  | 1900008  | proxy or remote object is invalid |
 
 ### removeDeathRecipient<sup>(deprecated)</sup>
 
@@ -5997,8 +6012,8 @@ Removes the callback used to receive death notifications of the remote object.
 
 **Return value**
 
-  | Type   | Description                                         |
-  | ------- | --------------------------------------------- |
+  | Type   | Description                                    |
+  | ------- | -----------------------------------------|
   | boolean | Returns **true** if the callback is removed; returns **false** otherwise.|
 
 ### getDescriptor<sup>9+</sup>
@@ -6020,8 +6035,8 @@ Obtains the interface descriptor (which is a string) of this object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900008 | proxy or remote object is invalid |
+  | -------- | -------- |
+  | 1900008  | proxy or remote object is invalid |
 
 
 ### getInterfaceDescriptor<sup>(deprecated)</sup>
@@ -6051,8 +6066,8 @@ Checks whether this object is dead.
 
 **Return value**
 
-  | Type   | Description                                       |
-  | ------- | ------------------------------------------- |
+  | Type   | Description                              |
+  | ------- | ---------------------------------- |
   | boolean | Returns **true** if the object is dead; returns **false** otherwise.|
 
 
@@ -6082,25 +6097,27 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-  | Name | Type                           | Mandatory| Description                                                                                  |
-  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | Name | Type                                     | Mandatory| Description                                                                                  |
+  | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                                    | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
   | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-  | options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-  | Type   | Description                                         |
-  | ------- | --------------------------------------------- |
+  | Type   | Description                            |
+  | ------- | ---------------------------------|
   | boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
 
 **Example**
 
-  Obtain the service.
+  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6118,11 +6135,15 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
+  
+  // Use this method to connect to the ability for the FA model.
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
-  
+
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
-  
+
   ```ts
   let option = new rpc.MessageOption();
   let data = rpc.MessageParcel.create();
@@ -6152,12 +6173,12 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Parameters**
 
-  | Name | Type                           | Mandatory| Description                                                                                  |
-  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | Name | Type                                | Mandatory| Description                                                                                  |
+  | ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                               | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
-  | reply   | [MessageSequence](#messagesequence9)  | Yes  | **MessageSequence** object that receives the response.                                                   |
-  | options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | reply   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
+  | options | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
@@ -6167,10 +6188,12 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Example**
 
-  Obtain the service.
+  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6188,9 +6211,13 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
-  ```
   
+  // Use this method to connect to the ability for the FA model.
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
+  ```
+
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
 
   ```ts
@@ -6230,12 +6257,12 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-  | Name | Type                           | Mandatory| Description                                                                                  |
-  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | Name | Type                                     | Mandatory| Description                                                                                  |
+  | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                                    | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
   | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-  | options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
@@ -6245,10 +6272,12 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Example**
 
-  Obtain the service.
+  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6266,7 +6295,11 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
+  
+  // Use this method to connect to the ability for the FA model.
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
@@ -6306,20 +6339,22 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Parameters**
 
-  | Name  | Type                              | Mandatory| Description                                                                                  |
-  | -------- | ---------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code     | number                             | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | Name  | Type                                | Mandatory| Description                                                                                  |
+  | -------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
+  | code     | number                               | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data     | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
   | reply    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
-  | options  | [MessageOption](#messageoption)    | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-  | callback | AsyncCallback&lt;RequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
+  | options  | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | callback | AsyncCallback&lt;RequestResult&gt;   | Yes  | Callback for receiving the sending result.                                                                  |
 
 **Example**
-  
-  Obtain the service.
+
+  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6350,7 +6385,11 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
       result.data.reclaim();
       result.reply.reclaim();
   }
-  FA.connectAbility(want, connect);
+  
+  // Use this method to connect to the ability for the FA model.
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
@@ -6362,7 +6401,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   data.writeInt(1);
   data.writeString("hello");
   try {
-      proxy.sendRequest(1, data, reply, option, sendRequestCallback);
+      proxy.sendMessageRequest(1, data, reply, option, sendRequestCallback);
   } catch(error) {
       console.info("rpc send sequence request fail, errorCode " + error.code);
       console.info("rpc send sequence request fail, errorMessage " + error.message);
@@ -6381,20 +6420,22 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-  | Name  | Type                                  | Mandatory| Description                                                                                  |
-  | -------- | -------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code     | number                                 | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-  | data     | [MessageParcel](#messageparceldeprecated)        | Yes  | **MessageParcel** object holding the data to send.                                             |
-  | reply    | [MessageParcel](#messageparceldeprecated)        | Yes  | **MessageParcel** object that receives the response.                                                     |
-  | options  | [MessageOption](#messageoption)        | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-  | callback | AsyncCallback&lt;SendRequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
+  | Name  | Type                                     | Mandatory| Description                                                                                  |
+  | -------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code     | number                                    | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data     | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+  | reply    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+  | options  | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | callback | AsyncCallback&lt;SendRequestResult&gt;    | Yes  | Callback for receiving the sending result.                                                                  |
 
 **Example**
 
-  Obtain the service.
+  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6412,7 +6453,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  function sendRequestCallback(result) {
+ function sendRequestCallback(result) {
       if (result.errCode === 0) {
           console.log("sendRequest got result");
           result.reply.readException();
@@ -6425,7 +6466,11 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
       result.data.reclaim();
       result.reply.reclaim();
   }
-  FA.connectAbility(want, connect);
+  
+  // Use this method to connect to the ability for the FA model.
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **sendMessageRequest()** of the proxy object is called to send a message.
@@ -6464,22 +6509,24 @@ Obtains the **LocalInterface** object of an interface token.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | --------  |
-  | 1900006 | only remote object permitted |
+  | -------- | -------- |
+  | 1900006  | only remote object permitted |
 
 **Example**
 
-  Obtain the service.
+  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
-      onDisconnect: function (elementName) {
+      onDisconnect: function(elementName) {
           console.log("RpcClient: onDisconnect");
       },
       onFailed: function() {
@@ -6487,10 +6534,14 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       }
   };
   let want = {
-      "bundleName":"com.ohos.server",
-      "abilityName":"com.ohos.server.EntryAbility",
+      "bundleName": "com.ohos.server",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
+  
+  // Use this method to connect to the ability for the FA model.
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getLocalInterface()** of the proxy object is called to obtain the interface descriptor.
@@ -6529,17 +6580,19 @@ Obtains the **LocalInterface** object of an interface token.
 
 **Example**
 
-  Obtain the service.
+  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
           console.log("RpcClient: js onConnect called.");
           proxy = remoteProxy;
       },
-      onDisconnect: function (elementName) {
+      onDisconnect: function(elementName) {
           console.log("RpcClient: onDisconnect");
       },
       onFailed: function() {
@@ -6547,12 +6600,16 @@ Obtains the **LocalInterface** object of an interface token.
       }
   };
   let want = {
-      "bundleName":"com.ohos.server",
-      "abilityName":"com.ohos.server.EntryAbility",
+      "bundleName": "com.ohos.server",
+      "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
-  ```
   
+  // Use this method to connect to the ability for the FA model.
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
+  ```
+
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **queryLocalInterface()** of the proxy object is called to obtain the interface descriptor.
 
   ```ts
@@ -6580,15 +6637,17 @@ Registers a callback for receiving death notifications of the remote object. The
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900008 | proxy or remote object is invalid |
+  | -------- | -------- |
+  | 1900008  | proxy or remote object is invalid |
 
 **Example**
 
-  Obtain the service.
+  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6606,11 +6665,15 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
+  
+  // Use this method to connect to the ability for the FA model.
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **registerDeathRecipient()** of the proxy object is called to register a callback for receiving the death notification of the remote object.
-  
+
   ```ts
   class MyDeathRecipient {
       onRemoteDied() {
@@ -6645,16 +6708,18 @@ Adds a callback for receiving the death notifications of the remote object, incl
 
 **Return value**
 
-  | Type   | Description                                         |
-  | ------- | --------------------------------------------- |
+  | Type   | Description                                    |
+  | ------- | ---------------------------------------- |
   | boolean | Returns **true** if the callback is added successfully; returns **false** otherwise.|
 
 **Example**
 
-  Obtain the service.
+  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6672,9 +6737,13 @@ Adds a callback for receiving the death notifications of the remote object, incl
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
-  ```
   
+  // Use this method to connect to the ability for the FA model.
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
+  ```
+
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **addDeathRecippient()** of the proxy object is called to add a callback for receiving the death notification of the remove object.
 
   ```ts
@@ -6707,15 +6776,17 @@ Unregisters the callback used to receive death notifications of the remote objec
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900008 | proxy or remote object is invalid |
+  | -------- | -------- |
+  | 1900008  | proxy or remote object is invalid |
 
 **Example**
 
-  Obtain the service.
+  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6733,9 +6804,13 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
-  ```
   
+  // Use this method to connect to the ability for the FA model.
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
+  ```
+
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **unregisterDeathRecipient()** of the proxy object is called to unregister the callback for receiving the death notification of the remote object.
 
   ```ts
@@ -6746,8 +6821,8 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   }
   let deathRecipient = new MyDeathRecipient();
   try {
-      proxy.registerDeathRecippient(deathRecipient, 0);
-      proxy.unregisterDeathRecippient(deathRecipient, 0);
+      proxy.registerDeathRecipient(deathRecipient, 0);
+      proxy.unregisterDeathRecipient(deathRecipient, 0);
   } catch(error) {
       console.info("proxy register deathRecipient fail, errorCode " + error.code);
       console.info("proxy register deathRecipient fail, errorMessage " + error.message);
@@ -6773,16 +6848,18 @@ Removes the callback used to receive death notifications of the remote object.
 
 **Return value**
 
-  | Type   | Description                                         |
-  | ------- | --------------------------------------------- |
+  | Type   | Description                                    |
+  | ------- | ---------------------------------------- |
   | boolean | Returns **true** if the callback is removed; returns **false** otherwise.|
 
 **Example**
 
-  Obtain the service.
+  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6800,9 +6877,13 @@ Removes the callback used to receive death notifications of the remote object.
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
-  ```
   
+  // Use this method to connect to the ability for the FA model.
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
+  ```
+
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **removeDeathRecipient()** of the proxy object is called to remove the callback used to receive the death notification of the remote object.
 
   ```ts
@@ -6812,7 +6893,7 @@ Removes the callback used to receive death notifications of the remote object.
       }
   }
   let deathRecipient = new MyDeathRecipient();
-  proxy.addDeathRecippient(deathRecipient, 0);
+  proxy.addDeathRecipient(deathRecipient, 0);
   proxy.removeDeathRecipient(deathRecipient, 0);
   ```
 
@@ -6835,16 +6916,18 @@ Obtains the interface descriptor (which is a string) of this proxy object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | -------- | ------- |
-  | 1900008 | proxy or remote object is invalid |
-  | 1900007 | communication failed              |
+  | -------- | -------- |
+  | 1900008  | proxy or remote object is invalid |
+  | 1900007  | communication failed              |
 
 **Example**
 
-  Obtain the service.
+  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6862,7 +6945,11 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
+  
+  // Use this method to connect to the ability for the FA model.
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getDescriptor()** of the proxy object is called to obtain the interface descriptor of the object.
 
@@ -6894,10 +6981,12 @@ Obtains the interface descriptor of this proxy object.
 
 **Example**
 
-  Obtain the service.
+  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6915,9 +7004,13 @@ Obtains the interface descriptor of this proxy object.
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
-  ```
   
+  // Use this method to connect to the ability for the FA model.
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
+  ```
+
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getInterfaceDescriptor()** of the proxy object is called to obtain the interface descriptor of the current proxy object.
 
   ```ts
@@ -6935,16 +7028,18 @@ Checks whether the **RemoteObject** is dead.
 
 **Return value**
 
-  | Type   | Description                                                     |
-  | ------- | --------------------------------------------------------- |
+  | Type   | Description                                             |
+  | ------- | ------------------------------------------------- |
   | boolean | Returns **true** if the **RemoteObject** is dead; returns **false** otherwise.|
 
 **Example**
 
-  Obtain the service.
+  Before obtaining the ability for the application developed based on the stage model, obtain the context. For details, see [Obtaining the Context](#obtaining-the-context).
 
   ```ts
-  import FA from "@ohos.ability.featureAbility";
+  // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
+  // import FA from "@ohos.ability.featureAbility";
+  
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6962,7 +7057,11 @@ Checks whether the **RemoteObject** is dead.
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  FA.connectAbility(want, connect);
+  
+  // Use this method to connect to the ability for the FA model.
+  // FA.connectAbility(want,connect);
+  
+  globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **isObjectDead()** of the proxy object is called to check whether this object is dead.
@@ -6980,10 +7079,10 @@ Provides common message options (flag and wait time). Use the specified flag to 
 
   | Name         | Value  | Description                                                       |
   | ------------- | ---- | ----------------------------------------------------------- |
-  | TF_SYNC       | 0    | Synchronous call.                                                 |
-  | TF_ASYNC      | 1    | Asynchronous call.                                                 |
+  | TF_SYNC       | 0    | Synchronous call.                                             |
+  | TF_ASYNC      | 1    | Asynchronous call.                                             |
   | TF_ACCEPT_FDS | 0x10 | Indication to **sendMessageRequest<sup>9+</sup>** for returning the file descriptor.|
-  | TF_WAIT_TIME  | 8    | Default waiting time, in seconds.                                         |
+  | TF_WAIT_TIME  | 8    | Default waiting time, in seconds.                                    |
 
 
 ### constructor<sup>9+</sup>
@@ -7045,8 +7144,8 @@ Checks whether **SendMessageRequest** is called synchronously or asynchronously.
 
 **Return value**
 
-  | Type   | Description                                |
-  | ------- | ------------------------------------ |
+  | Type   | Description                                    |
+  | ------- | ---------------------------------------- |
   | boolean | Returns **true** if **SendMessageRequest** is called synchronously; returns **false** if **SendMessageRequest** is called asynchronously.|
 
 **Example**
@@ -7353,8 +7452,8 @@ Checks whether the remote process is a process of the local device. This API is 
 
 **Return value**
 
-  | Type   | Description                                                     |
-  | ------- | --------------------------------------------------------- |
+  | Type   | Description                                              |
+  | ------- | -------------------------------------------------- |
   | boolean | Returns **true** if the local and remote processes are on the same device; returns **false** otherwise.|
 
 **Example**
@@ -7526,8 +7625,8 @@ Sets the UID and PID of the remote user. This API is a static method. It is usua
 
 **Return value**
 
-  | Type   | Description                                     |
-  | ------- | ----------------------------------------- |
+  | Type   | Description                            |
+  | ------- | ---------------------------------|
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
@@ -7579,17 +7678,17 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-  | Name | Type                           | Mandatory| Description                                                                                  |
-  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | Name | Type                                     | Mandatory| Description                                                                                  |
+  | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                                    | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
   | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-  | options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
-  | Type   | Description                                         |
-  | ------- | --------------------------------------------- |
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the message is sent successfully; returns **false** otherwise.|
 
 **Example**
@@ -7645,12 +7744,12 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-  | Name | Type                           | Mandatory| Description                                                                                  |
-  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | Name | Type                                     | Mandatory| Description                                                                                  |
+  | ------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                                    | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data    | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
   | reply   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
-  | options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | options | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
@@ -7715,12 +7814,12 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Parameters**
 
-  | Name | Type                           | Mandatory| Description                                                                                  |
-  | ------- | ------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code    | number                          | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | Name | Type                                | Mandatory| Description                                                                                  |
+  | ------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
+  | code    | number                               | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data    | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
   | reply   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
-  | options | [MessageOption](#messageoption) | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | options | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
 
 **Return value**
 
@@ -7771,13 +7870,13 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
 **Parameters**
 
-  | Name       | Type                              | Mandatory| Description                                                                                  |
-  | ------------- | ---------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code          | number                             | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | Name       | Type                                | Mandatory| Description                                                                                  |
+  | ------------- | ------------------------------------ | ---- | -------------------------------------------------------------------------------------- |
+  | code          | number                               | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
   | data          | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object holding the data to send.                                           |
   | reply         | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that receives the response.                                                   |
-  | options       | [MessageOption](#messageoption)    | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-  | AsyncCallback | AsyncCallback&lt;RequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
+  | options       | [MessageOption](#messageoption)      | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | AsyncCallback | AsyncCallback&lt;RequestResult&gt;   | Yes  | Callback for receiving the sending result.                                                                  |
 
 **Example**
 
@@ -7821,13 +7920,13 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
 
 **Parameters**
 
-  | Name       | Type                                  | Mandatory| Description                                                                                  |
-  | ------------- | -------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
-  | code          | number                                 | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
-  | data          | [MessageParcel](#messageparceldeprecated)        | Yes  | **MessageParcel** object holding the data to send.                                             |
-  | reply         | [MessageParcel](#messageparceldeprecated)        | Yes  | **MessageParcel** object that receives the response.                                                     |
-  | options       | [MessageOption](#messageoption)        | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
-  | AsyncCallback | AsyncCallback&lt;SendRequestResult&gt; | Yes  | Callback for receiving the sending result.                                                                  |
+  | Name       | Type                                     | Mandatory| Description                                                                                  |
+  | ------------- | ----------------------------------------- | ---- | -------------------------------------------------------------------------------------- |
+  | code          | number                                    | Yes  | Message code called by the request, which is determined by the client and server. If the method is generated by an IDL tool, the message code is automatically generated by the IDL tool.|
+  | data          | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object holding the data to send.                                             |
+  | reply         | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that receives the response.                                                     |
+  | options       | [MessageOption](#messageoption)           | Yes  | Request sending mode, which can be synchronous (default) or asynchronous.                                                  |
+  | AsyncCallback | AsyncCallback&lt;SendRequestResult&gt;    | Yes  | Callback for receiving the sending result.                                                                  |
 
 **Example**
 
@@ -7885,17 +7984,17 @@ Provides a response to **sendMessageRequest()**. The server processes the reques
 
 **Parameters**
 
-  | Name| Type                           | Mandatory| Description                                   |
-  | ------ | ------------------------------- | ---- | --------------------------------------- |
-  | code   | number                          | Yes  | Service request code sent by the remote end.                 |
+  | Name| Type                                     | Mandatory| Description                                   |
+  | ------ | ----------------------------------------- | ---- | --------------------------------------- |
+  | code   | number                                    | Yes  | Service request code sent by the remote end.                 |
   | data   | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object that holds the parameters called by the client.|
   | reply  | [MessageParcel](#messageparceldeprecated) | Yes  | **MessageParcel** object carrying the result.          |
-  | option | [MessageOption](#messageoption) | Yes  | Whether the operation is synchronous or asynchronous.               |
+  | option | [MessageOption](#messageoption)           | Yes  | Whether the operation is synchronous or asynchronous.               |
 
 **Return value**
 
-  | Type   | Description                                     |
-  | ------- | ----------------------------------------- |
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
@@ -7946,17 +8045,17 @@ Provides a response to **sendMessageRequest()**. The server processes the reques
 
 **Parameters**
 
-  | Name| Type                           | Mandatory| Description                                     |
-  | ------ | ------------------------------- | ---- | ----------------------------------------- |
-  | code   | number                          | Yes  | Service request code sent by the remote end.                   |
+  | Name| Type                                | Mandatory| Description                                     |
+  | ------ | ------------------------------------ | ---- | ----------------------------------------- |
+  | code   | number                               | Yes  | Service request code sent by the remote end.                   |
   | data   | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object that holds the parameters called by the client.|
   | reply  | [MessageSequence](#messagesequence9) | Yes  | **MessageSequence** object to which the result is written.          |
-  | option | [MessageOption](#messageoption) | Yes  | Whether the operation is synchronous or asynchronous.                 |
+  | option | [MessageOption](#messageoption)      | Yes  | Whether the operation is synchronous or asynchronous.                 |
 
 **Return value**
 
-  | Type             | Description                                                                                          |
-  | ----------------- | ---------------------------------------------------------------------------------------------- |
+  | Type             | Description                                                                                           |
+  | ----------------- | ----------------------------------------------------------------------------------------------- |
   | boolean           | Returns a Boolean value if the request is processed synchronously in **onRemoteMessageRequest**. The value **true** means the operation is successful; the value **false** means the opposite.|
   | Promise\<boolean> | Returns a promise object if the request is processed asynchronously in **onRemoteMessageRequest**.                                |
 
@@ -8237,8 +8336,8 @@ Obtains the interface descriptor of this object. The interface descriptor is a s
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900008 | proxy or remote object is invalid |
+  | -------- | -------- |
+  | 1900008  | proxy or remote object is invalid |
 
 **Example**
 
@@ -8629,8 +8728,8 @@ Creates the shared file mapping on the virtual address space of this process. Th
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | ------ |
-  | 1900001     | call mmap function failed |
+  | -------- | -------- |
+  | 1900001  | call mmap function failed |
 
 **Example**
 
@@ -8662,8 +8761,8 @@ Creates the shared file mapping on the virtual address space of this process. Th
 
 **Return value**
 
-  | Type   | Description                                     |
-  | ------- | ----------------------------------------- |
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
 
 **Example**
@@ -8687,8 +8786,8 @@ Maps the shared file to the readable and writable virtual address space of the p
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900001 | call mmap function failed |
+  | -------- | -------- |
+  | 1900001  | call mmap function failed |
 
 **Example**
 
@@ -8714,8 +8813,8 @@ Maps the shared file to the readable and writable virtual address space of the p
 
 **Return value**
 
-  | Type   | Description                                     |
-  | ------- | ----------------------------------------- |
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
 
 **Example**
@@ -8739,8 +8838,8 @@ Maps the shared file to the read-only virtual address space of the process.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900001 | call mmap function failed |
+  | -------- | -------- |
+  | 1900001  | call mmap function failed |
 
 **Example**
 
@@ -8766,8 +8865,8 @@ Maps the shared file to the read-only virtual address space of the process.
 
 **Return value**
 
-  | Type   | Description                                     |
-  | ------- | ----------------------------------------- |
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the mapping is created; returns **false** otherwise.|
 
 **Example**
@@ -8797,8 +8896,8 @@ Sets the protection level of the memory region to which the shared file is mappe
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | -------- | ------- |
-  | 1900002 | call os ioctl function failed |
+  | -------- | -------- |
+  | 1900002  | call os ioctl function failed |
 
 **Example**
 
@@ -8830,8 +8929,8 @@ Sets the protection level of the memory region to which the shared file is mappe
 
 **Return value**
 
-  | Type   | Description                                     |
-  | ------- | ----------------------------------------- |
+  | Type   | Description                            |
+  | ------- | -------------------------------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
 **Example**
@@ -8863,8 +8962,8 @@ Writes data to the shared file associated with this **Ashmem** object.
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
   | ID| Error Message|
-  | ------- | -------- |
-  | 1900003 | write to ashmem failed |
+  | -------- | -------- |
+  | 1900003  | write to ashmem failed |
 
 **Example**
 
@@ -8900,8 +8999,8 @@ Writes data to the shared file associated with this **Ashmem** object.
 
 **Return value**
 
-  | Type   | Description                                                                                     |
-  | ------- | ----------------------------------------------------------------------------------------- |
+  | Type   | Description                                                                         |
+  | ------- | ----------------------------------------------------------------------------- |
   | boolean | Returns **true** if the data is written successfully; returns **false** otherwise.|
 
 **Example**
@@ -8940,9 +9039,9 @@ Reads data from the shared file associated with this **Ashmem** object.
 
 For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode-rpc.md).
 
-  | ID | Error Message|
+  | ID| Error Message|
   | -------- | -------- |
-  | 1900004 | read from ashmem failed |
+  | 1900004  | read from ashmem failed |
 
 **Example**
 
@@ -8985,7 +9084,7 @@ Reads data from the shared file associated with this **Ashmem** object.
 
 **Example**
 
- ```ts
+ ``` ts
   let ashmem = rpc.Ashmem.createAshmem("ashmem", 1024*1024);
   let mapResult = ashmem.mapReadAndWriteAshmem();
   console.info("RpcTest map ashmem result is " + mapResult);
@@ -8994,4 +9093,37 @@ Reads data from the shared file associated with this **Ashmem** object.
   console.log("RpcTest: write to Ashmem result is  : " + writeResult);
   let readResult = ashmem.readFromAshmem(5, 0);
   console.log("RpcTest: read to Ashmem result is  : " + readResult);
+ ```
+
+## Obtaining the Context
+
+**Example**
+
+ ```ts
+  import Ability from '@ohos.app.ability.UIAbility';
+  export default class MainAbility extends Ability {
+    onCreate(want, launchParam) {
+        console.log("[Demo] MainAbility onCreate");
+        globalThis.context = this.context;
+    }
+    onDestroy() {
+        console.log("[Demo] MainAbility onDestroy");
+    }
+    onWindowStageCreate(windowStage) {
+        // Main window is created, set main page for this ability
+        console.log("[Demo] MainAbility onWindowStageCreate");
+    }
+    onWindowStageDestroy() {
+        // Main window is destroyed, release UI related resources
+        console.log("[Demo] MainAbility onWindowStageDestroy");
+    }
+    onForeground() {
+        // Ability has brought to foreground
+        console.log("[Demo] MainAbility onForeground");
+    }
+    onBackground() {
+        // Ability has back to background
+        console.log("[Demo] MainAbility onBackground");
+    }
+  };
  ```

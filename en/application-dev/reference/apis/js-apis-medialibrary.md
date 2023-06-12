@@ -77,7 +77,6 @@ let media = mediaLibrary.getMediaLibrary();
 
 ### getFileAssets<sup>7+</sup>
 
-
 getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileResult&gt;): void 
 
 Obtains file assets (also called files). This API uses an asynchronous callback to return the result.
@@ -105,7 +104,7 @@ async function example() {
         selectionArgs: [imageType.toString()],
     };
     // Obtain the files in asynchronous callback mode.
-    media.getFileAssets(imagesFetchOp, (error, fetchFileResult) => {
+    media.getFileAssets(imagesFetchOp, async (error, fetchFileResult) => {
         // Check whether the result set of the obtained files is undefined. If yes, the API call fails.
         if (fetchFileResult == undefined) {
             console.error('get fetchFileResult failed with error: ' + error);
@@ -124,8 +123,8 @@ async function example() {
             return;
         }
         console.info('Get fetchFileResult successfully, count: ' + count);
-        // Obtain the first file in the result set in asynchronous callback mode.
-        fetchFileResult.getFirstObject((error, fileAsset) => {
+        // Obtain the first file in the result set in asynchronous callback mode. If there are a large number of files, use getAllObject instead.
+        fetchFileResult.getFirstObject(async (error, fileAsset) => {
             // Check whether the first file is undefined. If yes, the API call fails.
             if (fileAsset == undefined) {
                 console.error('get first object failed with error: ' + error);
@@ -178,7 +177,7 @@ async function example() {
         selectionArgs: [imageType.toString()],
     };
     // Obtain the files in promise mode.
-    media.getFileAssets(imagesFetchOp).then((fetchFileResult) => {
+    media.getFileAssets(imagesFetchOp).then(async (fetchFileResult) => {
         // Obtain the total number of files in the result set.
         const count = fetchFileResult.getCount();
         // Check whether the number is less than 0. If yes, the API call fails.
@@ -192,8 +191,8 @@ async function example() {
             return;
         }
         console.info('Get fetchFileResult successfully, count: ' + count);
-        // Obtain the first file in the result set in promise mode.
-        fetchFileResult.getFirstObject().then((fileAsset) => {
+        // Obtain the first file in the result set in promise mode. If there are a large number of files, use getAllObject instead.
+        fetchFileResult.getFirstObject().then(async (fileAsset) => {
             console.info('fileAsset.displayName ' + '0 : ' + fileAsset.displayName);
             // Call getNextObject to obtain the next file until the last one.
             for (let i = 1; i < count; i++) {
@@ -514,17 +513,18 @@ Obtains the albums. This API uses an asynchronous callback to return the result.
 
 ```js
 async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    media.getAlbums(AlbumNoArgsfetchOp, (error, albumList) => {
-        if (albumList != undefined) {
-            console.info('getAlbums successfully: ' + JSON.stringify(albumList));
-        } else {
-            console.error('getAlbums failed with error: ' + error);
-        }
-    })
+   // To obtain the file assets in an album, you must preset the album and resources. The sample code below presets 'New Album 1'.
+  let AlbumNoArgsfetchOp = {
+    selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+    selectionArgs:['New Album 1'],
+  };
+  media.getAlbums(AlbumNoArgsfetchOp, (error, albumList) => {
+    if (albumList != undefined) {
+      console.info('getAlbums successfully: ' + JSON.stringify(albumList));
+    } else {
+      console.error('getAlbums failed with error: ' + error);
+    }
+  })
 }
 ```
 
@@ -554,15 +554,16 @@ Obtains the albums. This API uses a promise to return the result.
 
 ```js
 async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    media.getAlbums(AlbumNoArgsfetchOp).then((albumList) => {
-        console.info('getAlbums successfully: ' + JSON.stringify(albumList));
-    }).catch((error) => {
-        console.error('getAlbums failed with error: ' + error);
-    });
+   // To obtain the file assets in an album, you must preset the album and resources. The sample code below presets 'New Album 1'.
+  let AlbumNoArgsfetchOp = {
+    selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+    selectionArgs:['New Album 1'],
+  };
+  media.getAlbums(AlbumNoArgsfetchOp).then((albumList) => {
+    console.info('getAlbums successfully: ' + JSON.stringify(albumList));
+  }).catch((error) => {
+    console.error('getAlbums failed with error: ' + error);
+  });
 }
 ```
 
@@ -713,8 +714,8 @@ Starts image preview, with the first image to preview specified. This API can be
 
 ```js
 let images = [
-    'datashare:///media/xxxx/2',
-    'datashare:///media/xxxx/3'
+    'file://media/xxxx/2',
+    'file://media/xxxx/3'
 ];
 /* Preview online images.
 let images = [
@@ -756,8 +757,8 @@ Starts image preview. This API can be used to preview local images whose URIs st
 
 ```js
 let images = [
-    'datashare:///media/xxxx/2',
-    'datashare:///media/xxxx/3'
+    'file://media/xxxx/2',
+    'file://media/xxxx/3'
 ];
 /* Preview online images.
 let images = [
@@ -804,8 +805,8 @@ Starts image preview, with the first image to preview specified. This API can be
 
 ```js
 let images = [
-    'datashare:///media/xxxx/2',
-    'datashare:///media/xxxx/3'
+    'file://media/xxxx/2',
+    'file://media/xxxx/3'
 ];
 /* Preview online images.
 let images = [
@@ -1046,7 +1047,7 @@ Provides APIs for encapsulating file asset attributes.
 | Name                     | Type                    | Readable| Writable| Description                                                  |
 | ------------------------- | ------------------------ | ---- | ---- | ------------------------------------------------------ |
 | id                        | number                   | Yes  | No  | File asset ID.                                          |
-| uri                       | string                   | Yes  | No  | File asset URI, for example, **datashare:///media/image/2**.        |
+| uri                       | string                   | Yes  | No  | File asset URI, for example, **file://media/image/2**.        |
 | mimeType                  | string                   | Yes  | No  | Extended file attributes.                                          |
 | mediaType<sup>8+</sup>    | [MediaType](#mediatype8) | Yes  | No  | Media type.                                              |
 | displayName               | string                   | Yes  | Yes  | Display file name, including the file name extension.                                |
@@ -2021,7 +2022,7 @@ async function example() {
 
 ### getNextObject<sup>7+</sup>
 
- getNextObject(callback: AsyncCallback&lt;FileAsset&gt;): void
+getNextObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 Obtains the next file asset in the result set. This API uses an asynchronous callback to return the result.
 > **NOTE** 
@@ -2049,7 +2050,8 @@ async function example() {
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     let fileAsset = await fetchFileResult.getFirstObject();
-    if (!fileAsset.isAfterLast) {
+    console.log('fetchFileResult getFirstObject successfully, displayName: ' + fileAsset.displayName);
+    if (!fetchFileResult.isAfterLast()) {
         fetchFileResult.getNextObject((error, fileAsset) => {
             if (error) {
                 console.error('fetchFileResult getNextObject failed with error: ' + error);
@@ -2065,7 +2067,7 @@ async function example() {
 
 ### getNextObject<sup>7+</sup>
 
- getNextObject(): Promise&lt;FileAsset&gt;
+getNextObject(): Promise&lt;FileAsset&gt;
 
 Obtains the next file asset in the result set. This API uses a promise to return the result.
 > **NOTE** 
@@ -2093,7 +2095,8 @@ async function example() {
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     let fileAsset = await fetchFileResult.getFirstObject();
-    if (!fileAsset.isAfterLast) {
+    console.log('fetchFileResult getFirstObject successfully, displayName: ' + fileAsset.displayName);
+    if (!fetchFileResult.isAfterLast()) {
         fetchFileResult.getNextObject().then((fileAsset) => {
             console.info('fetchFileResult getNextObject successfully, displayName: ' + fileAsset.displayName);
             fetchFileResult.close();
@@ -2369,20 +2372,21 @@ Commits the modification in the album attributes to the database. This API uses 
 
 ```js
 async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
-    const album = albumList[0];
-    album.albumName = 'hello';
-    album.commitModify((error) => {
-        if (error) {
-            console.error('commitModify failed with error: ' + error);
-            return;
-        }
-        console.info('commitModify successful.');
-    })
+  // To obtain the file assets in an album, you must preset the album and resources. The sample code below presets 'New Album 1'.
+  let AlbumNoArgsfetchOp = {
+    selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+    selectionArgs:['New Album 1'],
+  };
+  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const album = albumList[0];
+  album.albumName = 'hello';
+  album.commitModify((error) => {
+    if (error) {
+      console.error('commitModify failed with error: ' + error);
+      return;
+    }
+    console.info('commitModify successful.');
+  })
 }
 ```
 
@@ -2406,18 +2410,60 @@ Commits the modification in the album attributes to the database. This API uses 
 
 ```js
 async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
-    const album = albumList[0];
-    album.albumName = 'hello';
-    album.commitModify().then(() => {
-        console.info('commitModify successfully');
-    }).catch((error) => {
-        console.error('commitModify failed with error: ' + error);
-    });
+  // To obtain the file assets in an album, you must preset the album and resources. The sample code below presets 'New Album 1'.
+  let AlbumNoArgsfetchOp = {
+    selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+    selectionArgs:['New Album 1'],
+  };
+  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const album = albumList[0];
+  album.albumName = 'hello';
+  album.commitModify().then(() => {
+    console.info('commitModify successfully');
+  }).catch((error) => {
+    console.error('commitModify failed with error: ' + error);
+  });
+}
+```
+
+### getFileAssets<sup>7+</sup>
+
+getFileAssets(callback: AsyncCallback&lt;FetchFileResult&gt;): void
+
+Obtains the file assets in this album. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.READ_MEDIA
+
+**System capability**: SystemCapability.Multimedia.MediaLibrary.Core
+
+**Parameters**
+
+| Name  | Type                                               | Mandatory| Description                               |
+| -------- | --------------------------------------------------- | ---- | ----------------------------------- |
+| callback | AsyncCallback<[FetchFileResult](#fetchfileresult7)> | Yes  | Callback used to return the file assets.|
+
+**Example**
+
+```js
+async function example() {
+  // To obtain the file assets in an album, you must preset the album and resources. The sample code below presets 'New Album 1'.
+  let AlbumNoArgsfetchOp = {
+    selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+    selectionArgs:['New Album 1'],
+  };
+  // Obtain the albums that meet the retrieval options and return the album list.
+  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const album = albumList[0];
+  // Obtain an album from the album list and obtain all media assets that meet the retrieval options in the album.
+  album.getFileAssets((error, fetchFileResult) => {
+    if (error) {
+      console.error('album getFileAssets failed with error: ' + error);
+      return;
+    }
+    let count = fetchFileResult.getCount();
+    console.info('album getFileAssets successfully, count: ' + count);
+    fetchFileResult.close();
+  });
 }
 ```
 
@@ -2442,27 +2488,28 @@ Obtains the file assets in this album. This API uses an asynchronous callback to
 
 ```js
 async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    let fileNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
+  // To obtain the file assets in an album, you must preset the album and resources. The sample code below presets 'New Album 1'.
+  let AlbumNoArgsfetchOp = {
+    selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+    selectionArgs:['New Album 1'],
+  };
+  let fileNoArgsfetchOp = {
+    selections: '',
+    selectionArgs: [],
+  }
+  // Obtain the albums that meet the retrieval options and return the album list.
+  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const album = albumList[0];
+  // Obtain an album from the album list and obtain all media assets that meet the retrieval options in the album.
+  album.getFileAssets(fileNoArgsfetchOp, (error, fetchFileResult) => {
+    if (error) {
+      console.error('album getFileAssets failed with error: ' + error);
+      return;
     }
-    // Obtain the albums that meet the retrieval options and return the album list.
-    const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
-    const album = albumList[0];
-    // Obtain an album from the album list and obtain all media assets that meet the retrieval options in the album.
-    album.getFileAssets(fileNoArgsfetchOp, (error, fetchFileResult) => {
-        if (error) {
-            console.error('album getFileAssets failed with error: ' + error);
-            return;
-        }
-        let count = fetchFileResult.getCount();
-        console.info('album getFileAssets successfully, count: ' + count);
-        fetchFileResult.close();
-    });
+    let count = fetchFileResult.getCount();
+    console.info('album getFileAssets successfully, count: ' + count);
+    fetchFileResult.close();
+  });
 }
 ```
 
@@ -2492,25 +2539,26 @@ Obtains the file assets in this album. This API uses a promise to return the res
 
 ```js
 async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    let fileNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    // Obtain the albums that meet the retrieval options and return the album list.
-    const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
-    const album = albumList[0];
-    // Obtain an album from the album list and obtain all media assets that meet the retrieval options in the album.
-    album.getFileAssets(fileNoArgsfetchOp).then((fetchFileResult) => {
-        let count = fetchFileResult.getCount();
-        console.info('album getFileAssets successfully, count: ' + count);
-        fetchFileResult.close();
-    }).catch((error) => {
-        console.error('album getFileAssets failed with error: ' + error);
-    });
+  // To obtain the file assets in an album, you must preset the album and resources. The sample code below presets 'New Album 1'.
+  let AlbumNoArgsfetchOp = {
+    selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+    selectionArgs:['New Album 1'],
+  };
+  let fileNoArgsfetchOp = {
+    selections: '',
+    selectionArgs: [],
+  };
+  // Obtain the albums that meet the retrieval options and return the album list.
+  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const album = albumList[0];
+  // Obtain an album from the album list and obtain all media assets that meet the retrieval options in the album.
+  album.getFileAssets(fileNoArgsfetchOp).then((fetchFileResult) => {
+    let count = fetchFileResult.getCount();
+    console.info('album getFileAssets successfully, count: ' + count);
+    fetchFileResult.close();
+  }).catch((error) => {
+    console.error('album getFileAssets failed with error: ' + error);
+  });
 }
 ```
 

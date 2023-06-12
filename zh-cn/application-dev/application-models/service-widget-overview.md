@@ -6,8 +6,7 @@
 
 ## 服务卡片架构
 
-  **图1** 服务卡片架构
-
+**图1** 服务卡片架构  
 ![WidgetArchitecture](figures/WidgetArchitecture.png)
 
 卡片的基本概念：
@@ -24,7 +23,7 @@
 
 卡片的常见使用步骤如下。
 
-  **图2** 卡片常见使用步骤
+**图2** 卡片常见使用步骤
 
 ![WidgetUse](figures/WidgetUse.png)
 
@@ -55,4 +54,17 @@ ArkTS卡片与JS卡片具备不同的实现原理及特征，在场景能力上�
 | 自定义绘制 | 不支持 | 支持 |
 | 逻辑代码执行（不包含import能力） | 不支持 | 支持 |
 
-相比于JS卡片，ArkTS卡片在能力和场景方面更加丰富，因此无论开发何种用途的卡片，都推荐使用ArkTS卡片，因为它可以提高开发效率并实现动态化。但如果只需要做静态页面展示的卡片，可以考虑使用JS卡片。
+推荐在开发需求需要动态能力的卡片时使用ArkTS卡片，因为它拥有更加丰富的能力和适应更多的场景，能够提高效率并实现动态化。但如果只需要静态展示卡片，可以考虑使用JS卡片。
+
+# 相关实例
+
+针对Stage模型卡片提供方的开发，有以下相关实例可供参考：
+
+
+- [基于Stage模型的JS卡片（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormExtAbility)
+
+- [基于Stage模型的JS卡片（成语接龙小游戏）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/FormGame)
+
+- [基于Stage模型的ArkTS卡片（Canvas绘制实现的五子棋游戏卡片）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/ArkTSCard/CanvasGame)
+
+- [基于Stage模型的ArkTS卡片（逻辑代码执行实现的计算器卡片）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SuperFeature/Widget/ArkTSCard/Calculator)

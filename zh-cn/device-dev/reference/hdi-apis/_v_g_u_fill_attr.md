@@ -1,7 +1,7 @@
 # VGUFillAttr
 
 
-## **概述**
+## 概述
 
 填充路径的属性。
 
@@ -10,11 +10,11 @@
 [Display](_display.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [rule](_display.md#rule) | 填充规格 | 
+| [rule](_display.md#rule) | [VGUFillRule](_display.md#vgufillrule)<br/>填充规格 | 

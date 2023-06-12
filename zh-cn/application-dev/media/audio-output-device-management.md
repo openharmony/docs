@@ -45,16 +45,14 @@ audioRoutingManager.getDevices(audio.DeviceFlag.OUTPUT_DEVICES_FLAG).then((data)
 ```ts
 // 监听音频设备状态变化
 audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged) => {
-  console.info('device change type : ' + deviceChanged.type);  // 设备连接状态变化，0为连接，1为断开连接
-  console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
-  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceRole);  // 设备角色
-  console.info('device change descriptor : ' + deviceChanged.deviceDescriptors[0].deviceType);  // 设备类型
+  console.info(`device change type : ${deviceChanged.type}`);  // 设备连接状态变化，0为连接，1为断开连接
+  console.info(`device descriptor size : ${deviceChanged.deviceDescriptors.length}`);
+  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceRole}`);  // 设备角色
+  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceType}`);  // 设备类型
 });
 
 // 取消监听音频设备状态变化
-audioRoutingManager.off('deviceChange', (deviceChanged) => {
-  console.info('Should be no callback.');
-});
+audioRoutingManager.off('deviceChange');
 ```
 
 ## 选择音频输出设备（仅对系统应用开放）
@@ -87,4 +85,47 @@ async function selectOutputDevice(){
     console.error(`Invoke selectOutputDevice failed, code is ${err.code}, message is ${err.message}`);
   });
 }
+```
+
+## 获取最高优先级输设备信息
+
+使用getPreferOutputDeviceForRendererInfo()方法, 可以获取当前最高优先级的输出设备。
+
+> **说明：**
+>
+> 最高优先级输出设备表示声音将在此设备输出的设备。
+
+```ts
+let rendererInfo = {
+    content : audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags : 0,
+}
+
+async function getPreferOutputDeviceForRendererInfo() {
+  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc) => {
+    console.info(`device descriptor: ${desc}`);
+  }).catch((err) => {
+    console.error(`Result ERROR: ${err}`);
+  })
+}
+```
+
+## 监听最高优先级输出设备变化
+
+```ts
+let rendererInfo = {
+    content : audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags : 0,
+}
+
+// 监听最高优先级输出设备变化
+audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc) => {
+    console.info(`device change descriptor : ${desc.deviceDescriptors[0].deviceRole}`);  // 设备角色
+    console.info(`device change descriptor : ${desc.deviceDescriptors[0].deviceType}`);  // 设备类型
+});
+
+// 取消监听最高优先级输出设备变化
+audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
 ```

@@ -5,7 +5,6 @@
 - [HTTP数据请求](http-request.md)：通过HTTP发起一个数据请求。
 - [WebSocket连接](websocket-connection.md)：使用WebSocket建立服务器与客户端的双向连接。
 - [Socket连接](socket-connection.md)：通过Socket进行数据传输。
-- [网络策略管理](net-policy-management.md)：提供一些限制网络的基础能力，包括蜂窝网络策略、休眠/省电模式策略、后台网络策略、重置网络策略等功能。
 - [网络共享](net-sharing.md)：分享设备已有网络给其他连接设备，支持Wi-Fi热点共享、蓝牙共享和USB共享，同时提供网络共享状态、共享流量查询功能。
 - [以太网连接](net-ethernet.md)：以太网连接主要提供有线网络能力，提供设置有线网络的IP地址，子网掩码，网关，DNS等信息。
 - [网络连接管理](net-connection-manager.md)：网络连接管理提供管理网络一些基础能力，包括WiFi/蜂窝/Ethernet等多网络连接优先级管理、网络质量评估、订阅默认/指定网络连接状态变化、查询网络连接信息、DNS解析等功能。

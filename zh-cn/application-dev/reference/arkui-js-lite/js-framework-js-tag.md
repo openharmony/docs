@@ -4,14 +4,15 @@
 js标签中包含了实例名称、页面路由信息。
 
 
-| 标签 | 类型 | 默认值 | 必填 | 描述 |
-| -------- | -------- | -------- | -------- | -------- |
-| name | string | default | 是 | 标识JS实例的名字。 |
-| pages | Array | - | 是 | 路由信息，详见“**[pages](#pages)**”。 |
+| 标签    | 类型     | 默认值     | 必填   | 描述                            |
+| ----- | ------ | ------- | ---- | ----------------------------- |
+| name  | string | default | 是    | 标识JS实例的名字。                    |
+| pages | Array  | -       | 是    | 路由信息，详见“[pages](#pages)”。 |
 
 
 >  **说明：**
-> name、pages标签配置需在配置文件中的“js”标签中完成设置。
+>
+>  name、pages标签配置需在配置文件中的“js”标签中完成设置。
 
 
 ## pages
@@ -33,10 +34,10 @@ js标签中包含了实例名称、页面路由信息。
 
 >  **说明：**
 >
-> 
-> - 应用首页固定为"pages/index/index"。
-> 
-> - 页面文件名不能使用组件名称，比如：text.hml、button.hml等。
+>
+>  - 应用首页固定为"pages/index/index"。
+>
+>  - 页面文件名不能使用组件名称，比如：text.hml、button.hml等。
 
 
 ## 示例
@@ -45,7 +46,7 @@ js标签中包含了实例名称、页面路由信息。
 ```
 {
   "app": {
-    "bundleName": "com.huawei.player",
+    "bundleName": "com.example.player",
     "version": {
         "code": 1,
         "name": "1.0"

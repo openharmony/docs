@@ -27,7 +27,7 @@ Obtains the current charging state and battery level.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [GetStatusOptions](#getstatusoptions) | No| Object that contains the API calling result.|
+| options | [GetStatusOptions](#getstatusoptions) | No| Object that contains the API calling result. This parameter is optional and is left blank by default.|
 
 **Example**
 
@@ -50,9 +50,9 @@ Object that contains the API calling result.
 
 | Name  | Type                                               | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| success  | (data: [BatteryResponse](#batteryresponse)) => void | No  | Called when API call is successful. **data** is a return value of the [BatteryResponse](#batteryresponse) type.|
-| fail     | (data: string, code: number) => void                | No  | Called when API call has failed. **data** indicates the error information, and **code** indicates the error code.      |
-| complete | () => void                                          | No  | Called when API call is complete.                                    |
+| success  | (data: [BatteryResponse](#batteryresponse)) => void | No  | Called when an API call is successful. **data** is a return value of the [BatteryResponse](#batteryresponse) type.|
+| fail     | (data: string, code: number) => void                | No  | Called when an API call has failed. **data** indicates the error information, and **code** indicates the error code.      |
+| complete | () => void                                          | No  | Called when an API call is complete.                                    |
 
 ## BatteryResponse
 

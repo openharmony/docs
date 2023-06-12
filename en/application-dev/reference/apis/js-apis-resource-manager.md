@@ -1,6 +1,6 @@
 # @ohos.resourceManager (Resource Manager)
 
-The Resource Manager module provides APIs to obtain information about application resources based on the current configuration, including the language, region, screen direction, MCC/MNC, as well as device capability and density.
+The **resourceManager** module provides APIs to obtain information about application resources based on the current configuration, including the language, region, screen direction, MCC/MNC, as well as device capability and density.
 
 > **NOTE**
 >
@@ -78,7 +78,7 @@ Obtains the **ResourceManager** object of an application based on the specified 
 
 | Name       | Type                                      | Mandatory  | Description                           |
 | ---------- | ---------------------------------------- | ---- | ----------------------------- |
-| bundleName | string                                   | Yes   | Bundle name of the target application.                |
+| bundleName | string                                   | Yes   | Bundle name of the application.                |
 | callback   | AsyncCallback&lt;[ResourceManager](#resourcemanager)&gt; | Yes   | Callback used to return the result.|
 
 **Example**
@@ -135,7 +135,7 @@ Obtains the **ResourceManager** object of an application based on the specified 
 
 | Name       | Type    | Mandatory  | Description           |
 | ---------- | ------ | ---- | ------------- |
-| bundleName | string | Yes   | Bundle name of the target application.|
+| bundleName | string | Yes   | Bundle name of the application.|
 
 **Return value**
 
@@ -253,7 +253,7 @@ Defines the descriptor of the raw file.
 
 | Name    | Type   | Readable  | Writable | Description          |
 | ------ | ------  | ---- | ---- | ------------------ |
-| fd     | number  | Yes   | No| Descriptor of the raw file.|
+| fd     | number  | Yes   | No| File descriptor of the HAP where the raw file is located.|
 | offset | number  | Yes   | No| Start offset of the raw file.     |
 | length | number  | Yes   | No| Length of the raw file.      |
 
@@ -343,9 +343,9 @@ Obtains the string corresponding to the specified resource ID. This API uses a p
 | --------------------- | ----------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -382,9 +382,9 @@ Obtains the string corresponding to the specified resource object. This API uses
 | resource | [Resource](#resource9)      | Yes   | Resource object.           |
 | callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -434,9 +434,9 @@ Obtains the string corresponding to the specified resource object. This API uses
 | --------------------- | ---------------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -478,9 +478,9 @@ Obtains the string array corresponding to the specified resource ID. This API us
 | resId    | number                                   | Yes   | Resource ID.            |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -524,9 +524,9 @@ Obtains the string array corresponding to the specified resource ID. This API us
 | ---------------------------------- | ------------- |
 | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -562,9 +562,9 @@ Obtains the string array corresponding to the specified resource object. This AP
 | resource | [Resource](#resource9)                   | Yes   | Resource object.             |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -612,9 +612,9 @@ Obtains the string array corresponding to the specified resource object. This AP
 | ---------------------------------- | ------------------ |
 | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -640,12 +640,11 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   }
   ```
 
-
 ### getMediaContent<sup>9+</sup>
 
 getMediaContent(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of the media file corresponding to the specified resource name. This API uses an asynchronous callback to return the result.
+Obtains the content of the media file corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -656,9 +655,9 @@ Obtains the content of the media file corresponding to the specified resource na
 | resId    | number                          | Yes   | Resource ID.             |
 | callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -680,6 +679,45 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   }
   ```
 
+### getMediaContent<sup>10+</sup>
+
+getMediaContent(resId: number, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
+
+Obtains the content of the media file with the screen density corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                             | Mandatory  | Description                |
+| -------- | ------------------------------- | ---- | ------------------ |
+| resId    | number                          | Yes   | Resource ID.             |
+| [density](#screendensity)  | number                          | Yes   | Screen density. The value **0** indicates the default screen density.   |
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getMediaContent($r('app.media.test').id, 120, (error, value) => {
+        if (error != null) {
+            console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+        } else {
+            let media = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
 
 ### getMediaContent<sup>9+</sup>
 
@@ -701,9 +739,9 @@ Obtains the content of the media file corresponding to the specified resource ID
 | ------------------------- | -------------- |
 | Promise&lt;Uint8Array&gt; | Promise used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -717,6 +755,49 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
           let media = value;
       }).catch(error => {
           console.log("getMediaContent promise error is " + error);
+      });
+  } catch (error) {
+    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getMediaContent<sup>10+</sup>
+
+getMediaContent(resId: number, density: number): Promise&lt;Uint8Array&gt;
+
+Obtains the content of the media file with the screen density corresponding to the specified resource ID. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resId | number | Yes   | Resource ID.|
+| [density](#screendensity)  | number                          | Yes   | Screen density. The value **0** indicates the default screen density.   |
+
+**Return value**
+
+| Type                       | Description            |
+| ------------------------- | -------------- |
+| Promise&lt;Uint8Array&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**Example**
+  ```ts
+  try {
+      this.context.resourceManager.getMediaContent($r('app.media.test').id, 120).then(value => {
+          let media = value;
+      }).catch(error => {
+          console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
       });
   } catch (error) {
     console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
@@ -738,9 +819,9 @@ Obtains the content of the media file corresponding to the specified resource ob
 | resource | [Resource](#resource9)          | Yes   | Resource object.              |
 | callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -758,6 +839,51 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getMediaContent(resource, (error, value) => {
         if (error != null) {
           console.log("error is " + error);
+        } else {
+          let media = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getMediaContent<sup>10+</sup>
+
+getMediaContent(resource: Resource, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
+
+Obtains the content of the media file with the screen density corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                             | Mandatory  | Description                |
+| -------- | ------------------------------- | ---- | ------------------ |
+| resource | [Resource](#resource9)          | Yes   | Resource object.              |
+| [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**Example**
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.media.test').id
+  };
+  try {
+    this.context.resourceManager.getMediaContent(resource, 120, (error, value) => {
+        if (error != null) {
+          console.error(`callback getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
         } else {
           let media = value;
         }
@@ -787,9 +913,9 @@ Obtains the content of the media file corresponding to the specified resource ob
 | ------------------------- | ------------------- |
 | Promise&lt;Uint8Array&gt; | Promise used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -814,6 +940,53 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   }
   ```
 
+### getMediaContent<sup>10+</sup>
+
+getMediaContent(resource: Resource, density: number): Promise&lt;Uint8Array&gt;
+
+Obtains the content of the media file with the screen density corresponding to the specified resource object. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                    | Mandatory  | Description  |
+| -------- | ---------------------- | ---- | ---- |
+| resource | [Resource](#resource9) | Yes   | Resource object.|
+| [density](#screendensity)  | number                          | Yes   | Screen density. The value **0** indicates the default screen density.   |
+
+**Return value**
+
+| Type                       | Description                 |
+| ------------------------- | ------------------- |
+| Promise&lt;Uint8Array&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**Example**
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.media.test').id
+  };
+  try {
+    this.context.resourceManager.getMediaContent(resource, 120).then(value => {
+      let media = value;
+    }).catch(error => {
+      console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`);
+    });
+  } catch (error) {
+    console.error(`promise getMediaContent failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
 
 ### getMediaContentBase64<sup>9+</sup>
 
@@ -830,9 +1003,9 @@ Obtains the Base64 code of the image corresponding to the specified resource ID.
 | resId    | number                      | Yes   | Resource ID.                   |
 | callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -854,6 +1027,45 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   }
   ```
 
+### getMediaContentBase64<sup>10+</sup>
+
+getMediaContentBase64(resId: number, density: number, callback: AsyncCallback&lt;string&gt;): void
+
+Obtains the Base64 code of an image with the screen density corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                         | Mandatory  | Description                      |
+| -------- | --------------------------- | ---- | ------------------------ |
+| resId    | number                      | Yes   | Resource ID.                   |
+| [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120, (error, value) => {
+        if (error != null) {
+            console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+        } else {
+            let media = value;
+        }
+    });       
+  } catch (error) {
+    console.error(`callback getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
 
 ### getMediaContentBase64<sup>9+</sup>
 
@@ -875,9 +1087,9 @@ Obtains the Base64 code of the image corresponding to the specified resource ID.
 | --------------------- | -------------------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -894,7 +1106,50 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     });
   } catch (error) {
     console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
-  } 
+  }
+  ```
+
+### getMediaContentBase64<sup>10+</sup>
+
+getMediaContentBase64(resId: number, density: number): Promise&lt;string&gt;
+
+Obtains the Base64 code of an image with the screen density corresponding to the specified resource ID. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name  | Type    | Mandatory  | Description   |
+| ----- | ------ | ---- | ----- |
+| resId | number | Yes   | Resource ID.|
+| [density](#screendensity)  | number                          | Yes   | Screen density. The value **0** indicates the default screen density.   |
+
+**Return value**
+
+| Type                   | Description                  |
+| --------------------- | -------------------- |
+| Promise&lt;string&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getMediaContentBase64($r('app.media.test').id, 120).then(value => {
+        let media = value;
+    }).catch(error => {
+        console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    });
+  } catch (error) {
+    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 ### getMediaContentBase64<sup>9+</sup>
@@ -912,9 +1167,9 @@ Obtains the Base64 code of the image corresponding to the specified resource obj
 | resource | [Resource](#resource9)      | Yes   | Resource object.                    |
 | callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -932,6 +1187,51 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getMediaContentBase64(resource, (error, value) => {
         if (error != null) {
             console.log("error is " + error);
+        } else {
+            let media = value;
+        }
+    });
+  } catch (error) {
+    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getMediaContentBase64<sup>10+</sup>
+
+getMediaContentBase64(resource: Resource, density: number, callback: AsyncCallback&lt;string&gt;): void
+
+Obtains the Base64 code of an image with the screen density corresponding to the specified resource object. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                         | Mandatory  | Description                      |
+| -------- | --------------------------- | ---- | ------------------------ |
+| resource | [Resource](#resource9)      | Yes   | Resource object.                    |
+| [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**Example**
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.media.test').id
+  };
+  try {
+    this.context.resourceManager.getMediaContentBase64(resource, 120, (error, value) => {
+        if (error != null) {
+            console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
         } else {
             let media = value;
         }
@@ -961,9 +1261,9 @@ Obtains the Base64 code of the image corresponding to the specified resource obj
 | --------------------- | ------------------------- |
 | Promise&lt;string&gt; |  Promise used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -988,6 +1288,53 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   }
   ```
 
+### getMediaContentBase64<sup>10+</sup>
+
+getMediaContentBase64(resource: Resource, density: number): Promise&lt;string&gt;
+
+Obtains the Base64 code of an image with the screen density corresponding to the specified resource object. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                    | Mandatory  | Description  |
+| -------- | ---------------------- | ---- | ---- |
+| resource | [Resource](#resource9) | Yes   | Resource object.|
+| [density](#screendensity)  | number                          | Yes   | Screen density. The value **0** indicates the default screen density.   |
+
+**Return value**
+
+| Type                   | Description                       |
+| --------------------- | ------------------------- |
+| Promise&lt;string&gt; |  Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001001  | If the resId invalid.                       |
+| 9001002  | If the resource not found by resId.         |
+
+**Example**
+  ```ts
+  let resource = {
+      bundleName: "com.example.myapplication",
+      moduleName: "entry",
+      id: $r('app.media.test').id
+  };
+  try {
+    this.context.resourceManager.getMediaContentBase64(resource, 120).then(value => {
+        let media = value;
+    }).catch(error => {
+        console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`);
+    });
+  } catch (error) {
+    console.error(`promise getMediaContentBase64 failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
 
 ### getConfiguration
 
@@ -1117,9 +1464,9 @@ Obtains the singular-plural string corresponding to the specified resource ID ba
 | num      | number                      | Yes   | Number.                            |
 | callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1164,9 +1511,9 @@ Obtains the singular-plural string corresponding to the specified resource ID ba
 | --------------------- | ------------------------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1203,9 +1550,9 @@ Obtains the singular-plural string corresponding to the specified resource objec
 | num      | number                      | Yes   | Number.                                 |
 | callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1234,9 +1581,9 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   
   ```
 
-### getPluralString<sup>9+</sup>
+### getPluralStringValue<sup>9+</sup>
 
-getPluralString(resource: Resource, num: number): Promise&lt;string&gt;
+getPluralStringValue(resource: Resource, num: number): Promise&lt;string&gt;
 
 Obtains the singular-plural string corresponding to the specified resource object based on the specified number. This API uses a promise to return the result.
 
@@ -1255,9 +1602,9 @@ Obtains the singular-plural string corresponding to the specified resource objec
 | --------------------- | ------------------------------ |
 | Promise&lt;string&gt; | Promise used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1273,10 +1620,10 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       id: $r('app.plural.test').id
   };
   try {
-    this.context.resourceManager.getPluralString(resource, 1).then(value => {
+    this.context.resourceManager.getPluralStringValue(resource, 1).then(value => {
         let str = value;
     }).catch(error => {
-        console.log("getPluralString promise error is " + error);
+        console.log("getPluralStringValue promise error is " + error);
     });
   } catch (error) {
     console.error(`callback getPluralStringValue failed, error code: ${error.code}, message: ${error.message}.`)
@@ -1299,9 +1646,9 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 | path     | string                          | Yes   | Path of the raw file.            |
 | callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1343,9 +1690,9 @@ Obtains the content of the raw file in the **resources/rawfile** directory. This
 | ------------------------- | ----------- |
 | Promise&lt;Uint8Array&gt; | Promise used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1380,9 +1727,9 @@ Obtains the descriptor of the raw file in the **resources/rawfile** directory. T
 | path     | string                                   | Yes   | Path of the raw file.                     |
 | callback | AsyncCallback&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Yes   | Callback used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1425,9 +1772,9 @@ Obtains the descriptor of the raw file in the **resources/rawfile** directory. T
 | ---------------------------------------- | ------------------- |
 | Promise&lt;[RawFileDescriptor](#rawfiledescriptor8)&gt; | Promise used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1446,6 +1793,86 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
   } catch (error) {
     console.error(`promise getRawFd failed, error code: ${error.code}, message: ${error.message}.`);
   };
+  ```
+
+### getRawFileList<sup>10+</sup>
+
+getRawFileList(path: string, callback: AsyncCallback&lt;Array\<string\>&gt;): void;
+
+Obtains the list of files in the **resources/rawfile** directory. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                             | Mandatory  | Description                     |
+| -------- | ------------------------------- | ---- | ----------------------- |
+| path     | string                          | Yes   | Path of the **rawfile** folder.            |
+| callback | AsyncCallback&lt;Array\<string\>&gt; | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001005  | If the resource not found by path.       |
+
+**Example**
+  ```ts
+  try { // Passing "" means to obtain the list of files in the root directory of the raw file.
+    this.context.resourceManager.getRawFileList("", (error, value) => {
+        if (error != null) {
+            console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`)
+        } else {
+            let rawFile = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getRawFileList failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+      
+  ```
+
+### getRawFileList<sup>10+</sup>
+
+getRawFileList(path: string): Promise&lt;Array\<string\>&gt;
+
+Obtains the list of files in the **resources/rawfile** directory. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name | Type    | Mandatory  | Description         |
+| ---- | ------ | ---- | ----------- |
+| path | string | Yes   | Path of the **rawfile** folder.|
+
+**Return value**
+
+| Type                       | Description         |
+| ------------------------- | ----------- |
+| Promise&lt;Array\<string\>&gt; | List of files in the **rawfile** folder.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001005  | If the resource not found by path.          |
+
+**Example**
+  ```ts
+  try { // Passing "" means to obtain the list of files in the root directory of the raw file.
+    this.context.resourceManager.getRawFileList("").then(value => {
+        let rawFile = value;
+    }).catch(error => {
+        console.error(`promise getRawFileList failed, error code: ${error.code}, message: ${error.message}.`)
+    });
+  } catch (error) {
+    console.error(`promise getRawFileList failed, error code: ${error.code}, message: ${error.message}.`)
+  }
   ```
 
 ### closeRawFileDescriptor<sup>8+</sup>
@@ -1521,9 +1948,9 @@ Closes the descriptor of the raw file in the **resources/rawfile** directory. Th
 | path     | string                    | Yes   | Path of the raw file.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.       |
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1563,9 +1990,9 @@ Closes the descriptor of the raw file in the **resources/rawfile** directory. Th
 | ------------------- | ---- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1614,9 +2041,9 @@ Obtains the string corresponding to the specified resource name. This API uses a
 | resName  | string                      | Yes   | Resource name.           |
 | callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1660,9 +2087,9 @@ Obtains the string corresponding to the specified resource name. This API uses a
 | --------------------- | ---------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1698,9 +2125,9 @@ Obtains the string array corresponding to the specified resource name. This API 
 | resName  | string                                   | Yes   | Resource name.             |
 | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | Yes   | Callback used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1743,9 +2170,9 @@ Obtains the string array corresponding to the specified resource name. This API 
 | ---------------------------------- | ------------ |
 | Promise&lt;Array&lt;string&gt;&gt; | Promise used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1770,7 +2197,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getMediaByName(resName: string, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of the media file corresponding to the specified resource name. This API uses an asynchronous callback to return the result.
+Obtains the content of the media file corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -1781,15 +2208,14 @@ Obtains the content of the media file corresponding to the specified resource na
 | resName  | string                          | Yes   | Resource name.              |
 | callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
 
 **Example**
   ```ts
@@ -1797,6 +2223,46 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getMediaByName("test", (error, value) => {
         if (error != null) {
             console.log("error is " + error);
+        } else {
+            let media = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getMediaByName<sup>10+</sup>
+
+getMediaByName(resName: string, density: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
+
+Obtains the content of the media file with the screen density corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                             | Mandatory  | Description                |
+| -------- | ------------------------------- | ---- | ------------------ |
+| resName  | string                          | Yes   | Resource name.              |
+| [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
+| callback | AsyncCallback&lt;Uint8Array&gt; | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getMediaByName("test", 120, (error, value) => {
+        if (error != null) {
+            console.error(`callback getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
         } else {
             let media = value;
         }
@@ -1826,15 +2292,14 @@ Obtains the content of the media file corresponding to the specified resource na
 | ------------------------- | ------------- |
 | Promise&lt;Uint8Array&gt; | Promise used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
 
 **Example**
   ```ts
@@ -1843,6 +2308,49 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         let media = value;
     }).catch(error => {
         console.log("getMediaByName promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getMediaByName<sup>10+</sup>
+
+getMediaByName(resName: string, density: number): Promise&lt;Uint8Array&gt;
+
+Obtains the content of the media file with the screen density corresponding to the specified resource name. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name    | Type    | Mandatory  | Description  |
+| ------- | ------ | ---- | ---- |
+| resName | string | Yes   | Resource name.|
+| [density](#screendensity)  | number                          | Yes   | Screen density. The value **0** indicates the default screen density.   |
+
+**Return value**
+
+| Type                       | Description           |
+| ------------------------- | ------------- |
+| Promise&lt;Uint8Array&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getMediaByName("test", 120).then(value => {
+        let media = value;
+    }).catch(error => {
+        console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
     console.error(`promise getMediaByName failed, error code: ${error.code}, message: ${error.message}.`)
@@ -1864,15 +2372,14 @@ Obtains the Base64 code of the image corresponding to the specified resource nam
 | resName  | string                      | Yes   | Resource name.                    |
 | callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
 
 **Example**
   ```ts
@@ -1880,6 +2387,46 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
     this.context.resourceManager.getMediaBase64ByName("test", (error, value) => {
         if (error != null) {
             console.log("error is " + error);
+        } else {
+            let media = value;
+        }
+    });
+  } catch (error) {
+    console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getMediaBase64ByName<sup>10+</sup>
+
+getMediaBase64ByName(resName: string, density: number, callback: AsyncCallback&lt;string&gt;): void
+
+Obtains the Base64 code of an image with the screen density corresponding to the specified resource name. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name     | Type                         | Mandatory  | Description                      |
+| -------- | --------------------------- | ---- | ------------------------ |
+| resName  | string                      | Yes   | Resource name.                    |
+| [density](#screendensity)  | number        | Yes   | Screen density. The value **0** indicates the default screen density.   |
+| callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getMediaBase64ByName("test", 120, (error, value) => {
+        if (error != null) {
+            console.error(`callback getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
         } else {
             let media = value;
         }
@@ -1909,15 +2456,14 @@ Obtains the Base64 code of the image corresponding to the specified resource nam
 | --------------------- | ------------------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 9001003  | If the resName invalid.                     |
 | 9001004  | If the resource not found by resName.       |
-| 9001006  | If the resource re-ref too much.            |
 
 **Example**
   ```ts
@@ -1926,6 +2472,49 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
         let media = value;
     }).catch(error => {
         console.log("getMediaBase64ByName promise error is " + error);
+    });
+  } catch (error) {
+    console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`)
+  }
+  ```
+
+### getMediaBase64ByName<sup>10+</sup>
+
+getMediaBase64ByName(resName: string, density: number): Promise&lt;string&gt;
+
+Obtains the Base64 code of an image with the screen density corresponding to the specified resource name. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Global.ResourceManager
+
+**Parameters**
+
+| Name    | Type    | Mandatory  | Description  |
+| ------- | ------ | ---- | ---- |
+| resName | string | Yes   | Resource name.|
+| [density](#screendensity)  | number                          | Yes   | Screen density. The value **0** indicates the default screen density.   |
+
+**Return value**
+
+| Type                   | Description                 |
+| --------------------- | ------------------- |
+| Promise&lt;string&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------------------- |
+| 9001003  | If the resName invalid.                     |
+| 9001004  | If the resource not found by resName.       |
+
+**Example**
+  ```ts
+  try {
+    this.context.resourceManager.getMediaBase64ByName("test", 120).then(value => {
+        let media = value;
+    }).catch(error => {
+        console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`);
     });
   } catch (error) {
     console.error(`promise getMediaBase64ByName failed, error code: ${error.code}, message: ${error.message}.`)
@@ -1948,9 +2537,9 @@ Obtains the plural string corresponding to the specified resource name based on 
 | num      | number                      | Yes   | Number.                          |
 | callback | AsyncCallback&lt;string&gt; | Yes   | Callback used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -1995,9 +2584,9 @@ Obtains the plural string corresponding to the specified resource name based on 
 | --------------------- | ---------------------- |
 | Promise&lt;string&gt; | Promise used to return the result.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2038,9 +2627,9 @@ Obtains the string corresponding to the specified resource ID. This API returns 
 | ------ | ----------- |
 | string | String corresponding to the specified resource ID.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2070,7 +2659,7 @@ Obtains the string corresponding to the specified resource ID and formats the st
 | Name  | Type    | Mandatory  | Description   |
 | ----- | ------ | ---- | ----- |
 | resId | number | Yes   | Resource ID.|
-| args | Array<string \| number> | No   | Arguments for formatting strings.<br> Supported arguments:<br> -%d, %f, %s, and %%<br> Note: %% is used to translate %.<br>Example: %%d is translated into the %d string.|
+| args | Array<string \| number> | No   | Arguments for formatting strings.<br> Supported arguments:<br> -%d, %f, %s, and %%<br> Note: **%%** is used to translate **%**.<br>Example: **%%d** is translated into the **%d** string.|
 
 **Return value**
 
@@ -2078,9 +2667,9 @@ Obtains the string corresponding to the specified resource ID and formats the st
 | ------ | ---------------------------- |
 | string | Formatted string.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ----------------------------------------------- |
@@ -2116,11 +2705,11 @@ Obtains the string corresponding to the specified resource object. This API retu
 
 | Type    | Description              |
 | ------ | ---------------- |
-| string | String corresponding to the resource object.|
-
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+| string | String corresponding to the specified resource object.|
 
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2155,7 +2744,7 @@ Obtains the string corresponding to the specified resource object and formats th
 | Name     | Type                    | Mandatory  | Description  |
 | -------- | ---------------------- | ---- | ---- |
 | resource | [Resource](#resource9) | Yes   | Resource object.|
-| args | Array<string \| number> | No   | Arguments for formatting strings.<br> Supported arguments:<br> -%d, %f, %s, and %%<br> Note: %% is used to translate %.<br>Example: %%d is translated into the %d string.|
+| args | Array<string \| number> | No   | Arguments for formatting strings.<br> Supported arguments:<br> -%d, %f, %s, and %%<br> Note: **%%** is used to translate **%**.<br>Example: **%%d** is translated into the **%d** string.|
 
 **Return value**
 
@@ -2163,9 +2752,9 @@ Obtains the string corresponding to the specified resource object and formats th
 | ------ | ---------------------------- |
 | string | Formatted string.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2206,11 +2795,11 @@ Obtains the string corresponding to the specified resource name. This API return
 
 | Type    | Description        |
 | ------ | ---------- |
-| string | String corresponding to the resource name.|
-
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+| string | String corresponding to the specified resource name.|
 
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2240,7 +2829,7 @@ Obtains the string corresponding to the specified resource name and formats the 
 | Name    | Type    | Mandatory  | Description  |
 | ------- | ------ | ---- | ---- |
 | resName | string | Yes   | Resource name.|
-| args | Array<string \| number> | No   | Arguments for formatting strings.<br> Supported arguments:<br> -%d, %f, %s, and %%<br> Note: %% is used to translate %.<br>Example: %%d is translated into the %d string.|
+| args | Array<string \| number> | No   | Arguments for formatting strings.<br> Supported arguments:<br> -%d, %f, %s, and %%<br> Note: **%%** is used to translate **%**.<br>Example: **%%d** is translated into the **%d** string.|
 
 **Return value**
 
@@ -2248,9 +2837,9 @@ Obtains the string corresponding to the specified resource name and formats the 
 | ------ | ---------------------------- |
 | string | Formatted string.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2288,9 +2877,9 @@ Obtains the Boolean result corresponding to the specified resource ID. This API 
 | ------- | ------------ |
 | boolean | Boolean result corresponding to the specified resource ID.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2326,9 +2915,9 @@ Obtains the Boolean result corresponding to the specified resource object. This 
 | ------- | ----------------- |
 | boolean | Boolean result corresponding to the specified resource object.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2370,9 +2959,9 @@ Obtains the Boolean result corresponding to the specified resource name. This AP
 | ------- | ----------- |
 | boolean | Boolean result corresponding to the specified resource name.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2406,12 +2995,12 @@ Obtains the integer or float value corresponding to the specified resource ID. T
 **Return value**
 
 | Type    | Description        |
-| ------ | ---------- |
-| number | Integer or float value corresponding to the specified resource ID.|
-
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+| ------ | ---------- | 
+| number | Integer or float value corresponding to the specified resource ID. Wherein, the integer value is the original value, and the float value is the actual pixel value. For details, see the sample code.|
 
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2422,13 +3011,13 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 **Example**
   ```ts
   try {
-    this.context.resourceManager.getNumber($r('app.integer.integer_test').id);
+    this.context.resourceManager.getNumber($r('app.integer.integer_test').id); // integer refers to the original value.
   } catch (error) {
     console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`)
   }
 
   try {
-    this.context.resourceManager.getNumber($r('app.float.float_test').id);
+    this.context.resourceManager.getNumber($r('app.float.float_test').id); // float refers to the actual pixel value.
   } catch (error) {
     console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -2452,11 +3041,11 @@ Obtains the integer or float value corresponding to the specified resource objec
 
 | Type    | Description             |
 | ------ | --------------- |
-| number | Integer or float value corresponding to the specified resource object.|
-
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+| number | Integer or float value corresponding to the specified resource object. Wherein, the integer value is the original value, and the float value is the actual pixel value. For details, see the sample code.|
 
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2472,7 +3061,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
       id: $r('app.integer.integer_test').id
   };
   try {
-    this.context.resourceManager.getNumber(resource);
+    this.context.resourceManager.getNumber(resource);// integer refers to the original value; float refers to the actual pixel value.
   } catch (error) {
     console.error(`getNumber failed, error code: ${error.code}, message: ${error.message}.`)
   }
@@ -2498,9 +3087,9 @@ Obtains the integer or float value corresponding to the specified resource name.
 | ------ | --------- |
 | number | Integer or float value corresponding to the specified resource name.|
 
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
-
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2542,11 +3131,11 @@ Obtains the **DrawableDescriptor** object corresponding to the specified resourc
 
 | Type    | Description        |
 | ------ | ---------- |
-| DrawableDescriptor | **DrawableDescriptor** object corresponding to the resource ID.|
-
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource ID.|
 
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2571,7 +3160,7 @@ For details about the error codes, see [Resource Manager Error Codes](../errorco
 
 getDrawableDescriptor(resource: Resource, density?: number): DrawableDescriptor;
 
-Obtains the **DrawableDescriptor** object corresponding to the specified resource. This API returns the result synchronously.
+Obtains the **DrawableDescriptor** object corresponding to the specified resource object. This API returns the result synchronously.
 
 **System capability**: SystemCapability.Global.ResourceManager
 
@@ -2586,11 +3175,11 @@ Obtains the **DrawableDescriptor** object corresponding to the specified resourc
 
 | Type     | Description               |
 | ------- | ----------------- |
-| DrawableDescriptor | **DrawableDescriptor** object corresponding to the resource ID.|
-
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource ID.|
 
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2635,11 +3224,11 @@ Obtains the **DrawableDescriptor** object corresponding to the specified resourc
 
 | Type    | Description       |
 | ------ | --------- |
-| DrawableDescriptor | **DrawableDescriptor** object corresponding to the resource ID.|
-
-For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
+| DrawableDescriptor | **DrawableDescriptor** object corresponding to the specified resource ID.|
 
 **Error codes**
+
+For details about the error codes, see [Resource Manager Error Codes](../errorcodes/errorcode-resource-manager.md).
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2794,7 +3383,7 @@ This API is deprecated since API version 9. You are advised to use [getStringArr
 
 getMedia(resId: number, callback: AsyncCallback&lt;Uint8Array&gt;): void
 
-Obtains the content of the media file corresponding to the specified resource name. This API uses an asynchronous callback to return the result.
+Obtains the content of the media file corresponding to the specified resource ID. This API uses an asynchronous callback to return the result.
 
 This API is deprecated since API version 9. You are advised to use [getMediaContent](#getmediacontent9) instead.
 

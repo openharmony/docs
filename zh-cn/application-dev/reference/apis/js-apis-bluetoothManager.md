@@ -259,6 +259,103 @@ try {
 ```
 
 
+## bluetoothManager.pairCredibleDevice<sup>10+</sup>
+
+pairCredibleDevice(deviceId: string, transport: BluetoothTransport, callback: AsyncCallback&lt;void&gt;): void
+
+向可信的远端设备发起蓝牙配对。通过非蓝牙扫描的方式(例如NFC等)获取到外设的地址，可以通过该接口发起配对。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明                                  |
+| -------- | ------ | ---- | ----------------------------------- |
+| deviceId | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| transport | [BluetoothTransport](#bluetoothtransport10) | 是    | 表示设备类型，例如传统蓝牙设备或低功耗蓝牙设备。 |
+| callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。当发起配对成功，err为undefined，否则为错误对象。   |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+try {
+    bluetoothManager.pairCredibleDevice("68:13:24:79:4C:8C", 1, err => {
+        if (err) {
+            console.error("errCode:" + err.code + ",errMessage:" + err.message);
+            return;
+        }
+        console.info("pairCredibleDevice,err:" + JSON.stringify(err));
+    });
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+
+## bluetoothManager.pairCredibleDevice<sup>10+</sup>
+
+pairCredibleDevice(deviceId: string, transport: BluetoothTransport): Promise&lt;void&gt;
+
+向可信的远端设备发起蓝牙配对。通过非蓝牙扫描的方式(例如NFC等)获取到外设的地址，可以通过该接口发起配对。
+
+**系统接口**：此接口为系统接口。
+
+**需要权限**：ohos.permission.DISCOVER_BLUETOOTH
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+**参数：**
+
+| 参数名      | 类型     | 必填   | 说明                                  |
+| -------- | ------ | ---- | ----------------------------------- |
+| deviceId | string | 是    | 表示配对的远端设备地址，例如："XX:XX:XX:XX:XX:XX"。 |
+| transport | [BluetoothTransport](#bluetoothtransport10) | 是    | 表示设备类型，例如传统蓝牙设备或低功耗蓝牙设备。 |
+
+**返回值：**
+
+| 类型                                              | 说明                |
+| ------------------------------------------------- | ------------------- |
+| Promise&lt;void&gt; | 返回promise对象。 |
+
+**错误码**：
+
+以下错误码的详细介绍请参见[蓝牙服务子系统错误码](../errorcodes/errorcode-bluetoothManager.md)。
+
+| 错误码ID | 错误信息 |
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**示例：**
+
+```js
+try {
+    bluetoothManager.pairCredibleDevice("68:13:24:79:4C:8C", 0).then(() => {
+        console.info("PairCredibleDevice");
+    }, err => {
+        console.error("PairCredibleDevice:errCode" + err.code + ",errMessage:" + err.message);
+    });
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+
 ## bluetoothManager.getProfileConnectionState<a name="getProfileConnectionState"></a>
 
 getProfileConnectionState(profileId: ProfileId): ProfileConnectionState
@@ -694,7 +791,7 @@ try {
 ```
 
 
-## bluetoothManager.setDevicePinCode<sup>10+</sup><a name="setDevicePinCode"></a>
+## bluetoothManager.setDevicePinCode<sup>10+</sup><a name="setDevicePinCode-1"></a>
 
 setDevicePinCode(device: string, code: string): Promise&lt;void&gt;
 
@@ -985,7 +1082,7 @@ try {
 
 on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 
-订阅蓝牙连接状态改变事件。
+订阅蓝牙设备开关状态事件。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -1024,7 +1121,7 @@ try {
 
 off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
-取消订阅蓝牙连接状态改变事件。
+取消订阅蓝牙设备开关状态事件。
 
 **需要权限**：ohos.permission.USE_BLUETOOTH
 
@@ -2167,7 +2264,7 @@ connect(device: string): void
 
 ```js
 try {
-    let hidHostProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+    let hidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
     hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2208,7 +2305,7 @@ disconnect(device: string): void
 
 ```js
 try {
-    let hidHostProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+    let hidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
     hidHostProfile.disconnect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2237,7 +2334,7 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 function onReceiveEvent(data) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
-let hidHost = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+let hidHost = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -2263,7 +2360,7 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 function onReceiveEvent(data) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
-let hidHost = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+let hidHost = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
 hidHost.off('connectionStateChange', onReceiveEvent);
 ```
@@ -2307,7 +2404,7 @@ disconnect(device: string): void
 
 ```js
 try {
-    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     panProfile.disconnect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2336,7 +2433,7 @@ on(type: "connectionStateChange", callback: Callback&lt;[StateChangeParam](#Stat
 function onReceiveEvent(data) {
     console.info('pan state = '+ JSON.stringify(data));
 }
-let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -2362,7 +2459,7 @@ off(type: "connectionStateChange", callback?: Callback&lt;[StateChangeParam](#St
 function onReceiveEvent(data) {
     console.info('pan state = '+ JSON.stringify(data));
 }
-let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
 panProfile.off('connectionStateChange', onReceiveEvent);
 ```
@@ -2401,7 +2498,7 @@ setTethering(enable: boolean): void
 
 ```js
 try {
-    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     panProfile.setTethering(true);
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2429,7 +2526,7 @@ isTetheringOn(): boolean
 
 ```js
 try {
-    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     let ret = panProfile.isTetheringOn();
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -4355,6 +4452,7 @@ try {
 | serviceUuids    | Array&lt;string&gt;                      | 是    | 是    | 表示要广播的服务&nbsp;UUID&nbsp;列表。 |
 | manufactureData | Array&lt;[ManufactureData](#manufacturedata)&gt; | 是    | 是    | 表示要广播的广播的制造商信息列表。           |
 | serviceData     | Array&lt;[ServiceData](#servicedata)&gt; | 是    | 是    | 表示要广播的服务数据列表。               |
+| includeDeviceName<sup>10+</sup> | boolean                  | 是    | 是    | 表示是否携带设备名，可选参数。        |
 
 
 ## ManufactureData
@@ -4391,7 +4489,7 @@ try {
 | -------- | ------ | ---- | ---- | ----------- |
 | deviceId | string | 是    | 否    | 表示要配对的设备ID。 |
 | pinCode  | string | 是    | 否    | 表示要配对的密钥。   |
-| pinType<sup>10+</sup> | [PinType](#pintype10) | 是    | 否    | 表示要配对的设备类型。   |
+| pinType<sup>10+</sup> | [PinType](#pintype10) | 是    | 否    | 表示要配对的设备类型。<br/>此接口为系统接口。   |
 
 
 ## BondStateParam<a name="BondStateParam"></a>
@@ -4424,13 +4522,13 @@ try {
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
-| 名称       | 类型   | 只读   | 必填   | 说明          |
-| -------- | ------ | ---- | ---- | ----------- |
-| write<sup>10+</sup>    | boolean | 是   | 是    | 表示该特征支持写操作，需要对端设备的回复。 |
-| writeNoResponse<sup>10+</sup> | boolean | 是    | 是    | 表示该特征支持写操作，无需对端设备回复。 |
-| read<sup>10+</sup> | boolean   | 是    | 是    | 表示该特征支持读操作。 |
-| notify<sup>10+</sup> | boolean   | 是    | 是    | 表示该特征可通知对端设备。 |
-| indicate<sup>10+</sup> | boolean   | 是    | 是    | 表示该特征可通知对端设备，需要对端设备的回复。 |
+| 名称       | 类型  | 必填   | 说明          |
+| -------- | ------ |---- | ----------- |
+| write<sup>10+</sup>    | boolean | 是  | 表示该特征支持写操作，需要对端设备的回复。 |
+| writeNoResponse<sup>10+</sup> | boolean | 是    | 表示该特征支持写操作，无需对端设备回复。 |
+| read<sup>10+</sup> | boolean   |  是    | 表示该特征支持读操作。 |
+| notify<sup>10+</sup> | boolean   | 是    | 表示该特征可通知对端设备。 |
+| indicate<sup>10+</sup> | boolean   | 是    | 表示该特征可通知对端设备，需要对端设备的回复。 |
 
 
 ## DeviceClass<a name="DeviceClass"></a>
@@ -4589,19 +4687,33 @@ try {
 | PROFILE_PAN_NETWORK | 7 | 表示PAN profile。  |
 
 
-## PinType<sup>10+</sup><a name="PinType"></a>
+## BluetoothTransport<sup>10+</sup><a name="BluetoothTransport"></a>
 
-枚举，蓝牙配对类型。
+枚举，表示设备类型。例如传统蓝牙设备或低功耗蓝牙设备，支持双模默认使用TRANSPORT_BR_EDR。
 
 **系统能力**：SystemCapability.Communication.Bluetooth.Core。
 
 | 名称                               | 值    | 说明              |
 | -------------------------------- | ------ | --------------- |
-| PIN_TYPE_ENTER_PIN_CODE<sup>10+</sup> | 0 | 用户需要输入对端设备上显示的PIN码。 |
-| PIN_TYPE_ENTER_PASSKEY<sup>10+</sup>  | 1 | 用户需要输入对端设备上显示的PASSKEY。  |
-| PIN_TYPE_CONFIRM_PASSKEY<sup>10+</sup>  | 2 | 用户需要确认本地设备上显示的PASSKEY。  |
-| PIN_TYPE_NO_PASSKEY_CONSENT<sup>10+</sup>  | 3 | 无PASSKEY，用户需要接受或拒绝配对请求。  |
-| PIN_TYPE_NOTIFY_PASSKEY<sup>10+</sup>   | 4 | 本地设备显示PASSKEY，用户需要在对端设备上输入该PASSKEY。  |
-| PIN_TYPE_DISPLAY_PIN_CODE<sup>10+</sup>    | 5 | bluetooth 2.0设备，用户需要输入对端设备上显示的PIN码。  |
-| PIN_TYPE_OOB_CONSENT<sup>10+</sup>    | 6 | 用户需要接受或拒绝OOB配对请求。  |
-| PIN_TYPE_PIN_16_DIGITS<sup>10+</sup>    | 7 | 用户需要输入对端设备上显示的16位PIN码。  |
+| TRANSPORT_BR_EDR<sup>10+</sup>   | 0 | 表示传统蓝牙(BR/EDR)设备。 |
+| TRANSPORT_LE<sup>10+</sup>  | 1 | 表示低功耗蓝牙(BLE)设备。  |
+
+
+## PinType<sup>10+</sup><a name="PinType"></a>
+
+枚举，蓝牙配对类型。
+
+**系统接口：** 此接口为系统接口。
+
+**系统能力**：SystemCapability.Communication.Bluetooth.Core。
+
+| 名称                               | 值    | 说明              |
+| -------------------------------- | ------ | --------------- |
+| PIN_TYPE_ENTER_PIN_CODE<sup>10+</sup> | 0 | 用户需要输入对端设备上显示的PIN码。<br/>此接口为系统接口。 |
+| PIN_TYPE_ENTER_PASSKEY<sup>10+</sup>  | 1 | 用户需要输入对端设备上显示的PASSKEY。<br/>此接口为系统接口。  |
+| PIN_TYPE_CONFIRM_PASSKEY<sup>10+</sup>  | 2 | 用户需要确认本地设备上显示的PASSKEY。<br/>此接口为系统接口。  |
+| PIN_TYPE_NO_PASSKEY_CONSENT<sup>10+</sup>  | 3 | 无PASSKEY，用户需要接受或拒绝配对请求。<br/>此接口为系统接口。  |
+| PIN_TYPE_NOTIFY_PASSKEY<sup>10+</sup>   | 4 | 本地设备显示PASSKEY，用户需要在对端设备上输入该PASSKEY。<br/>此接口为系统接口。  |
+| PIN_TYPE_DISPLAY_PIN_CODE<sup>10+</sup>    | 5 | bluetooth 2.0设备，用户需要输入对端设备上显示的PIN码。<br/>此接口为系统接口。  |
+| PIN_TYPE_OOB_CONSENT<sup>10+</sup>    | 6 | 用户需要接受或拒绝OOB配对请求。<br/>此接口为系统接口。  |
+| PIN_TYPE_PIN_16_DIGITS<sup>10+</sup>    | 7 | 用户需要输入对端设备上显示的16位PIN码。<br/>此接口为系统接口。  |

@@ -63,5 +63,6 @@
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md) 
 - References
   - [FAQs](faqs/Readme-EN.md)
+- [Disclaimer Notice](disclaimer.md)
 - Contribution
   - [How to Contribute](../contribute/documentation-contribution.md)

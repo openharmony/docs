@@ -156,6 +156,7 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
 ## 场景示例
 
 - 用于启动操作。
+
   可以用按钮启动任何用户界面元素，按钮会根据用户的操作触发相应的事件。例如，在List容器里通过点击按钮进行页面跳转。
 
   ```ts
@@ -195,6 +196,7 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
 
 
 - 用于表单的提交。
+
   在用户登录/注册页面，使用按钮进行登录或注册操作。
 
   ```ts
@@ -218,6 +220,7 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
   ![zh-cn_image_0000001562940473](figures/zh-cn_image_0000001562940473.png)
 
 - 悬浮按钮
+
   在可以滑动的界面，滑动时按钮始终保持悬浮状态。
 
   ```ts
@@ -258,4 +261,4 @@ Button('Ok', { type: ButtonType.Normal, stateEffect: true })
   }
   ```
 
-  ![GIF](figures/GIF.gif)
+  ![floating_button](figures/floating_button.gif)

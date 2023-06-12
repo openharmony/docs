@@ -160,7 +160,7 @@ OpenHarmony IDL容器数据类型与Ts数据类型、C++数据类型的对应关
 
 若不存在，可对应版本前往[docs仓版本目录](../../release-notes)下载SDK包，以[3.2Beta3版本](../../release-notes/OpenHarmony-v3.2-beta3.md)为例，可通过镜像站点获取。
 
-关于如何替换DevEco Studio的SDK包具体操作，参考[full-SDK替换指南](../quick-start/full-sdk-compile-guide.md)中的替换方法。
+关于如何替换DevEco Studio的SDK包具体操作，参考[full-SDK替换指南](../faqs/full-sdk-compile-guide.md)中的替换方法。
 
 得到idl工具的可执行文件后，根据具体场景进行后续开发步骤。
 

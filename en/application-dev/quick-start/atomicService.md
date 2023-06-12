@@ -1,4 +1,4 @@
-# Atomic Service
+# Atomic Service Development
 
 ## Pre-loading by HAP Type
 
@@ -44,7 +44,6 @@ Note that you must set the **bundleType** field to **atomicService** in the [app
     "versionName": "1.0.0",
     "icon": "$media:app_icon",
     "label": "$string:app_name",
-    "distributedNotificationEnabled": true,
     "targetAPIVersion": 9
   }
 }
@@ -78,7 +77,7 @@ Pre-loading is triggered after the first frame of the newly accessed module is r
   "module": {
     "name": "entry",
     "type": "entry",
-    "srcEntrance": "./ets/Application/MyAbilityStage.ts",
+    "srcEntry": "./ets/Application/MyAbilityStage.ts",
     "description": "$string:entry_desc",
     "mainElement": "MainAbility",
     "deviceTypes": [
@@ -98,13 +97,13 @@ Pre-loading is triggered after the first frame of the newly accessed module is r
     "abilities": [
       {
         "name": "MainAbility",
-        "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+        "srcEntry": "./ets/MainAbility/MainAbility.ts",
         "description": "$string:MainAbility_desc",
         "icon": "$media:icon",
         "label": "$string:MainAbility_label",
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:white",
-        "visible": true,
+        "exported": true,
         "skills": [
           {
             "entities": [
@@ -170,7 +169,7 @@ import router from '@ohos.router';
 @Entry
 @Component
 struct Index {
-    @State message: string = 'Hello World'
+    @State message: string = 'Hello World';
 
     build() {
     Row() {
@@ -200,19 +199,20 @@ struct Index {
             }).catch(err => {
               console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
             })
-        }
-        .width('100%')
+        })
+      .width('100%')
     }
     .height('100%')
     }
+  }
 }
 ```
 
 The input parameter **url** of the **router.pushUrl** API is as follows:
-```ets
+```ts
 '@bundle:com.example.hmservice/library/ets/pages/menu'
 ```
 The **url** content template is as follows:
-```ets
+```ts
 '@bundle:bundle name/module name/path/page file name (without the extension .ets)'
 ```

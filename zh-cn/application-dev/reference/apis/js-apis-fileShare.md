@@ -1,4 +1,4 @@
-# @ohos.fileShare (文件分享)
+# @ohos.fileshare (文件分享)
 
 该模块提供文件分享能力，提供系统应用将公共目录文件统一资源标志符（Uniform Resource Identifier，URI）以读写权限授权给其他应用的接口，授权后应用可通过[@ohos.file.fs](js-apis-file-fs.md)的相关接口进行相关open、read、write等操作，实现文件分享。
 
@@ -9,7 +9,7 @@
 ## 导入模块
 
 ```js
-import fileShare from '@ohos.fileShare';
+import fileShare from '@ohos.fileshare';
 ```
 
 ## fileShare.grantUriPermission
@@ -50,7 +50,7 @@ grantUriPermission(uri: string, bundleName: string, mode: number, callback: Asyn
 import wantConstant from '@ohos.app.ability.wantConstant';
 
 
-let uri = 'datashare:///media/image/8';
+let uri = 'file://media/image/8';
 let bundleName = 'com.demo.test';
 try {
     fileShare.grantUriPermission(uri, bundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION | wantConstant.Flags.FLAG_AUTH_WRITE_URI_PERMISSION, (err) => {
@@ -107,7 +107,7 @@ grantUriPermission(uri: string, bundleName: string, mode: number): Promise&lt;vo
   ```js
 import wantConstant from '@ohos.app.ability.wantConstant';
 
-let uri = 'datashare:///media/image/8';
+let uri = 'file://media/image/8';
 let bundleName = 'com.demo.test';
 try {
     fileShare.grantUriPermission(uri, bundleName, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION |

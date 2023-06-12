@@ -12,6 +12,7 @@
     - [使用TonePlayer开发音频播放功能（仅对系统应用开放）](using-toneplayer-for-playback.md)
     - [多音频播放的并发策略](audio-playback-concurrency.md)
     - [播放音量管理](volume-management.md)
+    - [音效管理](audio-effect-management.md)
     - [音频播放流管理](audio-playback-stream-management.md)
     - [音频输出设备管理](audio-output-device-management.md)
     - [分布式音频播放（仅对系统应用开放）](distributed-audio-playback.md)
@@ -19,7 +20,7 @@
     - [音频录制开发概述](audio-recording-overview.md)
     - [使用AVRecorder开发音频录制功能](using-avrecorder-for-recording.md)
     - [使用AudioCapturer开发音频录制功能](using-audiocapturer-for-recording.md)
-    - [使用OpenSLES开发音频录制功能](using-opensl-es-for-recording.md)
+    - [使用OpenSL ES开发音频录制功能](using-opensl-es-for-recording.md)
     - [管理麦克风](mic-management.md)
     - [音频录制流管理](audio-recording-stream-management.md)
     - [音频输入设备管理](audio-input-device-management.md)
@@ -28,7 +29,7 @@
     - [开发音频通话功能](audio-call-development.md)
   - [视频播放](video-playback.md)
   - [视频录制](video-recording.md)
-- 媒体会话（仅对系统应用开放）
+- 媒体会话
   - [媒体会话概述](avsession-overview.md)
   - 本地媒体会话
     - [本地媒体会话概述](local-avsession-overview.md)
@@ -37,7 +38,7 @@
   - 分布式媒体会话
     - [分布式媒体会话概述](distributed-avsession-overview.md)
     - [使用分布式媒体会话](using-distributed-avsession.md)
-- 相机（仅对系统应用开放）
+- 相机
   - [相机开发概述](camera-overview.md)
   - 相机开发指导
     - [开发准备](camera-preparation.md)
@@ -54,7 +55,8 @@
   - [图片开发概述](image-overview.md)
   - [图片解码](image-decoding.md)
   - 图片处理
-    - [图像变换](image-transformation.md)
+    - [图像变换(ArkTS)](image-transformation.md)
+    - [图像变换(Native)](image-transformation-native.md)
     - [位图操作](image-pixelmap-operation.md)
   - [图片编码](image-encoding.md)
   - [图片工具](image-tool.md)

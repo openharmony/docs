@@ -654,6 +654,16 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.MANAGE_NET_STRATEGY
+
+允许应用程序获取网络策略相关的信息或修改网络策略相关设置。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.SET_ABILITY_CONTROLLER
 
 允许设置ability组件启动和停止控制权。
@@ -987,6 +997,36 @@
 ## ohos.permission.ENTERPRISE_MANAGE_SET_APP_RUNNING_POLICY
 
 允许设备管理员设置应用运行管理策略。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME
+
+允许设备管理员设置系统休眠时间。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_INSTALL_BUNDLE
+
+允许设备管理员安装和卸载包。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_GET_SETTINGS
+
+允许设备管理员查询“设置”应用数据。
 
 **权限级别**：system_basic
 
@@ -1506,7 +1546,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 ## ohos.permission.ACCESS_CERT_MANAGER
 
@@ -1873,6 +1913,86 @@
 允许应用修改hiview的数据。
 
 **权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ACCESS_CAST_ENGINE_MIRROR
+
+允许应用使用镜像投屏能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ACCESS_CAST_ENGINE_STREAM
+
+允许应用调用系统资源投射能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.CLOUDDATA_CONFIG
+
+允许应用获取配置数据库端云信息能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.MANAGE_SENSOR
+
+允许不直接使用传感器的应用打开和关闭传感器。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.DEVICE_STANDBY_EXEMPTION
+
+允许应用在系统待机模式正常使用资源。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.RESTRICT_APPLICATION_ACTIVE
+
+允许待机续航部件发布一个自定义的限网事件。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.UPLOAD_SESSION_MANAGER
+
+允许应用管理上传任务会话。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.PREPARE_APP_TERMINATE
+
+允许应用关闭前执行自定义的预关闭动作。
+
+**权限级别**：normal
 
 **授权方式**：system_grant
 
