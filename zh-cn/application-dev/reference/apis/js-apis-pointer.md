@@ -853,3 +853,495 @@ window.getLastWindow(this.context, (error, win) => {
 | HORIZONTAL_TEXT_CURSOR | 39 | 垂直文本选择 |![Horizontal_Text_Cursor.png](./figures/Horizontal_Text_Cursor.png)|
 | CURSOR_CROSS | 40 | 十字光标 |![Cursor_Cross.png](./figures/Cursor_Cross.png)|
 | CURSOR_CIRCLE | 41 | 圆形光标 |![Cursor_Circle.png](./figures/Cursor_Circle.png)|
+
+## pointer.setTouchpadScrollSwitch<sup>10+</sup>
+
+setTouchpadScrollSwitch(state: boolean, callback: AsyncCallback<void>): void
+
+设置触控板滚轴能力是否开启，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                        | 必填   | 说明                                    |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| state | boolean | 是    | true开启，false关闭，默认开启   |
+| callback | AsyncCallback<void> | 是    | 回调函数。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setTouchpadScrollSwitch(true, (error) => {
+    if (error) {
+      console.log(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setTouchpadScrollSwitch success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadScrollSwitch<sup>10+</sup>
+
+setTouchpadScrollSwitch(state: boolean): Promise<void>
+
+设置触控板滚轴能力是否开启，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| state | boolean| 是    |  true开启，false关闭，默认开启 |
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise<void> | Promise对象。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setTouchpadScrollSwitch(false).then(() => {
+    console.log(`setTouchpadScrollSwitch success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadScrollSwitch<sup>10+</sup>
+
+getTouchpadScrollSwitch(callback:  AsyncCallback<boolead>): void
+
+获取触控板滚轴能力开启状态，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                          | 必填   | 说明             |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback<boolean> | 是    | 回调函数，异步返回触控板滚轴能力开启状态。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getTouchpadScrollSwitch ((error, state) => {
+    console.log(`getTouchpadScrollSwitch success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadScrollSwitch<sup>10+</sup>
+
+getTouchpadScrollSwitch(): Promise<boolean>
+
+获取触控板滚轴能力开启状态，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**返回值**：
+
+| 参数                    | 说明                  |
+| --------------------- | ------------------- |
+| Promise<boolean> | Promise实例，异步返回触控板滚轴能力开启状态。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getTouchpadScrollSwitch().then((state) => {
+    console.log(`getTouchpadScrollSwitch success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadScrollSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadScrollDirection<sup>10+</sup>
+
+setTouchpadScrollDirection(state: boolean, callback: AsyncCallback<void>): void
+
+设置触控板滚轴的方向，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                        | 必填   | 说明                                    |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| state | boolean | 是    | true正方向，false反方向，默认为true   |
+| callback | AsyncCallback<void> | 是    | 回调函数。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setTouchpadScrollDirection(true, (error) => {
+    if (error) {
+      console.log(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setTouchpadScrollDirection success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadScrollDirection<sup>10+</sup>
+
+setTouchpadScrollDirection(state: boolean): Promise<void>
+
+设置触控板滚轴的方向，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| state | boolean| 是    |  true正方向，false反方向，默认为true   |
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise<void> | Promise对象。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setTouchpadScrollDirection (false).then(() => {
+    console.log(`setTouchpadScrollDirection success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadScrollDirection<sup>10+</sup>
+
+getTouchpadScrollDirection(callback:  AsyncCallback<boolead>): void
+
+获取触控板滚轴方向，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                          | 必填   | 说明             |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback<boolean> | 是    | 回调函数，异步返回触控板滚轴方向。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getTouchpadScrollSwitch ((error, state) => {
+    console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadScrollDirection<sup>10+</sup>
+
+getTouchpadScrollDirection(): Promise<boolean>
+
+获取触控板滚轴方向，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**返回值**：
+
+| 参数                    | 说明                  |
+| --------------------- | ------------------- |
+| Promise<boolean> | Promise实例，异步返回触控板滚轴方向。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getTouchpadScrollDirection().then((state) => {
+    console.log(`getTouchpadScrollDirection success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadScrollDirection failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadTapSwitch<sup>10+</sup>
+
+setTouchpadTapSwitch(state: boolean, callback: AsyncCallback<void>): void
+
+设置触控板轻触能力是否开启，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                        | 必填   | 说明                                    |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| state | boolean | 是    | true开启，false关闭，默认开启   |
+| callback | AsyncCallback<void> | 是    | 回调函数。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setTouchpadTapSwitch(true, (error) => {
+    if (error) {
+      console.log(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setTouchpadTapSwitch success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadTapSwitch <sup>10+</sup>
+
+setTouchpadTapSwitch(state: boolean): Promise<void>
+
+设置触控板轻触能力是否开启，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| state | boolean| 是    |  true开启，false关闭，默认开启 |
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise<void> | Promise对象。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setTouchpadTapSwitch(false).then(() => {
+    console.log(`setTouchpadTapSwitch success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadTapSwitch<sup>10+</sup>
+
+getTouchpadTapSwitch(callback:  AsyncCallback<boolead>): void
+
+获取触控板轻触能力开启状态，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                          | 必填   | 说明             |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback<boolean> | 是    | 回调函数，异步返回触控板轻触能力开启状态。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getTouchpadTapSwitch((error, state) => {
+    console.log(`getTouchpadTapSwitch success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadTapSwitch<sup>10+</sup>
+
+getTouchpadTapSwitch(): Promise<boolean>
+
+获取触控板滚轴能力开启状态，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**返回值**：
+
+| 参数                    | 说明                  |
+| --------------------- | ------------------- |
+| Promise<boolean> | Promise实例，异步返回触控板轻触能力开启状态。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getTouchpadTapSwitch().then((state) => {
+    console.log(`getTouchpadTapSwitch success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadTapSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadPointerSpeed<sup>10+</sup>
+
+setTouchpadPointerSpeed(speed: number, callback: AsyncCallback<void>): void
+
+设置触控板光标移动速度，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                        | 必填   | 说明                                    |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| speed | number                    | 是    | 光标移动速度1-11，默认5   |
+| callback | AsyncCallback<void> | 是    | 回调函数。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setTouchpadPointerSpeed(1, (error) => {
+    if (error) {
+      console.log(`setTouchpadPointerSpeedfailed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setTouchpadPointerSpeed success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadPointerSpeed<sup>10+</sup>
+
+setTouchpadPointerSpeed(speed: number): Promise<void>
+
+设置触控板光标移动速度，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| speed| number | 是    | 光标移动速度1-11，默认5   |
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise<void> | Promise对象。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setTouchpadPointerSpeed(10).then(() => {
+    console.log(`setTouchpadPointerSpeed success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadPointerSpeed<sup>10+</sup>
+
+getTouchpadPointerSpeed(callback: AsyncCallback<number>): void
+
+获取触控板光标移动速度，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                          | 必填   | 说明             |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback<number> | 是    | 回调函数，异步返回触控板光标移动速度。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getTouchpadPointerSpeed((error, speed) => {
+    console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadPointerSpeed<sup>10+</sup>
+
+getTouchpadPointerSpeed(): Promise<number>
+
+获取触控板光标移动速度，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**返回值**：
+
+| 参数                    | 说明                  |
+| --------------------- | ------------------- |
+| Promise<number> | Promise实例，异步返回触控板光标移动速度。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getTouchpadPointerSpeed().then((speed) => {
+    console.log(`getTouchpadPointerSpeed success, speed: ${JSON.stringify(speed)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
