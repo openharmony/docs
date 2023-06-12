@@ -24,7 +24,7 @@
       - [HAR](har-package.md)
       - HSP
         - [In-Application HSP Development](in-app-hsp.md)
-        - [Inter-Application HSP Development (for System Applications Only)](cross-app-hsp.md)
+        - [Inter-Application HSP Development](cross-app-hsp.md)
     - Atomic Service
       - [Atomic Service Development](atomicService.md)
       - [Atomic Service Space Management (for System Applications Only)](atomicService-aging.md)

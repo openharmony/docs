@@ -1014,6 +1014,26 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.ENTERPRISE_INSTALL_BUNDLE
+
+允许设备管理员安装和卸载包。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.ENTERPRISE_GET_SETTINGS
+
+允许设备管理员查询“设置”应用数据。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.NFC_TAG
 
 允许应用读取Tag卡片。

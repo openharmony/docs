@@ -16,9 +16,9 @@ CanvasRenderingContext2D(settings?: RenderingContextSettings)
 
 **参数：**
 
-| 参数名     | 参数类型                                     | 必填   | 参数描述                                     |
-| ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| setting | [RenderingContextSettings](#renderingcontextsettings) | 否    | 见[RenderingContextSettings](#renderingcontextsettings)。 |
+| 参数名      | 参数类型                                     | 必填   | 参数描述                                     |
+| -------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| settings | [RenderingContextSettings](#renderingcontextsettings) | 否    | 见[RenderingContextSettings](#renderingcontextsettings)。 |
 
 
 ### RenderingContextSettings
@@ -38,30 +38,30 @@ RenderingContextSettings(antialias?: boolean)
 
 ## 属性
 
-| 名称                                                  | 类型                                                         | 描述                                                         |
-| ----------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [fillStyle](#fillstyle)                               | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 指定绘制的填充色。<br/>-&nbsp;类型为string时，表示设置填充区域的颜色。<br/>- 类型为number时，表示设置填充区域的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [lineWidth](#linewidth)                               | number                                                       | 设置绘制线条的宽度。                                         |
-| [strokeStyle](#strokestyle)                           | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 设置描边的颜色。<br/>-&nbsp;类型为string时，表示设置描边使用的颜色。<br/>- 类型为number时，表示设置描边使用的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [lineCap](#linecap)                                   | CanvasLineCap                                                | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>默认值：'butt'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [lineJoin](#linejoin)                                 | CanvasLineJoin                                               | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>默认值：'miter'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [miterLimit](#miterlimit)                             | number                                                       | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。  <br/>默认值：10<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [font](#font)                                         | string                                                       | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px、vp。使用时需要添加单位。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。<br/>默认值：'normal normal 14px sans-serif'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [textAlign](#textalign)                               | CanvasTextAlign                                              | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致·。<br/>默认值：'left'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [textBaseline](#textbaseline)                         | CanvasTextBaseline                                           | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic基线不需要考虑下行字母。<br/>默认值：'alphabetic'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [globalAlpha](#globalalpha)                           | number                                                       | 设置透明度，0.0为完全透明，1.0为完全不透明。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [lineDashOffset](#linedashoffset)                     | number                                                       | 设置画布的虚线偏移量，精度为float。    <br/>默认值：0.0<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [globalCompositeOperation](#globalcompositeoperation) | string                                                       | 设置合成操作的方式。类型字段可选值有'source-over'，'source-atop'，'source-in'，'source-out'，'destination-over'，'destination-atop'，'destination-in'，'destination-out'，'lighter'，'copy'，'xor'。<br/>默认值：'source-over'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [shadowBlur](#shadowblur)                             | number                                                       | 设置绘制阴影时的模糊级别，值越大越模糊，精度为float。   <br/>默认值：0.0<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [shadowColor](#shadowcolor)                           | string                                                       | 设置绘制阴影时的阴影颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [shadowOffsetX](#shadowoffsetx)                       | number                                                       | 设置绘制阴影时和原有对象的水平偏移值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [shadowOffsetY](#shadowoffsety)                       | number                                                       | 设置绘制阴影时和原有对象的垂直偏移值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [imageSmoothingEnabled](#imagesmoothingenabled)       | boolean                                                      | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。 <br/>默认值：true<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [height](#height)                                     | number                                                       | 组件高度。 <br/>单位：vp<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [width](#width)                                       | number                                                       | 组件宽度。 <br/>单位：vp<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [imageSmoothingQuality](#imagesmoothingquality)       |ImageSmoothingQuality     | imageSmoothingEnabled为true时，用于设置图像平滑度。可选值为：<br/>- 'low'：低画质<br/>- 'medium'：中画质<br/>- 'high'：高画质。<br/>默认值：low<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [direction](#direction)       |CanvasDirection     | 用于设置绘制文字时使用的文字方向。可选值为：<br/>- 'inherit'：继承canvas组件已设定的文本方向<br/>- 'ltr'：从左往右<br/>- 'rtl'：从右往左。<br/>默认值：inherit<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| [filter](#filter)       |string     | 用于设置图像的滤镜。支持的滤镜效果如下：<br/>- 'none': 无滤镜效果<br/>- 'blur'：给图像设置高斯模糊<br/>- 'brightness'：给图片应用一种线性乘法，使其看起来更亮或更暗<br/>- 'contrast'：调整图像的对比度<br/>- 'grayscale'：将图像转换为灰度图像<br/>- 'hue-rotate'：给图像应用色相旋转<br/>- 'invert'：反转输入图像<br/>- 'opacity'：转化图像的透明程度<br/>- 'saturate'：转换图像饱和度<br/>- 'sepia'：将图像转换为深褐色<br/>默认值：'none'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| 名称                                       | 类型                                       | 描述                                       |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| [fillStyle](#fillstyle)                  | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 指定绘制的填充色。<br/>-&nbsp;类型为string时，表示设置填充区域的颜色。<br/>- 类型为number时，表示设置填充区域的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [lineWidth](#linewidth)                  | number                                   | 设置绘制线条的宽度。                               |
+| [strokeStyle](#strokestyle)              | string&nbsp;\|number<sup>10+</sup>&nbsp;\|[CanvasGradient](ts-components-canvas-canvasgradient.md)&nbsp;\|&nbsp;[CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 设置描边的颜色。<br/>-&nbsp;类型为string时，表示设置描边使用的颜色。<br/>- 类型为number时，表示设置描边使用的颜色。<br/>-&nbsp;类型为CanvasGradient时，表示渐变对象，使用[createLinearGradient](#createlineargradient)方法创建。<br/>-&nbsp;类型为CanvasPattern时，使用[createPattern](#createpattern)方法创建。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [lineCap](#linecap)                      | CanvasLineCap                            | 指定线端点的样式，可选值为：<br/>-&nbsp;'butt'：线端点以方形结束。<br/>-&nbsp;'round'：线端点以圆形结束。<br/>-&nbsp;'square'：线端点以方形结束，该样式下会增加一个长度和线段厚度相同，宽度是线段厚度一半的矩形。<br/>默认值：'butt'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [lineJoin](#linejoin)                    | CanvasLineJoin                           | 指定线段间相交的交点样式，可选值为：<br/>-&nbsp;'round'：在线段相连处绘制一个扇形，扇形的圆角半径是线段的宽度。<br/>-&nbsp;'bevel'：在线段相连处使用三角形为底填充，&nbsp;每个部分矩形拐角独立。<br/>-&nbsp;'miter'：在相连部分的外边缘处进行延伸，使其相交于一点，形成一个菱形区域，该属性可以通过设置miterLimit属性展现效果。<br/>默认值：'miter'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [miterLimit](#miterlimit)                | number                                   | 设置斜接面限制值，该值指定了线条相交处内角和外角的距离。  <br/>默认值：10<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [font](#font)                            | string                                   | 设置文本绘制中的字体样式。<br/>语法：ctx.font='font-size&nbsp;font-family'<br/>-&nbsp;font-size(可选)，指定字号和行高，单位只支持px。<br/>-&nbsp;font-family(可选)，指定字体系列。<br/>语法：ctx.font='font-style&nbsp;font-weight&nbsp;font-size&nbsp;font-family'<br/>-&nbsp;font-style(可选)，用于指定字体样式，支持如下几种样式：'normal','italic'。<br/>-&nbsp;font-weight(可选)，用于指定字体的粗细，支持如下几种类型：'normal',&nbsp;'bold',&nbsp;'bolder',&nbsp;'lighter',&nbsp;100,&nbsp;200,&nbsp;300,&nbsp;400,&nbsp;500,&nbsp;600,&nbsp;700,&nbsp;800,&nbsp;900。<br/>-&nbsp;font-size(可选)，指定字号和行高，单位支持px、vp。使用时需要添加单位。<br/>-&nbsp;font-family(可选)，指定字体系列，支持如下几种类型：'sans-serif',&nbsp;'serif',&nbsp;'monospace'。<br/>默认值：'normal normal 14px sans-serif'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [textAlign](#textalign)                  | CanvasTextAlign                          | 设置文本绘制中的文本对齐方式，可选值为：<br/>-&nbsp;'left'：文本左对齐。<br/>-&nbsp;'right'：文本右对齐。<br/>-&nbsp;'center'：文本居中对齐。<br/>-&nbsp;'start'：文本对齐界线开始的地方。<br/>-&nbsp;'end'：文本对齐界线结束的地方。<br/>ltr布局模式下'start'和'left'一致，rtl布局模式下'start'和'right'一致·。<br/>默认值：'left'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [textBaseline](#textbaseline)            | CanvasTextBaseline                       | 设置文本绘制中的水平对齐方式，可选值为：<br/>-&nbsp;'alphabetic'：文本基线是标准的字母基线。<br/>-&nbsp;'top'：文本基线在文本块的顶部。<br/>-&nbsp;'hanging'：文本基线是悬挂基线。<br/>-&nbsp;'middle'：文本基线在文本块的中间。<br/>-&nbsp;'ideographic'：文字基线是表意字基线；如果字符本身超出了alphabetic基线，那么ideograhpic基线位置在字符本身的底部。<br/>-&nbsp;'bottom'：文本基线在文本块的底部。&nbsp;与ideographic基线的区别在于ideographic基线不需要考虑下行字母。<br/>默认值：'alphabetic'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [globalAlpha](#globalalpha)              | number                                   | 设置透明度，0.0为完全透明，1.0为完全不透明。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [lineDashOffset](#linedashoffset)        | number                                   | 设置画布的虚线偏移量，精度为float。    <br/>默认值：0.0<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [globalCompositeOperation](#globalcompositeoperation) | string                                   | 设置合成操作的方式。类型字段可选值有'source-over'，'source-atop'，'source-in'，'source-out'，'destination-over'，'destination-atop'，'destination-in'，'destination-out'，'lighter'，'copy'，'xor'。<br/>默认值：'source-over'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [shadowBlur](#shadowblur)                | number                                   | 设置绘制阴影时的模糊级别，值越大越模糊，精度为float。   <br/>默认值：0.0<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [shadowColor](#shadowcolor)              | string                                   | 设置绘制阴影时的阴影颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [shadowOffsetX](#shadowoffsetx)          | number                                   | 设置绘制阴影时和原有对象的水平偏移值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [shadowOffsetY](#shadowoffsety)          | number                                   | 设置绘制阴影时和原有对象的垂直偏移值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [imageSmoothingEnabled](#imagesmoothingenabled) | boolean                                  | 用于设置绘制图片时是否进行图像平滑度调整，true为启用，false为不启用。 <br/>默认值：true<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [height](#height)                        | number                                   | 组件高度。 <br/>单位：vp<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [width](#width)                          | number                                   | 组件宽度。 <br/>单位：vp<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [imageSmoothingQuality](#imagesmoothingquality) | ImageSmoothingQuality                    | imageSmoothingEnabled为true时，用于设置图像平滑度。可选值为：<br/>- 'low'：低画质<br/>- 'medium'：中画质<br/>- 'high'：高画质。<br/>默认值：low<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [direction](#direction)                  | CanvasDirection                          | 用于设置绘制文字时使用的文字方向。可选值为：<br/>- 'inherit'：继承canvas组件已设定的文本方向<br/>- 'ltr'：从左往右<br/>- 'rtl'：从右往左。<br/>默认值：inherit<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| [filter](#filter)                        | string                                   | 用于设置图像的滤镜。支持的滤镜效果如下：<br/>- 'none': 无滤镜效果<br/>- 'blur'：给图像设置高斯模糊<br/>- 'brightness'：给图片应用一种线性乘法，使其看起来更亮或更暗<br/>- 'contrast'：调整图像的对比度<br/>- 'grayscale'：将图像转换为灰度图像<br/>- 'hue-rotate'：给图像应用色相旋转<br/>- 'invert'：反转输入图像<br/>- 'opacity'：转化图像的透明程度<br/>- 'saturate'：转换图像饱和度<br/>- 'sepia'：将图像转换为深褐色<br/>默认值：'none'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 > **说明：**
 >
@@ -872,12 +872,12 @@ fillText(text: string, x: number, y: number, maxWidth?: number): void
 
 **参数：**
 
-| 参数     | 类型   | 必填 | 默认值 | 说明                          |
-| -------- | ------ | ---- | ------ | ----------------------------- |
-| text     | string | 是   | ''     | 需要绘制的文本内容。          |
-| x        | number | 是   | 0      | 需要绘制的文本的左下角x坐标。 |
-| y        | number | 是   | 0      | 需要绘制的文本的左下角y坐标。 |
-| maxWidth | number | 否   | -      | 指定文本允许的最大宽度。      |
+| 参数       | 类型     | 必填   | 默认值  | 说明              |
+| -------- | ------ | ---- | ---- | --------------- |
+| text     | string | 是    | ''   | 需要绘制的文本内容。      |
+| x        | number | 是    | 0    | 需要绘制的文本的左下角x坐标。 |
+| y        | number | 是    | 0    | 需要绘制的文本的左下角y坐标。 |
+| maxWidth | number | 否    | -    | 指定文本允许的最大宽度。    |
 
 **示例：**
 
@@ -919,12 +919,12 @@ strokeText(text: string, x: number, y: number, maxWidth?:number): void
 
 **参数：**
 
-| 参数     | 类型   | 必填 | 默认值 | 描述                          |
-| -------- | ------ | ---- | ------ | ----------------------------- |
-| text     | string | 是   | ''     | 需要绘制的文本内容。          |
-| x        | number | 是   | 0      | 需要绘制的文本的左下角x坐标。 |
-| y        | number | 是   | 0      | 需要绘制的文本的左下角y坐标。 |
-| maxWidth | number | 否   | -      | 需要绘制的文本的最大宽度 。   |
+| 参数       | 类型     | 必填   | 默认值  | 描述              |
+| -------- | ------ | ---- | ---- | --------------- |
+| text     | string | 是    | ''   | 需要绘制的文本内容。      |
+| x        | number | 是    | 0    | 需要绘制的文本的左下角x坐标。 |
+| y        | number | 是    | 0    | 需要绘制的文本的左下角y坐标。 |
+| maxWidth | number | 否    | -    | 需要绘制的文本的最大宽度 。  |
 
 **示例：**
 
@@ -966,14 +966,14 @@ measureText(text: string): TextMetrics
 
 **参数：**
 
-| 参数 | 类型   | 必填 | 默认值 | 说明                 |
-| ---- | ------ | ---- | ------ | -------------------- |
-| text | string | 是   | ''     | 需要进行测量的文本。 |
+| 参数   | 类型     | 必填   | 默认值  | 说明         |
+| ---- | ------ | ---- | ---- | ---------- |
+| text | string | 是    | ''   | 需要进行测量的文本。 |
 
 **返回值：**
 
-| 类型        | 说明                                                         |
-| ----------- | ------------------------------------------------------------ |
+| 类型          | 说明                                       |
+| ----------- | ---------------------------------------- |
 | TextMetrics | 文本的尺寸信息。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 
 **TextMetrics类型描述:**
@@ -1264,15 +1264,15 @@ createPattern(image: ImageBitmap, repetition: string | null): CanvasPattern | nu
 
 **参数：**
 
-| 参数       | 类型                                               | 必填 | 描述                                                         |
-| ---------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| image      | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 是   | 图源对象，具体参考ImageBitmap对象。                          |
-| repetition | string                                             | 是   | 设置图像重复的方式，取值为：'repeat'、'repeat-x'、&nbsp'repeat-y'、'no-repeat'、'clamp'、'mirror'。<br/>默认值：'' |
+| 参数         | 类型                                       | 必填   | 描述                                       |
+| ---------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| image      | [ImageBitmap](ts-components-canvas-imagebitmap.md) | 是    | 图源对象，具体参考ImageBitmap对象。                  |
+| repetition | string                                   | 是    | 设置图像重复的方式，取值为：'repeat'、'repeat-x'、&nbsp'repeat-y'、'no-repeat'、'clamp'、'mirror'。<br/>默认值：'' |
 
 **返回值：**
 
-| 类型                              | 说明                      |
-| ------------------------------- | ----------------------- |
+| 类型                                       | 说明                      |
+| ---------------------------------------- | ----------------------- |
 | [CanvasPattern](ts-components-canvas-canvaspattern.md#canvaspattern) | 通过指定图像和重复方式创建图片填充的模板对象。 |
 
 **示例：**
@@ -1516,16 +1516,16 @@ ellipse(x: number, y: number, radiusX: number, radiusY: number, rotation: number
 
 **参数：**
 
-| 参数               | 类型      | 必填   | 默认值   | 说明                |
-| ---------------- | ------- | ---- | ----- | ----------------- |
-| x                | number  | 是    | 0     | 椭圆圆心的x轴坐标。        |
-| y                | number  | 是    | 0     | 椭圆圆心的y轴坐标。        |
-| radiusX          | number  | 是    | 0     | 椭圆x轴的半径长度。        |
-| radiusY          | number  | 是    | 0     | 椭圆y轴的半径长度。        |
-| rotation         | number  | 是    | 0     | 椭圆的旋转角度，单位为弧度。    |
-| startAngle       | number  | 是    | 0     | 椭圆绘制的起始点角度，以弧度表示。 |
-| endAngle         | number  | 是    | 0     | 椭圆绘制的结束点角度，以弧度表示。 |
-| counterclockwise | boolean | 否    | false | 是否以逆时针方向绘制椭圆。<br>true:逆时针方向绘制椭圆。<br>false:顺时针方向绘制椭圆。     |
+| 参数               | 类型      | 必填   | 默认值   | 说明                                       |
+| ---------------- | ------- | ---- | ----- | ---------------------------------------- |
+| x                | number  | 是    | 0     | 椭圆圆心的x轴坐标。                               |
+| y                | number  | 是    | 0     | 椭圆圆心的y轴坐标。                               |
+| radiusX          | number  | 是    | 0     | 椭圆x轴的半径长度。                               |
+| radiusY          | number  | 是    | 0     | 椭圆y轴的半径长度。                               |
+| rotation         | number  | 是    | 0     | 椭圆的旋转角度，单位为弧度。                           |
+| startAngle       | number  | 是    | 0     | 椭圆绘制的起始点角度，以弧度表示。                        |
+| endAngle         | number  | 是    | 0     | 椭圆绘制的结束点角度，以弧度表示。                        |
+| counterclockwise | boolean | 否    | false | 是否以逆时针方向绘制椭圆。<br>true:逆时针方向绘制椭圆。<br>false:顺时针方向绘制椭圆。 |
 
 **示例：**
 
@@ -1812,8 +1812,8 @@ filter(filter: string): void
 
 **参数:**
 
-| 参数     | 类型     | 必填   | 默认值  | 说明           |
-| ------ | ------ | ---- | ---- | ------------ |
+| 参数     | 类型     | 必填   | 默认值  | 说明                                       |
+| ------ | ------ | ---- | ---- | ---------------------------------------- |
 | filter | string | 是    | -    | 接受各类滤镜效果的函数。支持的滤镜效果如下：<br/>- 'none': 无滤镜效果<br/>- 'blur'：给图像设置高斯模糊<br/>- 'brightness'：给图片应用一种线性乘法，使其看起来更亮或更暗<br/>- 'contrast'：调整图像的对比度<br/>- 'grayscale'：将图像转换为灰度图像<br/>- 'hue-rotate'：给图像应用色相旋转<br/>- 'invert'：反转输入图像<br/>- 'opacity'：转化图像的透明程度<br/>- 'saturate'：转换图像饱和度<br/>- 'sepia'：将图像转换为深褐色<br/>默认值：'none' |
 
 **示例：**
@@ -1888,8 +1888,8 @@ getTransform(): Matrix2D
 
 **返回值：**
 
-| 类型                                                  | 说明       |
-| ----------------------------------------------------- | ---------- |
+| 类型                                       | 说明    |
+| ---------------------------------------- | ----- |
 | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 矩阵对象。 |
 
 
@@ -2157,9 +2157,9 @@ setTransform(transform?: Matrix2D): void
 
 **参数：**
 
-| 参数      | 类型                                                  | 必填 | 默认值 | 描述       |
-| --------- | ----------------------------------------------------- | ---- | ------ | ---------- |
-| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 否   | null   | 变换矩阵。 |
+| 参数        | 类型                                       | 必填   | 默认值  | 描述    |
+| --------- | ---------------------------------------- | ---- | ---- | ----- |
+| transform | [Matrix2D](ts-components-canvas-matrix2d.md#Matrix2D) | 否    | null | 变换矩阵。 |
 
 ### translate
 
@@ -2388,15 +2388,15 @@ putImageData(imageData: ImageData, dx: number | string, dy: number | string, dir
 
 **参数：**
 
-| 参数        | 类型                                           | 必填 | 默认值          | 描述                                                      |
-| ----------- | ---------------------------------------------- | ---- | --------------- | --------------------------------------------------------- |
-| imagedata   | [ImageData](ts-components-canvas-imagedata.md) | 是   | null            | 包含像素值的ImageData对象。                               |
-| dx          | number&nbsp;\|&nbsp;string<sup>10+</sup>       | 是   | 0               | 填充区域在x轴方向的偏移量。                               |
-| dy          | number&nbsp;\|&nbsp;string<sup>10+</sup>       | 是   | 0               | 填充区域在y轴方向的偏移量。                               |
-| dirtyX      | number&nbsp;\|&nbsp;string<sup>10+</sup>       | 否   | 0               | 源图像数据矩形裁切范围左上角距离源图像左上角的x轴偏移量。 |
-| dirtyY      | number&nbsp;\|&nbsp;string<sup>10+</sup>       | 否   | 0               | 源图像数据矩形裁切范围左上角距离源图像左上角的y轴偏移量。 |
-| dirtyWidth  | number&nbsp;\|&nbsp;string<sup>10+</sup>       | 否   | imagedata的宽度 | 源图像数据矩形裁切范围的宽度。                            |
-| dirtyHeight | number&nbsp;\|&nbsp;string<sup>10+</sup>       | 否   | imagedata的高度 | 源图像数据矩形裁切范围的高度。                            |
+| 参数          | 类型                                       | 必填   | 默认值          | 描述                            |
+| ----------- | ---------------------------------------- | ---- | ------------ | ----------------------------- |
+| imagedata   | [ImageData](ts-components-canvas-imagedata.md) | 是    | null         | 包含像素值的ImageData对象。            |
+| dx          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 0            | 填充区域在x轴方向的偏移量。                |
+| dy          | number&nbsp;\|&nbsp;string<sup>10+</sup> | 是    | 0            | 填充区域在y轴方向的偏移量。                |
+| dirtyX      | number&nbsp;\|&nbsp;string<sup>10+</sup> | 否    | 0            | 源图像数据矩形裁切范围左上角距离源图像左上角的x轴偏移量。 |
+| dirtyY      | number&nbsp;\|&nbsp;string<sup>10+</sup> | 否    | 0            | 源图像数据矩形裁切范围左上角距离源图像左上角的y轴偏移量。 |
+| dirtyWidth  | number&nbsp;\|&nbsp;string<sup>10+</sup> | 否    | imagedata的宽度 | 源图像数据矩形裁切范围的宽度。               |
+| dirtyHeight | number&nbsp;\|&nbsp;string<sup>10+</sup> | 否    | imagedata的高度 | 源图像数据矩形裁切范围的高度。               |
 
 **示例：**
 
@@ -2873,11 +2873,11 @@ createConicGradient(startAngle: number, x: number, y: number): CanvasGradient
 
 **参数：**
 
-| 参数       | 类型   | 必填 | 默认值 | 描述                                                         |
-| ---------- | ------ | ---- | ------ | ------------------------------------------------------------ |
-| startAngle | number | 是   | 0      | 开始渐变的角度，以弧度为单位。角度测量从中心右侧水平开始，顺时针移动。 |
-| x          | number | 是   | 0      | 圆锥渐变的中心x轴坐标。单位：vp                              |
-| y          | number | 是   | 0      | 圆锥渐变的中心y轴坐标。单位：vp                              |
+| 参数         | 类型     | 必填   | 默认值  | 描述                                  |
+| ---------- | ------ | ---- | ---- | ----------------------------------- |
+| startAngle | number | 是    | 0    | 开始渐变的角度，以弧度为单位。角度测量从中心右侧水平开始，顺时针移动。 |
+| x          | number | 是    | 0    | 圆锥渐变的中心x轴坐标。单位：vp                   |
+| y          | number | 是    | 0    | 圆锥渐变的中心y轴坐标。单位：vp                   |
 
 **示例：**
 

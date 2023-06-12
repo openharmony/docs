@@ -116,8 +116,8 @@ struct SnapshotExample {
       Image(this.pixmap)
         .width(300).height(300)
       // ...Component
-      // ...Components
-      // ...Components
+      // ...Component
+      // ...Component
       Button("click to generate UI snapshot")
         .onClick(() => {
           componentSnapshot.get("root")

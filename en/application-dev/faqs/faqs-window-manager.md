@@ -114,7 +114,7 @@ In effect, the **isStatusBarLightIcon** and **isNavigationBarLightIcon** attribu
 
 **Reference**
 
-[window.SystemBarProperties](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-window.md#systembarproperties)
+[window.SystemBarProperties](../reference/apis/js-apis-window.md#systembarproperties)
 
 ## How do I keep the screen always on?
 

@@ -15,8 +15,8 @@
   - Selecting and Saving User Files (FilePicker)
     - [Selecting User Files](select-user-file.md)
     - [Saving User Files](save-user-file.md)
-  - [Developing a FileManager Application (Available Only for System Applications)](dev-user-file-manager.md)
-  - [Managing External Storage Devices (Available Only for System Applications)](manage-external-storage.md)
+  - [Developing a FileManager Application (for System Applications Only)](dev-user-file-manager.md)
+  - [Managing External Storage Devices (for System Applications Only)](manage-external-storage.md)
 - Distributed File System
   - [Distributed File System Overview](distributed-fs-overview.md)
   - [Setting the Security Level of a Distributed File](set-security-label.md)

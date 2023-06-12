@@ -20,7 +20,7 @@ static isRunningInStabilityTest(callback: AsyncCallback&lt;boolean&gt;): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**返回值：**
+**参数：**
 
   | 类型| 说明 | 
   | -------- | -------- |
@@ -126,7 +126,7 @@ isRamConstrainedDevice(callback: AsyncCallback\<boolean>): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**返回值：**
+**参数：**
 
   | 类型 | 说明 | 
   | -------- | -------- |
@@ -196,7 +196,7 @@ getAppMemorySize(callback: AsyncCallback\<number>): void;
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**返回值：**
+**参数：**
 
   | 类型 | 说明 | 
   | -------- | -------- |
@@ -270,7 +270,7 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**返回值：**
+**参数：**
 
 | 类型 | 说明 |
 | -------- | -------- |
@@ -354,7 +354,7 @@ isSharedBundleRunning(bundleName: string, versionCode: number, callback: AsyncCa
 | bundleName    | string   | 是    | 表示要查询的共享库包名。 |
 | versionCode   | number   | 是    | 表示要查询的共享库版本号。      |
 
-**返回值：**
+**参数：**
 
 | 类型 | 说明 |
 | -------- | -------- |

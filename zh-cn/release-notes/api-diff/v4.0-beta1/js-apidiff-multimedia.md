@@ -129,9 +129,10 @@
 |新增|NA|模块名: ringtonePlayer<br>类名: RingtonePlayer<br>方法 or 属性: release(callback: AsyncCallback\<void>): void;|ringtonePlayer.d.ts|
 |新增|NA|模块名: ringtonePlayer<br>类名: RingtonePlayer<br>方法 or 属性: release(): Promise\<void>;|ringtonePlayer.d.ts|
 |新增|NA|模块名: ringtonePlayer<br>类名: RingtonePlayer<br>方法 or 属性: on(type: 'audioInterrupt', callback: Callback\<audio.InterruptEvent>): void;|ringtonePlayer.d.ts|
-|访问级别有变化|类名：VolumeEvent<br>访问级别：公开API|类名：VolumeEvent<br>访问级别：系统API|@ohos.multimedia.audio.d.ts|
-|访问级别有变化|类名：VolumeEvent<br>方法 or 属性：volumeGroupId: number;<br>访问级别：系统API|类名：VolumeEvent<br>方法 or 属性：volumeGroupId: number;<br>访问级别：公开API|@ohos.multimedia.audio.d.ts|
-|访问级别有变化|类名：VolumeEvent<br>方法 or 属性：networkId: string;<br>访问级别：系统API|类名：VolumeEvent<br>方法 or 属性：networkId: string;<br>访问级别：公开API|@ohos.multimedia.audio.d.ts|
+|访问级别有变化|类名：VolumeEvent<br/>访问级别：公开API|类名：VolumeEvent<br/>访问级别：系统API|@ohos.multimedia.audio.d.ts|
+|访问级别有变化|类名：VolumeEvent<br>方法 or 属性：volumeType: AudioVolumeType;;<br>访问级别：公开API|类名：VolumeEvent<br>方法 or 属性：volumeType: AudioVolumeType;;<br>访问级别：系统API|@ohos.multimedia.audio.d.ts|
+|访问级别有变化|类名：VolumeEvent<br>方法 or 属性：volume: number;<br>访问级别：公开API|类名：VolumeEvent<br>方法 or 属性：volume: number;<br>访问级别：系统API|@ohos.multimedia.audio.d.ts|
+|访问级别有变化|类名：VolumeEvent<br/>方法 or 属性：updateUi: boolean;<br/>访问级别：公开API|类名：VolumeEvent<br/>方法 or 属性：updateUi: boolean;;<br/>访问级别：系统API|@ohos.multimedia.audio.d.ts|
 |访问级别有变化|类名：AVSessionType<br>方法 or 属性：type AVSessionType = 'audio' \| 'video';<br>访问级别：系统API|类名：AVSessionType<br>方法 or 属性：type AVSessionType = 'audio' \| 'video';<br>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
 |访问级别有变化|类名：avSession<br>方法 or 属性：function createAVSession(context: Context, tag: string, type: AVSessionType, callback: AsyncCallback\<AVSession>): void;<br>访问级别：系统API|类名：avSession<br>方法 or 属性：function createAVSession(context: Context, tag: string, type: AVSessionType, callback: AsyncCallback\<AVSession>): void;<br>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
 |访问级别有变化|类名：avSession<br>方法 or 属性：function createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AVSession>;<br>访问级别：系统API|类名：avSession<br>方法 or 属性：function createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AVSession>;<br>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
@@ -167,11 +168,48 @@
 |访问级别有变化|类名：AVSession<br>方法 or 属性：destroy(callback: AsyncCallback\<void>): void;<br>访问级别：系统API|类名：AVSession<br>方法 or 属性：destroy(callback: AsyncCallback\<void>): void;<br>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
 |访问级别有变化|类名：AVSession<br>方法 or 属性：destroy(): Promise\<void>;<br>访问级别：系统API|类名：AVSession<br>方法 or 属性：destroy(): Promise\<void>;<br>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
 |访问级别有变化|类名：AVMetadata<br>访问级别：系统API|类名：AVMetadata<br>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVMetadata<br/>方法 or 属性：assetId: string;<br/>访问级别：系统API|类名：AVMetadata<br/>方法 or 属性：assetId: string;;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVMetadata<br/>方法 or 属性：title?: string;<br/>访问级别：系统API|类名：AVMetadata<br/>方法 or 属性：title?: string;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVMetadata<br/>方法 or 属性：artist?: string;<br/>访问级别：系统API|类名：AVMetadata<br/>方法 or 属性：artist?: string;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVMetadata<br/>方法 or 属性：author?: string;<br/>访问级别：系统API|类名：AVMetadata<br/>方法 or 属性：author?: string;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVMetadata<br/>方法 or 属性：album?: string;<br/>访问级别：系统API|类名：AVMetadata<br/>方法 or 属性：album?: string;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVMetadata<br/>方法 or 属性：writer?: string;<br/>访问级别：系统API|类名：AVMetadata<br/>方法 or 属性：writer?: string;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVMetadata<br/>方法 or 属性：composer?: string;<br/>访问级别：系统API|类名：AVMetadata<br/>方法 or 属性：composer?: string;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVMetadata<br/>方法 or 属性：duration?: number;<br/>访问级别：系统API|类名：AVMetadata<br/>方法 or 属性：duration?: number;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVMetadata<br/>方法 or 属性：mediaImage?: image.PixelMap \|string;;<br/>访问级别：系统API|类名：AVMetadata<br/>方法 or 属性：mediaImage?: image.PixelMap \|string;;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVMetadata<br/>方法 or 属性：publishDate?: Date;<br/>访问级别：系统API|类名：AVMetadata<br/>方法 or 属性：publishDate?: Date;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVMetadata<br/>方法 or 属性：subtitle?: string;<br/>访问级别：系统API|类名：AVMetadata<br/>方法 or 属性：subtitle?: string;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVMetadata<br/>方法 or 属性：description?: string;<br/>访问级别：系统API|类名：AVMetadata<br/>方法 or 属性：description?: string;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVMetadata<br/>方法 or 属性：lyric?: string;<br/>访问级别：系统API|类名：AVMetadata<br/>方法 or 属性：lyric?: string;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVMetadata<br/>方法 or 属性：previousAssetId?: string;<br/>访问级别：系统API|类名：AVMetadata<br/>方法 or 属性：previousAssetId?: string;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVMetadata<br/>方法 or 属性：nextAssetId?: string;<br/>访问级别：系统API|类名：AVMetadata<br/>方法 or 属性：nextAssetId?: string;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
 |访问级别有变化|类名：AVPlaybackState<br>访问级别：系统API|类名：AVPlaybackState<br>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVPlaybackState<br>方法 or 属性：state?: PlaybackState;<br/>访问级别：系统API|类名：AVPlaybackState<br>方法 or 属性：state?: PlaybackState;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVPlaybackState<br>方法 or 属性：speed?: number;<br/>访问级别：系统API|类名：AVPlaybackState<br>方法 or 属性：speed?: number;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVPlaybackState<br>方法 or 属性：position?: PlaybackPosition;<br/>访问级别：系统API|类名：AVPlaybackState<br>方法 or 属性：position?: PlaybackPosition;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVPlaybackState<br>方法 or 属性：bufferedTime?: number;<br/>访问级别：系统API|类名：AVPlaybackState<br>方法 or 属性：bufferedTime?: number;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVPlaybackState<br>方法 or 属性：loopMode?: LoopMode;<br/>访问级别：系统API|类名：AVPlaybackState<br>方法 or 属性：loopMode?: LoopMode;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVPlaybackState<br>方法 or 属性：isFavorite?: boolean;<br/>访问级别：系统API|类名：AVPlaybackState<br>方法 or 属性：isFavorite?: boolean;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
 |访问级别有变化|类名：PlaybackPosition<br>访问级别：系统API|类名：PlaybackPosition<br>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：PlaybackPosition<br>方法 or 属性：elapsedTime: number;<br/>访问级别：系统API|类名：PlaybackPosition<br>方法 or 属性：elapsedTime: number;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：PlaybackPosition<br>方法 or 属性：updateTime: number;<br/>访问级别：系统API|类名：PlaybackPosition<br>方法 or 属性：updateTime: number;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
 |访问级别有变化|类名：OutputDeviceInfo<br>访问级别：系统API|类名：OutputDeviceInfo<br>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：OutputDeviceInfo<br>方法 or 属性：  isRemote: boolean;<br/>访问级别：系统API|类名：OutputDeviceInfo<br>方法 or 属性：  isRemote: boolean;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：OutputDeviceInfo<br>方法 or 属性：audioDeviceId: Array\<number>;<br/>访问级别：系统API|类名：OutputDeviceInfo<br>方法 or 属性：audioDeviceId: Array\<number>;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：OutputDeviceInfo<br>方法 or 属性：deviceName: Array\<string>;<br/>访问级别：系统API|类名：OutputDeviceInfo<br>方法 or 属性：deviceName: Array\<string>;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
 |访问级别有变化|类名：LoopMode<br>访问级别：系统API|类名：LoopMode<br>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：LoopMode<br>方法 or 属性：LOOP_MODE_SEQUENCE = 0,<br/>访问级别：系统API|类名：LoopMode<br>方法 or 属性：LOOP_MODE_SEQUENCE = 0,;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：LoopMode<br>方法 or 属性：LOOP_MODE_SINGLE = 1,<br/>访问级别：系统API|类名：LoopMode<br>方法 or 属性：LOOP_MODE_SINGLE = 1,<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：LoopMode<br>方法 or 属性：LOOP_MODE_LIST = 2,<br/>访问级别：系统API|类名：LoopMode<br>方法 or 属性：LOOP_MODE_LIST = 2,<string>;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：LoopMode<br>方法 or 属性：LOOP_MODE_SHUFFLE = 3,<br/>访问级别：系统API|类名：LoopMode<br>方法 or 属性：LOOP_MODE_SHUFFLE = 3,<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
 |访问级别有变化|类名：PlaybackState<br>访问级别：系统API|类名：PlaybackState<br>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_INITIAL = 0<br>访问级别：系统API|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_INITIAL = 0<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_PREPARE = 1<br>访问级别：系统API|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_PREPARE = 1<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_PLAY = 2<br>访问级别：系统API|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_PLAY = 2<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_PAUSE = 3<br>访问级别：系统API|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_PAUSE = 3<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_FAST_FORWARD = 4<br>访问级别：系统API|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_FAST_FORWARD = 4<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_REWIND = 5<br>访问级别：系统API|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_REWIND = 5<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_STOP = 6<br>访问级别：系统API|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_STOP = 6<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
 |访问级别有变化|类名：AVSessionController<br>访问级别：系统API|类名：AVSessionController<br>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
 |访问级别有变化|类名：AVSessionController<br>方法 or 属性：readonly sessionId: string;<br>访问级别：系统API|类名：AVSessionController<br>方法 or 属性：readonly sessionId: string;<br>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
 |访问级别有变化|类名：AVSessionController<br>方法 or 属性：getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void;<br>访问级别：系统API|类名：AVSessionController<br>方法 or 属性：getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void;<br>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
@@ -206,131 +244,15 @@
 |访问级别有变化|类名：AVSessionController<br>方法 or 属性：on(type: 'outputDeviceChange', callback: (device: OutputDeviceInfo) => void): void;<br>访问级别：系统API|类名：AVSessionController<br>方法 or 属性：on(type: 'outputDeviceChange', callback: (device: OutputDeviceInfo) => void): void;<br>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
 |访问级别有变化|类名：AVSessionController<br>方法 or 属性：off(type: 'outputDeviceChange', callback?: (device: OutputDeviceInfo) => void): void;<br>访问级别：系统API|类名：AVSessionController<br>方法 or 属性：off(type: 'outputDeviceChange', callback?: (device: OutputDeviceInfo) => void): void;<br>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
 |访问级别有变化|类名：AVControlCommand<br>访问级别：系统API|类名：AVControlCommand<br>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVControlCommand<br>方法 or 属性：command: AVControlCommandType;<br>访问级别：系统API|类名：AVControlCommand<br/>方法 or 属性：command: AVControlCommandType;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVControlCommand<br>方法 or 属性：parameter?: LoopMode \|string\|number;<br>访问级别：系统API|类名：AVControlCommand<br/>方法 or 属性：parameter?: LoopMode \|string\|number;<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
 |访问级别有变化|类名：AVSessionErrorCode<br>访问级别：系统API|类名：AVSessionErrorCode<br>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AudioManager<br>方法 or 属性：on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void;<br>起始版本：9|类名：AudioManager<br>方法 or 属性：on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void;<br>起始版本：8|@ohos.multimedia.audio.d.ts|
-|起始版本有变化|类名：VolumeEvent<br>起始版本：9|类名：VolumeEvent<br>起始版本：8|@ohos.multimedia.audio.d.ts|
-|起始版本有变化|类名：VolumeEvent<br>方法 or 属性：volumeType: AudioVolumeType;<br>起始版本：9|类名：VolumeEvent<br>方法 or 属性：volumeType: AudioVolumeType;<br>起始版本：8|@ohos.multimedia.audio.d.ts|
-|起始版本有变化|类名：VolumeEvent<br>方法 or 属性：volume: number;<br>起始版本：9|类名：VolumeEvent<br>方法 or 属性：volume: number;<br>起始版本：8|@ohos.multimedia.audio.d.ts|
-|起始版本有变化|类名：VolumeEvent<br>方法 or 属性：updateUi: boolean;<br>起始版本：9|类名：VolumeEvent<br>方法 or 属性：updateUi: boolean;<br>起始版本：8|@ohos.multimedia.audio.d.ts|
-|起始版本有变化|类名：AVSessionType<br>方法 or 属性：type AVSessionType = 'audio' \| 'video';<br>起始版本：9|类名：AVSessionType<br>方法 or 属性：type AVSessionType = 'audio' \| 'video';<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：avSession<br>方法 or 属性：function createAVSession(context: Context, tag: string, type: AVSessionType, callback: AsyncCallback\<AVSession>): void;<br>起始版本：9|类名：avSession<br>方法 or 属性：function createAVSession(context: Context, tag: string, type: AVSessionType, callback: AsyncCallback\<AVSession>): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：avSession<br>方法 or 属性：function createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AVSession>;<br>起始版本：9|类名：avSession<br>方法 or 属性：function createAVSession(context: Context, tag: string, type: AVSessionType): Promise\<AVSession>;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>起始版本：9|类名：AVSession<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：readonly sessionId: string;<br>起始版本：9|类名：AVSession<br>方法 or 属性：readonly sessionId: string;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：setAVMetadata(data: AVMetadata, callback: AsyncCallback\<void>): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：setAVMetadata(data: AVMetadata, callback: AsyncCallback\<void>): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：setAVMetadata(data: AVMetadata): Promise\<void>;<br>起始版本：9|类名：AVSession<br>方法 or 属性：setAVMetadata(data: AVMetadata): Promise\<void>;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback\<void>): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback\<void>): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：setAVPlaybackState(state: AVPlaybackState): Promise\<void>;<br>起始版本：9|类名：AVSession<br>方法 or 属性：setAVPlaybackState(state: AVPlaybackState): Promise\<void>;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：setLaunchAbility(ability: WantAgent, callback: AsyncCallback\<void>): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：setLaunchAbility(ability: WantAgent, callback: AsyncCallback\<void>): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：setLaunchAbility(ability: WantAgent): Promise\<void>;<br>起始版本：9|类名：AVSession<br>方法 or 属性：setLaunchAbility(ability: WantAgent): Promise\<void>;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：getController(callback: AsyncCallback\<AVSessionController>): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：getController(callback: AsyncCallback\<AVSessionController>): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：getController(): Promise\<AVSessionController>;<br>起始版本：9|类名：AVSession<br>方法 or 属性：getController(): Promise\<AVSessionController>;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：getOutputDevice(): Promise\<OutputDeviceInfo>;<br>起始版本：9|类名：AVSession<br>方法 or 属性：getOutputDevice(): Promise\<OutputDeviceInfo>;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：on(type: 'play' \| 'pause' \| 'stop' \| 'playNext' \| 'playPrevious' \| 'fastForward' \| 'rewind', callback: () => void): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：on(type: 'play' \| 'pause' \| 'stop' \| 'playNext' \| 'playPrevious' \| 'fastForward' \| 'rewind', callback: () => void): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：off(type: 'play' \| 'pause' \| 'stop' \| 'playNext' \| 'playPrevious' \| 'fastForward' \| 'rewind', callback?: () => void): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：off(type: 'play' \| 'pause' \| 'stop' \| 'playNext' \| 'playPrevious' \| 'fastForward' \| 'rewind', callback?: () => void): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：on(type: 'seek', callback: (time: number) => void): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：on(type: 'seek', callback: (time: number) => void): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：off(type: 'seek', callback?: (time: number) => void): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：off(type: 'seek', callback?: (time: number) => void): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：on(type: 'setSpeed', callback: (speed: number) => void): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：on(type: 'setSpeed', callback: (speed: number) => void): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：off(type: 'setSpeed', callback?: (speed: number) => void): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：off(type: 'setSpeed', callback?: (speed: number) => void): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：on(type: 'setLoopMode', callback: (mode: LoopMode) => void): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：on(type: 'setLoopMode', callback: (mode: LoopMode) => void): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：off(type: 'setLoopMode', callback?: (mode: LoopMode) => void): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：off(type: 'setLoopMode', callback?: (mode: LoopMode) => void): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：on(type: 'toggleFavorite', callback: (assetId: string) => void): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：on(type: 'toggleFavorite', callback: (assetId: string) => void): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：off(type: 'toggleFavorite', callback?: (assetId: string) => void): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：off(type: 'toggleFavorite', callback?: (assetId: string) => void): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：on(type: 'handleKeyEvent', callback: (event: KeyEvent) => void): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：on(type: 'handleKeyEvent', callback: (event: KeyEvent) => void): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：off(type: 'handleKeyEvent', callback?: (event: KeyEvent) => void): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：off(type: 'handleKeyEvent', callback?: (event: KeyEvent) => void): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：on(type: 'outputDeviceChange', callback: (device: OutputDeviceInfo) => void): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：on(type: 'outputDeviceChange', callback: (device: OutputDeviceInfo) => void): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：off(type: 'outputDeviceChange', callback?: (device: OutputDeviceInfo) => void): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：off(type: 'outputDeviceChange', callback?: (device: OutputDeviceInfo) => void): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：activate(callback: AsyncCallback\<void>): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：activate(callback: AsyncCallback\<void>): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：activate(): Promise\<void>;<br>起始版本：9|类名：AVSession<br>方法 or 属性：activate(): Promise\<void>;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：deactivate(callback: AsyncCallback\<void>): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：deactivate(callback: AsyncCallback\<void>): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：deactivate(): Promise\<void>;<br>起始版本：9|类名：AVSession<br>方法 or 属性：deactivate(): Promise\<void>;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：destroy(callback: AsyncCallback\<void>): void;<br>起始版本：9|类名：AVSession<br>方法 or 属性：destroy(callback: AsyncCallback\<void>): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSession<br>方法 or 属性：destroy(): Promise\<void>;<br>起始版本：9|类名：AVSession<br>方法 or 属性：destroy(): Promise\<void>;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVMetadata<br>起始版本：9|类名：AVMetadata<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVMetadata<br>方法 or 属性：assetId: string;<br>起始版本：9|类名：AVMetadata<br>方法 or 属性：assetId: string;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVMetadata<br>方法 or 属性：title?: string;<br>起始版本：9|类名：AVMetadata<br>方法 or 属性：title?: string;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVMetadata<br>方法 or 属性：artist?: string;<br>起始版本：9|类名：AVMetadata<br>方法 or 属性：artist?: string;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVMetadata<br>方法 or 属性：author?: string;<br>起始版本：9|类名：AVMetadata<br>方法 or 属性：author?: string;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVMetadata<br>方法 or 属性：album?: string;<br>起始版本：9|类名：AVMetadata<br>方法 or 属性：album?: string;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVMetadata<br>方法 or 属性：writer?: string;<br>起始版本：9|类名：AVMetadata<br>方法 or 属性：writer?: string;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVMetadata<br>方法 or 属性：composer?: string;<br>起始版本：9|类名：AVMetadata<br>方法 or 属性：composer?: string;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVMetadata<br>方法 or 属性：duration?: number;<br>起始版本：9|类名：AVMetadata<br>方法 or 属性：duration?: number;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVMetadata<br>方法 or 属性：mediaImage?: image.PixelMap \| string;<br>起始版本：9|类名：AVMetadata<br>方法 or 属性：mediaImage?: image.PixelMap \| string;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVMetadata<br>方法 or 属性：publishDate?: Date;<br>起始版本：9|类名：AVMetadata<br>方法 or 属性：publishDate?: Date;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVMetadata<br>方法 or 属性：subtitle?: string;<br>起始版本：9|类名：AVMetadata<br>方法 or 属性：subtitle?: string;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVMetadata<br>方法 or 属性：description?: string;<br>起始版本：9|类名：AVMetadata<br>方法 or 属性：description?: string;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVMetadata<br>方法 or 属性：lyric?: string;<br>起始版本：9|类名：AVMetadata<br>方法 or 属性：lyric?: string;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVMetadata<br>方法 or 属性：previousAssetId?: string;<br>起始版本：9|类名：AVMetadata<br>方法 or 属性：previousAssetId?: string;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVMetadata<br>方法 or 属性：nextAssetId?: string;<br>起始版本：9|类名：AVMetadata<br>方法 or 属性：nextAssetId?: string;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVPlaybackState<br>起始版本：9|类名：AVPlaybackState<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVPlaybackState<br>方法 or 属性：state?: PlaybackState;<br>起始版本：9|类名：AVPlaybackState<br>方法 or 属性：state?: PlaybackState;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVPlaybackState<br>方法 or 属性：speed?: number;<br>起始版本：9|类名：AVPlaybackState<br>方法 or 属性：speed?: number;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVPlaybackState<br>方法 or 属性：position?: PlaybackPosition;<br>起始版本：9|类名：AVPlaybackState<br>方法 or 属性：position?: PlaybackPosition;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVPlaybackState<br>方法 or 属性：bufferedTime?: number;<br>起始版本：9|类名：AVPlaybackState<br>方法 or 属性：bufferedTime?: number;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVPlaybackState<br>方法 or 属性：loopMode?: LoopMode;<br>起始版本：9|类名：AVPlaybackState<br>方法 or 属性：loopMode?: LoopMode;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVPlaybackState<br>方法 or 属性：isFavorite?: boolean;<br>起始版本：9|类名：AVPlaybackState<br>方法 or 属性：isFavorite?: boolean;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：PlaybackPosition<br>起始版本：9|类名：PlaybackPosition<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：PlaybackPosition<br>方法 or 属性：elapsedTime: number;<br>起始版本：9|类名：PlaybackPosition<br>方法 or 属性：elapsedTime: number;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：PlaybackPosition<br>方法 or 属性：updateTime: number;<br>起始版本：9|类名：PlaybackPosition<br>方法 or 属性：updateTime: number;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：OutputDeviceInfo<br>起始版本：9|类名：OutputDeviceInfo<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：OutputDeviceInfo<br>方法 or 属性：isRemote: boolean;<br>起始版本：9|类名：OutputDeviceInfo<br>方法 or 属性：isRemote: boolean;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：OutputDeviceInfo<br>方法 or 属性：audioDeviceId: Array\<number>;<br>起始版本：9|类名：OutputDeviceInfo<br>方法 or 属性：audioDeviceId: Array\<number>;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：OutputDeviceInfo<br>方法 or 属性：deviceName: Array\<string>;<br>起始版本：9|类名：OutputDeviceInfo<br>方法 or 属性：deviceName: Array\<string>;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：LoopMode<br>起始版本：9|类名：LoopMode<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：LoopMode<br>方法 or 属性：LOOP_MODE_SEQUENCE = 0<br>起始版本：9|类名：LoopMode<br>方法 or 属性：LOOP_MODE_SEQUENCE = 0<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：LoopMode<br>方法 or 属性：LOOP_MODE_SINGLE = 1<br>起始版本：9|类名：LoopMode<br>方法 or 属性：LOOP_MODE_SINGLE = 1<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：LoopMode<br>方法 or 属性：LOOP_MODE_LIST = 2<br>起始版本：9|类名：LoopMode<br>方法 or 属性：LOOP_MODE_LIST = 2<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：LoopMode<br>方法 or 属性：LOOP_MODE_SHUFFLE = 3<br>起始版本：9|类名：LoopMode<br>方法 or 属性：LOOP_MODE_SHUFFLE = 3<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：PlaybackState<br>起始版本：9|类名：PlaybackState<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_INITIAL = 0<br>起始版本：9|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_INITIAL = 0<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_PREPARE = 1<br>起始版本：9|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_PREPARE = 1<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_PLAY = 2<br>起始版本：9|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_PLAY = 2<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_PAUSE = 3<br>起始版本：9|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_PAUSE = 3<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_FAST_FORWARD = 4<br>起始版本：9|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_FAST_FORWARD = 4<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_REWIND = 5<br>起始版本：9|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_REWIND = 5<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_STOP = 6<br>起始版本：9|类名：PlaybackState<br>方法 or 属性：PLAYBACK_STATE_STOP = 6<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>起始版本：9|类名：AVSessionController<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：readonly sessionId: string;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：readonly sessionId: string;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：getAVPlaybackState(callback: AsyncCallback\<AVPlaybackState>): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：getAVPlaybackState(): Promise\<AVPlaybackState>;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：getAVPlaybackState(): Promise\<AVPlaybackState>;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：getAVMetadata(callback: AsyncCallback\<AVMetadata>): void;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：getAVMetadata(callback: AsyncCallback\<AVMetadata>): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：getAVMetadata(): Promise\<AVMetadata>;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：getAVMetadata(): Promise\<AVMetadata>;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：getOutputDevice(callback: AsyncCallback\<OutputDeviceInfo>): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：getOutputDevice(): Promise\<OutputDeviceInfo>;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：getOutputDevice(): Promise\<OutputDeviceInfo>;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：sendAVKeyEvent(event: KeyEvent, callback: AsyncCallback\<void>): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：sendAVKeyEvent(event: KeyEvent): Promise\<void>;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：sendAVKeyEvent(event: KeyEvent): Promise\<void>;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：getLaunchAbility(callback: AsyncCallback\<WantAgent>): void;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：getLaunchAbility(callback: AsyncCallback\<WantAgent>): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：getLaunchAbility(): Promise\<WantAgent>;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：getLaunchAbility(): Promise\<WantAgent>;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：getRealPlaybackPositionSync(): number;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：getRealPlaybackPositionSync(): number;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：isActive(callback: AsyncCallback\<boolean>): void;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：isActive(callback: AsyncCallback\<boolean>): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：isActive(): Promise\<boolean>;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：isActive(): Promise\<boolean>;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：destroy(callback: AsyncCallback\<void>): void;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：destroy(callback: AsyncCallback\<void>): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：destroy(): Promise\<void>;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：destroy(): Promise\<void>;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：getValidCommands(callback: AsyncCallback\<Array\<AVControlCommandType>>): void;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：getValidCommands(callback: AsyncCallback\<Array\<AVControlCommandType>>): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：getValidCommands(): Promise\<Array\<AVControlCommandType>>;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：getValidCommands(): Promise\<Array\<AVControlCommandType>>;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：sendControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): void;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：sendControlCommand(command: AVControlCommand, callback: AsyncCallback\<void>): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：sendControlCommand(command: AVControlCommand): Promise\<void>;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：sendControlCommand(command: AVControlCommand): Promise\<void>;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：on(type: 'metadataChange', filter: Array\<keyof AVMetadata> \| 'all', callback: (data: AVMetadata) => void);<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：on(type: 'metadataChange', filter: Array\<keyof AVMetadata> \| 'all', callback: (data: AVMetadata) => void);<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：off(type: 'metadataChange', callback?: (data: AVMetadata) => void);<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：off(type: 'metadataChange', callback?: (data: AVMetadata) => void);<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> \| 'all', callback: (state: AVPlaybackState) => void);<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：on(type: 'playbackStateChange', filter: Array\<keyof AVPlaybackState> \| 'all', callback: (state: AVPlaybackState) => void);<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void);<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：off(type: 'playbackStateChange', callback?: (state: AVPlaybackState) => void);<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：on(type: 'sessionDestroy', callback: () => void);<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：on(type: 'sessionDestroy', callback: () => void);<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：off(type: 'sessionDestroy', callback?: () => void);<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：off(type: 'sessionDestroy', callback?: () => void);<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：on(type: 'activeStateChange', callback: (isActive: boolean) => void);<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：on(type: 'activeStateChange', callback: (isActive: boolean) => void);<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：off(type: 'activeStateChange', callback?: (isActive: boolean) => void);<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：off(type: 'activeStateChange', callback?: (isActive: boolean) => void);<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：on(type: 'validCommandChange', callback: (commands: Array\<AVControlCommandType>) => void);<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：on(type: 'validCommandChange', callback: (commands: Array\<AVControlCommandType>) => void);<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：off(type: 'validCommandChange', callback?: (commands: Array\<AVControlCommandType>) => void);<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：off(type: 'validCommandChange', callback?: (commands: Array\<AVControlCommandType>) => void);<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：on(type: 'outputDeviceChange', callback: (device: OutputDeviceInfo) => void): void;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：on(type: 'outputDeviceChange', callback: (device: OutputDeviceInfo) => void): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionController<br>方法 or 属性：off(type: 'outputDeviceChange', callback?: (device: OutputDeviceInfo) => void): void;<br>起始版本：9|类名：AVSessionController<br>方法 or 属性：off(type: 'outputDeviceChange', callback?: (device: OutputDeviceInfo) => void): void;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVControlCommand<br>起始版本：9|类名：AVControlCommand<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVControlCommand<br>方法 or 属性：command: AVControlCommandType;<br>起始版本：9|类名：AVControlCommand<br>方法 or 属性：command: AVControlCommandType;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVControlCommand<br>方法 or 属性：parameter?: LoopMode \| string \| number;<br>起始版本：9|类名：AVControlCommand<br>方法 or 属性：parameter?: LoopMode \| string \| number;<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionErrorCode<br>起始版本：9|类名：AVSessionErrorCode<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_SERVICE_EXCEPTION = 6600101<br>起始版本：9|类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_SERVICE_EXCEPTION = 6600101<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_SESSION_NOT_EXIST = 6600102<br>起始版本：9|类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_SESSION_NOT_EXIST = 6600102<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_CONTROLLER_NOT_EXIST = 6600103<br>起始版本：9|类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_CONTROLLER_NOT_EXIST = 6600103<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_REMOTE_CONNECTION_ERR = 6600104<br>起始版本：9|类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_REMOTE_CONNECTION_ERR = 6600104<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_COMMAND_INVALID = 6600105<br>起始版本：9|类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_COMMAND_INVALID = 6600105<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_SESSION_INACTIVE = 6600106<br>起始版本：9|类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_SESSION_INACTIVE = 6600106<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
-|起始版本有变化|类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_MESSAGE_OVERLOAD = 6600107<br>起始版本：9|类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_MESSAGE_OVERLOAD = 6600107<br>起始版本：10|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_SERVICE_EXCEPTION = 6600101<br>访问级别：系统API|类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_SERVICE_EXCEPTION = 6600101,<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+|访问级别有变化|类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_SESSION_NOT_EXIST = 6600102<br>访问级别：系统API|类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_SESSION_NOT_EXIST = 6600102<br/>访问级别：公开API|@ohos.multimedia.avsession.d.ts|
+| 访问级别有变化 | 类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_SESSION_NOT_EXIST = 6600102<br>访问级别：系统API | 类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_SESSION_NOT_EXIST = 6600102<br/>访问级别：公开API | @ohos.multimedia.avsession.d.ts          |
+| 访问级别有变化 | 类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_CONTROLLER_NOT_EXIST = 6600103<br>访问级别：系统API | 类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_SESSION_NOT_EXIST = 6600103<br/>访问级别：公开API | @ohos.multimedia.avsession.d.ts          |
+| 访问级别有变化 | 类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_REMOTE_CONNECTION_ERR = 6600104<br>访问级别：系统API | 类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_REMOTE_CONNECTION_ERR = 6600104<br/>访问级别：公开API | @ohos.multimedia.avsession.d.ts          |
+| 访问级别有变化 | 类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_COMMAND_INVALID = 6600105<br>访问级别：系统API | 类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_COMMAND_INVALID = 6600105<br/>访问级别：公开API | @ohos.multimedia.avsession.d.ts          |
+| 访问级别有变化 | 类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_SESSION_INACTIVE = 6600106<br>访问级别：系统API | 类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_SESSION_INACTIVE = 6600106<br/>访问级别：公开API | @ohos.multimedia.avsession.d.ts          |
+| 访问级别有变化 | 类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_MESSAGE_OVERLOAD = 6600107<br>访问级别：系统API | 类名：AVSessionErrorCode<br>方法 or 属性：ERR_CODE_MESSAGE_OVERLOAD = 6600107<br/>访问级别：公开API | @ohos.multimedia.avsession.d.ts          |
+

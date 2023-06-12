@@ -170,7 +170,7 @@ Cancels the reminder with the specified ID. This API uses a promise to return th
 
 | Type| Description|
 | -------- | -------- |
-| PPromise\<void>	 | Promise used to return the result.|
+| Promise\<void>	 | Promise used to return the result.|
 
 **Error codes**
 
@@ -611,7 +611,7 @@ Defines the reminder to publish.
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 | reminderType | [ReminderType](#remindertype) | Yes| Type of the reminder.|
-| actionButton<sup>10+</sup> | [ActionButton](#actionbutton) | No| Button displayed for the reminder in the notification panel. For common applications, a maximum of two buttons are supported. For system applications, a maximum of two buttons are supported in API version 9, and a maximum of three buttons are supported in API version 10 and later versions.  |
+| actionButton<sup>10+</sup> | [ActionButton](#actionbutton) | No| Button displayed for the reminder in the notification panel. For common applications, a maximum of two buttons are supported. For system applications, a maximum of two buttons are supported in API version 9, and a maximum of three buttons are supported in API version 10 and later versions.|
 | wantAgent | [WantAgent](#wantagent) | No| Information about the ability that is redirected to when the reminder is clicked.|
 | maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | No| Information about the ability that is automatically started when the reminder arrives. If the device is in use, a notification will be displayed.|
 | ringDuration | number | No| Ringing duration, in seconds. The default value is **1**.|

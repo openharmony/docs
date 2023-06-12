@@ -64,7 +64,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0 or the permissionName exceeds 256 bytes. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName exceeds 256 bytes. |
 
 **Example**
 
@@ -74,7 +74,7 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
 try {
-    atManager.checkAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS").then((data) => {
+    atManager.checkAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data) => {
         console.log(`checkAccessToken success, data->${JSON.stringify(data)}`);
     }).catch((err) => {
         console.log(`checkAccessToken fail, err->${JSON.stringify(err)}`);
@@ -111,14 +111,14 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0 or the permissionName exceeds 256 bytes. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName exceeds 256 bytes. |
 
 **Example**
 
 ```js
 let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
-let data = atManager.verifyAccessTokenSync(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+let data = atManager.verifyAccessTokenSync(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
 console.log(`data->${JSON.stringify(data)}`);
 ```
 
@@ -154,7 +154,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0, the permissionName is greater than 256 bytes, or the flags value is invalid. |
+| 12100001 | The parameter is invalid. The tokenID is 0, the permissionName exceeds 256 bytes, or the flags value is invalid. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The application specified by the tokenID is not allowed to be granted with the specified permission. Either the application is a sandbox or the tokenID is from a remote device. |
@@ -169,7 +169,7 @@ let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
 let permissionFlags = 1;
 try {
-    atManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlags).then(() => {
+    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags).then(() => {
         console.log('grantUserGrantedPermission success');
     }).catch((err) => {
         console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
@@ -221,7 +221,7 @@ let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
 let permissionFlags = 1;
 try {
-    atManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlags, (err, data) => {
+    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags, (err, data) => {
         if (err) {
             console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -280,7 +280,7 @@ let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
 let permissionFlags = 1;
 try {
-    atManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlags).then(() => {
+    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags).then(() => {
         console.log('revokeUserGrantedPermission success');
     }).catch((err) => {
         console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
@@ -332,7 +332,7 @@ let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
 let permissionFlags = 1;
 try {
-    atManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlags, (err, data) => {
+    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags, (err, data) => {
         if (err) {
             console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -375,7 +375,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0 or the permissionName exceeds 256 bytes. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName exceeds 256 bytes. |
 | 12100002 | The specified tokenID does not exist. |
 | 12100003 | The specified permission does not exist. |
 | 12100006 | The operation is not allowed. Either the application is a sandbox or the tokenID is from a remote device. |
@@ -389,7 +389,7 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
 try {
-    atManager.getPermissionFlags(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS").then((data) => {
+    atManager.getPermissionFlags(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data) => {
         console.log(`getPermissionFlags success, data->${JSON.stringify(data)}`);
     }).catch((err) => {
         console.log(`getPermissionFlags fail, err->${JSON.stringify(err)}`);
@@ -443,7 +443,7 @@ Subscribes to permission state changes of the specified applications and permiss
 | ------------------ | --------------------- | ---- | ------------------------------------------------------------ |
 | type               | string                | Yes  | Event type to subscribe to. The value is **'permissionStateChange'**, which indicates the permission grant state change. |
 | tokenIDList        | Array&lt;number&gt;   | Yes  | Token IDs of the applications to observe. If this parameter is left empty, the permission grant state changes of all applications are observed. |
-| permissionList | Array&lt;Permissions&gt;   | Yes  | Permissions to observe. If this parameter is left empty, the grant state changes of all permissions are observed. |
+| permissionList | Array&lt;Permissions&gt;   | Yes  | List of permission names. If this parameter is left empty, the grant state changes of all permissions are subscribed to.              |
 | callback | Callback&lt;[PermissionStateChangeInfo](#permissionstatechangeinfo9)&gt; | Yes| Callback invoked to return the permission grant state change.|
 
 **Error codes**
@@ -452,7 +452,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0 or the permissionName exceeds 256 bytes. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName exceeds 256 bytes. |
 | 12100004 | The interface is called repeatedly with the same input. |
 | 12100005 | The registration time has exceeded the limitation. |
 | 12100007 | Service is abnormal. |
@@ -461,16 +461,16 @@ For details about the error codes, see [Application Access Control Error Codes](
 **Example**
 
 ```js
-import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
+import {Permissions} from '@ohos.abilityAccessCtrl';
 import bundleManager from '@ohos.bundle.bundleManager';
 
 let atManager = abilityAccessCtrl.createAtManager();
 let appInfo = bundleManager.getApplicationInfoSync('com.example.myapplication', 0, 100);
 let tokenIDList: Array<number> = [appInfo.accessTokenId];
-let permissionList: Array<Permissions> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
+let permissionList: Array<Permissions> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
 try {
     atManager.on('permissionStateChange', tokenIDList, permissionList, (data) => {
-        console.debug("receive permission state change, data:" + JSON.stringify(data));
+        console.debug('receive permission state change, data:' + JSON.stringify(data));
     });
 } catch(err) {
     console.log(`catch err->${JSON.stringify(err)}`);
@@ -505,20 +505,20 @@ For details about the error codes, see [Application Access Control Error Codes](
 | ID| Error Message|
 | -------- | -------- |
 | 12100001 | The parameter is invalid. The tokenIDs or permissionNames in the list are all invalid. |
-| 12100004 | The interface is not used together with "on". |
+| 12100004 | The interface is not used together with 'on'. |
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
 
 **Example**
 
 ```js
-import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
+import {Permissions} from '@ohos.abilityAccessCtrl';
 import bundleManager from '@ohos.bundle.bundleManager';
 
 let atManager = abilityAccessCtrl.createAtManager();
 let appInfo = bundleManager.getApplicationInfoSync('com.example.myapplication', 0, 100);
 let tokenIDList: Array<number> = [appInfo.accessTokenId];
-let permissionList: Array<Permissions> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
+let permissionList: Array<Permissions> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
 try {
     atManager.off('permissionStateChange', tokenIDList, permissionList);
 } catch(err) {
@@ -558,7 +558,7 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
-let promise = atManager.verifyAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+let promise = atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
 promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
@@ -599,10 +599,10 @@ For details about the error codes, see [Application Access Control Error Codes](
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 let atManager = abilityAccessCtrl.createAtManager();
 try {
-    atManager.requestPermissionsFromUser(this.context, ["ohos.permission.CAMERA"], (err, data)=>{
-        console.info("data:" + JSON.stringify(data));
-        console.info("data permissions:" + data.permissions);
-        console.info("data authResults:" + data.authResults);
+    atManager.requestPermissionsFromUser(this.context, ['ohos.permission.CAMERA'], (err, data)=>{
+        console.info('data:' + JSON.stringify(data));
+        console.info('data permissions:' + data.permissions);
+        console.info('data authResults:' + data.authResults);
     });
 } catch(err) {
     console.log(`catch err->${JSON.stringify(err)}`);
@@ -650,12 +650,12 @@ For details about the error codes, see [Application Access Control Error Codes](
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 let atManager = abilityAccessCtrl.createAtManager();
 try {
-    atManager.requestPermissionsFromUser(this.context, ["ohos.permission.CAMERA"]).then((data) => {
-        console.info("data:" + JSON.stringify(data));
-        console.info("data permissions:" + data.permissions);
-        console.info("data authResults:" + data.authResults);
+    atManager.requestPermissionsFromUser(this.context, ['ohos.permission.CAMERA']).then((data) => {
+        console.info('data:' + JSON.stringify(data));
+        console.info('data permissions:' + data.permissions);
+        console.info('data authResults:' + data.authResults);
     }).catch((err) => {
-        console.info("data:" + JSON.stringify(err));
+        console.info('data:' + JSON.stringify(err));
     })
 } catch(err) {
     console.log(`catch err->${JSON.stringify(err)}`);
@@ -694,7 +694,7 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
-let promise = atManager.verifyAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+let promise = atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
 promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
@@ -727,14 +727,14 @@ For details about the error codes, see [Application Access Control Error Codes](
 
 | ID| Error Message|
 | -------- | -------- |
-| 12100001 | The parameter is invalid. The tokenID is 0 or the permissionName exceeds 256 bytes. |
+| 12100001 | The parameter is invalid. The tokenID is 0, or the permissionName exceeds 256 bytes. |
 
 **Example**
 
 ```js
 let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // Use bundleManager.getApplicationInfo() to obtain the token ID for a system application, and use bundleManager.getBundleInfoForSelf() to obtain the token ID for a non-system application.
-let data = atManager.checkAccessTokenSync(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+let data = atManager.checkAccessTokenSync(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
 console.log(`data->${JSON.stringify(data)}`);
 ```
 

@@ -13,7 +13,7 @@ Below you can see the process of adding a **WantAgent** object to a notification
 
 For details about the APIs, see [@ohos.app.ability.wantAgent](../reference/apis/js-apis-app-ability-wantAgent.md).
 
-| Name| Description|
+| API | Description|
 | -------- | -------- |
 | getWantAgent(info: WantAgentInfo, callback: AsyncCallback&lt;WantAgent&gt;): void | Creates a **WantAgent** object.|
 | trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: Callback&lt;CompleteData&gt;): void | Triggers a **WantAgent** object.|

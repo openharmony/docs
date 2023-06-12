@@ -1,4 +1,4 @@
-# WindowExtensionAbility
+# WindowExtensionAbility (for System Applications Only)
 
 
 [WindowExtensionAbility](../reference/apis/js-apis-application-windowExtensionAbility.md) is a type of ExtensionAbility component that allows a system application to be embedded in and displayed over another application.
@@ -15,7 +15,7 @@ the context is [WindowExtensionContext](../reference/apis/js-apis-inner-applicat
 >
 
 
-## Setting an Embedded UIAbility (for System Applications Only)
+## Setting an Embedded UIAbility
 
 The **WindowExtensionAbility** class provides **onConnect()**, **onDisconnect()**, and **onWindowReady()** lifecycle callbacks, which can be overridden.
 
@@ -79,7 +79,7 @@ To implement an embedded application, manually create a WindowExtensionAbility i
    ```
 
 
-## Starting an Embedded UIAbility (for System Applications Only)
+## Starting an Embedded UIAbility
 
 System applications can load the created WindowExtensionAbility through the AbilityComponent.
 

@@ -1,4 +1,4 @@
-# Notification Subscription (for System Applications Only)
+# Subscribing to Notifications (for System Applications Only)
 
 
 To receive notifications, an application must subscribe to notifications first. The notification subsystem provides two types of subscription APIs, allowing applications to subscribe to notifications from all applications or notifications from a specific application.
@@ -13,14 +13,14 @@ The major APIs for notification subscription are described as follows. For detai
 
 **Table 1** Major APIs for notification subscription
 
-| Name | Description|
+| API| Description|
 | -------- | -------- |
 | subscribe(subscriber: NotificationSubscriber, info: NotificationSubscribeInfo, callback: AsyncCallback&lt;void&gt;): void | Subscribes to notifications from a specific application.|
 | subscribe(subscriber: NotificationSubscriber, callback: AsyncCallback&lt;void&gt;): void | Subscribes to notifications from all applications.    |
 
 **Table 2** Callbacks for notification subscription
 
-| Name | Description|
+| API| Description|
 | -------- | -------- |
 | onConsume?:(data: SubscribeCallbackData) =&gt; void | Callback for receiving notifications.              |
 | onCancel?:(data: SubscribeCallbackData) =&gt; void | Callback for canceling notifications.          |
