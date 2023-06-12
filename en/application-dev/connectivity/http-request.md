@@ -70,6 +70,8 @@ httpRequest.request(
       // data.header carries the HTTP response header. Parse the content based on service requirements.
       console.info('header:' + JSON.stringify(data.header));
       console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
+      // Call the destroy() method to release resources after the HttpRequest is complete.
+      httpRequest.destroy();
     } else {
       console.info('error:' + JSON.stringify(err));
       // Unsubscribe from HTTP Response Header events.

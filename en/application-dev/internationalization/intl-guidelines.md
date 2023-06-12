@@ -349,7 +349,7 @@ According to grammars in certain languages, the singular or plural form of a nou
    let relativeTimeFormat = new Intl.RelativeTimeFormat();
    ```
 
-     Alternatively, use your own locale and formatting parameters to create a **RelativeTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions9).
+     Alternatively, use your own locale and formatting parameters to create a **RelativeTimeFormat** object. Formatting parameters are optional. For a full list of formatting parameters, see [ RelativeTimeFormatInputOptions](../reference/apis/js-apis-intl.md#relativetimeformatinputoptions9).
    
    ```js
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
@@ -385,3 +385,9 @@ According to grammars in certain languages, the singular or plural form of a nou
    let relativeTimeFormat = new Intl.RelativeTimeFormat("zh-CN", {numeric: "always", style: "long"});
    let options = relativeTimeFormat.resolvedOptions(); // options = {"locale": "zh-CN", "style": "long", "numeric": "always", "numberingSystem": "latn"}
    ```
+
+## Samples
+
+The following sample is provided to help you better understand how to develop internationalization capabilities:
+
+- [`International`: Internationalization (ArkTS) (API9) (Full SDK)] (https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/SystemFeature/Internationalnation/International)
