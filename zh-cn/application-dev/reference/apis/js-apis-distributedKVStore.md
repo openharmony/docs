@@ -1316,7 +1316,7 @@ try {
     console.info(`query is ${query.getSqlLike()}`);
     query = null;
 } catch (e) {
-    console.error(`duplicated calls should be ok.ode is ${e.code},message is ${e.message}`);
+    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
 }
 ```
 
