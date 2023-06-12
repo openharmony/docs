@@ -372,9 +372,9 @@ OpenHarmony 4.0 Beta1版本开始提供首批API Level 10接口。
 | Hi3516解决方案-LiteOS（二进制） | 4.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_taurus_LiteOS.tar.gz.sha256) | 287.6 MB |
 | Hi3516解决方案-Linux（二进制）  | 4.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/hispark_taurus_Linux.tar.gz.sha256) | 186.4 MB |
 | RK3568标准系统解决方案（二进制）        | 4.0 Beta1    | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/dayu200_standard_arm32.tar.gz.sha256) | 4.5 GB |
-| 标准系统Public SDK包（Mac）             | 4.0.7.5      | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/ohos-sdk-mac-public.tar.gz.sha256) | 718.2 MB |
-| 标准系统Public SDK包（Mac-M1）             | 4.0.7.5      | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) | 673.2 MB |
-| 标准系统Public SDK包（Windows/Linux）   | 4.0.7.5      | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/ohos-sdk-windows_linux-public-20230604.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/ohos-sdk-windows_linux-public-20230604.tar.gz.sha256) | 1.8 GB |
+| 标准系统Public SDK包（Mac）             | 4.0.7.5      | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/ohos-sdk-mac-public-20230605.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/ohos-sdk-mac-public-20230605.tar.gz.sha256) | 718.2 MB |
+| 标准系统Public SDK包（Mac-M1）             | 4.0.7.5      | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/L2-SDK-MAC-M1-PUBLIC-20230605.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/L2-SDK-MAC-M1-PUBLIC-20230605.tar.gz.sha256) | 673.2 MB |
+| 标准系统Public SDK包（Windows/Linux）   | 4.0.7.5      | [站点](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/ohos-sdk-windows_linux-public-20230605.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/4.0-Beta1/ohos-sdk-windows_linux-public-20230605.tar.gz.sha256) | 1.8 GB |
 
 ## 更新说明
 
@@ -382,7 +382,7 @@ OpenHarmony 4.0 Beta1版本开始提供首批API Level 10接口。
 
 ### API 
 
-OpenHarmony 4.0 Beta1的API范围相比3.2 Release，API变更的清单请参见“API差异报告（待发布）”。极少量接口的变更可能影响到已开发的应用（使用API 9或更早版本API开发的应用），变更影响的说明和接口的适配指导请参见“[changelogs](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Beta1/zh-cn/release-notes/changelogs/v4.0-beta1/Readme-CN.md)”。
+OpenHarmony 4.0 Beta1的API范围相比3.2 Release，API变更的清单请参见“[API差异报告](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Beta1/zh-cn/release-notes/api-diff/v4.0-beta1/Readme-CN.md)”。极少量接口的变更可能影响到已开发的应用（使用API 9或更早版本API开发的应用），变更影响的说明和接口的适配指导请参见“[changelogs](https://gitee.com/openharmony/docs/blob/OpenHarmony-4.0-Beta1/zh-cn/release-notes/changelogs/v4.0-beta1/Readme-CN.md)”。
 
 
 ### 特性变更
@@ -400,10 +400,10 @@ OpenHarmony 4.0 Beta1的API范围相比3.2 Release，API变更的清单请参见
 
 | 子系统 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- | -------- |
-| 媒体 | [媒体会话——控制方](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVSession/MediaController)（仅对系统应用开放） | 本示例主要展示了媒体会话（媒体控制方，MediaController）的相关功能，使用\@ohos.multimedia.avsession等接口实现媒体提供方与媒体控制方自定义信息的交互功能。 | ArkTS |
-| 媒体 | [媒体会话——提供方](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/AVSession/MediaProvider) | 本示例主要展示了媒体会话（媒体提供方，MediaProvider）的相关功能，使用\@ohos.multimedia.avsession等接口实现媒体提供方与媒体控制方自定义信息的交互功能。 | ArkTS |
-| 媒体 | [音频管理](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Media/Audio) | 本示例主要展示了音频的相关功能，使用\@ohos.multimedia.audio等接口实现音频的发声设备的切换与查询和音频焦点功能。 | ArkTS |
-| DFX | [应用故障恢复](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/DFX/AppRecovery) | 本示例展示了在应用中如何适配故障恢复相关接口。 | ArkTS |
+| 媒体 | [媒体会话——控制方](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-v4.0-Beta1/code/BasicFeature/Media/AVSession/MediaController)（仅对系统应用开放） | 本示例主要展示了媒体会话（媒体控制方，MediaController）的相关功能，使用\@ohos.multimedia.avsession等接口实现媒体提供方与媒体控制方自定义信息的交互功能。 | ArkTS |
+| 媒体 | [媒体会话——提供方](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-v4.0-Beta1/code/BasicFeature/Media/AVSession/MediaProvider) | 本示例主要展示了媒体会话（媒体提供方，MediaProvider）的相关功能，使用\@ohos.multimedia.avsession等接口实现媒体提供方与媒体控制方自定义信息的交互功能。 | ArkTS |
+| 媒体 | [音频管理](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-v4.0-Beta1/code/BasicFeature/Media/Audio) | 本示例主要展示了音频的相关功能，使用\@ohos.multimedia.audio等接口实现音频的发声设备的切换与查询和音频焦点功能。 | ArkTS |
+| DFX | [应用故障恢复](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-v4.0-Beta1/code/BasicFeature/DFX/AppRecovery) | 本示例展示了在应用中如何适配故障恢复相关接口。 | ArkTS |
 
 请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。
 
@@ -444,5 +444,3 @@ OpenHarmony 4.0 Beta1的API范围相比3.2 Release，API变更的清单请参见
 | I79752 | 中概率由进程com.ohos.smartperf下的.ohos.smartperf线程导致libark_jsruntime.so出现cppcrash。 | 非核心应用，&nbsp;不影响ARP指标，影响可控。 | 2023年6月30日 |
 | I79P3K | 低概率由进程com.ohos.callui导致jscrash，栈名：onDestroy。 | 低概率，出现jscrash后，应用会被重新安装，不影响电话应用正常功能和使用。 | 2023年6月30日 |
 | I79TCB | 低概率由进程com.ohos.note下的VizCompositorTh线程导致libweb_engine.soTh出现cppcrash。 | 低概率，出现jscrash后，应用会被重新安装，不影响note应用正常功能和使用。 | 2023年6月30日 |
-
-<!--no_check-->

@@ -1171,7 +1171,7 @@ obj-$(CONFIG_DRIVERS_HDF_AUDIO_HI3516CODEC) += \
         soc/src/hi3516_dma_adapter.o
 ```
 
-小型系统（liteOS）：drivers/adapter/khdf/liteos/model/audio/Makefile
+小型系统（liteOS）：drivers/hdf_core/adapter/khdf/liteos/model/audio/Makefile
 
 ```makefile
 LOCAL_SRCS += \
@@ -1272,54 +1272,58 @@ HAL（Hardware Abstraction Layer）的核心功能说明如下:
 1. 提供Audio HDI接口供北向音频服务调用，实现音频服务的基本功能。
 2. 作为标准南向接口，保证南向OEM产商实现HDI-adapter的规范性，保证生态良性演进。
 
-代码路径：drivers/peripheral/audio/hal
+代码路径：drivers_interface/audio/v1_0
 
 ### HAL模块使用步骤
 
 ![](figures/HAL流程图.png)
 
-1. 使用入口函数GetAudioManagerFuncs()获取函数方法。
+1. 使用入口函数IAudioManagerGet()获取函数方法。
 
-2. 获取所支持的声卡信息GetAllAdapters()，加载对应的声卡LoadAdapter()。
+2. 使用GetAllAdapters()获取所支持的声卡信息，调用LoadAdapter()加载对应的声卡。
 
 3. 创建播放类CreateRender()或者录音类，下发音频文件音频相关属性。
 
-4. 调用创建好的播放类中挂载的方法调用render->control.Start()、render->RenderFrame()进行下发开始命令，音频数据循环下发。
+4. 调用创建好的播放类中挂载的方法，例如开始播放时调用render->Start()，音频数据循环下发时调用render->RenderFrame()。
 
-5. 播放过程中可调用其他控制命令对播放业务进行控制操作，例如调节音量、暂停、静音等render->control.Pause()、render->control.Resume()、render->volume.SetVolume()。
+5. 播放过程中可调用其他控制命令对播放业务进行控制操作，例如调节音量render->SetVolume()、暂停render->Pause()、恢复render->Resume()等。
 
-6. 播放业务完成后，下发停止命令、销毁播放类、卸载声卡。
+6. 播放业务完成后，下发停止命令render->Stop()、销毁播放类adapter->DestroyRender()、卸载声卡audioManagerIns->UnloadAdapter()。
 
-    1. render->control.Stop();
-
-    2. adapter->DestroyRender();
-
-    3. manager->UnloadAdapter();
-
-### HAL使用实例
+### HAL使用示例
 
 ```c
 #include <string.h>
 #include <stdio.h>
-#include "audio_types.h"
 #include <pthread.h>
-#include "audio_manager.h"
+#include "v1_0/audio_types.h"
+#include "v1_0/iaudio_manager.h"
 
- /* so动态库引用打开 */
-char *soPathHdi = "/system/lib/libhdi_audio.z.so";  
-void *g_handle = dlopen(soPathHdi , 1);
+struct IAudioRender *g_render = NULL;
+struct IAudioAdapter *g_adapter = NULL;
+struct AudioDeviceDescriptor g_devDesc;
+struct AudioSampleAttributes g_attrs;
+struct AudioHeadInfo g_wavHeadInfo;
+bool g_isDirect = false;  //IPC Loading
+uint32_t g_renderId = 0;
 
-int32_t FrameStart(void *param)
+static int32_t FrameStart(const struct StrPara *param)
 {
 ...
+    /* 初始化参数 */
+    char *frame = param->frame;
+    int32_t bufferSize = param->bufferSize;
+    size_t remainingDataSize = g_wavHeadInfo.riffSize;
+
     /* 循环进行下发音频数据 */
     do {
-        readSize = (remainingDataSize > bufferSize) ? bufferSize : remainingDataSize;
+        uint64_t replyBytes = 0;
+        size_t readSize = (remainingDataSize > bufferSize) ? (size_t)bufferSize : remainingDataSize;
         numRead = fread(frame, 1, readSize, g_file);
         if (numRead > 0) {
-            ret = render->RenderFrame(render, frame, numRead, &replyBytes);
+            int32_t ret = render->RenderFrame(render, (int8_t *)frame, numRead, &replyBytes);
             if (ret == HDF_ERR_INVALID_OBJECT) {
-                LOG_FUN_ERR("Render already stop!");
+                AUDIO_FUNC_LOGE("Render already stop!");
                 break;
             }
             remainingDataSize -= numRead;
@@ -1336,49 +1340,52 @@ int32_t FrameStart(void *param)
 
 static void *hal_main()
 {
-    /* 映射入口函数及调用 */
-    struct AudioManager *(*getAudioManager)() =
-    (struct AudioManager *(*)())(dlsym(g_handle, "GetAudioManagerFuncs"));
-    struct AudioManager *manager = getAudioManager();
+    int32_t adapterIndex = 0;
+    struct AudioPort *renderPort;
+
+    /* 通过IAudioManagerGet()获取入口函数 */
+    struct IAudioManager *audioManagerIns = IAudioManagerGet(g_isDirect);
+    if (audioManagerIns == NULL) {
+        AUDIO_FUNC_LOGE("Get Audio Manager Fail");
+        return HDF_FAILURE;
+    }
     
     /* 获取声卡列表 */
-    struct AudioAdapterDescriptor *descs = NULL;
-    int32_t size = 0;
-    int32_t ret = manager->GetAllAdapters(manager, &descs, &size);
+    struct AudioAdapterDescriptor *descs = (struct AudioAdapterDescriptor *)OsalMemCalloc(
+        sizeof(struct AudioAdapterDescriptor) * (MAX_AUDIO_ADAPTER_DESC));
+    uint32_t adapterNum = MAX_AUDIO_ADAPTER_DESC;
+
+    int32_t ret = audioManagerIns->GetAllAdapters(audioManagerIns, descs, &adapterNum);
 
     /* 根据用户指定的声卡名称和端口描述进行匹配声卡及端口 */
-    enum AudioPortDirection port = PORT_OUT;  // 端口类型为OUT，放音
-    struct AudioPort renderPort;
-    char * adapterNameCase = "primary";
-    int32_t index = SwitchAdapter(descs, adapterNameCase, port, &renderPort, size);
+    SelectAudioCard(descs, adapterNum, &adapterIndex);
+    strcpy_s(g_adapterName, PATH_LEN, descs[adapterIndex - 1].adapterName);
+    SwitchAudioPort(&descs[adapterIndex - 1], PORT_OUT, renderPort);  // 端口类型为OUT，放音
 
     /* 根据匹配到的声卡信息进行加载声卡 */
-    struct AudioAdapter *adapter = NULL;
-    struct AudioAdapterDescriptor *desc = &descs[index];  // 根据匹配到的声卡信息获取对应设备
-    manager->LoadAdapter(manager, desc, &adapter);   // 加载声卡，获取声卡方法实例
+    audioManagerIns->LoadAdapter(audioManagerIns, &descs[adapterIndex - 1], &g_adapter);                                               // 加载声卡，获取声卡方法实例
 
     /* 创建播放类 */
-    struct AudioRender *render;
-    struct AudioDeviceDescriptor devDesc;  
-    struct AudioSampleAttributes attrs;
-    InitDevDesc(&devDesc, renderPort.portId);  // 初始化设置设备参数
-    WavHeadAnalysis(g_file, &attrs);  // 解析音频文件设置Attributes
-    adapter->CreateRender(adapter, &devDesc, &attrs, &render);
+    uint32_t portId = renderPort->portId;
+    InitDevDesc(&g_devDesc, portId);                       // 初始化设置设备参数
+    InitAttrs(&g_attrs);                                   // 初始化音频属性参数
+    CheckWavFileHeader(g_file, &g_wavHeadInfo, &g_attrs);  // 解析音频文件及设置Attributes
+    g_adapter->CreateRender(g_adapter, &g_devDesc, &g_attrs, &g_render, &g_renderId);
 
     /* 下发音频数播放 */
-    render->control.Start((AudioHandle)render);   // 下发控制命令start，准备动作
-    pthread_create(&g_tids, NULL, (void *)(&FrameStart), &g_str); // 拉起线程进行播放
+    g_render->Start((void *)g_render);                                  // 下发控制命令start，准备动作
+    pthread_create(&g_tids, &tidsAttr, (void *)(&FrameStart), &g_str);  // 拉起线程进行播放
 
     /* 控制命令 */
-    render->control.Pause((AudioHandle)render);  // 下发暂停操作
-    render->control.Resume((AudioHandle)render); // 下发恢复操作
-    render->volume.SetVolume((AudioHandle)render, 0.5); // 设置音量
+    g_render->Pause((void *)g_render);           // 下发暂停操作
+    g_render->Resume((void *)g_render);          // 下发恢复操作
+    g_render->SetVolume((void *)g_render, 0.5);  // 设置音量
 
      /* 停止播放，销毁播放类 */
-    render->control.Stop((AudioHandle)render);
-    adapter->DestroyRender(adapter, render);
+    g_render->Stop((void *)g_render);
+    g_adapter->DestroyRender(g_adapter, g_renderId);
      /* 卸载声卡 */
-    manager->UnloadAdapter(manager, adapter);
+    audioManagerIns->UnloadAdapter(audioManagerIns, g_adapterName);
 }
 ```
 

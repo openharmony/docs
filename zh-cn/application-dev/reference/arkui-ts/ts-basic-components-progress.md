@@ -60,9 +60,39 @@ Progress(options: {value: number, total?: number, type?: ProgressType})
 | 名称                 | 参数类型                                     | 描述                                       |
 | ------------------ | ---------------------------------------- | ---------------------------------------- |
 | value              | number                                   | 设置当前进度值。设置小于0的数值时置为0，设置大于total的数值时置为total。非法数值不生效。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| color              | [ResourceColor](ts-types.md#resourcecolor) | 设置进度条前景色。<br/>默认值：'\#ff007dff'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| backgroundColor    | [ResourceColor](ts-types.md#resourcecolor) | 设置进度条底色。<br/>默认值：'\#19182431'<br/><br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| style<sup>8+</sup> | {<br/>strokeWidth?:&nbsp;[Length](ts-types.md#length),<br/>scaleCount?:&nbsp;number,<br/>scaleWidth?:&nbsp;[Length](ts-types.md#length)<br/>} | 定义组件的样式。<br/>-&nbsp;strokeWidth:&nbsp;设置进度条宽度（不支持百分比设置）。从API version9开始，环形进度条设置宽度大于等于半径时，默认修改宽度至半径值的二分之一。<br/>默认值：4.0Vp<br/>-&nbsp;scaleCount:&nbsp;设置环形进度条总刻度数。<br>默认值：120<br/>-&nbsp;scaleWidth:&nbsp;设置环形进度条刻度粗细（不支持百分比设置），刻度粗细大于进度条宽度时，为系统默认粗细。<br>默认值：2.0Vp<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| color              | [ResourceColor](ts-types.md#resourcecolor)    \| [LinearGradient<sup>10+</sup>](ts-basic-components-datapanel.md#lineargradient10) | 设置进度条前景色。从API version 10开始支持利用LinearGradient设置Ring样式的渐变色。<br/>默认值（API version 9）：'\#ff007dff'<br/>默认值（API version 10）：<br/>- Capsule：'\#33006cde'<br/>- Ring：起始端：'\#ff3b61f7'，结束端：'\#ff6591bf'<br/>- 其他样式：'\#ff007dff'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用，暂不支持LinearGradient。|
+| backgroundColor    | [ResourceColor](ts-types.md#resourcecolor) | 设置进度条底色。<br/>默认值（API version 9）：'\#19182431'<br/>默认值（API version 10）：<br/>- Capsule：'\#33ffffff'<br/>- Ring：'\#08182431'<br/>- 其他样式：'\#19182431'<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
+| style<sup>8+</sup> | [ProgressStyleOptions](#progressstyleoptions) \| [CapsuleStyleOptions<sup>10+</sup>](#capsulestyleoptions10) \| [RingStyleOptions<sup>10+</sup>](#ringstyleoptions10) | 定义组件的样式。从API version 10开始追加CapsuleStyleOptions和RingStyleOptions类型。<br/>- CapsuleStyleOptions用于设置Capsule的样式。<br/>- RingStyleOptions用于设置Ring的样式。<br/>- ProgressStyleOptions设置其他类型进度条的样式。<br/>从API version 9开始，该接口支持在ArkTS卡片中设置ProgressStyleOptions，暂不支持CapsuleStyleOptions和RingStyleOptions。 |
+
+## ProgressStyleOptions
+| 名称          | 参数类型                      | 必填 | 描述                                                                                        |
+| ------------ | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
+| strokeWidth  | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置）。<br/>默认值：4.0Vp                                            |
+| scaleCount   | number                       | 否   | 设置环形进度条总刻度数。<br/>默认值：120                                                        |
+| scaleWidth   | [Length](ts-types.md#length) | 否   | 设置环形进度条刻度粗细（不支持百分比设置），刻度粗细大于进度条宽度时，为系统默认粗细。<br/>默认值：2.0Vp |
+
+## CapsuleStyleOptions<sup>10+</sup>
+| 名称          | 参数类型 | 必填 | 描述 |
+| ------------- | ------- | ---- | -------- |
+| borderColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 内描边颜色。<br/>默认值：'\#33006cde' |
+| borderWidth | [Length](ts-types.md#length) | 否 | 内描边宽度。<br/>默认值：1Vp |
+| content | string | 否 | 文本内容，应用可自定义。 |
+| font | [Font](ts-types.md#font) | 否 | 文本样式。<br/>默认值：<br/>- 文本大小：12Fp <br/>其他文本参数跟随text组件的主题值。|
+| fontColor | [ResourceColor](ts-types.md#resourcecolor) | 否 | 文本颜色。<br/>默认值：'\#ff182431' |
+| enableScanEffect | boolean | 否 | 扫光效果的开关。<br/>默认值：false |
+
+## RingStyleOptions<sup>10+</sup>
+| 名称           | 参数类型                      | 必填 | 描述                                                                                        |
+| ------------- | ---------------------------- | ---- | ------------------------------------------------------------------------------------------ |
+| strokeWidth   | [Length](ts-types.md#length) | 否   | 设置进度条宽度（不支持百分比设置），宽度大于等于半径时，默认修改宽度至半径值的二分之一。<br/>默认值：4Vp |
+| shadow        | boolean                      | 否   | 进度条阴影开关。<br/>默认值：false                                                             |
+| status        | [ProgressStatus<sup>10+</sup>](#progressstatus10枚举说明) | 否 | 进度条状态，当设置为LOADING时会开启检查更新动效，此时设置进度值不生效。<br/>默认值： ProgressStatus.PROGRESSING |
+
+## ProgressStatus<sup>10+</sup>枚举说明
+| 名称                    | 描述             |
+| ----------------------- | ---------------- |
+| LOADING<sup>10+</sup>  | 加载中。 |
+| PROGRESSING<sup>10+</sup>  | 进度更新中。 |
 
 ## 事件
 
@@ -111,7 +141,7 @@ struct ProgressExample {
         Progress({ value: 10, type: ProgressType.Ring }).width(100)
         Progress({ value: 20, total: 150, type: ProgressType.Ring })
           .color(Color.Grey).value(50).width(100)
-          .style({ strokeWidth: 20, scaleCount: 30, scaleWidth: 20 })
+          .style({ strokeWidth: 20 })
       }
 
       Text('Capsule Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')

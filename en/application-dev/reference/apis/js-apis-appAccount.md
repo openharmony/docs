@@ -65,11 +65,11 @@ Creates an app account. This API uses an asynchronous callback to return the res
 
   ```js
   try {
-    appAccountManager.createAccount("WangWu", (err) => { 
-        console.log("createAccount err: " + JSON.stringify(err));
+    appAccountManager.createAccount('WangWu', (err) => { 
+        console.log('createAccount err: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("createAccount err: " + JSON.stringify(err));
+    console.log('createAccount err: ' + JSON.stringify(err));
   }
   ```
 
@@ -103,19 +103,19 @@ Creates an app account with custom data. This API uses an asynchronous callback 
   ```js
   let options = {
     customData: {
-      "age": "10"
+      'age': '10'
     }
   }
   try {
-    appAccountManager.createAccount("LiSi", options, (err) => {
+    appAccountManager.createAccount('LiSi', options, (err) => {
       if (err) {
-        console.log("createAccount failed, error: " + JSON.stringify(err));
+        console.log('createAccount failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("createAccount successfully");
+        console.log('createAccount successfully');
       }
     });
   } catch(err) {
-    console.log("createAccount exception: " + JSON.stringify(err));
+    console.log('createAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -132,7 +132,7 @@ Creates an app account with custom data. This API uses a promise to return the r
 | Name      | Type    | Mandatory  | Description                                      |
 | --------- | ------ | ---- | ---------------------------------------- |
 | name      | string | Yes   | Name of the app account to create.                             |
-| options | [CreateAccountOptions](#createaccountoptions9) | No   | Options for creating the app account. You can customize data based on service requirements, but do not add sensitive data (such as passwords and tokens). This parameter can be left empty.|
+| options | [CreateAccountOptions](#createaccountoptions9) | No   | Options for creating the app account. You can customize data based on service requirements, but do not add sensitive data (such as passwords and tokens).<br>By default, no value is passed, which means no additional information needs to be added for the account.|
 
 **Return value**
 
@@ -154,17 +154,17 @@ Creates an app account with custom data. This API uses a promise to return the r
   ```js
   let options = {
     customData: {
-      "age": "10"
+      'age': '10'
     }
   }
   try {
-    appAccountManager.createAccount("LiSi", options).then(() => {
-      console.log("createAccount successfully");
+    appAccountManager.createAccount('LiSi', options).then(() => {
+      console.log('createAccount successfully');
     }).catch((err) => {
-      console.log("createAccount failed, error: " + JSON.stringify(err));
+      console.log('createAccount failed, error: ' + JSON.stringify(err));
     });
   } catch(err) {
-    console.log("createAccount exception: " + JSON.stringify(err));
+    console.log('createAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -198,8 +198,8 @@ Creates an app account implicitly based on the specified account owner. This API
 
   ```js
   function onResultCallback(code, result) {
-    console.log("resultCode: "  + code);
-    console.log("result: "  + JSON.stringify(result));
+    console.log('resultCode: ' + code);
+    console.log('result: ' + JSON.stringify(result));
   }
 
   function onRequestRedirectedCallback(request) {
@@ -210,19 +210,19 @@ Creates an app account implicitly based on the specified account owner. This API
       entities: ['entity.system.default'],
     }
     this.context.startAbility(wantInfo).then(() => {
-      console.log("startAbility successfully");
+      console.log('startAbility successfully');
     }).catch((err) => {
-      console.log("startAbility err: " + JSON.stringify(err));
+      console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
 
   try {  
-    appAccountManager.createAccountImplicitly("com.example.accountjsdemo", {
+    appAccountManager.createAccountImplicitly('com.example.accountjsdemo', {
       onResult: onResultCallback,
       onRequestRedirected: onRequestRedirectedCallback
     });
   } catch (err) {
-    console.log("createAccountImplicitly exception: " + JSON.stringify(err));
+    console.log('createAccountImplicitly exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -257,8 +257,8 @@ Creates an app account implicitly based on the specified account owner and optio
 
   ```js
   function onResultCallback(code, result) {
-    console.log("resultCode: "  + code);
-    console.log("result: "  + JSON.stringify(result));
+    console.log('resultCode: ' + code);
+    console.log('result: ' + JSON.stringify(result));
   }
 
   function onRequestRedirectedCallback(request) {
@@ -269,23 +269,23 @@ Creates an app account implicitly based on the specified account owner and optio
       entities: ['entity.system.default'],
     }
     this.context.startAbility(wantInfo).then(() => {
-      console.log("startAbility successfully");
+      console.log('startAbility successfully');
     }).catch((err) => {
-      console.log("startAbility err: " + JSON.stringify(err));
+      console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
 
   let options = {
-    authType: "getSocialData",
-    requiredLabels: [ "student" ]
+    authType: 'getSocialData',
+    requiredLabels: [ 'student' ]
   };
   try {
-    appAccountManager.createAccountImplicitly("com.example.accountjsdemo", options, {
+    appAccountManager.createAccountImplicitly('com.example.accountjsdemo', options, {
       onResult: onResultCallback,
       onRequestRedirected: onRequestRedirectedCallback
     });
   } catch (err) {
-    console.log("createAccountImplicitly exception: " + JSON.stringify(err));
+    console.log('createAccountImplicitly exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -316,15 +316,15 @@ Removes an app account. This API uses an asynchronous callback to return the res
 
   ```js
   try {
-    appAccountManager.removeAccount("ZhaoLiu", (err) => {
+    appAccountManager.removeAccount('ZhaoLiu', (err) => {
       if (err) {
-        console.log("removeAccount failed, error: " + JSON.stringify(err));
+        console.log('removeAccount failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("removeAccount successfully");
+        console.log('removeAccount successfully');
       }
    });
   } catch(err) {
-    console.log("removeAccount exception: " + JSON.stringify(err));
+    console.log('removeAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -360,13 +360,13 @@ Removes an app account. This API uses a promise to return the result.
 
   ```js
   try {
-    appAccountManager.removeAccount("Lisi").then(() => {
-      console.log("removeAccount successfully");
+    appAccountManager.removeAccount('Lisi').then(() => {
+      console.log('removeAccount successfully');
     }).catch((err) => {
-      console.log("removeAccount failed, error: " + JSON.stringify(err));
+      console.log('removeAccount failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("removeAccount exception: " + JSON.stringify(err));
+    console.log('removeAccount exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -400,15 +400,15 @@ Sets the access to the data of an account for an app. This API uses an asynchron
 
   ```js
   try {
-    appAccountManager.setAppAccess("ZhangSan", "com.example.accountjsdemo", true, (err) => {
+    appAccountManager.setAppAccess('ZhangSan', 'com.example.accountjsdemo', true, (err) => {
       if (err) {
-        console.log("setAppAccess failed: " + JSON.stringify(err));
+        console.log('setAppAccess failed: ' + JSON.stringify(err));
       } else {
-        console.log("setAppAccess successfully");
+        console.log('setAppAccess successfully');
       }
     });
   } catch (err) {
-    console.log("setAppAccess exception: " + JSON.stringify(err));
+    console.log('setAppAccess exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -447,13 +447,13 @@ Sets the access to the data of an account for an app. This API uses a promise to
 
   ```js
   try {
-    appAccountManager.setAppAccess("ZhangSan", "com.example.accountjsdemo", true).then(() => {
-      console.log("setAppAccess successfully");
+    appAccountManager.setAppAccess('ZhangSan', 'com.example.accountjsdemo', true).then(() => {
+      console.log('setAppAccess successfully');
     }).catch((err) => {
-      console.log("setAppAccess failed: " + JSON.stringify(err));
+      console.log('setAppAccess failed: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("setAppAccess exception: " + JSON.stringify(err));
+    console.log('setAppAccess exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -485,15 +485,15 @@ Checks whether an app can access the data of an account. This API uses an asynch
 
   ```js
   try {
-    appAccountManager.checkAppAccess("ZhangSan", "com.example.accountjsdemo", (err, isAccessible) => {
+    appAccountManager.checkAppAccess('ZhangSan', 'com.example.accountjsdemo', (err, isAccessible) => {
       if (err) {
-        console.log("checkAppAccess failed, error: " + JSON.stringify(err));
+        console.log('checkAppAccess failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("checkAppAccess successfully");
+        console.log('checkAppAccess successfully');
       }
     });
   } catch (err) {
-    console.log("checkAppAccess exception: " + JSON.stringify(err));
+    console.log('checkAppAccess exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -530,13 +530,13 @@ Checks whether an app can access the data of an account. This API uses a promise
 
   ```js
   try {
-    appAccountManager.checkAppAccess("ZhangSan", "com.example.accountjsdemo").then((isAccessible) => {
-      console.log("checkAppAccess successfully, isAccessible: " + isAccessible);
+    appAccountManager.checkAppAccess('ZhangSan', 'com.example.accountjsdemo').then((isAccessible) => {
+      console.log('checkAppAccess successfully, isAccessible: ' + isAccessible);
     }).catch((err) => {
-      console.log("checkAppAccess failed, error: " + JSON.stringify(err));
+      console.log('checkAppAccess failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("checkAppAccess exception: " + JSON.stringify(err));
+    console.log('checkAppAccess exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -570,11 +570,11 @@ Sets data synchronization for an app account. This API uses an asynchronous call
 
   ```js
   try {
-      appAccountManager.setDataSyncEnabled("ZhangSan", true, (err) => { 
-          console.log("setDataSyncEnabled err: " + JSON.stringify(err));
+      appAccountManager.setDataSyncEnabled('ZhangSan', true, (err) => { 
+          console.log('setDataSyncEnabled err: ' + JSON.stringify(err));
       });
   } catch (err) {
-      console.log("setDataSyncEnabled err: " + JSON.stringify(err));
+      console.log('setDataSyncEnabled err: ' + JSON.stringify(err));
   }
   ```
 
@@ -613,13 +613,13 @@ Sets data synchronization for an app account. This API uses a promise to return 
 
   ```js
   try {
-      appAccountManager .setDataSyncEnabled("ZhangSan", true).then(() => { 
+      appAccountManager .setDataSyncEnabled('ZhangSan', true).then(() => { 
           console.log('setDataSyncEnabled Success');
       }).catch((err) => {
-          console.log("setDataSyncEnabled err: "  + JSON.stringify(err));
+          console.log('setDataSyncEnabled err: ' + JSON.stringify(err));
       });
   } catch (err) {
-      console.log("setDataSyncEnabled err: "  + JSON.stringify(err));
+      console.log('setDataSyncEnabled err: ' + JSON.stringify(err));
   }
   ```
 
@@ -652,15 +652,15 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
   ```js
   try {
-    appAccountManager.checkDataSyncEnabled("ZhangSan", (err, isEnabled) => {
+    appAccountManager.checkDataSyncEnabled('ZhangSan', (err, isEnabled) => {
       if (err) {
-        console.log("checkDataSyncEnabled failed, err: " + JSON.stringify(err));
+        console.log('checkDataSyncEnabled failed, err: ' + JSON.stringify(err));
       } else {
         console.log('checkDataSyncEnabled successfully, isEnabled: ' + isEnabled);
       }
     });
   } catch (err) {
-    console.log("checkDataSyncEnabled err: " + JSON.stringify(err));
+    console.log('checkDataSyncEnabled err: ' + JSON.stringify(err));
   }
   ```
 
@@ -698,13 +698,13 @@ Checks whether data synchronization is enabled for an app account. This API uses
 
   ```js
   try {
-    appAccountManager.checkDataSyncEnabled("ZhangSan").then((isEnabled) => {
-        console.log("checkDataSyncEnabled successfully, isEnabled: " + isEnabled);
+    appAccountManager.checkDataSyncEnabled('ZhangSan').then((isEnabled) => {
+        console.log('checkDataSyncEnabled successfully, isEnabled: ' + isEnabled);
     }).catch((err) => {
-      console.log("checkDataSyncEnabled failed, err: " + JSON.stringify(err));
+      console.log('checkDataSyncEnabled failed, err: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("checkDataSyncEnabled err: " + JSON.stringify(err));
+    console.log('checkDataSyncEnabled err: ' + JSON.stringify(err));
   }
   ```
 
@@ -737,15 +737,15 @@ Sets a credential for an app account. This API uses an asynchronous callback to 
 
   ```js
   try {
-    appAccountManager.setCredential("ZhangSan", "PIN_SIX", "xxxxxx", (err) => {
+    appAccountManager.setCredential('ZhangSan', 'PIN_SIX', 'xxxxxx', (err) => {
       if (err) {
-        console.log("setCredential failed, error: " + JSON.stringify(err));
+        console.log('setCredential failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("setCredential successfully");
+        console.log('setCredential successfully');
       }
     });
   } catch (err) {
-    console.log("setCredential exception: " + JSON.stringify(err));
+    console.log('setCredential exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -783,13 +783,13 @@ Sets a credential for an app account. This API uses a promise to return the resu
 
   ```js
   try {
-    appAccountManager.setCredential("ZhangSan", "PIN_SIX", "xxxxxx").then(() => {
-      console.log("setCredential successfully");
+    appAccountManager.setCredential('ZhangSan', 'PIN_SIX', 'xxxxxx').then(() => {
+      console.log('setCredential successfully');
     }).catch((err) => {
-      console.log("setCredential failed, error: " + JSON.stringify(err));
+      console.log('setCredential failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("setCredential exception: " + JSON.stringify(err));
+    console.log('setCredential exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -822,15 +822,15 @@ Obtains the credential of an app account. This API uses an asynchronous callback
 
   ```js
   try {
-      appAccountManager.getCredential("ZhangSan", "PIN_SIX", (err, result) => { 
+      appAccountManager.getCredential('ZhangSan', 'PIN_SIX', (err, result) => { 
         if (err) {
-          console.log("getCredential failed, error: " + JSON.stringify(err));
+          console.log('getCredential failed, error: ' + JSON.stringify(err));
         } else {
           console.log('getCredential successfully, result: ' + result);
         }
       });
   } catch (err) {
-      console.log("getCredential err: " + JSON.stringify(err));
+      console.log('getCredential err: ' + JSON.stringify(err));
   }
   ```
 
@@ -868,13 +868,13 @@ Obtains the credential of an app account. This API uses a promise to return the 
 
   ```js
   try {
-    appAccountManager.getCredential("ZhangSan", "PIN_SIX").then((credential) => {
-        console.log("getCredential successfully, credential: " + credential);
+    appAccountManager.getCredential('ZhangSan', 'PIN_SIX').then((credential) => {
+        console.log('getCredential successfully, credential: ' + credential);
     }).catch((err) => {
-        console.log("getCredential failed, error: " + JSON.stringify(err));
+        console.log('getCredential failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("getCredential exception: "  + JSON.stringify(err));
+    console.log('getCredential exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -908,15 +908,15 @@ Sets custom data for an app account. This API uses an asynchronous callback to r
 
   ```js
   try {
-    appAccountManager.setCustomData("ZhangSan", "age", "12", (err) => {
+    appAccountManager.setCustomData('ZhangSan', 'age', '12', (err) => {
       if (err) {
-        console.log("setCustomData failed, error: " + JSON.stringify(err));
+        console.log('setCustomData failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("setCustomData successfully");
+        console.log('setCustomData successfully');
       }
     });
   } catch (err) {
-    console.log("setCustomData exception: " + JSON.stringify(err));
+    console.log('setCustomData exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -955,13 +955,13 @@ Sets custom data for an app account. This API uses a promise to return the resul
 
   ```js
   try {
-    appAccountManager.setCustomData("ZhangSan", "age", "12").then(() => {
-      console.log("setCustomData successfully");
+    appAccountManager.setCustomData('ZhangSan', 'age', '12').then(() => {
+      console.log('setCustomData successfully');
     }).catch((err) => {
-      console.log("setCustomData failed, error: " + JSON.stringify(err));
+      console.log('setCustomData failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("setCustomData exception: " + JSON.stringify(err));
+    console.log('setCustomData exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -994,15 +994,15 @@ Obtains the custom data of an app account based on the specified key. This API u
 
   ```js
   try {
-    appAccountManager.getCustomData("ZhangSan", "age", (err, data) => {
+    appAccountManager.getCustomData('ZhangSan', 'age', (err, data) => {
       if (err) {
         console.log('getCustomData failed, error: ' + err);
       } else {
-        console.log("getCustomData successfully, data: " + data);
+        console.log('getCustomData successfully, data: ' + data);
       }
     });
   } catch (err) {
-    console.log("getCustomData exception: " + JSON.stringify(err));
+    console.log('getCustomData exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1040,13 +1040,13 @@ Obtains the custom data of an app account based on the specified key. This API u
 
   ```js
   try {
-    appAccountManager.getCustomData("ZhangSan", "age").then((data) => {
-      console.log("getCustomData successfully, data: " + data);
+    appAccountManager.getCustomData('ZhangSan', 'age').then((data) => {
+      console.log('getCustomData successfully, data: ' + data);
     }).catch((err) => {
-      console.log("getCustomData failed, error: " + JSON.stringify(err));
+      console.log('getCustomData failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("getCustomData exception: " + JSON.stringify(err));
+    console.log('getCustomData exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1084,10 +1084,10 @@ Obtains the custom data of an app account based on the specified key. The API re
 
   ```js
   try {
-      let value = appAccountManager.getCustomDataSync("ZhangSan", "age");
-      console.info("getCustomDataSync successfully, vaue:" + value);
+      let value = appAccountManager.getCustomDataSync('ZhangSan', 'age');
+      console.info('getCustomDataSync successfully, vaue: ' + value);
   } catch (err) {
-    console.error("getCustomDataSync failed, error: " + JSON.stringify(err));
+    console.error('getCustomDataSync failed, error: ' + JSON.stringify(err));
   }
   ```
 
@@ -1117,13 +1117,13 @@ Obtains information about all accessible app accounts. This API uses an asynchro
   try {
     appAccountManager.getAllAccounts((err, data) => {
       if (err) {
-        console.debug("getAllAccounts failed, error:" + JSON.stringify(err));
+        console.debug('getAllAccounts failed, error: ' + JSON.stringify(err));
       } else {
-        console.debug("getAllAccounts successfully");
+        console.debug('getAllAccounts successfully');
       }
     });
   } catch (err) {
-      console.debug("getAllAccounts exception: " + JSON.stringify(err));
+      console.debug('getAllAccounts exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1152,12 +1152,12 @@ Obtains information about all accessible app accounts. This API uses a promise t
   ```js
   try {
     appAccountManager.getAllAccounts().then((data) => {
-      console.debug("getAllAccounts successfully");
+      console.debug('getAllAccounts successfully');
     }).catch((err) => {
-      console.debug("getAllAccounts failed, error:" + JSON.stringify(err));
+      console.debug('getAllAccounts failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.debug("getAllAccounts exception: " + JSON.stringify(err));
+    console.debug('getAllAccounts exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1188,15 +1188,15 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 
   ```js
   try {
-    appAccountManager.getAccountsByOwner("com.example.accountjsdemo2", (err, data) => {
+    appAccountManager.getAccountsByOwner('com.example.accountjsdemo2', (err, data) => {
       if (err) {
-        console.debug("getAccountsByOwner failed, error:" + JSON.stringify(err));
+        console.debug('getAccountsByOwner failed, error:' + JSON.stringify(err));
       } else {
-        console.debug("getAccountsByOwner successfully, data:" + JSON.stringify(data));
+        console.debug('getAccountsByOwner successfully, data:' + JSON.stringify(data));
       }
     });
   } catch (err) {
-    console.debug("getAccountsByOwner exception:" + JSON.stringify(err));
+    console.debug('getAccountsByOwner exception:' + JSON.stringify(err));
   }
   ```
 
@@ -1232,13 +1232,13 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 
   ```js
   try {
-    appAccountManager.getAccountsByOwner("com.example.accountjsdemo2").then((data) => {
-      console.debug("getAccountsByOwner successfully, data:" + JSON.stringify(data));
+    appAccountManager.getAccountsByOwner('com.example.accountjsdemo2').then((data) => {
+      console.debug('getAccountsByOwner successfully, data: ' + JSON.stringify(data));
     }).catch((err) => {
-      console.debug("getAccountsByOwner failed, error:" + JSON.stringify(err));
+      console.debug('getAccountsByOwner failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.debug("getAccountsByOwner exception:" + JSON.stringify(err));
+    console.debug('getAccountsByOwner exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1256,7 +1256,7 @@ Subscribes to account information changes of apps.
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | type     | 'accountChange'                          | Yes   | Event type to subscribe to. The value is **'accountChange'**. An event will be reported when the account information of the target app changes.|
 | owners   | Array&lt;string&gt;                      | Yes   | App bundle names of the account.                     |
-| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback invoked to return a list of app accounts whose information is changed.          |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback registered to return the list of changed app accounts.          |
 
 **Error codes**
 
@@ -1270,12 +1270,12 @@ Subscribes to account information changes of apps.
 
   ```js
   function changeOnCallback(data){
-  	console.log("receive change data:" + JSON.stringify(data));
+  	console.log('receive change data:' + JSON.stringify(data));
   }
   try{
-  	appAccountManager.on("accountChange", ["com.example.actsaccounttest"], changeOnCallback);
+  	appAccountManager.on('accountChange', ['com.example.actsaccounttest'], changeOnCallback);
   } catch(err) {
-  	console.error("on accountChange failed, error:" + JSON.stringify(err));
+  	console.error('on accountChange failed, error:' + JSON.stringify(err));
   }
   ```
 
@@ -1292,7 +1292,7 @@ Unsubscribes from account information changes.
 | Name     | Type                              | Mandatory  | Description          |
 | -------- | -------------------------------- | ---- | ------------ |
 | type     | 'accountChange'                         | Yes   | Event type to unsubscribe from. The value is **'accountChange'**.   |
-| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | No   | Callback to unregister.|
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | No   | Callback to unregister. By default, no value is passed, which means to unregister all callbacks for the specified event.|
 
 **Error codes**
 
@@ -1305,18 +1305,18 @@ Unsubscribes from account information changes.
 
   ```js
   function changeOnCallback(data) {
-  	console.log("receive change data:" + JSON.stringify(data));
+  	console.log('receive change data:' + JSON.stringify(data));
   }
   try{
-  	appAccountManager.on("accountChange", ["com.example.actsaccounttest"], changeOnCallback);
+  	appAccountManager.on('accountChange', ['com.example.actsaccounttest'], changeOnCallback);
   } catch(err) {
-  	console.error("on accountChange failed, error:" + JSON.stringify(err));
+  	console.error('on accountChange failed, error:' + JSON.stringify(err));
   }
   try{
   	appAccountManager.off('accountChange', changeOnCallback);
   }
   catch(err){
-  	console.error("off accountChange failed, error:" + JSON.stringify(err));
+  	console.error('off accountChange failed, error:' + JSON.stringify(err));
   }
   ```
 
@@ -1354,8 +1354,8 @@ Authenticates an app account. This API uses an asynchronous callback to return t
 
 
   function onResultCallback(code, authResult) {
-    console.log("resultCode: "  + code);
-    console.log("authResult: "  + JSON.stringify(authResult));
+    console.log('resultCode: ' + code);
+    console.log('authResult: ' + JSON.stringify(authResult));
   }
 
   function onRequestRedirectedCallback(request) {
@@ -1366,19 +1366,19 @@ Authenticates an app account. This API uses an asynchronous callback to return t
       entities: ['entity.system.default'],
     }
     this.context.startAbility(wantInfo).then(() => {
-      console.log("startAbility successfully");
+      console.log('startAbility successfully');
     }).catch((err) => {
-      console.log("startAbility err: " + JSON.stringify(err));
+      console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
 
   try {
-    appAccountManager.auth("LiSi", "com.example.accountjsdemo", "getSocialData", {
+    appAccountManager.auth('LiSi', 'com.example.accountjsdemo', 'getSocialData', {
         onResult: onResultCallback,
         onRequestRedirected: onRequestRedirectedCallback
     });
   } catch (err) {
-    console.log("auth exception: "  + JSON.stringify(err));
+    console.log('auth exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1417,8 +1417,8 @@ Authenticates an app account with customized options. This API uses an asynchron
 
 
   function onResultCallback(code, authResult) {
-    console.log("resultCode: "  + code);
-    console.log("authResult: "  + JSON.stringify(authResult));
+    console.log('resultCode: ' + code);
+    console.log('authResult: ' + JSON.stringify(authResult));
   }
 
   function onRequestRedirectedCallback(request) {
@@ -1429,22 +1429,22 @@ Authenticates an app account with customized options. This API uses an asynchron
       entities: ['entity.system.default'],
     }
     this.context.startAbility(wantInfo).then(() => {
-      console.log("startAbility successfully");
+      console.log('startAbility successfully');
     }).catch((err) => {
-      console.log("startAbility err: " + JSON.stringify(err));
+      console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
 
   let options = {
-    "password": "xxxx",
+    'password': 'xxxx',
   };
   try {
-    appAccountManager.auth("LiSi", "com.example.accountjsdemo", "getSocialData", options, {
+    appAccountManager.auth('LiSi', 'com.example.accountjsdemo', 'getSocialData', options, {
         onResult: onResultCallback,
         onRequestRedirected: onRequestRedirectedCallback
     });
   } catch (err) {
-    console.log("auth exception: "  + JSON.stringify(err));
+    console.log('auth exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1478,15 +1478,15 @@ Obtains the authorization token of the specified authentication type for an app 
 
   ```js
   try {
-    appAccountManager.getAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData", (err, token) => {
+    appAccountManager.getAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', (err, token) => {
       if (err) {
-        console.log("getAuthToken failed, error: " + JSON.stringify(err));
+        console.log('getAuthToken failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("getAuthToken successfully, token: " + token);
+        console.log('getAuthToken successfully, token: ' + token);
       }
     });
   } catch (err) {
-      console.log("getAuthToken exception: " + JSON.stringify(err));
+      console.log('getAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1525,13 +1525,13 @@ Obtains the authorization token of the specified authentication type for an app 
 
   ```js
   try {
-    appAccountManager.getAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData").then((token) => {
-      console.log("getAuthToken successfully, token: " + token);
+    appAccountManager.getAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((token) => {
+      console.log('getAuthToken successfully, token: ' + token);
     }).catch((err) => {
-      console.log("getAuthToken failed, error: " + JSON.stringify(err));
+      console.log('getAuthToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-      console.log("getAuthToken exception: " + JSON.stringify(err));
+      console.log('getAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1565,11 +1565,11 @@ Sets an authorization token of the specific authentication type for an app accou
 
   ```js
   try {
-    appAccountManager.setAuthToken("LiSi", "getSocialData", "xxxx", (err) => {
+    appAccountManager.setAuthToken('LiSi', 'getSocialData', 'xxxx', (err) => {
       if (err) {
-        console.log("setAuthToken failed, error: " + JSON.stringify(err));
+        console.log('setAuthToken failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("setAuthToken successfully");
+        console.log('setAuthToken successfully');
       }
     });
   } catch (err) {
@@ -1612,13 +1612,13 @@ Sets an authorization token of the specific authentication type for an app accou
 
   ```js
   try {
-    appAccountManager.setAuthToken("LiSi", "getSocialData", "xxxx").then(() => {
-        console.log("setAuthToken successfully");
+    appAccountManager.setAuthToken('LiSi', 'getSocialData', 'xxxx').then(() => {
+        console.log('setAuthToken successfully');
     }).catch((err) => {
-        console.log("setAuthToken failed, error: " + JSON.stringify(err));
+        console.log('setAuthToken failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("setAuthToken exception: " + JSON.stringify(err));
+    console.log('setAuthToken exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1653,11 +1653,11 @@ Deletes the authorization token of the specified authentication type for an app 
 
   ```js
   try {
-      appAccountManager.deleteAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData", "xxxxx", (err) => {
+      appAccountManager.deleteAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx', (err) => {
         if (err) {
           console.log('deleteAuthToken failed, error: ' + JSON.stringify(err));
         } else {
-          console.log("deleteAuthToken successfully");
+          console.log('deleteAuthToken successfully');
         }
       });
   } catch (err) {
@@ -1701,8 +1701,8 @@ Deletes the authorization token of the specified authentication type for an app 
 
   ```js
   try {
-    appAccountManager.deleteAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData", "xxxxx").then(() => {
-      console.log("deleteAuthToken successfully");
+    appAccountManager.deleteAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx').then(() => {
+      console.log('deleteAuthToken successfully');
     }).catch((err) => {
       console.log('deleteAuthToken failed, error: ' + JSON.stringify(err));
     });
@@ -1744,15 +1744,15 @@ Sets the visibility of an authorization token to an app. This API uses an asynch
 
   ```js
   try {
-      appAccountManager.setAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo", true, (err) => {
+      appAccountManager.setAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true, (err) => {
         if (err) {
-          console.log("setAuthTokenVisibility failed, error: " + JSON.stringify(err));
+          console.log('setAuthTokenVisibility failed, error: ' + JSON.stringify(err));
         } else {
-          console.log("setAuthTokenVisibility successfully");
+          console.log('setAuthTokenVisibility successfully');
         }
       });
   } catch (err) {
-      console.log("setAuthTokenVisibility exception: " + JSON.stringify(err));
+      console.log('setAuthTokenVisibility exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1794,13 +1794,13 @@ Sets the visibility of an authorization token to an app. This API uses a promise
 
   ```js
   try {
-    appAccountManager.setAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo", true).then(() => {
-      console.log("setAuthTokenVisibility successfully");
+    appAccountManager.setAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true).then(() => {
+      console.log('setAuthTokenVisibility successfully');
     }).catch((err) => {
-      console.log("setAuthTokenVisibility failed, error: " + JSON.stringify(err));
+      console.log('setAuthTokenVisibility failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("setAuthTokenVisibility exception: " + JSON.stringify(err));
+    console.log('setAuthTokenVisibility exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1834,15 +1834,15 @@ Checks the visibility of an authorization token of the specified authentication 
 
   ```js
   try {
-    appAccountManager.checkAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo", (err, isVisible) => {
+    appAccountManager.checkAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', (err, isVisible) => {
       if (err) {
-        console.log("checkAuthTokenVisibility failed, error: " + JSON.stringify(err));
+        console.log('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("checkAuthTokenVisibility successfully, isVisible: " + isVisible);
+        console.log('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
       }
     });
   } catch (err) {
-    console.log("checkAuthTokenVisibility exception: " + JSON.stringify(err));
+    console.log('checkAuthTokenVisibility exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1881,13 +1881,13 @@ Checks the visibility of an authorization token of the specified authentication 
 
   ```js
   try {
-    appAccountManager.checkAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo").then((isVisible) => {
-      console.log("checkAuthTokenVisibility successfully, isVisible: " + isVisible);
+    appAccountManager.checkAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((isVisible) => {
+      console.log('checkAuthTokenVisibility successfully, isVisible: ' + isVisible);
     }).catch((err) => {
-      console.log("checkAuthTokenVisibility failed, error: " + JSON.stringify(err));
+      console.log('checkAuthTokenVisibility failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("checkAuthTokenVisibility exception: " + JSON.stringify(err));
+    console.log('checkAuthTokenVisibility exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1919,15 +1919,15 @@ Obtains all tokens visible to the invoker for an app account. This API uses an a
 
   ```js
   try {
-    appAccountManager.getAllAuthTokens("LiSi", "com.example.accountjsdemo", (err, tokenArr) => {
+    appAccountManager.getAllAuthTokens('LiSi', 'com.example.accountjsdemo', (err, tokenArr) => {
       if (err) {
-        console.log("getAllAuthTokens failed, error: "  + JSON.stringify(err));
+        console.log('getAllAuthTokens failed, error: ' + JSON.stringify(err));
       } else {
         console.log('getAllAuthTokens successfully, tokenArr: ' + tokenArr);
       }
     });
   } catch (err) {
-    console.log("getAllAuthTokens exception: "  + JSON.stringify(err));
+    console.log('getAllAuthTokens exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -1964,13 +1964,13 @@ Obtains all tokens visible to the invoker for an app account. This API uses a pr
 
   ```js
   try {
-    appAccountManager.getAllAuthTokens("LiSi", "com.example.accountjsdemo").then((tokenArr) => {
+    appAccountManager.getAllAuthTokens('LiSi', 'com.example.accountjsdemo').then((tokenArr) => {
         console.log('getAllAuthTokens successfully, tokenArr: ' + JSON.stringify(tokenArr));
     }).catch((err) => {
-        console.log("getAllAuthTokens failed, error: "  + JSON.stringify(err));
+        console.log('getAllAuthTokens failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("getAllAuthTokens exception: "  + JSON.stringify(err));
+    console.log('getAllAuthTokens exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2003,11 +2003,11 @@ Obtains the authorization list of the specified authentication type for an app a
 
   ```js
   try {
-    appAccountManager.getAuthList("com.example.accountjsdemo", "getSocialData", (err, authList) => {
+    appAccountManager.getAuthList('LiSi', 'getSocialData', (err, authList) => {
       if (err) {
-        console.log("getAuthList failed, error: " + JSON.stringify(err));
+        console.log('getAuthList failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("getAuthList successfully, authList: " + authList);
+        console.log('getAuthList successfully, authList: ' + authList);
       }
     });
   } catch (err) {
@@ -2049,13 +2049,13 @@ Obtains the authorization list of the specified authentication type for an app a
 
   ```js
   try {
-    appAccountManager.getAuthList("com.example.accountjsdemo", "getSocialData").then((authList) => {
-        console.log("getAuthList successfully, authList: " + authList);
+    appAccountManager.getAuthList('LiSi', 'getSocialData').then((authList) => {
+        console.log('getAuthList successfully, authList: ' + authList);
     }).catch((err) => {
-        console.log("getAuthList failed, error: "  + JSON.stringify(err));
+        console.log('getAuthList failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("getAuthList exception: "  + JSON.stringify(err));
+    console.log('getAuthList exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2063,7 +2063,7 @@ Obtains the authorization list of the specified authentication type for an app a
 
 getAuthCallback(sessionId: string, callback: AsyncCallback&lt;AuthCallback&gt;): void
 
-Obtains the authenticator callback for the authentication session. This API uses an asynchronous callback to return the result.
+Obtains the authenticator callback for an authentication session. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2093,23 +2093,23 @@ Obtains the authenticator callback for the authentication session. This API uses
       try {
         appAccountManager.getAuthCallback(sessionId, (err, callback) => {
           if (err != null) {
-              console.log("getAuthCallback err: "  + JSON.stringify(err));
+              console.log('getAuthCallback err: ' + JSON.stringify(err));
               return;
           }
           var result = {
             accountInfo: {
-              name: "Lisi",
-              owner: "com.example.accountjsdemo",
+              name: 'Lisi',
+              owner: 'com.example.accountjsdemo',
             },
             tokenInfo: {
-              token: "xxxxxx",
-              authType: "getSocialData"
+              token: 'xxxxxx',
+              authType: 'getSocialData'
             }
           }; 
           callback.onResult(0, result);
         });
       } catch (err) {
-          console.log("getAuthCallback exception: "  + JSON.stringify(err));
+          console.log('getAuthCallback exception: ' + JSON.stringify(err));
       }
     }
   }
@@ -2119,7 +2119,7 @@ Obtains the authenticator callback for the authentication session. This API uses
 
 getAuthCallback(sessionId: string): Promise&lt;AuthCallback&gt;
 
-Obtains the authenticator callback for the authentication session. This API uses a promise to return the result.
+Obtains the authenticator callback for an authentication session. This API uses a promise to return the result.
 
 **System capability**: SystemCapability.Account.AppAccount
 
@@ -2155,20 +2155,20 @@ Obtains the authenticator callback for the authentication session. This API uses
         appAccountManager.getAuthCallback(sessionId).then((callback) => {
         var result = {
           accountInfo: {
-            name: "Lisi",
-            owner: "com.example.accountjsdemo",
+            name: 'Lisi',
+            owner: 'com.example.accountjsdemo',
           },
           tokenInfo: {
-            token: "xxxxxx",
-            authType: "getSocialData"
+            token: 'xxxxxx',
+            authType: 'getSocialData'
           }
         };
         callback.onResult(0, result);
         }).catch((err) => {
-          console.log("getAuthCallback err: "  + JSON.stringify(err));
+          console.log('getAuthCallback err: ' + JSON.stringify(err));
         });
       } catch (err) {
-        console.log("getAuthCallback exception: "  + JSON.stringify(err));
+        console.log('getAuthCallback exception: ' + JSON.stringify(err));
       }
     }
   }
@@ -2201,15 +2201,15 @@ Obtains the authenticator information of an app. This API uses an asynchronous c
 
   ```js
   try {
-    appAccountManager.queryAuthenticatorInfo("com.example.accountjsdemo", (err, info) => {
+    appAccountManager.queryAuthenticatorInfo('com.example.accountjsdemo', (err, info) => {
       if (err) {
-        console.log("queryAuthenticatorInfo failed, error: "  + JSON.stringify(err));
+        console.log('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
       } else {
         console.log('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
       }
     });
   } catch (err) {
-    console.log("queryAuthenticatorInfo exception: "  + JSON.stringify(err));
+    console.log('queryAuthenticatorInfo exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2245,13 +2245,13 @@ Obtains the authenticator information of an app. This API uses a promise to retu
 
   ```js
   try {
-    appAccountManager.queryAuthenticatorInfo("com.example.accountjsdemo").then((info) => { 
-        console.log("queryAuthenticatorInfo successfully, info: " + JSON.stringify(info));
+    appAccountManager.queryAuthenticatorInfo('com.example.accountjsdemo').then((info) => { 
+        console.log('queryAuthenticatorInfo successfully, info: ' + JSON.stringify(info));
     }).catch((err) => {
-        console.log("queryAuthenticatorInfo failed, error: "  + JSON.stringify(err));
+        console.log('queryAuthenticatorInfo failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("queryAuthenticatorInfo exception: "  + JSON.stringify(err));
+    console.log('queryAuthenticatorInfo exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2286,17 +2286,17 @@ Checks whether an app account has specific labels. This API uses an asynchronous
 **Example**
 
   ```js
-  let labels = ["student"];
+  let labels = ['student'];
   try {
-    appAccountManager.checkAccountLabels("zhangsan", "com.example.accountjsdemo", labels, (err, hasAllLabels) => {
+    appAccountManager.checkAccountLabels('zhangsan', 'com.example.accountjsdemo', labels, (err, hasAllLabels) => {
       if (err) {
-        console.log("checkAccountLabels failed, error: "  + JSON.stringify(err));
+        console.log('checkAccountLabels failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("checkAccountLabels successfully, hasAllLabels: " + hasAllLabels);
+        console.log('checkAccountLabels successfully, hasAllLabels: ' + hasAllLabels);
       }
     });
   } catch (err) {
-    console.log("checkAccountLabels exception: "  + JSON.stringify(err));
+    console.log('checkAccountLabels exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2336,15 +2336,15 @@ Checks whether an app account has specific labels. This API uses a promise to re
 **Example**
 
   ```js
-  let labels = ["student"];
+  let labels = ['student'];
   try {
-    appAccountManager.checkAccountLabels("zhangsan", "com.example.accountjsdemo", labels).then((hasAllLabels) => {
+    appAccountManager.checkAccountLabels('zhangsan', 'com.example.accountjsdemo', labels).then((hasAllLabels) => {
       console.log('checkAccountLabels successfully: ' + hasAllLabels);
     }).catch((err) => {
-      console.log("checkAccountLabels failed, error: "  + JSON.stringify(err));
+      console.log('checkAccountLabels failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("checkAccountLabels exception: "  + JSON.stringify(err));
+    console.log('checkAccountLabels exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2377,15 +2377,15 @@ Deletes the credential of the specified type from an app account. This API uses 
 
   ```js
   try {
-    appAccountManager.deleteCredential("zhangsan", "PIN_SIX", (err) => {
+    appAccountManager.deleteCredential('zhangsan', 'PIN_SIX', (err) => {
       if (err) {
-        console.log("deleteCredential failed, error: "  + JSON.stringify(err));
+        console.log('deleteCredential failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("deleteCredential successfully");
+        console.log('deleteCredential successfully');
       }
     });
   } catch (err) {
-    console.log("deleteCredential exception: "  + JSON.stringify(err));
+    console.log('deleteCredential exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2423,13 +2423,13 @@ Deletes the credential of the specified type from an app account. This API uses 
 
   ```js
   try {
-    appAccountManager.deleteCredential("zhangsan", "PIN_SIX").then(() => {
-      console.log("deleteCredential successfully");
+    appAccountManager.deleteCredential('zhangsan', 'PIN_SIX').then(() => {
+      console.log('deleteCredential successfully');
     }).catch((err) => {
-      console.log("deleteCredential failed, error: " + JSON.stringify(err));
+      console.log('deleteCredential failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("deleteCredential exception: "  + JSON.stringify(err));
+    console.log('deleteCredential exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2461,19 +2461,19 @@ Selects the accounts that can be accessed by the invoker based on the options. T
 
   ```js
   let options = {
-    allowedOwners: [ "com.example.accountjsdemo" ],
-    requiredLabels: [ "student" ]
+    allowedOwners: [ 'com.example.accountjsdemo' ],
+    requiredLabels: [ 'student' ]
   };
   try {
     appAccountManager.selectAccountsByOptions(options, (err, accountArr) => {
       if (err) {
-        console.log("selectAccountsByOptions failed, error: "  + JSON.stringify(err));
+        console.log('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
       } else {
-        console.log("selectAccountsByOptions successfully, accountArr: " + JSON.stringify(accountArr));
+        console.log('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
       }
     });
   } catch (err) {
-    console.log("selectAccountsByOptions exception: "  + JSON.stringify(err));
+    console.log('selectAccountsByOptions exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2510,16 +2510,16 @@ Selects the accounts that can be accessed by the invoker based on the options. T
 
   ```js
   let options = {
-    allowedOwners: ["com.example.accountjsdemo"]
+    allowedOwners: ['com.example.accountjsdemo']
   };
   try {
     appAccountManager.selectAccountsByOptions(options).then((accountArr) => {
-      console.log("selectAccountsByOptions successfully, accountArr: " + JSON.stringify(accountArr));
+      console.log('selectAccountsByOptions successfully, accountArr: ' + JSON.stringify(accountArr));
     }).catch((err) => {
-      console.log("selectAccountsByOptions failed, error: "  + JSON.stringify(err));
+      console.log('selectAccountsByOptions failed, error: ' + JSON.stringify(err));
     });
   } catch (err) {
-    console.log("selectAccountsByOptions exception: "  + JSON.stringify(err));
+    console.log('selectAccountsByOptions exception: ' + JSON.stringify(err));
   }
   ```
 
@@ -2554,17 +2554,17 @@ Verifies the credential of an app account. This API uses an asynchronous callbac
 
   ```js
   try {
-      appAccountManager.verifyCredential("zhangsan", "com.example.accountjsdemo", {
+      appAccountManager.verifyCredential('zhangsan', 'com.example.accountjsdemo', {
           onResult: (resultCode, result) => {
-              console.log("verifyCredential onResult, resultCode:" + JSON.stringify(resultCode));
-              console.log("verifyCredential onResult, result:" + JSON.stringify(result));
+              console.log('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
+              console.log('verifyCredential onResult, result: ' + JSON.stringify(result));
           },
           onRequestRedirected: (request) => {
-              console.log("verifyCredential onRequestRedirected, request:" + JSON.stringify(request));
+              console.log('verifyCredential onRequestRedirected, request: ' + JSON.stringify(request));
           }
       });
   } catch (err) {
-      console.log("verifyCredential err: "  + JSON.stringify(err));
+      console.log('verifyCredential err: ' + JSON.stringify(err));
   }
   ```
 
@@ -2600,21 +2600,21 @@ Verifies the user credential. This API uses an asynchronous callback to return t
 
   ```js
   let options = {
-    credentialType: "pin",
-    credential: "123456"
+    credentialType: 'pin',
+    credential: '123456'
   };
   try {
-    appAccountManager.verifyCredential("zhangsan", "com.example.accountjsdemo", options, {
+    appAccountManager.verifyCredential('zhangsan', 'com.example.accountjsdemo', options, {
       onResult: (resultCode, result) => {
-        console.log("verifyCredential onResult, resultCode:" + JSON.stringify(resultCode));
-        console.log("verifyCredential onResult, result:" + JSON.stringify(result));
+        console.log('verifyCredential onResult, resultCode: ' + JSON.stringify(resultCode));
+        console.log('verifyCredential onResult, result: ' + JSON.stringify(result));
       },
       onRequestRedirected: (request) => {
-        console.log("verifyCredential onRequestRedirected, request:" + JSON.stringify(request));
+        console.log('verifyCredential onRequestRedirected, request: ' + JSON.stringify(request));
       }
     });
   } catch (err) {
-    console.log("verifyCredential err: "  + JSON.stringify(err));
+    console.log('verifyCredential err: ' + JSON.stringify(err));
   }
   ```
 
@@ -2647,17 +2647,17 @@ Sets the authenticator attributes of an app. This API uses an asynchronous callb
 
   ```js
   try {
-    appAccountManager.setAuthenticatorProperties("com.example.accountjsdemo", {
+    appAccountManager.setAuthenticatorProperties('com.example.accountjsdemo', {
       onResult: (resultCode, result) => {
-        console.log("setAuthenticatorProperties onResult, resultCode:" + JSON.stringify(resultCode));
-        console.log("setAuthenticatorProperties onResult, result:" + JSON.stringify(result));
+        console.log('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
+        console.log('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
       },
       onRequestRedirected: (request) => {
-        console.log("setAuthenticatorProperties onRequestRedirected, request:" + JSON.stringify(request));
+        console.log('setAuthenticatorProperties onRequestRedirected, request: ' + JSON.stringify(request));
       }
     });
   } catch (err) {
-    console.log("setAuthenticatorProperties err: "  + JSON.stringify(err));
+    console.log('setAuthenticatorProperties err: ' + JSON.stringify(err));
   }
   ```
 
@@ -2691,20 +2691,20 @@ Set authenticator properties. This API uses an asynchronous callback to return t
 
   ```js
   let options = {
-    properties: {"prop1": "value1"}
+    properties: {'prop1': 'value1'}
   };
   try {
-    appAccountManager.setAuthenticatorProperties("com.example.accountjsdemo", options, {
+    appAccountManager.setAuthenticatorProperties('com.example.accountjsdemo', options, {
       onResult: (resultCode, result) => {
-        console.log("setAuthenticatorProperties onResult, resultCode:" + JSON.stringify(resultCode));
-        console.log("setAuthenticatorProperties onResult, result:" + JSON.stringify(result));
+        console.log('setAuthenticatorProperties onResult, resultCode: ' + JSON.stringify(resultCode));
+        console.log('setAuthenticatorProperties onResult, result: ' + JSON.stringify(result));
       },
       onRequestRedirected: (request) => {
-        console.log("setAuthenticatorProperties onRequestRedirected, request:" + JSON.stringify(request));
+        console.log('setAuthenticatorProperties onRequestRedirected, request: ' + JSON.stringify(request));
       }
     });
   } catch (err) {
-    console.log("setAuthenticatorProperties err: "  + JSON.stringify(err));
+    console.log('setAuthenticatorProperties err: ' + JSON.stringify(err));
   } 
 
   ```
@@ -2732,8 +2732,8 @@ Adds an app account. This API uses an asynchronous callback to return the result
 **Example**
 
   ```js
-  appAccountManager.addAccount("WangWu", (err) => { 
-      console.log("addAccount err: " + JSON.stringify(err));
+  appAccountManager.addAccount('WangWu', (err) => { 
+      console.log('addAccount err: ' + JSON.stringify(err));
   });
   ```
 
@@ -2744,7 +2744,6 @@ addAccount(name: string, extraInfo: string, callback: AsyncCallback&lt;void&gt;)
 Adds an app account name and additional information. This API uses an asynchronous callback to return the result.
 
 > **NOTE**
-> 
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [createAccount](#createaccount9-1).
 
 **System capability**: SystemCapability.Account.AppAccount
@@ -2760,8 +2759,8 @@ Adds an app account name and additional information. This API uses an asynchrono
 **Example**
 
   ```js
-  appAccountManager.addAccount("LiSi", "token101", (err) => { 
-    console.log("addAccount err: " + JSON.stringify(err));
+  appAccountManager.addAccount('LiSi', 'token101', (err) => { 
+    console.log('addAccount err: ' + JSON.stringify(err));
   });
   ```
 
@@ -2771,8 +2770,7 @@ addAccount(name: string, extraInfo?: string): Promise&lt;void&gt;
 
 Adds an app account name and additional information. This API uses an asynchronous callback to return the result. This API uses a promise to return the result.
 
-> **NOTE**
-> 
+> **NOTE** 
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [createAccount](#createaccount9-2).
 
 **System capability**: SystemCapability.Account.AppAccount
@@ -2782,7 +2780,7 @@ Adds an app account name and additional information. This API uses an asynchrono
 | Name      | Type    | Mandatory  | Description                                      |
 | --------- | ------ | ---- | ---------------------------------------- |
 | name      | string | Yes   | Name of the target app account.                           |
-| extraInfo | string | No   | Additional information (information that can be converted to the string type). It cannot contain sensitive information, such as the app account password and token.|
+| extraInfo | string | No   | Additional information (information that can be converted to the string type).<br>The additional information cannot be sensitive information (such as the password and token) of the app account.<br>By default, no value is passed, which means no additional information needs to be added for the account.|
 
 **Return value**
 
@@ -2793,10 +2791,10 @@ Adds an app account name and additional information. This API uses an asynchrono
 **Example**
 
   ```js
-  appAccountManager.addAccount("LiSi", "token101").then(()=> { 
+  appAccountManager.addAccount('LiSi', 'token101').then(()=> { 
     console.log('addAccount Success');
   }).catch((err) => {
-    console.log("addAccount err: "  + JSON.stringify(err));
+    console.log('addAccount err: ' + JSON.stringify(err));
   });
   ```
 
@@ -2827,8 +2825,8 @@ Adds an app account implicitly based on the specified owner. This API uses an as
 
 
   function onResultCallback(code, result) {
-    console.log("resultCode: "  + code);
-    console.log("result: "  + JSON.stringify(result));
+    console.log('resultCode: ' + code);
+    console.log('result: ' + JSON.stringify(result));
   }
 
   function onRequestRedirectedCallback(request) {
@@ -2839,13 +2837,13 @@ Adds an app account implicitly based on the specified owner. This API uses an as
       entities: ['entity.system.default'],
     }
     this.context.startAbility(wantInfo).then(() => {
-      console.log("startAbility successfully");
+      console.log('startAbility successfully');
     }).catch((err) => {
-      console.log("startAbility err: " + JSON.stringify(err));
+      console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
 
-  appAccountManager.addAccountImplicitly("com.example.accountjsdemo", "getSocialData", {}, {
+  appAccountManager.addAccountImplicitly('com.example.accountjsdemo', 'getSocialData', {}, {
     onResult: onResultCallback,
     onRequestRedirected: onRequestRedirectedCallback
   });
@@ -2873,8 +2871,8 @@ Deletes an app account. This API uses an asynchronous callback to return the res
 **Example**
 
   ```js
-  appAccountManager.deleteAccount("ZhaoLiu", (err) => { 
-      console.log("deleteAccount err: " + JSON.stringify(err));
+  appAccountManager.deleteAccount('ZhaoLiu', (err) => { 
+      console.log('deleteAccount err: ' + JSON.stringify(err));
    });
   ```
 
@@ -2905,10 +2903,10 @@ Deletes an app account. This API uses a promise to return the result.
 **Example**
 
   ```js
-  appAccountManager.deleteAccount("ZhaoLiu").then(() => { 
+  appAccountManager.deleteAccount('ZhaoLiu').then(() => { 
         console.log('deleteAccount Success');
    }).catch((err) => {
-      console.log("deleteAccount err: "  + JSON.stringify(err));
+      console.log('deleteAccount err: ' + JSON.stringify(err));
   });
   ```
 ### disableAppAccess<sup>(deprecated)</sup>
@@ -2934,8 +2932,8 @@ Disables an app account from accessing an app. This API uses an asynchronous cal
 **Example**
 
   ```js
-  appAccountManager.disableAppAccess("ZhangSan", "com.example.accountjsdemo", (err) => { 
-      console.log("disableAppAccess err: " + JSON.stringify(err));
+  appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err) => { 
+      console.log('disableAppAccess err: ' + JSON.stringify(err));
   });
   ```
 
@@ -2967,10 +2965,10 @@ Disables an app account from accessing an app. This API uses a promise to return
 **Example**
 
   ```js
-  appAccountManager.disableAppAccess("ZhangSan", "com.example.accountjsdemo").then(() => { 
+  appAccountManager.disableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
       console.log('disableAppAccess Success');
   }).catch((err) => {
-      console.log("disableAppAccess err: "  + JSON.stringify(err));
+      console.log('disableAppAccess err: ' + JSON.stringify(err));
   });
   ```
 
@@ -2997,8 +2995,8 @@ Enables an app account to access an app. This API uses an asynchronous callback 
 **Example**
 
   ```js
-  appAccountManager.enableAppAccess("ZhangSan", "com.example.accountjsdemo", (err) => { 
-      console.log("enableAppAccess: " + JSON.stringify(err));
+  appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo', (err) => { 
+      console.log('enableAppAccess: ' + JSON.stringify(err));
    });
   ```
 
@@ -3030,10 +3028,10 @@ Enables an app account to access an app. This API uses a promise to return the r
 **Example**
 
   ```js
-  appAccountManager.enableAppAccess("ZhangSan", "com.example.accountjsdemo").then(() => { 
+  appAccountManager.enableAppAccess('ZhangSan', 'com.example.accountjsdemo').then(() => { 
        console.log('enableAppAccess Success');
   }).catch((err) => {
-      console.log("enableAppAccess err: "  + JSON.stringify(err));
+      console.log('enableAppAccess err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3061,8 +3059,8 @@ Checks whether data synchronization is enabled for an app account. This API uses
 **Example**
 
   ```js
-  appAccountManager.checkAppAccountSyncEnable("ZhangSan", (err, result) => { 
-      console.log("checkAppAccountSyncEnable err: " + JSON.stringify(err));
+  appAccountManager.checkAppAccountSyncEnable('ZhangSan', (err, result) => { 
+      console.log('checkAppAccountSyncEnable err: ' + JSON.stringify(err));
       console.log('checkAppAccountSyncEnable result: ' + result);
   });
   ```
@@ -3096,10 +3094,10 @@ Checks whether data synchronization is enabled for an app account. This API uses
 **Example**
 
   ```js
-  appAccountManager.checkAppAccountSyncEnable("ZhangSan").then((data) => { 
+  appAccountManager.checkAppAccountSyncEnable('ZhangSan').then((data) => { 
       console.log('checkAppAccountSyncEnable, result: ' + data);
   }).catch((err) => {
-      console.log("checkAppAccountSyncEnable err: "  + JSON.stringify(err));
+      console.log('checkAppAccountSyncEnable err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3127,8 +3125,8 @@ Set credentials for an app account. This API uses an asynchronous callback to re
 **Example**
 
   ```js
-  appAccountManager.setAccountCredential("ZhangSan", "credentialType001", "credential001", (err) => { 
-      console.log("setAccountCredential err: " + JSON.stringify(err));
+  appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001', (err) => { 
+      console.log('setAccountCredential err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3161,10 +3159,10 @@ Set credentials for an app account. This API uses a promise to return the result
 **Example**
 
   ```js
-  appAccountManager.setAccountCredential("ZhangSan", "credentialType001", "credential001").then(() => { 
+  appAccountManager.setAccountCredential('ZhangSan', 'credentialType001', 'credential001').then(() => { 
       console.log('setAccountCredential Success');
   }).catch((err) => {
-      console.log("setAccountCredential err: "  + JSON.stringify(err));
+      console.log('setAccountCredential err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3192,8 +3190,8 @@ Sets additional information for an app account. This API uses an asynchronous ca
 **Example**
 
   ```js
-  appAccountManager.setAccountExtraInfo("ZhangSan", "Tk002", (err) => { 
-      console.log("setAccountExtraInfo err: " + JSON.stringify(err));
+  appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002', (err) => { 
+      console.log('setAccountExtraInfo err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3226,10 +3224,10 @@ Sets additional information for an app account. This API uses a promise to retur
 **Example**
 
   ```js
-  appAccountManager.setAccountExtraInfo("ZhangSan", "Tk002").then(() => { 
+  appAccountManager.setAccountExtraInfo('ZhangSan', 'Tk002').then(() => { 
       console.log('setAccountExtraInfo Success');
   }).catch((err) => {
-      console.log("setAccountExtraInfo err: "  + JSON.stringify(err));
+      console.log('setAccountExtraInfo err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3258,8 +3256,8 @@ Sets data synchronization for an app account. This API uses an asynchronous call
 **Example**
 
   ```js
-  appAccountManager.setAppAccountSyncEnable("ZhangSan", true, (err) => { 
-      console.log("setAppAccountSyncEnable err: " + JSON.stringify(err));
+  appAccountManager.setAppAccountSyncEnable('ZhangSan', true, (err) => { 
+      console.log('setAppAccountSyncEnable err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3293,10 +3291,10 @@ Sets data synchronization for an app account. This API uses a promise to return 
 **Example**
 
   ```js
-  appAccountManager .setAppAccountSyncEnable("ZhangSan", true).then(() => { 
+  appAccountManager .setAppAccountSyncEnable('ZhangSan', true).then(() => { 
       console.log('setAppAccountSyncEnable Success');
   }).catch((err) => {
-      console.log("setAppAccountSyncEnable err: "  + JSON.stringify(err));
+      console.log('setAppAccountSyncEnable err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3325,8 +3323,8 @@ Sets data to be associated with an app account. This API uses an asynchronous ca
 **Example**
 
   ```js
-  appAccountManager.setAssociatedData("ZhangSan", "k001", "v001", (err) => { 
-      console.log("setAssociatedData err: " + JSON.stringify(err));
+  appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001', (err) => { 
+      console.log('setAssociatedData err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3360,10 +3358,10 @@ Sets data to be associated with an app account. This API uses a promise to retur
 **Example**
 
   ```js
-  appAccountManager.setAssociatedData("ZhangSan", "k001", "v001").then(() => { 
+  appAccountManager.setAssociatedData('ZhangSan', 'k001', 'v001').then(() => { 
       console.log('setAssociatedData Success');
   }).catch((err) => {
-      console.log("setAssociatedData err: "  + JSON.stringify(err));
+      console.log('setAssociatedData err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3391,8 +3389,8 @@ Obtains information about all accessible app accounts. This API uses an asynchro
 
   ```js
   appAccountManager.getAllAccessibleAccounts((err, data)=>{
-  	console.debug("getAllAccessibleAccounts err:" + JSON.stringify(err));
-  	console.debug("getAllAccessibleAccounts data:" + JSON.stringify(data));
+  	console.debug('getAllAccessibleAccounts err: ' + JSON.stringify(err));
+  	console.debug('getAllAccessibleAccounts data: ' + JSON.stringify(data));
   });
   ```
 
@@ -3422,7 +3420,7 @@ Obtains information about all accessible app accounts. This API uses a promise t
   appAccountManager.getAllAccessibleAccounts().then((data) => { 
        console.log('getAllAccessibleAccounts: ' + data);
   }).catch((err) => {
-      console.log("getAllAccessibleAccounts err: "  + JSON.stringify(err));
+      console.log('getAllAccessibleAccounts err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3450,10 +3448,10 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 **Example**
 
   ```js
-  const selfBundle = "com.example.actsgetallaaccounts";
+  const selfBundle = 'com.example.actsgetallaaccounts';
   appAccountManager.getAllAccounts(selfBundle, (err, data)=>{
-  	console.debug("getAllAccounts err:" + JSON.stringify(err));
-  	console.debug("getAllAccounts data:" + JSON.stringify(data));
+  	console.debug('getAllAccounts err: ' + JSON.stringify(err));
+  	console.debug('getAllAccounts data:' + JSON.stringify(data));
   });
   ```
 
@@ -3486,11 +3484,11 @@ Obtains the app accounts that can be accessed by the invoker based on the app ac
 **Example**
 
   ```js
-  const selfBundle = "com.example.actsgetallaaccounts";
+  const selfBundle = 'com.example.actsgetallaaccounts';
   appAccountManager.getAllAccounts(selfBundle).then((data) => { 
        console.log('getAllAccounts: ' + data);
   }).catch((err) => {
-      console.log("getAllAccounts err: "  + JSON.stringify(err));
+      console.log('getAllAccounts err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3517,8 +3515,8 @@ Obtains the credential of an app account. This API uses an asynchronous callback
 **Example**
 
   ```js
-  appAccountManager.getAccountCredential("ZhangSan", "credentialType001", (err, result) => { 
-      console.log("getAccountCredential err: " + JSON.stringify(err));
+  appAccountManager.getAccountCredential('ZhangSan', 'credentialType001', (err, result) => { 
+      console.log('getAccountCredential err: ' + JSON.stringify(err));
       console.log('getAccountCredential result: ' + result);
   });
   ```
@@ -3551,10 +3549,10 @@ Obtains the credential of an app account. This API uses a promise to return the 
 **Example**
 
   ```js
-  appAccountManager.getAccountCredential("ZhangSan", "credentialType001").then((data) => { 
+  appAccountManager.getAccountCredential('ZhangSan', 'credentialType001').then((data) => { 
       console.log('getAccountCredential, result: ' + data);
   }).catch((err) => {
-      console.log("getAccountCredential err: "  + JSON.stringify(err));
+      console.log('getAccountCredential err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3580,8 +3578,8 @@ Obtains additional information of an app account. Additional information refers 
 **Example**
 
   ```js
-  appAccountManager.getAccountExtraInfo("ZhangSan", (err, result) => { 
-      console.log("getAccountExtraInfo err: " + JSON.stringify(err));
+  appAccountManager.getAccountExtraInfo('ZhangSan', (err, result) => { 
+      console.log('getAccountExtraInfo err: ' + JSON.stringify(err));
       console.log('getAccountExtraInfo result: ' + result);
   });
   ```
@@ -3613,10 +3611,10 @@ Obtains additional information of an app account. Additional information refers 
 **Example**
 
   ```js
-  appAccountManager.getAccountExtraInfo("ZhangSan").then((data) => { 
+  appAccountManager.getAccountExtraInfo('ZhangSan').then((data) => { 
       console.log('getAccountExtraInfo, result: ' + data);
   }).catch((err) => {
-      console.log("getAccountExtraInfo err: "  + JSON.stringify(err));
+      console.log('getAccountExtraInfo err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3643,8 +3641,8 @@ Obtains data associated with an app account. This API uses an asynchronous callb
 **Example**
 
   ```js
-  appAccountManager.getAssociatedData("ZhangSan", "k001", (err, result) => { 
-      console.log("getAssociatedData err: " + JSON.stringify(err));
+  appAccountManager.getAssociatedData('ZhangSan', 'k001', (err, result) => { 
+      console.log('getAssociatedData err: ' + JSON.stringify(err));
       console.log('getAssociatedData result: ' + result);
   });
   ```
@@ -3677,10 +3675,10 @@ Obtains data associated with an app account. This API uses a promise to return t
 **Example**
 
   ```js
-  appAccountManager.getAssociatedData("ZhangSan", "k001").then((data) => { 
+  appAccountManager.getAssociatedData('ZhangSan', 'k001').then((data) => { 
        console.log('getAssociatedData: ' + data);
   }).catch((err) => {
-      console.log("getAssociatedData err: "  + JSON.stringify(err));
+      console.log('getAssociatedData err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3702,19 +3700,19 @@ Subscribes to account information changes of apps.
 | -------- | ---------------------------------------- | ---- | ------------------------------ |
 | type     | 'change'                                 | Yes   | Event type to subscribe to. The value is **'change'**. An event will be reported when the account information changes.|
 | owners   | Array&lt;string&gt;                      | Yes   | App bundle names of the account.                     |
-| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback invoked to return the account changes.          |
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | Yes   | Callback registered to return the list of changed app accounts.          |
 
 **Example**
 
   ```js
   function changeOnCallback(data){
-  	console.debug("receive change data:" + JSON.stringify(data));
+  	console.debug('receive change data:' + JSON.stringify(data));
   }
   try{
-  	appAccountManager.on('change', ["com.example.actsaccounttest"], changeOnCallback);
+  	appAccountManager.on('change', ['com.example.actsaccounttest'], changeOnCallback);
   }
   catch(err){
-  	console.error("on accountOnOffDemo err:" + JSON.stringify(err));
+  	console.error('on accountOnOffDemo err:' + JSON.stringify(err));
   }
   ```
 
@@ -3735,22 +3733,22 @@ Unsubscribes from account information changes.
 | Name     | Type                              | Mandatory  | Description          |
 | -------- | -------------------------------- | ---- | ------------ |
 | type     | 'change'                         | Yes   | Event type to unsubscribe from. The value is **'change'**, which indicates the account change event.    |
-| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | No   | Callback to unregister.|
+| callback | Callback&lt;Array&lt;[AppAccountInfo](#appaccountinfo)&gt;&gt; | No   | Callback to unregister. By default, no value is passed, which means to unregister all callbacks for the specified event.|
 
 **Example**
 
   ```js
   function changeOnCallback(data){
-  	console.debug("receive change data:" + JSON.stringify(data));
+  	console.debug('receive change data: ' + JSON.stringify(data));
   	appAccountManager.off('change', function(){
-  		console.debug("off finish");
+  		console.debug('off finish');
   	})
   }
   try{
-  	appAccountManager.on('change', ["com.example.actsaccounttest"], changeOnCallback);
+  	appAccountManager.on('change', ['com.example.actsaccounttest'], changeOnCallback);
   }
   catch(err){
-  	console.error("on accountOnOffDemo err:" + JSON.stringify(err));
+  	console.error('on accountOnOffDemo err: ' + JSON.stringify(err));
   }
   ```
 
@@ -3780,8 +3778,8 @@ Authenticates an app account with customized options. This API uses an asynchron
 
   ```js
   function onResultCallback(code, result) {
-      console.log("resultCode: "  + code);
-      console.log("result: "  + JSON.stringify(result));
+      console.log('resultCode: ' + code);
+      console.log('result: ' + JSON.stringify(result));
   }
 
   function onRequestRedirectedCallback(request) {
@@ -3792,13 +3790,13 @@ Authenticates an app account with customized options. This API uses an asynchron
       entities: ['entity.system.default'],
     }
     this.context.startAbility(wantInfo).then(() => {
-      console.log("startAbility successfully");
+      console.log('startAbility successfully');
     }).catch((err) => {
-      console.log("startAbility err: " + JSON.stringify(err));
+      console.log('startAbility err: ' + JSON.stringify(err));
     })
   }
 
-  appAccountManager.authenticate("LiSi", "com.example.accountjsdemo", "getSocialData", {}, {
+  appAccountManager.authenticate('LiSi', 'com.example.accountjsdemo', 'getSocialData', {}, {
     onResult: onResultCallback,
     onRequestRedirected: onRequestRedirectedCallback
   });
@@ -3828,7 +3826,7 @@ Obtains the authorization token of the specified authentication type for an app 
 **Example**
 
   ```js
-  appAccountManager.getOAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData", (err, data) => {
+  appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', (err, data) => {
        console.log('getOAuthToken err: ' + JSON.stringify(err));
        console.log('getOAuthToken token: ' + data);
   });
@@ -3863,10 +3861,10 @@ Obtains the authorization token of the specified authentication type for an app 
 **Example**
 
   ```js
-  appAccountManager.getOAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData").then((data) => {
+  appAccountManager.getOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData').then((data) => {
        console.log('getOAuthToken token: ' + data);
   }).catch((err) => {
-      console.log("getOAuthToken err: "  + JSON.stringify(err));
+      console.log('getOAuthToken err: ' + JSON.stringify(err));
   });
   ```
 
@@ -3894,7 +3892,7 @@ Sets an authorization token of the specific authentication type for an app accou
 **Example**
 
   ```js
-  appAccountManager.setOAuthToken("LiSi", "getSocialData", "xxxx", (err) => {
+  appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx', (err) => {
       console.log('setOAuthToken err: ' + JSON.stringify(err));
   });
   ```
@@ -3928,7 +3926,7 @@ Sets an authorization token of the specific authentication type for an app accou
 **Example**
 
   ```js
-  appAccountManager.setOAuthToken("LiSi", "getSocialData", "xxxx").then(() => {
+  appAccountManager.setOAuthToken('LiSi', 'getSocialData', 'xxxx').then(() => {
       console.log('setOAuthToken successfully');
   }).catch((err) => {
       console.log('setOAuthToken err: ' + JSON.stringify(err));
@@ -3960,7 +3958,7 @@ Deletes the authorization token of the specified authentication type for an app 
 **Example**
 
   ```js
-  appAccountManager.deleteOAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData", "xxxxx", (err) => {
+  appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx', (err) => {
        console.log('deleteOAuthToken err: ' + JSON.stringify(err));
   });
   ```
@@ -3995,10 +3993,10 @@ Deletes the authorization token of the specified authentication type for an app 
 **Example**
 
   ```js
-  appAccountManager.deleteOAuthToken("LiSi", "com.example.accountjsdemo", "getSocialData", "xxxxx").then(() => {
+  appAccountManager.deleteOAuthToken('LiSi', 'com.example.accountjsdemo', 'getSocialData', 'xxxxx').then(() => {
        console.log('deleteOAuthToken successfully');
   }).catch((err) => {
-      console.log("deleteOAuthToken err: "  + JSON.stringify(err));
+      console.log('deleteOAuthToken err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4027,7 +4025,7 @@ Sets the visibility of an authorization token to an app. This API uses an asynch
 **Example**
 
   ```js
-  appAccountManager.setOAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo", true, (err) => {
+  appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true, (err) => {
        console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
   });
   ```
@@ -4062,7 +4060,7 @@ Sets the visibility of an authorization token to an app. This API uses a promise
 **Example**
 
   ```js
-  appAccountManager.setOAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo", true).then(() => {
+  appAccountManager.setOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', true).then(() => {
       console.log('setOAuthTokenVisibility successfully');
   }).catch((err) => {
       console.log('setOAuthTokenVisibility err: ' + JSON.stringify(err));
@@ -4093,7 +4091,7 @@ Checks the visibility of an authorization token of the specified authentication 
 **Example**
 
   ```js
-  appAccountManager.checkOAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo", (err, data) => {
+  appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo', (err, data) => {
       console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
       console.log('checkOAuthTokenVisibility isVisible: ' + data);
   });
@@ -4128,7 +4126,7 @@ Checks the visibility of an authorization token of the specified authentication 
 **Example**
 
   ```js
-  appAccountManager.checkOAuthTokenVisibility("LiSi", "getSocialData", "com.example.accountjsdemo").then((data) => {
+  appAccountManager.checkOAuthTokenVisibility('LiSi', 'getSocialData', 'com.example.accountjsdemo').then((data) => {
       console.log('checkOAuthTokenVisibility isVisible: ' + data);
   }).catch((err) => {
       console.log('checkOAuthTokenVisibility err: ' + JSON.stringify(err));
@@ -4158,8 +4156,8 @@ Obtains all tokens visible to the invoker for an app account. This API uses an a
 **Example**
 
   ```js
-  appAccountManager.getAllOAuthTokens("LiSi", "com.example.accountjsdemo", (err, data) => {
-      console.log("getAllOAuthTokens err: "  + JSON.stringify(err));
+  appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo', (err, data) => {
+      console.log('getAllOAuthTokens err: ' + JSON.stringify(err));
       console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
   });
   ```
@@ -4192,10 +4190,10 @@ Obtains all tokens visible to the invoker for an app account. This API uses a pr
 **Example**
 
   ```js
-  appAccountManager.getAllOAuthTokens("LiSi", "com.example.accountjsdemo").then((data) => {
+  appAccountManager.getAllOAuthTokens('LiSi', 'com.example.accountjsdemo').then((data) => {
       console.log('getAllOAuthTokens data: ' + JSON.stringify(data));
   }).catch((err) => {
-      console.log("getAllOAuthTokens err: "  + JSON.stringify(err));
+      console.log('getAllOAuthTokens err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4222,7 +4220,7 @@ Obtains the authorization list of the specified authentication type for an app a
 **Example**
 
   ```js
-  appAccountManager.getOAuthList("com.example.accountjsdemo", "getSocialData", (err, data) => {
+  appAccountManager.getOAuthList('LiSi', 'getSocialData', (err, data) => {
     console.log('getOAuthList err: ' + JSON.stringify(err));
     console.log('getOAuthList data: ' + JSON.stringify(data));
   });
@@ -4256,10 +4254,10 @@ Obtains the authorization list of the specified authentication type for an app a
 **Example**
 
   ```js
-  appAccountManager.getOAuthList("com.example.accountjsdemo", "getSocialData").then((data) => {
+  appAccountManager.getOAuthList('LiSi', 'getSocialData').then((data) => {
        console.log('getOAuthList data: ' + JSON.stringify(data));
   }).catch((err) => {
-      console.log("getOAuthList err: "  + JSON.stringify(err));
+      console.log('getOAuthList err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4292,13 +4290,13 @@ Obtains the authenticator callback for an authentication session. This API uses 
       var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
       appAccountManager.getAuthenticatorCallback(sessionId, (err, callback) => {
         if (err.code != account_appAccount.ResultCode.SUCCESS) {
-            console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
+            console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
             return;
         }
-        var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
-                      [account_appAccount.Constants.KEY_OWNER]: "com.example.accountjsdemo",
-                      [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
-                      [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+        var result = {[account_appAccount.Constants.KEY_NAME]: 'LiSi',
+                      [account_appAccount.Constants.KEY_OWNER]: 'com.example.accountjsdemo',
+                      [account_appAccount.Constants.KEY_AUTH_TYPE]: 'getSocialData',
+                      [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
         callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       });
     }
@@ -4338,13 +4336,13 @@ Obtains the authenticator callback for an authentication session. This API uses 
     onCreate(want, param) {
       var sessionId = want.parameters[account_appAccount.Constants.KEY_SESSION_ID];
       appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
-        var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
-                      [account_appAccount.Constants.KEY_OWNER]: "com.example.accountjsdemo",
-                      [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
-                      [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+        var result = {[account_appAccount.Constants.KEY_NAME]: 'LiSi',
+                      [account_appAccount.Constants.KEY_OWNER]: 'com.example.accountjsdemo',
+                      [account_appAccount.Constants.KEY_AUTH_TYPE]: 'getSocialData',
+                      [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
         callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }).catch((err) => {
-        console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
+        console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
       });
     }
   }
@@ -4372,8 +4370,8 @@ Obtains the authenticator information of an app. This API uses an asynchronous c
 **Example**
 
   ```js
-  appAccountManager.getAuthenticatorInfo("com.example.accountjsdemo", (err, data) => {
-      console.log("getAuthenticatorInfo err: "  + JSON.stringify(err));
+  appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo', (err, data) => {
+      console.log('getAuthenticatorInfo err: ' + JSON.stringify(err));
       console.log('getAuthenticatorInfo data: ' + JSON.stringify(data));
   });
   ```
@@ -4405,10 +4403,10 @@ Obtains the authenticator information of an app. This API uses a promise to retu
 **Example**
 
   ```js
-  appAccountManager.getAuthenticatorInfo("com.example.accountjsdemo").then((data) => { 
+  appAccountManager.getAuthenticatorInfo('com.example.accountjsdemo').then((data) => { 
        console.log('getAuthenticatorInfo: ' + JSON.stringify(data));
   }).catch((err) => {
-      console.log("getAuthenticatorInfo err: "  + JSON.stringify(err));
+      console.log('getAuthenticatorInfo err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4433,7 +4431,7 @@ Defines authorization token information.
 | -------------------- | -------------- | ----- | ---------------- |
 | authType<sup>9+</sup>             | string         | Yes   | Authentication type.  |
 | token<sup>9+</sup>                | string         | Yes   | Value of the authorization token.      |
-| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | No   | Account information of the authorization token.|
+| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | No   | Information about the account to which the token belongs. By default, no value is passed.|
 
 ## OAuthTokenInfo<sup>(deprecated)</sup>
 
@@ -4449,7 +4447,7 @@ Defines authorization token information.
 | -------------------- | -------------- | ----- | ---------------- |
 | authType             | string         | Yes   | Authentication type.  |
 | token                | string         | Yes   | Value of the authorization token.      |
-| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | No   | Account information of the authorization token.|
+| account<sup>9+</sup> | [AppAccountInfo](#appaccountinfo) | No   | Information about the account to which the token belongs. By default, no value is passed.|
 
 ## AuthenticatorInfo<sup>8+</sup>
 
@@ -4471,8 +4469,8 @@ Defines the authentication result.
 
 | Name    | Type    | Mandatory  | Description        |
 | ------- | ------ | ---- | ---------- |
-| account   | [AppAccountInfo](#appaccountinfo) | No   | Account information of the authorization token.|
-| tokenInfo  | [AuthTokenInfo](#authtokeninfo9) | No   | Token information. |
+| account   | [AppAccountInfo](#appaccountinfo) | No   | Information about the account to which the token belongs. By default, no value is passed.|
+| tokenInfo  | [AuthTokenInfo](#authtokeninfo9) | No   | Token information. By default, no value is passed. |
 
 ## CreateAccountOptions<sup>9+</sup>
 
@@ -4482,7 +4480,7 @@ Defines the options for creating an app account.
 
 | Name    | Type    | Mandatory  | Description        |
 | ------- | ------ | ---- | ---------- |
-| customData   | {[key: string]: string} | No   | Custom data.|
+| customData   | {[key: string]: string} | No   | Custom data. By default, no value is passed.|
 
 ## CreateAccountImplicitlyOptions<sup>9+</sup>
 
@@ -4492,9 +4490,9 @@ Defines the options for implicitly creating an app account.
 
 | Name    | Type    | Mandatory  | Description        |
 | ------- | ------ | ---- | ---------- |
-| requiredLabels   | Array&lt;string&gt; | No   | Labels required.|
-| authType   | string | No   | Authentication type.|
-| parameters   | {[key: string]: Object} | No   | Customized parameters.|
+| requiredLabels   | Array&lt;string&gt; | No   | Required labels. By default, no value is passed.|
+| authType   | string | No   | Authentication type. By default, no value is passed.|
+| parameters   | {[key: string]: Object} | No   | Custom parameter object. By default, no value is passed.|
 ## SelectAccountsOptions<sup>9+</sup>
 
 Defines the options for selecting accounts.
@@ -4503,9 +4501,9 @@ Defines the options for selecting accounts.
 
 | Name         | Type                        | Mandatory | Description               |
 | --------------- | --------------------------- | ----- | ------------------- |
-| allowedAccounts | Array&lt;[AppAccountInfo](#appaccountinfo)&gt; | No   | Allowed accounts.     |
-| allowedOwners   | Array&lt;string&gt;         | No   | Allowed account owners.|
-| requiredLabels  | Array&lt;string&gt;         | No   | Labels required for the authenticator.   |
+| allowedAccounts | Array&lt;[AppAccountInfo](#appaccountinfo)&gt; | No   | Array of allowed accounts. By default, no value is passed.    |
+| allowedOwners   | Array&lt;string&gt;         | No   | Array of the owners of the allowed accounts. By default, no value is passed.|
+| requiredLabels  | Array&lt;string&gt;         | No   | Labels of the authenticator. By default, no value is passed. |
 
 ## VerifyCredentialOptions<sup>9+</sup>
 
@@ -4515,9 +4513,9 @@ Represents the options for verifying the user credential.
 
 | Name         | Type                  | Mandatory | Description          |
 | -------------- | ---------------------- | ----- | -------------- |
-| credentialType | string                 | No   | Type of the credential to verify.     |
-| credential     | string                 | No   | Credential value.     |
-| parameters     | {[key: string]: Object} | No   | Customized parameters.|
+| credentialType | string                 | No   | Credential type. By default, no value is passed.     |
+| credential     | string                 | No   | Credential value. By default, no value is passed.     |
+| parameters     | {[key: string]: Object} | No   | Custom parameter object. By default, no value is passed.|
 
 
 ## SetPropertiesOptions<sup>9+</sup>
@@ -4528,8 +4526,8 @@ Represents the options for setting authenticator properties.
 
 | Name    | Type                   | Mandatory | Description          |
 | ---------- | ---------------------- | ----- | -------------- |
-| properties | {[key: string]: Object} | No   | Authenticator properties.     |
-| parameters | {[key: string]: Object} | No   | Customized parameters.|
+| properties | {[key: string]: Object} | No   | Property object. By default, no value is passed.     |
+| parameters | {[key: string]: Object} | No   | Custom parameter object. By default, no value is passed.|
 
 ## Constants<sup>8+</sup>
 
@@ -4539,23 +4537,23 @@ Enumerates the constants.
 
 | Name                           | Value                   | Description                  |
 | -------------------------------- | ---------------------- | ----------------------- |
-| ACTION_ADD_ACCOUNT_IMPLICITLY<sup>(deprecated)</sup>    | "addAccountImplicitly" | Operation of adding an account implicitly. |
-| ACTION_AUTHENTICATE<sup>(deprecated)</sup>              | "authenticate"         | Authentication operation.        |
-| ACTION_CREATE_ACCOUNT_IMPLICITLY<sup>9+</sup>    | "createAccountImplicitly" | Operation of creating an account implicitly. |
-| ACTION_AUTH<sup>9+</sup>              | "auth"         | Authentication operation.        |
-| ACTION_VERIFY_CREDENTIAL<sup>9+</sup>    | "verifyCredential" | Operation of verifying credentials. |
-| ACTION_SET_AUTHENTICATOR_PROPERTIES<sup>9+</sup> | "setAuthenticatorProperties" | Operation of setting authenticator properties.     |
-| KEY_NAME                         | "name"                 | Name of the app account. |
-| KEY_OWNER                        | "owner"                | Owner of the app account.|
-| KEY_TOKEN                        | "token"                | Token.        |
-| KEY_ACTION                       | "action"               | Operation.        |
-| KEY_AUTH_TYPE                    | "authType"             | Authentication type.    |
-| KEY_SESSION_ID                   | "sessionId"            | Session ID.    |
-| KEY_CALLER_PID                   | "callerPid"            | PID of the caller.   |
-| KEY_CALLER_UID                   | "callerUid"            | UID of the caller.   |
-| KEY_CALLER_BUNDLE_NAME           | "callerBundleName"     | Bundle name of the caller.   |
-| KEY_REQUIRED_LABELS<sup>9+</sup> | "requiredLabels"       | Required labels.   |
-| KEY_BOOLEAN_RESULT<sup>9+</sup>  | "booleanResult"        | Return value of the Boolean type.   |
+| ACTION_ADD_ACCOUNT_IMPLICITLY<sup>(deprecated)</sup>    | 'addAccountImplicitly' | Operation of adding an account implicitly. |
+| ACTION_AUTHENTICATE<sup>(deprecated)</sup>              | 'authenticate'         | Authentication operation.        |
+| ACTION_CREATE_ACCOUNT_IMPLICITLY<sup>9+</sup>    | 'createAccountImplicitly' | Operation of creating an account implicitly. |
+| ACTION_AUTH<sup>9+</sup>              | 'auth'         | Authentication operation.        |
+| ACTION_VERIFY_CREDENTIAL<sup>9+</sup>    | 'verifyCredential' | Operation of verifying credentials. |
+| ACTION_SET_AUTHENTICATOR_PROPERTIES<sup>9+</sup> | 'setAuthenticatorProperties' | Operation of setting authenticator properties.     |
+| KEY_NAME                         | 'name'                 | Name of the app account. |
+| KEY_OWNER                        | 'owner'                | Owner of the app account.|
+| KEY_TOKEN                        | 'token'                | Token.        |
+| KEY_ACTION                       | 'action'               | Operation.        |
+| KEY_AUTH_TYPE                    | 'authType'             | Authentication type.    |
+| KEY_SESSION_ID                   | 'sessionId'            | Session ID.    |
+| KEY_CALLER_PID                   | 'callerPid'            | PID of the caller.   |
+| KEY_CALLER_UID                   | 'callerUid'            | UID of the caller.   |
+| KEY_CALLER_BUNDLE_NAME           | 'callerBundleName'     | Bundle name of the caller.   |
+| KEY_REQUIRED_LABELS<sup>9+</sup> | 'requiredLabels'       | Required labels.   |
+| KEY_BOOLEAN_RESULT<sup>9+</sup>  | 'booleanResult'        | Return value of the Boolean type.   |
 
 ## ResultCode<sup>(deprecated)</sup>
 
@@ -4606,27 +4604,27 @@ Called to return the result of an authentication request.
 | Name   | Type                  | Mandatory  | Description    |
 | ------ | -------------------- | ---- | ------ |
 | code   | number               | Yes   | Authentication result code.|
-| result | [AuthResult](#authresult9) | No   | Authentication result. |
+| result | [AuthResult](#authresult9) | No   | Authentication result. By default, no value is passed, which means the authentication result is not received. |
 
 **Example**
 
   ```js
   let appAccountManager = account_appAccount.createAppAccountManager();
-  var sessionId = "1234";
+  var sessionId = '1234';
   appAccountManager.getAuthCallback(sessionId).then((callback) => {
       var result = {
           accountInfo: {
-            name: "Lisi",
-            owner: "com.example.accountjsdemo",
+            name: 'Lisi',
+            owner: 'com.example.accountjsdemo',
           },
           tokenInfo: {
-            token: "xxxxxx",
-            authType: "getSocialData"
+            token: 'xxxxxx',
+            authType: 'getSocialData'
           }
       };
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
   }).catch((err) => {
-      console.log("getAuthCallback err: "  + JSON.stringify(err));
+      console.log('getAuthCallback err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4650,20 +4648,20 @@ Called to redirect a request.
   class MyAuthenticator extends account_appAccount.Authenticator {
       createAccountImplicitly(options, callback) {
           callback.onRequestRedirected({
-              bundleName: "com.example.accountjsdemo",
-              abilityName: "com.example.accountjsdemo.LoginAbility",
+              bundleName: 'com.example.accountjsdemo',
+              abilityName: 'com.example.accountjsdemo.LoginAbility',
           });
       }
 
       auth(name, authType, options, callback) {
           var result = {
             accountInfo: {
-              name: "Lisi",
-              owner: "com.example.accountjsdemo",
+              name: 'Lisi',
+              owner: 'com.example.accountjsdemo',
             },
             tokenInfo: {
-              token: "xxxxxx",
-              authType: "getSocialData"
+              token: 'xxxxxx',
+              authType: 'getSocialData'
             }
           };
           callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
@@ -4683,11 +4681,11 @@ Called to continue to process the request.
 
   ```js
   let appAccountManager = account_appAccount.createAppAccountManager();
-  var sessionId = "1234";
+  var sessionId = '1234';
   appAccountManager.getAuthCallback(sessionId).then((callback) => {
       callback.onRequestContinued();
   }).catch((err) => {
-      console.log("getAuthCallback err: "  + JSON.stringify(err));
+      console.log('getAuthCallback err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4718,15 +4716,15 @@ Called to return the result of an authentication request.
 
   ```js
   let appAccountManager = account_appAccount.createAppAccountManager();
-  var sessionId = "1234";
+  var sessionId = '1234';
   appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
-      var result = {[account_appAccount.Constants.KEY_NAME]: "LiSi",
-                    [account_appAccount.Constants.KEY_OWNER]: "com.example.accountjsdemo",
-                    [account_appAccount.Constants.KEY_AUTH_TYPE]: "getSocialData",
-                    [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+      var result = {[account_appAccount.Constants.KEY_NAME]: 'LiSi',
+                    [account_appAccount.Constants.KEY_OWNER]: 'com.example.accountjsdemo',
+                    [account_appAccount.Constants.KEY_AUTH_TYPE]: 'getSocialData',
+                    [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
   }).catch((err) => {
-      console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
+      console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4750,15 +4748,15 @@ Called to redirect a request.
   class MyAuthenticator extends account_appAccount.Authenticator {
       addAccountImplicitly(authType, callerBundleName, options, callback) {
           callback.onRequestRedirected({
-              bundleName: "com.example.accountjsdemo",
-              abilityName: "com.example.accountjsdemo.LoginAbility",
+              bundleName: 'com.example.accountjsdemo',
+              abilityName: 'com.example.accountjsdemo.LoginAbility',
           });
       }
 
       authenticate(name, authType, callerBundleName, options, callback) {
           var result = {[account_appAccount.Constants.KEY_NAME]: name,
                         [account_appAccount.Constants.KEY_AUTH_TYPE]: authType,
-                        [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+                        [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
           callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
       }
   }
@@ -4776,11 +4774,11 @@ Called to continue to process the request.
 
   ```js
   let appAccountManager = account_appAccount.createAppAccountManager();
-  var sessionId = "1234";
+  var sessionId = '1234';
   appAccountManager.getAuthenticatorCallback(sessionId).then((callback) => {
       callback.onRequestContinued();
   }).catch((err) => {
-      console.log("getAuthenticatorCallback err: "  + JSON.stringify(err));
+      console.log('getAuthenticatorCallback err: ' + JSON.stringify(err));
   });
   ```
 
@@ -4940,22 +4938,22 @@ Obtains the remote object of an authenticator. This API cannot be overloaded.
   class MyAuthenticator extends account_appAccount.Authenticator {
     addAccountImplicitly(authType, callerBundleName, options, callback) {
       callback.onRequestRedirected({
-        bundleName: "com.example.accountjsdemo",
-        abilityName: "com.example.accountjsdemo.LoginAbility",
+        bundleName: 'com.example.accountjsdemo',
+        abilityName: 'com.example.accountjsdemo.LoginAbility',
       });
     }
 
     authenticate(name, authType, callerBundleName, options, callback) {
       var result = {[account_appAccount.Constants.KEY_NAME]: name,
                     [account_appAccount.Constants.KEY_AUTH_TYPE]: authType,
-                    [account_appAccount.Constants.KEY_TOKEN]: "xxxxxx"};
+                    [account_appAccount.Constants.KEY_TOKEN]: 'xxxxxx'};
       callback.onResult(account_appAccount.ResultCode.SUCCESS, result);
     }
 
     verifyCredential(name, options, callback) {
       callback.onRequestRedirected({
-        bundleName: "com.example.accountjsdemo",
-        abilityName: "com.example.accountjsdemo.VerifyAbility",
+        bundleName: 'com.example.accountjsdemo',
+        abilityName: 'com.example.accountjsdemo.VerifyAbility',
         parameters: {
           name: name
         }

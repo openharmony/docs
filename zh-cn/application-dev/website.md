@@ -654,7 +654,6 @@
     - [常见问题](key-features/multi-device-app-dev/faq.md)
   - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
   - Native API相关指导
-    - [Native API介绍](napi/introduction.md)
     - [Native API在应用工程中的使用指导](napi/napi-guidelines.md)
     - [Drawing开发指导](napi/drawing-guidelines.md)
     - [Rawfile开发指导](napi/rawfile-guidelines.md)
@@ -714,19 +713,16 @@
         - [颜色渐变](reference/arkui-ts/ts-universal-attributes-gradient-color.md)
         - [Popup控制](reference/arkui-ts/ts-universal-attributes-popup.md)
         - [Menu控制](reference/arkui-ts/ts-universal-attributes-menu.md)
-        - [点击控制](reference/arkui-ts/ts-universal-attributes-click.md)
         - [焦点控制](reference/arkui-ts/ts-universal-attributes-focus.md)
         - [悬浮态效果](reference/arkui-ts/ts-universal-attributes-hover-effect.md)
         - [组件标识](reference/arkui-ts/ts-universal-attributes-component-id.md)
-        - [触摸热区设置](reference/arkui-ts/ts-universal-attributes-touch-target.md)
         - [多态样式](reference/arkui-ts/ts-universal-attributes-polymorphic-style.md)
-        - [触摸测试控制](reference/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
-        - [组件背景模糊](reference/arkui-ts/ts-universal-attributes-backgroundBlurStyle.md)
         - [分布式迁移标识](reference/arkui-ts/ts-universal-attributes-restoreId.md)
         - [前景色设置](reference/arkui-ts/ts-universal-attributes-foreground-color.md)
-        - [图像球面效果](reference/arkui-ts/ts-universal-attributes-sphericalEffect.md)
-        - [图像渐亮效果](reference/arkui-ts/ts-universal-attributes-lightUpEffect.md)
-        - [图像边缘像素扩展效果](reference/arkui-ts/ts-universal-attributes-pixelStretchEffect.md)
+        - 触摸交互控制
+          - [点击控制](reference/arkui-ts/ts-universal-attributes-click.md)
+          - [触摸热区设置](reference/arkui-ts/ts-universal-attributes-touch-target.md)
+          - [触摸测试控制](reference/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
         - 模态转场设置
           - [全屏模态转场](reference/arkui-ts/ts-universal-attributes-modal-transition.md)
           - [半模态转场](reference/arkui-ts/ts-universal-attributes-sheet-transition.md)
@@ -837,7 +833,6 @@
       - [Matrix2D](reference/arkui-ts/ts-components-canvas-matrix2d.md)
       - [OffscreenCanvasRenderingContext2D对象](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
       - [Path2D对象](reference/arkui-ts/ts-components-canvas-path2d.md)
-      - [Lottie](reference/arkui-ts/ts-components-canvas-lottie.md)
     - 动画
       - [属性动画](reference/arkui-ts/ts-animatorproperty.md)
       - [显式动画](reference/arkui-ts/ts-explicit-animation.md)
@@ -1149,6 +1144,8 @@
         - continuation
           - [continuationExtraParams](reference/apis/js-apis-continuation-continuationExtraParams.md)
           - [continuationResult](reference/apis/js-apis-continuation-continuationResult.md)
+    - AI
+      - [@ohos.ai.mindSporeLite (推理能力)](reference/apis/js-apis-mindSporeLite.md)
     - 公共事件与通知
       - [系统公共事件定义](reference/apis/commonEventManager-definitions.md)
       - [@ohos.commonEventManager (公共事件模块)(推荐)](reference/apis/js-apis-commonEventManager.md)
@@ -1219,6 +1216,7 @@
       - [@ohos.animator (动画)](reference/apis/js-apis-animator.md)
       - [@ohos.arkui.componentSnapshot (组件截图)](reference/apis/js-apis-arkui-componentSnapshot.md)
       - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](reference/apis/js-apis-arkui-drawableDescriptor.md)
+      - [@ohos.arkui.UIContext (UIContext)](reference/apis/js-apis-arkui-UIContext.md)
       - [@ohos.curves (插值计算)](reference/apis/js-apis-curve.md)
       - [@ohos.font (注册自定义字体)](reference/apis/js-apis-font.md)
       - [@ohos.matrix4 (矩阵变换)](reference/apis/js-apis-matrix4.md)
@@ -1272,6 +1270,8 @@
       - [@ohos.userIAM.userAuth (用户认证)](reference/apis/js-apis-useriam-userauth.md)
       - security
         - [PermissionRequestResult](reference/apis/js-apis-permissionrequestresult.md)
+    - AI
+      - [使用MindSpore Lite引擎进行模型推理](ai/mindspore-lite-js-guidelines.md)
     - 数据管理
       - [@ohos.data.cloudData (端云协同)](reference/apis/js-apis-data-cloudData.md)
       - [@ohos.data.dataAbility (DataAbility谓词)](reference/apis/js-apis-data-ability.md)

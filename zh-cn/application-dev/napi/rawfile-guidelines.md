@@ -23,6 +23,92 @@
 | bool OH_ResourceManager_ReleaseRawFileDescriptor(const RawFileDescriptor &descriptor) | 释放rawfile的fd。                        |
 | void OH_ResourceManager_ReleaseNativeResourceManager(NativeResourceManager *resMgr) | 释放native resource manager相关资源。    |
 
+## 函数介绍
+
+1. 根据NativeResourceManager实例，使用OH_ResourceManager_OpenRawDir接口获取RawDir实例。
+
+    ```c++
+    RawDir* rawDir = OH_ResourceManager_OpenRawDir(nativeResourceManager, path.c_str());
+    ```
+
+2. 根据RawDir实例，使用OH_ResourceManager_GetRawFileCount接口获取对应目录下的rawfile文件总数 。
+
+    ```c++
+    int count = OH_ResourceManager_GetRawFileCount(rawDir);
+    ```
+
+3. 根据RawDir实例，使用OH_ResourceManager_GetRawFileName接口获取目录下对应index的rawfile文件名。
+
+    ```c++
+    for (int index = 0; index < count; index++) {
+        std::string fileName = OH_ResourceManager_GetRawFileName(rawDir, index);
+    }
+    ```
+
+4. 根据NativeResourceManager实例，使用OH_ResourceManager_OpenRawFile接口获取指定文件名的RawFile实例
+
+    ```c++
+    RawFile* rawFile = OH_ResourceManager_OpenRawFile(nativeResourceManager, fileName.c_str());
+    ```
+
+5. 根据RawFile实例，使用OH_ResourceManager_GetRawFileSize接口获取对应rawfile文件大小。
+
+    ```c++
+    long rawFileSize = OH_ResourceManager_GetRawFileSize(rawFile);
+    ```
+
+6. 根据RawFile实例，使用OH_ResourceManager_SeekRawFile接口指定rawfile偏移量。
+
+    ```c++
+    int position = OH_ResourceManager_SeekRawFile(rawFile, 10, 0);
+    int position = OH_ResourceManager_SeekRawFile(rawFile, 0 , 1);
+    int position = OH_ResourceManager_SeekRawFile(rawFile, -10, 2);
+    ```
+
+7. 根据RawFile实例，使用OH_ResourceManager_GetRawFileOffset接口获取rawfile偏移量。
+
+    ```c++
+    long rawFileOffset = OH_ResourceManager_GetRawFileOffset(rawFile)
+    ```
+
+8. 根据RawFile实例，使用OH_ResourceManager_ReadRawFile接口读取rawfile文件内容。
+
+    ```c++
+    std::unique_ptr<char[]> mediaData = std::make_unique<char[]>(rawFileSize);
+    long rawFileOffset = OH_ResourceManager_ReadRawFile(rawFile, mediaData.get(), rawFileSize);
+    ```
+
+9. 根据RawFile实例，使用OH_ResourceManager_CloseRawFile接口释放rawfile文件相关资源。
+
+    ```c++
+    OH_ResourceManager_CloseRawFile(rawFile);
+    ```
+
+10. 根据RawDir实例，使用OH_ResourceManager_CloseRawDir接口释放rawfile目录相关资源。
+
+    ```c++
+    OH_ResourceManager_CloseRawDir(rawDir);
+    ```
+
+11. 根据RawFile实例，使用OH_ResourceManager_GetRawFileDescriptor接口获取rawfile的RawFileDescriptor。
+
+    ```c++
+    RawFileDescriptor descriptor;
+    bool result = OH_ResourceManager_GetRawFileDescriptor(rawFile, descriptor);
+    ```
+
+12. 根据RawFileDescriptor实例，使用OH_ResourceManager_ReleaseRawFileDescriptor接口关闭rawfile的fd。
+
+    ```c++
+    OH_ResourceManager_ReleaseRawFileDescriptor(descriptor);
+    ```
+
+13. 根据NativeResourceManager实例，使用OH_ResourceManager_ReleaseNativeResourceManager接口释放native resource manager。
+
+    ```c++
+    OH_ResourceManager_ReleaseNativeResourceManager(nativeResourceManager);
+    ```
+
 ## 开发步骤
 
    以Js侧获取rawfile文件列表、rawfile文件内容、rawfile描述符{fd, offset, length}三种调用方式为例。
@@ -293,89 +379,6 @@
     }
     ```
 
-## 函数介绍
-
-1. 根据NativeResourceManager实例，使用OH_ResourceManager_OpenRawDir接口获取RawDir实例。
-
-    ```c++
-    RawDir* rawDir = OH_ResourceManager_OpenRawDir(nativeResourceManager, path.c_str());
-    ```
-    
-2. 根据RawDir实例，使用OH_ResourceManager_GetRawFileCount接口获取对应目录下的rawfile文件总数 。
-
-    ```c++
-    int count = OH_ResourceManager_GetRawFileCount(rawDir);
-    ```
-    
-3. 根据RawDir实例，使用OH_ResourceManager_GetRawFileName接口获取目录下对应index的rawfile文件名。
-
-    ```c++
-    for (int index = 0; index < count; index++) {
-        std::string fileName = OH_ResourceManager_GetRawFileName(rawDir, index);
-    }
-    ```
-
-4. 根据NativeResourceManager实例，使用OH_ResourceManager_OpenRawFile接口获取指定文件名的RawFile实例
-
-    ```c++
-    RawFile* rawFile = OH_ResourceManager_OpenRawFile(nativeResourceManager, fileName.c_str());
-    ```
-    
-5. 根据RawFile实例，使用OH_ResourceManager_GetRawFileSize接口获取对应rawfile文件大小。
-
-    ```c++
-    long rawFileSize = OH_ResourceManager_GetRawFileSize(rawFile);
-    ```
-
-6. 根据RawFile实例，使用OH_ResourceManager_SeekRawFile接口指定rawfile偏移量。
-
-    ```c++
-    int position = OH_ResourceManager_SeekRawFile(rawFile, 10, 0);
-    int position = OH_ResourceManager_SeekRawFile(rawFile, 0 , 1);
-    int position = OH_ResourceManager_SeekRawFile(rawFile, -10, 2);
-    ```
-
-7. 根据RawFile实例，使用OH_ResourceManager_GetRawFileOffset接口获取rawfile偏移量。
-
-    ```c++
-    long rawFileOffset = OH_ResourceManager_GetRawFileOffset(rawFile)
-    ```
-
-8. 根据RawFile实例，使用OH_ResourceManager_ReadRawFile接口读取rawfile文件内容。
-
-    ```c++
-    std::unique_ptr<char[]> mediaData = std::make_unique<char[]>(rawFileSize);
-    long rawFileOffset = OH_ResourceManager_ReadRawFile(rawFile, mediaData.get(), rawFileSize);
-    ```
-
-9. 根据RawFile实例，使用OH_ResourceManager_CloseRawFile接口释放rawfile文件相关资源。
-
-    ```c++
-    OH_ResourceManager_CloseRawFile(rawFile);
-    ```
-
-10. 根据RawDir实例，使用OH_ResourceManager_CloseRawDir接口释放rawfile目录相关资源。
-
-    ```c++
-    OH_ResourceManager_CloseRawDir(rawDir);
-    ```
-
-11. 根据RawFile实例，使用OH_ResourceManager_GetRawFileDescriptor接口获取rawfile的RawFileDescriptor。
-
-    ```c++
-    RawFileDescriptor descriptor;
-    bool result = OH_ResourceManager_GetRawFileDescriptor(rawFile, descriptor);
-    ```
-
-12. 根据RawFileDescriptor实例，使用OH_ResourceManager_ReleaseRawFileDescriptor接口关闭rawfile的fd。
-
-    ```c++
-    OH_ResourceManager_ReleaseRawFileDescriptor(descriptor);
-    ```
-
-13. 根据NativeResourceManager实例，使用OH_ResourceManager_ReleaseNativeResourceManager接口释放native resource manager。
-
-    ```c++
-    OH_ResourceManager_ReleaseNativeResourceManager(nativeResourceManager);
-    ```
+## 相关实例
+- [`NdkRawfile`：获取Rawfile资源](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Native/NdkRawfile)
 

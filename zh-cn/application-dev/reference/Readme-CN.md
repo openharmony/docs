@@ -9,5 +9,6 @@
 - [接口参考（ArkTS及JS API）](apis/Readme-CN.md)
 - [错误码参考](errorcodes/Readme-CN.md)
 - 接口参考（Native API）
+  - [Native API（NDK）入门](native-api-intro.md)
   - [OpenHarmony Native API](native-apis/Readme-CN.md)
   - [Native API标准库](native-lib/Readme-CN.md)

@@ -67,6 +67,7 @@ getDefaultNet(callback: AsyncCallback\<NetHandle>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -100,6 +101,7 @@ getDefaultNet(): Promise\<NetHandle>
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -132,6 +134,7 @@ getDefaultNetSync(): NetHandle
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -161,6 +164,8 @@ getGlobalHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
+| 401     | Parameter error.             |
+| 202     | Non-system applications use system APIs.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -193,6 +198,8 @@ getGlobalHttpProxy(): Promise\<HttpProxy>;
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
+| 401     | Parameter error.             |
+| 202     | Non-system applications use system APIs.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -231,6 +238,7 @@ setGlobalHttpProxy(httpProxy: HttpProxy, callback: AsyncCallback\<void>): void
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
+| 202     | Non-system applications use system APIs.               |
 | 2100001 | Invalid parameter value.                |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
@@ -280,6 +288,7 @@ setGlobalHttpProxy(httpProxy: HttpProxy): Promise\<void>;
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
+| 202     | Non-system applications use system APIs.               |
 | 2100001 | Invalid parameter value.                |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
@@ -319,6 +328,7 @@ getAppNet(callback: AsyncCallback\<NetHandle>): void
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
+| 401 | Parameter error.|
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -349,6 +359,7 @@ getAppNet(): Promise\<NetHandle>;
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
+| 401 | Parameter error.|
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -465,6 +476,7 @@ getAllNets(callback: AsyncCallback&lt;Array&lt;NetHandle&gt;&gt;): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -498,6 +510,7 @@ getAllNets(): Promise&lt;Array&lt;NetHandle&gt;&gt;
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -690,6 +703,7 @@ isDefaultNetMetered(callback: AsyncCallback\<boolean>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -723,6 +737,7 @@ isDefaultNetMetered(): Promise\<boolean>
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -755,6 +770,7 @@ hasDefaultNet(callback: AsyncCallback\<boolean>): void
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -788,6 +804,7 @@ hasDefaultNet(): Promise\<boolean>
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -821,7 +838,9 @@ enableAirplaneMode(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
-| 202 | Non-system applications use system APIs.|
+| 201     | Permission denied.             |
+| 202     | Non-system applications use system APIs.              |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -855,7 +874,9 @@ enableAirplaneMode(): Promise\<void>
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
-| 202 | Non-system applications use system APIs.|
+| 201     | Permission denied.             |
+| 202     | Non-system applications use system APIs.              |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -889,7 +910,9 @@ disableAirplaneMode(callback: AsyncCallback\<void>): void
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
-| 202 | Non-system applications use system APIs.|
+| 201     | Permission denied.             |
+| 202     | Non-system applications use system APIs.              |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -923,7 +946,9 @@ disableAirplaneMode(): Promise\<void>
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
-| 202 | Non-system applications use system APIs.|
+| 201     | Permission denied.             |
+| 202     | Non-system applications use system APIs.              |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 

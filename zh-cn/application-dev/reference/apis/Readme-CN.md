@@ -113,6 +113,8 @@
     - continuation
       - [continuationExtraParams](js-apis-continuation-continuationExtraParams.md)
       - [continuationResult](js-apis-continuation-continuationResult.md)
+- AI
+  - [@ohos.ai.mindSporeLite (推理能力)](js-apis-mindSporeLite.md)
 
 - 公共事件与通知
   - [系统公共事件定义](commonEventManager-definitions.md)
@@ -185,6 +187,7 @@
   - [@ohos.animator (动画)](js-apis-animator.md)
   - [@ohos.arkui.componentSnapshot (组件截图)](js-apis-arkui-componentSnapshot.md)
   - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
+  - [@ohos.arkui.UIContext (UIContext)](js-apis-arkui-UIContext.md)
   - [@ohos.curves (插值计算)](js-apis-curve.md)
   - [@ohos.font (注册自定义字体)](js-apis-font.md)
   - [@ohos.matrix4 (矩阵变换)](js-apis-matrix4.md)
@@ -227,6 +230,7 @@
   - [@ohos.distributedMissionManager (分布式任务管理)](js-apis-distributedMissionManager.md)
   - [@ohos.reminderAgentManager (后台代理提醒)](js-apis-reminderAgentManager.md)
   - [@ohos.resourceschedule.backgroundTaskManager (后台任务管理)](js-apis-resourceschedule-backgroundTaskManager.md)
+  - [@ohos.resourceschedule.deviceStandby（设备待机模块）](js-apis-resourceschedule-deviceStandby.md)
   - [@ohos.resourceschedule.workScheduler (延迟任务调度)](js-apis-resourceschedule-workScheduler.md)
   - [@ohos.resourceschedule.usageStatistics (设备使用信息统计)](js-apis-resourceschedule-deviceUsageStatistics.md)
   - [@ohos.WorkSchedulerExtensionAbility (延迟任务调度回调)](js-apis-WorkSchedulerExtensionAbility.md)
@@ -477,4 +481,4 @@
     - [remoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)
     - [shortcutInfo](js-apis-bundle-ShortcutInfo.md)
   - data/rdb
-    - [resultSet (结果集)](js-apis-data-resultset.md)
+    - [resultSet (结果集)](js-apis-data-resultset.md) 
