@@ -1,5 +1,9 @@
 # OpenHarmony Project
 
+> **NOTE**
+>
+> You are reading documents of OpenHarmony 4.0 Beta1. Obtain the [compatible SDK](release-notes/OpenHarmony-v4.0-beta1.md#version-mapping) during your application development.
+
 ## Introduction
 
 OpenHarmony is an open-source project incubated and operated by the OpenAtom Foundation. The purpose of this project is to build an open-source, distributed operating system (OS) framework for smart devices in all scenarios of a fully-connected world.
