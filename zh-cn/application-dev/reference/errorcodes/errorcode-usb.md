@@ -21,3 +21,21 @@ Permission denied. Need call requestRight to get permission.
 **处理步骤**
 
 调用requestRight方法申请设备的使用权限。
+
+## 14400002 HDC功能被禁用
+
+**错误信息**
+
+Permission denied.The HDC is disabled by the system.
+
+**错误描述**
+
+HDC被系统禁用。
+
+**可能原因**
+
+没有申请USB调试权限。
+
+**处理步骤**
+
+申请USB调试权限。
