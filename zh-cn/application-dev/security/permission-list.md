@@ -428,7 +428,7 @@
 
 允许应用读取其他应用的敏感权限的状态。
 
-**权限级别**：system_core
+**权限级别**：system_basic
 
 **授权方式**：system_grant
 

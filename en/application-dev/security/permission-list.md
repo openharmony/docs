@@ -428,7 +428,7 @@ Allows an application to revoke sensitive permissions granted to other applicati
 
 Allows an application to obtain the sensitive permissions that have been granted to other applications.
 
-**Permission level**: system_core
+**Permission level**: system_basic
 
 **Authorization mode**: system_grant
 
