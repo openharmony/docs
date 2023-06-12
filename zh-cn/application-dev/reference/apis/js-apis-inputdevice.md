@@ -180,7 +180,7 @@ try {
 
 off(type: "change", listener?: Callback&lt;DeviceListener&gt;): void
 
-取消监听输入设备的热插拔事件。
+取消监听输入设备的热插拔事件。在应用结束前调用，取消监听。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
