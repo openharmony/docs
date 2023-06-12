@@ -2,11 +2,11 @@
 
 ## cl.vibrator.1 新增自定义振动相关属性
 
-新增自定义振动相关属性VibrateFromFile，HapticFileDescriptor。
+新增自定义振动效果属性VibrateFromFile，自定义振动配置文件描述符属性HapticFileDescriptor；振动下发接口startVibration支持的振动效果由VibrateEffect = VibrateTime | VibratePreset扩展为VibrateEffect = VibrateTime | VibratePreset | VibrateFromFile。
 
 **变更影响**
 
-基于OpenHarmony4.0.8.2及之后的SDK版本开发的应用，可使用VibrateFromFile属性播放自定义振动文件中配置的振动序列。
+基于OpenHarmony4.0.8.2及之后的SDK版本开发的应用，可使用VibrateFromFile属性在支持自定义振动的设备上播放自定义振动文件中配置的振动序列。
 
 **关键接口/组件变更**
 
