@@ -854,7 +854,7 @@ window.getLastWindow(this.context, (error, win) => {
 | CURSOR_CROSS | 40 | 十字光标 |![Cursor_Cross.png](./figures/Cursor_Cross.png)|
 | CURSOR_CIRCLE | 41 | 圆形光标 |![Cursor_Circle.png](./figures/Cursor_Circle.png)|
 
-## pointer.setTouchpadScrollSwitch\<sup>10+</sup>
+## pointer.setTouchpadScrollSwitch<sup>10+</sup>
 
 setTouchpadScrollSwitch(state: boolean, callback: AsyncCallback\<void>): void
 
@@ -891,7 +891,7 @@ try {
 
 setTouchpadScrollSwitch(state: boolean): Promise\<void>
 
-设置触控板滚轴开关，使用AsyncCallback异步方式返回结果。
+设置触控板滚轴开关，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -907,7 +907,7 @@ setTouchpadScrollSwitch(state: boolean): Promise\<void>
 
 | 参数                  | 说明               |
 | ------------------- | ---------------- |
-| Promise<void> | Promise对象。 |
+| Promise\<void> | Promise对象。 |
 
 **示例**：
 
@@ -1014,7 +1014,7 @@ try {
 
 setTouchpadScrollDirection(state: boolean): Promise\<void>
 
-设置触控板滚轴的方向，使用AsyncCallback异步方式返回结果。
+设置触控板滚轴的方向，使用Promise异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
