@@ -21,11 +21,15 @@
 | ohos.vibrator | isSupportEffect(effectId: string): Promise&lt;boolean&gt;    | 查询是否支持传入的参数effectId。返回true则表示支持，否则不支持 |
 | ohos.vibrator | isSupportEffect(effectId: string, callback: AsyncCallback&lt;boolean&gt;): void | 查询是否支持传入的参数effectId。返回true则表示支持，否则不支持 |
 
-## 自定义振动支持的格式
+
+## 自定义振动格式
+
+自定义振动提供给用户设计自己所需振动效果的能力，用户可通过自定义振动配置文件，并遵循相应规则编排所需振动形式，使能更加开放的振感交互体验。
+
 自定义振动配置文件为Json格式，在形式上如下所示：
 
-   ```js
-   {
+```js
+{
     "MetaData": {
         "Create": "2023-01-09",
         "Description": "a haptic case",
@@ -62,13 +66,13 @@
             ]
         }
     ]
-   }
-   ```
+}
+```
 
-Json共包含2个属性。"MetaData"：文件头信息，可在相应属性中添加描述，必填项："Version"表示文件格式的版本号，向前兼容，目前起步仅支持版本1.0；"ChannelNumber"表示马达振动的通道数，目前仅支持单通道，规定为1。其他为选填项："Create"可记录文件创作时间；"Description"可指明振动效果、创建信息等附加说明。"Channels"：马达振动通道的相关信息。
+Json文件共包含2个属性。"MetaData"为文件头信息，可在相应属性中添加描述，其中包含必填项："Version"表示文件格式的版本号，向前兼容，目前起步仅支持版本1.0；"ChannelNumber"表示马达振动的通道数，目前仅支持单通道，规定为1；其他为选填项："Create"可记录文件创作时间；"Description"可指明振动效果、创建信息等附加说明。"Channels"为马达振动通道的相关信息。
 
-   ```js
-   {
+```js
+{
     "MetaData": {
         "Create": "2023-01-09",
         "Description": "a haptic case",
@@ -76,56 +80,56 @@ Json共包含2个属性。"MetaData"：文件头信息，可在相应属性中�
         "ChannelNumber": 1
     },
     "Channels": [ ... ]
-   }
-   ```
+}
+```
 
-"Channels"是Json数组，表示各个通道的信息，包含两个属性。"Parameters"：对改通道参数设置。"Index"为通道编号，单通道下规定为1，其他参数待后续扩展。"Pattern"：为马达振动序列，为Json数组。
+"Channels"是Json数组，表示各个通道的信息，包含两个属性。"Parameters"为通道参数，其中，"Index"为通道编号，单通道下规定为1，其他参数待后续扩展。"Pattern"为马达振动序列，为Json数组。
 
-   ```js
-   "Channels": [
-        {
-            "Parameters": {
-                "Index": 1
-            },
-            "Pattern": [ ... ]
-        }
-   ]
-   ```
+```js
+"Channels": [
+    {
+        "Parameters": {
+            "Index": 1
+        },
+        "Pattern": [ ... ]
+    }
+]
+```
 
 "Pattern"中每个"Event"属性代表1个振动事件，支持添加2种振动类型。类型1："transient"类型，瞬态短振动，干脆有力；类型2："continuous"类型，稳态长振动，具备长时间输出强劲有力振动的能力。
 
-   ```js
-   "Pattern": [
-        {
-            "Event": {
-                "Type": "transient",
-                "StartTime": 0,
-                "Parameters": {
-                    "Intensity": 100,
-                    "Frequency": 31
-                }
-            }
-        },
-        {
-            "Event": {
-                "Type": "continuous",
-                "StartTime": 100,
-                "Duration": 54,
-                "Parameters": {
-                    "Intensity": 38,
-                    "Frequency": 30
-                }
+```js
+"Pattern": [
+    {
+        "Event": {
+            "Type": "transient",
+            "StartTime": 0,
+            "Parameters": {
+                "Intensity": 100,
+                "Frequency": 31
             }
         }
-    ]
-   ```
+    },
+    {
+        "Event": {
+            "Type": "continuous",
+            "StartTime": 100,
+            "Duration": 54,
+            "Parameters": {
+                "Intensity": 38,
+                "Frequency": 30
+            }
+        }
+    }
+]
+```
 
 振动事件参数信息具体如下表：
 
 | 参数 | 说明 | 范围|
 | --- | ------------------------ | ---|
 | Type | 振动事件类型 | "transient" 或"continuous"|
-| StartTime | 振动的起始时间 | 单位ms，有效范围为[0, 1800 000]，且振动事件不能重叠|
+| StartTime | 振动的起始时间 | 单位ms，有效范围为[0, 1800 000]，振动事件不能重叠|
 | Duration | 振动持续时间，仅当类型为"continuous"时可用 | 单位ms，有效范围为(10, 1600)|
 | Intensity | 振动强度 | 有效范围为[0, 100]，这里的强度值为相对值，并不代表真实强度|
 | Frequency | 振动频率 | 有效范围为[0, 100]，这里的频率值为相对值，并不代表真实频率|
@@ -137,178 +141,180 @@ Json共包含2个属性。"MetaData"：文件头信息，可在相应属性中�
 | 振动事件(event)的数量 | 不得超过128个 |
 | 振动配置文件长度 | 不得超过64KB |
 
+
 ## 开发步骤
 
 1. 控制设备上的振动器，需要申请权限ohos.permission.VIBRATE。具体配置方式请参考[权限申请声明](../security/accesstoken-guidelines.md)。
 
 2. 根据指定振动效果和振动属性触发马达振动。
 
-   ```js
-   import vibrator from '@ohos.vibrator';
-   try {
-       vibrator.startVibration({ // 使用startVibration需要添加ohos.permission.VIBRATE权限
-           type: 'time',
-           duration: 1000,
-       }, {
-           id: 0,
-           usage: 'alarm'
-       }, (error) => {
-           if (error) {
-               console.error('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
-               return;
-           }
-           console.log('Callback returned to indicate a successful vibration.');
-       });
-   } catch (err) {
-       console.error('errCode: ' + err.code + ' ,msg: ' + err.message);
-   }
-   ```
+```js
+import vibrator from '@ohos.vibrator';
+try {
+    vibrator.startVibration({ // 使用startVibration需要添加ohos.permission.VIBRATE权限
+        type: 'time',
+        duration: 1000,
+    }, {
+        id: 0,
+        usage: 'alarm'
+    }, (error) => {
+        if (error) {
+            console.error('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
+            return;
+        }
+        console.log('Callback returned to indicate a successful vibration.');
+    });
+} catch (err) {
+    console.error('errCode: ' + err.code + ' ,msg: ' + err.message);
+}
+```
 
 3. 按照指定模式停止马达的振动。 
 
-   ```js
-   import vibrator from '@ohos.vibrator';
-   try {
-     // 按照VIBRATOR_STOP_MODE_TIME模式停止振动， 使用stopVibration需要添加ohos.permission.VIBRATE权限
-     vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, function (error) {
-         if (error) {
-             console.log('error.code' + error.code + 'error.message' + error.message);
-             return;
-         }
-         console.log('Callback returned to indicate successful.');
-     })
-   } catch (err) {
-     console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
-   }
-   ```
-   
+```js
+import vibrator from '@ohos.vibrator';
+try {
+    // 按照VIBRATOR_STOP_MODE_TIME模式停止振动， 使用stopVibration需要添加ohos.permission.VIBRATE权限
+    vibrator.stopVibration(vibrator.VibratorStopMode.VIBRATOR_STOP_MODE_TIME, function (error) {
+        if (error) {
+            console.log('error.code' + error.code + 'error.message' + error.message);
+            return;
+        }
+        console.log('Callback returned to indicate successful.');
+    })
+} catch (err) {
+    console.info('errCode: ' + err.code + ' ,msg: ' + err.message);
+}
+```
+
 4. 停止所有模式的马达振动。
 
-   ```js
-   import vibrator from '@ohos.vibrator';
-   // 使用startVibration、stopVibration需要添加ohos.permission.VIBRATE权限
-   try {
-       vibrator.startVibration({
-           type: 'time',
-           duration: 1000,
-       }, {
-           id: 0,
-           usage: 'alarm'
-       }, (error) => {
-           if (error) {
-               console.error('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
-               return;
-           }
-           console.log('Callback returned to indicate a successful vibration.');
-       });
-       // 停止所有类型的马达振动
-       vibrator.stopVibration(function (error) {
-           if (error) {
-               console.log('error.code' + error.code + 'error.message' + error.message);
-               return;
-           }
-           console.log('Callback returned to indicate successful.');
-       })
-   } catch (error) {
-       console.info('errCode: ' + error.code + ' ,msg: ' + error.message);
-   }
-   ```
+```js
+import vibrator from '@ohos.vibrator';
+// 使用startVibration、stopVibration需要添加ohos.permission.VIBRATE权限
+try {
+    vibrator.startVibration({
+        type: 'time',
+        duration: 1000,
+    }, {
+        id: 0,
+        usage: 'alarm'
+    }, (error) => {
+        if (error) {
+            console.error('vibrate fail, error.code: ' + error.code + 'error.message: ', + error.message);
+            return;
+        }
+        console.log('Callback returned to indicate a successful vibration.');
+    });
+    // 停止所有类型的马达振动
+    vibrator.stopVibration(function (error) {
+        if (error) {
+            console.log('error.code' + error.code + 'error.message' + error.message);
+            return;
+        }
+        console.log('Callback returned to indicate successful.');
+    })
+} catch (error) {
+    console.info('errCode: ' + error.code + ' ,msg: ' + error.message);
+}
+```
 
 5. 查询是否支持传入的参数effectId。
 
-   ```js
-   import vibrator from '@ohos.vibrator';
-   try {
-       // 查询是否支持'haptic.clock.timer'
-       vibrator.isSupportEffect('haptic.clock.timer', function (err, state) {
-           if (err) {
-               console.error('isSupportEffect failed, error:' + JSON.stringify(err));
-               return;
-           }
-           console.log('The effectId is ' + (state ? 'supported' : 'unsupported'));
-           if (state) {
-               try {
-                   vibrator.startVibration({ // 使用startVibration需要添加ohos.permission.VIBRATE权限
-                       type: 'preset',
-                       effectId: 'haptic.clock.timer',
-                       count: 1,
-                   }, {
-                       usage: 'unknown'
-                   }, (error) => {
-                       if(error) {
-                           console.error('haptic.clock.timer vibrator error:'  + JSON.stringify(error));
-                       } else {
-                           console.log('haptic.clock.timer vibrator success');
-                       }
-                   });
-               } catch (error) {
-                   console.error('Exception in, error:' + JSON.stringify(error));
-               }
-           }
-       })
-   } catch (error) {
-       console.error('Exception in, error:' + JSON.stringify(error));
-   }
-   ```
+```js
+import vibrator from '@ohos.vibrator';
+try {
+    // 查询是否支持'haptic.clock.timer'
+    vibrator.isSupportEffect('haptic.clock.timer', function (err, state) {
+        if (err) {
+            console.error('isSupportEffect failed, error:' + JSON.stringify(err));
+            return;
+        }
+        console.log('The effectId is ' + (state ? 'supported' : 'unsupported'));
+        if (state) {
+            try {
+                vibrator.startVibration({ // 使用startVibration需要添加ohos.permission.VIBRATE权限
+                    type: 'preset',
+                    effectId: 'haptic.clock.timer',
+                    count: 1,
+                }, {
+                    usage: 'unknown'
+                }, (error) => {
+                    if(error) {
+                        console.error('haptic.clock.timer vibrator error:'  + JSON.stringify(error));
+                    } else {
+                        console.log('haptic.clock.timer vibrator success');
+                    }
+                });
+            } catch (error) {
+                console.error('Exception in, error:' + JSON.stringify(error));
+            }
+        }
+    })
+} catch (error) {
+    console.error('Exception in, error:' + JSON.stringify(error));
+}
+```
 
 6. 启动和停止自定义振动
 
-   ```js
-   import vibrator from '@ohos.vibrator';
-   import resourceManager from '@ohos.resourceManager';
+```js
+import vibrator from '@ohos.vibrator';
+import resourceManager from '@ohos.resourceManager';
 
-   const FILE_NAME = "xxx.json";
+const FILE_NAME = "xxx.json";
 
-   async function openResource(fileName) {
-        let fileDescriptor = undefined;
-        let mgr = await resourceManager.getResourceManager();
-        await mgr.getRawFd(fileName).then(value => {
-            fileDescriptor = {fd: value.fd, offset: value.offset, length: value.length};
-            console.log('openResource success fileName: ' + fileName);
-        }).catch(error => {
-            console.log('openResource err: ' + error);
-        });
-        return fileDescriptor;
-   }
+async function openResource(fileName) {
+    let fileDescriptor = undefined;
+    let mgr = await resourceManager.getResourceManager();
+    await mgr.getRawFd(fileName).then(value => {
+        fileDescriptor = {fd: value.fd, offset: value.offset, length: value.length};
+        console.log('openResource success fileName: ' + fileName);
+    }).catch(error => {
+        console.log('openResource err: ' + error);
+    });
+    return fileDescriptor;
+}
 
-   async function closeResource(fileName) {
-        let mgr = await resourceManager.getResourceManager();
-        await mgr.closeRawFd(fileName).then(()=> {
-            console.log('closeResource success fileName: ' + fileName);
-        }).catch(error => {
-            console.log('closeResource err: ' + error);
-        });
-   }
+async function closeResource(fileName) {
+    let mgr = await resourceManager.getResourceManager();
+    await mgr.closeRawFd(fileName).then(()=> {
+        console.log('closeResource success fileName: ' + fileName);
+    }).catch(error => {
+        console.log('closeResource err: ' + error);
+    });
+}
 
-   // 获取振动文件资源描述符
-   let rawFd = openResource(FILE_NAME);
-   // 使用startVibration、stopVibration需要添加ohos.permission.VIBRATE权限
-   try {
-        // 启动自定义振动
-        vibrator.startVibration({
-            type: "file",
-            hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
-        }, {
-            usage: "alarm"
-        }).then(() => {
-            console.info('startVibration success');
-        }, (error) => {
-            console.info('startVibration error');
-        });
-        // 停止所有类型的马达振动
-        vibrator.stopVibration(function (error) {
-            if (error) {
-                console.log('error.code' + error.code + 'error.message' + error.message);
-                return;
-            }
-            console.log('Callback returned to indicate successful.');
-        })
-   } catch (error) {
-        console.info('errCode: ' + error.code + ' ,msg: ' + error.message);
-   }
-   // 关闭振动文件资源
-   closeResource(FILE_NAME);
-   ```
+// 获取振动文件资源描述符
+let rawFd = openResource(FILE_NAME);
+// 使用startVibration、stopVibration需要添加ohos.permission.VIBRATE权限
+try {
+    // 启动自定义振动
+    vibrator.startVibration({
+        type: "file",
+        hapticFd: { fd: rawFd.fd, offset: rawFd.offset, length: rawFd.length }
+    }, {
+        usage: "alarm"
+    }).then(() => {
+        console.info('startVibration success');
+    }, (error) => {
+        console.info('startVibration error');
+    });
+    // 停止所有类型的马达振动
+    vibrator.stopVibration(function (error) {
+        if (error) {
+            console.log('error.code' + error.code + 'error.message' + error.message);
+            return;
+        }
+        console.log('Callback returned to indicate successful.');
+    })
+} catch (error) {
+    console.info('errCode: ' + error.code + ' ,msg: ' + error.message);
+}
+// 关闭振动文件资源
+closeResource(FILE_NAME);
+```
+
 
 ## 相关实例
 

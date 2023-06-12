@@ -1,5 +1,6 @@
 # 泛Sensor子系统Changelog
 
+
 ## cl.vibrator.1 新增自定义振动相关属性
 
 新增自定义振动效果属性VibrateFromFile，自定义振动配置文件描述符属性HapticFileDescriptor；振动下发接口startVibration支持的振动效果由VibrateEffect = VibrateTime | VibratePreset扩展为VibrateEffect = VibrateTime | VibratePreset | VibrateFromFile。

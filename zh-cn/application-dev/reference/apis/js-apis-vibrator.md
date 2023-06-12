@@ -434,7 +434,7 @@ try {
 
 预置的振动效果。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+**系统能力**：SystemCapability.Sensors.MiscDevice
 
 | 名称               | 值                   | 说明                             |
 | ------------------ | -------------------- | -------------------------------- |
@@ -445,7 +445,7 @@ try {
 
 停止的振动模式。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+**系统能力**：SystemCapability.Sensors.MiscDevice
 
 | 名称                      | 值       | 说明                           |
 | ------------------------- | -------- | ------------------------------ |
@@ -456,76 +456,76 @@ try {
 
 马达振动效果。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+**系统能力**：SystemCapability.Sensors.MiscDevice
 
 | 类型                             | 说明                           |
 | -------------------------------- | ------------------------------ |
 | [VibrateTime](#vibratetime9)     | 按照指定持续时间触发马达振动。 |
 | [VibratePreset](#vibratepreset9) | 按照预置振动类型触发马达振动。 |
-| [VibrateFromFile](#vibratefromfile10) | 按照振动配置文件触发马达振动。 |
+| [VibrateFromFile<sup>10+</sup>](#vibratefromfile10) | 按照自定义振动配置文件触发马达振动。 |
 
 ## VibrateTime<sup>9+</sup>
 
 马达振动时长。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+**系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称     | 值 | 说明                           |
+| 名称     | 类型 | 说明                           |
 | -------- | ------ | ------------------------------ |
-| type     | "time" | 按照指定持续时间触发马达振动。 |
-| duration | -      | 马达持续振动时长, 单位ms。         |
+| type     | string | 值为"time"，按照指定持续时间触发马达振动。 |
+| duration | number | 马达持续振动时长, 单位ms。         |
 
 ## VibratePreset<sup>9+</sup>
 
 马达预置振动类型。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+**系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称     | 值       | 说明                           |
+| 名称     | 类型       | 说明                           |
 | -------- | -------- | ------------------------------ |
-| type     | "preset" | 按照预置振动效果触发马达振动。 |
-| effectId | -        | 预置的振动效果ID。             |
-| count    | -        | 重复振动的次数。               |
+| type     | string | 值为"preset"，按照预置振动效果触发马达振动。 |
+| effectId | string | 预置的振动效果ID。             |
+| count    | number | 重复振动的次数。               |
 
 ## VibrateFromFile<sup>10+</sup>
 
 自定义振动类型，仅部分设备支持。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+**系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称     | 值       | 说明                           |
-| -------- | -------- | ------------------------------ |
-| type     | "file" | 按照振动配置文件触发马达振动。 |
-| hapticFd | -        | 振动配置文件的描述符，类型为[HapticFileDescriptor](#hapticfiledescriptor10)。             |
+| 名称     | 类型       | 说明                           |
+| -------- | --------  | ------------------------------ |
+| type     | string    | 值为"file"，按照振动配置文件触发马达振动。 |
+| hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10) | 振动配置文件的描述符。|
 
 ## HapticFileDescriptor<sup>10+</sup>
 
-自定义振动配置文件描述符，必须确认资源文件可用，可通过[文件管理API](js-apis-file-fs.md#fsopen)从沙箱路径获取或者通过[资源管理API](js-apis-resource-manager.md#getrawfd9)从HAP资源获取。使用场景：振动序列被存储在一个文件中，需要根据偏移量和长度进行振动，振动序列存储格式，请参考[自定义振动格式](../../device/vibrator-guidelines.md#自定义振动支持的格式)。
+自定义振动配置文件的描述符，必须确认资源文件可用，可通过[文件管理API](js-apis-file-fs.md#fsopen)从沙箱路径获取或者通过[资源管理API](js-apis-resource-manager.md#getrawfd9)从HAP资源获取。使用场景：振动序列被存储在一个文件中，需要根据偏移量和长度进行振动，振动序列存储格式，请参考[自定义振动格式](../../device/vibrator-guidelines.md#自定义振动格式)。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+**系统能力**：SystemCapability.Sensors.MiscDevice
 
 | 名称     | 类型      |  必填  | 说明                           |
-| -------- | -------- |--------| ------------------------------ |
-| fd       | number   |  是    | 文件描述符。                  |
-| offset   | number   |  否    | 文件指针起始偏移量，默认值为文件起始位置。             |
-| length   | number   |  否    | 文件长度，默认值为从偏移位置至文件结尾的大小。                             |
+| -------- | -------- |--------| ------------------------------|
+| fd       | number   |  是    | 资源文件描述符。                |
+| offset   | number   |  否    | 距文件起始位置的偏移量，单位为字节，默认为文件起始位置，不可超出文件有效范围。|
+| length   | number   |  否    | 资源长度，单位为字节，默认值为从偏移位置至文件结尾的长度，不可超出文件有效范围。|
 
 ## VibrateAttribute<sup>9+</sup>
 
 马达振动属性。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+**系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称  | 值 | 说明           |
+| 名称  | 类型 | 说明           |
 | ----- | ------ | -------------- |
-| id    | 0      | 振动器id。     |
-| usage | -      | 马达振动的使用场景。 |
+| id    | number      | 默认值为0，振动器id。     |
+| usage | [Usage](#usage9)      | 马达振动的使用场景。 |
 
 ## Usage<sup>9+</sup>
 
 振动使用场景。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Sensors.MiscDevice
+**系统能力**：SystemCapability.Sensors.MiscDevice
 
 | 名称             | 类型   | 说明                           |
 | ---------------- | ------ | ------------------------------ |
