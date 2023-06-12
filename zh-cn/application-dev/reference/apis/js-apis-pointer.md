@@ -923,7 +923,7 @@ try {
 
 ## pointer.getTouchpadScrollSwitch<sup>10+</sup>
 
-getTouchpadScrollSwitch(callback:  AsyncCallback\<boolead>): void
+getTouchpadScrollSwitch(callback:  AsyncCallback\<boolean>): void
 
 获取触控板滚轴能力开启状态，使用AsyncCallback异步方式返回结果。
 
