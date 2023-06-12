@@ -5,7 +5,7 @@
   - [Interpretation of the Application Model](application-model-description.md)
 - Stage Model Development
   - [Stage Model Development Overview](stage-model-development-overview.md)
-  - Stage Mode Application Components
+  - Stage Model Application Components
     - [Application- or Component-Level Configuration](application-component-configuration-stage.md)
     - UIAbility Component
       - [UIAbility Component Overview](uiability-overview.md)
@@ -56,12 +56,13 @@
       - [Using Explicit Want to Start an Application Component](ability-startup-with-explicit-want.md)
       - [Using Implicit Want to Open a Website](ability-startup-with-implicit-want.md)
       - [Using Want to Share Data Between Applications](data-share-via-want.md)
-    - [Component Startup Rules](component-startup-rules.md)
-    - Inter-Device Application Component Interaction (Continuation) 
+    - [Component Startup Rules (Stage Model)](component-startup-rules.md)
+    - Inter-Device Application Component Interaction (Continuation)
       - [Continuation Overview](inter-device-interaction-hop-overview.md)
       - [Cross-Device Migration (for System Applications Only)](hop-cross-device-migration.md)
       - [Multi-device Collaboration (for System Applications Only)](hop-multi-device-collaboration.md)
     - [Subscribing to System Environment Variable Changes](subscribe-system-environment-variable-changes.md)
+    - [Setting Atomic Services to Support Sharing](atomic-services-support-sharing.md)
   - Process Model
     - [Process Model Overview](process-model-stage.md)
     - Common Events
@@ -81,12 +82,12 @@
   - Mission Management
     - [Mission Management Scenarios](mission-management-overview.md)
     - [Mission and Launch Type](mission-management-launch-type.md)
-    - [Page Stack and MissionList](page-mission-stack.md)
+    - [Page Stack and Mission List](page-mission-stack.md)
     - [Setting the Icon and Name of a Mission Snapshot](mission-set-icon-name-for-task-snapshot.md)
   - [Application Configuration File](config-file-stage.md)
 - FA Model Development
   - [FA Model Development Overview](fa-model-development-overview.md)
-  - FA Mode Application Components
+  - FA Model Application Components
     - [Application- or Component-Level Configuration](application-component-configuration-fa.md)
     - PageAbility Component Development
       - [PageAbility Component Overview](pageability-overview.md)
@@ -119,7 +120,7 @@
     - [Widget Development](widget-development-fa.md)
     - [Context](application-context-fa.md)
     - [Want](want-fa.md)
-    - [Component Startup Rules](component-startup-rules-fa.md)
+    - [Component Startup Rules (FA Model)](component-startup-rules-fa.md)
   - Process Model
     - [Process Model Overview](process-model-fa.md)
     - [Common Events](common-event-fa.md)
