@@ -169,7 +169,7 @@
   - [@ohos.screenLock](js-apis-screen-lock.md)
   - [@ohos.systemTime](js-apis-system-time.md)
   - [@ohos.wallpaper](js-apis-wallpaper.md)
-  - [console (Log)](js-apis-logs.md)
+  - [Console](js-apis-logs.md)
   - [Timer](js-apis-timer.md)
 - Device Management
 

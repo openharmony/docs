@@ -688,7 +688,7 @@
       - [@ohos.screenLock](reference/apis/js-apis-screen-lock.md)
       - [@ohos.systemTime](reference/apis/js-apis-system-time.md)
       - [@ohos.wallpaper](reference/apis/js-apis-wallpaper.md)
-      - [console](reference/apis/js-apis-logs.md)
+      - [Console](reference/apis/js-apis-logs.md)
       - [Timer](reference/apis/js-apis-timer.md)
     - Device Management      
       - [@ohos.batteryInfo ](reference/apis/js-apis-battery-info.md)
