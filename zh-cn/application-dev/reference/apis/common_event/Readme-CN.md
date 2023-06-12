@@ -9,3 +9,5 @@
 - [USB子系统公共事件定义](commonEvent-usb.md)
 - [Wifi子系统公共事件定义](commonEvent-wifi.md)
 - [文件管理子系统公共事件定义](commonEvent-filemanagement.md)
+- [主题框架子系统-锁屏管理公共事件定义](commonEvent-screenlock.md)
+- [时间时区子系统公共事件定义](commonEvent-time.md)
