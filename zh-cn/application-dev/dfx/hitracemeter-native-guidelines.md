@@ -31,13 +31,14 @@ target_link_libraries(entry PUBLIC libhitrace_ndk.z.so)
 # hitrace --trace_begin app
 capturing trace...
 ```
-4.进行性能打点，以同步打点为例：
+4.进行性能打点，以异步打点为例：
 ```c++
-OH_HiTrace_StartTrace("testHitrace");
-OH_HiTrace_FinishTrace();
+OH_HiTrace_StartAsyncTrace("hitraceTest", 123);
+OH_HiTrace_FinishAsyncTrace("hitraceTest", 123);
 ```
 5.dump trace查看结果：
 ```shell
 # hitrace --trace_dump | grep hitraceTest
-        <...>-8763      (-----) [002] ... 6425.617353: tracing_mark_write: B|8763|H:hitraceTest
+        <...>-2477    (-------) [001] ....   396.427165: tracing_mark_write: S|2477|H:hitraceTest 123
+        <...>-2477    (-------) [001] ....   396.427196: tracing_mark_write: F|2477|H:hitraceTest 123
 ```
