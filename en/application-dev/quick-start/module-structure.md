@@ -205,7 +205,7 @@ This requirement on application icons is intended to prevent malicious applicati
 
 **Setting the application icon to be displayed on the home screen**:
 
-Set **icon**, **label**, and **skills** under **abilities** in the **config.json** file. In addition, make sure the **skills** configuration contains **ohos.want.action.home** and **entity.system.home**.
+Set **icon**, **label**, and **skills** under **abilities** in the **config.json** file. Make sure the **skills** configuration contains **ohos.want.action.home** and **entity.system.home**.
 
 ```
 {
