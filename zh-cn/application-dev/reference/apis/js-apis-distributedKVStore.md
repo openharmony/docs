@@ -1288,7 +1288,7 @@ try {
     console.info(`query is ${query.getSqlLike()}`);
     query = null;
 } catch (e) {
-    console.error(`duplicated calls should be ok.ode is ${e.code},message is ${e.message}`);
+    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4262,7 +4262,7 @@ try {
         console.error(`Failed to commit.code is ${err.code},message is ${err.message}`);
     });
 } catch (e) {
-    console.error(`An unexpected error occurred.ode is ${e.code},message is ${e.message}`);
+    console.error(`An unexpected error occurred.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -6637,7 +6637,6 @@ try {
                 return;
             }
             console.info('Succeeded in getting resultSize');
-            ;
         });
     });
 } catch (e) {
@@ -6704,7 +6703,6 @@ try {
     query.prefixKey("batch_test");
     kvStore.getResultSize('localDeviceId', query).then((resultSize) => {
         console.info('Succeeded in getting resultSize');
-        ;
     }).catch((err) => {
         console.error(`Failed to get resultSize.code is ${err.code},message is ${err.message}`);
     });
