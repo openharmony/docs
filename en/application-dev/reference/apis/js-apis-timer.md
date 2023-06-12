@@ -18,9 +18,9 @@ Sets a timer for the system to call a function after the timer goes off.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| handler | Function \| string | Yes| Function to be called after the timer goes off.|
+| handler | Function \| string | Yes| Function to be called after the timer goes off. If the type is string, error information is printed and no other processing is performed.|
 | delay | number | No| Number of milliseconds delayed before the execution. If this parameter is left empty, the default value **0** is used, which means that the execution starts immediately or as soon as possible.|
-| ...arguments | Array&lt;any&gt; | No| Additional parameters to pass to the handler after the timer goes off.|
+| ...arguments | any[] | No| Additional parameters to pass to the handler after the timer goes off.|
 
 **Return value**
 
@@ -31,19 +31,15 @@ Sets a timer for the system to call a function after the timer goes off.
 **Example**
 
   ```js
-  export default {    
-    setTimeOut() {        
-      var timeoutID = setTimeout(function() {            
-        console.log('delay 1s');
-      }, 1000);    
-    }
-  }
+  setTimeout(function() {            
+    console.log('delay 1s');
+  }, 1000);
   ```
 
 
 ## clearTimeout
 
-clearTimeout(timeoutID: number): void
+clearTimeout(timeoutID?: number): void
 
 Cancels the timer created via **setTimeout()**.
 
@@ -53,19 +49,15 @@ Cancels the timer created via **setTimeout()**.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| timeoutID | number | Yes| ID of the timer to cancel, which is returned by **setTimeout()**|
+| timeoutID | number | No| ID of the timer to cancel, which is returned by **setTimeout()** If this parameter is omitted, no timer is canceled.|
 
 **Example**
 
-  ```js
-  export default {    
-    clearTimeOut() {        
-      var timeoutID = setTimeout(function() {            
-        console.log('do after 1s delay.');        
-      }, 1000);        
-      clearTimeout(timeoutID);    
-    }
-  }
+  ```js    
+  let timeoutID = setTimeout(function() {            
+    console.log('do after 1s delay.');        
+  }, 1000);        
+  clearTimeout(timeoutID);
   ```
 
 
@@ -81,32 +73,28 @@ Sets a repeating timer for the system to repeatedly call a function at a fixed i
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| handler | Function \| string | Yes| Function to be called repeatedly.|
+| handler | Function \| string | Yes| Function to be called repeatedly. If the type is string, error information is printed and no other processing is performed.|
 | delay | number | Yes| Number of milliseconds delayed before the execution.|
-| ...arguments | Array&lt;any&gt; | No| Additional parameters to pass to the handler after the timer goes off.|
+| ...arguments | any[] | No| Additional parameters to pass to the handler after the timer goes off.|
 
 **Return value**
 
 | Type| Description|
 | -------- | -------- |
-| number | ID of the repeating timer.|
+| number | Timer ID.|
 
 **Example**
 
   ```js
-  export default {    
-    setInterval() {        
-      var intervalID = setInterval(function() {            
-        console.log('do very 1s.');        
-      }, 1000);    
-    }
-  }
+  setInterval(function() {            
+    console.log('do every 1s.');        
+  }, 1000);
   ```
 
 
 ## clearInterval
 
-clearInterval(intervalID: number): void
+clearInterval(intervalID?: number): void
 
 Cancels the repeating timer set via **setInterval()**.
 
@@ -116,17 +104,13 @@ Cancels the repeating timer set via **setInterval()**.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| intervalID | number | Yes| ID of the repeating timer to cancel, which is returned by **setInterval()**.|
+| intervalID | number | No| ID of the repeating timer to cancel, which is returned by **setInterval()**. If this parameter is omitted, no timer is canceled.|
 
 **Example**
 
-  ```js
-  export default {    
-    clearInterval() {        
-      var intervalID = setInterval(function() {
-        console.log('do very 1s.');
-      }, 1000);
-      clearInterval(intervalID);
-    }
-  }
+  ```js      
+  let intervalID = setInterval(function() {
+    console.log('do every 1s.');
+  }, 1000);
+  clearInterval(intervalID);
   ```

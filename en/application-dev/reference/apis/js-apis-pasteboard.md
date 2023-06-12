@@ -483,9 +483,9 @@ record.convertToText().then((data) => {
 
 ## PasteData
 
-Provides **PasteData** APIs.
+Implements a **PasteData** object. Paste data contains one or more data records ([PasteDataRecord](#pastedatarecord7)) and property description objects ([PasteDataProperty](#pastedataproperty7)).
 
-Before calling any **PasteData** API, you must obtain a **PasteData** object. 
+Before calling any API in **PasteData**, you must use **[createData()](#pasteboardcreatedata9)** or **[getData()](#getdata9)** to create a **PasteData** object.
 
 **System capability**: SystemCapability.MiscServices.Pasteboard
 
@@ -666,8 +666,8 @@ For details about the error codes, see [Pasteboard Error Codes](../errorcodes/er
 
   ```js
   let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
-let dataXml = new ArrayBuffer(256);
-pasteData.addRecord('app/xml', dataXml);
+  let dataXml = new ArrayBuffer(256);
+  pasteData.addRecord('app/xml', dataXml);
   ```
 
 ### getMimeTypes<sup>7+</sup>
