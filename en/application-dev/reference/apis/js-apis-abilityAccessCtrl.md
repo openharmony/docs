@@ -461,7 +461,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 **Example**
 
 ```js
-import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
+import {Permissions} from '@ohos.abilityAccessCtrl';
 import bundleManager from '@ohos.bundle.bundleManager';
 
 let atManager = abilityAccessCtrl.createAtManager();
@@ -512,7 +512,7 @@ For details about the error codes, see [Application Access Control Error Codes](
 **Example**
 
 ```js
-import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
+import {Permissions} from '@ohos.abilityAccessCtrl';
 import bundleManager from '@ohos.bundle.bundleManager';
 
 let atManager = abilityAccessCtrl.createAtManager();

@@ -1,4 +1,4 @@
-# @ohos.connectedTag
+# @ohos.connectedTag (Active Tags)
 
 The **connectedTag** module provides APIs for using active tags. You can use the APIs to initialize the active tag chip and read and write active tags.
 
@@ -28,6 +28,23 @@ Initializes the active tag chip.
 | -------- | -------- |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+## connectedTag.initialize<sup>9+</sup>
+
+initialize(): void
+
+Initializes the active tag chip.
+
+**Required permissions**: ohos.permission.NFC_TAG
+
+**System capability**: SystemCapability.Communication.ConnectedTag
+
+**Error codes**
+For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 3200101 | Connected NFC tag running state is abnormal in service. |
+
 ## connectedTag.uninit
 
 uninit(): boolean
@@ -43,6 +60,23 @@ Uninitializes the active tag resources.
 | **Type**| **Description**|
 | -------- | -------- |
 | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+
+## connectedTag.uninitialize<sup>9+</sup>
+
+uninitialize(): void
+
+Uninitializes the active tag resources.
+
+**Required permissions**: ohos.permission.NFC_TAG
+
+**System capability**: SystemCapability.Communication.ConnectedTag
+
+**Error codes**
+For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 3200101 | Connected NFC tag running state is abnormal in service. |
 
 ## connectedTag.readNdefTag
 
@@ -69,6 +103,41 @@ connectedTag.readNdefTag().then((data) => {
     console.log("connectedTag readNdefTag Promise data = " + data);
 }).catch((err)=> {
     console.log("connectedTag readNdefTag Promise err: " + err);
+});
+```
+
+## connectedTag.read<sup>9+</sup>
+
+read(): Promise&lt;number[]&gt;
+
+Reads the content of this active tag. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.NFC_TAG
+
+**System capability**: SystemCapability.Communication.ConnectedTag
+
+**Return value**
+
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;number[]&gt; | Promise used to return the content of the active tag.|
+
+**Error codes**
+For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 3200101 | Connected NFC tag running state is abnormal in service. |
+
+**Example**
+
+```js
+import connectedTag from '@ohos.connectedTag';
+
+connectedTag.read().then((data) => {
+    console.log("connectedTag read Promise data = " + data);
+}).catch((err)=> {
+    console.log("connectedTag read Promise err: " + err);
 });
 ```
 
@@ -102,6 +171,43 @@ connectedTag.readNdefTag((err, data)=> {
 });
 ```
 
+## connectedTag.read<sup>9+</sup>
+
+read(callback: AsyncCallback&lt;number[]&gt;): void
+
+Reads the content of this active tag. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.NFC_TAG
+
+**System capability**: SystemCapability.Communication.ConnectedTag
+
+**Parameters**
+
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| callback | AsyncCallback&lt;number[]&gt; | Yes| Callback invoked to return the active tag content obtained.|
+
+**Error codes**
+For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 3200101 | Connected NFC tag running state is abnormal in service. |
+
+**Example**
+
+```js
+import connectedTag from '@ohos.connectedTag';
+
+connectedTag.read((err, data)=> {
+    if (err) {
+        console.log("connectedTag read AsyncCallback err: " + err);
+    } else {
+        console.log("connectedTag read AsyncCallback data: " + data);
+    }
+});
+```
+
 ## connectedTag.writeNdefTag
 
 writeNdefTag(data: string): Promise&lt;void&gt;
@@ -129,11 +235,53 @@ Writes data to this active tag. This API uses a promise to return the result.
 ```js
 import connectedTag from '@ohos.connectedTag';
 
-var rawData = "010203"; // change it tobe correct.
+var rawData = "010203"; // Set it as required.
 connectedTag.writeNdefTag(rawData).then(() => {
     console.log("connectedTag writeNdefTag Promise success.");
 }).catch((err)=> {
     console.log("connectedTag writeNdefTag Promise err: " + err);
+});
+```
+
+## connectedTag.write<sup>9+</sup>
+
+write(data: number[]): Promise&lt;void&gt;
+
+Writes data to this active tag. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.NFC_TAG
+
+**System capability**: SystemCapability.Communication.ConnectedTag
+
+**Parameters**
+
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| data | number[] | Yes| Data to be written to the active tag. The value is a hexadecimal number ranging from 0x00 to 0xFF.|
+
+**Return value**
+
+| **Type**| **Description**|
+| -------- | -------- |
+| Promise&lt;void&gt; | Promise that returns no value.|
+
+**Error codes**
+For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 3200101 | Connected NFC tag running state is abnormal in service. |
+
+**Example**
+
+```js
+import connectedTag from '@ohos.connectedTag';
+
+var rawData = [0x01, 0x02, 0x03]; // change it tobe correct.
+connectedTag.write(rawData).then(() => {
+    console.log("connectedTag write NdefTag Promise success.");
+}).catch((err)=> {
+    console.log("connectedTag write NdefTag Promise err: " + err);
 });
 ```
 
@@ -159,12 +307,51 @@ Writes data to this active tag. This API uses an asynchronous callback to return
 ```js
 import connectedTag from '@ohos.connectedTag';
 
-var rawData = "010203"; // change it tobe correct.
+var rawData = "010203"; // Set it as required.
 connectedTag.writeNdefTag(rawData, (err)=> {
     if (err) {
         console.log("connectedTag writeNdefTag AsyncCallback err: " + err);
     } else {
         console.log("connectedTag writeNdefTag AsyncCallback success.");
+    }
+});
+```
+
+## connectedTag.write<sup>9+</sup>
+
+write(data: number[], callback: AsyncCallback&lt;void&gt;): void
+
+Writes data to this active tag. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.NFC_TAG
+
+**System capability**: SystemCapability.Communication.ConnectedTag
+
+**Parameters**
+
+| **Name**| **Type**| **Mandatory**| **Description**|
+| -------- | -------- | -------- | -------- |
+| data | number[] | Yes| Data to be written to the active tag. The value is a hexadecimal number ranging from 0x00 to 0xFF.|
+| callback | AsyncCallback&lt;void&gt; | Yes| Callback invoked to return the active tag content obtained.|
+
+**Error codes**
+For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
+
+| ID| Error Message|
+| -------- | -------- |
+| 3200101 | Connected NFC tag running state is abnormal in service. |
+
+**Example**
+
+```js
+import connectedTag from '@ohos.connectedTag';
+
+var rawData = [0x01, 0x02, 0x03]; // change it tobe correct.
+connectedTag.write(rawData, (err)=> {
+    if (err) {
+        console.log("connectedTag write NdefTag AsyncCallback err: " + err);
+    } else {
+        console.log("connectedTag write NdefTag AsyncCallback success.");
     }
 });
 ```
@@ -220,7 +407,7 @@ connectedTag.on("notify", (err, rfState)=> {
 var initStatus = connectedTag.init();
 console.log("connectedTag init status: " + initStatus);
 
-// Add nfc connecected tag business oprations here...
+// Add NFC connected tag business operations here.
 // connectedTag.writeNdefTag(rawData)
 // connectedTag.readNdefTag()
 
