@@ -486,8 +486,8 @@ Enumerates the audio channels.
 
 | Name     |  Value      | Description    |
 | --------- | -------- | -------- |
-| CHANNEL_1 | 0x1 << 0 | Channel 1. |
-| CHANNEL_2 | 0x1 << 1 | Channel 2. |
+| CHANNEL_1 | 0x1 << 0 | Channel 1.|
+| CHANNEL_2 | 0x1 << 1 | Channel 2.|
 
 ## AudioSamplingRate<sup>8+</sup>
 
@@ -545,7 +545,7 @@ Enumerates the audio stream usage.
 | ------------------------------------------| ------ | ---------- |
 | STREAM_USAGE_UNKNOWN                      | 0      | Unknown usage.|
 | STREAM_USAGE_MEDIA                        | 1      | Used for media.    |
-| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | Used for voice communication.|
+| STREAM_USAGE_VOICE_COMMUNICATION          | 2      | Used for voice communication.| 
 | STREAM_USAGE_VOICE_ASSISTANT<sup>9+</sup> | 3      | Used for voice assistant.|
 | STREAM_USAGE_ALARM<sup>10+</sup>          | 4      | Used for alarming.    |
 | STREAM_USAGE_NOTIFICATION_RINGTONE        | 6      | Used for notification.|
@@ -579,6 +579,17 @@ Enumerates the audio states.
 | STATE_STOPPED  | 3      | Stopped.      |
 | STATE_RELEASED | 4      | Released.      |
 | STATE_PAUSED   | 5      | Paused.      |
+
+## AudioEffectMode<sup>10+</sup>
+
+Enumerates the audio effect modes.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+| Name              | Value    | Description      |
+| ------------------ | ------ | ---------- |
+| EFFECT_NONE        | 0      | The audio effect is disabled.|
+| EFFECT_DEFAULT     | 1      | The default audio effect is used.|
 
 ## AudioRendererRate<sup>8+</sup>
 
@@ -2023,7 +2034,7 @@ Currently, when multiple **AudioManager** instances are used in a single process
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | Yes  | Event type. The value **'volumeChange'** means the system volume change event, which is triggered when a system volume change is detected.|
-| callback | Callback<[VolumeEvent](#volumeevent9)> | Yes  | Callback used to return the system volume change event.                                                  |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
 
@@ -2054,7 +2065,7 @@ Subscribes to ringer mode change events.
 | Name  | Type                                     | Mandatory| Description                                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                    | Yes  | Event type. The value **'ringerModeChange'** means the ringer mode change event, which is triggered when a ringer mode change is detected.|
-| callback | Callback<[AudioRingMode](#audioringmode)> | Yes  | Callback used to return the ringer mode change event.                                                  |
+| callback | Callback<[AudioRingMode](#audioringmode)> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
 
@@ -2116,9 +2127,7 @@ Unsubscribes from device change events.
 **Example**
 
 ```js
-audioManager.off('deviceChange', (deviceChanged) => {
-  console.info('Should be no callback.');
-});
+audioManager.off('deviceChange');
 ```
 
 ### on('interrupt')
@@ -2329,7 +2338,7 @@ Subscribes to system volume change events. This API uses an asynchronous callbac
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | Yes  | Event type. The value **'volumeChange'** means the system volume change event, which is triggered when the system volume changes.|
-| callback | Callback<[VolumeEvent](#volumeevent9)> | Yes  | Callback used to return the system volume change event.                                                  |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
 
@@ -2839,7 +2848,7 @@ Subscribes to ringer mode change events.
 | Name  | Type                                     | Mandatory| Description                                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                    | Yes  | Event type. The value **'ringerModeChange'** means the ringer mode change event, which is triggered when a ringer mode change is detected.|
-| callback | Callback<[AudioRingMode](#audioringmode)> | Yes  | Callback used to return the system volume change event.                                                  |
+| callback | Callback<[AudioRingMode](#audioringmode)> | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
 
@@ -3397,6 +3406,68 @@ audioStreamManager.isActive(audio.AudioVolumeType.MEDIA).then((value) => {
 });
 ```
 
+### getAudioEffectInfoArray<sup>10+</sup>
+
+getAudioEffectInfoArray(content: ContentType, usage: StreamUsage, callback: AsyncCallback&lt;AudioEffectInfoArray&gt;): void
+
+Obtains information about the sound effect mode in use. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Parameters**
+
+| Name   | Type                               | Mandatory    | Description                        |
+| -------- | ----------------------------------- | -------- | --------------------------- |
+| content  | [ContentType](#contenttype)                                    | Yes    |  Audio content type.                 |
+| usage    | [StreamUsage](#streamusage)                                    | Yes    |  Audio stream usage.               |
+| callback | AsyncCallback<[AudioEffectInfoArray](#audioeffectinfoarray10)> | Yes    |  Callback used to return the information obtained.|
+
+**Example**
+
+```js
+audioStreamManager.getAudioEffectInfoArray(audio.ContentType.CONTENT_TYPE_MUSIC, audio.StreamUsage.STREAM_USAGE_MEDIA, async (err, audioEffectInfoArray) => {
+  console.info('getAudioEffectInfoArray **** Get Callback Called ****');
+  if (err) {
+    console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
+    return;
+  } else {
+    console.info(`The contentType of ${CONTENT_TYPE_MUSIC} and the streamUsage of ${STREAM_USAGE_MEDIA} 's effect modes are: ${audioEffectInfoArray}`);
+  }
+});
+```
+
+### getAudioEffectInfoArray<sup>10+</sup>
+
+getAudioEffectInfoArray(content: ContentType, usage: StreamUsage): Promise&lt;AudioEffectInfoArray&gt;
+
+Obtains information about the sound effect mode in use. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Parameters**
+
+| Name   | Type                               | Mandatory    | Description                        |
+| -------- | ----------------------------------- | -------- | --------------------------- |
+| content  | [ContentType](#contenttype)         | Yes    |  Audio content type.                |
+| usage    | [StreamUsage](#streamusage)         | Yes    |  Audio stream usage.              |
+
+**Return value**
+
+| Type                                                                     | Description                                   |
+| --------------------------------------------------------------------------| --------------------------------------- |
+| Promise<[AudioEffectInfoArray](#audioeffectinfoarray10)>                  | Promise used to return the information obtained.     |
+
+**Example**
+
+```js
+audioStreamManager.getAudioEffectInfoArray().then((audioEffectInfoArray) => {
+  console.info(`getAudioEffectInfoArray ######### Get Promise is called ##########`);
+  console.info(`The contentType of ${CONTENT_TYPE_MUSIC} and the streamUsage of ${STREAM_USAGE_MEDIA} 's effect modes are: ${audioEffectInfoArray}`);
+}).catch((err) => {
+  console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
+});
+```
+
 ## AudioRoutingManager<sup>9+</sup>
 
 Implements audio routing management. Before calling any API in **AudioRoutingManager**, you must use [getRoutingManager](#getroutingmanager9) to obtain an **AudioRoutingManager** instance.
@@ -3517,9 +3588,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-audioRoutingManager.off('deviceChange', (deviceChanged) => {
-  console.info('Should be no callback.');
-});
+audioRoutingManager.off('deviceChange');
 ```
 
 ### selectInputDevice<sup>9+</sup>
@@ -4071,9 +4140,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 **Example**
 
 ```js
-audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo', () => {
-  console.info('Should be no callback.');
-});
+audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
 ```
 
 ## AudioRendererChangeInfoArray<sup>9+</sup>
@@ -4190,6 +4257,10 @@ audioStreamManager.on('audioCapturerChange', (AudioCapturerChangeInfoArray) =>  
   }
 });
 ```
+
+## AudioEffectInfoArray<sup>10+</sup>
+
+Defines an array that contains the audio effect mode corresponding to a specific audio content type (specified by **ContentType**) and audio stream usage (specified by **StreamUsage**). The [AudioEffectMode](#audioeffectmode10) array is read-only.
 
 ## AudioDeviceDescriptors
 
@@ -4429,6 +4500,113 @@ Obtains the stream ID of this **AudioRenderer** instance. This API uses a promis
 ```js
 audioRenderer.getAudioStreamId().then((streamid) => {
   console.info(`Renderer getAudioStreamId: ${streamid}`);
+}).catch((err) => {
+  console.error(`ERROR: ${err}`);
+});
+```
+
+### setAudioEffectMode<sup>10+</sup>
+
+setAudioEffectMode(mode: AudioEffectMode, callback: AsyncCallback\<void>): void
+
+Sets an audio effect mode. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Parameters**
+
+| Name  | Type                                    | Mandatory| Description                    |
+| -------- | ---------------------------------------- | ---- | ------------------------ |
+| mode     | [AudioEffectMode](#audioeffectmode10)    | Yes  | Audio effect mode to set.              |
+| callback | AsyncCallback\<void>                     | Yes  | Callback used to return the result. |
+
+**Example**
+
+```js
+audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT, (err) => {
+  if (err) {
+    console.error('Failed to set params');
+  } else {
+    console.info('Callback invoked to indicate a successful audio effect mode setting.');
+  }
+});
+```
+
+### setAudioEffectMode<sup>10+</sup>
+
+setAudioEffectMode(mode: AudioEffectMode): Promise\<void>
+
+Sets an audio effect mode. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Parameters**
+
+| Name| Type                                    | Mandatory| Description        |
+| ------ | ---------------------------------------- | ---- | ------------ |
+| mode   | [AudioEffectMode](#audioeffectmode10)   | Yes  | Audio effect mode to set.|
+
+**Return value**
+
+| Type          | Description                     |
+| -------------- | ------------------------- |
+| Promise\<void> | Promise used to return the result.|
+
+**Example**
+
+```js
+audioRenderer.setAudioEffectMode(audio.AudioEffectMode.EFFECT_DEFAULT).then(() => {
+  console.info('setAudioEffectMode SUCCESS');
+}).catch((err) => {
+  console.error(`ERROR: ${err}`);
+});
+```
+
+### getAudioEffectMode<sup>10+</sup>
+
+getAudioEffectMode(callback: AsyncCallback\<AudioEffectMode>): void
+
+Obtains the audio effect mode in use. This API uses an asynchronous callback to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Parameters**
+
+| Name  | Type                                                   | Mandatory| Description              |
+| -------- | ------------------------------------------------------- | ---- | ------------------ |
+| callback | AsyncCallback<[AudioEffectMode](#audioeffectmode10)> | Yes  | Callback used to return the audio effect mode.|
+
+**Example**
+
+```js
+audioRenderer.getAudioEffectMode((err, effectmode) => {
+  if (err) {
+    console.error('Failed to get params');
+  } else {
+    console.info(`getAudioEffectMode: ${effectmode}`);
+  }
+});
+```
+
+### getAudioEffectMode<sup>10+</sup>
+
+getAudioEffectMode(): Promise\<AudioEffectMode>
+
+Obtains the audio effect mode in use. This API uses a promise to return the result.
+
+**System capability**: SystemCapability.Multimedia.Audio.Renderer
+
+**Return value**
+
+| Type                                             | Description                     |
+| ------------------------------------------------- | ------------------------- |
+| Promise<[AudioEffectMode](#audioeffectmode10)> | Promise used to return the audio effect mode.|
+
+**Example**
+
+```js
+audioRenderer.getAudioEffectMode().then((effectmode) => {
+  console.info(`getAudioEffectMode: ${effectmode}`);
 }).catch((err) => {
   console.error(`ERROR: ${err}`);
 });
