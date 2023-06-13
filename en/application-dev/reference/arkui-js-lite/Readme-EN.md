@@ -1,0 +1,37 @@
+# JavaScript-compatible Web-like Development Paradigm (ArkUI.Lite)
+
+- Framework Overview
+    - [File Organization](js-framework-file.md)
+    - ["js" Tag](js-framework-js-tag.md)
+    - [app.js](js-framework-js-file.md)
+    - Syntax
+        - [HML](js-framework-syntax-hml.md)
+        - [CSS](js-framework-syntax-css.md)
+        - [JavaScript](js-framework-syntax-js.md)
+- Universal Component Information
+    - [Universal Events](js-common-events.md)
+    - [Universal Attributes](js-common-attributes.md)
+    - [Universal Styles](js-common-styles.md)
+    - [Animation Styles](js-components-common-animation.md)
+    - [Media Query](js-components-common-mediaquery.md)
+- Container Components
+    - [div](js-components-container-div.md)
+    - [list](js-components-container-list.md)
+    - [list-item](js-components-container-list-item.md)
+    - [stack](js-components-container-stack.md)
+    - [swiper](js-components-container-swiper.md)
+- Basic Components
+    - [chart](js-components-basic-chart.md)
+    - [image](js-components-basic-image.md)
+    - [image-animator](js-components-basic-image-animator.md)
+    - [input](js-components-basic-input.md)
+    - [marquee](js-components-basic-marquee.md)
+    - [picker-view](js-components-basic-picker-view.md)
+    - [progress](js-components-basic-progress.md)
+    - [qrcode](js-components-basic-qrcode.md)
+    - [slider](js-components-basic-slider.md)
+    - [switch](js-components-basic-switch.md)
+    - [text](js-components-basic-text.md)
+- Canvas Components
+    - [canvas](js-components-canvas-canvas.md)
+    - [CanvasRenderingContext2D](js-components-canvas-canvasrenderingcontext2d.md)

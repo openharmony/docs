@@ -64,7 +64,8 @@ API references encompass all components and APIs available in OpenHarmony, helpi
 They are organized as follows:
 
 - [Component Reference (TypeScript-based Declarative Development Paradigm)](reference/arkui-ts/ts-components-summary.md)
-- [Component Reference (JavaScript-compatible Web-like Development Paradigm)](reference/arkui-js/js-components-common-attributes.md)
+- [Component Reference (JavaScript-compatible Web-like Development Paradigm- ArkUI.Full)](reference/arkui-js/Readme-EN.md)
+- [Component Reference (JavaScript-compatible Web-like Development Paradigm- ArkUI.Lite)](reference/arkui-js-lite/Readme-EN.md)
 - [JS Service Widget UI Components](reference/js-service-widget-ui/js-service-widget-file.md)
 - [JS and TS APIs](reference/apis/development-intro.md)
 - Native APIs
