@@ -236,7 +236,7 @@ Describes the window properties.
 | dimBehindValue<sup>(deprecated)</sup> | number                    | Yes  | Yes  | Dimness of the window that is not on top. The value ranges from 0 to 1. The value **1** indicates the maximum dimness.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9.<br> |
 | isKeepScreenOn                        | boolean                   | Yes  | Yes  | Whether the screen is always on. The default value is **false**. The value **true** means that the screen is always on, and **false** means the opposite.|
 | isPrivacyMode<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is in privacy mode. The default value is **false**. The value **true** means that the window is in privacy mode, and **false** means the opposite.|
-| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is **false**. The value **true** means that the window has rounded corners, and **false** means the opposite.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9.<br> |
+| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | Yes  | Yes  | Whether the window has rounded corners. The default value is **false**. The value **true** means that the window has rounded corners, and **false** means the opposite.<br>**NOTE**<br>This property is supported since API version 7 and deprecated since API version 9.<br>  |
 | isTransparent<sup>7+</sup>            | boolean                   | Yes  | Yes  | Whether the window is transparent. The default value is **false**. The value **true** means that the window is transparent, and **false** means the opposite.|
 | id<sup>9+</sup>                       | number                    | Yes  | No  | Window ID. The default value is **0.0**.                                                 |
 
@@ -2416,6 +2416,53 @@ try {
 } catch (exception) {
     console.error('Failed to set window orientation. Cause: ' + JSON.stringify(exception));
 }
+```
+
+### getUIContext<sup>10+</sup>
+
+getUIContext(): UIContext
+
+Obtain a **UIContext** instance.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Return value**
+
+| Type      | Description                  |
+| ---------- | ---------------------- |
+| [UIContext](./js-apis-arkui-UIContext.md#uicontext) | **UIContext** instance obtained.|
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        // Load content for the main window.
+        windowStage.loadContent("pages/page2", (err) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content.');
+        });
+        // Obtain the main window.
+        let windowClass = null;
+        windowStage.getMainWindow((err, data) => {
+            if (err.code) {
+                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                return;
+            }
+            windowClass = data;
+            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+            // Obtain a UIContext instance.
+            globalThis.uiContext = windowClass.getUIContext();
+        })
+    }
+};
 ```
 
 ### setUIContent<sup>9+</sup>
@@ -7439,3 +7486,5 @@ controller.animationForHidden = (context : window.TransitionContext) => {
     console.info('complete transition end');
 };
 ```
+
+ <!--no_check--> 
