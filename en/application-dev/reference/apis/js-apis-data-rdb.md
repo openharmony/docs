@@ -1727,9 +1727,10 @@ Registers an observer for this RDB store. When the data in the RDB store changes
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| The value is'dataChange', which indicates a data change event.|
 | type | [SubscribeType](#subscribetype8) | Yes| Type defined in **SubscribeType**.|
-| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Observer that listens for the data changes in the RDB store.|
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Callback invoked to return the data changes in the RDB store. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed.|
 
 **Example**
+
 ```js
 function storeObserver(devices) {
     for (let i = 0; i < devices.length; i++) {
@@ -1757,7 +1758,7 @@ Unregisters the specified observer of the RDB store. This API uses a callback to
 | -------- | -------- | -------- | -------- |
 | event | string | Yes| The value is'dataChange', which indicates a data change event.|
 | type | [SubscribeType](#subscribetype8)    | Yes| Type defined in **SubscribeType**.|
-| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Data change observer registered.|
+| observer | Callback&lt;Array&lt;string&gt;&gt; | Yes| Callback for the Data change event to unregister. **Array<string>** indicates the IDs of the peer devices whose data in the database is changed.|
 
 **Example**
 ```js
