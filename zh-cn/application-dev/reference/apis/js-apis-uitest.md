@@ -1198,7 +1198,7 @@ scrollSearch(on: On): Promise\<Component>
 ```js
 async function demo() {
     let driver = Driver.create();
-    let button = await driver.findComponent(ON.type('Scroll'));
+    let scrollBar = await driver.findComponent(ON.type('Scroll'));
     let button = await scrollBar.scrollSearch(ON.text('next page'));
 }
 ```
@@ -2428,7 +2428,7 @@ createUIEventObserver(): UIEventObserver;
 ```js
 async function demo() {
     let driver = Driver.create();
-    let obeserver = await driver.createUiEventObserve();
+    let observer = await driver.createUIEventObserver()
 }
 ```
 
@@ -2959,6 +2959,7 @@ once(type: 'toastShow', callback: Callback\<UIElementInfo>):void;
 
 ```js
 async function demo() {
+    let driver = Driver.create();
     let observer = await driver.createUIEventObserver()
     let  callback = (UIElementInfo)=>{
         console.info(UIElementInfo.bundleName)
@@ -2988,6 +2989,7 @@ once(type: 'dialogShow', callback: Callback\<UIElementInfo>): void;
 
 ```js
 async function demo() {
+    let driver = Driver.create();
     let observer = await driver.createUIEventObserver()
     let  callback = (UIElementInfo)=>{
         console.info(UIElementInfo.bundleName)
