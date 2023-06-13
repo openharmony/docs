@@ -1172,11 +1172,9 @@ import web_webview from '@ohos.web.webview'
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  @State webResult: string = '';
 
   build() {
     Column() {
-      Text(this.webResult).fontSize(20)
       Web({ src: $rawfile('index.html'), controller: this.controller })
         .javaScriptAccess(true)
         .onPageEnd(e => {
