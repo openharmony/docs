@@ -315,7 +315,7 @@ connection.setGlobalHttpProxy(httpProxy).then(() => {
 getDefaultHttpProxy(callback: AsyncCallback\<HttpProxy>): void
 
 获取网络默认的代理配置信息。
-如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其他情况下，将返回默认网络的代理配置信息。
+如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。
 使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
@@ -347,7 +347,7 @@ connection.getDefaultHttpProxy((error, data) => {
 getDefaultHttpProxy(): Promise\<HttpProxy>;
 
 获取网络默认的代理配置信息。
-如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其他情况下，将返回默认网络的代理配置信息。
+如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其它情况下，将返回默认网络的代理配置信息。
 使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
