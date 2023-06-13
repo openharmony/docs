@@ -3430,7 +3430,7 @@ getAudioEffectInfoArray(content: ContentType, usage: StreamUsage): Promise&lt;Au
 
 ```js
 audioStreamManager.getAudioEffectInfoArray(audio.ContentType.CONTENT_TYPE_MUSIC, audio.StreamUsage.STREAM_USAGE_MEDIA).then((audioEffectInfoArray) => {
-  console.info(`getAudioEffectInfoArray ######### Get Promise is called ##########`);
+  console.info('getAudioEffectInfoArray ######### Get Promise is called ##########');
   console.info(`The effect modes are: ${audioEffectInfoArray}`);
 }).catch((err) => {
   console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
