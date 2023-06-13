@@ -74,7 +74,7 @@ As shown above, the **module.json5** file contains several tags.
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| name | Name of the module. The value is a string with a maximum of 31 bytes and must be unique in the entire application. Chinese characters are not allowed.| String| No|
+| name | Name of the module. The value is a string with a maximum of 31 bytes and must be unique in the entire application. | String| No|
 | type | Type of the module. The options are as follows:<br>- **entry**: main module of the application.<br>- **feature**: dynamic feature module of the application.<br>- **har**: static shared module.<br>- **shared**: dynamic shared module.| String| No|
 | srcEntry | Code path corresponding to the module. The value is a string with a maximum of 127 bytes.| String| Yes (initial value: left empty)|
 | description | Description of the module. The value is a string with a maximum of 255 bytes or a string resource index.| String| Yes (initial value: left empty)|
@@ -228,73 +228,6 @@ The **metadata** tag represents the custom metadata of the HAP file. The tag val
 
 The **abilities** tag represents the UIAbility configuration of the module, which is valid only for the current UIAbility component.
 
-**By default, application icons cannot be hidden from the home screen in OpenHarmony.**
-
-The OpenHarmony system imposes a strict rule on the presence of application icons. If no icon is configured in the HAP file of an application, the system uses the icon specified in the **app.json** file as the application icon and displays it on the home screen.
-
-Touching this icon will direct the user to the application details screen in **Settings**, as shown in Figure 1.
-
-To hide an application icon from the home screen, you must configure the **AllowAppDesktopIconHide** privilege. For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
-
-**Objectives**:
-
-This requirement on application icons is intended to prevent malicious applications from deliberately configuring no icon to block uninstallation attempts.
-
-**Setting the application icon to be displayed on the home screen**:
-
-Set **icon**, **label**, and **skills** under **abilities** in the **module.json5** file. Make sure the **skills** configuration contains **ohos.want.action.home** and **entity.system.home**.
-
-```
-{
-  "module":{
-
-    ...
-
-    "abilities": [{
-      "icon": "$media:icon",
-      "label": "Login",
-      "skills": [{
-        "actions": ["ohos.want.action.home"],
-        "entities": ["entity.system.home"],
-        "uris": []
-      }]
-    }],
-    ...
-
-  }
-}
-```
-
-**Display rules of application icons and labels on the home screen:**
-* The HAP file contains UIAbility configuration.
-  * The application icon on the home screen is set under **abilities** in the **module.json5** file.
-    * The application does not have the privilege to hide its icon from the home screen.
-      * The application icon displayed on the home screen is the icon configured for the UIAbility.
-      * The application label displayed on the home screen is the label configured for the UIAbility. If no label is configured, the bundle name is returned.
-      * The name of the UIAbility is displayed.
-      * When the user touches the home screen icon, the home screen of the UIAbility is displayed.
-    * The application has the privilege to hide its icon from the home screen.
-      * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.
-  * The application icon on the home screen is not set under **abilities** in the **module.json5** file.
-    * The application does not have the privilege to hide its icon from the home screen.
-      * The application icon displayed on the home screen is the icon specified under **app**. (The **icon** field in the **app.json** file is mandatory.)
-      * The application label displayed on the home screen is the label specified under **app**. (The **label** field in the **app.json** file is mandatory.)
-      * Touching the application icon on the home screen will direct the user to the application details screen shown in Figure 1.
-    * The application has the privilege to hide its icon from the home screen.
-      * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.
-* The HAP file does not contain UIAbility configuration.
-  * The application does not have the privilege to hide its icon from the home screen.
-    * The application icon displayed on the home screen is the icon specified under **app**. (The **icon** field in the **app.json** file is mandatory.)
-    * The application label displayed on the home screen is the label specified under **app**. (The **label** field in the **app.json** file is mandatory.)
-    * Touching the application icon on the home screen will direct the user to the application details screen shown in Figure 1.
-  * The application has the privilege to hide its icon from the home screen.
-    * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.<br><br>
-
-**Figure 1** Application details screen
-
-![Application details screen](figures/application_details.jpg)
-
-
   **Table 6** abilities
 
 | Name| Description| Data Type| Initial Value Allowed|
@@ -325,6 +258,7 @@ Set **icon**, **label**, and **skills** under **abilities** in the **module.json
 | minWindowHeight | Minimum window height supported by the UIAbility component, in vp. The minimum value is 0, and the value cannot be less than the minimum window height allowed by the platform or greater than the value of **maxWindowHeight**. For details about the window size, see [Constraints](../windowmanager/window-overview.md#constraints).| Number| Yes (initial value: minimum window height supported by the platform)|
 | excludeFromMissions | Whether the UIAbility component is displayed in the recent task list.<br>- **true**: displayed in the recent task list.<br>- **false**: not displayed in the recent task list.<br>**NOTE**<br>This attribute applies only to system applications and does not take effect for third-party applications.| Boolean| Yes (initial value: **false**)|
 | recoverable | Whether the application can be recovered to its previous state in case of a detected fault.<br>- **true**: The application can be recovered to its previous state in case of a detected fault.<br>- **false**: The application cannot be recovered to its previous state in case of a detected fault.| Boolean| Yes (initial value: **false**)|
+| unclearableMission | Whether the UIAbility component is unclearable in the recent tasks list.<br>- **true**: The UIAbility component is unclearable in the recent tasks list.<br>- **false**: The UIAbility component is clearable in the recent tasks list.<br>**NOTE**<br>This attribute works only after the [AllowMissionNotCleared](../../device-dev/subsystems/subsys-app-privilege-config-guide.md) privilege is obtained.| Boolean| Yes (initial value: **false**)|
 
 Example of the **abilities** structure:
 
@@ -369,7 +303,8 @@ Example of the **abilities** structure:
     "minWindowWidth": 1400,
     "maxWindowHeight": 300,
     "minWindowHeight": 200,
-    "excludeFromMissions": false
+    "excludeFromMissions": false,
+    "unclearableMission": false
   }]
 }
 ```
@@ -441,12 +376,12 @@ The **extensionAbilities** tag represents the configuration of extensionAbilitie
 | description | Description of the ExtensionAbility component. The value is a string with a maximum of 255 bytes or a resource index to the description.| String| Yes (initial value: left empty)|
 | icon | Icon of the ExtensionAbility component. The value is an icon resource index. If **ExtensionAbility** is set to **MainElement** of the current module, this attribute is mandatory and its value must be unique in the application.| String| Yes (initial value: left empty)|
 | label | Name of the ExtensionAbility component displayed to users. The value is a string resource index.<br>**NOTE**<br>If **ExtensionAbility** is set to **MainElement** of the current module, this attribute is mandatory and its value must be unique in the application.| String| No|
-| type | Type of the ExtensionAbility component. The options are as follows:<br>- **form**: ExtensionAbility of a widget.<br>- **workScheduler**: ExtensionAbility of a Work Scheduler task.<br>- **inputMethod**: ExtensionAbility of an input method.<br>- **service**: service component running in the background.<br>- **accessibility**: ExtensionAbility of an accessibility feature.<br>- **dataShare**: ExtensionAbility for data sharing.<br>- **fileShare**: ExtensionAbility for file sharing.<br>- **staticSubscriber**: ExtensionAbility for static broadcast.<br>- **wallpaper**: ExtensionAbility of the wallpaper.<br>- **backup**: ExtensionAbility for data backup.<br>- **window**: ExtensionAbility of a window. This type of ExtensionAbility creates a window during startup for which you can develop the GUI. The window is then combined with other application windows through **abilityComponent**.<br>- **thumbnail**: ExtensionAbility for obtaining file thumbnails. You can provide thumbnails for files of customized file types.<br>- **preview**: ExtensionAbility for preview. This type of ExtensionAbility can parse the file and display it in a window. You can combine the window with other application windows.<br>- **print**: ExtensionAbility for the print framework.<br>- **driver**: ExtensionAbility for the driver framework.<br>**NOTE**<br>The **service** and **dataShare** types apply only to system applications and do not take effect for third-party applications.| String| No|
+| type | Type of the ExtensionAbility component. The options are as follows:<br>- **form**: ExtensionAbility of a widget.<br>- **workScheduler**: ExtensionAbility of a Work Scheduler task.<br>- **inputMethod**: ExtensionAbility of an input method.<br>- **service**: service component running in the background.<br>- **accessibility**: ExtensionAbility of an accessibility feature.<br>- **dataShare**: ExtensionAbility for data sharing.<br>- **fileShare**: ExtensionAbility for file sharing.<br>- **staticSubscriber**: ExtensionAbility for static broadcast.<br>- **wallpaper**: ExtensionAbility of the wallpaper.<br>- **backup**: ExtensionAbility for data backup.<br>- **window**: ExtensionAbility of a window. This type of ExtensionAbility creates a window during startup for which you can develop the GUI. The window is then combined with other application windows through **abilityComponent**.<br>- **thumbnail**: ExtensionAbility for obtaining file thumbnails. You can provide thumbnails for files of customized file types.<br>- **preview**: ExtensionAbility for preview. This type of ExtensionAbility can parse the file and display it in a window. You can combine the window with other application windows.<br>- **print**: ExtensionAbility for the print framework.<br>- **push**: ExtensionAbility to be pushed.<br>- **driver**: ExtensionAbility for the driver framework.<br>**NOTE**<br>The **service** and **dataShare** types apply only to system applications and do not take effect for third-party applications.| String| No|
 | permissions | Permissions required for another application to access the ExtensionAbility component.<br>The value is generally in the reverse domain name notation and contains a maximum of 255 bytes. It is an array of permission names predefined by the system or customized. The name of a customized permission must be the same as the **name** value of a permission defined in the **defPermissions** attribute.| String array| Yes (initial value: left empty)|
 | uri | Data URI provided by the ExtensionAbility component. The value is a string with a maximum of 255 bytes, in the reverse domain name notation.<br>**NOTE**<br>This attribute is mandatory when the type of the ExtensionAbility component is set to **dataShare**.| String| Yes (initial value: left empty)|
 |skills | Feature set of [wants](../application-models/want-overview.md) that can be received by the ExtensionAbility component.<br>Configuration rule: In an entry package, you can configure multiple **skills** attributes with the entry capability. (A **skills** attribute with the entry capability is the one that has **ohos.want.action.home** and **entity.system.home** configured.) The **label** and **icon** in the first ExtensionAbility that has **skills** configured are used as the **label** and **icon** of the entire OpenHarmony service/application.<br>**NOTE**<br>The **skills** attribute with the entry capability can be configured for the feature package of an OpenHarmony application, but not for an OpenHarmony service.| Array| Yes (initial value: left empty)|
 | [metadata](#metadata)| Metadata of the ExtensionAbility component.| Object| Yes (initial value: left empty)|
-| exported | Whether the ExtensionAbility component can be called by other applications. <br>- **true**: The ExtensionAbility component can be called by other applications.<br>- **false**: The UIAbility component cannot be called by other applications.| Boolean| Yes (initial value: **false**)|
+| exported | Whether the ExtensionAbility component can be called by other applications. <br>- **true**: The ExtensionAbility component can be called by other applications.<br>- **false**: The ExtensionAbility component cannot be called by other applications.| Boolean| Yes (initial value: **false**)|
 
 Example of the **extensionAbilities** structure:
 
