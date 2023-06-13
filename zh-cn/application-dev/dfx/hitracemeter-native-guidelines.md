@@ -2,7 +2,6 @@
 ## 概述
 hiTraceMeter为开发者提供系统性能打点接口。开发者通过在自己的业务逻辑中的关键代码位置调用HiTraceMeter接口提供的API接口，能够有效跟踪进程轨迹、查看系统性能。
 > **说明：**
-> 
 > - 仅当开发者使用Native API开发应用时，可参考本开发指导。
 > - 如需使用ArkTS API开发应用，请参考对应的[开发指导](hitracemeter-guidelines.md)和[API参考](../reference/apis/js-apis-hitracemeter.md)。
 ## 接口说明
