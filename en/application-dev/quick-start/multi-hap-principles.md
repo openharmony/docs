@@ -4,7 +4,7 @@
 The multi-HAP mechanism is used to facilitate modular management for developers. There is no one-to-one mapping between the HAP and the running process of the application. The detailed running mechanism is as follows:
 
 
-- By default, all UIAbility, ServiceExtensionAbility, and DataShareExtensionAbility components of an application (with the same bundle name) run in the same independent process, and other ExtensionAbility components of the same type run in separate processes.
+- By default, all UIAbility, ServiceExtensionAbility, and DataShareExtensionAbility components of an application (with the same bundle name) run in the same independent process (known as the main process), and other ExtensionAbility components of the same type run in separate processes.
 
 - The HAP file supports the process configuration through the **process** tag in the **module.json5** (stage model) or **config.json** (FA model) file. This feature is supported only by system applications. If **process** is configured for an HAP file, all components of the HAP file run in an independent process. Multiple HAP files can be configured with the same process, in which case the HAP files run in the same process. For details about the process configuration, see [module.json5 Configuration File](module-configuration-file.md).
 

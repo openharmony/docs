@@ -40,7 +40,7 @@ You can bind a popup to a component, specifying its content, interaction logic, 
 
 | Name                          | Type                                      | Mandatory  | Description                                      |
 | ---------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| builder                      | [CustomBuilder](ts-types.md#custombuilder8) | Yes   | Popup builder.                             |
+| builder                      | [CustomBuilder](ts-types.md#custombuilder8) | Yes   | Popup builder.<br>**NOTE**<br>The **popup** attribute is a universal attribute. A custom popup does not support display of another popup. The **position** attribute cannot be used for the first-layer container under the builder. If the **position** attribute is used, the popup will not be displayed.                             |
 | placement                    | [Placement](ts-appendix-enums.md#placement8) | No   | Preferred position of the popup. If the set position is insufficient for holding the popup, it will be automatically adjusted.<br>Default value: **Placement.Bottom**|
 | popupColor                   | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the popup.                                |
 | enableArrow                  | boolean                                  | No   | Whether to display an arrow.<br>Since API version 9, if the position set for the popup is not large enough, the arrow will not be displayed. For example, if **placement** is set to **Left**, but the popup height (80 vp) is less than the sum of the arrow width (32 vp) and diameter of popup rounded corner (48 vp), the arrow will not be displayed.<br>Default value: **true**|
@@ -112,7 +112,7 @@ struct PopupExample {
         .bindPopup(this.customPopup, {
           builder: this.popupBuilder,
           placement: Placement.Top,
-          maskColor: '0x33000000',
+          mask: {color:'0x33000000'},
           popupColor: Color.Yellow,
           enableArrow: true,
           showInSubWindow: false,
