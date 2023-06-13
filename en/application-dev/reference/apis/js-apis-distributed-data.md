@@ -263,7 +263,7 @@ const options = {
     backup : false,
     autoSync : true,
     kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-    schema : '',
+    schema : undefined,
     securityLevel : distributedData.SecurityLevel.S2,
  }
  try {
@@ -313,7 +313,7 @@ const options = {
     backup : false,
     autoSync : true,
     kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-    schema : '',
+    schema : undefined,
     securityLevel : distributedData.SecurityLevel.S2,
 }
  try {
@@ -361,7 +361,7 @@ const options = {
     backup : false,
     autoSync : true,
     kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-    schema : '',
+    schema : undefined,
     securityLevel : distributedData.SecurityLevel.S2,
 }
 try {
@@ -410,7 +410,7 @@ const options = {
     backup : false,
     autoSync : true,
     kvStoreType : distributedData.KVStoreType.SINGLE_VERSION,
-    schema : '',
+    schema : undefined,
     securityLevel : distributedData.SecurityLevel.S2,
 }
 try {
@@ -571,13 +571,13 @@ Provides KV store configuration.
 
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
-| createIfMissing  | boolean | No| Whether to create a KV store if no database file exists. By default, a KV store is created.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
-| encrypt  | boolean | No|Whether to encrypt database files. By default, database files are not encrypted.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core    |
-| backup  | boolean | No|Whether to back up database files. By default, database files are backed up. <br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core    |
+| createIfMissing  | boolean | No| Whether to create a KV store if no database file exists. The default value is **true**, which means to create a KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
+| encrypt  | boolean | No|Whether to encrypt the KV store. The default value is **false**, which means the KV store is not encrypted.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core    |
+| backup  | boolean | No|Whether to back up the KV store. The default value is **true**, which means to back up the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core    |
 | autoSync  | boolean | No|Whether to automatically synchronize database files. The value **false** (default) means to manually synchronize database files; the value **true** means to automatically synchronize database files.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core<br>**Required permissions**: ohos.permission.DISTRIBUTED_DATASYNC    |
-| kvStoreType | [KVStoreType](#kvstoretype) | No|Type of the KV store to create. By default, a device KV store is created. The device KV store stores data for multiple devices that collaborate with each other.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
-| securityLevel | [SecurityLevel](#securitylevel) | No|Security level of the KV store. By default, the security level is not set.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
-| schema<sup>8+</sup> | [Schema](#schema8) | No| Schema used to define the values stored in a KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
+| kvStoreType | [KVStoreType](#kvstoretype) | No|Type of the KV store to create. The default value is **DEVICE_COLLABORATION**, which indicates a device KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
+| securityLevel | [SecurityLevel](#securitylevel) | Yes|Security level (S1-S4) of the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
+| schema<sup>8+</sup> | [Schema](#schema8) | No| Schema used to define the values stored in the KV store. The default value is **undefined**, which means the schema is not set.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
 
 
 ## KVStoreType
@@ -599,8 +599,8 @@ Enumerates the KV store security levels.
 
 | Name | Value| Description                   |
 | ---   | ----  | ----------------------- |
-| NO_LEVEL  | 0 | No security level is set for the KV store.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore  |
-| S0  | 1 | The KV store security level is public.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
+| NO_LEVEL  | 0 | No security level is set. This security level is not recommended.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore  |
+| S0  | 1 | The security level of the KV store is public. This security level is not recommended.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
 | S1  | 2 | The KV store security level is low. If data leakage occurs, minor impact will be caused on the database. For example, a KV store that contains system data such as wallpapers.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
 | S2  | 3 | The KV store security level is medium. If data leakage occurs, moderate impact will be caused on the database. For example, a KV store that contains information created by users or call records, such as audio or video clips.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
 | S3  | 5 | The KV store security level is high. If data leakage occurs, major impact will be caused on the database. For example, a KV store that contains information such as user fitness, health, and location data.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core   |
@@ -2290,7 +2290,7 @@ Unsubscribes from data changes.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------  | ----  | ----------------------- |
 | event  |string  | Yes   |Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.      |
-| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback for the data change event.|
+| observer |Callback&lt;[ChangeNotification](#changenotification)&gt; |No   |Callback for the data change event. If the callback is not specified, all subscriptions to the data change event will be canceled.|
 
 **Example**
 
@@ -3761,7 +3761,7 @@ Unsubscribes from synchronization complete events.
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | event  |string   | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.   |
-| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   | Callback for the synchronization complete event. |
+| syncCallback  |Callback&lt;Array&lt;[string, number]&gt;&gt;   | No   |Callback for the synchronization complete event. If the callback is not specified, all subscriptions to the synchronization complete event will be canceled. |
 
 **Example**
 
@@ -3805,7 +3805,7 @@ Synchronizes the KV store manually. For details about the synchronization modes 
 | -----  | ------   | ----  | ----------------------- |
 | deviceIdList  |string[]  | Yes   |List of IDs of the devices in the same networking environment to be synchronized.   |
 | mode  |[SyncMode](#syncmode)   | Yes  |Synchronization mode.   |
-| allowedDelayMs  |number   | No  |Allowed synchronization delay time, in ms.  |
+| allowedDelayMs  |number   | No  |Allowed synchronization delay time, in ms. The default value is **0**.  |
 
 **Example**
 
@@ -3997,7 +3997,7 @@ Obtains a string value that matches the specified device ID and key. This API us
 | -----  | ------   | ----  | ----------------------- |
 | deviceId  |string  | Yes   |ID of the target device.   |
 | key       |string  | Yes   |Key to match.   |
-| callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | Yes   | Callback invoked to return the value obtained.   |
+| callback  |AsyncCallback&lt;boolean\|string\|number\|Uint8Array&gt;  | Yes   |Callback invoked to return the value obtained.   |
 
 **Example**
 
@@ -5095,7 +5095,7 @@ Synchronizes the KV store manually. For details about the synchronization modes 
 | -----  | ------   | ----  | ----------------------- |
 | deviceIdList    |string[]               | Yes   |IDs of the devices to be synchronized.|
 | mode            |[SyncMode](#syncmode)  | Yes   |Synchronization mode. |
-| allowedDelayMs  |number                 | No   |Allowed synchronization delay time, in ms. |
+| allowedDelayMs  |number                 | No   |Allowed synchronization delay time, in ms. The default value is **0**. |
 
 **Example**
 
@@ -5186,7 +5186,7 @@ Unsubscribes from synchronization complete events. This API returns the result s
 | Name | Type| Mandatory | Description                   |
 | -----  | ------   | ----  | ----------------------- |
 | event         |string                           | Yes   |Event to unsubscribe from. The value is **syncComplete**, which indicates a synchronization complete event.|
-| syncCallback  |Callback<Array&lt;[string, number]&gt;&gt; | No   | Callback for the synchronization complete event. |
+| syncCallback  |Callback<Array&lt;[string, number]&gt;&gt; | No   |Callback for the synchronization complete event. If the callback is not specified, all subscriptions to the synchronization complete event will be canceled. |
 
 **Example**
 
