@@ -22,7 +22,9 @@ You can use `$r` or `$rawfile` to create a **Resource** object, but its attribut
 
   **filename**: name of the file in the **resources/rawfile** directory of the project.
 
-  **NOTE**<br>When referencing resources of the **Resource** type, make sure the data type is the same as that of the attribute method. For example, if an attribute method supports the **string | Resource** types, the data type of the **Resource** type must be string.
+  > **NOTE**
+  >
+  > When referencing resources of the **Resource** type, make sure the data type is the same as that of the attribute method. For example, if an attribute method supports the **string | Resource** types, the data type of the **Resource** type must be string.
 
 ## Length
 
@@ -230,7 +232,7 @@ The **CustomBuilder** type is used to define custom UI descriptions in component
 
 ## PixelStretchEffectOptions<sup>10+</sup>
 
-Describes the pixel stretch effect options.
+The **PixelStretchEffectOptions** type is used to describe the pixel stretch effect options.
 
 | Name    | Type               | Mandatory  | Description            |
 | ------ | ----------------- | ---- | -------------- |
@@ -245,6 +247,67 @@ The **ModalTransition** type is used to set the transition type for a full-scree
 
 | Name     | Description          |
 | ------- | ------------ |
-| None    | No transition animation for the full-screen modal.  |
-| Default | Slide-up and slide-down animation for the full-screen modal. |
-| Alpha   | Opacity animation for the full-screen modal.|
+| NONE    | No transition animation for the modal.  |
+| DEFAULT | Slide-up and slide-down animation for the modal. |
+| ALPHA   | Opacity gradient animation for the modal. |
+
+## Dimension<sup>10+</sup>
+
+The **Length** type is used to represent a size unit.
+
+| Type                   | Description                                    |
+| --------------------- | -------------------------------------- |
+| [PX](#px10)               | Physical pixel unit type. The unit px must be included, for example, **'10px'**.|
+| [VP](#vp10)                | Pixel unit type specific to the screen density. The unit vp must be included, for example, **'10vp'**.|
+| [FP](#fp10)                | Font pixel unit type. The unit fp must be included, for example, **'10fp'**.|
+| [LPX](#lpx10)              | Logical pixel unit type. The unit lpx must be included, for example, **'10lpx'**.|
+| [Percentage](#percentage10)        | Percentage type. The unit % must be included, for example, **'10%'**.|
+| [Resource](#resource) | Size referenced from system or application resources.|
+
+## PX<sup>10+</sup>
+
+The **PX** type is used to represent a length in px.
+
+| Type                   | Description                                    |
+| --------------------- | -------------------------------------- |
+| {number}px               | Physical pixel unit type. The unit px must be included, for example, **'10px'**.|
+
+## VP<sup>10+</sup>
+
+The **VP** type is used to represent a length in vp.
+
+| Type                   | Description                                    |
+| --------------------- | -------------------------------------- |
+| {number}vp               | Pixel unit type specific to the screen density. The unit vp must be included, for example, **'10vp'**.|
+
+## FP<sup>10+</sup>
+
+The **FP** type is used to represent a length in fp.
+
+| Type                   | Description                                    |
+| --------------------- | -------------------------------------- |
+| {number}fp               | Font pixel unit type. The unit fp must be included, for example, **'10fp'**.|
+
+## LPX<sup>10+</sup>
+
+The **LPX** type is used to represent a length in lpx.
+
+| Type                   | Description                                    |
+| --------------------- | -------------------------------------- |
+| {number}lpx               | Logical pixel unit type. The unit lpx must be included, for example, **'10lpx'**.|
+
+## Percentage<sup>10+</sup>
+
+The **Percentage** type is used to represent a length in percentage.
+
+| Type                   | Description                                    |
+| --------------------- | -------------------------------------- |
+| {number}%               | Percentage type. The unit % must be included, for example, **'10%'**.|
+
+## Degree<sup>10+</sup>
+
+The **Degree** type is used to represent a length in deg.
+
+| Type                   | Description                                    |
+| --------------------- | -------------------------------------- |
+| {number}deg               | Degree type. The unit deg must be included, for example, **'10deg'**.|
