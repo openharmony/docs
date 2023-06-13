@@ -283,6 +283,46 @@ getTrustedDeviceListSync(): Array&lt;DeviceInfo&gt;
   }
   ```
 
+### getTrustedDeviceListSync<sup>10+</sup>
+
+getTrustedDeviceListSync(isRefresh: boolean): Array&lt;DeviceInfo&gt;
+
+打开软总线系统端的心跳模式，让周围处于下线状态的可信设备快速上线，同时刷新已上线的可信设备列表。
+
+**需要权限**：ohos.permission.ACCESS_SERVICE_DM
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**参数：**
+
+| 参数名        | 类型                               | 必填 | 说明                                |
+| ------------- | --------------------------------- | ---- | ---------------------------------- |
+|   isRefresh   | boolean                           | 是   | 是否打开心跳模式，刷新可信列表。      |
+
+**返回值：**
+
+| 名称                                     | 说明            |
+| -------------------------------------- | ---------------- |
+| Array&lt;[DeviceInfo](#deviceinfo)&gt; | 返回可信设备列表。 |
+
+**错误码：**
+
+以下的错误码的详细介绍请参见[设备管理错误码](../errorcodes/errorcode-device-manager.md)
+
+| 错误码ID | 错误信息                                                         |
+| -------- | --------------------------------------------------------------- |
+| 11600101 | Failed to execute the function.                                 |
+
+**示例：**
+
+  ```js
+  try {
+    var deviceInfoList = dmInstance.getTrustedDeviceListSync(true);
+  } catch (err) {
+    console.error("getTrustedDeviceListSync errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
+
 ### getTrustedDeviceList<sup>8+</sup>
 
 getTrustedDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceInfo&gt;&gt;): void
