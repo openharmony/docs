@@ -3400,7 +3400,7 @@ audioStreamManager.getAudioEffectInfoArray(audio.ContentType.CONTENT_TYPE_MUSIC,
     console.error(`getAudioEffectInfoArray :ERROR: ${err}`);
     return;
   } else {
-    console.info(`The contentType of ${CONTENT_TYPE_MUSIC} and the streamUsage of ${STREAM_USAGE_MEDIA} 's effect modes are: ${audioEffectInfoArray}`);
+    console.info(`The effect modes are: ${audioEffectInfoArray}`);
   }
 });
 ```
