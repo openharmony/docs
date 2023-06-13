@@ -606,6 +606,14 @@ setCurrentFunctions(funcs: FunctionType): Promise\<void\>
 | ------ | ------------------------------ | ---- | ----------------- |
 | funcs  | [FunctionType](#functiontype) | 是   | USB功能数字掩码。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[USB错误码](../errorcodes/errorcode-usb.md)。
+
+| 错误码ID | 错误码信息                                           |
+| -------- | ---------------------------------------------------- |
+| 14400002 | Permission denied.The HDC is disabled by the system. |
+
 **返回值：**
 
 | 类型            | 说明          |
