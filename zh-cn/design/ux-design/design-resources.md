@@ -9,7 +9,6 @@
 
 - OpenHarmony[图标](visual-icons.md)资源，[OpenHarmony_Icons.zip](zh-cn/design/ux-design/figures/OpenHarmony_Icons.zip)
 
-
 系统资源分层设计表列出了当前OpenHarmony中可用系统资源id及其在不同类型设备上的取值，它由六张子表组成，各个子表的含义如下所示。
 
 
