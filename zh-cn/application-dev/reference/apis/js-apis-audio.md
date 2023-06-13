@@ -4862,9 +4862,9 @@ async function getCacheDir(){
 }
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-let stat = await fs.stat(path);
+let currStat = await fs.stat(path);
 let buf = new ArrayBuffer(bufferSize);
-let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+let len = currStat.size % bufferSize == 0 ? Math.floor(currStat.size / bufferSize) : Math.floor(currStat.size / bufferSize + 1);
 for (let i = 0;i < len; i++) {
     let options = {
       offset: i * bufferSize,
@@ -4916,9 +4916,9 @@ async function getCacheDir(){
 }
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-let stat = await fs.stat(path);
+let currStat = await fs.stat(path);
 let buf = new ArrayBuffer(bufferSize);
-let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+let len = currStat.size % bufferSize == 0 ? Math.floor(currStat.size / bufferSize) : Math.floor(currStat.size / bufferSize + 1);
 for (let i = 0;i < len; i++) {
     let options = {
       offset: i * bufferSize,
