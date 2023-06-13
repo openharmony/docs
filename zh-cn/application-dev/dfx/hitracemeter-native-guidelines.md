@@ -13,7 +13,8 @@ hiTraceMeter为开发者提供系统性能打点接口。开发者通过在自�
 | void OH_HiTrace_StartAsyncTrace(const char* name, int32_t taskId) | 开启一个异步时间片跟踪事件 |
 | void OH_HiTrace_FinishAsyncTrace(const char* name, int32_t taskId) | 结束一个异步时间片跟踪事件 |
 | void OH_HiTrace_CountTrace(const char* name, int64_t count) | 整数跟踪事件 |
-**参数解析：**
+
+**参数解析**
 | 参数名 | 类型 | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
 | name   | string | 否   | 要跟踪的数值变量名称。 |
