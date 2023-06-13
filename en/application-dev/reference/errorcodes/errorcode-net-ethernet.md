@@ -14,7 +14,7 @@ Invalid parameter value.
 
 This error code is reported if the parameter value is invalid.
 
-**Possible Cause**
+**Possible Causes**
 
 The input parameter value is not within the valid value range.
 
@@ -32,7 +32,7 @@ Operation failed. Cannot connect to service.
 
 This error code is reported if a service connection failure occurs.
 
-**Possible Cause**
+**Possible Causes**
 
 The service is abnormal.
 
@@ -50,7 +50,7 @@ System internal error.
 
 An internal system error occurs.
 
-**Possible Cause**
+**Possible Causes**
 
 1. The memory is abnormal.
 
@@ -72,7 +72,7 @@ The device information does not exist.
 
 This error code is reported if the device information does not exist.
 
-**Possible Cause**
+**Possible Causes**
 
 The device to set or obtain does not exist.
 
@@ -93,7 +93,7 @@ Device disconnected.
 
 This error code is reported if the device is not connected.
 
-**Possible Cause**
+**Possible Causes**
 
 The network interface card (NIC) is faulty.
 
@@ -111,7 +111,7 @@ Failed to write the user configuration.
 
 This error code is reported if an error occurs while writing data to the user configuration file.
 
-**Possible Cause**
+**Possible Causes**
 
 The system reports an error.
 
