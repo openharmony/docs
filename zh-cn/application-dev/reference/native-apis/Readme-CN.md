@@ -24,6 +24,7 @@
   - [HuksTypeApi](_huks_type_api.md)
   - [Init](init.md)
   - [Memory](memory.md)
+  - [Hitrace](_hitrace.md)
 - 头文件
   - [drawing_bitmap.h](drawing__bitmap_8h.md)
   - [drawing_brush.h](drawing__brush_8h.md)
@@ -73,6 +74,7 @@
   - [relation_store.h](relation__store_8h.md)
   - [syscap_ndk.h](syscap__ndk_8h.md)
   - [purgeable_memory.h](purgeable__memory_8h.md)
+  - [trace.h](trace_8h.md)
 - 结构体
   - [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)
   - [OH_NativeBuffer_Config](_o_h___native_buffer___config.md)
