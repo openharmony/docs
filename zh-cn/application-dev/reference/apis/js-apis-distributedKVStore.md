@@ -3867,7 +3867,7 @@ backup(file:string, callback: AsyncCallback&lt;void&gt;):void
 ```js
 let file = "BK001";
 try {
-    kvStore.backup(file, function(err) => {
+    kvStore.backup(file, (err) => {
         if (err) {
             console.error(`Failed to backup.code is ${err.code},message is ${err.message} `);
         } else {
