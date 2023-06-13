@@ -12,7 +12,7 @@
 
 | **名称**      | **参数类型** | **描述**                    |
 | ----------- | -------- | ------------------------ |
-| touchable<sup>(deprecated)</sup>   | boolean  | 设置当前组件是否可以响应点击事件、触摸事件等手指交互事件。<br>默认值：true <br />**说明：**<br />从 API version 9 开始废弃，建议使用`hitTestBehavior`替代。|
+| touchable<sup>(deprecated)</sup>   | boolean  | 设置当前组件是否可以响应点击事件、触摸事件等手指交互事件。<br>默认值：true <br />**说明：**<br />从 API version 9 开始废弃，建议使用`[hitTestBehavior](ts-universal-attributes-hit-test-behavior.md)`替代。|
 
 
 ## 示例
