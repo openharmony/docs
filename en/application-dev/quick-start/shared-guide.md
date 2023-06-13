@@ -1,6 +1,6 @@
 # Shared Package Overview
 
-OpenHarmony provides two types of shared packages: [Harmony Achive (HAR)](har-package.md) static shared package and Harmony Shared Package (HSP) dynamic shared package.
+OpenHarmony provides two types of shared packages: [Harmony Archive (HAR)](har-package.md) static shared package and Harmony Shared Package (HSP) dynamic shared package.
 
 Both the HAR and HSP are used to share code and resources and can contain code, C++ libraries, resources, and configuration files. The biggest differences between them are as follows: The code and resources in the HAR are compiled with the invoking module, and if there are multiple invoking modules, the build product contains multiple copies of the same code and resources; the code and resources in the HSP can be compiled independently, and the build product contains only one copy of the code and resources.
 
