@@ -50,21 +50,23 @@ build() {
       .fontWeight(FontWeight.Bold)
       .onClick(async () => {
          //1.模型准备
-         let context = globalThis.context;
-         context.resourceManager.getRawFileContent(this.inputName).then((error,buffer) => {
+         let syscontext = globalThis.context;
+         syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
            this.inputBuffer = buffer;
            console.log('=========input bin byte length: ' + this.inputBuffer.byteLength)
-         }).catch(error) {
+         }).catch(error => {
            console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
-         }
+         })
          //2.创建上下文
-         let options = {'target': ['cpu']}
-         options.cpu.threadNum = 1;
-         options.cpu.threadAffinityMode = 0;
-         options.cpu.precisionMode = 'enforce_fp32';
+         let context: mindSporeLite.Context = {};
+         context.target = ['cpu'];
+         context.cpu = {}
+         context.cpu.threadNum = 1;
+         context.cpu.threadAffinityMode = 0;
+         context.cpu.precisionMode = 'enforce_fp32';
          //3.加载模型
          let modelFile = '/data/storage/el2/base/haps/entry/files/mnet.caffemodel.ms';
-         let msLiteModel = await mindSporeLite.loadModelFromFile(modelFile);
+         let msLiteModel = await mindSporeLite.loadModelFromFile(modelFile, context);
          //4.加载数据
          const modelInputs = msLiteModel.getInputs();
          modelInputs[0].setData(this.inputBuffer.buffer);
