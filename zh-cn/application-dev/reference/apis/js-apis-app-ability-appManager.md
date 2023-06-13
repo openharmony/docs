@@ -326,10 +326,9 @@ isSharedBundleRunning(bundleName: string, versionCode: number): Promise\<boolean
 **错误码**：
 
 | 错误码ID | 错误信息 |
-| 201 | Permissions denied. |
-| 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
 | 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -368,10 +367,9 @@ isSharedBundleRunning(bundleName: string, versionCode: number, callback: AsyncCa
 **错误码**：
 
 | 错误码ID | 错误信息 |
-| 201 | Permissions denied. |
-| 202 | The application is not a system application. |
-| 401 | If the input parameter is not valid parameter. |
 | 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 

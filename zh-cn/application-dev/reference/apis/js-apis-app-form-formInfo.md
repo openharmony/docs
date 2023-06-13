@@ -25,6 +25,7 @@ import formInfo from '@ohos.app.form.formInfo';
 | abilityName | string               | 是    | 否     | 卡片所属的Ability名称。                       |
 | name        | string               | 是    | 否     | 卡片名称。                                 |
 | description | string               | 是    | 否     | 卡片描述。   |
+| descriptionId      | number               | 是    | 否     | 卡片描述id。               |
 | type        | [FormType](#formtype)             | 是    | 否     | 卡片类型。当前支持JS卡片。 |
 | jsComponentName      | string               | 是    | 否     | js卡片的组件名。               |
 | colorMode  | [ColorMode](#colormode) | 是    | 否     | 卡片颜色模式。                                       |
@@ -147,6 +148,8 @@ import formInfo from '@ohos.app.form.formInfo';
 卡片使用方信息
 
 **系统能力**：SystemCapability.Ability.Form
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
 
 | 名称        | 类型                 | 可读    | 可写    | 说明                                                         |
 | ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
