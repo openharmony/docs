@@ -310,6 +310,71 @@ connection.setGlobalHttpProxy(httpProxy).then(() => {
 })
 ```
 
+## connection.getDefaultHttpProxy<sup>10+</sup>
+
+getDefaultHttpProxy(callback: AsyncCallback\<HttpProxy>): void
+
+获取网络默认的代理配置信息。
+如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其他情况下，将返回默认网络的代理配置信息。
+使用callback方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**参数：**
+
+| 参数名   | 类型                                   | 必填 | 说明                                                         |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
+| callback | AsyncCallback<[HttpProxy](#httpproxy)> | 是   | 回调函数。当成功获取网络默认的代理配置信息时，err为undefined，data为网络默认的代理配置信息；否则为错误对象 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 2100002  | Operation failed. Cannot connect to service. |
+| 2100003  | System internal error.                       |
+
+**示例：**
+
+```js
+connection.getDefaultHttpProxy((error, data) => {
+  console.info(JSON.stringify(error));
+  console.info(JSON.stringify(data));
+})
+```
+
+## connection.getDefaultHttpProxy<sup>10+</sup>
+
+getDefaultHttpProxy(): Promise\<HttpProxy>;
+
+获取网络默认的代理配置信息。
+如果设置了全局代理，则会返回全局代理配置信息。如果进程使用[setAppNet](#connectionsetappnet)绑定到指定[NetHandle](#nethandle)对应的网络，则返回[NetHandle](#nethandle)对应网络的代理配置信息。在其他情况下，将返回默认网络的代理配置信息。
+使用Promise方式作为异步方法。
+
+**系统能力**：SystemCapability.Communication.NetManager.Core
+
+**返回值：**
+
+| 类型                             | 说明                                      |
+| -------------------------------- | ----------------------------------------- |
+| Promise<[HttpProxy](#httpproxy)> | 以Promise形式返回网络默认的代理配置信息。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息                                     |
+| -------- | -------------------------------------------- |
+| 2100002  | Operation failed. Cannot connect to service. |
+| 2100003  | System internal error.                       |
+
+**示例：**
+
+```js
+connection.getDefaultHttpProxy().then((data) => {
+  console.info(JSON.stringify(data));
+}).catch(error => {
+  console.info(JSON.stringify(error));
+})
+```
+
 ## connection.getAppNet<sup>9+</sup>
 
 getAppNet(callback: AsyncCallback\<NetHandle>): void
@@ -1864,7 +1929,7 @@ connection.getDefaultNet().then(function (netHandle) {
 
 ## HttpProxy<sup>10+</sup>
 
-网络全局代理配置信息
+网络代理配置信息
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 

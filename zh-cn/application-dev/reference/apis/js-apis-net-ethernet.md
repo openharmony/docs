@@ -1,6 +1,6 @@
 # @ohos.net.ethernet (以太网连接管理)
 
-以太网连接管理主要提供有线网络能力，提供设置有线网络的IP地址，子网掩码，网关，DNS等信息
+以太网连接管理主要提供有线网络能力，提供设置有线网络的IP地址，子网掩码，网关，DNS，代理等信息
 
 > **说明：**
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
@@ -55,7 +55,12 @@ ethernet.setIfaceConfig("eth0", {
   route: "192.168.xx.xxx",
   gateway: "192.168.xx.xxx",
   netMask: "255.255.255.0",
-  dnsServers: "1.1.1.1"
+  dnsServers: "1.1.1.1",
+  httpProxy: {
+    host: "180.89.xx.xx",
+    port: 8080,
+    exclusionList: {"192.168","example.com"}
+  }
 }, (error) => {
   if (error) {
     console.log("setIfaceConfig callback error = " + JSON.stringify(error));
@@ -114,7 +119,12 @@ ethernet.setIfaceConfig("eth0", {
   route: "192.168.xx.xxx",
   gateway: "192.168.xx.xxx",
   netMask: "255.255.255.0",
-  dnsServers: "1.1.1.1"
+  dnsServers: "1.1.1.1",
+  httpProxy: {
+    host: "180.89.xx.xx",
+    port: 8080,
+    exclusionList: {"192.168","example.com"}
+  }
 }).then(() => {
   console.log("setIfaceConfig promise ok ");
 }).catch(error => {
@@ -476,16 +486,4 @@ ethernet.off('interfaceStateChange');
 | gateway      | string                  | 是 | 以太网连接配置网关信息，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）。 |
 | netMask      | string                  | 是 | 以太网连接配置子网掩码，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）。 |
 | dnsServers   | string                  | 是 | 以太网连接配置dns服务地址，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）多地址间用“,”隔开。 |
-
-## IPSetMode<sup>9+</sup>
-
-以太网连接模式。
-
-**系统接口**：此接口为系统接口。
-
-**系统能力**：SystemCapability.Communication.NetManager.Ethernet
-
-| 名称                  | 值   | 说明                   |
-| ------------------------ | ---- | ---------------------- |
-| STATIC | 0 | 以太网连接静态配置网络信息。 |
-| DHCP   | 1 | 以太网连接动态配置网络信息。 |
+| httpProxy<sup>10+</sup> | [HttpProxy](#connectionhttpproxy) | 否 | 以太网连接代理配置信息，默认情况下不配置任何代理信息。 |
