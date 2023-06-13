@@ -2,22 +2,22 @@
 
 ## When to Use
 
-The [Ability Privilege Level (APL)](accesstoken-overview.md#application-apls) of an application can be **normal**, **system_basic**, or **system_core**. The default APL is **normal**. The [permission types](accesstoken-overview.md#permission-types) include **system_grant** and **user_grant**. For details about the permissions for applications, see the [Application Permission List](permission-list.md).
+Application permissions are used to prevent unauthorized access to sensitive data or critical functions. The [Ability Privilege Level (APL)](accesstoken-overview.md#application-apls) of an application can be **normal** (default), **system_basic**, or **system_core**. The [permission types](accesstoken-overview.md#permission-types) include **system_grant** and **user_grant**. For details about the permissions for applications, see the [Application Permission List](permission-list.md).
 
 This document describes the following operations:
 
 - [Declaring Permissions in the Configuration File](#declaring-permissions-in-the-configuration-file)
 - [Declaring the ACL](#declaring-the-acl)
 - [Requesting User Authorization](#requesting-user-authorization)
-- [Pre-Authorizing user_grant Permissions](#pre-authorizing-user_grant-permissions)
+- [Pre-authorizing user_grant Permissions](#pre-authorizing-user_grant-permissions)
 
 ## Declaring Permissions in the Configuration File
 
-During the development, you need to declare the permissions required by your application one by one in the project configuration file. The application cannot obtain the permissions that are not declared in the configuration file. OpenHarmony provides two application models: FA model and stage model. For more information, see [Application Models](../application-models/application-model-description.md). The application bundle and configuration file vary with the application model.
+The permissions required by an application must be declared one by one in the configuration file of the project. Otherwise, the application cannot obtain the permissions.
 
 > **NOTE**
 >
-> The default APL of an application is **normal**. When an application of the **normal** APL needs a permission of the **system_basic** or **system_core** level, you must declare the permission in the configuration file and the [Access Control List (ACL)](#declaring-the-acl).
+> If an application of the **normal** APL requires a permission of the **system_basic** or **system_core** level, you must also declare the permission in the [ACL](#declaring-the-acl).
 
 The following table describes the fields in the configuration file.
 
@@ -28,7 +28,7 @@ The following table describes the fields in the configuration file.
 | usedScene | No      | Application scenario of the permission.<br>This parameter is mandatory when a user_grant permission is required.|
 | abilities | No      | Abilities that require the permission. The value is an array.<br>**Applicable model**: stage|
 | ability   | No      | Abilities that require the permission. The value is an array.<br>**Applicable model**: FA|
-| when      | No      | Time when the permission is used. <br>Value:<br>- **inuse**: The permission applies only to a foreground application.<br>- **always**: The permission applies to both the foreground and background applications.|
+| when      | No      | Time when the permission is required. <br>Value:<br>- **inuse**: The permission is required only when the application is in use.<br>- **always**: The permission is required no matter whether the application is in use.|
 
 ### Stage Model
 
@@ -110,7 +110,7 @@ For example, if an application needs to access audio clips of a user and capture
 	"acls":{
 		"allowed-acls":[
 			"ohos.permission.WRITE_AUDIO",
-            "ohos.permission.CAPTURE_SCREEN"
+      "ohos.permission.CAPTURE_SCREEN"
 		]
 	}
 }
@@ -118,24 +118,24 @@ For example, if an application needs to access audio clips of a user and capture
 
 ## Requesting User Authorization
 
-The permissions for accessing user privacy information or using system abilities (for example, accessing Location or Calendar information or using the camera to take photos or record videos) request user authorization. Before an application that requires a **user_grant** permission is called, a verification is performed to check whether the user has granted the permission to the application. If the user has not granted the permission, a dialog box will be displayed to request user authorization. The following figure shows an example.
+User authorization is required when an application needs to access user privacy information (such as Location or Calendar information) or using system abilities (such as the camera ability to take photos or record videos). In this case, the application requires a **user_grant** permission. Before the application accesses the data or using the system ability, a verification is performed to check whether the user has granted the permission to the application. If the user has not granted the permission, a dialog box will be displayed to request user authorization. The following figure shows an example.
 
-**Figure 1** Requesting authorization from a user  
+**Figure 1** Requesting user authorization  
 ![](figures/permission-read_calendar.png)
 
 > **NOTE**
 >
-> Each time before an API protected by a **user_grant** permission is called, **requestPermissionsFromUser()** will be called to request user authorization. After the permission is granted, the user may revoke the authorization in **Settings**. Therefore, the previously granted authorization status cannot be persistent.
+> Each time before an API protected by a **user_grant** permission is called, **requestPermissionsFromUser()** will be called to request user authorization. After the permission is granted, the user may revoke the authorization in **Settings**. Therefore, the previous authorization status cannot be persistent.
 
 ### Stage Model
 
 Example: Apply for the permission for an application to access the Calendar.
 
-1. Declare the **ohos.permission.READ_CALENDAR** permission in the configuration file.<br>For details, see [Declaring Permissions in the Configuration File](#declaring-permissions-in-the-configuration-file).
+1. Declare the **ohos.permission.READ_CALENDAR** permission in the configuration file. For details, see [Declaring Permissions in the Configuration File](#declaring-permissions-in-the-configuration-file).
 
 2. Check whether the user has granted the permission.
 
-   Use [checkAccessToken()](../reference/apis/js-apis-abilityAccessCtrl.md#checkaccesstoken9) to check whether the user has granted the permission. If yes, the application can access the Calendar. Otherwise, request authorization from the user.
+   Use [checkAccessToken()](../reference/apis/js-apis-abilityAccessCtrl.md#checkaccesstoken9) to check whether the user has granted the permission. If yes, the application can access the Calendar. Otherwise, user authorization is required.
 
    ```ts
    import bundleManager from '@ohos.bundle.bundleManager';
@@ -152,14 +152,14 @@ Example: Apply for the permission for an application to access the Calendar.
        let appInfo: bundleManager.ApplicationInfo = bundleInfo.appInfo;
        tokenId = appInfo.accessTokenId;
      } catch (err) {
-       console.error(`getBundleInfoForSelf failed, code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to get bundle info for self. Code is ${err.code}, message is ${err.message}`);
      }
    
      // Check whether the user has granted the permission.
      try {
        grantStatus = await atManager.checkAccessToken(tokenId, permission);
      } catch (err) {
-       console.error(`checkAccessToken failed, code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to check access token. Code is ${err.code}, message is ${err.message}`);
      }
    
      return grantStatus;
@@ -214,8 +214,7 @@ Example: Apply for the permission for an application to access the Calendar.
          }
          // The authorization is successful.
        }).catch((err) => {
-         console.error(`requestPermissionsFromUser failed, code is ${err.code}, message is ${err.message}`);
-       })
+         console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
    
        // ...
      }
@@ -249,7 +248,7 @@ Example: Apply for the permission for an application to access the Calendar.
          }
          // The authorization is successful.
        }).catch((err) => {
-         console.error(`requestPermissionsFromUser failed, code is ${err.code}, message is ${err.message}`);
+         console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
        })
      }
    
@@ -301,14 +300,18 @@ reqPermissions() {
     });
 }
 ```
-## Pre-Authorizing user_grant Permissions
-By default, the **user_grant** permissions must be dynamically authorized by the user through a dialog box. However, if you do not want the user authorization dialog box to display for pre-installed applications, you can pre-authorize the permissions, for example, the **ohos.permission.MICROPHONE** permission, in the [**install_list_permission.json**](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json) file. The **install_list_permissions.json** file is in the **/system/etc/app/** directory on a device, and is loaded when the device starts. When the application is installed, the **user_grant** permissions in the file are granted.<br> The **install_list_permissions.json** file contains the following fields:
+## Pre-authorizing user_grant Permissions
+By default, the **user_grant** permissions must be dynamically authorized by the user through a dialog box. However, some pre-installed applications may require **user_grant** permissions, for example, the system camera application requires the **ohos.permission.MICROPHONE** permission. In this case, you can pre-authorize **user_grant** permissions for pre-installed applications in the [**install_list_permission.json**](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json) file. The **install_list_permissions.json** file is in the **/system/etc/app/** directory on a device, and is loaded when the device starts. When the application is installed, the **user_grant** permissions in the file are granted.
+
+The **install_list_permissions.json** file contains the following fields:
 
 - **bundleName**: bundle name of the application.
 - **app_signature**: fingerprint information of the application. For details, see **Configuration in install_list_capability.json** in the [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
-- **permissions**: **name** specifies the name of the **user_grant** permission to pre-authorize. **userCancellable** specifies whether the user can revoke the pre-authorization. The value **true** means the user can revoke the pre-authorization; the value **false** means the opposite.
+- **permissions**: The **name** field specifies the name of the **user_grant** permission to pre-authorize. The **userCancellable** field specifies whether the user can revoke the pre-authorization. The value **true** means the user can revoke the pre-authorization; the value **false** means the opposite.
 
-> **NOTE**<br>This file is available only for preinstalled applications.
+> **NOTE**
+> 
+> The **install_list_permissions.json** file is available only for preinstalled applications.
 
 ```json
 [
