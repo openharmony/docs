@@ -29,6 +29,8 @@ You can bind a popup to a component, specifying its content, interaction logic, 
 | messageOptions<sup>10+</sup>          | [PopupMessageOptions](#popupmessageoptions10)                | No  | Parameters of the popup message.                                      |
 | targetSpace<sup>10+</sup>             | [Length](ts-types.md#length)                                 | No  | Space between the popup and the target.                                     |
 | placement<sup>10+</sup>               | [Placement](ts-appendix-enums.md#placement8)                 | No  | Position of the popup relative to the target. The default value is **Placement.Bottom**.<br>If both **placementOnTop** and **placement** are set, the latter prevails.|
+| offset<sup>10+</sup>                  | [Position](ts-types.md#position8)                            | No  | Offset of the popup relative to the display position specified by **placement**.          |
+| enableArrow<sup>10+</sup>             | boolean | No  | Whether to display the arrow.<br>Default value: **true**|
 
 ## PopupMessageOptions<sup>10+</sup>
 
@@ -40,7 +42,7 @@ You can bind a popup to a component, specifying its content, interaction logic, 
 
 | Name                          | Type                                      | Mandatory  | Description                                      |
 | ---------------------------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| builder                      | [CustomBuilder](ts-types.md#custombuilder8) | Yes   | Popup builder.                             |
+| builder                      | [CustomBuilder](ts-types.md#custombuilder8) | Yes   | Popup builder.<br>**NOTE**<br>The **popup** attribute is a universal attribute. A custom popup does not support display of another popup. The **position** attribute cannot be used for the first-layer container under the builder. If the **position** attribute is used, the popup will not be displayed.                             |
 | placement                    | [Placement](ts-appendix-enums.md#placement8) | No   | Preferred position of the popup. If the set position is insufficient for holding the popup, it will be automatically adjusted.<br>Default value: **Placement.Bottom**|
 | popupColor                   | [ResourceColor](ts-types.md#resourcecolor) | No   | Color of the popup.                                |
 | enableArrow                  | boolean                                  | No   | Whether to display an arrow.<br>Since API version 9, if the position set for the popup is not large enough, the arrow will not be displayed. For example, if **placement** is set to **Left**, but the popup height (80 vp) is less than the sum of the arrow width (32 vp) and diameter of popup rounded corner (48 vp), the arrow will not be displayed.<br>Default value: **true**|
@@ -48,8 +50,10 @@ You can bind a popup to a component, specifying its content, interaction logic, 
 | onStateChange                | (event: { isVisible: boolean }) =&gt; void | No   | Callback for the popup status change event.<br/>**isVisible**: whether the popup is visible.           |
 | arrowOffset<sup>9+</sup>     | [Length](ts-types.md#length)             | No   | Offset of the popup arrow relative to the popup.<br/>When the arrow is at the top or bottom of the popup: The value **0** indicates that the arrow is located on the leftmost, and any other value indicates the distance from the arrow to the leftmost; the arrow is centered by default.<br/>When the arrow is on the left or right side of the popup: The value indicates the distance from the arrow to the top; the arrow is centered by default.<br/>When the popup is displayed on either edge of the screen, it will automatically deviate leftward or rightward to stay within the safe area. When the value is **0**, the arrow always points to the bound component. |
 | showInSubWindow<sup>9+</sup> | boolean                                  | No   | Whether to show the popup in the subwindow. The default value is **false**.                   |
+| maskColor<sup>(deprecated)</sup> | [ResourceColor](ts-types.md#resourcecolor)   | No  | Color of the popup mask.<br>**NOTE**<br>This parameter is deprecated since API version 10. You are advised to use **mask** instead.|
 | mask<sup>10+</sup>           | boolean \| [ResourceColor](ts-types.md#resourcecolor) | No   | Whether to apply a mask to the popup. The value **true** means to apply a transparent mask to the popup, **false** means not to apply a mask to the popup, and a color value means to apply a mask in the corresponding color to the popup.|
 | targetSpace<sup>10+</sup>    | [Length](ts-types.md#length)             | No   | Space between the popup and the target.                          |
+| offset<sup>10+</sup>         | [Position](ts-types.md#position8)                            | No  | Offset of the popup relative to the display position specified by placement.|
 
 ## Example
 ```ts
@@ -112,7 +116,7 @@ struct PopupExample {
         .bindPopup(this.customPopup, {
           builder: this.popupBuilder,
           placement: Placement.Top,
-          maskColor: '0x33000000',
+          mask: {color:'0x33000000'},
           popupColor: Color.Yellow,
           enableArrow: true,
           showInSubWindow: false,
