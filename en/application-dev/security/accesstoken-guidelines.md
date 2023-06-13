@@ -152,14 +152,14 @@ Example: Apply for the permission for an application to access the Calendar.
        let appInfo: bundleManager.ApplicationInfo = bundleInfo.appInfo;
        tokenId = appInfo.accessTokenId;
      } catch (err) {
-       console.error(`getBundleInfoForSelf failed, code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to get bundle info for self. Code is ${err.code}, message is ${err.message}`);
      }
    
      // Check whether the user has granted the permission.
      try {
        grantStatus = await atManager.checkAccessToken(tokenId, permission);
      } catch (err) {
-       console.error(`checkAccessToken failed, code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to check access token. Code is ${err.code}, message is ${err.message}`);
      }
    
      return grantStatus;
@@ -214,8 +214,7 @@ Example: Apply for the permission for an application to access the Calendar.
          }
          // The authorization is successful.
        }).catch((err) => {
-         console.error(`requestPermissionsFromUser failed, code is ${err.code}, message is ${err.message}`);
-       })
+         console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
    
        // ...
      }
@@ -249,7 +248,7 @@ Example: Apply for the permission for an application to access the Calendar.
          }
          // The authorization is successful.
        }).catch((err) => {
-         console.error(`requestPermissionsFromUser failed, code is ${err.code}, message is ${err.message}`);
+         console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
        })
      }
    
@@ -302,13 +301,17 @@ reqPermissions() {
 }
 ```
 ## Pre-authorizing user_grant Permissions
-By default, the **user_grant** permissions must be dynamically authorized by the user through a dialog box. However, some pre-installed applications may require **user_grant** permissions, for example, the system camera application requires the **ohos.permission.MICROPHONE** permission. In this case, you can pre-authorize **user_grant** permissions for pre-installed applications in the [**install_list_permission.json**](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json) file. The **install_list_permissions.json** file is in the **/system/etc/app/** directory on a device, and is loaded when the device starts. When the application is installed, the **user_grant** permissions in the file are granted.<br> The **install_list_permissions.json** file contains the following fields:
+By default, the **user_grant** permissions must be dynamically authorized by the user through a dialog box. However, some pre-installed applications may require **user_grant** permissions, for example, the system camera application requires the **ohos.permission.MICROPHONE** permission. In this case, you can pre-authorize **user_grant** permissions for pre-installed applications in the [**install_list_permission.json**](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json) file. The **install_list_permissions.json** file is in the **/system/etc/app/** directory on a device, and is loaded when the device starts. When the application is installed, the **user_grant** permissions in the file are granted.
+
+The **install_list_permissions.json** file contains the following fields:
 
 - **bundleName**: bundle name of the application.
 - **app_signature**: fingerprint information of the application. For details, see **Configuration in install_list_capability.json** in the [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
 - **permissions**: The **name** field specifies the name of the **user_grant** permission to pre-authorize. The **userCancellable** field specifies whether the user can revoke the pre-authorization. The value **true** means the user can revoke the pre-authorization; the value **false** means the opposite.
 
-> **NOTE**<br>The **install_list_permissions.json** file is available only for preinstalled applications.
+> **NOTE**
+> 
+> The **install_list_permissions.json** file is available only for preinstalled applications.
 
 ```json
 [
