@@ -45,6 +45,8 @@ dialCall\(phoneNumber: string, callback: AsyncCallback\<void\>\): void
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
+| 8300005  | Airplane mode is on.                         |
+| 8300006  | Network not in service.                      |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -88,6 +90,8 @@ dialCall\(phoneNumber: string, options: DialCallOptions, callback: AsyncCallback
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
+| 8300005  | Airplane mode is on.                         |
+| 8300006  | Network not in service.                      |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
@@ -141,6 +145,8 @@ dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise\<void\>
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
+| 8300005  | Airplane mode is on.                         |
+| 8300006  | Network not in service.                      |
 | 8300999  | Unknown error code.                          |
 
 **示例：**
