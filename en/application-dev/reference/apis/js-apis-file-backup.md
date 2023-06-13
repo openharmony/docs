@@ -22,7 +22,7 @@ Defines a file metadata object, which includes the application name and file URI
 | Name      | Type  | Mandatory| Description                                                                                          |
 | ---------- | ------ | ---- | ---------------------------------------------------------------------------------------------- |
 | bundleName | string | Yes  | Bundle name of the application, which can be obtained by using the method provided by [bundle.BundleInfo](js-apis-bundle-BundleInfo.md).         |
-| uri        | string | Yes  | Name of the file in the application sandbox.<br>Currently, the URI has not been upgraded to the standard format. It can consist of digits (0–9), letters (a–z and A–Z), underscores (_), and period (.) only.|
+| uri        | string | Yes  | URI of the file in the application sandbox.<br>Currently, the URI is not in the standard format. It can consist of digits (0–9), letters (a–z and A–Z), underscores (_), and period (.) only.|
 
 ## FileData
 
@@ -51,7 +51,7 @@ inherits from [FileMeta](#filemeta) and [FileData](#filedata).
 
 ## GeneralCallbacks
 
-Provides general callbacks invoked during the backup or restoration process. The backup service uses these callbacks to notify the client of the backup/restoration phase of the application.
+Provides callbacks to be used in the backup or restoration process. The backup service uses these callbacks to notify the client of the backup/restoration phase of the application.
 
 **System capability**: SystemCapability.FileManagement.StorageService.Backup
 
@@ -263,7 +263,7 @@ The following is an example of the file obtained:
     "versionCode" : 1000000,
     "versionName" : "1.0.0"
     }],
-  "deviceType" : "phone",
+  "deviceType" : "default",
   "systemFullName" : "OpenHarmony-4.0.0.0"
  }
  ```
@@ -324,7 +324,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
     "versionCode" : 1000000,
     "versionName" : "1.0.0"
     }],
-  "deviceType" : "phone",
+  "deviceType" : "default",
   "systemFullName" : "OpenHarmony-4.0.0.0"
  }
  ```
@@ -546,7 +546,7 @@ For details about the error codes, see [File Management Error Codes](../errorcod
 
 ## SessionRestore
 
-Provides a restoration process object to support the data restoration process of applications. Before using the APIs of this class, you need to create a **SessionRestore** instance.
+Provides an object to support the data restoration process of applications. Before using the APIs of this class, you need to create a **SessionRestore** instance.
 
 ### constructor
 
