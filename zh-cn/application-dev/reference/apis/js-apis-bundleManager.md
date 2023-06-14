@@ -114,6 +114,7 @@ Ability组件信息标志，指示需要获取的Ability组件信息的内容。
 | PRINT<sup>10+</sup> | 15 | PrintExtensionAbility：文件打印扩展能力，提供应用打印照片、文档等办公场景。当前支持图片打印，文档类型暂未支持。 |
 | PUSH<sup>10+</sup> | 17 | PushExtensionAbility：推送扩展能力，提供推送场景化消息能力。预留能力，当前暂未支持。 |
 | DRIVER<sup>10+</sup> | 18 | DriverExtensionAbility：驱动扩展能力，提供外设驱动扩展能力，当前暂未支持。 |
+| APP_ACCOUNT_AUTHORIZATION<sup>10+</sup> | 19 | AuthorizationExtensionAbility：应用帐号认证扩展能力，用于处理帐号授权的请求，允许第三方（相对于操作系统厂商）生态平台的帐号授权。 |
 | UNSPECIFIED      | 255 | 不指定类型，配合queryExtensionAbilityInfo接口可以查询所有类型的ExtensionAbility。 |
 
 
