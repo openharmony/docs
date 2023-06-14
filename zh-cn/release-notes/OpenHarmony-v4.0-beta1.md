@@ -403,7 +403,6 @@ OpenHarmony 4.0 Beta1的API范围相比3.2 Release，API变更的清单请参见
 | 媒体 | [媒体会话——控制方](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta1/code/BasicFeature/Media/AVSession/MediaController)（仅对系统应用开放） | 本示例主要展示了媒体会话（媒体控制方，MediaController）的相关功能，使用\@ohos.multimedia.avsession等接口实现媒体提供方与媒体控制方自定义信息的交互功能。 | ArkTS |
 | 媒体 | [媒体会话——提供方](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta1/code/BasicFeature/Media/AVSession/MediaProvider) | 本示例主要展示了媒体会话（媒体提供方，MediaProvider）的相关功能，使用\@ohos.multimedia.avsession等接口实现媒体提供方与媒体控制方自定义信息的交互功能。 | ArkTS |
 | 媒体 | [音频管理](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta1/code/BasicFeature/Media/Audio) | 本示例主要展示了音频的相关功能，使用\@ohos.multimedia.audio等接口实现音频的发声设备的切换与查询和音频焦点功能。 | ArkTS |
-| DFX | [应用故障恢复](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta1/code/BasicFeature/DFX/AppRecovery) | 本示例展示了在应用中如何适配故障恢复相关接口。 | ArkTS |
 
 请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。
 
