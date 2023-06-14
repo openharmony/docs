@@ -59,7 +59,7 @@ ethernet.setIfaceConfig("eth0", {
   httpProxy: {
     host: "180.89.xx.xx",
     port: 8080,
-    exclusionList: {"192.168","example.com"}
+    exclusionList: {"example.com","::1","localhost"}
   }
 }, (error) => {
   if (error) {
@@ -123,7 +123,7 @@ ethernet.setIfaceConfig("eth0", {
   httpProxy: {
     host: "180.89.xx.xx",
     port: 8080,
-    exclusionList: {"192.168","example.com"}
+    exclusionList: {"example.com","::1","localhost"}
   }
 }).then(() => {
   console.log("setIfaceConfig promise ok ");
