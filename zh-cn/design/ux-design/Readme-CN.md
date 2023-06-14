@@ -1,4 +1,4 @@
-# OpenHarmony应用UX设计规范发布版
+# OpenHarmony应用UX设计规范
 
 - [应用UX设计](app-ux-design.md)
 - 应用架构设计
