@@ -293,8 +293,8 @@ OpenHarmony 4.0 Beta1版本开始提供首批API Level 10接口。
 | -------- | -------- | -------- |
 | OpenHarmony | 4.0&nbsp;Beta1 | NA |
 | Public&nbsp;SDK | Ohos_sdk_public&nbsp;4.0.7.5&nbsp;(API&nbsp;Version&nbsp;10&nbsp;Beta1) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco&nbsp;Studio默认获取的SDK为Public&nbsp;SDK。 |
-| HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 4.0&nbsp;Beta1 | OpenHarmony应用开发推荐使用。(*待发布*) |
-| HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.1&nbsp;Release | OpenHarmony智能设备集成开发环境推荐使用。 |
+| HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 4.0&nbsp;Beta1 | OpenHarmony应用开发推荐使用。获取方式：<br />[Windows(64-bit)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/38/v3/efALRNm3TJuKHfv-1xzjew/devecostudio-windows-4.0.0.201.zip?HW-CC-KV=V1&HW-CC-Date=20230613T085338Z&HW-CC-Expire=315360000&HW-CC-Sign=49E7D85C8A485D5D1F04944DFE1AFCFEE3F60E03D25A01BEFE12BA6CEADD19E0)  <br />SHA256校验码：7d2885b052afb92af8eb2d28ce2704515cd5fdbe7dd01f874bcdd876e11b890a<br />[Mac(X86)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/71/v3/A3thi3-kRTSeO4Jp0DSigA/devecostudio-mac-4.0.0.201.zip?HW-CC-KV=V1&HW-CC-Date=20230613T085132Z&HW-CC-Expire=315360000&HW-CC-Sign=BA233FE054A7D07F4B1C3ED80C84F9DD29112E49BB6D5D1506C5A5A0238741AD)  <br />SHA256校验码：ce2582eac70e8e15abcded00065ae0047f3815fe2b0c90d56c0bdbc5561a51c3<br />[Mac(ARM)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/ed/v3/IFYYMuT9SbCPCHZntvlrKQ/devecostudio-mac-arm-4.0.0.201.zip?HW-CC-KV=V1&HW-CC-Date=20230613T085231Z&HW-CC-Expire=315360000&HW-CC-Sign=8F98E23E393E3D0D104BDBF7F33684D36C48613303909E6D04D016DB0E7E8696)  <br />SHA256校验码：5da2baad7475857a1c59315663b7dcdf85219ffd652d5a7be160c8d2225358a7 |
+| HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.1&nbsp;Release | OpenHarmony智能设备集成开发环境推荐使用。获取方式：<br />[点击跳转至下载页面](https://device.harmonyos.com/cn/develop/ide#download) |
 
 
 ## 源码获取
