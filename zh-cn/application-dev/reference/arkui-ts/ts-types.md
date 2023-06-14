@@ -63,7 +63,7 @@
 | top    | [Length](#length) | 否    | 上外边距，组件顶部距组件外元素的尺寸。  |
 | right  | [Length](#length) | 否    | 右外边距，组件右边界距组件外元素的尺寸。 |
 | bottom | [Length](#length) | 否    | 下外边距，组件底部距组件外元素的尺寸。  |
-| left   | [Length](#length) | 否    | 坐外边距，组件左边界距组件外元素的尺寸。 |
+| left   | [Length](#length) | 否    | 左外边距，组件左边界距组件外元素的尺寸。 |
 
 ## EdgeWidths<sup>9+</sup>
 
