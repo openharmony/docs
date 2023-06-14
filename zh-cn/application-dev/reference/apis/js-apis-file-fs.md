@@ -251,7 +251,7 @@ accessSync(path: string): boolean
 
 ## fs.close
 
-close(file: File|number): Promise&lt;void&gt;
+close(file: number|File): Promise&lt;void&gt;
 
 关闭文件，使用Promise异步回调。
 
@@ -261,7 +261,7 @@ close(file: File|number): Promise&lt;void&gt;
 
   | 参数名  | 类型     | 必填   | 说明           |
   | ---- | ------ | ---- | ------------ |
-  | file   | [File](#file)\|number | 是    | 已打开的File对象或已打开的文件描述符fd。 |
+  | file   | number\|[File](#file) | 是    | 已打开的File对象或已打开的文件描述符fd。 |
 
 **返回值：**
 
@@ -288,7 +288,7 @@ close(file: File|number): Promise&lt;void&gt;
 
 ## fs.close
 
-close(file: File|number, callback: AsyncCallback&lt;void&gt;): void
+close(file: number|File, callback: AsyncCallback&lt;void&gt;): void
 
 关闭文件，使用callback异步回调。
 
@@ -298,7 +298,7 @@ close(file: File|number, callback: AsyncCallback&lt;void&gt;): void
 
   | 参数名      | 类型                        | 必填   | 说明           |
   | -------- | ------------------------- | ---- | ------------ |
-  | file       | [File](#file)\|number                  | 是    | 已打开的File对象或已打开的文件描述符fd。 |
+  | file       | number\|[File](#file)                  | 是    | 已打开的File对象或已打开的文件描述符fd。 |
   | callback | AsyncCallback&lt;void&gt; | 是    | 异步关闭文件之后的回调。 |
 
 **错误码：**
@@ -321,7 +321,7 @@ close(file: File|number, callback: AsyncCallback&lt;void&gt;): void
 
 ## fs.closeSync
 
-closeSync(file: File|number): void
+closeSync(file: number|File): void
 
 以同步方法关闭文件。
 
@@ -331,7 +331,7 @@ closeSync(file: File|number): void
 
   | 参数名  | 类型     | 必填   | 说明           |
   | ---- | ------ | ---- | ------------ |
-  | file   | [File](#file)\|number | 是    | 已打开的File对象或已打开的文件描述符fd。 |
+  | file   | number\|[File](#file) | 是    | 已打开的File对象或已打开的文件描述符fd。 |
 
 **错误码：**
 
@@ -1898,6 +1898,8 @@ listFile(path: string, options?: {
 
 列出文件夹下所有文件名，支持递归列出所有文件名（包含子目录下），支持文件过滤，使用Callback异步回调。
 
+**系统能力**：SystemCapability.FileManagement.File.FileIO
+
 **参数：**
 
   | 参数名    | 类型     | 必填   | 说明                          |
@@ -1952,6 +1954,8 @@ listFileSync(path: string, options?: {
 }): string[]
 
 以同步方式列出文件夹下所有文件名，支持递归列出所有文件名（包含子目录下），支持文件过滤。
+
+**系统能力**：SystemCapability.FileManagement.File.FileIO
 
 **参数：**
 
@@ -2160,7 +2164,7 @@ moveFile(src: string, dest: string, mode?: number, callback: AsyncCallback\<void
 
 ## fs.moveFileSync
 
-moveFile(src: string, dest: string, mode?: number): void
+moveFileSync(src: string, dest: string, mode?: number): void
 
 以同步方式移动文件。
 
