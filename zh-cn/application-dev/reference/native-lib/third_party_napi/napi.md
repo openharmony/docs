@@ -137,3 +137,13 @@ OpenHarmony的N-API组件对Node-API的接口进行了重新实现，底层对�
 |FUNC|napi_get_value_bigint_int64|获取给定js `BigInt`对应的C int64值。|
 |FUNC|napi_get_value_bigint_uint64|获取给定js `BigInt`对应的C uint64值。|
 |FUNC|napi_get_value_bigint_words|获取给定js `BigInt`对应的信息，包括符号位、64位小端序数组和数组中的元素个数。|
+|FUNC|napi_create_buffer|创建并获取一个指定大小的js `Buffer`。|
+|FUNC|napi_create_buffer_copy|创建并获取一个指定大小的js `Buffer`，并以给定数据进行初始化。|
+|FUNC|napi_create_external_buffer|创建并获取一个指定大小的js `Buffer`，并以给定数据进行初始化，该接口可为`Buffer`附带额外数据。|
+|FUNC|napi_get_buffer_info|获取js `Buffer`底层data及其长度。|
+|FUNC|napi_is_buffer|判断给定js value是否为`Buffer`对象。|
+|FUNC|napi_object_freeze|冻结给定的对象。|
+|FUNC|napi_object_seal|密封给定的对象。|
+|FUNC|napi_get_all_property_names|获取一个数组，其中包含此对象过滤后的属性名称。|
+|FUNC|napi_detach_arraybuffer|分离给定`ArrayBuffer`的底层数据。|
+|FUNC|napi_is_detached_arraybuffe|判断给定的`ArrayBuffer`是否已被分离过。|
