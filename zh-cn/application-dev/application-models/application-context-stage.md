@@ -76,12 +76,11 @@
 
 ### 获取应用文件路径
 
-获取路径的能力是[基类Context](../reference/apis/js-apis-inner-application-context.md)中提供的能力，因此在ApplicationContext、AbilityStageContext、UIAbilityContext和ExtensionContext中均可以获取，在各类Context中获取到的路径会有一些差别，具体请参见[应用文件目录与应用文件路径](../file-management/app-sandbox-directory.md#应用文件目录与应用文件路径)。
+[基类Context](../reference/apis/js-apis-inner-application-context.md)提供了获取应用文件路径的能力，ApplicationContext、AbilityStageContext、UIAbilityContext和ExtensionContext均继承该能力。应用文件路径属于应用沙箱路径，具体请参见[应用沙箱目录](../file-management/app-sandbox-directory.md)。
 
-获取到的是应用文件路径的沙箱路径。其对应的绝对路径，在创建或者修改文件之后，可以在`hdc shell`中，通过`find / -name <文件名称>`命令查找获取。
+- 通过ApplicationContext获取应用级别的应用文件路径，此路径是应用全局信息推荐的存放路径，这些文件会跟随应用的卸载而删除。
 
-- 通过ApplicationContext获取的应用级别路径。应用全局信息建议存放的路径，存放在此路径的文件内容仅在应用卸载时会被删除。
-    | 属性 | 路径 |
+  | 属性 | 路径 |
   | -------- | -------- |
   | bundleCodeDir | <路径前缀>/el1/bundle/ |
   | cacheDir | <路径前缀>/<加密等级>/base/cache/ |
@@ -91,7 +90,7 @@
   | databaseDir | <路径前缀>/<加密等级>/database/ |
   | distributedFilesDir | <路径前缀>/el2/distributedFiles/ |
 
-  以获取应用级别应用文件路径为例进行说明。
+  示例代码如下所示。
 
     ```ts
     import UIAbility from '@ohos.app.ability.UIAbility';
@@ -110,9 +109,10 @@
       }
     }
     ```
-    
-- 通过AbilityStageContext、UIAbilityContext、ExtensionContext获取的HAP级别路径。HAP对应的信息建议存放的路径，存放在此路径的文件内容会跟随HAP的卸载而删除，不会影响应用级别路径的文件内容，除非该应用的HAP已全部卸载。
-    | 属性 | 路径 |
+
+- 通过AbilityStageContext、UIAbilityContext、ExtensionContext获取的HAP级别的应用文件路径。此路径是HAP相关信息推荐的存放路径，这些文件会跟随HAP的卸载而删除，但不会影响应用级别路径的文件，除非该应用的HAP已全部卸载。
+
+  | 属性 | 路径 |
   | -------- | -------- |
   | bundleCodeDir | <路径前缀>/el1/bundle/ |
   | cacheDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/cache/ |
@@ -122,8 +122,8 @@
   | databaseDir | <路径前缀>/<加密等级>/database/**\<module-name>**/ |
   | distributedFilesDir | <路径前缀>/el2/distributedFiles/**\<module-name>**/ |
 
-  以获取HAP级别应用文件路径为例进行说明。
-  
+  示例代码如下所示。
+
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
   
@@ -140,6 +140,7 @@
     }
   }
   ```
+
 
 ### 获取和修改加密分区
 
