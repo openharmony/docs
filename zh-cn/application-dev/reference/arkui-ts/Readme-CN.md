@@ -33,7 +33,6 @@
     - [颜色渐变](ts-universal-attributes-gradient-color.md)
     - [Popup控制](ts-universal-attributes-popup.md)
     - [Menu控制](ts-universal-attributes-menu.md)
-    - [点击控制](ts-universal-attributes-click.md)
     - [焦点控制](ts-universal-attributes-focus.md)
     - [悬浮态效果](ts-universal-attributes-hover-effect.md)
     - [组件标识](ts-universal-attributes-component-id.md)
@@ -168,3 +167,5 @@
 - [类型定义](ts-types.md)
 - 已停止维护的组件
   - [GridContainer](ts-container-gridcontainer.md)
+- 已停止维护的接口 
+  - [点击控制](ts-universal-attributes-click.md)
