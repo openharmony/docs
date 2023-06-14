@@ -315,4 +315,4 @@ Image($r('sys.media.ohos_app_icon'))
 
 针对访问应用资源，有以下相关实例可供参考：
 
-- [`ResourceManager`：资源管理器（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Internationalnation/ResourceManager)
+- [`ResourceManager`：资源管理器（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Resource/ResourceManager)
