@@ -77,63 +77,14 @@ Json文件共包含2个属性。
 "Description"：可选项，可指明振动效果、创建信息等附加说明。<br>
 - "Channels"属性中为马达振动通道的相关信息。<br>
 
-```json
-{
-    "MetaData": {
-        "Create": "2023-01-09",
-        "Description": "a haptic case",
-        "Version": 1.0,
-        "ChannelNumber": 1
-    },
-    "Channels": [ ]
-}
-```
-
-"Channels"是Json数组，表示各个通道的信息，包含两个属性。
+"Channels"是Json数组，表示各个通道的信息，包含2个属性。
 - "Parameters"属性中为通道参数。<br>
 "Index"：必填项，表示通道编号，单通道下规定为1。<br>
-- "Pattern"属性中为马达振动序列，为Json数组。<br>
+- "Pattern"属性中为马达振动序列。<br>
 
-```json
-"Channels": [
-    {
-        "Parameters": {
-            "Index": 1
-        },
-        "Pattern": [ ]
-    }
-]
-```
-
-"Pattern"中每个"Event"属性代表1个振动事件，支持添加2种振动类型。
+"Pattern"是Json数组，每个"Event"属性代表1个振动事件，支持添加2种振动类型。
 - 类型1："transient"类型，瞬态短振动，干脆有力；<br>
 - 类型2："continuous"类型，稳态长振动，具备长时间输出强劲有力振动的能力。<br>
-
-```json
-"Pattern": [
-    {
-        "Event": {
-            "Type": "transient",
-            "StartTime": 0,
-            "Parameters": {
-                "Intensity": 100,
-                "Frequency": 31
-            }
-        }
-    },
-    {
-        "Event": {
-            "Type": "continuous",
-            "StartTime": 100,
-            "Duration": 54,
-            "Parameters": {
-                "Intensity": 38,
-                "Frequency": 30
-            }
-        }
-    }
-]
-```
 
 振动事件参数信息具体如下表：
 
