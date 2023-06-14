@@ -10,7 +10,7 @@ Use **OffscreenCanvasRenderingContext2D** to draw rectangles, images, and text o
 
 ## APIs
 
-OffscreenCanvasRenderingContext2D(width: number, height: number, setting: RenderingContextSettings)
+OffscreenCanvasRenderingContext2D(width: number, height: number, settings?: RenderingContextSettings)
 
 Since API version 9, this API is supported in ArkTS widgets.
 
@@ -20,7 +20,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 | ------- | ------------------------------------------------------------ | ---- | ------------------------------------ |
 | width   | number                                                       | Yes  | Width of the offscreen canvas.                      |
 | height  | number                                                       | Yes  | Height of the offscreen canvas.                      |
-| setting | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | Yes  | See RenderingContextSettings.|
+| settings | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | No   | See RenderingContextSettings.|
 
 
 ## Attributes

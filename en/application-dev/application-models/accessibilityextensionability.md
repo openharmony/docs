@@ -1,4 +1,4 @@
-# AccessibilityExtensionAbility Development
+# AccessibilityExtensionAbility
 
 The **AccessibilityExtensionAbility** module provides accessibility extension capabilities based on the **ExtensionAbility** framework. You can develop your accessibility applications by applying the **AccessibilityExtensionAbility** template to enhance usability.
 

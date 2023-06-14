@@ -23,9 +23,9 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | Yes| Current value of the chart, that is, the position to which the pointer points in the chart. It is used as the initial value of the chart when the component is created.|
+| value | number | Yes| Current value of the chart, that is, the position to which the pointer points in the chart. It is used as the initial value of the chart when the component is created.<br>**NOTE**<br>If the value is not within the range defined by the **min** and **max** parameters, the value of **min** is used.|
 | min | number | No| Minimum value of the current data segment.<br>Default value: **0**|
-| max | number | No| Maximum value of the current data segment.<br>Default value: **100**|
+| max | number | No| Maximum value of the current data segment.<br>Default value: **100**<br>**NOTE**<br>If the value of **max** is less than that of **min**, the default values **0** and **100** are used.<br>The values of **max** and **min** can be negative numbers.|
 
 ## Attributes
 
@@ -36,8 +36,8 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | value | number | Value of the chart. It can be dynamically changed.<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | startAngle | number | Start angle of the chart. The value **0** indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **0**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | endAngle | number | End angle of the chart. The value **0** indicates 0 degrees, and a positive value indicates the clockwise direction.<br>Default value: **360**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| colors | Array&lt;[ColorStop](#colorstop)&gt; | Colors of the chart. Colors can be set for individual segments.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| strokeWidth | Length | Stroke width of the chart.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| colors | Array&lt;[ColorStop](#colorstop)&gt; | Colors of the chart. Colors can be set for individual segments.<br>Default value: **Color.Black**<br>Since API version 9, this API is supported in ArkTS widgets.|
+| strokeWidth | Length | Stroke width of the chart.<br>Default value: **4**<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>The value cannot be in percentage.|
 
 ## ColorStop
 
@@ -47,7 +47,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name     | Type            | Description                                                        |
 | --------- | -------------------- | ------------------------------------------------------------ |
-| ColorStop | [[ResourceColor](ts-types.md#resourcecolor), number] | Type of the gradient stop. The first parameter indicates the color value. If it is set to a non-color value, the black color is used. The second parameter indicates the color weight. If it is set to a negative number or a non-numeric value, the color weight is 0, which means that the color is not displayed.|
+| ColorStop | [[ResourceColor](ts-types.md#resourcecolor), number] | Type of the gradient stop. The first parameter indicates the color value. If it is set to a non-color value, the black color is used. The second parameter indicates the color weight. If it is set to a negative number or a non-numeric value, the color weight is 0.|
 
 
 ## Example
