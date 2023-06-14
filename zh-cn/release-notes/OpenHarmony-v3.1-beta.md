@@ -182,7 +182,6 @@ _[Changelog](api-diff/v3.1-beta/changelog-v3.1-beta.md)_
 | -------- | -------- | -------- |
 | [分布式手写板（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/Distributed/DistributeDatabaseDrawEts) | 基于分布式能力，实现多设备同步书写互动。 | ArkTS |
 | [分布式数据库](https://gitee.com/openharmony/codelabs/tree/master/Data/JsDistributedData) | 基于分布式数据接口，实现多种设备上一致的数据访问体验。 | JS |
-| [关系型数据库](https://gitee.com/openharmony/codelabs/tree/master/Data/JSRelationshipData) | 基于关系型数据库和数据管理能力，实现数据库相关应用服务的快速开发。 | JS |
 | [购物应用（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/ShoppingEts) | 基于OpenHarmony ArkUI丰富的组件实现购物商城应用。 | ArkTS |
 | [转场动画的使用（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TransitionAnimation) | 基于OpenHarmony ArkUI转场动画，实现了页面间转场、组件内转场以及共享元素转场。 | ArkTS |
 | [基础组件Slider的使用（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SliderExample) | 基于OpenHarmony&nbsp;eTS&nbsp;UI，使用slider组件，实现可调节风车大小和转速的动画效果。 | ArkTS |
