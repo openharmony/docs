@@ -911,33 +911,3 @@ Wi-Fi P2P群组信息已更改。
 ## [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT<sup>10+<sup>](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)
 
 指示撤销快速修复的动作。
-
-## [COMMON_EVENT_NET_QUOTA_WARNING<sup>10+<sup>](./common_event/commonEvent-netmanager.md)
-提示限额网络流量达到警告值。
-- 值：usual.event.QUOTA_WARNING
-- 订阅者所需权限：无
-
-## [COMMON_EVENT_NET_QUOTA_LIMIT_REMINDED<sup>10+<sup>](./common_event/commonEvent-netmanager.md)
-限额网络流量达到限额值，仍能继续使用。
-- 值：usual.event.NET_QUOTA_LIMIT_REMINDED
-- 订阅者所需权限：无
-
-## [OMMON_EVENT_NET_QUOTA_LIMIT<sup>10+<sup>](./common_event/commonEvent-netmanager.md)
-限额网络流量达到限额值，不能继续使用。
-- 值：usual.event.NET_QUOTA_LIMIT
-- 订阅者所需权限：无
-
-## [COMMON_EVENT_HTTP_PROXY_CHANGE<sup>10+<sup>](./common_event/commonEvent-netmanager.md)
-提示网络Http代理配置信息更新。
-- 值：usual.event.HTTP_PROXY_CHANGE
-- 订阅者所需权限：无
-
-## [COMMON_EVENT_AIRPLANE_MODE_CHANGED<sup>10+<sup>](./common_event/commonEvent-netmanager.md)
-提示飞行模式状态变化。
-- 值：usual.event.AIRPLANE_MODE
-- 订阅者所需权限：无
-
-## [COMMON_EVENT_CONNECTIVITY_CHANGE<sup>10+<sup>](./common_event/commonEvent-netmanager.md)
-提示网络连接状态变化。
-- 值：usual.event.CONNECTIVITY_CHANGE
-- 订阅者所需权限：无
