@@ -44,9 +44,17 @@
         
       ```
       var reverseGeocodeRequest = {"latitude": 31.12, "longitude": 121.11, "maxItems": 1};
-      geolocation.getAddressesFromLocation(reverseGeocodeRequest, (data) => {
-          console.log('getAddressesFromLocation: ' + JSON.stringify(data));
-      });
+      try {
+          geolocation.getAddressesFromLocation(reverseGeocodeRequest, (err, data) => {
+              if (err) {
+                  console.log('getAddressesFromLocation err: ' + JSON.stringify(err));
+              } else {
+                  console.log('getAddressesFromLocation data: ' + JSON.stringify(data));
+              }
+          });
+      } catch (err) {
+          console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      }
       ```
 
       参考接口API说明[位置服务](../reference/apis/js-apis-geolocation.md)，应用可以获得与此坐标匹配的GeoAddress列表，应用可以根据实际使用需求，读取相应的参数数据。
@@ -54,9 +62,17 @@
         
       ```
       var geocodeRequest = {"description": "上海市浦东新区xx路xx号", "maxItems": 1};
-      geolocation.getAddressesFromLocationName(geocodeRequest, (data) => {
-          console.log('getAddressesFromLocationName: ' + JSON.stringify(data));
-      });
+      try {
+          geolocation.getAddressesFromLocationName(geocodeRequest, (err, data) => {
+              if (err) {
+                  console.log('getAddressesFromLocationName err: ' + JSON.stringify(err));
+              } else {
+                  console.log('getAddressesFromLocationName data: ' + JSON.stringify(data));
+              }
+          });
+      } catch (err) {
+          console.error("errCode:" + err.code + ",errMessage:" + err.message);
+      }
       ```
 
       参考接口API说明[位置服务](../reference/apis/js-apis-geolocation.md)，应用可以获得与位置描述相匹配的GeoAddress列表，其中包含对应的坐标数据，请参考API使用。
