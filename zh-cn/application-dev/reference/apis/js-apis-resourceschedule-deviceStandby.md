@@ -1,5 +1,5 @@
 # @ohos.resourceschedule.deviceStandby（设备待机模块）
-当设备长时间未被使用或通过按键，可以使设备进入待机模式。待机模式不影响应用使用，还可以延长电池续航时间。通过本模块接口，可查询设备是否为待机模式，以及使设备某个应用能避免纳入待机资源管控、解除避免资源管控。
+当设备长时间未被使用或通过按键，可以使设备进入待机模式。待机模式不影响应用使用，还可以延长电池续航时间。通过本模块接口，可查询设备或应用是否为待机模式，以及为应用申请或取消待机资源管控。
 
 >  **说明**:
 >   
@@ -186,7 +186,7 @@ getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
 ## deviceStandby.requestExemptionResource
 requestExemptionResource(request: ResourceRequest): void;
 
-订阅申请豁免，为应用申请临时不进入待机管控能力。（申请豁免待机状态解除指定类型资源限制）
+应用订阅申请豁免，使应用临时不进入待机管控。
 
 **系统能力:** SystemCapability.ResourceSchedule.DeviceStandby.Exemption
 
@@ -246,7 +246,7 @@ requestExemptionResource(request: ResourceRequest): void;
 ## deviceStandby.releaseExemptionResource
 releaseExemptionResource(request: ResourceRequest): void;
 
-去除订阅申请豁免，去除应用暂时不进入待机管控的能力。（申请去除豁免待机状态解除指定类型资源限制）
+取消应用订阅申请豁免。
 
 **系统能力:** SystemCapability.ResourceSchedule.DeviceStandby.Exemption
 
@@ -321,20 +321,20 @@ releaseExemptionResource(request: ResourceRequest): void;
 豁免应用信息，不进入待机管控的应用信息。
 <br>
 
-|名称  |类型   |说明   |
-| ------------ | ------------ | ------------ |
-|resourceTypes   | number  |应用的资源类型   |
-|name   |string   |  应用名  |
-|duration   | number  | 豁免时长 |
+|名称  |类型   | 必填   |说明   |
+| ------------ | ------------ |------------ | ------------ |
+|resourceTypes   | number  | 是   |应用的资源类型   |
+|name   |string   | 是   |  应用名  |
+|duration   | number  | 是   | 豁免时长 |
 
 ## ResourceRequest
 待机资源请求体。
 <br>
 
-|名称   |类型   |说明   |
-| ------------ | ------------ | ------------ |
-|resourceTypes   | number  |应用的资源类型   |
-|uid   | number  |应用uid   |
-|name   |string   | 应用名称  |
-|duration   | number  | 豁免时长 |
-|reason   |string   |  申请原因  |
+|名称   |类型   | 必填   |说明   |
+| ------------ | ------------ |------------| ------------ |
+|resourceTypes   | number  | 是   |应用的资源类型   |
+|uid   | number  | 是   |应用uid   |
+|name   |string   | 是   | 应用名称  |
+|duration   | number  | 是   | 豁免时长 |
+|reason   |string   | 是   |  申请原因  |
