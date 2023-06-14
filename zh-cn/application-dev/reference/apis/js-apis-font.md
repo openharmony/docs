@@ -64,7 +64,7 @@ struct FontExample {
 ```
 ## font.getSystemFontList
 
-getSystemFontList(): Array\<string>;
+getSystemFontList(): Array\<string>
 
 获取系统支持的字体名称列表。
 
@@ -74,7 +74,7 @@ getSystemFontList(): Array\<string>;
 
 | 类型                 | 说明               |
 | -------------------- | ----------------- |
-| Array\<string>       | 系统的字体名列表    |
+| Array\<string>       | 系统的字体名列表。  |
 
 ## 示例
 
@@ -128,7 +128,7 @@ getFontByName(fontName: string): FontInfo;
 | fullName       | string  | 系统字体的名称。           |
 | family         | string  | 系统字体的字体家族。       |
 | subfamily      | string  | 系统字体的子字体家族。      |
-| weight         | number  | 系统字体的字重。           |
+| weight         | number  | 系统字体的粗细程度。        |
 | width          | number  | 系统字体的宽窄风格属性。    |
 | italic         | boolean | 系统字体是否倾斜。          |
 | monoSpace      | boolean | 系统字体是否紧凑。         |
