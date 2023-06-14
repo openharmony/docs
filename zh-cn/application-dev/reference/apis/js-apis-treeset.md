@@ -44,7 +44,7 @@ TreeSet的构造函数。
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| comparator | function | 否 | 用户自定义的比较函数。 |
+| comparator | function | 否 | 用户自定义的比较函数，默认值为hole（一个空白占位符），表示没有提供比较函数。 |
 
 **错误码：**
 
@@ -484,14 +484,14 @@ forEach(callbackFn: (value?: T, key?: T, set?: TreeSet&lt;T&gt;) => void, thisAr
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackFn被调用时用作this值。 |
+| thisArg | Object | 否 | callbackFn被调用时用作this值，默认值为当前实例对象。 |
 
 callbackFn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | T | 否 | 当前遍历到的value元素。 |
-| key | T | 否 | 当前遍历到的key元素。 |
-| set | TreeSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
+| value | T | 否 | 当前遍历到的value元素，默认值为首个键值对的值。 |
+| key | T | 否 | 当前遍历到的key元素，默认值为首个键值对的键。 |
+| set | TreeSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象，默认值为当前实例对象。 |
 
 **错误码：**
 
