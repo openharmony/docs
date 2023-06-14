@@ -4010,7 +4010,7 @@ getDefaultVoiceSimId\(callback: AsyncCallback\<number\>\): void
 
 | 参数名   | 类型                        | 必填 | 说明       |
 | -------- | --------------------------- | ---- | ---------- |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。<br/>- 1：SIM卡1<br/>- 2：SIM卡2 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。<br/>与SIM卡绑定，从1开始递增。 |
 
 **错误码：**
 
@@ -4046,7 +4046,7 @@ getDefaultVoiceSimId\(\): Promise\<number\>
 
 | 类型              | 说明                                    |
 | ----------------- | --------------------------------------- |
-| Promise\<number\> | 以Promise形式返回默认语音业务的SIM卡ID。<br/>- 1：SIM卡1<br/>- 2：SIM卡2 |
+| Promise\<number\> | 以Promise形式返回默认语音业务的SIM卡ID。<br/>与SIM卡绑定，从1开始递增。 |
 
 **错误码：**
 

@@ -780,7 +780,7 @@ getDefaultCellularDataSimId(): number
 
 | 类型              | 说明                                                         |
 | ------ | -------------------------------------------------- |
-| number | 获取默认移动数据的SIM卡ID。<br />1：SIM卡1。<br />2：SIM卡2。 |
+| number | 获取默认移动数据的SIM卡ID。<br/>与SIM卡绑定，从1开始递增。 |
 
 **示例：**
 

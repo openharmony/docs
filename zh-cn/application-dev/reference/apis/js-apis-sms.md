@@ -1546,7 +1546,7 @@ getDefaultSmsSimId\(callback: AsyncCallback&lt;number&gt;\): void
 
 | 参数名   | 类型                        | 必填 | 说明                                     |
 | -------- | --------------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。<br/>- 1：SIM卡1<br/>- 2：SIM卡2 |
+| callback | AsyncCallback&lt;number&gt; | 是   | 回调函数。<br/>与SIM卡绑定，从1开始递增。 |
 
 **错误码：**
 
@@ -1583,7 +1583,7 @@ getDefaultSmsSimId\(\): Promise&lt;number&gt;
 
 | 类型            | 说明                                                         |
 | --------------- | ------------------------------------------------------------ |
-| Promise&lt;number&gt; | 以Promise形式返回发送短信的默认SIM卡ID：<br/>- 1：SIM卡1<br/>- 2：SIM卡2 |
+| Promise&lt;number&gt; | 以Promise形式返回发送短信的默认SIM卡ID：<br/>与SIM卡绑定，从1开始递增。 |
 
 **错误码：**
 
