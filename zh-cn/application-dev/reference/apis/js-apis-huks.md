@@ -1432,7 +1432,7 @@ let keyAlias = 'keyAlias';
 let emptyOptions = {
     properties: []
 };
-await huks.isKeyItemExist(keyAlias, emptyOptions).then((data) => {
+huks.isKeyItemExist(keyAlias, emptyOptions).then((data) => {
     promptAction.showToast({
       message: "keyAlias: " + keyAlias +"is existed！",
       duration: 500,
