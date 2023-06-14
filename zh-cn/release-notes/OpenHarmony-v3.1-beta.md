@@ -187,7 +187,7 @@ _[Changelog](api-change/v3.1-beta/changelog-v3.1-beta.md)_
 | [Page内和Page间导航跳转](https://gitee.com/openharmony/codelabs/tree/master/Ability/PageAbility) | 入门教程，学习如何完成Page内和Page间的页面导航跳转。 | eTS |
 | [转场动画的使用（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TransitionAnimtaionEts) | 基于OpenHarmony&nbsp;eTS&nbsp;UI转场动画，实现了页面间转场、组件内转场以及共享元素转场。 | eTS |
 | [基础组件Slider的使用（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SliderApplicationEts) | 基于OpenHarmony&nbsp;eTS&nbsp;UI，使用slider组件，实现可调节风车大小和转速的动画效果。 | eTS |
-| [弹窗（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialogEts) | 基于OpenHarmony&nbsp;eTS&nbsp;UI，实现警告弹窗和自定义弹窗。 | eTS |
+| [弹窗（eTS）](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialog) | 基于OpenHarmony&nbsp;eTS&nbsp;UI，实现警告弹窗和自定义弹窗。 | eTS |
 
 
 ## 修复缺陷列表
