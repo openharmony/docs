@@ -457,20 +457,14 @@ Wi-Fi P2P群组信息已更改。
 - 值： usual.event.bluetooth.a2dpsink.AUDIO_STATE_UPDATE
 - 订阅者所需权限： ohos.permission.USE_BLUETOOTH
 
-## COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED
-指示设备NFC适配器状态已更改的公共事件的操作。
-- 值： usual.event.nfc.action.ADAPTER_STATE_CHANGED
-- 订阅者所需权限： 无
+## [COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED](./common_event/commonEvent-nfc.md)
+指示设备NFC状态已更改的公共事件的操作。
 
-## COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED
-（预留事件，暂未支持）检测到NFC RF字段处于使能状态的公共事件的动作。
-- 值： usual.event.nfc.action.RF_FIELD_ON_DETECTED
-- 订阅者所需权限： ohos.permission.MANAGE_SECURE_SETTINGS
+## [COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED](./common_event/commonEvent-nfc.md)
+检测到NFC场强进入的公共事件。
 
-## COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED
-（预留事件，暂未支持）检测到NFC RF字段处于关闭状态的公共事件的动作。
-- 值： usual.event.nfc.action.RF_FIELD_OFF_DETECTED
-- 订阅者所需权限： ohos.permission.MANAGE_SECURE_SETTINGS
+## [COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED](./common_event/commonEvent-nfc.md)
+检测到NFC场强离开的公共事件。
 
 ## [COMMON_EVENT_DISCHARGING](./common_event/commonEvent-powermgr.md)
 表示系统停止为电池充电的公共事件的动作。
