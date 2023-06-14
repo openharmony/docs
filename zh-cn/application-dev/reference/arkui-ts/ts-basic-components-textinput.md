@@ -45,10 +45,6 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | selectedBackgroundColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置文本选中底板颜色。<br/>如果未设置透明度，默认为不透明（例如：“0x80000000”为50%透明度黑色）。 |
 | caretStyle<sup>10+</sup> | {<br/>width:&nbsp;[Length](ts-types.md#length)<br/>} | 设置光标风格。                                        |
 | caretPosition<sup>10+</sup> | number | 设置光标位置。 |
-| showUnit<sup>10+</sup>                | &nbsp;[CustomBuilder](ts-types.md#CustomBuilder8)         | 设置控件作为文本框单位。<br/>默认无单位。 |
-| showError<sup>10+</sup> | string&nbsp;\|&nbsp;undefined | 设置错误状态下提示的错误文本或者不显示错误状态。<br/>默认不显示错误状态。 |
-| showUnderline<sup>10+</sup> | boolean | 设置是否开启下划线。<br/>默认值：false |
-| passwordIcon<sup>10+</sup> | [PasswordIcon](#passwordicon10对象说明) | 密码输入模式时，设置输入框末尾的图标。<br/>默认为系统提供的密码图标。 |
 
 >  **说明：**
 >
@@ -80,13 +76,6 @@ TextInput(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Te
 | ------------------ | ------------- |
 | Default   | 默认风格，光标宽1.5vp，光标高度与文本选中底板高度和字体大小相关。   |
 | Inline    | 内联输入风格。文本选中底板高度与输入框高度相同。      |
-
-## PasswordIcon<sup>10+</sup>对象说明
-
-| 名称       | 类型                                               | 必填 | 描述                                               |
-| ---------- | -------------------------------------------------- | ---- | -------------------------------------------------- |
-| onIconSrc  | string&nbsp;\|[Resource](ts-types.md#resource类型) | 否   | 密码输入模式时，能够切换密码隐藏的显示状态的图标。 |
-| offIconSrc | string&nbsp;\|[Resource](ts-types.md#resource类型) | 否   | 密码输入模式时，能够切换密码显示的隐藏状态的图标。 |
 
 ## 事件
 
