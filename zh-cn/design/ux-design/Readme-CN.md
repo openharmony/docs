@@ -1,6 +1,6 @@
 # OpenHarmony应用UX设计规范
 
-- [应用UX设计](app-ux-design.md)
+- [应用UX设计原则](app-ux-design.md)
 - 应用架构设计
     - [应用导航结构设计要求](app-navigation-structure-design.md)
     - [应用页面结构设计](app-page-structure-design.md)
