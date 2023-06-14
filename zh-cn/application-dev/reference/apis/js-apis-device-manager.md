@@ -371,14 +371,6 @@ getTrustedDeviceList(): Promise&lt;Array&lt;DeviceInfo&gt;&gt;
   | ---------------------------------------- | --------------------- |
   | Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise实例，用于获取异步返回结果。 |
 
-**错误码：**
-
-以下的错误码的详细介绍请参见[设备管理错误码](../errorcodes/errorcode-device-manager.md)
-
-| 错误码ID | 错误信息                                                        |
-| -------- | --------------------------------------------------------------- |
-| 11600101 | Failed to execute the function.                                 |
-
 **示例：**
 
   ```js
@@ -470,14 +462,6 @@ getLocalDeviceInfo(): Promise&lt;DeviceInfo&gt;
   | 类型                                       | 说明                    |
   | ---------------------------------------- | --------------------- |
   | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise实例，用于获取异步返回结果。 |
-
-**错误码：**
-
-以下的错误码的详细介绍请参见[设备管理错误码](../errorcodes/errorcode-device-manager.md)
-
-| 错误码ID | 错误信息                                                        |
-| ------- | --------------------------------------------------------------- |
-| 11600101| Failed to execute the function.                                 |
 
 **示例：**
 
