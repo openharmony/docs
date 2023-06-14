@@ -484,7 +484,7 @@ udp.on('message', value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    messageView += value;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -518,7 +518,7 @@ let callback = value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    messageView += value;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -1370,7 +1370,7 @@ tcp.on('message', value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    messageView += value;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -1404,7 +1404,7 @@ let callback = value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    messageView += value;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -1893,7 +1893,7 @@ tls.on('message', value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    messageView += value;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
@@ -1927,7 +1927,7 @@ let callback = value => {
   for (var i = 0; i < value.message.length; i++) {
     let messages = value.message[i]
     let message = String.fromCharCode(messages);
-    messageView += value;
+    messageView += message;
   }
   console.log('on message message: ' + JSON.stringify(messageView));
   console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
