@@ -50,6 +50,7 @@
       - [\@BuilderParam装饰器：引用\@Builder函数](quick-start/arkts-builderparam.md)
       - [\@Styles装饰器：定义组件重用样式](quick-start/arkts-style.md)
       - [\@Extend装饰器：定义扩展组件样式](quick-start/arkts-extend.md)
+      - [\@AnimatableExtend装饰器：定义可动画属性](quick-start/arkts-animatable-extend.md)
       - [stateStyles：多态样式](quick-start/arkts-statestyles.md)
     - 状态管理
       - [状态管理概述](quick-start/arkts-state-management-overview.md)
