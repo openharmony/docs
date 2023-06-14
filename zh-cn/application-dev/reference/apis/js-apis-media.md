@@ -1018,7 +1018,7 @@ selectTrack(index: number): void
 
 ```js
 let index = 2
-avPlayer.setBitrate(index)
+avPlayer.selectTrack(index)
 ```
 
 ### deselectTrack<sup>10+</sup><a name=avplayer_deselecttrack></a>
