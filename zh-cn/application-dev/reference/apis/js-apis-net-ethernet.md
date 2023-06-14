@@ -486,7 +486,7 @@ ethernet.off('interfaceStateChange');
 | gateway      | string                  | 是 | 以太网连接配置网关信息，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）。 |
 | netMask      | string                  | 是 | 以太网连接配置子网掩码，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）。 |
 | dnsServers   | string                  | 是 | 以太网连接配置dns服务地址，地址值范围0-255.0-255.0-255.0-255（DHCP模式无需配置）多地址间用“,”隔开。 |
-| httpProxy<sup>10+</sup> | [HttpProxy](#httpproxy) | 否 | 以太网连接代理配置信息，默认情况下不配置任何代理信息。 |
+| httpProxy<sup>10+</sup> | [HttpProxy](js-apis-net-connection.md#httpproxy) | 否 | 以太网连接代理配置信息，默认情况下不配置任何代理信息。 |
 
 ## IPSetMode<sup>9+</sup>
 
