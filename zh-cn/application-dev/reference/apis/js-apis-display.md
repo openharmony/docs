@@ -49,10 +49,10 @@ import display from '@ohos.display';
 
 | 名称   | 类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | 是   | 是   | 矩形区域的左边界，单位为像素。 |
-| top    | number   | 是   | 是   | 矩形区域的上边界，单位为像素。 |
-| width  | number   | 是   | 是   | 矩形区域的宽度，单位为像素。   |
-| height | number   | 是   | 是   | 矩形区域的高度，单位为像素。   |
+| left   | number   | 是   | 是   | 矩形区域的左边界，单位为像素，该参数应为整数。 |
+| top    | number   | 是   | 是   | 矩形区域的上边界，单位为像素，该参数应为整数。 |
+| width  | number   | 是   | 是   | 矩形区域的宽度，单位为像素，该参数应为整数。   |
+| height | number   | 是   | 是   | 矩形区域的高度，单位为像素，该参数应为整数。   |
 
 ## WaterfallDisplayAreaRects<sup>9+</sup>
 
@@ -196,7 +196,7 @@ hasPrivateWindow(displayId: number): boolean
 
 | 参数名 | 类型                      | 必填 | 说明       |
 | ------ | ------------------------- | ---- |----------|
-| id     | number                    | 是   | 显示设备的id。 |
+| id     | number                    | 是   | 显示设备的id，该参数仅支持整数输入。 |
 
 **返回值：**
 
@@ -248,10 +248,10 @@ on(type: 'add'|'remove'|'change', callback: Callback&lt;number&gt;): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
+| 参数名 | 类型 | 必填 | 说明                                                                                                                              |
+| -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------------------------|
 | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
-| callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id。 |
+| callback | Callback&lt;number&gt; | 是 | 回调函数。返回监听到的显示设备的id，该参数应为整数。                                                                                                     |
 
 **示例：**
 
@@ -279,7 +279,7 @@ off(type: 'add'|'remove'|'change', callback?: Callback&lt;number&gt;): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 监听事件。<br/>- type为"add"，表示增加显示设备事件。例如：插入显示器。<br/>- type为"remove"，表示移除显示设备事件。例如：移除显示器。<br/>- type为"change"，表示改变显示设备事件。例如：显示器方向改变。 |
-| callback | Callback&lt;number&gt; | 否 | 回调函数。返回监听到的显示设备的id。 |
+| callback | Callback&lt;number&gt; | 否 | 回调函数。返回监听到的显示设备的id，该参数应为整数。 |
 
 **示例：**
 
@@ -479,22 +479,22 @@ promise.then((data) => {
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| id | number | 是 | 否 | 显示设备的id号。|
-| name | string | 是 | 否 | 显示设备的名称。|
-| alive | boolean | 是 | 否 | 显示设备是否启用。|
-| state | [DisplayState](#displaystate) | 是 | 否 | 显示设备的状态。|
-| refreshRate | number | 是 | 否 | 显示设备的刷新率。|
-| rotation | number | 是 | 否 | 显示设备的屏幕旋转角度。<br>值为0时，表示显示设备屏幕旋转为0°；<br>值为1时，表示显示设备屏幕旋转为90°；<br>值为2时，表示显示设备屏幕旋转为180°；<br>值为3时，表示显示设备屏幕旋转为270°。|
-| width | number | 是 | 否 | 显示设备的宽度，单位为像素。|
-| height | number | 是 | 否 | 显示设备的高度，单位为像素。|
-| densityDPI | number | 是 | 否 | 显示设备的屏幕密度，表示每英寸点数。一般取值160，480等。 |
-| orientation<sup>10+</sup> | [Orientation](#orientation10) | 是 | 否 | 表示屏幕当前显示的方向。 |
-| densityPixels | number | 是 | 否 | 显示设备的逻辑密度，是像素单位无关的缩放系数。一般取值1，3等。 |
-| scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。通常与densityPixels相同。 |
-| xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值。 |
-| yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值。|
+| 名称 | 类型 | 可读 | 可写 | 说明                                                                                                            |
+| -------- | -------- | -------- | -------- |---------------------------------------------------------------------------------------------------------------|
+| id | number | 是 | 否 | 显示设备的id号，该参数应为整数。                                                                                             |
+| name | string | 是 | 否 | 显示设备的名称。                                                                                                      |
+| alive | boolean | 是 | 否 | 显示设备是否启用。                                                                                                     |
+| state | [DisplayState](#displaystate) | 是 | 否 | 显示设备的状态。                                                                                                      |
+| refreshRate | number | 是 | 否 | 显示设备的刷新率，该参数应为整数。                                                                                             |
+| rotation | number | 是 | 否 | 显示设备的屏幕旋转角度。<br>值为0时，表示显示设备屏幕旋转为0°；<br>值为1时，表示显示设备屏幕旋转为90°；<br>值为2时，表示显示设备屏幕旋转为180°；<br>值为3时，表示显示设备屏幕旋转为270°。 |
+| width | number | 是 | 否 | 显示设备的宽度，单位为像素，该参数应为整数。                                                                                        |
+| height | number | 是 | 否 | 显示设备的高度，单位为像素，该参数应为整数。                                                                                        |
+| densityDPI | number | 是 | 否 | 显示设备的屏幕密度，表示每英寸点数。该参数为浮点数，一般取值160.0、480.0等。                                                                   |
+| orientation<sup>10+</sup> | [Orientation](#orientation10) | 是 | 否 | 表示屏幕当前显示的方向。                                                                                                  |
+| densityPixels | number | 是 | 否 | 显示设备的逻辑密度，是像素单位无关的缩放系数。该参数为浮点数，一般取值1.0、3.0等。                                                                  |
+| scaledDensity | number | 是 | 否 | 显示设备的显示字体的缩放因子。该参数为浮点数，通常与densityPixels相同。                                                                    |
+| xDPI | number | 是 | 否 | x方向中每英寸屏幕的确切物理像素值，该参数为浮点数。                                                                                    |
+| yDPI | number | 是 | 否 | y方向中每英寸屏幕的确切物理像素值，该参数为浮点数。                                                                                    |
 
 ### getCutoutInfo<sup>9+</sup>
 getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
