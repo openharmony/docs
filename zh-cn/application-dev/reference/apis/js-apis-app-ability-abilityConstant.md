@@ -66,6 +66,12 @@ Ability上次退出原因，该类型为枚举，可配合[Ability](js-apis-app-
 | UNKNOWN          | 0    | 未知原因。 |
 | ABILITY_NOT_RESPONDING          | 1    | ability未响应。 |
 | NORMAL | 2    | 正常退出。 |
+| CPP_CRASH          | 3    | 由于本机异常信号，应用程序退出。 |
+| JS_ERROR          | 4    | js错误导致应用程序退出。 |
+| APP_FREEZE | 5    | 由于appFreeze错误，应用程序退出。 |
+| PERFORMANCE_CONTROL          | 6    | 由于系统性能问题（如设备内存不足）导致应用程序退出。 |
+| RESOURCE_CONTROL          | 7    | 应用程序因资源使用违规而退出，例如超过cpu/io/内存使用量。 |
+| UPGRADE | 8    | 升级应用程序因升级而退出。 |
 
 **示例：**
 

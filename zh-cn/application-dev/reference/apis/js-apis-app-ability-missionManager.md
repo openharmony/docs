@@ -946,7 +946,7 @@ clearAllMissions(): Promise&lt;void&gt;;
 import missionManager from '@ohos.app.ability.missionManager';
 
 try {
-    missionManager.clearAllMissions(bundleName).then((data) => {
+    missionManager.clearAllMissions().then((data) => {
         console.info('clearAllMissions successfully. Data: ${JSON.stringify(data)}');
     }).catch(err => {
         console.error('clearAllMissions failed: ${err.message}');

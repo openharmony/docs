@@ -623,11 +623,12 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
     
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';
+  import window from '@ohos.window';
 
   let caller;
   let dstDeviceId: string;
   export default class MainAbility extends UIAbility {
-      onWindowStageCreate(windowStage: Window.WindowStage) {
+      onWindowStageCreate(windowStage: window.WindowStage) {
           this.context.startAbilityByCall({
               bundleName: 'com.example.myservice',
               abilityName: 'MainUIAbility',
@@ -643,7 +644,7 @@ onRemoteStateChange(callback: OnRemoteStateChangeCallback): void;
               }
           }).catch((err) => {
               console.log('Caller GetCaller error, error.code: ${JSON.stringify(err.code)}, error.message: ${JSON.stringify(err.message)}');
-          })；
+          })
       }
   }
   ```
