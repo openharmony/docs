@@ -143,7 +143,7 @@ try {
 
 getAbilityRunningInfos(callback: AsyncCallback\<Array\<AbilityRunningInfo>>): void
 
-Obtains the ability running information. This API uses an asynchronous callback to return the result.
+Obtains the UIAbility running information. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.GET_RUNNING_INFO
 
@@ -388,7 +388,7 @@ abilityManager.getTopAbility().then((data) => {
 
 acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Object}>): void;
 
-Acquires the shared data of the target device. This API uses an asynchronous callback to return the result.
+Acquires the shared data of the target application. This API uses an asynchronous callback to return the result. **missionId** indicates the target application's mission ID, which can be obtained by running the **hdc shell aa dump -a** command or calling the [missionManager.getMissionInfos()](js-apis-app-ability-missionManager.md#getmissioninfos) API after the target application is started. **callback** indicates the data shared by the target application through the [UIAbility.onShare()](js-apis-app-ability-uiAbility.md#onshare) lifecycle callback.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -396,7 +396,7 @@ Acquires the shared data of the target device. This API uses an asynchronous cal
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| missionId | number                                   | Yes| Mission ID on the target device. The maximum value is 2<sup>31</sup>-1.|
+| missionId | number                                   | Yes| Mission ID on the target application. The maximum value is 2<sup>31</sup>-1.|
 | callback  | AsyncCallback<{[key: string]: Object}>  | Yes   | Callback used to return the API call result and the shared data. You can perform error handling or custom processing in it.     |
 
 **Error codes**
@@ -411,14 +411,17 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
-
-abilityManager.acquireShareData(1, (err, data) => { 
-    if (err) {
-        console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
-    } else {
-        console.log(`acquireShareData success, data: ${JSON.stringify(data)}`);
-    }
-});
+try {
+    abilityManager.acquireShareData(1, (err, wantParam) => { 
+        if (err) {
+            console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
+        } else {
+            console.log(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
+        }
+    });
+} catch (paramError) {
+    console.error(`error.code: ${JSON.stringify(paramError.code)}, error.message: ${JSON.stringify(paramError.message)}`);
+}
 
 ```
 
@@ -426,7 +429,7 @@ abilityManager.acquireShareData(1, (err, data) => {
 
 acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
 
-Acquires the shared data of the target device. This API uses a promise to return the result.
+Acquires the shared data of the target application. This API uses a promise to return the result. **missionId** indicates the target application's mission ID, which can be obtained by running the **hdc shell aa dump -a** command or calling the [missionManager.getMissionInfos()](js-apis-app-ability-missionManager.md#getmissioninfos) API after the target application is started. **Promise<{[key: string]: Object}>** indicates the data shared by the target application through the [UIAbility.onShare()](js-apis-app-ability-uiAbility.md#onshare) lifecycle callback.
  
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -449,8 +452,8 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 ```ts
 import abilityManager from '@ohos.app.ability.abilityManager';
 try {
-    abilityManager.acquireShareData(1).then((data) => {
-    console.log(`acquireShareData success, data: ${JSON.stringify(data)}`);
+    abilityManager.acquireShareData(1).then((wantParam) => {
+    console.log(`acquireShareData success, data: ${JSON.stringify(wantParam)}`);
     }).catch((err) => {
     console.error(`acquireShareData fail, err: ${JSON.stringify(err)}`);
     });

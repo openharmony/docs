@@ -58,8 +58,8 @@ TextPicker(options?: {range: string[] | string[][] | Resource | TextPickerRangeC
 
 | 名称 | 描述 |
 | -------- | -------- |
-| onAccept(callback: (value: string, index: number) => void) | 点击弹窗中的“确定”按钮时触发该回调。<br/><br/>-&nbsp;value:&nbsp;当前选中项的文本。<br/>-&nbsp;index:&nbsp;当前选中项的索引值。<br/>**说明：** <br/>该事件仅在[文本滑动选择器弹窗](ts-methods-textpicker-dialog.md)中生效。 |
-| onCancel(callback: () => void) | 点击弹窗中的“取消”按钮时触发该回调。<br/>**说明：** <br/>该事件仅在[文本滑动选择器弹窗](ts-methods-textpicker-dialog.md)中生效。 |
+| onAccept(callback: (value: string, index: number) => void)<sup>(deprecated) </sup>  | 点击弹窗中的“确定”按钮时触发该回调。<br/>-&nbsp;value:&nbsp;当前选中项的文本。<br/>-&nbsp;index:&nbsp;当前选中项的索引值。<br/> 从API version 10开始废弃。 <br/>**说明：** <br/>该事件仅在[文本滑动选择器弹窗](ts-methods-textpicker-dialog.md)中生效。|
+| onCancel(callback: () => void)<sup>(deprecated) </sup>  | 点击弹窗中的“取消”按钮时触发该回调。<br/> 从API version 10开始废弃。<br/>**说明：** <br/>该事件仅在[文本滑动选择器弹窗](ts-methods-textpicker-dialog.md)中生效。 |
 | onChange(callback:&nbsp;(value:&nbsp;string&nbsp;\|&nbsp;string[]<sup>10+</sup>,&nbsp;index:&nbsp;number&nbsp;\|&nbsp;number[]<sup>10+</sup>)&nbsp;=&gt;&nbsp;void) | 滑动选中TextPicker文本内容后，触发该回调。<br/>-&nbsp;value:&nbsp;当前选中项的文本。（多列的情况，value为数组类型。）<br/>-&nbsp;index:&nbsp;当前选中项的索引值。（多列的情况，index为数组类型。）<br/>**说明**：当显示文本或图片加文本列表时，value值为选中项中的文本值，当显示图片列表时，value值为空。 |
 
 

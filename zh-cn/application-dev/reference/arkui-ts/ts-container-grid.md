@@ -122,6 +122,7 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 | onItemDragMove(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number) => void) | 拖拽在网格元素范围内移动时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽起始位置。<br/>- insertIndex: 拖拽插入位置。 |
 | onItemDragLeave(event: (event: ItemDragInfo, itemIndex: number) => void) | 拖拽离开网格元素时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽离开的网格元素索引值。 |
 | onItemDrop(event: (event: ItemDragInfo, itemIndex: number, insertIndex: number, isSuccess: boolean) => void) | 绑定该事件的网格元素可作为拖拽释放目标，当在网格元素内停止拖拽时触发。<br/>- event: 见[ItemDragInfo对象说明](#itemdraginfo对象说明)。<br/>- itemIndex: 拖拽起始位置。<br/>- insertIndex: 拖拽插入位置。<br/>- isSuccess: 是否成功释放。 |
+| onScrollBarUpdate(event: (index: number, offset: number) => ComputedBarAttribute) | 当前网格显示的起始位置item发生变化时触发，可通过该回调设置滚动条的位置及长度。<br/>- index: 当前显示的网格起始位置的索引值。<br/>- offset: 当前显示的网格起始位置元素相对网格显示起始位置的偏移。<br/>- ComputedBarAttribute: 见[ComputedBarAttribute对象说明](#computedbarattribute对象说明)。  |
 
 ## ItemDragInfo对象说明
 
@@ -129,6 +130,13 @@ Grid组件根据rowsTemplate、columnsTemplate属性的设置情况，可分为�
 | ---------- | ---------- | ---------- |
 | x | number |  当前拖拽点的x坐标。    |
 | y   | number |  当前拖拽点的y坐标。    |
+
+## ComputedBarAttribute对象说明
+
+| 名称         | 类型         |   描述         |
+| ---------- | ---------- | ---------- |
+| totalOffset | number |  Grid内容相对显示区域的总偏移。    |
+| totalLength   | number |  Grid内容总长度。    |
 
 ## 示例
 
@@ -185,6 +193,9 @@ struct GridExample {
       .edgeEffect(EdgeEffect.Spring)
       .onScrollIndex((first: number) => {
         console.info(first.toString())
+      })
+      .onScrollBarUpdate((index: number, offset: number) => {
+        return {totalOffset: (index / 5) * (80 + 10) - 10 + offset, totalLength: 80 * 5 + 10 * 4}
       })
       .width('90%')
       .backgroundColor(0xFAEEE0)

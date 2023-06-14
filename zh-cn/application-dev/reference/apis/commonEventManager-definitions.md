@@ -48,25 +48,19 @@
 >
 > 从API Version 10 开始废弃。
 
-## COMMON_EVENT_TIME_TICK
+## [COMMON_EVENT_TIME_TICK](./common_event/commonEvent-time.md)
 表示系统时间更改的公共事件的动作。
-- 值： usual.event.TIME_TICK
-- 订阅者所需权限： 无
 
-## COMMON_EVENT_TIME_CHANGED
+## [COMMON_EVENT_TIME_CHANGED](./common_event/commonEvent-time.md)
 设置系统时间的公共事件的动作。
-- 值： usual.event.TIME_CHANGED
-- 订阅者所需权限： 无
 
 ## COMMON_EVENT_DATE_CHANGED
 （预留事件，暂未支持）表示系统日期已更改的公共事件的动作。
 - 值： usual.event.DATE_CHANGED
 - 订阅者所需权限： 无
 
-## COMMON_EVENT_TIMEZONE_CHANGED
+## [COMMON_EVENT_TIMEZONE_CHANGED](./common_event/commonEvent-time.md)
 表示系统时区更改的公共事件的动作。
-- 值： usual.event.TIMEZONE_CHANGED
-- 订阅者所需权限： 无
 
 ## COMMON_EVENT_CLOSE_SYSTEM_DIALOGS
 （预留事件，暂未支持）表示用户关闭临时系统对话框的公共事件的动作。
@@ -463,20 +457,14 @@ Wi-Fi P2P群组信息已更改。
 - 值： usual.event.bluetooth.a2dpsink.AUDIO_STATE_UPDATE
 - 订阅者所需权限： ohos.permission.USE_BLUETOOTH
 
-## COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED
-指示设备NFC适配器状态已更改的公共事件的操作。
-- 值： usual.event.nfc.action.ADAPTER_STATE_CHANGED
-- 订阅者所需权限： 无
+## [COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED](./common_event/commonEvent-nfc.md)
+指示设备NFC状态已更改的公共事件的操作。
 
-## COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED
-（预留事件，暂未支持）检测到NFC RF字段处于使能状态的公共事件的动作。
-- 值： usual.event.nfc.action.RF_FIELD_ON_DETECTED
-- 订阅者所需权限： ohos.permission.MANAGE_SECURE_SETTINGS
+## [COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED](./common_event/commonEvent-nfc.md)
+检测到NFC场强进入的公共事件。
 
-## COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED
-（预留事件，暂未支持）检测到NFC RF字段处于关闭状态的公共事件的动作。
-- 值： usual.event.nfc.action.RF_FIELD_OFF_DETECTED
-- 订阅者所需权限： ohos.permission.MANAGE_SECURE_SETTINGS
+## [COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED](./common_event/commonEvent-nfc.md)
+检测到NFC场强离开的公共事件。
 
 ## [COMMON_EVENT_DISCHARGING](./common_event/commonEvent-powermgr.md)
 表示系统停止为电池充电的公共事件的动作。
@@ -718,19 +706,13 @@ Wi-Fi P2P群组信息已更改。
 提示未接来电。
 ## [COMMON_EVENT_RADIO_STATE_CHANGE<sup>10+<sup>](./common_event/commonEvent-telephony.md)
 提示设备modem上下电状态变化。
-## COMMON_EVENT_SCREEN_LOCKED <sup>10+<sup>
+## [COMMON_EVENT_SCREEN_LOCKED <sup>10+<sup>](./common_event/commonEvent-screenlock.md)
 
 表示屏幕锁定的公共事件。
 
-- 值： usual.event.SCREEN_LOCKED
-- 订阅者所需权限： 无
-
-## COMMON_EVENT_SCREEN_UNLOCKED<sup>10+<sup>
+## [COMMON_EVENT_SCREEN_UNLOCKED<sup>10+<sup>](./common_event/commonEvent-screenlock.md)
 
 表示屏幕解锁的公共事件。
-
-- 值：usual.event.SCREEN_UNLOCKED
-- 订阅者所需权限：无
 
 ## [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT<sup>10+<sup>](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)
 

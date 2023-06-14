@@ -4287,6 +4287,7 @@ onSslErrorEventReceive接口返回的SSL错误的具体原因。
 | 名称        | 描述            | 备注                         |
 | --------- | ------------- | -------------------------- |
 | MidiSysex | MIDI SYSEX资源。 | 目前仅支持权限事件上报，MIDI设备的使用还未支持。 |
+| VIDEO_CAPTURE<sup>10+</sup> | 视频捕获资源，例如相机。 | |
 
 ## WebDarkMode<sup>9+</sup>枚举说明
 | 名称      | 描述                                   |

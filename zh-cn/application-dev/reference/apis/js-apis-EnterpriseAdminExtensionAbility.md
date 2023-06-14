@@ -1,6 +1,6 @@
-# @ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)
+# @ohos.enterprise.EnterpriseAdminExtensionAbility (企业设备管理扩展能力)
 
-本模块提供企业管理员应用拓展能力。
+本模块提供企业设备管理扩展能力。
 
 企业管理员应用需要存在一个EnterpriseAdminExtensionAbility并重写相关接口，以此具备模块提供的各项能力，比如接收由系统发送的该应用被激活或者去激活的通知。
 

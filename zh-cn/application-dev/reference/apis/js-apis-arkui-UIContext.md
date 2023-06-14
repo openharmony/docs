@@ -400,6 +400,42 @@ uiContext.showTextPickerDialog({
 })
 ```
 
+### createAnimator
+
+createAnimator(options: AnimatorOptions): AnimatorResult
+
+定义Animator类。
+
+**系统能力：**  SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                                  | 必填   | 说明      |
+| ------- | ----------------------------------- | ---- | ------- |
+| options | [AnimatorOptions](./js-apis-animator.md#animatoroptions) | 是    | 定义动画选项。 |
+
+**返回值：**
+
+| 类型                                | 说明            |
+| --------------------------------- | ------------- |
+| [AnimatorResult](./js-apis-animator.md#animatorresult) | Animator结果接口。 |
+
+**示例：**
+
+```ts
+let options = {
+  duration: 1500,
+  easing: "friction",
+  delay: 0,
+  fill: "forwards",
+  direction: "normal",
+  iterations: 3,
+  begin: 200.0,
+  end: 400.0
+};
+uiContext.createAnimator(options);
+```
+
 ## Font
 
 以下API需先使用UIContext中的[getFont()](#getfont)方法获取到Font对象，再通过该对象调用对应方法。
