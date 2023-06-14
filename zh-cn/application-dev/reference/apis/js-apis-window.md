@@ -2434,6 +2434,14 @@ getUIContext(): UIContext
 | ---------- | ---------------------- |
 | [UIContext](./js-apis-arkui-UIContext.md#uicontext) | 返回UIContext实例对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[窗口错误码](../errorcodes/errorcode-window.md)。
+
+| 错误码ID | 错误信息 |
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+
 **示例：**
 
 ```ts
