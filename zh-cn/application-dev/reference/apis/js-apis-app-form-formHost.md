@@ -2434,6 +2434,9 @@ formHost.on('notifyVisible', callback);
 formHost.on('notifyVisible', callback, bundleName);
 ```
 
+> **说明：**
+> 若bundleName配置为all，则视为未配置bundleName。
+
 ## off('notifyVisible')<sup>10+</sup>
 
  off(type: "notifyVisible", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
@@ -2469,6 +2472,7 @@ formHost.off('notifyVisible', callback, bundleName);
 > on('notifyVisible', callback)与off('notifyVisible', callback)相对应；
 > on('notifyVisible', callback, bundleName)与off('notifyVisible', callback, bundleName)相对应；
 > 订阅（on）只能由自己对应的取消订阅接口（off）取消。
+> 若bundleName配置为all，则视为未配置bundleName。
 
 
 
@@ -2502,6 +2506,9 @@ let callback = function(data) {
 formHost.on('notifyInvisible', callback);
 formHost.on('notifyInvisible', callback, bundleName);
 ```
+
+> **说明：**
+> 若bundleName配置为all，则视为未配置bundleName。
 
 ## off('notifyInvisible')<sup>10+</sup>
 
@@ -2538,3 +2545,4 @@ formHost.off('notifyInvisible', callback, bundleName);
 > on('notifyInvisible', callback)与off('notifyInvisible', callback)相对应；
 > on('notifyInvisible', callback, bundleName)与off('notifyInvisible', callback, bundleName)相对应；
 > 订阅（on）只能由自己对应的取消订阅接口（off）取消。
+> 若bundleName配置为all，则视为未配置bundleName。
