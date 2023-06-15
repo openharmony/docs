@@ -59,7 +59,7 @@
 
 #### 开源义务履行
 
-1. [开源合规交付制品管理规范及指导](https://gitee.com/openharmony/docs/blob/b56f671f5ec3c02c18cefe4de6eccd0b14c41662/zh-cn/contribute/%E5%BC%80%E6%BA%90%E4%B9%89%E5%8A%A1%E5%B1%A5%E8%A1%8C%E5%90%88%E8%A7%84%E4%BA%A4%E4%BB%98%E5%88%B6%E5%93%81%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83%E5%8F%8A%E6%8C%87%E5%AF%BC.md)
+[开源合规交付制品管理规范及指导](https://gitee.com/openharmony/docs/blob/b56f671f5ec3c02c18cefe4de6eccd0b14c41662/zh-cn/contribute/%E5%BC%80%E6%BA%90%E4%B9%89%E5%8A%A1%E5%B1%A5%E8%A1%8C%E5%90%88%E8%A7%84%E4%BA%A4%E4%BB%98%E5%88%B6%E5%93%81%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83%E5%8F%8A%E6%8C%87%E5%AF%BC.md)
 
 #### 软件物料清单（SBOM）规范
 
@@ -76,19 +76,19 @@
 
 ## 二进制合规规范
 
-1. [二进制合规规范]()
+[二进制合规规范]()
 
 ## 开源合规类issue管理流程
 
-1. [OpenHarmony社区开源合规issue管理流程指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/%E5%BC%80%E6%BA%90%E5%90%88%E8%A7%84%E7%B1%BB%E9%97%AE%E9%A2%98%E7%AE%A1%E7%90%86.md)
+[OpenHarmony社区开源合规issue管理流程指导](https://gitee.com/openharmony/docs/blob/master/zh-cn/contribute/%E5%BC%80%E6%BA%90%E5%90%88%E8%A7%84%E7%B1%BB%E9%97%AE%E9%A2%98%E7%AE%A1%E7%90%86.md)
 
 ## 开源合规角色和责任
 
-1. [《开源合规角色职责及能力要求》](https://gitee.com/openharmony/docs/blob/b56f671f5ec3c02c18cefe4de6eccd0b14c41662/zh-cn/contribute/%E5%BC%80%E6%BA%90%E5%90%88%E8%A7%84%E8%A7%92%E8%89%B2%E8%81%8C%E8%B4%A3%E5%8F%8A%E8%83%BD%E5%8A%9B%E8%A6%81%E6%B1%82.md)
+[《开源合规角色职责及能力要求》](https://gitee.com/openharmony/docs/blob/b56f671f5ec3c02c18cefe4de6eccd0b14c41662/zh-cn/contribute/%E5%BC%80%E6%BA%90%E5%90%88%E8%A7%84%E8%A7%92%E8%89%B2%E8%81%8C%E8%B4%A3%E5%8F%8A%E8%83%BD%E5%8A%9B%E8%A6%81%E6%B1%82.md)
 
 ## 开源合规培训资源及要求
 
-1. [《开源合规培训计划》](https://gitee.com/openharmony/docs/blob/b56f671f5ec3c02c18cefe4de6eccd0b14c41662/zh-cn/contribute/%E5%BC%80%E6%BA%90%E5%90%88%E8%A7%84%E5%9F%B9%E8%AE%AD%E8%AE%A1%E5%88%92.md)
+[《开源合规培训计划》](https://gitee.com/openharmony/docs/blob/b56f671f5ec3c02c18cefe4de6eccd0b14c41662/zh-cn/contribute/%E5%BC%80%E6%BA%90%E5%90%88%E8%A7%84%E5%9F%B9%E8%AE%AD%E8%AE%A1%E5%88%92.md)
 
 ## 未能遵守的后果
 
@@ -104,7 +104,7 @@
 因此，我们会严肃对待违反本政策的行为，任何违反本政策的个人都可能会受到纪律处分。
 
 ## 开源合规负面事件响应策略
-1. 《社区开源合规负面事件响应策略》，请参照法务与合规组策略
+《社区开源合规负面事件响应策略》，请参照法务与合规组策略
 
 ## 参考文档
 
