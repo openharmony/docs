@@ -685,7 +685,7 @@ promise.then(data => {
 
 getSimAccountInfo\(slotId: number, callback: AsyncCallback\<IccAccountInfo\>\): void
 
-获取SIM卡账户信息。使用callback异步回调。
+获取SIM卡帐户信息。使用callback异步回调。
 
 >**说明：**
 >
@@ -708,8 +708,6 @@ getSimAccountInfo\(slotId: number, callback: AsyncCallback\<IccAccountInfo\>\): 
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -731,7 +729,7 @@ sim.getSimAccountInfo(0, (err, data) => {
 
 getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 
-获取SIM卡账户信息。使用Promise异步回调。
+获取SIM卡帐户信息。使用Promise异步回调。
 
 >**说明：**
 >
@@ -751,7 +749,7 @@ getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 
 | 类型                                         | 说明                                       |
 | -------------------------------------------- | ------------------------------------------ |
-| Promise<[IccAccountInfo](#iccaccountinfo7)\> | 以Promise形式返回指定卡槽SIM卡的账户信息。 |
+| Promise<[IccAccountInfo](#iccaccountinfo7)\> | 以Promise形式返回指定卡槽SIM卡的帐户信息。 |
 
 **错误码：**
 
@@ -759,8 +757,6 @@ getSimAccountInfo\(slotId: number\): Promise\<IccAccountInfo\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -784,7 +780,7 @@ promise.then(data => {
 
 getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\): void
 
-获取活跃SIM卡账户信息列表。使用callback异步回调。
+获取活跃SIM卡帐户信息列表。使用callback异步回调。
 
 >**说明：**
 >
@@ -806,8 +802,6 @@ getActiveSimAccountInfoList\(callback: AsyncCallback\<Array\<IccAccountInfo\>\>\
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 202      | Non-system applications use system APIs.     |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -827,7 +821,7 @@ sim.getActiveSimAccountInfoList((err, data) => {
 
 getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>;
 
-获取活跃SIM卡账户信息列表。使用Promise异步回调。
+获取活跃SIM卡帐户信息列表。使用Promise异步回调。
 
 >**说明：**
 >
@@ -841,7 +835,7 @@ getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>;
 
 | 类型                                                 | 说明                                           |
 | ---------------------------------------------------- | ---------------------------------------------- |
-| Promise<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | 以Promise形式返回活跃卡槽SIM卡的账户信息列表。 |
+| Promise<Array<[IccAccountInfo](#iccaccountinfo7)\>\> | 以Promise形式返回活跃卡槽SIM卡的帐户信息列表。 |
 
 **错误码：**
 
@@ -849,8 +843,6 @@ getActiveSimAccountInfoList\(\): Promise\<Array\<IccAccountInfo\>\>;
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied.                           |
-| 202      | Non-system applications use system APIs.     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
 | 8300004  | Do not have sim card.                        |
@@ -4195,7 +4187,7 @@ SIM卡状态。
 
 ## IccAccountInfo<sup>7+</sup>
 
-Icc账户信息。
+Icc帐户信息。
 
 **系统接口：** 此接口为系统接口。
 

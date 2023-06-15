@@ -853,7 +853,7 @@ observer.off('simStateChange');
 
 on\(type: 'iccAccountInfoChange', callback: Callback\<void\>\): void;
 
-订阅卡账户变化事件，使用callback方式作为异步方法。
+订阅卡帐户变化事件，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Telephony.StateRegistry
 
@@ -861,7 +861,7 @@ on\(type: 'iccAccountInfoChange', callback: Callback\<void\>\): void;
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 卡账户变化事件，参数固定为'iccAccountInfoChange'。                 |
+| type     | string                                                       | 是   | 卡帐户变化事件，参数固定为'iccAccountInfoChange'。                 |
 | callback | Callback\<void\> | 是   | 回调函数。 |
 
 **错误码：**
@@ -870,7 +870,6 @@ on\(type: 'iccAccountInfoChange', callback: Callback\<void\>\): void;
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |
@@ -879,8 +878,8 @@ on\(type: 'iccAccountInfoChange', callback: Callback\<void\>\): void;
 **示例：**
 
 ```js
-observer.on('iccAccountInfoChange', data => {
-    console.log("on iccAccountInfoChange, data:" + JSON.stringify(data));
+observer.on('iccAccountInfoChange', error => {
+    console.log("on iccAccountInfoChange, error:" + JSON.stringify(error));
 });
 ```
 
@@ -889,7 +888,7 @@ observer.on('iccAccountInfoChange', data => {
 
 off\(type: 'iccAccountInfoChange', callback?: Callback\<void\>\): void;
 
-移除订阅卡账户变化事件，使用callback方式作为异步方法。
+移除订阅卡帐户变化事件，使用callback方式作为异步方法。
 
 >**说明：**
 >
@@ -901,7 +900,7 @@ off\(type: 'iccAccountInfoChange', callback?: Callback\<void\>\): void;
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 卡账户变化事件，参数固定为'iccAccountInfoChange'。                 |
+| type     | string                                                       | 是   | 卡帐户变化事件，参数固定为'iccAccountInfoChange'。                 |
 | callback | Callback\<void\> | 否   | 回调函数。 |
 
 **错误码：**
@@ -910,7 +909,6 @@ off\(type: 'iccAccountInfoChange', callback?: Callback\<void\>\): void;
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
 | 8300003  | System internal error.                       |

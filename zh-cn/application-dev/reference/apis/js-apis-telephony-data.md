@@ -772,7 +772,7 @@ promise.then(() => {
 
 getDefaultCellularDataSimId(): number
 
-获取默认移动数据的SIM卡ID
+获取默认移动数据的SIM卡ID。
 
 **系统能力**：SystemCapability.Telephony.CellularData
 
