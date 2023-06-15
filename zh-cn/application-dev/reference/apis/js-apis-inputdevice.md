@@ -472,14 +472,14 @@ setKeyboardRepeatDelay(delay: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名     | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| delay    | number                    | 是    | 键盘按键重复延迟时间。 |
+| delay    | number                    | 是    | 键盘按键重复延迟时间，默认值500ms，调节范围[300ms，1000ms]。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
 
 **示例**：
 
 ```js
 try {
-  inputDevice.setKeyboardRepeatDelay(5, (error) => {
+  inputDevice.setKeyboardRepeatDelay(350, (error) => {
     if (error) {
       console.log(`Set keyboard repeat delay failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -503,7 +503,7 @@ setKeyboardRepeatDelay(delay: number): Promise&lt;void&gt;
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| delay | number | 是    | 键盘按键重复延迟时间。|
+| delay | number | 是    | 键盘按键重复延迟时间，默认值500ms，调节范围[300ms，1000ms]。 |
 
 **返回值**：
 
@@ -515,7 +515,7 @@ setKeyboardRepeatDelay(delay: number): Promise&lt;void&gt;
 
 ```js
 try {
-  inputDevice.setKeyboardRepeatDelay(5).then(() => {
+  inputDevice.setKeyboardRepeatDelay(350).then(() => {
     console.log(`Set keyboard repeat delay success`);
   });
 } catch (error) {
@@ -535,14 +535,14 @@ setKeyboardRepeatRate(rate: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名     | 类型   | 必填 | 说明                                                         |
 | -------- | ------ | ---- | ------------------------------------------------------------ |
-| rate    | number                    | 是    | 键盘按键重复速率。 |
+| rate    | number                    | 是    | 键盘按键重复速率，默认值50ms/次，调节范围[36ms/次，100ms/次]。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 回调函数。 |
 
 **示例**：
 
 ```js
 try {
-  inputDevice.setKeyboardRepeatRate(5, (error) => {
+  inputDevice.setKeyboardRepeatRate(60, (error) => {
     if (error) {
       console.log(`Set keyboard repeat rate failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
       return;
@@ -566,7 +566,7 @@ setKeyboardRepeatRate(rate: number): Promise&lt;void&gt;
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| rate | number | 是    | 键盘按键重复速率。|
+| rate | number | 是    | 键盘按键重复速率，默认值50ms/次，调节范围[36ms/次，100ms/次]。 |
 
 **返回值**：
 
@@ -578,7 +578,7 @@ setKeyboardRepeatRate(rate: number): Promise&lt;void&gt;
 
 ```js
 try {
-  inputDevice.setKeyboardRepeatRate(5).then(() => {
+  inputDevice.setKeyboardRepeatRate(60).then(() => {
     console.log(`Set keyboard repeat rate success`);
   });
 } catch (error) {
