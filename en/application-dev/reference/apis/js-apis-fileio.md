@@ -21,8 +21,9 @@ Before using the APIs provided by this module to perform operations on files or 
 **Stage Model**
 
  ```js
-import Ability from '@ohos.application.Ability';
-class MainAbility extends Ability {
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
     onWindowStageCreate(windowStage) {
         let context = this.context;
         let pathDir = context.filesDir;
@@ -30,19 +31,18 @@ class MainAbility extends Ability {
 }
  ```
 
- For details about how to obtain the stage model context, see [UIAbilityContext](js-apis-inner-application-uiAbilityContext.md).
-
 **FA Model**
 
  ```js
  import featureAbility from '@ohos.ability.featureAbility';
+ 
  let context = featureAbility.getContext();
  context.getFilesDir().then((data) => {
       let pathDir = data;
  })
  ```
 
- For details about how to obtain the FA model context, see [Contex](js-apis-inner-app-context.md#context).
+For details about how to obtain the FA model context, see [Contex](js-apis-inner-app-context.md#context).
 
 ## fileio.stat
 
