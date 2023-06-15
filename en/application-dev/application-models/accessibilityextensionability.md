@@ -1,4 +1,4 @@
-# AccessibilityExtensionAbility Development
+# AccessibilityExtensionAbility
 
 The **AccessibilityExtensionAbility** module provides accessibility extension capabilities based on the **ExtensionAbility** framework. You can develop your accessibility applications by applying the **AccessibilityExtensionAbility** template to enhance usability.
 
@@ -9,14 +9,6 @@ The **AccessibilityExtensionAbility** module provides accessibility extension ca
 > SDK: API version 9 or later
 >
 > Model: stage
-
-This document is organized as follows:
-
-- [AccessibilityExtensionAbility Overview](#accessibilityextensionability-overview)
-- [Creating an Accessibility Extension Service](#creating-an-accessibility-extension-service)
-- [Processing an Accessibility Event](#processing-an-accessibility-event)
-- [Declaring Capabilities of Accessibility Extension Services](#declaring-capabilities-of-accessibility-extension-services)
-- [Enabling a Custom Accessibility Extension Service](#enabling-a-custom-accessibility-extension-service)
 
 ## AccessibilityExtensionAbility Overview
 

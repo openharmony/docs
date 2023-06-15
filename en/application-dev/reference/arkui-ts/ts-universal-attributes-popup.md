@@ -29,8 +29,8 @@ You can bind a popup to a component, specifying its content, interaction logic, 
 | messageOptions<sup>10+</sup>          | [PopupMessageOptions](#popupmessageoptions10)                | No  | Parameters of the popup message.                                      |
 | targetSpace<sup>10+</sup>             | [Length](ts-types.md#length)                                 | No  | Space between the popup and the target.                                     |
 | placement<sup>10+</sup>               | [Placement](ts-appendix-enums.md#placement8)                 | No  | Position of the popup relative to the target. The default value is **Placement.Bottom**.<br>If both **placementOnTop** and **placement** are set, the latter prevails.|
-| offset<sup>10+</sup>                  | [Position](ts-types.md#position8)                            | No  | Offset of the popup relative to the display position specified by **placement**.          |
-| enableArrow<sup>10+</sup>             | boolean | No  | Whether to display the arrow.<br>Default value: **true**|
+| offset<sup>10+</sup>                  | [Position](ts-types.md#position8)                            | No  | Offset of the popup relative to the display position specified by **placement**.<br>**NOTE**<br>This parameter cannot be set in percentage.|
+| enableArrow<sup>10+</sup>             | boolean                                                      | No  | Whether to display the arrow.<br>Default value: **true**|
 
 ## PopupMessageOptions<sup>10+</sup>
 
@@ -53,7 +53,7 @@ You can bind a popup to a component, specifying its content, interaction logic, 
 | maskColor<sup>(deprecated)</sup> | [ResourceColor](ts-types.md#resourcecolor)   | No  | Color of the popup mask.<br>**NOTE**<br>This parameter is deprecated since API version 10. You are advised to use **mask** instead.|
 | mask<sup>10+</sup>           | boolean \| [ResourceColor](ts-types.md#resourcecolor) | No   | Whether to apply a mask to the popup. The value **true** means to apply a transparent mask to the popup, **false** means not to apply a mask to the popup, and a color value means to apply a mask in the corresponding color to the popup.|
 | targetSpace<sup>10+</sup>    | [Length](ts-types.md#length)             | No   | Space between the popup and the target.                          |
-| offset<sup>10+</sup>         | [Position](ts-types.md#position8)                            | No  | Offset of the popup relative to the display position specified by placement.|
+| offset<sup>10+</sup>         | [Position](ts-types.md#position8)                            | No  | Offset of the popup relative to the display position specified by **placement**.<br>**NOTE**<br>This parameter cannot be set in percentage.|
 
 ## Example
 ```ts
