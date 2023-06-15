@@ -35,6 +35,7 @@ You can create explicit animation with your custom settings.
 struct AnimateToExample {
   @State widthSize: number = 200
   @State heightSize: number = 100
+  @State rotateAngle: number = 0
   private flag: boolean = true
 
   build() {

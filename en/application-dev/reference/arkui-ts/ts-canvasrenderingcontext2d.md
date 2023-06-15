@@ -10,13 +10,13 @@ Use **RenderingContext** to draw rectangles, text, images, and other objects on 
 
 ## APIs
 
-CanvasRenderingContext2D(setting: RenderingContextSetting)
+CanvasRenderingContext2D(settings?: RenderingContextSettings)
 
 **Parameters**
 
 | Name    | Type                                    | Mandatory  | Description                                    |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| setting | [RenderingContextSettings](#renderingcontextsettings) | Yes   | See [RenderingContextSettings](#renderingcontextsettings).|
+| settings | [RenderingContextSettings](#renderingcontextsettings) | No   | See [RenderingContextSettings](#renderingcontextsettings).|
 
 
 ### RenderingContextSettings
@@ -34,25 +34,27 @@ Configures the settings of a **CanvasRenderingContext2D** object, including whet
 
 ## Attributes
 
-| Name                                                 | Type                                                        | Description                                                        |
+| Name                                                  | Type                                                         | Description                                                  |
 | ----------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [fillStyle](#fillstyle)                               | string \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | Style to fill an area.<br>- When the type is string, this attribute indicates the color of the fill area.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API.|
-| [lineWidth](#linewidth)                               | number                                                       | Line width.                                        |
-| [strokeStyle](#strokestyle)                           | string \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | Stroke style.<br>- When the type is string, this attribute indicates the stroke color.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API.|
-| [lineCap](#linecap)                                   | CanvasLineCap                                                | Style of the line endpoints. The options are as follows:<br>- **'butt'**: The endpoints of the line are squared off.<br>- **'round'**: The endpoints of the line are rounded.<br>- **'square'**: The endpoints of the line are squared off by adding a box with an equal width and half the height of the line's thickness.<br>Default value: **'butt'**|
-| [lineJoin](#linejoin)                                 | CanvasLineJoin                                               | Style of the shape used to join line segments. The options are as follows:<br>- **'round'**: The shape used to join line segments is a sector, whose radius at the rounded corner is equal to the line width.<br>- **'bevel'**: The shape used to join line segments is a triangle. The rectangular corner of each line is independent.<br>- **'miter'**: The shape used to join line segments has a mitered corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**.<br>Default value: **'miter'**|
-| [miterLimit](#miterlimit)                             | number                                                       | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet.<br>Default value: **10**|
-| [font](#font)                                         | string                                                       | Font style.<br>Syntax: ctx.font='font-size font-family'<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>- (Optional) **font-family**: font family.<br>Syntax: ctx.font='font-style font-weight font-size font-family'<br>- (Optional) **font-style**: font style. Available values are **'normal'** and **'italic'**.<br>- (Optional) **font-weight**: font weight. Available values are as follows: **'normal'**, **'bold'**, **'bolder'**, **'lighter'**, **'100'**, **'200'**, **'300'**, **'400'**, **'500'**, **'600'**, **'700'**, **'800'**, **'900'**.<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>- (Optional) **font-family**: font family. Available values are **'sans-serif'**, **'serif'**, and **'monospace'**.<br>Default value: **'normal normal 14px sans-serif'**|
-| [textAlign](#textalign)                               | CanvasTextAlign                                              | Text alignment mode. Available values are as follows:<br>- **'left'**: The text is left-aligned.<br>- **'right'**: The text is right-aligned.<br>- **'center'**: The text is center-aligned.<br>- **'start'**: The text is aligned with the start bound.<br>- **'end'**: The text is aligned with the end bound.<br>In the **ltr** layout mode, the value **'start'** equals **'left'**. In the **rtl** layout mode, the value **'start'** equals **'right'**.<br>Default value: **'left'**|
-| [textBaseline](#textbaseline)                         | CanvasTextBaseline                                           | Horizontal alignment mode of text. Available values are as follows:<br>- **'alphabetic'**: The text baseline is the normal alphabetic baseline.<br>- **'top'**: The text baseline is on the top of the text bounding box.<br>- **'hanging'**: The text baseline is a hanging baseline over the text.<br>- **'middle'**: The text baseline is in the middle of the text bounding box.<br>**'ideographic'**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excess character.<br>- **'bottom'**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line.<br>Default value: **'alphabetic'**|
-| [globalAlpha](#globalalpha)                           | number                                                       | Opacity.<br>**0.0**: completely transparent.<br>**1.0**: completely opaque.                |
-| [lineDashOffset](#linedashoffset)                     | number                                                       | Offset of the dashed line. The precision is float.<br>Default value: **0.0**     |
-| [globalCompositeOperation](#globalcompositeoperation) | string                                                       | Composition operation type. Available values are as follows: **'source-over'**, **'source-atop'**, **'source-in'**, **'source-out'**, **'destination-over'**, **'destination-atop'**, **'destination-in'**, **'destination-out'**, **'lighter'**, **'copy'**, and **'xor'**.<br>Default value: **'source-over'**|
-| [shadowBlur](#shadowblur)                             | number                                                       | Blur level during shadow drawing. A larger value indicates a more blurred effect. The precision is float.<br>Default value: **0.0**|
-| [shadowColor](#shadowcolor)                           | string                                                       | Shadow color.                                  |
-| [shadowOffsetX](#shadowoffsetx)                       | number                                                       | X-axis shadow offset relative to the original object.                      |
-| [shadowOffsetY](#shadowoffsety)                       | number                                                       | Y-axis shadow offset relative to the original object.                      |
-| [imageSmoothingEnabled](#imagesmoothingenabled)       | boolean                                                      | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite.<br>Default value: **true**|
+| [fillStyle](#fillstyle)                               | string \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | Style to fill an area.<br>- When the type is string, this attribute indicates the color of the fill area.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API. |
+| [lineWidth](#linewidth)                               | number                                                       | Line width.                                                  |
+| [strokeStyle](#strokestyle)                           | string \| [CanvasGradient](ts-components-canvas-canvasgradient.md) \| [CanvasPattern](#canvaspattern) | Stroke style.<br>- When the type is string, this attribute indicates the stroke color.<br>- When the type is **CanvasGradient**, this attribute indicates a gradient object, which is created using the **[createLinearGradient](#createlineargradient)** API.<br>- When the type is **CanvasPattern**, this attribute indicates a pattern, which is created using the **[createPattern](#createpattern)** API. |
+| [lineCap](#linecap)                                   | CanvasLineCap                                                | Style of the line endpoints. The options are as follows:<br>- **'butt'**: The endpoints of the line are squared off.<br>- **'round'**: The endpoints of the line are rounded.<br>- **'square'**: The endpoints of the line are squared off by adding a box with an equal width and half the height of the line's thickness.<br>Default value: **'butt'** |
+| [lineJoin](#linejoin)                                 | CanvasLineJoin                                               | Style of the shape used to join line segments. The options are as follows:<br>- **'round'**: The shape used to join line segments is a sector, whose radius at the rounded corner is equal to the line width.<br>- **'bevel'**: The shape used to join line segments is a triangle. The rectangular corner of each line is independent.<br>- **'miter'**: The shape used to join line segments has a mitered corner by extending the outside edges of the lines until they meet. You can view the effect of this attribute in **miterLimit**.<br>Default value: **'miter'** |
+| [miterLimit](#miterlimit)                             | number                                                       | Maximum miter length. The miter length is the distance between the inner corner and the outer corner where two lines meet.<br>Default value: **10** |
+| [font](#font)                                         | string                                                       | Font style.<br>Syntax: ctx.font='font-size font-family'<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>- (Optional) **font-family**: font family.<br>Syntax: ctx.font='font-style font-weight font-size font-family'<br>- (Optional) **font-style**: font style. Available values are **'normal'** and **'italic'**.<br>- (Optional) **font-weight**: font weight. Available values are as follows: **'normal'**, **'bold'**, **'bolder'**, **'lighter'**, **'100'**, **'200'**, **'300'**, **'400'**, **'500'**, **'600'**, **'700'**, **'800'**, **'900'**.<br>- (Optional) **font-size**: font size and row height. The unit can only be pixels.<br>- (Optional) **font-family**: font family. Available values are **'sans-serif'**, **'serif'**, and **'monospace'**.<br>Default value: **'normal normal 14px sans-serif'** |
+| [textAlign](#textalign)                               | CanvasTextAlign                                              | Text alignment mode. Available values are as follows:<br>- **'left'**: The text is left-aligned.<br>- **'right'**: The text is right-aligned.<br>- **'center'**: The text is center-aligned.<br>- **'start'**: The text is aligned with the start bound.<br>- **'end'**: The text is aligned with the end bound.<br>In the **ltr** layout mode, the value **'start'** equals **'left'**. In the **rtl** layout mode, the value **'start'** equals **'right'**.<br>Default value: **'left'** |
+| [textBaseline](#textbaseline)                         | CanvasTextBaseline                                           | Horizontal alignment mode of text. Available values are as follows:<br>- **'alphabetic'**: The text baseline is the normal alphabetic baseline.<br>- **'top'**: The text baseline is on the top of the text bounding box.<br>- **'hanging'**: The text baseline is a hanging baseline over the text.<br>- **'middle'**: The text baseline is in the middle of the text bounding box.<br>**'ideographic'**: The text baseline is the ideographic baseline. If a character exceeds the alphabetic baseline, the ideographic baseline is located at the bottom of the excess character.<br>- **'bottom'**: The text baseline is at the bottom of the text bounding box. Its difference from the ideographic baseline is that the ideographic baseline does not consider letters in the next line.<br>Default value: **'alphabetic'** |
+| [globalAlpha](#globalalpha)                           | number                                                       | Opacity.<br>**0.0**: completely transparent.<br>**1.0**: completely opaque. |
+| [lineDashOffset](#linedashoffset)                     | number                                                       | Offset of the dashed line. The precision is float.<br>Default value: **0.0** |
+| [globalCompositeOperation](#globalcompositeoperation) | string                                                       | Composition operation type. Available values are as follows: **'source-over'**, **'source-atop'**, **'source-in'**, **'source-out'**, **'destination-over'**, **'destination-atop'**, **'destination-in'**, **'destination-out'**, **'lighter'**, **'copy'**, and **'xor'**.<br>Default value: **'source-over'** |
+| [shadowBlur](#shadowblur)                             | number                                                       | Blur level during shadow drawing. A larger value indicates a more blurred effect. The precision is float.<br>Default value: **0.0** |
+| [shadowColor](#shadowcolor)                           | string                                                       | Shadow color.                                                |
+| [shadowOffsetX](#shadowoffsetx)                       | number                                                       | X-axis shadow offset relative to the original object.        |
+| [shadowOffsetY](#shadowoffsety)                       | number                                                       | Y-axis shadow offset relative to the original object.        |
+| [imageSmoothingEnabled](#imagesmoothingenabled)       | boolean                                                      | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite.<br>Default value: **true** |
+| [height](#height)                                     | number                                                       | Component height.<br>Unit: vp                                |
+| [width](#width)                                       | number                                                       | Component width.<br>Unit: vp                                 |
 
 > **NOTE**
 >
@@ -646,6 +648,68 @@ struct ImageSmoothingEnabled {
 ```
 
 ![en-us_image_0000001211898472](figures/en-us_image_0000001211898472.png)
+
+
+### height
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct HeightExample {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width(300)
+        .height(300)
+        .backgroundColor('#ffff00')
+        .onReady(() => {
+          let h = this.context.height
+          let w = this.context.width
+          this.context.fillRect(0, 0, 300, h/2)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![en-us_image_canvas_height](figures/en-us_image_canvas_height.png)
+
+
+### width
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct WidthExample {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width(300)
+        .height(300)
+        .backgroundColor('#ffff00')
+        .onReady(() => {
+          let h = this.context.height
+          let w = this.context.width
+          this.context.fillRect(0, 0, w/2, 300)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![en-us_image_canvas_width](figures/en-us_image_canvas_width.png)
 
 
 ## Methods

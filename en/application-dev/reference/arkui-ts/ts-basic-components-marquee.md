@@ -35,7 +35,7 @@ Marquee(value: { start: boolean, step?: number, loop?: number, fromStart?: boole
 
 | Name      | Type| Default Value                   | Description                                |
 | ---------- | -------- | ------------------------------------ | ------------------------------------ |
-| allowScale | boolean  | false | Whether to allow text to scale. |
+| allowScale | boolean  | false | Whether to allow text to scale.<br>This attribute is not supported currently. |
 
 ## Events
 
