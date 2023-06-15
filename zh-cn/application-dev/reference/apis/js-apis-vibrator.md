@@ -470,10 +470,10 @@ try {
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称     | 类型 | 说明                           |
-| -------- | ------ | ------------------------------ |
-| type     | string | 值为"time"，按照指定持续时间触发马达振动。 |
-| duration | number | 马达持续振动时长, 单位ms。         |
+| 名称     | 类型    | 必填 | 说明                           |
+| -------- | ------ | ----- | ------------------------------ |
+| type     | string |  是   | 值为"time"，按照指定持续时间触发马达振动。 |
+| duration | number |  是   | 马达持续振动时长, 单位ms。         |
 
 ## VibratePreset<sup>9+</sup>
 
@@ -481,11 +481,11 @@ try {
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称     | 类型       | 说明                           |
-| -------- | -------- | ------------------------------ |
-| type     | string | 值为"preset"，按照预置振动效果触发马达振动。 |
-| effectId | string | 预置的振动效果ID。             |
-| count    | number | 重复振动的次数。               |
+| 名称     | 类型      | 必填 | 说明                           |
+| -------- | -------- | ---- |------------------------------ |
+| type     | string   |  是  | 值为"preset"，按照预置振动效果触发马达振动。 |
+| effectId | string   |  是  | 预置的振动效果ID。             |
+| count    | number   |  是  | 重复振动的次数。               |
 
 ## VibrateFromFile<sup>10+</sup>
 
@@ -493,10 +493,10 @@ try {
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称     | 类型       | 说明                           |
-| -------- | --------  | ------------------------------ |
-| type     | string    | 值为"file"，按照振动配置文件触发马达振动。 |
-| hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10) | 振动配置文件的描述符。|
+| 名称     | 类型       | 必填 | 说明                           |
+| -------- | --------  | ---- | ------------------------------ |
+| type     | string    |  是  | 值为"file"，按照振动配置文件触发马达振动。 |
+| hapticFd | [HapticFileDescriptor](#hapticfiledescriptor10) | 是 | 振动配置文件的描述符。|
 
 ## HapticFileDescriptor<sup>10+</sup>
 
@@ -516,10 +516,10 @@ try {
 
 **系统能力**：SystemCapability.Sensors.MiscDevice
 
-| 名称  | 类型 | 说明           |
-| ----- | ------ | -------------- |
-| id    | number      | 默认值为0，振动器id。     |
-| usage | [Usage](#usage9)      | 马达振动的使用场景。 |
+| 名称  | 类型 | 必填 | 说明           |
+| ----- | ------ | ---- | -------------- |
+| id    | number      |  否 | 默认值为0，振动器id。     |
+| usage | [Usage](#usage9)      | 是 | 马达振动的使用场景。 |
 
 ## Usage<sup>9+</sup>
 
