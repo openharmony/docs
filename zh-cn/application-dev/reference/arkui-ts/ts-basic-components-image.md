@@ -30,6 +30,9 @@ Image(src: PixelMap | ResourceStr | DrawableDescriptor)
 | 参数名  | 参数类型                                     | 必填   | 参数描述                                     |
 | ---- | ---------------------------------------- | ---- | ---------------------------------------- |
 | src  | &nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)&nbsp;\|ResourceStr\|&nbsp;[DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor) | 是    | 图片的数据源，支持本地图片和网络图片。<br/>当使用相对路径引用图片资源时，例如`Image("common/test.jpg")`，不支持跨包/跨模块调用该Image组件，建议使用`$r`方式来管理需全局使用的图片资源。<br/>\- 支持的图片格式包括png、jpg、bmp、svg和gif。<br/>\- 支持`Base64`字符串。格式`data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data]`, 其中`[base64 data]`为`Base64`字符串数据。<br/>\- 支持`datashare://`路径前缀的字符串，用于访问通过data&nbsp;ability提供的图片路径。<br/>\- 支持file:///data/storage路径前缀的字符串，用于读取本应用安装目录下files文件夹下的图片资源。需要保证目录包路径下的文件有可读权限。<br/>\- 支持[DrawableDescriptor](../apis/js-apis-arkui-drawableDescriptor.md#drawabledescriptor)对象<br/>- 详细使用方法可参考[显示图片](../../ui/arkts-graphics-display.md)<br/>**说明：**<br/>- ArkTS卡片上支持gif图片格式动效，但仅在显示时播放一次。<br/>- ArkTS卡片上不支持`http://`等网络相关路径前缀、`datashare://`路径前缀以及`file://data/storage`路径前缀的字符串<br/>- ArkTS卡片上不支持&nbsp;[PixelMap](../apis/js-apis-image.md#pixelmap7)类型 |
+>  **说明：**
+>
+>  Image组件加载图片失败或图片尺寸为0时，图片组件大小自动为0，不跟随父组件的布局约束。
 
 ## 属性
 
@@ -50,7 +53,6 @@ Image(src: PixelMap | ResourceStr | DrawableDescriptor)
 | syncLoad<sup>8+</sup>    | boolean                                  | 设置是否同步加载图片，默认是异步加载。同步加载时阻塞UI线程，不会显示占位图。<br/>默认值：false<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | 设置图片是否可复制（SVG图片不支持复制）。<br/>当copyOption设置为非CopyOptions.None时，支持使用长按、鼠标右击、快捷组合键'CTRL+C'等方式进行复制。<br/>默认值：CopyOptions.None<br/>该接口支持在ArkTS卡片中使用。 |
 | colorFilter<sup>9+</sup> | [ColorFilter](ts-types.md#colorfilter9)  | 给图像设置颜色滤镜效果。<br/>该接口支持在ArkTS卡片中使用。       |
-| draggable<sup>9+</sup>   | boolean                                  | 设置默认拖拽效果。（不能和[onDragStart](ts-universal-events-drag-drop.md)事件同时使用。）<br/>默认值：false<br/>该接口支持在ArkTS卡片中使用。 |
 
 >  **说明：**
 >
