@@ -355,9 +355,11 @@ disableCloud(accountId: string, callback: AsyncCallback&lt;void&gt;): void
 
 清理本地云相关数据时的Action，为枚举类型。
 
+**需要权限**：ohos.permission.CLOUDFILE_SYNC_MANAGER
+
 **系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSyncManager
 
-| 名称 |  值|  描述|
+| 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
 | RETAIN_DATA |  0 |  仅清除云端标识，保留本地缓存文件|
 | CLEAR_DATA |  1 |  清除云端标识信息，若存在本地缓存文件，一并删除|

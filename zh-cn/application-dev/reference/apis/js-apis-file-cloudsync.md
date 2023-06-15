@@ -23,7 +23,7 @@ import cloudSync from '@ohos.file.cloudSync'
 
 **系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-| 名称 |  值|  描述|
+| 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
 | UPLOADING |  0 | 上行同步中 |
 | UPLOAD_FAILED |  1 | 上行同步失败 |
@@ -44,7 +44,7 @@ import cloudSync from '@ohos.file.cloudSync'
 
 **系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-| 名称 |  值|  描述|
+| 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
 | NO_ERROR |  0 | 没有错误 |
 | NETWORK_UNAVAILABLE |  1 | 所有网络不可用 |
@@ -75,10 +75,7 @@ constructor()
 
 端云同步流程的构造函数，用于获取GallerySync类的实例。
 
-**需要权限**：ohos.permission.CLOUDFILE_SYNC
-
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
 
 **示例：**
 
@@ -343,7 +340,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**: SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
 
-| 名称 |  值|  描述|
+| 名称 |  值|  说明 |
 | ----- |  ---- |  ---- |
 | RUNNING |  0 | 云文件正在下载中 |
 | COMPLETED |  1 | 云文件下载完成 |
@@ -373,10 +370,7 @@ constructor()
 
 云文件下载流程的构造函数，用于获取Download类的实例。
 
-**需要权限**：ohos.permission.CLOUDFILE_SYNC
-
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
-
 
 **示例：**
 
@@ -463,13 +457,19 @@ off(evt: 'progress'): void
 
 ### start
 
-start(): Promise&lt;void&gt;
+start(uri: string): Promise&lt;void&gt;
 
 异步方法启动云文件下载, 以Promise形式返回结果。
 
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| uri | string | 是   | 待下载文件uri |
 
 **返回值：**
 
@@ -507,7 +507,7 @@ start(): Promise&lt;void&gt;
 
 ### start
 
-start(callback: AsyncCallback&lt;void&gt;): void
+start(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 异步方法启动云文件下载, 以callback形式返回结果。
 
@@ -519,6 +519,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
+| uri | string | 是   | 待下载文件uri |
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步启动云文件下载的回调 |
 
 **错误码：**
@@ -549,7 +550,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
 ### stop
 
-stop(): Promise&lt;void&gt;
+stop(uri: string): Promise&lt;void&gt;
 
 异步方法停止云文件下载, 以Promise形式返回结果。
 
@@ -560,6 +561,12 @@ stop(): Promise&lt;void&gt;
 **需要权限**：ohos.permission.CLOUDFILE_SYNC
 
 **系统能力**：SystemCapability.FileManagement.DistributedFileService.CloudSync.Core
+
+**参数：**
+
+| 参数名     | 类型   | 必填 | 说明 |
+| ---------- | ------ | ---- | ---- |
+| uri | string | 是   | 待下载文件uri |
 
 **返回值：**
 
@@ -591,7 +598,7 @@ stop(): Promise&lt;void&gt;
 
 ### stop
 
-stop(callback: AsyncCallback&lt;void&gt;): void
+stop(uri: string, callback: AsyncCallback&lt;void&gt;): void
 
 异步方法停止云文件下载, 以callback形式返回结果。
 
@@ -607,6 +614,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名     | 类型   | 必填 | 说明 |
 | ---------- | ------ | ---- | ---- |
+| uri | string | 是   | 待下载文件uri |
 | callback | AsyncCallback&lt;void&gt; | 是   | 异步停止云文件下载的回调 |
 
 **错误码：**
