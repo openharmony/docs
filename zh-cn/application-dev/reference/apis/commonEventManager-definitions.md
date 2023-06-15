@@ -738,17 +738,17 @@ Wi-Fi P2P群组信息已更改。
 提示音频质量发生变化。
 
 ## [COMMON_EVENT_NET_QUOTA_WARNING<sup>10+<sup>](./common_event/commonEvent-netmanager.md)
-提示限额网络流量达到警告值。
+提示网络流量使用达到设定的告警阈值。
 - 值：usual.event.QUOTA_WARNING
 - 订阅者所需权限：无
 
 ## [COMMON_EVENT_NET_QUOTA_LIMIT_REMINDED<sup>10+<sup>](./common_event/commonEvent-netmanager.md)
-限额网络流量达到限额值，仍能继续使用。
+提示网络流量使用达到设定的上限阈值，仍能继续使用。
 - 值：usual.event.NET_QUOTA_LIMIT_REMINDED
 - 订阅者所需权限：无
 
 ## [OMMON_EVENT_NET_QUOTA_LIMIT<sup>10+<sup>](./common_event/commonEvent-netmanager.md)
-限额网络流量达到限额值，不能继续使用。
+提示网络流量使用达到设定的上限阈值，不能继续使用。
 - 值：usual.event.NET_QUOTA_LIMIT
 - 订阅者所需权限：无
 
