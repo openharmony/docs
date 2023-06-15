@@ -16,7 +16,7 @@ import http from '@ohos.net.http';
 ## Examples
 
 ```js
-// Import the HTTP namespace.
+// Import the http namespace.
 import http from '@ohos.net.http';
 
 // Each httpRequest corresponds to an HTTP request task and cannot be reused.
@@ -35,17 +35,17 @@ httpRequest.request(
     header: {
       'Content-Type': 'application/json'
     },
-    // This field is used to transfer data when the POST request is used.
+    // This parameter is used to transfer data when the POST request is used.
     extraData: {
       "data": "data to send",
     },
-    expectDataType: http.HttpDataType.STRING, // Optional. This field specifies the type of the return data.
+    expectDataType: http.HttpDataType.STRING, // Optional. This parameter specifies the type of the return data.
     usingCache: true, // Optional. The default value is true.
     priority: 1, // Optional. The default value is 1.
     connectTimeout: 60000 // Optional. The default value is 60000, in ms.
     readTimeout: 60000, // Optional. The default value is 60000, in ms.
     usingProtocol: http.HttpProtocol.HTTP1_1, // Optional. The default protocol type is automatically specified by the system.
-    usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API 10.
+    usingProxy: false, // Optional. By default, network proxy is not used. This field is supported since API version 10.
     caPath: "", // Optional. The preset CA certificate is used by default. This field is supported since API version 10.
   }, (err, data) => {
     if (!err) {
@@ -55,13 +55,13 @@ httpRequest.request(
       // data.header carries the HTTP response header. Parse the content based on service requirements.
       console.info('header:' + JSON.stringify(data.header));
       console.info('cookies:' + JSON.stringify(data.cookies)); // 8+
-      // Call the destroy() method to release resources after HttpRequest is complete.
+      // Call the destroy() method to release resources after the HttpRequest is complete.
       httpRequest.destroy();
     } else {
       console.info('error:' + JSON.stringify(err));
       // Unsubscribe from HTTP Response Header events.
       httpRequest.off('headersReceive');
-      // Call the destroy() method to release resources after HttpRequest is complete.
+      // Call the destroy() method to release resources after the HttpRequest is complete.
       httpRequest.destroy();
     }
   }
@@ -75,7 +75,7 @@ httpRequest.request(
 
 createHttp(): HttpRequest
 
-Creates an HTTP request. You can use this API to initiate or destroy an HTTP request, or enable or disable listening for HTTP Response Header events. An HttpRequest object corresponds to an HTTP request. To initiate multiple HTTP requests, you must create an **HttpRequest** object for each HTTP request.
+Creates an HTTP request. You can use this API to initiate or destroy an HTTP request, or enable or disable listening for HTTP Response Header events. An **HttpRequest** object corresponds to an HTTP request. To initiate multiple HTTP requests, you must create an **HttpRequest** object for each HTTP request.
 
 > **NOTE**
 > Call the **destroy()** method to release resources after the HttpRequest is complete.
@@ -437,7 +437,7 @@ httpRequest.request2("EXAMPLE_URL", (err, data) => {
 
 request2(url: string, options: HttpRequestOptions, callback: AsyncCallback\<number\>): void
 
-Initiates an HTTP request to a given URL. This API uses an asynchronous callback to return the result, which is a streaming response.
+Initiates an HTTP request containing specified options to a given URL. This API uses an asynchronous callback to return the result, which is a streaming response.
 
 **Required permissions**: ohos.permission.INTERNET
 
@@ -572,7 +572,7 @@ Initiates an HTTP request containing specified options to a given URL. This API 
 
 > **NOTE**
 > For details about the error codes, see [HTTP Error Codes](../errorcodes/errorcode-net-http.md).
-> The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see:
+> The HTTP error code mapping is in the format of 2300000 + Curl error code. For more common error codes, see [Curl Error Codes](https://curl.se/libcurl/c/libcurl-errors.html).
 
 **Example**
 
@@ -599,7 +599,7 @@ on(type: 'headerReceive', callback: AsyncCallback\<Object\>): void
 Registers an observer for HTTP Response Header events.
 
 > **NOTE**
-> This API has been deprecated. You are advised to use [on('headersReceive')<sup>8+</sup>](#onheadersreceive8) instead.
+> This API has been deprecated. You are advised to use [on('headersReceive')<sup>8+</sup>](#onheadersreceive8).
 
 **System capability**: SystemCapability.Communication.NetStack
 
@@ -626,7 +626,7 @@ Unregisters the observer for HTTP Response Header events.
 
 > **NOTE**
 >
->1. This API has been deprecated. You are advised to use [off('headersReceive')<sup>8+</sup>](#offheadersreceive8) instead.
+>1. This API has been deprecated. You are advised to use [off('headersReceive')<sup>8+</sup>](#offheadersreceive8).
 >
 >2. You can pass the callback of the **on** function if you want to cancel listening for a certain type of event. If you do not pass the callback, you will cancel listening for all events.
 
@@ -831,7 +831,7 @@ Registers an observer for events indicating progress of receiving HTTP streaming
 | Name  | Type                   | Mandatory| Description                             |
 | -------- | ----------------------- | ---- | --------------------------------- |
 | type     | string                  | Yes  | Event type. The value is **dataProgress**.|
-| callback | AsyncCallback\<{ receiveSize: number, totalSize: number }\>   | Yes  | Callback used to return the result.<br>**receiveSize**: number of received bytes.<br>**totalSize**: total number of bytes to be received.|
+| callback | AsyncCallback\<{ receiveSize: number, totalSize: number }\>   | Yes  | Callback used to return the result.<br>- **receiveSize**: number of received bytes.<br>- **totalSize**: total number of bytes to be received.|
 
 **Example**
 
@@ -910,7 +910,7 @@ Enumerates the response codes for an HTTP request.
 
 | Name             | Value  | Description                                                        |
 | ----------------- | ---- | ------------------------------------------------------------ |
-| OK                | 200  | "OK." The request has been processed successfully. This return code is generally used for GET and POST requests.                           |
+| OK                | 200  | The request is successful. The request has been processed successfully. This return code is generally used for GET and POST requests.                           |
 | CREATED           | 201  | "Created." The request has been successfully sent and a new resource is created.                          |
 | ACCEPTED          | 202  | "Accepted." The request has been accepted, but the processing has not been completed.                        |
 | NOT_AUTHORITATIVE | 203  | "Non-Authoritative Information." The request is successful.                                      |
