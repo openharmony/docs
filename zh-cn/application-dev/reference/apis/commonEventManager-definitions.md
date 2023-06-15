@@ -10,6 +10,8 @@
 
 ## COMMON_EVENT_LOCKED_BOOT_COMPLETED
 （预留事件，暂未支持）表示用户已完成引导，系统已加载，但屏幕仍锁定的公共事件的操作。
+- 值： usual.event.LOCKED_BOOT_COMPLETED
+- 订阅者所需权限： ohos.permission.RECEIVER_STARTUP_COMPLETED
 
 ## [COMMON_EVENT_SHUTDOWN](./common_event/commonEvent-powermgr.md)
 表示设备正在关闭并将继续最终关闭的公共事件的操作。
