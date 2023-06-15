@@ -1,6 +1,6 @@
 # Selecting User Files
 
-If your application needs to support share and saving of user files (such as images and videos) by users, you can use the [FilePicker](../reference/apis/js-apis-file-picker.md) prebuilt in OpenHarmony to implement selecting and saving of user files.
+If your application needs to support share and saving of user files (such as images and videos), you can use OpenHarmony [FilePicker](../reference/apis/js-apis-file-picker.md) to implement selection and saving of user files.
 
 The **FilePicker** provides the following interfaces by file type:
 
@@ -12,10 +12,11 @@ The **FilePicker** provides the following interfaces by file type:
 
 ## Selecting Images or Video Files
 
-1. Import the **FilePicker** module.
+1. Import the **picker** module and **fs** module.
 
    ```ts
    import picker from '@ohos.file.picker';
+   import fs from '@ohos.file.fs';
    ```
 
 2. Create a **photoSelectOptions** instance.
@@ -32,28 +33,44 @@ The **FilePicker** provides the following interfaces by file type:
    photoSelectOptions.maxSelectNumber = 5; // Set the maximum number of images to select.
    ```
 
-4. Create a **photoPicker** instance and call [select()](../reference/apis/js-apis-file-picker.md#select) to open the **FilePicker** page for the user to select files.
-
-   Use [PhotoSelectResult](../reference/apis/js-apis-file-picker.md#photoselectresult) to return a result set. Further operations on the selected files can be performed based on the file URIs in the result set.
+4. Create a **photoPicker** instance and call [select()](../reference/apis/js-apis-file-picker.md#select) to open the **FilePicker** page for the user to select files. After the files are selected, [PhotoSelectResult](../reference/apis/js-apis-file-picker.md#photoselectresult) is returned.
+   
+   <br>The permission on the URIs returned by **select()** is read-only. Further file operations can be performed based on the URIs in the **PhotoSelectResult**. Note that the URI cannot be directly used in the **picker** callback to open a file. You need to define a global variable to save the URI and use a button to trigger file opening.
 
    ```ts
-   const photoPicker = new picker.PhotoViewPicker();
-   photoPicker.select(photoSelectOptions)
-     .then(async (photoSelectResult) => {
-       let uri = photoSelectResult.photoUris[0];
-       // Perform operations on the files based on the file URIs obtained.
-     })
-     .catch((err) => {
-       console.error(`Invoke documentPicker.select failed, code is ${err.code}, message is ${err.message}`);
-     })
+   let URI = null;
+   const photoViewPicker = new picker.PhotoViewPicker();
+   photoViewPicker.select(photoSelectOptions).then((photoSelectResult) => {
+     URI = photoSelectResult.photoUris[0];
+     console.info('photoViewPicker.select to file succeed and URI is:' + URI);
+   }).catch((err) => {
+     console.error(`Invoke photoViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
+   })
+   ```
+
+5. Use a button to trigger invocation of other functions. Use [fs.openSync()](../reference/apis/js-apis-file-fs.md#fsopensync) to open the file based on the URI and obtain the FD. Note that the **mode** parameter of **fs.openSync()** must be **fs.OpenMode.READ_ONLY**.
+
+   ```ts
+   let file = fs.openSync(URI, fs.OpenMode.READ_ONLY);
+   console.info('file fd: ' + file.fd);
+   ```
+
+6. Use [fs.readSync()](../reference/apis/js-apis-file-fs.md#readsync) to read the file data based on the FD. After the data is read, close the FD.
+
+   ```ts
+   let buffer = new ArrayBuffer(4096);
+   let readLen = fs.readSync(file.fd, buffer);
+   console.info('readSync data to file succeed and buffer size is:' + readLen);
+   fs.closeSync(file);
    ```
 
 ## Selecting Documents
 
-1. Import the **FilePicker** module.
+1. Import the **picker** module and **fs** module.
 
    ```ts
    import picker from '@ohos.file.picker';
+   import fs from '@ohos.file.fs';
    ```
 
 2. Create a **documentSelectOptions** instance.
@@ -62,26 +79,25 @@ The **FilePicker** provides the following interfaces by file type:
    const documentSelectOptions = new picker.DocumentSelectOptions(); 
    ```
 
-3. Create a **documentViewPicker** instance, and call [**select()**](../reference/apis/js-apis-file-picker.md#select-3) to open the **FilePicker** page for the user to select documents.
-
-     After the documents are selected successfully, a result set containing the file URIs is returned. Further operations can be performed on the documents based on the file URIs.
-
-   For example, you can use [file management APIs](../reference/apis/js-apis-file-fs.md) to obtain file attribute information, such as the file size, access time, and last modification time, based on the URI. If you need to obtain the file name, use [startAbilityForResult](../../application-dev/application-models/uiability-intra-device-interaction.md).
+3. Create a **documentViewPicker** instance, and call [**select()**](../reference/apis/js-apis-file-picker.md#select-3) to open the **FilePicker** page for the user to select documents. After the documents are selected, a result set containing the file URIs is returned.
+   
+   <br>The permission on the URIs returned by **select()** is read-only. Further file operations can be performed based on the URIs in the result set. Note that the URI cannot be directly used in the **picker** callback to open a file. You need to define a global variable to save the URI and use a button to trigger file opening.
+   
+   <br>For example, you can use [file management APIs](../reference/apis/js-apis-file-fs.md) to obtain file attribute information, such as the file size, access time, and last modification time, based on the URI. If you need to obtain the file name, use [startAbilityForResult](../../application-dev/application-models/uiability-intra-device-interaction.md).
 
    > **NOTE**
    >
    > Currently, **DocumentSelectOptions** is not configurable. By default, all types of user files are selected.
 
    ```ts
+   let URI = null;
    const documentViewPicker = new picker.DocumentViewPicker(); // Create a documentViewPicker instance.
-   documentViewPicker.select(documentSelectOptions)
-     .then((documentSelectResult) => {
-       let uri = documentSelectResult[0];
-       // Perform operations on the documents based on the file URIs.
-     })
-     .catch((err) => {
-       console.error(`Invoke documentPicker.select failed, code is ${err.code}, message is ${err.message}`);
-     })
+   documentViewPicker.select(documentSelectOptions).then((documentSelectResult) => {
+     URI = documentSelectResult[0];
+     console.info('documentViewPicker.select to file succeed and URI is:' + URI);
+   }).catch((err) => {
+     console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
+   })
    ```
 
    > **NOTE**
@@ -98,7 +114,7 @@ The **FilePicker** provides the following interfaces by file type:
    try {
      let result = await context.startAbilityForResult(config, {windowMode: 1});
      if (result.resultCode !== 0) {
-       console.error(`DocumentPicker.select failed, code is ${result.resultCode}, message is ${result.want.parameters.message}`);
+       console.error(`documentViewPicker.select failed, code is ${result.resultCode}, message is ${result.want.parameters.message}`);
        return;
      }
      // Obtain the URI of the document.
@@ -106,16 +122,34 @@ The **FilePicker** provides the following interfaces by file type:
      // Obtain the name of the document.
      let file_name_list = result.want.parameters.file_name_list;
    } catch (err) {
-     console.error(`Invoke documentPicker.select failed, code is ${err.code}, message is ${err.message}`);
+     console.error(`Invoke documentViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
    }
    ```
 
+4. Use a button to trigger invocation of other functions. Use [fs.openSync()](../reference/apis/js-apis-file-fs.md#fsopensync) to open the file based on the URI and obtain the FD. Note that the **mode** parameter of **fs.openSync()** must be **fs.OpenMode.READ_ONLY**.
+
+   ```ts
+   let file = fs.openSync(URI, fs.OpenMode.READ_ONLY);
+   console.info('file fd: ' + file.fd);
+   ```
+
+5. Use [fs.readSync()](../reference/apis/js-apis-file-fs.md#readsync) to read the file data based on the FD. After the data is read, close the FD.
+
+   ```ts
+   let buffer = new ArrayBuffer(4096);
+   let readLen = fs.readSync(file.fd, buffer);
+   console.info('readSync data to file succeed and buffer size is:' + readLen);
+   fs.closeSync(file);
+   ```
+
+
 ## Selecting an Audio File
 
-1. Import the **FilePicker** module.
+1. Import the **picker** module and **fs** module.
 
    ```ts
    import picker from '@ohos.file.picker';
+   import fs from '@ohos.file.fs';
    ```
 
 2. Create an **audioSelectOptions** instance.
@@ -124,24 +158,39 @@ The **FilePicker** provides the following interfaces by file type:
    const audioSelectOptions = new picker.AudioSelectOptions();
    ```
 
-3. Create an **audioViewPicker** instance, and call [**select()**](../reference/apis/js-apis-file-picker.md#select-6) to open the **FilePicker** page for the user to select audio files.
-  
-   After the files are selected successfully, a result set containing the URIs of the audio files selected is returned. Further operations can be performed on the documents based on the file URIs.
-
-   For example, use the [file management interface](../reference/apis/js-apis-file-fs.md) to obtain the file handle (FD) of the audio clip based on the URI, and then develop the audio playback function based on the media service. For details, see [Audio Playback Development](../media/audio-playback-overview.md).
+3. Create an **audioViewPicker** instance, and call [**select()**](../reference/apis/js-apis-file-picker.md#select-6) to open the **FilePicker** page for the user to select audio files. After the files are selected, a result set containing the URIs of the audio files selected is returned.
+   
+   <br>The permission on the URIs returned by **select()** is read-only. Further file operations can be performed based on the URIs in the result set. Note that the URI cannot be directly used in the **picker** callback to open a file. You need to define a global variable to save the URI and use a button to trigger file opening.
+   
+   <br>For example, use the [file management interface](../reference/apis/js-apis-file-fs.md) to obtain the file handle (FD) of the audio clip based on the URI, and then develop the audio playback function based on the media service. For details, see [Audio Playback Development](../media/audio-playback-overview.md).
 
    > **NOTE**
    >
    > Currently, **AudioSelectOptions** is not configurable. By default, all types of user files are selected.
 
    ```ts
+   let URI = null;
    const audioViewPicker = new picker.AudioViewPicker();
-   audioViewPicker.select(audioSelectOptions)
-     .then(audioSelectResult => {
-       let uri = audioSelectOptions[0];
-       // Perform operations on the audio files based on the file URIs.
-     })
-     .catch((err) => {
-       console.error(`Invoke audioPicker.select failed, code is ${err.code}, message is ${err.message}`);
-     })
+   audioViewPicker.select(audioSelectOptions).then(audioSelectResult => {
+     URI = audioSelectOptions[0];
+     console.info('audioViewPicker.select to file succeed and URI is:' + URI);
+   }).catch((err) => {
+     console.error(`Invoke audioViewPicker.select failed, code is ${err.code}, message is ${err.message}`);
+   })
+   ```
+
+4. Use a button to trigger invocation of other functions. Use [fs.openSync()](../reference/apis/js-apis-file-fs.md#fsopensync) to open the file based on the URI and obtain the FD. Note that the **mode** parameter of **fs.openSync()** must be **fs.OpenMode.READ_ONLY**.
+
+   ```ts
+   let file = fs.openSync(URI, fs.OpenMode.READ_ONLY);
+   console.info('file fd: ' + file.fd);
+   ```
+
+5. Use [fs.readSync()](../reference/apis/js-apis-file-fs.md#readsync) to read the file data based on the FD. After the data is read, close the FD.
+
+   ```ts
+   let buffer = new ArrayBuffer(4096);
+   let readLen = fs.readSync(file.fd, buffer);
+   console.info('readSync data to file succeed and buffer size is:' + readLen);
+   fs.closeSync(file);
    ```
