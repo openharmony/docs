@@ -34,7 +34,7 @@ getTotalSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
   | 类型                  | 说明             |
   | --------------------- | ---------------- |
-  | Promise&lt;number&gt; | 返回指定卷设备的总空间大小（单位为Byte） |
+  | Promise&lt;number&gt; | Promise对象，返回指定卷设备的总空间大小（单位为Byte） |
 
 **错误码：**
 
@@ -124,7 +124,7 @@ getFreeSizeOfVolume(volumeUuid: string): Promise&lt;number&gt;
 
   | 类型                  | 说明               |
   | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | 返回指定卷的可用空间大小（单位为Byte） |
+  | Promise&lt;number&gt; | Promise对象，返回指定卷的可用空间大小（单位为Byte） |
 
 **错误码：**
 
@@ -215,7 +215,7 @@ getBundleStats(packageName: string): Promise&lt;BundleStats&gt;
 
   | 类型                                       | 说明                       |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | 返回指定卷上的应用存储数据（单位为Byte） |
+  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise对象，返回指定卷上的应用存储数据（单位为Byte） |
 
 **错误码：**
 
@@ -295,7 +295,7 @@ getCurrentBundleStats(): Promise&lt;BundleStats&gt;
 
   | 类型                                        | 说明                       |
   | ------------------------------------------ | -------------------------- |
-  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | 返回指定卷上的应用存空间大小（单位为Byte）      |
+  | Promise&lt;[Bundlestats](#bundlestats9)&gt; | Promise对象，返回指定卷上的应用存空间大小（单位为Byte）      |
 
 **错误码：**
 
@@ -373,7 +373,7 @@ getTotalSize(): Promise&lt;number&gt;
 
   | 类型                   | 说明               |
   | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | 返回内置存储的总空间大小（单位为Byte）   |
+  | Promise&lt;number&gt; | Promise对象，返回内置存储的总空间大小（单位为Byte）   |
 
 **错误码：**
 
@@ -449,7 +449,7 @@ getFreeSize(): Promise&lt;number&gt;
 
   | 类型                   | 说明               |
   | --------------------- | ------------------ |
-  | Promise&lt;number&gt; | 返回内置存储的可用空间大小（单位为Byte） |
+  | Promise&lt;number&gt; | Promise对象，返回内置存储的可用空间大小（单位为Byte） |
 
 **错误码：**
 
@@ -525,7 +525,7 @@ getSystemSize(): Promise&lt;number&gt;
 
   | 类型                  | 说明             |
   | --------------------- | ---------------- |
-  | Promise&lt;number&gt; | 返回系统数据的空间大小（单位为Byte） |
+  | Promise&lt;number&gt; | Promise对象，返回系统数据的空间大小（单位为Byte） |
 
 **错误码：**
 
@@ -604,7 +604,7 @@ getUserStorageStats(): Promise&lt;StorageStats&gt;
 
   | 类型                  | 说明             |
   | --------------------- | ---------------- |
-  | Promise&lt;[StorageStats](#storagestats9)&gt; | 返回当前用户各类别存储空间大小（单位为Byte） |
+  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise对象，返回当前用户各类别存储空间大小（单位为Byte） |
 
 **错误码：**
 
@@ -689,7 +689,7 @@ getUserStorageStats(userId: number): Promise&lt;StorageStats&gt;
 
   | 类型                  | 说明             |
   | --------------------- | ---------------- |
-  | Promise&lt;[StorageStats](#storagestats9)&gt; | 返回指定用户各类别存储空间大小（单位为Byte） |
+  | Promise&lt;[StorageStats](#storagestats9)&gt; | Promise对象，返回指定用户各类别存储空间大小（单位为Byte） |
 
 **错误码：**
 
