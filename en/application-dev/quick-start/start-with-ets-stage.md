@@ -37,14 +37,14 @@
 
 - **AppScope** > **app.json5**: global configuration of your application.
 - **entry**: OpenHarmony project module, which can be built into an OpenHarmony Ability Package ([HAP](../../glossary.md#hap)).
-- **oh_modules**: third-party library dependency information. For details about how to adapt a historical npm project to ohpm, see [Manually Migrating Historical Projects](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/project_overview-0000001053822398-V3#section108143331212).
   - **src > main > ets**: a collection of ArkTS source code.
   - **src > main > ets > entryability**: entry to your application/service.
   - **src > main > ets > pages**: pages included in your application/service.
   - **src > main > resources**: a collection of resource files used by your application/service, such as graphics, multimedia, character strings, and layout files. For details about resource files, see [Resource Categories and Access](resource-categories-and-access.md#resource-categories).
   - **src > main > module.json5**: module configuration file. This file describes the global configuration information of the application/service, the device-specific configuration information, and the configuration information of the HAP file. For details, see [module.json5 Configuration File](module-configuration-file.md).
   - **build-profile.json5**: current module information and build configuration options, including **buildOption** and **targets**. Under **targets**, you can set **runtimeOS** to **HarmonyOS** (default) or **OpenHarmony**, depending on the OS of your application.
-- **hvigorfile.ts**: module-level build script. You can customize related tasks and code implementation.
+  - **hvigorfile.ts**: module-level build script. You can customize related tasks and code implementation.
+- **oh_modules**: third-party library dependency information. For details about how to adapt a historical npm project to ohpm, see [Manually Migrating Historical Projects](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/project_overview-0000001053822398-V3#section108143331212).
 - **build-profile.json5**: application-level configuration information, including the signature and product configuration.
 - **hvigorfile.ts**: application-level build script.
 
