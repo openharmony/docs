@@ -224,14 +224,14 @@ You need to use the APIs listed in the following table in sequence.
 >
 >The public key plaintext material returned by **exportKeyItem()** is encapsulated in X.509 format, and the key material to be imported by **importWrappedKeyItem()** must be encapsulated in **Length<sub>Data</sub>-Data** format. Specifically, the application needs to request a Uint8Array and encapsulate the Uint8Array in the sequence listed in the following table.
 
-**Table 2** Format of the wrapped key material
+**Table 2** Format of the encrypted key material
 
-| Content| Public Key Length (L<sub>pk2</sub>)| Public Key (pk2) | k2 AAD Length (L<sub>AAD2</sub>) | k2 AAD (AAD2) | k2 Nonce Length (L<sub>Nonce2</sub>) | k2 Nonce (Nonce2) |
+| Content| Public Key Length (L<sub>pk2</sub>)| Public Key (pk2)| k2 AAD Length (L<sub>AAD2</sub>)| k2 AAD (AAD2)|  k2 Nonce Length (L<sub>Nonce2</sub>)| k2 Nonce (Nonce2)|
 | :--: |:----:|:----: |:----: | :----:  | :----:|:----:|
 |Length| 4 bytes|L<sub>pk2</sub> bytes| 4 bytes| L<sub>AAD2</sub> bytes| 4 bytes| L<sub>Nonce2</sub> bytes|
-| Content| k2 AEAD Length (L<sub>AEAD2</sub>) | k2 AEAD (AEAD2) | k3 Ciphertext Length (L<sub>k3_enc</sub>) | k3 Ciphertext (k3_enc) | k3 AAD Length (L<sub>AAD3</sub>) | k3 AAD (AAD3) |
+| Content| k2 AEAD Length (L<sub>AEAD2</sub>)| k2 AEAD (AEAD2)| k3 Ciphertext Length (L<sub>k3_enc</sub>)| k3 Ciphertext (k3_enc)|  k3 AAD Length (L<sub>AAD3</sub>)| k3 AAD (AAD3)|
 |Length| 4 bytes|L<sub>AEAD2</sub> bytes| 4 bytes| L<sub>k3_enc</sub> bytes| 4 bytes| L<sub>AAD3</sub> bytes|
-| Content| k3 Nonce Length (L<sub>Nonce3</sub>) | k3 Nonce (Nonce3) | k3 AEAD Length (L<sub>AEAD3</sub>) | k3 AEAD (AEAD3) | Length of **k1'_size** (L<sub>k1'_size</sub>) | Key Plaintext Material Length (k1'_size) |
+| Content| k3 Nonce Length (L<sub>Nonce3</sub>)| k3 Nonce (Nonce3)| k3 AEAD Length (L<sub>AEAD3</sub>)| k3 AEAD (AEAD3)|  Length of **k1'_size** (L<sub>k1'_size</sub>)| Key Plaintext Material Length (k1'_size)|
 |Length| 4 bytes|L<sub>Nonce3</sub> bytes| 4 bytes| L<sub>AEAD3</sub> bytes| 4 bytes| L<sub>k1'_size</sub> bytes|
 |Content|k1' Ciphertext Length (L<sub>k1'_enc</sub>)| k1' ciphertext (k1'_enc) | | | | |
 |Length| 4 bytes|L<sub>k1'_enc</sub> bytes| | | | |
@@ -961,7 +961,7 @@ struct Index {
 
 ### Key Agreement
 
-You are advised to pass in [HuksKeyStorageType](../reference/apis/js-apis-huks.md#hukskeystoragetype) to specify the storage type in key agreement. From API version 10, only **HUKS_STORAGE_ONLY_USED_IN_HUKS** or **HUKS_STORAGE_KEY_EXPORT_ALLOWED** can be used for key agreement. If **HuksKeyStorageType** is not passed in, the key can be stored and exported by default, which poses security risks.
+You are advised to pass in [HuksKeyStorageType](../reference/apis/js-apis-huks.md#hukskeystoragetype) to specify the storage type in key agreement. From API version 10, only **HUKS_STORAGE_ONLY_USED_IN_HUKS** or **HUKS_STORAGE_KEY_EXPORT_ALLOWED** can be used. If **HuksKeyStorageType** is not passed in, the key can be stored or exported by default, which poses security risks.
 
 ```ts
 /*
@@ -1332,7 +1332,7 @@ async function testAgree() {
 
 ### Key Derivation
 
-You are advised to pass in [HuksKeyStorageType](../reference/apis/js-apis-huks.md#hukskeystoragetype) for key derivation. From API version 10, only **HUKS_STORAGE_ONLY_USED_IN_HUKS** or **HUKS_STORAGE_KEY_EXPORT_ALLOWED** can be used for key derivation. If **HuksKeyStorageType** is not passed in, the key can be stored and exported by default, which poses security risks.
+You are advised to pass in [HuksKeyStorageType](../reference/apis/js-apis-huks.md#hukskeystoragetype) to specify the storage type in key derivation. From API version 10, only **HUKS_STORAGE_ONLY_USED_IN_HUKS** or **HUKS_STORAGE_KEY_EXPORT_ALLOWED** can be used. If **HuksKeyStorageType** is not passed in, the key can be stored or exported by default, which poses security risks.
 
 ```ts
 /*
@@ -1685,33 +1685,31 @@ When a key is generated or imported, [HuksUserAuthType](../reference/apis/js-api
 
 **Table 3** User authentication types
 
-| Name                            | Value  | Description                                                  |
-| ------------------------------- | ------ | ------------------------------------------------------------ |
-| HUKS_USER_AUTH_TYPE_FINGERPRINT | 0x0001 | Fingerprint authentication, which can be enabled with facial authentication and PIN authentication at the same time. |
-| HUKS_USER_AUTH_TYPE_FACE        | 0x0002 | Facial authentication, whch can be enabled with fingerprint authentication and PIN authentication at the same time. |
-| HUKS_USER_AUTH_TYPE_PIN         | 0x0004 | PIN authentication, which can be enabled with fingerprint authentication and facial authenticationat the same time. |
+| Name           | Value | Description                     |
+| ------------------------------- |---|------------------------ |
+| HUKS_USER_AUTH_TYPE_FINGERPRINT |0x0001  | Fingerprint authentication, which can be enabled with facial authentication and PIN authentication at the same time. |
+| HUKS_USER_AUTH_TYPE_FACE     |0x0002   | Facial authentication, whch can be enabled with fingerprint authentication and PIN authentication at the same time.|
+| HUKS_USER_AUTH_TYPE_PIN      |0x0004  | PIN authentication, which can be enabled with fingerprint authentication and facial authenticationat the same time.|
 
 **Table 4** Secure access types
-
-| Name                                    | Value | Description                                                  |
-| --------------------------------------- | ----- | ------------------------------------------------------------ |
-| HUKS_AUTH_ACCESS_INVALID_CLEAR_PASSWORD | 1     | Invalidate the key after the screen lock password is cleared. |
-| HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL | 2     | Invalidate the key after a biometric enrollment is added. The user authentication types must include the biometric authentication. |
+| Name                                   | Value  | Description            |
+| --------------------------------------- | ---- | ------------------------------------------------ |
+| HUKS_AUTH_ACCESS_INVALID_CLEAR_PASSWORD | 1    | Invalidates the key after the screen lock password is cleared.      |
+| HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL | 2    | Invalidates the key after a biometric enrollment is added. The user authentication types must include the biometric authentication.|
 
 **Table 5** Challenge types
-
-| Name                       | Value | Description                                                  |
-| -------------------------- | ----- | ------------------------------------------------------------ |
-| HUKS_CHALLENGE_TYPE_NORMAL | 0     | Normal challenge, which requires an independent user authentication for each use of the key. |
-| HUKS_CHALLENGE_TYPE_CUSTOM | 1     | Custom challenge, which supports only one user authentication for multiple keys. |
-| HUKS_CHALLENGE_TYPE_NONE   | 2     | No challenge is required during user authentication.         |
+| Name                           | Value  | Description                       |
+| ------------------------------- | ---- | ------------------------------ |
+| HUKS_CHALLENGE_TYPE_NORMAL | 0    | Normal challenge, which requires an independent user authentication for each use of the key.|
+| HUKS_CHALLENGE_TYPE_CUSTOM        | 1    | Custom challenge, which supports only one user authentication for multiple keys.|
+| HUKS_CHALLENGE_TYPE_NONE         | 2    | No challenge is required during user authentication.|
 
 > **NOTICE**
 >
-> - The three challenge types are mutually exclusive.
+    > - The three challenge types are mutually exclusive.
 > - If the challenge type is **HUKS_CHALLENGE_TYPE_NONE**, no challenge is required. However, the key can be accessed within a specified time period (set by **HUKS_TAG_AUTH_TIMEOUT**) after a successful authentication. The maximum value of **HUKS_TAG_AUTH_TIMEOUT** is 60 seconds.
 
-To use a key, initialize the key session, and determine whether a challenge is required based on the challenge type specified when the key is generated or imported. 
+To use a key, initialize the key session, and determine whether a challenge is required based on the challenge type specified when the key is generated or imported.
 
 **Table 6** APIs for using a key
 
@@ -1719,7 +1717,7 @@ To use a key, initialize the key session, and determine whether a challenge is r
 | -------------------------------------- | ----------------------------|
 |initSession(keyAlias: string, options: HuksOptions, callback: AsyncCallback\<HuksSessionHandle>) : void| Initializes the key session and obtains the challenge.|
 |updateSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void| Operates data by segment and passes the authentication token.|
-|finishSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void| Completes the key session operation.|
+|finishSession(handle: number, options: HuksOptions, token: Uint8Array, callback: AsyncCallback\<HuksReturnResult>) : void| Finishes the key session.|
 
 **How to Develop**
 
@@ -1944,21 +1942,21 @@ To use a key, initialize the key session, and determine whether a challenge is r
 
    ```ts
    /*
-    *The following uses an SM4 128-bit key and callback-based APIs as an example.
+    * Encrypt and decrypt data using an SM4 128-bit key and return the result in a callback.
     */
    import huks from '@ohos.security.huks';
-   
+
    /*
-    *Set the key alias and encapsulate the key properties.
+    * Set the key alias and encapsulate the key properties.
     */
-    let srcKeyAlias = 'sm4_key_fingerprint_access';
-    let IV = '1234567890123456';
-    let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string';
-    let handle;
-    let fingerAuthToken;
-    let updateResult = new Array();
-    let finishOutData;
-   
+   let srcKeyAlias = 'sm4_key_fingerprint_access';
+   let IV = '1234567890123456';
+   let cipherInData = 'Hks_SM4_Cipher_Test_101010101010101010110_string';
+   let handle;
+   let fingerAuthToken;
+   let updateResult = new Array();
+   let finishOutData;
+
    /* Configure the key generation parameter set and key encryption parameter set. */
    let propertiesEncrypt = new Array();
    propertiesEncrypt[0] = {
@@ -1989,7 +1987,7 @@ To use a key, initialize the key session, and determine whether a challenge is r
      properties: propertiesEncrypt,
      inData: new Uint8Array(new Array())
    }
-   
+
    function StringToUint8Array(str) {
      let arr = [];
      for (let i = 0, j = str.length; i < j; ++i) {
@@ -1997,7 +1995,7 @@ To use a key, initialize the key session, and determine whether a challenge is r
      }
      return new Uint8Array(arr);
    }
-   
+
    function updateSession(handle:number, huksOptions:huks.HuksOptions, token:Uint8Array, throwObject) : Promise<huks.HuksReturnResult> {
      return new Promise((resolve, reject) => {
        try {
@@ -2014,7 +2012,7 @@ To use a key, initialize the key session, and determine whether a challenge is r
        }
      });
    }
-   
+
    async function publicUpdateFunc(handle:number, token:Uint8Array, huksOptions:huks.HuksOptions) {
      console.info(`enter callback doUpdate`);
      let throwObject = {isThrow: false};
@@ -2034,7 +2032,7 @@ To use a key, initialize the key session, and determine whether a challenge is r
        console.error(`callback: doUpdate input arg invalid, code: ${error.code}, msg: ${error.message}`);
      }
    }
-   
+
    function finishSession(handle:number, huksOptions:huks.HuksOptions, token:Uint8Array, throwObject) : Promise<huks.HuksReturnResult> {
      return new Promise((resolve, reject) => {
        try {
@@ -2051,7 +2049,7 @@ To use a key, initialize the key session, and determine whether a challenge is r
        }
      });
    }
-   
+
    async function publicFinishFunc(handle:number, token:Uint8Array, huksOptions:huks.HuksOptions) {
      console.info(`enter callback doFinish`);
      let throwObject = {isThrow: false};
@@ -2072,13 +2070,13 @@ To use a key, initialize the key session, and determine whether a challenge is r
        console.error(`callback: doFinish input arg invalid, code: ${error.code}, msg: ${error.message}`);
      }
    }
-   
+
    async function testSm4Cipher() {
      encryptOptions.inData = StringToUint8Array(cipherInData);
      /* Pass in the authentication token. */
      await publicUpdateFunc(handle, fingerAuthToken, encryptOptions);
      encryptUpdateResult = updateResult;
-   
+
      encryptOptions.inData = new Uint8Array(new Array());
      /* Pass in the authentication token. */
      await publicFinishFunc(handle, fingerAuthToken, encryptOptions);
@@ -2087,32 +2085,31 @@ To use a key, initialize the key session, and determine whether a challenge is r
      } else {
        console.info('test finish encrypt success');
      }
-   } 
+   }
    ```
 
+### Refined User Identity Authentication
 
-### Fine-grained User Identity Authentication
-
-As an extension of the [Key Access Control](#key-access-control), the fine-grained access control allows secondary user identity authentication (biometric authentication and lock screen password) to be performed for key access in one or more scenarios, such as encryption, decryption, signing, signature verification, key agreement, and key derivation. For example, a service needs to use a HUKS key to encrypt the account password information. In this scenario, identity authentication is not required in encryption but required in decryption. To achieve this purpose, you can use the fine-grained user identity authentication feature provided by the HUKS.
+As an extension of the Key Access Control, the refined access control allows secondary user identity authentication (biometric authentication and lock screen password) to be performed for key access in one or more scenarios, such as encryption, decryption, signing, signature verification, key agreement, and key derivation. For example, a service needs to use a HUKS key to encrypt the account password information. In this scenario, identity authentication is not required in encryption but required in decryption. To achieve this purpose, you can use the refined user identity authentication feature provided by the HUKS.
 
 **How to Develop**
 
-1. Specify [**HUKS_TAG_KEY_AUTH_PURPOSE**](../reference/apis/js-apis-huks.md#hukstag) for key generation to allow user identity authentication to be performed when a specific algorithm is used.
+1. Specify [**HUKS_TAG_KEY_AUTH_PURPOSE**](../reference/apis/js-apis-huks.md#hukstag) in key generation to allow user identity authentication to be performed when a specific algorithm is used.
 2. The **HUKS_TAG_KEY_AUTH_PURPOSE** does not need to be specified for the key usage process. The development process is the same as that of the user identity authentication process.
 
 **Available APIs**
 
-You can use the [**HUKS_TAG_KEY_AUTH_PURPOSE**](../reference/apis/js-apis-huks.md#hukstag) tag to specify the scenario, for which the fine-grained user identity authentication is performed. The value range of this tag is [HuksKeyAlg](../reference/apis/js-apis-huks.md#hukskeyalg).
+You can use the [**HUKS_TAG_KEY_AUTH_PURPOSE**](../reference/apis/js-apis-huks.md#hukstag) tag to specify the scenarios, for which the refined user identity authentication is performed. The value range of this tag is [HuksKeyAlg](../reference/apis/js-apis-huks.md#hukskeyalg).
 
 **Table 7** HUKS_TAG_KEY_AUTH_PURPOSE
 | Name                     | Description                |
 | -------------------------------------- | ----------------------------|
 |HUKS_TAG_KEY_AUTH_PURPOSE| Purpose of the user identity authentication, that is, perform the user identity authentication when a specific algorithm is used.|
 
-> **NOTE**
->
-> - If [**HuksUserAuthType**](../reference/apis/js-apis-huks.md#huksuserauthtype9) is not specified, no user identity authentication is performed by default. In this case, the setting of **HUKS_TAG_KEY_AUTH_PURPOSE** is invalid by default. If **HuksUserAuthType** is specified and **HUKS_TAG_KEY_AUTH_PURPOSE** is not specified, user identity authentication will still be performed by default before the key is used with the algorithm that is specified in the key generation process.
-> - If the AES or SM4 symmetric algorithm is used for encryption and decryption, only the CBC mode supports fine-grained user identity authentication.
+**NOTE**
+
+- If [**HuksUserAuthType**](../reference/apis/js-apis-huks.md#huksuserauthtype9) is not specified, no user identity authentication is performed by default. In this case, the setting of **HUKS_TAG_KEY_AUTH_PURPOSE** is invalid by default. If **HuksUserAuthType** is specified and **HUKS_TAG_KEY_AUTH_PURPOSE** is not specified, user identity authentication will still be performed by default before the key is used with the algorithm that is specified in the key generation process.
+- If the AES or SM4 symmetric algorithm is used for encryption and decryption, only the CBC mode supports refined user identity authentication.
 
 **How to Develop**
 
@@ -2732,3 +2729,5 @@ async function AttestKeyTest() {
 ### Property 'finishSession' does not exist on type 'typeof huks'. Did you mean 'finish'?
 
    **finishSession()** is supported from API version 9. Update the SDK version or use the latest **security.huks.d.ts** file.
+
+
