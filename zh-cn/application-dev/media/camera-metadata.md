@@ -48,7 +48,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
 - 通过注册监听获取metadata对象，监听事件固定为metadataObjectsAvailable。检测到有效metadata数据时，callback返回相应的metadata数据信息，metadataOutput创建成功时可监听。
     
   ```ts
-  metadataOutput.on('metadataObjectsAvailable', (metadataObjectArr) => {
+  metadataOutput.on('metadataObjectsAvailable', (err, metadataObjectArr) => {
       console.info(`metadata output metadataObjectsAvailable`);
   })
   ```
@@ -60,7 +60,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
 - 通过注册回调函数，获取监听metadata流的错误结果，callback返回metadata输出接口使用错误时返回的错误码，错误码类型参见[CameraErrorCode](../reference/apis/js-apis-camera.md#cameraerrorcode)。
     
   ```ts
-  metadataOutput.on('error', (metadataOutputError) => {
+  metadataOutput.on('error', (err, metadataOutputError) => {
       console.info(`Metadata output error code: ${metadataOutputError.code}`);
   })
   ```
