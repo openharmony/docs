@@ -65,6 +65,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 close()
 
-Releases all graphics resources associated with this **ImageBitmap** object. This API is a void API.
+Releases all graphics resources associated with this **ImageBitmap** object and sets its width and height to **0**.
 
 Since API version 9, this API is supported in ArkTS widgets.
