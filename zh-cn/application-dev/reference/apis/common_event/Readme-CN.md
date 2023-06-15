@@ -6,6 +6,7 @@
 - [资源调度子系统公共事件定义](commonEvent-resourceschedule.md)
 - [电话服务子系统公共事件定义](commonEvent-telephony.md)
 - [电源管理子系统公共事件定义](commonEvent-powermgr.md)
+- [NFC子系统公共事件定义](commonEvent-nfc.md)
 - [USB子系统公共事件定义](commonEvent-usb.md)
 - [Wifi子系统公共事件定义](commonEvent-wifi.md)
 - [文件管理子系统公共事件定义](commonEvent-filemanagement.md)

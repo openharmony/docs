@@ -2037,3 +2037,23 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+## ohos.permission.MANAGE_ECOLOGICAL_RULE
+
+允许为管控服务设置场景值生成规则和配套的体验。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.GET_SCENE_CODE
+
+允许应用获取指定应用当前的场景值。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE

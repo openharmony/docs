@@ -1018,7 +1018,7 @@ selectTrack(index: number): void
 
 ```js
 let index = 2
-avPlayer.setBitrate(index)
+avPlayer.selectTrack(index)
 ```
 
 ### deselectTrack<sup>10+</sup><a name=avplayer_deselecttrack></a>
@@ -1071,7 +1071,7 @@ getCurrentTrack(trackType: MediaType, callback: AsyncCallback\<number>): void
 let mediaType = media.MediaType.MEDIA_TYPE_AUD;
 let trackIndex = null;
 
-avPlayer.getCurrentTrack(mediaType  (err, index) => {
+avPlayer.getCurrentTrack(mediaType, (err, index) => {
   if (err == null) {
     console.info('getCurrentTrack success');
     trackIndex = index;
