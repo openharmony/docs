@@ -61,7 +61,7 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
             console.info(`getRdbStore done, data : ${data}`);
             rdbStore = data;
             rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
-                console.error('executeSql done, error message : ${err}');
+                console.error(`executeSql done, error message : ${err}`);
             });
             if (callback) {
                 callback();
@@ -311,7 +311,7 @@ normalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     normalizeUri(uri, callback) {
         let err = {'code':0};
-        let ret = `normalize+${uri}`;
+        let ret = `normalize: ${uri}`;
         callback(err, ret);
     }
 };
@@ -338,7 +338,7 @@ denormalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     denormalizeUri(uri, callback) {
         let err = {'code':0};
-        let ret = `denormalize+${uri}`;
+        let ret = `denormalize ${uri}`;
         callback(err, ret);
     }
 };
