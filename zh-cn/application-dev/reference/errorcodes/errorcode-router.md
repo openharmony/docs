@@ -24,7 +24,7 @@ NA
 
 ## 100002 路由页面跳转时输入的uri错误
 
-错误信息
+**错误信息**
 
 Uri error. The uri of router is not exist.
 
@@ -57,6 +57,20 @@ Page stack error. The pages are pushed too much.
 **处理步骤**
 
 请清除多余或无效的页面。
+
+## 100004 命名路由页面跳转时输入的name错误
+
+**错误信息**
+
+Named route error. The named route is not exist.
+
+**错误描述**
+
+当跳转命名路由页面输入的name错误或者不存在，系统会产生此错误码。
+
+**可能原因**
+
+输入的命名路由name错误或者不存在。
 
 ## 200002 路由页面替换时输入的uri错误
 
