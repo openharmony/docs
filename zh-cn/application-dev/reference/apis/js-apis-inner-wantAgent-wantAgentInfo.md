@@ -16,7 +16,7 @@ import wantAgent from '@ohos.app.ability.wantAgent';
 
 | 名称           | 类型                            | 必填 | 说明                   |
 | -------------- | ------------------------------- | ---- | ---------------------- |
-| wants          | Array\<Want\>                   | 是   | 将被执行的动作列表。     |
+| wants          | Array\<[Want](js-apis-app-ability-want.md)\>                   | 是   | 将被执行的动作列表。     |
 | operationType  | [wantAgent.OperationType](js-apis-app-ability-wantAgent.md#operationtype)         | 是   | 动作类型。               |
 | requestCode    | number                          | 是   | 使用者定义的一个私有值。 |
 | wantAgentFlags | Array<[wantAgent.WantAgentFlags](js-apis-app-ability-wantAgent.md#wantagentflags)> | 否   | 动作执行属性。           |
