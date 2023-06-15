@@ -61,7 +61,7 @@ struct ImageExample1 {
 
 ### 使用TaskPool线程池异步处理
 
-OpenHarmony提供了TaskPool线程池，相比worker线程，TaskPool提供了任务优先级设置、线程池自动管理机制，示例如下：
+OpenHarmony提供了[TaskPool线程池](https://gitee.com/sqsyqqy/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-taskpool.md)，相比worker线程，TaskPool提供了任务优先级设置、线程池自动管理机制，示例如下：
 
 ```javascript
 import taskpool from '@ohos.taskpool';
