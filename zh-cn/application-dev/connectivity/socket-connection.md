@@ -325,5 +325,3 @@ tlsTwoWay.close((err) => {
 针对Socket连接开发，有以下相关实例可供参考：
 
 - [`Socket`：Socket 连接（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/BasicFeature/Connectivity/Socket)
-- [使用UDP实现与服务端通信（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/UdpDemoOH)
-- [使用TCP实现与服务端通信（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NetworkManagement/TcpSocketDemo)
