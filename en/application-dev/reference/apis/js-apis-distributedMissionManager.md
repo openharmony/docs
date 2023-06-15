@@ -368,8 +368,8 @@ Continues a mission on a remote device. This API uses an asynchronous callback t
 
 | Name      | Type                                     | Mandatory  | Description   |
 | --------- | --------------------------------------- | ---- | ----- |
-| parameter | [ContinueDeviceInfo](#js-apis-inner-application-continueDeviceInfo.md) | Yes   | Parameters required for mission continuation.|
-| options | [ContinueCallback](#js-apis-inner-application-continueCallback.md) | Yes   | Callback invoked when the mission continuation is complete.|
+| parameter | [ContinueDeviceInfo](js-apis-inner-application-continueDeviceInfo.md) | Yes   | Parameters required for mission continuation.|
+| options | [ContinueCallback](js-apis-inner-application-continueCallback.md) | Yes   | Callback invoked when the mission continuation is complete.|
 | callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result.|
 
 **Error codes**
@@ -426,8 +426,8 @@ Continues a mission on a remote device. This API uses a promise to return the re
 
 | Name      | Type                                     | Mandatory  | Description   |
 | --------- | --------------------------------------- | ---- | ----- |
-| parameter | [ContinueDeviceInfo](#js-apis-inner-application-continueDeviceInfo.md) | Yes   | Parameters required for mission continuation.|
-| options | [ContinueCallback](#js-apis-inner-application-continueCallback.md) | Yes   | Callback invoked when the mission continuation is complete.|
+| parameter | [ContinueDeviceInfo](js-apis-inner-application-continueDeviceInfo.md) | Yes   | Parameters required for mission continuation.|
+| options | [ContinueCallback](js-apis-inner-application-continueCallback.md) | Yes   | Callback invoked when the mission continuation is complete.|
 
 **Return value**
 
@@ -475,6 +475,171 @@ For details about the error codes, see [Distributed Scheduler Error Codes](../er
   }
   ```
 
+## distributedMissionManager.continueMission<sup>10+</sup>
+
+continueMission(parameter: ContinueMissionInfo, callback: AsyncCallback&lt;void&gt;): void;
+
+Continues a mission on a remote device, with the bundle name specified. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_MISSIONS and ohos.permission.DISTRIBUTED_DATASYNC
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**Parameters**
+
+| Name      | Type                                     | Mandatory  | Description   |
+| --------- | --------------------------------------- | ---- | ----- |
+| parameter | [ContinueMissionInfo](./js-apis-inner-application-continueMissionInfo.md) | Yes   | Parameters required for mission continuation.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked when the mission continuation is complete.|
+
+**Error codes**
+
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 16300501 | The system ability work abnormally. |
+| 16300503 | The application is not installed on the remote end and installation-free is not supported. |
+| 16300504 | The application is not installed on the remote end but installation-free is supported, try again with freeInstall flag. |
+| 16300505 | The operation device must be the device where the application to be continued is located or the target device to be continued. |
+| 16300506 | The local continuation task is already in progress. |
+| 16300507 | Failed to get the missionInfo of the specified bundle name. |
+
+**Example**
+
+  ```ts
+  var parameter =  {
+      srcDeviceId: "",
+      dstDeviceId: "",
+      bundleName: "ohos.test.continueapp",
+      wantParam: {"key": "value"}
+  };
+  try {
+      distributedMissionManager.continueMission(parameter, (error) => {
+          if (error.code != 0) {
+              console.error('continueMission failed, cause: ' + JSON.stringify(error))
+          }
+          console.info('continueMission finished')
+      })
+  } catch (error) {
+      console.error('continueMission failed, cause: ' + JSON.stringify(error))
+  }
+  ```
+
+## distributedMissionManager.continueMission<sup>10+</sup>
+
+continueMission(parameter: ContinueMissionInfo): Promise&lt;void&gt;
+
+Continues a mission on a remote device, with the bundle name specified. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.MANAGE_MISSIONS and ohos.permission.DISTRIBUTED_DATASYNC
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**Parameters**
+
+| Name      | Type                                     | Mandatory  | Description   |
+| --------- | --------------------------------------- | ---- | ----- |
+| parameter | [ContinueMissionInfo](./js-apis-inner-application-continueMissionInfo.md) | Yes   | Parameters required for mission continuation.|
+
+**Return value**
+
+| Type                 | Description              |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Distributed Scheduler Error Codes](../errorcodes/errorcode-DistributedSchedule.md).
+
+| ID| Error Message|
+| ------- | -------------------------------------------- |
+| 16300501 | The system ability work abnormally. |
+| 16300503 | The application is not installed on the remote end and installation-free is not supported. |
+| 16300504 | The application is not installed on the remote end but installation-free is supported, try again with freeInstall flag. |
+| 16300505 | The operation device must be the device where the application to be continued is located or the target device to be continued. |
+| 16300506 | The local continuation task is already in progress. |
+| 16300507 | Failed to get the missionInfo of the specified bundle name. |
+
+**Example**
+
+  ```ts
+  var parameter =  {
+      srcDeviceId: "",
+      dstDeviceId: "",
+      bundleName: "ohos.test.continueapp",
+      wantParam: {"key": "value"}
+  };
+  try {
+      distributedMissionManager.continueMission(parameter)
+      .then(data => {
+          console.info('continueMission finished, ' + JSON.stringify(data));
+      }).catch(error => {
+          console.error('continueMission failed, cause: ' + JSON.stringify(error));
+      })
+  } catch (error) {
+      console.error('continueMission failed, cause: ' + JSON.stringify(error))
+  }
+  ```
+
+## distributedMissionManager.on('continueStateChange')<sup>10+</sup>
+
+on(type: 'continueStateChange',  callback: Callback&lt;{ state: ContinueState, info: ContinuableInfo }&gt;): void
+
+Registers a listener for the mission continuation state of the current application.
+
+**Required permissions**: ohos.permission.MANAGE_MISSIONS
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**Parameters**
+
+| Name      | Type                                      | Mandatory  | Description      |
+| --------- | ---------------------------------------- | ---- | -------- |
+| type | string  | Yes   | Type of the listener. The value is fixed at **'continueStateChange'**.   |
+| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | Yes   | Callback used to return the mission continuation state and information.     |
+
+**Example**
+
+```js
+  try {
+    distributedMissionManager.on('continueStateChange', (data) => {
+      console.info("continueStateChange on:" + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("continueStateChange errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
+
+## distributedMissionManager.off('continueStateChange')<sup>10+</sup>
+
+off(type: 'continueStateChange',  callback?: Callback&lt;{ state: ContinueState, info: ContinuableInfo }&gt;): void
+
+Deregisters a listener for the mission continuation state of the current application.
+
+**Required permissions**: ohos.permission.MANAGE_MISSIONS
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+**Parameters**
+
+| Name      | Type                                      | Mandatory  | Description      |
+| --------- | ---------------------------------------- | ---- | -------- |
+| type | string  | Yes   | Type of the listener. The value is fixed at **'continueStateChange'**.   |
+| callback | Callback&lt;{&nbsp;state:&nbsp;[ContinueState](#continuestate10),&nbsp;info:&nbsp;[ContinuableInfo](./js-apis-inner-application-continuableInfo.md)&nbsp;}&gt; | No   | Callback used for the listener to be deregistered.     |
+
+**Example**
+
+```js
+  try {
+    distributedMissionManager.off('continueStateChange', (data) => {
+      console.info("continueStateChange on:" + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("continueStateChange errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
+
 ## MissionCallback
 
 Defines the callbacks that can be registered as a mission status listener.
@@ -514,3 +679,14 @@ Defines the parameters required for registering a listener.
 | Name      | Type  | Readable  | Writable  | Description     |
 | -------- | ------ | ---- | ---- | ------- |
 | deviceId | string | Yes   | Yes   | Device ID.|
+
+## ContinueState<sup>10+</sup>
+
+Enumerates the mission continuation states.
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Mission
+
+| Name          | Value      | Description                                                        |
+| ------------- | --------- | ------------------------------------------------------------ |
+| ACTIVE        | 0         | Mission continuation is activated for the current application.                             |
+| INACTIVE      | 1         | Mission continuation is not activated for the current application.                           |
