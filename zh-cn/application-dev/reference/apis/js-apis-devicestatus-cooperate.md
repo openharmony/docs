@@ -455,3 +455,4 @@ try {
 | COOPERATE_ACTIVATE_FAIL | 4 | 表示键鼠穿越启动失败。 |
 | COOPERATE_DEACTIVATE_SUCCESS | 5 | 表示键鼠穿越停止成功。 |
 | COOPERATE_DEACTIVATE_FAIL | 6 | 表示键鼠穿越停止失败。 |
+| COOPERATE_SESSION_DISCONNECTED | 7 | 表示键鼠穿越会话断开 |
