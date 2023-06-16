@@ -87,7 +87,7 @@ async function selectOutputDevice(){
 }
 ```
 
-## 获取最高优先级输设备信息
+## 获取最高优先级输出设备信息
 
 使用getPreferOutputDeviceForRendererInfo()方法, 可以获取当前最高优先级的输出设备。
 
