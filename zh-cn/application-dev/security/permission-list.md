@@ -2057,3 +2057,23 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+## ohos.permission.FILE_GUARD_MANAGER
+
+允许应用进行公共目录扫描及设置文件扩展属性。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.SET_FILE_GUARD_POLICY
+
+允许应用下发文件管控策略。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
