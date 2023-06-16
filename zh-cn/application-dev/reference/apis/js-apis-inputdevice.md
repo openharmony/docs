@@ -506,7 +506,7 @@ try {
 | pressure    | string | 是 | 否 | 表示pressure轴。    |
 | x           | string | 是 | 否 | 表示x轴。           |
 | y           | string | 是 | 否 | 表示y轴。           |
-| NULL        | string | 是 | 否 | 无。              |
+| null        | string | 是 | 否 | 无。              |
 
 ## AxisRange
 
