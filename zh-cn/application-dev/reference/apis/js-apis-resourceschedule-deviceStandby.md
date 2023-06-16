@@ -4,7 +4,6 @@
 >  **说明**:
 >   
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。<br>
-> - 需要检查是否已经配置请求相应的权限: ohos.permission.DEVICE_STANDBY_EXEMPTION
 
 ## 导入模块
 ```js
@@ -17,6 +16,8 @@ isDeviceInStandby(callback: AsyncCallback&lt;boolean&gt;): void;
 当前设备是否进入待机低功耗续航模式，使用Callback异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
+
+**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
 
 **参数**：
 
@@ -32,9 +33,9 @@ isDeviceInStandby(callback: AsyncCallback&lt;boolean&gt;): void;
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. |
+| 9800003 | Inner transact failed. |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed when applying for efficiency resources. |
+| 18700001 | Caller information verification failed. |
 
 **示例**：
 
@@ -57,6 +58,8 @@ isDeviceInStandby(): Promise&lt;boolean&gt;
 
 **系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
 
+**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
+
 **返回值**：
 
 | 类型                    | 说明                                       |
@@ -71,9 +74,9 @@ isDeviceInStandby(): Promise&lt;boolean&gt;
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. |
+| 9800003 | Inner transact failed. |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed when applying for efficiency resources. |
+| 18700001 | Caller information verification failed. |
 
 **示例**：
 
@@ -94,6 +97,8 @@ getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;Exempted
 
 **系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
 
+**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
+
 **系统API:** 此接口为系统接口。
 
 **参数**：
@@ -111,9 +116,9 @@ getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;Exempted
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. |
+| 9800003 | Inner transact failed. |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed when applying for efficiency resources. |
+| 18700001 | Caller information verification failed. |
 
 **示例**：
 
@@ -138,6 +143,8 @@ getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
 获取进入待机模式的应用名单，使用Promise异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.DeviceStandby
+
+**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
 
 **系统API:** 此接口为系统接口。
 
@@ -164,9 +171,9 @@ getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
 | 401 | Parameter error. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. |
+| 9800003 | Inner transact failed. |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed when applying for efficiency resources. |
+| 18700001 | Caller information verification failed. |
 
 **示例**：
 
@@ -190,6 +197,8 @@ requestExemptionResource(request: ResourceRequest): void;
 
 **系统能力:** SystemCapability.ResourceSchedule.DeviceStandby.Exemption
 
+**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
+
 **系统API:** 此接口为系统接口。
 
 **参数**：
@@ -206,9 +215,9 @@ requestExemptionResource(request: ResourceRequest): void;
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. |
+| 9800003 | Inner transact failed. |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed when applying for efficiency resources. |
+| 18700001 | Caller information verification failed. |
 
 **示例**：
 
@@ -250,6 +259,8 @@ releaseExemptionResource(request: ResourceRequest): void;
 
 **系统能力:** SystemCapability.ResourceSchedule.DeviceStandby.Exemption
 
+**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
+
 **系统API:** 此接口为系统接口。
 
 **参数**：
@@ -266,9 +277,9 @@ releaseExemptionResource(request: ResourceRequest): void;
 | ---- | --------------------- |
 | 9800001 | Memory operation failed. |
 | 9800002 | Parcel operation failed. |
-| 9800003 | IPC failed. |
+| 9800003 | Inner transact failed. |
 | 9800004 | System service operation failed. |
-| 18700001 | Caller information verification failed when applying for efficiency resources. |
+| 18700001 | Caller information verification failed. |
 
 **示例**：
 
@@ -306,6 +317,9 @@ releaseExemptionResource(request: ResourceRequest): void;
 ## ResourceType
 非待机应用资源枚举。
 <br>
+**系统API:** 此接口为系统接口。
+
+**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
 
 |名称   |值   |说明|
 | ------------ | ------------ |--------------|
@@ -320,6 +334,9 @@ releaseExemptionResource(request: ResourceRequest): void;
 ## ExemptedAppInfo 
 豁免应用信息，不进入待机管控的应用信息。
 <br>
+**系统API:** 此接口为系统接口。
+
+**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
 
 |名称  |类型   | 必填   |说明   |
 | ------------ | ------------ |------------ | ------------ |
@@ -330,6 +347,9 @@ releaseExemptionResource(request: ResourceRequest): void;
 ## ResourceRequest
 待机资源请求体。
 <br>
+**系统API:** 此接口为系统接口。
+
+**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
 
 |名称   |类型   | 必填   |说明   |
 | ------------ | ------------ |------------| ------------ |
