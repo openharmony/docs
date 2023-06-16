@@ -33,7 +33,7 @@ getAttestStatus(callback: AsyncCallback&lt;AttestResultInfo&gt;) : void
 
 | 错误码ID  | 错误信息             |
 |----------|----------------------|
-| 20000001 | system service exception |
+| 20000001 | system service exception. |
 
 **示例：**
 
@@ -74,7 +74,7 @@ getAttestStatus() : Promise&lt;AttestResultInfo&gt;
 
 | 错误码ID  | 错误信息             |
 |----------|----------------------|
-| 20000001 | system service exception |
+| 20000001 | system service exception. |
 
 **示例：**
 
@@ -113,7 +113,7 @@ getAttestStatusSync() : AttestResultInfo
 
 | 错误码ID  | 错误信息             |
 |----------|----------------------|
-| 20000001 | system service exception |
+| 20000001 | system service exception. |
 
 **示例：**
 
