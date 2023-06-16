@@ -11,12 +11,27 @@
 
 可以包含单个子组件。
 
-
 ## 接口
 
-ListItem(value?: string)
-
 从API version 9开始，该接口支持在ArkTS卡片中使用。
+
+**方法1：** ListItem(value?: ListItemOptions)<sup>10+</sup>
+
+**参数：**
+
+| 参数名 | 参数类型                                      | 必填 | 参数描述                                                     |
+| ------ | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| value  | [ListItemOptions](#listitemoptions10对象说明) | 否   | 为ListItem提供可选参数, 该对象内含有ListItemStyle枚举类型的style参数。 |
+
+**方法2：** ListItem(value?: string)<sup>(deprecated)</sup>
+
+从API version 10开始, 该接口不再维护，推荐使用方法1。
+
+**参数：**
+
+| 参数名 | 参数类型                      | 必填 | 参数描述 |
+| ------ | ----------------------------- | ---- | -------- |
+| value  | string<sup>(deprecated)</sup> | 否   | 无       |
 
 ## 属性
 
@@ -63,6 +78,19 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 | onExitDeleteArea | () => void | 否 |当滑动条目退出删除区域时调用，只触发一次，当再次退出时仍触发。 |
 | builder |  CustomBuilder | 否 |当列表项向右或向右滑动（当列表方向为“垂直”时），向下或向下滑动（当列方向为“水平”时）时显示的操作项。 |
 | useDefaultDeleteAnimation | boolean | 否 |设置是否使用默认的删除动画。<br/>默认值：true |
+## ListItemOptions<sup>10+</sup>对象说明
+
+| 名称  | 参数类型                                  | 必填 | 描述                                                         |
+| ----- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| style | [ListItemStyle](#listitemstyle10枚举说明) | 否   | 设置List组件卡片样式。<br/>默认值: ListItemStyle.NONE<br/>设置为ListItemStyle.NONE时无样式。<br/>设置为ListItemStyle.CARD时，必须配合[ListItemGroup](ts-container-listitemgroup.md)的ListItemGroupStyle.CARD同时使用，显示默认卡片样式。  <br/>卡片样式下，ListItem默认规格：高度48vp，宽度100%。<br/>卡片样式下, 为卡片内的列表选项提供了默认的focus、hover、press、selected和disable样式。<br/>**说明：**<br/>当前卡片模式下，不支持listDirection属性设置，使用默认Axis.Vertical排列方向。<br/>当前卡片模式下，List属性alignListItem默认为ListItemAlign.Center，居中对齐显示。 |
+
+## ListItemStyle<sup>10+</sup>枚举说明
+
+| 名称 | 描述               |
+| ---- | ------------------ |
+| NONE | 无样式。           |
+| CARD | 显示默认卡片样式。 |
+
 ## 事件
 
 | 名称 | 功能描述 |
