@@ -4,7 +4,6 @@
 >  **说明**:
 >   
 > - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。<br>
-> - 需要检查是否已经配置请求相应的权限: ohos.permission.DEVICE_STANDBY_EXEMPTION
 
 ## 导入模块
 ```js
@@ -320,6 +319,8 @@ releaseExemptionResource(request: ResourceRequest): void;
 <br>
 **系统API:** 此接口为系统接口。
 
+**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
+
 |名称   |值   |说明|
 | ------------ | ------------ |--------------|
 |NETWORK    |1   |网络访问资源|
@@ -335,6 +336,8 @@ releaseExemptionResource(request: ResourceRequest): void;
 <br>
 **系统API:** 此接口为系统接口。
 
+**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
+
 |名称  |类型   | 必填   |说明   |
 | ------------ | ------------ |------------ | ------------ |
 |resourceTypes   | number  | 是   |应用的资源类型   |
@@ -345,6 +348,8 @@ releaseExemptionResource(request: ResourceRequest): void;
 待机资源请求体。
 <br>
 **系统API:** 此接口为系统接口。
+
+**需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
 
 |名称   |类型   | 必填   |说明   |
 | ------------ | ------------ |------------| ------------ |
