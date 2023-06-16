@@ -1640,7 +1640,7 @@ avPlayer.off('startRenderFrame')
 
 on(type: 'videoSizeChange', callback: (width: number, height: number) => void): void
 
-监听视频播放宽高变化事件，仅视频播放支持该订阅事件，默认只在prepread状态上报一次，但HLS协议码流会在切换分辨率时上报；
+监听视频播放宽高变化事件，仅视频播放支持该订阅事件，默认只在prepared状态上报一次，但HLS协议码流会在切换分辨率时上报；
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 
