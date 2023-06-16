@@ -537,6 +537,10 @@
         - [Obtaining Application and File System Space Statistics](file-management/app-fs-space-statistics.md)
       - [Sending Files to an Application Sandbox](file-management/send-file-to-app-sandbox.md)
       - [Sharing an Application File](file-management/share-app-file.md)
+      - Application Data Backup and Restoration
+        - [Application Data Backup and Restoration Overview](file-management/app-file-backup-overview.md)
+        - [Backing up and restoring Application Access Data](file-management/app-file-backup-extension.md)
+        - [Backing Up and Restoring Application-triggered Data (for System Applications Only)](file-management/app-file-backup.md)
     - User File
       - [User File Overview](file-management/user-file-overview.md)
       - Selecting and Saving User Files (FilePicker)
@@ -1217,6 +1221,7 @@
       - [@ohos.data.distributedKVStore (Distributed KV Store)](reference/apis/js-apis-distributedKVStore.md)
       - [@ohos.data.preferences (Preferences)](reference/apis/js-apis-data-preferences.md)
       - [@ohos.data.relationalStore (RDB Store)](reference/apis/js-apis-data-relationalStore.md)
+      - [@ohos.data.UDMF (Unified Data Management Framework)](reference/apis/js-apis-data-udmf.md)
       - [@ohos.data.ValuesBucket](reference/apis/js-apis-data-valuesBucket.md)
     - File Management
       - [@ohos.file.backup (Backup and Restoration)](reference/apis/js-apis-file-backup.md)
