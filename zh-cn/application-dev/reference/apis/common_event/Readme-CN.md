@@ -13,3 +13,4 @@
 - [主题框架子系统-锁屏管理公共事件定义](commonEvent-screenlock.md)
 - [时间时区子系统公共事件定义](commonEvent-time.md)
 - [网络管理子系统公共事件定义](commonEvent-netmanager.md)
+- [短信应用公共事件定义](commonEvent-mms.md)
