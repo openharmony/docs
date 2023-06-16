@@ -1,4 +1,4 @@
-# Application Privilege Configuration Guide
+# Application Privilege Configuration
 
 Application privileges are high-level capabilities of an application, for example, restricting an application from being uninstalled or restricting application data from being deleted.
 
