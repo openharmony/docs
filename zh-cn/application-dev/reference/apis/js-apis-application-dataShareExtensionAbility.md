@@ -102,7 +102,7 @@ let rdbStore;
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     insert(uri, valueBucket, callback) {
         if (valueBucket === null) {
-            console.info('invalid valueBuckets');
+            console.error('invalid valueBuckets');
             return;
         }
         rdbStore.insert(TBL_NAME, valueBucket, function (err, ret) {
@@ -277,7 +277,7 @@ let rdbStore;
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     batchInsert(uri, valueBuckets, callback) {
         if (valueBuckets === null || valueBuckets.length === undefined) {
-            console.info('invalid valueBuckets');
+            console.error('invalid valueBuckets');
             return;
         }
         rdbStore.batchInsert(TBL_NAME, valueBuckets, function (err, ret) {

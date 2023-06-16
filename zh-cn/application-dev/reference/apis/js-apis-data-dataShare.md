@@ -587,7 +587,7 @@ try {
     console.info("data length is:", data.length);
     dataShareHelper.publish(data, "com.acts.ohos.data.datasharetest", version, publishCallback);
 } catch (e) {
-    console.info("publish error " + JSON.stringify(e));
+    console.error("publish error " + JSON.stringify(e));
 }
 ```
 
@@ -1217,7 +1217,7 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri, (err, data) => {
     if (err !== undefined) {
-        console.info("denormalizeUri failed, error message : " + err);
+        console.error("denormalizeUri failed, error message : " + err);
     }else{
         console.info("denormalizeUri = " + data);
     }
@@ -1251,7 +1251,7 @@ let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri).then((data) => {
     console.info("denormalizeUri = " + data);
 }).catch((err) => {
-    console.info("denormalizeUri failed, error message : " + err);
+    console.error("denormalizeUri failed, error message : " + err);
 });
 ```
 
