@@ -41,7 +41,6 @@
     - [Foreground Color](ts-universal-attributes-foreground-color.md)
     - [Click Effect](ts-universal-attributes-click-effect.md)
     - Touch Interactions
-      - [Click Control](ts-universal-attributes-click.md)
       - [Touch Target](ts-universal-attributes-touch-target.md)
       - [Hit Test Control](ts-universal-attributes-hit-test-behavior.md)
     - Touch Interactions
@@ -177,5 +176,7 @@
 - [Pixel Units](ts-pixel-units.md)
 - [Enums](ts-appendix-enums.md)
 - [Types](ts-types.md)
-- Components No Longer Maintained 
+- Components No Longer Maintained
   - [GridContainer](ts-container-gridcontainer.md)
+- APIs No Longer Maintained
+  - [Click Control](ts-universal-attributes-click.md)

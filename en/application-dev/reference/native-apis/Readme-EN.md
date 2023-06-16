@@ -18,6 +18,7 @@
   - [HuksKeyApi](_huks_key_api.md)
   - [HuksParamSetApi](_huks_param_set_api.md)
   - [HuksTypeApi](_huks_type_api.md)
+  - [Init](init.md)
   - [Memory](memory.md)
 - Header Files
   - [drawing_bitmap.h](drawing__bitmap_8h.md)
@@ -57,6 +58,7 @@
   - [native_huks_api.h](native__huks__api_8h.md)
   - [native_huks_param.h](native__huks__param_8h.md)
   - [native_huks_type.h](native__huks__type_8h.md)
+  - [syscap_ndk.h](syscap__ndk_8h.md)
   - [purgeable_memory.h](purgeable__memory_8h.md)
 - Structs
   - [OH_Drawing_BitmapFormat](_o_h___drawing___bitmap_format.md)
