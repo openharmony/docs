@@ -15,7 +15,7 @@
 | 接口名 | 描述 | 
 | -------- | -------- |
 | OH_PurgeableMemory \*OH_PurgeableMemory_Create(size_t size, OH_PurgeableMemory_ModifyFunc func, void \*funcPara) | 创建Purgeable memory对象，每次调用都会产生一个新的Purgeable memory对象。 | 
-| bool OH_PurgeableMemory_Destroy(OH_PurgeableMemory \*purgObj) | 将Purgeable memory对象会被析构掉。 | 
+| bool OH_PurgeableMemory_Destroy(OH_PurgeableMemory \*purgObj) | 对Purgeable memory对象进行析构操作。 | 
 | bool OH_PurgeableMemory_BeginRead(OH_PurgeableMemory \*purgObj) | 对purgeable对象进行读访问。 | 
 | void OH_PurgeableMemory_EndRead(OH_PurgeableMemory \*purgObj) | 读操作结束，将Purgeable对象的引用计数减1，当引用计数为0的时候， 该Purgeable memory对象可以被系统回收。 | 
 |bool OH_PurgeableMemory_BeginWrite(OH_PurgeableMemory \*purgObj) | 对purgeable对象进行写访问。|
@@ -35,34 +35,32 @@
     struct ParaData{
         int start;
         int end;
-    }
+    };
 
     // 声明一个使用ModifyFunc
     bool FactorialFunc(void* data, size_t size, void* param){
-         bool ret = true;
-         int oriData = *(int*)(data);
-         int i = param->start;
-         while(i<param->end){
-            oriData *= i;
-         }
-         *data = oriData;
-         if(oriData < 0)
-            ret = false;
-         return ret;
+        bool ret = true;
+        ParaData *pdata = (ParaData*) param;
+        int* oriData = (int*)data;
+        int i = pdata->start;
+        while(i<pdata->end){
+            *oriData *= i;
+        }
+        return ret;
     }
 
     // 声明修改purgeable对象扩展函数的参数
     struct AppendParaData{
         int newPara;
-    }
+    };
 
     // 声明修改purgeable对象的扩展函数
     bool AddFunc(void* data, size_t size, void* param){
-         bool ret = true;
-         int oriData = *(int*)(data);
-         oriData += param->newPara;
-         *data = oriData;
-         return ret;
+        bool ret = true;
+        int *oriDatap = (int*) data;
+        AppendParaData* apData = (AppendParaData*)param;
+        *oriDatap += apData->newPara;
+        return ret;
     }
     ```
 2. 创建Purgeable对象
@@ -74,11 +72,14 @@
     struct ParaData pdata = {1,2};
 
     // 创建一个Purgeable对象
-    OH_PurgableMmory* pPurgmem = OH_PurgableMmory_Create(DATASIZE, FactorialFunc, &pdata);
+    OH_PurgeableMemory* pPurgmem = OH_PurgeableMemory_Create(DATASIZE, FactorialFunc, &pdata);
     ```
 
 3. 读访问Purgeable 对象
     ```c++
+    //业务定义对象类型
+    class ReqObj;
+
     // 读取对象
     OH_PurgeableMemory_BeginRead(pPurgmem);
 
@@ -94,8 +95,11 @@
 
 4. 写访问Purgeable对象
     ```c++
+     //业务定义对象类型
+    class ReqObj;
+
     // 修改Purgeable对象
-    OH_PurgeableMemory_BeginWrite(pPurgmem)
+    OH_PurgeableMemory_BeginWrite(pPurgmem);
 
     // 获取purgeable对象数据
     ReqObj* pReqObj = (ReqObj*) OH_PurgeableMemory_GetContent(pPurgmem);
