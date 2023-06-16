@@ -2937,7 +2937,7 @@ lock(exclusive?: boolean): Promise\<void>
 **示例：**
 
   ```js
-  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.lock(true).then(() => {
     console.log("lock file successful");
   }).catch((err) => {
@@ -2967,7 +2967,7 @@ lock(exclusive?: boolean, callback: AsyncCallback\<void>): void
 **示例：**
 
   ```js
-  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.lock(true, (err) => {
     if (err) {
       console.info("lock file failed with error message: " + err.message + ", error code: " + err.code);
@@ -2998,7 +2998,7 @@ tryLock(exclusive?: boolean): void
 **示例：**
 
   ```js
-  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.tryLock(true);
   console.log("lock file successful");
   ```
@@ -3018,7 +3018,7 @@ unlock(): void
 **示例：**
 
   ```js
-  let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+  let file = fs.openSync(pathDir + "/test.txt", fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
   file.tryLock(true);
   file.unlock();
   console.log("unlock file successful");
