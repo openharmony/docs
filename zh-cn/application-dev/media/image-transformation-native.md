@@ -1,6 +1,6 @@
 # 图像变换(Native)
 
-开发者可以通过本指导了解如何使用Native Image进行图片处理，包括图片的裁剪、旋转、缩放、翻转、偏移、设置透明度等。
+开发者可以通过本指导了解如何使用Native Image的接口。
 
 ## 开发步骤
 
@@ -22,9 +22,9 @@
     static napi_value Init(napi_env env, napi_value exports)
     {
         napi_property_descriptor desc[] = {
-            { "createPixelMap", nullptr, CreatePixelMap, nullptr, nullptr, nullptr, napi_default, nullptr },
-            { "createAlphaPixelMap", nullptr, CreateAlphaPixelMap, nullptr, nullptr, nullptr, napi_default, nullptr },
-            { "transform", nullptr, Transform, nullptr, nullptr, nullptr, napi_default, nullptr }
+            { "testGetImageInfo", nullptr, TestGetImageInfo, nullptr, nullptr, nullptr, napi_default, nullptr },
+            { "testAccessPixels", nullptr, TestAccessPixels, nullptr, nullptr, nullptr, napi_default, nullptr },
+            { "testUnAccessPixels", nullptr, TestUnAccessPixels, nullptr, nullptr, nullptr, napi_default, nullptr },
         };
 
         napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
@@ -40,159 +40,56 @@
 
 在hello.cpp文件中获取JS的资源对象，并转为Native的资源对象，即可调用Native接口，调用方式示例代码如下：
     
-1. 根据像素数组创建PixelMap对象。
-
-    ```c++
-    //创建PixelMap对象
-    napi_value CreatePixelMap(napi_env env, napi_callback_info info)
+1. 获取**PixelMap**的信息，并记录信息到**OhosPixelMapInfo**结构中。
+   ```c++
+   static napi_value TestGetImageInfo(napi_env env, napi_callback_info info)
     {
-        napi_value udfVar = nullptr;
-        napi_value thisVar = nullptr;
-        napi_value argValue[2] = {0};
-        size_t argCount = 2;
-
-        void* buffer = nullptr;
-        size_t bufferSize = 0;
-        struct OhosPixelMapCreateOps createOps;
-        napi_value pixelmap = nullptr;
-
-        napi_get_undefined(env, &udfVar);
-        napi_get_cb_info(env, info, &argCount, argValue, &thisVar, nullptr);
-        if (napi_get_arraybuffer_info(env, argValue[0], &buffer, &bufferSize) != napi_ok ||
-            buffer == nullptr || bufferSize == 0) {
-            return udfVar;
-        }
-
-        createOps.width = 4;
-        createOps.height = 6;
-        createOps.pixelFormat = 4;
-        createOps.alphaType = 0;
-        int32_t res = OH_PixelMap_CreatePixelMap(env, createOps, (uint8_t *)buffer, bufferSize, &pixelmap);
-        if (res != OHOS_IMAGE_RESULT_SUCCESS || pixelmap == nullptr) {
-            return udfVar;
-        }
-        return pixelmap;
-    }
-
-    //创建仅含有alpha通道的PixelMap对象
-    napi_value CreateAlphaPixelMap(napi_env env, napi_callback_info info)
-    {
-        napi_value udfVar = nullptr;
-        napi_value thisVar = nullptr;
-        napi_value argValue[1] = {0};
-        size_t argCount = 1;
-
-        napi_value alphaPixelmap = nullptr;
-
-        napi_get_undefined(env, &udfVar);
-
-        if (napi_get_cb_info(env, info, &argCount, argValue, &thisVar, nullptr) != napi_ok ||
-            argCount < 1 || argValue[0] == nullptr) {
-            return udfVar;
-        }
-        int32_t res = OH_PixelMap_CreateAlphaPixelMap(env, argValue[0], &alphaPixelmap);
-        if (res != OHOS_IMAGE_RESULT_SUCCESS || alphaPixelmap == nullptr) {
-            return udfVar;
-        }
-        return alphaPixelmap;
-    }
-    ```
-
-2. 图像变换。具体操作参考示例代码注释。
-
-    ```c++
-    napi_value Transform(napi_env env, napi_callback_info info)
-    {
-        napi_value thisVar = nullptr;
-        napi_value argValue[1] = {0};
-        size_t argCount = 1;
-
-        if (napi_get_cb_info(env, info, &argCount, argValue, &thisVar, nullptr) != napi_ok ||
-            argCount < 1 || argValue[0] == nullptr) {
-            return nullptr;
-        }
         napi_value result = nullptr;
         napi_get_undefined(env, &result);
 
-        NativePixelMap* native = OH_PixelMap_InitNativePixelMap(env, argValue[0]);
-        if (native == nullptr) {
-            return result;
-        }
+        napi_value thisVar = nullptr;
+        napi_value argValue[1] = {0};
+        size_t argCount = 1;
 
-        //获取图片信息。
-        struct OhosPixelMapInfo pixelmapInfo;
-        OH_PixelMap_GetImageInfo(native, &pixelmapInfo);
+        napi_get_cb_info(env, info, &argCount, argValue, &thisVar, nullptr);
+        
+        OHOS::Media::OhosPixelMapInfo pixelMapInfo;
+        OHOS::Media::OH_GetImageInfo(env, argValue[0], &pixelMapInfo);
+        return result;
+    }
+    ```
+2. 获取**PixelMap**对象数据的内存地址，并锁定该内存。
+    ```c++
+    static napi_value TestAccessPixels(napi_env env, napi_callback_info info)
+    {
+        napi_value result = nullptr;
+        napi_get_undefined(env, &result);
 
-        //获取PixelMap对象每行字节数。
-        int32_t rowBytes;
-        OH_PixelMap_GetBytesNumberPerRow(native, &rowBytes);
+        napi_value thisVar = nullptr;
+        napi_value argValue[1] = {0};
+        size_t argCount = 1;
 
-        //获取PixelMap对象是否可编辑的状态。
-        int32_t editable = 0;
-        OH_PixelMap_GetIsEditable(native, &editable);
+        napi_get_cb_info(env, info, &argCount, argValue, &thisVar, nullptr);
 
-        //获取PixelMap对象是否支持Alpha通道。
-        int32_t supportAlpha = 0;
-        OH_PixelMap_IsSupportAlpha(native, &supportAlpha);
+        void* addrPtr = nullptr;
+        OHOS::Media::OH_AccessPixels(env, argValue[0], &addrPtr);
+        return result;
+    }
+    ```
+3. 释放**PixelMap**对象数据的内存锁。
+    ```c++
+    static napi_value TestUnAccessPixels(napi_env env, napi_callback_info info)
+    {
+        napi_value result = nullptr;
+        napi_get_undefined(env, &result);
 
-        //设置PixelMap对象的Alpha通道。
-        int32_t alphaAble = 0;
-        OH_PixelMap_SetAlphaAble(native, alphaAble);
+        napi_value thisVar = nullptr;
+        napi_value argValue[1] = {0};
+        size_t argCount = 1;
 
-        //获取PixelMap对象像素密度。
-        int32_t densityG;
-        OH_PixelMap_GetDensity(native, &densityG);
+        napi_get_cb_info(env, info, &argCount, argValue, &thisVar, nullptr);
 
-        //设置PixelMap对象像素密度。
-        int32_t densityS = 100;
-        OH_PixelMap_SetDensity(native, densityS);
-
-        //设置PixelMap对象的透明度。
-        float opacity = 0.5;
-        OH_PixelMap_SetOpacity(native, opacity);
-
-        //设置缩放比例。
-        //scaleX：宽为原来的0.5。
-        //scaleY：高为原来的0.5。
-        float scaleX = 0.5;
-        float scaleY = 0.5;
-        OH_PixelMap_Scale(native, scaleX, scaleY);
-
-        //设置偏移。
-        //translateX：向下偏移50。
-        //translateY：向右偏移50。
-        float translateX = 50;
-        float translateY = 50;
-        OH_PixelMap_Translate(native, translateX, translateY);
-
-        //设置顺时针旋转90度。
-        float angle = 90;
-        OH_PixelMap_Rotate(native, angle);
-
-        //设置翻转
-        //flipX：水平翻转。0为不翻转，1为翻转。
-        //flipY：垂直翻转。0为不翻转，1为翻转。
-        int32_t flipX = 0;
-        int32_t flipY = 1;
-        OH_PixelMap_Flip(native, flipX, flipY);
-
-        //设置裁剪区域。
-        // cropX：裁剪起始点横坐标0
-        // cropY：裁剪起始点纵坐标0
-        // cropH：裁剪高度10，方向为从上往下（裁剪后的图片高度为10）
-        // cropW：裁剪宽度10，方向为从左到右（裁剪后的图片宽度为10
-        int32_t cropX = 1;
-        int32_t cropY = 1;
-        int32_t cropW = 10;
-        int32_t cropH = 10;
-        OH_PixelMap_Crop(native, cropX, cropY, cropW, cropH);
-
-        uint8_t* pixelAddr = nullptr;
-        //获取PixelMap对象数据的内存地址，并锁定该内存。
-        OH_PixelMap_AccessPixels(native, &pixelAddr);
-        //释放PixelMap对象数据的内存锁。
-        OH_PixelMap_UnAccessPixels(native);
-
+        OHOS::Media::OH_UnAccessPixels(env, argValue[0]);
         return result;
     }
     ```
@@ -205,37 +102,41 @@
 
     ```js
     import testNapi from 'libentry.so'
-    import image from '@ohos.multimedia.image'
+    import image from '@ohos.multimedia.image';
 
     @Entry
     @Component
     struct Index {
-        @State _pixelMap: image.PixelMap = undefined;
-        build() {
-            Row() {
-            Column() {
-                Button("PixelMap")
-                .width(100)
-                .height(100)
-                .onClick(() => {
-                    const color = new ArrayBuffer(96);
-                    var bufferArr = new Uint8Array(color);
-                    for (var i = 0; i < bufferArr.length; i++) {
-                        bufferArr[i] = 0x80;
-                    }
+    @State message: string = 'IMAGE'
+    @State _PixelMap: image.PixelMap = undefined
 
-                    this._pixelMap = testNapi.createPixelMap(color);
-                    testNapi.transform(this._pixelMap);
+    build() {
+        Row() {
+        Column() {
+            Button(this.message)
+            .fontSize(50)
+            .fontWeight(FontWeight.Bold)
+            .onClick(() => {
+                const color = new ArrayBuffer(96);
+                let opts = { alphaType: 0, editable: true, pixelFormat: 4, scaleMode: 1, size: { height: 4, width: 6 } }
+                image.createPixelMap(color, opts)
+                .then( pixelmap => {
+                    this._PixelMap = pixelmap;
                 })
 
-                Image(this._pixelMap)
-                .width(500)
-                .height(500)
-                .objectFit(ImageFit.Cover)
-            }
-            .width('100%')
-            }
-            .height('100%')
+                testNapi.testGetImageInfo(this._PixelMap);
+                console.info("Test GetImageInfo success");
+
+                testNapi.testAccessPixels(this._PixelMap);
+                console.info("Test AccessPixels success");
+
+                testNapi.testUnAccessPixels(this._PixelMap);
+                console.info("Test UnAccessPixels success");
+            })
         }
+        .width('100%')
+        }
+        .height('100%')
+    }
     }
     ```
