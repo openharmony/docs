@@ -1059,7 +1059,7 @@ constructor(country: string, options?: PhoneNumberFormatOptions)
 | 参数名     | 类型                                       | 必填   | 说明               |
 | ------- | ---------------------------------------- | ---- | ---------------- |
 | country | string                                   | 是    | 表示电话号码所属国家或地区代码。 |
-| options | [PhoneNumberFormatOptions](#phonenumberformatoptions9) | 否    | 电话号码格式化对象的相关选项。  |
+| options | [PhoneNumberFormatOptions](#phonenumberformatoptions8) | 否    | 电话号码格式化对象的相关选项。  |
 
 **示例：** 
   ```js
