@@ -705,7 +705,7 @@ try {
 
 attach(showKeyboard: boolean, textConfig: TextConfig): Promise&lt;void&gt;
 
-用于自绘控件绑定输入法应用。使用callback异步回调。
+用于自绘控件绑定输入法应用。使用promise异步回调。
 
 必须先调用此接口完成自绘控件与输入法应用的绑定，才可以使用输入法框架的以下功能：显示、隐藏键盘；更新光标信息；更改编辑框选中范围；保存配置信息；监听处理由输入法应用发送的信息或命令等。
 

@@ -188,6 +188,6 @@ ArkCompiler会对JS对象线程进行保护，使用不当会引起应用crash�
 
 针对N-API的开发，有以下相关完整实例可供参考：
 
-- [第一个Native C++应用（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo)
+- [简易Native C++ 示例（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/NativeTemplateDemo)
 
-- [Native Component（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/XComponent)
+- [Native XComponent组件的使用（ArkTS）（API9）](https://gitee.com/openharmony/codelabs/tree/master/NativeAPI/XComponent)

@@ -8,7 +8,7 @@
 针对Purgeable memory，常见的开发场景如下：
 
 * 通过`Purgeablmemory`提供的`NAPI`接口申请PurgeableMemory对象，并将数据内容写入PurgeableMemory对象。
-* 使用完毕后使用
+* 使用完毕后释放
 
 ## 接口说明
 

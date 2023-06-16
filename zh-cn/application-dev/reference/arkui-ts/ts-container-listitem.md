@@ -62,7 +62,7 @@ List垂直布局，ListItem向右滑动，item左边的长距离滑动删除选�
 | onEntryDeleteArea | () => void | 否 | 在滑动条目进入删除区域时调用，只触发一次，当再次进入时仍触发。 |
 | onExitDeleteArea | () => void | 否 |当滑动条目退出删除区域时调用，只触发一次，当再次退出时仍触发。 |
 | builder |  CustomBuilder | 否 |当列表项向右或向右滑动（当列表方向为“垂直”时），向下或向下滑动（当列方向为“水平”时）时显示的操作项。 |
-| useDefaultDeleteAnimation | boolean | 否 |设置是否使用默认的删除动画。 |
+| useDefaultDeleteAnimation | boolean | 否 |设置是否使用默认的删除动画。<br/>默认值：true |
 ## 事件
 
 | 名称 | 功能描述 |
