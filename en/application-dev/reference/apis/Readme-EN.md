@@ -148,7 +148,7 @@
     - [Common Events of the Ability Subsystem](common_event/commonEvent-ability.md)
     - [Common Events of the Bundle Management Subsystem](common_event/commonEvent-bundleManager.md)
     - [Common Events of the Notification Service](common_event/commonEvent-ans.md)
-    - [Common Events of the Resource Scheduling Subsystem](common_event/commonEvent-resourceschedule.md)
+    - [Common Events of the Resource Scheduler Subsystem](common_event/commonEvent-resourceschedule.md)
     - [Common Events of the Telephony Subsystem](common_event/commonEvent-telephony.md)
     - [Common Events of the USB Subsystem](common_event/commonEvent-usb.md)
 - Bundle Management
@@ -335,6 +335,7 @@
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
   - [Console](js-apis-logs.md)
   - [Timer](js-apis-timer.md)
+  - [SysCap](js-apis-syscap.md)
   - application
     - [AccessibilityExtensionContext (Accessibility Extension Context)](js-apis-inner-application-accessibilityExtensionContext.md)
 
