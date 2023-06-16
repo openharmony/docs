@@ -32,7 +32,7 @@ import config from '@ohos.accessibility.config';
 | captions | [Config](#config)\<boolean>| 是 | 是 | 表示辅助字幕功能启用状态。 |
 | captionsStyle | [Config](#config)\<[accessibility.CaptionsStyle](js-apis-accessibility.md#captionsstyle8)>| 是 | 是 | 表示辅助字幕的配置。 |
 | audioMono| [Config](#config)\<boolean>| 是 | 是 | 表示音频单声道的配置。 |
-| audioBalance| [Config](#config)\<number>| 是 | 是 | 表示左右声道音量平衡的配置。取值 -1.0~1.0 |
+| audioBalance| [Config](#config)\<number>| 是 | 是 | 表示左右声道音量平衡的配置。取值 -1.0~1.0。 |
 
 ## enableAbility
 
