@@ -546,7 +546,7 @@ try {
 | -------- | -------- | -------- |
 | ACTION_BUTTON_TYPE_CLOSE | 0 | 表示关闭提醒的按钮。 |
 | ACTION_BUTTON_TYPE_SNOOZE | 1 | 表示延迟提醒的按钮。 |
-| ACTION_BUTTON_TYPE_CUSTOM<sup>10+</sup>  | 2 | 表示自定义的按钮。<br>-**系统接口**: 系统接口，三方应用不支持调用。 |
+| ACTION_BUTTON_TYPE_CUSTOM<sup>10+</sup>  | 2 | 表示自定义的按钮。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
 
 
 ## ReminderType
@@ -573,7 +573,7 @@ try {
 | -------- | -------- | -------- | -------- |
 | title | string | 是 | 按钮显示的标题。 |
 | type | [ActionButtonType](#actionbuttontype) | 是 | 按钮的类型。 |
-| wantAgent<sup>10+</sup> | [WantAgent](#wantagent) | 否 | 点击按钮跳转的ability信息。<br>-**系统接口**: 系统接口，三方应用不支持调用。 |
+| wantAgent<sup>10+</sup> | [WantAgent](#wantagent) | 否 | 点击按钮跳转的ability信息。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
 
 
 ## WantAgent
@@ -587,7 +587,7 @@ try {
 | -------- | -------- | -------- | -------- |
 | pkgName | string | 是 | 指明跳转的目标包名。 |
 | abilityName | string | 是 | 指明跳转的目标ability名称。 |
-| uri<sup>10+</sup> | string | 否 | 指明跳转目标的uri信息。<br>-**系统接口**: 系统接口，三方应用不支持调用。 |
+| uri<sup>10+</sup> | string | 否 | 指明跳转目标的uri信息。<br>**系统接口**: 系统接口，三方应用不支持调用。 |
 
 
 ## MaxScreenWantAgent
@@ -611,7 +611,7 @@ try {
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | reminderType | [ReminderType](#remindertype) | 是 | 指明提醒类型。 |
-| actionButton<sup>10+</sup> | [ActionButton](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮（参数可选。普通应用：最多支持两个按钮，系统应用：API9最多支持两个按钮，API10及以后最多支持三个按钮。）。 |
+| actionButton<sup></sup> | [ActionButton](#actionbutton) | 否 | 弹出的提醒通知栏中显示的按钮。<br>-普通应用：最多支持两个按钮。<br>-系统应用：API9最多支持两个按钮，API10及以后最多支持三个按钮。 |
 | wantAgent | [WantAgent](#wantagent) | 否 | 点击通知后需要跳转的目标ability信息。 |
 | maxScreenWantAgent | [MaxScreenWantAgent](#maxscreenwantagent) | 否 | 提醒到达时跳转的目标包。如果设备正在使用中，则弹出一个通知框。 |
 | ringDuration | number | 否 | 指明响铃时长（单位：秒），默认1秒。 |
