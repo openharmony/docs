@@ -21,7 +21,8 @@ When the **compress** API is called, the file to compress does not exist. When t
 **Solution**
 
 1. Make sure the source file exists.
-2. Make sure the path of the source file exists and the path is the correct sandbox path.
+2. Ensure that the source file is in ZIP format.
+3. Make sure the path of the source file exists and the path is the correct sandbox path.
 
 ## 900002 Invalid Destination File
 
