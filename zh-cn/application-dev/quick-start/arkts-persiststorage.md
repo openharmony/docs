@@ -24,6 +24,7 @@ PersistentStorage和AppStorage中的属性建立双向同步。应用开发通�
 
 当持久化更改的过程变得太繁重时，PersistentStorage实现可能会限制持久化属性更改的频率。
 
+PersistentStorage只能在UI页面内使用，否则将无法持久化数据。
 
 ## 使用场景
 
