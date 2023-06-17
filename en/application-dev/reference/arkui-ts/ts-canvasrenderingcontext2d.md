@@ -10,7 +10,7 @@ Use **RenderingContext** to draw rectangles, text, images, and other objects on 
 
 ## APIs
 
-CanvasRenderingContext2D(setting: RenderingContextSetting)
+CanvasRenderingContext2D(settings?: RenderingContextSettings)
 
 Since API version 9, this API is supported in ArkTS widgets.
 
@@ -18,7 +18,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name    | Type                                    | Mandatory  | Description                                    |
 | ------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| setting | [RenderingContextSettings](#renderingcontextsettings) | Yes   | See [RenderingContextSettings](#renderingcontextsettings).|
+| settings | [RenderingContextSettings](#renderingcontextsettings) | No   | See [RenderingContextSettings](#renderingcontextsettings).|
 
 
 ### RenderingContextSettings
@@ -57,6 +57,8 @@ Since API version 9, this API is supported in ArkTS widgets.
 | [shadowOffsetX](#shadowoffsetx)                       | number                                                       | X-axis shadow offset relative to the original object.<br>Since API version 9, this API is supported in ArkTS widgets. |
 | [shadowOffsetY](#shadowoffsety)                       | number                                                       | Y-axis shadow offset relative to the original object.<br>Since API version 9, this API is supported in ArkTS widgets. |
 | [imageSmoothingEnabled](#imagesmoothingenabled)       | boolean                                                      | Whether to adjust the image smoothness during image drawing. The value **true** means to enable this feature, and **false** means the opposite.<br>Default value: **true**<br>Since API version 9, this API is supported in ArkTS widgets. |
+| [height](#height)                        | number                                   | Component height.<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.|
+| [width](#width)                          | number                                   | Component width.<br>Unit: vp<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 > **NOTE**
 >
@@ -650,6 +652,68 @@ struct ImageSmoothingEnabled {
 ```
 
 ![en-us_image_0000001211898472](figures/en-us_image_0000001211898472.png)
+
+
+### height
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct HeightExample {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width(300)
+        .height(300)
+        .backgroundColor('#ffff00')
+        .onReady(() => {
+          let h = this.context.height
+          let w = this.context.width
+          this.context.fillRect(0, 0, 300, h/2)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![en-us_image_canvas_height](figures/en-us_image_canvas_height.png)
+
+
+### width
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct WidthExample {
+  private settings: RenderingContextSettings = new RenderingContextSettings(true)
+  private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings)
+
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+      Canvas(this.context)
+        .width(300)
+        .height(300)
+        .backgroundColor('#ffff00')
+        .onReady(() => {
+          let h = this.context.height
+          let w = this.context.width
+          this.context.fillRect(0, 0, w/2, 300)
+        })
+    }
+    .width('100%')
+    .height('100%')
+  }
+}
+```
+
+![en-us_image_canvas_width](figures/en-us_image_canvas_width.png)
 
 
 ## Methods
