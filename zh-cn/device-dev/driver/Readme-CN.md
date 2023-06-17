@@ -1,7 +1,7 @@
 # 驱动使用指南
 
 - [驱动概述](driver-overview-foundation.md)
-- [HDF驱动开发流程](driver-hdf-manage.md))
+- [HDF驱动开发流程](driver-hdf-manage.md)
 - 平台驱动开发
   - [ADC](driver-platform-adc-develop.md)
   - [DAC](driver-platform-dac-develop.md)
