@@ -16,10 +16,11 @@
   - [数据库备份与恢复](data-backup-and-restore.md)
   - [数据库加密](data-encryption.md)
   - [基于设备分类和数据分级的访问控制](access-control-by-device-and-data-level.md)
-- 同设备跨应用数据共享（仅对系统应用开放）
-  - [同设备跨应用数据共享概述](share-device-data-across-apps-overview.md)
-  - [通过DataShareExtensionAbility实现数据共享](share-data-by-datashareextensionability.md)
-  - [通过静默数据访问实现数据共享](share-data-by-silent-access.md)
-- 跨设备跨应用标准化数据通道
-  - [跨设备跨应用标准化数据通道概述](unified-data-channel-across-devices-and-apps-overview.md)
-  - [标准化数据定义](unified-data-definition.md)
+- 跨应用数据共享
+  - [跨应用数据共享概述](data-share-overview.md)
+  - 应用私有数据共享（仅对系统应用开放）
+    - [通过DataShareExtensionAbility实现数据共享](share-data-by-datashareextensionability.md)
+    - [通过静默数据访问实现数据共享](share-data-by-silent-access.md)
+  - 公有数据共享
+    - [标准化数据定义](unified-data-definition.md)
+    - [标准化数据通路](unified-data-channels.md)
