@@ -1536,7 +1536,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 ## ohos.permission.securityguard.REQUEST_SECURITY_MODEL_RESULT
 
@@ -1556,7 +1556,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 ## ohos.permission.READ_ACCESSIBILITY_CONFIG
 
@@ -2077,3 +2077,23 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+## ohos.permission.securityguard.SET_MODEL_STATE
+
+允许应用控制设备风险管理平台模型开关。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.hsdr.HSDR_ACCESS
+
+允许应用访问HSDR。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
