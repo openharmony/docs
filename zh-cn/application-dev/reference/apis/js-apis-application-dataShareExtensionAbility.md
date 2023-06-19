@@ -78,10 +78,10 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
             name: DB_NAME,
             securityLevel: rdb.SecurityLevel.S1
         }, function (err, data) {
-            console.log('getRdbStore done, data : ${data}');
+            console.info(`getRdbStore done, data : ${data}`);
             rdbStore = data;
             rdbStore.executeSql(DDL_TBL_CREATE, [], function (err) {
-                console.error('executeSql done, error message : ${err}');
+                console.error(`executeSql done, error message : ${err}`);
             });
             if (callback) {
                 callback();
@@ -122,11 +122,11 @@ let rdbStore;
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     insert(uri, valueBucket, callback) {
         if (valueBucket === null) {
-            console.info('invalid valueBuckets');
+            console.error('invalid valueBuckets');
             return;
         }
         rdbStore.insert(TBL_NAME, valueBucket, function (err, ret) {
-            console.info('callback ret: ${ret}');
+            console.info(`callback ret: ${ret}`);
             if (callback !== undefined) {
                 callback(err, ret);
             }
@@ -256,7 +256,7 @@ export default class DataShareExtAbility extends DataShareExtensionAbility {
         }
         rdbStore.query(TBL_NAME, predicates, columns, function (err, resultSet) {
             if (resultSet !== undefined) {
-                console.info('resultSet.rowCount: ${resultSet.rowCount}');
+                console.info(`resultSet.rowCount: ${resultSet.rowCount}`);
             }
             if (callback !== undefined) {
                 callback(err, resultSet);
@@ -297,14 +297,12 @@ let rdbStore;
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     batchInsert(uri, valueBuckets, callback) {
         if (valueBuckets === null || valueBuckets.length === undefined) {
-            console.info('invalid valueBuckets');
+            console.error('invalid valueBuckets');
             return;
         }
-        let resultNum = valueBuckets.length;
-        valueBuckets.forEach(vb => {
-            rdbStore.insert(TBL_NAME, vb, function (err, ret) {
+        rdbStore.batchInsert(TBL_NAME, valueBuckets, function (err, ret) {
                 if (callback !== undefined) {
-                    callback(err, resultNum);
+                    callback(err, ret);
                 }
             });
         });
@@ -333,7 +331,7 @@ normalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     normalizeUri(uri, callback) {
         let err = {'code':0};
-        let ret = 'normalize+${uri}';
+        let ret = `normalize: ${uri}`;
         callback(err, ret);
     }
 };
@@ -360,7 +358,7 @@ denormalizeUri?(uri: string, callback: AsyncCallback&lt;string&gt;): void
 export default class DataShareExtAbility extends DataShareExtensionAbility {
     denormalizeUri(uri, callback) {
         let err = {'code':0};
-        let ret = 'denormalize+${uri}';
+        let ret = `denormalize ${uri}`;
         callback(err, ret);
     }
 };
