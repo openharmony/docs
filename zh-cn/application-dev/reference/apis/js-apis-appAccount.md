@@ -4981,3 +4981,298 @@ getRemoteObject(): rpc.RemoteObject;
     }
   }
   ```
+
+## AccountCapabilityType<sup>10+</sup>
+
+表示帐号能力类型枚举。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+| 名称             | 值    | 说明                   |
+| ---------------- | ----- | ----------------------- |
+| AUTHORIZATION    | 1 | 表示授权能力类型。  |
+
+## AccountCapabilityProvider<sup>10+</sup>
+
+帐号能力提供者基类。
+
+### 属性
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| capabilityType | [AccountCapabilityType](#accountcapabilitytype10)  | 是 | 否 | 表示帐号能力类型。 |
+
+### constructor<sup>10+</sup>
+
+constructor(capabilityType: AccountCapabilityType)
+
+帐号能力提供者基类构造函数。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                   |
+| ------ | ------ | ---- | ------------------------------------- |
+| capabilityType | [AccountCapabilityType](#accountcapabilitytype10) | 是   | 表示帐号能力类型。     |
+
+**示例：**
+
+```ts
+class MyAuthorizationProvider extends account_appAccount.AccountCapabilityProvider {
+  constructor() {
+    super(account_appAccount.AccountCapabilityType.AUTHORIZATION);
+  }
+}
+
+try {
+  let provider = new MyAuthorizationProvider();
+  if (provider instanceof account_appAccount.AccountCapabilityProvider) {
+    console.log("the provider is an instance of AccountCapabilityProvider");
+  }
+} catch (err) {
+  console.error('catch error: ' + JSON.stringify(err));
+}
+```
+
+## AccountCapabilityRequest<sup>10+</sup>
+
+帐号能力请求基类。
+
+### constructor<sup>10+</sup>
+
+constructor(provider: AccountCapabilityProvider)
+
+帐号能力请求基类构造函数。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                   |
+| ------ | ------ | ---- | ------------------------------------- |
+| provider | [AccountCapabilityProvider](#accountcapabilityprovider10) | 是  | 表示帐号能力的提供者。     |
+
+**示例：**
+
+```ts
+class MyAuthorizationProvider extends account_appAccount.AccountCapabilityProvider {
+  constructor() {
+    super(account_appAccount.AccountCapabilityType.AUTHORIZATION);
+  }
+}
+
+class MyAuthorizationRequest extends account_appAccount.AccountCapabilityRequest {
+  constructor() {
+    let provider = new MyAuthorizationProvider();
+    super(provider);
+  }
+}
+
+try {
+  let request = new MyAuthorizationRequest();
+  if (request instanceof account_appAccount.AccountCapabilityRequest) {
+    console.log("the request is an instance of AccountCapabilityRequest");
+  }
+} catch (err) {
+  console.error('catch error: ' + JSON.stringify(err));
+}
+```
+
+## AccountCapabilityResponse<sup>10+</sup>
+
+帐号能力响应基类。
+
+### 属性
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+| 名称 | 类型 | 可读 | 可写 | 说明 |
+| -------- | -------- | -------- | -------- | -------- |
+| request | [AccountCapabilityRequest](#accountcapabilityrequest10)  | 是 | 否 | 表示此响应对应的帐号能力请求。 |
+
+### constructor<sup>10+</sup>
+
+constructor(request: AccountCapabilityRequest)
+
+帐号能力响应基类构造函数。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                   |
+| ------ | ------ | ---- | ------------------------------------- |
+| request | [AccountCapabilityRequest](#accountcapabilityrequest10) | 是   | 表示此响应对应的帐号能力请求。 |
+
+**示例：**
+
+```ts
+class MyAuthorizationProvider extends account_appAccount.AccountCapabilityProvider {
+  constructor() {
+    super(account_appAccount.AccountCapabilityType.AUTHORIZATION);
+  }
+}
+
+class MyAuthorizationRequest extends account_appAccount.AccountCapabilityRequest {
+  constructor() {
+    let provider = new MyAuthorizationProvider();
+    super(provider);
+  }
+}
+
+class MyAuthorizationResponse extends account_appAccount.AccountCapabilityResponse {
+  constructor(request) {
+    super(request)
+  }
+}
+
+try {
+  let request = new MyAuthorizationRequest();
+  let response = new MyAuthorizationResponse(request);
+  if (response instanceof account_appAccount.AccountCapabilityResponse) {
+    console.log("the response is an instance of AccountCapabilityResponse");
+  }
+} catch (err) {
+  console.error('catch error: ' + JSON.stringify(err));
+}
+```
+
+## AuthorizationProviderInfo<sup>10+</sup>
+
+表示帐号授权能力提供者信息。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+| 名称     | 类型     | 可读 | 可写 | 说明         |
+| ------- | ------ | ---- | --- | ---------- |
+| bundleName   | string | 是 | 否 | 授权能力提供者的Bundle名。 |
+| abilityName  | string | 是 | 否 | 授权能力提供者的Ability名。 |
+
+## AuthorizationProvider<sup>10+</sup>
+
+帐号授权能力提供者类。
+
+### constructor<sup>10+</sup>
+
+constructor(info: AuthorizationProviderInfo)
+
+帐号授权能力提供者类构造函数。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+
+| 参数名 | 类型    | 必填 | 说明                                   |
+| ------ | ------ | ---- | ------------------------------------- |
+| info | [AuthorizationProviderInfo](#authorizationproviderinfo10) | 是  | 表示帐号能力提供者的信息。 |
+
+**示例：**
+
+```ts
+class MyAuthorizationProvider extends account_appAccount.AuthorizationProvider {
+  constructor() {
+    super({bundleName: 'xxx', abilityName: 'xxx'});
+  }
+}
+
+try {
+  let provider = new MyAuthorizationProvider();
+  if (provider instanceof account_appAccount.AuthorizationProvider) {
+    console.log("the provider is an instance of AuthorizationProvider");
+  }
+} catch (err) {
+  console.error("catch error: " + JSON.stringify(err));
+}
+```
+
+## AccountCapabilityScheduler<sup>10+</sup>
+
+帐号能力调度器类。
+
+### executeRequest<sup>10+</sup>
+
+executeRequest(request: AccountCapabilityRequest, callback: AsyncCallback&lt;AccountCapabilityResponse, { [key: string]: object }&gt;): void
+
+执行帐号能力请求。使用callback异步回调。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+
+| 参数名        | 类型                        | 必填   | 说明                        |
+| ---------- | ------------------------- | ---- | ------------------------- |
+| request    | [AccountCapabilityRequest](#accountcapabilityrequest10)   | 是    | 表示帐号能力请求。                  |
+| callback   | AsyncCallback&lt;[AccountCapabilityResponse](#accountcapabilityresponse10), { [key: string]: object }&gt; | 是    | 表示请求的回调方法。当执行成功时，err为null；否则为错误对象。  |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | ------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid request. |
+
+**示例：**
+
+```ts
+let scheduler = new account_appAccount.AccountCapabilityScheduler();
+let provider = new account_appAccount.AuthorizationProvider({ bundleName: 'xxx', abilityName: 'xxx' });
+let request = new account_appAccount.AccountCapabilityRequest(provider);
+try {
+  scheduler.executeRequest(request, (err, response) => {
+    if (err != null) {
+      console.log('executeRequest failed, error: ' + JSON.stringify(err));
+    } else {
+      console.log('executeRequest response: ' + JSON.stringify(response));
+    }
+  });
+} catch (err) {
+  console.log('executeRequest exception: ' + JSON.stringify(err));
+}
+```
+
+### executeRequest<sup>10+</sup>
+
+executeRequest(request: AccountCapabilityRequest): Promise&lt;AccountCapabilityResponse&gt;
+
+执行帐号能力请求。使用Promise异步回调。
+
+**系统能力：** SystemCapability.Account.AppAccount
+
+**参数：**
+
+| 参数名        | 类型      | 必填   | 说明           |
+| ---------- | ------- | ---- | ------------ |
+| request       | [AccountCapabilityRequest](#accountcapabilityrequest10)  | 是    | 表示帐号能力请求。 |
+
+**返回值：**
+
+| 类型                  | 说明                    |
+| ------------------- | --------------------- |
+| Promise&lt;[AccountCapabilityResponse](#accountcapabilityresponse10)&gt; |  Promise对象，返回请求执行的响应结果。  |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| ------- | ------- |
+| 12300001 | System service exception. |
+| 12300002 | Invalid request. |
+
+**示例：**
+
+```ts
+let scheduler = new account_appAccount.AccountCapabilityScheduler();
+let provider = new account_appAccount.AuthorizationProvider({ bundleName: 'xxx', abilityName: 'xxx' });
+let request = new account_appAccount.AccountCapabilityRequest(provider);
+try {
+  scheduler.executeRequest(request).then((response) => {
+    console.log('executeRequest response: ' + JSON.stringify(response));
+  }).catch((err) => {
+    console.log('executeRequest failed, error: ' + JSON.stringify(err));
+  });
+} catch (err) {
+  console.log('executeRequest exception: ' + JSON.stringify(err));
+}
+```
