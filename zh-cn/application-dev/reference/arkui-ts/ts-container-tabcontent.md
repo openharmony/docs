@@ -81,10 +81,10 @@ SubTabBarStyle的静态构造函数。
 | 名称 | 参数类型 | 必填 | 描述 |
 | -------- | -------- | -------- | -------------------------------- |
 | color | [ResourceColor](ts-types.md#resourcecolor) | 否 | 下划线的颜色和背板颜色。<br/>默认值:#FF007DFF |
-| height | [Length](ts-types.md#length) | 否 | 下划线的高度。<br/>默认值:2.0<br/>单位：vp |
-| width | [Length](ts-types.md#length) | 否 | 下划线的宽度。<br/>默认值：0.0<br/>单位：vp |
-| borderRadius | [Length](ts-types.md#length) | 否 | 下划线的圆角半径。<br/>默认值：0.0<br/>单位：vp |
-| marginTop | [Length](ts-types.md#length) | 否 | 下划线与文字的间距。<br/>默认值：8.0<br/>单位：vp |
+| height | [Length](ts-types.md#length) | 否 | 下划线的高度（不支持百分比设置）。<br/>默认值:2.0<br/>单位：vp |
+| width | [Length](ts-types.md#length) | 否 | 下划线的宽度（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp |
+| borderRadius | [Length](ts-types.md#length) | 否 | 下划线的圆角半径（不支持百分比设置）。<br/>默认值：0.0<br/>单位：vp |
+| marginTop | [Length](ts-types.md#length) | 否 | 下划线与文字的间距（不支持百分比设置）。<br/>默认值：8.0<br/>单位：vp |
 
 ## SelectedMode<sup>10+</sup>枚举说明
 | 名称       | 描述                     |
@@ -96,7 +96,7 @@ SubTabBarStyle的静态构造函数。
 
 | 名称 | 参数类型 | 必填 | 描述 |
 | -------- | -------- | -------- | ------------------------------------ |
-| borderRadius | [Length](ts-types.md#length) | 否 | 下划线的圆角半径。<br/>默认值：8.0<br/>单位：vp |
+| borderRadius | [Length](ts-types.md#length) | 否 | 背板的圆角半径（不支持百分比设置）。<br/>默认值：8.0<br/>单位：vp |
 
 ## LabelStyle<sup>10+</sup>对象说明
 
