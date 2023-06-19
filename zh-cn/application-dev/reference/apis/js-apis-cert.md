@@ -1207,10 +1207,10 @@ createCertExtension(inStream : EncodingBlob, callback : AsyncCallback<CertExtens
 
 **参数**：
 
-| 参数名   | 类型                                                         | 必填 | 说明                       |
-| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob)                                | 是   | 表示证书扩展域段序列化数据 |
-| callback | AsyncCallback\<[CertExtension](#certextension<sup>10+</sup>)> | 是   | 回调函数。表示扩展域段对象 |
+| 参数名   | 类型                                              | 必填 | 说明                       |
+| -------- | ------------------------------------------------- | ---- | -------------------------- |
+| inStream | [EncodingBlob](#encodingblob)                     | 是   | 表示证书扩展域段序列化数据 |
+| callback | AsyncCallback\<[CertExtension](#certextension10)> | 是   | 回调函数。表示扩展域段对象 |
 
 **错误码：**
 
@@ -1255,9 +1255,9 @@ createCertExtension(inStream : EncodingBlob) : Promise<CertExtension>
 
 **返回值**：
 
-| 类型                                                    | 说明                 |
-| ------------------------------------------------------- | -------------------- |
-| Promise\<[CertExtension](#certextension<sup>10+</sup>)> | 表示证书扩展域段对象 |
+| 类型                                        | 说明                 |
+| ------------------------------------------- | -------------------- |
+| Promise\<[CertExtension](#certextension10)> | 表示证书扩展域段对象 |
 
 **错误码：**
 
@@ -2099,7 +2099,7 @@ getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry
 
 | 类型         | 说明                  |
 | ------------ | -------------------- |
-| [X509CrlEntry](#509crlentry) | 表示被吊销X509证书对象 |
+| [X509CrlEntry](#x509crlentry) | 表示被吊销X509证书对象 |
 
 **错误码：**
 
