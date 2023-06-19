@@ -260,7 +260,7 @@ const valueBucket = {
 }
 try {
     dataShareHelper.insert(uri, valueBucket).then((data) => {
-        console.log("insert succeed, data : " + data);
+        console.info("insert succeed, data : " + data);
     }). catch((err) => {
         console.error(`insert error: code: ${err.code}, message: ${err.message} `);
     });
