@@ -70,7 +70,7 @@ let uri = ("datashare:///com.samples.datasharetest.DataShare");
 let dataShareHelper;
 try {
     dataShare.createDataShareHelper(this.context, uri, (err, data) => {
-        if (err != undefined) {
+        if (err !== undefined) {
             console.error(`createDataShareHelper error: code: ${err.code}, message: ${err.message} `);
             return;
         }
@@ -260,7 +260,7 @@ const valueBucket = {
 }
 try {
     dataShareHelper.insert(uri, valueBucket).then((data) => {
-        console.log("insert succeed, data : " + data);
+        console.info("insert succeed, data : " + data);
     }). catch((err) => {
         console.error(`insert error: code: ${err.code}, message: ${err.message} `);
     });
@@ -296,7 +296,7 @@ let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
     dataShareHelper.delete(uri, da, (err, data) => {
-        if (err != undefined) {
+        if (err !== undefined) {
             console.error(`delete error: code: ${err.code}, message: ${err.message} `);
             return;
         }
@@ -339,7 +339,7 @@ let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
     dataShareHelper.delete(uri, da).then((data) =>  {
-        console.log("delete succeed, data : " + data);
+        console.info("delete succeed, data : " + data);
     }). catch((err) => {
         console.error(`delete error: code: ${err.code}, message: ${err.message} `);
     });
@@ -377,11 +377,11 @@ let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
     dataShareHelper.query(uri, da, columns, (err, data) => {
-        if (err != undefined) {
+        if (err !== undefined) {
             console.error(`query error: code: ${err.code}, message: ${err.message} `);
             return;
         }
-        console.log("query succeed, rowCount : " + data.rowCount);
+        console.info("query succeed, rowCount : " + data.rowCount);
     });
 } catch (err) {
     console.error(`query error: code: ${err.code}, message: ${err.message} `);
@@ -422,7 +422,7 @@ let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
     dataShareHelper.query(uri, da, columns).then((data) =>  {
-        console.log("query succeed, rowCount : " + data.rowCount);
+        console.info("query succeed, rowCount : " + data.rowCount);
     }). catch((err) => {
         console.error(`query error: code: ${err.code}, message: ${err.message} `);
     });
@@ -465,11 +465,11 @@ const va = {
 }
 try {
     dataShareHelper.update(uri, da, va, (err, data) => {
-        if (err != undefined) {
+        if (err !== undefined) {
             console.error(`update error: code: ${err.code}, message: ${err.message} `);
             return;
         }
-        console.log("update succeed, data : " + data);
+        console.info("update succeed, data : " + data);
     });
 } catch (err) {
     console.error(`update error: code: ${err.code}, message: ${err.message} `);
@@ -515,7 +515,7 @@ const va = {
 }
 try {
     dataShareHelper.update(uri, da, va).then((data) =>  {
-        console.log("update succeed, data : " + data);
+        console.info("update succeed, data : " + data);
     }). catch((err) => {
         console.error(`update error: code: ${err.code}, message: ${err.message} `);
     });
@@ -550,11 +550,11 @@ let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
                      {"name": "roe13", "age": 21, "salary": 20.5,})
 try {
     dataShareHelper.batchInsert(uri, vbs, (err, data) => {
-        if (err != undefined) {
+        if (err !== undefined) {
             console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
             return;
         }
-        console.log("batchInsert succeed, data : " + data);
+        console.info("batchInsert succeed, data : " + data);
     });
 } catch (err) {
     console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
@@ -592,7 +592,7 @@ let vbs = new Array({"name": "roe11", "age": 21, "salary": 20.5,},
                      {"name": "roe13", "age": 21, "salary": 20.5,})
 try {
     dataShareHelper.batchInsert(uri, vbs).then((data) =>  {
-        console.log("batchInsert succeed, data : " + data);
+        console.info("batchInsert succeed, data : " + data);
     }). catch((err) => {
         console.error(`batchInsert error: code: ${err.code}, message: ${err.message} `);
     });
@@ -622,10 +622,10 @@ normalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri, (err, data) => {
-    if (err != undefined) {
-        console.log("normalizeUri failed, error message : " + err);
+    if (err !== undefined) {
+        console.error("normalizeUri failed, error message : " + err);
     }else{
-        console.log("normalizeUri = " + data);
+        console.info("normalizeUri = " + data);
     }
 });
 ```
@@ -656,9 +656,9 @@ normalizeUri(uri: string): Promise&lt;string&gt;
 import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri).then((data) => {
-    console.log("normalizeUri = " + data);
+    console.info("normalizeUri = " + data);
 }).catch((err) => {
-    console.log("normalizeUri failed, error message : " + err);
+    console.error("normalizeUri failed, error message : " + err);
 });
 ```
 
@@ -683,10 +683,10 @@ denormalizeUri(uri: string, callback: AsyncCallback&lt;string&gt;): void
 import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri, (err, data) => {
-    if (err != undefined) {
-        console.log("denormalizeUri failed, error message : " + err);
+    if (err !== undefined) {
+        console.error("denormalizeUri failed, error message : " + err);
     }else{
-        console.log("denormalizeUri = " + data);
+        console.info("denormalizeUri = " + data);
     }
 });
 ```
@@ -717,9 +717,9 @@ denormalizeUri(uri: string): Promise&lt;string&gt;
 import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.denormalizeUri(uri).then((data) => {
-    console.log("denormalizeUri = " + data);
+    console.info("denormalizeUri = " + data);
 }).catch((err) => {
-    console.log("denormalizeUri failed, error message : " + err);
+    console.error("denormalizeUri failed, error message : " + err);
 });
 ```
 
@@ -744,7 +744,7 @@ notifyChange(uri: string, callback: AsyncCallback&lt;void&gt;): void
 import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.notifyChange(uri, () => {
-    console.log("***** notifyChange *****");
+    console.info("***** notifyChange *****");
 });
 ```
 
