@@ -40,6 +40,7 @@ isDeviceInStandby(callback: AsyncCallback&lt;boolean&gt;): void;
 | 18700001 | Caller information verification failed. |
 
 **示例**：
+
 ```js
 try{
 deviceStandby.isDeviceInStandby((err, res) => {
@@ -83,6 +84,7 @@ isDeviceInStandby(): Promise&lt;boolean&gt;
 | 18700001 | Caller information verification failed. |
 
 **示例**：
+
 ```js
 try{
 deviceStandby.isDeviceInStandby().then( res => {
@@ -127,6 +129,7 @@ getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;Exempted
 | 18700001 | Caller information verification failed. |
 
 **示例**：
+
 ```js
 try{
 deviceStandby.getExemptedApps(resourceTypes, (err, res) => {
@@ -184,6 +187,7 @@ getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
 | 18700001 | Caller information verification failed. |
 
 **示例**：
+
 ```js
 try{
 deviceStandby.getExemptedApps(resourceTypes).then( res => {
@@ -230,6 +234,7 @@ requestExemptionResource(request: ResourceRequest): void;
 | 18700001 | Caller information verification failed. |
 
 **示例**：
+
 ```js
 let resRequest = {
   resourceTypes: 1,
@@ -294,6 +299,7 @@ releaseExemptionResource(request: ResourceRequest): void;
 | 18700001 | Caller information verification failed. |
 
 **示例**：
+
 ```js
 let resRequest = {
   resourceTypes: 1,
