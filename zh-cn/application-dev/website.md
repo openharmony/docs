@@ -1386,6 +1386,7 @@
       - [@ohos.multimodalInput.shortKey(快捷键)](reference/apis/js-apis-shortKey.md)
       - [@ohos.power (系统电源管理)](reference/apis/js-apis-power.md)
       - [@ohos.runningLock (Runninglock锁)](reference/apis/js-apis-runninglock.md)
+      - [@ohos.resourceschedule.deviceStandby（设备待机模块）](reference/apis/js-apis-resourceschedule-deviceStandby.md)
       - [@ohos.sensor (传感器)](reference/apis/js-apis-sensor.md)
       - [@ohos.settings (设置数据项名称)](reference/apis/js-apis-settings.md)
       - [@ohos.stationary (设备状态感知框架)](reference/apis/js-apis-stationary.md)
