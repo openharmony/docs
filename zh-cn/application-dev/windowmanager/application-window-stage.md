@@ -24,7 +24,6 @@
 
 以下分别介绍具体开发方式。
 
-
 ## 接口说明
 
 上述场景涉及的常用接口如下表所示。更多API说明请参见[API参考](../reference/apis/js-apis-window.md)。
@@ -53,16 +52,18 @@
 
 在`Stage`模型下，应用主窗口由`UIAbility`创建并维护生命周期。在`UIAbility`的`onWindowStageCreate`回调中，通过`WindowStage`获取应用主窗口，即可对其进行属性设置等操作。还可以在应用配置文件中设置应用主窗口的属性，如最大窗口宽度maxWindowWidth等，详见[module.json5配置文件](../quick-start/module-configuration-file.md#abilities标签)。
 
-
 ### 开发步骤
 
 1. 获取应用主窗口。
+
    通过`getMainWindow`接口获取应用主窗口。
 
 2. 设置主窗口属性。
+
    可设置主窗口的背景色、亮度值、是否可触等多个属性，开发者可根据需要选择对应的接口。本示例以设置“是否可触”属性为例。
 
 3. 为主窗口加载对应的目标页面。
+
    通过`loadContent`接口加载主窗口的目标页面。
 
 ```ts
@@ -101,21 +102,26 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-
 ## 设置应用子窗口
 
 开发者可以按需创建应用子窗口，如弹窗等，并对其进行属性设置等操作。
 
-
 ### 开发步骤
 
 1. 创建应用子窗口。
+
    通过`createSubWindow`接口创建应用子窗口。
+
 2. 设置子窗口属性。
+
    子窗口创建成功后，可以改变其大小、位置等，还可以根据应用需要设置窗口背景色、亮度等属性。
+
 3. 加载显示子窗口的具体内容。
+
    通过`setUIContent`和`showWindow`接口加载显示子窗口的具体内容。
+
 4. 销毁子窗口。
+
    当不再需要某些子窗口时，可根据具体实现逻辑，使用`destroyWindow`接口销毁子窗口。
 
 ```ts
@@ -200,11 +206,17 @@ export default class EntryAbility extends UIAbility {
 ### 开发步骤
 
 1. 获取应用主窗口。
+
    通过`getMainWindow`接口获取应用主窗口。
+
 2. 实现沉浸式效果。有以下两种方式：
+
    - 方式一：应用主窗口为全屏窗口时，调用`setWindowSystemBarEnable`接口，设置导航栏、状态栏不显示，从而达到沉浸式效果。
+
    - 方式二：调用`setWindowLayoutFullScreen`接口，设置应用主窗口为全屏布局；然后调用`setWindowSystemBarProperties`接口，设置导航栏、状态栏的透明度、背景/文字颜色以及高亮图标等属性，使之保持与主窗口显示协调一致，从而达到沉浸式效果。
+
 3. 加载显示沉浸式窗口的具体内容。
+
    通过`loadContent`接口加载沉浸式窗口的具体内容。
 
 ```ts
@@ -267,7 +279,6 @@ export default class EntryAbility extends UIAbility {
 };
 ```
 
-
 ## 设置悬浮窗
 
 悬浮窗可以在已有的任务基础上，创建一个始终在前台显示的窗口。即使创建悬浮窗的任务退至后台，悬浮窗仍然可以在前台显示。通常悬浮窗位于所有应用窗口之上；开发者可以创建悬浮窗，并对悬浮窗进行属性设置等操作。
@@ -276,6 +287,7 @@ export default class EntryAbility extends UIAbility {
 ### 开发步骤
 
 1. 申请权限。
+
    创建`WindowType.TYPE_FLOAT`即悬浮窗类型的窗口，需要在`module.json5`文件的`requestPermissions`对象中配置`ohos.permission.SYSTEM_FLOAT_WINDOW`权限。更多配置信息详见[module.json5配置文件](../quick-start/module-configuration-file.md)。
 
    > **说明：**
@@ -301,12 +313,15 @@ export default class EntryAbility extends UIAbility {
    ```
 
 2. 创建悬浮窗。
+
    通过`window.createWindow`接口创建悬浮窗类型的窗口。
 
 3. 对悬浮窗进行属性设置等操作。
+
    悬浮窗窗口创建成功后，可以改变其大小、位置等，还可以根据应用需要设置悬浮窗背景色、亮度等属性。
 
 4. 加载显示悬浮窗的具体内容。
+
    通过`setUIContent`和`showWindow`接口加载显示悬浮窗的具体内容。
 
 5. 销毁悬浮窗。
