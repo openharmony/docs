@@ -75,7 +75,7 @@ onBundleAdded(bundleName: string): void
 ```ts
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onBundleAdded(bundleName: string) {
-    console.log("added bundle name: " + bundleName);
+    console.info(`Succeeded in calling onBundleAdded callback, added bundle name : ${bundleName}`);
   }
 };
 ```
@@ -100,8 +100,8 @@ onBundleRemoved(bundleName: string): void
 
 ```ts
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
-  onBundleAdded(bundleName: string) {
-    console.log("removed bundle name: " + bundleName);
+  onBundleRemoved(bundleName: string) {
+    console.info(`Succeeded in calling onBundleRemoved callback, removed bundle name : ${bundleName}`);
   }
 };
 ```
@@ -127,7 +127,7 @@ onAppStart(bundleName: string): void
 ```ts
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAppStart(bundleName: string) {
-    console.log("started bundle name: " + bundleName);
+    console.info(`Succeeded in calling onAppStart callback, started bundle name : ${bundleName}`);
   }
 };
 ```
@@ -153,7 +153,7 @@ onAppStop(bundleName: string): void
 ```ts
 export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbility {
   onAppStop(bundleName: string) {
-    console.log("stopped bundle name: " + bundleName);
+    console.info(`Succeeded in calling onAppStop callback, stopped bundle name : ${bundleName}`);
   }
 };
 ```

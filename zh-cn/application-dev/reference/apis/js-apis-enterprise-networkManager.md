@@ -45,15 +45,16 @@ getAllNetworkInterfaces(admin: Want, callback: AsyncCallback&lt;Array&lt;string&
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-networkManager.getAllNetworkInterfaces(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log(JSON.stringify(result));
+
+networkManager.getAllNetworkInterfaces(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get all network interfaces. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting all network interfaces, result : ${JSON.stringify(result)}`);
 });
 ```
 
@@ -94,13 +95,14 @@ getAllNetworkInterfaces(admin: Want): Promise&lt;Array&lt;string&gt;&gt;
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 networkManager.getAllNetworkInterfaces(wantTemp).then((result) => {
-    console.log(JSON.stringify(result));
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info(`Succeeded in getting all network interfaces, result : ${JSON.stringify(result)}`);
+}).catch((err) => {
+  console.error(`Failed to get all network interfaces. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -137,15 +139,16 @@ getIpAddress(admin: Want, networkInterface: string, callback: AsyncCallback&lt;s
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-networkManager.getIpAddress(wantTemp, "eth0", (error, result) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log(result);
+
+networkManager.getIpAddress(wantTemp, 'eth0', (err, result) => {
+  if (err) {
+    console.error(`Failed to get ip address. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting ip address, result : ${result}`);
 });
 ```
 
@@ -187,13 +190,14 @@ getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-networkManager.getIpAddress(wantTemp, "eth0").then((result) => {
-    console.log(result);
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+
+networkManager.getIpAddress(wantTemp, 'eth0').then((result) => {
+  console.info(`Succeeded in getting ip address, result : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to get ip address. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -230,21 +234,22 @@ getMac(admin: Want, networkInterface: string, callback: AsyncCallback&lt;string&
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-networkManager.getMac(wantTemp, "eth0", (error, result) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log(result);
+
+networkManager.getMac(wantTemp, 'eth0', (err, result) => {
+  if (err) {
+    console.error(`Failed to get mac. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting mac, result : ${result}`);
 });
 ```
 
 ## networkManager.getMac
 
-getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
+getMac(admin: Want, networkInterface: string): Promise\<string>;
 
 指定设备管理员应用根据networkInterface获取设备MAC地址，使用Promise形式返回设备IP地址。
 
@@ -280,13 +285,14 @@ getIpAddress(admin: Want, networkInterface: string): Promise&lt;string&gt;
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-networkManager.getMac(wantTemp, "eth0").then((result) => {
-    console.log(result);
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+
+networkManager.getMac(wantTemp, 'eth0').then((result) => {
+  console.info(`Succeeded in getting mac, result : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to get mac. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -323,15 +329,16 @@ isNetworkInterfaceDisabled(admin: Want, networkInterface: string, callback: Asyn
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-networkManager.isNetworkInterfaceDisabled(wantTemp, "eth0", (error, result) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log("result:" + result);
+
+networkManager.isNetworkInterfaceDisabled(wantTemp, 'eth0', (err, result) => {
+  if (err) {
+    console.error(`Failed to query network interface is disabled or not. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in querying network interface is disabled or not, result : ${result}`);
 });
 ```
 
@@ -373,13 +380,14 @@ isNetworkInterfaceDisabled(admin: Want, networkInterface: string): Promise&lt;bo
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-networkManager.isNetworkInterfaceDisabled(wantTemp, "eth0").then((result) => {
-    console.log("result:" + result);
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+
+networkManager.isNetworkInterfaceDisabled(wantTemp, 'eth0').then((result) => {
+  console.info(`Succeeded in querying network interface is disabled or not, result : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to query network interface is disabled or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -417,15 +425,16 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-networkManager.setNetworkInterfaceDisabled(wantTemp, "eth0", true, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log("setNetworkInterfaceDisabled success!");
+
+networkManager.setNetworkInterfaceDisabled(wantTemp, 'eth0', true, (err) => {
+  if (err) {
+    console.error(`Failed to set network interface disabled. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in setting network interface disabled`);
 });
 ```
 
@@ -468,12 +477,13 @@ setNetworkInterfaceDisabled(admin: Want, networkInterface: string, isDisabled: b
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-networkManager.setNetworkInterfaceDisabled(wantTemp, "eth0", true).then(() => {
-    console.log("setNetworkInterfaceDisabled success!");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+
+networkManager.setNetworkInterfaceDisabled(wantTemp, 'eth0', true).then(() => {
+  console.info(`Succeeded in setting network interface disabled`);
+}).catch((err) => {
+  console.error(`Failed to set network interface disabled. Code: ${err.code}, message: ${err.message}`);
 });
 ```

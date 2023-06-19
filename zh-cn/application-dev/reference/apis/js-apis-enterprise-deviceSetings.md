@@ -44,15 +44,16 @@ getScreenOffTime(admin: Want, callback: AsyncCallback&lt;number&gt;): void
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-deviceSettings.getScreenOffTime(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log(result);
+
+deviceSettings.getScreenOffTime(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get screen off time. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting screen off time, result : ${result}`);
 });
 ```
 
@@ -93,12 +94,13 @@ getScreenOffTime(admin: Want): Promise&lt;number&gt;
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 deviceSettings.getScreenOffTime(wantTemp).then((result) => {
-    console.log(result);
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info(`Succeeded in getting screen off time, result : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to get screen off time. Code: ${err.code}, message: ${err.message}`);
 });
 ```
