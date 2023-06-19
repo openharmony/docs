@@ -1,6 +1,6 @@
 # @ohos.security.cert (证书模块)
 
-crypto framework提供证书相关接口。其中，依赖加解密算法库框架的基础算法能力的部分，详细接口说明可参考[cryptoFramework API参考](js-apis-cryptoFramework.md)。
+证书算法库框架提供证书相关接口。其中，依赖加解密算法库框架的基础算法能力的部分，详细接口说明可参考[cryptoFramework API参考](js-apis-cryptoFramework.md)。
 
 > **说明：**
 > 
@@ -130,16 +130,16 @@ buffer数组的列表。
 
 createX509Cert(inStream : EncodingBlob, callback : AsyncCallback\<X509Cert>) : void
 
-表示创建X509证书对象。
+表示创建X509证书对象，使用Callback回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
 **参数：**
 
-| 参数名   | 类型                          | 必填 | 说明                       |
-| -------- | ----------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob) | 是   | X509证书序列化数据         |
-| callback | AsyncCallback\<X509Cert>      | 是   | 回调函数。表示X509证书对象 |
+| 参数名   | 类型                                  | 必填 | 说明                       |
+| -------- | ------------------------------------- | ---- | -------------------------- |
+| inStream | [EncodingBlob](#encodingblob)         | 是   | X509证书序列化数据         |
+| callback | AsyncCallback\<[X509Cert](#x509cert)> | 是   | 回调函数。表示X509证书对象 |
 
 **错误码：**
 
@@ -172,7 +172,7 @@ cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
 
 createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 
-表示创建X509证书对象。
+表示创建X509证书对象，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -186,7 +186,7 @@ createX509Cert(inStream : EncodingBlob) : Promise\<X509Cert>
 
 | 类型     | 说明             |
 | ------- | ---------------- |
-| Promise\<X509Cert> | 表示X509证书对象 |
+| Promise\<[X509Cert](#x509cert)> | 表示X509证书对象 |
 
 **错误码：**
 
@@ -221,7 +221,7 @@ X509证书类。
 
 verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
-表示对证书验签。
+表示对证书验签，使用Callback回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -272,7 +272,7 @@ cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
 
 verify(key : cryptoFramework.PubKey) : Promise\<void>
 
-表示对证书验签。
+表示对证书验签，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -324,7 +324,7 @@ cryptoCert.createX509Cert(encodingBlob).then(x509Cert => {
 
 getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
-表示获取X509证书序列化数据。
+表示获取X509证书序列化数据，使用Callback回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -374,7 +374,7 @@ cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
 
 getEncoded() : Promise\<EncodingBlob>
 
-表示获取X509证书序列化数据。
+表示获取X509证书序列化数据，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1201,16 +1201,16 @@ cryptoCert.createX509Cert(encodingBlob, function (error, x509Cert) {
 
 createCertExtension(inStream : EncodingBlob, callback : AsyncCallback<CertExtension>) : void
 
-表示创建证书扩展域段的对象。
+表示创建证书扩展域段的对象，使用Callback回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
 **参数**：
 
-| 参数名   | 类型                          | 必填 | 说明                       |
-| -------- | ----------------------------- | ---- | -------------------------- |
-| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书扩展域段序列化数据 |
-| callback | AsyncCallback\<CertExtension> | 是   | 回调函数。表示扩展域段对象 |
+| 参数名   | 类型                                                         | 必填 | 说明                       |
+| -------- | ------------------------------------------------------------ | ---- | -------------------------- |
+| inStream | [EncodingBlob](#encodingblob)                                | 是   | 表示证书扩展域段序列化数据 |
+| callback | AsyncCallback\<[CertExtension](#certextension<sup>10+</sup>)> | 是   | 回调函数。表示扩展域段对象 |
 
 **错误码：**
 
@@ -1243,7 +1243,7 @@ cryptoCert.createCertExtension(encodingBlob, function (error, certExt) {
 
 createCertExtension(inStream : EncodingBlob) : Promise<CertExtension>
 
-表示创建证书扩展域段的对象。
+表示创建证书扩展域段的对象，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1255,9 +1255,9 @@ createCertExtension(inStream : EncodingBlob) : Promise<CertExtension>
 
 **返回值**：
 
-| 类型                    | 说明                 |
-| ----------------------- | -------------------- |
-| Promise\<CertExtension> | 表示证书扩展域段对象 |
+| 类型                                                    | 说明                 |
+| ------------------------------------------------------- | -------------------- |
+| Promise\<[CertExtension](#certextension<sup>10+</sup>)> | 表示证书扩展域段对象 |
 
 **错误码：**
 
@@ -1486,16 +1486,16 @@ cryptoCert.createCertExtension(encodingBlob, function (error, certExt) {
 
 createX509Crl(inStream : EncodingBlob, callback : AsyncCallback\<X509Crl>) : void
 
-表示创建X509证书吊销列表的对象。
+表示创建X509证书吊销列表的对象，使用Callback回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
 **参数**：
 
-| 参数名   | 类型                          | 必填 | 说明                           |
-| -------- | ----------------------------- | ---- | ------------------------------ |
-| inStream | [EncodingBlob](#encodingblob) | 是   | 表示证书吊销列表序列化数据     |
-| callback | AsyncCallback\<X509Crl>       | 是   | 回调函数。表示证书吊销列表对象 |
+| 参数名   | 类型                                | 必填 | 说明                           |
+| -------- | ----------------------------------- | ---- | ------------------------------ |
+| inStream | [EncodingBlob](#encodingblob)       | 是   | 表示证书吊销列表序列化数据     |
+| callback | AsyncCallback\<[X509Crl](#x509crl)> | 是   | 回调函数。表示证书吊销列表对象 |
 
 **错误码：**
 
@@ -1528,7 +1528,7 @@ cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
 
 createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 
-表示创建X509证书吊销列表的对象。
+表示创建X509证书吊销列表的对象，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1540,9 +1540,9 @@ createX509Crl(inStream : EncodingBlob) : Promise\<X509Crl>
 
 **返回值**：
 
-| 类型              | 说明                 |
-| ----------------- | -------------------- |
-| Promise\<X509Crl> | 表示证书吊销列表对象 |
+| 类型                          | 说明                 |
+| ----------------------------- | -------------------- |
+| Promise\<[X509Crl](#x509crl)> | 表示证书吊销列表对象 |
 
 **错误码：**
 
@@ -1661,7 +1661,7 @@ cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
 
 getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
-表示获取X509证书吊销列表的序列化数据。
+表示获取X509证书吊销列表的序列化数据，使用Callback回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1711,7 +1711,7 @@ cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
 
 getEncoded() : Promise\<EncodingBlob>
 
-表示获取X509证书吊销列表的序列化数据。
+表示获取X509证书吊销列表的序列化数据，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1757,7 +1757,7 @@ cryptoCert.createX509Crl(encodingBlob).then(x509Crl => {
 
 verify(key : cryptoFramework.PubKey, callback : AsyncCallback\<void>) : void
 
-表示对X509证书吊销列表进行验签。验签支持RSA算法。
+表示对X509证书吊销列表进行验签，使用Callback回调异步返回结果。验签支持RSA算法。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -1809,7 +1809,7 @@ cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
 
 verify(key : cryptoFramework.PubKey) : Promise\<void>
 
-表示对X509证书吊销列表进行验签。验签支持RSA算法。
+表示对X509证书吊销列表进行验签，使用Promise方式异步返回结果。验签支持RSA算法。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2044,7 +2044,7 @@ getRevokedCert(serialNumber : number) : X509CrlEntry
 
 | 类型                   | 说明                   |
 | ---------------------- | --------------------- |
-| X509CrlEntry | 表示被吊销X509证书对象 |
+| [X509CrlEntry](#x509crlentry) | 表示被吊销X509证书对象 |
 
 **错误码：**
 
@@ -2091,15 +2091,15 @@ getRevokedCertWithCert(cert : X509Cert) : X509CrlEntry
 
 **参数**：
 
-| 参数名 | 类型     | 必填 | 说明         |
-| ------ | -------- | ---- | ------------ |
-| cert   | X509Cert | 是   | 表示证书对象 |
+| 参数名 | 类型                  | 必填 | 说明         |
+| ------ | --------------------- | ---- | ------------ |
+| cert   | [X509Cert](#x509cert) | 是   | 表示证书对象 |
 
 **返回值**:
 
 | 类型         | 说明                  |
 | ------------ | -------------------- |
-| X509CrlEntry | 表示被吊销X509证书对象 |
+| [X509CrlEntry](#509crlentry) | 表示被吊销X509证书对象 |
 
 **错误码：**
 
@@ -2140,15 +2140,15 @@ cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
 
 getRevokedCerts(callback : AsyncCallback<Array\<X509CrlEntry>>) : void
 
-表示获取被吊销X509证书列表。
+表示获取被吊销X509证书列表，使用Callback回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
 **参数**：
 
-| 参数名   | 类型                                | 必填 | 说明                             |
-| -------- | ----------------------------------- | ---- | -------------------------------- |
-| callback | AsyncCallback<Array\<X509CrlEntry>> | 是   | 回调函数。表示被吊销X509证书列表 |
+| 参数名   | 类型                                                 | 必填 | 说明                             |
+| -------- | ---------------------------------------------------- | ---- | -------------------------------- |
+| callback | AsyncCallback<Array\<[X509CrlEntry](#x509crlentry)>> | 是   | 回调函数。表示被吊销X509证书列表 |
 
 **错误码：**
 
@@ -2189,15 +2189,15 @@ cryptoCert.createX509Crl(encodingBlob, function (error, x509Crl) {
 
 getRevokedCerts() : Promise<Array\<X509CrlEntry>>
 
-表示获取被吊销X509证书列表。
+表示获取被吊销X509证书列表，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
 **返回值**:
 
-| 类型                          | 说明                   |
-| ----------------------------- | ---------------------- |
-| Promise<Array\<X509CrlEntry>> | 表示被吊销X509证书列表 |
+| 类型                                           | 说明                   |
+| ---------------------------------------------- | ---------------------- |
+| Promise<Array\<[X509CrlEntry](#x509crlentry)>> | 表示被吊销X509证书列表 |
 
 **错误码：**
 
@@ -2508,7 +2508,7 @@ let validator = cryptoCert.createCertChainValidator("PKIX");
 
 validate(certChain : CertChainData, callback : AsyncCallback\<void>) : void
 
-表示校验X509证书链。
+表示校验X509证书链，使用Callback回调异步返回结果。
 由于端侧系统时间不可信，证书链校验不包含对证书有效时间的校验。如果需要检查证书的时间有效性，可使用X509证书的[checkValidityWithDate](#checkvaliditywithdate)方法进行检查。详见[证书规格](../../security/cert-overview.md#证书规格)
 
 **系统能力：** SystemCapability.Security.Cert
@@ -2563,7 +2563,7 @@ validator.validate(certChainData, function (error, data) {
 
 validate(certChain : CertChainData) : Promise\<void>
 
-表示校验X509证书链。
+表示校验X509证书链，使用Promise方式异步返回结果。
 由于端侧系统时间不可信，证书链校验不包含对证书有效时间的校验。如果需要检查证书的时间有效性，可使用X509证书的[checkValidityWithDate](#checkvaliditywithdate)方法进行检查。详见[证书规格](../../security/cert-overview.md#证书规格)
 
 **系统能力：** SystemCapability.Security.Cert
@@ -2648,7 +2648,7 @@ let algorithm = validator.algorithm;
 
 getEncoded(callback : AsyncCallback\<EncodingBlob>) : void
 
-表示获取被吊销证书的序列化数据。
+表示获取被吊销证书的序列化数据，使用Callback回调异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
@@ -2686,7 +2686,7 @@ x509CrlEntry.getEncoded(function (error, data) {
 
 getEncoded() : Promise\<EncodingBlob>
 
-表示获取被吊销证书的序列化数据。
+表示获取被吊销证书的序列化数据，使用Promise方式异步返回结果。
 
 **系统能力：** SystemCapability.Security.Cert
 
