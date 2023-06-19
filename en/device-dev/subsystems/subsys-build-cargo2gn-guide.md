@@ -14,7 +14,7 @@ When used in OpenHarmony, **Cargo.toml** needs to be converted into **BUILD.gn**
     
 2. Create the configuration file **cargo2gn.json**.
 
-    ```
+    ```json
     {
         "copy-out": true,
         "run": true,
@@ -26,7 +26,7 @@ When used in OpenHarmony, **Cargo.toml** needs to be converted into **BUILD.gn**
 3. Run the following command to perform the conversion:
    
    ```
-   python /mnt/xxx/openharmony/build/scripts/cargo2gn.py --config cargo2gn.json
+   python3 /mnt/xxx/openharmony/build/scripts/cargo2gn.py --config cargo2gn.json
    ```
    
    The conversion result is as follows:
@@ -85,7 +85,7 @@ When used in OpenHarmony, **Cargo.toml** needs to be converted into **BUILD.gn**
    ```
 2. Add all the rust libraries to be converted to [workspace] in **Cargo.toml** in the **rust** directory.
 
-    ```
+    ```toml
     [workspace]
     members = [
         "aho-corasick",
