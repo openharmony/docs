@@ -1,7 +1,7 @@
 # Switching of module
 
 
-When switching an application from the FA model to the stage model, you must migrate the configurations under the **module** tag in the **config.json** file to the **module** tag in the **module.json5** file.
+When switching an application from the FA model to the stage model, migrate the configurations under **module** in the **config.json** file to **module** in the **module.json5** file.
 
 **Table 1** module comparison
 
@@ -60,7 +60,7 @@ When switching an application from the FA model to the stage model, you must mig
 | deviceCapability | Device capabilities required to run the ability.| / | This configuration is not supported in the stage model.|
 | metaData | Metadata of the ability.| metadata | For details, see Table 2.|
 | type | Ability type.| / | This configuration is not supported in the stage model.|
-| grantPermission | Whether permissions can be granted for any data in the ability.| / | The stage model does not support such a configuration under **abilities**.|
+| grantPermission | Whether permissions can be granted to any data in the ability.| / | The stage model does not support such a configuration under **abilities**.|
 | readPermission | Permission required for reading data in the ability. This field applies only to the ability using the Data template.| / | In the stage model, this configuration is available under **extensionAbilities**, but not **abilities**.|
 | writePermission | Permission required for writing data to the ability.| / | In the stage model, this configuration is available under **extensionAbilities**, but not **abilities**.|
 | configChanges | System configurations that the ability concerns.| / | This configuration is not supported in the stage model.|

@@ -27,12 +27,14 @@ Instead of manual modification, OpenHarmony adopts the following processing:
 
 ## Constraints
 
-1. When you switch a DataAbility to a DataShareExtensionAbility, only the URI prefix can be modified.![FAvsStage-uri](figures/FAvsStage-uri.png)
+1. When you switch a DataAbility to a DataShareExtensionAbility, only the URI prefix can be modified.
 
-2. The **DataShareHelper** class implements only certain APIs of **DataAbilityHelper**. For details about the APIs, see the table below.
+   ![FAvsStage-uri](figures/FAvsStage-uri.png)
 
-     **Table 1** APIs invoked when the FA model accesses a DataShareExtensionAbility of the stage model
-   
+3. The **DataShareHelper** class implements only certain APIs of **DataAbilityHelper**. For details about the APIs, see the table below.
+
+   **Table 1** API compatibility when the FA model accesses a DataShareExtensionAbility of the stage model
+
    | API| Provided by DataAbilityHelper| Provided by DataShareHelper| Compatible|
    | -------- | -------- | -------- | -------- |
    | on | Yes| Yes| Yes|

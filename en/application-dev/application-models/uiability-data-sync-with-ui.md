@@ -1,10 +1,10 @@
-# Data Synchronization Between UIAbility and UI
+# Data Synchronization Between UIAbility and UI Page
 
 
-Based on the OpenHarmony application model, you can use any of the following ways to implement data synchronization between the UIAbility component and UI:
+Based on the OpenHarmony application model, you can use any of the following ways to implement data synchronization between UIAbility components and UI pages:
 
-- [Using EventHub for Data Synchronization](#using-eventhub-for-data-synchronization): The **EventHub** object is provided by the base class **Context**. Events are transferred using the publish/subscribe (pub/sub) pattern. Specifically, after subscribing to an event, your application will receive the event and process it accordingly when the event is published.
-- [Using globalThis for Data Synchronization](#using-globalthis-for-data-synchronization): **globalThis** is a global object inside the ArkTS engine instance and can be accessed by components such as UIAbility, ExtensionAbility, and Page.
+- [Using EventHub for Data Synchronization](#using-eventhub-for-data-synchronization): The **EventHub** object is provided by the base class **Context**. It allows events to be transferred using the publish/subscribe (pub/sub) pattern. Specifically, after subscribing to an event, your application will receive the event and process it accordingly when the event is published.
+- [Using globalThis for Data Synchronization](#using-globalthis-for-data-synchronization): **globalThis** is a global object inside the ArkTS engine instance and can be accessed by components such as UIAbility, ExtensionAbility, and UI page.
 - [Using AppStorage or LocalStorage for Data Synchronization](#using-appstorage-or-localstorage-for-data-synchronization): ArkUI provides two application-level state management solutions: AppStorage and LocalStorage, which implement application- and UIAbility-level data synchronization, respectively.
 
 
@@ -12,7 +12,7 @@ Based on the OpenHarmony application model, you can use any of the following way
 
 [EventHub](../reference/apis/js-apis-inner-application-eventHub.md) provides an event mechanism for the UIAbility or ExtensionAbility component so that they can subscribe to, unsubscribe from, and trigger events.
 
-Before using the APIs provided by **EventHub**, you must obtain an **EventHub** object, which is provided by the [base class Context](application-context-stage.md). This section uses EventHub as an example to describe how to implement data synchronization between the UIAbility component and the UI.
+Before using the APIs provided by **EventHub**, you must obtain an **EventHub** object, which is provided by the [base class Context](application-context-stage.md). 
 
 1. Call [eventHub.on()](../reference/apis/js-apis-inner-application-eventHub.md#eventhubon) in the UIAbility in either of the following ways to register a custom event **event1**.
 
@@ -40,7 +40,7 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
    }
    ```
 
-2. Call [eventHub.emit()](../reference/apis/js-apis-inner-application-eventHub.md#eventhubemit) on the UI to trigger the event, and pass the parameters as required.
+2. Call [eventHub.emit()](../reference/apis/js-apis-inner-application-eventHub.md#eventhubemit) on the UI page to trigger the event, and pass in the parameters as required.
 
    ```ts
    import common from '@ohos.app.ability.common';
@@ -60,14 +60,14 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
        // You can design the parameters based on your service requirements.
      }
 
-     // Page display.
+     // UI page display.
      build() {
        ...
      }
    }
    ```
 
-3. Obtain the event trigger result from the subscription callback of UIAbility. The run log result is as follows:
+3. Obtain the event trigger result from the subscription callback of the UIAbility. The run log result is as follows:
 
    ```ts
    []
@@ -77,7 +77,7 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
    [2,'test']
    ```
 
-4. After **event1** is used, you can call [eventHub.off()](../reference/apis/js-apis-inner-application-eventHub.md#eventhuboff) to unsubscribe from the event.
+4. When **event1** is not needed, call [eventHub.off()](../reference/apis/js-apis-inner-application-eventHub.md#eventhuboff) to unsubscribe from the event.
 
    ```ts
    // context is the AbilityContext of the UIAbility instance.
@@ -87,7 +87,7 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 
 ## Using globalThis for Data Synchronization
 
-**globalThis** is a global object inside the [ArkTS engine instance](thread-model-stage.md) and can be used by UIAbility, ExtensionAbility, and Page inside the engine. Therefore, you can use **globalThis** for data synchronization.
+**globalThis** is a global object inside the [ArkTS engine instance](thread-model-stage.md) and can be used by UIAbility, ExtensionAbility, and UI page inside the engine. Therefore, you can use **globalThis** for data synchronization.
 
 **Figure 1** Using globalThis for data synchronization
 ![globalThis1](figures/globalThis1.png)
@@ -95,16 +95,16 @@ Before using the APIs provided by **EventHub**, you must obtain an **EventHub** 
 
 The following describes how to use **globalThis** in three scenarios. Precautions are provided as well.
 
-- [Using globalThis Between UIAbility and Page](#using-globalthis-between-uiability-and-page)
+- [Using globalThis Between UIAbility and UI Page](#using-globalthis-between-uiability-and-ui-page)
 - [Using globalThis Between UIAbility and UIAbility](#using-globalthis-between-uiability-and-uiability)
-- [Use globalThis Between UIAbility and ExtensionAbility](#using-globalthis-between-uiability-and-extensionability)
+- [Using globalThis Between UIAbility and ExtensionAbility](#using-globalthis-between-uiability-and-extensionability)
 - [Precautions for Using globalThis](#precautions-for-using-globalthis)
 
-### Using globalThis Between UIAbility and Page
+### Using globalThis Between UIAbility and UI Page
 
-By binding attributes or methods to **globalThis**, you can implement data synchronization between the UIAbility component and UI. For example, if you bind the **want** parameter in the UIAbility component, you can use the **want** parameter information on the UI corresponding to the UIAbility component.
+To implement data synchronization between the UIAbility component and UI page, you can bind attributes or methods to **globalThis**. For example, if you bind the **want** parameter in the UIAbility component, you can use the **want** parameter information on the UI page corresponding to the UIAbility component.
 
-1. When [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called to start a UIAbility instance, the [onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate) callback is invoked, and the **want** parameter can be passed in the callback. Therefore, you can bind the **want** parameter to **globalThis**.
+1. When [startAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartability) is called to start a UIAbility instance, the [onCreate()](../reference/apis/js-apis-app-ability-uiAbility.md#uiabilityoncreate) callback is invoked, and the **want** parameter can be passed in the callback. Bind the **want** parameter to **globalThis**.
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
@@ -119,7 +119,7 @@ By binding attributes or methods to **globalThis**, you can implement data synch
    }
    ```
 
-2. Use **globalThis** on the UI to obtain the **want** parameter information.
+2. Use **globalThis** on the UI page to obtain the **want** parameter information.
 
    ```ts
    let entryAbilityWant;
@@ -131,7 +131,7 @@ By binding attributes or methods to **globalThis**, you can implement data synch
        entryAbilityWant = globalThis.entryAbilityWant;
      }
    
-     // Page display.
+     // UI page display.
      build() {
        ...
      }
@@ -143,7 +143,7 @@ By binding attributes or methods to **globalThis**, you can implement data synch
 
 To implement data synchronization between two UIAbility components in the same application, you can bind data to **globalThis**. For example, you can save data in **globalThis** in UIAbilityA and obtain the data from UIAbilityB.
 
-1. UIAbilityA stores a string and binds it to globalThis.
+1. Save data in UIAbilityA and bind it to **globalThis**.
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility'
@@ -175,7 +175,7 @@ To implement data synchronization between two UIAbility components in the same a
 
 To implement data synchronization between the UIAbility and ExtensionAbility components in the same application, you can bind data to **globalThis**. For example, you can save data in **globalThis** in UIAbilityA and obtain the data from ServiceExtensionAbility.
 
-1. UIAbilityA stores a string and binds it to globalThis.
+1. Save data in UIAbilityA and bind it to **globalThis**.
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility'
@@ -206,18 +206,18 @@ To implement data synchronization between the UIAbility and ExtensionAbility com
 
 ### Precautions for Using globalThis
 
-**Figure 2** Precautions for globalThis 
+**Figure 2** Precautions for using globalThis 
 ![globalThis2](figures/globalThis2.png)
 
 - In the stage model, all the UIAbility components in a process share one ArkTS engine instance. When using **globalThis**, do not store objects with the same name. For example, if UIAbilityA and UIAbilityB use **globalThis** to store two objects with the same name, the object stored earlier will be overwritten.
 
 - This problem does not occur in the FA model because each UIAbility component uses an independent engine.
 
-- The lifecycle of an object bound to **globalThis** is the same as that of the ArkTS engine instance. You are advised to assign the value **null** after using the object to minimize memory usage.
+- The lifecycle of an object bound to **globalThis** is the same as that of the ArkTS engine instance. To minimize memory usage, you are advised to assign the value **null** to the object when it is not in use.
 
 The following provides an example to describe the object overwritten problem in the stage model.
 
-1. In the UIAbilityA file, [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md) is stored in **globalThis**.
+1. In the UIAbilityA file, use **globalThis** to store [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md).
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility'
@@ -230,7 +230,7 @@ The following provides an example to describe the object overwritten problem in 
    }
    ```
 
-2. Obtain and use [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md) on the page of UIAbilityA. After the UIAbilityA instance is used, switch it to the background.
+2. Obtain and use [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md) on the UI page of UIAbilityA. When the UIAbilityA instance is not in use, switch it to the background.
 
    ```ts
    @Entry
@@ -239,14 +239,14 @@ The following provides an example to describe the object overwritten problem in 
      onPageShow() {
        let ctx = globalThis.context; // Obtain the context from globalThis and use it.
      }
-     // Page display.
+     // UI page display.
      build() {
        ...
      }
    }
    ```
 
-3. In the UIAbilityB file, [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md) is stored in **globalThis** and has the same name as that in the UIAbilityA file.
+3. In the UIAbilityB file, use **globalThis** to store [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md), which is named the same as that in the UIAbilityA file.
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility'
@@ -260,7 +260,7 @@ The following provides an example to describe the object overwritten problem in 
    }
    ```
 
-4. Obtain and use [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md) on the page of UIAbilityB. The obtained **globalThis.context** is the value of [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md) in UIAbilityB.
+4. Obtain [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md) from the UI page of UIAbilityB and use it. The obtained **globalThis.context** is the value of [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md) in UIAbilityB.
 
    ```ts
    @Entry
@@ -269,7 +269,7 @@ The following provides an example to describe the object overwritten problem in 
      onPageShow() {
        let ctx = globalThis.context; // Obtain the context from globalThis and use it.
      }
-     // Page display.
+     // UI page display.
      build() {
        ...
      }
@@ -289,7 +289,7 @@ The following provides an example to describe the object overwritten problem in 
    }
    ```
 
-6. When the page of UIAbilityA is displayed, the obtained **globalThis.context** is [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md) of UIAbilityB instead of UIAbilityA. An error occurs.
+6. When the UI page of UIAbilityA is displayed, the obtained **globalThis.context** is the value of [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md) of UIAbilityB instead of UIAbilityA. An error occurs.
 
    ```ts
    @Entry
@@ -298,7 +298,7 @@ The following provides an example to describe the object overwritten problem in 
      onPageShow() {
        let ctx = globalThis.context; // The context in globalThis is the context of UIAbilityB.
      }
-     // Page display.
+     // UI page display.
      build() {
        ...
      }
@@ -307,4 +307,4 @@ The following provides an example to describe the object overwritten problem in 
 
 ## Using AppStorage or LocalStorage for Data Synchronization
 
-ArkUI provides AppStorage and LocalStorage to implement application- and UIAbility-level data synchronization, respectively. Both solutions can be used to manage the application state, enhance application performance, and improve user experience. The AppStorage is a global state manager and is applicable when multiple UIAbilities share the same state data. The LocalStorage is a local state manager that manages state data used inside a single UIAbility. They help you control the application state more flexibly and improve the maintainability and scalability of applications. For details, see [State Management of Application-Level Variables](../quick-start/arkts-application-state-management-overview.md).
+ArkUI provides AppStorage and LocalStorage to implement application- and UIAbility-level data synchronization, respectively. Both solutions can be used to manage the application state, enhance application performance, and improve user experience. The AppStorage is a global state manager that manages state data shared among multiple UIAbilities. The LocalStorage is a local state manager that manages state data used inside a single UIAbility. They help you control the application state more flexibly and improve the maintainability and scalability of applications. For details, see [State Management of Application-Level Variables](../quick-start/arkts-application-state-management-overview.md).

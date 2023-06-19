@@ -1,7 +1,7 @@
 # LifecycleData Switching
 
 
-  | API in the FA Model| Corresponding d.ts File in the Stage Model| Corresponding API in the Stage Model| 
+  | API in the FA Model| Corresponding .d.ts File in the Stage Model| Corresponding API in the Stage Model| 
 | -------- | -------- | -------- |
 | update?(uri: string, valueBucket: rdb.ValuesBucket, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback&lt;number&gt;): void; | \@ohos.application.DataShareExtensionAbility.d.ts | [update?(uri: string, predicates: dataSharePredicates.DataSharePredicates, valueBucket: ValuesBucket, callback: AsyncCallback&lt;number&gt;): void;](../reference/apis/js-apis-application-dataShareExtensionAbility.md#update) |
 | query?(uri: string, columns: Array&lt;string&gt;, predicates: dataAbility.DataAbilityPredicates, callback: AsyncCallback&lt;ResultSet&gt;): void; | \@ohos.application.DataShareExtensionAbility.d.ts | [query?(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns: Array&lt;string&gt;, callback: AsyncCallback&lt;Object&gt;): void;](../reference/apis/js-apis-application-dataShareExtensionAbility.md#query) |

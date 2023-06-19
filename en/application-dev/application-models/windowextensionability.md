@@ -11,7 +11,7 @@ the context is [WindowExtensionContext](../reference/apis/js-apis-inner-applicat
 
 > **NOTE**
 >
-> **WindowExtensionAbility** is a system API. To embed a third-party application in another application and display it over the application, switch to the full SDK by following the instructions provided in [Guide to Switching to Full SDK](../faqs/full-sdk-switch-guide.md).
+> **WindowExtensionAbility** is a system API. To use it, switch to the full SDK by following the instructions provided in [Guide to Switching to Full SDK](../faqs/full-sdk-switch-guide.md).
 >
 
 
@@ -19,11 +19,11 @@ the context is [WindowExtensionContext](../reference/apis/js-apis-inner-applicat
 
 The **WindowExtensionAbility** class provides **onConnect()**, **onDisconnect()**, and **onWindowReady()** lifecycle callbacks, which can be overridden.
 
-- The **onWindowReady()** callback is invoked when a window is created for the ability.
+- The **onWindowReady()** callback is invoked when a window is created for the UIAbility.
 
-- The **onConnect()** callback is invoked when the AbilityComponent corresponding to the window connects to the ability.
+- The **onConnect()** callback is invoked when the AbilityComponent corresponding to the window connects to the UIAbility.
 
-- The **onDisconnect()** callback is invoked when the AbilityComponent disconnects from the ability.
+- The **onDisconnect()** callback is invoked when the AbilityComponent disconnects from the UIAbility.
 
 
 **How to Develop**

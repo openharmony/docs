@@ -8,14 +8,14 @@
   - Stage Mode Application Components
     - [Application- or Component-Level Configuration](application-component-configuration-stage.md)
     - UIAbility Component
-      - [UIAbility Component Overview](uiability-overview.md)
-      - [UIAbility Component Lifecycle](uiability-lifecycle.md)
-      - [UIAbility Component Launch Type](uiability-launch-type.md)
-      - [UIAbility Component Usage](uiability-usage.md)
-      - [Data Synchronization Between UIAbility and UI](uiability-data-sync-with-ui.md)
+      - [UIAbility Overview](uiability-overview.md)
+      - [UIAbility Lifecycle](uiability-lifecycle.md)
+      - [UIAbility Launch Type](uiability-launch-type.md)
+      - [UIAbility Usage](uiability-usage.md)
+      - [Data Synchronization Between UIAbility and UI Page](uiability-data-sync-with-ui.md)
       - [Interaction Between Intra-Device UIAbility Components](uiability-intra-device-interaction.md)
     - ExtensionAbility Component
-      - [ExtensionAbility Component Overview](extensionability-overview.md)
+      - [ExtensionAbility Overview](extensionability-overview.md)
       - [ServiceExtensionAbility](serviceextensionability.md)
       - [AccessibilityExtensionAbility](accessibilityextensionability.md)
       - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
@@ -89,8 +89,8 @@
   - FA Mode Application Components
     - [Application- or Component-Level Configuration](application-component-configuration-fa.md)
     - PageAbility Component Development
-      - [PageAbility Component Overview](pageability-overview.md)
-      - [PageAbility Component Configuration](pageability-configuration.md)
+      - [PageAbility Overview](pageability-overview.md)
+      - [PageAbility Configuration](pageability-configuration.md)
       - [PageAbility Lifecycle](pageability-lifecycle.md)
       - [PageAbility Launch Type](pageability-launch-type.md)
       - [Creating a PageAbility](create-pageability.md)
@@ -102,15 +102,15 @@
       - [Requesting Permissions](request-permissions.md)
       - [Redirection Rules](redirection-rules.md)
     - ServiceAbility Component Development
-      - [ServiceAbility Component Overview](serviceability-overview.md)
-      - [ServiceAbility Component Configuration](serviceability-configuration.md)
+      - [ServiceAbility Overview](serviceability-overview.md)
+      - [ServiceAbility Configuration](serviceability-configuration.md)
       - [ServiceAbility Lifecycle](serviceability-lifecycle.md)
       - [Creating a ServiceAbility](create-serviceability.md)
       - [Starting a ServiceAbility](start-serviceability.md)
       - [Connecting to a ServiceAbility](connect-serviceability.md)
     - DataAbility Component Development
-      - [DataAbility Component Overview](dataability-overview.md)
-      - [DataAbility Component Configuration](dataability-configuration.md)
+      - [DataAbility Overview](dataability-overview.md)
+      - [DataAbility Configuration](dataability-configuration.md)
       - [DataAbility Lifecycle](dataability-lifecycle.md)
       - [Creating a DataAbility](create-dataability.md)
       - [Starting a DataAbility](start-dataability.md)
