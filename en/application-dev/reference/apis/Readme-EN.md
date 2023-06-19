@@ -250,6 +250,7 @@
   - [@ohos.data.distributedKVStore (Distributed KV Store)](js-apis-distributedKVStore.md) 
   - [@ohos.data.preferences (User Preferences)](js-apis-data-preferences.md)
   - [@ohos.data.relationalStore (RDB Store)](js-apis-data-relationalStore.md)
+  - [@ohos.data.UDMF (Unfied Data Management Framework)](js-apis-data-udmf.md)
   - [@ohos.data.ValuesBucket (Value Bucket)](js-apis-data-valuesBucket.md)
 
 - File Management
