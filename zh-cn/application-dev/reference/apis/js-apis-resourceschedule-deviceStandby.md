@@ -3,14 +3,16 @@
 
 >  **说明**:
 >   
-> - 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。<br>
+> 本模块首批接口从API version 10开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。<br>
 
 ## 导入模块
+
 ```js
 import deviceStandby from '@ohos.resourceschedule.deviceStandby';
 ```
 
 ## deviceStandby.isDeviceInStandby
+
 isDeviceInStandby(callback: AsyncCallback&lt;boolean&gt;): void;
 
 当前设备是否进入待机低功耗续航模式，使用Callback异步回调。
@@ -38,20 +40,22 @@ isDeviceInStandby(callback: AsyncCallback&lt;boolean&gt;): void;
 | 18700001 | Caller information verification failed. |
 
 **示例**：
-
-	try{
-    	deviceStandby.isDeviceInStandby((err, res) => {
-        	if (err) {
-            	console.log('DEVICE_STANDBY isDeviceInStandby callback failed. code is: ' + err.code + ',message is: ' + err.message);
-        	} else {
-           	 console.log('DEVICE_STANDBY isDeviceInStandby callback succeeded, result: ' + JSON.stringify(res));
-        	}
-   	 	});
-	} catch(error) {
-    	console.log('DEVICE_STANDBY isDeviceInStandby throw error, code is: ' + error.code + ',message is: ' + error.message);
-	}
+```js
+try{
+deviceStandby.isDeviceInStandby((err, res) => {
+  if (err) {
+    console.log('DEVICE_STANDBY isDeviceInStandby callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('DEVICE_STANDBY isDeviceInStandby callback succeeded, result: ' + JSON.stringify(res));
+  }
+  });
+} catch(error) {
+console.log('DEVICE_STANDBY isDeviceInStandby throw error, code is: ' + error.code + ',message is: ' + error.message);
+}
+```
 
 ## deviceStandby.isDeviceInStandby
+
 isDeviceInStandby(): Promise&lt;boolean&gt;
 
 当前设备是否进入待机低功耗续航模式，使用Promise异步回调。
@@ -64,7 +68,7 @@ isDeviceInStandby(): Promise&lt;boolean&gt;
 
 | 类型                    | 说明                                       |
 | --------------------- | ---------------------------------------- |
-| Promise&lt;boolean&gt; | 指定的Promise回调方法。返回是否进入待机低功耗续航模式。|
+| Promise&lt;boolean&gt; | 指定的Promise回调方法，返回是否进入待机低功耗续航模式。|
 
 **错误码**：
 
@@ -79,18 +83,20 @@ isDeviceInStandby(): Promise&lt;boolean&gt;
 | 18700001 | Caller information verification failed. |
 
 **示例**：
-
-	try{
-    	deviceStandby.isDeviceInStandby().then( res => {
-        	console.log('DEVICE_STANDBY isDeviceInStandby promise succeeded, result: ' + JSON.stringify(res));
-    	}).catch( err => {
-        	console.log('DEVICE_STANDBY isDeviceInStandby promise failed. code is: ' + err.code + ',message is: ' + err.message);
-   	    });
-	} catch (error) {
-    	console.log('DEVICE_STANDBY isDeviceInStandby throw error, code is: ' + error.code + ',message is: ' + error.message);
-	}
+```js
+try{
+deviceStandby.isDeviceInStandby().then( res => {
+  console.log('DEVICE_STANDBY isDeviceInStandby promise succeeded, result: ' + JSON.stringify(res));
+}).catch( err => {
+  console.log('DEVICE_STANDBY isDeviceInStandby promise failed. code is: ' + err.code + ',message is: ' + err.message);
+  });
+} catch (error) {
+console.log('DEVICE_STANDBY isDeviceInStandby throw error, code is: ' + error.code + ',message is: ' + error.message);
+}
+```
 
 ## deviceStandby.getExemptedApps
+
 getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;ExemptedAppInfo&gt;>): void;
 
 获取进入待机模式的应用名单，使用Callback异步回调。
@@ -105,8 +111,8 @@ getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;Exempted
 
 | 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
-| [ResourceType](#resourcetype)|number | 是    | 资源类型 |
-| callback | AsyncCallback<Array&lt;[ExemptedAppInfo](#exemptedappinfo)&gt;> | 是    |豁免应用信息 |
+| [ResourceTypes](#resourcetype)|number | 是    | 资源类型。 |
+| callback | AsyncCallback<Array&lt;[ExemptedAppInfo](#exemptedappinfo)&gt;> | 是    |豁免应用信息 。|
 
 **错误码**：
 
@@ -121,23 +127,25 @@ getExemptedApps(resourceTypes: number, callback: AsyncCallback<Array&lt;Exempted
 | 18700001 | Caller information verification failed. |
 
 **示例**：
-
-	try{
-    	deviceStandby.getExemptedApps(resourceTypes, (err, res) => {
-       	 	if (err) {
-           	 	console.log('DEVICE_STANDBY getExemptedApps callback failed. code is: ' + err.code + ',message is: ' + err.message);
-        	} else {
-            	console.log('DEVICE_STANDBY getExemptedApps callback success.');
-        		for (let i = 0; i < res.length; i++) {
-            		console.log('DEVICE_STANDBY getExemptedApps callback result ' + JSON.stringify(res[i]));
-        		}
-        	}
-    	});
-	} catch (error) {
-    	console.log('DEVICE_STANDBY getExemptedApps throw error, code is: ' + error.code + ',message is: ' + error.message);
-	}
+```js
+try{
+deviceStandby.getExemptedApps(resourceTypes, (err, res) => {
+  if (err) {
+    console.log('DEVICE_STANDBY getExemptedApps callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('DEVICE_STANDBY getExemptedApps callback success.');
+    for (let i = 0; i < res.length; i++) {
+      console.log('DEVICE_STANDBY getExemptedApps callback result ' + JSON.stringify(res[i]));
+    }
+  }
+});
+} catch (error) {
+console.log('DEVICE_STANDBY getExemptedApps throw error, code is: ' + error.code + ',message is: ' + error.message);
+}
+```
 
 ## deviceStandby.getExemptedApps
+
 getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
 
 获取进入待机模式的应用名单，使用Promise异步回调。
@@ -152,13 +160,13 @@ getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
 
 | 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
-| [ResourceType](#resourcetype)|number | 是    |资源类型|
+| [ResourceTypes](#resourcetype)|number | 是    |资源类型。|
 
 **返回值**：
 
 | 类型                    | 说明                                       |
 | --------------------- | ---------------------------------------- |
-| Promise<Array&lt;[ExemptedAppInfo](#exemptedappinfo)&gt;> | 豁免应用信息 |
+| Promise<Array&lt;[ExemptedAppInfo](#exemptedappinfo)&gt;> | 豁免应用信息。 |
 
 **错误码**：
 
@@ -176,21 +184,23 @@ getExemptedApps(resourceTypes: number): Promise<Array&lt;ExemptedAppInfo&gt;>;
 | 18700001 | Caller information verification failed. |
 
 **示例**：
-
-	try{
-    	deviceStandby.getExemptedApps(resourceTypes).then( res => {
-        	console.log('DEVICE_STANDBY getExemptedApps promise success.');
-        	for (let i = 0; i < res.length; i++) {
-            	console.log('DEVICE_STANDBY getExemptedApps promise result ' + JSON.stringify(res[i]));
-        	}
-    	}).catch( err => {
-        	console.log('DEVICE_STANDBY getExemptedApps promise failed. code is: ' + err.code + ',message is: ' + err.message);
-    	});
-	} catch (error) {
-    	console.log('DEVICE_STANDBY getExemptedApps throw error, code is: ' + error.code + ',message is: ' + error.message);
-	}
+```js
+try{
+deviceStandby.getExemptedApps(resourceTypes).then( res => {
+  console.log('DEVICE_STANDBY getExemptedApps promise success.');
+  for (let i = 0; i < res.length; i++) {
+    console.log('DEVICE_STANDBY getExemptedApps promise result ' + JSON.stringify(res[i]));
+  }
+}).catch( err => {
+  console.log('DEVICE_STANDBY getExemptedApps promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+} catch (error) {
+console.log('DEVICE_STANDBY getExemptedApps throw error, code is: ' + error.code + ',message is: ' + error.message);
+}
+```
 
 ## deviceStandby.requestExemptionResource
+
 requestExemptionResource(request: ResourceRequest): void;
 
 应用订阅申请豁免，使应用临时不进入待机管控。
@@ -205,7 +215,7 @@ requestExemptionResource(request: ResourceRequest): void;
 
 | 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
-| request |[ResourceRequest](#resourcerequest)| 是    | 资源请求 |
+| request |[ResourceRequest](#resourcerequest)| 是    | 资源请求。 |
 
 **错误码**：
 
@@ -220,39 +230,41 @@ requestExemptionResource(request: ResourceRequest): void;
 | 18700001 | Caller information verification failed. |
 
 **示例**：
+```js
+let resRequest = {
+  resourceTypes: 1,
+  uid:10003,
+  name:"com.example.app",
+  duration:10,
+  reason:"apply",
+};
+// 异步方法promise方式
+try{
+deviceStandby.requestExemptionResource(resRequest).then( () => {
+  console.log('DEVICE_STANDBY requestExemptionResource promise succeeded.');
+}).catch( err => {
+  console.log('DEVICE_STANDBY requestExemptionResource promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+} catch (error) {
+console.log('DEVICE_STANDBY requestExemptionResource throw error, code is: ' + error.code + ',message is: ' + error.message);
+}
 
-	let resRequest = {
-		resourceTypes: 1,
-		uid:10003,
-		name:"com.example.app",
-		duration:10,
-		reason:"apply",
-	};
-	// 异步方法promise方式
-	try{
-    	deviceStandby.requestExemptionResource(resRequest).then( () => {
-        	console.log('DEVICE_STANDBY requestExemptionResource promise succeeded.');
-    	}).catch( err => {
-        	console.log('DEVICE_STANDBY requestExemptionResource promise failed. code is: ' + err.code + ',message is: ' + err.message);
-    	});
-	} catch (error) {
-    	console.log('DEVICE_STANDBY requestExemptionResource throw error, code is: ' + error.code + ',message is: ' + error.message);
-	}
-
-	// 异步方法callback方式
-	try{
-    	deviceStandby.requestExemptionResource(resRequest, (err) => {
-       	 	if (err) {
-           	 	console.log('DEVICE_STANDBY requestExemptionResource callback failed. code is: ' + err.code + ',message is: ' + err.message);
-        	} else {
-            	console.log('DEVICE_STANDBY requestExemptionResource callback succeeded.');
-        	}
-    	});
-	} catch (error) {
-    	console.log('DEVICE_STANDBY requestExemptionResource throw error, code is: ' + error.code + ',message is: ' + error.message);
-	}
+// 异步方法callback方式
+try{
+deviceStandby.requestExemptionResource(resRequest, (err) => {
+   if (err) {
+      console.log('DEVICE_STANDBY requestExemptionResource callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+      console.log('DEVICE_STANDBY requestExemptionResource callback succeeded.');
+  }
+});
+} catch (error) {
+console.log('DEVICE_STANDBY requestExemptionResource throw error, code is: ' + error.code + ',message is: ' + error.message);
+}
+```
 
 ## deviceStandby.releaseExemptionResource
+
 releaseExemptionResource(request: ResourceRequest): void;
 
 取消应用订阅申请豁免。
@@ -267,7 +279,7 @@ releaseExemptionResource(request: ResourceRequest): void;
 
 | 参数名      | 类型                   | 必填   | 说明                             |
 | -------- | -------------------- | ---- | ------------------------------ |
-| request |[ResourceRequest](#resourcerequest)| 是    | 资源请求 |
+| request |[ResourceRequest](#resourcerequest)| 是    | 资源请求 。|
 
 **错误码**：
 
@@ -282,44 +294,45 @@ releaseExemptionResource(request: ResourceRequest): void;
 | 18700001 | Caller information verification failed. |
 
 **示例**：
+```js
+let resRequest = {
+  resourceTypes: 1,
+  uid:10003,
+  name:"com.demo.app",
+  duration:10,
+  reason:"unapply",
+};
+// 异步方法promise方式
+try{
+deviceStandby.releaseExemptionResource(resRequest).then( () => {
+  console.log('DEVICE_STANDBY releaseExemptionResource promise succeeded.');
+}).catch( err => {
+  console.log('DEVICE_STANDBY releaseExemptionResource promise failed. code is: ' + err.code + ',message is: ' + err.message);
+});
+} catch (error) {
+console.log('DEVICE_STANDBY releaseExemptionResource throw error, code is: ' + error.code + ',message is: ' + error.message);
+}
 
-	let resRequest = {
-		resourceTypes: 1,
-		uid:10003,
-		name:"com.demo.app",
-		duration:10,
-		reason:"unapply",
-	};
-	// 异步方法promise方式
-	try{
-    	deviceStandby.releaseExemptionResource(resRequest).then( () => {
-        	console.log('DEVICE_STANDBY releaseExemptionResource promise succeeded.');
-    	}).catch( err => {
-        	console.log('DEVICE_STANDBY releaseExemptionResource promise failed. code is: ' + err.code + ',message is: ' + err.message);
-    	});
-	} catch (error) {
-    	console.log('DEVICE_STANDBY releaseExemptionResource throw error, code is: ' + error.code + ',message is: ' + error.message);
-	}
-
-	// 异步方法callback方式
-	try{
-    	deviceStandby.releaseExemptionResource(resRequest, (err) => {
-       	 	if (err) {
-           	 	console.log('DEVICE_STANDBY releaseExemptionResource callback failed. code is: ' + err.code + ',message is: ' + err.message);
-        	} else {
-            	console.log('DEVICE_STANDBY releaseExemptionResource callback succeeded.');
-        	}
-    	});
-	} catch (error) {
-    	console.log('DEVICE_STANDBY releaseExemptionResource throw error, code is: ' + error.code + ',message is: ' + error.message);
-	}
+// 异步方法callback方式
+try{
+deviceStandby.releaseExemptionResource(resRequest, (err) => {
+  if (err) {
+    console.log('DEVICE_STANDBY releaseExemptionResource callback failed. code is: ' + err.code + ',message is: ' + err.message);
+  } else {
+    console.log('DEVICE_STANDBY releaseExemptionResource callback succeeded.');
+  }
+});
+} catch (error) {
+console.log('DEVICE_STANDBY releaseExemptionResource throw error, code is: ' + error.code + ',message is: ' + error.message);
+}
 
 ## ResourceType
+
 非待机应用资源枚举。
-<br>
-**系统API:** 此接口为系统接口。
 
 **需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
+
+**系统API:** 此接口为系统接口。
 
 |名称   |值   |说明|
 | ------------ | ------------ |--------------|
@@ -332,28 +345,30 @@ releaseExemptionResource(request: ResourceRequest): void;
 |FREEZE       |64   | 冻结应用资源|
 
 ## ExemptedAppInfo 
-豁免应用信息，不进入待机管控的应用信息。
-<br>
-**系统API:** 此接口为系统接口。
+
+豁免应用信息，未进入待机管控的应用信息。
 
 **需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
 
+**系统API:** 此接口为系统接口。
+
 |名称  |类型   | 必填   |说明   |
 | ------------ | ------------ |------------ | ------------ |
-|resourceTypes   | number  | 是   |应用的资源类型   |
+|[resourceTypes](#resourcetype)   | number  | 是   |应用的资源类型   |
 |name   |string   | 是   |  应用名  |
 |duration   | number  | 是   | 豁免时长 |
 
 ## ResourceRequest
+
 待机资源请求体。
-<br>
-**系统API:** 此接口为系统接口。
 
 **需要权限:** ohos.permission.DEVICE_STANDBY_EXEMPTION
 
+**系统API:** 此接口为系统接口。
+
 |名称   |类型   | 必填   |说明   |
 | ------------ | ------------ |------------| ------------ |
-|resourceTypes   | number  | 是   |应用的资源类型   |
+|[resourceTypes](#resourcetype)   | number  | 是   |应用的资源类型   |
 |uid   | number  | 是   |应用uid   |
 |name   |string   | 是   | 应用名称  |
 |duration   | number  | 是   | 豁免时长 |
