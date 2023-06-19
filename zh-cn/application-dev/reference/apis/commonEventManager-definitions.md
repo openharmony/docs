@@ -65,6 +65,7 @@
 > 说明：
 >
 > 从API Version 10 开始废弃。
+> 建议使用[COMMON_EVENT_SCREEN_UNLOCKED<sup>10+<sup>](#common_event_screen_unlocked10)替代。
 
 ## COMMON_EVENT_TIME_TICK
 表示系统时间更改的公共事件的动作。
