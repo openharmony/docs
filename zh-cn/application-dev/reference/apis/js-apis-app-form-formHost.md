@@ -2419,7 +2419,7 @@ try {
 | ---------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type       | string                                          | 是   | 仅允许填写'notifyVisible'，表示订阅通知卡片可见的事件。            |
 | callback   | Callback <&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;> | 是   | 回调函数。返回订阅通知卡片可见的RunningFormInfo。            |
-| bundleName | string                                          | 否   | 指定订阅通知卡片使用方的bundleName。缺省则订阅所有通知卡片使用方的卡片可见的事件。 |
+| bundleName | string                                          | 否   | 指定卡片使用方的bundleName，用于订阅卡片在该使用方的可见状态变更事件。 |
 
 **示例：**
 
@@ -2433,9 +2433,6 @@ let callback = function(data) {
 formHost.on('notifyVisible', callback);
 formHost.on('notifyVisible', callback, bundleName);
 ```
-
-> **说明：**
-> 若bundleName配置为all，则视为未配置bundleName。
 
 ## off('notifyVisible')<sup>10+</sup>
 
@@ -2453,7 +2450,7 @@ formHost.on('notifyVisible', callback, bundleName);
 | ---------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type       | string                                          | 是   | 仅允许填写'notifyVisible'，表示取消订阅通知卡片为可见的事件。      |
 | callback   | Callback <&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;> | 否   | 入参，注册时注册进去的callback。缺省时，表示注销对应已注册订阅的回调。<br> 需与对应on('notifyVisible')的callback一致。 |
-| bundleName | string                                          | 否   | 指定卡片使用方包的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 缺省则与注册时未填写bundleName的on接口相对应，取消注册时未填写bundleName的订阅。 |
+| bundleName | string                                          | 否   | 指定卡片使用方的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 用于订阅卡片在该使用方的可见状态变更事件。 |
 
 **示例：**
 
@@ -2472,7 +2469,6 @@ formHost.off('notifyVisible', callback, bundleName);
 > on('notifyVisible', callback)与off('notifyVisible', callback)相对应；
 > on('notifyVisible', callback, bundleName)与off('notifyVisible', callback, bundleName)相对应；
 > 订阅（on）只能由自己对应的取消订阅接口（off）取消。
-> 若bundleName配置为all，则视为未配置bundleName。
 
 
 
@@ -2492,7 +2488,7 @@ formHost.off('notifyVisible', callback, bundleName);
 | ---------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | type       | string                                   | 是   | 仅允许填写'notifyInvisible'，表示订阅卡片不可见的事件。            |
 | callback   | Callback <&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;> | 是   | 回调函数。返回订阅通知卡片不可见的RunningFormInfo。          |
-| bundleName | string                                   | 否   | 指定订阅通知卡片使用方的bundleName。缺省则订阅所有通知卡片使用方的卡片不可见的事件。 |
+| bundleName | string                                   | 否   | 指定卡片使用方的bundleName，用于订阅卡片在该使用方的可见状态变更事件。 |
 
 **示例：**
 
@@ -2506,9 +2502,6 @@ let callback = function(data) {
 formHost.on('notifyInvisible', callback);
 formHost.on('notifyInvisible', callback, bundleName);
 ```
-
-> **说明：**
-> 若bundleName配置为all，则视为未配置bundleName。
 
 ## off('notifyInvisible')<sup>10+</sup>
 
@@ -2526,7 +2519,7 @@ formHost.on('notifyInvisible', callback, bundleName);
 | ---------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
 | type       | string                                   | 是   | 仅允许填写'notifyInvisible'，表示卡片可见性变更为不可见。          |
 | callback   | Callback <&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;> | 否   | 入参，注册时注册进去的callback。缺省时，表示注销对应已注册事件回调。<br/> 需与对应on('notifyVisible')的callback一致。 |
-| bundleName | string                                   | 否   | 指定卡片使用方包的bundleName。<br/> 填写该参数时，与注册时填写bundleName的on接口对应。<br/> 缺省则与注册时未填写bundleName的on接口相对应，取消注册时未填写bundleName的订阅。 |
+| bundleName | string                                   | 否   | 指定卡片使用方的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 用于订阅卡片在该使用方的可见状态变更事件。 |
 
 **示例：**
 
@@ -2545,4 +2538,3 @@ formHost.off('notifyInvisible', callback, bundleName);
 > on('notifyInvisible', callback)与off('notifyInvisible', callback)相对应；
 > on('notifyInvisible', callback, bundleName)与off('notifyInvisible', callback, bundleName)相对应；
 > 订阅（on）只能由自己对应的取消订阅接口（off）取消。
-> 若bundleName配置为all，则视为未配置bundleName。
