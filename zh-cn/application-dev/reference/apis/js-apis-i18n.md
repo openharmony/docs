@@ -2210,6 +2210,157 @@ normalize(text: string): string
 | NFKD | 4 | NFKD范式。 |
 
 
+## SystemLocaleManager<sup>10+</sup>
+
+
+### constructor<sup>10+</sup>
+
+constructor()
+
+创建SystemLocaleManager对象。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**示例：**
+  ```js
+  let systemLocaleManager= new I18n.SystemLocaleManager();
+  ```
+
+
+### getLanguageInfoArray<sup>10+</sup>
+
+getLanguageInfoArray(languages: Array&lt;string&gt;, options?: SortOptions): Array&lt;LocaleItem&gt;
+
+获取语言排序数组。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+|   参数名  |      类型      | 必填 |     说明      |
+| --------- | ------------- | ---- | ------------- |
+| languages | Array&lt;string&gt; | 是   | 待排序语言列表。|
+| options   | [SortOptions](#sortoptions10)   | 否   | 语言排序选项。 |
+
+**返回值：**
+
+|       类型        |         说明          |
+| ----------------- | -------------------- |
+| Array&lt;[LocaleItem](#localeitem10)&gt; | 排序后的语言列表信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | param value not valid  |
+
+**示例：**
+  ```js
+  // 当系统语言为zh-Hans，系统地区为CN，系统Locale为zh-Hans-CN时
+  let systemLocaleManager = new I18n.SystemLocaleManager();
+  var languages = ["zh-Hans", "en-US", "pt", "ar"];
+  var sortOptions = {locale: "zh-Hans-CN", isUseLocalName: true, isSuggestedFirst: true};
+  try {
+    // 排序后的语言顺序为: [zh-Hans, en-US, pt, ar]
+    let sortedLanguages = systemLocaleManager.getLanguageInfoArray(languages, sortOptions);
+  } catch(error) {
+    console.error(`call systemLocaleManager.getLanguageInfoArray failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
+
+### getRegionInfoArray<sup>10+</sup>
+
+getRegionInfoArray(regions: Array&lt;string&gt;, options?: SortOptions): Array&lt;LocaleItem&gt;
+
+获取国家或地区排序数组。
+
+**系统接口**：此接口为系统接口。
+
+**系统能力**：SystemCapability.Global.I18n
+
+**参数：**
+
+|   参数名  |      类型      | 必填 |     说明      |
+| --------- | ------------- | ---- | ------------- |
+| regions   | Array&lt;string&gt; | 是   | 待排序的国家或地区列表。|
+| options   | [SortOptions](#sortoptions10)   | 否   | 国家或地区排序选项。 |
+
+**返回值：**
+
+|       类型        |         说明          |
+| ----------------- | -------------------- |
+| Array&lt;[LocaleItem](#localeitem10)&gt; | 排序后的国家或地区列表信息。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.i18n错误码](../errorcodes/errorcode-i18n.md)。
+
+| 错误码ID  | 错误信息                   |
+| ------ | ---------------------- |
+| 890001 | param value not valid  |
+
+**示例：**
+  ```js
+  // 当系统语言为zh-Hans，系统地区为CN，系统Locale为zh-Hans-CN时
+  let systemLocaleManager = new I18n.SystemLocaleManager();
+  var regions = ["CN", "US", "PT", "EG"];
+  var sortOptions = {locale: "zh-Hans-CN", isUseLocalName: false, isSuggestedFirst: true};
+  try {
+    // 排序后的地区顺序为: [CN, EG, US, PT]
+    let sortedRegions = systemLocaleManager.getRegionInfoArray(regions, sortOptions);
+  } catch(error) {
+    console.error(`call systemLocaleManager.getRegionInfoArray failed, error code: ${error.code}, message: ${error.message}.`);
+  }
+  ```
+
+
+## LocaleItem<sup>10+</sup>
+
+SystemLocaleManager对语言或国家地区列表的排序结果信息项。
+
+**系统能力**：SystemCapability.Global.I18n
+
+| 名称            | 类型            |  必填   |  说明                                   |
+| --------------- | --------------- | ------ | --------------------------------------- |
+| id              | string          |   是   | 语言代码或国家地区代码，如"zh"、"CN"。    |
+| suggestionType  | [SuggestionType](#suggestiontype10)  |   是  | 语言或国家地区推荐类型。                  |
+| displayName     | string          |  是   | id在SystemLocaleManager的Locale下的表示。|
+| localName       | string          |  否   | id的本地名称。                           |
+
+
+## SuggestionType<sup>10+</sup>
+
+语言或国家地区的推荐类型。
+
+**系统能力**：SystemCapability.Global.I18n
+
+| 名称                   | 值  | 说明   |
+| ---------------------- | ---- | ---- |
+| SUGGESTION_TYPE_NONE   | 0x00 | 非推荐语言或国家地区。 |
+| SUGGESTION_TYPE_RELATED| 0x01 | 系统语言推荐的国家地区或系统国家地区推荐的语言。 |
+| SUGGESTION_TYPE_SIM    | 0x02 | Sim卡国家地区推荐的语言。 |
+
+
+## SortOptions<sup>10+<sup>
+
+语言或国家地区排序选项。
+
+**系统能力**：SystemCapability.Global.I18n
+
+| 名称            | 类型            |  必填 |   说明                                 |
+| --------------- | --------------- | ---- | --------------------------------------- |
+| locale          | string          |  否  | 区域代码，如"zh-Hans-CN"。    |
+| isUseLocalName  | boolean         |  否  | 表示是否使用本地名称进行排序。                  |
+| isSuggestedFirst | boolean        |  否  | 表示是否将推荐语言或国家地区在排序结果中置顶。  |
+
+
 ## I18n.getDisplayCountry<sup>(deprecated)</sup>
 
 getDisplayCountry(country: string, locale: string, sentenceCase?: boolean): string
