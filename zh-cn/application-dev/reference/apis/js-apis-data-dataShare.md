@@ -296,7 +296,7 @@ let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
     dataShareHelper.delete(uri, da, (err, data) => {
-        if (err != undefined) {
+        if (err !== undefined) {
             console.error(`delete error: code: ${err.code}, message: ${err.message} `);
             return;
         }
@@ -339,7 +339,7 @@ let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
     dataShareHelper.delete(uri, da).then((data) =>  {
-        console.log("delete succeed, data : " + data);
+        console.info("delete succeed, data : " + data);
     }). catch((err) => {
         console.error(`delete error: code: ${err.code}, message: ${err.message} `);
     });
@@ -377,11 +377,11 @@ let da = new dataSharePredicates.DataSharePredicates();
 da.equalTo("name", "ZhangSan");
 try {
     dataShareHelper.query(uri, da, columns, (err, data) => {
-        if (err != undefined) {
+        if (err !== undefined) {
             console.error(`query error: code: ${err.code}, message: ${err.message} `);
             return;
         }
-        console.log("query succeed, rowCount : " + data.rowCount);
+        console.info("query succeed, rowCount : " + data.rowCount);
     });
 } catch (err) {
     console.error(`query error: code: ${err.code}, message: ${err.message} `);
@@ -623,7 +623,7 @@ import UIAbility from '@ohos.app.ability.UIAbility'
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri, (err, data) => {
     if (err !== undefined) {
-        console.info("normalizeUri failed, error message : " + err);
+        console.error("normalizeUri failed, error message : " + err);
     }else{
         console.info("normalizeUri = " + data);
     }
@@ -658,7 +658,7 @@ let uri = ("datashare:///com.samples.datasharetest.DataShare");
 dataShareHelper.normalizeUri(uri).then((data) => {
     console.info("normalizeUri = " + data);
 }).catch((err) => {
-    console.info("normalizeUri failed, error message : " + err);
+    console.error("normalizeUri failed, error message : " + err);
 });
 ```
 
