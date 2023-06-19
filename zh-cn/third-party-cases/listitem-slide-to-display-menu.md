@@ -13,7 +13,7 @@
 ## 运行环境
 
 - IDE：DevEco Studio 3.1 Beta2
-- SDK：Ohos_sdk_public 3.2.11.5 (API Version 9 Release)
+- SDK：Ohos_sdk_public 3.2.11.9 (API Version 9 Release)
 
 ## 实现原理
 
