@@ -117,7 +117,8 @@ repo forall -c 'git lfs pull'
 | 媒体子系统   | 打开图库应用，选择相册页签，点击相机，高概率闪退值桌面([I5QUSZ](https://gitee.com/openharmony/applications_hap/issues/I5QUSZ))<br/>通过工具测出CPPCrash问题([I65GZ1](https://gitee.com/openharmony/multimedia_medialibrary_standard/issues/I65GZ1)) |
 | 全球化子系统 | 通过工具测出CPPCrash问题([I65GR8](https://gitee.com/openharmony/global_resmgr_standard/issues/I65GR8)) |
 | 无障碍子系统 | 安全注入攻击测试，测试报告中存在服务接口ohos.accessibility.IAccessibleAbilityManagerServiceClient存在注入异常([I65PHE](https://gitee.com/openharmony/accessibility/issues/I65PHE)) |
-| ArkUI子系统  | 图像效果功能失效([I65UID](https://gitee.com/openharmony/arkui_ace_engine/issues/I65UID)) |
+| ArkUI子系统  | 图像效果功能失效([I65UID](https://gitee.com/openharmony/arkui_ace_engine/issues/I65UID))<br/>
+适配lite多资源打包([I78S6M](https://gitee.com/openharmony/developtools_ace_js2bundle/issues/I78S6M)) |
 | 元能力子系统 | 两个窗口分屏配对后，关闭B窗口另一个窗口也会关闭([I6AF0Y](https://gitee.com/openharmony/ability_ability_runtime/issues/I6AF0Y)) |
 | DFX子系统    | ohos.samples.distributedmusicplayer出现libhilog.z.so崩溃([I6DCSL](https://gitee.com/openharmony/hiviewdfx_hilog/issues/I6DCSL)) |
 
