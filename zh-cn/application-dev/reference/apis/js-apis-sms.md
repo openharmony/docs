@@ -1371,6 +1371,7 @@ decodeMms\(mmsFilePathName: string | Array\<number\>, callback: AsyncCallback\<M
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1415,6 +1416,7 @@ decodeMms\(mmsFilePathName: string | Array\<number\>\): Promise\<MmsInformation\
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1456,6 +1458,7 @@ encodeMms\(mms: MmsInformation, callback: AsyncCallback\<Array\<number\>\>\): vo
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
@@ -1508,6 +1511,7 @@ encodeMms\(mms: MmsInformation\): Promise\<Array\<number\>\>
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
 | 401      | Parameter error.                             |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Operation failed. Cannot connect to service. |
