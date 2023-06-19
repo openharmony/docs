@@ -232,7 +232,6 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                 |
 | -------- | ----------------------------------------- |
-| 17700004 | The specified user ID is not found.       |
 | 17700023 | The specified default app does not exist. |
 | 17700025 | The specified type is invalid.            |
 
@@ -297,9 +296,9 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
-    bundleName: "com.example.myapplication",
+    bundleName: "com.test.app",
     moduleName: "module01",
-    abilityName: "EntryAbility"
+    abilityName: "MainAbility"
 }).then((data) => {
     console.info('Operation successful.');
 }).catch((error) => {
@@ -308,9 +307,9 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
 
 let userId = 100;
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
-    bundleName: "com.example.myapplication",
+    bundleName: "com.test.app",
     moduleName: "module01",
-    abilityName: "EntryAbility"
+    abilityName: "MainAbility"
 }, userId).then((data) => {
     console.info('Operation successful.');
 }).catch((error) => {
@@ -318,9 +317,9 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
 });
 
 defaultAppMgr.setDefaultApplication("image/png", {
-    bundleName: "com.example.myapplication",
+    bundleName: "com.test.app",
     moduleName: "module01",
-    abilityName: "EntryAbility"
+    abilityName: "MainAbility"
 }, userId).then((data) => {
     console.info('Operation successful.');
 }).catch((error) => {
@@ -365,9 +364,9 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 let userId = 100;
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
-    bundleName: "com.example.myapplication",
+    bundleName: "com.test.app",
     moduleName: "module01",
-    abilityName: "EntryAbility"
+    abilityName: "MainAbility"
 }, userId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -377,9 +376,9 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
  });
 
 defaultAppMgr.setDefaultApplication("image/png", {
-    bundleName: "com.example.myapplication",
+    bundleName: "com.test.app",
     moduleName: "module01",
-    abilityName: "EntryAbility"
+    abilityName: "MainAbility"
 }, userId, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -415,7 +414,6 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                      |
 | -------- | ---------------------------------------------- |
-| 17700004 | The specified user ID is not found.            |
 | 17700025 | The specified type is invalid.                 |
 | 17700028 | The specified ability does not match the type. |
 
@@ -424,9 +422,9 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 ```ts
 import defaultAppMgr from '@ohos.bundle.defaultAppManager';
 defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
-    bundleName: "com.example.myapplication",
+    bundleName: "com.test.app",
     moduleName: "module01",
-    abilityName: "EntryAbility"
+    abilityName: "MainAbility"
 }, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -436,9 +434,9 @@ defaultAppMgr.setDefaultApplication(defaultAppMgr.ApplicationType.BROWSER, {
  });
 
 defaultAppMgr.setDefaultApplication("image/png", {
-    bundleName: "com.example.myapplication",
+    bundleName: "com.test.app",
     moduleName: "module01",
-    abilityName: "EntryAbility"
+    abilityName: "MainAbility"
 }, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -574,7 +572,6 @@ For details about the error codes, see [Bundle Error Codes](../errorcodes/errorc
 
 | ID| Error Message                           |
 | -------- | ----------------------------------- |
-| 17700004 | The specified user ID is not found. |
 | 17700025 | The specified type is invalid.      |
 
 **Example**

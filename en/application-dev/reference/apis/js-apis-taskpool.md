@@ -1,4 +1,4 @@
-# @ohos.taskpool (Using the Task Pool)
+# @ohos.taskpool (Starting the Task Pool)
 
 The task pool provides a multi-thread running environment for applications. It helps reduce resource consumption and improve system performance. It also frees you from caring about the lifecycle of thread instances. You can use the **TaskPool** APIs to create background tasks and perform operations on them, for example, executing or canceling a task. Theoretically, you can create an unlimited number of tasks, but this is not recommended for memory considerations. In addition, you are not advised performing blocking operations in a task, especially indefinite blocking. Long-time blocking operations occupy worker threads and may block other task scheduling, adversely affecting your application performance.
 
@@ -13,7 +13,7 @@ The **TaskPool** APIs return error codes in numeric format. For details about th
 
 ## Modules to Import
 
-```js
+```ts
 import taskpool from '@ohos.taskpool';
 ```
 
@@ -46,7 +46,7 @@ A constructor used to create a **Task** instance.
 | Name| Type     | Mandatory| Description                                                                 |
 | ------ | --------- | ---- | -------------------------------------------------------------------- |
 | func   | Function  | Yes  | Function to be passed in for task execution. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).  |
-| args   | unknown[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| args   | unknown[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
 
 **Error codes**
 
@@ -58,14 +58,14 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-function func(args) {
-    "use concurrent"
-    console.log("func: " + args);
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
     return args;
 }
 
-let task = new taskpool.Task(func, "this is my first Task");
+let task = new taskpool.Task(printArgs, "this is my first Task");
 ```
 
 ### Attributes
@@ -81,7 +81,7 @@ let task = new taskpool.Task(func, "this is my first Task");
 
 execute(func: Function, ...args: unknown[]): Promise\<unknown>
 
-Executes a task in the task pool. You must pass in a function and arguments to execute the task, and the task executed in this mode cannot be canceled.
+Places the function to be executed in the internal task queue of the task pool. The function will be distributed to the worker thread for execution. The function to be executed in this mode cannot be canceled.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -89,8 +89,8 @@ Executes a task in the task pool. You must pass in a function and arguments to e
 
 | Name| Type     | Mandatory| Description                                                                  |
 | ------ | --------- | ---- | ---------------------------------------------------------------------- |
-| func   | Function  | Yes  | Function used to execute the task. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
-| args   | unknown[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types).|
+| func   | Function  | Yes  | Function to be executed. For details about the supported return value types of the function, see [Sequenceable Data Types](#sequenceable-data-types).    |
+| args   | unknown[] | No  | Arguments of the function. For details about the supported parameter types, see [Sequenceable Data Types](#sequenceable-data-types). The default value is **undefined**.|
 
 **Return value**
 
@@ -110,26 +110,26 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-function func(args) {
-    "use concurrent"
-    console.log("func: " + args);
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
     return args;
 }
 
-async function taskpoolTest() {
-  let value = await taskpool.execute(func, 100);
+async function taskpoolExecute() {
+  let value = await taskpool.execute(printArgs, 100);
   console.log("taskpool result: " + value);
 }
 
-taskpoolTest();
+taskpoolExecute();
 ```
 
 ## taskpool.execute
 
 execute(task: Task, priority?: Priority): Promise\<unknown>
 
-Executes a task in the task pool. You must pass in a created task, and the task executed in this mode can be canceled.
+Places a task in the internal task queue of the task pool. The task will be distributed to the worker thread for execution. The task to be executed in this mode can be canceled.
 
 **System capability**: SystemCapability.Utils.Lang
 
@@ -158,20 +158,20 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 **Example**
 
-```js
-function func(args) {
-    "use concurrent"
-    console.log("func: " + args);
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
     return args;
 }
 
-async function taskpoolTest() {
-  let task = new taskpool.Task(func, 100);
+async function taskpoolExecute() {
+  let task = new taskpool.Task(printArgs, 100);
   let value = await taskpool.execute(task);
   console.log("taskpool result: " + value);
 }
 
-taskpoolTest();
+taskpoolExecute();
 ```
 
 ## taskpool.cancel
@@ -197,22 +197,86 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 | 10200015 | If the task is not exist. |
 | 10200016 | If the task is running.   |
 
-**Example**
+**Example of successful task cancellation**
 
-```js
-function func(args) {
-    "use concurrent"
-    console.log("func: " + args);
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
     return args;
 }
 
-async function taskpoolTest() {
-  let task = new taskpool.Task(func, 100);
-  let value = await taskpool.execute(task);
-  taskpool.cancel(task);
+async function taskpoolCancel() {
+  let task = new taskpool.Task(printArgs, 100);
+  taskpool.execute(task);
+  try {
+    taskpool.cancel(task);
+  } catch (e) {
+    console.log("taskpool.cancel occur error:" + e);
+  }
 }
 
-taskpoolTest();
+taskpoolCancel();
+```
+
+**Example of a failure to cancel a task that has been executed**
+
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
+    return args;
+}
+
+async function taskpoolCancel() {
+  let task = new taskpool.Task(printArgs, 100);
+  let value = taskpool.execute(task);
+  let start = new Date().getTime();
+  while (new Date().getTime() - start < 1000) {// Wait for 1s to ensure that the task has been executed.
+    continue;
+  }
+
+  try {
+    taskpool.cancel(task); // The task has been executed and fails to be canceled.
+  } catch (e) {
+    console.log("taskpool.cancel occur error:" + e);
+  }
+}
+
+taskpoolCancel();
+```
+
+**Example of a failure to cancel an ongoing task**
+
+```ts
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
+    return args;
+}
+
+async function taskpoolCancel() {
+  let task1 = new taskpool.Task(printArgs, 100);
+  let task2 = new taskpool.Task(printArgs, 200);
+  let task3 = new taskpool.Task(printArgs, 300);
+  let task4 = new taskpool.Task(printArgs, 400);
+  let task5 = new taskpool.Task(printArgs, 500);
+  let task6 = new taskpool.Task(printArgs, 600);
+
+  let res1 = taskpool.execute(task1);
+  let res2 = taskpool.execute(task2);
+  let res3 = taskpool.execute(task3);
+  let res4 = taskpool.execute(task4);
+  let res5 = taskpool.execute(task5);
+  let res6 = taskpool.execute(task6);
+  try {
+    taskpool.cancel(task1); // task1 is being executed and fails to be canceled.
+  } catch (e) {
+    console.log("taskpool.cancel occur error:" + e);
+  }
+}
+
+taskpoolCancel();
 ```
 
 ## Additional Information
@@ -221,19 +285,26 @@ taskpoolTest();
 The following sequenceable data types are supported: All Primitive Type (excluding symbol), Date, String, RegExp, Array, Map, Set, Object, ArrayBuffer, and TypedArray.
 
 ### Precautions
-A task in the task pool can reference only variables passed in by input parameters or imported variables. It does not support closure variables.
+- The task pool APIs can be used only in the module with **compileMode** set to **esmodule** in the stage model. To check the **compileMode** setting of a module, open the **build-profile.json5** file of the module and check for **"compileMode": "esmodule"** under **buildOption**.
+- A task in the task pool can reference only variables passed in by input parameters or imported variables, rather than closure variables. The decorator **@Concurrent** is used to intercept unsupported variables.
+- A task in the task pool supports only common functions or async functions, rather than class member functions or anonymous functions. The decorator **@Concurrent** is used to intercept unsupported functions.
+- The decorator **@Concurrent** can be used only in .ets files.
 
-```js
-// 1. Reference a variable passed in by the input parameter.
-function func(args) {
-    "use concurrent"
-    console.log("func: " + args);
+### Using the Task Pool in Simple Mode
+
+**Example 1**
+
+```ts
+// Common functions are supported, and variables passed in by input parameters are also supported.
+@Concurrent
+function printArgs(args) {
+    console.log("printArgs: " + args);
     return args;
 }
 
-async function taskpoolTest() {
+async function taskpoolExecute() {
   // taskpool.execute(task)
-  let task = new taskpool.Task(func, "create task, then execute");
+  let task = new taskpool.Task(printArgs, "create task, then execute");
   let val1 = await taskpool.execute(task);
   console.log("taskpool.execute(task) result: " + val1);
 
@@ -242,35 +313,92 @@ async function taskpoolTest() {
   console.log("taskpool.execute(function) result: " + val2);
 }
 
-taskpoolTest();
+taskpoolExecute();
 ```
 
-```js
-// 2. Reference an imported variable.
+**Example 2**
 
-// b.ts
+```ts
+// b.ets
 export var c = 2000;
+```
+```ts
+// Reference an imported variable.
+// a.ets (in the same directory as b.ets)
+import { c } from "./b";
 
-// a.ts (in the same directory as b.ts)
-import { c } from './b'
-
-function test(a) {
-    "use concurrent"
+@Concurrent
+function printArgs(a) {
     console.log(a);
     console.log(c);
     return a;
 }
 
-async function taskpoolTest() {
+async function taskpoolExecute() {
   // taskpool.execute(task)
-  let task = new taskpool.Task(test, "create task, then execute");
+  let task = new taskpool.Task(printArgs, "create task, then execute");
   let val1 = await taskpool.execute(task);
   console.log("taskpool.execute(task) result: " + val1);
 
   // taskpool.execute(function)
-  let val2 = await taskpool.execute(test, "execute task by func");
+  let val2 = await taskpool.execute(printArgs, "execute task by func");
   console.log("taskpool.execute(function) result: " + val2);
 }
 
-taskpoolTest();
+taskpoolExecute();
+```
+
+**Example 3**
+
+```ts
+// The async functions are supported.
+@Concurrent
+async function delayExcute() {
+  let ret = await Promise.all([
+    new Promise(resolve => setTimeout(resolve, 1000, "resolved"))
+  ]);
+  return ret;
+}
+
+async function taskpoolExecute() {
+  taskpool.execute(delayExcute).then((result) => {
+    console.log("TaskPoolTest task result: " + result);
+  });
+}
+
+taskpoolExecute();
+```
+
+**Example 4**
+
+```ts
+// c.ets
+@Concurrent
+function strSort(inPutArr) {
+  let newArr = inPutArr.sort();
+  return newArr;
+}
+export async function func1() {
+    console.log("taskpoolTest start");
+    let strArray = ['c test string', 'b test string', 'a test string'];
+    var task = new taskpool.Task(strSort, strArray);
+    var result = await taskpool.execute(task);
+    console.log("func1 result:" + result);
+}
+
+export async function func2() {
+    console.log("taskpoolTest2 start");
+    let strArray = ['c test string', 'b test string', 'a test string'];
+    taskpool.execute(strSort, strArray).then((result) => {
+        console.log("func2 result: " + result);
+    });
+}
+```
+
+```ts
+/ / a.ets (in the same directory as c.ets)
+import { taskpoolTest1, taskpoolTest2 } from "./c";
+
+func1();
+func2();
 ```

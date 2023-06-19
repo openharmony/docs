@@ -187,7 +187,8 @@ zh-cn/application-dev/dfx/errormanager-guidelines.md @RayShih
 zh-cn/application-dev/key-features/multi-device-app-dev/ @lingminghw
 zh-cn/application-dev/database/ @ge-yafang
 zh-cn/application-dev/napi/native-window-guidelines.md @ge-yafang
-zh-cn/application-dev/napi/mindspore-lite-guidelines.md @ge-yafang
+zh-cn/application-dev/napi/mindspore-lite-guidelines.md @ge-yafang 
+zh-cn/application-dev/napi/neural-network-runtime-guidelines.md @ge-yafang 
 zh-cn/application-dev/napi/rawfile_guidelines.md @ningningW
 zh-cn/application-dev/background-agent-scheduled-reminder/ @RayShih
 zh-cn/application-dev/background-task-management/ @ningningW
@@ -383,7 +384,7 @@ zh-cn/application-dev/reference/apis/js-apis-lightweightmap.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-lightweightset.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-linkedlist.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-list.md @ge-yafang
-zh-cn/application-dev/reference/apis/js-apis-logs.md @HelloCrease
+zh-cn/application-dev/reference/apis/js-apis-logs.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-media.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-medialibrary.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-mediaquery.md @HelloCrease
@@ -454,7 +455,7 @@ zh-cn/application-dev/reference/apis/js-apis-system-vibrate.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-telephony-data.md @zengyawen
 zh-cn/application-dev/reference/apis/js-apis-testRunner.md @RayShih
 zh-cn/application-dev/reference/apis/js-apis-thermal.md @zengyawen
-zh-cn/application-dev/reference/apis/js-apis-timer.md @HelloCrease
+zh-cn/application-dev/reference/apis/js-apis-timer.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-touchevent.md @ningningW
 zh-cn/application-dev/reference/apis/js-apis-treemap.md @ge-yafang
 zh-cn/application-dev/reference/apis/js-apis-treeset.md @ge-yafang

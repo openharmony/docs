@@ -1,68 +1,128 @@
-# Ability框架开发常见问题
+# Ability开发常见问题
 
-## Stage模型中是否有类似FA模型的DataAbility的开发指导文档
+## 如何获取设备横竖屏的状态变化通知
 
-适用于：OpenHarmony SDK 3.2.3.5版本， API9 Stage模型
+适用于：OpenHarmony 3.2 Beta5 API 9
 
-Stage模型中DataShareExtensionAbility提供了向其他应用共享以及管理其数据的方法。
+**问题现象**
 
-参考文档：[数据共享开发指导](../database/database-datashare-guidelines.md)
+当设备发生横竖屏变化时，开发者应如何获取到变化的事件通知？
 
-## 拉起Ability在界面上没反应
+**解决措施**
 
-适用于：OpenHarmony SDK 3.2.5.3版本，API9 Stage模型
+使用UIAbility.onConfigurationUpdate\(\)回调方法订阅系统环境变量的变化（包括语言，颜色模式，屏幕方向等）。
 
-1. 如果是通过startAbility的方式拉起，检查want中abilityName字段是否携带了bundleName做前缀，如果有，请删除;
+**参考文档**
 
-2. 检查MainAbility.ts文件中onWindowStageCreate方法配置的Ability首页文件是否在main_pages.json中有定义，如果没有定义，请补齐;
+[订阅系统环境变量的变化](../application-models/subscribe-system-environment-variable-changes.md#在uiability组件中订阅回调)
 
-3. SDK和OpenHarmony SDK系统推荐同一天的版本。
+## 点击服务卡片如何跳转至指定的页面
 
-参考文档：[OpenHarmony版本转测试信息](https://gitee.com/openharmony-sig/oh-inner-release-management/blob/master/Release-Testing-Version.md)
+适用于：OpenHarmony 3.2 Beta5 API 9
 
-## 如何将Ability的UI界面设置成透明
+**解决措施**
 
-适用于：OpenHarmony SDK 3.2.3.5版本，API9 Stage模型
+参考文档，配置卡片事件，指定需要跳转的目标Ability，然后在目标UIAbility的onWindowStageCreate\(\)中调用loadContent跳转至指定的page页面。
 
-将最上层容器组件背景色设置为透明，然后通过设置XComponent组件的opacity属性值为0.01来实现。
+**参考链接**
 
-  示例：
+[开发卡片事件](../application-models/arkts-ui-widget-configuration.md)
 
-```
-build() {
-  Stack() {
-    XComponent({
-    id: 'componentId',
-    type: 'surface',
-    })
-    .width('100%')
-    .height('100%')
-    .opacity(0.01)
-    // 页面内容
-  }
-  .width('100%')
-  .height('100%')
-  .backgroundColor('rgba(255,255,255, 0)')
-}
-```
+## 如何在Stage模型中创建后台服务
 
-## 调用方法的时候，如何解决方法内部的this变成undefined
+适用于：Openharmony 3.2 Beta5
 
-适用于：OpenHarmony SDK 3.2.5.3版本，API9 Stage模型
+**问题现象**
 
-方式一：在调用方法的时候加上.bind(this)。
+Stage模型中的ServiceExtensionAbility是系统接口，第三方应用不支持调用，如何在Stage模型中如何创建后台服务？
+
+**解决措施**
+
+Stage模型可通过后台任务实现该功能。
+
+**参考链接**
+
+[后台任务](../task-management/background-task-overview.md)
+
+## FA和Stage模型中，应用是否可以创建并指定UIAbility运行在哪个进程
+
+适用于：Openharmony 3.2 Beta5 API 9
+
+**解决措施**
+
+FA和Stage模型中，应用可以创建进程并指定UIAbility运行在某个进程。
+
+-   FA模型
+
+    FA模型支持多进程，默认情况下，同一应用的所有组件均在相同进程中运行，且大多数应用都不应该改变这一点。但是如果应用自身业务需要某个组件独立进程运行，可在config配置文件中配置；配置清单中，ability标签的process子标签可指定该组件在哪个进程中运行，应用可以设置通过该属性使每个组件均在各自的进程中运行，但process子标签仅支持系统应用配置，三方应用配置不生效。
+
+-   Stage模型
+
+    Stage模型支持多进程：Stage模型的进程模型由系统定义，三方应用不能配置多进程；如果需要自定义配置独立进程，需要申请特殊权限；配置清单中，module标签的process子标签可指定该Hap下Ability在哪个进程中运行，应用可以设置通过该属性使每个Hap的Ability组件均在各自的进程中运行。如果不配置，进程名默认为包名。
+
+
+## Stage模型与FA模型在进程内对象共享方面有哪些差异
+
+适用于：Openharmony 3.2 Beta5 API 9
+
+**解决措施**
+
+-   Stage模型中，多个应用组件共享同一个ArkTS引擎实例，因此在Stage模型中，应用组件之间可以方便的共享对象和状态，同时减少复杂应用运行对内存的占用。
+-   FA模型中，每个应用组件独享一个ArkTS引擎实例。Stage模型作为主推的应用模型，开发者通过它能够更加便利地开发出分布式场景下的复杂应用。
+
+**参考链接**
+
+[UIAbility组件与UI的数据同步](../application-models/uiability-data-sync-with-ui.md)
+
+## 如何使用AbilityStage的生命周期函数
+
+适用于：Openharmony 3.2 Beta5 API 9
+
+**解决措施**
+
+在module.json5里的module中加上srcEntry字段"srcEntry": "./ets/myabilitystage/MyAbilityStage.ts"。
+
+**参考链接**
+
+[AbilityStage组件容器](../application-models/abilitystage.md)
+
+
+## 多实例场景下当前Ability调用terminateSelf后，桌面最近任务列表如何设置不保留快照
+
+适用于：Openharmony 3.2 Beta5 API 9
+
+**解决措施**
+
+可在module.json5配置文件中配置removeMissionAfterTerminate为true。
+
+## 通过startAbility\(\)方法无法启动UIAbility实例
+
+适用于：Openharmony 3.2 Beta5 API 9
+
+**解决措施**
+
+-   如果是通过startAbility的方式拉起，检查want中abilityName字段是否携带了bundleName做前缀，如果有，请删除。
+-   检查MainAbility.ts文件中onWindowStageCreate方法配置的Ability首页文件是否在main\_pages.json中有定义，如果没有定义，请补齐。SDK和OpenHarmony SDK系统推荐同一天的版本。
+
+## 调用方法的时候，方法内部的this变成了undefined
+
+适用于：Openharmony 3.2 Beta5 API 9
+
+**解决措施**
+
+方式一：在调用方法的时候加上.bind\(this\)；
 
 方式二：使用箭头函数。
 
-## 如何解决must have required property 'startWindowIcon'报错 
+## 启动UIAbility时报错：must have required property 'startWindowIcon'
 
-适用于：OpenHarmony SDK 3.2.3.5版本，API9 Stage模型
+适用于：Openharmony 3.2 Beta5 API 9
 
-Ability配置中缺少startWindowIcon属性配置，需要在module.json5中abilities中配置startWindowIcon。
+**解决措施**
 
-参考文档：[Stage模型应用程序包结构](../quick-start/module-configuration-file.md)
+UIAbility配置中缺少startWindowIcon属性配置，需要在module.json5中abilities中配置startWindowIcon。
 
-示例：
+**代码示例**
 
 ```
 {
@@ -77,77 +137,179 @@ Ability配置中缺少startWindowIcon属性配置，需要在module.json5中abil
 }
 ```
 
-## 如何获取设备横竖屏的状态变化的通知
+**参考链接**
 
-适用于：OpenHarmony SDK 3.2.3.5版本， API9 Stage模型
+[Stage模型配置文件](../quick-start/module-configuration-file.md)
 
-使用Ability的onConfigurationUpdated回调实现，系统语言、颜色模式以及Display相关的参数，比如方向、Density，发生变化时触发该回调。
+## Stage模型是否推荐使用globalThis获取Context
 
-参考文档：[Ability开发指导](../ability/stage-ability.md)
+适用于：Openharmony 3.2 Beta5 API 9
 
-## Stage模型是否推荐用globalThis去获取Context
+不推荐，Stage模型使用globalThis去获取Context是错误的使用方式。
 
-适用于：OpenHarmony SDK 3.2.5.5版本，API9 Stage模型
+在Stage模型中，整个应用进程共用一个js虚拟机实例，其中可以运行多个Ability实例，共用一个global对象。在同一个js虚拟机内的不同的Ability中使用globalThis获取Context，存在被覆盖从而发生错误的风险。
 
-不推荐，Stage模型使用globalThis去获取Context是错误的使用方式。在Stage模型中，整个应用进程共用一个js虚拟机实例，其中可以运行多个Ability实例，共用一个global对象。在同一个js虚拟机内的不同的Ability中使用globalThis获取Context，存在被覆盖从而发生错误的风险。
+**参考链接**
 
-推荐使用方式参考：[Stage模型的Context详细介绍](../ability/context-userguide.md#stage模型的context详细介绍)。
+[UIAbility组件与UI的数据同步](../application-models/uiability-data-sync-with-ui.md)
 
-## 如何在应用A中去获取应用B的Hap包的安装路径
+## 部署HAP时上报安装内容过大错误
 
-适用于：OpenHarmony SDK 3.0以上版本， API9 Stage模型
+适用于：Openharmony 3.2 Beta5 API 9
 
-首先需要申请系统权限，具体参看文档：[自动化签名](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465)。导入bundle模块，通过调用bundle.getApplicationInfo()接口，通过包名获取应用信息。然后通过application.moduleSourceDirs获取应用存储路径。
+**问题现象**
 
-## 调用方使用startAbilityForResult，被调用方如何返回数据
+部署hap时，上报如下错误：
 
-适用于：OpenHarmony SDK3.0, API9 Stage模型
+Failure\[INSTALL\_FAILED\_SIZE\_TOO\_LARGE\] error while deploying hap？
 
-被调用方使用AbilityContext.terminateSelfWithResult方法，销毁被调用方ability，传递参数给startAbilityForResult回调函数，具体用法请参考[AbilityContext](../reference/apis/js-apis-ability-context.md#abilitycontextterminateselfwithresult)
+**解决措施**
 
-## FA卡片上架后在用户的服务中心展示时可否触发生命周期，从而实现用户没有打开过FA应用的情况下获取到用户的登录信息？
+将其拆分为多个HAP即可解决。
 
-适用于：OpenHarmony SDK 3.2.5.5版本, API8 FA模型
+## 调用方使用startAbilityForResult时，被调用方如何返回数据
 
-服务卡片在添加卡片后就触发了oncreate()生命周期，在不启用app的情况下也可以显示相关的用户信息-静默登录，但服务卡片目前要在app安装之后手动添加。
+适用于：Openharmony 3.2 Beta5 API 9
 
-## 如何获取context
+**解决措施**
 
-适用于：OpenHarmony SDK 3.2.7.5版本, API9 Stage模型
+被调用方使用AbilityContext.terminateSelfWithResult方法，销毁被调用方ability，传递参数给startAbilityForResult回调函数。
 
-在MainAbility.ts文件中可以直接使用this.context获取context，在组件页面中可以使用getContext(this)获取context。
+**参考链接**
 
-## 访问控制管理模块abilityAccessCtrl中grantUserGrantedPermission方法在API8语法校验提示未定义
+[启动应用内的UIAbility并获取返回结果](../application-models/uiability-intra-device-interaction.md)
 
-适用于：OpenHarmony SDK 3.0版本, API8 FA模型
 
-当前SDK有fullSDK和publicSDK两个版本，IDE默认下载的是publicSDK。其中，publicSDK版本不会包含系统API，如果要用系统API，需要使用fullSDK。具体参考[full-SDK替换指南](../quick-start/full-sdk-switch-guide.md)。
+## 如何获取系统时间戳
 
-## public sdk支持哪几种ExtensionAbility（ServiceExtensionAbility、FormExtensionAbility、DataShareExtensionAbility）
+适用于：Openharmony 3.2 Beta5 API 9
 
-适用于：OpenHarmony SDK 3.2.5.6版本， API9 Stage模型
+**解决措施**
 
-上述ExtensionAbility 中，public sdk 仅可以使用FormExtensionAbility。ServiceExtensionAbility和DataShareExtensionAbility 为系统接口，需要使用full sdk。
+在Openharmony中使用@ohos.systemDateTime的getCurrentTime来获取系统系统时间和时区。
 
-Public SDK : 面向应用开发者提供，不包含需要使用系统权限的系统接口。
+**代码示例**
 
-Full SDK : 面向OEM厂商提供，包含了需要使用系统权限的系统接口。
+使用@ohos.systemDateTime接口：
 
-## 服务卡片无法循环播放gif图
+    ```
+    try {
+      systemDateTime.getCurrentTime(true, (error, time) => {
+        if (error) {
+          console.info(`Failed to get currentTime. message: ${error.message}, code: ${error.code}`);
+          return;
+        }
+        console.info(`Succeeded in getting currentTime : ${time}`);
+      });
+    } catch(e) {
+      console.info(`Failed to get currentTime. message: ${e.message}, code: ${e.code}`);
+    }
+    ```
 
-适用于：OpenHarmony SDK 3.2.5.6版本， API9 Stage模型
 
-目前暂不支持播放GIF图片。
+**参考链接**
+
+[系统时间、时区](../reference/apis/js-apis-system-date-time.md#systemdatetimegetcurrenttime)
+
+## 如何获取当前应用程序缓存目录
+
+适用于：Openharmony 3.2 Beta5 API 9
+
+**解决措施**
+
+在Openharmony中使用Context.cacheDir获取应用程序的缓存目录。
+
+**参考链接**
+
+[cacheDir](../application-models/application-context-stage.md#获取应用开发路径)
+
+## 服务卡片生命周期回调函数在哪个js文件中调用
+
+适用于：Openharmony 3.2 Beta5 API 9
+
+**解决措施**
+
+新建卡片时会生成一个FormAblity.ts文件，其中包含卡片对应的生命周期。
+
+参考链接
+
+[FormExtensionAbility](../reference/apis/js-apis-app-form-formExtensionAbility.md)
+
+## 使用ServiceExtensionAbility和DataShareExtensionAbility的相关接口后DevEco Studio无法编译
+
+适用于：Openharmony 3.2 Beta5 API 9
+
+**问题现象**
+
+使用ServiceExtensionAbility和DataShareExtensionAbility的相关接口后，DevEco Studio报错无法编译。
+
+**问题原因**
+
+当前SDK类型有：
+
+-   public-sdk : 面向应用开发者提供，不包含需要使用系统权限的系统接口。
+-   full-sdk : 面向OEM厂商提供，包含了需要使用系统权限的系统接口。
+
+DevEco Studio默认下载是public-sdk。
+
+**解决措施**
+
+三方应用不支持开发ServiceExtensionAbility和DataShareExtensionAbility。若开发系统应用，请[下载full-sdk](../quick-start/full-sdk-switch-guide.md)。
+
+## 如何获取应用级别的temp路径和files路径
+
+适用于：OpenHarmony 3.2 Beta5 
+
+**解决措施**
+
+通过应用上下文context获取。如：this.context.getApplicationContext.tempDir来获取temp路径；this.context.getApplicationContext.filesDir来获取files路径。
+
+**参考链接**
+
+[获取应用开发路径](../application-models/application-context-stage.md#获取应用开发路径)
+
+
+## FA卡片上架后在用户的服务中心展示时可否触发生命周期，从而实现用户没有打开过FA应用的情况下获取到用户的登录信息  
+
+适用于：OpenHarmony 3.2 Beta 5 API 9
+
+**问题现象**
+
+FA卡片的生命周期以及信息显示
+
+**解决措施**
+
+服务卡片在添加卡片后就触发了oncreat（）生命周期，在不启用app的情况下也可以显示相关的用户信息-静默登录，但服务卡片目前要在app安装之后手动添加。
 
 ## 如何通过卡片点击实现业务登录场景
 
-适用于：OpenHarmony SDK 3.2.5.5版本， API9 Stage模型
+适用于: OpenHarmony 3.2 Beta5  API 9
 
-可以通过点击卡片拉起响应的Ability后，通过Ability来实现业务登录场景。
+**解决措施**
 
-## 如何跳转到设置中应用详情页面
+可以先创建FA模型的卡片,步骤如下：
 
-使用于：OpenHarmony SDK 3.2.6.5版本
+1. 实现卡片生命周期接口
+
+2. 配置卡片配置文件
+
+3. 卡片信息的持久化
+
+4. 卡片数据交互
+
+5. 开发卡片页面
+
+6. 开发卡片事件：通过点击卡片拉起响应的Ability后，通过Ability来实现业务登录场景
+
+**参考链接**
+
+[FA卡片开发指导](../application-models/widget-development-fa.md)
+
+## 如何跳转到设置中应用详情页面 
+
+适用于：OpenHarmony 3.2 Beta5  API 9
+
+**解决措施**
 
 参考如下代码实现，示例：
 
@@ -159,58 +321,46 @@ this.context.startAbility(
 })
 ```
 
-## 如何监听屏幕旋转
+## stage模型，@Component组件内如何获取UIAbilityContext 
 
-使用于：OpenHarmony SDK 3.2.5.5版本，API9 Stage模型
+适用于：OpenHarmony 3.2 Beta5 API9
 
-参考如下代码实现，示例：
+**解决措施**
+
+可以通过UIAbility. Context获取。
+
+**代码示例**
 
 ```
-let listener = mediaquery.matchMediaSync('(orientation: landscape)')
-onPortrait(mediaQueryResult) {
-if (mediaQueryResult.matches) {
-// do something here
-    } else {
-// do something here
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+let UIAbilityContext = UIAbility.context;
+let ApplicationContext = UIAbility.context.getApplicationContext();
+@Entry
+@Component
+struct AbilityContextTest {
+  // abilityContext
+  @State UIabilityInfo: string = '获取 abilityInfo'
+  UIabilityContext: UIAbilityContext
+
+  aboutToAppear() {
+    // getContext获取Context，转为abilityContext 
+    this.UIabilityContext = getContext(this) as UIAbilityContext
+  }
+
+  build() {
+    Row() {
+      Column({ space: 20 }) {
+        Text(this.abilityInfo)
+          .fontSize(20)
+          .onClick(()=>{
+            this.UIabilityInfo = JSON.stringify(this.UIabilityContext.UIabilityInfo)
+            console.log(`ContextDemo abilityInfo= ${this.UIabilityInfo}`)
+          })
+      }
+      .width('100%')
     }
-}
-listener.on('change', onPortrait)
-```
-
-## 如何控制checkbox选中切换过程中阴影背景的大小
-
-使用于：OpenHarmony SDK 3.2.5.5版本，API9 Stage模型
-
-设置checkbox组件padding属性，可控制阴影大小
-
-## 如何设置卡片背景为透明
-
-适用：OpenHarmony SDK 3.2.5.5版本
-
-1. 在卡片根目录widget新建widget/resources/styles/default.json文件
-
-2. 在default.json中书写如下代码：
-
-```
-{  
- "style": {   
-      "app_background": "#00000000"   
-   } 
+    .height('100%')
+  }
 }
 ```
-
-## FA卡片如何的传参和接参
-
-适用：OpenHarmony SDK 3.2.5.5版本
-
-使用featureAbility.getWant()和featureAbility.getContext()在json文件中router跳转发送数据，在js文件中用featureAbility方法接收
-
-## router.disableAlertBeforeBackPage和router.enableAlertBeforeBackPage怎么触发
-
-适用：OpenHarmony SDK 3.2.5.5版本
-
-需要满足两个条件
-
-1. router.disableAlertBeforeBackPage和router.enableAlertBeforeBackPage类似一个开关，disableAlertBeforeBackPage是返回上一级页面时关闭弹窗提示，enableAlertBeforeBackPage是打开弹窗提示，默认是关闭的，当你需要使用时，首先要在一个函数里面开启功能，然后再执行跳转
-
-2. 必须要使用系统的返回按键才能触发效果。

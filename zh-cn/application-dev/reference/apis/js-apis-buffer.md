@@ -417,11 +417,11 @@ isBuffer(obj: Object): boolean
 ```ts
 import buffer from '@ohos.buffer';
 
-buffer.isBuffer(buffer.alloc(10)); // true
-buffer.isBuffer(buffer.from('foo')); // true
-buffer.isBuffer('a string'); // false
-buffer.isBuffer([]); // false
-buffer.isBuffer(new Uint8Array(1024)); // false
+let result = buffer.isBuffer(buffer.alloc(10)); // true
+let result1 = buffer.isBuffer(buffer.from('foo')); // true
+let result2 = buffer.isBuffer('a string'); // false
+let result3 = buffer.isBuffer([]); // false
+let result4 = buffer.isBuffer(new Uint8Array(1024)); // false
 ```
 
 ## buffer.isEncoding
@@ -872,7 +872,7 @@ let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
 console.log(buf.readBigInt64BE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(8);
-buf1.writeBigInt64BE(0x0102030405060708n, 0);
+let result = buf1.writeBigInt64BE(BigInt(0x0102030405060708), 0);
 ```
 
 ### readBigInt64LE
@@ -913,7 +913,7 @@ let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
 console.log(buf.readBigInt64LE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(8);
-buf1.writeBigInt64BE(0x0102030405060708n, 0);
+let result = buf1.writeBigInt64BE(BigInt(0x0102030405060708), 0);
 ```
 
 ### readBigUInt64BE
@@ -954,7 +954,7 @@ let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
 console.log(buf.readBigUInt64BE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(8);
-buf1.writeBigUInt64BE(0xdecafafecacefaden, 0);
+let result = buf1.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
 ```
 
 ### readBigUInt64LE
@@ -995,7 +995,7 @@ let buf = buffer.from([0x63, 0x64, 0x65, 0x66, 0x67, 0x68, 0x69, 0x70,
 console.log(buf.readBigUInt64LE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(8);
-buf1.writeBigUInt64BE(0xdecafafecacefaden, 0);
+let result = buf1.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
 ```
 
 ### readDoubleBE
@@ -1035,7 +1035,7 @@ let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readDoubleBE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(8);
-buf1.writeDoubleBE(123.456, 0);
+let result = buf1.writeDoubleBE(123.456, 0);
 ```
 
 ### readDoubleLE
@@ -1075,7 +1075,7 @@ let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readDoubleLE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(8);
-buf1.writeDoubleLE(123.456, 0);
+let result = buf1.writeDoubleLE(123.456, 0);
 ```
 
 ### readFloatBE
@@ -1115,7 +1115,7 @@ let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readFloatBE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(4);
-buf1.writeFloatBE(0xcabcbcbc, 0);
+let result = buf1.writeFloatBE(0xcabcbcbc, 0);
 ```
 
 ### readFloatLE
@@ -1155,7 +1155,7 @@ let buf = buffer.from([1, 2, 3, 4, 5, 6, 7, 8]);
 console.log(buf.readFloatLE(0).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(4);
-buf1.writeFloatLE(0xcabcbcbc, 0);
+let result = buf1.writeFloatLE(0xcabcbcbc, 0);
 ```
 
 ### readInt8
@@ -1196,7 +1196,7 @@ console.log(buf.readInt8(0).toString());	// 打印: -1
 console.log(buf.readInt8(1).toString());	// 打印: 5
 
 let buf1 = buffer.allocUninitializedFromPool(2);
-buf1.writeInt8(0x12);
+let result = buf1.writeInt8(0x12);
 ```
 
 ### readInt16BE
@@ -1236,7 +1236,7 @@ let buf = buffer.from([0, 5]);
 console.log(buf.readInt16BE(0).toString());	// 打印: 5
 
 let buf1 = buffer.alloc(2);
-buf1.writeInt16BE(0x1234, 0);
+let result = buf1.writeInt16BE(0x1234, 0);
 ```
 
 ### readInt16LE
@@ -1276,7 +1276,7 @@ let buf = buffer.from([0, 5]);
 console.log(buf.readInt16LE(0).toString());	// 打印: 1280
 
 let buf1 = buffer.alloc(2);
-buf1.writeInt16BE(0x1234, 0);
+let result = buf1.writeInt16BE(0x1234, 0);
 ```
 
 ### readInt32BE
@@ -1316,7 +1316,7 @@ let buf = buffer.from([0, 0, 0, 5]);
 console.log(buf.readInt32BE(0).toString());	// 打印: 5
 
 let buf1 = buffer.alloc(4);
-buf1.writeInt32BE(0x12345678, 0);
+let result = buf1.writeInt32BE(0x12345678, 0);
 ```
 
 ### readInt32LE
@@ -1356,7 +1356,7 @@ let buf = buffer.from([0, 0, 0, 5]);
 console.log(buf.readInt32LE(0).toString());	// 打印: 83886080
 
 let buf1 = buffer.alloc(4);
-buf1.writeInt32BE(0x12345678, 0);
+let result = buf1.writeInt32BE(0x12345678, 0);
 ```
 
 ### readIntBE
@@ -1399,7 +1399,7 @@ let num = buf.readIntBE(0, 1);
 console.log(num.toString()); // 97
 
 let buf1 = buffer.allocUninitializedFromPool(6);
-buf1.writeIntBE(0x123456789011, 0, 6);
+let result = buf1.writeIntBE(0x123456789011, 0, 6);
 ```
 
 
@@ -1442,7 +1442,7 @@ let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.log(buf.readIntLE(0, 6).toString(16));
 
 let buf1 = buffer.allocUninitializedFromPool(6);
-buf1.writeIntLE(0x123456789011, 0, 6);
+let result = buf1.writeIntLE(0x123456789011, 0, 6);
 ```
 
 ### readUInt8
@@ -1484,7 +1484,7 @@ console.log(buf.readUInt8(0).toString());
 console.log(buf.readUInt8(1).toString());
 
 let buf1 = buffer.allocUninitializedFromPool(4);
-buf1.writeUInt8(0x42);
+let result = buf1.writeUInt8(0x42);
 ```
 
 ### readUInt16BE
@@ -1526,7 +1526,7 @@ console.log(buf.readUInt16BE(0).toString(16));
 console.log(buf.readUInt16BE(1).toString(16));
 
 let buf1 = buffer.allocUninitializedFromPool(4);
-buf1.writeUInt16BE(0x1234, 0);
+let result = buf1.writeUInt16BE(0x1234, 0);
 ```
 
 ### readUInt16LE
@@ -1568,7 +1568,7 @@ console.log(buf.readUInt16LE(0).toString(16));
 console.log(buf.readUInt16LE(1).toString(16));
 
 let buf1 = buffer.allocUninitializedFromPool(4);
-buf1.writeUInt16LE(0x1234, 0);
+let result = buf1.writeUInt16LE(0x1234, 0);
 ```
 
 ### readUInt32BE
@@ -1609,7 +1609,7 @@ let buf = buffer.from([0x12, 0x34, 0x56, 0x78]);
 console.log(buf.readUInt32BE(0).toString(16));
 
 let buf1 = buffer.allocUninitializedFromPool(4);
-buf1.writeUInt32BE(0x12345678, 0);
+let result = buf1.writeUInt32BE(0x12345678, 0);
 ```
 
 ### readUInt32LE
@@ -1650,7 +1650,7 @@ let buf = buffer.from([0x12, 0x34, 0x56, 0x78]);
 console.log(buf.readUInt32LE(0).toString(16));
 
 let buf1 = buffer.allocUninitializedFromPool(4);
-buf1.writeUInt32LE(0x12345678, 0);
+let result = buf1.writeUInt32LE(0x12345678, 0);
 ```
 
 ### readUIntBE
@@ -1692,7 +1692,7 @@ let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.log(buf.readUIntBE(0, 6).toString(16));
 
 let buf1 = buffer.allocUninitializedFromPool(4);
-buf1.writeUIntBE(0x13141516, 0, 4);
+let result = buf1.writeUIntBE(0x13141516, 0, 4);
 ```
 
 ### readUIntLE
@@ -1734,7 +1734,7 @@ let buf = buffer.from([0x12, 0x34, 0x56, 0x78, 0x90, 0xab]);
 console.log(buf.readUIntLE(0, 6).toString(16));
 
 let buf1 = buffer.allocUninitializedFromPool(4);
-buf1.writeUIntLE(0x13141516, 0, 4);
+let result = buf1.writeUIntLE(0x13141516, 0, 4);
 ```
 
 ### subarray
@@ -2045,7 +2045,7 @@ writeBigInt64BE(value: bigint, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
-buf.writeBigInt64BE(0x0102030405060708n, 0);
+let result = buf.writeBigInt64BE(BigInt(0x0102030405060708), 0);
 ```
 
 ### writeBigInt64LE
@@ -2084,7 +2084,7 @@ writeBigInt64LE(value: bigint, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
-buf.writeBigInt64LE(0x0102030405060708n, 0);
+let result = buf.writeBigInt64LE(BigInt(0x0102030405060708), 0);
 ```
 
 ### writeBigUInt64BE
@@ -2123,7 +2123,7 @@ writeBigUInt64BE(value: bigint, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
-buf.writeBigUInt64BE(0xdecafafecacefaden, 0);
+let result = buf.writeBigUInt64BE(BigInt(0xdecafafecacefade), 0);
 ```
 
 ### writeBigUInt64LE
@@ -2162,7 +2162,7 @@ writeBigUInt64LE(value: bigint, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
-buf.writeBigUInt64LE(0xdecafafecacefaden, 0);
+let result = buf.writeBigUInt64LE(BigInt(0xdecafafecacefade), 0);
 ```
 
 ### writeDoubleBE
@@ -2201,7 +2201,7 @@ writeDoubleBE(value: number, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
-buf.writeDoubleBE(123.456, 0);
+let result = buf.writeDoubleBE(123.456, 0);
 ```
 
 ### writeDoubleLE
@@ -2240,7 +2240,7 @@ writeDoubleLE(value: number, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
-buf.writeDoubleLE(123.456, 0);
+let result = buf.writeDoubleLE(123.456, 0);
 ```
 
 ### writeFloatBE
@@ -2279,7 +2279,7 @@ writeFloatBE(value: number, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
-buf.writeFloatBE(0xcafebabe, 0);
+let result = buf.writeFloatBE(0xcafebabe, 0);
 ```
 
 
@@ -2319,7 +2319,7 @@ writeFloatLE(value: number, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(8);
-buf.writeFloatLE(0xcafebabe, 0);
+let result = buf.writeFloatLE(0xcafebabe, 0);
 ```
 
 ### writeInt8
@@ -2358,8 +2358,8 @@ writeInt8(value: number, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(2);
-buf.writeInt8(2, 0);
-buf.writeInt8(-2, 1);
+let result = buf.writeInt8(2, 0);
+let result1 = buf.writeInt8(-2, 1);
 ```
 
 
@@ -2399,7 +2399,7 @@ writeInt16BE(value: number, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(2);
-buf.writeInt16BE(0x0102, 0);
+let result = buf.writeInt16BE(0x0102, 0);
 ```
 
 
@@ -2439,7 +2439,7 @@ writeInt16LE(value: number, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(2);
-buf.writeInt16LE(0x0304, 0);
+let result = buf.writeInt16LE(0x0304, 0);
 ```
 
 ### writeInt32BE
@@ -2478,7 +2478,7 @@ writeInt32BE(value: number, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(4);
-buf.writeInt32BE(0x01020304, 0);
+let result = buf.writeInt32BE(0x01020304, 0);
 ```
 
 
@@ -2518,7 +2518,7 @@ writeInt32LE(value: number, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(4);
-buf.writeInt32LE(0x05060708, 0);
+let result = buf.writeInt32LE(0x05060708, 0);
 ```
 
 ### writeIntBE
@@ -2558,7 +2558,7 @@ writeIntBE(value: number, offset: number, byteLength: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(6);
-buf.writeIntBE(0x1234567890ab, 0, 6);
+let result = buf.writeIntBE(0x1234567890ab, 0, 6);
 ```
 
 
@@ -2599,7 +2599,7 @@ writeIntLE(value: number, offset: number, byteLength: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(6);
-buf.writeIntLE(0x1234567890ab, 0, 6);
+let result = buf.writeIntLE(0x1234567890ab, 0, 6);
 ```
 
 ### writeUInt8
@@ -2638,10 +2638,10 @@ writeUInt8(value: number, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(4);
-buf.writeUInt8(0x3, 0);
-buf.writeUInt8(0x4, 1);
-buf.writeUInt8(0x23, 2);
-buf.writeUInt8(0x42, 3);
+let result = buf.writeUInt8(0x3, 0);
+let result1 = buf.writeUInt8(0x4, 1);
+let result2 = buf.writeUInt8(0x23, 2);
+let result3 = buf.writeUInt8(0x42, 3);
 ```
 
 ### writeUInt16BE
@@ -2657,7 +2657,7 @@ writeUInt16BE(value: number, offset?: number): number
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | number | 是 | 写入Buffer的数据。 |
-| offset | number | 否 | 偏移量。 默认值: 0。 |
+| offset | number | 否 | 偏移量。 默认值为0。 |
 
 
 **返回值：**
@@ -2680,8 +2680,8 @@ writeUInt16BE(value: number, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(4);
-buf.writeUInt16BE(0xdead, 0);
-buf.writeUInt16BE(0xbeef, 2);
+let result = buf.writeUInt16BE(0xdead, 0);
+let result1 = buf.writeUInt16BE(0xbeef, 2);
 ```
 
 ### writeUInt16LE
@@ -2720,8 +2720,8 @@ writeUInt16LE(value: number, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(4);
-buf.writeUInt16LE(0xdead, 0);
-buf.writeUInt16LE(0xbeef, 2);
+let result = buf.writeUInt16LE(0xdead, 0);
+let result1 = buf.writeUInt16LE(0xbeef, 2);
 ```
 
 ### writeUInt32BE
@@ -2760,7 +2760,7 @@ writeUInt32BE(value: number, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(4);
-buf.writeUInt32BE(0xfeedface, 0);
+let result = buf.writeUInt32BE(0xfeedface, 0);
 ```
 
 ### writeUInt32LE
@@ -2799,7 +2799,7 @@ writeUInt32LE(value: number, offset?: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(4);
-buf.writeUInt32LE(0xfeedface, 0);
+let result = buf.writeUInt32LE(0xfeedface, 0);
 ```
 
 ### writeUIntBE
@@ -2839,7 +2839,7 @@ writeUIntBE(value: number, offset: number, byteLength: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(6);
-buf.writeUIntBE(0x1234567890ab, 0, 6);
+let result = buf.writeUIntBE(0x1234567890ab, 0, 6);
 ```
 
 ### writeUIntLE
@@ -2879,7 +2879,7 @@ writeUIntLE(value: number, offset: number, byteLength: number): number
 import buffer from '@ohos.buffer';
 
 let buf = buffer.allocUninitializedFromPool(6);
-buf.writeUIntLE(0x1234567890ab, 0, 6);
+let result = buf.writeUIntLE(0x1234567890ab, 0, 6);
 ```
 
 ## Blob
@@ -2906,7 +2906,7 @@ Blob的构造函数。
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | sources | string[]&nbsp;\|&nbsp;ArrayBuffer[]&nbsp;\|&nbsp;TypedArray[]&nbsp;\|&nbsp;DataView[]&nbsp;\|&nbsp;Blob[] | 是 | Blob实例的数据源。 |
-| options | Object | 否 | options:<br/>-&nbsp;endings:'transparent'或'native'<br/>-&nbsp;type:Blob内容类型 |
+| options | Object | 否 | options:<br/>- endings:含义为结束符'\n'的字符串如何被输出，为'transparent'或'native'。native代表行结束符会跟随系统。'transparent'代表会保持Blob中保存的结束符不变。此参数非必填，默认值为'transparent'。<br/>- type:Blob内容类型。其目的是让类型传达数据的MIME媒体类型，但是不执行类型格式的验证。此参数非必填，默认参数为''。 |
 
 
 **示例：**
@@ -2951,9 +2951,9 @@ slice(start?: number, end?: number, type?: string): Blob
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| start | number | 否 | 起始位置。 |
-| end | number | 否 | 结束位置。 |
-| type | string | 否 | 内容类型。 |
+| start | number | 否 | 起始位置。默认值为0。 |
+| end | number | 否 | 结束位置。默认值为原Blob对象中的数据长度。 |
+| type | string | 否 | 内容类型。默认值为''。 |
 
 **返回值：**
 | 类型 | 说明 |

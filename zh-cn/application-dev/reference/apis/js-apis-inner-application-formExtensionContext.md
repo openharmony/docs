@@ -9,6 +9,12 @@ FormExtensionContext模块提供FormExtension具有的接口和能力。
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 > 本模块接口仅可在Stage模型下使用。
 
+## 导入模块
+
+```ts
+import common from '@ohos.app.ability.common';
+```
+
 ## 使用说明
 
 在使用FormExtensionContext的功能前，需要通过FormExtension获取。
@@ -40,6 +46,18 @@ startAbility(want: Want, callback: AsyncCallback&lt;void&gt;): void
 
 **系统能力**：SystemCapability.Ability.Form
 
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16500101 | The application is not a system application. |
+| 16501000 | An internal functional error occurred. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
+
 **参数：**
 
 | 参数名 |                类型               | 必填 |              说明               |
@@ -60,7 +78,7 @@ let want = {
     uri: 'key={true,true,false}',
     parameters: {}
 };
-this.context.startAbility(want, (error, data) => {
+this.context.startAbility(want, (error) => {
     if (error) {
       console.log('FormExtensionContext startAbility, error:' + JSON.stringify(error));
     } else {
@@ -90,6 +108,18 @@ startAbility(want: Want): Promise&lt;void&gt;
 | 类型          | 说明                                |
 | ------------ | ---------------------------------- |
 | Promise&lt;void&lt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+| 错误码ID | 错误信息 |
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16500101 | The application is not a system application. |
+| 16501000 | An internal functional error occurred. |
+|以上错误码的详细介绍请参见[卡片错误码](../errorcodes/errorcode-form.md)。||
 
 **示例：**
 

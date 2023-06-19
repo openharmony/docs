@@ -3,7 +3,7 @@
 ## Overview
 
 Hardware device interface (HDI) provides a set of interfaces that function as a bridge between drivers and system services for data transmission. They have a direct impact on system efficiency, stability, compatibility, and reliability, as well as data accuracy and integrity. This document aims to standardize the design and development of OpenHarmony HDI interfaces, thereby ensuring consistent styles and complete functionalities for the interfaces.
-This document is developed by the [driver SIG](https://gitee.com/openharmony/community/blob/master/sig/sig-driver/sig_driver.md) and approved by the [PMC](https://gitee.com/link?target=https%3A%2F%2Fwww.openharmony.cn%2Fcommunity%2Fpmc%2F). Any revision to this document must be reviewed by the driver SIG and approved by the PMC.
+This document is developed by the [driver SIG](https://gitee.com/openharmony/community/blob/master/sig/sig_driver/sig_driver.md) and approved by the [PMC](https://gitee.com/link?target=https%3A%2F%2Fwww.openharmony.cn%2Fcommunity%2Fpmc%2F). Any revision to this document must be reviewed by the driver SIG and approved by the PMC.
 
 **Acronyms**
 

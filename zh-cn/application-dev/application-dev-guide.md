@@ -1,5 +1,8 @@
 # 应用开发导读
 
+> **说明**：
+> 您当前正在浏览OpenHarmony 3.2 Release版本的配套文档，请获取与该版本[配套的SDK](../release-notes/OpenHarmony-v3.2-release.md#配套关系)开发应用。
+
 应用开发文档用于指导开发者通过OpenHarmony提供的接口完成应用开发。当前应用开发文档提供了在标准系统上开发应用的JS接口。
 
 在应用开发的文档中，您可以获取到如下几方面的内容：
@@ -24,15 +27,17 @@
 所有应用都应该在这两个框架的基础之上进行功能的开发。
 
 在此基础上，还提供了如下功能的开发指导：
+
+- [Web](web/web-component-overview.md)
 - [通知](notification/notification-overview.md)
 - [窗口管理](windowmanager/window-overview.md)
 - [WebGL](webgl/webgl-overview.md)
-- [媒体](media/audio-overview.md)
+- [媒体](media/media-application-overview.md)
 - [安全](security/userauth-overview.md)
 - [网络与连接](connectivity/ipc-rpc-overview.md)
 - [电话服务](telephony/telephony-overview.md)
-- [数据管理](database/database-mdds-overview.md)
-- [文件管理](file-management/medialibrary-overview.md)
+- [数据管理](database/data-mgmt-overview.md)
+- [文件管理](file-management/file-management-overview.md)
 - [任务管理](task-management/background-task-overview.md)
 - [设备管理](device/usb-overview.md)
 - [设备使用信息统计](device-usage-statistics/device-usage-statistics-overview.md)
@@ -59,7 +64,8 @@ API参考提供了OpenHarmony全量组件和接口的参考文档，可以帮助
 内容包括：
 
 - [组件参考（基于TS扩展的声明式开发范式）](reference/arkui-ts/ts-components-summary.md)
-- [组件参考（兼容JS的类Web开发范式）](reference/arkui-js/js-components-common-attributes.md)
+- [组件参考（兼容JS的类Web开发范式-ArkUI.Full）](reference/arkui-js/Readme-CN.md)
+- [组件参考（兼容JS的类Web开发范式-ArkUI.Lite）](reference/arkui-js-lite/Readme-CN.md)
 - [JS服务卡片UI组件参考](reference/js-service-widget-ui/js-service-widget-file.md)
 - [接口参考（ArkTS及JS API）](reference/apis/development-intro.md)
 - 接口参考（Native API）

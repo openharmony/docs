@@ -119,7 +119,16 @@ Provides the flag attributes of this window.
 ## On<sup>9+</sup>
 
 Since API version 9, the UiTest framework provides a wide range of UI component feature description APIs in the **On** class to filter and match components.
-The API capabilities provided by the **On** class exhibit the following features: 1. Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component. <br>2. Provide multiple match patterns for component attributes. <br>3. Support absolute positioning and relative positioning for components. APIs such as [ON.isBefore](#isbefore) and [ON.isAfter](#isafter) can be used to specify the features of adjacent components to assist positioning. <br>All APIs provided in the **On** class are synchronous. You are advised to use the static constructor **ON** to create an **On** object in chain mode.
+
+The API capabilities provided by the **On** class exhibit the following features:
+
+- Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component.
+
+- Provide multiple match patterns for component attributes.
+
+- Support absolute positioning and relative positioning for components. APIs such as [ON.isBefore](#isbefore9) and [ON.isAfter](#isafter9) can be used to specify the features of adjacent components to assist positioning. 
+
+All APIs provided in the **On** class are synchronous. You are advised to use the static constructor **ON** to create an **On** object in chain mode.
 
 ```js
 ON.text('123').type('button');
@@ -420,7 +429,7 @@ let on = ON.checkable(true); // Use the static constructor ON to create an On ob
 
 isBefore(on: On): On
 
-Specifies the attributes of the component before which the target component is located.
+Specifies that the target component is located before the given attribute component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -439,14 +448,14 @@ Specifies the attributes of the component before which the target component is l
 **Example**
 
 ```js
-let on = ON.isBefore(ON.text('123')); // Use the static constructor ON to create an On object and specify the attributes of the component before which the target component is located.
+let on = ON.isBefore(ON.text('123')); // Create an On object using the static constructor ON, specifying that the target component is located before the given attribute component.
 ```
 
 ### isAfter<sup>9+</sup>
 
 isAfter(on: On): On
 
-Specifies the attributes of the component after which the target component is located.
+Specifies that the target component is located after the given attribute component.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -465,12 +474,13 @@ Specifies the attributes of the component after which the target component is lo
 **Example**
 
 ```js
-let on = ON.isAfter(ON.text('123')); // Use the static constructor ON to create an On object and specify the attributes of the component after which the target component is located.
+let on = ON.isAfter(ON.text('123')); // Create an On object using the static constructor ON, specifying that the target component is located after the given attribute component.
 ```
 
 ## Component<sup>9+</sup>
 
-In **UiTest** of API version 9, the **Component** class represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection.
+Represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection.
+
 All APIs provided in this class use a promise to return the result and must be invoked using **await**.
 
 ### click<sup>9+</sup>
@@ -1476,7 +1486,7 @@ Searches this **Driver** object for the target component that matches the given 
 
 | Type                             | Description                             |
 | --------------------------------- | --------------------------------- |
-| Promise\<[Component](#component)> | Promise used to return the found component.|
+| Promise\<[Component](#component9)> | Promise used to return the found component.|
 
 **Error codes**
 
@@ -2078,7 +2088,7 @@ Simulates a fling operation on the screen.
 | from    | [Point](#point9) | Yes  | Coordinates of the point where the finger touches the screen.                                  |
 | to      | [Point](#point9) | Yes  | Coordinates of the point where the finger leaves the screen.                                    |
 | stepLen | number           | Yes  | Fling step length, in pixels.                                    |
-| speed   | number           | Yes  | Scroll speed, in pixel/s. The value ranges from 200 to 15000. If the set value is not in the range, the default value 600 is used.|
+| speed   | number           | Yes  | Fling speed, in pixel/s. The value ranges from 200 to 15000. If the set value is not in the range, the default value 600 is used.|
 
 **Error codes**
 
@@ -2093,7 +2103,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 ```js
 async function demo() {
     let driver = Driver.create();
-    await driver.fling({x: 500, Y: 480},{x: 450, Y: 480},5,600);
+    await driver.fling({x: 500, y: 480},{x: 450, y: 480},5,600);
 }
 ```
 
@@ -2649,7 +2659,13 @@ async function demo() {
 ## By<sup>(deprecated)</sup>
 
 The UiTest framework provides a wide range of UI component feature description APIs in the **By** class to filter and match components.
-The API capabilities provided by the **By** class exhibit the following features: <br>1. Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component. <br>2. Provide multiple match patterns for component attributes. <br>3. Support absolute positioning and relative positioning for components. APIs such as [By.isBefore<sup>(deprecated)</sup>](#isbeforedeprecated) and [By.isAfter<sup>(deprecated)</sup>](#isafterdeprecated) can be used to specify the features of adjacent components to assist positioning. <br>All APIs provided in the **By** class are synchronous. You are advised to use the static constructor **BY** to create a **By** object in chain mode.
+The API capabilities provided by the **By** class exhibit the following features: 
+
+- Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component. 
+- Provide multiple match patterns for component attributes.
+- Support absolute positioning and relative positioning for components. APIs such as [By.isBefore<sup>(deprecated)</sup>](#isbeforedeprecated) and [By.isAfter<sup>(deprecated)</sup>](#isafterdeprecated) can be used to specify the features of adjacent components to assist positioning.
+
+All APIs provided in the **By** class are synchronous. You are advised to use the static constructor **BY** to create a **By** object in chain mode.
 
 This API is deprecated since API version 9. You are advised to use [On<sup>9+</sup>](#on9) instead.
 
@@ -2663,7 +2679,7 @@ text(txt: string, pattern?: MatchPattern): By
 
 Specifies the text attribute of the target component. Multiple match patterns are supported.
 
-This API is deprecated since API version 9. You are advised to use [text<sup>9+</sup>](#text9).
+This API is deprecated since API version 9. You are advised to use [text<sup>9+</sup>](#text9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -2693,7 +2709,7 @@ key(key: string): By
 
 Specifies the key attribute of the target component.
 
-This API is deprecated since API version 9. You are advised to use [id<sup>9+</sup>](#id9).
+This API is deprecated since API version 9. You are advised to use [id<sup>9+</sup>](#id9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -2751,7 +2767,7 @@ type(tp: string): By
 
 Specifies the type attribute of the target component.
 
-This API is deprecated since API version 9. You are advised to use [type<sup>9+</sup>](#type9).
+This API is deprecated since API version 9. You are advised to use [type<sup>9+</sup>](#type9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -2780,7 +2796,7 @@ clickable(b?: boolean): By
 
 Specifies the clickable status attribute of the target component.
 
-This API is deprecated since API version 9. You are advised to use [clickable<sup>9+</sup>](#clickable9).
+This API is deprecated since API version 9. You are advised to use [clickable<sup>9+</sup>](#clickable9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -2809,7 +2825,7 @@ scrollable(b?: boolean): By
 
 Specifies the scrollable status attribute of the target component.
 
-This API is deprecated since API version 9. You are advised to use [scrollable<sup>9+</sup>](#scrollable9).
+This API is deprecated since API version 9. You are advised to use [scrollable<sup>9+</sup>](#scrollable9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -2837,7 +2853,7 @@ enabled(b?: boolean): By
 
 Specifies the enabled status attribute of the target component.
 
-This API is deprecated since API version 9. You are advised to use [enabled<sup>9+</sup>](#enabled9).
+This API is deprecated since API version 9. You are advised to use [enabled<sup>9+</sup>](#enabled9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -2865,7 +2881,7 @@ focused(b?: boolean): By
 
 Specifies the focused status attribute of the target component.
 
-This API is deprecated since API version 9. You are advised to use [focused<sup>9+</sup>](#focused9).
+This API is deprecated since API version 9. You are advised to use [focused<sup>9+</sup>](#focused9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -2919,7 +2935,7 @@ let by = BY.selected(true); // Use the static constructor BY to create a By obje
 
 isBefore(by: By): By
 
-Specifies the attributes of the component before which the target component is located.
+Specifies that the target component is located before the given attribute component.
 
 This API is deprecated since API version 9. You are advised to use [isBefore<sup>9+</sup>](#isbefore9).
 
@@ -2947,9 +2963,9 @@ let by = BY.isBefore(BY.text('123')); // Use the static constructor BY to create
 
 isAfter(by: By): By
 
-Specifies the attributes of the component after which the target component is located.
+Specifies that the target component is located after the given attribute component.
 
-This API is deprecated since API version 9. You are advised to use [isAfter<sup>9+</sup>](#isafter9).
+This API is deprecated since API version 9. You are advised to use [isAfter<sup>9+</sup>](#isafter9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -2968,7 +2984,7 @@ This API is deprecated since API version 9. You are advised to use [isAfter<sup>
 **Example**
 
 ```js
-let by = BY.isAfter(BY.text('123')); // Use the static constructor BY to create a By object and specify the attributes of the component after which the target component is located.
+let by = BY.isAfter(BY.text('123')); // Use the static constructor BY to create a By object, specifying that the target component is located after the given attribute component.
 ```
 
 ## UiComponent<sup>(deprecated)</sup>
@@ -2984,7 +3000,7 @@ click(): Promise\<void>
 
 Clicks this component.
 
-This API is deprecated since API version 9. You are advised to use [click<sup>9+</sup>](#click9).
+This API is deprecated since API version 9. You are advised to use [click<sup>9+</sup>](#click9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3004,7 +3020,7 @@ doubleClick(): Promise\<void>
 
 Double-clicks this component.
 
-This API is deprecated since API version 9. You are advised to use [doubleClick<sup>9+</sup>](#doubleclick9).
+This API is deprecated since API version 9. You are advised to use [doubleClick<sup>9+</sup>](#doubleclick9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3024,7 +3040,7 @@ longClick(): Promise\<void>
 
 Long-clicks this component.
 
-This API is deprecated since API version 9. You are advised to use [longClick<sup>9+</sup>](#longclick9).
+This API is deprecated since API version 9. You are advised to use [longClick<sup>9+</sup>](#longclick9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3070,7 +3086,7 @@ getKey(): Promise\<string>
 
 Obtains the key of this component.
 
-This API is deprecated since API version 9. You are advised to use [getId<sup>9+</sup>](#getid9).
+This API is deprecated since API version 9. You are advised to use [getId<sup>9+</sup>](#getid9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3096,7 +3112,7 @@ getText(): Promise\<string>
 
 Obtains the text information of this component.
 
-This API is deprecated since API version 9. You are advised to use [getText<sup>9+</sup>](#gettext9).
+This API is deprecated since API version 9. You are advised to use [getText<sup>9+</sup>](#gettext9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3122,7 +3138,7 @@ getType(): Promise\<string>
 
 Obtains the type of this component.
 
-This API is deprecated since API version 9. You are advised to use [getType<sup>9+</sup>](#gettype9).
+This API is deprecated since API version 9. You are advised to use [getType<sup>9+</sup>](#gettype9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3148,7 +3164,7 @@ isClickable(): Promise\<boolean>
 
 Obtains the clickable status of this component.
 
-This API is deprecated since API version 9. You are advised to use [isClickable<sup>9+</sup>](#isclickable9).
+This API is deprecated since API version 9. You are advised to use [isClickable<sup>9+</sup>](#isclickable9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3178,7 +3194,7 @@ isScrollable(): Promise\<boolean>
 
 Obtains the scrollable status of this component.
 
-This API is deprecated since API version 9. You are advised to use [isScrollable<sup>9+</sup>](#isscrollable9).
+This API is deprecated since API version 9. You are advised to use [isScrollable<sup>9+</sup>](#isscrollable9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3209,7 +3225,7 @@ isEnabled(): Promise\<boolean>
 
 Obtains the enabled status of this component.
 
-This API is deprecated since API version 9. You are advised to use [isEnabled<sup>9+</sup>](#isenabled9).
+This API is deprecated since API version 9. You are advised to use [isEnabled<sup>9+</sup>](#isenabled9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3240,7 +3256,7 @@ isFocused(): Promise\<boolean>
 
 Obtains the focused status of this component.
 
-This API is deprecated since API version 9. You are advised to use [isFocused<sup>9+</sup>](#isfocused9).
+This API is deprecated since API version 9. You are advised to use [isFocused<sup>9+</sup>](#isfocused9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3270,7 +3286,7 @@ isSelected(): Promise\<boolean>
 
 Obtains the selected status of this component.
 
-This API is deprecated since API version 9. You are advised to use [isSelected<sup>9+</sup>](#isselected9).
+This API is deprecated since API version 9. You are advised to use [isSelected<sup>9+</sup>](#isselected9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3300,7 +3316,7 @@ inputText(text: string): Promise\<void>
 
 Enters text into this component (available for text boxes).
 
-This API is deprecated since API version 9. You are advised to use [inputText<sup>9+</sup>](#inputtext9).
+This API is deprecated since API version 9. You are advised to use [inputText<sup>9+</sup>](#inputtext9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3326,7 +3342,7 @@ scrollSearch(by: By): Promise\<UiComponent>
 
 Scrolls on this component to search for the target component (applicable to components that support scrolling, such as **\<List>**).
 
-This API is deprecated since API version 9. You are advised to use [scrollSearch<sup>9+</sup>](#scrollsearch9).
+This API is deprecated since API version 9. You are advised to use [scrollSearch<sup>9+</sup>](#scrollsearch9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3365,7 +3381,7 @@ static create(): UiDriver
 
 Creates a **UiDriver** object and returns the object created. This API is a static API.
 
-This API is deprecated since API version 9. You are advised to use [create<sup>9+</sup>](#create9).
+This API is deprecated since API version 9. You are advised to use [create<sup>9+</sup>](#create9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3389,7 +3405,7 @@ delayMs(duration: number): Promise\<void>
 
 Delays this **UiDriver** object within the specified duration.
 
-This API is deprecated since API version 9. You are advised to use [delayMs<sup>9+</sup>](#delayms9).
+This API is deprecated since API version 9. You are advised to use [delayMs<sup>9+</sup>](#delayms9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3414,7 +3430,7 @@ findComponent(by: By): Promise\<UiComponent>
 
 Searches this **UiDriver** object for the target component that matches the given attributes.
 
-This API is deprecated since API version 9. You are advised to use [findComponent<sup>9+</sup>](#findcomponent9).
+This API is deprecated since API version 9. You are advised to use [findComponent<sup>9+</sup>](#findcomponent9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3445,7 +3461,7 @@ findComponents(by: By): Promise\<Array\<UiComponent>>
 
 Searches this **UiDriver** object for all components that match the given attributes.
 
-This API is deprecated since API version 9. You are advised to use [findComponents<sup>9+</sup>](#findcomponents9).
+This API is deprecated since API version 9. You are advised to use [findComponents<sup>9+</sup>](#findcomponents9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3476,7 +3492,7 @@ assertComponentExist(by: By): Promise\<void>
 
 Asserts that a component that matches the given attributes exists on the current page. If the component does not exist, the API throws a JS exception, causing the current test case to fail.
 
-This API is deprecated since API version 9. You are advised to use [assertComponentExist<sup>9+</sup>](#assertcomponentexist9).
+This API is deprecated since API version 9. You are advised to use [assertComponentExist<sup>9+</sup>](#assertcomponentexist9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3501,7 +3517,7 @@ pressBack(): Promise\<void>
 
 Presses the Back button on this **UiDriver** object.
 
-This API is deprecated since API version 9. You are advised to use [pressBack<sup>9+</sup>](#pressback9).
+This API is deprecated since API version 9. You are advised to use [pressBack<sup>9+</sup>](#pressback9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3520,7 +3536,7 @@ triggerKey(keyCode: number): Promise\<void>
 
 Triggers the key of this **UiDriver** object that matches the given key code.
 
-This API is deprecated since API version 9. You are advised to use [triggerKey<sup>9+</sup>](#triggerkey9).
+This API is deprecated since API version 9. You are advised to use [triggerKey<sup>9+</sup>](#triggerkey9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3546,7 +3562,7 @@ click(x: number, y: number): Promise\<void>
 
 Clicks a specific point of this **UiDriver** object based on the given coordinates.
 
-This API is deprecated since API version 9. You are advised to use [click<sup>9+</sup>](#click9).
+This API is deprecated since API version 9. You are advised to use [click<sup>9+</sup>](#click9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3572,7 +3588,7 @@ doubleClick(x: number, y: number): Promise\<void>
 
 Double-clicks a specific point of this **UiDriver** object based on the given coordinates.
 
-This API is deprecated since API version 9. You are advised to use [doubleClick<sup>9+</sup>](#doubleclick9).
+This API is deprecated since API version 9. You are advised to use [doubleClick<sup>9+</sup>](#doubleclick9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3598,7 +3614,7 @@ longClick(x: number, y: number): Promise\<void>
 
 Long-clicks a specific point of this **UiDriver** object based on the given coordinates.
 
-This API is deprecated since API version 9. You are advised to use [longClick<sup>9+</sup>](#longclick9).
+This API is deprecated since API version 9. You are advised to use [longClick<sup>9+</sup>](#longclick9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3624,7 +3640,7 @@ swipe(startx: number, starty: number, endx: number, endy: number): Promise\<void
 
 Swipes on this **UiDriver** object from the start point to the end point based on the given coordinates.
 
-This API is deprecated since API version 9. You are advised to use [swipe<sup>9+</sup>](#swipe9).
+This API is deprecated since API version 9. You are advised to use [swipe<sup>9+</sup>](#swipe9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3652,7 +3668,7 @@ screenCap(savePath: string): Promise\<boolean>
 
 Captures the current screen of this **UiDriver** object and saves it as a PNG image to the given save path.
 
-This API is deprecated since API version 9. You are advised to use [screenCap<sup>9+</sup>](#screencap9).
+This API is deprecated since API version 9. You are advised to use [screenCap<sup>9+</sup>](#screencap9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 

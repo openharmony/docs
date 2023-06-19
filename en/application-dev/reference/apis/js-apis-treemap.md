@@ -18,6 +18,7 @@ This topic uses the following to identify the use of generics:
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+
 ## Modules to Import
 
 ```ts
@@ -126,9 +127,8 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```ts
 let treeMap = new TreeMap();
-let result = treeMap.hasKey("squirrel");
 treeMap.set("squirrel", 123);
-let result1 = treeMap.hasKey("squirrel");
+let result = treeMap.hasKey("squirrel");
 ```
 
 
@@ -164,9 +164,8 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```ts
 let treeMap = new TreeMap();
-let result = treeMap.hasValue(123);
 treeMap.set("squirrel", 123);
-let result1 = treeMap.hasValue(123);
+let result = treeMap.hasValue(123);
 ```
 
 
@@ -304,7 +303,7 @@ let map = new TreeMap();
 map.set("demo", 12);
 map.setAll(treeMap); // Add all elements in the treeMap to the map.
 map.forEach((value, key) => {
-    console.log("test" + value, key); // Print result: 12 demo, 356 sparrow, and 123 squirrel
+  console.log("value" + value, "key" + key); // Print result: 12 demo, 356 sparrow, and 123 squirrel
 })
 ```
 
@@ -380,7 +379,7 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 let treeMap = new TreeMap();
 treeMap.set("squirrel", 123);
 treeMap.set("sparrow", 356);
-treeMap.remove("sparrow");
+let result = treeMap.remove("sparrow");
 ```
 
 

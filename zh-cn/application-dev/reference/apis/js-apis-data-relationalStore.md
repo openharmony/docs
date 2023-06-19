@@ -1,12 +1,12 @@
 # @ohos.data.relationalStore (关系型数据库)
 
-关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。
+关系型数据库（Relational Database，RDB）是一种基于关系模型来管理数据的数据库。关系型数据库基于SQLite组件提供了一套完整的对本地数据库进行管理的机制，对外提供了一系列的增、删、改、查等接口，也可以直接运行用户输入的SQL语句来满足复杂的场景需要。不支持Worker线程。
 
 该模块提供以下关系型数据库相关的常用功能：
 
 - [RdbPredicates](#rdbpredicates)： 数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
 - [RdbStore](#rdbstore)：提供管理关系数据库(RDB)方法的接口。
-- [Resultset](#resultset)：提供用户调用关系型数据库查询接口之后返回的结果集合。
+- [ResultSet](#resultset)：提供用户调用关系型数据库查询接口之后返回的结果集合。
 
 > **说明：**
 > 
@@ -38,10 +38,11 @@ getRdbStore(context: Context, config: StoreConfig, callback: AsyncCallback&lt;Rd
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800010     | If failed delete database by invalid database name.  |
-| 14800011     | If failed open database by database corrupted.     |
+| **错误码ID** | **错误信息**                                      |
+| ------------ | ------------------------------------------------- |
+| 14800010     | Failed to open or delete database by invalid database path. |
+| 14800011     | Failed open database, database corrupted.         |
+| 14800000     | The inner error is occurred.                      |
 
 **示例：**
 
@@ -64,7 +65,7 @@ const STORE_CONFIG = {
 relationalStore.getRdbStore(context, STORE_CONFIG, function (err, rdbStore) {
   store = rdbStore;
   if (err) {
-    console.error(`Get RdbStore failed, err: ${err}`);
+    console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Get RdbStore successfully.`);
@@ -87,7 +88,7 @@ class EntryAbility extends UIAbility {
     relationalStore.getRdbStore(this.context, STORE_CONFIG, function (err, rdbStore) {
       store = rdbStore;
       if (err) {
-        console.error(`Get RdbStore failed, err: ${err}`);
+        console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
       }
       console.info(`Get RdbStore successfully.`);
@@ -121,10 +122,11 @@ getRdbStore(context: Context, config: StoreConfig): Promise&lt;RdbStore&gt;
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800010     | If failed delete database by invalid database name. |
-| 14800011     | If failed open database by database corrupted.     |
+| **错误码ID** | **错误信息**                                      |
+| ------------ | ------------------------------------------------- |
+| 14800010     | Failed to open or delete database by invalid database path. |
+| 14800011     | Failed open database, database corrupted.         |
+| 14800000     | The inner error is occurred.                      |
 
 **示例：**
 
@@ -148,7 +150,7 @@ promise.then(async (rdbStore) => {
   store = rdbStore;
   console.info(`Get RdbStore successfully.`);
 }).catch((err) => {
-  console.error(`Get RdbStore failed, err: ${err}`);
+  console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -170,7 +172,7 @@ class EntryAbility extends UIAbility {
       store = rdbStore;
       console.info(`Get RdbStore successfully.`)
     }).catch((err) => {
-      console.error(`Get RdbStore failed, err: ${err}`);
+      console.error(`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
   }
 }
@@ -196,9 +198,10 @@ deleteRdbStore(context: Context, name: string, callback: AsyncCallback&lt;void&g
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800010     | If failed delete database by invalid database name. |
+| **错误码ID** | **错误信息**                                      |
+| ------------ | ------------------------------------------------- |
+| 14800010     | Failed to open or delete database by invalid database path. |
+| 14800000     | The inner error is occurred.                      |
 
 **示例：**
 
@@ -212,7 +215,7 @@ let context = featureAbility.getContext()
 
 relationalStore.deleteRdbStore(context, "RdbTest.db", function (err) {
   if (err) {
-    console.error(`Delete RdbStore failed, err: ${err}`);
+    console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Delete RdbStore successfully.`);
@@ -228,7 +231,7 @@ class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage){
     relationalStore.deleteRdbStore(this.context, "RdbTest.db", function (err) {
       if (err) {
-        console.error(`Delete RdbStore failed, err: ${err}`);
+        console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
         return;
       }
       console.info(`Delete RdbStore successfully.`);
@@ -262,9 +265,10 @@ deleteRdbStore(context: Context, name: string): Promise&lt;void&gt;
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**            |
-| ------------ | ----------------------- |
-| 14800010     | If failed delete database by invalid database name. |
+| **错误码ID** | **错误信息**                                      |
+| ------------ | ------------------------------------------------- |
+| 14800010     | Failed to open or delete database by invalid database path. |
+| 14800000     | The inner error is occurred.                      |
 
 **示例：**
 
@@ -280,7 +284,7 @@ let promise = relationalStore.deleteRdbStore(context, "RdbTest.db");
 promise.then(()=>{
   console.info(`Delete RdbStore successfully.`);
 }).catch((err) => {
-  console.error(`Delete RdbStore failed, err: ${err}`);
+  console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -295,7 +299,7 @@ class EntryAbility extends UIAbility {
     promise.then(()=>{
       console.info(`Delete RdbStore successfully.`);
     }).catch((err) => {
-      console.error(`Delete RdbStore failed, err: ${err}`);
+      console.error(`Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
     })
   }
 }
@@ -311,11 +315,15 @@ class EntryAbility extends UIAbility {
 | ------------- | ------------- | ---- | --------------------------------------------------------- |
 | name          | string        | 是   | 数据库文件名。                                            |
 | securityLevel | [SecurityLevel](#securitylevel) | 是   | 设置数据库安全级别                                        |
-| encrypt       | boolean       | 否   | 指定数据库是否加密。<br/> true:加密。<br/> false:非加密。 |
+| encrypt       | boolean       | 否   | 指定数据库是否加密，默认不加密。<br/> true:加密。<br/> false:非加密。 |
 
 ## SecurityLevel
 
 数据库的安全级别枚举。
+
+> **说明：**
+>
+> 若需要进行同步操作，数据库安全等级应不高于对端设备安全等级，具体可见[跨设备同步访问控制机制](../../database/sync-app-data-across-devices-overview.md#跨设备同步访问控制机制)。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -340,7 +348,7 @@ class EntryAbility extends UIAbility {
 
 ## ValuesBucket
 
-用于存储键值对的类型。
+用于存储键值对的类型。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -373,7 +381,7 @@ class EntryAbility extends UIAbility {
 
 ## RdbPredicates
 
-表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。
+表示关系型数据库（RDB）的谓词。该类确定RDB中条件表达式的值是true还是false。该类型不是多线程安全的，如果应用中存在多线程同时操作该类派生出的实例，注意加锁保护。
 
 ### constructor
 
@@ -424,6 +432,7 @@ inDevices(devices: Array&lt;string&gt;): RdbPredicates
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceIds = [];
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -432,7 +441,6 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceIds = [];
     for (var i = 0; i < devices.length; i++) {
         deviceIds[i] = devices[i].deviceId;
     }
@@ -1231,7 +1239,7 @@ predicates.notIn("NAME", ["Lisa", "Rose"]);
 
 提供管理关系数据库(RDB)方法的接口。
 
-在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据，具体可见[关系型数据库开发指导](../../database/database-relational-guidelines.md)。
+在使用以下相关接口前，请使用[executeSql](#executesql)接口初始化数据库表结构和相关数据。
 
 ### insert
 
@@ -1260,7 +1268,7 @@ const valueBucket = {
 };
 store.insert("EMPLOYEE", valueBucket, function (err, rowId) {
   if (err) {
-    console.error(`Insert is failed, err: ${err}`);
+    console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Insert is successful, rowId = ${rowId}`);
@@ -1289,6 +1297,14 @@ insert(table: string, values: ValuesBucket):Promise&lt;number&gt;
 | --------------------- | ------------------------------------------------- |
 | Promise&lt;number&gt; | Promise对象。如果操作成功，返回行ID；否则返回-1。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
@@ -1302,7 +1318,7 @@ let promise = store.insert("EMPLOYEE", valueBucket);
 promise.then((rowId) => {
   console.info(`Insert is successful, rowId = ${rowId}`);
 }).catch((err) => {
-  console.error(`Insert is failed, err: ${err}`);
+  console.error(`Insert is failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1322,6 +1338,14 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCal
 | table    | string                                     | 是   | 指定的目标表名。                                             |
 | values   | Array&lt;[ValuesBucket](#valuesbucket)&gt; | 是   | 表示要插入到表中的一组数据。                                 |
 | callback | AsyncCallback&lt;number&gt;                | 是   | 指定callback回调函数。如果操作成功，返回插入的数据个数，否则返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **示例：**
 
@@ -1348,7 +1372,7 @@ const valueBucket3 = {
 let valueBuckets = new Array(valueBucket1, valueBucket2, valueBucket3);
 store.batchInsert("EMPLOYEE", valueBuckets, function(err, insertNum) {
   if (err) {
-    console.error(`batchInsert is failed, err: ${err}`);
+    console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
@@ -1375,6 +1399,14 @@ batchInsert(table: string, values: Array&lt;ValuesBucket&gt;):Promise&lt;number&
 | 类型                  | 说明                                                        |
 | --------------------- | ----------------------------------------------------------- |
 | Promise&lt;number&gt; | Promise对象。如果操作成功，返回插入的数据个数，否则返回-1。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **示例：**
 
@@ -1403,7 +1435,7 @@ let promise = store.batchInsert("EMPLOYEE", valueBuckets);
 promise.then((insertNum) => {
   console.info(`batchInsert is successful, the number of values that were inserted = ${insertNum}`);
 }).catch((err) => {
-  console.error(`batchInsert is failed, err: ${err}`);
+  console.error(`batchInsert is failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1423,6 +1455,15 @@ update(values: ValuesBucket, predicates: RdbPredicates, callback: AsyncCallback&
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的更新条件。                    |
 | callback   | AsyncCallback&lt;number&gt;          | 是   | 指定的callback回调方法。返回受影响的行数。                   |
 
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
@@ -1436,7 +1477,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 store.update(valueBucket, predicates, function (err, rows) {
   if (err) {
-    console.error(`Updated failed, err: ${err}`);
+    console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Updated row count: ${rows}`);
@@ -1465,6 +1506,14 @@ update(values: ValuesBucket, predicates: RdbPredicates):Promise&lt;number&gt;
 | --------------------- | ----------------------------------------- |
 | Promise&lt;number&gt; | 指定的Promise回调方法。返回受影响的行数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
@@ -1480,7 +1529,7 @@ let promise = store.update(valueBucket, predicates);
 promise.then(async (rows) => {
   console.info(`Updated row count: ${rows}`);
 }).catch((err) => {
-  console.error(`Updated failed, err: ${err}`);
+  console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1493,6 +1542,8 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **系统接口：** 此接口为系统接口。
 
 **参数：**
@@ -1503,6 +1554,14 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 | values     | [ValuesBucket](#valuesbucket)                                | 是   | values指示数据库中要更新的数据行。键值对与数据库表的列名相关联。 |
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的更新条件。                |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 指定的callback回调方法。返回受影响的行数。                   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **示例：**
 
@@ -1518,7 +1577,7 @@ let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 store.update("EMPLOYEE", valueBucket, predicates, function (err, rows) {
   if (err) {
-    console.error(`Updated failed, err: ${err}`);
+    console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Updated row count: ${rows}`);
@@ -1532,6 +1591,8 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 根据DataSharePredicates的指定实例对象更新数据库中的数据，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1549,6 +1610,14 @@ update(table: string, values: ValuesBucket, predicates: dataSharePredicates.Data
 | --------------------- | ----------------------------------------- |
 | Promise&lt;number&gt; | 指定的Promise回调方法。返回受影响的行数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
@@ -1565,7 +1634,7 @@ let promise = store.update("EMPLOYEE", valueBucket, predicates);
 promise.then(async (rows) => {
   console.info(`Updated row count: ${rows}`);
 }).catch((err) => {
-  console.error(`Updated failed, err: ${err}`);
+  console.error(`Updated failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1584,6 +1653,14 @@ delete(predicates: RdbPredicates, callback: AsyncCallback&lt;number&gt;):void
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | RdbPredicates的实例对象指定的删除条件。 |
 | callback   | AsyncCallback&lt;number&gt;          | 是   | 指定callback回调函数。返回受影响的行数。  |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
@@ -1591,7 +1668,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Lisa");
 store.delete(predicates, function (err, rows) {
   if (err) {
-    console.error(`Delete failed, err: ${err}`);
+    console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Delete rows: ${rows}`);
@@ -1618,6 +1695,14 @@ delete(predicates: RdbPredicates):Promise&lt;number&gt;
 | --------------------- | ------------------------------- |
 | Promise&lt;number&gt; | Promise对象。返回受影响的行数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
@@ -1627,7 +1712,7 @@ let promise = store.delete(predicates);
 promise.then((rows) => {
   console.info(`Delete rows: ${rows}`);
 }).catch((err) => {
-  console.error(`Delete failed, err: ${err}`);
+  console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1639,6 +1724,8 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callb
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **系统接口：** 此接口为系统接口。
 
 **参数：**
@@ -1649,6 +1736,14 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates, callb
 | predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | DataSharePredicates的实例对象指定的删除条件。 |
 | callback   | AsyncCallback&lt;number&gt;                                  | 是   | 指定callback回调函数。返回受影响的行数。      |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
@@ -1657,7 +1752,7 @@ let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Lisa");
 store.delete("EMPLOYEE", predicates, function (err, rows) {
   if (err) {
-    console.error(`Delete failed, err: ${err}`);
+    console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Delete rows: ${rows}`);
@@ -1671,6 +1766,8 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promi
 根据DataSharePredicates的指定实例对象从数据库中删除数据，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1687,6 +1784,14 @@ delete(table: string, predicates: dataSharePredicates.DataSharePredicates):Promi
 | --------------------- | ------------------------------- |
 | Promise&lt;number&gt; | Promise对象。返回受影响的行数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
@@ -1697,7 +1802,7 @@ let promise = store.delete("EMPLOYEE", predicates);
 promise.then((rows) => {
   console.info(`Delete rows: ${rows}`);
 }).catch((err) => {
-  console.error(`Delete failed, err: ${err}`);
+  console.error(`Delete failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1717,6 +1822,14 @@ query(predicates: RdbPredicates, columns: Array&lt;string&gt;, callback: AsyncCa
 | columns    | Array&lt;string&gt;                                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。            |
 | callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
@@ -1724,7 +1837,7 @@ let predicates = new relationalStore.RdbPredicates("EMPLOYEE");
 predicates.equalTo("NAME", "Rose");
 store.query(predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
   if (err) {
-    console.error(`Query failed, err: ${err}`);
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
@@ -1753,6 +1866,14 @@ query(predicates: RdbPredicates, columns?: Array&lt;string&gt;):Promise&lt;Resul
 | ------------------------------------------------------- | -------------------------------------------------- |
 | Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
   ```js
@@ -1763,7 +1884,7 @@ promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
   console.info(`ResultSet column count: ${resultSet.columnCount}`);
 }).catch((err) => {
-  console.error(`Query failed, err: ${err}`);
+  console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
   ```
 
@@ -1774,6 +1895,8 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 根据指定条件查询数据库中的数据，使用callback异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1786,6 +1909,14 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | columns    | Array&lt;string&gt;                                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。            |
 | callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
@@ -1794,7 +1925,7 @@ let predicates = new dataSharePredicates.DataSharePredicates();
 predicates.equalTo("NAME", "Rose");
 store.query("EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"], function (err, resultSet) {
   if (err) {
-    console.error(`Query failed, err: ${err}`);
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
@@ -1809,6 +1940,8 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 根据指定条件查询数据库中的数据，使用Promise异步回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统接口：** 此接口为系统接口。
 
@@ -1826,6 +1959,14 @@ query(table: string, predicates: dataSharePredicates.DataSharePredicates, column
 | ------------------------------------------------------- | -------------------------------------------------- |
 | Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
@@ -1837,7 +1978,7 @@ promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
   console.info(`ResultSet column count: ${resultSet.columnCount}`);
 }).catch((err) => {
-  console.error(`Query failed, err: ${err}`);
+  console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1863,11 +2004,20 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 | columns    | Array&lt;string&gt;                          | 是   | 表示要查询的列。如果值为空，则查询应用于所有列。          |
 | callback   | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceId = null;
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -1876,7 +2026,7 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceId = devices[0].deviceId;
+    deviceId = devices[0].deviceId;
 })
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
@@ -1884,7 +2034,7 @@ predicates.greaterThan("id", 0);
 store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"],
   function(err, resultSet) {
     if (err) {
-      console.error(`Failed to remoteQuery, err: ${err}`);
+      console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
       return;
     }
     console.info(`ResultSet column names: ${resultSet.columnNames}`);
@@ -1920,11 +2070,20 @@ remoteQuery(device: string, table: string, predicates: RdbPredicates, columns: A
 | ------------------------------------------------------------ | -------------------------------------------------- |
 | Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceId = null;
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -1933,17 +2092,17 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceId = devices[0].deviceId;
+    deviceId = devices[0].deviceId;
 })
 
 let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.greaterThan("id", 0);
-let promise = store.remoteQuery("deviceId", "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
+let promise = store.remoteQuery(deviceId, "EMPLOYEE", predicates, ["ID", "NAME", "AGE", "SALARY", "CODES"]);
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
   console.info(`ResultSet column count: ${resultSet.columnCount}`);
 }).catch((err) => {
-  console.error(`Failed to remoteQuery, err: ${err}`);
+  console.error(`Failed to remoteQuery, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -1957,18 +2116,26 @@ querySql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallback&
 
 **参数：**
 
-| 参数名   | 类型                                                         | 必填 | 说明                                                        |
-| -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| sql      | string                                                       | 是   | 指定要执行的SQL语句。                                       |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt;                         | 是   | SQL语句中参数的值。                                         |
-| callback | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。 |
+| 参数名   | 类型                                         | 必填 | 说明                                                         |
+| -------- | -------------------------------------------- | ---- | ------------------------------------------------------------ |
+| sql      | string                                       | 是   | 指定要执行的SQL语句。                                        |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt;         | 是   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。当sql参数语句完整时，该参数需为空数组。 |
+| callback | AsyncCallback&lt;[ResultSet](#resultset)&gt; | 是   | 指定callback回调函数。如果操作成功，则返回ResultSet对象。    |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **示例：**
 
 ```js
 store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo'], function (err, resultSet) {
   if (err) {
-    console.error(`Query failed, err: ${err}`);
+    console.error(`Query failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
@@ -1986,10 +2153,10 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 
 **参数：**
 
-| 参数名   | 类型                                 | 必填 | 说明                  |
-| -------- | ------------------------------------ | ---- | --------------------- |
-| sql      | string                               | 是   | 指定要执行的SQL语句。 |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。   |
+| 参数名   | 类型                                 | 必填 | 说明                                                         |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| sql      | string                               | 是   | 指定要执行的SQL语句。                                        |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。当sql参数语句完整时，该参数不填。 |
 
 **返回值**：
 
@@ -1997,15 +2164,23 @@ querySql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;ResultSet&gt
 | ------------------------------------------------------- | -------------------------------------------------- |
 | Promise&lt;[ResultSet](#resultset)&gt; | Promise对象。如果操作成功，则返回ResultSet对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
-let promise = store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = ?", ['sanguo']);
+let promise = store.querySql("SELECT * FROM EMPLOYEE CROSS JOIN BOOK WHERE BOOK.NAME = 'sanguo'");
 promise.then((resultSet) => {
   console.info(`ResultSet column names: ${resultSet.columnNames}`);
   console.info(`ResultSet column count: ${resultSet.columnCount}`);
 }).catch((err) => {
-  console.error(`Query failed, err: ${err}`);
+  console.error(`Query failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -2019,22 +2194,30 @@ executeSql(sql: string, bindArgs: Array&lt;ValueType&gt;, callback: AsyncCallbac
 
 **参数：**
 
-| 参数名   | 类型                                 | 必填 | 说明                   |
-| -------- | ------------------------------------ | ---- | ---------------------- |
-| sql      | string                               | 是   | 指定要执行的SQL语句。  |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 是   | SQL语句中参数的值。    |
-| callback | AsyncCallback&lt;void&gt;            | 是   | 指定callback回调函数。 |
+| 参数名   | 类型                                 | 必填 | 说明                                                         |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| sql      | string                               | 是   | 指定要执行的SQL语句。                                        |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 是   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。当sql参数语句完整时，该参数需为空数组。 |
+| callback | AsyncCallback&lt;void&gt;            | 是   | 指定callback回调函数。                                       |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **示例：**
 
 ```js
-const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-store.executeSql(SQL_CREATE_TABLE, null, function(err) {
+const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = ?"
+store.executeSql(SQL_DELETE_TABLE, ['zhangsan'], function(err) {
   if (err) {
-    console.error(`ExecuteSql failed, err: ${err}`);
+    console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
     return;
   }
-  console.info(`Create table done.`);
+  console.info(`Delete table done.`);
 })
 ```
 
@@ -2048,10 +2231,10 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名   | 类型                                 | 必填 | 说明                  |
-| -------- | ------------------------------------ | ---- | --------------------- |
-| sql      | string                               | 是   | 指定要执行的SQL语句。 |
-| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。   |
+| 参数名   | 类型                                 | 必填 | 说明                                                         |
+| -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
+| sql      | string                               | 是   | 指定要执行的SQL语句。                                        |
+| bindArgs | Array&lt;[ValueType](#valuetype)&gt; | 否   | SQL语句中参数的值。该值与sql参数语句中的占位符相对应。当sql参数语句完整时，该参数不填。 |
 
 **返回值**：
 
@@ -2059,15 +2242,23 @@ executeSql(sql: string, bindArgs?: Array&lt;ValueType&gt;):Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
-const SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS EMPLOYEE (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT NOT NULL, AGE INTEGER, SALARY REAL, CODES BLOB)"
-let promise = store.executeSql(SQL_CREATE_TABLE);
+const SQL_DELETE_TABLE = "DELETE FROM test WHERE name = 'zhangsan'"
+let promise = store.executeSql(SQL_DELETE_TABLE);
 promise.then(() => {
-    console.info(`Create table done.`);
+    console.info(`Delete table done.`);
 }).catch((err) => {
-    console.error(`ExecuteSql failed, err: ${err}`);
+    console.error(`ExecuteSql failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -2078,6 +2269,14 @@ beginTransaction():void
 在开始执行SQL语句之前，开始事务。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
 
 **示例：**
 
@@ -2090,7 +2289,7 @@ const STORE_CONFIG = {
 };
 relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, store) {
   if (err) {
-    console.error(`GetRdbStore failed, err: ${err}`);
+    console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   store.beginTransaction();
@@ -2124,7 +2323,7 @@ const STORE_CONFIG = {
 };
 relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, store) {
   if (err) {
-     console.error(`GetRdbStore failed, err: ${err}`);
+     console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
      return;
   }
   store.beginTransaction();
@@ -2158,7 +2357,7 @@ const STORE_CONFIG = {
 };
 relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, store) {
   if (err) {
-    console.error(`GetRdbStore failed, err: ${err}`);
+    console.error(`GetRdbStore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   try {
@@ -2173,7 +2372,7 @@ relationalStore.getRdbStore(context, STORE_CONFIG, async function (err, store) {
 	await store.insert("test", valueBucket);
     store.commit();
   } catch (err) {
-    console.error(`Transaction failed, err: ${err}`);
+    console.error(`Transaction failed, code is ${err.code},message is ${err.message}`);
     store.rollBack();
   }
 })
@@ -2194,12 +2393,20 @@ backup(destName:string, callback: AsyncCallback&lt;void&gt;):void
 | destName | string                    | 是   | 指定数据库的备份文件名。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。   |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
 store.backup("dbBackup.db", function(err) {
   if (err) {
-    console.error(`Backup failed, err: ${err}`);
+    console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Backup success.`);
@@ -2220,6 +2427,14 @@ backup(destName:string): Promise&lt;void&gt;
 | -------- | ------ | ---- | ------------------------ |
 | destName | string | 是   | 指定数据库的备份文件名。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **返回值**：
 
 | 类型                | 说明                      |
@@ -2233,7 +2448,7 @@ let promiseBackup = store.backup("dbBackup.db");
 promiseBackup.then(()=>{
   console.info(`Backup success.`);
 }).catch((err)=>{
-  console.error(`Backup failed, err: ${err}`);
+  console.error(`Backup failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -2252,12 +2467,20 @@ restore(srcName:string, callback: AsyncCallback&lt;void&gt;):void
 | srcName  | string                    | 是   | 指定数据库的备份文件名。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。   |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
 store.restore("dbBackup.db", function(err) {
   if (err) {
-    console.error(`Restore failed, err: ${err}`);
+    console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Restore success.`);
@@ -2284,6 +2507,14 @@ restore(srcName:string): Promise&lt;void&gt;
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
@@ -2291,7 +2522,7 @@ let promiseRestore = store.restore("dbBackup.db");
 promiseRestore.then(()=>{
   console.info(`Restore success.`);
 }).catch((err)=>{
-  console.error(`Restore failed, err: ${err}`);
+  console.error(`Restore failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -2312,12 +2543,20 @@ setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 | tables   | Array&lt;string&gt;       | 是   | 要设置的分布式列表表名 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
 store.setDistributedTables(["EMPLOYEE"], function (err) {
   if (err) {
-    console.error(`SetDistributedTables failed, err: ${err}`);
+    console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`SetDistributedTables successfully.`);
@@ -2346,6 +2585,14 @@ store.setDistributedTables(["EMPLOYEE"], function (err) {
 | ------------------- | ------------------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
@@ -2353,7 +2600,7 @@ let promise = store.setDistributedTables(["EMPLOYEE"]);
 promise.then(() => {
   console.info(`SetDistributedTables successfully.`);
 }).catch((err) => {
-  console.error(`SetDistributedTables failed, err: ${err}`);
+  console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -2379,11 +2626,20 @@ obtainDistributedTableName(device: string, table: string, callback: AsyncCallbac
 | table    | string                      | 是   | 远程设备的本地表名。                                         |
 | callback | AsyncCallback&lt;string&gt; | 是   | 指定的callback回调函数。如果操作成功，返回远程设备的分布式表名。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceId = null;
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -2392,12 +2648,12 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceId = devices[0].deviceId;
+    deviceId = devices[0].deviceId;
 })
 
 store.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName) {
     if (err) {
-        console.error(`ObtainDistributedTableName failed, err: ${err}`);
+        console.error(`ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`);
         return;
     }
     console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
@@ -2431,11 +2687,20 @@ store.obtainDistributedTableName(deviceId, "EMPLOYEE", function (err, tableName)
 | --------------------- | ----------------------------------------------------- |
 | Promise&lt;string&gt; | Promise对象。如果操作成功，返回远程设备的分布式表名。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceId = null;
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -2444,14 +2709,14 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceId = devices[0].deviceId;
+    deviceId = devices[0].deviceId;
 })
 
 let promise = store.obtainDistributedTableName(deviceId, "EMPLOYEE");
 promise.then((tableName) => {
   console.info(`ObtainDistributedTableName successfully, tableName= ${tableName}`);
 }).catch((err) => {
-  console.error(`ObtainDistributedTableName failed, err: ${err}`);
+  console.error(`ObtainDistributedTableName failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -2473,11 +2738,20 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 | predicates | [RdbPredicates](#rdbpredicates)               | 是   | 约束同步数据和设备。                                         |
 | callback   | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | 是   | 指定的callback回调函数，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceIds = [];
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -2486,7 +2760,6 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceIds = [];
     for (var i = 0; i < devices.length; i++) {
         deviceIds[i] = devices[i].deviceId;
     }
@@ -2496,7 +2769,7 @@ let predicates = new relationalStore.RdbPredicates('EMPLOYEE');
 predicates.inDevices(deviceIds);
 store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, function (err, result) {
   if (err) {
-    console.error(`Sync failed, err: ${err}`);
+    console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
     return;
   }
   console.info(`Sync done.`);
@@ -2529,11 +2802,20 @@ store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, function (err, r
 | -------------------------------------------- | ------------------------------------------------------------ |
 | Promise&lt;Array&lt;[string, number]&gt;&gt; | Promise对象，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
 
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                 |
+| ------------ | -------------------------------------------- |
+| 14800000     | The inner error is occurred.                 |
+
 **示例：**
 
 ```js
 import deviceManager from '@ohos.distributedHardware.deviceManager';
 let dmInstance = null;
+let deviceIds = [];
 
 deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager) => {
     if (err) {
@@ -2542,7 +2824,6 @@ deviceManager.createDeviceManager("com.example.appdatamgrverify", (err, manager)
     }
     dmInstance = manager;
     let devices = dmInstance.getTrustedDeviceListSync();
-    let deviceIds = [];
     for (var i = 0; i < devices.length; i++) {
         deviceIds[i] = devices[i].deviceId;
     }
@@ -2557,7 +2838,7 @@ promise.then((result) =>{
     console.info(`device= ${result[i][0]}, status= ${result[i][1]}`);
   }
 }).catch((err) => {
-  console.error(`Sync failed, err: ${err}`);
+  console.error(`Sync failed, code is ${err.code},message is ${err.message}`);
 })
 ```
 
@@ -2575,7 +2856,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)    | 是   | 订阅类型。 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; | 是   | 指分布式数据库中数据更改事件的观察者。      |
+| observer | Callback&lt;Array&lt;string&gt;&gt; | 是   | 指分布式数据库中数据更改事件的观察者。Array&lt;string>为数据库中的数据发生改变的对端设备ID。 |
 
 **示例：**
 
@@ -2588,7 +2869,7 @@ function storeObserver(devices) {
 try {
   store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
 } catch (err) {
-  console.error(`Register observer failed, err: ${err}`);
+  console.error(`Register observer failed, code is ${err.code},message is ${err.message}`);
 }
 ```
 
@@ -2606,7 +2887,7 @@ off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)     | 是   | 订阅类型。                                 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; | 是   | 指已注册的数据更改观察者。                  |
+| observer | Callback&lt;Array&lt;string&gt;&gt; | 是   | 指已注册的数据更改观察者。Array&lt;string>为数据库中的数据发生改变的对端设备ID。 |
 
 **示例：**
 
@@ -2619,7 +2900,7 @@ function storeObserver(devices) {
 try {
   store.off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
 } catch (err) {
-  console.error(`Unregister observer failed, err: ${err}`);
+  console.error(`Unregister observer failed, code is ${err.code},message is ${err.message}`);
 }
 ```
 
@@ -2759,7 +3040,7 @@ goTo(offset:number): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty or the specified location is invalid. |
 
 **示例：**
 
@@ -2770,7 +3051,7 @@ promise.then((resultSet) => {
   resultSet.goTo(1);
   resultSet.close();
 }).catch((err) => {
-  console.error(`query failed, err: ${err}`);
+  console.error(`query failed, code is ${err.code},message is ${err.message}`);
 });
   ```
 
@@ -2800,7 +3081,7 @@ goToRow(position: number): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty or the specified location is invalid. |
 
 **示例：**
 
@@ -2811,7 +3092,7 @@ promise.then((resultSet) => {
   resultSet.goToRow(5);
   resultSet.close();
 }).catch((err) => {
-  console.error(`query failed, err: ${err}`);
+  console.error(`query failed, code is ${err.code},message is ${err.message}`);
 });
   ```
 
@@ -2836,7 +3117,7 @@ goToFirstRow(): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty or the specified location is invalid. |
 
 **示例：**
 
@@ -2847,7 +3128,7 @@ promise.then((resultSet) => {
   resultSet.goToFirstRow();
   resultSet.close();
 }).catch((err) => {
-  console.error(`query failed, err: ${err}`);
+  console.error(`query failed, code is ${err.code},message is ${err.message}`);
 });
   ```
 
@@ -2871,7 +3152,7 @@ goToLastRow(): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty or the specified location is invalid. |
 
 **示例：**
 
@@ -2882,7 +3163,7 @@ promise.then((resultSet) => {
   resultSet.goToLastRow();
   resultSet.close();
 }).catch((err) => {
-  console.error(`query failed, err: ${err}`);
+  console.error(`query failed, code is ${err.code},message is ${err.message}`);
 });
   ```
 
@@ -2906,7 +3187,7 @@ goToNextRow(): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty or the specified location is invalid. |
 
 **示例：**
 
@@ -2917,7 +3198,7 @@ promise.then((resultSet) => {
   resultSet.goToNextRow();
   resultSet.close();
 }).catch((err) => {
-  console.error(`query failed, err: ${err}`);
+  console.error(`query failed, code is ${err.code},message is ${err.message}`);
 });
   ```
 
@@ -2941,7 +3222,7 @@ goToPreviousRow(): boolean
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty or the specified location is invalid. |
 
 **示例：**
 
@@ -2952,7 +3233,7 @@ promise.then((resultSet) => {
   resultSet.goToPreviousRow();
   resultSet.close();
 }).catch((err) => {
-  console.error(`query failed, err: ${err}`);
+  console.error(`query failed, code is ${err.code},message is ${err.message}`);
 });
   ```
 
@@ -3142,7 +3423,7 @@ let promiseClose = store.query(predicatesClose, ["ID", "NAME", "AGE", "SALARY", 
 promiseClose.then((resultSet) => {
   resultSet.close();
 }).catch((err) => {
-  console.error(`resultset close failed, err: ${err}`);
+  console.error(`resultset close failed, code is ${err.code},message is ${err.message}`);
 });
   ```
 
@@ -3152,4 +3433,4 @@ promiseClose.then((resultSet) => {
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800012     | The result set is  empty or the specified location is invalid. |
+| 14800012     | The result set is empty or the specified location is invalid. |

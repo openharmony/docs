@@ -178,6 +178,7 @@
          - [Exception Debugging](kernel/kernel-mini-memory-exception.md)
          - [Trace](kernel/kernel-mini-memory-trace.md)
          - [LMS](kernel/kernel-mini-memory-lms.md)
+         - [Shell](kernel/kernel-mini-debug-shell.md)
        - Appendix
          - [Kernel Coding Specification](kernel/kernel-mini-appx-code.md)
          - [Standard Libraries](kernel/kernel-mini-appx-lib.md)
@@ -414,7 +415,9 @@
      - [Utils Overview](subsystems/subsys-utils-overview.md)
      - [Utils Development](subsystems/subsys-utils-guide.md)
      - [Utils FAQ](subsystems/subsys-utils-faqs.md)
-  -  [AI Framework Development](subsystems/subsys-ai-aiframework-devguide.md)
+  - AI
+     - [AI Framework Development](subsys-ai-aiframework-devguide.md)
+     - [NNRt Development](subsys-ai-nnrt-guide.md)
   -  Data Management
      - RDB
        - [RDB Overview](subsystems/subsys-data-relational-database-overview.md)
@@ -426,10 +429,6 @@
      - [Sensor Overview](subsystems/subsys-sensor-overview.md)
      - [Sensor Usage Guidelines](subsystems/subsys-sensor-guide.md)
      - [Sensor Usage Example](subsystems/subsys-sensor-demo.md)
-  -  USB
-     - [USB Overview](subsystems/subsys-usbservice-overview.md)
-     - [USB Usage Guidelines](subsystems/subsys-usbservice-guide.md)
-     - [USB Usage Example](subsystems/subsys-usbservice-demo.md)
   -  Application Framework
      - [Overview](subsystems/subsys-application-framework-overview.md)
      - [Setting Up a Development Environment](subsystems/subsys-application-framework-envbuild.md)

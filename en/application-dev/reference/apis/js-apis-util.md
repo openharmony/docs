@@ -1,6 +1,6 @@
 # @ohos.util (util)
 
-The **util** module provides common utility functions, such as **TextEncoder** and **TextDecoder** for string encoding and decoding, **RationalNumber** for rational number operations, **LruBuffer** for buffer management, **Scope** for range determination, **Base64** for Base64 encoding and decoding, and **Types** for checks of built-in object types.
+The **util** module provides common utility functions, such as [TextEncoder](#textencoder) and [TextDecoder](#textdecoder) for string encoding and decoding, [RationalNumber<sup>8+</sup>](#rationalnumber8) for rational number operations, [LRUCache<sup>9+</sup>](#lrucache9) for cache management, [ScopeHelper<sup>9+</sup>](#scopehelper9) for range determination, [Base64Helper<sup>9+</sup>](#base64helper9) for Base64 encoding and decoding, and [types<sup>8+</sup>](#types8) for built-in object type check.
 
 > **NOTE**
 >
@@ -337,6 +337,8 @@ Processes an asynchronous function and returns a promise.
 
 ## TextDecoder
 
+Provides APIs to decode byte arrays into strings. It supports multiple formats, including UTF-8, UTF-16LE, UTF-16BE, ISO-8859, and Windows-1251.
+
 ### Attributes
 
 **System capability**: SystemCapability.Utils.Lang
@@ -367,15 +369,15 @@ Creates a **TextDecoder** object. It provides the same function as the deprecate
 
 | Name  | Type  | Mandatory| Description                                            |
 | -------- | ------ | ---- | ------------------------------------------------ |
-| encoding | string | No  | Encoding format.                                      |
+| encoding | string | No  | Encoding format. The default format is **'utf-8'**.                     |
 | options  | Object | No  | Encoding-related options, which include **fatal** and **ignoreBOM**.|
 
 **Table 1.1** options
 
 | Name     | Type| Mandatory| Description              |
 | --------- | -------- | ---- | ------------------ |
-| fatal     | boolean  | No  | Whether to display fatal errors.|
-| ignoreBOM | boolean  | No  | Whether to ignore the BOM. |
+| fatal     | boolean  | No  | Whether to display fatal errors. The default value is **false**.|
+| ignoreBOM | boolean  | No  | Whether to ignore the BOM. The default value is **false**. |
 
 **Example**
 
@@ -443,15 +445,15 @@ A constructor used to create a **TextDecoder** object.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| encoding | string | No| Encoding format.|
+| encoding | string | No| Encoding format. The default format is **'utf-8'**.|
 | options | Object | No| Encoding-related options, which include **fatal** and **ignoreBOM**.|
 
   **Table 1** options
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| fatal | boolean | No| Whether to display fatal errors.|
-| ignoreBOM | boolean | No| Whether to ignore the BOM.|
+| fatal | boolean | No| Whether to display fatal errors. The default value is **false**.|
+| ignoreBOM | boolean | No| Whether to ignore the BOM. The default value is **false**.|
 
 **Example**
 
@@ -508,13 +510,15 @@ Decodes the input content.
 
 ## TextEncoder
 
+Provides APIs to encode strings into byte arrays. It supports multiple formats, including UTF-8, UTF-16LE, and UTF-16BE. When **TextEncoder** is used for encoding, the number of bytes occupied by a character varies according to the encoding format. For example, a Chinese character usually occupies three bytes in UTF-8 encoding format but two bytes in UTF-16LE or UTF-16BE encoding format. Therefore, when using **TextEncoder**, you must explicitly specify the encoding format to obtain the required encoding result.
+
 ### Attributes
 
 **System capability**: SystemCapability.Utils.Lang
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| encoding | string | Yes| No| Encoding format. The default format is **utf-8**.|
+| encoding | string | Yes| No| Encoding format. The default format is **'utf-8'**.|
 
 
 ### constructor
@@ -543,7 +547,7 @@ A constructor used to create a **TextEncoder** object.
 
 | Name| Type| Mandatory| Description|
 | ----- | ---- | ---- | ---- |
-| encoding | string | No| Encoding format.|
+| encoding | string | No| Encoding format. The default format is **'utf-8'**.|
 
 **Example**
 
@@ -563,7 +567,7 @@ Encodes the input content.
 
 | Name| Type  | Mandatory| Description              |
 | ------ | ------ | ---- | ------------------ |
-| input  | string | No  | String to encode.|
+| input  | string | No  | String to encode. The default value is an empty string.|
 
 **Return value**
 
@@ -661,7 +665,7 @@ Encodes the input content.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| input | string | No| String to encode.|
+| input | string | No| String to encode. The default value is an empty string.|
 
 **Return value**
 
@@ -678,6 +682,8 @@ Encodes the input content.
   ```
 
 ## RationalNumber<sup>8+</sup>
+
+Provides APIs to compare rational numbers and obtain numerators and denominators. For example, the **toString()** API can be used to convert a rational number into a strings.
 
 ### constructor<sup>9+</sup>
 
@@ -1063,6 +1069,8 @@ let result = util.RationalNumber.getCommonDivisor(4,6);
 
 ## LRUCache<sup>9+</sup>
 
+Provides APIs to discard the least recently used data to make rooms for new elements when the cache is full. This class uses the Least Recently Used (LRU) algorithm, which believes that the recently used data may be accessed again in the near future and the least accessed data is the least valuable data and should be removed from the cache.
+
 ### Attributes
 
 **System capability**: SystemCapability.Utils.Lang
@@ -1119,7 +1127,7 @@ Changes the **LruCache** capacity. If the new capacity is less than or equal to 
 
 ```js
 let pro = new util.LRUCache();
-let result = pro.updateCapacity(100);
+pro.updateCapacity(100);
 ```
 
 
@@ -1638,18 +1646,18 @@ Create a class to implement the **compareTo** method. The **Temperature** class 
 
 ```js
 class Temperature{
-    constructor(value){
-       // If TS is used for development, add the following code:
-       // private readonly _temp: Temperature;
+    // If ArkTS is used for development, add the following code:
+    // private readonly _temp: Temperature;
+    constructor(value) {
        this._temp = value;
     }
-    compareTo(value){
+    compareTo(value) {
        return this._temp >= value.getTemp();
     }
-    getTemp(){
+    getTemp() {
        return this._temp;
     }
-    toString(){
+    toString() {
        return this._temp.toString();
     }
 }
@@ -1667,6 +1675,8 @@ Defines the type of values in a **Scope** object.
 | [ScopeComparable](#scopecomparable8) | The value type is ScopeComparable.|
 
 ## ScopeHelper<sup>9+</sup>
+
+Provides APIs to define the valid range of a field. The constructor of this class creates comparable objects with lower and upper limits.
 
 ### constructor<sup>9+</sup>
 
@@ -1954,7 +1964,7 @@ let tempLower = new Temperature(30);
 let tempUpper = new Temperature(40);
 let tempMiDF = new Temperature(35);
 let range = new util.ScopeHelper(tempLower, tempUpper);
-range.contains(tempMiDF);
+let result = range.contains(tempMiDF);
   ```
 
 
@@ -2022,6 +2032,8 @@ let result = range.clamp(tempMiDF);
   ```
 
 ## Base64Helper<sup>9+</sup>
+
+The Base64 encoding table contains 62 characters, which are the uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), and the special characters plus sign (+) and slash (/). During encoding, the original data is divided into groups of three bytes, and each group contains a 6-bit number. Then, the corresponding characters in the Base64 encoding table are used to represent these numbers. If the last group contains only one or two bytes, the equal sign (=) is used for padding.
 
 ### constructor<sup>9+</sup>
 
@@ -2223,6 +2235,8 @@ that.decode(array).then(val=>{
   ```
 
 ## types<sup>8+</sup>
+
+Provides APIs to check different types of built-in objects, such as ArrayBuffer, Map, and Set, so as to avoid exceptions or crashes caused by type errors.
 
 ### constructor<sup>8+</sup>
 

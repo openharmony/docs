@@ -1,8 +1,5 @@
 # @ohos.util.PlainArray (Nonlinear Container PlainArray) 
 
-> **NOTE**
-> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 **PlainArray** stores key-value (KV) pairs. Each key must be unique, be of the number type, and have only one value.
 
 **PlainArray** is based on generics and uses a lightweight structure. Keys in the array are searched using binary search and are mapped to values in other arrays.
@@ -14,12 +11,16 @@ Both **PlainArray** and **[LightWeightMap](js-apis-lightweightmap.md)** are used
 This topic uses the following to identify the use of generics:
 - T: Type
 
+> **NOTE**
+>
+> The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+
 ## Modules to Import
 
 ```ts
 import PlainArray from '@ohos.util.PlainArray';  
 ```
-
 
 
 ## PlainArray
@@ -118,9 +119,8 @@ For details about the error codes, see [Utils Error Codes](../errorcodes/errorco
 
 ```ts
 let plainArray = new PlainArray();
-plainArray.has(1);
 plainArray.add(1, "squirrel");
-let result1 = plainArray.has(1);
+let result = plainArray.has(1);
 ```
 
 

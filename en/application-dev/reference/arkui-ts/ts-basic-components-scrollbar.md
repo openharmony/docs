@@ -26,9 +26,9 @@ ScrollBar(value: { scroller: Scroller, direction?: ScrollBarDirection, state?: B
 
 >  **NOTE**
 >
->  The **\<ScrollBar>** component defines the behavior style of the scrollable area, and its subnodes define the behavior style of the scrollbar.
->
->  This component is bound to a scrollable component through **scroller**, and can be used to scroll the scrollable component only when their directions are the same. The **\<ScrollBar>** component can be bound to only one scrollable component, and vice versa.
+> The **\<ScrollBar>** component defines the behavior style of the scrollable area, and its subnodes define the behavior style of the scrollbar.
+> 
+> This component is bound to a scrollable component through **scroller**, and can be used to scroll the scrollable component only when their directions are the same. The **\<ScrollBar>** component can be bound to only one scrollable component, and vice versa.
 
 ## ScrollBarDirection
 
@@ -46,7 +46,7 @@ ScrollBar(value: { scroller: Scroller, direction?: ScrollBarDirection, state?: B
 @Component
 struct ScrollBarExample {
   private scroller: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
   build() {
     Column() {
@@ -56,8 +56,8 @@ struct ScrollBarExample {
             ForEach(this.arr, (item) => {
               Row() {
                 Text(item.toString())
-                  .width('90%')
-                  .height(100)
+                  .width('80%')
+                  .height(60)
                   .backgroundColor('#3366CC')
                   .borderRadius(15)
                   .fontSize(16)
@@ -65,17 +65,18 @@ struct ScrollBarExample {
                   .margin({ top: 5 })
               }
             }, item => item)
-          }.margin({ left: 52 })
+          }.margin({ right: 15 })
         }
+        .width('90%')
         .scrollBar(BarState.Off)
         .scrollable(ScrollDirection.Vertical)
         ScrollBar({ scroller: this.scroller, direction: ScrollBarDirection.Vertical,state: BarState.Auto }) {
           Text()
-            .width(30)
+            .width(20)
             .height(100)
             .borderRadius(10)
             .backgroundColor('#C0C0C0')
-        }.width(30).backgroundColor('#ededed')
+        }.width(20).backgroundColor('#ededed')
       }
     }
   }
@@ -83,4 +84,4 @@ struct ScrollBarExample {
 ```
 
 
-![en-us_image_0000001256978369](figures/en-us_image_0000001256978369.gif)
+![en-us_image_0000001232775585](figures/en-us_image_0000001232775585.gif)

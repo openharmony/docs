@@ -47,7 +47,7 @@ OpenHarmony提供了多种方法，判断应用当前处于何种断点，进而
 
 通过窗口对象监听断点变化的核心是获取窗口对象及注册窗口尺寸变化的回调函数。
 
-1. 在Ability的[onWindowStageCreate](../../application-models/uiability-lifecycle.md)生命周期回调中，通过[窗口](../../reference/apis/js-apis-window.md)对象获取启动时的应用窗口宽度并注册回调函数监听窗口尺寸变化。将窗口尺寸的长度单位[由px换算为vp](../../key-features/multi-device-app-dev/visual-basics.md#视觉基础)后，即可基于前文中介绍的规则得到当前断点值，此时可以使用[状态变量](../../quick-start/arkts-state-mgmt-application-level.md)记录当前的断点值方便后续使用。
+1. 在Ability的[onWindowStageCreate](../../application-models/uiability-lifecycle.md)生命周期回调中，通过[窗口](../../reference/apis/js-apis-window.md)对象获取启动时的应用窗口宽度并注册回调函数监听窗口尺寸变化。将窗口尺寸的长度单位[由px换算为vp](../../key-features/multi-device-app-dev/visual-basics.md#视觉基础)后，即可基于前文中介绍的规则得到当前断点值，此时可以使用[状态变量](../../quick-start/arkts-state.md)记录当前的断点值方便后续使用。
 
    ```ts
    // MainAbility.ts
@@ -132,7 +132,7 @@ OpenHarmony提供了多种方法，判断应用当前处于何种断点，进而
 在实际应用开发过程中，开发者常常需要针对不同类型设备或同一类型设备的不同状态来修改应用的样式。媒体查询提供了丰富的媒体特征监听能力，可以监听应用显示区域变化、横竖屏、深浅色、设备类型等等，因此在应用开发过程中使用的非常广泛。
 
 
-本小节仅介绍**媒体查询跟断点的结合**，即如何借助媒体查询能力，监听断点的变化，读者可以自行查阅官网中关于[媒体查询](../../ui/ui-ts-layout-mediaquery.md)的相关介绍了解更详细的用法。
+本小节仅介绍**媒体查询跟断点的结合**，即如何借助媒体查询能力，监听断点的变化，读者可以自行查阅官网中关于[媒体查询](../../ui/arkts-layout-development-media-query.md)的相关介绍了解更详细的用法。
 
 
 > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
@@ -427,7 +427,7 @@ struct GridRowSample3 {
       gutter: {x: {sm: 8, md: 16, lg: 24}, y: {sm: 8, md: 16, lg: 24}}}) {
       ForEach(this.bgColors, (bgColor)=>{
         GridCol({span: {sm: 2, md: 2, lg: 2}}) {
-          Row().backgroundColor(bgColor).height(30)
+          Row().backgroundColor(bgColor).height(30).width('100%')
         }
       })
     }
@@ -460,7 +460,7 @@ struct GridRowSample4 {
         GridCol({span:{xs: 12, sm: 12, md: 12, lg:12}}) {
           Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
             Text("padding").fontSize(24).fontWeight(FontWeight.Medium)
-          }.backgroundColor('#19000000')
+          }.backgroundColor('#19000000').width('100%')
         }
       }
       .height(50)
@@ -483,7 +483,7 @@ struct GridRowSample4 {
         GridCol({span:{xs: 12, sm: 12, md: 12, lg:12}}) {
           Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
             Text("margin").fontSize(24).fontWeight(FontWeight.Medium)
-          }.backgroundColor('#19000000')
+          }.backgroundColor('#19000000').width('100%')
         }
       }
       .height(50)
@@ -542,7 +542,7 @@ struct GridRowSample5 {
             Text('' + item.index).fontSize(24)
           }
           .justifyContent(FlexAlign.Center)
-          .backgroundColor(item.color).height(30)
+          .backgroundColor(item.color).height(30).width('100%')
         }
       })
     }
@@ -584,7 +584,7 @@ struct GridRowSample6 {
             Text('' + item.index).fontSize(24)
           }
           .justifyContent(FlexAlign.Center)
-          .backgroundColor(item.color).height(30)
+          .backgroundColor(item.color).height(30).width('100%')
         }
       })
     }
@@ -626,7 +626,7 @@ struct GridRowSample7 {
             Text('' + item.index).fontSize(24)
           }
           .justifyContent(FlexAlign.Center)
-          .backgroundColor(item.color).height(30)
+          .backgroundColor(item.color).height(30).width('100%')
         }
       })
     }
@@ -670,7 +670,7 @@ struct GridRowSample8 {
             Text('' + item.index).fontSize(24)
           }
           .justifyContent(FlexAlign.Center)
-          .backgroundColor(item.color).height(30)
+          .backgroundColor(item.color).height(30).width('100%')
         }
       })
     }
@@ -713,7 +713,7 @@ struct GridRowSample9 {
                 Text('' + item.index).fontSize(24)
               }
               .justifyContent(FlexAlign.Center)
-              .backgroundColor(item.color).height(30)
+              .backgroundColor(item.color).height(30).width('100%')
             }
           })
         }

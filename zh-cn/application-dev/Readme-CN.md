@@ -17,7 +17,6 @@
       - 应用程序包结构
         - [Stage模型应用程序包结构](quick-start/application-package-structure-stage.md)
         - [FA模型应用程序包结构](quick-start/application-package-structure-fa.md)
-        - [HAR包结构](quick-start/har-package.md)
       - 应用程序包多HAP机制
         - [多HAP机制设计目标](quick-start/multi-hap-objective.md)
         - [多HAP构建视图](quick-start/multi-hap-build-view.md)
@@ -25,6 +24,12 @@
         - [多HAP使用规则](quick-start/multi-hap-rules.md)
         - [多HAP运行机制及数据通信方式](quick-start/multi-hap-principles.md)
       - [应用程序包安装和卸载流程](quick-start/application-package-install-uninstall.md)
+      - 共享包
+        - [共享包概述](quick-start/shared-guide.md)
+        - [HAR](quick-start/har-package.md)
+        - HSP
+          - [应用内HSP开发指导](quick-start/in-app-hsp.md)
+          - [应用间HSP开发指导（仅对系统应用开放）](quick-start/cross-app-hsp.md)
     - 应用配置文件（Stage模型）
       - [应用配置文件概述（Stage模型）](quick-start/application-configuration-file-overview-stage.md)
       - [app.json5配置文件](quick-start/app-configuration-file.md)
@@ -34,21 +39,49 @@
       - [app对象内部结构](quick-start/app-structure.md)
       - [deviceConfig内部结构](quick-start/deviceconfig-structure.md)
       - [module对象内部结构](quick-start/module-structure.md)
-    - [资源分类与访问](quick-start/resource-categories-and-access.md)
+  - [资源分类与访问](quick-start/resource-categories-and-access.md)
   - 学习ArkTS语言
     - [初识ArkTS语言](quick-start/arkts-get-started.md)
-    - ArkTS语法（声明式UI）
-      - [基本UI描述](quick-start/arkts-basic-ui-description.md)
-      - 状态管理
-        - [基本概念](quick-start/arkts-state-mgmt-concepts.md)
-        - [页面级变量的状态管理](quick-start/arkts-state-mgmt-page-level.md)
-        - [应用级变量的状态管理](quick-start/arkts-state-mgmt-application-level.md)
-      - [动态构建UI元素](quick-start/arkts-dynamic-ui-elememt-building.md)
-      - [渲染控制](quick-start/arkts-rendering-control.md)
-      - [使用限制与扩展](quick-start/arkts-restrictions-and-extensions.md)
+    - 基本语法
+      - [基本语法概述](quick-start/arkts-basic-syntax-overview.md)
+      - [声明式UI描述](quick-start/arkts-declarative-ui-description.md)
+      - 自定义组件
+        - [创建自定义组件](quick-start/arkts-create-custom-components.md)
+        - [页面和自定义组件生命周期](quick-start/arkts-page-custom-components-lifecycle.md)
+      - [\@Builder：自定义构建函数](quick-start/arkts-builder.md)
+      - [\@BuilderParam：引用\@Builder函数](quick-start/arkts-builderparam.md)
+      - [\@Styles：定义组件重用样式](quick-start/arkts-style.md)
+      - [\@Extend：定义扩展组件样式](quick-start/arkts-extend.md)
+      - [stateStyles：多态样式](quick-start/arkts-statestyles.md)
+    - 状态管理
+      - [状态管理概述](quick-start/arkts-state-management-overview.md)
+      - 管理组件拥有的状态
+        - [\@State：组件内状态](quick-start/arkts-state.md)
+        - [\@Prop：父子单向同步](quick-start/arkts-prop.md)
+        - [\@Link：父子双向同步](quick-start/arkts-link.md)
+        - [\@Provide和\@Consume：与后代组件双向同步](quick-start/arkts-provide-and-consume.md)
+        - [\@Observed和\@ObjectLink：嵌套类对象属性变化](quick-start/arkts-observed-and-objectlink.md)
+      - 管理应用拥有的状态
+        - [管理应用拥有的状态概述](quick-start/arkts-application-state-management-overview.md)
+        - [LocalStorage：页面级UI状态存储](quick-start/arkts-localstorage.md)
+        - [AppStorage：应用全局的UI状态存储](quick-start/arkts-appstorage.md)
+        - [PersistentStorage：持久化存储UI状态](quick-start/arkts-persiststorage.md)
+        - [Environment：设备环境查询](quick-start/arkts-environment.md)
+      - 其他状态管理
+        - [其他状态管理概述](quick-start/arkts-other-state-mgmt-functions-overview.md)
+        - [\@Watch：状态变量更改通知](quick-start/arkts-watch.md)
+        - [$$语法：内置组件双向同步](quick-start/arkts-two-way-sync.md)
+    - 渲染控制
+      - [渲染控制概述](quick-start/arkts-rendering-control-overview.md)
+      - [if/else：条件渲染](quick-start/arkts-rendering-control-ifelse.md)
+      - [ForEach：循环渲染](quick-start/arkts-rendering-control-foreach.md)
+      - [LazyForEach：数据懒加载](quick-start/arkts-rendering-control-lazyforeach.md)
+
+
 - 开发
   - [应用模型](application-models/Readme-CN.md)
   - [UI开发](ui/Readme-CN.md)
+  - [Web](web/Readme-CN.md)
   - [通知](notification/Readme-CN.md)
   - [窗口管理](windowmanager/Readme-CN.md)
   - [WebGL](webgl/Readme-CN.md)
@@ -71,7 +104,7 @@
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - [调试工具](tools/Readme-CN.md)
 - 示例教程
-  - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/monthly_20221018/README_zh.md)
+  - [示例代码](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-3.2-Release/README_zh.md)
   - [Codelabs](https://gitee.com/openharmony/codelabs/blob/master/README.md)
 - API参考
   - [系统能力SystemCapability使用指南](reference/syscap.md)

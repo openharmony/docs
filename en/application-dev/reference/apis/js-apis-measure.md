@@ -15,7 +15,7 @@ import measure from '@ohos.measure'
 
 ## measure.measureText
 
-measureText(options: MeasureOptions): double
+measureText(options: MeasureOptions): number
 
 Measures the width of the given single-line text.
 
@@ -31,7 +31,7 @@ Measures the width of the given single-line text.
 
 | Type         | Description      |
 | ------------  | --------- |
-| double        | Text width.<br>The unit is px.|
+| number        | Text width.<br>The unit is px.|
 
 
 **Example**

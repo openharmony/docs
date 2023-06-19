@@ -15,10 +15,11 @@ import bundle from '@ohos.bundle';
 
 | Required Permissions                                        | Permission Level        | Description           |
 |--------------------------------------------|--------------|---------------|
+| ohos.permission.CHANGE_ABILITY_ENABLED_STATE | system_basic | Permission to enable or disable an application or ability.|
 | ohos.permission.GET_BUNDLE_INFO | normal | Permission to query information about a specified bundle.|
 | ohos.permission.GET_BUNDLE_INFO_PRIVILEGED| system_basic | Permission to query information about all bundles.    |
 | ohos.permission.INSTALL_BUNDLE             | system_core  | Permission to install or uninstall bundles.     |
-| ohos.permission.MANAGE_DISPOSED_APP_STATUS | system_core  | Permission to set and query the application disposal status. |
+| ohos.permission.REMOVE_CACHE_FILES | system_basic | Permission to clear cache files of a bundle.|
 
 For details, see [Permission Levels](../../security/accesstoken-overview.md#permission-levels).
 
@@ -186,6 +187,7 @@ SystemCapability.BundleManager.BundleFramework
 ```ts
 let bundleFlag = 0;
 let userId = 100;
+
 bundle.getAllBundleInfo(bundleFlag, userId)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -310,7 +312,7 @@ SystemCapability.BundleManager.BundleFramework
 let bundleName = "com.example.myapplication";
 let bundleFlags = 1;
 let options = {
-  "userId" : 100
+    "userId": 100
 };
 bundle.getBundleInfo(bundleName, bundleFlags, options)
 .then((data) => {
@@ -360,7 +362,6 @@ bundle.getBundleInfo(bundleName, bundleFlags, (err, data) => {
 })
 ```
 
-
 ## bundle.getBundleInfo<sup>deprecated<sup>
 
 > This API is deprecated since API version 9. You are advised to use [bundleManager.getBundleInfo](js-apis-bundleManager.md#bundlemanagergetbundleinfo) instead.
@@ -394,7 +395,7 @@ SystemCapability.BundleManager.BundleFramework
 let bundleName = "com.example.myapplication";
 let bundleFlags = 1;
 let options = {
-  "userId" : 100
+    "userId": 100
 };
 bundle.getBundleInfo(bundleName, bundleFlags, options, (err, data) => {
     if (err) {
@@ -425,7 +426,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Return value**
 
@@ -461,7 +462,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -498,7 +499,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -539,7 +540,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -583,7 +584,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -625,7 +626,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -670,7 +671,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -698,7 +699,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -720,7 +721,7 @@ let flag = bundle.BundleFlag.GET_ABILITY_INFO_WITH_PERMISSION;
 let userId = 100;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 
 bundle.getAbilityInfo(want, flag, userId).then((abilityInfo) => {
@@ -753,7 +754,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -793,7 +794,7 @@ SystemCapability.BundleManager.BundleFramework
 
 **System API**
 
-This is a system API and cannot be called by third-party applications.
+This is a system API.
 
 **Parameters**
 
@@ -903,7 +904,7 @@ bundle.getAllApplicationInfo(bundleFlags, userId, (err, data) => {
 
 > This API is deprecated since API version 9. You are advised to use [bundleManager.getAllApplicationInfo](js-apis-bundleManager.md#bundlemanagergetallapplicationinfo) instead.
 
-getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback<Array\<ApplicationInfo>>) : void;
+getAllApplicationInfo(bundleFlags: number, callback: AsyncCallback\<Array\<ApplicationInfo\>\>): void;
 
 Obtains the information about all applications of the current user. This API uses an asynchronous callback to return the result.
 
@@ -1006,7 +1007,6 @@ bundle.getBundleArchiveInfo(hapFilePath, bundleFlags, (err, data) => {
 })
 ```
 
-
 ## bundle.getAbilityInfo<sup>deprecated<sup>
 
 > This API is deprecated since API version 9. You are advised to use [bundleManager.queryAbilityInfo](js-apis-bundleManager.md#bundlemanagerqueryabilityinfo) instead.
@@ -1042,7 +1042,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityInfo(bundleName, abilityName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -1081,7 +1081,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityInfo(bundleName, abilityName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1126,7 +1126,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityLabel(bundleName, abilityName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -1165,7 +1165,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityLabel(bundleName, abilityName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));
@@ -1203,7 +1203,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo)=>{
     bundle.isAbilityEnabled(abilityInfo).then((data) => {
         console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -1236,7 +1236,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityInfo(bundleName, abilityName).then((abilityInfo)=>{
     bundle.isAbilityEnabled(abilityInfo, (err, data) => {
     if (err) {
@@ -1355,7 +1355,7 @@ let bundleFlags = 0;
 let userId = 100;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 bundle.queryAbilityByWant(want, bundleFlags, userId)
 .then((data) => {
@@ -1401,7 +1401,7 @@ let bundleFlags = 0;
 let userId = 100;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 bundle.queryAbilityByWant(want, bundleFlags, userId, (err, data) => {
     if (err) {
@@ -1444,7 +1444,7 @@ SystemCapability.BundleManager.BundleFramework
 let bundleFlags = 0;
 let want = {
     bundleName : "com.example.myapplication",
-    abilityName : "com.example.myapplication.MainAbility"
+    abilityName : "EntryAbility"
 };
 bundle.queryAbilityByWant(want, bundleFlags, (err, data) => {
     if (err) {
@@ -1635,7 +1635,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityIcon(bundleName, abilityName)
 .then((data) => {
     console.info('Operation successful. Data: ' + JSON.stringify(data));
@@ -1675,7 +1675,7 @@ SystemCapability.BundleManager.BundleFramework
 
 ```ts
 let bundleName = "com.example.myapplication";
-let abilityName = "com.example.myapplication.MainAbility";
+let abilityName = "EntryAbility";
 bundle.getAbilityIcon(bundleName, abilityName, (err, data) => {
     if (err) {
         console.error('Operation failed. Cause: ' + JSON.stringify(err));

@@ -81,7 +81,7 @@ button是按钮组件，其类型包括胶囊按钮、圆形按钮、文本按�
 如果需要添加ohos.permission.INTERNET权限，则在resources文件夹下的config.json文件里进行权限配置。
 
 
-```json
+```
 <!-- config.json -->
 "module": {
   "reqPermissions": [{

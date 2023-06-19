@@ -1,11 +1,11 @@
-# InputMethodExtensionAbility Development
+# InputMethodExtensionAbility
 
-[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md) is an ExtensionAbility component of the inputMethod type that provides extension capabilities for the input method framework.
+## When to Use
+[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md), inherited from [ExtensionAbility](extensionability-overview.md), is used for developing input method applications.
 
-InputMethodExtensionAbility can be started or connected by other application components to process transactions in the background based on the request of the caller.
+The entire lifecycle of the [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md) instance and the owning ExtensionAbility process is scheduled and managed by the input method framework. The input method framework provides the [InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md) base class. Derive this base class to implement initialization and resource clearing.
 
-
-InputMethodExtensionAbility provides related capabilities through the [InputMethodExtensionContext](../reference/apis/js-apis-inputmethod-extension-context.md).
+[InputMethodExtensionAbility](../reference/apis/js-apis-inputmethod-extension-ability.md) provides related capabilities through [InputMethodExtensionContext](../reference/apis/js-apis-inputmethod-extension-context.md).
 
 
 ## Implementing an Input Method Application
@@ -13,15 +13,13 @@ InputMethodExtensionAbility provides related capabilities through the [InputMeth
 InputMethodExtensionAbility provides the **onCreate()** and **onDestory()** callbacks, as described below. Override them as required.  
 
 - **onCreate**
-  
   This callback is triggered when a service is created for the first time. You can perform initialization operations, for example, registering a common event listener.
-  
+
   > **NOTE**
   >
   > If a service has been created, starting it again does not trigger the **onCreate()** callback.
-  
+
 - **onDestroy**
-  
   This callback is triggered when the service is no longer used and the instance is ready for destruction. You can clear resources in this callback, for example, deregister the listener.
 
 
@@ -29,11 +27,11 @@ InputMethodExtensionAbility provides the **onCreate()** and **onDestory()** call
 
 To implement an input method application, manually create an InputMethodExtensionAbility component in DevEco Studio. The procedure is as follows:
 
-In the **ets** directory of the target module, right-click and choose **New** > **Extention Ability** > **InputMethod** to a minimum template of InputMethodExtensionAbility.
+In the **ets** directory of the target module, right-click and choose **New** > **Extension Ability** > **InputMethod** to a minimum template of InputMethodExtensionAbility.
 
 > **NOTE**
 > 
-> When compiling the input method application, use the signature at the system_core level. Otherwise, the application will not be able to start the keyboard.
+> When compiling the input method application, use the signature at the system_basic level. Otherwise, the application will not be able to start the keyboard.
 
 The minimum template implements an input method application with the most basic features, such as starting the keyboard, entering text, and deleting input. You can diversify the feature set of the application by, for example, adding the feature to hide the keyboard.
 
@@ -54,7 +52,7 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
 
 1. **InputMethodService.ts** file:
 
-   In this file, add the dependency package for importing InputMethodExtensionAbility. Customize a class that inherits from InputMethodExtensionAbility and add the required lifecycle callbacks.
+   In the **InputMethodService.ts** file, add the dependency package for importing InputMethodExtensionAbility. Customize a class that inherits from InputMethodExtensionAbility and add the required lifecycle callbacks.
 
    ```ts
    import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
@@ -70,7 +68,7 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
    
      onDestroy() {
        console.log("onDestroy.");
-       this.context.destroy();
+       this.keyboardController.onDestroy(); // Destroy the window and deregister the event listener.
      }
    }
    ```
@@ -109,7 +107,6 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
        this.unRegisterListener();		// Deregister the event listener.
        let win = windowManager.findWindow(this.windowName);
        win.destroyWindow();				// Destroy the window.
-       this.mContext.terminateSelf();	// Terminate the InputMethodExtensionAbility service.
      }
    
      private initWindow(): void		// Initialize the window.
@@ -159,7 +156,7 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
        })
        globalThis.inputAbility.on('inputStop', (imeId) => {
          if (imeId == "Bundle name/Ability name") {
-           this.onDestroy();
+           this.mContext.destroy(); // Destroy the InputMethodExtensionAbility service.
          }
        });
      }
@@ -342,25 +339,24 @@ The minimum template contains four files: **KeyboardController.ts**, **InputMeth
    }
    ```
 
-   Register the InputMethodExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) corresponding to the target module. Set **type** to **"inputMethod"** and **srcEntrance** to the code path of the InputMethodExtensionAbility component.
+5. Register the InputMethodExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) corresponding to the **Module** project. Set **type** to **"inputMethod"** and **srcEntry** to the code path of the InputMethodExtensionAbility component.
 
    ```ts
    {
      "module": {
-       // ...
+       ...
        "extensionAbilities": [
          {
            "description": "inputMethod",
            "icon": "$media:icon",
            "name": "InputMethodExtAbility",
-           "srcEntrance": "./ets/inputmethodextability/InputMethodService.ts",
+           "srcEntry": "./ets/inputmethodextability/InputMethodService.ts",
            "type": "inputMethod",
-           "visible": true,
+           "exported": true,
          }
        ]
      }
    }
    ```
-
 
 

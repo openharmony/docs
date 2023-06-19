@@ -151,7 +151,7 @@ try {
 
 getBtConnectionState(): ProfileConnectionState
 
-Obtains the profile connection state of this Bluetooth device.
+Obtains the local profile connection state.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -547,7 +547,7 @@ startBluetoothDiscovery(): void
 
 Starts Bluetooth scan to discover remote devices.
 
-**Rquired permissions**: ohos.permission.DISCOVER_BLUETOOTH and ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
+**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH and ohos.permission.LOCATION and ohos.permission.APPROXIMATELY_LOCATION
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -893,7 +893,7 @@ try {
 
 on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 
-Subscribes to the Bluetooth connection state change events.
+Subscribes to Bluetooth state events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -932,7 +932,7 @@ try {
 
 off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
-Unsubscribes from the Bluetooth connection state change events.
+Unsubscribes from Bluetooth state events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1385,7 +1385,7 @@ Creates a **GattServer** instance.
 
 | Type                       | Description                                  |
 | ------------------------- | ------------------------------------ |
-| [GattServer](#gattserver) | **GattServer** instance created. Before using a method of the server, you must create a **GattSever** instance.|
+| [GattServer](#gattserver) | **GattServer** instance created. Before using an API of the server, you must create a **GattSever** instance.|
 
 **Example**
 
@@ -1412,7 +1412,7 @@ Creates a **GattClientDevice** instance.
 
 | Type                                   | Description                                  |
 | ------------------------------------- | ------------------------------------ |
-| [GattClientDevice](#gattclientdevice) | **GattClientDevice** instance created. Before using a method of the client, you must create a **GattClientDevice** instance.|
+| [GattClientDevice](#gattclientdevice) | **GattClientDevice** instance created. Before using an API of the client, you must create a **GattClientDevice** instance.|
 
 **Example**
 
@@ -1714,7 +1714,7 @@ try {
 
 ## A2dpSourceProfile
 
-Before using a method of **A2dpSourceProfile**, you need to create an instance of this class by using the **getProfile()** method.
+Before using an API of **A2dpSourceProfile**, you need to create an instance of this class by using **getProfile()**.
 
 
 ### connect<a name="a2dp-connect"></a>
@@ -1901,7 +1901,7 @@ try {
 
 ## HandsFreeAudioGatewayProfile
 
-Before using a method of **HandsFreeAudioGatewayProfile**, you need to create an instance of this class by using the **getProfile()** method.
+Before using an API of **HandsFreeAudioGatewayProfile**, you need to create an instance of this class by using **getProfile()**.
 
 
 ### connect<a name="hfp-connect"></a>
@@ -2021,7 +2021,7 @@ Unsubscribes from the HFP connection state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event.|
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event. |
 | callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No   | Callback for the HFP connection state change event.                              |
 
 **Example**
@@ -2075,7 +2075,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 try {
-    let hidHostProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+    let hidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
     hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2116,7 +2116,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 try {
-    let hidHostProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+    let hidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
     hidHostProfile.disconnect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2136,8 +2136,8 @@ Subscribes to the HidHost connection state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates a HidHost connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the HidHost connection state change event.                              |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates a HidHost connection state change event. |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the HidHost connection state change event.                |
 
 **Example**
 
@@ -2145,7 +2145,7 @@ Subscribes to the HidHost connection state change events.
 function onReceiveEvent(data) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
-let hidHost = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+let hidHost = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -2162,8 +2162,8 @@ Unsubscribes from the HidHost connection state change events.
 
 | Name  | Type                                                 | Mandatory| Description                                                     |
 | -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
-| type     | string                                                | Yes  | Event type. The value **connectionStateChange** indicates a HidHost connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No  | Callback for the HidHost connection state change event.                                     |
+| type     | string                                                | Yes  | Event type. The value **connectionStateChange** indicates a HidHost connection state change event. |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No  | Callback for the HidHost connection state change event.                            |
 
 **Example**
 
@@ -2171,7 +2171,7 @@ Unsubscribes from the HidHost connection state change events.
 function onReceiveEvent(data) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
-let hidHost = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+let hidHost = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
 hidHost.off('connectionStateChange', onReceiveEvent);
 ```
@@ -2215,7 +2215,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 try {
-    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     panProfile.disconnect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2235,7 +2235,7 @@ Subscribes to the PAN connection state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an PAN connection state change event. |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates a PAN connection state change event. |
 | callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the PAN connection state change event.                    |
 
 **Example**
@@ -2244,7 +2244,7 @@ Subscribes to the PAN connection state change events.
 function onReceiveEvent(data) {
     console.info('pan state = '+ JSON.stringify(data));
 }
-let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -2261,8 +2261,8 @@ Unsubscribes from the PAN connection state change events.
 
 | Name  | Type                                                 | Mandatory| Description                                                     |
 | -------- | ----------------------------------------------------- | ---- | --------------------------------------------------------- |
-| type     | string                                                | Yes  | Event type. The value **connectionStateChange** indicates a PAN connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No  | Callback for the PAN connection state change event.                                     |
+| type     | string                                                | Yes  | Event type. The value **connectionStateChange** indicates a PAN connection state change event. |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No  | Callback for the PAN connection state change event.                                |
 
 **Example**
 
@@ -2270,7 +2270,7 @@ Unsubscribes from the PAN connection state change events.
 function onReceiveEvent(data) {
     console.info('pan state = '+ JSON.stringify(data));
 }
-let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
 panProfile.off('connectionStateChange', onReceiveEvent);
 ```
@@ -2309,7 +2309,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 try {
-    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     panProfile.setTethering(true);
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2333,22 +2333,11 @@ Obtains the network sharing status.
 | --------------------- | --------------------------------- |
 | boolean | Returns **true** if tethering is available over a Bluetooth PAN; return **false** otherwise.|
 
-**Error codes**
-
-For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
-
-| ID| Error Message|
-| -------- | ---------------------------- |
-|2900001 | Service stopped.                         |
-|2900003 | Bluetooth switch is off.                 |
-|2900004 | Profile is not supported.                |
-|2900099 | Operation failed.                        |
-
 **Example**
 
 ```js
 try {
-    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     let ret = panProfile.isTetheringOn();
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2358,7 +2347,7 @@ try {
 
 ## GattServer
 
-Implements the Generic Attribute Profile (GATT) server. Before using an API of this class, you need to create a **GattServer** instance using the **createGattServer()** method.
+Implements the Generic Attribute Profile (GATT) server. Before using an API of this class, you need to create a **GattServer** instance using **createGattServer()**.
 
 
 ### startAdvertising
@@ -2860,7 +2849,7 @@ Subscribes to the descriptor read request events.
 | Name     | Type                                      | Mandatory  | Description                               |
 | -------- | ---------------------------------------- | ---- | --------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **descriptorRead** indicates a descriptor read request event.|
-| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | Yes   | Callback invoked to return a characteristic read request event from the GATT client.       |
+| callback | Callback&lt;[DescriptorReadRequest](#descriptorreadrequest)&gt; | Yes   | Callback invoked to return a descriptor read request event from the GATT client. |
 
 **Example**
 
@@ -3258,7 +3247,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 | ID| Error Message|
 | -------- | ---------------------------- |
 |2900001 | Service stopped.                         |
-|2901000 | Read forbidden.                        |
+|2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -3327,7 +3316,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 | ID| Error Message|
 | -------- | ---------------------------- |
 |2900001 | Service stopped.                         |
-|2901000 | Read forbidden.                        |
+|2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -3382,7 +3371,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 | ID| Error Message|
 | -------- | ---------------------------- |
 |2900001 | Service stopped.                         |
-|2901000 | Read forbidden.                        |
+|2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -3444,7 +3433,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 | ID| Error Message|
 | -------- | ---------------------------- |
 |2900001 | Service stopped.                         |
-|2901000 | Read forbidden.                        |
+|2901000 | Read forbidden.                         |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -3491,7 +3480,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 | ID| Error Message|
 | -------- | ---------------------------- |
 |2900001 | Service stopped.                         |
-|2901001 | Write forbidden.                       |
+|2901001 | Write forbidden.                        |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -3545,7 +3534,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 | ID| Error Message|
 | -------- | ---------------------------- |
 |2900001 | Service stopped.                         |
-|2901001 | Write forbidden.                       |
+|2901001 | Write forbidden.                        |
 |2900099 | Operation failed.                        |
 
 **Example**
@@ -3661,7 +3650,7 @@ try {
 
 on(type: "BLECharacteristicChange", callback: Callback&lt;BLECharacteristic&gt;): void
 
-Subscribes to the BLE characteristic change events. The client can receive a notification from the server only after the **setNotifyCharacteristicChanged** API is called.
+Subscribes to the BLE characteristic change events. The client can receive a notification from the server only after **setNotifyCharacteristicChanged** is called.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 

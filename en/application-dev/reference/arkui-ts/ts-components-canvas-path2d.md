@@ -1,8 +1,8 @@
 # Path2D
 
-**Path2D** allows you to describe a path through an existing path. This path can be drawn through the **stroke** API of **Canvas**.
+**Path2D** allows you to describe a path through an existing path. This path can be drawn through the **stroke** or **fill** API of **Canvas**.
 
-> **NOTE**
+>  **NOTE**
 > 
 > The APIs of this module are supported since API version 8. Updates will be marked with a superscript to indicate their earliest API version.
 

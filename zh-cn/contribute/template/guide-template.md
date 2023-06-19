@@ -90,8 +90,9 @@ _要使用该方案/特性/功能/模块，有哪些独有概念是我需要了�
 
 - **关系型数据库**
   
+
 基于关系模型来管理数据的数据库，以行和列的形式存储数据。
-  
+
 - **谓词**
 
   数据库中用来代表数据实体的性质、特征或者数据实体之间关系的词项，主要用来定义数据库的操作条件。
@@ -181,7 +182,7 @@ _已发布的Sample code、Codelabs、Demo工程包，请在此处提供链接�
 
 针对Ability开发，有以下相关实例可供参考：
 
-- [Page内和Page间导航跳转](https://gitee.com/openharmony/codelabs/tree/master/Ability/PageAbility)
+-  [UIAbility内和UIAbility间页面的跳转（ArkTS）](https://gitee.com/openharmony/codelabs/tree/master/Ability/StageAbility)
 
 
 ## 环境准备

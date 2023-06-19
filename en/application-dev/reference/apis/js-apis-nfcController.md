@@ -32,6 +32,7 @@ isNfcAvailable(): boolean
 Checks whether the device supports NFC.
 
 > **NOTE**
+> 
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use canIUse("SystemCapability.Communication.NFC.Core").
 
 **System capability**: SystemCapability.Communication.NFC.Core
@@ -50,6 +51,7 @@ openNfc(): boolean
 Opens NFC.
 
 > **NOTE**
+> 
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [enableNfc](#controllerenablenfc9).
 
 **Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
@@ -64,9 +66,9 @@ Opens NFC.
 
 ## controller.enableNfc<sup>9+</sup>
 
-enableNfc(): boolean
+enableNfc(): void
 
-Opens NFC.
+Enables NFC.
 
 **Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -87,6 +89,7 @@ closeNfc(): boolean
 Closes NFC.
 
 > **NOTE**
+> 
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [disableNfc](#controllerdisablenfc9).
 
 **Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
@@ -101,9 +104,9 @@ Closes NFC.
 
 ## controller.disableNfc<sup>9+</sup>
 
-disableNfc(): boolean
+disableNfc(): void
 
-Closes NFC.
+Disables NFC.
 
 **Required permissions**: ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -172,15 +175,15 @@ Unsubscribes from the NFC state changes. The subscriber will not receive NFC sta
 
 | **Name**| **Type**| **Mandatory**| **Description**|
 | -------- | -------- | -------- | -------- |
-| type | string | Yes| Event type to unsubscribe from. The value is **nfcStateChange**.|
-| callback | Callback&lt;[NfcState](#nfcstate)&gt; | No| Callback for the NFC state changes. This parameter can be left blank.|
+  | type | string | Yes| Event type to unsubscribe from. The value is **nfcStateChange**.|
+| callback | Callback&lt;[NfcState](#nfcstate)&gt; | No| Callback for the NFC state changes. This parameter can be left blank. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
   
 **Example**
 
 ```js
 import controller from '@ohos.nfc.controller';
 
-// Register the callback to receive NFC state change notifications.
+// Register a callback to receive the NFC state change notification.
 controller.on("nfcStateChange", (err, nfcState)=> {
   if (err) {
       console.log("controller on callback err: " + err);
@@ -189,7 +192,7 @@ controller.on("nfcStateChange", (err, nfcState)=> {
   }
 });
 
-  // Open NFC. Require permission: ohos.permission.MANAGE_SECURE_SETTINGS.
+  // Open NFC. The ohos.permission.MANAGE_SECURE_SETTINGS permission is required.
 if (!controller.isNfcOpen()) {
   var ret = controller.openNfc();
   console.log("controller openNfc ret: " + ret);
@@ -203,7 +206,7 @@ try {
     console.log("controller enableNfc busiError: " + busiError);
 }
 
-// Close NFC. Require permission: ohos.permission.MANAGE_SECURE_SETTINGS.
+// Close NFC. The ohos.permission.MANAGE_SECURE_SETTINGS permission is required.
 if (controller.isNfcOpen()) {
   var ret = controller.closeNfc();
   console.log("controller closeNfc ret: " + ret);

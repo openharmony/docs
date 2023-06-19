@@ -4,7 +4,6 @@
 
 为了保障OpenHarmony社区版本的平滑演进和历史发布版本的持续稳定可靠，会定期从Master主干拉出LTS/Release/Beta等类型分支，并按照OpenHarmony生命周期定义对其进行管理。
 
-![1.png](figures/1.png)
 
 
 ### Master （主干分支）

@@ -25,9 +25,9 @@ getStatus(options?: GetStatusOptions): void;
 
 **参数：**
 
-| 名称 | 类型 | 必填 | 说明 |
+| 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| options | [GetStatusOptions](#getstatusoptions) | 否 | 包含接口调用结果的对象。 |
+| options | [GetStatusOptions](#getstatusoptions) | 否 | 包含接口调用结果的对象。可选，默认为空。 |
 
 **示例：**
 
@@ -48,7 +48,7 @@ battery.getStatus({
 
 **系统能力：** SystemCapability.PowerManager.BatteryManager.Core
 
-| 名称   | 类型                                                | 必填 | 说明                                                         |
+| 参数名   | 类型                                                | 必填 | 说明                                                         |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | success  | (data: [BatteryResponse](#batteryresponse)) => void | 否   | 接口调用成功的回调函数，data为[BatteryResponse](#batteryresponse)类型的返回值。 |
 | fail     | (data: string, code: number) => void                | 否   | 接口调用失败的回调函数。data为错误信息，code为错误码。       |
@@ -60,7 +60,7 @@ battery.getStatus({
 
 **系统能力：** SystemCapability.PowerManager.BatteryManager.Core
 
-| 名称 | 类型 | 可读 | 可写 | 说明 |
+| 参数名 | 类型 | 可读 | 可写 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | charging | boolean | 是 | 否 | 当前电池是否在充电中。 |
 | level | number | 是 | 否 | 当前电池的电量，取值范围：0.00&nbsp;-&nbsp;1.00&nbsp;。 |

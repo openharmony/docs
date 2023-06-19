@@ -3,7 +3,7 @@
 
 ## 概述
 
-CodecBase模块提供运行音视频编解码通用的结构体、字符常量、枚举。
+CodecBase模块提供运行音视频编解码通用的结构体、字符常量、枚举。该模块在部分设备上可能不支持，可以通过[CanIUse](../syscap.md)接口确认。
 
 @syscap SystemCapability.Multimedia.Media.CodecBase
 

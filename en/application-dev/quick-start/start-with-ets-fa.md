@@ -5,18 +5,18 @@
 >
 >  To use ArkTS, your DevEco Studio must be V3.0.0.601 Beta1 or later.
 >
->  For best possible results, use [DevEco Studio V3.1.0.100](https://developer.harmonyos.com/cn/develop/deveco-studio) for your development.
+>  For best possible results, use [DevEco Studio 3.1 Beta2](https://developer.harmonyos.com/cn/develop/deveco-studio) for your development.
 
 
 ## Creating an ArkTS Project
 
-1. If you are opening DevEco Studio for the first time, click **Create Project**. If a project is already open, choose **File** > **New** > **Create Project** from the menu bar. On the **OpenHarmony** tab of the **Choose Your Ability Template** page, select **Empty Ability** and click **Next**.
+1. If you are opening DevEco Studio for the first time, click **Create Project**. If a project is already open, choose **File** > **New** > **Create Project** from the menu bar. On the **Choose Your Ability Template** page, select **Application** (or **Atomic Service**, depending on your project), select **Empty Ability** as the template, and click **Next**.
 
-   ![01](figures/01.png)
+   ![createProject](figures/createProject.png)
 
 2. In the project configuration page, set **Compile SDK** to **8** or **9** (in the latter case, you also need to set **Model** to **FA**) and **Language** to **ArkTS** and retain the default values for other parameters.
 
-   ![02](figures/02.png)
+   ![chooseFAModel_ets](figures/chooseFAModel_ets.png)
 
    > **NOTE**
    > 
@@ -27,6 +27,7 @@
    > To use the low-code development mode, turn on **Enable Super Visual** on the page shown above.
 
 3. Click **Finish**. DevEco Studio will automatically generate the sample code and resources that match your project type. Wait until the project is created.
+4. After the project is created, in the **entry** > **build-profile.json5** file, change **runtimeOS** under **targets** to **OpenHarmony**, and click **Sync Now** in the upper right corner to start development.
 
 
 ## ArkTS Project Directory Structure (FA Model)
@@ -41,11 +42,9 @@
   - **src > main > ets > MainAbility > app.ets**: ability lifecycle file.
   - **src > main > resources**: a collection of resource files used by your application/service, such as graphics, multimedia, character strings, and layout files. For details about resource files, see [Resource Categories and Access](resource-categories-and-access.md#resource-categories).
   - **src > main > config.json**: module configuration file. This file describes the global configuration information of the application/service, the device-specific configuration information, and the configuration information of the HAP file. For details, see [Application Configuration File Overview (FA Model)](application-configuration-file-overview-fa.md).
-  - **build-profile.json5**: current module information and build configuration options, including **buildOption** and **targets**.
+  - **build-profile.json5**: current module information and build configuration options, including **buildOption** and **targets**. Under **targets**, you can set **runtimeOS** to **HarmonyOS** (default) or **OpenHarmony**, depending on the OS of your application.
   - **hvigorfile.ts**: module-level build script. You can customize related tasks and code implementation.
-
 - **build-profile.json5**: application-level configuration information, including the signature and product configuration.
-
 - **hvigorfile.ts**: application-level build script.
 
 
@@ -291,7 +290,7 @@ You can implement page redirection through the [page router](../reference/apis/j
 
 2. Choose **File** > **Project Structure...** > **Project** > **SigningConfigs**, and select **Automatically generate signature**. Wait until the automatic signing is complete, and click **OK**. See the following figure.
 
-   ![06](figures/06.png)
+   ![signConfig](figures/signConfig.png)
 
 3. On the toolbar in the upper right corner of the editing window, click ![en-us_image_0000001364054485](figures/en-us_image_0000001364054485.png). The display effect is shown in the figure below.
 

@@ -21,7 +21,7 @@ The following child components are supported: **[\<Rect>](ts-drawing-components-
 
 Shape(value?: PixelMap)
 
-Since API version 9, this API is supported in ArkTS widgets.
+Since API version 9, this API is supported in ArkTS widgets, except that **PixelMap** objects are not supported.
 
 **Parameters**
 
@@ -36,7 +36,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 
 | Name| Type| Default Value| Description|
 | -------- | -------- | -------- | -------- |
-| viewPort | {<br>x?: number \| string,<br>y?: number \| string,<br>width?: number \| string,<br>height?: number \| string<br>} | { x:0, y:0, width:0, height:0 } | View port of the shape.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| viewPort | {<br>x?: number \| string,<br>y?: number \| string,<br>width?: number \| string,<br>height?: number \| string<br>} | { x:0, y:0, width:0, height:0 } | View port of the shape.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>If of the string type, the value cannot be a percentage.|
 | fill | [ResourceColor](ts-types.md) | Color.Black | Color of the fill area.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | fillOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | Opacity of the fill area.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | stroke | [ResourceColor](ts-types.md) | - | Stroke color. If this attribute is not set, the component does not have any stroke.<br>Since API version 9, this API is supported in ArkTS widgets.|
@@ -46,13 +46,11 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | Join style of the stroke.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | strokeMiterLimit | number \| string | 4 | Limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join. The miter length indicates the distance from the outer tip to the inner corner of the miter.<br>**NOTE**<br>This attribute must be set to a value greater than or equal to 1 and takes effect when **strokeLineJoin** is set to **LineJoinStyle.Miter**.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | strokeOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | Stroke opacity.<br>**NOTE**<br>The value range is [0.0, 1.0]. If the set value is less than 0.0, **0.0** will be used. If the set value is greater than 1.0, **1.0** will be used.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| strokeWidth | number \| string | 1 | Stroke width.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| strokeWidth | number \| string | 1 | Stroke width.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>If of the string type, the value cannot be a percentage.|
 | antiAlias | boolean | true | Whether anti-aliasing is enabled.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | mesh<sup>8+</sup> | Array&lt;number&gt;,number,number | [],0,0 | Mesh effect. The first parameter is an array of lengths (column + 1) * (row + 1) * 2, which records the position of each vertex of the distorted bitmap. The second parameter is the number of columns in the mesh matrix. The third parameter is the number of rows in the mesh matrix.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## Example
-
-### Example 1
 
 ```ts
 // xxx.ets
@@ -70,6 +68,8 @@ struct ShapeExample {
         Ellipse().width(300).height(50).offset({ x: 0, y: 60 })
         Path().width(300).height(10).commands('M0 0 L900 0').offset({ x: 0, y: 120 })
       }
+      .width(350)
+      .height(140)
       .viewPort({ x: -2, y: -2, width: 304, height: 130 })
       .fill(0x317AF7)
       .stroke(Color.Black)
@@ -83,6 +83,8 @@ struct ShapeExample {
       Shape() {
         Rect().width(300).height(50)
       }
+      .width(350)
+      .height(80)
       .viewPort({ x: 0, y: 0, width: 320, height: 70 })
       .fill(0x317AF7)
       .stroke(Color.Black)
@@ -91,6 +93,8 @@ struct ShapeExample {
       Shape() {
         Rect().width(300).height(50)
       }
+      .width(350)
+      .height(80)
       .viewPort({ x: -5, y: -5, width: 320, height: 70 })
       .fill(0x317AF7)
       .stroke(Color.Black)
@@ -101,6 +105,8 @@ struct ShapeExample {
       Shape() {
         Path().width(300).height(10).commands('M0 0 L900 0')
       }
+      .width(350)
+      .height(20)
       .viewPort({ x: 0, y: -5, width: 300, height: 20 })
       .stroke(0xEE8443)
       .strokeWidth(10)
@@ -109,6 +115,8 @@ struct ShapeExample {
       Shape() {
         Path().width(300).height(10).commands('M0 0 L900 0')
       }
+      .width(350)
+      .height(20)
       .viewPort({ x: 0, y: -5, width: 300, height: 20 })
       .stroke(0xEE8443)
       .strokeWidth(10)
@@ -118,6 +126,8 @@ struct ShapeExample {
       Shape() {
         Path().width(300).height(10).commands('M0 0 L900 0')
       }
+      .width(350)
+      .height(20)
       .viewPort({ x: 0, y: -5, width: 300, height: 20 })
       .stroke(0xEE8443)
       .strokeWidth(10)
@@ -126,6 +136,8 @@ struct ShapeExample {
       Shape() {
         Path().width(300).height(10).commands('M0 0 L900 0')
       }
+      .width(350)
+      .height(20)
       .viewPort({ x: 0, y: -5, width: 300, height: 20 })
       .stroke(0xEE8443)
       .strokeWidth(10)
@@ -135,7 +147,9 @@ struct ShapeExample {
       Shape() {
         Path().width(200).height(60).commands('M0 0 L400 0 L400 150 Z')
       }
-      .viewPort({ x: -80, y: -5, width: 310, height: 90 })
+      .width(300)
+      .height(200)
+      .viewPort({ x: -20, y: -5, width: 310, height: 90 })
       .fill(0x317AF7)
       .stroke(0xEE8443)
       .strokeWidth(10)
@@ -147,3 +161,4 @@ struct ShapeExample {
 ```
 
 ![en-us_image_0000001184628104](figures/en-us_image_0000001184628104.png)
+ 

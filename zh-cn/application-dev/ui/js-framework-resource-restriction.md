@@ -37,18 +37,18 @@
 
 ## 引用JS模块内resources资源
 
-在应用开发的hml和js文件中使用$r的语法，可以对JS模块内的resources目录下的json资源进行格式化，获取相应的资源内容。
+在应用开发的hml和js文件中使用$r的语法，可以对JS模块内的resources目录下的json资源进行格式化，获取相应的资源内容，该目录与pages目录同级，具体目录结构请参考[文件组织](js-framework-file.md)。
 
 | 属性 | 类型 | 描述 |
 | -------- | -------- | -------- |
-| $r | (key:&nbsp;string)&nbsp;=&gt;&nbsp;string | 获取资源限定下具体的资源内容。例如：this.$r('strings.hello')。<br/>参数说明：<br/>-&nbsp;key：定义在资源限定文件中的键值，如strings.hello。 |
+| $r | (key:&nbsp;string)&nbsp;=&gt;&nbsp;string | 获取资源限定下具体的资源内容。例如：$r('strings.hello')。<br/>参数说明：<br/>-&nbsp;key：定义在资源限定文件中的键值，如strings.hello。 |
 
 **res-defaults.json示例：**<br/>
 
 ```json
 {
     "strings": {        
-        "hello": "hello world"  
+        "hello": "hello world" 
     }
 }
 ```

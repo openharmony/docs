@@ -41,7 +41,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | strokeLineJoin | [LineJoinStyle](ts-appendix-enums.md#linejoinstyle) | LineJoinStyle.Miter | Join style of the stroke.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | strokeMiterLimit | number \| string | 4 | Limit on the ratio of the miter length to the value of **strokeWidth** used to draw a miter join. The miter length indicates the distance from the outer tip to the inner corner of the miter.<br>**NOTE**<br>This attribute must be set to a value greater than or equal to 1 and takes effect when **strokeLineJoin** is set to **LineJoinStyle.Miter**.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | strokeOpacity | number \| string \| [Resource](ts-types.md#resource)| 1 | Opacity of the stroke.<br>**NOTE**<br>The value range is [0.0, 1.0]. If the set value is less than 0.0, **0.0** will be used. If the set value is greater than 1.0, **1.0** will be used.<br>Since API version 9, this API is supported in ArkTS widgets.|
-| strokeWidth | Length | 1 | Width of the stroke.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| strokeWidth | Length | 1 | Width of the stroke.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>The value cannot be a percentage.|
 | antiAlias | boolean | true | Whether anti-aliasing is enabled.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 The supported commands are as follows:
@@ -74,9 +74,10 @@ struct PathExample {
         .fontSize(11)
         .fontColor(0xCCCCCC)
         .width('90%')
-      // Draw a straight line whose length is 900 px and width is 3 vp.
+      // Draw a straight line whose length is 600 px and width is 3 vp.
       Path()
-        .height(10)
+        .width('600px')
+        .height('10px')
         .commands('M0 0 L600 0')
         .stroke(Color.Black)
         .strokeWidth(3)
@@ -88,16 +89,22 @@ struct PathExample {
       // Draw a straight line.
       Flex({ justifyContent: FlexAlign.SpaceBetween }) {
         Path()
+          .width('210px')
+          .height('310px')
           .commands('M100 0 L200 240 L0 240 Z')
           .fillOpacity(0)
           .stroke(Color.Black)
           .strokeWidth(3)
         Path()
+          .width('210px')
+          .height('310px')
           .commands('M0 0 H200 V200 H0 Z')
           .fillOpacity(0)
           .stroke(Color.Black)
           .strokeWidth(3)
         Path()
+          .width('210px')
+          .height('310px')
           .commands('M100 0 L0 100 L50 200 L150 200 L200 100 Z')
           .fillOpacity(0)
           .stroke(Color.Black)
@@ -108,16 +115,22 @@ struct PathExample {
       // Draw an arc.
       Flex({ justifyContent: FlexAlign.SpaceBetween }) {
         Path()
+          .width('250px')
+          .height('310px')
           .commands("M0 300 S100 0 240 300 Z")
           .fillOpacity(0)
           .stroke(Color.Black)
           .strokeWidth(3)
         Path()
+          .width('210px')
+          .height('310px')
           .commands('M0 150 C0 100 140 0 200 150 L100 300 Z')
           .fillOpacity(0)
           .stroke(Color.Black)
           .strokeWidth(3)
         Path()
+          .width('210px')
+          .height('310px')
           .commands('M0 100 A30 20 20 0 0 200 100 Z')
           .fillOpacity(0)
           .stroke(Color.Black)

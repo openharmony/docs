@@ -483,8 +483,8 @@ Enumerates the audio channels.
 
 | Name     |  Value      | Description    |
 | --------- | -------- | -------- |
-| CHANNEL_1 | 0x1 << 0 | Mono.|
-| CHANNEL_2 | 0x1 << 1 | Dual-channel.|
+| CHANNEL_1 | 0x1 << 0 | Channel 1. |
+| CHANNEL_2 | 0x1 << 1 | Channel 2. |
 
 ## AudioSamplingRate<sup>8+</sup>
 
@@ -684,21 +684,19 @@ Describes the interruption event received by the application when playback is in
 | forceType | [InterruptForceType](#interruptforcetype9) | Yes  | Whether the interruption is taken by the system or to be taken by the application.|
 | hintType  | [InterruptHint](#interrupthint)            | Yes  | Hint provided along the interruption.                          |
 
-## VolumeEvent<sup>8+</sup>
+## VolumeEvent<sup>9+</sup>
 
 Describes the event received by the application when the volume is changed.
-
-**System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
 | Name      | Type                               | Mandatory  | Description                                                    |
 | ---------- | ----------------------------------- | ---- | -------------------------------------------------------- |
-| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                            |
-| volume     | number                              | Yes  | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**.|
-| updateUi   | boolean                             | Yes  | Whether to show the volume change in UI.                                    |
-| volumeGroupId<sup>9+</sup>   | number            | Yes  | Volume group ID. It can be used as an input parameter of **getGroupManager**.                     |
-| networkId<sup>9+</sup>    | string               | Yes  | Network ID.                                               |
+| volumeType | [AudioVolumeType](#audiovolumetype) | Yes  | Audio stream type.                                              |
+| volume     | number                              | Yes  | Volume to set. The value range can be obtained by calling **getMinVolume** and **getMaxVolume**.    |
+| updateUi   | boolean                             | Yes  | Whether to show the volume change in UI.                                       |
+| volumeGroupId | number                           | Yes  | Volume group ID. It can be used as an input parameter of **getGroupManager**.<br>This is a system API. |
+| networkId  | string                              | Yes  | Network ID.<br>This is a system API.                            |
 
 ## MicStateChangeEvent<sup>9+</sup>
 
@@ -1106,7 +1104,7 @@ Sets the volume for a stream. This API uses an asynchronous callback to return t
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setVolume](#setvolume9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setVolume](#setvolume9) in **AudioVolumeGroupManager**. The substitute API is available only for system applications.
 
 **Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1142,7 +1140,7 @@ Sets the volume for a stream. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setVolume](#setvolume9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setVolume](#setvolume9) in **AudioVolumeGroupManager**. The substitute API is available only for system applications.
 
 **Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1368,7 +1366,7 @@ Mutes or unmutes a stream. This API uses an asynchronous callback to return the 
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [mute](#mute9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [mute](#mute9) in **AudioVolumeGroupManager**. The substitute API is available only for system applications.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -1400,7 +1398,7 @@ Mutes or unmutes a stream. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [mute](#mute9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [mute](#mute9) in **AudioVolumeGroupManager**. The substitute API is available only for system applications.
 
 **System capability**: SystemCapability.Multimedia.Audio.Volume
 
@@ -1560,7 +1558,7 @@ Sets the ringer mode. This API uses an asynchronous callback to return the resul
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setRingerMode](#setringermode9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setRingerMode](#setringermode9) in **AudioVolumeGroupManager**. The substitute API is available only for system applications.
 
 **Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1595,7 +1593,8 @@ Sets the ringer mode. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setRingerMode](#setringermode9) in **AudioVolumeGroupManager**.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [setRingerMode](#setringermode9) in **AudioVolumeGroupManager**. The substitute API is available only for system applications.
+
 
 **Required permissions**: ohos.permission.ACCESS_NOTIFICATION_POLICY
 
@@ -1997,13 +1996,13 @@ audioManager.isMicrophoneMute().then((value) => {
 });
 ```
 
-### on('volumeChange')<sup>(deprecated)</sup>
+### on('volumeChange')<sup>9+</sup>
 
 on(type: 'volumeChange', callback: Callback\<VolumeEvent>): void
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [on](#on9) in **AudioVolumeManager**.
+> You are advised to use [on](#on9) in **AudioVolumeManager**.
 
 Subscribes to system volume change events.
 
@@ -2018,7 +2017,7 @@ Currently, when multiple **AudioManager** instances are used in a single process
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | Yes  | Event type. The value **'volumeChange'** means the system volume change event, which is triggered when a system volume change is detected.|
-| callback | Callback<[VolumeEvent](#volumeevent8)> | Yes  | Callback used to return the system volume change event.                                                  |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | Yes  | Callback used to return the system volume change event.                                                  |
 
 **Example**
 
@@ -2116,17 +2115,13 @@ audioManager.off('deviceChange', (deviceChanged) => {
 });
 ```
 
-### on('interrupt')<sup>(deprecated)</sup>
+### on('interrupt')
 
 on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void
 
 Subscribes to audio interruption events. When the application's audio is interrupted by another playback event, the application will receive the callback.
 
 Same as [on('audioInterrupt')](#onaudiointerrupt9), this API is used to listen for focus changes. However, this API is used in scenarios without audio streams (no **AudioRenderer** instance is created), such as frequency modulation (FM) and voice wakeup.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -2158,15 +2153,11 @@ audioManager.on('interrupt', interAudioInterrupt, (InterruptAction) => {
 });
 ```
 
-### off('interrupt')<sup>(deprecated)</sup>
+### off('interrupt')
 
 off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<InterruptAction>): void
 
 Unsubscribes from audio interruption events.
-
-> **NOTE**
->
-> This API is supported since API version 7 and deprecated since API version 9.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
@@ -2332,7 +2323,7 @@ Subscribes to system volume change events. This API uses an asynchronous callbac
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | Yes  | Event type. The value **'volumeChange'** means the system volume change event, which is triggered when the system volume changes.|
-| callback | Callback<[VolumeEvent](#volumeevent8)> | Yes  | Callback used to return the system volume change event.                                                  |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | Yes  | Callback used to return the system volume change event.                                                  |
 
 **Error codes**
 
@@ -3940,12 +3931,13 @@ Describes the audio renderer change event.
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 
-| Name          | Type                                     | Readable | Writable | Description                                                |
-| ------------- | ---------------------------------------- | -------- | -------- | ---------------------------------------------------------- |
-| streamId      | number                                   | Yes      | No       | Unique ID of an audio stream.                              |
-| clientUid     | number                                   | Yes      | No       | UID of the audio renderer client.<br>This is a system API. |
-| rendererInfo  | [AudioRendererInfo](#audiorendererinfo8) | Yes      | No       | Audio renderer information.                                |
-| rendererState | [AudioState](#audiostate)                | Yes      | No       | Audio state.<br>This is a system API.                      |
+| Name              | Type                                              | Readable | Writable | Description                                                |
+| ----------------- | ------------------------------------------------- | -------- | -------- | ---------------------------------------------------------- |
+| streamId          | number                                            | Yes      | No       | Unique ID of an audio stream.                              |
+| clientUid         | number                                            | Yes      | No       | UID of the audio renderer client.<br>This is a system API. |
+| rendererInfo      | [AudioRendererInfo](#audiorendererinfo8)          | Yes      | No       | Audio renderer information.                                |
+| rendererState     | [AudioState](#audiostate)                         | Yes      | No       | Audio state.<br>This is a system API.                      |
+| deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes      | No       | Audio device description.                                  |
 
 **Example**
 
@@ -3998,12 +3990,13 @@ Describes the audio capturer change event.
 
 **System capability**: SystemCapability.Multimedia.Audio.Capturer
 
-| Name          | Type                                     | Readable | Writable | Description                                                |
-| ------------- | ---------------------------------------- | -------- | -------- | ---------------------------------------------------------- |
-| streamId      | number                                   | Yes      | No       | Unique ID of an audio stream.                              |
-| clientUid     | number                                   | Yes      | No       | UID of the audio capturer client.<br>This is a system API. |
-| capturerInfo  | [AudioCapturerInfo](#audiocapturerinfo8) | Yes      | No       | Audio capturer information.                                |
-| capturerState | [AudioState](#audiostate)                | Yes      | No       | Audio state.<br>This is a system API.                      |
+| Name              | Type                                              | Readable | Writable | Description                                                |
+| ----------------- | ------------------------------------------------- | -------- | -------- | ---------------------------------------------------------- |
+| streamId          | number                                            | Yes      | No       | Unique ID of an audio stream.                              |
+| clientUid         | number                                            | Yes      | No       | UID of the audio capturer client.<br>This is a system API. |
+| capturerInfo      | [AudioCapturerInfo](#audiocapturerinfo8)          | Yes      | No       | Audio capturer information.                                |
+| capturerState     | [AudioState](#audiostate)                         | Yes      | No       | Audio state.<br>This is a system API.                      |
+| deviceDescriptors | [AudioDeviceDescriptors](#audiodevicedescriptors) | Yes      | No       | Audio device description.                                  |
 
 **Example**
 
@@ -4097,7 +4090,7 @@ Implements filter criteria. Before calling **selectOutputDeviceByFilter**, you m
 
 | Name         | Type                                     | Mandatory | Description                                                  |
 | ------------ | ---------------------------------------- | --------- | ------------------------------------------------------------ |
-| uid          | number                                   | Yes       | Application ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Core |
+| uid          | number                                   | Yes        | Application ID.<br> **System capability**: SystemCapability.Multimedia.Audio.Core |
 | rendererInfo | [AudioRendererInfo](#audiorendererinfo8) | No        | Audio renderer information.<br> **System capability**: SystemCapability.Multimedia.Audio.Renderer |
 | rendererId   | number                                   | No        | Unique ID of an audio stream.<br> **System capability**: SystemCapability.Multimedia.Audio.Renderer |
 
@@ -4950,18 +4943,18 @@ audioRenderer.setVolume(0.5, (err, data)=>{
 
 on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
-Subscribes to audio interruption events. This API uses a callback to get interrupt events.
+Subscribes to audio interruption events. This API uses a callback to obtain interrupt events.
 
-Same as [on('interrupt')](#oninterruptdeprecated), this API has obtained the focus before **start**, **pause**, or **stop** of **AudioRenderer** is called. Therefore, you do not need to request the focus.
+Same as [on('interrupt')](#oninterrupt), this API is used to listen for focus changes. The **AudioRenderer** instance proactively gains the focus when the **start** event occurs and releases the focus when the **pause** or **stop** event occurs. Therefore, you do not need to request to gain or release the focus.
 
 **System capability**: SystemCapability.Multimedia.Audio.Interrupt
 
 **Parameters**
 
-| Name     | Type                                         | Mandatory | Description                                                  |
-| -------- | -------------------------------------------- | --------- | ------------------------------------------------------------ |
-| type     | string                                       | Yes       | Event type. The value **'audioInterrupt'** means the audio interruption event, which is triggered when audio playback is interrupted. |
-| callback | Callback<[InterruptEvent](#interruptevent9)> | Yes       | Callback used to return the audio interruption event.        |
+| Name     | Type                                           | Mandatory | Description                                                  |
+| -------- | ---------------------------------------------- | --------- | ------------------------------------------------------------ |
+| type     | string                                         | Yes       | Event type. The value **'audioInterrupt'** means the audio interruption event, which is triggered when audio playback is interrupted. |
+| callback | Callback\<[InterruptEvent](#interruptevent9)\> | Yes       | Callback used to return the audio interruption event.        |
 
 **Error codes**
 
@@ -4969,7 +4962,7 @@ For details about the error codes, see [Audio Error Codes](../errorcodes/errorco
 
 | ID      | Error Message                  |
 | ------- | ------------------------------ |
-| 6800101 | if input parameter value error              |
+| 6800101 | if input parameter value error |
 
 **Example**
 
@@ -6111,7 +6104,7 @@ Describes the callback invoked for audio interruption or focus gain events.
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [InterruptEvent](#interruptevent9).
 
 **System capability**: SystemCapability.Multimedia.Audio.Renderer
 

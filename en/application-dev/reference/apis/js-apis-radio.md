@@ -32,7 +32,7 @@ Obtains the RAT used in the CS and PS domains for the SIM card in the specified 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -77,7 +77,7 @@ Obtains the RAT used in the CS and PS domains for the SIM card in the specified 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -119,7 +119,7 @@ Obtains the network status. This API uses an asynchronous callback to return the
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -158,7 +158,7 @@ Obtains the network status. This API uses an asynchronous callback to return the
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -203,7 +203,7 @@ Obtains the network status. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -244,7 +244,7 @@ Obtains the network selection mode of the SIM card in the specified slot. This A
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -286,7 +286,7 @@ Obtains the network selection mode of the SIM card in the specified slot. This A
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -326,7 +326,7 @@ Obtains the ISO country code of the network with which the SIM card in the speci
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -368,7 +368,7 @@ Obtains the ISO country code of the network with which the SIM card in the speci
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -403,11 +403,11 @@ Obtains the ID of the slot in which the primary card is located. This API uses a
 
 | Name  | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<number\> | Yes  | Callback invoked to return the result.|
+| callback | AsyncCallback\<number\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -441,7 +441,7 @@ Obtains the ID of the slot in which the primary card is located. This API uses a
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -479,7 +479,7 @@ Obtains a list of signal strengths of the network with which the SIM card in the
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -521,7 +521,7 @@ Obtains a list of signal strengths of the network with which the SIM card in the
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -670,7 +670,7 @@ Checks whether the radio service is enabled on the primary SIM card. This API us
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -709,7 +709,7 @@ Checks whether the radio service is enabled on the SIM card in the specified slo
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -754,7 +754,7 @@ Checks whether the radio service is enabled on the SIM card in the specified slo
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -795,7 +795,7 @@ Obtains the carrier name for the SIM card in the specified slot. This API uses a
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -837,7 +837,7 @@ Obtains the carrier name for the SIM card in the specified slot. This API uses a
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -880,7 +880,7 @@ Sets the ID of the slot in which the primary card is located. This API uses an a
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -928,7 +928,7 @@ Sets the ID of the slot in which the primary card is located. This API uses a pr
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -972,7 +972,7 @@ Obtains the IMEI of the SIM card in a card slot. This API uses an asynchronous c
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -996,7 +996,7 @@ radio.getIMEI((err, data) => {
 
 getIMEI(slotId: number, callback: AsyncCallback<string\>): void
 
-Obtains the IMEI of the SIM card in the specified card slot. This API uses an asynchronous callback to return the result.
+Obtains the IMEI of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1013,7 +1013,7 @@ Obtains the IMEI of the SIM card in the specified card slot. This API uses an as
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1060,7 +1060,7 @@ Obtains the IMEI of the SIM card in the specified card slot. This API uses a pro
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1103,7 +1103,7 @@ Obtains the MEID of the SIM card in a card slot. This API uses an asynchronous c
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1127,7 +1127,7 @@ radio.getMEID((err, data) => {
 
 getMEID(slotId: number, callback: AsyncCallback<string\>): void
 
-Obtains the MEID of the SIM card in the specified card slot. This API uses an asynchronous callback to return the result.
+Obtains the MEID of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1144,7 +1144,7 @@ Obtains the MEID of the SIM card in the specified card slot. This API uses an as
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1191,7 +1191,7 @@ Obtains the MEID of the SIM card in the specified card slot. This API uses a pro
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1234,7 +1234,7 @@ Obtains the unique device ID of the SIM card in a card slot. This API uses an as
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1258,7 +1258,7 @@ radio.getUniqueDeviceId((err, data) => {
 
 getUniqueDeviceId(slotId: number, callback: AsyncCallback<string\>): void
 
-Obtains the unique device ID of the SIM card in the specified card slot. This API uses an asynchronous callback to return the result.
+Obtains the unique device ID of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1275,7 +1275,7 @@ Obtains the unique device ID of the SIM card in the specified card slot. This AP
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1322,7 +1322,7 @@ Obtains the unique device ID of the SIM card in the specified card slot. This AP
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1365,7 +1365,7 @@ Sends a cell location update request. This API uses an asynchronous callback to 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1388,7 +1388,7 @@ radio.sendUpdateCellLocationRequest((err) => {
 
 sendUpdateCellLocationRequest\(slotId: number, callback: AsyncCallback<void\>\): void
 
-Sends a cell location update request for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Sends a cell location update request. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1405,7 +1405,7 @@ Sends a cell location update request for the SIM card in the specified slot. Thi
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1451,7 +1451,7 @@ Sends a cell location update request for the SIM card in the specified slot. Thi
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1493,7 +1493,7 @@ Obtains cell information. This API uses an asynchronous callback to return the r
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1517,7 +1517,7 @@ radio.getCellInformation((err, data) => {
 
 getCellInformation(slotId: number, callback: AsyncCallback<Array<CellInformation\>\>): void
 
-Obtains cell information for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains cell information. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1534,7 +1534,7 @@ Obtains cell information for the SIM card in the specified slot. This API uses a
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1581,7 +1581,7 @@ Obtains cell information for the SIM card in the specified slot. This API uses a
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1625,7 +1625,7 @@ Sets the network selection mode. This API uses an asynchronous callback to retur
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1682,7 +1682,7 @@ Sets the network selection mode. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1737,7 +1737,7 @@ Obtains network search information for the SIM card in the specified slot. This 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1782,7 +1782,7 @@ Obtains network search information for the SIM card in the specified slot. This 
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1822,7 +1822,7 @@ Obtains the NR option mode. This API uses an asynchronous callback to return the
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1845,7 +1845,7 @@ radio.getNrOptionMode((err, data) => {
 
 getNrOptionMode(slotId: number, callback: AsyncCallback<NrOptionMode\>): void
 
-Obtains the NR option mode for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the NR option mode. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1860,7 +1860,7 @@ Obtains the NR option mode for the SIM card in the specified slot. This API uses
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1904,7 +1904,7 @@ Obtains the NR option mode for the SIM card in the specified slot. This API uses
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                 Error Message                    |
 | -------- | -------------------------------------------- |
@@ -1946,7 +1946,7 @@ Turns on the radio function. This API uses an asynchronous callback to return th
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -1970,7 +1970,7 @@ radio.turnOnRadio((err) => {
 
 turnOnRadio(slotId: number, callback: AsyncCallback<void\>): void
 
-Turns on the radio function for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Turns on the radio function. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1987,7 +1987,7 @@ Turns on the radio function for the SIM card in the specified slot. This API use
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -2034,7 +2034,7 @@ Turns on the radio function for the SIM card in the specified slot. This API use
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -2076,7 +2076,7 @@ Turns off the radio function. This API uses an asynchronous callback to return t
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -2100,7 +2100,7 @@ radio.turnOffRadio((err) => {
 
 turnOffRadio(slotId: number, callback: AsyncCallback<void\>): void
 
-Turns off the radio function for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Turns off the radio function. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2117,7 +2117,7 @@ Turns off the radio function for the SIM card in the specified slot. This API us
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -2164,7 +2164,7 @@ Turns off the radio function for the SIM card in the specified slot. This API us
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -2208,7 +2208,7 @@ Sets the preferred network for the SIM card in the specified slot. This API uses
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -2255,7 +2255,7 @@ Sets the preferred network for the SIM card in the specified slot. This API uses
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                    |
 | -------- | -------------------------------------------- |
@@ -2298,7 +2298,7 @@ Obtains the preferred network for the SIM card in the specified slot. This API u
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -2343,7 +2343,7 @@ Obtains the preferred network for the SIM card in the specified slot. This API u
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -2387,7 +2387,7 @@ Obtains the IMS registration status of the specified IMS service type for the SI
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -2433,7 +2433,7 @@ Obtains the IMS registration status of the specified IMS service type for the SI
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -2478,7 +2478,7 @@ Enables listening for **imsRegStateChange** events. This API uses an asynchronou
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |
@@ -2516,11 +2516,11 @@ Disables listening for **imsRegStateChange** events. This API uses an asynchrono
 | type     | string                               | Yes  | IMS registration status changes.    |
 | slotId   | number                               | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
 | imsType  | [ImsServiceType](#imsservicetype9)   | Yes  | IMS service type.                         |
-| callback | Callback<[ImsRegInfo](#imsreginfo9)> | No  | Callback used to return the result.                            |
+| callback | Callback<[ImsRegInfo](#imsreginfo9)> | No  | Callback used to return the result. If this parameter is not set, the API unsubscribes from all callbacks.|
 
 **Error codes**
 
-For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+For details about the error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
 
 | ID|                  Error Message                   |
 | -------- | -------------------------------------------- |

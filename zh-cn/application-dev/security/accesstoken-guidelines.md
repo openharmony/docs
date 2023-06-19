@@ -13,11 +13,11 @@
 
 ## 配置文件权限声明
 
-应用需要在工程配置文件中，对需要的权限逐个声明，未在配置文件中声明的权限，应用将无法获得授权。OpenHarmony提供了两种应用模型，分别为FA模型和Stage模型，更多信息可以参考[应用模型解读](../application-models/application-model-description.md)。不同的应用模型的应用包结构不同，所使用的配置文件不同。
+应用需要在项目的配置文件中逐个声明所需的权限，否则应用将无法获取授权。
 
 > **说明**：
 >
-> 应用默认的APL等级为`normal`，当应用需要申请`system_basic`和`system_core`等级时，除了在配置文件中进行权限声明之外，还需要通过[ACL方式](#acl方式声明)进行声明使用。
+> 应用在申请`system_basic`和`system_core`等级权限时，需要提升权限等级，因为应用默认的权限等级为`normal`。如果应用需要申请高于默认等级的权限，除了在配置文件中进行声明之外，还需要通过[ACL方式](#acl方式声明)进行声明使用。
 
 配置文件标签说明如下表所示。
 
@@ -100,9 +100,9 @@
 
 ## ACL方式声明
 
-应用在申请`system_basic`和`system_core`等级权限时，高于应用默认的`normal`等级。当应用需要申请权限项的等级高于应用默认的等级时，需要通过ACL方式进行声明使用。
+当应用需要申请`system_basic`和`system_core`等级的权限时，比应用默认权限等级`normal`更高。如果需要申请的权限等级高于应用默认的等级，需要使用ACL方式声明使用。
 
-例如应用在申请访问用户公共目录下音乐类型的文件，需要申请` ohos.permission.WRITE_AUDIO`权限，该权限为`system_basic`等级；以及应用在申请截取屏幕图像功能，该权限为`system_core`等级，需要申请` ohos.permission.CAPTURE_SCREEN`权限。此时需要将相关权限项配置到[HarmonyAppProvision配置文件](app-provision-structure.md)的`acl`字段中。
+例如，如果应用需要访问用户公共目录中的音乐文件，需要申请`ohos.permission.WRITE_AUDIO`权限，该权限属于`system_basic`等级。如果应用需要截取屏幕图像，则需要申请`ohos.permission.CAPTURE_SCREEN`权限，该权限属于`system_core`等级。此时，需要将相关权限项配置到[HarmonyAppProvision配置文件](app-provision-structure.md)的`acl`字段中。
 
 ```json
 {
@@ -110,7 +110,7 @@
 	"acls":{
 		"allowed-acls":[
 			"ohos.permission.WRITE_AUDIO",
-            "ohos.permission.CAPTURE_SCREEN"
+      "ohos.permission.CAPTURE_SCREEN"
 		]
 	}
 }
@@ -131,7 +131,7 @@
 
 以允许应用读取日历信息为例进行说明。
 
-1. 申请`ohos.permission.READ_CALENDAR`权限，配置方式请参见[访问控制授权申请](#配置文件权限声明)。
+1. 申请`ohos.permission.READ_CALENDAR`权限，配置方式请参见[配置文件权限声明](#配置文件权限声明)。
 
 2. 校验当前是否已经授权。
 
@@ -152,14 +152,14 @@
        let appInfo: bundleManager.ApplicationInfo = bundleInfo.appInfo;
        tokenId = appInfo.accessTokenId;
      } catch (err) {
-       console.error(`getBundleInfoForSelf failed, code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to get bundle info for self. Code is ${err.code}, message is ${err.message}`);
      }
    
      // 校验应用是否被授予权限
      try {
        grantStatus = await atManager.checkAccessToken(tokenId, permission);
      } catch (err) {
-       console.error(`checkAccessToken failed, code is ${err.code}, message is ${err.message}`);
+       console.error(`Failed to check access token. Code is ${err.code}, message is ${err.message}`);
      }
    
      return grantStatus;
@@ -214,8 +214,7 @@
          }
          // 授权成功
        }).catch((err) => {
-         console.error(`requestPermissionsFromUser failed, code is ${err.code}, message is ${err.message}`);
-       })
+         console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
    
        // ...
      }
@@ -249,7 +248,7 @@
          }
          // 授权成功
        }).catch((err) => {
-         console.error(`requestPermissionsFromUser failed, code is ${err.code}, message is ${err.message}`);
+         console.error(`Failed to request permissions from user. Code is ${err.code}, message is ${err.message}`);
        })
      }
    

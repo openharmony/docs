@@ -131,17 +131,17 @@ text{
 ```html
 <!-- xxx.hml-->
 <div class="container">
-  <swiper index="1" autoplay="true" interval="2000"  duration="500" >
-    <div class="item" style="background: linear-gradient(to right,#806dd9,#5d44ea,#2eb9d5)">
-      <text>item1</text>
-    </div>
-    <div class="item" style="background: linear-gradient( to right,#2eb9d5,#0e7db4,#2673d9)">
-      <text>item2</text>
-    </div>
-    <div class="item" style="background: linear-gradient( to right,#2673d9,#0c89af,#806dd9)">
-      <text>item3</text>
-    </div>
-  </swiper>
+    <swiper index="1" autoplay="true" interval="2000"  duration="500" >
+        <div class="item" style="background-color: bisque;">
+            <text>item1</text>
+        </div>
+        <div class="item" style="background-color: darkkhaki;">
+            <text>item2</text>
+        </div>
+        <div class="item" style="background-color: cadetblue;">
+            <text>item3</text>
+        </div>
+    </swiper>
 </div>
 ```
 
@@ -343,6 +343,7 @@ swiper{
 
 ```js
 // xxx.js
+import promptAction from '@ohos.promptAction';
 export default {
   data:{
     index: 0,
@@ -369,4 +370,4 @@ export default {
 
 针对swiper开发，有以下相关实例可供参考：
 
-- [`Swiper`：内容滑动容器（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/UI/Swiper)
+- [`Swiper`：内容滑动容器（JS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/master/UI/Swiper)

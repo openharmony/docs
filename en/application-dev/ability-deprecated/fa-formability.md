@@ -25,7 +25,7 @@ Carry out the following operations to develop the widget provider based on the [
 1. Implement lifecycle callbacks by using the **LifecycleForm** APIs.
 2. Create a **FormBindingData** instance.
 3. Update a widget by using the **FormProvider** APIs.
-4. Develop the widget UI pages.
+4. Develop the widget UI page.
 
 ## Available APIs
 
@@ -231,7 +231,7 @@ You should override **onDestroy** to implement widget data deletion.
        }
 ```
 
-For details about how to implement persistent data storage, see [Lightweight Data Store Development](../database/database-preference-guidelines.md).
+For details about how to implement persistent data storage, see [Data Persistence by User Preferences](../database/data-persistence-by-preferences.md).
 
 The **Want** object passed in by the widget host to the widget provider contains a flag that specifies whether the requested widget is normal or temporary.
 
@@ -355,7 +355,7 @@ You can set router and message events for components on a widget. The router eve
 1. Set the **onclick** field in the HML file to **routerEvent** or **messageEvent**, depending on the **actions** settings in the JSON file.
 2. Set the router event.
    - **action**: **"router"**, which indicates a router event.
-   - **abilityName**: target ability name, for example, **com.example.entry.MainAbility**, which is the default UIAbility name in DevEco Studio for the FA model.
+   - **abilityName**: target ability name, for example, **com.example.entry.MainAbility**, which is the default main ability name in DevEco Studio for the FA model.
    - **params**: custom parameters of the target ability. Set them as required. The value can be obtained from **parameters** in **want** used for starting the target ability. For example, in the lifecycle function **onCreate** of the main ability in the FA model, **featureAbility.getWant()** can be used to obtain **want** and its **parameters** field.
 3. Set the message event.
    - **action**: **"message"**, which indicates a message event.

@@ -1,90 +1,92 @@
-# Graphics and Image Development
+# Graphics Development
 
-## Why do the isStatusBarLightIcon and isNavigationBarLightIcon attributes not take effect when window.setSystemBarProperties() is called?
+## How do I obtain the DPI of a device?
 
-Applicable to: OpenHarmony SDK 3.2.5.3, stage model of API version 9
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9, stage model)
 
-In effect, the **isStatusBarLightIcon** and **isNavigationBarLightIcon** attributes turn the font white when set to **true**. If **statusBarContentColor** is also set in **window.setSystemBarProperties()**, the **isStatusBarLightIcon** attribute does not take effect. Similarly, if **navigationBarContentColor** is set, the **isNavigationBarLightIcon** attribute does not take effect.
+**Solution**
 
-## How do I set the style of the system bar?
+Import the **@ohos.display** module and call the **getDefaultDisplaySync\(\)** API.
 
-Applicable to: OpenHarmony SDK 3.2.3.5, stage model of API version 9
+**Example**
 
-Import the **\@ohos.window** module, and call **window.setSystemBarProperties()**.
+```
+import display from '@ohos.display'; 
+let displayClass = null;
+try {
+  displayClass = display.getDefaultDisplaySync();
+  console.info('Test densityDPI:' + JSON.stringify(displayClass.densityDPI));
+} catch (exception) {
+  console.error('Failed to obtain the default display object. Code: ' + JSON.stringify(exception));
+}
+```
 
 ## How do I hide the status bar to get the immersive effect?
 
-Applicable to: OpenHarmony SDK 3.2.6.3, stage model of API version 9
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9, stage model) 
 
-1. Use the **onWindowStageCreate** to obtain a **windowClass** object.
-   
-   ```
-   onWindowStageCreate(windowStage) {
-     // When the main window is created, set the main page for this ability.
-     console.log("[Demo] MainAbility onWindowStageCreate")
-     windowStage.getMainWindow((err, data) => {
-       if (err.code) {
-         console.error('Failed to obtain the main window.')
-         return;
-       }
-       // Obtain a windowClass object.
-       globalThis.windowClass = data; 
-     })
-   }
-   ```
+**Solution**
 
-2. Enable the full-screen mode for the window and hide the status bar.
-   
-   ```
-    globalThis.windowClass.setFullScreen(isFullScreen, (err, data) => {
-     if (err.code) {
-       console.error('Failed to enable the full-screen mode. Cause:' + JSON.stringify(err));
-       return;
-     }
-       console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
-     });
-   ```
+1.  Use **onWindowStageCreate** to obtain a **windowClass** object.
+
+    ```
+    onWindowStageCreate(windowStage) {
+      // When the main window is created, set the main page for this ability.
+      console.log("[Demo] MainAbility onWindowStageCreate")
+      windowStage.getMainWindow((err, data) => {
+        if (err.code) {
+          console.error('Failed to obtain the main window.')
+          return;
+        }
+        // Obtain a windowClass object.
+        globalThis.windowClass = data; 
+      })
+    }
+    ```
+
+2.  Enable the full-screen mode for the window and hide the status bar.
+
+    ```
+     globalThis.windowClass.setFullScreen(isFullScreen, (err, data) => {
+      if (err.code) {
+        console.error('Failed to enable the full-screen mode. Cause:' + JSON.stringify(err));
+        return;
+      }
+        console.info('Succeeded in enabling the full-screen mode. Data: ' + JSON.stringify(data));
+      });
+    ```
+
 
 ## How do I obtain the window width and height?
 
-Applicable to: OpenHarmony SDK 3.2.3.5, stage model of API version 9
+Applicable to: OpenHarmony SDK 3.2 Beta5 (API version 9, stage model) 
 
-Use **window.getProperties()** to obtain the window properties. The **windowRect** field in the properties specifies the window width and height.
+**Solution**
 
-Example:
+Import the **@ohos.window** module, obtain a **Window** object, and use **getWindowProperties\(\)** of the object to obtain the window properties. The **windowRect** field in the properties specifies the window width and height.
 
-
-```
-let promise = windowClass.getProperties();
-promise.then((data)=> {
-  console.info('Succeeded in obtaining the window properties. Data: ' + JSON.stringify(data.windowRect));
-}).catch((err)=>{
-  console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(err));
-});
-```
-
-## How do I set the color of the system bar?
-
-Applicable to: OpenHarmony SDK 3.2.5.5, stage model of API version 9
-
-Refer to the following code:
-
+**Example**
 
 ```
-window.getTopWindow(globalThis.mainContext).then(win => {
-  var systemBarProperties = {
-    statusBarColor: '#19B6FF', // Set the background color of the status bar.
-    navigationBarColor: '#19B6FF', // Set the background color of the navigation bar.
-    isStatusBarLightIcon: false, // Set the icon on the status bar not to be highlighted.
-    isNavigationBarLightIcon: true, // Set the icon on the navigation bar to be highlighted.
-    statusBarContentColor: '#0D0500', // Set the text color of the status bar.
-    navigationBarContentColor: '#FFA500' // Set the text color of the navigation bar.
-  };
-  win.setSystemBarProperties(systemBarProperties).catch(err => {
-    INDEX_LOGGER.info(`set System Bar Properties failed:${err}`)
-  })
-})
-.catch(err => {
-  INDEX_LOGGER.info(`get top window failed:${err}`)
-})
+import window from '@ohos.window';
+let windowClass = null;
+try {    
+    let promise = window.getLastWindow(this.context);
+    promise.then((data)=> {
+        // Obtain a Window object.
+        windowClass = data;
+        try {
+            // Obtain the window properties.
+            let properties = windowClass.getWindowProperties();
+            let rect = properties.windowRect;
+            // rect.width: window width; rect.height: window height.
+        } catch (exception) {
+             console.error('Failed to obtain the window properties. Cause: ' + JSON.stringify(exception));
+        }
+        console.info('Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
+    }).catch((err)=>{
+        console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
+    });} catch (exception) {
+    console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
+}
 ```

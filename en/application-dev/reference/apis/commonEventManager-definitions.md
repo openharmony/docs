@@ -11,7 +11,7 @@ Indicates that the user has finished booting and the system has been loaded.
 - Required subscriber permissions: ohos.permission.RECEIVER_STARTUP_COMPLETED
 
 ## COMMON_EVENT_LOCKED_BOOT_COMPLETED
-(Reserved, not supported yet) Indicates that the user has finished booting and the system has been loaded but the screen is still locked.
+(Deprecated) Indicates that the user has finished booting and the system has been loaded but the screen is still locked.
 - Value: **usual.event.LOCKED_BOOT_COMPLETED**
 - Required subscriber permissions: ohos.permission.RECEIVER_STARTUP_COMPLETED
 
@@ -59,14 +59,14 @@ Indicates that the device screen is on and the device is in interactive state.
 - Required subscriber permissions: none
 
 
-## COMMON_EVENT_THERMAL_LEVEL_CHANGED<sup>8+</sup>
+## COMMON_EVENT_THERMAL_LEVEL_CHANGED
 Indicates that the device's thermal level has changed.
 - Value: **usual.event.THERMAL_LEVEL_CHANGED**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_USER_PRESENT
-(Reserved, not supported yet) Indicates that the user unlocks the device.
+(Deprecated) Indicates that the user unlocks the device.
 - Value: **usual.event.USER_PRESENT**
 - Required subscriber permissions: none
 
@@ -84,7 +84,7 @@ Indicates that the system time is set.
 
 
 ## COMMON_EVENT_DATE_CHANGED
-(Reserved, not supported yet) Indicates that the system date has changed.
+(Deprecated) Indicates that the system date has changed.
 - Value: **usual.event.DATE_CHANGED**
 - Required subscriber permissions: none
 
@@ -96,7 +96,7 @@ Indicates that the system time zone has changed.
 
 
 ## COMMON_EVENT_CLOSE_SYSTEM_DIALOGS
-(Reserved, not supported yet) Indicates that the user closes a temporary system dialog box.
+(Deprecated) Indicates that the user closes a temporary system dialog box.
 - Value: **usual.event.CLOSE_SYSTEM_DIALOGS**
 - Required subscriber permissions: none
 
@@ -108,13 +108,13 @@ Indicates that a new application package has been installed on the device.
 
 
 ## COMMON_EVENT_PACKAGE_REPLACED
-(Reserved, not supported yet) Indicates that a later version of an installed application package has replaced the previous one on the device.
+(Deprecated) Indicates that a later version of an installed application package has replaced the previous one on the device.
 - Value: **usual.event.PACKAGE_REPLACED**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_MY_PACKAGE_REPLACED
-(Reserved, not supported yet) Indicates that a later version of your application package has replaced the previous one.
+(Deprecated) Indicates that a later version of your application package has replaced the previous one.
 - Value: **usual.event.MY_PACKAGE_REPLACED**
 - Required subscriber permissions: none
 
@@ -125,13 +125,13 @@ Indicates that an installed application has been uninstalled from the device wit
 
 
 ## COMMON_EVENT_BUNDLE_REMOVED
-(Reserved, not supported yet) Indicates that an installed bundle has been uninstalled from the device with the application data retained. 
+(Deprecated) Indicates that an installed bundle has been uninstalled from the device with the application data retained. 
 - Value: **usual.event.BUNDLE_REMOVED**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_PACKAGE_FULLY_REMOVED
-(Reserved, not supported yet) Indicates that an installed application, including both the application data and code, has been completely uninstalled from the device.
+(Deprecated) Indicates that an installed application, including both the application data and code, has been completely uninstalled from the device.
 - Value: **usual.event.PACKAGE_FULLY_REMOVED**
 - Required subscriber permissions: none
 
@@ -161,79 +161,79 @@ Indicates that the user cleared the application package cache.
 
 
 ## COMMON_EVENT_PACKAGES_SUSPENDED
-(Reserved, not supported yet) Indicates that application HAP files are suspended.
+(Deprecated) Indicates that application HAP files are suspended.
 - Value: **usual.event.PACKAGES_SUSPENDED**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_PACKAGES_UNSUSPENDED
-(Reserved, not supported yet) Indicates that application HAP files are not suspended (restored from the suspended state).
+(Deprecated) Indicates that application HAP files are not suspended (restored from the suspended state).
 - Value: **usual.event.PACKAGES_UNSUSPENDED**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_MY_PACKAGE_SUSPENDED
-Indicates that an application HAP file is suspended.
+(Deprecated) Indicates that an application HAP file is suspended.
 - Value: **usual.event.MY_PACKAGE_SUSPENDED**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_MY_PACKAGE_UNSUSPENDED
-Indicates that an application HAP file is not suspended.
+(Deprecated) Indicates that an application HAP file is not suspended.
 - Value: **usual.event.MY_PACKAGE_UNSUSPENDED**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_UID_REMOVED
-(Reserved, not supported yet) Indicates that a user ID has been removed from the system.
+(Deprecated) Indicates that a user ID has been removed from the system.
 - Value: **usual.event.UID_REMOVED**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_PACKAGE_FIRST_LAUNCH
-(Reserved, not supported yet) Indicates that an installed application is started for the first time.
+(Deprecated) Indicates that an installed application is started for the first time.
 - Value: **usual.event.PACKAGE_FIRST_LAUNCH**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_PACKAGE_NEEDS_VERIFICATION
-(Reserved, not supported yet) Indicates that an application requires system verification.
+(Deprecated) Indicates that an application requires system verification.
 - Value: **usual.event.PACKAGE_NEEDS_VERIFICATION**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_PACKAGE_VERIFIED
-(Reserved, not supported yet) Indicates that an application has been verified by the system.
+(Deprecated) Indicates that an application has been verified by the system.
 - Value: **usual.event.PACKAGE_VERIFIED**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_EXTERNAL_APPLICATIONS_AVAILABLE
-(Reserved, not supported yet) Indicates that applications installed on the external storage are available for the system.
+(Deprecated) Indicates that applications installed on the external storage are available for the system.
 - Value: **usual.event.EXTERNAL_APPLICATIONS_AVAILABLE**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_EXTERNAL_APPLICATIONS_UNAVAILABLE
-(Reserved, not supported yet) Indicates that applications installed on the external storage are not available for the system.
+(Deprecated) Indicates that applications installed on the external storage are not available for the system.
 - Value: **usual.event.EXTERNAL_APPLICATIONS_UNAVAILABLE**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_CONFIGURATION_CHANGED
-(Reserved, not supported yet) Indicates that the device state (for example, orientation and locale) has changed.
+(Deprecated) Indicates that the device state (for example, orientation and locale) has changed.
 - Value: **usual.event.CONFIGURATION_CHANGED**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_LOCALE_CHANGED
-(Reserved, not supported yet) Indicates that the device locale has changed.
+(Deprecated) Indicates that the device locale has changed.
 - Value: **usual.event.LOCALE_CHANGED**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_MANAGE_PACKAGE_STORAGE
-(Reserved, not supported yet) Indicates that the device storage is insufficient.
+(Deprecated) Indicates that the device storage is insufficient.
 - Value: **usual.event.MANAGE_PACKAGE_STORAGE**
 - Required subscriber permissions: none
 
@@ -245,31 +245,31 @@ Indicates that an application HAP file is not suspended.
 
 
 ## COMMON_EVENT_HOME_MODE
-(Reserved, not supported yet) Indicates that the system is in home mode.
+(Deprecated) Indicates that the system is in home mode.
 - Value: **common.event.HOME_MODE**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_OFFICE_MODE
-(Reserved, not supported yet) Indicates that the system is in office mode.
+(Deprecated) Indicates that the system is in office mode.
 - Value: **common.event.OFFICE_MODE**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_USER_STARTED
-(Reserved, not supported yet) Indicates that the user has been started.
+(Deprecated) Indicates that the user has been started.
 - Value: **usual.event.USER_STARTED**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_USER_BACKGROUND
-(Reserved, not supported yet) Indicates that the user has been brought to the background.
+(Deprecated) Indicates that the user has been brought to the background.
 - Value: **usual.event.USER_BACKGROUND**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_USER_FOREGROUND
-(Reserved, not supported yet) Indicates that the user has been brought to the foreground.
+(Deprecated) Indicates that the user has been brought to the foreground.
 - Value: **usual.event.USER_FOREGROUND**
 - Required subscriber permissions: none
 
@@ -281,7 +281,7 @@ Indicates that user switching is in progress.
 
 
 ## COMMON_EVENT_USER_STARTING
-(Reserved, not supported yet) Indicates that the user is being started.
+(Deprecated) Indicates that the user is being started.
 - Value: **usual.event.USER_STARTING**
 - Required subscriber permissions: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
@@ -293,13 +293,13 @@ Indicates that user switching is in progress.
 
 
 ## COMMON_EVENT_USER_STOPPING
-(Reserved, not supported yet) Indicates that the user is going to be stopped.
+(Deprecated) Indicates that the user is going to be stopped.
 - Value: **usual.event.USER_STOPPING**
 - Required subscriber permissions: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 
 ## COMMON_EVENT_USER_STOPPED
-(Reserved, not supported yet) Indicates that the user has been stopped.
+(Deprecated) Indicates that the user has been stopped.
 - Value: **usual.event.USER_STOPPED**
 - Required subscriber permissions: none
 
@@ -474,7 +474,7 @@ Indicates that the Wi-Fi P2P group information has changed.
 
 
 ## COMMON_EVENT_BLUETOOTH_REMOTEDEVICE_ACL_DISCONNECTED
-(Reserved, not supported yet) Indicates that the low-ACL connection with a remote Bluetooth device has been terminated.
+(Deprecated) Indicates that the low-ACL connection with a remote Bluetooth device has been terminated.
 - Value: **usual.event.bluetooth.remotedevice.ACL_DISCONNECTED**
 - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
@@ -618,19 +618,19 @@ Indicates that the Wi-Fi P2P group information has changed.
 
 
 ## COMMON_EVENT_BLUETOOTH_A2DPSINK_PLAYING_STATE_UPDATE
-(Reserved, not supported yet) Indicates that the playing state of Bluetooth A2DP Sink has changed.
+(Deprecated) Indicates that the playing state of Bluetooth A2DP Sink has changed.
 - Value: **usual.event.bluetooth.a2dpsink.PLAYING_STATE_UPDATE**
 - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_BLUETOOTH_A2DPSINK_AUDIO_STATE_UPDATE
-(Reserved, not supported yet) Indicates that the audio state of Bluetooth A2DP Sink has changed.
+(Deprecated) Indicates that the audio state of Bluetooth A2DP Sink has changed.
 - Value: **usual.event.bluetooth.a2dpsink.AUDIO_STATE_UPDATE**
 - Required subscriber permissions: ohos.permission.USE_BLUETOOTH
 
 
 ## COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED
-(Reserved, not supported yet) Indicates that the state of the device NFC adapter has changed.
+Indicates that the state of the device NFC adapter has changed.
 - Value: **usual.event.nfc.action.ADAPTER_STATE_CHANGED**
 - Required subscriber permissions: none
 
@@ -642,7 +642,7 @@ Indicates that the Wi-Fi P2P group information has changed.
 
 
 ## COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED
-(Reserved, not supported yet) Indicates that the NFC RF field is detected to be in the disabled state.
+(Deprecated) Indicates that the NFC RF field is detected to be in the disabled state.
 - Value: **usual.event.nfc.action.RF_FIELD_OFF_DETECTED**
 - Required subscriber permissions: ohos.permission.MANAGE_SECURE_SETTINGS
 
@@ -659,7 +659,7 @@ Indicates that the system starts charging the battery.
 - Required subscriber permissions: none
 
 ## COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED
-(Reserved, not supported yet) Indicates that the system idle mode has changed.
+(Deprecated) Indicates that the system idle mode has changed.
 - Value: **usual.event.DEVICE_IDLE_MODE_CHANGED**
 - Required subscriber permissions: none
 
@@ -683,19 +683,19 @@ Indicates that a user has been removed from the system.
 
 
 ## COMMON_EVENT_ABILITY_ADDED
-(Reserved, not supported yet) Indicates that an ability has been added.
+(Deprecated) Indicates that an ability has been added.
 - Value: **usual.event.ABILITY_ADDED**
 - Required subscriber permissions: ohos.permission.LISTEN_BUNDLE_CHANGE
 
 
 ## COMMON_EVENT_ABILITY_REMOVED
-(Reserved, not supported yet) Indicates that an ability has been removed.
+(Deprecated) Indicates that an ability has been removed.
 - Value: **usual.event.ABILITY_REMOVED**
 - Required subscriber permissions: ohos.permission.LISTEN_BUNDLE_CHANGE
 
 
 ## COMMON_EVENT_ABILITY_UPDATED
-(Reserved, not supported yet) Indicates that an ability has been updated.
+(Deprecated) Indicates that an ability has been updated.
 - Value: **usual.event.ABILITY_UPDATED**
 - Required subscriber permissions: ohos.permission.LISTEN_BUNDLE_CHANGE
 
@@ -707,67 +707,67 @@ Indicates that a user has been removed from the system.
 
 
 ## COMMON_EVENT_IVI_SLEEP
-(Reserved, not supported yet) Indicates that the in-vehicle infotainment (IVI) system is in sleep mode.
+(Deprecated) Indicates that the in-vehicle infotainment (IVI) system is in sleep mode.
 - Value: **common.event.IVI_SLEEP**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_IVI_PAUSE
-(Reserved, not supported yet) Indicates that the IVI system as entered sleep mode and instructs the playing application to stop playback.
+(Deprecated) Indicates that the IVI system as entered sleep mode and instructs the playing application to stop playback.
 - Value: **common.event.IVI_PAUSE**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_IVI_STANDBY
-(Reserved, not supported yet) Requests a third-party application in the IVI system to pause the current work.
+(Deprecated) Requests a third-party application in the IVI system to pause the current work.
 - Value: **common.event.IVI_STANDBY**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_IVI_LASTMODE_SAVE
-(Reserved, not supported yet) Requests a third-party application in the IVI system to save its last mode.
+(Deprecated) Requests a third-party application in the IVI system to save its last mode.
 - Value: **common.event.IVI_LASTMODE_SAVE**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_IVI_VOLTAGE_ABNORMAL
-(Reserved, not supported yet) Indicates that the voltage of the vehicle's power system is abnormal.
+(Deprecated) Indicates that the voltage of the vehicle's power system is abnormal.
 - Value: **common.event.IVI_VOLTAGE_ABNORMAL**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_IVI_HIGH_TEMPERATURE
-(Reserved, not supported yet) Indicates that the temperature of the IVI system is high.
+(Deprecated) Indicates that the temperature of the IVI system is high.
 - Value: **common.event.IVI_HIGH_TEMPERATURE**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_IVI_EXTREME_TEMPERATURE
-(Reserved, not supported yet) Indicates that the temperature of the IVI system is extremely high. 
+(Deprecated) Indicates that the temperature of the IVI system is extremely high. 
 - Value: **common.event.IVI_EXTREME_TEMPERATURE**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_IVI_TEMPERATURE_ABNORMAL
-(Reserved, not supported yet) Indicates that the IVI system is at an extreme temperature.
+(Deprecated) Indicates that the IVI system is at an extreme temperature.
 - Value: **common.event.IVI_TEMPERATURE_ABNORMAL**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_IVI_VOLTAGE_RECOVERY
-(Reserved, not supported yet) Indicates that the voltage of the vehicle's power system is restored to normal.
+(Deprecated) Indicates that the voltage of the vehicle's power system is restored to normal.
 - Value: **common.event.IVI_VOLTAGE_RECOVERY**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_IVI_TEMPERATURE_RECOVERY
-(Reserved, not supported yet) Indicates that the temperature of the IVI system is restored to normal.
+(Deprecated) Indicates that the temperature of the IVI system is restored to normal.
 - Value: **common.event.IVI_TEMPERATURE_RECOVERY**
 - Required subscriber permissions: none
 
 
 ## COMMON_EVENT_IVI_ACTIVE
-(Reserved, not supported yet) Indicates that the battery service of the IVI system is active.
+(Deprecated) Indicates that the battery service of the IVI system is active.
 - Value: **common.event.IVI_ACTIVE**
 - Required subscriber permissions: none
 
@@ -809,37 +809,37 @@ Indicates that a USB device has been detached from the device functioning as a U
 
 
 ## COMMON_EVENT_DISK_REMOVED
-(Reserved, not supported yet) Indicates that an external storage device was removed.
+(Deprecated) Indicates that an external storage device was removed.
 - Value: **usual.event.data.DISK_BAD_REMOVAL**
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
 
 
 ## COMMON_EVENT_DISK_UNMOUNTED
-(Reserved, not supported yet) Indicates that an external storage device was unmounted.
+(Deprecated) Indicates that an external storage device was unmounted.
 - Value: **usual.event.data.DISK_UNMOUNTABLE**
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
 
 
 ## COMMON_EVENT_DISK_MOUNTED
-(Reserved, not supported yet) Indicates that an external storage device was mounted.
+(Deprecated) Indicates that an external storage device was mounted.
 - Value: **usual.event.hardware.usb.action.USB_ACCESSORY_DETACHED**
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
 
 
 ## COMMON_EVENT_DISK_BAD_REMOVAL
-(Reserved, not supported yet) Indicates that an external storage device was removed without being unmounted.
+(Deprecated) Indicates that an external storage device was removed without being unmounted.
 - Value: usual.event.data.DISK_REMOVED
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
 
 
 ## COMMON_EVENT_DISK_UNMOUNTABLE
-(Reserved, not supported yet) Indicates that an external storage device is unmountable when the card is inserted.
+(Deprecated) Indicates that an external storage device is unmountable when the card is inserted.
 - Value: **usual.event.data.DISK_UNMOUNTED**
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
 
 
 ## COMMON_EVENT_DISK_EJECT
-(Reserved, not supported yet) Indicates that an external storage device was ejected (at the software level).
+(Deprecated) Indicates that an external storage device was ejected (at the software level).
 - Value: **usual.event.data.DISK_EJECT**
 - Required subscriber permissions: ohos.permission.STORAGE_MANAGER
 
@@ -875,19 +875,19 @@ Indicates that an external storage device was ejected (at the software level).
 
 
 ## COMMON_EVENT_VISIBLE_ACCOUNTS_UPDATED
-(Reserved, not supported yet) Indicates that the account visibility changed.
+(Deprecated) Indicates that the account visibility changed.
 - Value: **usual.event.data.VISIBLE_ACCOUNTS_UPDATED**
 - Required subscriber permissions: ohos.permission.GET_APP_ACCOUNTS
 
 
 ## COMMON_EVENT_ACCOUNT_DELETED
-(Reserved, not supported yet) Indicates that an account was deleted.
+(Deprecated) Indicates that an account was deleted.
 - Value: **usual.event.data.ACCOUNT_DELETED**
 - Required subscriber permissions: ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 
 ## COMMON_EVENT_FOUNDATION_READY
-(Reserved, not supported yet) Indicates that the foundation is ready.
+(Deprecated) Indicates that the foundation is ready.
 - Value: **usual.event.data.FOUNDATION_READY**
 - Required subscriber permissions: ohos.permission.RECEIVER_STARTUP_COMPLETED
 

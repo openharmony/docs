@@ -1,419 +1,176 @@
-# Video Playback Development
+# Video Playback
 
-## Introduction
+OpenHarmony provides two solutions for video playback development:
 
-You can use video playback APIs to convert audio data into audible analog signals and play the signals using output devices. You can also manage playback tasks. For example, you can start, suspend, stop playback, release resources, set the volume, seek to a playback position, set the playback speed, and obtain track information. This document describes development for the following video playback scenarios: full-process, normal playback, video switching, and loop playback.
+- [AVPlayer](using-avplayer-for-playback.md) class: provides ArkTS and JS APIs to implement audio and video playback. It also supports parsing streaming media and local assets, decapsulating media assets, decoding video, and rendering video. It is applicable to end-to-end playback of media assets and can be used to play video files in MP4 and MKV formats.
 
-## Working Principles
+- <Video\> component: encapsulates basic video playback capabilities. It can be used to play video files after the data source and basic information are set. However, its scalability is poor. This component is provided by ArkUI. For details about how to use this component for video playback development, see [Video Component](../ui/arkts-common-components-video-player.md).
 
-The following figures show the video playback state transition and the interaction with external modules for video playback.
+In this topic, you will learn how to use the AVPlayer to develop a video playback service that plays a complete video file. If you want the application to continue playing the video in the background or when the screen is off, you must use the [AVSession](avsession-overview.md) and [continuous task](../task-management/continuous-task-dev-guide.md) to prevent the playback from being forcibly interrupted by the system.
 
-**Figure 1** Video playback state transition
+## Development Guidelines
 
-![en-us_image_video_state_machine](figures/en-us_image_video_state_machine.png)
+The full playback process includes creating an **AVPlayer** instance, setting the media asset to play and the window to display the video, setting playback parameters (volume, speed, and scale type), controlling playback (play, pause, seek, and stop), resetting the playback configuration, and releasing the instance. During application development, you can use the **state** attribute of the AVPlayer to obtain the AVPlayer state or call **on('stateChange')** to listen for state changes. If the application performs an operation when the AudioPlayer is not in the given state, the system may throw an exception or generate other undefined behavior.
 
-**Figure 2** Interaction with external modules for video playback
+**Figure 1** Playback state transition 
 
-![en-us_image_video_player](figures/en-us_image_video_player.png)
+![Playback state change](figures/video-playback-status-change.png)
 
-**NOTE**: When a third-party application calls a JS interface provided by the JS interface layer, the framework layer invokes the audio component through the media service of the native framework to output the audio data decoded by the software to the audio HDI. The graphics subsystem outputs the image data decoded by the codec HDI at the hardware interface layer to the display HDI. In this way, video playback is implemented.
+For details about the state, see [AVPlayerState](../reference/apis/js-apis-media.md#avplayerstate9). When the AVPlayer is in the **prepared**, **playing**, **paused**, or **completed** state, the playback engine is working and a large amount of RAM is occupied. If your application does not need to use the AVPlayer, call **reset()** or **release()** to release the instance.
 
-*Note: Video playback requires hardware capabilities such as display, audio, and codec.*
+### How to Develop
 
-1. A third-party application obtains a surface ID from the XComponent.
-2. The third-party application transfers the surface ID to the VideoPlayer JS.
-3. The media service flushes the frame data to the surface buffer.
+Read [AVPlayer](../reference/apis/js-apis-media.md#avplayer9) for the API reference.
 
-## Compatibility
+1. Call **createAVPlayer()** to create an **AVPlayer** instance. The AVPlayer is the **idle** state.
 
-Use the mainstream playback formats and resolutions, rather than custom ones to avoid playback failures, frame freezing, and artifacts. The system is not affected by incompatibility issues. If such an issue occurs, you can exit stream playback mode.
+2. Set the events to listen for, which will be used in the full-process scenario. The table below lists the supported events.
+   | Event Type| Description| 
+   | -------- | -------- |
+   | stateChange | Mandatory; used to listen for changes of the **state** attribute of the AVPlayer.| 
+   | error | Mandatory; used to listen for AVPlayer errors.| 
+   | durationUpdate | Used to listen for progress bar updates to refresh the media asset duration.| 
+   | timeUpdate | Used to listen for the current position of the progress bar to refresh the current time.| 
+   | seekDone | Used to listen for the completion status of the **seek()** request.<br>This event is reported when the AVPlayer seeks to the playback position specified in **seek()**.| 
+   | speedDone | Used to listen for the completion status of the **setSpeed()** request.<br>This event is reported when the AVPlayer plays video at the speed specified in **setSpeed()**.| 
+   | volumeChange | Used to listen for the completion status of the **setVolume()** request.<br>This event is reported when the AVPlayer plays video at the volume specified in **setVolume()**.| 
+   | bitrateDone | Used to listen for the completion status of the **setBitrate()** request, which is used for HTTP Live Streaming (HLS) streams.<br>This event is reported when the AVPlayer plays video at the bit rate specified in **setBitrate()**.| 
+   | availableBitrates | Used to listen for available bit rates of HLS resources. The available bit rates are provided for **setBitrate()**.| 
+   | bufferingUpdate | Used to listen for network playback buffer information.| 
+   | startRenderFrame | Used to listen for the rendering time of the first frame during video playback.| 
+   | videoSizeChange | Used to listen for the width and height of video playback and adjust the window size and ratio.| 
+   | audioInterrupt | Used to listen for audio interruption. This event is used together with the **audioInterruptMode** attribute.<br>This event is reported when the current audio playback is interrupted by another (for example, when a call is coming), so the application can process the event in time.| 
 
-The table below lists the mainstream playback formats and resolutions.
+3. Set the media asset URL. The AVPlayer enters the **initialized** state.
+   > **NOTE**
+   >
+   > The URL in the code snippet below is for reference only. You need to check the media asset validity and set the URL based on service requirements.
+   > 
+   > - If local files are used for playback, ensure that the files are available and the application sandbox path is used for access. For details about how to obtain the application sandbox path, see [Obtaining the Application Development Path](../application-models/application-context-stage.md#obtaining-the-application-development-path). For details about the application sandbox and how to push files to the application sandbox, see [File Management](../file-management/app-sandbox-directory.md).
+   > 
+   > - If a network playback path is used, you must request the ohos.permission.INTERNET [permission](../security/accesstoken-guidelines.md).
+   > 
+   > - You can also use **ResourceManager.getRawFd** to obtain the file descriptor of a file packed in the HAP file. For details, see [ResourceManager API Reference](../reference/apis/js-apis-resource-manager.md#getrawfd9).
+   > 
+   > - The [playback formats and protocols](avplayer-avrecorder-overview.md#supported-formats-and-protocols) in use must be those supported by the system.
 
-| Video Container Format|                     Description                     |               Resolution              |
-| :----------: | :-----------------------------------------------: | :--------------------------------: |
-|     mp4      | Video format: H.264/MPEG-2/MPEG-4/H.263; audio format: AAC/MP3| Mainstream resolutions, such as 1080p, 720p, 480p, and 270p|
-|     mkv      | Video format: H.264/MPEG-2/MPEG-4/H.263; audio format: AAC/MP3| Mainstream resolutions, such as 1080p, 720p, 480p, and 270p|
-|      ts      |   Video format: H.264/MPEG-2/MPEG-4; audio format: AAC/MP3   | Mainstream resolutions, such as 1080p, 720p, 480p, and 270p|
-|     webm     |          Video format: VP8; audio format: VORBIS          | Mainstream resolutions, such as 1080p, 720p, 480p, and 270p|
+4. Obtain and set the surface ID of the window to display the video.
+   The application obtains the surface ID from the XComponent. For details about the process, see [XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md).
 
-## How to Develop
+5. Call **prepare()** to switch the AVPlayer to the **prepared** state. In this state, you can obtain the duration of the media asset to play and set the scale type and volume.
 
-For details about the APIs, see [VideoPlayer in the Media API](../reference/apis/js-apis-media.md#videoplayer8).
+6. Call **play()**, **pause()**, **seek()**, and **stop()** to perform video playback control as required.
 
-### Full-Process Scenario
+7. (Optional) Call **reset()** to reset the AVPlayer. The AVPlayer enters the **idle** state again and you can change the media asset URL.
 
-The full video playback process includes creating an instance, setting the URL, setting the surface ID, preparing for video playback, playing video, pausing playback, obtaining track information, seeking to a playback position, setting the volume, setting the playback speed, stopping playback, resetting the playback configuration, and releasing resources.
+8. Call **release()** to switch the AVPlayer to the **released** state. Now your application exits the playback.
 
-For details about the **url** types supported by **VideoPlayer**, see the [url attribute](../reference/apis/js-apis-media.md#videoplayer_attributes).
 
-For details about how to create an XComponent, see [XComponent](../reference/arkui-ts/ts-basic-components-xcomponent.md).
+### Sample Code
 
-```js
-import media from '@ohos.multimedia.media'
-import fs from '@ohos.file.fs'
-export class VideoPlayerDemo {
-  // Report an error in the case of a function invocation failure.
-  failureCallback(error) {
-    console.info(`error happened,error Name is ${error.name}`);
-    console.info(`error happened,error Code is ${error.code}`);
-    console.info(`error happened,error Message is ${error.message}`);
+  
+```ts
+import media from '@ohos.multimedia.media';
+import fs from '@ohos.file.fs';
+import common from '@ohos.app.ability.common';
+
+export class AVPlayerDemo {
+  private avPlayer;
+  private count: number = 0;
+  private surfaceID: string; // The surfaceID parameter specifies the window used to display the video. Its value is obtained through the XComponent.
+
+  // Set AVPlayer callback functions.
+  setAVPlayerCallback() {
+    // Callback function for the seek operation.
+    this.avPlayer.on('seekDone', (seekDoneTime) => {
+      console.info(`AVPlayer seek succeeded, seek time is ${seekDoneTime}`);
+    })
+    // Callback function for errors. If an error occurs during the operation on the AVPlayer, reset() is called to reset the AVPlayer.
+    this.avPlayer.on('error', (err) => {
+      console.error(`Invoke avPlayer failed, code is ${err.code}, message is ${err.message}`);
+      this.avPlayer.reset(); // Call reset() to reset the AVPlayer, which enters the idle state.
+    })
+    // Callback function for state changes.
+    this.avPlayer.on('stateChange', async (state, reason) => {
+      switch (state) {
+        case 'idle': // This state is reported upon a successful callback of reset().
+          console.info('AVPlayer state idle called.');
+          this.avPlayer.release(); // Call release() to release the instance.
+          break;
+        case 'initialized': // This state is reported when the AVPlayer sets the playback source.
+          console.info('AVPlayerstate initialized called.');
+          this.avPlayer.surfaceId = this.surfaceID // Set the window to display the video. This setting is not required when a pure audio asset is to be played.
+          this.avPlayer.prepare().then(() => {
+            console.info('AVPlayer prepare succeeded.');
+          }, (err) => {
+            console.error(`Invoke prepare failed, code is ${err.code}, message is ${err.message}`);
+          });
+          break;
+        case 'prepared': // This state is reported upon a successful callback of prepare().
+          console.info('AVPlayer state prepared called.');
+          this.avPlayer.play(); // Call play() to start playback.
+          break;
+        case 'playing': // This state is reported upon a successful callback of play().
+          console.info('AVPlayer state playing called.');
+          if (this.count !== 0) {
+            console.info('AVPlayer start to seek.');
+            this.avPlayer.seek (this.avPlayer.duration); // Call seek() to seek to the end of the video clip.
+          } else {
+            this.avPlayer.pause(); // Call pause() to pause the playback.
+          }
+          this.count++;
+          break;
+        case 'paused': // This state is reported upon a successful callback of pause().
+          console.info('AVPlayer state paused called.');
+          this.avPlayer.play(); // Call play() again to start playback.
+          break;
+        case 'completed': // This state is reported upon the completion of the playback.
+          console.info('AVPlayer state completed called.');
+          this.avPlayer.stop(); // Call stop() to stop the playback.
+          break;
+        case 'stopped': // This state is reported upon a successful callback of stop().
+          console.info('AVPlayer state stopped called.');
+          this.avPlayer.reset(); // Call reset() to reset the AVPlayer state.
+          break;
+        case 'released':
+          console.info('AVPlayer state released called.');
+          break;
+        default:
+          console.info('AVPlayer state unknown called.');
+          break;
+      }
+    })
   }
 
-  // Report an error in the case of a function invocation exception.
-  catchCallback(error) {
-    console.info(`catch error happened,error Name is ${error.name}`);
-    console.info(`catch error happened,error Code is ${error.code}`);
-    console.info(`catch error happened,error Message is ${error.message}`);
-  }
-
-  // Used to print the video track information.
-  printfDescription(obj) {
-    for (let item in obj) {
-      let property = obj[item];
-      console.info('key is ' + item);
-      console.info('value is ' + property);
-    }
-  }
-
-  async videoPlayerDemo() {
-    let videoPlayer = undefined;
-    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent API. For details about the document link, see the method of creating the XComponent.
-    let fdPath = 'fd://'
-    // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" command.
-    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
+  // The following demo shows how to use the file system to open the sandbox address, obtain the media file address, and play the media file using the URL attribute.
+  async avPlayerUrlDemo() {
+    // Create an AVPlayer instance.
+    this.avPlayer = await media.createAVPlayer();
+    // Set a callback function for state changes.
+    this.setAVPlayerCallback();
+    let fdPath = 'fd://';
+    let context = getContext(this) as common.UIAbilityContext;
+    // Obtain the sandbox address filesDir through UIAbilityContext. The stage model is used as an example.
+    let pathDir = context.filesDir;
+    let path = pathDir  + '/H264_AAC.mp4'; 
+    // Open the corresponding file address to obtain the file descriptor and assign a value to the URL to trigger the reporting of the initialized state.
     let file = await fs.open(path);
     fdPath = fdPath + '' + file.fd;
-    // Call createVideoPlayer to create a VideoPlayer instance.
-    await media.createVideoPlayer().then((video) => {
-      if (typeof (video) != 'undefined') {
-        console.info('createVideoPlayer success!');
-        videoPlayer = video;
-      } else {
-        console.info('createVideoPlayer fail!');
-      }
-    }, this.failureCallback).catch(this.catchCallback);
-    // Set the playback source for the player.
-    videoPlayer.url = fdPath;
-
-    // Set the surface ID to display the video image.
-    await videoPlayer.setDisplaySurface(surfaceID).then(() => {
-      console.info('setDisplaySurface success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Call the prepare API to prepare for playback.
-    await videoPlayer.prepare().then(() => {
-      console.info('prepare success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Call the play API to start playback.
-    await videoPlayer.play().then(() => {
-      console.info('play success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Pause playback.
-    await videoPlayer.pause().then(() => {
-      console.info('pause success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Use a promise to obtain the video track information communication_dsoftbus.
-    let arrayDescription;
-    await videoPlayer.getTrackDescription().then((arrlist) => {
-      if (typeof (arrlist) != 'undefined') {
-        arrayDescription = arrlist;
-      } else {
-        console.log('video getTrackDescription fail');
-      }
-    }, this.failureCallback).catch(this.catchCallback);
-
-    for (let i = 0; i < arrayDescription.length; i++) {
-      this.printfDescription(arrayDescription[i]);
-    }
-
-    // Seek to the 50s position. For details about the input parameters, see the API document.
-    let seekTime = 50000;
-    await videoPlayer.seek(seekTime, media.SeekMode.SEEK_NEXT_SYNC).then((seekDoneTime) => {
-      console.info('seek success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Set the volume. For details about the input parameters, see the API document.
-    let volume = 0.5;
-    await videoPlayer.setVolume(volume).then(() => {
-      console.info('setVolume success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Set the playback speed. For details about the input parameters, see the API document.
-    let speed = media.PlaybackSpeed.SPEED_FORWARD_2_00_X;
-    await videoPlayer.setSpeed(speed).then(() => {
-      console.info('setSpeed success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Stop playback.
-    await videoPlayer.stop().then(() => {
-      console.info('stop success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Reset the playback configuration.
-    await videoPlayer.reset().then(() => {
-      console.info('reset success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Release playback resources.
-    await videoPlayer.release().then(() => {
-      console.info('release success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Set the related instances to undefined.
-    videoPlayer = undefined;
-    surfaceID = undefined;
-  }
-}
-```
-
-### Normal Playback Scenario
-
-```js
-import media from '@ohos.multimedia.media'
-import fs from '@ohos.file.fs'
-export class VideoPlayerDemo {
-  // Report an error in the case of a function invocation failure.
-  failureCallback(error) {
-    console.info(`error happened,error Name is ${error.name}`);
-    console.info(`error happened,error Code is ${error.code}`);
-    console.info(`error happened,error Message is ${error.message}`);
+    this.avPlayer.url = fdPath;
   }
 
-  // Report an error in the case of a function invocation exception.
-  catchCallback(error) {
-    console.info(`catch error happened,error Name is ${error.name}`);
-    console.info(`catch error happened,error Code is ${error.code}`);
-    console.info(`catch error happened,error Message is ${error.message}`);
-  }
-
-  // Used to print the video track information.
-  printfDescription(obj) {
-    for (let item in obj) {
-      let property = obj[item];
-      console.info('key is ' + item);
-      console.info('value is ' + property);
-    }
-  }
-
-  async videoPlayerDemo() {
-    let videoPlayer = undefined;
-    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent API. For details about the document link, see the method of creating the XComponent.
-    let fdPath = 'fd://'
-    // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" command.
-    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
-    let file = await fs.open(path);
-    fdPath = fdPath + '' + file.fd;
-    // Call createVideoPlayer to create a VideoPlayer instance.
-    await media.createVideoPlayer().then((video) => {
-      if (typeof (video) != 'undefined') {
-        console.info('createVideoPlayer success!');
-        videoPlayer = video;
-      } else {
-        console.info('createVideoPlayer fail!');
-      }
-    }, this.failureCallback).catch(this.catchCallback);
-    // Set the playback source for the player.
-    videoPlayer.url = fdPath;
-
-    // Set the surface ID to display the video image.
-    await videoPlayer.setDisplaySurface(surfaceID).then(() => {
-      console.info('setDisplaySurface success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Call the prepare API to prepare for playback.
-    await videoPlayer.prepare().then(() => {
-      console.info('prepare success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Call the play API to start playback.
-    await videoPlayer.play().then(() => {
-      console.info('play success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Stop playback.
-    await videoPlayer.stop().then(() => {
-      console.info('stop success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Release playback resources.
-    await videoPlayer.release().then(() => {
-      console.info('release success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Set the related instances to undefined.
-    videoPlayer = undefined;
-    surfaceID = undefined;
-  }
-}
-```
-
-### Switching to the Next Video Clip
-
-```js
-import media from '@ohos.multimedia.media'
-import fs from '@ohos.file.fs'
-export class VideoPlayerDemo {
-  // Report an error in the case of a function invocation failure.
-  failureCallback(error) {
-    console.info(`error happened,error Name is ${error.name}`);
-    console.info(`error happened,error Code is ${error.code}`);
-    console.info(`error happened,error Message is ${error.message}`);
-  }
-
-  // Report an error in the case of a function invocation exception.
-  catchCallback(error) {
-    console.info(`catch error happened,error Name is ${error.name}`);
-    console.info(`catch error happened,error Code is ${error.code}`);
-    console.info(`catch error happened,error Message is ${error.message}`);
-  }
-
-  // Used to print the video track information.
-  printfDescription(obj) {
-    for (let item in obj) {
-      let property = obj[item];
-      console.info('key is ' + item);
-      console.info('value is ' + property);
-    }
-  }
-
-  async videoPlayerDemo() {
-    let videoPlayer = undefined;
-    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent API. For details about the document link, see the method of creating the XComponent.
-    let fdPath = 'fd://'
-    // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" command.
-    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
-    let nextPath = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/MP4_AAC.mp4';
-    let file = await fs.open(path);
-    fdPath = fdPath + '' + file.fd;
-    // Call createVideoPlayer to create a VideoPlayer instance.
-    await media.createVideoPlayer().then((video) => {
-      if (typeof (video) != 'undefined') {
-        console.info('createVideoPlayer success!');
-        videoPlayer = video;
-      } else {
-        console.info('createVideoPlayer fail!');
-      }
-    }, this.failureCallback).catch(this.catchCallback);
-    // Set the playback source for the player.
-    videoPlayer.url = fdPath;
-
-    // Set the surface ID to display the video image.
-    await videoPlayer.setDisplaySurface(surfaceID).then(() => {
-      console.info('setDisplaySurface success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Call the prepare API to prepare for playback.
-    await videoPlayer.prepare().then(() => {
-      console.info('prepare success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Call the play API to start playback.
-    await videoPlayer.play().then(() => {
-      console.info('play success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Reset the playback configuration.
-    await videoPlayer.reset().then(() => {
-      console.info('reset success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Obtain the next video FD address.
-    fdPath = 'fd://'
-    let nextFile = await fs.open(nextPath);
-    fdPath = fdPath + '' + nextFile.fd;
-    // Set the second video playback source.
-    videoPlayer.url = fdPath;
-
-    // Call the prepare API to prepare for playback.
-    await videoPlayer.prepare().then(() => {
-      console.info('prepare success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Call the play API to start playback.
-    await videoPlayer.play().then(() => {
-      console.info('play success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Release playback resources.
-    await videoPlayer.release().then(() => {
-      console.info('release success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Set the related instances to undefined.
-    videoPlayer = undefined;
-    surfaceID = undefined;
-  }
-}
-```
-
-### Looping a Video Clip
-
-```js
-import media from '@ohos.multimedia.media'
-import fs from '@ohos.file.fs'
-export class VideoPlayerDemo {
-  // Report an error in the case of a function invocation failure.
-  failureCallback(error) {
-    console.info(`error happened,error Name is ${error.name}`);
-    console.info(`error happened,error Code is ${error.code}`);
-    console.info(`error happened,error Message is ${error.message}`);
-  }
-
-  // Report an error in the case of a function invocation exception.
-  catchCallback(error) {
-    console.info(`catch error happened,error Name is ${error.name}`);
-    console.info(`catch error happened,error Code is ${error.code}`);
-    console.info(`catch error happened,error Message is ${error.message}`);
-  }
-
-  // Used to print the video track information.
-  printfDescription(obj) {
-    for (let item in obj) {
-      let property = obj[item];
-      console.info('key is ' + item);
-      console.info('value is ' + property);
-    }
-  }
-
-  async videoPlayerDemo() {
-    let videoPlayer = undefined;
-    let surfaceID = 'test' // The surfaceID parameter is used for screen display. Its value is obtained through the XComponent API. For details about the document link, see the method of creating the XComponent.
-    let fdPath = 'fd://'
-    // The stream in the path can be pushed to the device by running the "hdc file send D:\xxx\H264_AAC.mp4 /data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile" command.
-    let path = '/data/app/el1/bundle/public/ohos.acts.multimedia.video.videoplayer/ohos.acts.multimedia.video.videoplayer/assets/entry/resources/rawfile/H264_AAC.mp4';
-    let file = await fs.open(path);
-    fdPath = fdPath + '' + file.fd;
-    // Call createVideoPlayer to create a VideoPlayer instance.
-    await media.createVideoPlayer().then((video) => {
-      if (typeof (video) != 'undefined') {
-        console.info('createVideoPlayer success!');
-        videoPlayer = video;
-      } else {
-        console.info('createVideoPlayer fail!');
-      }
-    }, this.failureCallback).catch(this.catchCallback);
-    // Set the playback source for the player.
-    videoPlayer.url = fdPath;
-
-    // Set the surface ID to display the video image.
-    await videoPlayer.setDisplaySurface(surfaceID).then(() => {
-      console.info('setDisplaySurface success');
-    }, this.failureCallback).catch(this.catchCallback);
-
-    // Call the prepare API to prepare for playback.
-    await videoPlayer.prepare().then(() => {
-      console.info('prepare success');
-    }, this.failureCallback).catch(this.catchCallback);
-    // Set the loop playback attribute.
-    videoPlayer.loop = true;
-    // Call the play API to start loop playback.
-    await videoPlayer.play().then(() => {
-      console.info('play success, loop value is ' + videoPlayer.loop);
-    }, this.failureCallback).catch(this.catchCallback);
+  // The following demo shows how to use resourceManager to obtain the media file packed in the HAP file and play the media file by using the fdSrc attribute.
+  async avPlayerFdSrcDemo() {
+    // Create an AVPlayer instance.
+    this.avPlayer = await media.createAVPlayer();
+    // Set a callback function for state changes.
+    this.setAVPlayerCallback();
+    // Call getRawFd of the resourceManager member of UIAbilityContext to obtain the media asset URL.
+    // The return type is {fd,offset,length}, where fd indicates the file descriptor address of the HAP file, offset indicates the media asset offset, and length indicates the duration of the media asset to play.
+    let context = getContext(this) as common.UIAbilityContext;
+    let fileDescriptor = await context.resourceManager.getRawFd('H264_AAC.mp4');
+    // Assign a value to fdSrc to trigger the reporting of the initialized state.
+    this.avPlayer.fdSrc = fileDescriptor;
   }
 }
 ```

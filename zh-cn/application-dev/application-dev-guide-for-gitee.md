@@ -24,6 +24,8 @@
 所有应用都应该在这两个框架的基础之上进行功能的开发。
 
 在此基础上，还提供了如下功能的开发指导：
+
+- [Web](web/web-component-overview.md)
 - [通知](notification/Readme-CN.md)
 - [窗口管理](windowmanager/Readme-CN.md)
 - [WebGL](webgl/Readme-CN.md)
@@ -32,16 +34,16 @@
 - [网络与连接](connectivity/Readme-CN.md)
 - [电话服务](telephony/Readme-CN.md)
 - [数据管理](database/Readme-CN.md)
+- [文件管理](file-management/Readme-CN.md)
 - [任务管理](task-management/Readme-CN.md)
 - [设备管理](device/Readme-CN.md)
 - [设备使用信息统计](device-usage-statistics/Readme-CN.md)
 - [DFX](dfx/Readme-CN.md)
 - [国际化](internationalization/Readme-CN.md)
 - [应用测试](application-test/Readme-CN.md)
+- [一次开发，多端部署](key-features/multi-device-app-dev/Readme-CN.md)
 - [IDL工具规格及使用说明书](IDL/idl-guidelines.md)
 - [Native API的相关指导](napi/Readme-CN.md)
-- [文件管理](file-management/medialibrary-overview.md)
-- [一次开发，多端部署](key-features/multi-device-app-dev/foreword.md)
 
 ### 工具
 
@@ -50,7 +52,7 @@ DevEco Studio工具是OpenHarmony应用开发的推荐IDE工具。
 
 ### 示例教程
 
-我们提供了[Sample工程](https://gitee.com/openharmony/applications_app_samples/blob/monthly_20221018/README_zh.md)和[Codelab](https://gitee.com/openharmony/codelabs/blob/master/README.md)这两种形式的示例教程，为开发者提供更丰富的开发参考，辅助开发者理解功能逻辑，提升开发效率。
+我们提供了[Sample工程](https://gitee.com/openharmony/applications_app_samples/blob/OpenHarmony-3.2-Release/README_zh.md)和[Codelab](https://gitee.com/openharmony/codelabs/blob/master/README.md)这两种形式的示例教程，为开发者提供更丰富的开发参考，辅助开发者理解功能逻辑，提升开发效率。
 
 ### API参考
 
@@ -62,14 +64,12 @@ API参考提供了OpenHarmony全量组件和接口的参考文档，可以帮助
 - [组件参考（基于JS扩展的类Web开发范式）](reference/arkui-js/Readme-CN.md)
 - [JS服务卡片UI组件参考](reference/js-service-widget-ui/Readme-CN.md) 
 - 接口参考
-    - [JS及TS API参考](reference/apis/Readme-CN.md)
-    - Native API
-        -   [Native API参考](reference/native-apis/Readme-CN.md)
-        -   [标准库](reference/native-lib/third_party_libc/musl.md)
-        -   [Node_API](reference/native-lib/third_party_napi/napi.md)
-
+  - [JS及TS API参考](reference/apis/Readme-CN.md)
+  - Native API
+    - [Native API参考](reference/native-apis/Readme-CN.md)
+    - [标准库](reference/native-lib/third_party_libc/musl.md)
+    - [Node_API](reference/native-lib/third_party_napi/napi.md)
 
 ### Readme
 
 如果需要了解各子系统的原理和基本信息，可以参考“[docs/zh-cn/readme](../readme)”目录中各子系统readme的介绍。
-

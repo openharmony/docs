@@ -6,9 +6,15 @@ The **Configuration** module defines environment change information. **Configura
 > 
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+## Modules to Import
+
+```ts
+import Configuration from '@ohos.app.ability.Configuration';
+```
+
 **System capability**: SystemCapability.Ability.AbilityBase
 
-| Name| Type| Readable| Writable| Description|
+  | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
 | language | string | Yes| Yes| Language of the application, for example, **zh**.|
 | colorMode | [ColorMode](js-apis-app-ability-configurationConstant.md#configurationconstantcolormode) | Yes| Yes| Color mode. The default value is **COLOR_MODE_LIGHT**. The options are as follows:<br>- **COLOR_MODE_NOT_SET**: The color mode is not set.<br>- **COLOR_MODE_LIGHT**: light mode.<br>- **COLOR_MODE_DARK**: dark mode.|

@@ -773,7 +773,7 @@ Notification.getSlot(slotType).then((data) => {
 
 ## Notification.getSlots
 
-getSlots(callback: AsyncCallback<Array\<NotificationSlot\>>): void
+getSlots(callback: AsyncCallback\<Array\<NotificationSlot>>): void
 
 获取此应用程序的所有通知通道（callback形式）。
 
@@ -813,7 +813,7 @@ Notification.getSlots(getSlotsCallback);
 
 ## Notification.getSlots
 
-getSlots(): Promise\<Array\<NotificationSlot\>>
+getSlots(): Promise\<Array\<NotificationSlot>>
 
 获取此应用程序的所有通知通道（Promise形式）。
 
@@ -1233,11 +1233,93 @@ isNotificationEnabled(): Promise\<boolean\>
 
 **系统API**: 此接口为系统接口，三方应用不支持调用。
 
+**返回值：**
+
+| 类型                                                        | 说明                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| Promise\<boolean\> | 以Promise形式返回获取通知使能状态的结果。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                                 |
+| -------- | ---------------------------------------- |
+| 1600001  | Internal error.                          |
+| 1600002  | Marshalling or unmarshalling error.      |
+| 1600003  | Failed to connect service.               |
+
+**示例：**
+
+```ts
+notificationManager.isNotificationEnabled().then((data) => {
+	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
+});
+```
+
+## notificationManager.isNotificationEnabled
+
+isNotificationEnabled(userId: number, callback: AsyncCallback\<boolean\>): void
+
+获取制定用户ID下的通知使能状态（Callback形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+**参数：**
+
+| 参数名     | 类型                  | 必填 | 说明                     |
+| -------- | --------------------- | ---- | ------------------------ |
+| userId   | number                | 是   | 指定的用户ID。 |
+| callback | AsyncCallback\<void\> | 是   | 获取通知使能状态回调函数。 |
+
+**错误码：**
+
+错误码详细介绍请参考[errcode-notification](../errorcodes/errorcode-notification.md)。
+
+| 错误码ID | 错误信息                            |
+| -------- | ----------------------------------- |
+| 1600001  | Internal error.                     |
+| 1600002  | Marshalling or unmarshalling error. |
+| 1600003  | Failed to connect service.          |
+| 1600008  | The user is not exist.              |
+
+**示例：**
+
+```ts
+function isNotificationEnabledCallback(err, data) {
+    if (err) {
+        console.error(`isNotificationEnabled failed, code is ${err.code}, message is ${err.message}`);
+    } else {
+        console.info("isNotificationEnabled success");
+    }
+}
+
+let userId = 1;
+
+notificationManager.isNotificationEnabled(userId, isNotificationEnabledCallback);
+```
+
+## notificationManager.isNotificationEnabled
+
+isNotificationEnabled(userId: number): Promise\<boolean\>
+
+获取制定用户下的通知使能状态（Promise形式）。
+
+**系统能力**：SystemCapability.Notification.Notification
+
+**需要权限**: ohos.permission.NOTIFICATION_CONTROLLER
+
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
 | 参数名   | 类型         | 必填 | 说明       |
 | ------ | ------------ | ---- | ---------- |
-| bundle | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption) | 是   | 指定应用的包信息。 |
+| userId | number       | 是   | 指定的用户ID。 |
 
 **返回值：**
 
@@ -1254,12 +1336,14 @@ isNotificationEnabled(): Promise\<boolean\>
 | 1600001  | Internal error.                          |
 | 1600002  | Marshalling or unmarshalling error.      |
 | 1600003  | Failed to connect service.               |
-| 17700001 | The specified bundle name was not found. |
+| 1600008  | The user is not exist..                  |
 
 **示例：**
 
-```js
-Notification.isNotificationEnabled().then((data) => {
+```ts
+let userId = 1;
+
+notificationManager.isNotificationEnabled(userId).then((data) => {
 	console.info("isNotificationEnabled success, data: " + JSON.stringify(data));
 });
 ```
@@ -1452,9 +1536,7 @@ Notification.isBadgeDisplayed(bundle).then((data) => {
 });
 ```
 
-
-
-## Notification.setSlotByBundle
+## notificationManager.setSlotByBundle
 
 setSlotByBundle(bundle: BundleOption, slot: NotificationSlot, callback: AsyncCallback\<void\>): void
 
@@ -1556,7 +1638,7 @@ Notification.setSlotByBundle(bundle, notificationSlot).then(() => {
 
 ## Notification.getSlotsByBundle
 
-getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array\<NotificationSlot\>>): void
+getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<NotificationSlot>>): void
 
 获取指定应用的所有通知通道（Callback形式）。
 
@@ -1571,7 +1653,7 @@ getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array\<Notificati
 | 参数名     | 类型                                     | 必填 | 说明                 |
 | -------- | ---------------------------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](./js-apis-inner-notification-notificationCommonDef.md#bundleoption)                             | 是   | 指定应用的包信息。           |
-| callback | AsyncCallback<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>> | 是   | 获取通知通道回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)>> | 是   | 获取通知通道回调函数。 |
 
 **错误码：**
 
@@ -1604,7 +1686,7 @@ Notification.getSlotsByBundle(bundle, getSlotsByBundleCallback);
 
 ## Notification.getSlotsByBundle
 
-getSlotsByBundle(bundle: BundleOption): Promise<Array\<NotificationSlot\>>
+getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 
 获取指定应用的所有通知通道（Promise形式）。
 
@@ -1624,7 +1706,7 @@ getSlotsByBundle(bundle: BundleOption): Promise<Array\<NotificationSlot\>>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)\>> | 以Promise形式返回获取指定应用的通知通道。 |
+| Promise\<Array\<[NotificationSlot](js-apis-inner-notification-notificationSlot.md)>> | 以Promise形式返回获取指定应用的通知通道。 |
 
 **错误码：**
 
@@ -1749,7 +1831,7 @@ Notification.getSlotNumByBundle(bundle).then((data) => {
 
 ## Notification.getAllActiveNotifications
 
-getAllActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>): void
+getAllActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): void
 
 获取当前未删除的所有通知（Callback形式）。
 
@@ -1763,7 +1845,7 @@ getAllActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>)
 
 | 参数名     | 类型                                                         | 必填 | 说明                 |
 | -------- | ------------------------------------------------------------ | ---- | -------------------- |
-| callback | AsyncCallback<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>> | 是   | 获取活动通知回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | 是   | 获取活动通知回调函数。 |
 
 **错误码：**
 
@@ -1905,7 +1987,7 @@ Notification.getActiveNotificationCount().then((data) => {
 
 ## Notification.getActiveNotifications
 
-getActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>): void
+getActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): void
 
 获取当前应用未删除的通知列表（Callback形式）。
 
@@ -1915,7 +1997,7 @@ getActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>): v
 
 | 参数名     | 类型                                                         | 必填 | 说明                           |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------ |
-| callback | AsyncCallback<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)\>> | 是   | 获取当前应用通知列表回调函数。 |
+| callback | AsyncCallback\<Array\<[NotificationRequest](js-apis-inner-notification-notificationRequest.md#notificationrequest)>> | 是   | 获取当前应用通知列表回调函数。 |
 
 **错误码：**
 
@@ -2623,7 +2705,6 @@ isSupportTemplate(templateName: string, callback: AsyncCallback\<boolean\>): voi
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600011  | Read template config failed.        |
 
 **示例：**
 
@@ -2671,7 +2752,6 @@ isSupportTemplate(templateName: string): Promise\<boolean\>
 | 1600001  | Internal error.                     |
 | 1600002  | Marshalling or unmarshalling error. |
 | 1600003  | Failed to connect service.          |
-| 1600011  | Read template config failed.        |
 
 **示例：**
 

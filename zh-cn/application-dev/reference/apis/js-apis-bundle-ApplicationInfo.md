@@ -33,4 +33,3 @@
 | removable<sup>8+</sup>     | boolean                                                      | 是   | 否   | 应用程序是否可以被移除。                                     |
 | accessTokenId<sup>8+</sup> | number                                                       | 是   | 否   | 应用程序的accessTokenId。                                    |
 | uid<sup>8+</sup>           | number                                                       | 是   | 否   | 应用程序的uid。                                              |
-| entityType<sup>8+</sup>    | string                                                       | 是   | 否   | 该标签标记该应用的类别，具体有 :游戏类(game)，影音类（media）、社交通信类（communication）、新闻类（news）、出行类（travel）、工具类（utility）、购物类（shopping）、教育类（education）、少儿类（kids）、商务类（business）、拍摄类（photography）。 |

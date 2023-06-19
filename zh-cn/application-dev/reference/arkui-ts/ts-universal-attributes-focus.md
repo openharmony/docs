@@ -38,7 +38,8 @@ requestFocus(value: string): boolean
 | boolean | 返回是否成功给目标组件申请到焦点。若参数指向的目标组件存在，且目标组件可获焦，则返回true，否则返回false。 |
 
 >  **说明：**
->  支持焦点控制的组件：Button、Text、Image、List、Grid。焦点事件当前仅支持在真机上显示运行效果。
+>
+>  支持焦点控制的组件：TextInput、TextArea、Search、Button、Text、Image、List、Grid。焦点事件当前仅支持在真机上显示运行效果。
 
 ## 示例
 

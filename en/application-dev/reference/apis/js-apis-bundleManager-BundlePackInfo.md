@@ -63,10 +63,10 @@ The **BundlePackInfo** module provides information in the **pack.info** file. Th
 | ------------------ | ------------------------------------------------- | ---- | ---- | ---------------------------------- |
 | mainAbility | string | Yes| No| Name of the main ability.|
 | apiVersion         | [ApiVersion](#apiversion)                         | Yes  | No  | API version of the module.                 |
-| deviceType         | Array\<string>                                    | Yes  | No  | Device types supported by the module.                |
+| deviceTypes         | Array\<string>                                    | Yes  | No  | Device types supported by the module.                |
 | distro             | [ModuleDistroInfo](#moduledistroinfo)             | Yes  | No  | Distribution information of the module.                |
 | abilities          | Array\<[ModuleAbilityInfo](#moduleabilityinfo)>   | Yes  | No  | Ability information of the module.              |
-| extensionAbilities | Array\<[ExtensionAbilities](#extensionability)> | Yes  | No  | ExtensionAbility information of the module.|
+| extensionAbilities | Array\<[ExtensionAbility](#extensionability)> | Yes  | No  | ExtensionAbility information of the module.|
 
 ## ModuleDistroInfo
 

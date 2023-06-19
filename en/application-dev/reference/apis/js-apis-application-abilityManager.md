@@ -4,7 +4,7 @@ The **AbilityManager** module provides APIs for obtaining, adding, and modifying
 
 > **NOTE**
 >
-> The APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
+> The APIs of this module are supported since API version 8 and deprecated since API version 9. You are advised to use [@ohos.app.ability.abilityManager](js-apis-app-ability-abilityManager.md) instead. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 > The APIs of this module are system APIs and cannot be called by third-party applications.
 
 ## Modules to Import

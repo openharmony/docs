@@ -14,7 +14,7 @@
 | ----------------------------- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ |
 | blur                          | number                                                       | -      | 为当前组件添加内容模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, +∞)<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | backdropBlur                  | number                                                       | -      | 为当前组件添加背景模糊效果，入参为模糊半径，模糊半径越大越模糊，为0时不模糊。<br/>取值范围：[0, +∞)<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
-| shadow                        | [ShadowOptions](#shadowoptions对象说明)                      | -      | 为当前组件添加阴影效果。<br/>入参类型为ShadowOptions时，可以指定模糊半径、阴影的颜色、X轴和Y轴的偏移量。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：**<br/>ArkTS卡片上不支持参数为 [ShadowStyle](#shadowstyle10枚举说明)类型。 |
+| shadow                        | {<br/>radius:&nbsp;number \| [Resource](ts-types.md#resource),<br/>color?:&nbsp;[Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource),<br/>offsetX?:&nbsp;number \| [Resource](ts-types.md#resource),<br/>offsetY?:&nbsp;number \| [Resource](ts-types.md#resource)<br/>} | -      | 为当前组件添加阴影效果。<br/>入参类型为ShadowOptions时，可以指定模糊半径、阴影的颜色、X轴和Y轴的偏移量。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/> |
 | grayscale                     | number                                                       | 0.0    | 为当前组件添加灰度效果。值定义为灰度转换的比例，入参1.0则完全转为灰度图像，入参则0.0图像无变化，入参在0.0和1.0之间时，效果呈线性变化。（百分比)<br/>取值范围：[0, 1]<br/>**说明：** <br/>设置小于0的值时，按值为0处理，设置大于1的值时，按值为1处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | brightness                    | number                                                       | 1.0    | 为当前组件添加高光效果，入参为高光比例，值为1时没有效果，小于1时亮度变暗，0为全黑，大于1时亮度增加，数值越大亮度越大。<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | saturate                      | number                                                       | 1.0    | 为当前组件添加饱和度效果，饱和度为颜色中的含色成分和消色成分(灰)的比例，入参为1时，显示原图像，大于1时含色成分越大，饱和度越大，小于1时消色成分越大，饱和度越小。（百分比）<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
@@ -30,12 +30,12 @@
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
-| 名称     | 类型     | 必填   | 说明              |
-| ------ | ------ | ---- | --------------- |
-| radius    | number \| [Resource](ts-types.md#resource)  | 是    | 阴影模糊半径。<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。 |
-| color  | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource)  | 否    | 阴影的颜色。<br/>默认为黑色。 |
-| offsetX | number \| [Resource](ts-types.md#resource)  | 否    | 阴影的X轴偏移量。<br/>默认为0。  |
-| offsetY   | number \| [Resource](ts-types.md#resource)  | 否    | 阴影的Y轴偏移量。<br/>默认为0。 |
+| 名称      | 类型                                       | 必填   | 说明                                       |
+| ------- | ---------------------------------------- | ---- | ---------------------------------------- |
+| radius  | number \| [Resource](ts-types.md#resource) | 是    | 阴影模糊半径。<br/>取值范围：[0, +∞)<br/>**说明：** <br/>设置小于0的值时，按值为0处理。 |
+| color   | [Color](ts-appendix-enums.md#color) \| string \| [Resource](ts-types.md#resource) | 否    | 阴影的颜色。<br/>默认为黑色。                        |
+| offsetX | number \| [Resource](ts-types.md#resource) | 否    | 阴影的X轴偏移量。<br/>默认为0。                      |
+| offsetY | number \| [Resource](ts-types.md#resource) | 否    | 阴影的Y轴偏移量。<br/>默认为0。                      |
 
 ## 示例
 

@@ -6,9 +6,8 @@ The APIs provided by  **DataSharePredicates** correspond to the filter criteria 
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
->
-> The APIs provided by this module are system APIs.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>- The APIs provided by this module are system APIs.
 
 
 ## Modules to Import
@@ -18,7 +17,7 @@ import dataSharePredicates from '@ohos.data.dataSharePredicates';
 ```
 
 ## DataSharePredicates
-Provides methods for setting different **DataSharePredicates** objects.
+Provides methods for setting different **DataSharePredicates** objects. This type is not multi-thread safe. If a **DataSharePredicates** instance is operated by multiple threads at the same time in an application, use a lock for the instance.
 
 ### equalTo
 
@@ -428,7 +427,7 @@ predicates.glob("NAME", "?h*g")
 
 between(field: string, low: ValueType, high: ValueType): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data that is within the specified range, including the start and end values.
+Sets a **DataSharePredicates** object to match the data that is within the specified range, including the start and end values.
 
 Currently, only the RDB supports this **DataSharePredicates** object.
 
@@ -459,7 +458,7 @@ predicates.between("AGE", 10, 50)
 
 notBetween(field: string, low: ValueType, high: ValueType): DataSharePredicates
 
-Sets a **DataSharePredicates** object to search for the data that is out of the specified range, excluding the start and end values.
+Sets a **DataSharePredicates** object to match the data that is out of the specified range, excluding the start and end values.
 
 Currently, only the RDB supports this **DataSharePredicates** object.
 

@@ -20,25 +20,31 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| rating | number | Yes| Value to rate.<br>Default value: **0**|
-| indicator | boolean | No| Whether the component is used only as an indicator and cannot be operated.<br>Default value: **false**|
+| Name      | Type   | Mandatory  | Description                                    |
+| --------- | ------- | ---- | ---------------------------------------- |
+| rating    | number  | Yes   | Value to rate.<br>Default value: **0**<br>Value range: [0, stars]<br>A value less than 0 evaluates to the value **0**. A value greater than the value of **stars** evaluates to the value of **stars**.|
+| indicator | boolean | No   | Whether the component is used only as an indicator and cannot be operated.<br>Default value: **false**<br>**NOTE**<br>When **indicator** is set to **true**, the default component height is 12.0 vp, and the component width is calculated as follows: Height x Value of **stars**.<br>When **indicator** is set to **false**, the default component height is 28.0 vp, and the component width is calculated as follows: Height x Value of **stars**.|
 
 
 ## Attributes
 
-| Name| Type| Description|
-| -------- | -------- | -------- |
-| stars | number | Total number of stars.<br>Default value: **5**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| stepSize | number | Step of an operation.<br>Default value: **0.5**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| starStyle | {<br>backgroundUri: string,<br>foregroundUri: string,<br>secondaryUri?: string<br>} | **backgroundUri**: image link of the unselected star. You can use the default image or a custom local image.<br>**foregroundUri**: image path of the selected star. You can use the default image or a custom local image.<br>**secondaryUir**: image path of the partially selected star. You can use the default image or a custom local image.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| Name       | Type                                    | Description                                      |
+| --------- | ---------------------------------------- | ---------------------------------------- |
+| stars     | number                                   | Total number of ratings.<br>Default value: **5**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>A value less than 0 evaluates to the default value.|
+| stepSize  | number                                   | Step of an operation.<br>Default value: **0.5**<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>A value less than 0 evaluates to the default value.<br>Value range: [0.1, stars]|
+| starStyle | {<br>backgroundUri: string,<br>foregroundUri: string,<br>secondaryUri?: string<br>} | Star style.<br>**backgroundUri**: image path for the unselected star. You can use the default system image or a custom image.<br>**foregroundUri**: image path for the selected star. You can use the default system image or a custom image.<br>**secondaryUir**: image path for the partially selected star. You can use the default system image or a custom image.<br>Since API version 9, this API is supported in ArkTS widgets.<br>**NOTE**<br>For details about the image types supported by the **startStyle** attribute, see [Image](ts-basic-components-image.md).<br>Local and online images are supported, but not **PixelMap** and **Resource** objects.<br>By default, the image is loaded in asynchronous mode. Synchronous loading is not supported.<br>If this parameter is set to **undefined** or an empty string, the **\<Rating>** component loads the default star image source.|
+
+>  **NOTE**
+>
+>  The drawing area of each rating image is [width/stars, height], wherin **width** and **height** indicate the width and height of the **\<Rating>** component, respectively.
+>
+>  To specify the drawing area as a square, you are advised to customize the width and height in this format: [height * stars, height], width = height * stars.
 
 
 ## Events
 
-| Name| Description|
-| -------- | -------- |
+| Name                                      | Description                                    |
+| ---------------------------------------- | ---------------------------------------- |
 | onChange(callback:(value: number) =&gt; void) | Triggered when the rating value changes.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## Example
@@ -80,7 +86,7 @@ struct RatingExample {
             .fontColor('#182431')
             .fontWeight(500)
           Row() {
-            Rating({ rating: 3.5, indicator: true }).margin({ top: 1, right: 8 })
+            Rating({ rating: 3.5, indicator: false }).margin({ top: 1, right: 8 })
             Text('2021/06/02')
               .fontSize(10)
               .fontColor('#182431')

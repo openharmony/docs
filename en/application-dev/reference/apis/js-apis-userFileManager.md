@@ -4,8 +4,8 @@ The **userFileManager** module provides user data management capabilities, inclu
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> The APIs provided by this module are system APIs.
+> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs provided by this module are system APIs.
 
 ## Modules to Import
 
@@ -49,10 +49,7 @@ let mgr = userFileManager.getUserFileMgr(context);
 
 getPhotoAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void;
 
-
 Obtains image and video assets. This API uses an asynchronous callback to return the result.
-
-
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -91,7 +88,6 @@ async function example() {
   });
 }
 ```
-
 
 ### getPhotoAssets
 
@@ -141,6 +137,7 @@ async function example() {
   }
 }
 ```
+
 ### createPhotoAsset
 
 createPhotoAsset(displayName: string, albumUri: string, callback: AsyncCallback&lt;FileAsset&gt;): void;
@@ -261,7 +258,6 @@ async function example() {
 
 getPhotoAlbums(options: AlbumFetchOptions, callback: AsyncCallback&lt;FetchResult&lt;Album&gt;&gt;): void;
 
-
 Obtains image and video albums. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
@@ -352,7 +348,6 @@ async function example() {
 
 getPrivateAlbum(type: PrivateAlbumType, callback: AsyncCallback&lt;FetchResult&lt;PrivateAlbum&gt;&gt;): void;
 
-
 Obtains the system album. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
@@ -424,7 +419,6 @@ async function example() {
 
 getAudioAssets(options: FetchOptions, callback: AsyncCallback&lt;FetchResult&lt;FileAsset&gt;&gt;): void;
 
-
 Obtains audio assets. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
@@ -468,7 +462,6 @@ async function example() {
 ### getAudioAssets
 
 getAudioAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;;
-
 
 Obtains audio assets. This API uses a promise to return the result.
 
@@ -515,6 +508,7 @@ async function example() {
   }
 }
 ```
+
 ### delete
 
 delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
@@ -564,6 +558,7 @@ async function example() {
   });
 }
 ```
+
 ### delete
 
 delete(uri: string): Promise&lt;void&gt;;
@@ -675,8 +670,8 @@ Unsubscribes from changes of the file management library. This API uses a callba
 
 | Name  | Type                | Mandatory| Description                                                        |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | [ChangeEvent](#changeevent)               | Yes  | Type of event to unsubscribe from.<br>**deviceChange** indicates the device change.<br>**albumChange** indicates the album change.<br>**imageChange** indicates the image change.<br>**audioChange** indicates the audio file change.<br>**videoChange** indicates the video file change.<br>**remoteFileChange** indicates the file change on the registered device. |
-| callback | Callback&lt;void&gt; | No  | Callback for the change.                                    |
+| type     | [ChangeEvent](#changeevent)               | Yes  | Type of event to subscribe to.<br>**deviceChange** indicates the device change.<br>**albumChange** indicates the album change.<br>**imageChange** indicates the image change.<br>**audioChange** indicates the audio file change.<br>**videoChange** indicates the video file change.<br>**remoteFileChange** indicates the file change on the registered device.|
+| callback | Callback&lt;void&gt; | No  | Callback that returns no value.                                                  |
 
 **Example**
 
@@ -1092,7 +1087,6 @@ Opens this file asset. This API uses an asynchronous callback to return the resu
 **NOTE**<br>The write operations are mutually exclusive. After a write operation is complete, you must call **close** to release the resource.
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO, ohos.permission.READ_AUDIO, ohos.permission.WRITE_IMAGEVIDEO, or ohos.permission.WRITE_AUDIO
-
 
 **System capability**: SystemCapability.FileManagement.UserFileManager.Core
 
@@ -1923,6 +1917,7 @@ async function example() {
   });
 }
 ```
+
 ### getPhotoAssets
 
 getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;;
@@ -2106,6 +2101,7 @@ async function example() {
 }
 
 ```
+
 ### getPhotoAssets
 
 getPhotoAssets(options: FetchOptions): Promise&lt;FetchResult&lt;FileAsset&gt;&gt;;
@@ -2147,6 +2143,7 @@ async function example() {
   console.info('fetchResult.count = ', count);
 }
 ```
+
 ### delete
 
 delete(uri: string, callback: AsyncCallback&lt;void&gt;): void;
@@ -2190,6 +2187,7 @@ async function example() {
   });
 }
 ```
+
 ### delete
 
 delete(uri: string): Promise&lt;void&gt;;
@@ -2280,6 +2278,7 @@ async function example() {
   });
 }
 ```
+
 ### recover
 
 recover(uri: string): Promise&lt;void&gt;;
@@ -2366,7 +2365,6 @@ Defines information about a registered device.
 | networkId  | string                     | Yes  | No  | Network ID of the registered device.|
 | isOnline   | boolean                    | Yes  | No  | Whether the registered device is online.        |
 
-
 ## FileType
 
 Enumerates media file types.
@@ -2389,8 +2387,6 @@ Enumerates the system album types.
 | -----   |  ----  |   ----  |
 | TYPE_FAVORITE |  0 |  Favorites.|
 | TYPE_TRASH |  1 |  Recycle bin.|
-
-
 
 ## AudioKey
 
@@ -2444,7 +2440,6 @@ Defines the key album information.
 | ALBUM_NAME    | album_name          | Name of the album.                                                  |
 | DATE_ADDED    | date_added          | Date when the file was added. The value is the number of seconds elapsed since the Epoch time.            |
 | DATE_MODIFIED | date_modified       | Date when the file content (not the file name) was last modified. The value is the number of seconds elapsed since the Epoch time.|
-
 
 ## FetchOptions
 

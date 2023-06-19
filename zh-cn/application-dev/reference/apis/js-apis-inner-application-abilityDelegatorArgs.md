@@ -6,6 +6,12 @@ AbilityDelegatorArgs模块提供在应用程序启动期间，用于存储已注
 > 
 > 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
 
+## 导入模块
+
+```ts
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+```
+
 ## 使用说明
 
 通过AbilityDelegatorRegistry中[getArguments](js-apis-app-ability-abilityDelegatorRegistry.md#abilitydelegatorregistrygetarguments)方法获取。
@@ -26,7 +32,5 @@ AbilityDelegatorArgs模块提供在应用程序启动期间，用于存储已注
 **示例：**
 
 ```ts
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
-
-let args = AbilityDelegatorRegistry.getArguments();
+let args: AbilityDelegatorRegistry.AbilityDelegatorArgs = AbilityDelegatorRegistry.getArguments();
 ```

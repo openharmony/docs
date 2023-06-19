@@ -116,7 +116,7 @@ Example URIs:
    | "name"       | Ability name, corresponding to the **Data** class name derived from **Ability**.                    |
    | "type"       | Ability type, which is **Data** for a Data ability.                |
    | "uri"        | URI used for communication.                                             |
-   | "visible"    | Whether the Data ability is visible to other applications. When this parameter is set to **true**, the Data ability can communicate with other applications.|
+   | "exported"    | Whether the Data ability is visible to other applications. When this parameter is set to **true**, the Data ability can communicate with other applications.|
 
    **config.json configuration example**
 
@@ -128,7 +128,7 @@ Example URIs:
        "srcLanguage": "ets",
        "description": "$string:description_dataability",
        "type": "data",
-       "visible": true,
+       "exported": true,
        "uri": "dataability://ohos.samples.etsdataability.DataAbility"
     }]
    ```
@@ -154,7 +154,7 @@ The basic dependency packages include:
    import featureAbility from '@ohos.ability.featureAbility'
    import ohos_data_ability from '@ohos.data.dataAbility'
    import ohos_data_rdb from '@ohos.data.rdb'
-
+   
    var urivar = "dataability:///com.ix.DataAbility"
    var DAHelper = featureAbility.acquireDataAbilityHelper(
     urivar

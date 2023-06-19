@@ -1,10 +1,32 @@
 # RDB Error Codes
 
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
+
+##  14800000 Internal Error
+
+**Error Message**
+
+Inner error.
+
+**Description**
+
+An error occurs at the underlying database.
+
+**Possible Causes**
+
+Invalid SQL statement is passed in.
+
+**Solution**
+
+Determine the cause of the error based on the log information.
+
 ## 14800010 Invalid RDB Name
 
 **Error Message**
 
-Invalid database name.
+Failed to open or delete database by invalid database path.
 
 **Description**
 
@@ -12,17 +34,17 @@ The RDB store name is invalid.
 
 **Possible Causes**
 
-The RDB store name is empty or exceeds 1024 bytes.
+The RDB store path is invalid.
 
 **Solution**
 
-Check that the RDB store name is not empty and does not exceed 1024 bytes.
+Check the RDB store path.
 
 ## 14800011 Database File Corrupted
 
 **Error Message**
 
-Database corrupted.
+Failed to open database by database corrupted.
 
 **Description**
 

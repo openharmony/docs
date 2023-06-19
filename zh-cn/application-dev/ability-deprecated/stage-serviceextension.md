@@ -33,8 +33,8 @@ OpenHarmony当前不支持三方应用创建ServiceExtensionAbility。
         "icon": "$media:icon",
         "description": "service",
         "type": "service",
-        "visible": true,
-        "srcEntrance": "./ets/ServiceExtAbility/ServiceExtAbility.ts"
+        "exported": true,
+        "srcEnty": "./ets/ServiceExtAbility/ServiceExtAbility.ts"
     }]
    ```
 
@@ -44,7 +44,7 @@ OpenHarmony当前不支持三方应用创建ServiceExtensionAbility。
     ```js
     import ServiceExtensionAbility from '@ohos.application.ServiceExtensionAbility'
     import rpc from '@ohos.rpc'
-
+    
     class StubTest extends rpc.RemoteObject {
         constructor(des) {
             super(des);
@@ -52,7 +52,7 @@ OpenHarmony当前不支持三方应用创建ServiceExtensionAbility。
         onRemoteRequest(code, data, reply, option) {
         }
     }
-
+    
     class ServiceExtAbility extends ServiceExtensionAbility {
         onCreate(want) {
             console.log('onCreate, want:' + want.abilityName);
@@ -72,8 +72,3 @@ OpenHarmony当前不支持三方应用创建ServiceExtensionAbility。
         }
     }
     ```
-## 相关实例
-
-针对ServiceExtensionAbility开发，有以下相关实例可供参考：
-
-- [`ServiceExtAbility`：StageExtAbility的创建与使用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ability/ServiceExtAbility)

@@ -45,9 +45,9 @@ ArkUI适配了根据资源名称获取资源的能力。
 | 软件 | 版本 | 备注 |
 | -------- | -------- | -------- |
 | OpenHarmony | 3.2 Beta5 | NA |
-| Public SDK | Ohos_sdk_public 3.2.10.6 (API Version 9 Beta5) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco Studio默认获取的SDK为Public SDK。 |
-| HUAWEI DevEco Studio（可选） | *待发布* | OpenHarmony应用开发推荐使用。 |
-| HUAWEI DevEco Device Tool（可选） | *待发布* | OpenHarmony智能设备集成开发环境推荐使用。 |
+| Public SDK | Ohos_sdk_public 3.2.10.6 (API Version 9 Beta5) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。<br />通过DevEco Studio默认获取的SDK为Public SDK。 |
+| HUAWEI DevEco Studio（可选） | 3.1 Beta1 | OpenHarmony应用开发推荐使用。 <br />[请点击此处获取](https://developer.harmonyos.com/cn/develop/deveco-studio#download) |
+| HUAWEI DevEco Device Tool（可选） | 3.1 Beta2 | OpenHarmony智能设备集成开发环境推荐使用。 <br />[请点击此处获取](https://device.harmonyos.com/cn/develop/ide#download) |
 
 
 ## 源码获取
@@ -137,9 +137,9 @@ ArkUI适配了根据资源名称获取资源的能力。
 
 ### SDK变更
 
-从本版本起，SDK仅发布提供Public SDK，也可通过DevEcoStudio下载使用。
+从本版本起，仅发布Public SDK，开发者可从镜像站点获取或通过DevEco Studio下载Public SDK用于应用开发。
 
-Full SDK需下载源码编译构建并替换使用，源码编译指导见[full-SDK编译指南](../application-dev/quick-start/full-sdk-compile-guide.md)
+包含系统接口的全量SDK（Full SDK）需下载全量代码后编译构建出SDK文件，并在DevEco Studio中替换。通过源码编译Full SDK的指导请参见[Full-SDK编译指南](../application-dev/quick-start/full-sdk-compile-guide.md)。
 
 
 ### 特性变更
@@ -162,10 +162,15 @@ Full SDK需下载源码编译构建并替换使用，源码编译指导见[full-
 | 文件存储 | - 新增应用文件统一URI处理能力。<br/>- 新增支持公共数据的临时授权和统一的打开入口。<br/>主要涉及以下需求：<br/>I687C8【新增能力】支持应用文件统一URI处理能力<br/>I64U8W【基础能力】支持公共数据的临时授权和统一open入口 | NA |
 | 元能力 | - 新增常驻进程重启优化。<br/>- 支持卡片数据库切换。<br/>- 支持异步onConnected等能力。<br/>主要涉及以下需求：<br/>I65M3F 【基础能力】执行ShellCommand命令管控<br/>I65V83  【基础能力】ServiceExtensionAbility支持异步onConnected生命周期<br/>I61H21  【基础能力】卡片本地数据库切换<br/>I63UJ5   【元能力】【ability_runtime】API8及以前API 支持异常处理<br/>I6BDCW 【基础能力】应用加载禁止加载data目录下的代码<br/>I6BDDU 【基础能力】FA模型默认启动方式为Standard<br/>I6BDE2 【基础能力】常驻应用异常频繁重启保护 | NA |
 
+API变更清单请参考：[API差异报告](api-change/v3.2-beta5/Readme.md)
+
+各子系统API详细变更说明请参考：[变更说明](changelogs/v3.2-beta5/Readme.md)
+
+
 
 ### 芯片及开发板适配
 
-芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig-devboard/sig_devboard_cn.md)信息。
+芯片及开发板适配状态请参考[SIG-Devboard](https://gitee.com/openharmony/community/blob/master/sig/sig_devboard/sig_devboard_cn.md)信息。
 
 
 ### Samples
@@ -174,10 +179,10 @@ Full SDK需下载源码编译构建并替换使用，源码编译指导见[full-
 
 | 子系统 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- | -------- |
-| 媒体子系统 | [二维码扫描](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/media/Scan) | 本示例展示二维码扫描，从文件中选择二维码图片进行解析和读取，识别二维码信息。 | ArkTs |
-| ArkUI | [一多设置典型页面](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/MultiDeviceAppDev/AppMarket) | 本示例展示了应用市场首页，其在小窗口和大窗口有不同的显示效果，体现一次开发、多端部署的能力。 | ArkTs |
-| 文件管理 | [文件管理](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/FileManager/FileIo) | 本示例主要展示了文件管理相关的功能，使用[mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)、[userFileManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-userfilemanager.md)、[fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md)等接口，实现了媒体库文件、应用沙箱内文件的添加和访问等功能。 | ArkTs |
-| 元能力 | [无障碍扩展服务](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ability/AccessibilityExtAbility) | 本示例展示了AccessibilityExtensionAbility的简单应用，使用多个辅助功能接口实现了一些快捷的交互方式。 | ArkTs |
+| 媒体子系统 | [二维码扫描](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/media/Scan) | 本示例展示二维码扫描，从文件中选择二维码图片进行解析和读取，识别二维码信息。 | ArkTs |
+| ArkUI | [一多应用市场首页](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/MultiDeviceAppDev/AppMarket) | 本示例展示了应用市场首页，其在小窗口和大窗口有不同的显示效果，体现一次开发、多端部署的能力。 | ArkTs |
+| 文件管理 | [文件管理](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/FileManager/FileIo) | 本示例主要展示了文件管理相关的功能，使用[mediaLibrary](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-medialibrary.md)、[userFileManager](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-userfilemanager.md)、[fileio](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-fileio.md)等接口，实现了媒体库文件、应用沙箱内文件的添加和访问等功能。 | ArkTs |
+| 元能力 | [图库卡片](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Beta5/ability/GalleryForm) | 本示例是模拟图库卡片，实现对图库中的照片在卡片中显示，定时刷新卡片内容等功能。 | ArkTs |
 
 
 请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。

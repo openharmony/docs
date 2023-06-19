@@ -20,7 +20,7 @@ module对象包含HAP的配置信息。
 | shortcuts | 标识应用的快捷方式信息。采用对象数组格式，其中的每个元素表示一个快捷方式对象。 | 对象数组 | 可缺省，缺省值为空。 |
 | reqPermissions | 标识应用运行时向系统申请的权限。 | 对象数组 | 可缺省，缺省值为空。 |
 | colorMode | 标识应用自身的颜色模式，目前支持如下三种模式：<br/>-&nbsp;dark：表示按照深色模式选取资源。<br/>-&nbsp;light：表示按照浅色模式选取资源。<br/>-&nbsp;auto：表示跟随系统的颜色模式值选取资源。 | 字符串 | 可缺省，缺省值为"auto"。 |
-| distroFilter | 标识应用的分发规则。该标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。该标签可配置的分发策略维度包括API&nbsp;Version、屏幕形状、屏幕分辨率。在进行分发时，通过deviceType与这三个属性的匹配关系，唯一确定一个用于分发到设备的HAP。 | 对象 | 可缺省，缺省值为空。但当应用中包含多个entry模块时，必须配置该标签。 |
+| distributionFilter | 标识应用的分发规则。该标签用于定义HAP对应的细分设备规格的分发策略，以便在应用市场进行云端分发应用包时做精准匹配。该标签可配置的分发策略维度包括API&nbsp;Version、屏幕形状、屏幕分辨率。在进行分发时，通过deviceType与这三个属性的匹配关系，唯一确定一个用于分发到设备的HAP。 | 对象 | 可缺省，缺省值为空。但当应用中包含多个entry模块时，必须配置该标签。 |
 |commonEvents | 定义了公共事件静态订阅者的信息，该字段中需要声明静态订阅者的名称、权限要求及订阅事件列表信息，当订阅的公共事件发送时，该公共事件静态订阅者将被拉起。这里的静态订阅者区分于常用的动态订阅者，前者无需在业务代码中主动调用订阅事件的接口，在公共事件发布时可能未被拉起，而动态订阅者则在业务代码中主动调用公共事件订阅的相关API，因此需要应用处于活动状态。 | 对象数组 | 可缺省，缺省为空。 |
 | entryTheme | 此标签标识OpenHarmony内部主题的关键字。将标记值设置为名称的资源索引。 | 字符串 | 可缺省，缺省值为空。 |
 |testRunner | 此标签用于支持对测试框架的配置。 | 对象 | 可缺省，缺省值为空。 |
@@ -190,69 +190,6 @@ metadata对象示例：
 
 ## abilities对象的内部结构
 
-**OpenHarmony中不允许应用隐藏入口图标**
-
-OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置入口图标，那么系统会给该应用创建一个默认的图标显示在桌面上;<br>
-用户点击该图标，将跳转到Settings的应用管理中对应的应用详情页面（图1）中。<br>
-如果应用想要隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。
-
-**场景说明：** 该功能能防止一些恶意应用，故意配置无入口图标，导致用户找不到软件所在的位置，无法操作卸载应用，在一定程度上保证用户的手机安全
-
-**入口图标的设置:** 需要在配置文件（config.json）中abilities配置下设置icon，label以及skills,而且skills的配置下必须同时包含“ohos.want.action.home” 和 “entity.system.home”:
-```
-{
-  "module":{
-
-    ...
-
-    "abilities": [{
-      "icon": "$media:icon",
-      "label": "Login",
-      "skills": [{
-        "actions": ["ohos.want.action.home"],
-        "entities": ["entity.system.home"],
-        "uris": []
-      }]
-    }],
-
-    ...
-
-  }
-}
-```
-
-**入口图标及入口标签的显示规则**
-* HAP中包含Page类型的PageAbility
-  * 配置文件（config.json）中abilities配置中设置了入口图标
-    * 该应用没有隐藏图标的特权
-      * 显示桌面图标为该PageAbility配置的图标
-      * 显示桌面Label为该PageAbility配置的Label（如果没有配置Label，返回包名）
-      * 显示组件名为该PageAbility的组件名
-      * 用户点击该桌面图标，页面跳转到该PageAbility首页
-    * 该应用具有隐藏图标的特权
-      * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
-  * 配置文件（config.json）中abilities配置中未设置入口图标
-    * 该应用没有隐藏图标的特权
-      * 显示桌面图标为系统默认图标
-      * 显示桌面Label为该应用的包名
-      * 用户点击该桌面图标，页面跳转到该应用的详情页面（图1）
-    * 该应用具有隐藏图标的特权
-      * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
-* HAP中不包含Page类型的PageAbility
-  * 该应用没有隐藏图标的特权
-    * 显示桌面图标为系统默认图标
-    * 显示桌面Label为该应用的包名
-    * 用户点击该桌面图标，页面跳转到该应用的详情页面（图1）
-  * 该应用具有隐藏图标的特权
-    * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
-
-注：应用详情页面（图1）中显示的label可能与桌面上显示的不同。如果非Page类型的PageAbility配置了入口图标和label，那么详情页中显示的即为配置的。<br><br>
-
-图1
-
-![应用的详情页例图](figures/application_details.jpg)
-
-
 **表8** **abilities对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
@@ -261,7 +198,7 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置入口
 | name | 标识Ability名称。取值可采用反向域名方式表示，由包名和类名组成，如"com.example.myapplication.EntryAbility"；也可采用"."开头的类名方式表示，如".EntryAbility"。<br/>Ability的名称，需在一个应用的范围内保证唯一。说明：在使用DevEco&nbsp;Studio新建项目时，默认生成首个Ability的配置，即"config.json"中"EntryAbility"的配置。如使用其他IDE工具，可自定义名称。该标签最大长度为127个字节。 | 字符串 | 不可缺省 |
 | description | 标识对Ability的描述。取值可以是描述性内容，也可以是对描述性内容的资源索引，以支持多语言。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
 | icon | 标识Ability图标资源文件的索引。取值示例：$media:ability_icon。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的icon将同时作为应用的icon。如果存在多个符合条件的Ability，则取位置靠前的Ability的icon作为应用的icon。<br/>说明：应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。 | 字符串 | 可缺省，缺省值为空。 |
-| label | 标识Ability对用户显示的名称。取值可以是Ability名称，也可以是对该名称的资源索引，以支持多语言。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的label将同时作为应用的label。如果存在多个符合条件的Ability，则取位置靠前的Ability的label作为应用的label。<br/>说明：&nbsp;应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。该标签为资源文件中定义的字符串的引用，或以"{}"包括的字符串。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
+| label | 标识Ability对用户显示的名称。取值是对该名称的资源索引，支持多语言，例：$string:ability_label。如果在该Ability的skills属性中，actions的取值包含&nbsp;"action.system.home"，entities取值中包含"entity.system.home"，则该Ability的label将同时作为应用的label。如果存在多个符合条件的Ability，则取位置靠前的Ability的label作为应用的label。<br/>说明：&nbsp;应用的"icon"和"label"是用户可感知配置项，需要区别于当前所有已有的应用"icon"或"label"（至少有一个不同）。该标签为资源文件中定义的字符串的引用，或以"{}"包括的字符串。该标签最大长度为255个字节。 | 字符串 | 可缺省，缺省值为空。 |
 | uri | 标识Ability的统一资源标识符。该标签最大长度为255个字节。 | 字符串 | 可缺省，对于data类型的Ability不可缺省。 |
 | launchType | 标识Ability的启动模式，支持"standard"和"singleton"两种模式：<br/>standard：表示该Ability可以有多实例。该模式适用于大多数应用场景。<br/>singleton：表示该Ability在所有任务栈中仅可以有一个实例。例如，具有全局唯一性的呼叫来电界面即采用"singleton"模式。该标签仅适用于默认设备、平板、智慧屏、车机、智能穿戴。 | 字符串 | 可缺省，缺省值为"singleton"。 |
 | visible | 标识Ability是否可以被其他应用调用。<br/>true：可以被其他应用调用。<br/>false：不能被其他应用调用。 | 布尔类型 | 可缺省，缺省值为"false"。 |
@@ -287,6 +224,59 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置入口
 | startWindowBackground | 标识该Ability启动页面背景颜色资源文件的索引。该标签仅适用于page类型的Ability。取值示例：$color:red。 | 字符串 | 可缺省，缺省值为空。 |
 | removeMissionAfterTerminate | 该标签标识Ability销毁后是否从任务列表中移除任务。该标签仅适用于page类型的Ability。true表示销毁后移除任务，&nbsp;false表示销毁后不移除任务。 | 布尔值 | 可缺省，缺省值为false。 |
 
+**OpenHarmony中不允许应用隐藏入口图标**
+
+OpenHarmony系统对无图标应用严格管控，防止一些恶意应用故意配置无入口图标，导致用户找不到软件所在的位置，无法操作卸载应用，在一定程度上保证用户终端设备的安全。
+
+**入口图标的设置:** 需要在配置文件（config.json）中abilities配置下设置icon，label以及skills，而且skills的配置下必须同时包含“ohos.want.action.home” 和 “entity.system.home”。
+```
+{
+  "module":{
+
+    ...
+
+    "abilities": [{
+      "icon": "$media:icon",
+      "label": "Login",
+      "skills": [{
+        "actions": ["ohos.want.action.home"],
+        "entities": ["entity.system.home"],
+        "uris": []
+      }]
+    }],
+
+    ...
+
+  }
+}
+```
+
+如果应用确需隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。详细的入口图标及入口标签的显示规则如下。
+* HAP中包含Page类型的PageAbility
+  * 配置文件（config.json）中abilities配置中设置了入口图标
+    * 该应用没有隐藏图标的特权
+      * 系统将使用该PageAbility配置的icon作为入口图标，并显示在桌面上。用户点击该图标，页面跳转到该PageAbility首页。
+      * 系统将使用该PageAbility配置的label作为入口标签，并显示在桌面上（如果没有配置label，返回包名）。
+    * 该应用具有隐藏图标的特权
+      * 桌面查询时不返回应用信息，不会在桌面上显示对应的入口图标和标签。
+  * 配置文件（config.json）中abilities配置中未设置入口图标
+    * 该应用没有隐藏图标的特权
+      * 系统将使用系统默认图标作为入口图标，并显示在桌面上。用户点击该图标，页面跳转到应用管理中对应的应用详情页面（参考下图）。
+      * 系统将使用应用的包名作为入口标签，并显示在桌面上。
+    * 该应用具有隐藏图标的特权
+      * 桌面查询时不返回应用信息，不会在桌面上显示对应的入口图标和标签。
+* HAP中不包含Page类型的PageAbility
+  * 该应用没有隐藏图标的特权
+    * 系统将使用系统默认图标作为入口图标，并显示在桌面上。用户点击该图标，页面跳转到应用管理中对应的应用详情页面（参考下图）。
+    * 系统将使用应用的包名作为入口标签，并显示在桌面上。
+  * 该应用具有隐藏图标的特权
+    * 桌面查询时不返回应用信息，不会在桌面上显示对应的入口图标和标签。
+
+**图1** 应用的详情页示意图  
+
+![应用的详情页例图](figures/application_details.jpg)
+
+注：应用详情页面中显示的label可能与桌面上显示的不同。如果非Page类型的PageAbility配置了入口图标和label，那么详情页中显示的即为配置的。
 ## uriPermission对象的内部结构
 
 **表9** **uriPermission对象的内部结构说明**
@@ -666,10 +656,10 @@ forms示例：
 | value | 该标签标识应用需要分发的国家码，标签为字符串数组，子串表示支持的国家或地区，由两个大写字母表示。 | 字符串数组 | 不可缺省。 |
 
 
-distroFilter示例：
+distributionFilter示例：
 
 ```json
-"distroFilter":  {
+"distributionFilter":  {
   "apiVersion": {
     "policy": "include",
     "value": [4,5]

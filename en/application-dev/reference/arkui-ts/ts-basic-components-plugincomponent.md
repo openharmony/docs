@@ -5,7 +5,7 @@ The **\<PluginComponent>** allows the UI provided by an external application to 
 
 >  **NOTE**
 >
-> - This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
+> This component is supported since API version 9. Updates will be marked with a superscript to indicate their earliest API version.
 
 ## Child Components
 
@@ -30,9 +30,27 @@ Creates a **PluginComponent** to display the UI provided by an external applicat
 | ---------- | ------ | --------------------------- |
 | source     | string | Component template name.               |
 | bundleName | string | Bundle name of the provider ability.|
+## Attributes
+The [universal attributes](ts-universal-attributes-size.md) are supported, and **size** must be set.
+
+**NOTE**
+
+  The template can be provided in either of the following modes:
+* Use an absolute path. In this case, set **source** to the absolute path of the template and leave **bundleName** blank. This mode is not recommende as it is applicable only to standalone templates that do not need to load resources.
+* Use an application package. In this case, set **bundleName** to the application bundle name and **source** to the relative path of the HAP file template.
+
+  Example: **{source: 'ets/pages/plugin.js', bundleName: 'com.example.provider'}**
+
+  The template is provided only when **source** can be set to an ability name in the FA model.
+
+  Example: **{source: 'plugin', bundleName: 'com.example.provider'}**
 
 
 ## Events
+
+Only the [gesture event](ts-gesture-settings.md) can be distributed to the provider page and processed inside the provider page.
+
+In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
 
 | Name                                                                                                               | Description                                                              |
 | ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |

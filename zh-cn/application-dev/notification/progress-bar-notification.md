@@ -5,16 +5,16 @@
 
 目前系统模板仅支持进度条模板，通知模板[NotificationTemplate](../reference/apis/js-apis-inner-notification-notificationTemplate.md)中的data参数为用户自定义数据，用于显示与模块相关的数据，效果示意如下图所示。
 
+**图1** 进度条通知效果示意图  
 ![zh-cn_image_0000001416903138](figures/zh-cn_image_0000001416903138.png)
 
 
 ## 接口说明
 
-[isSupportTemplate()](../reference/apis/js-apis-notificationManager.md#notificationissupporttemplate)是查询模板是否支持接口，目前仅支持进度条模板。
+[`isSupportTemplate()`](../reference/apis/js-apis-notificationManager.md#notificationmanagerissupporttemplate)是查询模板是否支持接口，目前仅支持进度条模板。
 
-| | |
-| -------- | -------- |
 | **接口名** | **描述** |
+| -------- | -------- |
 | isSupportTemplate(templateName:&nbsp;string,&nbsp;callback:&nbsp;AsyncCallback&lt;boolean&gt;):&nbsp;void | 查询模板是否存在。 |
 
 
@@ -25,31 +25,32 @@
 2. 导入模块。
    
    ```ts
-   import NotificationManager from '@ohos.notificationManager';
+   import notificationManager from '@ohos.notificationManager';
    ```
 
 3. 查询系统是否支持进度条模板，查询结果为支持downloadTemplate模板类通知。
    
    ```ts
-   NotificationManager.isSupportTemplate('downloadTemplate').then((data) => {
+   notificationManager.isSupportTemplate('downloadTemplate').then((data) => {
      console.info(`[ANS] isSupportTemplate success`);
+     console.info('Succeeded in supporting download template notification.');
      let isSupportTpl: boolean = data; // isSupportTpl的值为true表示支持支持downloadTemplate模板类通知，false表示不支持
      // ...
    }).catch((err) => {
-     console.error(`[ANS] isSupportTemplate failed, error[${err}]`);
+     console.error(`Failed to support download template notification. Code is ${err.code}, message is ${err.message}`);
    });
    ```
-
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **说明：**
+   
+   > **说明：**
    > 查询系统支持进度条模板后，再进行后续的步骤操作。
-
+   
 4. 构造进度条模板对象，并发布通知。
    
    ```ts
-   let notificationRequest = {
+   let notificationRequest: notificationManager.NotificationRequest = {
      id: 1,
      content: {
-       contentType: NotificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
+       contentType: notificationManager.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
        normal: {
          title: 'test_title',
          text: 'test_text',
@@ -64,11 +65,11 @@
    }
    
    // 发布通知
-   NotificationManager.publish(notificationRequest, (err) => {
+   notificationManager.publish(notificationRequest, (err) => {
      if (err) {
-       console.error(`[ANS] failed to publish, error[${err}]`);
+       console.error(`Failed to publish notification. Code is ${err.code}, message is ${err.message}`);
        return;
      }
-     console.info(`[ANS] publish success `);
+     console.info('Succeeded in publishing notification.');
    });
    ```

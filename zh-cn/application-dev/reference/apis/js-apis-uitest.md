@@ -2093,7 +2093,7 @@ fling(from: Point, to: Point, stepLen: number, speed: number): Promise\<void>
 ```js
 async function demo() {
     let driver = Driver.create();
-    await driver.fling({x: 500, Y: 480},{x: 450, Y: 480},5,600);
+    await driver.fling({x: 500, y: 480},{x: 450, y: 480},5,600);
 }
 ```
 

@@ -4,6 +4,10 @@ SystemCapability (SysCap) is a standalone feature in the OpenHarmony system.
 
 Before using an API for development, you are advised to familiarize yourself with [SysCap](syscap.md), and then consult the following tables to see whether the SysCap set required for the API is supported by the target device type.
 
+> **NOTE**
+>
+> The **default** device type represents an OpenHarmony device with comprehensive functions and most common capabilities. When you are not sure about the capability set of the target device, you can use the **default** type for development.
+
 ## SystemCapability.ArkUI.ArkUI.Full
 
 ArKUI standard system
@@ -1345,7 +1349,7 @@ Webview component
 
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+| Yes     | No    | No    | Yes  | Yes  | No    | No          | No    |
 
 ## SystemCapability.Cloud.AAID
 

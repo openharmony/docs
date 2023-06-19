@@ -1,6 +1,6 @@
 # @ohos.inputMethod (Input Method Framework)
 
-The **inputMethod** module provides an input method framework, which can be used to hide the keyboard, obtain the list of installed input methods, display the dialog box for input method selection, and more.
+The **inputMethod** module is oriented to common foreground applications (third-party applications and system applications such as Notes, Messaging, and Settings). It provides input method control and management capabilities, including displaying or hiding the soft keyboard, switching between input methods, and obtaining the list of all input methods.
 
 > **NOTE**
 >
@@ -9,7 +9,7 @@ The **inputMethod** module provides an input method framework, which can be used
 
 ## Modules to Import
 
-```js
+```
 import inputMethod from '@ohos.inputMethod';
 ```
 
@@ -60,7 +60,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                    |
 | -------- | ------------------------------ |
-| 12800006 | Input method controller error. |
+| 12800006 | input method controller error. |
 
 **Example**
 
@@ -88,7 +88,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800007 | Input method settings extension error. |
+| 12800007 | input method settings extension error. |
 
 **Example**
 
@@ -102,7 +102,7 @@ switchInputMethod(target: InputMethodProperty, callback: AsyncCallback&lt;boolea
 
 Switches to another input method. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (for system applications only)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -119,8 +119,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800005 | Configuration persisting error.        |
-| 12800008 | Input method manager service error. |
+| 12800005 | configuration persisting error.        |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -154,21 +154,21 @@ switchInputMethod(target: InputMethodProperty): Promise&lt;boolean&gt;
 
 Switches to another input method. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (for system applications only)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
 **Parameters**
 
-  | Name| Type| Mandatory| Description|
-  | -------- | -------- | -------- | -------- |
-  |target |  [InputMethodProperty](#inputmethodproperty8)| Yes| Input method to switch to.|
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+|target |  [InputMethodProperty](#inputmethodproperty8)| Yes| Input method to switch to.|
 
 **Return value**
 
-  | Type                                     | Description                        |
-  | ----------------------------------------- | ---------------------------- |
-  | Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite.|
+| Type                                     | Description                        |
+| ----------------------------------------- | ---------------------------- |
+| Promise\<boolean> | Promise used to return the result. The value **true** means that the switching is successful, and **false** means the opposite.|
 
 **Error codes**
 
@@ -176,8 +176,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800005 | Configuration persisting error.        |
-| 12800008 | Input method manager service error. |
+| 12800005 | configuration persisting error.        |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -231,7 +231,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype, callback: AsyncCallb
 
 Switches to another subtype of the current input method. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (for system applications only)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -239,7 +239,7 @@ Switches to another subtype of the current input method. This API uses an asynch
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Input method subtype to switch to.|
+| target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md)| Yes| Input method subtype to switch to.|
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -248,17 +248,17 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800005 | Configuration persisting error.        |
-| 12800008 | Input method manager service error. |
+| 12800005 | configuration persisting error.        |
+| 12800008 | input method manager service error. |
 
 **Example**
 
 ```js
 try {
     inputMethod.switchCurrentInputMethodSubtype({
-      id: "com.example.kikakeyboard",
-      label: "ServiceExtAbility",
-      name: "",
+      id: "ServiceExtAbility",
+      label: "",
+      name: "com.example.kikakeyboard",
       mode: "upper",
       locale: "",
       language: "",
@@ -287,7 +287,7 @@ switchCurrentInputMethodSubtype(target: InputMethodSubtype): Promise&lt;boolean&
 
 Switches to another subtype of the current input method. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (for system applications only)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -295,7 +295,7 @@ Switches to another subtype of the current input method. This API uses a promise
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-|target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Input method subtype to switch to.|
+|target |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md)| Yes| Input method subtype to switch to.|
 
 **Return value**
 
@@ -309,17 +309,17 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800005 | Configuration persisting error.        |
-| 12800008 | Input method manager service error. |
+| 12800005 | configuration persisting error.        |
+| 12800008 | input method manager service error. |
 
 **Example**
 
 ```js
 try {
     inputMethod.switchCurrentInputMethodSubtype({
-      id: "com.example.kikakeyboard",
-      label: "ServiceExtAbility",
-      name: "",
+      id: "ServiceExtAbility",
+      label: "",
+      name: "com.example.kikakeyboard",
       mode: "upper",
       locale: "",
       language: "",
@@ -352,7 +352,7 @@ Obtains the current input method subtype.
 
 | Type                                        | Description                    |
 | -------------------------------------------- | ------------------------ |
-| [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype) | Current input method subtype.|
+| [InputMethodSubtype](./js-apis-inputmethod-subtype.md) | Current input method subtype.|
 
 **Example**
 
@@ -366,7 +366,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 Switches to a specified subtype of a specified input method. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (for system applications only)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -375,7 +375,7 @@ Switches to a specified subtype of a specified input method. This API uses an as
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 |inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| Yes| Input method to switch to.|
-|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Input method subtype to switch to.|
+|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md)| Yes| Input method subtype to switch to.|
 | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is **true**. Otherwise, **err** is an error object.|
 
 **Error codes**
@@ -384,32 +384,16 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800005 | Configuration persisting error.        |
-| 12800008 | Input method manager service error. |
+| 12800005 | configuration persisting error.        |
+| 12800008 | input method manager service error. |
 
 **Example**
 
 ```js
 let im = inputMethod.getCurrentInputMethod();
-let inputMethodProperty = {
-    packageName: im.packageName,
-    methodId: im.methodId,
-    name: im.packageName,
-    id: im.methodId,
-    extra: {}
-}
+let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
-    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, {
-      id: "com.example.kikakeyboard",
-      label: "ServiceExtAbility",
-      name: "",
-      mode: "upper",
-      locale: "",
-      language: "",
-      icon: "",
-      iconId: 0,
-      extra: {}
-    }, (err,result) => {
+    inputMethod.switchCurrentInputMethodAndSubtype(im, imSubType, (err,result) => {
         if (err !== undefined) {
             console.error('Failed to switchCurrentInputMethodAndSubtype: ' + JSON.stringify(err));
             return;
@@ -431,7 +415,7 @@ switchCurrentInputMethodAndSubtype(inputMethodProperty: InputMethodProperty, inp
 
 Switches to a specified subtype of a specified input method. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (for system applications only)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -440,7 +424,7 @@ Switches to a specified subtype of a specified input method. This API uses a pro
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
 |inputMethodProperty |  [InputMethodProperty](#inputmethodproperty8)| Yes| Input method to switch to.|
-|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)| Yes| Input method subtype to switch to.|
+|inputMethodSubtype |  [InputMethodSubtype](./js-apis-inputmethod-subtype.md)| Yes| Input method subtype to switch to.|
 
 **Return value**
 
@@ -454,32 +438,16 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800005 | Configuration persisting error.        |
-| 12800008 | Input method manager service error. |
+| 12800005 | configuration persisting error.        |
+| 12800008 | input method manager service error. |
 
 **Example**
 
 ```js
 let im = inputMethod.getCurrentInputMethod();
-let inputMethodProperty = {
-    packageName: im.packageName,
-    methodId: im.methodId,
-    name: im.packageName,
-    id: im.methodId,
-    extra: {}
-}
+let imSubType = inputMethod.getCurrentInputMethodSubtype();
 try {
-    inputMethod.switchCurrentInputMethodAndSubtype(inputMethodProperty, {
-      id: im.packageName,
-      label: im.methodId,
-      name: "",
-      mode: "upper",
-      locale: "",
-      language: "",
-      icon: "",
-      iconId: 0,
-      extra: {}
-    }).then((result) => {
+    inputMethod.switchCurrentInputMethodAndSubtype(im, imSubType).then((result) => {
         if (result) {
             console.info('Succeeded in switching currentInputMethodAndSubtype.');
         } else {
@@ -565,8 +533,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -608,8 +576,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -635,7 +603,7 @@ showSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 Shows this soft keyboard. This API must be used with the input text box and works only when the input text box is activated. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (for system applications only)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -651,8 +619,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -672,7 +640,7 @@ showSoftKeyboard(): Promise&lt;void&gt;
 
 Shows this soft keyboard. This API must be used with the input text box and works only when the input text box is activated. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (for system applications only)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -688,8 +656,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -707,7 +675,7 @@ hideSoftKeyboard(callback: AsyncCallback&lt;void&gt;): void
 
 Hides this soft keyboard. This API must be used with the input text box and works only when the input text box is activated. This API uses an asynchronous callback to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (for system applications only)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -723,8 +691,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -744,7 +712,7 @@ hideSoftKeyboard(): Promise&lt;void&gt;
 
 Hides this soft keyboard. This API must be used with the input text box and works only when the input text box is activated. This API uses a promise to return the result.
 
-**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (available only to system applications)
+**Required permissions**: ohos.permission.CONNECT_IME_ABILITY (for system applications only)
 
 **System capability**: SystemCapability.MiscServices.InputMethodFramework
 
@@ -760,8 +728,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800003 | Input method client error.             |
-| 12800008 | Input method manager service error. |
+| 12800003 | input method client error.             |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -856,7 +824,7 @@ Enables listening for the input method and subtype change event. This API uses a
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | Yes  | Listening type.<br>The value **'imeChange'** indicates the input method and subtype change event.|
-| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | Yes| Callback used to return the input method attributes and subtype.|
+| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md)) => void  | Yes| Callback used to return the input method attributes and subtype.|
 
 **Example**
 
@@ -879,7 +847,7 @@ Disables listening for the input method and subtype change event. This API uses 
 | Name  | Type                           | Mandatory| Description                                                        |
 | -------- | ------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                        | Yes  | Listening type.<br>The value **'imeChange'** indicates the input method and subtype change event.|
-| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)) => void  | No| Callback used to return the input method attributes and subtype.|
+| callback | (inputMethodProperty: [InputMethodProperty](#inputmethodproperty8), inputMethodSubtype: [InputMethodSubtype](./js-apis-inputmethod-subtype.md)) => void  | No| Callback used to return the input method attributes and subtype.|
 
 **Example**
 
@@ -900,7 +868,7 @@ Obtains all subtypes of a specified input method. This API uses an asynchronous 
 | Name  | Type                                              | Mandatory| Description                  |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
 | inputMethodProperty | InputMethodProperty| Yes| Input method to which the subtypes belong.|
-| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>&gt; | Yes| Callback used to return all subtypes of the specified input method.|
+| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md)>&gt; | Yes| Callback used to return all subtypes of the specified input method.|
 
 **Error codes**
 
@@ -908,8 +876,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800001 | Package manager error.                 |
-| 12800008 | Input method manager service error. |
+| 12800001 | package manager error.                 |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -952,7 +920,7 @@ Obtains all subtypes of a specified input method. This API uses a promise to ret
 
 | Type                                                       | Description                  |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>> | Promise used to return all subtypes of the specified input method.|
+| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md)>> | Promise used to return all subtypes of the specified input method.|
 
 **Error codes**
 
@@ -960,8 +928,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800001 | Package manager error.                 |
-| 12800008 | Input method manager service error. |
+| 12800001 | package manager error.                 |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -996,7 +964,7 @@ Obtains all subtypes of this input method. This API uses an asynchronous callbac
 
 | Name  | Type                                              | Mandatory| Description                  |
 | -------- | -------------------------------------------------- | ---- | ---------------------- |
-| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>&gt; | Yes  | Callback used to return all subtypes of the current input method.|
+| callback | AsyncCallback&lt;Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md)>&gt; | Yes  | Callback used to return all subtypes of the current input method.|
 
 **Error codes**
 
@@ -1004,8 +972,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800001 | Package manager error.                 |
-| 12800008 | Input method manager service error. |
+| 12800001 | package manager error.                 |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -1035,7 +1003,7 @@ Obtains all subtypes of this input method. This API uses a promise to return the
 
 | Type                                                       | Description                  |
 | ----------------------------------------------------------- | ---------------------- |
-| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md#inputmethodsubtype)>> | Promise used to return all subtypes of the current input method.|
+| Promise<Array<[InputMethodSubtype](./js-apis-inputmethod-subtype.md)>> | Promise used to return all subtypes of the current input method.|
 
 **Error codes**
 
@@ -1043,8 +1011,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800001 | Package manager error.                 |
-| 12800008 | Input method manager service error. |
+| 12800001 | package manager error.                 |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -1081,8 +1049,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800001 | Package manager error.                 |
-| 12800008 | Input method manager service error. |
+| 12800001 | package manager error.                 |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -1120,8 +1088,8 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800001 | Package manager error.                 |
-| 12800008 | Input method manager service error. |
+| 12800001 | package manager error.                 |
+| 12800008 | input method manager service error. |
 
 **Return value**
 
@@ -1163,7 +1131,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800008 | Input method manager service error. |
+| 12800008 | input method manager service error. |
 
 **Example**
 
@@ -1201,7 +1169,7 @@ For details about the error codes, see [Input Method Framework Error Codes](../e
 
 | Error Code ID| Error Message                            |
 | -------- | -------------------------------------- |
-| 12800008 | Input method manager service error. |
+| 12800008 | input method manager service error. |
 
 **Example**
 

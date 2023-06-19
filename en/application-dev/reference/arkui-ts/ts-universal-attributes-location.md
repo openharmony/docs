@@ -14,7 +14,7 @@ The location attributes set the alignment mode, layout direction, and position o
 | -------- | -------- | -------- |
 | align | [Alignment](ts-appendix-enums.md#alignment) | Alignment mode of the component content in the drawing area.<br>Default value: **Alignment.Center**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | direction | [Direction](ts-appendix-enums.md#direction) | Horizontal layout of the component.<br>Default value: **Direction.Auto**<br>Since API version 9, this API is supported in ArkTS widgets.|
-| position | [Position](ts-types.md#position8) | Offset of the component's upper left corner relative to the parent component's upper left corner. This offset is expressed using absolute values. When laying out components, this attribute does not affect the layout of the parent component. It only adjusts the component position during drawing.<br>Since API version 9, this API is supported in ArkTS widgets.|
+| position | [Position](ts-types.md#position8) | Offset of the component's upper left corner relative to the parent component's upper left corner. This offset is expressed using absolute values. When laying out components, this attribute does not affect the layout of the parent component. It only adjusts the component position during drawing.<br>This attribute is applicable to scenarios where the component is fixed at a position in the parent container, for example, where it is pinned to top or floating above the UI.<br>Since API version 9, this API is supported in ArkTS widgets.|
 | markAnchor | [Position](ts-types.md#position8) | Anchor point of the component for positioning. The upper left corner of the component is used as the reference point for offset. Generally, this attribute is used together with the **position** and **offset** attributes. When used independently, this attribute is similar to **offset**.<br>Default value:<br>{<br>x: 0,<br>y: 0<br>}<br>Since API version 9, this API is supported in ArkTS widgets.|
 | offset | [Position](ts-types.md#position8) | Offset of the component relative to itself. This offset is expressed using relative values. This attribute does not affect the layout of the parent component. It only adjusts the component position during drawing.<br>Default value:<br>{<br>x: 0,<br>y: 0<br>}<br>Since API version 9, this API is supported in ArkTS widgets.|
 | alignRules<sup>9+</sup> | {<br>left?: { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) };<br>right?: { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) };<br>middle?: { anchor: string, align: [HorizontalAlign](ts-appendix-enums.md#horizontalalign) };<br>top?: { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) };<br>bottom?: { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) };<br>center?: { anchor: string, align: [VerticalAlign](ts-appendix-enums.md#verticalalign) }<br>} | Alignment rules relative to the container.<br>- **left**: left-aligned.<br>- **right**: right-aligned.<br>- **middle**: center-aligned.<br>- **top**: top-aligned.<br>- **bottom**: bottom-aligned.<br>- **center**: center-aligned.<br>This API is supported in ArkTS widgets.<br>**NOTE**<br>- **anchor**: ID of the component that functions as the anchor point.<br>- **align**: alignment mode relative to the anchor component. |
@@ -32,19 +32,15 @@ struct PositionExample1 {
       Column({ space: 10 }) {
         // When the component content is within the area specified by the component width and height, set the alignment mode of the content in the component.
         Text('align').fontSize(9).fontColor(0xCCCCCC).width('90%')
-        Text('top start')
-          .align(Alignment.TopStart)
-          .height(50)
-          .width('90%')
-          .fontSize(16)
-          .backgroundColor(0xFFE4C4)
-
-        Text('Bottom end')
-          .align(Alignment.BottomEnd)
-          .height(50)
-          .width('90%')
-          .fontSize(16)
-          .backgroundColor(0xFFE4C4)
+        Stack() {
+          Text('First show in bottom end').height('65%').backgroundColor(0xD2B48C)
+          Text('Second show in bottom end').backgroundColor(0xF5DEB3).opacity(0.9)
+        }.width('90%').height(50).margin({ top: 5 }).backgroundColor(0xFFE4C4)
+        .align(Alignment.BottomEnd)
+        Stack() {
+          Text('top start')
+        }.width('90%').height(50).margin({ top: 5 }).backgroundColor(0xFFE4C4)
+        .align(Alignment.TopStart)
 
         // To arrange the child components from left to right, set direction of the parent container to Direction.Ltr.
         Text('direction').fontSize(9).fontColor(0xCCCCCC).width('90%')
@@ -86,6 +82,7 @@ struct PositionExample2 {
       Text('position').fontSize(12).fontColor(0xCCCCCC).width('90%')
       Row() {
         Text('1').size({ width: '30%', height: '50' }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(16)
+          .textAlign(TextAlign.Center)
         Text('2 position(30, 10)')
           .size({ width: '60%', height: '30' })
           .backgroundColor(0xbbb2cb)
@@ -94,6 +91,7 @@ struct PositionExample2 {
           .align(Alignment.Start)
           .position({ x: 30, y: 10 })
         Text('3').size({ width: '45%', height: '50' }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(16)
+          .textAlign(TextAlign.Center)
         Text('4 position(50%, 70%)')
           .size({ width: '50%', height: '50' })
           .backgroundColor(0xbbb2cb)
@@ -110,14 +108,20 @@ struct PositionExample2 {
           .size({ width: '100', height: '100' })
           .backgroundColor(0xdeb887)
         Text('text')
+          .fontSize('30px')
+          .textAlign(TextAlign.Center)
           .size({ width: 25, height: 25 })
           .backgroundColor(Color.Green)
           .markAnchor({ x: 25, y: 25 })
         Text('text')
+          .fontSize('30px')
+          .textAlign(TextAlign.Center)
           .size({ width: 25, height: 25 })
           .backgroundColor(Color.Green)
           .markAnchor({ x: -100, y: -25 })
         Text('text')
+          .fontSize('30px')
+          .textAlign(TextAlign.Center)
           .size({ width: 25, height: 25 })
           .backgroundColor(Color.Green)
           .markAnchor({ x: 25, y: -25 })
@@ -127,6 +131,7 @@ struct PositionExample2 {
       Text('offset').fontSize(12).fontColor(0xCCCCCC).width('90%')
       Row() {
         Text('1').size({ width: '15%', height: '50' }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(16)
+          .textAlign(TextAlign.Center)
         Text('2  offset(15, 30)')
           .size({ width: 120, height: '50' })
           .backgroundColor(0xbbb2cb)
@@ -135,6 +140,7 @@ struct PositionExample2 {
           .align(Alignment.Start)
           .offset({ x: 15, y: 30 })
         Text('3').size({ width: '15%', height: '50' }).backgroundColor(0xdeb887).border({ width: 1 }).fontSize(16)
+          .textAlign(TextAlign.Center)
         Text('4 offset(-10%, 20%)')
           .size({ width: 100, height: '50' })
           .backgroundColor(0xbbb2cb)

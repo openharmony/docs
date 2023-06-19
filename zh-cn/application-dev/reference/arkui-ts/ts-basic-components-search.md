@@ -16,12 +16,11 @@ Search(options?: { value?: string; placeholder?: string; icon?: string; controll
 
 **参数:**
 
-| 参数名      | 参数类型         | 必填 | 参数描述                                                     |
-| ----------- | ---------------- | ---- | ------------------------------------------------------------ |
-| value       | string           | 否   | 设置当前显示的搜索文本内容。                                                 |
-| placeholder | string           | 否   | 设置无输入时的提示文本。                                         |
-| icon        | string           | 否   | 设置搜索图标路径，默认使用系统搜索图标，图标支持的图源格式: svg、jpg和png。 |
-| controller  | SearchController | 否   | 设置Search组件控制器。                                                     |
+| 参数名     | 参数类型         | 必填 | 参数描述                                                     |
+| ---------- | ---------------- | ---- | ------------------------------------------------------------ |
+| value      | string           | 否   | 设置当前显示的搜索文本内容。                                 |
+| icon       | string           | 否   | 设置搜索图标路径，默认使用系统搜索图标。<br/>**说明：** <br/>icon的数据源，支持本地图片和网络图片。<br/>-&nbsp;支持的图片格式包括png、jpg、bmp、svg、gif和pixelmap。<br/>-&nbsp;支持Base64字符串。格式data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], 其中[base64 data]为Base64字符串数据。 |
+| controller | SearchController | 否   | 设置Search组件控制器。                                       |
 
 ## 属性
 

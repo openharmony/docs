@@ -1,5 +1,9 @@
 # Upload and Download Error Codes
 
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
+
 ## 13400001 File Operation Error
 
 **Error Message**
@@ -30,7 +34,7 @@ This error code is reported when a file path error occurs in invoking the **uplo
 
 **Possible Causes**
 
-The file path is incorrect.
+The file path is incorrect or the file aready exists in the path.
 
 **Solution**
 

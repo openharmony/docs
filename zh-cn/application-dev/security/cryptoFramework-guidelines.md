@@ -129,12 +129,14 @@ function convertAsyKey() {
 2. 调用convertKey方法，传入公钥二进制和私钥二进制（二者非必选项，可只传入其中一个），转换为KeyPair对象。
 
 ```javascript
+import cryptoFramework from "@ohos.security.cryptoFramework"
+
 function convertEccAsyKey() {
     let pubKeyArray = new Uint8Array([48,89,48,19,6,7,42,134,72,206,61,2,1,6,8,42,134,72,206,61,3,1,7,3,66,0,4,83,96,142,9,86,214,126,106,247,233,92,125,4,128,138,105,246,162,215,71,81,58,202,121,26,105,211,55,130,45,236,143,55,16,248,75,167,160,167,106,2,152,243,44,68,66,0,167,99,92,235,215,159,239,28,106,124,171,34,145,124,174,57,92]);
     let priKeyArray = new Uint8Array([48,49,2,1,1,4,32,115,56,137,35,207,0,60,191,90,61,136,105,210,16,27,4,171,57,10,61,123,40,189,28,34,207,236,22,45,223,10,189,160,10,6,8,42,134,72,206,61,3,1,7]);
     let pubKeyBlob = { data: pubKeyArray };
     let priKeyBlob = { data: priKeyArray };
-    let generator = cryptoFrameWork.createAsyKeyGenerator("ECC256");
+    let generator = cryptoFramework.createAsyKeyGenerator("ECC256");
     generator.convertKey(pubKeyBlob, priKeyBlob, (error, data) => {
         if (error) {
             AlertDialog.show({message : "Convert keypair fail"});
@@ -1128,83 +1130,70 @@ function signLongMessagePromise() {
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-// turn string into uint8Arr
+// 可理解的字符串转成字节流
 function stringToUint8Array(str) {
-  var arr = [];
-  for (var i = 0, j = str.length; i < j; ++i) {
-      arr.push(str.charCodeAt(i));
+  let arr = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
   }
-  var tmpUint8Array = new Uint8Array(arr);
-  return tmpUint8Array;
+  return new Uint8Array(arr);
 }
 
-// generate dataBlob with given length
-function GenDataBlob(dataBlobLen) {
-  var dataBlob;
-  if (dataBlobLen == 12) {
-      dataBlob = {data: stringToUint8Array("my test data")};
-  } else {
-      console.error("GenDataBlob: dataBlobLen is invalid");
-      dataBlob = {data: stringToUint8Array("my test data")};
-  }
-  return dataBlob;
-}
-
-// md with promise async
-function doMdByPromise(algName) {
-  var md;
+// 以Promise方式完成摘要
+function doMdByPromise() {
+  let mdAlgName = "SHA256"; // 摘要算法名
+  let message = "mdTestMessgae"; // 待摘要数据
+  let md;
+  let mdOutput;
   try {
-    md = cryptoFramework.createMd(algName);
+    md = cryptoFramework.createMd(mdAlgName);
   } catch (error) {
     console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
+    return;
   }
-  console.error("[Promise]: Md algName is: " + md.algName);
-  // 初次update
-  var promiseMdUpdate = md.update(GenDataBlob(12));
+  console.info("[Promise]: Md algName is: " + md.algName);
+  // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
+  let promiseMdUpdate = md.update({ data: stringToUint8Array(message) });
   promiseMdUpdate.then(() => {
-    // 可根据情况进行多次update
-    promiseMdUpdate = md.update(GenDataBlob(12));
-    return promiseMdUpdate;
-  }).then(mdOutput => {
-    var PromiseMdDigest = md.digest();
+    // 通过digest，返回摘要结果
+    let PromiseMdDigest = md.digest();
     return PromiseMdDigest;
-  }).then(mdOutput => {
-    console.error("[Promise]: MD result: " + mdOutput.data);
-    var mdLen = md.getMdLength();
-    console.error("[Promise]: MD len: " + mdLen);
+  }).then(digestOutput => {
+    mdOutput = digestOutput;
+    console.info("[Promise]: MD result: " + mdOutput.data);
+    let mdLen = md.getMdLength();
+    console.info("[Promise]: MD len: " + mdLen);
   }).catch(error => {
     console.error("[Promise]: error: " + error.message);
   });
 }
 
-// md with callback async
-function doMdByCallback(algName) {
-  var md;
+// 以Callback方式完成摘要
+function doMdByCallback() {
+  let mdAlgName = "SHA256"; // 摘要算法名
+  let message = "mdTestMessgae"; // 待摘要数据
+  let md;
+  let mdOutput;
   try {
-    md = cryptoFramework.createMd(algName);
+    md = cryptoFramework.createMd(mdAlgName);
   } catch (error) {
     console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);
   }
-  console.error("[Callback]: Md algName is: " + md.algName);
-  // 初次update
-  md.update(GenDataBlob(12), (err,) => {
+  console.info("[Callback]: Md algName is: " + md.algName);
+  // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
+  md.update({ data: stringToUint8Array(message) }, (err,) => {
     if (err) {
       console.error("[Callback]: err: " + err.code);
     }
-    // 可根据情况进行多次update
-    md.update(GenDataBlob(12), (err1,) => {
+    md.digest((err1, digestOutput) => {
       if (err1) {
         console.error("[Callback]: err: " + err1.code);
+      } else {
+        mdOutput = digestOutput;
+        console.info("[Callback]: MD result: " + mdOutput.data);
+        let mdLen = md.getMdLength();
+        console.info("[Callback]: MD len: " + mdLen);
       }
-      md.digest((err2, mdOutput) => {
-        if (err2) {
-          console.error("[Callback]: err: " + err2.code);
-        } else {
-          console.error("[Callback]: MD result: " + mdOutput.data);
-          var mdLen = md.getMdLength();
-          console.error("[Callback]: MD len: " + mdLen);
-        }
-      });
     });
   });
 }
@@ -1213,54 +1202,56 @@ function doMdByCallback(algName) {
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-async function updateData(index, obj, data) {
-  console.error("update " + (index + 1) + " MB data...");
-  return obj.update(data);
-}
-
+// 可理解的字符串转成字节流
 function stringToUint8Array(str) {
-  var arr = [];
-  for (var i = 0, j = str.length; i < j; ++i) {
+  let arr = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
   }
-  var tmpUint8Array = new Uint8Array(arr);
-  return tmpUint8Array;
+  return new Uint8Array(arr);
 }
 
-function GenDataBlob(dataBlobLen) {
-  var dataBlob;
-  if (dataBlobLen == 12) {
-    dataBlob = {data: stringToUint8Array("my test data")};
-  } else {
-    console.error("GenDataBlob: dataBlobLen is invalid");
-    dataBlob = {data: stringToUint8Array("my test data")};
-  }
-  return dataBlob;
-}
 
-function LoopMdPromise(algName, loopSize) {
-  var md;
+// 使用Promise方式，完成分段摘要
+async function doLoopMdPromise() {
+  let mdAlgName = "SHA256"; // 摘要算法名
+  let md;
+  let mdOutput;
   try {
-    md = cryptoFramework.createMd(algName);
+    md = cryptoFramework.createMd(mdAlgName);
   } catch (error) {
     console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
     return;
   }
-  console.error("[Promise]: Md algName is: " + md.algName);
-  var promiseMdUpdate = md.update(GenDataBlob(12));
-  promiseMdUpdate.then(() => {
-    var PromiseMdDigest = md.digest();
-    return PromiseMdDigest;
-  }).then(async () => {
-    for (var i = 0; i < loopSize; i++) {
-      await updateData(i, md, GenDataBlob(12));
+  console.info("[Promise]: Md algName is: " + md.algName);
+  let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee"; // 假设信息总共43字节
+  let messageArr = [];
+  let updateLength = 20; // 假设每20字节分段update一次，实际并无要求
+
+  for (let i = 0; i <= messageText.length; i++) {
+    if ((i % updateLength == 0 || i == messageText.length) && messageArr.length != 0) {
+      let message = new Uint8Array(messageArr);
+      let messageBlob = { data : message };
+      // 使用await处理for循环里的update
+      try {
+        await md.update(messageBlob); // 分段update
+      } catch (error) {
+        console.error("await update error code: " + error.code + ", message is: " + error.message);
+        return;
+      }
+      messageArr = [];
     }
-    var PromiseMdDigest = md.digest();
-    return PromiseMdDigest;
-  }).then(mdOutput => {
-    console.error("[Promise]: MD result: " + mdOutput.data);
-    var mdLen = md.getMdLength();
-    console.error("[Promise]: MD len: " + mdLen);
+    // 按分割长度，填充messageArr
+    if (i < messageText.length) {
+      messageArr.push(messageText.charCodeAt(i));
+    }
+  }
+  let PromiseMdDigest = md.digest();
+  PromiseMdDigest.then(digestOutput => {
+    mdOutput = digestOutput;
+    console.info("[Promise]: MD result: " + mdOutput.data);
+    let mdLen = md.getMdLength();
+    console.info("[Promise]: MD len: " + mdLen);
   }).catch(error => {
     console.error("[Promise]: error: " + error.message);
   });
@@ -1287,41 +1278,51 @@ function LoopMdPromise(algName, loopSize) {
 
 **开发步骤**
 
-1. 生成ECC密钥。通过createAsyKeyGenerator接口创建AsyKeyGenerator对象，并生成ECC非对称密钥。
-2. 基于ECC密钥的私钥及公钥执行ECDH操作。
+1. 通过createKeyAgreement接口创建KeyAgreement对象，用于后续的密钥协商操作。
+2. 调用KeyAgreement对象提供的generateSecret方法，传入对端的ECC公钥对象，以及本地生成的ECC私钥对象。
 
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-let globalKeyPair;
+let globalSelfPriKey;
+let globalPeerPubKey;
 
 function ecdhPromise() {
+  let peerPubKeyArray = new Uint8Array([48,89,48,19,6,7,42,134,72,206,61,2,1,6,8,42,134,72,206,61,3,1,7,3,66,0,4,83,96,142,9,86,214,126,106,247,233,92,125,4,128,138,105,246,162,215,71,81,58,202,121,26,105,211,55,130,45,236,143,55,16,248,75,167,160,167,106,2,152,243,44,68,66,0,167,99,92,235,215,159,239,28,106,124,171,34,145,124,174,57,92]);
+  let peerPubKeyBlob = { data: peerPubKeyArray };
   let eccGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
   let eccKeyAgreement = cryptoFramework.createKeyAgreement("ECC256");
-  let keyGenPromise = eccGenerator.generateKeyPair();
-  keyGenPromise.then( keyPair => {
-    globalKeyPair = keyPair;
-    return eccKeyAgreement.generateSecret(keyPair.priKey, keyPair.pubKey);
+  eccGenerator.convertKey(peerPubKeyBlob, null).then((peerKeyPair) => {
+    globalPeerPubKey = peerKeyPair.pubKey;
+    return eccGenerator.generateKeyPair();
+  }).then((keyPair) => {
+    globalSelfPriKey = keyPair.priKey;
+    return eccKeyAgreement.generateSecret(globalSelfPriKey, globalPeerPubKey);
   }).then((secret) => {
-    console.info("ecdh output is " + secret.data);
+    console.info("ecdh promise output is " + secret.data);
   }).catch((error) => {
     console.error("ecdh error.");
   });
 }
 
 function ecdhCallback() {
+  let peerPubKeyArray = new Uint8Array([48,89,48,19,6,7,42,134,72,206,61,2,1,6,8,42,134,72,206,61,3,1,7,3,66,0,4,83,96,142,9,86,214,126,106,247,233,92,125,4,128,138,105,246,162,215,71,81,58,202,121,26,105,211,55,130,45,236,143,55,16,248,75,167,160,167,106,2,152,243,44,68,66,0,167,99,92,235,215,159,239,28,106,124,171,34,145,124,174,57,92]);
+  let peerPubKeyBlob = { data: peerPubKeyArray };
   let eccGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
   let eccKeyAgreement = cryptoFramework.createKeyAgreement("ECC256");
-  eccGenerator.generateKeyPair(function (err, keyPair) {
-    globalKeyPair = keyPair;
-    eccKeyAgreement.generateSecret(keyPair.priKey, keyPair.pubKey, function (err, secret) {
-      if (err) {
-        console.error("ecdh error.");
-        return;
-      }
-      console.info("ecdh output is " + secret.data);
+  eccGenerator.convertKey(peerPubKeyBlob, null, function (err, peerKeyPair) {
+    globalPeerPubKey = peerKeyPair.pubKey;
+    eccGenerator.generateKeyPair(function (err, keyPair) {
+      globalSelfPriKey = keyPair.priKey;
+      eccKeyAgreement.generateSecret(globalSelfPriKey, globalPeerPubKey, function (err, secret) {
+        if (err) {
+          console.error("ecdh error.");
+          return;
+        }
+        console.info("ecdh callback output is " + secret.data);
+      });
     });
-  });
+  })
 }
 ```
 
@@ -1362,77 +1363,72 @@ Mac(message authentication code)可以对消息进行完整性校验，通过使
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-// turn string into uint8Arr
+// 可理解的字符串转成字节流
 function stringToUint8Array(str) {
-  var arr = [];
-  for (var i = 0, j = str.length; i < j; ++i) {
-      arr.push(str.charCodeAt(i));
+  let arr = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
+    arr.push(str.charCodeAt(i));
   }
-  var tmpUint8Array = new Uint8Array(arr);
-  return tmpUint8Array;
+  return new Uint8Array(arr);
 }
 
-// generate blob with this func
-function GenDataBlob(dataBlobLen) {
-  var dataBlob;
-  if (dataBlobLen == 12) {
-      dataBlob = {data: stringToUint8Array("my test data")};
-  } else {
-      console.error("GenDataBlob: dataBlobLen is invalid");
-      dataBlob = {data: stringToUint8Array("my test data")};
-  }
-  return dataBlob;
-}
-
-function doHmacByPromise(algName) {
-  var mac;
+// 以Promise方式完成HMAC
+function doHmacByPromise() {
+  let macAlgName = "SHA256"; // 摘要算法名
+  let message = "hmacTestMessgae"; // 待hmac数据
+  let macOutput;
+  let mac;
   try {
-    mac = cryptoFramework.createMac(algName);
+    mac = cryptoFramework.createMac(macAlgName);
   } catch (error) {
     console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
   }
-  console.error("[Promise]: Mac algName is: " + mac.algName);
-  var KeyBlob = {
+  console.info("[Promise]: Mac algName is: " + mac.algName);
+  let KeyBlob = {
+    // 128位密钥
     data : stringToUint8Array("12345678abcdefgh")
   }
-  var symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-  var promiseConvertKey = symKeyGenerator.convertKey(KeyBlob);
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
+  // 将二进制密钥转换为算法库密钥
+  let promiseConvertKey = symKeyGenerator.convertKey(KeyBlob);
   promiseConvertKey.then(symKey => {
-    var promiseMacInit = mac.init(symKey);
+    let promiseMacInit = mac.init(symKey);
     return promiseMacInit;
   }).then(() => {
-    // 初次update
-    var promiseMacUpdate = mac.update(GenDataBlob(12));
+    // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
+    let promiseMacUpdate = mac.update({ data: stringToUint8Array(message) });
     return promiseMacUpdate;
   }).then(() => {
-    // 可根据情况进行多次update
-    var promiseMacUpdate = mac.update(GenDataBlob(12));
-    return promiseMacUpdate;
-  }).then(() => {
-    var PromiseMacDoFinal = mac.doFinal();
+    let PromiseMacDoFinal = mac.doFinal();
     return PromiseMacDoFinal;
-  }).then(macOutput => {
-    console.error("[Promise]: HMAC result: " + macOutput.data);
-    var macLen = mac.getMacLength();
-    console.error("[Promise]: MAC len: " + macLen);
+  }).then(output => {
+    macOutput = output;
+    console.info("[Promise]: HMAC result: " + macOutput.data);
+    let macLen = mac.getMacLength();
+    console.info("[Promise]: MAC len: " + macLen);
   }).catch(error => {
     console.error("[Promise]: error: " + error.message);
   });
 }
 
-// process by callback
-function doHmacByCallback(algName) {
-  var mac;
+// 以Callback方式完成HMAC
+function doHmacByCallback() {
+  let macAlgName = "SHA256"; // 摘要算法名
+  let message = "hmacTestMessgae"; // 待hmac数据
+  let macOutput;
+  let mac;
   try {
-    mac = cryptoFramework.createMac(algName);
+    mac = cryptoFramework.createMac(macAlgName);
   } catch (error) {
-    AlertDialog.show({message: "[Callback]: error code: " + error.code + ", message is: " + error.message});
     console.error("[Callback]: error code: " + error.code + ", message is: " + error.message);
   }
-  var KeyBlob = {
+  console.info("[Promise]: Mac algName is: " + mac.algName);
+  let KeyBlob = {
+    // 128位密钥
     data : stringToUint8Array("12345678abcdefgh")
   }
-  var symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
+  // 将二进制密钥转换为算法库密钥
   symKeyGenerator.convertKey(KeyBlob, (err, symKey) => {
     if (err) {
       console.error("[Callback]: err: " + err.code);
@@ -1441,25 +1437,20 @@ function doHmacByCallback(algName) {
       if (err1) {
         console.error("[Callback]: err: " + err1.code);
       }
-      // 初次update
-      mac.update(GenDataBlob(12), (err2, ) => {
+      // 数据量较少时，可以只做一次update，将数据全部传入，接口未对入参长度做限制
+      mac.update({ data: stringToUint8Array(message) }, (err2, ) => {
         if (err2) {
           console.error("[Callback]: err: " + err2.code);
         }
-        // 可根据情况进行多次update
-        mac.update(GenDataBlob(12), (err3, ) => {
+        mac.doFinal((err3, output) => {
           if (err3) {
             console.error("[Callback]: err: " + err3.code);
+          } else {
+            macOutput = output;
+            console.info("[Callback]: HMAC result: " + macOutput.data);
+            let macLen = mac.getMacLength();
+            console.info("[Callback]: MAC len: " + macLen);
           }
-          mac.doFinal((err4, macOutput) => {
-            if (err4) {
-              console.error("[Callback]: err: " + err4.code);
-            } else {
-              console.error("[Callback]: HMAC result: " + macOutput.data);
-              var macLen = mac.getMacLength();
-              console.error("[Callback]: MAC len: " + macLen);
-            }
-          });
         });
       });
     });
@@ -1470,61 +1461,67 @@ function doHmacByCallback(algName) {
 ```javascript
 import cryptoFramework from "@ohos.security.cryptoFramework"
 
-async function updateData(index, obj, data) {
-  console.error("update " + (index + 1) + " MB data...");
-  return obj.update(data);
-}
-
 function stringToUint8Array(str) {
-  var arr = [];
-  for (var i = 0, j = str.length; i < j; ++i) {
+  let arr = [];
+  for (let i = 0, j = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
   }
-  var tmpUint8Array = new Uint8Array(arr);
-  return tmpUint8Array;
+  return new Uint8Array(arr);
 }
 
-function GenDataBlob(dataBlobLen) {
-  var dataBlob;
-  if (dataBlobLen == 12) {
-    dataBlob = {data: stringToUint8Array("my test data")};
-  } else {
-    console.error("GenDataBlob: dataBlobLen is invalid");
-    dataBlob = {data: stringToUint8Array("my test data")};
-  }
-  return dataBlob;
-}
-
-function LoopHmacPromise(algName, loopSize) {
-  var mac;
+function doLoopHmacPromise() {
+  let macAlgName = "SHA256"; // 摘要算法名
+  let macOutput;
+  let mac;
   try {
-    mac = cryptoFramework.createMac(algName);
+    mac = cryptoFramework.createMac(macAlgName);
   } catch (error) {
     console.error("[Promise]: error code: " + error.code + ", message is: " + error.message);
     return;
   }
-  console.error("[Promise]: Mac algName is: " + mac.algName);
-  var KeyBlob = {
+  console.info("[Promise]: Mac algName is: " + mac.algName);
+  let KeyBlob = {
+    // 128位密钥
     data : stringToUint8Array("12345678abcdefgh")
   }
-  var symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-  var promiseConvertKey = symKeyGenerator.convertKey(KeyBlob);
+  let messageText = "aaaaa.....bbbbb.....ccccc.....ddddd.....eee"; // 假设信息总共43字节
+  let updateLength = 20; // 假设每20字节分段update一次，实际并无要求
+  let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
+  // 将二进制密钥转换为算法库密钥
+  let promiseConvertKey = symKeyGenerator.convertKey(KeyBlob);
   promiseConvertKey.then(symKey => {
-    var promiseMacInit = mac.init(symKey);
+    let promiseMacInit = mac.init(symKey);
     return promiseMacInit;
   }).then(async () => {
-    for (var i = 0; i < loopSize; i++) {
-      await updateData(i, mac, GenDataBlob(12));
+    let promiseMacUpdate;
+    let messageArr = [];
+    for (let i = 0; i <= messageText.length; i++) {
+      if ((i % updateLength == 0 || i == messageText.length) && messageArr.length != 0) {
+        let message = new Uint8Array(messageArr);
+        let messageBlob = { data : message };
+        // 使用await处理for循环里的update
+        try {
+          promiseMacUpdate = await mac.update(messageBlob); // 分段update
+        } catch (error) {
+          console.error("await update error code: " + error.code + ", message is: " + error.message);
+          return;
+        }
+        messageArr = [];
+      }
+      // 按分割长度，填充messageArr
+      if (i < messageText.length) {
+        messageArr.push(messageText.charCodeAt(i));
+      }
     }
-    var promiseMacUpdate = mac.update(GenDataBlob(12));
     return promiseMacUpdate;
   }).then(() => {
-    var PromiseMacDoFinal = mac.doFinal();
+    let PromiseMacDoFinal = mac.doFinal();
     return PromiseMacDoFinal;
-  }).then(macOutput => {
-    console.error("[Promise]: HMAC result: " + macOutput.data);
-    var macLen = mac.getMacLength();
-    console.error("[Promise]: MAC len: " + macLen);
+  }).then(output => {
+    macOutput = output;
+    console.log("[Promise]: HMAC result: " + macOutput.data);
+    let macLen = mac.getMacLength();
+    console.log("[Promise]: MAC len: " + macLen);
   }).catch(error => {
     console.error("[Promise]: error: " + error.message);
   });

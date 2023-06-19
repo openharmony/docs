@@ -285,7 +285,7 @@ export default class EntryAbility extends UIAbility {
 
    > **说明：**
    >
-   > 虽然悬浮窗具备始终在前台显示的能力，但如果创建悬浮窗的应用任务被系统回收，仍然会导致悬浮窗从界面移除。如果想要保持悬浮窗口始终在前台显示，请申请[长时任务](../task-management/background-task-overview.md)。
+   > 虽然悬浮窗具备始终在前台显示的能力，但如果创建悬浮窗的应用任务被系统回收，仍然会导致悬浮窗从界面移除。如果想要保持悬浮窗口始终在前台显示，请申请[长时任务](../task-management/continuous-task-dev-guide.md)。
    
    ```json
    {
@@ -320,7 +320,6 @@ export default class EntryAbility extends UIAbility {
 
    ```ts
    import UIAbility from '@ohos.app.ability.UIAbility';
-   import ExtensionContext from '@ohos.app.ability.ServiceExtensionAbility';
    import window from '@ohos.window';
    
    export default class EntryAbility extends UIAbility {
@@ -382,4 +381,4 @@ export default class EntryAbility extends UIAbility {
 
 针对window开发（Stage模型），有以下相关实例可供参考：
 
-- [`Window`：窗口（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/Graphics/Window)
+- [`WindowManage`：窗口（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/WindowManagement/WindowManage)

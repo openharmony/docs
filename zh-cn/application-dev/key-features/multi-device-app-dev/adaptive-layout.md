@@ -190,7 +190,7 @@ struct FlexibleCapabilitySample2 {
 @Entry
 @Component
 struct EquipartitionCapabilitySample {
-  const list: number [] = [0, 1, 2, 3]
+  readonly list: number [] = [0, 1, 2, 3]
   @State rate: number = 0.6
 
   // 底部滑块，可以通过拖拽滑块改变容器尺寸
@@ -424,8 +424,8 @@ struct ScaleCapabilitySample {
         .border({ width: 2, color: "#66F1CCB8"})  // 边框，仅用于展示效果
       }
       .backgroundColor("#FFFFFF")
-      .height(this.sliderWidth)
-      .width(this.sliderHeight)
+      .height(this.sliderHeight)
+      .width(this.sliderWidth)
 
       this.slider()
     }.width('100%')
@@ -479,7 +479,7 @@ struct ScaleCapabilitySample {
 @Component
 struct ExtensionCapabilitySample1 {
   @State rate: number = 0.60
-  const appList: number [] = [0, 1, 2, 3, 4, 5, 6, 7]
+  readonly appList: number [] = [0, 1, 2, 3, 4, 5, 6, 7]
 
   // 底部滑块，可以通过拖拽滑块改变容器尺寸
   @Builder slider() {
@@ -709,7 +709,7 @@ struct HiddenCapabilitySample {
 @Component
 struct WrapCapabilitySample {
   @State rate: number = 0.7
-  const imageList: Resource [] = [
+  readonly imageList: Resource [] = [
     $r('app.media.flexWrap1'),
     $r('app.media.flexWrap2'),
     $r('app.media.flexWrap3'),

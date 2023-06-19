@@ -23,12 +23,11 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Name        | Type      | Mandatory       | Description                             |
 | ----------- | ---------- | ------| --------------------------------- |
 | type        | ButtonType | No   | Button type.<br>Default value: **ButtonType.Capsule**                          |
-| stateEffect | boolean    | No   |  Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**|
-
+| stateEffect | boolean    | No   | Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**<br>**NOTE**<br>When the pressed effect is enabled on the click of the button and the state style is set, the background color is aaplied based on the state style.|
 
 **API 2:** Button(label?: ResourceStr, options?: { type?: ButtonType, stateEffect?: boolean })
 
-  Creates a button component based on text content. In this case, the component cannot contain child components.
+Creates a button component based on text content. In this case, the component cannot contain child components.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
@@ -36,18 +35,19 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name    | Type                               | Mandatory  | Description         |
 | ------- | ----------------------------------- | ---- | ------------- |
-| label   | [ResourceStr](ts-types.md#resourcestr) | No   | Button text.      |
+| label   | [ResourceStr](ts-types.md#resourcestr) | No   | Button text.|
 | options | { type?: ButtonType, stateEffect?: boolean }   | No   | See parameters of API 1.|
 
-
 ## Attributes
+
+In addition to the [universal attributes](ts-universal-attributes-size.md), the following attributes are supported.
 
 | Name         | Type          | Description                               |
 | ----------- | ----------- | --------------------------------- |
 | type        | ButtonType  | Button type.<br>Default value: **ButtonType.Capsule**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | stateEffect | boolean     | Whether to enable the pressed effect on the click of the button. The value **false** means to disable the pressed effect.<br>Default value: **true**<br>Since API version 9, this API is supported in ArkTS widgets.|
 
-## ButtonType enums
+## ButtonType
 
 Since API version 9, this API is supported in ArkTS widgets.
 
@@ -58,13 +58,17 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Normal  | Normal button (without rounded corners by default).     |
 
 >  **NOTE**
->  - The rounded corner of a button is set by using [borderRadius](ts-universal-attributes-border.md), rather than by using the **border** API. Only a button-wide rounded corner setting is supported.
->  - For a button of the **Capsule** type, the **borderRadius** settings do not take effect, and its rounded corner is always half of the button height.
+>  - The rounded corner of a button is set by using [borderRadius](ts-universal-attributes-border.md), rather than by using the **border** API. Only a rounded corner whose parameter is [Length](ts-types.md#length) is supported.
+>  - For a button of the **Capsule** type, the **borderRadius** settings do not take effect, and the radius of its rounded corner is always half of the button height or width, whichever is smaller.
 >  - For a button of the **Circle** type, its radius is the value of **borderRadius** (if set) or the width or height (whichever is smaller).
 >  - The button text is set using the [text style attributes](ts-universal-attributes-text-style.md).
+>  - Before setting the [gradient color](ts-universal-attributes-gradient-color.md), you need to set [backgroundColor](ts-universal-attributes-background.md) to transparent.
 
 
+The [universal events](ts-universal-events-click.md) are supported.
 ## Example
+
+### Example 1
 
 ```ts
 // xxx.ets
@@ -75,7 +79,13 @@ struct ButtonExample {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
       Text('Normal button').fontSize(9).fontColor(0xCCCCCC)
       Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-        Button('OK', { type: ButtonType.Normal, stateEffect: true }).borderRadius(8).backgroundColor(0x317aff).width(90)
+        Button('OK', { type: ButtonType.Normal, stateEffect: true })
+          .borderRadius(8)
+          .backgroundColor(0x317aff)
+          .width(90)
+          .onClick(() => {
+            console.log('ButtonType.Normal')
+          })
         Button({ type: ButtonType.Normal, stateEffect: true }) {
           Row() {
             LoadingProgress().width(20).height(20).margin({ left: 12 }).color(0xFFFFFF)
@@ -117,3 +127,33 @@ struct ButtonExample {
 ```
 
 ![button](figures/button.gif)
+
+### Example 2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SwipeGestureExample {
+  @State count: number = 0
+
+  build() {
+    Column() {
+      Text(`${this.count}`)
+        .fontSize(30)
+        .onClick(() => {
+          this.count++
+        })
+      if (this.count <= 0) {
+        Button('count is negative').fontSize(30).height(50)
+      } else if (this.count % 2 === 0) {
+        Button('count is even').fontSize(30).height(50)
+      } else {
+        Button('count is odd').fontSize(30).height(50)
+      }
+    }.height('100%').width('100%').justifyContent(FlexAlign.Center)
+  }
+}
+```
+
+![ifButton](figures/ifButton.gif)

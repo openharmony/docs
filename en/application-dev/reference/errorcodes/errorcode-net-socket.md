@@ -1,5 +1,9 @@
 # Socket Error Codes
 
+> **NOTE**
+>
+> The following describes only the error codes specific to the **socket** module. For details about common error codes, see [Common Error Codes](errorcode-universal.md) file.
+
 ## 2301001 Operation Not Allowed
 
 **Error Message**

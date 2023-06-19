@@ -70,7 +70,7 @@ struct Index {
 ```
 
 
-When the launch type of a PageAbility is set to **standard** or when the PageAbility with the launch type set to **singleton** is started for the first time, you can use the **parameters** parameter in **want** to transfer the pages information and use the **startAbility()** method to start the PageAbility. For details about the launch type, see [PageAbility Launch Type](pageability-launch-type.md). The target PageAbility can use the **featureAbility.getWant()** method in **onCreate** to obtain the **want** parameter, and then call **router.push** to start a specified page.
+When a PageAbility in multiton mode is started or when the PageAbility in singleton mode is started for the first time, you can use the **parameters** parameter in **want** to transfer the pages information and use the **startAbility()** method to start the PageAbility. For details about the launch type, see [PageAbility Launch Type](pageability-launch-type.md). The target PageAbility can use the **featureAbility.getWant()** method in **onCreate** to obtain the **want** parameter, and then call **router.push** to start a specified page.
 
 
 When a user touches the button on the page of the caller PageAbility, the **startAbility()** method is called to start the target PageAbility. The **want** parameter in **startAbility()** carries the specified page information.
@@ -83,7 +83,7 @@ struct Index {
   @State message: string = 'Hello World'
 
   build() {
-    // ...
+    ...
     Button("startAbility")
       .onClick(() => {
         featureAbility.startAbility({
@@ -98,7 +98,7 @@ struct Index {
           console.info("startAbility failed errcode:" + err.code)
         })
       })
-    // ...
+    ...
     Button("page2")
       .onClick(() => {
         featureAbility.startAbility({
@@ -113,7 +113,7 @@ struct Index {
           console.info("startAbility failed errcode:" + err.code)
         })
       })
-    // ...
+    ...
   }
 }
 ```
@@ -136,7 +136,7 @@ export default {
     })
   },
   onDestroy() {
-    // ...
+    ...
   },
 }
 ```

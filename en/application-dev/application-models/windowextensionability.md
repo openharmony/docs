@@ -1,4 +1,5 @@
-# WindowExtensionAbility
+# WindowExtensionAbility (for System Applications Only)
+
 
 [WindowExtensionAbility](../reference/apis/js-apis-application-windowExtensionAbility.md) is a type of ExtensionAbility component that allows a system application to be embedded in and displayed over another application.
 
@@ -6,15 +7,14 @@
 The WindowExtensionAbility component must be used together with the [AbilityComponent](../reference/arkui-ts/ts-container-ability-component.md) to process services of the started application. WindowExtensionAbility is run in connection mode. A system application must use the AbilityComponent to start the WindowExtensionAbility component.
 
 Each ExtensionAbility has its own context. For WindowExtensionAbility,
-the context is [WindowExtensionContext](../reference/apis/js-apis-inner-application-windowExtensionContext.md).
+the context is [WindowExtensionContext](../reference/apis/js-apis-inner-application-windowExtensionContext.md).  
 
 > **NOTE**
 >
 > **WindowExtensionAbility** is a system API. To embed a third-party application in another application and display it over the application, switch to the full SDK by following the instructions provided in [Guide to Switching to Full SDK](../../application-dev/quick-start/full-sdk-switch-guide.md).
->
 
 
-## Setting an Embedded Ability (for System Applications Only)
+## Setting an Embedded UIAbility
 
 The **WindowExtensionAbility** class provides **onConnect()**, **onDisconnect()**, and **onWindowReady()** lifecycle callbacks, which can be overridden.
 
@@ -42,7 +42,7 @@ To implement an embedded application, manually create a WindowExtensionAbility i
         onWindowReady(window) {
             window.loadContent('WindowExtAbility/pages/index1').then(() => {
                 window.getProperties().then((pro) => {
-                    console.log("WindowExtension " + JSON.stringify(pro));
+                    console.info("WindowExtension " + JSON.stringify(pro));
                 })
                 window.show();
             })
@@ -58,7 +58,7 @@ To implement an embedded application, manually create a WindowExtensionAbility i
     }
    ```
 
-4. Register the WindowExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) corresponding to the **Module** project. Set **type** to **"window"** and **srcEntrance** to the code path of the ExtensionAbility component.
+4. Register the WindowExtensionAbility in the [module.json5 file](../quick-start/module-configuration-file.md) corresponding to the **Module** project. Set **type** to **"window"** and **srcEntry** to the code path of the ExtensionAbility component.
 
    ```json
    {
@@ -66,11 +66,11 @@ To implement an embedded application, manually create a WindowExtensionAbility i
        "extensionAbilities": [
             {
                 "name": "WindowExtAbility",
-                "srcEntrance": "./ets/WindowExtAbility/WindowExtAbility.ts",
+                "srcEntry": "./ets/WindowExtAbility/WindowExtAbility.ts",
                 "icon": "$media:icon",
                 "description": "WindowExtension",
                 "type": "window",
-                "visible": true,
+                "exported": true,
             }
         ],
      }
@@ -78,7 +78,7 @@ To implement an embedded application, manually create a WindowExtensionAbility i
    ```
 
 
-## Starting an Embedded Ability (for System Applications Only)
+## Starting an Embedded UIAbility
 
 System applications can load the created WindowExtensionAbility through the AbilityComponent.
 
@@ -110,3 +110,4 @@ System applications can load the created WindowExtensionAbility through the Abil
      }
    }
    ```
+

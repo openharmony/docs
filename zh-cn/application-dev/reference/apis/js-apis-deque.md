@@ -156,9 +156,8 @@ has(element: T): boolean
 
 ```ts
 let deque = new Deque();
-let result = deque.has("squirrel");
 deque.insertFront("squirrel");
-let result1 = deque.has("squirrel");
+let result = deque.has("squirrel");
 ```
 
 ### popFirst

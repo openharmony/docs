@@ -1,8 +1,6 @@
-# console (日志打印)
+# console （控制台）
 
-本模块提供基础的日志打印能力，支持按照日志级别打印日志信息。
-
-如果需要使用更高级的日志打印服务，比如按照指定标识筛选日志内容，推荐使用[`@ohos.hilog`](js-apis-hilog.md)。
+本模块提供了一个简单的调试控制台，类似于浏览器提供的JavaScript控制台机制。
 
 > **说明：**
 >
@@ -10,9 +8,11 @@
 
 ## console.debug
 
-debug(message: string): void
+debug(message: string, ...arguments: any[]): void
 
-打印debug级别的日志信息。
+以格式化输出方式打印调试信息。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -21,13 +21,27 @@ debug(message: string): void
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
 | message | string | 是    | 表示要打印的文本信息。 |
+| arguments | any[] | 否    | 表示其余要打印的信息或message的替换值。 |
 
+**示例：**
+
+```js
+const number = 5;
+console.debug('count: %d', number);  // 格式化输出替换message中的文本。
+// count: 5 
+console.debug('count:', number);  // 打印message以及其余信息
+// count: 5 
+console.debug('count:'); // 仅打印message
+// count: 
+```
 
 ## console.log
 
-log(message: string): void
+log(message: string, ...arguments: any[]): void
 
-打印debug级别的日志信息。
+以格式化输出方式打印日志信息。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -36,13 +50,27 @@ log(message: string): void
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
 | message | string | 是    | 表示要打印的文本信息。 |
+| arguments | any[] | 否    |表示其余要打印的信息或message的替换值。 |
 
+**示例：**
+
+```js
+const number = 5;
+console.log('count: %d', number);  // 格式化输出替换message中的文本。
+// count: 5 
+console.log('count:', number);  // 打印message以及其余信息
+// count: 5 
+console.log('count:'); // 仅打印message
+// count: 
+```
 
 ## console.info
 
-info(message: string): void
+info(message: string, ...arguments: any[]): void
 
-打印info级别的日志信息。
+以格式化输出方式打印日志信息。(console.log()的别名）。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -51,13 +79,27 @@ info(message: string): void
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
 | message | string | 是    | 表示要打印的文本信息。 |
+| arguments | any[] | 否    | 表示其余要打印的信息或message的替换值。 |
 
+**示例：**
+
+```js
+const number = 5;
+console.info('count: %d', number);  // 格式化输出替换message中的文本。
+// count: 5 
+console.info('count:', number);  // 打印message以及其余信息
+// count: 5 
+console.info('count:'); // 仅打印message
+// count: 
+```
 
 ## console.warn
 
-warn(message: string): void
+warn(message: string, ...arguments: any[]): void
 
-打印warn级别的日志信息。
+以格式化输出方式打印警告信息。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -65,14 +107,28 @@ warn(message: string): void
 
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
-| message | string | 是    | 表示要打印的文本信息。 |
+| message | string | 是    | 表示要打印的警告信息。 |
+| arguments | any[] | 否    | 表示其余要打印的信息或message的替换值。 |
 
+**示例：**
+
+```js
+const str = "name should be string";
+console.warn('warn: %d', str);  // 格式化输出替换message中的文本。
+// warn: name should be string
+console.warn('warn:', str);  // 打印message以及其余信息
+// warn: name should be string
+console.warn('warn:'); // 仅打印message
+// warn: 
+```
 
 ## console.error
 
-error(message: string): void
+error(message: string, ...arguments: any[]): void
 
-打印error级别的日志信息。
+以格式化输出方式打印错误信息。
+
+从API version 9开始，该接口支持在ArkTS卡片中使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -80,22 +136,19 @@ error(message: string): void
 
 | 参数名     | 类型     | 必填   | 说明          |
 | ------- | ------ | ---- | ----------- |
-| message | string | 是    | 表示要打印的文本信息。 |
+| message | string | 是    | 表示要打印的错误信息。 |
+| arguments | any[] | 否    | 表示其余要打印的信息或message的替换值。 |
 
 
-## 示例
+**示例：**
 
+```js
+const str = "value is not defined";
+console.error('error: %d', str);  // 格式化输出替换message中的文本。
+// error: value is not defined
+console.error('error:', str);  // 打印message以及其余信息
+// error: value is not defined
+console.error('error:'); // 仅打印message
+// error: 
 ```
-export default {    
-  clickConsole(){        
-    var versionCode = 1;        
-    console.info('Hello World. The current version code is ' + versionCode);        
-    console.log(`versionCode: ${versionCode}`);        
-    // 以下写法从API Version 6开始支持console.log('versionCode:%d.', versionCode);    
-  }
-}
-```
 
-在DevEco Studio的底部，切换到“HiLog”窗口。选择当前的设备及进程，日志级别选择Info，搜索内容设置为“Hello World”。此时窗口仅显示符合条件的日志，效果如图所示：
-
-![zh-cn_image_0000001200913929](figures/zh-cn_image_0000001200913929.png)

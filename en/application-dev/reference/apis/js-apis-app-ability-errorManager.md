@@ -26,6 +26,14 @@ Registers an error observer.
 | type | string | Yes| Type of the API to call.|
 | observer | [ErrorObserver](./js-apis-inner-application-errorObserver.md) | Yes| Digital code of the observer.|
 
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000003 | Id does not exist. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
 **Example**
     
 ```js
@@ -56,6 +64,14 @@ Deregisters an error observer. This API uses an asynchronous callback to return 
 | type | string | Yes| Type of the API to call.|
 | observerId | number | Yes| Digital code of the observer.|
 | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000003 | Id does not exist. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
     
@@ -94,6 +110,14 @@ Deregisters an error observer. This API uses a promise to return the result.
 | Type| Description|
 | -------- | -------- |
 | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 16000003 | Id does not exist. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
     

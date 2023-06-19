@@ -1,29 +1,36 @@
 # Network Sharing
 
 ## Introduction
+
 The Network Sharing module allows you to share your device's Internet connection with other connected devices by means of Wi-Fi hotspot, Bluetooth, and USB sharing. It also allows you to query the network sharing state and shared mobile data volume.
 
-> **NOTE**
+> **Note:**
 > To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the callback mode. For details about the APIs, see [sms API Reference](../reference/apis/js-apis-net-sharing.md).
 
 ## Basic Concepts
--   Wi-Fi sharing: Shares the network through a Wi-Fi hotspot.
--   Bluetooth sharing: Shares the network through Bluetooth.
--   USB tethering: Shares the network using a USB flash drive.
+
+- Wi-Fi sharing: Shares the network through a Wi-Fi hotspot.
+- Bluetooth sharing: Shares the network through Bluetooth.
+- USB tethering: Shares the network using a USB flash drive.
 
 ## **Constraints**
--   Programming language: C++ and JS
--   System: Linux kernel
--   The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
+- Programming language: C++ and JS
+- System: Linux kernel
+- The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## When to Use
+
 Typical network sharing scenarios are as follows:
--   Enabling network sharing
--   Disabling network sharing
--   Obtaining the data traffic of the shared network
+
+- Enabling Network Sharing
+- Disabling network sharing
+- Obtaining the data traffic of the shared network
 
 The following describes the development procedure specific to each application scenario.
+
 ## Available APIs
+
 For the complete list of APIs and example code, see [Network Sharing](../reference/apis/js-apis-net-sharing.md).
 
 | Type| API| Description|
@@ -53,19 +60,19 @@ For the complete list of APIs and example code, see [Network Sharing](../referen
 4. Return the callback for successfully starting network sharing.
 
 ```js
-   // Import the sharing namespace from @ohos.net.sharing.
-   import sharing from '@ohos.net.sharing'
+// Import the sharing namespace from @ohos.net.sharing.
+import sharing from '@ohos.net.sharing'
 
-   // Subscribe to network sharing state changes.
-   sharing.on('sharingStateChange', (error, data) => {
-       console.log(JSON.stringify(error));
-       console.log(JSON.stringify(data));
-   });
+// Subscribe to network sharing state changes.
+sharing.on('sharingStateChange', (error, data) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
+});
 
-   // Call startSharing to start network sharing of the specified type.
-   sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
-       console.log(JSON.stringify(error));
-   });
+// Call startSharing to start network sharing of the specified type.
+sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## Disabling network sharing
@@ -78,19 +85,19 @@ For the complete list of APIs and example code, see [Network Sharing](../referen
 4. Return the callback for successfully stopping network sharing.
 
 ```js
-   // Import the sharing namespace from @ohos.net.sharing.
-   import sharing from '@ohos.net.sharing'
+// Import the sharing namespace from @ohos.net.sharing.
+import sharing from '@ohos.net.sharing'
 
-   // Subscribe to network sharing state changes.
-   sharing.on('sharingStateChange', (error, data) => {
-       console.log(JSON.stringify(error));
-       console.log(JSON.stringify(data));
-   });
+// Subscribe to network sharing state changes.
+sharing.on('sharingStateChange', (error, data) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
+});
 
-   // Call stopSharing to stop network sharing of the specified type.
-   sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
-       console.log(JSON.stringify(error));
-   });
+// Call stopSharing to stop network sharing of the specified type.
+sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## Obtaining the data traffic of the shared network
@@ -103,28 +110,28 @@ For the complete list of APIs and example code, see [Network Sharing](../referen
 4. Call **stopSharing** to stop network sharing of the specified type and clear the data volume of network sharing.
 
 ```js
-   // Import the sharing namespace from @ohos.net.sharing.
-   import sharing from '@ohos.net.sharing'
+// Import the sharing namespace from @ohos.net.sharing.
+import sharing from '@ohos.net.sharing'
 
-   // Call startSharing to start network sharing of the specified type.
-   sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
-       console.log(JSON.stringify(error));
-   });
+// Call startSharing to start network sharing of the specified type.
+sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
+  console.log(JSON.stringify(error));
+});
 
-   // Call getStatsTotalBytes to obtain the data traffic generated during data sharing.
-   sharing.getStatsTotalBytes((error, data) => {
-       console.log(JSON.stringify(error));
-       console.log(JSON.stringify(data));
-   });
+// Call getStatsTotalBytes to obtain the data traffic generated during data sharing.
+sharing.getStatsTotalBytes((error, data) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
+});
 
-   // Call stopSharing to stop network sharing of the specified type and clear the data volume of network sharing.
-   sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
-       console.log(JSON.stringify(error));
-   });
+// Call stopSharing to stop network sharing of the specified type and clear the data volume of network sharing.
+sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
+  console.log(JSON.stringify(error));
+});
 
-   // Call getStatsTotalBytes again. The data volume of network sharing has been cleared.
-   sharing.getStatsTotalBytes((error, data) => {
-       console.log(JSON.stringify(error));
-       console.log(JSON.stringify(data));
-   });
+// Call getStatsTotalBytes again. The data volume of network sharing has been cleared.
+sharing.getStatsTotalBytes((error, data) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
+});
 ```

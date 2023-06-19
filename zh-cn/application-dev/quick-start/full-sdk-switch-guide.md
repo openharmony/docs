@@ -1,4 +1,4 @@
-# full-SDK替换指南
+# 如何替换full-SDK
 
 **public-SDK**是提供给应用开发的工具包，跟随DevEco Studio下载，不包含系统应用所需要的高权限API
 

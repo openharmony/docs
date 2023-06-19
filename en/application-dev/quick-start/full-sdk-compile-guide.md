@@ -1,4 +1,4 @@
-# Full SDK Compilation Guide
+# Full SDK Compilation
 
 The full SDK provides a full set of APIs available in OpenHarmony, including system APIs required by system applications. Vendors can leverage this SDK to develop applications.
 
@@ -26,4 +26,4 @@ If the compilation is successful, export the files in the **out/sdk/packages/oho
 
 ## Replacing the SDK
 
-After the full SDK is compiled, switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](../../application-dev/quick-start/full-sdk-switch-guide.md).
+After the full SDK is compiled, switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](full-sdk-switch-guide.md).

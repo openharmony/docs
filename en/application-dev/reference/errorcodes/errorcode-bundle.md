@@ -1,5 +1,9 @@
 #  Bundle Error Codes
 
+> **NOTE**
+>
+> This topic describes only module-specific error codes. For details about universal error codes, see [Universal Error Codes](errorcode-universal.md).
+
 ## 17700001 Bundle Name Does Not Exist
 
 **Error Message**

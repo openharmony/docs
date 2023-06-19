@@ -54,8 +54,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## TouchType
 
-Since API version 9, this API is supported in ArkTS widgets.
-
 | Name  | Description                          |
 | ------ | ------------------------------ |
 | Down   | A finger is pressed.              |
@@ -64,8 +62,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Cancel | A touch event is canceled.          |
 
 ## MouseButton
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 | Name   | Description            |
 | ------- | ---------------- |
@@ -77,8 +73,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 | None    | No button.        |
 
 ## MouseAction
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 | Name   | Description          |
 | ------- | -------------- |
@@ -109,9 +103,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## AnimationStatus
 
-Since API version 9, this API is supported in ArkTS widgets.
-
-| Name   | Description              |
+| Name    | Description               |
 | ------- | ------------------ |
 | Initial | The animation is in the initial state.    |
 | Running | The animation is being played.|
@@ -120,9 +112,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## FillMode
 
-Since API version 9, this API is supported in ArkTS widgets.
-
-| Name     | Description                                                        |
+| Name      | Description                                                         |
 | --------- | ------------------------------------------------------------ |
 | None      | Before execution, the animation does not apply any styles to the target component. After execution, the animation restores the target component to its default state.|
 | Forwards  | The target component retains the state set by the last keyframe encountered during execution of the animation.                |
@@ -142,16 +132,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## KeyType
 
-Since API version 9, this API is supported in ArkTS widgets.
-
 | Name| Description      |
 | ---- | ---------- |
 | Down | The key is pressed.|
 | Up   | The key is released.|
 
 ## KeySource
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 | Name    | Description                |
 | -------- | -------------------- |
@@ -171,8 +157,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 | End      | End position in the horizontal direction.<br>Since API version 9, this API is supported in ArkTS widgets.|
 
 ## Week
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 | Name    | Description                  |
 | -------- | ---------------------- |
@@ -237,12 +221,10 @@ Since API version 9, this API is supported in ArkTS widgets.
 | Name  | Description                                              |
 | ------ | -------------------------------------------------- |
 | All    | The transition takes effect in all scenarios.|
-| Insert | The transition takes effect when a component is inserted.    |
-| Delete | The transition takes effect when a component is deleted.    |
+| Insert | The transition takes effect when a component is inserted or displayed.|
+| Delete | The transition takes effect when a component is deleted or hidden.|
 
 ## RelateType
-
-Since API version 9, this API is supported in ArkTS widgets.
 
 | Name  | Description                             |
 | ------ | ------------------------------- |
@@ -307,12 +289,12 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name    | Description                                                        |
 | -------- | ------------------------------------------------------------ |
-| Auto     | The default configuration in the flex container is used.                                    |
-| Start    | The elements are in the flex container, top-aligned in the cross-axis direction.                      |
-| Center   | The elements are in the flex container, centered in the cross-axis direction.                      |
-| End      | The elements are in the flex container, bottom-aligned in the cross-axis direction.                      |
-| Stretch  | The elements are in the flex container, stretched and padded in the cross-axis direction. If the size is not set, the elements are stretched to the container size.|
-| Baseline | The elements are in the flex container, text baseline aligned in the cross-axis direction.                  |
+| Auto     | The default configuration of the flex container is used.                                    |
+| Start    | The items in the flex container are aligned with the cross-start edge.                      |
+| Center   | The items in the flex container are centered along the cross axis.                      |
+| End      | The items in the flex container are aligned with the cross-end edge.                      |
+| Stretch  | The items in the flex container are stretched and padded along the cross axis. If the flex container has the **Wrap** attribute set to **FlexWrap.Wrap** or **FlexWrap.WrapReverse**, the items are stretched to the cross size of the widest element on the current row or column. In other cases, the items with no size set are stretched to the container size.|
+| Baseline | The items in the flex container are aligned in such a manner that their text baselines are aligned along the cross axis.                  |
 
 ## FlexDirection
 
@@ -384,8 +366,6 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## SharedTransitionEffectType
 
-Since API version 9, this API is supported in ArkTS widgets.
-
 | Name       | Description      |
 | ----------- | ---------- |
 | Static        | The element position remains unchanged on the target page, and transition opacity can be configured. Currently, this effect is only valid in redirecting to the target page.|
@@ -417,21 +397,21 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 Since API version 9, this API is supported in ArkTS widgets.
 
-| Name  | Description          |
-| ------ | -------------- |
-| Start  | Aligned with the start.|
-| Center | Horizontally centered.|
-| End    | Aligned with the end.|
+| Name                 | Description          |
+| --------------------- | -------------- |
+| Start                 | Aligned with the start.|
+| Center                | Horizontally centered.|
+| End                   | Aligned with the end.|
 
 ## TextOverflow
 
 Since API version 9, this API is supported in ArkTS widgets.
 
-| Name    | Description                                  |
-| -------- | -------------------------------------- |
-| Clip     | Extra-long text is clipped.              |
-| Ellipsis | An ellipsis (...) is used to represent clipped text.|
-| None     | No clipping or ellipsis is used for extra-long text.                |
+| Name                 | Description                                  |
+| --------------------- | -------------------------------------- |
+| Clip                  | Extra-long text is clipped.              |
+| Ellipsis              | An ellipsis (...) is used to represent text overflow.|
+| None | No clipping or ellipsis is used for text overflow. |
 
 ## TextDecorationType
 
@@ -456,18 +436,14 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## ResponseType<sup>8+</sup>
 
-Since API version 9, this API is supported in ArkTS widgets.
-
-| Name      | Description                      |
+| Name       | Description                     |
 | ---------- | -------------------------- |
 | LongPress  | The menu is displayed when the component is long-pressed.    |
 | RightClick | The menu is displayed when the component is right-clicked.|
 
 ## HoverEffect<sup>8+</sup>
 
-Since API version 9, this API is supported in ArkTS widgets.
-
-| Name     | Description                        |
+| Name      | Description                         |
 | --------- | ---------------------------- |
 | Auto      | Default hover effect.|
 | Scale     | Scale effect.              |
@@ -476,9 +452,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## Placement<sup>8+</sup>
 
-Since API version 9, this API is supported in ArkTS widgets.
-
-| Name         | Description                                                        |
+| Name          | Description                                                         |
 | ------------- | ------------------------------------------------------------ |
 | Left          | The popup is on the left of the component, vertically aligned with the component on the left.                  |
 | Right         | The popup is on the right of the component, vertically aligned with the component on the right.                  |
@@ -505,9 +479,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 ## HitTestMode<sup>9+</sup>
 
-Since API version 9, this API is supported in ArkTS widgets.
-
-| Name       | Description                |
+| Name        | Description                 |
 | ----------- | -------------------- |
 | Default     | Both the node and its child node respond to the hit test of a touch event, but its sibling node is blocked from the hit test.  |
 | Block       | The node responds to the hit test of a touch event, but its child node and sibling node are blocked from the hit test.       |

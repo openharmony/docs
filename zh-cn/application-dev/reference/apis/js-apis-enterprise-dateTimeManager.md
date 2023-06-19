@@ -16,7 +16,7 @@ import dateTimeManager from '@ohos.enterprise.dateTimeManager'
 
 setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
-设置系统时间。使用callback异步回调。
+指定设备管理员应用设置系统时间。使用callback形式返回设置结果。 
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -30,7 +30,7 @@ setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | 是    | 设备管理员应用。 |
 | time  | number | 是 | 时间戳(ms)。 |
-| callback | AsyncCallback\<void> | 是 | 回调函数。当系统时间设置成功err为null，否则为错误对象。 |
+| callback | AsyncCallback\<void> | 是 | 回调函数。当接口调用成功，err为null，否则为错误对象。 |
 
 **错误码**：
 
@@ -59,7 +59,7 @@ dateTimeManager.setDateTime(wantTemp, 1526003846000, (error) => {
 
 setDateTime(admin: Want, time: number): Promise\<void>
 
-设置系统时间。使用Promise异步回调。
+指定设备管理员应用设置系统时间。使用Promise形式返回设置结果。
 
 **需要权限：** ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -78,7 +78,7 @@ setDateTime(admin: Want, time: number): Promise\<void>
 
 | 类型   | 说明                                  |
 | ----- | ----------------------------------- |
-| Promise\<void> | Promise对象。无返回结果的Promise对象。 |
+| Promise\<void> | 无返回结果的Promise对象。当指定设备管理员应用设置系统时间失败时会抛出错误对象。 |
 
 **错误码**：
 

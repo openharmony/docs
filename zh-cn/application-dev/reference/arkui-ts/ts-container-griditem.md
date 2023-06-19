@@ -28,6 +28,22 @@ GridItem()
 | forceRebuild<sup>(deprecated)</sup> | boolean | 设置在触发组件build时是否重新创建此节点。<br/>从API version9开始废弃。GridItem会根据自身属性和子组件变化自行决定是否需要重新创建，无需设置。<br/>默认值：false |
 | selectable<sup>8+</sup> | boolean | 当前GridItem元素是否可以被鼠标框选。<br/>>&nbsp;&nbsp;**说明：**<br/>>&nbsp;外层Grid容器的鼠标框选开启时，GridItem的框选才生效。<br/>默认值：true |
 
+>  **说明：**
+>
+>  起始行号、终点行号、起始列号、终点列号生效规则如下：
+>
+>  rowStart/rowEnd合理取值范围为0~总行数-1，columnStart/columnEnd合理取值范围为0~总列数-1。
+>
+>  只有在设置columnTemplate和rowTemplate的Grid中，设置合理的rowStart/rowEnd/columnStart/columnEnd四个属性的GridItem才能按照指定的行列号布局。
+>
+>  在设置columnTemplate和rowTemplate的Grid中，单独设置行号rowStart/rowEnd或列号columnStart/columnEnd的GridItem会占用指定的行数(rowEnd-rowStart+1)或列数(columnEnd-columnStart+1)。
+>
+>  在只设置columnTemplate的Grid中设置列号columnStart/columnEnd的GridItem按照指定的列数布局。
+>
+>  在只设置rowTemplate的Grid中设置行号rowStart/rowEnd的GridItem按照指定的行数布局。
+>
+>  columnTemplate和rowTemplate都不设置的Grid中GridItem的行列号属性无效。
+
 
 ## 事件
 
@@ -57,7 +73,7 @@ struct GridItemExample {
             .width('100%')
             .height('100%')
             .textAlign(TextAlign.Center)
-        }.rowStart(1).rowEnd(4)
+        }.rowStart(1).rowEnd(2).columnStart(1).columnEnd(2) // 同时设置合理的行列号
 
         ForEach(this.numbers, (item) => {
           GridItem() {
@@ -77,7 +93,7 @@ struct GridItemExample {
             .width('100%')
             .height('100%')
             .textAlign(TextAlign.Center)
-        }.columnStart(1).columnEnd(5)
+        }.columnStart(1).columnEnd(4) // 只设置列号，不会从第1列开始布局
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
       .rowsTemplate('1fr 1fr 1fr 1fr 1fr')

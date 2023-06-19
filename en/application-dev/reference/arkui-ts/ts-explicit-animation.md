@@ -42,7 +42,7 @@ struct AnimateToExample {
 
   build() {
     Column() {
-      Button('change width and height')
+      Button('change size')
         .width(this.widthSize)
         .height(this.heightSize)
         .margin(30)
@@ -57,8 +57,8 @@ struct AnimateToExample {
                 console.info('play end')
               }
             }, () => {
-              this.widthSize = 100
-              this.heightSize = 50
+              this.widthSize = 150
+              this.heightSize = 60
             })
           } else {
             animateTo({}, () => {
@@ -77,7 +77,7 @@ struct AnimateToExample {
             curve: Curve.Friction,
             delay: 500,
             iterations: -1, // The value -1 indicates that the animation is played for an unlimited number of times.
-            playMode: PlayMode.AlternateReverse,
+            playMode: PlayMode.Alternate,
             onFinish: () => {
               console.info('play end')
             }
@@ -90,10 +90,4 @@ struct AnimateToExample {
 }
 ```
 
-The figure below shows two buttons in their initial state.
-
-![animation](figures/animation.PNG)
-
-Clicking the first button plays the animation of resizing the button, and clicking the second button plays the animation of rotating the button clockwise by 90 degrees. The figure below shows the two buttons when the animations have finished.
-
-![animation1](figures/animation1.PNG)
+![animation1](figures/animation1.gif)

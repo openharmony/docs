@@ -1,6 +1,6 @@
-# @ohos.enterprise.dateTimeManager
+# @ohos.enterprise.dateTimeManager (System Time Management)
 
-The **dateTimeManager** module provides APIs for system time management, which can only be called by device administrator applications.
+The **dateTimeManager** module provides APIs for system time management. Only the enterprise device administrator applications can call the APIs provided by this module.
 
 > **NOTE**
 > 
@@ -16,7 +16,7 @@ import dateTimeManager from '@ohos.enterprise.dateTimeManager'
 
 setDateTime(admin: Want, time: number, callback: AsyncCallback\<void>): void
 
-Sets the system time. This API uses an asynchronous callback to return the result.
+Configures a device administrator application to set the system time. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -30,11 +30,11 @@ Sets the system time. This API uses an asynchronous callback to return the resul
 | ----- | ----------------------------------- | ---- | ------- |
 | admin | [Want](js-apis-app-ability-want.md) | Yes   | Device administrator application.|
 | time  | number | Yes| Timestamp (ms).|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the setting is successful, **err** is **null**. Otherwise, **err** is an error object.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result. If the operation is successful, **err** is **null**. Otherwise, **err** is an error object.|
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                                     |
 | ------- | ---------------------------------------------------------------------------- |
@@ -59,7 +59,7 @@ dateTimeManager.setDateTime(wantTemp, 1526003846000, (error) => {
 
 setDateTime(admin: Want, time: number): Promise\<void>
 
-Sets the system time. This API uses a promise to return the result.
+Configures a device administrator application to set the system time. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_DATETIME
 
@@ -82,7 +82,7 @@ Sets the system time. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
+For details about the error codes, see [Enterprise Device Management Error Codes](../errorcodes/errorcode-enterpriseDeviceManager.md).
 
 | ID| Error Message                                                                     |
 | ------- | ---------------------------------------------------------------------------- |

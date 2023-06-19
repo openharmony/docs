@@ -96,7 +96,7 @@ Connects to this tag. Call this API to set up a connection before reading data f
 
 For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
 
-| ID| Error message|
+| ID| Error Message|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
@@ -154,7 +154,7 @@ Resets the connection to this tag.
 
 For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
 
-| ID| Error message|
+| ID| Error Message|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
@@ -183,8 +183,6 @@ Checks whether the tag is connected.
 > **NOTE**
 > This API is supported since API version 7 and deprecated since API version 9. You are advised to use [tagSession.isConnected](#tagsessionisconnected9).
 
-**Required permissions**: ohos.permission.NFC_TAG
-
 **System capability**: SystemCapability.Communication.NFC.Tag
 
 **Return value**
@@ -210,8 +208,6 @@ console.log("isTagConnected: " + isTagConnected);
 isConnected(): boolean
 
 Checks whether the tag is connected.
-
-**Required permissions**: ohos.permission.NFC_TAG
 
 **System capability**: SystemCapability.Communication.NFC.Tag
 
@@ -287,7 +283,7 @@ Obtains the maximum length of the data that can be sent to this tag.
 
 For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
 
-| ID| Error message|
+| ID| Error Message|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
@@ -357,7 +353,7 @@ Obtains the timeout period for sending data to this tag, in milliseconds.
 
 For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
 
-| ID| Error message|
+| ID| Error Message|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
@@ -419,7 +415,7 @@ console.log("tag setSendDataTimeout setStatus: " + setStatus);
 
 setTimeout(timeout: number): void
 
-Obtains the timeout period for sending data to this tag, in milliseconds.
+Sets the timeout period for sending data to this tag, in milliseconds.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -435,7 +431,7 @@ Obtains the timeout period for sending data to this tag, in milliseconds.
 
 For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
 
-| ID| Error message|
+| ID| Error Message|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
@@ -555,7 +551,7 @@ tag.getIsoDep(tagInfo).sendData(cmdData, (err, response)=> {
 
 transmit(data: number[]): Promise<number[]>
 
-Sends data to this tag. This API uses a promise to return the result.
+Transmits data to this tag. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -565,7 +561,7 @@ Sends data to this tag. This API uses a promise to return the result.
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| data | number[] | Yes| Data to send. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
+| data | number[] | Yes| Data to transmit. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**. |
 
 **Return value**
 
@@ -577,7 +573,7 @@ Sends data to this tag. This API uses a promise to return the result.
 
 For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
 
-| ID| Error message|
+| ID| Error Message|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 
@@ -616,7 +612,7 @@ try {
 
 transmit(data: number[], callback: AsyncCallback<number[]>): void
 
-Sends data to this tag. This API uses an asynchronous callback to return the result.
+Transmits data to this tag. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.NFC_TAG
 
@@ -626,14 +622,14 @@ Sends data to this tag. This API uses an asynchronous callback to return the res
 
 | Name  | Type                   | Mandatory| Description                                  |
 | -------- | ----------------------- | ---- | -------------------------------------- |
-| data | number[] | Yes| Data to send. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
+| data | number[] | Yes| Data to transmit. The data consists of hexadecimal numbers ranging from **0x00** to **0xFF**. |
 | callback | AsyncCallback<number[]> | Yes| Callback invoked to return the response from the tag. The response consists of hexadecimal numbers ranging from **0x00** to **0xFF**.|
 
 **Error codes**
 
 For details about the error codes, see [NFC Error Codes](../errorcodes/errorcode-nfc.md).
 
-| ID| Error message|
+| ID| Error Message|
 | ------- | -------|
 | 3100201 | Tag running state is abnormal in service. |
 

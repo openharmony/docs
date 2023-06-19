@@ -12,7 +12,7 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
 
 1. In the **ets** directory of the **Module** project, right-click and choose **New > Directory** to create a directory named **myabilitystage**.
 
-2. In the **myabilitystage** directory, right-click and choose **New > ts File** to create a file named **MyAbilityStage.ts**.
+2. In the **myabilitystage** directory, right-click and choose **New > TypeScript File** to create a file named **MyAbilityStage.ts**.
 
 3. Open the **MyAbilityStage.ts** file, and import the dependency package of AbilityStage. Customize a class that inherits from AbilityStage, and add the required lifecycle callbacks. The following code snippet adds the **onCreate()** lifecycle callback.
    
@@ -20,16 +20,27 @@ AbilityStage is not automatically generated in the default project of DevEco Stu
    import AbilityStage from '@ohos.app.ability.AbilityStage';
    
    export default class MyAbilityStage extends AbilityStage {
-       onCreate() {
-           // When the HAP of the application is loaded for the first time, initialize the module.
-       }
-       onAcceptWant(want) {
-           // Triggered only for the ability with the specified launch type.
-           return "MyAbilityStage";
-       }
+     onCreate() {
+       // When the HAP of the application is loaded for the first time, initialize the module.
+     }
+     onAcceptWant(want) {
+       // Triggered only for the UIAbility with the specified launch type.
+       return "MyAbilityStage";
+     }
    }
    ```
-
+   
+4. In the [module.json5 file](../quick-start/module-configuration-file.md), set **srcEntry** to specify the code path of the module as the entry for loading the HAP.
+   ```json
+   {
+     "module": {
+       "name": "entry",
+       "type": "entry",
+       "srcEntry": "./ets/myabilitystage/MyAbilityStage.ts",
+       ...
+     }
+   }
+   ```
 
 [AbilityStage](../reference/apis/js-apis-app-ability-abilityStage.md) has the lifecycle callback [onCreate()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageoncreate) and the event callbacks [onAcceptWant()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonacceptwant), [onConfigurationUpdated()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonconfigurationupdate), and [onMemoryLevel()](../reference/apis/js-apis-app-ability-abilityStage.md#abilitystageonmemorylevel).
 
@@ -49,9 +60,8 @@ When an application is switched to the background, it is cached in the backgroun
   import AbilityStage from '@ohos.app.ability.AbilityStage';
   
   export default class MyAbilityStage extends AbilityStage {
-      onMemoryLevel(level) {
-          // Release unnecessary memory based on the change of available system memory.
-      }
+    onMemoryLevel(level) {
+      // Release unnecessary memory based on the change of available system memory.
+    }
   }
   ```
-

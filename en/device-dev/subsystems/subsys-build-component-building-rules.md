@@ -69,7 +69,7 @@ The names of variables and build targets in build scripts, templates, gni files,
 - The component name cannot exceed 63 valid characters.
 - The component name consists of lowercase letters and underscores (_), for example, **unix_like**.
 
-> **Exception**: Third-party open-source software can use the native naming format, for example, **cJson**.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **Exception**: Third-party open-source software can use the native naming format, for example, **cJson**.
 
 ### Rule 1.2 Name features in the *component name*_*feature name* format.
 
@@ -86,7 +86,7 @@ declare_args() {
 
 Guarding method: prebuild check
 
-### Suggestion 1.1: Name build targets in the *component name*_*module name* format.
+### Suggestion 1.1: Name the build targets in the *component name*_*module name* format.
 
 A component may have multiple build targets (modules). The component and module names help you quickly locate the component based on the output (library or executable file) and prevents duplicate names.
 
@@ -109,15 +109,15 @@ The **bundle.json** file defines a component. It contains information, such as t
 |---|---|---|---|---|
 |name|String|Yes|OpenHarmony package manager (HPM) package name of the component.<br>Naming rule: @{organization}/{component_name}<br>{component_name} must comply with **Rule 1.1**.|Static check|
 |version|String|Yes|Component version number, which must be consistent with that of OpenHarmony.|Static check|
-|destPath|String|Yes|Root directory of the component source code.<br>The root directory of each component must be unique.|Static check|
+|destPath|String|Yes|Root directory of the component source code. The root directory of each component must be unique.|Static check|
 |component:name|String|Yes|Component name, which must comply with **Rule 1.1**.|Static check|
-|component:subsystem|String|Yes|Subsystem to which the component belongs. The subsystem name consists of lowercase letters and cannot contain underscores (_).|Static check|
-|component:syscap|String list|No|System capabilities.<br>Naming rule: **SystemCapability**.*Subsystem*.*Component capability*.*Sub-capability* (optional) in upper camel case<br/>Example: **SystemCapability.Media.Camera,SystemCapability.Media.Camera.Front**|Static check|
-|component:features|String list|No|Features that can be configured for the component. The feature names must comply with **Rule 1.2**.|Static check|
-|component:adapted_system_type|String list|Yes|Type of the system to which the component applies. The value can be **mini**, **small**, **standard**,or their combination.|Static check|
+|component:subsystem|String|Yes|Subsystem to which the component belongs.<br>The subsystem name consists of lowercase letters and cannot contain underscores (_).|Static check|
+|component:syscap|String list|No|System capabilities.<br>Naming rule: **SystemCapability**.*Subsystem*.*Component capability*.*Sub-capability* (optional) in upper camel case<br>Example: **SystemCapability.Media.Camera,SystemCapability.Media.Camera.Front**|Static check|
+|component:features|String list|No|Features that can be configured for the component.<br>The feature name must comply with **Rule 1.2**.|Static check|
+|component:adapted_system_type|String list|Yes|Type of the system to which the component applies.<br>The value can be **mini**, **small**, **standard**, or their combination.|Static check|
 |component:rom|String|Yes|ROM size, in KB.|Static check|
 |component:ram|String|Yes|RAM size, in KB.|Static check|
-|component:deps|String list|Yes|Dependencies of the component, including other components and third-party open-source software. The dependencies must be the same as that in the component build script.|Prebuild check|
+|component:deps|String list|Yes|Dependencies of the component, including other components and third-party open-source software.<br>The dependencies must be the same as that in the component build script.|Prebuild check|
 
 
 ### Suggestion 2.1 Place the component description file in the root directory of the component.
@@ -162,13 +162,13 @@ Use **external_deps** to include the dependency between components. The variable
   deps = [ "a" ] # Recommended.
   ```
 
-  > **Exception**: References to third-party open-source software are allowed.
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **Exception**: References to third-party open-source software are allowed.
 
 - public_deps
 
   **Public_deps** can contain only dependencies between the modules in a component. Referencing a module in another component may cause dependency on the module and interfaces of the referenced component.
 
-  > **Exception**: References to third-party open-source software are allowed.
+  > ![icon-note.gif](public_sys-resources/icon-note.gif) **Exception**: References to third-party open-source software are allowed.
   
 
 Guarding method: static check
@@ -253,7 +253,7 @@ ohos_shared_library("foo_a") {
 
 A component is a common system capability and is irrelevant to a specific product. If the product name is used in the build script, the component functions are bound to the product, which violates the commonality of the component. Abstract the differences between components in different product forms as features or runtime plug-ins.
 
-> **Exception**: The build scripts of third-party components in the **vendor** and **device** directories are excluded.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **Exception**: The build scripts of third-party components in the **vendor** and **device** directories are excluded.
 
 Guarding method: static check
 
@@ -261,7 +261,7 @@ Guarding method: static check
 
 The **.gni** file declares the internal build variables and templates of the component. Importing the **.gni** file of another component means to use the internal variables and templates of another component, which introduces the dependency on that component. The variables, args, and templates that affect multiple components should be defined in the **.gni** file of the build framework.
 
-> **Exception**: The **.gni** file (containing global build options) of the build framework in the **build** directory can be imported by all components.
+> ![icon-note.gif](public_sys-resources/icon-note.gif) **Exception**: The .gni file (containing global build options) of the build framework in the **build** directory can be imported by all components.
 
 Guarding method: static check
 

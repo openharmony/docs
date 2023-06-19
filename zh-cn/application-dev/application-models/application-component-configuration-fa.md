@@ -1,7 +1,7 @@
 # 应用/组件级配置
 
 
-开发者在开发应用时，需要配置应用的一些标签，例如应用的包名、图标等标识特征的属性。这一章节描述了开发者在开发应用时需要配置的一些关键标签。
+开发者在开发应用时，需要配置应用的一些标签，例如应用的Bundle名称、图标等标识特征的属性。这一章节描述了开发者在开发应用时需要配置的一些关键标签。
 
 
 - **应用包名配置**
@@ -22,7 +22,7 @@
           "actions": ["action.system.home"]
         }
       ]
-      // ...
+      ...
     }
   ```
 
@@ -32,7 +32,7 @@
   
 - **Module支持的设备类型配置**
 
-  Module支持的设备类型需要在config.json文件中配置deviceType字段，如果deviceType标签中添加了某种设备，则表明当前的module支持在改设备上运行。具体的deviceType配置规则可以参考[deviceType标签说明](../quick-start/module-structure.md)。
+  Module支持的设备类型需要在config.json文件中配置deviceType字段，如果deviceType标签中添加了某种设备，则表明当前的module支持在该设备上运行。具体的deviceType配置规则可以参考[deviceType标签说明](../quick-start/module-structure.md)。
 
 - **组件权限申请配置**
 

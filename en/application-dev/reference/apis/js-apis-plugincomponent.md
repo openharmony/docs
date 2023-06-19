@@ -55,8 +55,8 @@ Sets the parameters to be passed in the **PluginManager.Push** API in the FA mod
 | --------- | ----------------------------------- | ---- | -------------------------------------------------------------- |
 | want      | [Want](js-apis-application-want.md) | Yes  | Ability information of the component user.                                       |
 | name      | string                              | Yes  | Component name.                                                    |
-| data      | [KVObject](#kvobject)               | No  | Component data value.                                                  |
-| extraData | [KVObject](#kvobject)               | No  | Additional data value.                                                  |
+| data      | [KVObject](#kvobject)               | Yes  | Component data value.                                                  |
+| extraData | [KVObject](#kvobject)               | Yes  | Additional data value.                                                  |
 | jsonPath  | string                              | No  | Path to the [external.json](#about-the-externaljson-file) file that stores the template path.|
 
 ### PushParameterForStage
@@ -74,8 +74,8 @@ Sets the parameters to be passed in the **PluginManager.Push** API in the stage 
 | owner     | [Want](js-apis-application-want.md) | Yes  | Ability information of the component provider.                                         |
 | target    | [Want](js-apis-application-want.md) | Yes  | Ability information of the component user.                                         |
 | name      | string                              | Yes  | Component name.                                                      |
-| data      | [KVObject](#kvobject)               | No  | Component data value.                                                    |
-| extraData | [KVObject](#kvobject)               | No  | Additional data value.                                                    |
+| data      | [KVObject](#kvobject)               | Yes  | Component data value.                                                    |
+| extraData | [KVObject](#kvobject)               | Yes  | Additional data value.                                                    |
 | jsonPath  | string                              | No  | Path to the [external.json](#about-the-externaljson-file) file that stores the template path.|
 
 ### RequestParameters
@@ -117,11 +117,11 @@ Provides the result returned after the **PluginManager.Request** API is called.
 
 **System capability**: SystemCapability.ArkUI.ArkUI.Full
 
-| Name             | Type                                                | Mandatory| Description      |
-| ----------------- | ---------------------------------------------------- | ---- | ---------- |
-| componentTemplate | [PluginComponentTemplate](#plugincomponenttemplate)] | Yes  | Component template.|
-| data              | [KVObject](#kvobject)                                | Yes  | Component data.|
-| extraData         | [KVObject](#kvobject)                                | Yes  | Additional data.|
+| Name             | Type                                               | Mandatory| Description      |
+| ----------------- | --------------------------------------------------- | ---- | ---------- |
+| componentTemplate | [PluginComponentTemplate](#plugincomponenttemplate) | Yes  | Component template.|
+| data              | [KVObject](#kvobject)                               | Yes  | Component data.|
+| extraData         | [KVObject](#kvobject)                               | Yes  | Additional data.|
 
 ### RequestEventResult
 
@@ -155,11 +155,11 @@ Registers the listener for the push event.
 
 ```js
 function onPushListener(source, template, data, extraData) {
-    console.log("onPushListener template.source=" + template.source)
-    console.log("onPushListener source=" + JSON.stringify(source))
-    console.log("onPushListener template=" + JSON.stringify(template))
-    console.log("onPushListener data=" + JSON.stringify(data))
-    console.log("onPushListener extraData=" + JSON.stringify(extraData))
+  console.log("onPushListener template.source=" + template.source)
+  console.log("onPushListener source=" + JSON.stringify(source))
+  console.log("onPushListener template=" + JSON.stringify(template))
+  console.log("onPushListener data=" + JSON.stringify(data))
+  console.log("onPushListener extraData=" + JSON.stringify(extraData))
 }
 ```
 
@@ -175,20 +175,19 @@ Registers the listener for the request event.
 | Name     | Type                               | Mandatory| Description                       |
 | --------- | ----------------------------------- | ---- | --------------------------- |
 | source    | [Want](js-apis-application-want.md) | Yes  | Information about the request sender.|
-| data      | [KVObject](#kvobject)               | Yes  | Data.                     |
+| name      | string                              | Yes  | Template name.                 |
 | extraData | [KVObject](#kvobject)               | Yes  | Additional data.                 |
 
 **Example**
 
 ```js
-function onRequestListener(source, name, data)
-{
-    console.error("onRequestListener");
-    console.log("onRequestListener source=" + JSON.stringify(source));
-    console.log("onRequestListener name=" + name);
-    console.log("onRequestListener data=" + JSON.stringify(data));
+function onRequestListener(source, name, data) {
+  console.error("onRequestListener");
+  console.log("onRequestListener source=" + JSON.stringify(source));
+  console.log("onRequestListener name=" + name);
+  console.log("onRequestListener data=" + JSON.stringify(data));
 
-    return {template:"ets/pages/plugin.js", data:data};
+  return { template: "ets/pages/plugin.js", data: data };
 }
 ```
 
@@ -210,24 +209,24 @@ Pushes the component and data to the component user.
 
 ```js
 pluginComponentManager.push(
-{
+  {
     want: {
-        bundleName: "com.example.provider",
-        abilityName: "com.example.provider.MainAbility",
+      bundleName: "com.example.provider",
+      abilityName: "com.example.provider.MainAbility",
     },
     name: "plugintemplate",
     data: {
-        "key_1": "plugin component test",
-        "key_2": 34234
+      "key_1": "plugin component test",
+      "key_2": 34234
     },
     extraData: {
-        "extra_str": "this is push event"
+      "extra_str": "this is push event"
     },
     jsonPath: "",
-    },
-    (err, data) => {
-        console.log("push_callback: push ok!");
-    }
+  },
+  (err, data) => {
+    console.log("push_callback: push ok!");
+  }
 )
 ```
 
@@ -251,30 +250,30 @@ Pushes the component and data to the component user.
 
 ```js
 pluginComponentManager.push(
-    {
-        owner:{
-            bundleName:"com.example.provider",
-            abilityName:"com.example.provider.MainAbility"
-        },
-        target: {
-            bundleName: "com.example.provider",
-            abilityName: "com.example.provider.MainAbility",
-        },
-        name: "ets/pages/plugin2.js",
-        data: {
-            "js": "ets/pages/plugin.js",
-            "key_1": 1111, ,
-        },
-        extraData: {
-            "extra_str": "this is push event"
-        },
-        jsonPath: "",
+  {
+    owner: {
+      bundleName: "com.example.provider",
+      abilityName: "com.example.provider.MainAbility"
     },
-    (err, data) => {
-        console.log("push_callback:err: " ,JSON.stringify(err));
-        console.log("push_callback:data: " , JSON.stringify(data));
-        console.log("push_callback: push ok!");
-    }
+    target: {
+      bundleName: "com.example.provider",
+      abilityName: "com.example.provider.MainAbility",
+    },
+    name: "ets/pages/plugin2.js",
+    data: {
+      "js": "ets/pages/plugin.js",
+      "key_1": 1111, ,
+    },
+    extraData: {
+      "extra_str": "this is push event"
+    },
+    jsonPath: "",
+  },
+  (err, data) => {
+    console.log("push_callback:err: ", JSON.stringify(err));
+    console.log("push_callback:data: ", JSON.stringify(data));
+    console.log("push_callback: push ok!");
+  }
 )
 ```
 
@@ -299,24 +298,24 @@ Requests the component from the component provider.
 
 ```js
 pluginComponentManager.request(
-    {
-        want: {
-            bundleName: "com.example.provider",
-            abilityName: "com.example.provider.MainAbility",
-        },
-        name: "plugintemplate",
-        data: {
-            "key_1": "plugin component test",
-            "key_2": 1111111
-        },
-        jsonPath: "",
+  {
+    want: {
+      bundleName: "com.example.provider",
+      abilityName: "com.example.provider.MainAbility",
     },
-    (err, data) => {
-        console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
-        console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
-        console.log("request_callback: data=" + JSON.stringify(data.data))
-        console.log("request_callback: extraData=" + JSON.stringify(data.extraData))
-    }
+    name: "plugintemplate",
+    data: {
+      "key_1": "plugin component test",
+      "key_2": 1111111
+    },
+    jsonPath: "",
+  },
+  (err, data) => {
+    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
+    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
+    console.log("request_callback: data=" + JSON.stringify(data.data))
+    console.log("request_callback: extraData=" + JSON.stringify(data.extraData))
+  }
 )
 ```
 
@@ -342,25 +341,25 @@ Requests the component from the component provider.
 
 ```js
 pluginComponentManager.request(
-    {
-        owner:{
-            bundleName:"com.example.provider",
-            abilityName:"com.example.provider.MainAbility"
-            },
-        target: {
-            bundleName: "com.example.provider",
-            abilityName: "ets/pages/plugin2.js",
-            },
-        name: "plugintemplate",
-        data: {
-                "key_1": " myapplication plugin component test",
-                },
-        jsonPath: "",
+  {
+    owner: {
+      bundleName: "com.example.provider",
+      abilityName: "com.example.provider.MainAbility"
     },
-    (err, data) => {
-        console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
-        console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
-    }
+    target: {
+      bundleName: "com.example.provider",
+      abilityName: "ets/pages/plugin2.js",
+    },
+    name: "plugintemplate",
+    data: {
+      "key_1": " myapplication plugin component test",
+    },
+    jsonPath: "",
+  },
+  (err, data) => {
+    console.log("request_callback: componentTemplate.ability=" + data.componentTemplate.ability)
+    console.log("request_callback: componentTemplate.source=" + data.componentTemplate.source)
+  }
 )
 ```
 
@@ -381,8 +380,8 @@ Listens for events of the request type and returns the requested data, or listen
 **Example**
 
 ```js
-    pluginComponentManager.on("push", onPushListener)
-    pluginComponentManager.on("request", onRequestListener)
+pluginComponentManager.on("push", onPushListener)
+pluginComponentManager.on("request", onRequestListener)
 ```
 
 ## About the external.json File

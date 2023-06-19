@@ -90,8 +90,9 @@ Before developing relational databases, you must understand the following basic 
 
 - **RDB**
   
+
 A type of database based on the relational model of data. The RDB stores data in rows and columns. An RDB is also called RDB store.
-  
+
 - **Predicate**
 
   Property or feature of a data entity, or the relationship between data entities. It is mainly used to define operation conditions.
@@ -181,7 +182,7 @@ The distributed data objects are encapsulated into JS objects in distributed in-
 
 The following sample is provided to help you better understand how to develop abilities:
 
-- [Intra- and Inter-page Navigation](https://gitee.com/openharmony/codelabs/tree/master/Ability/PageAbility)
+- [Intra- and Inter-page Navigation](https://gitee.com/openharmony/codelabs/tree/master/Ability/StageAbility)
 
 
 ## Setting Up the Environment

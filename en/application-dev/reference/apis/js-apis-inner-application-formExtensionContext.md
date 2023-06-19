@@ -9,6 +9,12 @@ You can use the APIs of this module to start FormExtensionAbilities.
 > The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > The APIs of this module can be used only in the stage model.
 
+## Modules to Import
+
+```ts
+import common from '@ohos.app.ability.common';
+```
+
 ## Usage
 
 Before using the **ServiceExtensionContext** module, you must first obtain a **FormExtensionAbility** instance.
@@ -18,7 +24,7 @@ import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import formBindingData from '@ohos.app.form.formBindingData';
 export default class MyFormExtensionAbility extends FormExtensionAbility {
     onAddForm() {
-        let formContext = this.context; // 获取FormExtensionContext
+        let formContext = this.context; // Obtain a FormExtensionContext instance.
         // ...
         let dataObj1 = {
             temperature:'11c',
@@ -40,6 +46,18 @@ Starts an ability. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.Ability.Form
 
+**Error codes**
+
+| ID| Error Message|
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16500101 | The application is not a system application. |
+| 16501000 | An internal functional error occurred. |
+|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
 **Parameters**
 
 | Name|                Type              | Mandatory|              Description              |
@@ -60,7 +78,7 @@ let want = {
     uri: 'key={true,true,false}',
     parameters: {}
 };
-this.context.startAbility(want, (error, data) => {
+this.context.startAbility(want, (error) => {
     if (error) {
       console.log('FormExtensionContext startAbility, error:' + JSON.stringify(error));
     } else {
@@ -90,6 +108,18 @@ Starts an ability. This API uses a promise to return the result.
 | Type         | Description                               |
 | ------------ | ---------------------------------- |
 | Promise&lt;void&lt; | Promise that returns no value.|
+
+**Error codes**
+
+| ID| Error Message|
+| -------- | -------- |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
+| 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
+| 16500101 | The application is not a system application. |
+| 16501000 | An internal functional error occurred. |
+|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
 
 **Example**
 

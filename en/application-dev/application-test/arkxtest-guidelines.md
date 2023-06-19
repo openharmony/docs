@@ -13,7 +13,7 @@ In this document you will learn about the key functions of arkXtest and how to u
 arkXtest is part of the OpenHarmony toolkit and provides basic capabilities of writing and running OpenHarmony automated test scripts. In terms of test script writing, arkXtest offers a wide range of APIs, including basic process APIs, assertion APIs, and APIs related to UI operations. In terms of test script running, arkXtest offers such features as identifying, scheduling, and executing test scripts, as well as summarizing test script execution results.
 
 
-### Principles
+### Implementation
 
 arkXtest is divided into two parts: unit test framework and UI test framework.
 
@@ -27,28 +27,28 @@ arkXtest is divided into two parts: unit test framework and UI test framework.
   
   ![](figures/TestFlow.PNG)
 
-- UI Testing Framework
+- UI Test Framework
 
-  The UI test framework provides [UiTest APIs](../reference/apis/js-apis-uitest.md) for you to call in different test scenarios. The test scripts are executed on top of the unit test framework mentioned above.
+  The UI test framework provides [UiTest APIs](../reference/apis/js-apis-uitest.md) for you to call in different test scenarios. The UI test scripts are executed on top of the aformentioned unit test framework.
 
   The figure below shows the main functions of the UI test framework.
 
   ![](figures/Uitest.PNG)
 
 
-### Limitations and Constraints
+### Constraints
 
 - The features of the UI test framework are available only in OpenHarmony 3.1 and later versions.
 - The feature availability of the unit test framework varies by version. For details about the mappings between the features and versions, see [arkXtest](https://gitee.com/openharmony/testfwk_arkxtest/blob/master/README_en.md).
 
 
-## Environment preparations
+## Preparing the Environment
 
 ### Environment Requirements
 
-Software for writing test scripts: DevEco Studio 3.0 or later
+Software: DevEco Studio 3.0 or later
 
-Hardware for running test scripts: PC connected to a OpenHarmony device, such as the RK3568 development board
+Hardware: PC connected to an OpenHarmony device, such as the RK3568 development board
 
 ### Setting Up the Environment
 
@@ -57,7 +57,7 @@ Hardware for running test scripts: PC connected to a OpenHarmony device, such as
 
 ## Creating a Test Script
 
-1. Open DevEco Studio and create a project, where the **ohos** directory is where the test script is located.
+1. Open DevEco Studio and create a project, in which the **ohos** directory is where the test script is located.
 2. Open the .ets file of the module to be tested in the project directory. Move the cursor to any position in the code, and then right-click and choose **Show Context Actions** > **Create Ohos Test** or press **Alt+Enter** and choose **Create Ohos Test** to create a test class.
 
 ## Writing a Unit Test Script
@@ -95,7 +95,7 @@ export default function abilityTest() {
 
 The unit test script must contain the following basic elements:
 
-1. Import of the dependency package so that the dependent test APIs can be used.
+1. Import of the dependencies so that the dependent test APIs can be used.
 
 2. Test code, mainly about the related logic, such as API invoking.
 
@@ -105,7 +105,7 @@ The unit test script must contain the following basic elements:
 
 You write a UI test script based on the unit test framework, adding the invoking of APIs provided by the UI test framework to implement the corresponding test logic.
 
-In this example, the UI test script is written based on the preceding unit test script. First, add the dependency package, as shown below:
+In this example, the UI test script is written based on the preceding unit test script. First, import the dependency, as shown below:
 
 ```js
 import {Driver,ON,Component,MatchPattern} from '@ohos.uitest'
@@ -180,11 +180,11 @@ The logs added to the test case are displayed after the test case execution, rat
 
 **Possible Causes**
 
-More than one asynchronous interface is called in the test case.<br>In principle, logs in the test case are printed before the test case execution is complete.
+More than one asynchronous API is called in the test case.<br>In principle, logs in the test case are printed before the test case execution is complete.
 
- **Solution**
+**Solution**
 
-If more than one asynchronous interface is called, you are advised to encapsulate the interface invoking into the promise mode
+If more than one asynchronous API is called, you are advised to encapsulate the API invoking into the promise mode.
 
 #### Error "fail to start ability" is reported during test case execution
 
@@ -227,7 +227,7 @@ The UI test case fails to be executed. The HiLog file contains the error message
 
 **Possible Causes**
 
-The ArkUI feature is disabled. As a result, the control tree information on the test page is not generated.
+The ArkUI feature is disabled. As a result, the component tree information is not generated on the test page.
 
 **Solution**
 
@@ -237,33 +237,33 @@ Run the following command, restart the device, and execute the test case again:
 hdc shell param set persist.ace.testmode.enabled 1
 ```
 
-#### The failure log contains "uitest-api dose not allow calling concurrently"
+#### The failure log contains "uitest-api does not allow calling concurrently"
 
 **Problem**
 
-The UI test case fails to be executed. The HiLog file contains the error message "uitest-api dose not allow calling concurrently".
+The UI test case fails to be executed. The HiLog file contains the error message "uitest-api does not allow calling concurrently".
 
 **Possible Causes**
 
-1. In the test case, the **await** operator is not added to the asynchronous interface provided by the UI test framework.
+1. In the test case, the **await** operator is not added to the asynchronous API provided by the UI test framework.
 
 2. The UI test case is executed in multiple processes. As a result, multiple UI test processes are started. The framework does not support multi-process invoking.
 
 **Solution**
 
-1. Check the case implementation and add the **await** operator to the asynchronous interface invoking.
+1. Check the case implementation and add the **await** operator to the asynchronous API.
 
 2. Do not execute UI test cases in multiple processes.
 
-#### The failure log contains "dose not exist on current UI! Check if the UI has changed after you got the widget object"
+#### The failure log contains "does not exist on current UI! Check if the UI has changed after you got the widget object"
 
 **Problem**
 
-The UI test case fails to be executed. The HiLog file contains the error message "dose not exist on current UI! Check if the UI has changed after you got the widget object".
+The UI test case fails to be executed. The HiLog file contains the error message "does not exist on current UI! Check if the UI has changed after you got the widget object."
 
 **Possible Causes**
 
-After the target component is found in the code of the test case, the device UI changes. As a result, the found component is lost and the emulation operation cannot be performed.
+After the target component is found in the code of the test case, the device UI changes, resulting in loss of the found component and inability to perform emulation.
 
 **Solution**
 

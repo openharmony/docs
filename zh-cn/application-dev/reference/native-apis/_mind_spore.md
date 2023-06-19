@@ -19,13 +19,13 @@
 
 | 文件名称 | 描述 |
 | -------- | -------- |
-| [context.h](context_8h.md) | 提供了Context相关的接口，可以配置运行时信息。 |
-| [data_type.h](data__type_8h.md) | 声明了张量的数据的类型。 |
-| [format.h](format_8h.md) | 提供张量数据的排列格式。 |
-| [model.h](model_8h.md) | 提供了模型相关接口，可以用于模型创建、模型推理等。 |
-| [status.h](status_8h.md) | 提供了Mindspore Lite运行时的状态码。 |
-| [tensor.h](tensor_8h.md) | 提供了张量相关的接口，可用于创建和修改张量信息。 |
-| [types.h](types_8h.md) | 提供了MindSpore Lite支持的模型文件类型和设备类型。 |
+| [context.h](context_8h.md) | 提供了Context相关的接口，可以配置运行时信息。<br>引用文件：\<mindspore/context.h> |
+| [data_type.h](data__type_8h.md) | 声明了张量的数据的类型。<br>引用文件：\<mindspore/data_type.h> |
+| [format.h](format_8h.md) | 提供张量数据的排列格式。<br>引用文件：\<mindspore/format.h> |
+| [model.h](model_8h.md) | 提供了模型相关接口，可以用于模型创建、模型推理等。<br>引用文件：\<mindspore/model.h> |
+| [status.h](status_8h.md) | 提供了Mindspore Lite运行时的状态码。<br>引用文件：\<mindspore/status.h> |
+| [tensor.h](tensor_8h.md) | 提供了张量相关的接口，可用于创建和修改张量信息。<br>引用文件：\<mindspore/tensor.h> |
+| [types.h](types_8h.md) | 提供了MindSpore Lite支持的模型文件类型和设备类型。<br>引用文件：\<mindspore/types.h> |
 
 
 ### 结构体
@@ -56,11 +56,11 @@
 | [OH_AI_TensorHandleArray](#oh_ai_tensorhandlearray) | 张量数组结构体，用于存储张量数组指针和张量数组长度。 |
 | [OH_AI_ShapeInfo](_o_h___a_i___shape_info.md) | 维度信息，最大的维度为**MS_MAX_SHAPE_NUM**。 |
 | [OH_AI_CallBackParam](#oh_ai_callbackparam) | 回调函数中传入的算子信息。 |
-| [OH_AI_KernelCallBack](#oh_ai_kernelcallback)) (const OH_AI_TensorHandleArray inputs, const OH_AI_TensorHandleArray outputs, const OH_AI_CallBackParam kernel_Info) | 回调函数指针。 |
+| [OH_AI_KernelCallBack](#oh_ai_kernelcallback)| 回调函数指针。 |
 | [OH_AI_Status](#oh_ai_status-1) | Minspore的状态码。 |
 | [OH_AI_TensorHandle](#oh_ai_tensorhandle) | 指向张量对象句柄。 |
 | [OH_AI_ModelType](#oh_ai_modeltype-1) | 模型文件的类型。 |
-| [OH_AI_DeviceType](#oh_ai_devicetype-1) | 设备类型，该信息。 |
+| [OH_AI_DeviceType](#oh_ai_devicetype-1) | 设备类型信息，包含了目前支持的设备类型。 |
 
 
 ### 枚举
@@ -87,11 +87,11 @@
 | [OH_AI_ContextGetThreadAffinityMode](#oh_ai_contextgetthreadaffinitymode) (const OH_AI_ContextHandle context) | 获取运行时线程绑定CPU核心的策略。 |
 | [OH_AI_ContextSetThreadAffinityCoreList](#oh_ai_contextsetthreadaffinitycorelist) (OH_AI_ContextHandle context, const int32_t \*core_list, <br/>size_t core_num) | 设置运行时线程绑定CPU核心的列表。 |
 | [OH_AI_ContextGetThreadAffinityCoreList](#oh_ai_contextgetthreadaffinitycorelist) (const OH_AI_ContextHandle context, size_t \*core_num) | 获取CPU绑核列表。 |
-| [OH_AI_ContextSetEnableParallel](#oh_ai_contextsetenableparallel) (OH_AI_ContextHandle context, bool is_parallel) | 设置运行时是否支持并行。 |
+| [OH_AI_ContextSetEnableParallel](#oh_ai_contextsetenableparallel) (OH_AI_ContextHandle context, bool is_parallel) | 设置运行时是否支持并行。此接口特性当前未开启，设置无效。 |
 | [OH_AI_ContextGetEnableParallel](#oh_ai_contextgetenableparallel) (const OH_AI_ContextHandle context) | 获取是否支持算子间并行。 |
-| [OH_AI_ContextAddDeviceInfo](#oh_ai_contextadddeviceinfo) (OH_AI_ContextHandle context, OH_AI_DeviceInfoHandle device_info) | 添加运行设备信息。 |
+| [OH_AI_ContextAddDeviceInfo](#oh_ai_contextadddeviceinfo) (OH_AI_ContextHandle context, OH_AI_DeviceInfoHandle device_info) | 将一个用户定义的运行设备信息附加到推理上下文中。 |
 | [OH_AI_DeviceInfoCreate](#oh_ai_deviceinfocreate) (OH_AI_DeviceType device_type) | 创建一个设备信息对象。 |
-| [OH_AI_DeviceInfoDestroy](#oh_ai_deviceinfodestroy) (OH_AI_DeviceInfoHandle \*device_info) | 释放设备信息实例。 |
+| [OH_AI_DeviceInfoDestroy](#oh_ai_deviceinfodestroy) (OH_AI_DeviceInfoHandle \*device_info) | 释放设备信息实例。注意：设备信息实例被添加到context后，无需调用者手动释放。 |
 | [OH_AI_DeviceInfoSetProvider](#oh_ai_deviceinfosetprovider) (OH_AI_DeviceInfoHandle device_info, const char \*provider) | 设置供应商的名称。 |
 | [OH_AI_DeviceInfoGetProvider](#oh_ai_deviceinfogetprovider) (const OH_AI_DeviceInfoHandle device_info) | 获取生产商的名称。 |
 | [OH_AI_DeviceInfoSetProviderDevice](#oh_ai_deviceinfosetproviderdevice) (OH_AI_DeviceInfoHandle device_info, const char \*device) | 设置生产商设备的名称。 |
@@ -379,25 +379,25 @@ enum OH_AI_Format
 
 MSTensor保存的数据支持的排列格式。
 
-| 枚举值 | 描述 |
-| -------- | -------- |
-| OH_AI_FORMAT_NCHW | 表示NCHW排列。 |
-| OH_AI_FORMAT_NHWC | 表示NHWC排列。 |
-| OH_AI_FORMAT_NHWC4 | 表示NHWC4排列。 |
-| OH_AI_FORMAT_HWKC | 表示HWKC排列。 |
-| OH_AI_FORMAT_HWCK | 表示HWCK排列。 |
-| OH_AI_FORMAT_KCHW | 表示KCHW排列。 |
-| OH_AI_FORMAT_CKHW | 表示CKHW排列。 |
-| OH_AI_FORMAT_KHWC | 表示KHWC排列。 |
-| OH_AI_FORMAT_CHWK | 表示CHWK排列。 |
-| OH_AI_FORMAT_HW | 表示HW排列。 |
-| OH_AI_FORMAT_HW4 | 表示HW4排列。 |
-| OH_AI_FORMAT_NC | 表示NC排列。 |
-| OH_AI_FORMAT_NC4 | 表示NC4排列。 |
-| OH_AI_FORMAT_NC4HW4 | 表示NC4HW4排列。 |
-| OH_AI_FORMAT_NCDHW | 表示NCDHW排列。 |
-| OH_AI_FORMAT_NWC | 表示NWC排列。 |
-| OH_AI_FORMAT_NCW | 表示NCW排列。 |
+| 枚举值              | 描述             |
+| ------------------- | ---------------- |
+| OH_AI_FORMAT_NCHW   | 按批次N、通道C、高度H和宽度W的顺序存储张量数据。   |
+| OH_AI_FORMAT_NHWC   | 按批次N、高度H、宽度W和通道C的顺序存储张量数据。   |
+| OH_AI_FORMAT_NHWC4  | 按批次N、高度H、宽度W和通道C的顺序存储张量数据，其中C轴是4字节对齐格式。   |
+| OH_AI_FORMAT_HWKC   | 按高度H、宽度W、核数K和通道C的顺序存储张量数据。    |
+| OH_AI_FORMAT_HWCK   | 按高度H、宽度W、通道C和核数K的顺序存储张量数据。   |
+| OH_AI_FORMAT_KCHW   | 按核数K、通道C、高度H和宽度W的顺序存储张量数据。   |
+| OH_AI_FORMAT_CKHW   | 按通道C、核数K、高度H和宽度W的顺序存储张量数据。   |
+| OH_AI_FORMAT_KHWC   | 按核数K、高度H、宽度W和通道C的顺序存储张量数据。    |
+| OH_AI_FORMAT_CHWK   | 按通道C、高度H、宽度W和核数K的顺序存储张量数据。   |
+| OH_AI_FORMAT_HW     | 按高度H和宽度W的顺序存储张量数据。     |
+| OH_AI_FORMAT_HW4    | 按高度H和宽度W的顺序存储张量数据，其中W轴是4字节对齐格式。    |
+| OH_AI_FORMAT_NC     | 按批次N和通道C的顺序存储张量数据。     |
+| OH_AI_FORMAT_NC4    | 按批次N和通道C的顺序存储张量数据，其中C轴是4字节对齐格式。     |
+| OH_AI_FORMAT_NC4HW4 | 按批次N、通道C、高度H和宽度W的顺序存储张量数据，其中C轴和W轴是4字节对齐格式。 |
+| OH_AI_FORMAT_NCDHW  | 按批次N、通道C、深度D、高度H和宽度W的顺序存储张量数据。  |
+| OH_AI_FORMAT_NWC    | 按批次N、宽度W和通道C的顺序存储张量数据。    |
+| OH_AI_FORMAT_NCW    | 按批次N、通道C和宽度W的顺序存储张量数据。    |
 
 
 ### OH_AI_ModelType
@@ -413,7 +413,7 @@ enum OH_AI_ModelType
 
 | 枚举值 | 描述 |
 | -------- | -------- |
-| OH_AI_MODELTYPE_MINDIR | 模型类型是MindIR。 |
+| OH_AI_MODELTYPE_MINDIR | 模型类型是MindIR，对应的模型文件后缀是.ms。 |
 | OH_AI_MODELTYPE_INVALID | 模型类型无效。 |
 
 
@@ -467,7 +467,7 @@ OH_AI_API void OH_AI_ContextAddDeviceInfo (OH_AI_ContextHandle context, OH_AI_De
 
 **描述：**
 
-添加运行设备信息。
+将一个用户定义的运行设备信息附加到推理上下文中。
 
 **参数:**
 
@@ -553,7 +553,7 @@ OH_AI_API const int32_t* OH_AI_ContextGetThreadAffinityCoreList (const OH_AI_Con
 
 **返回:**
 
-CPU绑核列表。
+CPU绑核列表。此列表对象由[OH_AI_ContextHandle](#oh_ai_contexthandle)管理，调用者无需手动释放。
 
 
 ### OH_AI_ContextGetThreadAffinityMode()
@@ -575,7 +575,7 @@ OH_AI_API int OH_AI_ContextGetThreadAffinityMode (const OH_AI_ContextHandle cont
 
 **返回:**
 
-绑核策略。一共有三种策略，0为不绑核, 1为大核优先, 2为小核优先。
+绑核策略。一共有三种策略，0为不绑核, 1为大核优先, 2为中核优先。
 
 
 ### OH_AI_ContextGetThreadNum()
@@ -609,7 +609,7 @@ OH_AI_API void OH_AI_ContextSetEnableParallel (OH_AI_ContextHandle context, bool
 
 **描述：**
 
-设置运行时是否支持并行。
+设置运行时是否支持并行。此接口特性当前未开启，设置无效。
 
 **参数:**
 
@@ -710,7 +710,7 @@ OH_AI_API void OH_AI_DeviceInfoDestroy (OH_AI_DeviceInfoHandle * device_info)
 
 **描述：**
 
-释放设备信息实例。
+释放设备信息实例。注意：设备信息实例被添加到context后，无需调用者手动释放。
 
 **参数:**
 
@@ -1053,7 +1053,7 @@ OH_AI_API OH_AI_TensorHandle OH_AI_ModelGetOutputByTensorName (const OH_AI_Model
 | 名称 | 描述 |
 | -------- | -------- |
 | model | 模型对象指针。 |
-| tensor_名称 | 张量名称。 |
+| tensor_name | 张量名称。 |
 
 **返回:**
 
@@ -1170,7 +1170,7 @@ OH_AI_API OH_AI_TensorHandle OH_AI_TensorCreate (const char *name, OH_AI_DataTyp
 
 | 名称 | 描述 |
 | -------- | -------- |
-| 名称 | 张量名称 |
+| name | 张量名称 |
 | type | 张量的数据类型 |
 | shape | 张量的维度数组。 |
 | shape_num | 张量维度数组长度。 |
@@ -1450,7 +1450,7 @@ OH_AI_API void OH_AI_TensorSetName (OH_AI_TensorHandle tensor, const char *name 
 | 名称 | 描述 |
 | -------- | -------- |
 | tensor | 张量对象句柄。 |
-| 名称 | 张量名称。 |
+| name | 张量名称。 |
 
 
 ### OH_AI_TensorSetShape()

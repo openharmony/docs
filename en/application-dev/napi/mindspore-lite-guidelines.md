@@ -199,8 +199,8 @@ The development process consists of the following main steps:
 
 2. Run the CMake tool.
 
-    - Use hdc_std to connect to the RK3568 development board and put **demo** and **mobilenetv2.ms** to the same directory on the board.
-    - Run the hdc_std shell command to access the development board, go to the directory where **demo** is located, and run the following command:
+    - Use hdc_std to connect to the device and put **demo** and **mobilenetv2.ms** to the same directory on the board.
+    - Run the hdc_std shell command to access the device, go to the directory where **demo** is located, and run the following command:
 
     ```shell
     ./demo mobilenetv2.ms

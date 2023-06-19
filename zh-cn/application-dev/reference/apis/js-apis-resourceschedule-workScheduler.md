@@ -118,7 +118,7 @@ stopWork(work: WorkInfo, needCancel?: boolean): void
   }
 ```
 
-## workScheduler.getWorkStatus:callback
+## workScheduler.getWorkStatus
 getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 
 获取工作的最新状态，使用Callback形式返回。
@@ -130,7 +130,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
 | 参数名      | 类型                                    | 必填   | 说明                                       |
 | -------- | ------------------------------------- | ---- | ---------------------------------------- |
 | workId   | number                                | 是    | work的id。                                 |
-| callback | AsyncCallback\<[WorkInfo](#workinfo)> | 是    | 指定的callback回调方法。如果指定的工作Id有效，则返回从WorkSchedulerService获取的有效工作状态；否则返回null。 |
+| callback | AsyncCallback\<[WorkInfo](#workinfo)> | 是    | 指定的callback回调方法。如果指定的工作Id有效，则返回从WorkSchedulerService获取的有效工作状态；否则抛出异常。 |
 
 **错误码**：
 
@@ -161,7 +161,7 @@ getWorkStatus(workId: number, callback : AsyncCallback\<WorkInfo>): void
   }
 ```
 
-## workScheduler.getWorkStatus:promise
+## workScheduler.getWorkStatus
 getWorkStatus(workId: number): Promise\<WorkInfo>
 
 获取工作的最新状态，使用Promise形式返回。
@@ -178,7 +178,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
 
 | 类型                              | 说明                                       |
 | ------------------------------- | ---------------------------------------- |
-| Promise\<[WorkInfo](#workinfo)> | 指定的Promise回调方法。如果指定的工作ID有效，则返回从WorkSchedulerService获取的有效工作状态；否则返回null。 |
+| Promise\<[WorkInfo](#workinfo)> | 指定的Promise回调方法。如果指定的工作ID有效，则返回从WorkSchedulerService获取的有效工作状态；否则抛出异常。 |
 
 **错误码**：
 
@@ -207,7 +207,7 @@ getWorkStatus(workId: number): Promise\<WorkInfo>
   }
 ```
 
-## workScheduler.obtainAllWorks:callback
+## workScheduler.obtainAllWorks
 obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
 
 获取与当前应用程序关联的所有工作，使用Callback形式返回。
@@ -252,8 +252,8 @@ obtainAllWorks(callback : AsyncCallback\<void>): Array\<WorkInfo>
   }
 ```
 
-## workScheduler.obtainAllWorks:promise
-obtainAllWorks(): Promise<Array\<WorkInfo>>
+## workScheduler.obtainAllWorks
+obtainAllWorks(): Promise\<Array\<WorkInfo>>
 
 获取与当前应用程序关联的所有工作，使用Promise形式返回。
 
@@ -317,7 +317,7 @@ stopAndClearWorks(): void
   }
 ```
 
-## workScheduler.isLastWorkTimeOut:callback
+## workScheduler.isLastWorkTimeOut
 isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
 
 检查指定工作的最后一次执行是否为超时操作，使用Callback形式返回。
@@ -364,7 +364,7 @@ isLastWorkTimeOut(workId: number, callback : AsyncCallback\<void>): boolean
   }
 ```
 
-## workScheduler.isLastWorkTimeOut:promise
+## workScheduler.isLastWorkTimeOut
 isLastWorkTimeOut(workId: number): Promise\<boolean>
 
 检查指定工作的最后一次执行是否为超时操作，使用Promise形式返回。
@@ -432,7 +432,7 @@ isLastWorkTimeOut(workId: number): Promise\<boolean>
 | isPersisted     | boolean                           | 否    | 是否持久化保存工作        |
 | isDeepIdle      | boolean                           | 否    | 是否要求设备进入空闲状态     |
 | idleWaitTime    | number                            | 否    | 空闲等待时间           |
-| parameters      | {[key: string]: number | string | boolean}              | 否    | 携带参数信息           |
+| parameters      | {[key: string]: number \| string \| boolean}              | 否    | 携带参数信息           |
 
 ## NetworkType
 触发工作的网络类型。

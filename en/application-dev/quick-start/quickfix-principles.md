@@ -10,7 +10,7 @@ Quick fix is a technical means provided by the OpenHarmony system for developers
 * The bundle name and application version number configured in the quick fix package must be the same as those of the installed application. Otherwise, the deployment will fail.
 * Make sure the version of the quick fix package to deploy is later than that of the one previously deployed. Otherwise, the deployment will fail.
 * The signature information of the quick fix package must be the same as that of the application to be fixed. Otherwise, the deployment will fail.
-* Installing an application update will delete quick fix package.
+* Installing an application update will delete the quick fix package.
 
 ## Structure of the Quick Fix Package
 
@@ -18,7 +18,7 @@ Quick fix is a technical means provided by the OpenHarmony system for developers
 <br>The preceding figure shows the structure of the quick fix package released by an OpenHarmony application.
 * As shown in the figure, the quick fix package comes in two formats:
     * .appqf (Application Quick Fix)
-    <br> There is a one-to-one mapping between the .appqf file and App Pack of an application. For details, see [Application Package Structure in Stage Model](application-package-structure-stage).
+    <br> There is a one-to-one mapping between the .appqf file and App Pack of an application. For details, see [Application Package Structure in Stage Model](application-package-structure-stage.md).
         * The .appqf file is used to release OpenHarmony applications to the application market and cannot be directly installed on devices.
         * An .appqf file consists of one or more .hqf (Harmony Ability Package Quick Fix) files, which are extracted from the .appqf file by the application market and then distributed to specific devices.
         * The .appqf file must contain the developer's signature information before being released to the application market. For details about how to sign the file, see [hapsigner Overview](../security/hapsigntool-overview.md).
@@ -27,7 +27,7 @@ Quick fix is a technical means provided by the OpenHarmony system for developers
         * .abc file: modified TS code in the application, which is a bytecode file created after the build.
         * **libs** directory: a collection of .so.diff files, which are differential files of the .so library files, organized by system CPU architecture, such as arm and x86.
         * **patch.json**:
-        <br> This file is used to describe the version information of the .hqf file and is filled in by developers. The details are as follows:
+          <br> This file is used to describe the version information of the .hqf file and is filled in by developers. The details are as follows:
             ```json
             {
                 "app" : {

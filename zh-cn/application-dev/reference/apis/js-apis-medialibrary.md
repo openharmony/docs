@@ -76,7 +76,6 @@ let media = mediaLibrary.getMediaLibrary();
 
 ### getFileAssets<sup>7+</sup>
 
-
 getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileResult&gt;): void 
 
 获取文件资源，使用callback方式返回异步结果。
@@ -104,7 +103,7 @@ async function example() {
         selectionArgs: [imageType.toString()],
     };
     // 获取文件资源，使用callback方式返回异步结果
-    media.getFileAssets(imagesFetchOp, (error, fetchFileResult) => {
+    media.getFileAssets(imagesFetchOp, async (error, fetchFileResult) => {
         // 判断获取的文件资源的检索结果集是否为undefined，若为undefined则接口调用失败
         if (fetchFileResult == undefined) {
             console.error('get fetchFileResult failed with error: ' + error);
@@ -123,8 +122,8 @@ async function example() {
             return;
         }
         console.info('Get fetchFileResult successfully, count: ' + count);
-        // 获取文件检索结果集中的第一个资源，使用callback方式返回异步结果
-        fetchFileResult.getFirstObject((error, fileAsset) => {
+        // 获取文件检索结果集中的第一个资源，使用callback方式返回异步结果，文件数量较多时请使用getAllObject接口
+        fetchFileResult.getFirstObject(async (error, fileAsset) => {
             // 检查获取的第一个资源是否为undefined，若为undefined则接口调用失败
             if (fileAsset == undefined) {
                 console.error('get first object failed with error: ' + error);
@@ -177,7 +176,7 @@ async function example() {
         selectionArgs: [imageType.toString()],
     };
     // 获取文件资源，使用Promise方式返回结果
-    media.getFileAssets(imagesFetchOp).then((fetchFileResult) => {
+    media.getFileAssets(imagesFetchOp).then(async (fetchFileResult) => {
         // 获取文件检索结果集中的总数
         const count = fetchFileResult.getCount();
         // 判断结果集中的数量是否小于0，小于0时表示接口调用失败
@@ -191,8 +190,8 @@ async function example() {
             return;
         }
         console.info('Get fetchFileResult successfully, count: ' + count);
-        // 获取文件检索结果集中的第一个资源，使用Promise方式返回异步结果
-        fetchFileResult.getFirstObject().then((fileAsset) => {
+        // 获取文件检索结果集中的第一个资源，使用Promise方式返回异步结果，文件数量较多时请使用getAllObject接口
+        fetchFileResult.getFirstObject().then(async (fileAsset) => {
             console.info('fileAsset.displayName ' + '0 : ' + fileAsset.displayName);
             // 调用 getNextObject 接口获取下一个资源，直到最后一个
             for (let i = 1; i < count; i++) {
@@ -513,17 +512,18 @@ getAlbums(options: MediaFetchOptions, callback: AsyncCallback&lt;Array&lt;Album&
 
 ```js
 async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    media.getAlbums(AlbumNoArgsfetchOp, (error, albumList) => {
-        if (albumList != undefined) {
-            console.info('getAlbums successfully: ' + JSON.stringify(albumList));
-        } else {
-            console.error('getAlbums failed with error: ' + error);
-        }
-    })
+   // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
+  let AlbumNoArgsfetchOp = {
+    selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+    selectionArgs: ['新建相册1'],
+  };
+  media.getAlbums(AlbumNoArgsfetchOp, (error, albumList) => {
+    if (albumList != undefined) {
+      console.info('getAlbums successfully: ' + JSON.stringify(albumList));
+    } else {
+      console.error('getAlbums failed with error: ' + error);
+    }
+  })
 }
 ```
 
@@ -553,15 +553,16 @@ getAlbums(options: MediaFetchOptions): Promise&lt;Array&lt;Album&gt;&gt;
 
 ```js
 async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    media.getAlbums(AlbumNoArgsfetchOp).then((albumList) => {
-        console.info('getAlbums successfully: ' + JSON.stringify(albumList));
-    }).catch((error) => {
-        console.error('getAlbums failed with error: ' + error);
-    });
+   // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
+  let AlbumNoArgsfetchOp = {
+    selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+    selectionArgs: ['新建相册1'],
+  };
+  media.getAlbums(AlbumNoArgsfetchOp).then((albumList) => {
+    console.info('getAlbums successfully: ' + JSON.stringify(albumList));
+  }).catch((error) => {
+    console.error('getAlbums failed with error: ' + error);
+  });
 }
 ```
 
@@ -2016,7 +2017,7 @@ async function example() {
 
 ### getNextObject<sup>7+</sup>
 
- getNextObject(callback: AsyncCallback&lt;FileAsset&gt;): void
+getNextObject(callback: AsyncCallback&lt;FileAsset&gt;): void
 
 获取文件检索结果中的下一个文件资产，此方法使用callback形式返回结果。
 
@@ -2043,7 +2044,8 @@ async function example() {
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     let fileAsset = await fetchFileResult.getFirstObject();
-    if (!fileAsset.isAfterLast) {
+    console.log('fetchFileResult getFirstObject successfully, displayName: ' + fileAsset.displayName);
+    if (!fetchFileResult.isAfterLast()) {
         fetchFileResult.getNextObject((error, fileAsset) => {
             if (error) {
                 console.error('fetchFileResult getNextObject failed with error: ' + error);
@@ -2059,7 +2061,7 @@ async function example() {
 
 ### getNextObject<sup>7+</sup>
 
- getNextObject(): Promise&lt;FileAsset&gt;
+getNextObject(): Promise&lt;FileAsset&gt;
 
 获取文件检索结果中的下一个文件资产。此方法使用promise方式来异步返回FileAsset。
 
@@ -2086,7 +2088,8 @@ async function example() {
     };
     let fetchFileResult = await media.getFileAssets(getImageOp);
     let fileAsset = await fetchFileResult.getFirstObject();
-    if (!fileAsset.isAfterLast) {
+    console.log('fetchFileResult getFirstObject successfully, displayName: ' + fileAsset.displayName);
+    if (!fetchFileResult.isAfterLast()) {
         fetchFileResult.getNextObject().then((fileAsset) => {
             console.info('fetchFileResult getNextObject successfully, displayName: ' + fileAsset.displayName);
             fetchFileResult.close();
@@ -2362,20 +2365,21 @@ commitModify(callback: AsyncCallback&lt;void&gt;): void
 
 ```js
 async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
-    const album = albumList[0];
-    album.albumName = 'hello';
-    album.commitModify((error) => {
-        if (error) {
-            console.error('commitModify failed with error: ' + error);
-            return;
-        }
-        console.info('commitModify successful.');
-    })
+  // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
+  let AlbumNoArgsfetchOp = {
+    selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+    selectionArgs: ['新建相册1'],
+  };
+  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const album = albumList[0];
+  album.albumName = 'hello';
+  album.commitModify((error) => {
+    if (error) {
+      console.error('commitModify failed with error: ' + error);
+      return;
+    }
+    console.info('commitModify successful.');
+  })
 }
 ```
 
@@ -2399,18 +2403,60 @@ commitModify(): Promise&lt;void&gt;
 
 ```js
 async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
-    const album = albumList[0];
-    album.albumName = 'hello';
-    album.commitModify().then(() => {
-        console.info('commitModify successfully');
-    }).catch((error) => {
-        console.error('commitModify failed with error: ' + error);
-    });
+  // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
+  let AlbumNoArgsfetchOp = {
+    selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+    selectionArgs: ['新建相册1'],
+  };
+  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const album = albumList[0];
+  album.albumName = 'hello';
+  album.commitModify().then(() => {
+    console.info('commitModify successfully');
+  }).catch((error) => {
+    console.error('commitModify failed with error: ' + error);
+  });
+}
+```
+
+### getFileAssets<sup>7+</sup>
+
+getFileAssets(callback: AsyncCallback&lt;FetchFileResult&gt;): void
+
+按照检索条件获取相册中的文件。此方法使用Callback回调来返回文件结果集。
+
+**需要权限**：ohos.permission.READ_MEDIA
+
+**系统能力**：SystemCapability.Multimedia.MediaLibrary.Core
+
+**参数**：
+
+| 参数名   | 类型                                                | 必填 | 说明                                |
+| -------- | --------------------------------------------------- | ---- | ----------------------------------- |
+| callback | AsyncCallback<[FetchFileResult](#fetchfileresult7)> | 是   | 异步返回FetchFileResult之后的回调。 |
+
+**示例**：
+
+```js
+async function example() {
+  // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
+  let AlbumNoArgsfetchOp = {
+    selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+    selectionArgs: ['新建相册1'],
+  };
+  // 获取符合检索要求的相册，返回相册列表。
+  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const album = albumList[0];
+  // 取到相册列表中的一个相册，获取此相册中所有符合媒体检索选项的媒体资源。
+  album.getFileAssets((error, fetchFileResult) => {
+    if (error) {
+      console.error('album getFileAssets failed with error: ' + error);
+      return;
+    }
+    let count = fetchFileResult.getCount();
+    console.info('album getFileAssets successfully, count: ' + count);
+    fetchFileResult.close();
+  });
 }
 ```
 
@@ -2435,27 +2481,28 @@ getFileAssets(options: MediaFetchOptions, callback: AsyncCallback&lt;FetchFileRe
 
 ```js
 async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    let fileNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
+  // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
+  let AlbumNoArgsfetchOp = {
+    selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+    selectionArgs: ['新建相册1'],
+  };
+  let fileNoArgsfetchOp = {
+    selections: '',
+    selectionArgs: [],
+  }
+  // 获取符合检索要求的相册，返回相册列表
+  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const album = albumList[0];
+  // 取到相册列表中的一个相册，获取此相册中所有符合媒体检索选项的媒体资源
+  album.getFileAssets(fileNoArgsfetchOp, (error, fetchFileResult) => {
+    if (error) {
+      console.error('album getFileAssets failed with error: ' + error);
+      return;
     }
-    // 获取符合检索要求的相册，返回相册列表
-    const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
-    const album = albumList[0];
-    // 取到相册列表中的一个相册，获取此相册中所有符合媒体检索选项的媒体资源
-    album.getFileAssets(fileNoArgsfetchOp, (error, fetchFileResult) => {
-        if (error) {
-            console.error('album getFileAssets failed with error: ' + error);
-            return;
-        }
-        let count = fetchFileResult.getCount();
-        console.info('album getFileAssets successfully, count: ' + count);
-        fetchFileResult.close();
-    });
+    let count = fetchFileResult.getCount();
+    console.info('album getFileAssets successfully, count: ' + count);
+    fetchFileResult.close();
+  });
 }
 ```
 
@@ -2485,25 +2532,26 @@ async function example() {
 
 ```js
 async function example() {
-    let AlbumNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    let fileNoArgsfetchOp = {
-        selections: '',
-        selectionArgs: [],
-    };
-    // 获取符合检索要求的相册，返回相册列表
-    const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
-    const album = albumList[0];
-    // 取到相册列表中的一个相册，获取此相册中所有符合媒体检索选项的媒体资源
-    album.getFileAssets(fileNoArgsfetchOp).then((fetchFileResult) => {
-        let count = fetchFileResult.getCount();
-        console.info('album getFileAssets successfully, count: ' + count);
-        fetchFileResult.close();
-    }).catch((error) => {
-        console.error('album getFileAssets failed with error: ' + error);
-    });
+  // 获取相册需要先预置相册和资源，示例代码为预置的新建相册1。
+  let AlbumNoArgsfetchOp = {
+    selections: mediaLibrary.FileKey.ALBUM_NAME + '= ?',
+    selectionArgs: ['新建相册1'],
+  };
+  let fileNoArgsfetchOp = {
+    selections: '',
+    selectionArgs: [],
+  };
+  // 获取符合检索要求的相册，返回相册列表
+  const albumList = await media.getAlbums(AlbumNoArgsfetchOp);
+  const album = albumList[0];
+  // 取到相册列表中的一个相册，获取此相册中所有符合媒体检索选项的媒体资源
+  album.getFileAssets(fileNoArgsfetchOp).then((fetchFileResult) => {
+    let count = fetchFileResult.getCount();
+    console.info('album getFileAssets successfully, count: ' + count);
+    fetchFileResult.close();
+  }).catch((error) => {
+    console.error('album getFileAssets failed with error: ' + error);
+  });
 }
 ```
 

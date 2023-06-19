@@ -117,7 +117,7 @@ dialCall\(phoneNumber: string, options?: DialCallOptions\): Promise<void\>
 | 参数名      |                 类型                | 必填 |                说明                    |
 | ----------- | ----------------------------------- | ---- | -------------------------------------- |
 | phoneNumber | string                              | 是   | 电话号码。                             |
-| options     | [DialCallOptions](#dialcalloptions9)| 否   | 通话参数，携带呼叫的其他配置信息。 |
+| options     | [DialCallOptions](#dialcalloptions9)| 否   | 通话参数，携带呼叫的其他配置信息。<br/>不填该参数则默认使用如下配置，参考[DialCallOptions](#dialcalloptions9)。<br/>- 帐户Id：卡槽1 <br/>- 音视频类型：语音通话 <br/>- 拨号场景：普通呼叫 <br/>- 拨号类型：运营商通话  |
 
 **返回值：**
 
@@ -919,7 +919,7 @@ answerCall(callId?: number\): Promise<void\>
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| callId | number | 否   | 呼叫Id。可以通过订阅callDetailsChange事件获得。从API Version 9开始为可选参数。 |
+| callId | number | 否   | 呼叫Id。可以通过订阅callDetailsChange事件获得。从API Version 9开始为可选参数。<br/>不填该参数则接通最近一通正在响铃的来电。|
 
 **返回值：**
 
@@ -1048,7 +1048,7 @@ hangUpCall\(callId?: number\): Promise<void\>
 
 | 参数名 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| callId | number | 否   | 呼叫id。可以通过订阅callDetailsChange事件获得。从API Version 9开始为可选参数。 |
+| callId | number | 否   | 呼叫id。可以通过订阅callDetailsChange事件获得。从API Version 9开始为可选参数。</br>不填该参数则挂断最近一通正在进行/拨号/连接的通话。|
 
 **返回值：**
 
@@ -1224,8 +1224,8 @@ rejectCall(callId?: number, options?: RejectMessageOptions\): Promise<void\>
 
 | 参数名  | 类型                                           | 必填 | 说明                                                         |
 | ------- | ---------------------------------------------- | ---- | ------------------------------------------------------------ |
-| callId  | number                                         | 否   | 呼叫Id。可以通过订阅callDetailsChange事件获得。从API Version 9开始为可选参数。 |
-| options | [RejectMessageOptions](#rejectmessageoptions7) | 否   | 拒绝消息选项。                                               |
+| callId  | number                                         | 否   | 呼叫Id。可以通过订阅callDetailsChange事件获得。从API Version 9开始为可选参数。<br/>不填该参数则拒接最近一通正在响铃的来电。|
+| options | [RejectMessageOptions](#rejectmessageoptions7) | 否   | 拒绝消息选项。不填该参数则不会发送拒接短信。|
 
 **返回值：**
 
@@ -1252,10 +1252,10 @@ rejectCall(callId?: number, options?: RejectMessageOptions\): Promise<void\>
 let rejectMessageOptions={
     messageContent: "拦截陌生号码"
 }
-call.reject(1, rejectMessageOptions).then(() => {
-    console.log(`reject success.`);
+call.rejectCall(1, rejectMessageOptions).then(() => {
+    console.log(`rejectCall success.`);
 }).catch((err) => {
-    console.error(`reject fail, promise: err->${JSON.stringify(err)}`);
+    console.error(`rejectCall fail, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -2544,7 +2544,7 @@ off\(type: 'callDetailsChange', callback?: Callback<CallAttributeOptions\>\): vo
 | 参数名   | 类型                                                     | 必填 | 说明                               |
 | -------- | -------------------------------------------------------- | ---- | ---------------------------------- |
 | type     | string                                                   | 是   | 通话结束时取消监听通话详情的变化，参数固定为'callDetailsChange'。 |
-| callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | 否   | 回调函数。                         |
+| callback | Callback<[CallAttributeOptions](#callattributeoptions7)> | 否   | 回调函数。不填该参数将不会收到取消订阅的处理结果。 |
 
 **错误码：**
 
@@ -2584,7 +2584,7 @@ off\(type: 'callEventChange', callback?: Callback<CallEventOptions\>\): void
 | 参数名   | 类型                                             | 必填 | 说明                               |
 | -------- | ------------------------------------------------ | ---- | ---------------------------------- |
 | type     | string                                           | 是   | 通话结束时取消监听通话事件的变化，参数固定为'callEventChange'。 |
-| callback | Callback<[CallEventOptions](#calleventoptions8)> | 否   | 回调函数。                         |
+| callback | Callback<[CallEventOptions](#calleventoptions8)> | 否   | 回调函数。不填该参数将不会收到取消订阅的处理结果。 |
 
 **错误码：**
 
@@ -2624,7 +2624,7 @@ off\(type: 'callDisconnectedCause', callback?: Callback<DisconnectedDetails\>\):
 | 参数名   | 类型                                                       | 必填 | 说明                 |
 | -------- | ---------------------------------------------------------- | ---- | ------------------- |
 | type     | string                                                     | 是   | 调用断开连接的原因，参数固定为'callDisconnectedCause'。 |
-| callback | Callback<[DisconnectedDetails](#disconnecteddetails9)>     | 否   | 回调函数。           |
+| callback | Callback<[DisconnectedDetails](#disconnecteddetails9)>     | 否   | 回调函数。不填该参数将不会收到取消订阅的处理结果。 |
 
 **错误码：**
 
@@ -2664,7 +2664,7 @@ off\(type: 'mmiCodeResult', callback?: Callback<MmiCodeResults\>\): void
 | 参数名   | 类型                                              | 必填 | 说明        |
 | -------- | ------------------------------------------------ | ---- | ----------- |
 | type     | string                                           | 是   | MMI码结果，参数固定为'mmiCodeResult'。 |
-| callback | Callback<[MmiCodeResults](#mmicoderesults9)>     | 否   | 回调函数。  |
+| callback | Callback<[MmiCodeResults](#mmicoderesults9)>     | 否   | 回调函数。不填该参数将不会收到取消订阅的处理结果。 |
 
 **错误码：**
 

@@ -24,8 +24,17 @@ getWantAgent(info: WantAgentInfo, callback: AsyncCallback\<WantAgent\>): void
 
 | 参数名     | 类型                       | 必填 | 说明                    |
 | -------- | -------------------------- | ---- | ----------------------- |
-| info     | WantAgentInfo              | 是   | WantAgent信息。           |
+| info     | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)              | 是   | WantAgent信息。           |
 | callback | AsyncCallback\<WantAgent\> | 是   | 创建WantAgent的回调方法。 |
+
+**错误码：**
+
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000151   | Invalid wantagent object.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -93,12 +102,19 @@ getWantAgent(info: WantAgentInfo): Promise\<WantAgent\>
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<WantAgent\> | 以Promise形式返回WantAgent。 |
 
+**错误码：**
+
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000151   | Invalid wantagent object.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
-```js
-import WantAgent from '@ohos.app.ability.wantAgent';
-
-
+```ts
+let wantAgent;
 //WantAgentInfo对象
 let wantAgentInfo = {
     wants: [
@@ -152,6 +168,15 @@ getBundleName(agent: WantAgent, callback: AsyncCallback\<string\>): void
 | -------- | ----------------------- | ---- | --------------------------------- |
 | agent    | WantAgent               | 是   | WantAgent对象。                     |
 | callback | AsyncCallback\<string\> | 是   | 获取WantAgent实例的包名的回调方法。 |
+
+**错误码：**
+
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000151   | Invalid wantagent object.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -234,6 +259,15 @@ getBundleName(agent: WantAgent): Promise\<string\>
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<string\> | 以Promise形式返回获取WantAgent实例的包名。 |
 
+**错误码：**
+
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000151   | Invalid wantagent object.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
 ```js
@@ -301,6 +335,15 @@ getUid(agent: WantAgent, callback: AsyncCallback\<number\>): void
 | -------- | ----------------------- | ---- | ----------------------------------- |
 | agent    | WantAgent               | 是   | WantAgent对象。                       |
 | callback | AsyncCallback\<number\> | 是   | 获取WantAgent实例的用户ID的回调方法。 |
+
+**错误码：**
+
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000151   | Invalid wantagent object.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -383,6 +426,15 @@ getUid(agent: WantAgent): Promise\<number\>
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<number\> | 以Promise形式返回获取WantAgent实例的用户ID。 |
 
+**错误码：**
+
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000151   | Invalid wantagent object.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
 ```js
@@ -452,6 +504,16 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 | -------- | --------------------- | ---- | ------------------------------- |
 | agent    | WantAgent             | 是   | WantAgent对象。                   |
 | callback | AsyncCallback\<[Want](js-apis-app-ability-want.md)\> | 是   | 获取WantAgent对象want的回调方法。 |
+
+**错误码：**
+
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000015   | Service timeout.|
+| 16000151   | Invalid wantagent object.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -534,7 +596,17 @@ getWant(agent: WantAgent): Promise\<Want\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Want\> | 以Promise形式返回获取WantAgent对象的want。 |
+| Promise\<[Want](js-apis-app-ability-want.md)\> | 以Promise形式返回获取WantAgent对象的want。 |
+
+**错误码：**
+
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000015   | Service timeout.|
+| 16000151   | Invalid wantagent object.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -603,6 +675,15 @@ cancel(agent: WantAgent, callback: AsyncCallback\<void\>): void
 | -------- | --------------------- | ---- | --------------------------- |
 | agent    | WantAgent             | 是   | WantAgent对象。               |
 | callback | AsyncCallback\<void\> | 是   | 取消WantAgent实例的回调方法。 |
+
+**错误码：**
+
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000151   | Invalid wantagent object.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 
@@ -685,6 +766,15 @@ cancel(agent: WantAgent): Promise\<void\>
 | --------------- | ------------------------------- |
 | Promise\<void\> | 以Promise形式获取异步返回结果。 |
 
+**错误码：**
+
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000151   | Invalid wantagent object.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
 ```js
@@ -751,7 +841,7 @@ trigger(agent: WantAgent, triggerInfo: TriggerInfo, callback?: AsyncCallback\<Co
 | 参数名        | 类型                          | 必填 | 说明                            |
 | ----------- | ----------------------------- | ---- | ------------------------------- |
 | agent       | WantAgent                     | 是   | WantAgent对象。                   |
-| triggerInfo | TriggerInfo                   | 是   | TriggerInfo对象。                 |
+| triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                   | 是   | TriggerInfo对象。                 |
 | callback    | AsyncCallback\<[CompleteData](#completedata)\> | 否   | 主动激发WantAgent实例的回调方法。 |
 
 **示例：**
@@ -988,6 +1078,16 @@ getOperationType(agent: WantAgent, callback: AsyncCallback\<number>): void;
 | agent      | WantAgent                | 是   | WantAgent对象。                           |
 | callback   | AsyncCallback\<number> | 是   | 获取一个WantAgent的OperationType信息的回调方法。 |
 
+**错误码：**
+
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000015   | Service timeout.|
+| 16000151   | Invalid wantagent object.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
+
 **示例：**
 
 ```js
@@ -1024,6 +1124,27 @@ let wantAgentInfo = {
     wantAgentFlags:[WantAgent.WantAgentFlags.UPDATE_PRESENT_FLAG]
 };
 
+//getWantAgent回调
+function getWantAgentCallback(err, data) {
+    if (err === undefined) {
+        wantAgent = data;
+    } else {
+        console.error('getWantAgent failed ${JSON.stringify(wantAgent)}');
+    }
+    //getOperationTypeCallback回调
+    function getOperationTypeCallback(err, data) {
+        if(err) {
+            console.error('getOperationType failed! ${err.code} ${err.message}');
+        } else {
+            console.info('getOperationType ok! ${JSON.stringify(data)}');
+        }
+    }
+    try {
+        WantAgent.getOperationType(wantAgent, getOperationTypeCallback);
+    } catch(err) {
+        console.error('getOperationTypeCallback failed! ${err.code} ${err.message}');
+    }
+}
 try {
     WantAgent.getWantAgent(wantAgentInfo).then((data) => {
 	    console.info('==========================>getWantAgentCallback=======================>');
@@ -1057,6 +1178,16 @@ getOperationType(agent: WantAgent): Promise\<number>;
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
 | Promise\<number> | 以Promise形式返回获取operationType的结果。 |
+
+**错误码：**
+
+| 错误码ID    | 错误信息            |
+|-----------|--------------------|
+| 16000007   | Service busyness. There are concurrent tasks, waiting for retry.|
+| 16000015   | Service timeout.|
+| 16000151   | Invalid wantagent object.|
+
+错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)
 
 **示例：**
 

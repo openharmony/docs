@@ -36,7 +36,7 @@ Defines the quick fix information at the application level.
 
 | Name       | Type                | Mandatory| Description                                                        |
 | ----------- | -------------------- | ---- | ------------------------------------------------------------ |
-| bundleName    | string               | Yes  | Bundle name.                      |
+| bundleName    | string               | Yes  | Bundle name.                              |
 | bundleVersionCode    | number               | Yes  | Internal version number of the application.                              |
 | bundleVersionName    | string               | Yes  | Version number of the application that is shown to users.                              |
 | quickFixVersionCode    | number               | Yes  | Version code of the quick fix patch package.                              |
@@ -57,10 +57,29 @@ Applies a quick fix patch. This API uses an asynchronous callback to return the 
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
-| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+  | Parameter| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
+  | callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
+| 18500008 | Internal error. |
+
+If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEventManager-definitions.md#common_event_quick_fix_apply_result-9). The table below lists the possible error codes and messages.
+
+| ID| Error Message|
+| ------- | -------- |
+| 18500003 | Deploy hqf failed. |
+| 18500004 | Switch hqf failed. |
+| 18500005 | Delete hqf failed. |
+| 18500006 | Load patch failed. |
+| 18500007 | Unload patch failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 > **NOTE**
 >
@@ -99,15 +118,34 @@ Applies a quick fix patch. This API uses a promise to return the result.
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
+  | Parameter| Type| Mandatory| Description|
+  | -------- | -------- | -------- | -------- |
+  | hapModuleQuickFixFiles | Array\<string> | Yes| Quick fix patch files, each of which must contain a valid file path.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise\<void> | Promise used to return the result.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise\<void> | Promise used to return the result.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 18500002 | The specified quick fix is invalid. It may not exist or inaccessible. |
+| 18500008 | Internal error. |
+
+If an error occurs during patch installation, the error code and message are returned through the common event [COMMON_EVENT_QUICK_FIX_APPLY_RESULT](commonEventManager-definitions.md#common_event_quick_fix_apply_result-9). The table below lists the possible error codes and messages.
+
+| ID| Error Message|
+| ------- | -------- |
+| 18500003 | Deploy hqf failed. |
+| 18500004 | Switch hqf failed. |
+| 18500005 | Delete hqf failed. |
+| 18500006 | Load patch failed. |
+| 18500007 | Unload patch failed. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -140,10 +178,19 @@ Obtains the quick fix information of the application. This API uses an asynchron
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| bundleName | string | Yes|Bundle name. |
-| callback | AsyncCallback\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | Yes| Callback used to return the quick fix information.|
+  | Parameter| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | bundleName | string | Yes|Bundle name. | 
+  | callback | AsyncCallback\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | Yes| Callback used to return the quick fix information.| 
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 18500001 | The specified bundleName is invalid. |
+| 18500008 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
 
@@ -178,15 +225,24 @@ Obtains the quick fix information of the application. This API uses a promise to
 
 **Parameters**
 
-| Parameter| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| bundleName | string | Yes| Bundle name.|
+  | Parameter| Type| Mandatory| Description| 
+  | -------- | -------- | -------- | -------- |
+  | bundleName | string | Yes| Bundle name. | 
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
-| Promise\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | Promise used to return the quick fix information.|
+  | Type| Description|
+  | -------- | -------- |
+  | Promise\<[ApplicationQuickFixInfo](#applicationquickfixinfo)> | Promise used to return the quick fix information.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 18500001 | The specified bundleName is invalid. |
+| 18500008 | Internal error. |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
 
 **Example**
     

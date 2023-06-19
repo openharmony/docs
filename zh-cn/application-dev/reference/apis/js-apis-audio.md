@@ -482,8 +482,8 @@ async function createTonePlayerBefore(){
 
 | 名称      |  值       | 说明     |
 | --------- | -------- | -------- |
-| CHANNEL_1 | 0x1 << 0 | 单声道。 |
-| CHANNEL_2 | 0x1 << 1 | 双声道。 |
+| CHANNEL_1 | 0x1 << 0 | 第一声道。 |
+| CHANNEL_2 | 0x1 << 1 | 第二声道。 |
 
 ## AudioSamplingRate<sup>8+</sup>
 
@@ -2081,16 +2081,13 @@ audioManager.off('deviceChange', (deviceChanged) => {
 });
 ```
 
-### on('interrupt')<sup>(deprecated)</sup>
+### on('interrupt')
 
 on(type: 'interrupt', interrupt: AudioInterrupt, callback: Callback\<InterruptAction>): void
 
 请求焦点并开始监听音频打断事件（当应用程序的音频被另一个播放事件中断，回调通知此应用程序）。
 
 与[on('audioInterrupt')](#onaudiointerrupt9)作用一致，均用于监听焦点变化。为无音频流的场景（未曾创建AudioRenderer对象），比如FM、语音唤醒等提供焦点变化监听功能。
-
-> **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -2122,14 +2119,11 @@ audioManager.on('interrupt', interAudioInterrupt, (InterruptAction) => {
 });
 ```
 
-### off('interrupt')<sup>(deprecated)</sup>
+### off('interrupt')
 
 off(type: 'interrupt', interrupt: AudioInterrupt, callback?: Callback\<InterruptAction>): void
 
 取消监听音频打断事件（删除监听事件，取消打断）。
-
-> **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 
@@ -4917,7 +4911,7 @@ on(type: 'audioInterrupt', callback: Callback\<InterruptEvent>): void
 
 监听音频中断事件。使用callback获取中断事件。
 
-与[on('interrupt')](#oninterruptdeprecated)一致，该接口在AudioRenderer对象start、pause、stop等事件发生前已经主动获取焦点，不需要开发者主动发起焦点申请。
+与[on('interrupt')](#oninterrupt)一致，均用于监听焦点变化，AudioRenderer对象start事件发生时主动获取焦点，在pause、stop等事件发生时会主动释放焦点，不需要开发者主动发起获取焦点或释放焦点的申请。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Interrupt
 
@@ -6072,7 +6066,7 @@ tonePlayer.release().then(() => {
 音频打断/获取焦点事件的回调方法。
 
 > **说明：**
-> 从 API version 7 开始支持，从 API version 9 开始废弃。
+> 从 API version 7 开始支持，从 API version 9 开始废弃。建议使用[InterruptEvent](#interruptevent9)替代。
 
 **系统能力：** SystemCapability.Multimedia.Audio.Renderer
 

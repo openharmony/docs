@@ -1,13 +1,11 @@
-# Thread Model (FA Model)
-
+# Thread Model Overview (FA Model)
 
 There are three types of threads in the FA model:
 
-
 - Main thread
-  
+
   Manages other threads.
-  
+
 - Ability thread
   - One ability thread for each ability.
   - Distributes input events.
@@ -16,12 +14,10 @@ There are three types of threads in the FA model:
   - Receives messages sent by the worker thread.
 
 - Worker thread
-
+  
   Performs time-consuming operations
 
-
 Based on the OpenHarmony thread model, different services run on different threads. Service interaction requires inter-thread communication. Threads can communicate with each other in Emitter or Worker mode. Emitter is mainly used for event synchronization between threads, and Worker is mainly used to execute time-consuming tasks.
-
 
 > **NOTE**
 >

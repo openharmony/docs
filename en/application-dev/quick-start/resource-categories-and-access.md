@@ -8,8 +8,6 @@ During application development, you may need to use different resources, such as
 
 ## Resource Categories
 
-### resources Directory
-
 Resource files used during application development must be stored in specified directories for management. The **resources** directory consists of three types of subdirectories: the **base** subdirectory, qualifiers subdirectories, and the **rawfile** subdirectory. The common resource files used across projects in the stage model are stored in the **resources** directory under **AppScope**.
 
 The **base** subdirectory is provided by default, and the qualifiers subdirectories are created on your own. When your application needs to use a resource, the system preferentially searches the qualifiers subdirectories that match the current device state. The system searches the **base** subdirectory for the target resource only when the **resources** directory does not contain any qualifiers subdirectories that match the current device state or the target resource is not found in the qualifiers subdirectories. The **rawfile** directory is not searched for resources.
@@ -18,24 +16,42 @@ Example of the **resources** directory:
 
 ```
 resources
-|---base  // Default directory
+|---base
 |   |---element
 |   |   |---string.json
 |   |---media
 |   |   |---icon.png
-|---en_GB-vertical-car-mdpi // Example of a qualifiers subdirectory, which needs to be created on your own  
+|   |---profile
+|   |   |---test_profile.json
+|---en_US  // Default directory. When the device language is en-us, resources in this directory are preferentially matched.
 |   |---element
 |   |   |---string.json
 |   |---media
 |   |   |---icon.png
-|---rawfile
+|   |---profile
+|   |   |---test_profile.json
+|---zh_CN  // Default directory. When the device language is zh-cn, resources in this directory are preferentially matched.
+|   |---element
+|   |   |---string.json
+|   |---media
+|   |   |---icon.png
+|   |---profile
+|   |   |---test_profile.json
+|---en_GB-vertical-car-mdpi // Example of a qualifiers subdirectory, which needs to be created on your own.
+|   |---element
+|   |   |---string.json
+|   |---media
+|   |   |---icon.png
+|   |---profile
+|   |   |---test_profile.json
+|---rawfile // Other types of files are saved as raw files and will not be integrated into the resources.index file. You can customize the file name as needed.
 ```
 
 **Table 1** Classification of the resources directory
 
 | Category  | base Subdirectory                          | Qualifiers Subdirectory                                   | rawfile Subdirectory                               |
 | ---- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| Structure| The **base** subdirectory is a default directory. If no qualifiers subdirectories in the **resources** directory of the application match the device status, the resource file in the **base** subdirectory will be automatically referenced.<br>Resource group subdirectories are located at the second level of subdirectories to store basic elements such as strings, colors, and boolean values, as well as resource files such as media, animations, and layouts. For details, see [Resource Group Subdirectories](#resource-group-subdirectories).| You need to create qualifiers subdirectories on your own. Each directory name consists of one or more qualifiers that represent the application scenarios or device characteristics. For details, see [Qualifiers Subdirectories](#qualifiers-subdirectories).<br>Resource group subdirectories are located at the second level of subdirectories to store basic elements such as strings, colors, and boolean values, as well as resource files such as media, animations, and layouts. For details, see [Resource Group Subdirectories](#resource-group-subdirectories).| You can create multiple levels of subdirectories with custom directory names. They can be used to store various resource files.<br>However, resource files in the **rawfile** subdirectory will not be matched based on the device status.|
+| Structure| The **base** subdirectory is a default directory. If no qualifiers subdirectories in the **resources** directory of the application match the device status, the resource file in the **base** subdirectory will be automatically referenced.<br>Resource group subdirectories are located at the second level of subdirectories to store basic elements such as strings, colors, and boolean values, as well as resource files such as media, animations, and layouts. For details, see [Resource Group Subdirectories](#resource-group-subdirectories).| **en_US** and **zh_CN** are two default qualifiers subdirectories. You need to create other qualifiers subdirectories on your own. Each directory name consists of one or more qualifiers that represent the application scenarios or device characteristics. For details, see [Qualifiers Subdirectories](#qualifiers-subdirectories).<br>Resource group subdirectories are located at the second level of subdirectories to store basic elements such as strings, colors, and boolean values, as well as resource files such as media, animations, and layouts. For details, see [Resource Group Subdirectories](#resource-group-subdirectories).| You can create multiple levels of subdirectories with custom directory names. They can be used to store various resource files.<br>However, resource files in the **rawfile** subdirectory will not be matched based on the device status.|
 | Compilation| Resource files in the subdirectory are compiled into binary files, and each resource file is assigned an ID.           | Resource files in the subdirectory are compiled into binary files, and each resource file is assigned an ID.           | Resource files in the subdirectory are directly packed into the application without being compiled, and no IDs will be assigned to the resource files.   |
 | Reference| Resource files in the subdirectory are referenced based on the resource type and resource name.           | Resource files in the subdirectory are referenced based on the resource type and resource name.           | Resource files in the subdirectory are referenced based on the file path and file name.                        |
 
@@ -77,14 +93,13 @@ The name of a qualifiers subdirectory consists of one or more qualifiers that re
 You can create resource group subdirectories (including element, media, and profile) in the **base** and qualifiers subdirectories to store resource files of specific types.
 
 
-**Table 3** Resource group subdirectories
+  **Table 3** Resource group subdirectories
 
 | Resource Group Subdirectory  | Description                                    | Resource File                                    |
 | ------- | ---------------------------------------- | ---------------------------------------- |
 | element | Indicates element resources. Each type of data is represented by a JSON file. (Only files are supported in this directory.) The options are as follows:<br>- **boolean**: boolean data<br>- **color**: color data<br>- **float**: floating-point data<br>- **intarray**: array of integers<br>- **integer**: integer data<br>- **pattern**: pattern data<br>- **plural**: plural form data<br>- **strarray**: array of strings<br>- **string**: string data| It is recommended that files in the **element** subdirectory be named the same as the following files, each of which can contain only data of the same type:<br>- boolean.json<br>- color.json<br>- float.json<br>- intarray.json<br>- integer.json<br>- pattern.json<br>- plural.json<br>- strarray.json<br>- string.json |
 | media   | Indicates media resources, including non-text files such as images, audios, and videos. (Only files are supported in this directory.)             | The file name can be customized, for example, **icon.png**.                    |
 | profile  | Indicates a custom configuration file. You can obtain the file content by using the [getProfileByAbility](../reference/apis/js-apis-bundleManager.md#bundlemanagergetprofilebyability) API. (Only files are supported in this directory.)      | The file name can be customized, for example, **test_profile.json**.          |
-| rawfile | Indicates other types of files, which are stored in their raw formats after the application is built as an HAP file. They will not be integrated into the **resources.index** file.| The file name can be customized.                                |
 
 **Media Resource Types**
 
@@ -231,7 +246,7 @@ When referencing resources in the **rawfile** subdirectory, use the **"$rawfile(
 >
 > The return value of **$r** is a **Resource** object. You can obtain the corresponding string by using the [getStringValue](../reference/apis/js-apis-resource-manager.md#getstringvalue9) API.
 
-In the **.ets** file, you can use the resources defined in the **resources** directory. The following is a resource usage example based on the resource file examples in [Resource Group Sub-directories](#resource-group-subdirectories):
+In the **.ets** file, you can use the resources defined in the **resources** directory. As described in [Resource Group Subdirectories](#resource-group-subdirectories), you can reference .json resource files, including **color.json**, **string.json**, and **plural.json**. The usage is as follows:
 
 ```ts
 Text($r('app.string.string_hello'))
@@ -242,13 +257,14 @@ Text($r('app.string.string_world'))
   .fontColor($r('app.color.color_world'))
   .fontSize($r('app.float.font_world'))
 
-// Reference string resources. The second parameter of $r is used to replace %s, and value is "We will arrive at five'o clock".
-Text($r('app.string.message_arrive', "five'o clock"))
+// Reference string resources. The first parameter of $r indicates the string resource, and the second parameter is used to replace %s in the string.json file.
+// In this example, the resultant value is "We will arrive at five of the clock".
+Text($r('app.string.message_arrive', "five of the clock"))
   .fontColor($r('app.color.color_hello'))
   .fontSize($r('app.float.font_hello'))
 
-// Reference plural resources. The first parameter indicates the plural resource, the second parameter indicates the number of plural resources, and the third parameter indicates the substitute of %d.
-// The value is "5 apple" in singular form and "5 apples" in plural form.
+// Reference plural resources. The first parameter of $r indicates the plural resource, the second parameter indicates the number of plural resources (for English, **one** indicates singular and is represented by **1**, and **other** indicates plural and is represented by an integer greater than or equal to 1; for Chinese, **other** indicates both singular and plural), and the third parameter is used to replace %d.
+// In this example, the resultant value is "5 apples".
 Text($r('app.plural.eat_apple', 5, 5))
   .fontColor($r('app.color.color_world'))
   .fontSize($r('app.float.font_world'))

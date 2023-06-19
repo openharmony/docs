@@ -5,6 +5,8 @@
 > **说明：**
 >
 > 从API Version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>
+> 该模块不支持在[UIAbility](./js-apis-app-ability-uiAbility.md)中使用，需要在创建组件实例后使用。
 
 
 ## 导入模块
@@ -26,7 +28,7 @@ matchMediaSync(condition: string): MediaQueryListener
 
 | 参数名       | 类型     | 必填   | 说明                                       |
 | --------- | ------ | ---- | ---------------------------------------- |
-| condition | string | 是    | 媒体事件的匹配条件，具体可参考[媒体查询语法规则](../../ui/ui-ts-layout-mediaquery.md#语法规则)。 |
+| condition | string | 是    | 媒体事件的匹配条件，具体可参考[媒体查询语法规则](../../ui/arkts-layout-development-media-query.md#语法规则)。 |
 
 **返回值：** 
 

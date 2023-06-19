@@ -81,7 +81,7 @@ import web_webview from '@ohos.web.webview'
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-  msgPort: WebMessagePort[] = null;
+  msgPort: web_webview.WebMessagePort[] = null;
 
   build() {
     Column() {
@@ -278,6 +278,7 @@ Sets whether to enable web debugging.
 | ------------------ | ------- | ---- | ------------- |
 | webDebuggingAccess | boolean | Yes  | Whether to enable web debugging.|
 
+**Example**
 
 ```ts
 // xxx.ets
@@ -383,6 +384,8 @@ struct WebComponent {
 }
 ```
 
+There are two methods for loading local resource files:
+1. Using $rawfile
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview'
@@ -408,6 +411,8 @@ struct WebComponent {
   }
 }
 ```
+
+2. Using a sandbox path. For details, see the example of loading local resource files in the sandbox in [Web](../arkui-ts/ts-basic-components-web.md#web).
 
 ```html
 <!-- xxx.html -->
@@ -1117,7 +1122,7 @@ Executes a JavaScript script. This API uses a promise to return the script execu
 
 | Type           | Description                                               |
 | --------------- | --------------------------------------------------- |
-| Promise\<string> | Promise used to return the result. Returns **null** if the JavaScript script fails to be executed|
+| Promise\<string> | Promise used to return the result if the operation is successful and null otherwise.|
 
 **Error codes**
 
@@ -1603,24 +1608,24 @@ struct WebComponent {
             this.ports = this.controller.createWebMessagePorts();
             // 2. Register a callback on a message port (for example, port 1) on the application side.
             this.ports[1].onMessageEvent((result: web_webview.WebMessage) => {
-                let msg = 'Got msg from HTML:';
-                if (typeof(result) == "string") {
-                  console.log("received string message from html5, string is:" + result);
-                  msg = msg + result;
-                } else if (typeof(result) == "object") {
-                  if (result instanceof ArrayBuffer) {
-                    console.log("received arraybuffer from html5, length is:" + result.byteLength);
-                    msg = msg + "lenght is " + result.byteLength;
-                  } else {
-                    console.log("not support");
-                  }
+              let msg = 'Got msg from HTML:';
+              if (typeof(result) == "string") {
+                console.log("received string message from html5, string is:" + result);
+                msg = msg + result;
+              } else if (typeof(result) == "object") {
+                if (result instanceof ArrayBuffer) {
+                  console.log("received arraybuffer from html5, length is:" + result.byteLength);
+                  msg = msg + "lenght is " + result.byteLength;
                 } else {
                   console.log("not support");
                 }
-                this.receivedFromHtml = msg;
-              })
-              // 3. Send another message port (for example, port 0) to the HTML side, which can then save the port for future use.
-              this.controller.postMessage('__init_port__', [this.ports[0]], '*');
+              } else {
+                console.log("not support");
+              }
+              this.receivedFromHtml = msg;
+            })
+            // 3. Send another message port (for example, port 0) to the HTML side, which can then save the port for future use.
+            this.controller.postMessage('__init_port__', [this.ports[0]], '*');
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -1673,9 +1678,9 @@ var output = document.querySelector('.output');
 window.addEventListener('message', function (event) {
     if (event.data == '__init_port__') {
         if (event.ports[0] != null) {
-            h5Port = event.ports[0]; // 1. Save the port number sent from the ArkTS side.
+            h5Port = event.ports[0]; // 1. Save the port number sent from the eTS side.
             h5Port.onmessage = function (event) {
-              // 2. Receive the message sent from the ArkTS side.
+              // 2. Receive the message sent from the eTS side.
               var msg = 'Got message from ets:';
               var result = event.data;
               if (typeof(result) == "string") {
@@ -1697,7 +1702,7 @@ window.addEventListener('message', function (event) {
     }
 })
 
-// 3. Use h5Port to send messages to the ArkTS side.
+// 3. Use h5Port to send messages to the eTS side.
 function PostMsgToEts(data) {
     if (h5Port) {
       h5Port.postMessage(data);
@@ -1989,6 +1994,37 @@ struct WebComponent {
 }
 ```
 
+You can customize the user agent based on the default user agent.
+```ts
+// xxx.ets
+import web_webview from '@ohos.web.webview';
+
+@Entry
+@Component
+struct WebComponent {
+  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  @State ua: string = ""
+
+  aboutToAppear():void {
+    web_webview.once('webInited', () => {
+      try {
+        // Customize the user agent on the application side.
+        this.ua = this.controller.getUserAgent() + 'xxx';
+      } catch(error) {
+        console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
+      }
+    })
+  }
+
+  build() {
+    Column() {
+      Web({ src: 'www.example.com', controller: this.controller })
+        .userAgent(this.ua)
+    }
+  }
+}
+```
+
 ### getTitle
 
 getTitle(): string
@@ -2102,7 +2138,7 @@ Stores this web page. This API uses an asynchronous callback to return the resul
 | Name  | Type             | Mandatory| Description                                                        |
 | -------- | --------------------- | ---- | ------------------------------------------------------------ |
 | baseName | string                | Yes  | Save path. The value cannot be null.                                |
-| autoName | boolean               | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory.|
+| autoName | boolean               | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value. In this case, **baseName** is regarded as a directory.|
 | callback | AsyncCallback\<string> | Yes  | Callback used to return the save path if the operation is successful and null otherwise.                  |
 
 **Error codes**
@@ -2127,7 +2163,7 @@ struct WebComponent {
 
   build() {
     Column() {
-      Button('saveWebArchive')
+      Button('storeWebArchive')
         .onClick(() => {
           try {
             this.controller.storeWebArchive("/data/storage/el2/base/", true, (error, filename) => {
@@ -2162,7 +2198,7 @@ Stores this web page. This API uses a promise to return the result.
 | Name  | Type| Mandatory| Description                                                        |
 | -------- | -------- | ---- | ------------------------------------------------------------ |
 | baseName | string   | Yes  | Save path. The value cannot be null.                                |
-| autoName | boolean  | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of current page and the **baseName** value. In this case, **baseName** is regarded as a directory.|
+| autoName | boolean  | Yes  | Whether to automatically generate a file name. The value **false** means not to automatically generate a file name. The value **true** means to automatically generate a file name based on the URL of the current page and the **baseName** value. In this case, **baseName** is regarded as a directory.|
 
 **Return value**
 
@@ -2192,7 +2228,7 @@ struct WebComponent {
 
   build() {
     Column() {
-      Button('saveWebArchive')
+      Button('storeWebArchive')
         .onClick(() => {
           try {
             this.controller.storeWebArchive("/data/storage/el2/base/", true)
@@ -2312,6 +2348,8 @@ struct WebComponent {
 backOrForward(step: number): void
 
 Performs a specific number of steps forward or backward on the current page based on the history stack. No redirection will be performed if the corresponding page does not exist in the history stack.
+
+Because the previously loaded web pages are used for the operation, no page reloading is involved.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -2655,7 +2693,7 @@ import image from "@ohos.multimedia.image"
 @Component
 struct WebComponent {
   controller: web_webview.WebviewController = new web_webview.WebviewController();
-    @State pixelmap: image.PixelMap = undefined;
+  @State pixelmap: image.PixelMap = undefined;
 
   build() {
     Column() {
@@ -2761,12 +2799,12 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.controller.hasImage((error, data) => {
-                if (error) {
-                  console.info(`hasImage error: ` + JSON.stringify(error))
-                  return;
-                }
-                console.info("hasImage: " + data);
-              });
+              if (error) {
+                console.info(`hasImage error: ` + JSON.stringify(error))
+                return;
+              }
+              console.info("hasImage: " + data);
+            });
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -2816,11 +2854,11 @@ struct WebComponent {
         .onClick(() => {
           try {
             this.controller.hasImage().then((data) => {
-                console.info('hasImage: ' + data);
-              })
-              .catch(function (error) {
-                console.error("error: " + error);
-              })
+              console.info('hasImage: ' + data);
+            })
+            .catch(function (error) {
+              console.error("error: " + error);
+            })
           } catch (error) {
             console.error(`Errorcode: ${error.code}, Message: ${error.message}`);
           }
@@ -3051,10 +3089,11 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 **Example**
 
+1. To perform operations on files, you must import the file management module. For details, see [File Management](./js-apis-file-fs.md).
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 @Entry
 @Component
@@ -3067,11 +3106,13 @@ struct WebComponent {
         .onClick(() => {
           try {
             let state = this.controller.serializeWebState();
-            let path = globalThis.AbilityContext.cacheDir;
+            // Obtain the value of globalThis.cacheDir from MainAbility.ts.
+            let path = globalThis.cacheDir;
             path += '/WebState';
-            let fd = fileio.openSync(path, 0o2 | 0o100, 0o666);
-            fileio.writeSync(fd, state.buffer);
-            fileio.closeSync(fd);
+            // Synchronously open a file.
+            let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+            fs.writeSync(file.fd, state.buffer);
+            fs.closeSync(file.fd);
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
           }
@@ -3079,6 +3120,21 @@ struct WebComponent {
       Web({ src: 'www.example.com', controller: this.controller })
     }
   }
+}
+```
+
+2. Modify **MainAbility.ts**.
+Obtain the path of the application cache file.
+```ts
+// xxx.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
+
+export default class MainAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        // Bind cacheDir to the globalThis object to implement data synchronization between the UIAbility component and the page.
+        globalThis.cacheDir = this.context.cacheDir;
+    }
 }
 ```
 
@@ -3106,10 +3162,11 @@ For details about the error codes, see [Webview Error Codes](../errorcodes/error
 
 **Example**
 
+1. To perform operations on files, you must import the file management module. For details, see [File Management](./js-apis-file-fs.md).
 ```ts
 // xxx.ets
 import web_webview from '@ohos.web.webview';
-import fileio from '@ohos.fileio';
+import fs from '@ohos.file.fs';
 
 @Entry
 @Component
@@ -3121,17 +3178,22 @@ struct WebComponent {
       Button('RestoreWebState')
         .onClick(() => {
           try {
-            let path = globalThis.AbilityContext.cacheDir;
+            // Obtain the value of globalThis.cacheDir from MainAbility.ts.
+            let path = globalThis.cacheDir;
             path += '/WebState';
-            let fd = fileio.openSync(path, 0o002, 0o666);
-            let stat = fileio.fstatSync(fd);
+            // Synchronously open a file.
+            let file = fs.openSync(path, fs.OpenMode.READ_WRITE);
+            let stat = fs.statSync(path);
             let size = stat.size;
             let buf = new ArrayBuffer(size);
-            fileio.read(fd, buf, (err, data) => {
-              if (data) {
-                this.controller.restoreWebState(new Uint8Array(data.buffer));
+            fs.read(file.fd, buf, (err, readLen) => {
+              if (err) {
+                console.info("mkdir failed with error message: " + err.message + ", error code: " + err.code);
+              } else {
+                console.info("read file data succeed");
+                this.controller.restoreWebState(new Uint8Array(buf.slice(0, readLen)));
+                fs.closeSync(file);
               }
-              fileio.closeSync(fd);
             });
           } catch (error) {
             console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
@@ -3140,6 +3202,21 @@ struct WebComponent {
       Web({ src: 'www.example.com', controller: this.controller })
     }
   }
+}
+```
+
+2. Modify **MainAbility.ts**.
+Obtain the path of the application cache file.
+```ts
+// xxx.ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+import web_webview from '@ohos.web.webview';
+
+export default class MainAbility extends UIAbility {
+    onCreate(want, launchParam) {
+        // Bind cacheDir to the globalThis object to implement data synchronization between the UIAbility component and the page.
+        globalThis.cacheDir = this.context.cacheDir;
+    }
 }
 ```
 
@@ -3196,11 +3273,11 @@ struct WebComponent {
 
 Implements a **WebCookieManager** instance to manage behavior of cookies in **\<Web>** components. All **\<Web>** components in an application share a **WebCookieManager** instance.
 
-###  getCookie
+### getCookie
 
 static getCookie(url: string): string
 
-Obtains the cookie value corresponding to the specified URL.
+Obtains the cookie corresponding to the specified URL.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3208,7 +3285,7 @@ Obtains the cookie value corresponding to the specified URL.
 
 | Name| Type  | Mandatory| Description                     |
 | ------ | ------ | ---- | :------------------------ |
-| url    | string | Yes  | URL of the cookie value to obtain. A complete URL is recommended.|
+| url    | string | Yes  | URL of the cookie to obtain. A complete URL is recommended.|
 
 **Return value**
 
@@ -3252,11 +3329,11 @@ struct WebComponent {
 }
 ```
 
-###  setCookie
+### setCookie
 
 static setCookie(url: string, value: string): void
 
-Sets a cookie value for the specified URL.
+Sets a cookie for the specified URL.
 
 **System capability**: SystemCapability.Web.Webview.Core
 
@@ -3303,7 +3380,7 @@ struct WebComponent {
 }
 ```
 
-###  saveCookieAsync
+### saveCookieAsync
 
 static saveCookieAsync(callback: AsyncCallback\<void>): void
 
@@ -3315,7 +3392,7 @@ Saves the cookies in the memory to the drive. This API uses an asynchronous call
 
 | Name  | Type                  | Mandatory| Description                                              |
 | -------- | ---------------------- | ---- | :------------------------------------------------- |
-| callback | AsyncCallback\<void> | Yes  | Callback used to return the operation result.|
+| callback | AsyncCallback\<void> | Yes  | Callback used to return whether the cookies are successfully saved.|
 
 
 **Example**
@@ -3349,7 +3426,7 @@ struct WebComponent {
 }
 ```
 
-###  saveCookieAsync
+### saveCookieAsync
 
 static saveCookieAsync(): Promise\<void>
 
@@ -3396,7 +3473,7 @@ struct WebComponent {
 }
 ```
 
-###  putAcceptCookieEnabled
+### putAcceptCookieEnabled
 
 static putAcceptCookieEnabled(accept: boolean): void
 
@@ -3437,7 +3514,7 @@ struct WebComponent {
 }
 ```
 
-###  isCookieAllowed
+### isCookieAllowed
 
 static isCookieAllowed(): boolean
 
@@ -3449,7 +3526,7 @@ Checks whether the **WebCookieManager** instance has the permission to send and 
 
 | Type   | Description                            |
 | ------- | -------------------------------- |
-| boolean | Whether the **WebCookieManager** instance has the permission to send and receive cookies.|
+| boolean | Whether the **WebCookieManager** instance has the permission to send and receive cookies. The default value is **true**.|
 
 **Example**
 
@@ -3475,7 +3552,7 @@ struct WebComponent {
 }
 ```
 
-###  putAcceptThirdPartyCookieEnabled
+### putAcceptThirdPartyCookieEnabled
 
 static putAcceptThirdPartyCookieEnabled(accept: boolean): void
 
@@ -3516,7 +3593,7 @@ struct WebComponent {
 }
 ```
 
-###  isThirdPartyCookieAllowed
+### isThirdPartyCookieAllowed
 
 static isThirdPartyCookieAllowed(): boolean
 
@@ -3528,7 +3605,7 @@ Checks whether the **WebCookieManager** instance has the permission to send and 
 
 | Type   | Description                                  |
 | ------- | -------------------------------------- |
-| boolean | Whether the **WebCookieManager** instance has the permission to send and receive third-party cookies.|
+| boolean | Whether the **WebCookieManager** instance has the permission to send and receive third-party cookies. The default value is **false**.|
 
 **Example**
 
@@ -3554,7 +3631,7 @@ struct WebComponent {
 }
 ```
 
-###  existCookie
+### existCookie
 
 static existCookie(): boolean
 
@@ -3592,7 +3669,7 @@ struct WebComponent {
 }
 ```
 
-###  deleteEntireCookie
+### deleteEntireCookie
 
 static deleteEntireCookie(): void
 
@@ -3623,7 +3700,7 @@ struct WebComponent {
 }
 ```
 
-###  deleteSessionCookie
+### deleteSessionCookie
 
 static deleteSessionCookie(): void
 

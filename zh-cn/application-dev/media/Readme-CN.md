@@ -1,29 +1,60 @@
 # 媒体
 
+- [媒体应用开发概述](media-application-overview.md)
 - 音视频
-  - [音频开发概述](audio-overview.md)
-  - [音频渲染开发指导](audio-renderer.md)
-  - [音频流管理开发指导](audio-stream-manager.md)
-  - [音频采集开发指导](audio-capturer.md)
-  - [OpenSL ES播放开发指导](opensles-playback.md)
-  - [OpenSL ES录音开发指导](opensles-capture.md)
-  - [音频焦点模式开发指导](audio-interruptmode.md)
-  - [音量管理开发指导](audio-volume-manager.md)
-  - [路由、设备管理开发指导](audio-routing-manager.md)
-  - [音视频播放器开发指导(推荐使用)](avplayer-playback.md)
-  - [音视频录制开发指导(推荐使用)](avrecorder.md)
-  - [音频播放开发指导(待停用)](audio-playback.md)
-  - [音频录制开发指导(待停用)](audio-recorder.md)
-  - [视频播放开发指导(待停用)](video-playback.md)
-  - [视频录制开发指导(待停用)](video-recorder.md)
-
-- 媒体会话
-  - [AVSession开发概述](avsession-overview.md)
-  - [AVSession开发指导](avsession-guidelines.md)
-
+  - [音视频概述](av-overview.md)
+  - [AVPlayer和AVRecorder](avplayer-avrecorder-overview.md)
+  - 音频播放
+    - [音频播放开发概述](audio-playback-overview.md)
+    - [使用AVPlayer开发音频播放功能](using-avplayer-for-playback.md)
+    - [使用AudioRenderer开发音频播放功能](using-audiorenderer-for-playback.md)
+    - [使用OpenSL ES开发音频播放功能](using-opensl-es-for-playback.md)
+    - [使用TonePlayer开发音频播放功能（仅对系统应用开放）](using-toneplayer-for-playback.md)
+    - [多音频播放的并发策略](audio-playback-concurrency.md)
+    - [播放音量管理](volume-management.md)
+    - [音频播放流管理](audio-playback-stream-management.md)
+    - [音频输出设备管理](audio-output-device-management.md)
+    - [分布式音频播放（仅对系统应用开放）](distributed-audio-playback.md)
+  - 音频录制
+    - [音频录制开发概述](audio-recording-overview.md)
+    - [使用AVRecorder开发音频录制功能](using-avrecorder-for-recording.md)
+    - [使用AudioCapturer开发音频录制功能](using-audiocapturer-for-recording.md)
+    - [使用OpenSLES开发音频录制功能](using-opensl-es-for-recording.md)
+    - [管理麦克风](mic-management.md)
+    - [音频录制流管理](audio-recording-stream-management.md)
+    - [音频输入设备管理](audio-input-device-management.md)
+  - 音频通话
+    - [音频通话开发概述](audio-call-overview.md)
+    - [开发音频通话功能](audio-call-development.md)
+  - [视频播放](video-playback.md)
+  - [视频录制](video-recording.md)
+- 媒体会话（仅对系统应用开放）
+  - [媒体会话概述](avsession-overview.md)
+  - 本地媒体会话
+    - [本地媒体会话概述](local-avsession-overview.md)
+    - [媒体会话提供方](using-avsession-developer.md)
+    - [媒体会话控制方](using-avsession-controller.md)
+  - 分布式媒体会话
+    - [分布式媒体会话概述](distributed-avsession-overview.md)
+    - [使用分布式媒体会话](using-distributed-avsession.md)
+- 相机（仅对系统应用开放）
+  - [相机开发概述](camera-overview.md)
+  - 相机开发指导
+    - [开发准备](camera-preparation.md)
+    - [设备输入](camera-device-input.md)
+    - [会话管理](camera-session-management.md)
+    - [预览](camera-preview.md)
+    - [拍照](camera-shooting.md)
+    - [录像](camera-recording.md)
+    - [元数据](camera-metadata.md)
+  - 相机最佳实践
+    - [拍照实现方案](camera-shooting-case.md)
+    - [录像实现方案](camera-recording-case.md)
 - 图片
-  - [图片开发指导](image.md)
-
-- 相机
-  - [相机开发指导](camera.md)
-  - [分布式相机开发指导](remote-camera.md)
+  - [图片开发概述](image-overview.md)
+  - [图片解码](image-decoding.md)
+  - 图片处理
+    - [图像变换](image-transformation.md)
+    - [位图操作](image-pixelmap-operation.md)
+  - [图片编码](image-encoding.md)
+  - [图片工具](image-tool.md)

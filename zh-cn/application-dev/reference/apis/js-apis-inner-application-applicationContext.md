@@ -7,12 +7,18 @@ ApplicationContext模块提供开发者应用级别的的上下文的能力，�
 > 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。  
 > 本模块接口仅可在Stage模型下使用。
 
+## 导入模块
+
+```ts
+import common from '@ohos.app.ability.common';
+```
+
 ## 使用说明
 
 在使用ApplicationContext的功能前，需要通过context的实例获取。
 
 ```ts
-let applicationContext = this.context.getApplicationContext();
+let applicationContext: common.ApplicationContext = this.context.getApplicationContext();
 ```
 
 ## ApplicationContext.on(type: 'abilityLifecycle', callback: AbilityLifecycleCallback)
@@ -283,10 +289,18 @@ getRunningProcessInformation(): Promise\<Array\<ProcessInformation>>;
 | -------- | -------- |
 | Promise\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以Promise方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let applicationContext = this.context.getApplicationContext();
 applicationContext.getRunningProcessInformation().then((data) => {
     console.log('The process running information is:' + JSON.stringify(data));
 }).catch((error) => {
@@ -312,10 +326,18 @@ getRunningProcessInformation(callback: AsyncCallback\<Array\<ProcessInformation>
 | -------- | -------- |
 |AsyncCallback\<Array\<[ProcessInformation](js-apis-inner-application-processInformation.md)>> | 以回调方式返回接口运行结果及有关运行进程的信息，可进行错误处理或其他自定义处理。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let applicationContext = this.context.getApplicationContext();
 applicationContext.getRunningProcessInformation((err, data) => {
     if (err.code !== 0) {
         console.error('getRunningProcessInformation faile, err: ' + JSON.stringify(err));
@@ -338,6 +360,14 @@ killProcessesBySelf(): Promise\<void>;
 | 类型 | 说明 |
 | -------- | -------- |
 | Promise\<void>> | 以Promise方式返回杀死应用所在的进程结果。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
@@ -364,13 +394,20 @@ killProcessesBySelf(callback: AsyncCallback\<void>);
 | -------- | -------- |
 |AsyncCallback\<void> | 以callback方式返回杀死应用所在的进程结果。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| ------- | -------- |
+| 16000011 | The context does not exist. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
-let applicationContext = this.context.getApplicationContext();
-applicationContext.killProcessesBySelf(err => {
-    if (err.code !== 0) {
-        console.error('killProcessesBySelf faile, err: ' + JSON.stringify(err));
+applicationContext.killAllProcesses(error => {
+    if (error) {
+        console.error('killAllProcesses fail, error: ${JSON.stringify(error)}');
     }
 })
 ```

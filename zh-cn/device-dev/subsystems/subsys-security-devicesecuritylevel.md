@@ -418,7 +418,7 @@ eyJ0eXAiOiAiRFNMIn0=.eyJ0eXBlIjogImRlYnVnIiwgIm1hbnVmYWN0dXJlIjogIm9ob3MiLCAiYnJ
 
 ### 工具使用介绍
 
-为方便开发者对于“凭据文件”的进一步理解，设备安全等级管理模块提供了[凭据工具](https://gitee.com/openharmony/security_device_security_level/blob/master/oem_property/ohos/dslm_cred_tool.py)，该工具是一个python脚本，基于OPENSSL命令行的简单封装，可以便捷的提供凭据文件的签发和验证功能。
+为方便开发者对于“凭据文件”的进一步理解，设备安全等级管理模块提供了[凭据工具](https://gitee.com/openharmony/security_device_security_level/blob/master/oem_property/ohos/standard/dslm_cred_tool.py)，该工具是一个python脚本，基于OPENSSL命令行的简单封装，可以便捷的提供凭据文件的签发和验证功能。
 其使用方法如下：
 
 1. 签名密钥初始化：

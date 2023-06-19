@@ -586,7 +586,7 @@ Notification.getSlot(slotType).then((data) => {
 
 ## Notification.getSlots
 
-getSlots(callback: AsyncCallback<Array\<NotificationSlot\>>): void
+getSlots(callback: AsyncCallback\<Array\<NotificationSlot>>): void
 
 Obtains all notification slots. This API uses an asynchronous callback to return the result.
 
@@ -596,7 +596,7 @@ Obtains all notification slots. This API uses an asynchronous callback to return
 
 | Name    | Type                             | Mandatory| Description                |
 | -------- | --------------------------------- | ---- | -------------------- |
-| callback | AsyncCallback\<Array\<[NotificationSlot](#notificationslot)\>\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<Array\<[NotificationSlot](#notificationslot)>> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -1364,7 +1364,7 @@ Notification.setSlotByBundle(bundle, notificationSlot).then(() => {
 
 ## Notification.getSlotsByBundle
 
-getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback<Array\<NotificationSlot\>>): void
+getSlotsByBundle(bundle: BundleOption, callback: AsyncCallback\<Array\<NotificationSlot>>): void
 
 Obtains the notification slots of a specified application. This API uses an asynchronous callback to return the result.
 
@@ -1379,7 +1379,7 @@ Obtains the notification slots of a specified application. This API uses an asyn
 | Name    | Type                                    | Mandatory| Description                |
 | -------- | ---------------------------------------- | ---- | -------------------- |
 | bundle   | [BundleOption](#bundleoption)                             | Yes  | Bundle information of the application.          |
-| callback | AsyncCallback<Array\<[NotificationSlot](#notificationslot)\>> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<Array\<[NotificationSlot](#notificationslot)>> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -1401,7 +1401,7 @@ Notification.getSlotsByBundle(bundle, getSlotsByBundleCallback);
 
 ## Notification.getSlotsByBundle
 
-getSlotsByBundle(bundle: BundleOption): Promise<Array\<NotificationSlot\>>
+getSlotsByBundle(bundle: BundleOption): Promise\<Array\<NotificationSlot>>
 
 Obtains the notification slots of a specified application. This API uses a promise to return the result.
 
@@ -1421,7 +1421,7 @@ Obtains the notification slots of a specified application. This API uses a promi
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise<Array\<[NotificationSlot](#notificationslot)\>> | Promise used to return the result.|
+| Promise\<Array\<[NotificationSlot](#notificationslot)>> | Promise used to return the result.|
 
 **Example**
 
@@ -1823,7 +1823,7 @@ Notification.removeAll(userId).then(() => {
 
 ## Notification.getAllActiveNotifications
 
-getAllActiveNotifications(callback: AsyncCallback<Array\<NotificationRequest\>>): void
+getAllActiveNotifications(callback: AsyncCallback\<Array\<NotificationRequest>>): void
 
 Obtains all active notifications. This API uses an asynchronous callback to return the result.
 
@@ -1837,7 +1837,7 @@ Obtains all active notifications. This API uses an asynchronous callback to retu
 
 | Name    | Type                                                        | Mandatory| Description                |
 | -------- | ------------------------------------------------------------ | ---- | -------------------- |
-| callback | AsyncCallback<Array\<[NotificationRequest](#notificationrequest)\>> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<Array\<[NotificationRequest](#notificationrequest)>> | Yes  | Callback used to return the result.|
 
 **Example**
 
@@ -1857,7 +1857,7 @@ Notification.getAllActiveNotifications(getAllActiveNotificationsCallback);
 
 ## Notification.getAllActiveNotifications
 
-getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](#notificationrequest)\>\>
+getAllActiveNotifications(): Promise\<Array\<[NotificationRequest](#notificationrequest)>>
 
 Obtains all active notifications. This API uses a promise to return the result.
 
@@ -1871,7 +1871,7 @@ Obtains all active notifications. This API uses a promise to return the result.
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Array\<[NotificationRequest](#notificationrequest)\>\> | Promise used to return the result.|
+| Promise\<Array\<[NotificationRequest](#notificationrequest)>> | Promise used to return the result.|
 
 **Example**
 
@@ -2903,476 +2903,6 @@ Notification.getDeviceRemindType().then((data) => {
 });
 ```
 
-
-## Notification.publishAsBundle<sup>9+</sup>
-
-publishAsBundle(request: NotificationRequest, representativeBundle: string, userId: number, callback: AsyncCallback\<void\>): void
-
-Publishes an agent-powered notification. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name              | Type                                       | Mandatory| Description                                    |
-| -------------------- | ------------------------------------------- | ---- | ---------------------------------------- |
-| request              | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
-| representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                      |
-| userId               | number                                      | Yes  | User ID.                                |
-| callback             | AsyncCallback                               | Yes  | Callback used to return the result.                |
-
-**Example**
-
-```js
-// publishAsBundle callback
-function callback(err) {
-    if (err.code) {
-        console.info("publishAsBundle failed " + JSON.stringify(err));
-    } else {
-        console.info("publishAsBundle success");
-    }
-}
-// Bundle name of the application whose notification function is taken over by the reminder agent
-let representativeBundle = "com.example.demo";
-// User ID
-let userId = 100;
-// NotificationRequest object
-let request = {
-    id: 1,
-    content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
-        normal: {
-            title: "test_title",
-            text: "test_text",
-            additionalText: "test_additionalText"
-        }
-    }
-};
-
-Notification.publishAsBundle(request, representativeBundle, userId, callback);
-```
-
-## Notification.publishAsBundle<sup>9+</sup>
-
-publishAsBundle(request: NotificationRequest, representativeBundle: string, userId: number): Promise\<void\>
-
-Publishes a notification through the reminder agent. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-
-| Name              | Type                                       | Mandatory| Description                                         |
-| -------------------- | ------------------------------------------- | ---- | --------------------------------------------- |
-| request              | [NotificationRequest](#notificationrequest) | Yes  | Content and related configuration of the notification to publish.|
-| representativeBundle | string                                      | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.                           |
-| userId               | number                                      | Yes  | User ID.                           |
-
-**Example**
-
-```js
-// Bundle name of the application whose notification function is taken over by the reminder agent
-let representativeBundle = "com.example.demo";
-// User ID
-let userId = 100;
-// NotificationRequest object
-let request = {
-    id: 1,
-    content: {
-        contentType: Notification.ContentType.NOTIFICATION_CONTENT_BASIC_TEXT,
-        normal: {
-            title: "test_title",
-            text: "test_text",
-            additionalText: "test_additionalText"
-        }
-    }
-};
-
-Notification.publishAsBundle(request, representativeBundle, userId).then(() => {
-	console.info("publishAsBundle success");
-});
-```
-
-## Notification.cancelAsBundle<sup>9+</sup>
-
-cancelAsBundle(id: number, representativeBundle: string, userId: number, callback: AsyncCallback\<void\>): void
-
-Cancels a notification published by the reminder agent. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name              | Type         | Mandatory| Description                    |
-| -------------------- | ------------- | ---- | ------------------------ |
-| id                   | number        | Yes  | Notification ID.                |
-| representativeBundle | string        | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.      |
-| userId               | number        | Yes  | User ID.      |
-| callback             | AsyncCallback | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-// cancelAsBundle
-function cancelAsBundleCallback(err) {
-    if (err.code) {
-        console.info("cancelAsBundle failed " + JSON.stringify(err));
-    } else {
-        console.info("cancelAsBundle success");
-    }
-}
-// Bundle name of the application whose notification function is taken over by the reminder agent
-let representativeBundle = "com.example.demo";
-// User ID
-let userId = 100;
-
-Notification.cancelAsBundle(0, representativeBundle, userId, cancelAsBundleCallback);
-```
-
-## Notification.cancelAsBundle<sup>9+</sup>
-
-cancelAsBundle(id: number, representativeBundle: string, userId: number): Promise\<void\>
-
-Cancels a notification published by the reminder agent. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER, ohos.permission.NOTIFICATION_AGENT_CONTROLLER
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Parameters**
-
-| Name              | Type  | Mandatory| Description              |
-| -------------------- | ------ | ---- | ------------------ |
-| id                   | number | Yes  | Notification ID.          |
-| representativeBundle | string | Yes  | Bundle name of the application whose notification function is taken over by the reminder agent.|
-| userId               | number | Yes  | User ID.|
-
-**Example**
-
-```js
-// Bundle name of the application whose notification function is taken over by the reminder agent
-let representativeBundle = "com.example.demo";
-// User ID
-let userId = 100;
-
-Notification.cancelAsBundle(0, representativeBundle, userId).then(() => {
-	console.info("cancelAsBundle success");
-});
-```
-
-## Notification.enableNotificationSlot <sup>9+</sup>
-
-enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean, callback: AsyncCallback\<void>): void
-
-Sets the enabled status of a notification slot type for a specified application. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**Parameters**
-
-| Name  | Type                         | Mandatory| Description                  |
-| -------- | ----------------------------- | ---- | ---------------------- |
-| bundle   | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.          |
-| type     | [SlotType](#slottype)         | Yes  | Notification slot type.        |
-| enable   | boolean                       | Yes  | Whether to enable notification.            |
-| callback | AsyncCallback\<void\>         | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-// enableNotificationSlot
-function enableSlotCallback(err) {
-    if (err.code) {
-        console.info("enableNotificationSlot failed " + JSON.stringify(err));
-    } else {
-        console.info("enableNotificationSlot success");
-    }
-};
-
-Notification.enableNotificationSlot(
-    { bundle: "ohos.samples.notification", },
-    Notification.SlotType.SOCIAL_COMMUNICATION,
-    true,
-    enableSlotCallback);
-```
-
-## Notification.enableNotificationSlot <sup>9+</sup>
-
-enableNotificationSlot(bundle: BundleOption, type: SlotType, enable: boolean): Promise\<void> 
-
-Sets the enabled status of a notification slot type for a specified application. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**Parameters**
-
-| Name| Type                         | Mandatory| Description          |
-| ------ | ----------------------------- | ---- | -------------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.  |
-| type   | [SlotType](#slottype)         | Yes  | Notification slot type.|
-| enable | boolean                       | Yes  | Whether to enable notification.    |
-
-**Example**
-
-```js
-// enableNotificationSlot
-Notification.enableNotificationSlot({ bundle: "ohos.samples.notification", },
-    Notification.SlotType.SOCIAL_COMMUNICATION,true).then(() => {
-    console.info("enableNotificationSlot success");
-});
-```
-
-## Notification.isNotificationSlotEnabled <sup>9+</sup>
-
-isNotificationSlotEnabled(bundle: BundleOption, type: SlotType, callback: AsyncCallback\<boolean\>): void
-
-Checks whether a specified notification slot type is enabled for a specified application. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**Parameters**
-
-| Name  | Type                         | Mandatory| Description                  |
-| -------- | ----------------------------- | ---- | ---------------------- |
-| bundle   | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.          |
-| type     | [SlotType](#slottype)         | Yes  | Notification slot type.        |
-| callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-// isNotificationSlotEnabled
-function getEnableSlotCallback(err, data) {
-    if (err.code) {
-        console.info("isNotificationSlotEnabled failed " + JSON.stringify(err));
-    } else {
-        console.info("isNotificationSlotEnabled success");
-    }
-};
-
-Notification.isNotificationSlotEnabled(
-    { bundle: "ohos.samples.notification", },
-    Notification.SlotType.SOCIAL_COMMUNICATION,
-    getEnableSlotCallback);
-```
-
-## Notification.isNotificationSlotEnabled <sup>9+</sup>
-
-isNotificationSlotEnabled(bundle: BundleOption, type: SlotType): Promise\<boolean\>  
-
-Checks whether a specified notification slot type is enabled for a specified application. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**Parameters**
-
-| Name| Type                         | Mandatory| Description          |
-| ------ | ----------------------------- | ---- | -------------- |
-| bundle | [BundleOption](#bundleoption) | Yes  | Bundle information of the application.  |
-| type   | [SlotType](#slottype)         | Yes  | Notification slot type.|
-
-**Return value**
-
-| Type              | Description                           |
-| ------------------ | ------------------------------- |
-| Promise\<boolean\> | Promise used to return the result.|
-
-**Example**
-
-```js
-// isNotificationSlotEnabled
-Notification.isNotificationSlotEnabled({ bundle: "ohos.samples.notification", },
-    Notification.SlotType.SOCIAL_COMMUNICATION).then((data) => {
-    console.info("isNotificationSlotEnabled success, data: " + JSON.stringify(data));
-});
-```
-
-
-## Notification.setSyncNotificationEnabledWithoutApp<sup>9+</sup>
-
-setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean, callback: AsyncCallback\<void\>): void
-
-Sets whether to enable the notification sync feature for devices where the application is not installed. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**Parameters**
-
-| Name| Type                         | Mandatory| Description          |
-| ------ | ----------------------------- | ---- | -------------- |
-| userId | number | Yes  | User ID.  |
-| enable | boolean | Yes  | Whether the feature is enabled.  |
-| callback | AsyncCallback\<void\>    | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-let userId = 100;
-let enable = true;
-
-function callback(err) {
-    if (err.code) {
-        console.info("setSyncNotificationEnabledWithoutApp failed " + JSON.stringify(err));
-    } else {
-        console.info("setSyncNotificationEnabledWithoutApp success");
-    }
-}
-
-Notification.setSyncNotificationEnabledWithoutApp(userId, enable, callback);
-```
-
-
-## Notification.setSyncNotificationEnabledWithoutApp<sup>9+</sup>
-
-setSyncNotificationEnabledWithoutApp(userId: number, enable: boolean): Promise\<void>
-
-Sets whether to enable the notification sync feature for devices where the application is not installed. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**Parameters**
-
-| Name| Type                         | Mandatory| Description          |
-| ------ | ----------------------------- | ---- | -------------- |
-| userId | number | Yes  | User ID.  |
-| enable | boolean | Yes  | Whether the feature is enabled.  |
-
-**Return value**
-
-| Type                                                       | Description                                                        |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<void\> | Promise used to return the result.|
-
-**Example**
-
-```js
-let userId = 100;
-let enable = true;
-
-Notification.setSyncNotificationEnabledWithoutApp(userId, enable).then(() => {
-    console.info('setSyncNotificationEnabledWithoutApp success');
-}).catch((err) => {
-    console.info('setSyncNotificationEnabledWithoutApp, err:' + JSON.stringify(err));
-});
-```
-
-
-## Notification.getSyncNotificationEnabledWithoutApp<sup>9+</sup>
-
-getSyncNotificationEnabledWithoutApp(userId: number, callback: AsyncCallback\<boolean>): void
-
-Obtains whether the notification sync feature is enabled for devices where the application is not installed. This API uses an asynchronous callback to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**Parameters**
-
-| Name| Type                         | Mandatory| Description          |
-| ------ | ----------------------------- | ---- | -------------- |
-| userId | number | Yes  | User ID.  |
-| callback | AsyncCallback\<boolean\>         | Yes  | Callback used to return the result.|
-
-**Example**
-
-```js
-let userId = 100;
-
-function getSyncNotificationEnabledWithoutAppCallback(err, data) {
-    if (err) {
-        console.info('getSyncNotificationEnabledWithoutAppCallback, err:' + err);
-    } else {
-        console.info('getSyncNotificationEnabledWithoutAppCallback, data:' + data);
-    }
-}
-
-Notification.getSyncNotificationEnabledWithoutApp(userId, getSyncNotificationEnabledWithoutAppCallback);
-```
-
-
-## Notification.getSyncNotificationEnabledWithoutApp<sup>9+</sup>
-
-getSyncNotificationEnabledWithoutApp(userId: number): Promise\<boolean>
-
-Obtains whether the notification sync feature is enabled for devices where the application is not installed. This API uses a promise to return the result.
-
-**System capability**: SystemCapability.Notification.Notification
-
-**System API**: This is a system API and cannot be called by third-party applications.
-
-**Required permissions**: ohos.permission.NOTIFICATION_CONTROLLER
-
-**Parameters**
-
-| Name| Type                         | Mandatory| Description          |
-| ------ | ----------------------------- | ---- | -------------- |
-| userId | number | Yes  | User ID.  |
-
-**Return value**
-
-| Type              | Description                                                        |
-| ------------------ | ------------------------------------------------------------ |
-| Promise\<boolean\> | Promise used to return the result.|
-
-**Example**
-
-```js
-let userId = 100;
-Notification.getSyncNotificationEnabledWithoutApp(userId).then((data) => {
-    console.info('getSyncNotificationEnabledWithoutApp, data:' + data);
-}).catch((err) => {
-    console.info('getSyncNotificationEnabledWithoutApp, err:' + err);
-});
-```
-
-
-
 ## NotificationSubscriber
 
 Provides callbacks for receiving or removing notifications and serves as the input parameter of [subscribe](#notificationsubscribe).
@@ -4111,5 +3641,5 @@ Provides the notification user input.
 
 | Name                | Value | Description                 |
 | -------------------- | --- | -------------------- |
-| CLICK_REASON_REMOVE  | 1   | The notification is removed after a click on it.   |
-| CANCEL_REASON_REMOVE | 2   | The notification is removed by the user.        |
+| CLICK_REASON_REMOVE<sup>9+</sup>  | 1   | The notification is removed after a click on it.   |
+| CANCEL_REASON_REMOVE<sup>9+</sup> | 2   | The notification is removed by the user.        |

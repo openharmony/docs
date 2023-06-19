@@ -376,11 +376,11 @@ let record = pasteboard.createUriRecord('dataability:///com.example.myapplicatio
 
 | 名称 | 类型 | 可读 | 可写 | 说明                                                                                         |
 | -------- | -------- | -------- | -------- |--------------------------------------------------------------------------------------------|
-| additions<sup>7+</sup> | {[key:string]:object} | 是 | 是 | 设置的其他附加属性数据, 暂不支持。                                                                               |
+| additions<sup>7+</sup> | {[key:string]:object} | 是 | 是 | 设置其他附加属性数据。                                                                               |
 | mimeTypes<sup>7+</sup> | Array&lt;string&gt; | 是 | 否 | 剪贴板内容条目的数据类型，非重复的类型列表。                                                                     |
-| tag<sup>7+</sup> | string | 是 | 是 | 用户自定义标签, 暂不支持。                                                                                   |
+| tag<sup>7+</sup> | string | 是 | 是 | 用户自定义标签。                                                                                   |
 | timestamp<sup>7+</sup> | number | 是 | 否 | 剪贴板数据的写入时间戳（单位：ms）。                                                                        |
-| localOnly<sup>7+</sup> | boolean | 是 | 是 | 配置剪贴板内容是否为“仅在本地”, 默认值为true。暂不支持, 推荐使用shareOption属性。<br/>- 配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>- 配置为false时，表示内容将在设备间传递。 |
+| localOnly<sup>7+</sup> | boolean | 是 | 是 | 配置剪贴板内容是否为“仅在本地”，默认值为false。暂不支持，推荐使用shareOption属性。<br/>- 配置为true时，表示内容仅在本地，不会在设备之间传递。<br/>- 配置为false时，表示内容将在设备间传递。 |
 | shareOption<sup>9+</sup> | [ShareOption](#shareoption9) | 是 | 是 | 指示剪贴板数据可以粘贴到的范围，如果未设置或设置不正确，则默认值为CROSSDEVICE。                                              |
 
 ## PasteDataRecord<sup>7+</sup>
@@ -483,9 +483,9 @@ record.convertToText().then((data) => {
 
 ## PasteData
 
-剪贴板内容对象。
+剪贴板内容对象。剪贴板内容包含一个或者多个内容条目（[PasteDataRecord](#pastedatarecord7)）以及属性描述对象（[PasteDataProperty](#pastedataproperty7)）。
 
-在调用PasteData的接口前，需要先获取一个PasteData对象。
+在调用PasteData的接口前，需要先通过[createData()](#pasteboardcreatedata9)或[getData()](#getdata9)获取一个PasteData对象。
 
 **系统能力：** SystemCapability.MiscServices.Pasteboard
 
@@ -666,8 +666,8 @@ addRecord(mimeType: string, value: ValueType): void
 
   ```js
   let pasteData = pasteboard.createData(pasteboard.MIMETYPE_TEXT_URI, 'dataability:///com.example.myapplication1/user.txt');
-let dataXml = new ArrayBuffer(256);
-pasteData.addRecord('app/xml', dataXml);
+  let dataXml = new ArrayBuffer(256);
+  pasteData.addRecord('app/xml', dataXml);
   ```
 
 ### getMimeTypes<sup>7+</sup>
@@ -1192,10 +1192,10 @@ off(type:  'update', callback?: () =&gt;void ): void
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| -------- | -------- | -------- | -------- |
-| type | string | 是 | 取值为'update'，表示系统剪贴板内容变化事件。 |
-| callback | function | 否 | 剪贴板中内容变化时触发的用户程序的回调。 |
+| 参数名 | 类型 | 必填 | 说明                                                      |
+| -------- | -------- | -------- |---------------------------------------------------------|
+| type | string | 是 | 取值为'update'，表示系统剪贴板内容变化事件。                              |
+| callback | function | 否 | 剪贴板中内容变化时触发的用户程序的回调。如果此参数未填，表明清除本应用的所有监听回调，否则表示清除指定监听回调。|
 
 **示例：**
 

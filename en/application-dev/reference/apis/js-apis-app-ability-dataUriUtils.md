@@ -43,6 +43,8 @@ try {
 }
 ```
 
+
+
 ## dataUriUtils.attachId
 
 attachId(uri: string, id: number): string
@@ -80,6 +82,8 @@ try {
 
 ```
 
+
+
 ## dataUriUtils.deleteId
 
 deleteId(uri: string): string
@@ -111,6 +115,8 @@ try {
 }
 
 ```
+
+
 
 ## dataUriUtils.updateId
 
@@ -147,4 +153,3 @@ try {
     console.error('delete uri err, check the input uri ${err}');
 }
 ```
-

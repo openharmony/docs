@@ -1,8 +1,9 @@
-# @ohos.power (System Power Management)
+# @ohos.power (Power Management)
 
 The **power** module provides APIs for rebooting and shutting down the system, as well as querying the screen status.
 
-> **NOTE**<br>
+> **NOTE**
+>
 > The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
@@ -33,9 +34,9 @@ Shuts down the system.
 
 For details about the error codes, see [Power Manager Error Codes](../errorcodes/errorcode-power.md).
 
-| Code  | Error Message   |
+| ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -69,9 +70,9 @@ Reboots the system.
 
 For details about the error codes, see [Power Manager Error Codes](../errorcodes/errorcode-power.md).
 
-| Code  | Error Message   |
+| ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -87,7 +88,7 @@ try {
 
 isActive(): boolean
 
-Checks whether the current device is active.
+Checks whether the current device is active. In the active state, the screen is on if the device has a screen and the device is not in sleep state if the device does not have a screen.
 
 **System capability:** SystemCapability.PowerManager.PowerManager.Core
 
@@ -95,9 +96,9 @@ Checks whether the current device is active.
 
 For details about the error codes, see [Power Manager Error Codes](../errorcodes/errorcode-power.md).
 
-| Code  | Error Message   |
+| ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -130,9 +131,9 @@ Wakes up a device.
 
 For details about the error codes, see [Power Manager Error Codes](../errorcodes/errorcode-power.md).
 
-| Code  | Error Message   |
+| ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -158,9 +159,9 @@ Hibernates a device.
 
 For details about the error codes, see [Power Manager Error Codes](../errorcodes/errorcode-power.md).
 
-| Code  | Error Message   |
+| ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -190,9 +191,9 @@ Obtains the power mode of this device.
 
 For details about the error codes, see [Power Manager Error Codes](../errorcodes/errorcode-power.md).
 
-| Code  | Error Message   |
+| ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -228,9 +229,9 @@ Sets the power mode of this device. This API uses an asynchronous callback to re
 
 For details about the error codes, see [Power Manager Error Codes](../errorcodes/errorcode-power.md).
 
-| Code  | Error Message   |
+| ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -272,9 +273,9 @@ Sets the power mode of this device. This API uses a promise to return the result
 
 For details about the error codes, see [Power Manager Error Codes](../errorcodes/errorcode-power.md).
 
-| Code  | Error Message   |
+| ID  | Error Message   |
 |---------|---------|
-| 4900101 | Operation failed. Cannot connect to service.|
+| 4900101 | If connecting to the service failed. |
 
 **Example**
 
@@ -292,8 +293,7 @@ power.setPowerMode(power.DevicePowerMode.MODE_PERFORMANCE)
 
 rebootDevice(reason: string): void
 
-> NOTE<br>
-> This API is deprecated since API version 9. You are advised to use [power.reboot](#powerreboot9) instead.
+> **NOTE**<br>This API is supported since API version 7 and is deprecated since API version 9. You are advised to use [power.reboot](#powerreboot9). The substitute API is available only for system applications.
 
 Reboots the system.
 
@@ -317,8 +317,7 @@ power.rebootDevice('reboot_test');
 
 isScreenOn(callback: AsyncCallback&lt;boolean&gt;): void
 
-> NOTE<br>
-> This API is deprecated since API version 9. You are advised to use [power.isActive](#powerisactive9) instead.
+> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [power.isActive](#powerisactive9).
 
 Checks the screen status of the current device. This API uses an asynchronous callback to return the result.
 
@@ -328,7 +327,7 @@ Checks the screen status of the current device. This API uses an asynchronous ca
 
 | Name  | Type                        | Mandatory| Description                                                        |
 | -------- | ---------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the screen status obtained, where the value **true** indicates on and the value **false** indicates the opposite. Otherwise, **err** is an error object.|
+| callback | AsyncCallback&lt;boolean&gt; | Yes  | Callback used to return the result. If the operation is successful, **err** is **undefined** and **data** is the screen status obtained, where the value **true** indicates on and the value **false** indicates off. Otherwise, **err** is an error object.|
 
 **Example**
 
@@ -346,8 +345,7 @@ power.isScreenOn((err, data) => {
 
 isScreenOn(): Promise&lt;boolean&gt;
 
-> NOTE<br>
-> This API is deprecated since API version 9. You are advised to use [power.isActive](#powerisactive9) instead.
+> **NOTE**<br>This API is deprecated since API version 9. You are advised to use [power.isActive](#powerisactive9).
 
 Checks the screen status of the current device. This API uses a promise to return the result.
 

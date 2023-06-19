@@ -20,7 +20,7 @@ Before you get started, it would be helpful if you have a basic understanding of
 
 Figure 1 shows the working principles of the widget framework.
 
-**Figure 1** Widget framework working principles in the FA model 
+**Figure 1** Widget framework working principles in the FA model
 ![form-extension](figures/form-extension.png)
 
 The widget host consists of the following modules:
@@ -122,48 +122,48 @@ To create a widget in the FA model, implement the widget lifecycle callbacks. Ge
    
    ```ts
    export default {
-       onCreate(want) {
-           console.info('FormAbility onCreate');
-           // Called when the widget is created. The widget provider should return the widget data binding class.
-           let obj = {
-               "title": "titleOnCreate",
-               "detail": "detailOnCreate"
-           };
-           let formData = formBindingData.createFormBindingData(obj);
-           return formData;
-       },
-       onCastToNormal(formId) {
-           // Called when the widget host converts the temporary widget into a normal one. The widget provider should do something to respond to the conversion.
-           console.info('FormAbility onCastToNormal');
-       },
-       onUpdate(formId) {
-           // Override this method to support scheduled updates, periodic updates, or updates requested by the widget host.
-           console.info('FormAbility onUpdate');
-           let obj = {
-               "title": "titleOnUpdate",
-               "detail": "detailOnUpdate"
-           };
-           let formData = formBindingData.createFormBindingData(obj);
-           formProvider.updateForm(formId, formData).catch((error) => {
-               console.info('FormAbility updateForm, error:' + JSON.stringify(error));
-           });
-       },
-       onVisibilityChange(newStatus) {
-           // Called when the widget host initiates an event about visibility changes. The widget provider should do something to respond to the notification. This callback takes effect only for system applications.
-           console.info('FormAbility onVisibilityChange');
-       },
-       onEvent(formId, message) {
-           // If the widget supports event triggering, override this method and implement the trigger.
-           console.info('FormAbility onEvent');
-       },
-       onDestroy(formId) {
-           // Delete widget data.
-           console.info('FormAbility onDestroy');
-       },
-       onAcquireFormState(want) {
-           console.info('FormAbility onAcquireFormState');
-           return formInfo.FormState.READY;
-       },
+     onCreate(want) {
+       console.info('FormAbility onCreate');
+       // Called when the widget is created. The widget provider should return the widget data binding class.
+       let obj = {
+         "title": "titleOnCreate",
+         "detail": "detailOnCreate"
+       };
+       let formData = formBindingData.createFormBindingData(obj);
+       return formData;
+     },
+     onCastToNormal(formId) {
+       // Called when the widget host converts the temporary widget into a normal one. The widget provider should do something to respond to the conversion.
+       console.info('FormAbility onCastToNormal');
+     },
+     onUpdate(formId) {
+       // Override this method to support scheduled updates, periodic updates, or updates requested by the widget host.
+       console.info('FormAbility onUpdate');
+       let obj = {
+         "title": "titleOnUpdate",
+         "detail": "detailOnUpdate"
+       };
+       let formData = formBindingData.createFormBindingData(obj);
+       formProvider.updateForm(formId, formData).catch((error) => {
+         console.info('FormAbility updateForm, error:' + JSON.stringify(error));
+       });
+     },
+     onVisibilityChange(newStatus) {
+       // Called when the widget host initiates an event about visibility changes. The widget provider should do something to respond to the notification. This callback takes effect only for system applications.
+       console.info('FormAbility onVisibilityChange');
+     },
+     onEvent(formId, message) {
+       // If the widget supports event triggering, override this method and implement the trigger.
+       console.info('FormAbility onEvent');
+     },
+     onDestroy(formId) {
+       // Delete widget data.
+       console.info('FormAbility onDestroy');
+     },
+     onAcquireFormState(want) {
+       console.info('FormAbility onAcquireFormState');
+       return formInfo.FormState.READY;
+     },
    }
    ```
 
@@ -188,15 +188,15 @@ The widget configuration file is named **config.json**. Find the **config.json**
 
   
   ```json
-     "js": [{
-         "name": "widget",
-         "pages": ["pages/index/index"],
-         "window": {
-             "designWidth": 720,
-             "autoDesignWidth": true
-         },
-         "type": "form"
-     }]
+  "js": [{
+     "name": "widget",
+     "pages": ["pages/index/index"],
+     "window": {
+         "designWidth": 720,
+         "autoDesignWidth": true
+     },
+     "type": "form"
+  }]
   ```
 
 - The **abilities** module in the **config.json** file corresponds to **FormAbility** of the widget. The internal structure is described as follows:
@@ -275,7 +275,7 @@ async function storeFormInfo(formId: string, formName: string, tempFlag: boolean
     }
 }
 
-// ...
+...
     onCreate(want) {
         console.info('FormAbility onCreate');
 
@@ -293,7 +293,7 @@ async function storeFormInfo(formId: string, formName: string, tempFlag: boolean
         let formData = formBindingData.createFormBindingData(obj);
         return formData;
     }
-// ...
+...
 ```
 
 You should override **onDestroy** to implement widget data deletion.
@@ -313,17 +313,17 @@ async function deleteFormInfo(formId: string) {
     }
 }
 
-// ...
+...
     onDestroy(formId) {
         console.info('FormAbility onDestroy');
         // Delete the persistent widget instance data.
         // Implement this API based on project requirements.
         deleteFormInfo(formId);
     }
-// ...
+...
 ```
 
-For details about how to implement persistent data storage, see [Lightweight Data Store Development](../database/database-preference-guidelines.md).
+For details about how to implement persistent data storage, see [Application Data Persistence Overview](../database/app-data-persistence-overview.md).
 
 The **Want** object passed in by the widget host to the widget provider contains a flag that specifies whether the requested widget is normal or temporary.
 
@@ -364,7 +364,7 @@ You can use the web-like paradigm (HML+CSS+JSON) to develop JS widget pages. Thi
 
 > **NOTE**
 >
-> Only the JavaScript-based web-like development paradigm is supported when developing the widget UI.
+> In the FA model, only the JavaScript-based web-like development paradigm is supported when developing the widget UI.
 
 - HML: uses web-like paradigm components to describe the widget page information.
   
@@ -543,4 +543,3 @@ The following is an example:
     }
   }
   ```
-

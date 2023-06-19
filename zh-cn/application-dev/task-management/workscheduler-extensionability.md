@@ -9,7 +9,7 @@ WorkSchedulerExtensionAbility提供了延迟任务回调能力，在延迟任务
 延迟任务调度运作机制如图1所示。
 
   **图1** 延迟任务调度运作机制 
-  
+
 ![WorkSchedulerExtensionAbility](figures/WorkSchedulerExtensionAbility.png)
 
 应用通过[延迟任务API](../reference/apis/js-apis-resourceschedule-workScheduler.md)注册、删除、查询任务，通过[延迟任务回调API](../reference/apis/js-apis-WorkSchedulerExtensionAbility.md)实现任务开始、结束的执行逻辑。
@@ -78,7 +78,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
     ```
 
 3. 在工程entry Module对应的ets目录(./entry/src/main/ets)下，新建一个目录并命名为workAbility。
-在workAbility目录下，新建一个ArkTS文件并命名为WorkTest.ets，实现延迟任务回调接口。
+   在workAbility目录下，新建一个ArkTS文件并命名为WorkTest.ets，实现延迟任务回调接口。
 
     导入模块。
 
@@ -94,7 +94,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
         console.log(`onWorkStartTest start ${JSON.stringify(workInfo)}`);
         super.onWorkStart(workInfo);
       }
-
+   
       onWorkStopTest(workInfo) {
         super.onWorkStop(workInfo);
         console.log(`onWorkStop value`);
@@ -177,7 +177,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
 
 ### 配置文件
 
-1. 在工程entry Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册WorkSchedulerExtensionAbility，type标签需要设置为“workScheduler”，srcEntrance标签表示当前ExtensionAbility组件所对应的代码路径。
+1. 在工程entry Module对应的[module.json5配置文件](../quick-start/module-configuration-file.md)中注册WorkSchedulerExtensionAbility，type标签需要设置为“workScheduler”，srcEnty标签表示当前ExtensionAbility组件所对应的代码路径。
    
   ```json
   {
@@ -185,7 +185,7 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
         "extensionAbilities": [
           {
             "name": "WorkTest",
-            "srcEntrance": "./ets/workAbility/WorkTest.ets",
+            "srcEnty": "./ets/workAbility/WorkTest.ets",
             "label": "$string:WorkSchedulerExtensionAbility_label",
             "description": "$string:WorkSchedulerExtensionAbility_desc",
             "type": "workScheduler"
@@ -199,5 +199,5 @@ WorkSchedulerExtensionAbility类拥有如下API接口，具体的API介绍详见
 
 针对WorkSchedulerExtensionAbility开发，有以下相关实例可供参考：
 
-- [WorkScheduler的创建与使用（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/ResourcesSchedule/WorkScheduler)
+- [WorkScheduler的创建与使用（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/TaskManagement/WorkScheduler)
 

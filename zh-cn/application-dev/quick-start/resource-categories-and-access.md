@@ -8,8 +8,6 @@
 
 ## 资源分类
 
-### resources目录
-
 应用开发中使用的各类资源文件，需要放入特定子目录中存储管理。resources目录包括三大类目录，一类为base目录，一类为限定词目录，还有一类为rawfile目录。stage模型多工程情况下共有的资源文件放到AppScope下的resources目录。
 
 base目录默认存在，而限定词目录需要开发者自行创建。应用使用某资源时，系统会根据当前设备状态优先从相匹配的限定词目录中寻找该资源。只有当resources目录中没有与设备状态匹配的限定词目录，或者在限定词目录中找不到该资源时，才会去base目录中查找。rawfile是原始文件目录，不会根据设备状态去匹配不同的资源。
@@ -18,24 +16,42 @@ base目录默认存在，而限定词目录需要开发者自行创建。应用�
 
 ```
 resources
-|---base  // 默认存在的目录
+|---base
 |   |---element
 |   |   |---string.json
 |   |---media
 |   |   |---icon.png
-|---en_GB-vertical-car-mdpi // 限定词目录示例，需要开发者自行创建   
+|   |---profile
+|   |   |---test_profile.json
+|---en_US  // 默认存在的目录，设备语言环境是美式英文时，优先匹配此目录下资源
 |   |---element
 |   |   |---string.json
 |   |---media
 |   |   |---icon.png
-|---rawfile
+|   |---profile
+|   |   |---test_profile.json
+|---zh_CN  // 默认存在的目录，设备语言环境是简体中文时，优先匹配此目录下资源
+|   |---element
+|   |   |---string.json
+|   |---media
+|   |   |---icon.png
+|   |---profile
+|   |   |---test_profile.json
+|---en_GB-vertical-car-mdpi // 自定义多限定词目录示例，由开发者创建
+|   |---element
+|   |   |---string.json
+|   |---media
+|   |   |---icon.png
+|   |---profile
+|   |   |---test_profile.json
+|---rawfile // 其他类型文件，原始文件形式保存，不会被集成到resources.index文件中。文件名可自定义。
 ```
 
 **表1** resources目录分类
 
 | 分类   | base目录                           | 限定词目录                                    | rawfile目录                                |
 | ---- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| 组织形式 | base目录是默认存在的目录。当应用的resources目录中没有与设备状态匹配的限定词目录时，会自动引用该目录中的资源文件。<br/>base目录的二级子目录为**资源组目录**，用于存放字符串、颜色、布尔值等基础元素，以及媒体、动画、布局等资源文件，具体要求参见[资源组目录](#资源组目录)。 | 限定词目录需要开发者自行创建。目录名称由一个或多个表征应用场景或设备特征的限定词组合而成，具体要求参见[限定词目录](#限定词目录)。<br/>限定词目录的二级子目录为**资源组目录**，用于存放字符串、颜色、布尔值等基础元素，以及媒体、动画、布局等资源文件，具体要求参见[资源组目录](#资源组目录)。 | 支持创建多层子目录，目录名称可以自定义，文件夹内可以自由放置各类资源文件。<br/>rawfile目录的文件不会根据设备状态去匹配不同的资源。 |
+| 组织形式 | base目录是默认存在的目录。当应用的resources目录中没有与设备状态匹配的限定词目录时，会自动引用该目录中的资源文件。<br/>base目录的二级子目录为**资源组目录**，用于存放字符串、颜色、布尔值等基础元素，以及媒体、动画、布局等资源文件，具体要求参见[资源组目录](#资源组目录)。 | en_US和zh_CN是默认存在的两个限定词目录，其余限定词目录需要开发者自行创建。目录名称由一个或多个表征应用场景或设备特征的限定词组合而成，具体要求参见[限定词目录](#限定词目录)。<br/>限定词目录的二级子目录为**资源组目录**，用于存放字符串、颜色、布尔值等基础元素，以及媒体、动画、布局等资源文件，具体要求参见[资源组目录](#资源组目录)。 | 支持创建多层子目录，目录名称可以自定义，文件夹内可以自由放置各类资源文件。<br/>rawfile目录的文件不会根据设备状态去匹配不同的资源。 |
 | 编译方式 | 目录中的资源文件会被编译成二进制文件，并赋予资源文件ID。            | 目录中的资源文件会被编译成二进制文件，并赋予资源文件ID。            | 目录中的资源文件会被直接打包进应用，不经过编译，也不会被赋予资源文件ID。    |
 | 引用方式 | 通过指定资源类型（type）和资源名称（name）来引用。            | 通过指定资源类型（type）和资源名称（name）来引用。            | 通过指定文件路径和文件名来引用。                         |
 
@@ -84,7 +100,6 @@ base目录与限定词目录下面可以创建资源组目录（包括element、
 | element | 表示元素资源，以下每一类数据都采用相应的JSON文件来表征（目录下只支持文件类型）。<br/>-&nbsp;boolean，布尔型<br/>-&nbsp;color，颜色<br/>-&nbsp;float，浮点型<br/>-&nbsp;intarray，整型数组<br/>-&nbsp;integer，整型<br/>-&nbsp;pattern，样式<br/>-&nbsp;plural，复数形式<br/>-&nbsp;strarray，字符串数组<br/>-&nbsp;string，字符串 | element目录中的文件名称建议与下面的文件名保持一致。每个文件中只能包含同一类型的数据。<br/>-&nbsp;boolean.json<br/>-&nbsp;color.json<br/>-&nbsp;float.json<br/>-&nbsp;intarray.json<br/>-&nbsp;integer.json<br/>-&nbsp;pattern.json<br/>-&nbsp;plural.json<br/>-&nbsp;strarray.json<br/>-&nbsp;string.json |
 | media   | 表示媒体资源，包括图片、音频、视频等非文本格式的文件（目录下只支持文件类型）。              | 文件名可自定义，例如：icon.png。                     |
 | profile  | 表示自定义配置文件，其文件内容可[通过包管理接口](../reference/apis/js-apis-bundleManager.md#bundlemanagergetprofilebyability)获取（目录下只支持文件类型）。       | 文件名可自定义，例如：test_profile.json。           |
-| rawfile | 表示其他类型文件，在应用构建为hap包后，以原始文件形式保存，不会被集成到resources.index文件中。 | 文件名可自定义。                                 |
 
 **媒体资源类型说明**
 
@@ -231,7 +246,7 @@ plural.json文件的内容如下：
 >
 > `$r`返回值为Resource对象，可通过[getStringValue](../reference/apis/js-apis-resource-manager.md#getstringvalue9) 方法获取对应的字符串。
 
-在xxx.ets文件中，可以使用在resources目录中定义的资源。结合[资源组目录](#资源组目录)中的“资源文件示例”，资源使用示例如下：
+在xxx.ets文件中，可以使用在resources目录中定义的资源。资源分类中[资源组目录](#资源组目录)下的“资源文件示例”显示了.json文件内容，包含color.json文件、string.json文件和plural.json文件。资源的具体使用方法如下：
 
 ```ts
 Text($r('app.string.string_hello'))
@@ -242,13 +257,14 @@ Text($r('app.string.string_world'))
   .fontColor($r('app.color.color_world'))
   .fontSize($r('app.float.font_world'))
 
-// 引用string.json资源，$r的第二个参数用于替换%s，value为"We will arrive at five of the clock"。
+// 引用string.json资源。Text中$r的第一个参数指定string资源，第二个参数用于替换string.json文件中的%s。
+//如下示例代码value为"We will arrive at five of the clock"。
 Text($r('app.string.message_arrive', "five of the clock"))
   .fontColor($r('app.color.color_hello'))
   .fontSize($r('app.float.font_hello'))
 
-// 引用plural$资源，第一个指定plural资源，第二个参数指定单复数的数量quantity，此处第三个数字为对%d的替换
-// 单数下value为"5 apple"，复数下value为"5 apples"。
+// 引用plural$资源。Text中$r的第一个指定plural资源，第二个参数用于指定单复数（在中文，单复数均使用other。在英文，one：代表单数，取值为1；other：代表复数，取值为大于等于1的整数），第三个参数用于替换%d
+// 如下示例代码为复数，value为"5 apples"。
 Text($r('app.plural.eat_apple', 5, 5))
   .fontColor($r('app.color.color_world'))
   .fontSize($r('app.float.font_world'))
@@ -299,4 +315,4 @@ Image($r('sys.media.ohos_app_icon'))
 
 针对访问应用资源，有以下相关实例可供参考：
 
-- [`ResourceManager`：资源管理器（ArkTS）（API8）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/common/ResourceManager)
+- [`ResourceManager`：资源管理器（ArkTS）（API9）](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-3.2-Release/code/BasicFeature/Internationalnation/ResourceManager)

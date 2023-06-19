@@ -8,21 +8,21 @@
 
 ## 接口说明
 
-详细接口见[接口文档](../reference/apis/js-apis-commonEvent.md#commoneventcreatesubscriber)。
+详细接口见[接口文档](../reference/apis/js-apis-commonEventManager.md#commoneventmanagersubscribe)。
 
 | 接口名 | 接口描述 |
 | -------- | -------- |
-| createSubscriber(subscribeInfo:&nbsp;[CommonEventSubscribeInfo](../reference/apis/js-apis-commonEventManager.md#commoneventsubscribeinfo),&nbsp;callback:&nbsp;AsyncCallback&lt;[CommonEventData](../reference/apis/js-apis-commonEventManager.md#commoneventdata)&gt;):&nbsp;void | 创建订阅者对象(callback) |
-| createSubscriber(subscribeInfo:&nbsp;CommonEventSubscribeInfo):&nbsp;Promise&lt;CommonEventSubscriber&gt; | 创建订阅者对象(promise) |
+| createSubscriber(subscribeInfo:&nbsp;[CommonEventSubscribeInfo](../reference/apis/js-apis-commonEventManager.md#commoneventsubscribeinfo),&nbsp;callback:&nbsp;AsyncCallback&lt;[CommonEventData](../reference/apis/js-apis-commonEventManager.md#commoneventdata)&gt;):&nbsp;void | 创建订阅者对象（callback） |
+| createSubscriber(subscribeInfo:&nbsp;CommonEventSubscribeInfo):&nbsp;Promise&lt;CommonEventSubscriber&gt; | 创建订阅者对象（promise） |
 | subscribe(subscriber:&nbsp;CommonEventSubscriber,&nbsp;callback:&nbsp;AsyncCallback):&nbsp;void | 订阅公共事件 |
 
 
 ## 开发步骤
 
-1. 导入CommonEvent模块。
+1. 导入模块。
    
    ```ts
-   import commonEvent from '@ohos.commonEventManager';
+   import commonEventManager from '@ohos.commonEventManager';
    ```
 
 2. 创建订阅者信息，详细的订阅者信息数据类型及包含的参数请见[CommonEventSubscribeInfo](../reference/apis/js-apis-commonEventManager.md#commoneventsubscribeinfo)文档介绍。
@@ -32,7 +32,7 @@
    let subscriber = null;
    // 订阅者信息
    let subscribeInfo = {
-       events: ["usual.event.SCREEN_OFF"], // 订阅灭屏公共事件
+     events: ["usual.event.SCREEN_OFF"], // 订阅灭屏公共事件
    }
    ```
 
@@ -40,14 +40,14 @@
    
    ```ts
    // 创建订阅者回调
-   commonEvent.createSubscriber(subscribeInfo, (err, data) => {
-       if (err) {
-           console.error(`[CommonEvent] CreateSubscriberCallBack err=${JSON.stringify(err)}`);
-       } else {
-           console.info(`[CommonEvent] CreateSubscriber success`);
-           subscriber = data;
-           // 订阅公共事件回调
-       }
+   commonEventManager.createSubscriber(subscribeInfo, (err, data) => {
+     if (err) {
+       console.error(`Failed to create subscriber. Code is ${err.code}, message is ${err.message}`);
+       return;
+     }
+     console.info('Succeeded in creating subscriber.');
+     subscriber = data;
+     // 订阅公共事件回调
    })
    ```
 
@@ -56,14 +56,13 @@
    ```ts
    // 订阅公共事件回调
    if (subscriber !== null) {
-       commonEvent.subscribe(subscriber, (err, data) => {
-           if (err) {
-               console.error(`[CommonEvent] SubscribeCallBack err=${JSON.stringify(err)}`);
-           } else {
-               console.info(`[CommonEvent] SubscribeCallBack data=${JSON.stringify(data)}`);
-           }
-       })
+     commonEventManager.subscribe(subscriber, (err, data) => {
+       if (err) {
+         console.error(`Failed to subscribe common event. Code is ${err.code}, message is ${err.message}`);
+         return;
+       }
+     })
    } else {
-       console.error(`[CommonEvent] Need create subscriber`);
+     console.error(`Need create subscriber`);
    }
    ```

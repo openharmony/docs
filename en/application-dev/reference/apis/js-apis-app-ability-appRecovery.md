@@ -11,7 +11,6 @@ The **appRecovery** module provides APIs for recovering faulty applications.
 import appRecovery from '@ohos.app.ability.appRecovery';
 ```
 
-
 ## appRecovery.RestartFlag
 
 Enumerates the application restart flags. This enum is used as an input parameter of [enableAppRecovery](#apprecoveryenableapprecovery).
@@ -51,7 +50,7 @@ Enumerates the application state saving modes. This enum is used as an input par
 
 enableAppRecovery(restart?: [RestartFlag](#apprecoveryrestartflag), saveOccasion?: [SaveOccasionFlag](#apprecoverysaveoccasionflag), saveMode?: [SaveModeFlag](#apprecoverysavemodeflag)) : void;
 
-Enables application recovery.
+Enables application recovery. After this API is called, the first ability that is displayed when the application is started from the initiator can be restored.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

@@ -1,29 +1,36 @@
 # 网络共享
 
 ## 简介
+
 网络共享管理分享设备已有网络给其他连接设备，支持Wi-Fi热点共享、蓝牙共享和USB共享，同时提供网络共享状态、共享流量查询功能。
 
 > **说明：**
 > 为了保证应用的运行效率，大部分API调用都是异步的，对于异步调用的API均提供了callback和Promise两种方式，以下示例均采用callback函数，更多方式可以查阅[API参考](../reference/apis/js-apis-net-sharing.md)。
 
 ## 基本概念
--   WIFI共享：通过WIFI热点共享网络。
--   蓝牙共享：通过蓝牙共享网络。
--   USB共享：通过USB共享网络。
+
+- WIFI共享：通过WIFI热点共享网络。
+- 蓝牙共享：通过蓝牙共享网络。
+- USB共享：通过USB共享网络。
 
 ## 约束
--   开发语言：C++ JS
--   系统：linux内核
--   本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
+
+- 开发语言：C++ JS
+- 系统：linux内核
+- 本模块首批接口从API version 9开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
 ## 场景介绍
+
 网络共享的典型场景有：
--   开启网络共享
--   停止网络共享
--   获取共享网络的数据流量
+
+- 开启网络共享
+- 停止网络共享
+- 获取共享网络的数据流量
 
 以下分别介绍具体开发方式。
+
 ## 接口说明
+
 完整的JS API说明以及实例代码请参考：[网络共享](../reference/apis/js-apis-net-sharing.md)。
 
 | 类型 | 接口 | 功能说明 |
@@ -53,19 +60,19 @@
 4. 接收到共享状态开启的回调，开启共享成功。
 
 ```js
-   // 从@ohos.net.sharing中导入sharing命名空间
-   import sharing from '@ohos.net.sharing'
+// 从@ohos.net.sharing中导入sharing命名空间
+import sharing from '@ohos.net.sharing'
 
-   // 注册监听共享状态的改变
-   sharing.on('sharingStateChange', (error, data) => {
-       console.log(JSON.stringify(error));
-       console.log(JSON.stringify(data));
-   });
+// 注册监听共享状态的改变
+sharing.on('sharingStateChange', (error, data) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
+});
 
-   // 调用startSharing方法，来开启指定类型共享
-   sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
-       console.log(JSON.stringify(error));
-   });
+// 调用startSharing方法，来开启指定类型共享
+sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## 停止网络共享
@@ -78,19 +85,19 @@
 4. 接收到共享状态关闭的回调，停止共享成功。
 
 ```js
-   // 从@ohos.net.sharing中导入sharing命名空间
-   import sharing from '@ohos.net.sharing'
+// 从@ohos.net.sharing中导入sharing命名空间
+import sharing from '@ohos.net.sharing'
 
-   // 注册监听共享状态的改变
-   sharing.on('sharingStateChange', (error, data) => {
-       console.log(JSON.stringify(error));
-       console.log(JSON.stringify(data));
-   });
+// 注册监听共享状态的改变
+sharing.on('sharingStateChange', (error, data) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
+});
 
-   // 调用stopSharing方法，来停止指定类型共享
-   sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
-       console.log(JSON.stringify(error));
-   });
+// 调用stopSharing方法，来停止指定类型共享
+sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
+  console.log(JSON.stringify(error));
+});
 ```
 
 ## 获取共享网络的数据流量
@@ -103,28 +110,28 @@
 4. 调用stopSharing方法，来停止指定类型共享，共享网络数据量清零。
 
 ```js
-   // 从@ohos.net.sharing中导入sharing命名空间
-   import sharing from '@ohos.net.sharing'
+// 从@ohos.net.sharing中导入sharing命名空间
+import sharing from '@ohos.net.sharing'
 
-   // 调用startSharing方法，来开启指定类型共享
-   sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
-       console.log(JSON.stringify(error));
-   });
+// 调用startSharing方法，来开启指定类型共享
+sharing.startSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
+  console.log(JSON.stringify(error));
+});
 
-   // 调用getStatsTotalBytes方法，来获取共享网络数据量
-   sharing.getStatsTotalBytes((error, data) => {
-       console.log(JSON.stringify(error));
-       console.log(JSON.stringify(data));
-   });
+// 调用getStatsTotalBytes方法，来获取共享网络数据量
+sharing.getStatsTotalBytes((error, data) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
+});
 
-   // 调用stopSharing方法，来停止指定类型共享，共享网络数据量清零
-   sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
-       console.log(JSON.stringify(error));
-   });
+// 调用stopSharing方法，来停止指定类型共享，共享网络数据量清零
+sharing.stopSharing(sharing.SharingIfaceType.SHARING_WIFI, (error) => {
+  console.log(JSON.stringify(error));
+});
 
-   // 再次调用getStatsTotalBytes方法，共享网络数据量已清零
-   sharing.getStatsTotalBytes((error, data) => {
-       console.log(JSON.stringify(error));
-       console.log(JSON.stringify(data));
-   });
+// 再次调用getStatsTotalBytes方法，共享网络数据量已清零
+sharing.getStatsTotalBytes((error, data) => {
+  console.log(JSON.stringify(error));
+  console.log(JSON.stringify(data));
+});
 ```

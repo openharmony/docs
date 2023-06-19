@@ -18,17 +18,18 @@ GestureGroup(mode: GestureMode, ...gesture: GestureType[])
   | gesture | [TapGesture](ts-basic-gestures-tapgesture.md)<br>\| [LongPressGesture](ts-basic-gestures-longpressgesture.md)<br>\| [PanGesture](ts-basic-gestures-pangesture.md)<br>\| [PinchGesture](ts-basic-gestures-pinchgesture.md)<br>\| [RotationGesture](ts-basic-gestures-rotationgesture.md) | Yes| - | Variable-length parameter, indicating one or more basic gesture types. These gestures are recognized in combination.|
 
 ## GestureMode
-| Name| Description|
-| -------- | -------- |
-| Sequence | Sequential recognition: Gestures are recognized in the registration sequence until all gestures are recognized successfully. When one gesture fails to be recognized, all gestures fail to be recognized.|
-| Parallel | Parallel recognition. Registered gestures are recognized concurrently until all gestures are recognized. The recognition result of each gesture does not affect each other.|
-| Exclusive | Exclusive recognition. Registered gestures are identified concurrently. If one gesture is successfully recognized, gesture recognition ends.|
+
+| Name       | Description                                      |
+| --------- | ---------------------------------------- |
+| Sequence  | Sequential recognition: Gestures are recognized in the registration sequence until all gestures are recognized successfully. When one gesture fails to be recognized, all gestures fail to be recognized.|
+| Parallel  | Parallel recognition. Registered gestures are recognized concurrently until all gestures are recognized. The recognition result of each gesture does not affect each other.    |
+| Exclusive | Exclusive recognition. Registered gestures are identified concurrently. If one gesture is successfully recognized, gesture recognition ends.      |
 
 
 ## Events
 
-| Name| Description|
-| -------- | -------- |
+| Name                                      | Description                                |
+| ---------------------------------------- | ------------------------------------ |
 | onCancel(event: () =&gt; void) | Callback for the GestureMode.Sequence cancellation event.|
 
 
@@ -49,6 +50,7 @@ struct GestureGroupExample {
   build() {
     Column() {
       Text('sequence gesture\n' + 'LongPress onAction:' + this.count + '\nPanGesture offset:\nX: ' + this.offsetX + '\n' + 'Y: ' + this.offsetY)
+        .fontSize(15)
     }
     .translate({ x: this.offsetX, y: this.offsetY, z: 0 })
     .height(150)
