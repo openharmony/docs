@@ -12,7 +12,7 @@
     - [Mouse Event](ts-universal-mouse-key.md)
     - [Component Area Change Event](ts-universal-component-area-change-event.md)
     - [Visible Area Change Event](ts-universal-component-visible-area-change-event.md)
-    - [Custom Keyboard Shortcuts](ts-universal-events-keyboardshortcut.md)
+    - [Component Keyboard Shortcut Event](ts-universal-events-keyboardshortcut.md)
   - Universal Attributes
     - [Size](ts-universal-attributes-size.md)
     - [Location](ts-universal-attributes-location.md)
@@ -33,19 +33,19 @@
     - [Gradient Color](ts-universal-attributes-gradient-color.md)
     - [Popup Control](ts-universal-attributes-popup.md)
     - [Menu Control](ts-universal-attributes-menu.md)
-    - [Click Control](ts-universal-attributes-click.md)
     - [Focus Control](ts-universal-attributes-focus.md)
     - [Hover Effect](ts-universal-attributes-hover-effect.md)
     - [Component ID](ts-universal-attributes-component-id.md)
-    - [Touch Target](ts-universal-attributes-touch-target.md)
     - [Polymorphic Style](ts-universal-attributes-polymorphic-style.md)
-    - [Hit Test Control](ts-universal-attributes-hit-test-behavior.md)
-    - [Background Blur](ts-universal-attributes-backgroundBlurStyle.md)
     - [restoreId](ts-universal-attributes-restoreId.md)
     - [Foreground Color](ts-universal-attributes-foreground-color.md)
-    - [Spherical Effect](ts-universal-attributes-sphericalEffect.md)
-    - [Light Up Effect](ts-universal-attributes-lightUpEffect.md)
-    - [Pixel Stretch Effect](ts-universal-attributes-pixelStretchEffect.md)
+    - Touch Interactions
+      - [Click Control](ts-universal-attributes-click.md)
+      - [Touch Target](ts-universal-attributes-touch-target.md)
+      - [Hit Test Control](ts-universal-attributes-hit-test-behavior.md)
+    - Transition
+      - [Modal Transition](ts-universal-attributes-modal-transition.md)
+      - [Sheet Transition](ts-universal-attributes-sheet-transition.md)
   - [Universal Text Attributes](ts-universal-attributes-text-style.md)
   - Gesture Handling
     - [Gesture Binding Methods](ts-gesture-settings.md)
@@ -146,12 +146,13 @@
 - Canvas Components
   - [Canvas](ts-components-canvas-canvas.md)
   - [CanvasGradient](ts-components-canvas-canvasgradient.md)
+  - [CanvasPattern](ts-components-canvas-canvaspattern.md)
   - [CanvasRenderingContext2D](ts-canvasrenderingcontext2d.md)
   - [ImageBitmap](ts-components-canvas-imagebitmap.md)
   - [ImageData](ts-components-canvas-imagedata.md)
+  - [Matrix2D](ts-components-canvas-matrix2d.md)
   - [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D](ts-components-canvas-path2d.md)
-  - [Lottie](ts-components-canvas-lottie.md)
 - Animation
   - [AnimatorProperty](ts-animatorproperty.md)
   - [Explicit Animatio](ts-explicit-animation.md)
@@ -174,5 +175,5 @@
 - [Pixel Units](ts-pixel-units.md)
 - [Enums](ts-appendix-enums.md)
 - [Types](ts-types.md)
-- Components No Longer Maintained 
+- Components No Longer Maintained
   - [GridContainer](ts-container-gridcontainer.md)
