@@ -325,6 +325,7 @@ deviceStandby.releaseExemptionResource(resRequest, (err) => {
 } catch (error) {
 console.log('DEVICE_STANDBY releaseExemptionResource throw error, code is: ' + error.code + ',message is: ' + error.message);
 }
+```
 
 ## ResourceType
 
