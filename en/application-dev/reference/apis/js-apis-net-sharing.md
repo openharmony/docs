@@ -35,6 +35,7 @@ Checks whether network sharing is supported. This API uses an asynchronous callb
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs. |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 | 2202011 | Cannot get network sharing configuration.           |
@@ -71,6 +72,7 @@ Checks whether network sharing is supported. This API uses a promise to return t
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs. |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 | 2202011 | Cannot get network sharing configuration.           |
@@ -184,6 +186,7 @@ Starts network sharing of a specified type. This API uses an asynchronous callba
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                             |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -233,6 +236,7 @@ Starts network sharing of a specified type. This API uses a promise to return th
 
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
+| 202     | Non-system applications use system APIs.                             |
 | 201     | Permission denied.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
@@ -377,6 +381,8 @@ Obtains the volume of mobile data traffic received via network sharing. This API
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 
@@ -412,6 +418,8 @@ Obtains the volume of mobile data traffic received via network sharing. This API
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 
@@ -448,6 +456,8 @@ Obtains the volume of mobile data traffic sent via network sharing. This API use
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 
@@ -483,6 +493,8 @@ Obtains the volume of mobile data traffic sent via network sharing. This API use
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 
@@ -519,6 +531,8 @@ Obtains the volume of mobile data traffic sent and received via network sharing.
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 
@@ -554,6 +568,8 @@ Obtains the volume of mobile data traffic sent and received via network sharing.
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 | 2200002 | Operation failed. Cannot connect to service. |
 | 2200003 | System internal error.                       |
 
@@ -591,6 +607,7 @@ Obtains the names of NICs in the specified network sharing state. This API uses 
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -637,6 +654,7 @@ Obtains the names of NICs in the specified network sharing state. This API uses 
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -679,6 +697,7 @@ Obtains the network sharing state of the specified type. This API uses an asynch
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -719,6 +738,7 @@ Obtains the network sharing state of the specified type. This API uses a promise
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -767,6 +787,7 @@ Obtains regular expressions of NICs of a specified type. This API uses an asynch
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -813,6 +834,7 @@ Obtains regular expressions of NICs of a specified type. This API uses a promise
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
 | 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
 | 401     | Parameter error.                             |
 | 2200001 | Invalid parameter value.                     |
 | 2200002 | Operation failed. Cannot connect to service. |
@@ -854,7 +876,9 @@ Subscribes to network sharing state changes. This API uses an asynchronous callb
 
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
-| 202     | Non-system applications use system APIs.                          |
+| 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 
 **Example**
 
@@ -887,7 +911,9 @@ Unsubscribes from network sharing state changes. This API uses an asynchronous c
 
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
-| 202     | Non-system applications use system APIs.                          |
+| 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 
 **Example**
 
@@ -921,7 +947,9 @@ Subscribes to network sharing state changes of a specified NIC. This API uses an
 
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
-| 202     | Non-system applications use system APIs.                          |
+| 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 
 **Example**
 
@@ -955,7 +983,9 @@ Unsubscribes from network sharing status changes of a specified NIC. This API us
 
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
-| 202     | Non-system applications use system APIs.                          |
+| 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 
 **Example**
 
@@ -988,7 +1018,9 @@ Subscribes to upstream network changes. This API uses an asynchronous callback t
 
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
-| 202     | Non-system applications use system APIs.                          |
+| 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 
 **Example**
 
@@ -1021,7 +1053,9 @@ Unsubscribes from upstream network changes. This API uses an asynchronous callba
 
 | ID| Error Message                                     |
 | ------- | -------------------------------------------- |
-| 202     | Non-system applications use system APIs.                          |
+| 201     | Permission denied.                           |
+| 202     | Non-system applications use system APIs.                           |
+| 401     | Parameter error.                             |
 
 **Example**
 

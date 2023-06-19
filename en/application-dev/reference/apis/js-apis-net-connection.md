@@ -67,6 +67,7 @@ Obtains the default active data network. This API uses an asynchronous callback 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -100,6 +101,7 @@ Obtains the default active data network. This API uses a promise to return the r
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -132,6 +134,7 @@ Obtains the default active data network in synchronous mode. You can use [getNet
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -161,6 +164,8 @@ Obtains the global HTTP proxy configuration of the network. This API uses an asy
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
+| 401     | Parameter error.             |
+| 202     | Non-system applications use system APIs.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -193,6 +198,8 @@ Obtains the global HTTP proxy configuration of the network. This API uses a prom
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
+| 401     | Parameter error.             |
+| 202     | Non-system applications use system APIs.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -231,6 +238,7 @@ Sets the global HTTP proxy configuration of the network. This API uses an asynch
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
+| 202     | Non-system applications use system APIs.               |
 | 2100001 | Invalid parameter value.                |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
@@ -280,6 +288,7 @@ Sets the global HTTP proxy configuration of the network. This API uses a promise
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
 | 401     | Parameter error.               |
+| 202     | Non-system applications use system APIs.               |
 | 2100001 | Invalid parameter value.                |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
@@ -319,6 +328,7 @@ Obtains information about the network bound to an application. This API uses an 
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
+| 401 | Parameter error.|
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -349,6 +359,7 @@ Obtains information about the network bound to an application. This API uses a p
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
+| 401 | Parameter error.|
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -465,6 +476,7 @@ Obtains the list of all connected networks. This API uses an asynchronous callba
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -498,6 +510,7 @@ Obtains the list of all connected networks. This API uses a promise to return th
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.             |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -690,6 +703,7 @@ Checks whether the data traffic usage on the current network is metered. This AP
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -723,6 +737,7 @@ Checks whether the data traffic usage on the current network is metered. This AP
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -755,6 +770,7 @@ Checks whether the default data network is activated. This API uses an asynchron
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -788,6 +804,7 @@ Checks whether the default data network is activated. This API uses a promise to
 | ID| Error Message                       |
 | ------- | -----------------------------  |
 | 201     | Permission denied.             |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -821,7 +838,9 @@ Enables the airplane mode. This API uses an asynchronous callback to return the 
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
-| 202 | Non-system applications use system APIs.|
+| 201     | Permission denied.             |
+| 202     | Non-system applications use system APIs.              |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -855,7 +874,9 @@ Enables the airplane mode. This API uses a promise to return the result.
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
-| 202 | Non-system applications use system APIs.|
+| 201     | Permission denied.             |
+| 202     | Non-system applications use system APIs.              |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -889,7 +910,9 @@ Disables the airplane mode. This API uses an asynchronous callback to return the
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
-| 202 | Non-system applications use system APIs.|
+| 201     | Permission denied.             |
+| 202     | Non-system applications use system APIs.              |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -923,7 +946,9 @@ Disables the airplane mode. This API uses a promise to return the result.
 
 | ID| Error Message                       |
 | ------- | -----------------------------  |
-| 202 | Non-system applications use system APIs.|
+| 201     | Permission denied.             |
+| 202     | Non-system applications use system APIs.              |
+| 401     | Parameter error.               |
 | 2100002 | Operation failed. Cannot connect to service.|
 | 2100003 | System internal error.         |
 
@@ -1251,7 +1276,7 @@ on(type: 'netAvailable', callback: Callback\<NetHandle>): void
 
 Registers a listener for **netAvailable** events.
 
-**Model restriction**: Before you call this API, make sure that you have called **register** to add a listener and called **unregister** API to unsubscribe from status changes of the default network.
+**Model restriction**: Before you call this API, make sure tat you have called **register** to add a listener and called **unregister** API to unsubscribe from status changes of the default network.
 
 **System capability**: SystemCapability.Communication.NetManager.Core
 
