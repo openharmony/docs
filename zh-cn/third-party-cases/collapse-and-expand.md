@@ -182,7 +182,7 @@ interface IRowItem {
 @Entry
 @Component
 struct CollapseAndExpandDemo {
-    Provide("flag") flag: boolean = false
+    @Provide("flag") flag: boolean = false
     private onFlagChange = () => {
         animateTo({  
             duration: 650,
@@ -247,7 +247,7 @@ struct CollapseAndExpandDemo {
 @Component
 struct RowItem {
     private props: IRowItem;
-    Consume("flag") flag: boolean
+    @Consume("flag") flag: boolean
 
     build() {
         Flex() {
@@ -286,7 +286,7 @@ struct RowItem {
 @Component
 struct CollapseAndExpand {
     private items: IRowItem[] = [];
-    Consume("flag") flag: boolean;
+    @Consume("flag") flag: boolean;
 
     build() {
         Column() {
