@@ -9,9 +9,11 @@
 
 ## 效果呈现
 效果图如下所示（模拟器设备：phone、Foldable）：
+
 phone设备效果图：
 
 ![navigation_phone](figures/navigation_phone.PNG) 
+
 Foldable设备效果图：
 
 ![navigation_Foldable](figures/navigation_Foldable.PNG)
