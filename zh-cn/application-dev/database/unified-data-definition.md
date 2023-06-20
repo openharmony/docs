@@ -1,8 +1,10 @@
 # 标准化数据定义
 
+
 ## 场景介绍
 
 为了构建OpenHarmony数据跨应用/设备交互的标准定义，降低应用/业务数据交互成本，促进数据生态建设，UDMF提供了标准化的数据定义，统一定义了多种常用的数据类型。应用可以使用统一数据管理框架提供的接口创建和使用这些标准化数据类型。
+
 
 ## 约束限制
 
@@ -11,152 +13,16 @@
 
 ## 接口说明
 
-### 导入模块
+以下是键值型数据库持久化功能的相关接口，大部分为异步接口。异步接口均有callback和Promise两种返回形式，下表均以callback形式为例，更多接口及使用方式请见[分布式键值数据库](../reference/apis/js-apis-distributedKVStore.md)。
 
-```js
-import UDMF from '@ohos.data.UDMF';
-```
+| 接口名称 | 描述 | 
+| -------- | -------- |
+| createKVManager(config: KVManagerConfig): KVManager | 创建一个KVManager对象实例，用于管理数据库对象。 | 
+| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | 指定Options和storeId，创建并得到指定类型的KVStore数据库。 | 
+| put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void | 添加指定类型的键值对到数据库。 | 
+| get(key: string, callback: AsyncCallback&lt;Uint8Array\|string\|boolean\|number&gt;): void | 获取指定键的值。 | 
+| delete(key: string, callback: AsyncCallback&lt;void&gt;): void | 从数据库中删除指定键值的数据。 | 
 
-### UnifiedDataType
-
-```UnifiedData```中各```UnifiedRecord```数据类型。
-**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
-
-| 名称                     | 说明             |
-| ------------------------ | ---------------- |
-| TEXT                     | 文本类型         |
-| PLAIN_TEXT               | 纯文本类型       |
-| HYPER_LINK               | 超链接类型       |
-| HTML                     | 富文本类型       |
-| IMAGE                    | 图片类型         |
-| VIDEO                    | 视频类型         |
-| SYSTEM_DEFINED_RECORD    | 系统服务数据类型 |
-| SYSTEM_DEFINED_FORM      | 卡片类型         |
-| SYSTEM_DEFINED_APP_ITEM  | 图标类型         |
-| SYSTEM_DEFINED_PIXEL_MAP | 二进制图片类型   |
-
-### UnifiedData
-
-表示UDMF数据对象，提供封装一组数据记录的方法。
-仅是按照统一数据规范创建数据，并未写入存储中。
-**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
-
-#### constructor
-
-constructor(record: UnifiedRecord)
-用于创建带有一条数据记录的```UnifiedData```对象。
-**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
-**参数：**
-
-| 参数名 | 类型          | 必填 | 说明                        |
-| ------ | ------------- | ---- | --------------------------- |
-| record | UnifiedRecord | Y    | UnifiedData中携带的数据记录 |
-
-#### addRecord
-
-addRecord(record: UnifiedRecord): void;
-在当前```UnifiedData```对象中添加一条记录。
-**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
-**参数：**
-
-| 参数名 | 类型          | 必填 | 说明                        |
-| ------ | ------------- | ---- | --------------------------- |
-| record | UnifiedRecord | Y    | UnifiedData中携带的数据记录 |
-
-**示例：**
-
-```
-import UDMF from '@ohos.data.UDMF';
-
-let text = new UDMF.PlainText();
-text.textContent = "Hello world!";
-let unifiedData = new UDMF.UnifiedData(text);
-
-let text2 = new UDMF.PlainText();
-text2.textContent = "Hello, OpenHarmony!";
-unifiedData.addRecord(text2);
-```
-
-#### getRecords
-
-getRecords(): Array\<UnifiedRecord\>;
-将当前UnifiedData对象中的所有UnifiedRecord取出。
-**系统能力** ：SystemCapability.DistributedDataManager.UDMF.Core
-**返回值：**
-
-| 类型                   | 描述                       |
-| ---------------------- | -------------------------- |
-| Array\<UnifiedRecord\> | 向当前数据对象内添加的记录 |
-
-**示例：**
-
-```
-import UDMF from '@ohos.data.UDMF';
-
-...
-
-let records = unifiedData.getRecords();
-console.log("array size is: " + records.size());
-```
-
-### Summary
-
-描述某一```UnifiedData```对象的数据摘要。
-**系统能力：** SystemCapability.DistributedDataManager.UDMF.Core
-**属性定义：**
-
-| 属性名    | 类型                      | 可读 | 可写 | 说明                                                         |
-| --------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| symmary   | { [key: string]: number } | Y    | N    | 是一个字典类型对象，key为UnifiedDataType类型，value为UnifiedData对象中key类型记录数据量总和（当前文件类型记录仅记录uri大小，非文件大小） |
-| totalSize | number                    | Y    | N    | UnifiedData对象内记录总大小                                  |
-
-**示例：**
-
-```
-import UDMF from '@ohos.data.UDMF';
-
-getSummaryCallback(data, err) {
-    let summary = data;
-    console.log("total: " + summary.totalSize);
-}
-```
-
-### UnifiedRecord
-
-对UDMF数据支持的数据内容的抽象定义，称为记录，一个统一数据对象内包含一条或多条记录，例如一条文本记录，一条图片记录，一条HTML记录等。
-UnifiedRecord是一个抽象父类，无法保存具体数据内容，应用在使用时，不能将其添加到UnifiedData中，而应该创建带有数据内容的具体子类，如```Text```，```Image```等。
-**系统能力**：SystemCapability.DistributedDataManager.UDMF.Core
-
-#### getType
-
-getType(): UnifiedDataType;
-获取当前UnifiedRecord的类型。
-由于从UnifiedData中调用```getRecords```取出数据都是```UnifiedRecord```对象，因此需要通过该接口查询该条记录的具体类型，将```UnifiedRecord```对象转换为其子类，调用子类接口。
-**系统能力** ：SystemCapability.DistributedDataManager.UDMF.Core
-**返回值：**
-
-| 类型            | 说明                           |
-| --------------- | ------------------------------ |
-| UnifiedDataType | 当前数据记录对应的具体数据类型 |
-
-**示例：**
-
-```
-import UDMF from '@ohos.data.UDMF';
-
-let text = new UDMF.PlainText();
-text.textContent = "Hello world!";
-let unifiedData = new UDMF.UnifiedData(text);
-
-let text2 = new UDMF.PlainText();
-text2.textContent = "Hello, OpenHarmony!";
-unifiedData.addRecord(text2);
-
-let records = unifiedData.getRecords();
-if (records[0] != null && records[0].getType() == UnifiedDataType.PlainText) {
-    console.log(((UDMF.Text)record[0]).content);
-}
-```
 
 ## 开发步骤
 

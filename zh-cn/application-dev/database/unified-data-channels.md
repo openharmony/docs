@@ -1,59 +1,104 @@
-# 跨设备跨应用标准化数据通道概述
+# 标准化数据通路
 
-## 简介
 
-依据OpenHarmony构建“面向全场景、全连接、全智能时代的分布式操作系统”的愿景，人与数字世界的交互将发生巨大的变化。传统的用户在单设备以应用为中心的交互方式，远远达不到万物互联全场景的体验要求，主要原因有以下几点：
-1） 硬件设备是有边界的，用户在多个设备之间的交互体验是割裂的；
-2） 服务以应用为载体，既无法打破应用边界，更无法打破设备间的边界；
-3） 用户与服务过程中产生的数据被孤立在应用内、设备内，数据也是有边界的；
-从数据管理角度出发，随着OpenHarmony中数据跨应用、跨设备流转场景和需求的不断增加，流转过程中会存在数据协同通道繁杂、数据协同标准不一致、数据协同安全策略不一致、应用适配复杂度高、开发工作量增多等诸多痛点问题。统一数据管理框架（Unified Data Management Framework, UDMF）旨在定义数据跨应用、跨设备以及跨平台过程中的各项标准，提供统一的标准化通道，从而打破OpenHarmony中数据交互的应用边界与设备边界，为用户提供全新的分布式数据体验。
+## 场景介绍
 
-## 架构介绍
-UDMF提供统一的OpenHarmony数据语言和标准化的数据接入与读取通路。
+为了构建OpenHarmony数据跨应用/设备交互的标准定义，降低应用/业务数据交互成本，促进数据生态建设，UDMF提供了标准化的数据定义，统一定义了多种常用的数据类型。应用可以使用统一数据管理框架提供的接口创建和使用这些标准化数据类型。
 
-**统一的OpenHarmony数据语言：** 构建OpenHarmony数据跨应用/设备交互的标准定义，降低应用/业务数据交互成本，促进数据生态建设。
-**标准化的数据接入与读取通路：** 提供安全、标准化的数据通路，降低业务跨应用跨设备数据交互的成本。
 
-UDMF的整体架构如图1所示，业务层对外提供标准化的数据定义和数据接入与读取的业务接口。统一数据管理框架层提供标准化数据定义和数据接入与读取的具体实现，同时负责管理数据的生命周期、安全性、权限和存储。存储模块层负责数据的具体保存，可以使用分布式KVDB、分布式数据对象和文件系统进行数据存储。
+## 接口说明
 
-**图1** UDMF架构图
+以下是键值型数据库持久化功能的相关接口，大部分为异步接口。异步接口均有callback和Promise两种返回形式，下表均以callback形式为例，更多接口及使用方式请见[分布式键值数据库](../reference/apis/js-apis-distributedKVStore.md)。
 
-![架构图](figures/udmf_architecture.png)
+| 接口名称 | 描述 | 
+| -------- | -------- |
+| createKVManager(config: KVManagerConfig): KVManager | 创建一个KVManager对象实例，用于管理数据库对象。 | 
+| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | 指定Options和storeId，创建并得到指定类型的KVStore数据库。 | 
+| put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void | 添加指定类型的键值对到数据库。 | 
+| get(key: string, callback: AsyncCallback&lt;Uint8Array\|string\|boolean\|number&gt;): void | 获取指定键的值。 | 
+| delete(key: string, callback: AsyncCallback&lt;void&gt;): void | 从数据库中删除指定键值的数据。 | 
 
-### 标准化数据定义
 
-UDMF提供了标准化的数据定义，统一定义了以下几种不同的数据类型。
+## 开发步骤
 
-**基础数据类型：** File、Text等，能够进行跨应用、跨设备、跨平台流转。File、Text数据类型可见图2和图3，它们可以具有继承关系和层次结构，衍生出更多的具体子类型。
+以一次创建数据（包含图片、纯文本、二进制图片三条数据记录）为例，说明开发步骤。
 
-**图2** UDMF File数据类型示意图
+1. 导入`@ohos.data.UDMF`模块
 
-![架构图](figures/udmf_type_File.png)
+   ```js
+   import UDMF from '@ohos.data.UDMF';
+   ```
+2. 创建图片数据记录，并初始化得到带有该数据记录的UnifiedData对象
 
-**图3** UDMF Text数据类型示意图
+   （1）创建图片数据记录
 
-![架构图](figures/udmf_type_Text.png)
+   ```js
+   let image = new UDMF.Image();
+   ```
 
-**系统相关数据类型（System-Defined Type, SDT）:**与具体的平台/操作系统绑定，如Form（UI卡片信息）、AppItem（App描述信息）、PixelMap（缩略图格式）等，该类数据可以实现系统/平台内的跨应用与跨设备流转，如图4所示。
-**图4** UDMF SDT数据类型示意图
+   （2）修改对象属性
 
-![架构图](figures/udmf_type_SDT.png)
+   ```js
+   // Image对象包含一个属性imageUri
+   image.imageUri = '...';
+   ```
 
-**应用自定义数据类型（App-Defined Type, ADT）：**单个应用自己定义的数据，该类数据可以实现应用内的跨平台与跨设备流转，如图5所示为例，应用可自定义三角形类型。
-**图5** UDMF ADT数据类型示意图
+   （3）访问对象属性
 
-![架构图](figures/udmf_type_ADT.png)
+   ```js
+   console.info(`imageUri = ${image.imageUri}`);
+   ```
 
-### 标准化数据通路
+   （4）创建一个统一数据对象实例
 
-UDMF定义了标准化的数据接入与读取通路，为各种业务场景（如跨应用跨设备数据拖拽）提供了跨应用跨设备的数据接入与读取通路，通路中的数据URI定义为：udmf://intension/bundleName/groupName/guid，其中各组成部分的含义分别为：
-**udmf:** 协议名，表示使用UDMF提供的数据通路；
-**intension:** 通道分类，例如Drag(拖拽数据)，SuperHub(中转站)等；
-**bundleName:** 数据来源应用的包名称；
-**groupName:** 分组名称，支持批量数据分组管理；
-**guid:** 系统生成的数据id，全局唯一性。
+   ```js
+   let unifiedData = new UDMF.UnifiedData(image);
+   ```
+3. 创建纯文本数据类型记录，将其添加到刚才创建的UnifiedData对象
 
-## 约束限制
+   ```js
+   let plainText = new UDMF.PlainText();
+   plainText.textContent = 'this is textContent of plainText';
+   plainText.abstract = 'abstract of plainText';
+   plainText.details = {
+     plainKey1: 'plainValue1',
+     plainKey2: 'plainValue2',
+   };
+   unifiedData.addRecord(plainText);
+   ```
+4. 创建二进制图片数据类型记录，将其添加到UnifiedData对象
 
-- UDMF中每条数据记录大小不超过2MB。
-- UDMF支持批量数据记录的分组管理，每个分组最多支持512条数据，整体大小不超过4MB。
+   ```js
+   let sdPixelMap = new UDMF.SystemDefinedPixelMap();
+   sdPixelMap.rawData = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+   unifiedData.addRecord(sdPixelMap);
+   ```
+5. 记录添加完成后，可获取当前UnifiedData对象内的所有数据记录
+
+   ```js
+   let records = unifiedData.getRecords();
+   ```
+6. 遍历每条记录，判断该记录的数据类型，转换为子类对象，得到原数据记录
+
+   ```js
+   for (let i = 0; i < records.length; i ++) {
+     // 读取该数据记录的类型
+     let type = records[i].getType();
+     switch (type) {
+       case UDMF.UnifiedDataType.IMAGE:
+         // 转换得到原图片数据记录
+         let image = <UDMF.Image>(records[i]);
+         break;
+       case UDMF.UnifiedDataType.PLAIN_TEXT:
+         // 转换得到原文本数据记录
+         let plainText = <UDMF.PlainText>(records[i]);
+         break;
+       case UDMF.UnifiedDataType.SYSTEM_DEFINED_PIXEL_MAP:
+         // 转换得到原二进制图片数据记录
+         let sdPixelMap = <UDMF.SystemDefinedPixelMap>(records[i]);
+         break;
+       default:
+         break;
+     }
+   }
+   ```
