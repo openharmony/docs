@@ -60,6 +60,7 @@
   - [Bluetooth错误码](errorcode-bluetoothManager.md)
   - [WIFI错误码](errorcode-wifi.md)
   - [NFC错误码](errorcode-nfc.md)
+  - [SE(secureElement)错误码](errorcode-se.md)
   - [RPC错误码](errorcode-rpc.md)
 - 系统基础能力
   - [无障碍子系统错误码](errorcode-accessibility.md)

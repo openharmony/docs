@@ -2,6 +2,7 @@
 
 - [如何编译full-SDK](full-sdk-compile-guide.md)
 - [如何替换full-SDK](full-sdk-switch-guide.md)
+- [如何在CMake工程中使用OpenHarmony SDK的Native API(NDK)](howto-migrate-cmake-with-ohosndk.md)
 - [应用模型常见问题](faqs-ability.md)
 - ArkUI框架开发常见问题(ArkTS)
   - [ArkTS语法使用常见问题](faqs-arkui-arkts.md)
