@@ -1,4 +1,4 @@
-# WLAN扩展接口
+# @ohos.wifiManagerExt (WLAN扩展接口)
 该模块主要提供WLAN扩展接口，供非通用类型产品使用。
 
 > **说明：**
