@@ -12,7 +12,7 @@ Touchscreen events are events triggered when a finger or stylus is placed on, mo
 
 ## Click Event
 
-A click event is triggered when a complete press and lift action performed by using a finger or a stylus. When a click event occurs, the following callback is triggered:
+A click event is triggered when a complete press and lift action is performed by using a finger or a stylus. When a click event occurs, the following callback is triggered:
 
 ```ts
 onClick(event: (event?: ClickEvent) => void)
