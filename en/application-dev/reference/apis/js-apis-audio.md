@@ -2023,7 +2023,7 @@ Currently, when multiple **AudioManager** instances are used in a single process
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | Yes  | Event type. The value **'volumeChange'** means the system volume change event, which is triggered when a system volume change is detected.|
-| callback | Callback<[VolumeEvent](#volumeevent9)> | Yes  | Callback used to return the system volume change event.                                                  |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
 
@@ -2054,7 +2054,7 @@ Subscribes to ringer mode change events.
 | Name  | Type                                     | Mandatory| Description                                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                    | Yes  | Event type. The value **'ringerModeChange'** means the ringer mode change event, which is triggered when a ringer mode change is detected.|
-| callback | Callback<[AudioRingMode](#audioringmode)> | Yes  | Callback used to return the ringer mode change event.                                                  |
+| callback | Callback<[AudioRingMode](#audioringmode)> | Yes  | Callback used to return the result.                                                  |
 
 **Example**
 
@@ -2329,7 +2329,7 @@ Subscribes to system volume change events. This API uses an asynchronous callbac
 | Name  | Type                                  | Mandatory| Description                                                        |
 | -------- | -------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                 | Yes  | Event type. The value **'volumeChange'** means the system volume change event, which is triggered when the system volume changes.|
-| callback | Callback<[VolumeEvent](#volumeevent9)> | Yes  | Callback used to return the system volume change event.                                                  |
+| callback | Callback<[VolumeEvent](#volumeevent9)> | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
 
@@ -2839,7 +2839,7 @@ Subscribes to ringer mode change events.
 | Name  | Type                                     | Mandatory| Description                                                        |
 | -------- | ----------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                    | Yes  | Event type. The value **'ringerModeChange'** means the ringer mode change event, which is triggered when a ringer mode change is detected.|
-| callback | Callback<[AudioRingMode](#audioringmode)> | Yes  | Callback used to return the system volume change event.                                                  |
+| callback | Callback<[AudioRingMode](#audioringmode)> | Yes  | Callback used to return the result.                                                  |
 
 **Error codes**
 
@@ -4717,9 +4717,9 @@ async function getCacheDir(){
 }
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-let stat = await fs.stat(path);
+let currStat = await fs.stat(path);
 let buf = new ArrayBuffer(bufferSize);
-let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+let len = currStat.size % bufferSize == 0 ? Math.floor(currStat.size / bufferSize) : Math.floor(currStat.size / bufferSize + 1);
 for (let i = 0;i < len; i++) {
     let options = {
       offset: i * bufferSize,
@@ -4771,9 +4771,9 @@ async function getCacheDir(){
 }
 let filePath = path + '/StarWars10s-2C-48000-4SW.wav';
 let file = fs.openSync(filePath, fs.OpenMode.READ_ONLY);
-let stat = await fs.stat(path);
+let currStat = await fs.stat(path);
 let buf = new ArrayBuffer(bufferSize);
-let len = stat.size % bufferSize == 0 ? Math.floor(stat.size / bufferSize) : Math.floor(stat.size / bufferSize + 1);
+let len = currStat.size % bufferSize == 0 ? Math.floor(currStat.size / bufferSize) : Math.floor(currStat.size / bufferSize + 1);
 for (let i = 0;i < len; i++) {
     let options = {
       offset: i * bufferSize,
