@@ -94,7 +94,7 @@
 
 以RSA密钥为例，应用需要申请一个Uint8Array，按照RSA密钥对材料内存格式，将各个变量赋值到对应的位置：
 
-**图4** RSA密钥材料内存结构
+**图1** RSA密钥材料内存结构
 
 ![huks_keymaterial_struct](figures/huks_keymaterial_struct.png)
 

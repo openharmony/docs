@@ -152,7 +152,7 @@ hasRight(deviceName: string): boolean
 **示例：**
 
 ```js
-let devicesName="1-1";
+let devicesName = "1-1";
 let bool = usb.hasRight(devicesName);
 console.log(`${bool}`);
 ```
@@ -180,7 +180,7 @@ requestRight(deviceName: string): Promise&lt;boolean&gt;
 **示例：**
 
 ```js
-let devicesName="1-1";
+let devicesName = "1-1";
 usb.requestRight(devicesName).then((ret) => {
   console.log(`requestRight = ${ret}`);
 });
@@ -209,7 +209,7 @@ removeRight(deviceName: string): boolean
 **示例：**
 
 ```js
-let devicesName= "1-1";
+let devicesName = "1-1";
 if (usb.removeRight(devicesName)) {
   console.log(`Succeed in removing right`);
 }
@@ -277,6 +277,16 @@ claimInterface(pipe: USBDevicePipe, iface: USBInterface, force ?: boolean): numb
 **示例：**
 
 ```js
+let devicesList = usb.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+  return;
+}
+
+let device = devicesList[0];
+usb.requestRight(device.name);
+let devicepipe = usb.connectDevice(device);
+let interfaces = device.configs[0].interfaces[0];
 let ret = usb.claimInterface(devicepipe, interfaces);
 console.log(`claimInterface = ${ret}`);
 ```
@@ -307,7 +317,18 @@ releaseInterface(pipe: USBDevicePipe, iface: USBInterface): number
 **示例：**
 
 ```js
-let ret = usb.releaseInterface(devicepipe, interfaces);
+let devicesList = usb.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+  return;
+}
+
+let device = devicesList[0];
+usb.requestRight(device.name);
+let devicepipe = usb.connectDevice(device);
+let interfaces = device.configs[0].interfaces[0];
+let ret = usb.claimInterface(devicepipe, interfaces);
+ret = usb.releaseInterface(devicepipe, interfaces);
 console.log(`releaseInterface = ${ret}`);
 ```
 
@@ -337,6 +358,16 @@ setConfiguration(pipe: USBDevicePipe, config: USBConfiguration): number
 **示例：**
 
 ```js
+let devicesList = usb.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+  return;
+}
+
+let device = devicesList[0];
+usb.requestRight(device.name);
+let devicepipe = usb.connectDevice(device);
+let config = device.configs[0];
 let ret = usb.setConfiguration(devicepipe, config);
 console.log(`setConfiguration = ${ret}`);
 ```
@@ -367,7 +398,18 @@ setInterface(pipe: USBDevicePipe, iface: USBInterface): number
 **示例：**
 
 ```js
-let ret = usb.setInterface(devicepipe, interfaces);
+let devicesList = usb.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+  return;
+}
+
+let device = devicesList[0];
+usb.requestRight(device.name);
+let devicepipe = usb.connectDevice(device);
+let interfaces = device.configs[0].interfaces[0];
+let ret = usb.claimInterface(devicepipe, interfaces);
+ret = usb.setInterface(devicepipe, interfaces);
 console.log(`setInterface = ${ret}`);
 ```
 
@@ -396,6 +438,14 @@ getRawDescriptor(pipe: USBDevicePipe): Uint8Array
 **示例：**
 
 ```js
+let devicesList = usb.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+  return;
+}
+
+usb.requestRight(devicesList[0].name);
+let devicepipe = usb.connectDevice(devicesList[0]);
 let ret = usb.getRawDescriptor(devicepipe);
 ```
 
@@ -424,6 +474,14 @@ getFileDescriptor(pipe: USBDevicePipe): number
 **示例：**
 
 ```js
+let devicesList = usb.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+  return;
+}
+
+usb.requestRight(devicesList[0].name);
+let devicepipe = usb.connectDevice(devicesList[0]);
 let ret = usb.getFileDescriptor(devicepipe);
 ```
 
@@ -462,6 +520,15 @@ let param = {
   index: 0,
   data: null
 };
+
+let devicesList = usb.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+  return;
+}
+
+usb.requestRight(devicesList[0].name);
+let devicepipe = usb.connectDevice(devicesList[0]);
 usb.controlTransfer(devicepipe, param).then((ret) => {
  console.log(`controlTransfer = ${ret}`);
 })
@@ -498,8 +565,22 @@ bulkTransfer(pipe: USBDevicePipe, endpoint: USBEndpoint, buffer: Uint8Array, tim
 //usb.getDevices 接口返回数据集合，取其中一个设备对象，并获取权限 。
 //把获取到的设备对象作为参数传入usb.connectDevice;当usb.connectDevice接口成功返回之后；
 //才可以调用第三个接口usb.claimInterface.当usb.claimInterface 调用成功以后,再调用该接口。
+let devicesList = usb.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+  return;
+}
+
+let device = devicesList[0];
+usb.requestRight(device.name);
+
+let devicepipe = usb.connectDevice(device);
+let interfaces = device.configs[0].interfaces[0];
+let endpoint = device.configs[0].interfaces[0].endpoints[0];
+let ret = usb.claimInterface(devicepipe, interfaces);
+let buffer =  new Uint8Array(128);
 usb.bulkTransfer(devicepipe, endpoint, buffer).then((ret) => {
- console.log(`bulkTransfer = ${ret}`);
+  console.log(`bulkTransfer = ${ret}`);
 });
 ```
 
@@ -528,6 +609,14 @@ closePipe(pipe: USBDevicePipe): number
 **示例：**
 
 ```js
+let devicesList = usb.getDevices();
+if (devicesList.length == 0) {
+  console.log(`device list is empty`);
+  return;
+}
+
+usb.requestRight(devicesList[0].name);
+let devicepipe = usb.connectDevice(devicesList[0]);
 let ret = usb.closePipe(devicepipe);
 console.log(`closePipe = ${ret}`);
 ```

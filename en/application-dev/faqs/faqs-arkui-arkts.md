@@ -1,4 +1,4 @@
-# ArkUI Development (ArkTS Syntax)
+# ArkTS Syntax Usage
 
 ## How do I dynamically create components using code in ArkUI?
 
@@ -522,7 +522,7 @@ Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
 
 **Reference**
 
-[Resource Categories and Access](../quick-start/resource-categories-and-access.md) and [@ohos.resourceManager (Resource Manager)](../reference/apis/js-apis-resource-manager.md#getstring)
+[Resource Categories and Access](../quick-start/resource-categories-and-access.md) and [@ohos.resourceManager (Resource Manager)](../reference/apis/js-apis-resource-manager.md)
 
 ## How do I convert the XML format to the JSON format?
 

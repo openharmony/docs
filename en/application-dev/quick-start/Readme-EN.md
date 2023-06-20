@@ -24,7 +24,7 @@
       - [HAR](har-package.md)
       - HSP
         - [In-Application HSP Development](in-app-hsp.md)
-        - [Inter-Application HSP Development (for System Applications Only)](cross-app-hsp.md)
+        - [Inter-Application HSP Development](cross-app-hsp.md)
     - Atomic Service
       - [Atomic Service Development](atomicService.md)
       - [Atomic Service Space Management (for System Applications Only)](atomicService-aging.md)
@@ -40,7 +40,7 @@
     - [Internal Structure of the app Tag](app-structure.md)
     - [Internal Structure of deviceConfig Tag](deviceconfig-structure.md)
     - [Internal Structure of the module Tag](module-structure.md)
-  - [Resource Categories and Access](resource-categories-and-access.md)
+- [Resource Categories and Access](resource-categories-and-access.md)
 - Learning ArkTS
     - [Getting Started with ArkTS](arkts-get-started.md)
   - Basic Syntax

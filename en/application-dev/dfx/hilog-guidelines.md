@@ -1,5 +1,5 @@
 # HiLog Development (Native)
- 
+
 ## Introduction
 
 HiLog is the log system of OpenHarmony that provides logging for the system framework, services, and applications to record information on user operations and system running status.
@@ -13,11 +13,11 @@ HiLog is the log system of OpenHarmony that provides logging for the system fram
 | API/Macro| Description| 
 | -------- | -------- |
 | int OH_LOG_Print(LogType type, LogLevel level, unsigned int domain, const char *tag, const char *fmt, ...) | Outputs logs based on the specified log type, log level, service domain, log tag, and variable parameters determined by the format specifier and privacy identifier in the printf format.<br>Input arguments: See [Parameter Description](#parameter-description).<br>Output arguments: None<br>Return value: total number of bytes if log printing is successful; **-1** otherwise.| 
-| #define OH_LOG_DEBUG(type, ...) ((void)OH_LOG_Print((type), LOG_DEBUG, LOG_DOMAIN, LOG_TAG, \_*VA*ARGS__))| Outputs DEBUG logs. This is a function-like macro.| 
-| #define OH_LOG_INFO(type, ...) ((void)OH_LOG_Print((type), LOG_INFO, LOG_DOMAIN, LOG_TAG, \_*VA*ARGS__)) | Outputs INFO logs. This is a function-like macro.| 
-| #define OH_LOG_WARN(type, ...) ((void)OH_LOG_Print((type), LOG_WARN, LOG_DOMAIN, LOG_TAG, \_*VA*ARGS__)) | Outputs WARN logs. This is a function-like macro.| 
-| #define OH_LOG_ERROR(type, ...) ((void)OH_LOG_Print((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, \_*VA*ARGS__)) | Outputs ERROR logs. This is a function-like macro.| 
-| #define OH_LOG_FATAL(type, ...) ((void)OH_LOG_Print((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, \_*VA*ARGS__)) | Outputs FATAL logs. This is a function-like macro.| 
+| #define OH_LOG_DEBUG(type, ...) ((void)OH_LOG_Print((type), LOG_DEBUG, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__))| Outputs DEBUG logs. This is a function-like macro.| 
+| #define OH_LOG_INFO(type, ...) ((void)OH_LOG_Print((type), LOG_INFO, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | Outputs INFO logs. This is a function-like macro.| 
+| #define OH_LOG_WARN(type, ...) ((void)OH_LOG_Print((type), LOG_WARN, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | Outputs WARN logs. This is a function-like macro.| 
+| #define OH_LOG_ERROR(type, ...) ((void)OH_LOG_Print((type), LOG_ERROR, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | Outputs ERROR logs. This is a function-like macro.| 
+| #define OH_LOG_FATAL(type, ...) ((void)OH_LOG_Print((type), LOG_FATAL, LOG_DOMAIN, LOG_TAG, \__VA_ARGS__)) | Outputs FATAL logs. This is a function-like macro.| 
 | bool OH_LOG_IsLoggable(unsigned int domain, const char *tag, LogLevel level) | Checks whether logs of the specified service domain, tag, and level can be printed.<br>Input arguments: See [Parameter Description](#parameter-description).<br>Output arguments: none<br>Return value: **true** if the specified logs can be printed; **false** otherwise.|
 
 ## Parameter Description
@@ -33,7 +33,7 @@ HiLog is the log system of OpenHarmony that provides logging for the system fram
 
 ## LogLevel
 
-Log level.
+Enumerates log levels.
 
 | Name |   Value  | Description                                                        |
 | ----- | ------ | ------------------------------------------------------------ |

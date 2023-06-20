@@ -2,31 +2,31 @@
 
 ## Overview
 
-[ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md) is an ExtensionAbility component of the SERVICE type that provides capabilities related to background services. It holds an internal [ServiceExtensionContext](../reference/apis/js-apis-inner-application-serviceExtensionContext.md), through which a variety of APIs are provided for external systems.
+[ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md) is an ExtensionAbility component of the service type that provides capabilities related to background services. It holds an internal [ServiceExtensionContext](../reference/apis/js-apis-inner-application-serviceExtensionContext.md), through which a variety of APIs are provided for external systems.
 
 In this document, the started ServiceExtensionAbility component is called the server, and the component that starts ServiceExtensionAbility is called the client.
 
-A ServiceExtensionAbility can be started or connected by other components to process transactions in the background based on the request of the caller. System applications can call the [startServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartserviceextensionability) method to start background services or call the [connectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method to connect to background services. Third-party applications can call only **connectServiceExtensionAbility()** to connect to background services. The differences between starting and connecting to background services are as follows:
+A ServiceExtensionAbility can be started or connected by other components to process transactions in the background based on the request of the caller. System applications can call the [startServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstartserviceextensionability) method to start background services or call the [connectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method to connect to background services. Third-party applications can call only [connectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) to connect to background services. The differences between starting and connecting to background services are as follows:
 
-- **Starting**: In the case that AbilityA starts ServiceB, they are weakly associated. After AbilityA exits, ServiceB can still exist.
+- **Starting**: In the case that AbilityA starts ServiceB, they are weakly associated. After AbilityA exits, ServiceB remains running.
 
 - **Connecting**: In the case that AbilityA connects to ServiceB, they are strongly associated. After AbilityA exits, ServiceB also exits.
 
 Note the following:
 
-- If a ServiceExtensionAbility is started only by means of connecting, its lifecycle is controlled by the client. A new connection is set up each time the client calls the [connectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method. When the client exits or calls the [disconnectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability) method, the connection is disconnected. After all connections are disconnected, the ServiceExtensionAbility automatically exits.
+- If a ServiceExtensionAbility is started only by means of connecting, its lifecycle is controlled by the client. A new connection is set up each time the client calls the [connectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method. When the client exits or calls the [disconnectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability) method, the connection is interrupted. After all connections are interrupted, the ServiceExtensionAbility automatically exits.
 
 - Once a ServiceExtensionAbility is started by means of starting, it will not exit automatically. System applications can call the [stopServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextstopserviceextensionability) method to stop it.
 
 > **NOTE**
 >
-> - Currently, third-party applications cannot implement ServiceExtensionAbility. If you want to implement transaction processing in the background, use background tasks. For details, see [Background Task](../task-management/background-task-overview.md).
+> - Currently, third-party applications cannot implement ServiceExtensionAbility. Alternatively, they can use background tasks to implement transaction processing in the background. For details, see [Background Task](../task-management/background-task-overview.md).
 > - UIAbility of a third-party application can connect to ServiceExtensionAbility provided by the system through the context.
 > - Third-party applications can connect to ServiceExtensionAbility provided by the system only when they gain focus in the foreground.
 
 ## Lifecycle
 
-[ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md) provides the callbacks **onCreate()**, **onRequest()**, **onConnect()**, **onDisconnect()**, and **onDestory()**. Override them as required. The following figure shows the lifecycle of ServiceExtensionAbility.
+[ServiceExtensionAbility](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md) provides the lifecycle callbacks **onCreate()**, **onRequest()**, **onConnect()**, **onDisconnect()**, and **onDestory()**. Override them as required. The following figure shows the lifecycle of ServiceExtensionAbility.
 
 **Figure 1** ServiceExtensionAbility lifecycle
 
@@ -46,11 +46,11 @@ Note the following:
 
 - **onConnect**
   
-  This callback is triggered when another component calls the [connectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method to connect to a ServiceExtensionAbility. In this method, a remote proxy object (IRemoteObject) is returned, through which the client communicates with the server by means of RPC. At the same time, the system stores the remote proxy object (IRemoteObject). If another component calls the [connectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method to connect to this ServiceExtensionAbility, the system directly returns the saved remote proxy object (IRemoteObject) and does not trigger the callback.
+  This callback is triggered when another component calls the [connectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method to connect to a ServiceExtensionAbility. In this method, a remote proxy object, namely, IRemoteObject, is returned, through which the client communicates with the server by means of RPC. At the same time, the system stores the IRemoteObject. If another component calls the [connectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextconnectserviceextensionability) method to connect to this ServiceExtensionAbility, the system directly returns the saved IRemoteObject and does not trigger the callback.
 
 - **onDisconnect**
   
-  This callback is triggered when the last connection is disconnected. A connection is disconnected when the client exits or the [disconnectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability) method is called.
+  This callback is triggered when the last connection is interrupted. A connection is interrupted when the client exits or the [disconnectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextdisconnectserviceextensionability) method is called.
 
 - **onDestroy**
   
@@ -64,11 +64,11 @@ Only system applications can implement ServiceExtensionAbility. You must make th
 
 - **Switching to the full SDK**: All APIs related to ServiceExtensionAbility are marked as system APIs and hidden by default. Therefore, you must manually obtain the full SDK from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](../faqs/full-sdk-switch-guide.md).
 
-- **Requesting the AllowAppUsePrivilegeExtension privilege**: Only applications with the **AllowAppUsePrivilegeExtension** privilege can develop ServiceExtensionAbility. For details about how to request the privilege, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
+- **Requesting the AllowAppUsePrivilegeExtension privilege**: Only applications with the **AllowAppUsePrivilegeExtension** privilege can implement ServiceExtensionAbility. For details about how to request the privilege, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
 
-### Defining IDL Interfaces
+### Defining IDL APIs
 
-As a background service, ServiceExtensionAbility needs to provide interfaces that can be called by external systems. You can define the interfaces in IDL files and use the [IDL tool](../IDL/idl-guidelines.md) to generate proxy and stub files. The following demonstrates how to define a file named **IIdlServiceExt.idl**:
+As a background service, ServiceExtensionAbility needs to provide APIs that can be called by external systems. You can define the APIs in IDL files and use the [IDL tool](../IDL/idl-guidelines.md) to generate proxy and stub files. The following demonstrates how to define a file named **IIdlServiceExt.idl**:
 
 ```cpp
 interface OHOS.IIdlServiceExt {
@@ -77,15 +77,15 @@ interface OHOS.IIdlServiceExt {
 }
 ```
 
-Create the **IdlServiceExt** directory in the **ets** directory corresponding to the module of the DevEco Studio project, and copy the files generated by the [IDL tool](../IDL/idl-guidelines.md) to this directory. Then create a file named **idl_service_ext_impl.ts** to implement the IDL interfaces.
+Create the **IdlServiceExt** directory in the **ets** directory corresponding to the module of the DevEco Studio project, and copy the files generated by the [IDL tool](../IDL/idl-guidelines.md) to this directory. Then create a file named **idl_service_ext_impl.ts** to implement the IDL APIs.
 
 ```
 ├── ets
 │ ├── IdlServiceExt
-│ │   ├── i_idl_service_ext.ts      # File generated.
-│ │   ├── idl_service_ext_proxy.ts  # File generated.
-│ │   ├── idl_service_ext_stub.ts   # File generated.
-│ │   ├── idl_service_ext_impl.ts   # Custom file used to implement IDL interfaces.
+│ │   ├── i_idl_service_ext.ts      # File generated by the IDL tool.
+│ │   ├── idl_service_ext_proxy.ts  # File generated by the IDL tool.
+│ │   ├── idl_service_ext_stub.ts   # File generated by the IDL tool.
+│ │   ├── idl_service_ext_impl.ts   # Customize this file to implement IDL APIs.
 │ └
 └
 ```
@@ -100,7 +100,7 @@ import IdlServiceExtStub from './idl_service_ext_stub';
 const ERR_OK = 0;
 const TAG: string = "[IdlServiceExtImpl]";
 
-// You need to implement interfaces in this type.
+// You need to implement APIs in this type.
 export default class ServiceExtImpl extends IdlServiceExtStub {
   processData(data: number, callback: processDataCallback): void {
     // Implement service logic.
@@ -127,16 +127,16 @@ To manually create a ServiceExtensionAbility in the DevEco Studio project, perfo
     ```
     ├── ets
     │ ├── IdlServiceExt
-    │ │   ├── i_idl_service_ext.ts      # File generated.
-    │ │   ├── idl_service_ext_proxy.ts  # File generated.
-    │ │   ├── idl_service_ext_stub.ts   # File generated.
-    │ │   ├── idl_service_ext_impl.ts   # Custom file used to implement IDL interfaces.
+    │ │   ├── i_idl_service_ext.ts      # File generated by the IDL tool.
+    │ │   ├── idl_service_ext_proxy.ts  # File generated by the IDL tool.
+    │ │   ├── idl_service_ext_stub.ts   # File generated by the IDL tool.
+    │ │   ├── idl_service_ext_impl.ts   # Customize this file to implement IDL APIs.
     │ ├── ServiceExtAbility
     │ │   ├── ServiceExtAbility.ts
     └
     ```
 
-3. In the **ServiceExtAbility.ts** file, add the dependency package for importing ServiceExtensionAbility. Customize a class that inherits from ServiceExtensionAbility and implement the lifecycle callbacks, and return the previously defined **ServiceExtImpl** object in the **onConnect** lifecycle callback.
+3. In the **ServiceExtAbility.ts** file, add the dependency package for importing ServiceExtensionAbility. Customize a class that inherits from ServiceExtensionAbility and implement the lifecycle callbacks. Return the previously defined **ServiceExtImpl** object in the **onConnect** lifecycle callback.
 
    ```ts
    import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
@@ -193,7 +193,7 @@ To manually create a ServiceExtensionAbility in the DevEco Studio project, perfo
 
 ## Starting a Background Service (for System Applications Only)
 
-A system application uses the [startServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartserviceextensionability) method to start a background service. The [onRequest()](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md#serviceextensionabilityonrequest) callback is invoked, and the **Want** object passed by the caller is received through the callback. After the background service is started, its lifecycle is independent of that of the client. In other words, even if the client is destroyed, the background service can still run. Therefore, the background service must be stopped by calling [terminateSelf()](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextterminateself) when its work is complete. Alternatively, another component can call [stopServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstopserviceextensionability) to stop the background service.
+A system application uses the [startServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstartserviceextensionability) method to start a background service. The [onRequest()](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md#serviceextensionabilityonrequest) callback is invoked, through which the background service receives the **Want** object passed by the caller. After the background service is started, its lifecycle is independent of that of the client. In other words, even if the client is destroyed, the background service remains alive. Therefore, the background service must be stopped by calling [terminateSelf()](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextterminateself) when its work is complete. Alternatively, another component can call [stopServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstopserviceextensionability) to stop the background service.
 
 > **NOTE**
 >
@@ -231,7 +231,7 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
    })
    ```
 
-3. ServiceExtensionAbility stops itself.
+3. Have ServiceExtensionAbility stop itself.
 
    ```ts
    let context = ...; // ServiceExtensionContext
@@ -244,15 +244,15 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
 
 > **NOTE**
 >
-> Background services can run in the background for a long time. To minimize resource usage, destroy it in time when a background service finishes the task of the requester. A background service can be stopped in either of the following ways:
+> Background services can run in the background for a long time. To minimize resource usage, destroy a background service in time when it finishes the task of the requester. A background service can be destroyed in either of the following ways:
 >
 > - The background service calls the [terminateSelf()](../reference/apis/js-apis-inner-application-serviceExtensionContext.md#serviceextensioncontextterminateself) method to automatically stop itself.
 > - Another component calls the [stopServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextstopserviceextensionability) method to stop the background service.
-> After either method is called, the system destroys the background service.
+>  
 
 ## Connecting to a Background Service
 
-Either a system application or a third-party application can connect to a ServiceExtensionAbility (specified in the **Want** object) through [connectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextconnectserviceextensionability). The [onConnect()](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md#serviceextensionabilityonconnect) callback is invoked, and the **Want** object passed by the caller is received through the callback. In this way, a persistent connection is established.
+Either a system application or a third-party application can connect to a background service (specified in the **Want** object) through [connectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextconnectserviceextensionability). The [onConnect()](../reference/apis/js-apis-app-ability-serviceExtensionAbility.md#serviceextensionabilityonconnect) callback is invoked, through which the background service receives the **Want** object passed by the caller. In this way, a persistent connection is established.
 
 The ServiceExtensionAbility component returns an IRemoteObject in the **onConnect()** callback. Through this IRemoteObject, you can define communication interfaces for RPC interaction between the client and server. Multiple clients can connect to the same background service at the same time. After a client finishes the interaction, it must call [disconnectServiceExtensionAbility()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#abilitycontextdisconnectserviceextensionability) to disconnect from the service. If all clients connected to a background service are disconnected, the system destroys the service.
 
@@ -299,9 +299,9 @@ The ServiceExtensionAbility component returns an IRemoteObject in the **onConnec
 
 ## Communication Between the Client and Server
 
-After obtaining the [rpc.RemoteObject](../reference/apis/js-apis-rpc.md#iremoteobject) object from the **onConnect()** callback, the client can communicate with ServiceExtensionAbility in either of the following ways:
+After obtaining the [rpc.RemoteObject](../reference/apis/js-apis-rpc.md#iremoteobject) from the **onConnect()** callback, the client can communicate with ServiceExtensionAbility in either of the following ways:
 
-- Using the IDL interface provided by the server for communication (recommended)
+- Using the IDL API provided by the server for communication (recommended)
 
   ```ts
   // The client needs to import idl_service_ext_proxy.ts provided by the server for external systems to the local project.
@@ -315,7 +315,7 @@ After obtaining the [rpc.RemoteObject](../reference/apis/js-apis-rpc.md#iremoteo
         return;
       }
       let serviceExtProxy = new IdlServiceExtProxy(remote);
-      // Communication is carried out by interface calling, without exposing RPC details.
+      // Communication is carried out by API call, without exposing RPC details.
       serviceExtProxy.processData(1, (errorCode, retVal) => {
         console.info(`processData, errorCode: ${errorCode}, retVal: ${retVal}`);
       });
@@ -375,7 +375,7 @@ After obtaining the [rpc.RemoteObject](../reference/apis/js-apis-rpc.md#iremoteo
 
 ## Client Identity Verification by the Server
 
-When ServiceExtensionAbility is used to provide sensitive services, the client identity must be verified. You can implement the verification on the stub of the IDL interface. For details about the IDL interface implementation, see [Defining IDL Interfaces](#defining-idl-interfaces). Two verification modes are recommended:
+When ServiceExtensionAbility is used to provide sensitive services, the client identity must be verified. You can implement the verification on the IDL stub. For details about the IDL API implementation, see [Defining IDL APIs](#defining-idl-apis). Two verification modes are recommended:
 
 - **Verifying the client identity based on callerUid**
 
@@ -401,7 +401,7 @@ When ServiceExtensionAbility is used to provide sensitive services, the client i
         console.info(TAG, 'getBundleNameByUid: ' + callerBundleName);
         // Identify the bundle name of the client.
         if (callerBundleName != 'com.example.connectextapp') { // The verification fails.
-          console.info(TAG, 'The caller bundle is not in whitelist, reject');
+          console.info(TAG, 'The caller bundle is not in trustlist, reject');
           return;
         }
         // The verification is successful, and service logic is executed normally.
@@ -420,7 +420,7 @@ When ServiceExtensionAbility is used to provide sensitive services, the client i
 
 - **Verifying the client identity based on callerTokenId**
 
-  Call the [getCallingTokenId()](../reference/apis/js-apis-rpc.md#getcallingtokenid) method to obtain the token ID of the client, and then call the [verifyAccessTokenSync()](../reference/apis/js-apis-abilityAccessCtrl.md#verifyaccesstokensync) method to check whether the client has a specific permission. Currently, OpenHarmony does not support permission customization. Therefore, only [system-defined permissions](../security/permission-list.md) can be verified. The sample code is as follows:
+  Call the [getCallingTokenId()](../reference/apis/js-apis-rpc.md#getcallingtokenid) method to obtain the token ID of the client, and then call the [verifyAccessTokenSync()](../reference/apis/js-apis-abilityAccessCtrl.md#verifyaccesstokensync) method to check whether the client has the required permission. Currently, OpenHarmony does not support permission customization. Therefore, only [system-defined permissions](../security/permission-list.md) can be verified. The sample code is as follows:
 
   ```ts
   import rpc from '@ohos.rpc';

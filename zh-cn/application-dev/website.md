@@ -5,8 +5,6 @@
   - 快速入门
     - [开发准备](quick-start/start-overview.md)
     - [使用ArkTS语言开发（Stage模型）](quick-start/start-with-ets-stage.md)
-    - [使用ArkTS语言开发（FA模型）](quick-start/start-with-ets-fa.md)
-    - [使用JS语言开发（FA模型）](quick-start/start-with-js-fa.md)
   - 开发基础知识
     - 应用程序包基础知识
       - [应用程序包概述](quick-start/application-package-overview.md)

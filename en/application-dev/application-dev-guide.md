@@ -1,5 +1,9 @@
 # Application Development Overview
 
+> **NOTE**
+>
+> You are reading documents of OpenHarmony 4.0 Beta1. Obtain the [compatible SDK](../release-notes/OpenHarmony-v4.0-beta1.md#version-mapping) during your application development.
+
 The application development documents provide reference for you to develop applications using the APIs provided by OpenHarmony. They walk you through how to use JavaScript APIs to develop applications on the standard system.
 
 The documents are carefully organized as follows:

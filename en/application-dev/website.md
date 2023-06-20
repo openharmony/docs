@@ -26,7 +26,7 @@
         - [HAR](quick-start/har-package.md)
         - HSP
           - [In-Application HSP Development](quick-start/in-app-hsp.md)
-          - [Inter-Application HSP Development (for System Applications Only)](quick-start/cross-app-hsp.md)
+          - [Inter-Application HSP Development](quick-start/cross-app-hsp.md)
       - Quick Fix
         - [Quick Fix Overview](quick-start/quickfix-principles.md)
         - [CLI-based Quick Fix Development](quick-start/quickfix-debug.md)
@@ -98,7 +98,7 @@
           - [AccessibilityExtensionAbility](application-models/accessibilityextensionability.md)
           - [EnterpriseAdminExtensionAbility](application-models/enterprise-extensionAbility.md)
           - [InputMethodExtensionAbility](application-models/inputmethodextentionability.md)
-          - [WindowExtensionAbility](application-models/windowextensionability.md)
+          - [WindowExtensionAbility (for System Applications Only)](application-models/windowextensionability.md)
         - Service Widget Development in Stage Model
           - [Service Widget Overview](application-models/service-widget-overview.md)
           - Developing an ArkTS Widget
@@ -150,7 +150,7 @@
             - [Subscribing to Common Events in Static Mode (for System Applications Only)](application-models/common-event-static-subscription.md)
             - [Unsubscribing from Common Events](application-models/common-event-unsubscription.md)
           - [Publishing Common Events](application-models/common-event-publish.md)
-          - [Removing Sticky Common Events](application-models/common-event-remove-sticky.md)
+          - [Removing Sticky Common Events (for System Applications Only)](application-models/common-event-remove-sticky.md)
         - [Background Services](application-models/background-services.md)
       - Thread Model
         - [Thread Model Overview](application-models/thread-model-stage.md)
@@ -434,7 +434,7 @@
         - [Developing Audio Call](media/audio-call-development.md)
       - [Video Playback](media/video-playback.md)
       - [Video Recording](media/video-recording.md)
-    - AVSession (for System Applications Only)
+    - AVSession
       - [AVSession Overview](media/avsession-overview.md)
       - Local AVSession
         - [Local AVSession Overview](media/local-avsession-overview.md)
@@ -443,7 +443,7 @@
       - Distributed AVSession
         - [Distributed AVSession Overview](media/distributed-avsession-overview.md)
         - [Using Distributed AVSession](media/using-distributed-avsession.md)
-    - Camera (for System Applications Only)
+    - Camera
       - [Camera Overview](media/camera-overview.md)
       - Camera Development
         - [Camera Development Preparations](media/camera-preparation.md)
@@ -537,13 +537,17 @@
         - [Obtaining Application and File System Space Statistics](file-management/app-fs-space-statistics.md)
       - [Sending Files to an Application Sandbox](file-management/send-file-to-app-sandbox.md)
       - [Sharing an Application File](file-management/share-app-file.md)
+      - Application Data Backup and Restoration
+        - [Application Data Backup and Restoration Overview](file-management/app-file-backup-overview.md)
+        - [Backing up and restoring Application Access Data](file-management/app-file-backup-extension.md)
+        - [Backing Up and Restoring Application-triggered Data (for System Applications Only)](file-management/app-file-backup.md)
     - User File
       - [User File Overview](file-management/user-file-overview.md)
       - Selecting and Saving User Files (FilePicker)
         - [Selecting User Files](file-management/select-user-file.md)
         - [Saving User Files](file-management/save-user-file.md)
-      - [Developing a FileManager Application (Available Only for System Applications)](file-management/dev-user-file-manager.md)
-      - [Managing External Storage Devices (Available Only for System Applications)](file-management/manage-external-storage.md)
+      - [Developing a FileManager Application (for System Applications Only)](file-management/dev-user-file-manager.md)
+      - [Managing External Storage Devices (for System Applications Only)](file-management/manage-external-storage.md)
     - Distributed File System
       - [Distributed File System Overview](file-management/distributed-fs-overview.md)
       - [Setting the Security Level of a Distributed File](file-management/set-security-label.md)
@@ -603,7 +607,6 @@
     - [wukong User Guide](application-test/wukong-guidelines.md)
   - [OpenHarmony IDL Specifications and User Guide](IDL/idl-guidelines.md)
   - Native APIs
-    - [Introduction to Native APIs](napi/introduction.md)
     - [Using Native APIs in Application Projects](napi/napi-guidelines.md)
     - [Drawing Development](napi/drawing-guidelines.md)
     - [Raw File Development](napi/rawfile-guidelines.md)
@@ -669,13 +672,8 @@
         - [Touch Target](reference/arkui-ts/ts-universal-attributes-touch-target.md)
         - [Polymorphic Style](reference/arkui-ts/ts-universal-attributes-polymorphic-style.md)
         - [Hit Test Control](reference/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
-        - [Background Blur](reference/arkui-ts/ts-universal-attributes-backgroundBlurStyle.md)
         - [restoreId](reference/arkui-ts/ts-universal-attributes-restoreId.md)
         - [Foreground Color](reference/arkui-ts/ts-universal-attributes-foreground-color.md)
-        - [Spherical Effect](reference/arkui-ts/ts-universal-attributes-sphericalEffect.md)
-        - [Light Up Effect](reference/arkui-ts/ts-universal-attributes-lightUpEffect.md)
-        - [Pixel Stretch Effect](reference/arkui-ts/ts-universal-attributes-pixelStretchEffect.md)
-        - [Text Style](reference/arkui-ts/ts-universal-attributes-text-style.md)
       - Gesture Processing
         - [Gesture Binding Methods](reference/arkui-ts/ts-gesture-settings.md)
         - Basic Gestures
@@ -780,7 +778,6 @@
       - [ImageData](reference/arkui-ts/ts-components-canvas-imagedata.md)
       - [OffscreenCanvasRenderingConxt2D](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
       - [Path2D](reference/arkui-ts/ts-components-canvas-path2d.md)
-      - [Lottie](reference/arkui-ts/ts-components-canvas-lottie.md)
     - Animation
       - [AnimatorProperty](reference/arkui-ts/ts-animatorproperty.md)
       - [Explicit Animation](reference/arkui-ts/ts-explicit-animation.md)
@@ -1215,6 +1212,7 @@
       - security
         - [PermissionRequestResult](reference/apis/js-apis-permissionrequestresult.md)
     - Data Management
+      - [@ohos.data.cloudData (Device-Cloud Synergy)](reference/apis/js-apis-data-cloudData.md)
       - [@ohos.data.dataAbility (DataAbility Predicates)](reference/apis/js-apis-data-ability.md)
       - [@ohos.data.dataShare (DataShare)](reference/apis/js-apis-data-dataShare.md)
       - [@ohos.data.dataSharePredicates (DataShare Predicates)](reference/apis/js-apis-data-dataSharePredicates.md)
@@ -1223,6 +1221,7 @@
       - [@ohos.data.distributedKVStore (Distributed KV Store)](reference/apis/js-apis-distributedKVStore.md)
       - [@ohos.data.preferences (Preferences)](reference/apis/js-apis-data-preferences.md)
       - [@ohos.data.relationalStore (RDB Store)](reference/apis/js-apis-data-relationalStore.md)
+      - [@ohos.data.UDMF (Unified Data Management Framework)](reference/apis/js-apis-data-udmf.md)
       - [@ohos.data.ValuesBucket](reference/apis/js-apis-data-valuesBucket.md)
     - File Management
       - [@ohos.file.backup (Backup and Restoration)](reference/apis/js-apis-file-backup.md)
@@ -1298,7 +1297,7 @@
       - [@ohos.systemTimer (System Timer)](reference/apis/js-apis-system-timer.md)
       - [@ohos.wallpaper (Wallpaper)](reference/apis/js-apis-wallpaper.md)
       - [@ohos.web.webview (Webview)](reference/apis/js-apis-webview.md)
-      - [console (Log)](reference/apis/js-apis-logs.md)
+      - [Console](reference/apis/js-apis-logs.md)
       - [Timer](reference/apis/js-apis-timer.md)
       - application
         - [AccessibilityExtensionContext](reference/apis/js-apis-inner-application-accessibilityExtensionContext.md)

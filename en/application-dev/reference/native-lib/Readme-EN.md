@@ -1,7 +1,7 @@
 # Standard Libraries Supported by Native APIs
-- [Node_API](third_party_napi/napi.md)
+- [Node-API](third_party_napi/napi.md)
 - [libuv](third_party_libuv/libuv.md)
-- [Native Standard Libraries Supported by Openharmony](third_party_libc/musl.md)
+- [Native Standard Libraries](third_party_libc/musl.md)
 - Appendix
   - [Native API Symbols Not Exported](third_party_libc/musl-peculiar-symbol.md)
   - [Native API Symbols That May Fail to Be Invoked Due to Permission Control](third_party_libc/musl-permission-control-symbol.md)

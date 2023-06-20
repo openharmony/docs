@@ -12,6 +12,7 @@ HUAWEI DevEco Studio For OpenHarmony（以下简称DevEco Studio）是基于Inte
 - **全新构建体系**：通过Hvigor编译构建工具，一键完成应用及服务的编译和打包，更好地支持ArkTS/JS开发。
 - **一站式信息获取**：基于开发者了解、学习、开发、求助的用户旅程，在DevEco Studio中提供一站式的信息获取平台，高效支撑开发者活动。
 - **高效代码调试**：提供TS、JS 、C/C++代码的断点设置，单步执行、变量查看等调试能力，提升应用及服务的问题分析效率。
+- **场景化性能调优**：DevEco Insight性能调优工具，提供实时数据监控、函数耗时分析、内存分析等场景化调优功能，帮助应用开发者快速定位到问题代码。使用方法请查看IDE下载包里的《DevEco Studio 4.0.0.201 使用指南》中的第1.8.2.1章节《DevEco Insight性能调优工具简介》。
 
 更多工具体验和使用指导请见：[DevEco Studio (OpenHarmony) 使用指南](https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ohos-deveco-studio-overview-0000001263280421)。
 

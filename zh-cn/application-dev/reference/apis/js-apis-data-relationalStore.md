@@ -373,12 +373,10 @@ class EntryAbility extends UIAbility {
 
 **需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
 
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
 | 名称                  | 值   | 说明               |
 | --------------------- | ---- | ------------------ |
-| SUBSCRIBE_TYPE_REMOTE | 0    | 订阅远程数据更改。 |
-| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | 1    | 订阅云端数据更改。 |
+| SUBSCRIBE_TYPE_REMOTE | 0    | 订阅远程数据更改。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
+| SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | -    | 订阅云端数据更改。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 
 ## ConflictResolution<sup>10+</sup>
 

@@ -148,7 +148,7 @@
     - [Common Events of the Ability Subsystem](common_event/commonEvent-ability.md)
     - [Common Events of the Bundle Management Subsystem](common_event/commonEvent-bundleManager.md)
     - [Common Events of the Notification Service](common_event/commonEvent-ans.md)
-    - [Common Events of the Resource Scheduling Subsystem](common_event/commonEvent-resourceschedule.md)
+    - [Common Events of the Resource Scheduler Subsystem](common_event/commonEvent-resourceschedule.md)
     - [Common Events of the Telephony Subsystem](common_event/commonEvent-telephony.md)
     - [Common Events of the USB Subsystem](common_event/commonEvent-usb.md)
 - Bundle Management
@@ -253,6 +253,7 @@
   - [@ohos.data.distributedKVStore (Distributed KV Store)](js-apis-distributedKVStore.md) 
   - [@ohos.data.preferences (User Preferences)](js-apis-data-preferences.md)
   - [@ohos.data.relationalStore (RDB Store)](js-apis-data-relationalStore.md)
+  - [@ohos.data.UDMF (Unfied Data Management Framework)](js-apis-data-udmf.md)
   - [@ohos.data.ValuesBucket (Value Bucket)](js-apis-data-valuesBucket.md)
 
 - File Management
@@ -335,6 +336,7 @@
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
   - [Console](js-apis-logs.md)
   - [Timer](js-apis-timer.md)
+  - [SysCap](js-apis-syscap.md)
   - application
     - [AccessibilityExtensionContext (Accessibility Extension Context)](js-apis-inner-application-accessibilityExtensionContext.md)
 

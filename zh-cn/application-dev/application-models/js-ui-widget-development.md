@@ -102,7 +102,7 @@ Stage卡片开发，即基于[Stage模型](stage-model-development-overview.md)�
    import formBindingData from '@ohos.app.form.formBindingData';
    import formInfo from '@ohos.app.form.formInfo';
    import formProvider from '@ohos.app.form.formProvider';
-   import dataStorage from '@ohos.data.storage';
+   import dataPreferences from '@ohos.data.preferences';
    ```
 
 2. 在EntryFormAbility.ts中，实现FormExtension生命周期接口。
@@ -255,7 +255,7 @@ async function storeFormInfo(formId: string, formName: string, tempFlag: boolean
         "updateCount": 0
     };
     try {
-        const storage = await dataStorage.getStorage(DATA_STORAGE_PATH);
+        const storage = await dataPreferences.getPreferences(this.context, DATA_STORAGE_PATH);
         // put form info
         await storage.put(formId, JSON.stringify(formInfo));
         console.info(`[EntryFormAbility] storeFormInfo, put form info successfully, formId: ${formId}`);
@@ -294,7 +294,7 @@ export default class EntryFormAbility extends FormExtension {
 const DATA_STORAGE_PATH = "/data/storage/el2/base/haps/form_store";
 async function deleteFormInfo(formId: string) {
     try {
-        const storage = await dataStorage.getStorage(DATA_STORAGE_PATH);
+        const storage = await dataPreferences.getPreferences(this.context, DATA_STORAGE_PATH);
         // del form info
         await storage.delete(formId);
         console.info(`[EntryFormAbility] deleteFormInfo, del form info successfully, formId: ${formId}`);

@@ -3592,7 +3592,7 @@ setAudioDevice\(device: AudioDevice, callback: AsyncCallback\<void\>\): void
 
 | 参数名   | 类型                         | 必填 | 说明       |
 | -------- | ---------------------------- | ---- | ---------- |
-| device   | [AudioDevice](#audiodevice8) | 是   | 音频设备。 |
+| device   | [AudioDevice](#audiodevice10) | 是   | 音频设备。 |
 | callback | AsyncCallback&lt;void&gt;    | 是   | 回调函数。 |
 
 **错误码：**
@@ -3611,11 +3611,58 @@ setAudioDevice\(device: AudioDevice, callback: AsyncCallback\<void\>\): void
 **示例：**
 
 ```js
-call.setAudioDevice(1, (err) => {
+let audioDevice={
+    deviceType: 1
+}
+call.setAudioDevice(audioDevice, (err) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
 
+## call.setAudioDevice<sup>10+</sup>
+
+setAudioDevice\(device: AudioDevice): Promise\<void\>
+
+设置通话音频设备。使用Promise异步回调。
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限**：ohos.permission.SET_TELEPHONY_STATE
+
+**系统能力**：SystemCapability.Telephony.CallManager
+
+**参数：**
+
+| 参数名   | 类型                         | 必填 | 说明       |
+| -------- | ---------------------------- | ---- | ---------- |
+| device   | [AudioDevice](#audiodevice10) | 是   | 音频设备。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.telephony(电话子系统)错误码](../../reference/errorcodes/errorcode-telephony.md)。
+
+| 错误码ID |                 错误信息                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**示例：**
+
+```js
+let audioDevice={
+    deviceType: 1
+}
+call.setAudioDevice(audioDevice).then(() => {
+    console.log(`setAudioDevice success.`);
+}).catch((err) => {
+    console.error(`setAudioDevice fail, promise: err->${JSON.stringify(err)}`);
+});
+```
 
 ## call.setAudioDevice<sup>9+</sup>
 
@@ -3631,7 +3678,7 @@ setAudioDevice\(device: AudioDevice, options: AudioDeviceOptions, callback: Asyn
 
 | 参数名   | 类型                                       | 必填 | 说明           |
 | -------- | ------------------------------------------ | ---- | -------------- |
-| device   | [AudioDevice](#audiodevice8)               | 是   | 音频设备。     |
+| device   | [AudioDevice](#audiodevice10)               | 是   | 音频设备。     |
 | options  | [AudioDeviceOptions](#audiodeviceoptions9) | 是   | 音频设备参数。 |
 | callback | AsyncCallback&lt;void&gt;                  | 是   | 回调函数。     |
 
@@ -3651,10 +3698,13 @@ setAudioDevice\(device: AudioDevice, options: AudioDeviceOptions, callback: Asyn
 **示例：**
 
 ```js
+let audioDevice={
+    deviceType: 1
+}
 let audioDeviceOptions={
     bluetoothAddress: "IEEE 802-2014"
 }
-call.setAudioDevice(1, audioDeviceOptions, (err) => {
+call.setAudioDevice(audioDevice, audioDeviceOptions, (err) => {
     console.log(`callback: err->${JSON.stringify(err)}`);
 });
 ```
@@ -3674,7 +3724,7 @@ setAudioDevice\(device: AudioDevice, options?: AudioDeviceOptions\): Promise\<vo
 
 | 参数名  | 类型                                       | 必填 | 说明               |
 | ------- | ------------------------------------------ | ---- | ------------------ |
-| device  | [AudioDevice](#audiodevice8)               | 是   | 音频设备。         |
+| device  | [AudioDevice](#audiodevice10)               | 是   | 音频设备。         |
 | options | [AudioDeviceOptions](#audiodeviceoptions9) | 否   | 音频设备参数参数。 |
 
 **返回值：**
@@ -3699,10 +3749,13 @@ setAudioDevice\(device: AudioDevice, options?: AudioDeviceOptions\): Promise\<vo
 **示例：**
 
 ```js
+let audioDevice={
+    deviceType: 1
+}
 let audioDeviceOptions={
     bluetoothAddress: "IEEE 802-2014"
 }
-call.setAudioDevice(1, audioDeviceOptions).then(() => {
+call.setAudioDevice(audioDevice, audioDeviceOptions).then(() => {
     console.log(`setAudioDevice success.`);
 }).catch((err) => {
     console.error(`setAudioDevice fail, promise: err->${JSON.stringify(err)}`);
@@ -4242,7 +4295,7 @@ call.closeUnfinishedUssd(slotId).then(() => {
 
 ## call.setVoNRState<sup>10+</sup>
 
-setVoNRState\(slotId: number, state: VoNRState, callback: AsyncCallback\<boolean\>\): void
+setVoNRState\(slotId: number, state: VoNRState, callback: AsyncCallback\<void\>\): void
 
 设置NR语音的开关状态。使用callback异步回调。
 
@@ -4258,7 +4311,7 @@ setVoNRState\(slotId: number, state: VoNRState, callback: AsyncCallback\<boolean
 | ----------- | ----------------------------- | ---- | ---------------------------------------------------- |
 | slotId      | number                        | 是   | 卡槽ID。<br/>- 0：卡槽1<br/>- 1：卡槽2                |
 | state       | [VoNRState](#vonrstate10)     | 是   | 开关状态。                                            |
-| callback    | AsyncCallback&lt;boolean&gt;  | 是   | 回调函数。返回true表示设置成功，返回false表示设置失败。 |
+| callback    | AsyncCallback&lt;void&gt;  | 是   | 回调函数。 |
 
 **错误码：**
 
@@ -4287,7 +4340,7 @@ call.setVoNRState(slotId, state, (err, data) => {
 
 ## call.setVoNRState<sup>10+</sup>
 
-setVoNRState\(slotId: number, state: VoNRState\): Promise\<boolean\>
+setVoNRState\(slotId: number, state: VoNRState\): Promise\<void\>
 
 设置NR语音的开关状态。使用Promise异步回调。
 
@@ -4308,7 +4361,7 @@ setVoNRState\(slotId: number, state: VoNRState\): Promise\<boolean\>
 
 | 类型                   | 说明                                          |
 | ---------------------- | --------------------------------------------- |
-| Promise&lt;boolean&gt; | 以Promise形式异步返回开关状态是否设置成功。     |
+| Promise&lt;void&gt; | 以Promise形式异步返回结果。     |
 
 **错误码：**
 
@@ -4329,7 +4382,7 @@ setVoNRState\(slotId: number, state: VoNRState\): Promise\<boolean\>
 ```js
 let slotId = 0;
 let state = 1;
-call.setVoNRState(slotId, state).then(() => {
+call.setVoNRState(slotId, state).then((data) => {
     console.log(`setVoNRState success, promise: data->${JSON.stringify(data)}`);
 }).catch((err) => {
     console.error(`setVoNRState fail, promise: err->${JSON.stringify(err)}`);
@@ -4516,7 +4569,7 @@ canSetCallTransferTime\(slotId: number\): Promise\<boolean\>
 
 ```js
 let slotId = 0;
-call.canSetCallTransferTime(slotId).then(() => {
+call.canSetCallTransferTime(slotId).then((data) => {
     console.log(`canSetCallTransferTime success, promise: data->${JSON.stringify(data)}`);
 }).catch((err) => {
     console.error(`canSetCallTransferTime fail, promise: err->${JSON.stringify(err)}`);
@@ -4704,7 +4757,7 @@ IP多媒体系统调用模式。
 | VONR_STATE_OFF         | 0    | 关闭状态           |
 | VONR_STATE_ON          | 1    | 打开状态           |
 
-## AudioDevice<sup>8+</sup>
+## AudioDevice<sup>10+</sup>
 
 音频设备。
 
@@ -4712,13 +4765,10 @@ IP多媒体系统调用模式。
 
 **系统能力**：SystemCapability.Telephony.CallManager
 
-| 名称                 | 值   | 说明         |
-| -------------------- | ---- | ------------ |
-| DEVICE_EARPIECE      | 0    | 耳机设备     |
-| DEVICE_SPEAKER       | 1    | 扬声器设备 |
-| DEVICE_WIRED_HEADSET | 2    | 有线耳机设备 |
-| DEVICE_BLUETOOTH_SCO | 3    | 蓝牙SCO设备  |
-| DEVICE_MIC           | 4    | 麦克风设备 |
+|                名称               |                  类型                 | 必填  |        说明      |
+| --------------------------------- | ------------------------------------- | ---- | ---------------- |
+| deviceType <sup>10+</sup>    | [AudioDeviceType](#audiodevicetype10) | 是   | 音频设备类型。    |
+| address <sup>10+</sup> | string          | 否   | 音频设备地址。    |
 
 ## AudioDeviceType<sup>10+</sup>
 
@@ -4745,8 +4795,8 @@ IP多媒体系统调用模式。
 
 |                名称               |                  类型                 | 必填  |        说明      |
 | --------------------------------- | ------------------------------------- | ---- | ---------------- |
-| audioDeviceList <sup>10+</sup>    | [Array\<AudioDevice\>](#audiodevice8) | 是   | 音频设备列表。    |
-| currentAudioDevice <sup>10+</sup> | [AudioDevice](#audiodevice8)          | 是   | 音频设备类型。    |
+| audioDeviceList <sup>10+</sup>    | [Array\<AudioDevice\>](#audiodevice10) | 是   | 音频设备列表。    |
+| currentAudioDevice <sup>10+</sup> | [AudioDevice](#audiodevice10)          | 是   | 音频设备类型。    |
 | isMuted <sup>10+</sup>            | boolean                               | 是   | 是否静音。        |
 
 

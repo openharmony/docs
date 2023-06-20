@@ -1,5 +1,9 @@
 # Types
 
+>**NOTE**
+>
+>The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+
 ## Resource
 
 The **Resource** type is used to reference resources for setting component attributes.
@@ -10,7 +14,7 @@ You can use `$r` or `$rawfile` to create a **Resource** object, but its attribut
 
   **belonging**: group to which the resource belongs, which can be **'sys'** or **'app'**.
 
-  **type**: resource type, which can be **'color'**, **'float'**, **'string'**, or **'media'**.
+  **type**: resource type, which can be '**boolean'**, **'color'**, **'float'**, **'intarray'**, **'integer'**, **'pattern'**, '**plural'**, **'strarray'**, **'string'**, or **'media'**.
 
   **name**: resource name, which is determined during resource definition.
 
@@ -26,49 +30,49 @@ You can use `$r` or `$rawfile` to create a **Resource** object, but its attribut
 
 The **Length** type is used to represent a size unit.
 
-| Type      | Description                                    |
-| -------- | -------------------------------------- |
-| string   | String type. Specify the length unit explicitly, for example, **'10px'**, or provide the length in percentage, for example, **'100%'**.|
-| number   | Number type. The default unit is vp.                               |
-| [Resource](#resource) | Size referenced from system or application resources.           |
+| Type                   | Description                                    |
+| --------------------- | -------------------------------------- |
+| string                | String type. Specify the length unit explicitly, for example, **'10px'**, or provide the length in percentage, for example, **'100%'**.|
+| number                | Number type. The default unit is vp.                               |
+| [Resource](#resource) | Size referenced from system or application resources.              |
 
 ## ResourceStr
 
 The **ResourceStr** type is used to represent the types that can be used by input parameters of the string type.
 
-| Type      | Description                          |
-| -------- | ---------------------------- |
-| string   | String type.                      |
+| Type                   | Description                       |
+| --------------------- | ------------------------- |
+| string                | String type.                   |
 | [Resource](#resource) | String referenced from system or application resources.|
 
 ## Padding
 
 The **Padding** type is used to describe the paddings in different directions of a component.
 
-| Name    | Type    | Mandatory  | Description             |
-| ------ | ------ | ---- | --------------- |
-| top    | [Length](#length)  | No   | Height of the padding on the top of the component. |
-| right  | [Length](#length)  | No   | Width of the padding on the right of the component.|
-| bottom | [Length](#length)  | No   | Height of the padding at the bottom of the component. |
-| left   | [Length](#length)  | No   | Width of the padding on the left of the component.|
+| Name    | Type               | Mandatory  | Description                  |
+| ------ | ----------------- | ---- | -------------------- |
+| top    | [Length](#length) | No   | Height of the padding on the top of the component. |
+| right  | [Length](#length) | No   | Width of the padding on the right of the component.|
+| bottom | [Length](#length) | No   | Height of the padding at the bottom of the component. |
+| left   | [Length](#length) | No   | Width of the padding on the left of the component.|
 
 ## Margin
 
 The **Margin** type is used to describe the margins in different directions of a component.
 
-| Name    | Type    | Mandatory  | Description             |
-| ------ | ------ | ---- | --------------- |
-| top    | [Length](#length)  | No   | Height of the margin above the component. |
-| right  | [Length](#length)  | No   | Width of the margin on the right of the component.|
-| bottom | [Length](#length)  | No   | Height of the margin below the component. |
-| left   | [Length](#length)  | No   | Width of the margin on the left of the component.|
+| Name    | Type               | Mandatory  | Description                  |
+| ------ | ----------------- | ---- | -------------------- |
+| top    | [Length](#length) | No   | Height of the margin above the component. |
+| right  | [Length](#length) | No   | Width of the margin on the right of the component.|
+| bottom | [Length](#length) | No   | Height of the margin below the component. |
+| left   | [Length](#length) | No   | Width of the margin on the left of the component.|
 
 ## EdgeWidths<sup>9+</sup>
 
 The **EdgeWidths** type is used to describe the edge widths in different directions of a component.
 
-| Name    | Type    | Mandatory  | Description      |
-| ------ | ------ | ---- | -------- |
+| Name    | Type               | Mandatory  | Description      |
+| ------ | ----------------- | ---- | -------- |
 | top    | [Length](#length) | No   | Width of the top edge of the component.|
 | right  | [Length](#length) | No   | Width of the right edge of the component.|
 | bottom | [Length](#length) | No   | Width of the bottom edge of the component.|
@@ -78,8 +82,8 @@ The **EdgeWidths** type is used to describe the edge widths in different directi
 
 The **BorderRadiuses** type is used to describe the radius of the rounded corners of a component.
 
-| Name         | Type    | Mandatory  | Description        |
-| ----------- | ------ | ---- | ---------- |
+| Name         | Type               | Mandatory  | Description        |
+| ----------- | ----------------- | ---- | ---------- |
 | topLeft     | [Length](#length) | No   | Radius of the top left rounded corner of the component.|
 | topRight    | [Length](#length) | No   | Radius of the top right rounded corner of the component.|
 | bottomLeft  | [Length](#length) | No   | Radius of the bottom left rounded corner of the component.|
@@ -89,8 +93,8 @@ The **BorderRadiuses** type is used to describe the radius of the rounded corner
 
 The **EdgeColors** type is used to describe the edge colors of a component.
 
-| Name    | Type           | Mandatory  | Description      |
-| ------ | ------------- | ---- | -------- |
+| Name    | Type                             | Mandatory  | Description      |
+| ------ | ------------------------------- | ---- | -------- |
 | top    | [ResourceColor](#resourcecolor) | No   | Color of the top edge of the component.|
 | right  | [ResourceColor](#resourcecolor) | No   | Color of the right edge of the component.|
 | bottom | [ResourceColor](#resourcecolor) | No   | Color of the bottom edge of the component.|
@@ -100,8 +104,8 @@ The **EdgeColors** type is used to describe the edge colors of a component.
 
 The **EdgeStyles** type is used to describe the edge styles of a component.
 
-| Name    | Type         | Mandatory  | Description      |
-| ------ | ----------- | ---- | -------- |
+| Name    | Type                                      | Mandatory  | Description      |
+| ------ | ---------------------------------------- | ---- | -------- |
 | top    | [BorderStyle](ts-appendix-enums.md#borderstyle) | No   | Style of the top edge of the component.|
 | right  | [BorderStyle](ts-appendix-enums.md#borderstyle) | No   | Style of the right edge of the component.|
 | bottom | [BorderStyle](ts-appendix-enums.md#borderstyle) | No   | Style of the bottom edge of the component.|
@@ -112,8 +116,8 @@ The **EdgeStyles** type is used to describe the edge styles of a component.
 
 The **Offset** type is used to describe the offset coordinates of a component in the layout.
 
-| Name  | Type    | Mandatory  | Description      |
-| ---- | ------ | ---- | -------- |
+| Name  | Type               | Mandatory  | Description      |
+| ---- | ----------------- | ---- | -------- |
 | dx   | [Length](#length) | Yes   | X coordinate of the offset.|
 | dy   | [Length](#length) | Yes   | Y coordinate of the offset.|
 
@@ -121,27 +125,27 @@ The **Offset** type is used to describe the offset coordinates of a component in
 
 The **ResourceColor** type is used to describe the color types of resources.
 
-| Type                                     | Description                                            |
-| ---------------------------------------- | ------------------------------------------------- |
-| [Color](ts-appendix-enums.md#color)      | Color enums.                                      |
-| number                                   | Color in hexadecimal notation. RGB is supported. Example: **0xffffff**                                     |
-| string                                   | Color in RGB or ARGB notation. Example: **'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'**                             |
-| [Resource](#resource)                    | Color referenced from system or application resources.|
+| Type                                 | Description                                      |
+| ----------------------------------- | ---------------------------------------- |
+| [Color](ts-appendix-enums.md#color) | Color enums.                                  |
+| number                              | Color in hexadecimal notation. RGB is supported. Example: **0xffffff**              |
+| string                              | Color in RGB or ARGB notation. Example: **'#ffffff', '#ff000000', 'rgb(255, 100, 255)', 'rgba(255, 100, 255, 0.5)'**|
+| [Resource](#resource)               | Color referenced from system or application resources.             |
 
 ## ColoringStrategy
 
 The **ColoringStrategy** type is used to describe the foreground colors.
 
-| Name       | Description     |
-| ---------  | ------- |
-| INVERT  | Inverse of the component background color.|
+| Name    | Description             |
+| ------ | --------------- |
+| INVERT | Inverse of the component background color.|
 
 ## LengthConstrain
 
 The **LengthConstrain** type is used to describe the maximum and minimum lengths of a component.
 
-| Name       | Type    | Mandatory  | Description     |
-| --------- | ------ | ---- | ------- |
+| Name       | Type               | Mandatory  | Description     |
+| --------- | ----------------- | ---- | ------- |
 | minLength | [Length](#length) | Yes   | Minimum length of the component.|
 | maxLength | [Length](#length) | Yes   | Maximum length of the component.|
 
@@ -150,12 +154,12 @@ The **LengthConstrain** type is used to describe the maximum and minimum lengths
 
 The **Font** type is used to set the text style.
 
-| Name  | Type                                                        | Mandatory| Description                                                        |
-| ------ | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| size   | [Length](#length)                                            | No  | Font size. If the value is of the number type, the unit fp is used. The value cannot be a percentage.|
-| weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No  | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.|
-| family | string \| [Resource](#resource)                              | No  | Font family of the text. Use commas (,) to separate multiple fonts. The priority of the fonts is the sequence in which they are placed. An example value is **'Arial, sans-serif'**. Currently, only the **'sans-serif'** font is supported.|
-| style  | [FontStyle](ts-appendix-enums.md#fontstyle)                  | No  | Font style.                                        |
+| Name    | Type                                      | Mandatory  | Description                                      |
+| ------ | ---------------------------------------- | ---- | ---------------------------------------- |
+| size   | [Length](#length)                        | No   | Font size. If the value is of the number type, the unit fp is used. The value cannot be a percentage.|
+| weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | No   | Font weight. For the number type, the value ranges from 100 to 900, at an interval of 100. The default value is **400**. A larger value indicates a larger font weight.|
+| family | string \| [Resource](#resource)          | No   | Font family of the text. Use commas (,) to separate multiple fonts. The priority of the fonts is the sequence in which they are placed. **'Arial, HarmonyOS Sans'**. Currently, only the **'HarmonyOS Sans'** font is supported.|
+| style  | [FontStyle](ts-appendix-enums.md#fontstyle) | No   | Font style.                              |
 
 ## Area<sup>8+</sup>
 
@@ -172,8 +176,8 @@ The **Area** type is used to describe the area information of a component.
 
 The **Position** type is used to represent coordinates of a point.
 
-| Name  | Type    | Mandatory  | Description                         |
-| ---- | ------ | ---- | --------------------------- |
+| Name  | Type               | Mandatory  | Description                         |
+| ---- | ----------------- | ---- | --------------------------- |
 | x    | [Length](#length) | No   | X coordinate. The value is of the number type in vp when used as the return value.|
 | y    | [Length](#length) | No   | Y coordinate. The value is of the number type in vp when used as the return value.|
 
@@ -181,8 +185,8 @@ The **Position** type is used to represent coordinates of a point.
 
 The **ConstraintSizeOptions** type is used to set the size constraints of a component during component layout.
 
-| Name       | Type    | Mandatory  | Description     |
-| --------- | ------ | ---- | ------- |
+| Name       | Type               | Mandatory  | Description     |
+| --------- | ----------------- | ---- | ------- |
 | minWidth  | [Length](#length) | No   | Minimum width of the component.|
 | maxWidth  | [Length](#length) | No   | Maximum width of the component.|
 | minHeight | [Length](#length) | No   | Minimum height of the component.|
@@ -192,8 +196,8 @@ The **ConstraintSizeOptions** type is used to set the size constraints of a comp
 
 The **SizeOptions** type is used to set the width and height.
 
-| Name    | Type    | Mandatory  | Description   |
-| ------ | ------ | ---- | ----- |
+| Name    | Type               | Mandatory  | Description   |
+| ------ | ----------------- | ---- | ----- |
 | width  | [Length](#length) | No   | Width of the component.|
 | height | [Length](#length) | No   | Height of the component.|
 
@@ -204,9 +208,9 @@ The **BorderOptions** type is used to provide border information.
 
 | Name    | Type                                      | Mandatory  | Description     |
 | ------ | ---------------------------------------- | ---- | ------- |
-| width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup>       | No   | Border width.  |
+| width  | [Length](#length)  \| [EdgeWidths](#edgewidths9)<sup>9+</sup> | No   | Border width.  |
 | color  | [ResourceColor](#resourcecolor) \| [EdgeColors](#edgecolors9)<sup>9+</sup> | No   | Border color.  |
-| radius | [Length](#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup>    | No   | Radius of the rounded corner border.|
+| radius | [Length](#length) \| [BorderRadiuses](#borderradiuses9)<sup>9+</sup> | No   | Radius of the rounded corner border.|
 | style  | [BorderStyle](ts-appendix-enums.md#borderstyle)  \| EdgeStyles<sup>9+</sup> | No   | Border style.  |
 
 ## ColorFilter<sup>9+</sup>
@@ -228,11 +232,82 @@ The **CustomBuilder** type is used to define custom UI descriptions in component
 
 ## PixelStretchEffectOptions<sup>10+</sup>
 
-Describes the pixel stretch effect options.
+The **PixelStretchEffectOptions** type is used to describe the pixel stretch effect options.
 
-| Name         | Type    | Mandatory  | Description        |
-| ----------- | ------ | ---- | ---------- |
-| left     | [Length](#length) | No   | Length by which a pixel is stretched towards the left edge of the image.|
-| right    | [Length](#length) | No   | Length by which a pixel is stretched towards the right edge of the image.|
-| top  | [Length](#length) | No   | Length by which a pixel is stretched towards the top edge of the image.|
+| Name    | Type               | Mandatory  | Description            |
+| ------ | ----------------- | ---- | -------------- |
+| left   | [Length](#length) | No   | Length by which a pixel is stretched towards the left edge of the image.  |
+| right  | [Length](#length) | No   | Length by which a pixel is stretched towards the right edge of the image.|
+| top    | [Length](#length) | No   | Length by which a pixel is stretched towards the top edge of the image.|
 | bottom | [Length](#length) | No   | Length by which a pixel is stretched towards the bottom edge of the image.|
+
+## ModalTransition<sup>10+</sup>
+
+The **ModalTransition** type is used to set the transition type for a full-screen modal.
+
+| Name     | Description          |
+| ------- | ------------ |
+| NONE    | No transition animation for the modal.  |
+| DEFAULT | Slide-up and slide-down animation for the modal. |
+| ALPHA   | Opacity gradient animation for the modal. |
+
+## Dimension<sup>10+</sup>
+
+The **Length** type is used to represent a size unit.
+
+| Type                   | Description                                    |
+| --------------------- | -------------------------------------- |
+| [PX](#px10)               | Physical pixel unit type. The unit px must be included, for example, **'10px'**.|
+| [VP](#vp10)                | Pixel unit type specific to the screen density. The unit vp must be included, for example, **'10vp'**.|
+| [FP](#fp10)                | Font pixel unit type. The unit fp must be included, for example, **'10fp'**.|
+| [LPX](#lpx10)              | Logical pixel unit type. The unit lpx must be included, for example, **'10lpx'**.|
+| [Percentage](#percentage10)        | Percentage type. The unit % must be included, for example, **'10%'**.|
+| [Resource](#resource) | Size referenced from system or application resources.|
+
+## PX<sup>10+</sup>
+
+The **PX** type is used to represent a length in px.
+
+| Type                   | Description                                    |
+| --------------------- | -------------------------------------- |
+| {number}px               | Physical pixel unit type. The unit px must be included, for example, **'10px'**.|
+
+## VP<sup>10+</sup>
+
+The **VP** type is used to represent a length in vp.
+
+| Type                   | Description                                    |
+| --------------------- | -------------------------------------- |
+| {number}vp               | Pixel unit type specific to the screen density. The unit vp must be included, for example, **'10vp'**.|
+
+## FP<sup>10+</sup>
+
+The **FP** type is used to represent a length in fp.
+
+| Type                   | Description                                    |
+| --------------------- | -------------------------------------- |
+| {number}fp               | Font pixel unit type. The unit fp must be included, for example, **'10fp'**.|
+
+## LPX<sup>10+</sup>
+
+The **LPX** type is used to represent a length in lpx.
+
+| Type                   | Description                                    |
+| --------------------- | -------------------------------------- |
+| {number}lpx               | Logical pixel unit type. The unit lpx must be included, for example, **'10lpx'**.|
+
+## Percentage<sup>10+</sup>
+
+The **Percentage** type is used to represent a length in percentage.
+
+| Type                   | Description                                    |
+| --------------------- | -------------------------------------- |
+| {number}%               | Percentage type. The unit % must be included, for example, **'10%'**.|
+
+## Degree<sup>10+</sup>
+
+The **Degree** type is used to represent a length in deg.
+
+| Type                   | Description                                    |
+| --------------------- | -------------------------------------- |
+| {number}deg               | Degree type. The unit deg must be included, for example, **'10deg'**.|
