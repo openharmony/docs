@@ -167,7 +167,7 @@ context.requestPermissionsFromUser(permissions).then((data) => {
 })
 ```
 ### 系统环境变化通知
-环境变化，包括全局配置的变化和Ability配置的变化。全局配置指全局的、系统的配置，目前包括“语言”和“颜色模式”，全局配置的变化一般由“设置”中的配置项或“控制中心”中的图标触发。Ability配置指与单个Ability实例相关的配置，目前包括“displayId”、“屏幕分辨率”，“横竖屏”，这些配置与Ability所在的Display有关，Ability配置的变化一般由窗口触发。配置项目前均定义在[Configuration](https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/reference/apis/js-apis-configuration.md)类中。
+环境变化，包括全局配置的变化和Ability配置的变化。全局配置指全局的、系统的配置，目前包括“语言”和“颜色模式”，全局配置的变化一般由“设置”中的配置项或“控制中心”中的图标触发。Ability配置指与单个Ability实例相关的配置，目前包括“displayId”、“屏幕分辨率”，“横竖屏”，这些配置与Ability所在的Display有关，Ability配置的变化一般由窗口触发。配置项目前均定义在[Configuration](../reference/apis/js-apis-configuration.md)类中。
 
 对于Stage模型的应用，配置发生变化时，不会重启Ability，会触发应用的`onConfigurationUpdated(config: Configuration)`回调，若应用希望根据配置变化做相应处理，可以重写`onConfigurationUpdated`回调，若无需处理配置变化，则可以不必实现`onConfigurationUpdated`回调。应该注意的是，回调中的Configuration对象包括当前Ability所有的配置，不仅是发生变化的配置。
 
