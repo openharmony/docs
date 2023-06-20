@@ -293,8 +293,8 @@ Rotation event injection is supported.
 | -------- | -------- | -------- |
 | OpenHarmony | 4.0 Beta1| NA |
 | Public SDK | Ohos_sdk_public 4.0.7.5 (API Version 10 Beta1)| This toolkit is intended for application developers and does not contain system APIs that require system permissions. It is provided as standard in DevEco Studio.|
-| (Optional) HUAWEI DevEco Studio| 4.0 Beta1| Recommended for developing OpenHarmony applications *To be released*|
-| (Optional) HUAWEI DevEco Device Tool| 3.1 Release| Recommended for developing OpenHarmony smart devices|
+| (Optional) HUAWEI DevEco Studio| 4.0 Beta1| Recommended for developing OpenHarmony applications<br/>How to Obtain<br><br>SHA-256 checksum: 7d2885b052afb92af8eb2d28ce2704515cd5fdbe7dd01f874bcdd876e11b890a<br><br>SHA-256 checksum: ce2582eac70e8e15abcded00065ae0047f3815fe2b0c90d56c0bdbc5561a51c3<br><br>SHA-256 checksum: 5da2baad7475857a1c59315663b7dcdf85219ffd652d5a7be160c8d2225358a7 |
+| (Optional) HUAWEI DevEco Device Tool| 3.1 Release| Recommended for developing OpenHarmony smart devices<br/>How to Obtain<br>[Click here to go to the download page](https://device.harmonyos.com/cn/develop/ide#download). |
 
 
 ## Source Code Acquisition
@@ -400,10 +400,9 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 
 | Subsystem| Name| Introduction| Programming Language|
 | -------- | -------- | -------- | -------- |
-| Multimedia| [AVSession - Controller](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-v4.0-Beta1/code/BasicFeature/Media/AVSession/MediaController) (for system applications only)| This sample shows the features of MediaController. It uses \@ohos.multimedia.avsession to implement custom information exchange between the provider and controller.| ArkTS |
-| Multimedia| [AVSession - Provider](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-v4.0-Beta1/code/BasicFeature/Media/AVSession/MediaProvider)| This sample shows the features of MediaProvider. It uses \@ohos.multimedia.avsession to implement custom information exchange between the provider and controller.| ArkTS |
-| Multimedia| [Audio Management](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-v4.0-Beta1/code/BasicFeature/Media/Audio)| This sample demonstrates audio-related features. It uses \@ohos.multimedia.audio to switch and query the audio device and implement audio interruption.| ArkTS |
-| DFX | Application Recovery | This sample shows how to adapt fault recovery-related APIs in an application.| ArkTS |
+| Multimedia | [AVSession - Controller](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta1/code/BasicFeature/Media/AVSession/MediaController) (for system applications only)| This sample shows the features of MediaController. It uses \@ohos.multimedia.avsession to implement custom information exchange between the provider and controller.| ArkTS |
+| Multimedia | [AVSession - Provider](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta1/code/BasicFeature/Media/AVSession/MediaProvider)| This sample shows the features of MediaProvider. It uses \@ohos.multimedia.avsession to implement custom information exchange between the provider and controller.| ArkTS |
+| Multimedia | [Audio Management](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta1/code/BasicFeature/Media/Audio)| This sample demonstrates audio-related features. It uses \@ohos.multimedia.audio to switch and query the audio device and implement audio interruption.| ArkTS |
 
 For more information, visit [Samples](https://gitee.com/openharmony/applications_app_samples).
 
