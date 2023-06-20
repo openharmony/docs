@@ -2447,7 +2447,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | function | 是 | 回调函数，重新启动任务成功，err为undefined，否则为错误对象 |
+  | callback | function | 是 | 回调函数，停止任务成功，err为undefined，否则为错误对象 |
 
 **错误码：**
 
