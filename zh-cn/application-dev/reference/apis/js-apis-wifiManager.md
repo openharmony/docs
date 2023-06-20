@@ -2744,7 +2744,7 @@ setP2pDeviceName(devName: string): void
 
 	try {
 		let name = "****";
-		wifiManager.setP2pDeviceName(netId);	
+		wifiManager.setP2pDeviceName(name);	
 	}catch(error){
 		console.error("failed:" + JSON.stringify(error));
 	}
