@@ -23,8 +23,8 @@
 | [oh_predicates.h](oh__predicates_8h.md) | 表示关系型数据库（RDB）的谓词。<br>引用文件：\<database/rdb/oh_predicates.h> |
 | [oh_value_object.h](oh__value__object_8h.md) | 提供类型转换方法。<br>引用文件：\<database/rdb/oh_value_object.h> |
 | [oh_values_bucket.h](oh__values__bucket_8h.md) | 用于存储键值对的类型。<br>引用文件：\<database/rdb/oh_values_bucket.h> |
-| [relation_error_code.h](relation__error__code_8h.md) | 声明关系型数据库（RDB）的错误码信息。<br>引用文件：\<database/rdb/relation_error_code.h> |
-| [relation_store.h](relation__store_8h.md) | 提供管理关系数据库（RDB）方法的接口。<br>引用文件：\<database/rdb/relation_store.h> |
+| [relation_error_code.h](relation__error__code_8h.md) | 声明关系型数据库（RDB）的错误码信息。<br>引用文件：\<database/rdb/relational_error_code.h> |
+| [relation_store.h](relation__store_8h.md) | 提供管理关系数据库（RDB）方法的接口。<br>引用文件：\<database/rdb/relational_store.h> |
 
 
 ### 结构体
