@@ -620,7 +620,7 @@ Obtains the want in a **WantAgent** object. This API uses a promise to return th
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Want\> | Promise used to return the want.|
+| Promise\<[Want](js-apis-app-ability-want.md)\> | Promise used to return the want.|
 
 **Error codes**
 
@@ -960,7 +960,7 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 | Name      | Type                    | Mandatory| Description                                   |
 | ---------- | ------------------------ | ---- | --------------------------------------- |
 | agent      | WantAgent                | Yes  | The first **WantAgent** object.                          |
-| otherAgent | WantAgent                | Yes  | Target **WantAgent** object.                          |
+| otherAgent | WantAgent                | Yes  | The second **WantAgent** object.                  |
 | callback   | AsyncCallback\<boolean\> | Yes  | Callback used to return the result.|
 
 **Example**
@@ -1041,7 +1041,7 @@ Checks whether two **WantAgent** objects are equal to determine whether the same
 | Name      | Type     | Mandatory| Description         |
 | ---------- | --------- | ---- | ------------- |
 | agent      | WantAgent | Yes  | The first **WantAgent** object.|
-| otherAgent | WantAgent | Yes  | Target **WantAgent** object.|
+| otherAgent | WantAgent | Yes  | The second **WantAgent** object. |
 
 **Return value**
 
