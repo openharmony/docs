@@ -1,4 +1,4 @@
-# @ohos.enterprise.deviceSettings（设备设置管理）
+# @ohos.enterprise.deviceSettings (设备设置管理)
 
 本模块提供企业设备设置能力，包括获取设备息屏时间等。仅企业设备管理员应用才能调用。
 
