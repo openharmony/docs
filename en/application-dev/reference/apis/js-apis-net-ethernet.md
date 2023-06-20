@@ -53,8 +53,7 @@ ethernet.setIfaceConfig("eth0", {
   route: "192.168.xx.xxx",
   gateway: "192.168.xx.xxx",
   netMask: "255.255.255.0",
-  dnsServers: "1.1.1.1",
-  domain: "2.2.2.2"
+  dnsServers: "1.1.1.1"
 }, (error) => {
   if (error) {
     console.log("setIfaceConfig callback error = " + JSON.stringify(error));
@@ -111,8 +110,7 @@ ethernet.setIfaceConfig("eth0", {
   route: "192.168.xx.xxx",
   gateway: "192.168.xx.xxx",
   netMask: "255.255.255.0",
-  dnsServers: "1.1.1.1",
-  domain: "2.2.2.2"
+  dnsServers: "1.1.1.1"
 }).then(() => {
   console.log("setIfaceConfig promise ok ");
 }).catch(error => {
@@ -163,7 +161,6 @@ ethernet.getIfaceConfig("eth0", (error, value) => {
     console.log("getIfaceConfig callback gateway = " + JSON.stringify(value.gateway));
     console.log("getIfaceConfig callback netMask = " + JSON.stringify(value.netMask));
     console.log("getIfaceConfig callback dnsServers = " + JSON.stringify(value.dnsServers));
-    console.log("getIfaceConfig callback domain = " + JSON.stringify(value.domain));
   }
 });
 ```
@@ -213,7 +210,6 @@ ethernet.getIfaceConfig("eth0").then((data) => {
   console.log("getIfaceConfig promise gateway = " + JSON.stringify(data.gateway));
   console.log("getIfaceConfig promise netMask = " + JSON.stringify(data.netMask));
   console.log("getIfaceConfig promise dnsServers = " + JSON.stringify(data.dnsServers));
-  console.log("getIfaceConfig promise domain = " + JSON.stringify(data.domain));
 }).catch(error => {
   console.log("getIfaceConfig promise error = " + JSON.stringify(error));
 });
@@ -384,74 +380,6 @@ ethernet.getAllActiveIfaces().then((data) => {
 }).catch(error => {
   console.log("getAllActiveIfaces promise error = " + JSON.stringify(error));
 });
-```
-
-## ethernet.on('interfaceStateChange')<sup>10+</sup>
-
-on(type: 'interfaceStateChange', callback: Callback\<{ iface: string, active: boolean }\>): void
-
-Registers an observer for NIC hot swap events. This API uses an asynchronous callback to return the result.
-
-**System API**: This is a system API.
-
-**Required permission**: ohos.permission.GET_NETWORK_INFO
-
-**System capability**: SystemCapability.Communication.NetManager.Ethernet
-
-**Parameters**
-
-| Name  | Type                                   | Mandatory| Description      |
-| -------- | --------------------------------------- | ---- | ---------- |
-| type     | string                  | Yes  | Event type. The value is **interfaceStateChange**.|
-| callback | AsyncCallback\<{ iface: string, active: boolean }\> | Yes  | Callback used to return the result.<br>**iface**: NIC name.<br>**active**: whether the NIC is active. The value **true** indicates that the NIC is active, and the value **false** indicates the opposite.|
-
-**Error codes**
-
-| ID| Error Message                                     |
-| ------- | -------------------------------------------- |
-| 201     | Permission denied.                           |
-| 202     | Applicable only to system applications.      |
-| 401     | Parameter error.                             |
-
-**Example**
-
-```js
-ethernet.on('interfaceStateChange', (data) => {
-  console.log('on interfaceSharingStateChange: ' + JSON.stringify(data));
-});
-```
-
-## ethernet.off('interfaceStateChange')<sup>10+</sup>
-
-off(type: 'interfaceStateChange', callback?: Callback\<{ iface: string, active: boolean }\>): void
-
-Unregisters the observer for NIC hot swap events. This API uses an asynchronous callback to return the result.
-
-**System API**: This is a system API.
-
-**Required permission**: ohos.permission.GET_NETWORK_INFO
-
-**System capability**: SystemCapability.Communication.NetManager.Ethernet
-
-**Parameters**
-
-| Name  | Type                                   | Mandatory| Description      |
-| -------- | --------------------------------------- | ---- | ---------- |
-| type     | string                  | Yes  | Event type. The value is **interfaceStateChange**.|
-| callback | AsyncCallback\<{ iface: string, active: boolean }> | No  | Callback used to return the result.<br>**iface**: NIC name.<br>**active**: whether the NIC is active. The value **true** indicates that the NIC is active, and the value **false** indicates the opposite.|
-
-**Error codes**
-
-| ID| Error Message                                     |
-| ------- | -------------------------------------------- |
-| 201     | Permission denied.                           |
-| 202     | Applicable only to system applications.                           |
-| 401     | Parameter error.                             |
-
-**Example**
-
-```js
-ethernet.off('interfaceStateChange');
 ```
 
 ## InterfaceConfiguration

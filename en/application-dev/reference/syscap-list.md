@@ -1349,7 +1349,7 @@ Webview component
 
 | Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
-| Yes     | No    | Yes    | Yes  | Yes  | Yes    | No          | No    |
+| Yes     | No    | No    | Yes  | Yes  | No    | No          | No    |
 
 ## SystemCapability.Cloud.AAID
 

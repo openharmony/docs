@@ -71,7 +71,7 @@ As shown above, the **module.json5** file contains several tags.
 
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
-| name | Name of the module. The value is a string with a maximum of 31 bytes and must be unique in the entire application. Chinese characters are not allowed.| String| No|
+| name | Name of the module. The value is a string with a maximum of 31 bytes and must be unique in the entire application. | String| No|
 | type | Type of the module. The options are as follows:<br>- **entry**: main module of the application.<br>- **feature**: dynamic feature module of the application.<br>- **har**: static shared module.<br>- **shared**: dynamic shared module.| String| No|
 | srcEntry | Code path corresponding to the module. The value is a string with a maximum of 127 bytes.| String| Yes (initial value: left empty)|
 | description | Description of the module. The value is a string with a maximum of 255 bytes or a string resource index.| String| Yes (initial value: left empty)|
@@ -220,73 +220,6 @@ The **metadata** tag represents the custom metadata of the HAP file. The tag val
 ## abilities
 
 UIAbility configuration of the module, which is valid only for the current UIAbility component.
-
-**By default, application icons cannot be hidden from the home screen in OpenHarmony.**
-
-The OpenHarmony system imposes a strict rule on the presence of application icons. If no icon is configured in the HAP file of an application, the system uses the icon specified in the **app.json** file as the application icon and displays it on the home screen.
-
-Touching this icon will direct the user to the application details screen in **Settings**, as shown in Figure 1.
-
-To hide an application icon from the home screen, you must configure the **AllowAppDesktopIconHide** privilege. For details, see [Application Privilege Configuration Guide](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).
-
-**Objectives**:
-
-This requirement on application icons is intended to prevent malicious applications from deliberately configuring no icon to block uninstallation attempts.
-
-**Setting the application icon to be displayed on the home screen**:
-
-Set **icon**, **label**, and **skills** under **abilities** in the **module.json5** file. In addition, make sure the **skills** configuration contains **ohos.want.action.home** and **entity.system.home**.
-
-```
-{
-  "module":{
-
-    ...
-
-    "abilities": [{
-      "icon": "$media:icon",
-      "label": "Login",
-      "skills": [{
-        "actions": ["ohos.want.action.home"],
-        "entities": ["entity.system.home"],
-        "uris": []
-      }]
-    }],
-    ...
-
-  }
-}
-```
-
-**Display rules of application icons and labels on the home screen:**
-* The HAP file contains UIAbility configuration.
-  * The application icon on the home screen is set under **abilities** in the **module.json5** file.
-    * The application does not have the privilege to hide its icon from the home screen.
-      * The application icon displayed on the home screen is the icon configured for the UIAbility.
-      * The application label displayed on the home screen is the label configured for the UIAbility. If no label is configured, the bundle name is returned.
-      * The name of the UIAbility is displayed.
-      * When the user touches the home screen icon, the home screen of the UIAbility is displayed.
-    * The application has the privilege to hide its icon from the home screen.
-      * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.
-  * The application icon on the home screen is not set under **abilities** in the **module.json5** file.
-    * The application does not have the privilege to hide its icon from the home screen.
-      * The application icon displayed on the home screen is the icon specified under **app**. (The **icon** field in the **app.json** file is mandatory.)
-      * The application label displayed on the home screen is the label specified under **app**. (The **label** field in the **app.json** file is mandatory.)
-      * Touching the application icon on the home screen will direct the user to the application details screen shown in Figure 1.
-    * The application has the privilege to hide its icon from the home screen.
-      * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.
-* The HAP file does not contain UIAbility configuration.
-  * The application does not have the privilege to hide its icon from the home screen.
-    * The application icon displayed on the home screen is the icon specified under **app**. (The **icon** field in the **app.json** file is mandatory.)
-    * The application label displayed on the home screen is the label specified under **app**. (The **label** field in the **app.json** file is mandatory.)
-    * Touching the application icon on the home screen will direct the user to the application details screen shown in Figure 1.
-  * The application has the privilege to hide its icon from the home screen.
-    * The information about the application is not returned during home screen information query, and the icon of the application is not displayed on the home screen.<br><br>
-
-**Figure 1** Application details screen
-
-![Application details screen](figures/application_details.jpg)
-
 
   **Table 6** abilities
 
@@ -438,7 +371,7 @@ The **extensionAbilities** tag represents the configuration of extensionAbilitie
 | uri | Data URI provided by the ExtensionAbility component. The value is a string with a maximum of 255 bytes, in the reverse domain name notation.<br>**NOTE**<br>This attribute is mandatory when the type of the ExtensionAbility component is set to **dataShare**.| String| Yes (initial value: left empty)|
 |skills | Feature set of [wants](../application-models/want-overview.md) that can be received by the ExtensionAbility component.<br>Configuration rule: In an entry package, you can configure multiple **skills** attributes with the entry capability. (A **skills** attribute with the entry capability is the one that has **ohos.want.action.home** and **entity.system.home** configured.) The **label** and **icon** in the first ExtensionAbility that has **skills** configured are used as the **label** and **icon** of the entire OpenHarmony service/application.<br>**NOTE**<br>The **skills** attribute with the entry capability can be configured for the feature package of an OpenHarmony application, but not for an OpenHarmony service.| Array| Yes (initial value: left empty)|
 | [metadata](#metadata)| Metadata of the ExtensionAbility component.| Object| Yes (initial value: left empty)|
-| exported | Whether the ExtensionAbility component can be called by other applications. <br>- **true**: The ExtensionAbility component can be called by other applications.<br>- **false**: The UIAbility component cannot be called by other applications.| Boolean| Yes (initial value: **false**)|
+| exported | Whether the ExtensionAbility component can be called by other applications. <br>- **true**: The ExtensionAbility component can be called by other applications.<br>- **false**: The ExtensionAbility component cannot be called by other applications.| Boolean| Yes (initial value: **false**)|
 
 Example of the **extensionAbilities** structure:
 
@@ -591,7 +524,7 @@ The **shortcut** information is identified in **metadata**, where:
 
 ## distributionFilter
 
-The **distributionFilter** tag defines the rules for distributing HAP files based on different device specifications, so that precise matching can be performed when the application market distributes applications. Distribution rules cover the following factors: screen shape, screen size, screen resolution, and country/region code. During distribution, a unique HAP is determined based on the mapping between **deviceType** and these five factors. This tag must be configured in the **/resource/profile resource** directory. Its sub-tags are optional.
+The **distributionFilter** tag defines the rules for distributing HAP files based on different device specifications, so that precise matching can be performed when the application market distributes applications. Distribution rules cover the following factors: API version, screen shape, screen size, screen resolution, and country/region code. During distribution, a unique HAP is determined based on the mapping between **deviceType** and these five factors. This tag must be configured in the **/resource/profile resource** directory. Its sub-tags are optional.
 
   **Table 12** distributionFilter
 

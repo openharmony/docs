@@ -893,7 +893,7 @@ try {
 
 on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 
-Subscribes to the Bluetooth connection state change events.
+Subscribes to Bluetooth state events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -932,7 +932,7 @@ try {
 
 off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
-Unsubscribes from the Bluetooth connection state change events.
+Unsubscribes from Bluetooth state events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1994,7 +1994,7 @@ Subscribes to the HFP connection state change events.
 
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event. |
+| type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event.|
 | callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the HFP connection state change event.                              |
 
 **Example**
@@ -2075,7 +2075,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 try {
-    let hidHostProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+    let hidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
     hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2116,7 +2116,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 try {
-    let hidHostProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+    let hidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
     hidHostProfile.disconnect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2145,7 +2145,7 @@ Subscribes to the HidHost connection state change events.
 function onReceiveEvent(data) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
-let hidHost = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+let hidHost = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -2171,7 +2171,7 @@ Unsubscribes from the HidHost connection state change events.
 function onReceiveEvent(data) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
-let hidHost = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+let hidHost = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
 hidHost.off('connectionStateChange', onReceiveEvent);
 ```
@@ -2215,7 +2215,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 try {
-    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     panProfile.disconnect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2244,7 +2244,7 @@ Subscribes to the PAN connection state change events.
 function onReceiveEvent(data) {
     console.info('pan state = '+ JSON.stringify(data));
 }
-let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -2270,7 +2270,7 @@ Unsubscribes from the PAN connection state change events.
 function onReceiveEvent(data) {
     console.info('pan state = '+ JSON.stringify(data));
 }
-let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
 panProfile.off('connectionStateChange', onReceiveEvent);
 ```
@@ -2309,7 +2309,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 try {
-    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     panProfile.setTethering(true);
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2337,7 +2337,7 @@ Obtains the network sharing status.
 
 ```js
 try {
-    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     let ret = panProfile.isTetheringOn();
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);

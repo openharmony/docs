@@ -238,7 +238,6 @@ _[API差异报告](api-change/v3.1-Release/Readme-CN.md)_
 | [音频录制应用](https://gitee.com/openharmony/codelabs/tree/master/Media/Audio_OH_ETS) | 使用媒体组件AudioRecorder收录当前音频、使用AudioPlayer播放录音的方法。 | eTS      |
 | [备忘录](https://gitee.com/openharmony/codelabs/tree/master/Data/NotePad_OH_ETS) | 使用eTS开发一个简易备忘录，支持新建、删除和收藏笔记功能，轻量级数据库持久化存储数据。 | eTS      |
 | [分布式邮件编辑](https://gitee.com/openharmony/codelabs/tree/master/Distributed/OHMailETS) | 使用eTS开发分布式邮件，利用分布式的能力，在相同局域网及帐号下，拉起另一个设备，实现邮件在不同设备下的编辑流转。 | eTS      |
-| [三方库](https://gitee.com/openharmony/codelabs/tree/master/ThirdPartyComponents/VCardDemo) | 介绍openHarmony中三方库vcard库使用：一款写入和读取特定格式的联系人数据(后缀名为vcard的文件)的OpenHarmony组件。 | eTS      |
 
 
 ## 修复缺陷列表

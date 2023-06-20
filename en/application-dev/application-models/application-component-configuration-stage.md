@@ -6,7 +6,7 @@ Icons and labels are usually configured together. There is the application icon,
 
 The application icon and label are used in **Settings**. For example, they are displayed in the application list in **Settings**. The entry icon is displayed on the device's home screen after the application is installed. The entry icon maps to a [UIAbility](uiability-overview.md) component. Therefore, an application can have multiple entry icons and entry labels. When you touch one of them, the corresponding UIAbility page is displayed.
 
-**Figure 1** Icons and labels 
+**Figure 1** Icons and labels
 
 ![application-component-configuration-stage](figures/application-component-configuration-stage.png)
 

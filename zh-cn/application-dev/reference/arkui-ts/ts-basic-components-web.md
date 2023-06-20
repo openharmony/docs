@@ -72,7 +72,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   ```ts
   // xxx.ets
   import web_webview from '@ohos.web.webview'
-  let url = 'file://' + globalThis.filesDir + '/xxx.html'
+  let url = 'file://' + globalThis.filesDir + '/index.html'
 
   @Entry
   @Component
@@ -103,6 +103,7 @@ Web(options: { src: ResourceStr, controller: WebviewController | WebController})
   }
   ```
 
+  加载的html文件。
   ```html
   <!-- index.html -->
   <!DOCTYPE html>
@@ -567,15 +568,16 @@ horizontalScrollBarAccess(horizontalScrollBar: boolean)
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
         .horizontalScrollBarAccess(true)
       }
     }
   }
   ```
 
+  加载的html文件。
   ```html
-  <!--xxx.html-->
+  <!--index.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -620,15 +622,16 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src: 'www.example.com', controller: this.controller })
+        Web({ src: $rawfile('index.html'), controller: this.controller })
         .verticalScrollBarAccess(true)
       }
     }
   }
   ```
 
+  加载的html文件。
   ```html
-  <!--xxx.html-->
+  <!--index.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -648,6 +651,12 @@ verticalScrollBarAccess(verticalScrollBar: boolean)
   </body>
   </html>
   ```
+
+### password
+
+password(password: boolean)
+
+设置是否应保存密码。该接口为空接口。
 
 ### cacheMode
 
@@ -1215,6 +1224,18 @@ forceDarkAccess(access: boolean)
   }
   ```
 
+### tableData
+
+tableData(tableData: boolean)
+
+设置是否应保存表单数据。该接口为空接口。
+
+### wideViewModeAccess
+
+wideViewModeAccess(wideViewModeAccess: boolean)
+
+设置web是否支持html中meta标签的viewport属性。该接口为空接口。
+
 ### pinchSmooth<sup>9+</sup>
 
 pinchSmooth(isEnabled: boolean)
@@ -1281,7 +1302,7 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
     controller: web_webview.WebviewController = new web_webview.WebviewController()
     build() {
       Column() {
-        Web({ src: $rawfile("xxx.html"), controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
           .onAlert((event) => {
             console.log("event.url:" + event.url)
             console.log("event.message:" + event.message)
@@ -1311,8 +1332,9 @@ onAlert(callback: (event?: { url: string; message: string; result: JsResult }) =
   }
   ```
 
-  ```
-  <!--xxx.html-->
+  加载的html文件。
+  ```html
+  <!--index.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -1363,7 +1385,7 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
 
     build() {
       Column() {
-        Web({ src: $rawfile("xxx.html"), controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
           .onBeforeUnload((event) => {
             console.log("event.url:" + event.url)
             console.log("event.message:" + event.message)
@@ -1393,8 +1415,9 @@ onBeforeUnload(callback: (event?: { url: string; message: string; result: JsResu
   }
   ```
 
-  ```
-  <!--xxx.html-->
+  加载的html文件。
+  ```html
+  <!--index.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -1445,7 +1468,7 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
 
     build() {
       Column() {
-        Web({ src: $rawfile("xxx.html"), controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
           .onConfirm((event) => {
             console.log("event.url:" + event.url)
             console.log("event.message:" + event.message)
@@ -1475,8 +1498,9 @@ onConfirm(callback: (event?: { url: string; message: string; result: JsResult })
   }
   ```
 
-  ```
-  <!--xxx.html-->
+  加载的html文件。
+  ```html
+  <!--index.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -1534,7 +1558,7 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
 
     build() {
       Column() {
-        Web({ src: $rawfile("xxx.html"), controller: this.controller })
+        Web({ src: $rawfile("index.html"), controller: this.controller })
           .onPrompt((event) => {
             console.log("url:" + event.url)
             console.log("message:" + event.message)
@@ -1565,8 +1589,9 @@ onPrompt(callback: (event?: { url: string; message: string; value: string; resul
   }
   ```
 
-  ```
-  <!--xxx.html-->
+  加载的html文件。
+  ```html
+  <!--index.html-->
   <!DOCTYPE html>
   <html>
   <head>
@@ -1946,6 +1971,26 @@ onRefreshAccessedHistory(callback: (event?: { url: string, isRefreshed: boolean 
     }
   }
   ```
+
+### onSslErrorReceive<sup>(deprecated)</sup>
+
+onSslErrorReceive(callback: (event?: { handler: Function, error: object }) => void)
+
+通知用户加载资源时发生SSL错误。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[onSslErrorEventReceive<sup>9+</sup>](#onsslerroreventreceive9)替代。
+
+### onFileSelectorShow<sup>(deprecated)</sup>
+
+onFileSelectorShow(callback: (event?: { callback: Function, fileSelector: object }) => void)
+
+调用此函数以处理具有“文件”输入类型的HTML表单，以响应用户按下的“选择文件”按钮。
+
+> **说明：**
+>
+> 从API version 8开始支持，从API version 9开始废弃。建议使用[onShowFileSelector<sup>9+</sup>](#onshowfileselector9)替代。
 
 ### onRenderExited<sup>9+</sup>
 
@@ -4559,6 +4604,7 @@ registerJavaScriptProxy(options: { object: object, name: string, methodList: Arr
   }
   ```
 
+  加载的html文件。
   ```html
   <!-- index.html -->
   <!DOCTYPE html>
@@ -4620,6 +4666,7 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
   }
   ```
 
+  加载的html文件。
   ```html
   <!-- index.html -->
   <!DOCTYPE html>
@@ -4635,7 +4682,6 @@ runJavaScript(options: { script: string, callback?: (result: string) => void })
     }
     </script>
   </html>
-
   ```
 
 ### stop<sup>(deprecated)</sup>
@@ -4701,17 +4747,12 @@ clearHistory(): void
 通过WebCookie可以控制Web组件中的cookie的各种行为，其中每个应用中的所有web组件共享一个WebCookie。通过controller方法中的getCookieManager方法可以获取WebCookie对象，进行后续的cookie管理操作。
 
 ### setCookie<sup>(deprecated)</sup>
-setCookie(url: string, value: string): boolean
+
+setCookie(): boolean
 
 设置cookie，该方法为同步方法。设置成功返回true，否则返回false。
+
 从API version 9开始不再维护，建议使用[setCookie<sup>9+</sup>](../apis/js-apis-webview.md#setcookie)代替。
-
-**参数：**
-
-| 参数名   | 参数类型   | 必填   | 默认值  | 参数描述              |
-| ----- | ------ | ---- | ---- | ----------------- |
-| url   | string | 是    | -    | 要设置的cookie所属的url，建议使用完整的url。 |
-| value | string | 是    | -    | cookie的值。         |
 
 **返回值：**
 
@@ -4719,31 +4760,12 @@ setCookie(url: string, value: string): boolean
 | ------- | ------------- |
 | boolean | 设置cookie是否成功。 |
 
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Button('setCookie')
-          .onClick(() => {
-            let result = this.controller.getCookieManager().setCookie("https://www.example.com", "a=b")
-            console.log("result: " + result)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```
 ### saveCookie<sup>(deprecated)</sup>
+
 saveCookie(): boolean
 
 将当前存在内存中的cookie同步到磁盘中，该方法为同步方法。
+
 从API version 9开始不再维护，建议使用[saveCookieAsync<sup>9+</sup>](../apis/js-apis-webview.md#savecookieasync)代替。
 
 **返回值：**
@@ -4751,25 +4773,3 @@ saveCookie(): boolean
 | 类型      | 说明                   |
 | ------- | -------------------- |
 | boolean | 同步内存cookie到磁盘操作是否成功。 |
-
-**示例：**
-
-  ```ts
-  // xxx.ets
-  @Entry
-  @Component
-  struct WebComponent {
-    controller: WebController = new WebController()
-
-    build() {
-      Column() {
-        Button('saveCookie')
-          .onClick(() => {
-            let result = this.controller.getCookieManager().saveCookie()
-            console.log("result: " + result)
-          })
-        Web({ src: 'www.example.com', controller: this.controller })
-      }
-    }
-  }
-  ```

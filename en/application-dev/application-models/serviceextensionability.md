@@ -401,7 +401,7 @@ When ServiceExtensionAbility is used to provide sensitive services, the client i
         console.info(TAG, 'getBundleNameByUid: ' + callerBundleName);
         // Identify the bundle name of the client.
         if (callerBundleName != 'com.example.connectextapp') { // The verification fails.
-          console.info(TAG, 'The caller bundle is not in whitelist, reject');
+          console.info(TAG, 'The caller bundle is not in trustlist, reject');
           return;
         }
         // The verification is successful, and service logic is executed normally.

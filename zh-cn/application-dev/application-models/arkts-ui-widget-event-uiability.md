@@ -89,7 +89,7 @@
 ## 通过call事件刷新卡片内容
 
 - 在使用**postCardAction**接口的call事件时，需要在FormExtensionAbility中的onAddForm生命周期回调中更新formId。
-   
+  
    ```ts
    import formBindingData from '@ohos.app.form.formBindingData';
    import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
@@ -148,10 +148,9 @@
   import UIAbility from '@ohos.app.ability.UIAbility';
   import formBindingData from '@ohos.app.form.formBindingData';
   import formProvider from '@ohos.app.form.formProvider';
-  import formInfo from '@ohos.app.form.formInfo';
   
   const MSG_SEND_METHOD: string = 'funA'
-
+  
   // 在收到call事件后会触发callee监听的方法
   function FunACall(data) {
     // 获取call事件中传递的所有参数

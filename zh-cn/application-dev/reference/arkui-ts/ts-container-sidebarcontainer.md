@@ -44,7 +44,7 @@ SideBarContainer( type?: SideBarContainerType )
 | showSideBar | boolean | 设置是否显示侧边栏。<br/>默认值：true |
 | controlButton | [ButtonStyle](#buttonstyle对象说明)                            | 设置侧边栏控制按钮的属性。 |
 | showControlButton | boolean | 设置是否显示控制按钮。<br/>默认值：true |
-| sideBarWidth | number&nbsp;\|&nbsp;Length<sup>9+</sup> | 设置侧边栏的宽度。<br/>默认值：200<br/>单位：vp<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>受最小宽度和最大宽度限制，不在限制区域内取最近的点。<br/>sideBarWidth优先于侧边栏子组件width，sideBarWidth未设置时默认值优先级低于侧边栏子组件width。 |
+| sideBarWidth | number&nbsp;\|&nbsp;Length<sup>9+</sup> | 设置侧边栏的宽度。<br/>默认值：200<br/>单位：vp<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>受最小宽度和最大宽度限制，不在限制区域内取最近的点。<br/>sideBarWidth优先于侧边栏子组件width，sideBarWidth未设置时默认值优先级高于侧边栏子组件width。 |
 | minSideBarWidth | number&nbsp;\|&nbsp;Length<sup>9+</sup> | 设置侧边栏最小宽度。<br/>默认值：200，单位vp<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>值不能超过侧边栏容器本身宽度，超过使用侧边栏容器本身宽度。<br/>minSideBarWidth优先于侧边栏子组件minWidth，minSideBarWidth未设置时默认值优先级低于侧边栏子组件minWidth。 |
 | maxSideBarWidth | number&nbsp;\|&nbsp;Length<sup>9+</sup> | 设置侧边栏最大宽度。<br/>默认值：280，单位vp<br/>**说明：** <br/>设置为小于0的值时按默认值显示。<br/>值不能超过侧边栏容器本身宽度，超过使用侧边栏容器本身宽度。<br/>maxSideBarWidth优先于侧边栏子组件maxWidth，maxSideBarWidth未设置时默认值优先级低于侧边栏子组件maxWidth。 |
 | autoHide<sup>9+</sup> | boolean | 设置当侧边栏拖拽到小于最小宽度后，是否自动隐藏。<br/>默认值：true<br>**说明：** <br>受minSideBarWidth属性方法影响，minSideBarWidth属性方法未设置值使用默认值。<br/>拖拽过程中判断是否要自动隐藏。小于最小宽度时需要阻尼效果触发隐藏（越界一段距离） |

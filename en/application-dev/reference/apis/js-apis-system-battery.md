@@ -27,7 +27,7 @@ Obtains the current charging state and battery level.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [GetStatusOptions](#getstatusoptions) | No| Object that contains the API calling result.|
+| options | [GetStatusOptions](#getstatusoptions) | No| Object that contains the API calling result. This parameter is optional and is left blank by default.|
 
 **Example**
 
@@ -44,15 +44,15 @@ battery.getStatus({
 
 ## GetStatusOptions
 
-Obtains the object that contains the API calling result.
+Object that contains the API calling result.
 
 **System capability**: SystemCapability.PowerManager.BatteryManager.Core
 
 | Name  | Type                                               | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| success  | (data: [BatteryResponse](#batteryresponse)) => void | No  | Called when API call is successful. **data** is a return value of the [BatteryResponse](#batteryresponse) type.|
-| fail     | (data: string, code: number) => void                | No  | Called when API call has failed. **data** indicates the error information, and **code** indicates the error code.      |
-| complete | () => void                                          | No  | Called when API call is complete.                                    |
+| success  | (data: [BatteryResponse](#batteryresponse)) => void | No  | Called when an API call is successful. **data** is a return value of the [BatteryResponse](#batteryresponse) type.|
+| fail     | (data: string, code: number) => void                | No  | Called when an API call has failed. **data** indicates the error information, and **code** indicates the error code.      |
+| complete | () => void                                          | No  | Called when an API call is complete.                                    |
 
 ## BatteryResponse
 
@@ -60,7 +60,7 @@ Defines a response that returns the charging status and remaining power of the d
 
 **System capability**: SystemCapability.PowerManager.BatteryManager.Core
 
-| Name| Type| Readable | Writable | Description|
+| Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
-| charging | boolean | Yes | No | Whether the battery is being charged.|
-| level | number | Yes | No | Current battery level, which ranges from **0.00** to **1.00**.|
+| charging | boolean | Yes| No| Whether the battery is being charged.|
+| level | number | Yes| No| Current battery level, which ranges from **0.00** to **1.00**.|
