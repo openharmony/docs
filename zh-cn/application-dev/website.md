@@ -25,6 +25,9 @@
         - HSP
           - [应用内HSP开发指导](quick-start/in-app-hsp.md)
           - [应用间HSP开发指导](quick-start/cross-app-hsp.md)
+      - 原子化服务
+        - [原子化服务开发指导](quick-start/atomicService.md)
+        - [原子化服务空间管理（仅对系统应用开放）](quick-start/atomicService-aging.md)
       - 应用程序包快速修复
         - [快速修复概述](quick-start/quickfix-principles.md)
         - [快速修复命令行调试开发指导](quick-start/quickfix-debug.md)
@@ -118,7 +121,8 @@
                 - [通过router或call事件刷新卡片内容](application-models/arkts-ui-widget-event-uiability.md)
               - 卡片数据交互
                 - [卡片数据交互说明](application-models/arkts-ui-widget-interaction-overview.md)
-                - [定时刷新和定点刷新](application-models/arkts-ui-widget-update-by-time.md)
+                - [卡片定时刷新和定点刷新](application-models/arkts-ui-widget-update-by-time.md)
+                - [卡片代理刷新](application-models/arkts-ui-widget-update-by-proxy.md)
                 - [刷新本地图片和网络图片](application-models/arkts-ui-widget-image-update.md)
                 - [根据卡片状态刷新不同内容](application-models/arkts-ui-widget-update-by-status.md)
                 - [使用方刷新卡片内容（仅对系统应用开放）](application-models/arkts-ui-widget-content-update.md)
@@ -138,6 +142,7 @@
           - [跨端迁移（仅对系统应用开放）](application-models/hop-cross-device-migration.md)
           - [多端协同（仅对系统应用开放）](application-models/hop-multi-device-collaboration.md)
         - [订阅系统环境变量的变化](application-models/subscribe-system-environment-variable-changes.md)
+        - [原子化服务支持分享](application-models/atomic-services-support-sharing.md)
       - 了解进程模型
         - [进程模型概述](application-models/process-model-stage.md)
         - 公共事件
@@ -416,6 +421,7 @@
         - [使用TonePlayer开发音频播放功能（仅对系统应用开放）](media/using-toneplayer-for-playback.md)
         - [多音频播放的并发策略](media/audio-playback-concurrency.md)
         - [播放音量管理](media/volume-management.md)
+        - [音效管理](media/audio-effect-management.md)
         - [音频播放流管理](media/audio-playback-stream-management.md)
         - [音频输出设备管理](media/audio-output-device-management.md)
         - [分布式音频播放（仅对系统应用开放）](media/distributed-audio-playback.md)
@@ -432,6 +438,14 @@
         - [开发音频通话功能](media/audio-call-development.md)
       - [视频播放](media/video-playback.md)
       - [视频录制](media/video-recording.md)
+      - 音视频编解码
+        - [获取支持的编解码能力](media/obtain-supported-codecs.md)
+        - [音频编码](media/audio-encoding.md)
+        - [音频解码](media/audio-decoding.md)
+        - [视频编码](media/video-encoding.md)
+        - [视频解码](media/video-decoding.md)
+        - [音视频封装](media/audio-video-encapsulation.md)
+        - [音视频解封装](media/audio-video-decapsulation.md)
     - 媒体会话
       - [媒体会话概述](media/avsession-overview.md)
       - 本地媒体会话
@@ -458,7 +472,8 @@
       - [图片开发概述](media/image-overview.md)
       - [图片解码](media/image-decoding.md)
       - 图片处理
-        - [图像变换](media/image-transformation.md)
+        - [图像变换(ArkTS)](media/image-transformation.md)
+        - [图像变换(Native)](media/image-transformation-native.md)
         - [位图操作](media/image-pixelmap-operation.md)
       - [图片编码](media/image-encoding.md)
       - [图片工具](media/image-tool.md)
@@ -486,7 +501,7 @@
       - [Hap包签名工具指导](security/hapsigntool-guidelines.md)
       - [HarmonyAppProvision配置文件](security/app-provision-structure.md)
   - AI
-      - [使用MindSpore Lite引擎进行模型推理](ai/mindspore-lite-js-guidelines.md)
+    - [使用MindSpore Lite引擎进行模型推理](ai/mindspore-lite-js-guidelines.md)
   - 网络与连接
     - 网络管理
       - [网络管理开发概述](connectivity/net-mgmt-overview.md)
@@ -588,9 +603,11 @@
     - [设备使用信息统计开发指导](device-usage-statistics/device-usage-statistics-use-guide.md)
   - DFX
     - [应用事件打点开发指导](dfx/hiappevent-guidelines.md)
-    - [性能打点跟踪开发指导](dfx/hitracemeter-guidelines.md)
     - [分布式跟踪开发指导](dfx/hitracechain-guidelines.md)
     - [HiLog开发指导（Native）](dfx/hilog-guidelines.md)
+    - 性能打点跟踪
+      - [性能打点跟踪开发指导（ArkTS）](dfx/hitracemeter-guidelines.md)
+      - [性能打点跟踪开发指导（Native）](dfx/hitracemeter-native-guidelines.md)
     - 错误管理
       - [错误管理开发指导](dfx/errormanager-guidelines.md)
       - [应用恢复开发指导](dfx/apprecovery-guidelines.md)
@@ -659,7 +676,9 @@
     - [Rawfile开发指导](napi/rawfile-guidelines.md)
     - [NativeWindow开发指导](napi/native-window-guidelines.md)
     - [使用MindSpore Lite引擎进行模型推理](napi/mindspore-lite-guidelines.md)
+    - [使用MindSpore Lite进行离线模型的转换及推理](napi/mindspore-lite-offline-model-guidelines.md)
     - [Neural Network Runtime对接AI推理框架开发指导](napi/neural-network-runtime-guidelines.md)
+    - [Purgeable memory开发指导](napi/purgeable-memory-guidelines.md)
 - 工具
   - [DevEco Studio（OpenHarmony）使用指南](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - 调试工具
@@ -765,8 +784,10 @@
           - [AppStateData](reference/apis/js-apis-inner-application-appStateData.md)
           - [BaseContext](reference/apis/js-apis-inner-application-baseContext.md)
           - [Context](reference/apis/js-apis-inner-application-context.md)
+          - [ContinuableInfo](reference/apis/js-apis-inner-application-continuableInfo.md)
           - [ContinueCallback](reference/apis/js-apis-inner-application-continueCallback.md)
           - [ContinueDeviceInfo](reference/apis/js-apis-inner-application-continueDeviceInfo.md)
+          - [ContinueMissionInfo](reference/apis/js-apis-inner-application-continueMissionInfo.md)
           - [ErrorObserver](reference/apis/js-apis-inner-application-errorObserver.md)
           - [ExtensionContext](reference/apis/js-apis-inner-application-extensionContext.md)
           - [ExtensionRunningInfo](reference/apis/js-apis-inner-application-extensionRunningInfo.md)
@@ -792,8 +813,6 @@
         - continuation
           - [continuationExtraParams](reference/apis/js-apis-continuation-continuationExtraParams.md)
           - [continuationResult](reference/apis/js-apis-continuation-continuationResult.md)
-    - AI
-      - [@ohos.ai.mindSporeLite (推理能力)](reference/apis/js-apis-mindSporeLite.md)
     - 公共事件与通知
       - [系统公共事件定义](reference/apis/commonEventManager-definitions.md)
       - [@ohos.commonEventManager (公共事件模块)(推荐)](reference/apis/js-apis-commonEventManager.md)
@@ -829,8 +848,18 @@
         - [包管理子系统公共事件定义](reference/apis/common_event/commonEvent-bundleManager.md)
         - [通知服务公共事件定义](reference/apis/common_event/commonEvent-ans.md)
         - [资源调度子系统公共事件定义](reference/apis/common_event/commonEvent-resourceschedule.md)
+        - [窗口管理子系统公共事件定义](reference/apis/common_event/commonEvent-window.md)
+        - [网络管理子系统公共事件定义](reference/apis/common_event/commonEvent-netmanager.md)
+        - [短信应用公共事件定义](reference/apis/common_event/commonEvent-mms.md)
         - [电话服务子系统公共事件定义](reference/apis/common_event/commonEvent-telephony.md)
+        - [电源管理子系统公共事件定义](reference/apis/common_event/commonEvent-powermgr.md)
+        - [NFC子系统公共事件定义](reference/apis/common_event/commonEvent-nfc.md)
+        - [Wifi子系统公共事件定义](reference/apis/common_event/commonEvent-wifi.md)
         - [USB子系统公共事件定义](reference/apis/common_event/commonEvent-usb.md)
+        - [文件管理子系统公共事件定义](reference/apis/common_event/commonEvent-filemanagement.md)
+        - [主题框架子系统-锁屏管理公共事件定义](reference/apis/common_event/commonEvent-screenlock.md)
+        - [时间时区子系统公共事件定义](reference/apis/common_event/commonEvent-time.md)
+        - [帐号子系统公共事件定义](reference/apis/common_event/commonEvent-account.md)
     - 包管理
       - [@ohos.bundle.appControl (appControl模块)](reference/apis/js-apis-appControl.md)
       - [@ohos.bundle.bundleManager (bundleManager模块)](reference/apis/js-apis-bundleManager.md)
@@ -932,6 +961,7 @@
       - [@ohos.data.ValuesBucket (数据集)](reference/apis/js-apis-data-valuesBucket.md)
     - 文件管理
       - [@ohos.file.backup (备份恢复)](reference/apis/js-apis-file-backup.md)
+      - [@ohos.file.cloudSync (端云同步能力)](reference/apis/js-apis-file-cloudsync.md)
       - [@ohos.file.cloudSyncManager (端云同步管理)](reference/apis/js-apis-file-cloudsyncmanager.md)
       - [@ohos.file.environment (目录环境能力)](reference/apis/js-apis-file-environment.md)
       - [@ohos.file.fileAccess (公共文件访问与管理)](reference/apis/js-apis-fileAccess.md)
@@ -946,6 +976,8 @@
       - [@ohos.file.volumeManager (卷管理)](reference/apis/js-apis-file-volumemanager.md)
       - [@ohos.filemanagement.userFileManager (用户数据管理)](reference/apis/js-apis-userFileManager.md)
       - [@ohos.fileshare (文件分享)](reference/apis/js-apis-fileShare.md)
+    - AI
+      - [@ohos.ai.mindSporeLite (推理能力)](reference/apis/js-apis-mindSporeLite.md)
     - 电话服务
       - [@ohos.contact (联系人)](reference/apis/js-apis-contact.md)
       - [@ohos.telephony.call (拨打电话)](reference/apis/js-apis-call.md)
@@ -971,6 +1003,7 @@
       - [@ohos.nfc.controller (标准NFC)](reference/apis/js-apis-nfcController.md)
       - [@ohos.nfc.tag (标准NFC-Tag)](reference/apis/js-apis-nfcTag.md)
       - [@ohos.rpc (RPC通信)](reference/apis/js-apis-rpc.md)
+      - [@ohos.secureElement (安全单元的通道管理)](reference/apis/js-apis-secureElement.md)
       - [@ohos.wifiManager (WLAN)(推荐)](reference/apis/js-apis-wifiManager.md)
       - [@ohos.wifiManagerExt (WLAN扩展接口)(推荐)](reference/apis/js-apis-wifiManagerExt.md)
       - [@ohos.wifi (WLAN)(待停用)](reference/apis/js-apis-wifi.md)
@@ -1024,6 +1057,7 @@
       - [@ohos.multimodalInput.inputEvent (输入事件)](reference/apis/js-apis-inputevent.md)
       - [@ohos.multimodalInput.inputEventClient (按键注入)](reference/apis/js-apis-inputeventclient.md)
       - [@ohos.multimodalInput.inputMonitor (输入监听)](reference/apis/js-apis-inputmonitor.md)
+      - [@ohos.multimodalInput.intentionCode (意图事件)](reference/apis/js-apis-intentioncode.md)
       - [@ohos.multimodalInput.keyCode (键值)](reference/apis/js-apis-keycode.md)
       - [@ohos.multimodalInput.keyEvent (按键输入事件)](reference/apis/js-apis-keyevent.md)
       - [@ohos.multimodalInput.mouseEvent (鼠标输入事件)](reference/apis/js-apis-mouseevent.md)
@@ -1032,6 +1066,7 @@
       - [@ohos.multimodalInput.shortKey(快捷键)](reference/apis/js-apis-shortKey.md)
       - [@ohos.power (系统电源管理)](reference/apis/js-apis-power.md)
       - [@ohos.runningLock (Runninglock锁)](reference/apis/js-apis-runninglock.md)
+      - [@ohos.resourceschedule.deviceStandby（设备待机模块）](reference/apis/js-apis-resourceschedule-deviceStandby.md)
       - [@ohos.sensor (传感器)](reference/apis/js-apis-sensor.md)
       - [@ohos.settings (设置数据项名称)](reference/apis/js-apis-settings.md)
       - [@ohos.stationary (设备状态感知框架)](reference/apis/js-apis-stationary.md)
@@ -1043,20 +1078,23 @@
       - [@ohos.vibrator (振动)](reference/apis/js-apis-vibrator.md)
     - 帐号管理
       - [@ohos.account.appAccount (应用帐号管理)](reference/apis/js-apis-appAccount.md)
+      - [@ohos.account.appAccount.AuthorizationExtensionAbility (应用帐号授权扩展能力)](reference/apis/js-apis-appAccount-authorizationExtensionAbility.md)
       - [@ohos.account.distributedAccount (分布式帐号管理)](reference/apis/js-apis-distributed-account.md)
       - [@ohos.account.osAccount (系统帐号管理)](reference/apis/js-apis-osAccount.md)
     - 定制管理
       - [@ohos.configPolicy (配置策略)](reference/apis/js-apis-configPolicy.md)
-      - [@ohos.enterprise.accountManager（帐户管理）](reference/apis/js-apis-enterprise-accountManager.md)
+    - 企业设备管理
+      - [@ohos.enterprise.accountManager (帐户管理)](reference/apis/js-apis-enterprise-accountManager.md)
       - [@ohos.enterprise.adminManager (企业设备管理)](reference/apis/js-apis-enterprise-adminManager.md)
-      - [@ohos.enterprise.applicationManager（应用管理）](reference/apis/js-apis-enterprise-applicationManager.md)
-      - [@ohos.enterprise.bundleManager（包管理）](reference/apis/js-apis-enterprise-bundleManager.md)
+      - [@ohos.enterprise.applicationManager (应用管理)](reference/apis/js-apis-enterprise-applicationManager.md)
+      - [@ohos.enterprise.bundleManager (包管理)](reference/apis/js-apis-enterprise-bundleManager.md)
       - [@ohos.enterprise.dateTimeManager (系统时间管理)](reference/apis/js-apis-enterprise-dateTimeManager.md)
       - [@ohos.enterprise.deviceControl (设备控制管理)](reference/apis/js-apis-enterprise-deviceControl.md)
-      - [@ohos.enterprise.deviceInfo（设备信息管理）](reference/apis/js-apis-enterprise-deviceInfo.md)
-      - [@ohos.enterprise.EnterpriseAdminExtensionAbility (EnterpriseAdminExtensionAbility)](reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)
-      - [@ohos.enterprise.networkManager（网络管理）](reference/apis/js-apis-enterprise-networkManager.md)
-      - [@ohos.enterprise.wifiManager（WiFi管理）](reference/apis/js-apis-enterprise-wifiManager.md)
+      - [@ohos.enterprise.deviceInfo (设备信息管理)](reference/apis/js-apis-enterprise-deviceInfo.md)
+      - [@ohos.enterprise.deviceSettings (设备设置管理)](reference/apis/js-apis-enterprise-deviceSetings.md)
+      - [@ohos.enterprise.EnterpriseAdminExtensionAbility (企业设备管理扩展能力)](reference/apis/js-apis-EnterpriseAdminExtensionAbility.md)
+      - [@ohos.enterprise.networkManager (网络管理)](reference/apis/js-apis-enterprise-networkManager.md)
+      - [@ohos.enterprise.wifiManager (WiFi管理)](reference/apis/js-apis-enterprise-wifiManager.md)
     - 语言基础类库
       - [@ohos.buffer (Buffer)](reference/apis/js-apis-buffer.md)
       - [@ohos.convertxml (xml转换JavaScript)](reference/apis/js-apis-convertxml.md)
@@ -1083,6 +1121,7 @@
       - [@ohos.xml (xml解析与生成)](reference/apis/js-apis-xml.md)
     - 测试
       - [@ohos.application.testRunner (TestRunner)](reference/apis/js-apis-application-testRunner.md)
+      - [@ohos.deviceAttest (设备证明)](reference/apis/js-apis-deviceAttest.md)
       - [@ohos.uitest (UiTest)](reference/apis/js-apis-uitest.md)
     - 已停止维护的接口
       - [@ohos.backgroundTaskManager (后台任务管理)](reference/apis/js-apis-backgroundTaskManager.md)
@@ -1181,14 +1220,16 @@
         - [多态样式](reference/arkui-ts/ts-universal-attributes-polymorphic-style.md)
         - [分布式迁移标识](reference/arkui-ts/ts-universal-attributes-restoreId.md)
         - [前景色设置](reference/arkui-ts/ts-universal-attributes-foreground-color.md)
+        - [点击回弹](reference/arkui-ts/ts-universal-attributes-click-effect.md)
         - 触摸交互控制
-          - [点击控制](reference/arkui-ts/ts-universal-attributes-click.md)
           - [触摸热区设置](reference/arkui-ts/ts-universal-attributes-touch-target.md)
           - [触摸测试控制](reference/arkui-ts/ts-universal-attributes-hit-test-behavior.md)
         - 模态转场设置
           - [全屏模态转场](reference/arkui-ts/ts-universal-attributes-modal-transition.md)
           - [半模态转场](reference/arkui-ts/ts-universal-attributes-sheet-transition.md)
+        - [隐私遮罩](reference/arkui-ts/ts-universal-attributes-obscured.md)
       - [文本通用属性](reference/arkui-ts/ts-universal-attributes-text-style.md)
+      - [安全控件通用属性](reference/arkui-ts/ts-universal-attributes-securitycomponent.md)
       - 手势处理
         - [绑定手势方法](reference/arkui-ts/ts-gesture-settings.md)
         - 基础手势
@@ -1231,6 +1272,9 @@
       - [RichText](reference/arkui-ts/ts-basic-components-richtext.md)
       - [ScrollBar](reference/arkui-ts/ts-basic-components-scrollbar.md)
       - [Search](reference/arkui-ts/ts-basic-components-search.md)
+      - [SecLocationButton](reference/arkui-ts/ts-basic-components-seclocationbutton.md)
+      - [SecPasteButton](reference/arkui-ts/ts-basic-components-secpastebutton.md)
+      - [SecSaveButton](reference/arkui-ts/ts-basic-components-secsavebutton.md)
       - [Select](reference/arkui-ts/ts-basic-components-select.md)
       - [Slider](reference/arkui-ts/ts-basic-components-slider.md)
       - [Span](reference/arkui-ts/ts-basic-components-span.md)
@@ -1293,6 +1337,7 @@
       - [ImageBitmap对象](reference/arkui-ts/ts-components-canvas-imagebitmap.md)
       - [ImageData对象](reference/arkui-ts/ts-components-canvas-imagedata.md)
       - [Matrix2D](reference/arkui-ts/ts-components-canvas-matrix2d.md)
+      - [OffscreenCanvas](reference/arkui-ts/ts-components-offscreencanvas.md)
       - [OffscreenCanvasRenderingContext2D对象](reference/arkui-ts/ts-offscreencanvasrenderingcontext2d.md)
       - [Path2D对象](reference/arkui-ts/ts-components-canvas-path2d.md)
     - 动画
@@ -1319,6 +1364,8 @@
     - [类型定义](reference/arkui-ts/ts-types.md)
     - 已停止维护的组件
       - [GridContainer](reference/arkui-ts/ts-container-gridcontainer.md)
+    - 已停止维护的接口
+    - [点击控制](reference/arkui-ts/ts-universal-attributes-click.md)
   - 组件参考（兼容JS的类Web开发范式-ArkUI.Full）
     - 组件通用信息
       - [通用属性](reference/arkui-js/js-components-common-attributes.md)
@@ -1434,6 +1481,7 @@
       - [通用属性](reference/arkui-js-lite/js-common-attributes.md)
       - [通用样式](reference/arkui-js-lite/js-common-styles.md)
       - [动画样式](reference/arkui-js-lite/js-components-common-animation.md)
+      - [媒体查询](reference/arkui-js-lite/js-components-common-mediaquery.md)
     - 容器组件
       - [div](reference/arkui-js-lite/js-components-container-div.md)
       - [list](reference/arkui-js-lite/js-components-container-list.md)
@@ -1554,6 +1602,7 @@
       - [Bluetooth错误码](reference/errorcodes/errorcode-bluetoothManager.md)
       - [WIFI错误码](reference/errorcodes/errorcode-wifi.md)
       - [NFC错误码](reference/errorcodes/errorcode-nfc.md)
+      - [SE(secureElement)错误码](reference/errorcodes/errorcode-se.md)
       - [RPC错误码](reference/errorcodes/errorcode-rpc.md)
     - 系统基础能力
       - [无障碍子系统错误码](reference/errorcodes/errorcode-accessibility.md)
@@ -1591,6 +1640,7 @@
     - 测试
       - [uitest错误码](reference/errorcodes/errorcode-uitest.md)
   - Native接口参考
+    - [Native API（NDK）入门](reference/native-api-intro.md)
     - 模块
       - [Native XComponent](reference/native-apis/_o_h___native_x_component.md)
       - [HiLog](reference/native-apis/_hi_log.md)
@@ -1601,18 +1651,26 @@
       - [NativeVsync](reference/native-apis/_native_vsync.md)
       - [Image](reference/native-apis/image.md)
       - [Rawfile](reference/native-apis/rawfile.md)
+      - [RDB](reference/native-apis/_r_d_b.md)
       - [MindSpore](reference/native-apis/_mind_spore.md)
       - [NeuralNeworkRuntime](reference/native-apis/_neural_nework_runtime.md)
+      - [AVCapability](reference/native-apis/_a_v_capability.md)
+      - [AVMuxer](reference/native-apis/_a_v_muxer.md)
       - [AudioDecoder](reference/native-apis/_audio_decoder.md)
       - [AudioEncoder](reference/native-apis/_audio_encoder.md)
       - [CodecBase](reference/native-apis/_codec_base.md)
+      - [Core](reference/native-apis/_core.md)
       - [VideoDecoder](reference/native-apis/_video_decoder.md)
       - [VideoEncoder](reference/native-apis/_video_encoder.md)
-      - [Core](reference/native-apis/_core.md)
+      - [AVDemuxer](reference/native-apis/_a_v_demuxer.md)
+      - [AVSource](reference/native-apis/_a_v_source.md)
       - [HuksKeyApi](reference/native-apis/_huks_key_api.md)
       - [HuksParamSetApi](reference/native-apis/_huks_param_set_api.md)
       - [HuksTypeApi](reference/native-apis/_huks_type_api.md)
       - [Init](reference/native-apis/init.md)
+      - [Memory](reference/native-apis/memory.md)
+      - [UsbDdk](reference/native-apis/_usb_ddk.md)
+      - [Hitrace](reference/native-apis/_hitrace.md)
     - 头文件
       - [drawing_bitmap.h](reference/native-apis/drawing__bitmap_8h.md)
       - [drawing_brush.h](reference/native-apis/drawing__brush_8h.md)
@@ -1643,18 +1701,33 @@
       - [types.h](reference/native-apis/types_8h.md)
       - [neural_network_runtime_type.h](reference/native-apis/neural__network__runtime__type_8h.md)
       - [neural_network_runtime.h](reference/native-apis/neural__network__runtime_8h.md)
+      - [avcodec_audio_channel_layout.h](reference/native-apis/avcodec__audio__channel__layout_8h.md)
+      - [native_avcapability.h](reference/native-apis/native__avcapability_8h.md)
       - [native_avcodec_audiodecoder.h](reference/native-apis/native__avcodec__audiodecoder_8h.md)
       - [native_avcodec_audioencoder.h](reference/native-apis/native__avcodec__audioencoder_8h.md)
       - [native_avcodec_base.h](reference/native-apis/native__avcodec__base_8h.md)
       - [native_avcodec_videodecoder.h](reference/native-apis/native__avcodec__videodecoder_8h.md)
       - [native_avcodec_videoencoder.h](reference/native-apis/native__avcodec__videoencoder_8h.md)
+      - [native_avdemuxer.h](reference/native-apis/native__avdemuxer_8h.md)
       - [native_averrors.h](reference/native-apis/native__averrors_8h.md)
       - [native_avformat.h](reference/native-apis/native__avformat_8h.md)
       - [native_avmemory.h](reference/native-apis/native__avmemory_8h.md)
+      - [native_avmuxer.h](reference/native-apis/native__avmuxer_8h.md)
+      - [native_avsource.h](reference/native-apis/native__avsource_8h.md)
       - [native_huks_api.h](reference/native-apis/native__huks__api_8h.md)
       - [native_huks_param.h](reference/native-apis/native__huks__param_8h.md)
       - [native_huks_type.h](reference/native-apis/native__huks__type_8h.md)
+      - [oh_cursor.h](reference/native-apis/oh__cursor_8h.md)
+      - [oh_predicates.h](reference/native-apis/oh__predicates_8h.md)
+      - [oh_value_object.h](reference/native-apis/oh__value__object_8h.md)
+      - [oh_values_bucket.h](reference/native-apis/oh__values__bucket_8h.md)
+      - [relation_error_code.h](reference/native-apis/relation__error__code_8h.md)
+      - [relation_store.h](reference/native-apis/relation__store_8h.md)
       - [syscap_ndk.h](reference/native-apis/syscap__ndk_8h.md)
+      - [purgeable_memory.h](reference/native-apis/purgeable__memory_8h.md)
+      - [usb_ddk_api.h](reference/native-apis/usb__ddk__api_8h.md)
+      - [usb_ddk_types.h](reference/native-apis/usb__ddk__types_8h.md)
+      - [trace.h](reference/native-apis/trace_8h.md)
     - 结构体
       - [OH_Drawing_BitmapFormat](reference/native-apis/_o_h___drawing___bitmap_format.md)
       - [OH_NativeBuffer_Config](reference/native-apis/_o_h___native_buffer___config.md)
@@ -1679,6 +1752,7 @@
       - [OH_NN_UInt32Array](reference/native-apis/_o_h___n_n___u_int32_array.md)
       - [OH_AVCodecAsyncCallback](reference/native-apis/_o_h___a_v_codec_async_callback.md)
       - [OH_AVCodecBufferAttr](reference/native-apis/_o_h___a_v_codec_buffer_attr.md)
+      - [OH_AVRange](reference/native-apis/_o_h___a_v_range.md)
       - [OH_Huks_Blob](reference/native-apis/_o_h___huks___blob.md)
       - [OH_Huks_CertChain](reference/native-apis/_o_h___huks___cert_chain.md)
       - [OH_Huks_KeyInfo](reference/native-apis/_o_h___huks___key_info.md)
@@ -1691,20 +1765,43 @@
       - [OH_Huks_ParamSet](reference/native-apis/_o_h___huks___param_set.md)
       - [OH_Huks_PubKeyInfo](reference/native-apis/_o_h___huks___pub_key_info.md)
       - [OH_Huks_Result](reference/native-apis/_o_h___huks___result.md)
+      - [OH_Cursor](reference/native-apis/_o_h___cursor.md)
+      - [OH_Predicates](reference/native-apis/_o_h___predicates.md)
+      - [OH_Rdb_Config](reference/native-apis/_o_h___rdb___config.md)
+      - [OH_Rdb_Store](reference/native-apis/_o_h___rdb___store.md)
+      - [OH_VBucket](reference/native-apis/_o_h___v_bucket.md)
+      - [OH_VObject](reference/native-apis/_o_h___v_object.md)
+      - [UsbConfigDescriptor](reference/native-apis/_usb_config_descriptor.md)
+      - [UsbControlRequestSetup](reference/native-apis/_usb_control_request_setup.md)
+      - [UsbDdkConfigDescriptor](reference/native-apis/_usb_ddk_config_descriptor.md)
+      - [UsbDdkEndpointDescriptor](reference/native-apis/_usb_ddk_endpoint_descriptor.md)
+      - [UsbDdkInterface](reference/native-apis/_usb_ddk_interface.md)
+      - [UsbDdkInterfaceDescriptor](reference/native-apis/_usb_ddk_interface_descriptor.md)
+      - [UsbDeviceDescriptor](reference/native-apis/_usb_device_descriptor.md)
+      - [UsbDeviceMemMap](reference/native-apis/_usb_device_mem_map.md)
+      - [UsbEndpointDescriptor](reference/native-apis/_usb_endpoint_descriptor.md)
+      - [UsbInterfaceDescriptor](reference/native-apis/_usb_interface_descriptor.md)
+      - [UsbRequestPipe](reference/native-apis/_usb_request_pipe.md)
     - 标准库
+      - [libc标准库](reference/native-lib/third_party_libc/musl.md)
+      - [c++标准库](reference/native-lib/third_party_libc/cpp.md)
       - [Node-API](reference/native-lib/third_party_napi/napi.md)
       - [libuv](reference/native-lib/third_party_libuv/libuv.md)
-      - [Native API中支持的标准库](reference/native-lib/third_party_libc/musl.md)
+      - [OpenSL ES](reference/native-lib/third_party_opensles/opensles.md)
+      - [OpenGL ES](reference/native-lib/third_party_opengl/opengles.md)
+      - [EGL](reference/native-lib/third_party_opengl/egl.md)
+      - [Zlib](reference/native-lib/third_party_zlib/zlib.md)
       - 附录
-        - [Native api中没有导出的符号列表](reference/native-lib/third_party_libc/musl-peculiar-symbol.md)
-        - [Native api中由于权限管控可能调用失败的符号列表](reference/native-lib/third_party_libc/musl-permission-control-symbol.md)
+        - [libc中没有导出的符号列表](reference/native-lib/third_party_libc/musl-peculiar-symbol.md)
+        - [libc中由于权限管控可能调用失败的符号列表](reference/native-lib/third_party_libc/musl-permission-control-symbol.md)
         - [Native api中导出的EGL符号列表](reference/native-lib/third_party_opengl/egl-symbol.md)
         - [Native api中导出的OpenGL ES 3.0符号列表](reference/native-lib/third_party_opengl/openglesv3-symbol.md)
         - [Native api中支持的OpenSL ES接口列表](reference/native-lib/third_party_opensles/opensles.md)
 - 常见问题
   - [如何编译full-SDK](faqs/full-sdk-compile-guide.md)
   - [如何替换full-SDK](faqs/full-sdk-switch-guide.md)
-  - [Ability开发常见问题](faqs/faqs-ability.md)
+  - [如何在CMake工程中使用OpenHarmony SDK的Native API(NDK)](faqs/howto-migrate-cmake-with-ohosndk.md)
+  - [应用模型常见问题](faqs/faqs-ability.md)
   - ArkUI框架开发常见问题(ArkTS)
     - [ArkTS语法使用常见问题](faqs/faqs-arkui-arkts.md)
     - [ArkUI组件开发常见问题(ArkTS)](faqs/faqs-arkui-component.md)
@@ -1730,4 +1827,4 @@
   - [分布式DeviceProfrofile开发常见问题](faqs/faqs-distributed-device-profile.md)
   - [SDK使用常见问题](faqs/faqs-sdk.md)
   - [语言编译运行时常见问题](faqs/faqs-compiler-runtime.md)
-  - [三四方库使用常见问题](faqs/faqs-third-fourth-party-library.md) 
+  - [三四方库使用常见问题](faqs/faqs-third-fourth-party-library.md)
