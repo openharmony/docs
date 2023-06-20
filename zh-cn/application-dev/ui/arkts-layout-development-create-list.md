@@ -1,11 +1,11 @@
-# 创建列表
+# 创建列表（List）
 
 
 ## 概述
 
 列表是一种复杂的容器，当列表项达到一定数量，内容超过屏幕大小时，可以自动提供滚动功能。它适合用于呈现同类数据类型或数据类型集，例如图片和文本。在列表中显示数据集合是许多应用程序中的常见要求（如通讯录、音乐列表、购物清单等）。
 
-使用列表可以轻松高效地显示结构化、可滚动的信息。通过在[List](../reference/arkui-ts/ts-container-list.md/)组件中按垂直或者水平方向线性排列子组件[ListItemGroup](../reference/arkui-ts/ts-container-listitemgroup.md/)或[ListItem](../reference/arkui-ts/ts-container-listitem.md)，为列表中的行或列提供单个视图，或使用[循环渲染](../quick-start/arkts-rendering-control-foreach.md)迭代一组行或列，或混合任意数量的单个视图和ForEach结构，构建一个列表。List组件支持使用条件渲染、循环渲染、懒加载等[渲染控制](../quick-start/arkts-rendering-control-overview.md)方式生成子组件。
+使用列表可以轻松高效地显示结构化、可滚动的信息。通过在[List](../reference/arkui-ts/ts-container-list.md)组件中按垂直或者水平方向线性排列子组件[ListItemGroup](../reference/arkui-ts/ts-container-listitemgroup.md)或[ListItem](../reference/arkui-ts/ts-container-listitem.md)，为列表中的行或列提供单个视图，或使用[循环渲染](../quick-start/arkts-rendering-control-foreach.md)迭代一组行或列，或混合任意数量的单个视图和ForEach结构，构建一个列表。List组件支持使用条件渲染、循环渲染、懒加载等[渲染控制](../quick-start/arkts-rendering-control-overview.md)方式生成子组件。
 
 
 ## 布局与约束
@@ -27,7 +27,7 @@ ListItemGroup用于列表数据的分组展示，其子组件也是ListItem。Li
 
 ### 布局
 
-List除了提供垂直和水平布局能力、超出屏幕时可以滚动的自适应[延伸能力](../key-features/multi-device-app-dev/adaptive-layout.md/#%E5%BB%B6%E4%BC%B8%E8%83%BD%E5%8A%9B)之外，还提供了自适应交叉轴方向上排列个数的布局能力。
+List除了提供垂直和水平布局能力、超出屏幕时可以滚动的自适应[延伸能力](../key-features/multi-device-app-dev/adaptive-layout.md)之外，还提供了自适应交叉轴方向上排列个数的布局能力。
 
 利用垂直布局能力可以构建单列或者多列垂直滚动列表，如下图所示。
 
@@ -95,7 +95,7 @@ List() {
 
 List组件的交叉轴布局可以通过lanes和alignListItem属性进行设置，lanes属性用于确定交叉轴排列的列表项数量，alignListItem用于设置子组件在交叉轴方向的对齐方式。
 
-List组件的lanes属性通常用于在不同尺寸的设备自适应构建不同行数或列数的列表，即一次开发、多端部署的场景，例如[歌单列表](../key-features/multi-device-app-dev/music-album-page.md#%E6%AD%8C%E5%8D%95%E5%88%97%E8%A1%A8)。lanes属性的取值类型是"number | [LengthConstrain](../reference/arkui-ts/ts-types.md/#lengthconstrain)"，即整数或者LengthConstrain类型。以垂直列表为例，如果将lanes属性设为2，表示构建的是一个两列的垂直列表，如图2中右图所示。lanes的默认值为1，即默认情况下，垂直列表的列数是1。
+List组件的lanes属性通常用于在不同尺寸的设备自适应构建不同行数或列数的列表，即一次开发、多端部署的场景，例如[歌单列表](../key-features/multi-device-app-dev/music-album-page.md)。lanes属性的取值类型是"number | [LengthConstrain](../reference/arkui-ts/ts-types.md#lengthconstrain)"，即整数或者LengthConstrain类型。以垂直列表为例，如果将lanes属性设为2，表示构建的是一个两列的垂直列表，如图2中右图所示。lanes的默认值为1，即默认情况下，垂直列表的列数是1。
 
 
 ```ts
@@ -318,7 +318,7 @@ List() {
 
 ![zh-cn_image_0000001511740544](figures/zh-cn_image_0000001511740544.gif)
 
-在使用List组件时，可通过scrollBar属性控制列表滚动条的显示。scrollBar的取值类型为[BarState](../reference/arkui-ts/ts-appendix-enums.md/#barstate)，当取值为BarState.Auto表示按需显示滚动条。此时，当触摸到滚动条区域时显示控件，可上下拖拽滚动条快速浏览内容，拖拽时会变粗。若不进行任何操作，2秒后滚动条自动消失。
+在使用List组件时，可通过scrollBar属性控制列表滚动条的显示。scrollBar的取值类型为[BarState](../reference/arkui-ts/ts-appendix-enums.md#barstate)，当取值为BarState.Auto表示按需显示滚动条。此时，当触摸到滚动条区域时显示控件，可上下拖拽滚动条快速浏览内容，拖拽时会变粗。若不进行任何操作，2秒后滚动条自动消失。
 
 
 ```ts
@@ -478,7 +478,7 @@ struct ContactsList {
 
 ![zh-cn_image_0000001511900520](figures/zh-cn_image_0000001511900520.gif)
 
-List组件初始化时，可以通过scroller参数绑定一个[Scroller](../reference/arkui-ts/ts-container-scroll.md/#scroller)对象，进行列表的滚动控制。例如，用户在新闻应用中，点击新闻页面底部的返回顶部按钮时，就可以通过Scroller对象的scrollToIndex方法使列表滚动到指定的列表项索引位置。
+List组件初始化时，可以通过scroller参数绑定一个[Scroller](../reference/arkui-ts/ts-container-scroll.md#scroller)对象，进行列表的滚动控制。例如，用户在新闻应用中，点击新闻页面底部的返回顶部按钮时，就可以通过Scroller对象的scrollToIndex方法使列表滚动到指定的列表项索引位置。
 
 首先，需要创建一个Scroller的对象listScroller。
 
@@ -520,7 +520,7 @@ Stack({ alignContent: Alignment.BottomEnd }) {
 
 ![zh-cn_image_0000001563060769](figures/zh-cn_image_0000001563060769.gif)
 
-如上图所示，当联系人列表从A滚动到B时，右侧索引栏也需要同步从选中A状态变成选中B状态。此场景可以通过监听List组件的onScrollIndex事件来实现，右侧索引栏需要使用字母表索引组件[AlphabetIndexer](../reference/arkui-ts/ts-container-alphabet-indexer.md/)。
+如上图所示，当联系人列表从A滚动到B时，右侧索引栏也需要同步从选中A状态变成选中B状态。此场景可以通过监听List组件的onScrollIndex事件来实现，右侧索引栏需要使用字母表索引组件[AlphabetIndexer](../reference/arkui-ts/ts-container-alphabet-indexer.md)。
 
 在列表滚动时，根据列表此时所在的索引值位置firstIndex，重新计算字母索引栏对应字母的位置selectedIndex。由于AlphabetIndexer组件通过selected属性设置了选中项索引值，当selectedIndex变化时会触发AlphabetIndexer组件重新渲染，从而显示为选中对应字母的状态。
 
@@ -621,7 +621,7 @@ struct MessageList {
 
 ![zh-cn_image_0000001511580952](figures/zh-cn_image_0000001511580952.png)
 
-在ListItem中使用[Badge](../reference/arkui-ts/ts-container-badge.md/)组件可实现给列表项添加标记功能。Badge是可以附加在单个组件上用于信息标记的容器组件。
+在ListItem中使用[Badge](../reference/arkui-ts/ts-container-badge.md)组件可实现给列表项添加标记功能。Badge是可以附加在单个组件上用于信息标记的容器组件。
 
 在消息列表中，若希望在联系人头像右上角添加标记，可在实现消息列表项ListItem的联系人头像时，将头像Image组件作为Badge的子组件。
 
@@ -643,7 +643,7 @@ Badge({
 
 ## 下拉刷新与上拉加载
 
-页面的下拉刷新与上拉加载功能在移动应用中十分常见，例如，新闻页面的内容刷新和加载。这两种操作的原理都是通过响应用户的[触摸事件](../reference/arkui-ts/ts-universal-events-touch.md/)，在顶部或者底部显示一个刷新或加载视图，完成后再将此视图隐藏。
+页面的下拉刷新与上拉加载功能在移动应用中十分常见，例如，新闻页面的内容刷新和加载。这两种操作的原理都是通过响应用户的[触摸事件](../reference/arkui-ts/ts-universal-events-touch.md)，在顶部或者底部显示一个刷新或加载视图，完成后再将此视图隐藏。
 
 以下拉刷新为例，其实现主要分成三步：
 

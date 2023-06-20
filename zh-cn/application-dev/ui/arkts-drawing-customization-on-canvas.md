@@ -1,4 +1,4 @@
-# 使用画布绘制自定义图形
+# 使用画布绘制自定义图形（Canvas）
 
 
 Canvas提供画布组件，用于自定义绘制图形，开发者使用CanvasRenderingContext2D对象和OffscreenCanvasRenderingContext2D对象在Canvas组件上进行绘制，绘制对象可以是基础形状、文本、图片等。
