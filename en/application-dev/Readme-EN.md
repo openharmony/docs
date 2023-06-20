@@ -102,7 +102,7 @@
   - [Debugging Tools](tools/Readme-EN.md)
 - Hands-On Tutorials
   - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md)
-  - [Codelabs](https://gitee.com/openharmony/codelabs)
+  - [Codelabs](https://gitee.com/openharmony/codelabs/tree/master)
 - API References
   - [SystemCapability](reference/syscap.md)
   - [SystemCapability List](reference/syscap-list.md)
@@ -119,4 +119,3 @@
 - [FAQs](faqs/Readme-EN.md)
 - Contribution
   - [How to Contribute](../contribute/documentation-contribution.md)
-<!--no_check-->
