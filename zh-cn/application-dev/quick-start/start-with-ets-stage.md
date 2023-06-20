@@ -9,7 +9,7 @@
 
 ## 创建ArkTS工程
 
-对于不同API版本，创建对应的OpenHarmony工程的步骤不同。主要分为API 9之后的工程创建、API 9及API之前的工程创建两种。
+对于不同API版本，创建对应的OpenHarmony工程的步骤不同。主要分为API 9之后的工程创建、API 9及API 9之前的工程创建两种。
 
 此处分别以创建API 10和创建API 9的OpenHarmony工程为例，给出具体的指导。
 
