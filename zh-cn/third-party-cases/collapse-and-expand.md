@@ -182,7 +182,7 @@ interface IRowItem {
 @Entry
 @Component
 struct CollapseAndExpandDemo {
-    Provide("flag") flag: boolean = false
+    @Provide("flag") flag: boolean = false
     private onFlagChange = () => {
         animateTo({  
             duration: 650,
@@ -247,7 +247,7 @@ struct CollapseAndExpandDemo {
 @Component
 struct RowItem {
     private props: IRowItem;
-    Consume("flag") flag: boolean
+    @Consume("flag") flag: boolean
 
     build() {
         Flex() {
@@ -286,7 +286,7 @@ struct RowItem {
 @Component
 struct CollapseAndExpand {
     private items: IRowItem[] = [];
-    Consume("flag") flag: boolean;
+    @Consume("flag") flag: boolean;
 
     build() {
         Column() {
@@ -301,9 +301,9 @@ struct CollapseAndExpand {
 }
 ```
 ## 参考
-[显示动画](../application-dev/reference/arkui-ts/ts-explicit-animation.md/)
-[@Provide和@Consume：与后代组件双向同步](../application-dev/quick-start/arkts-provide-and-consume.md/)
-[list开发指导](../zh-cn/application-dev/ui/ui-js-components-list.md/)
+[显示动画](../application-dev/reference/arkui-ts/ts-explicit-animation.md)
+[@Provide和@Consume：与后代组件双向同步](../application-dev/quick-start/arkts-provide-and-consume.md)
+[list开发指导](../application-dev/ui/ui-js-components-list.md)
 
 
 

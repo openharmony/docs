@@ -9,9 +9,11 @@
 
 ## 效果呈现
 效果图如下所示（模拟器设备：phone、Foldable）：
+
 phone设备效果图：
 
 ![navigation_phone](figures/navigation_phone.PNG) 
+
 Foldable设备效果图：
 
 ![navigation_Foldable](figures/navigation_Foldable.PNG)
@@ -328,13 +330,13 @@ struct NavigationExample {
 }
 ```
 ## 参考
-[List组件](../application-dev/reference/arkui-js/js-components-container-list.md/) 
+[List组件](../application-dev/reference/arkui-js/js-components-container-list.md) 
 
-[Flex组件](../application-dev/reference/arkui-ts/ts-container-flex.md/)
+[Flex组件](../application-dev/reference/arkui-ts/ts-container-flex.md)
 
-[Navigation](../application-dev/reference/arkui-ts/ts-basic-components-navigation.md/)
+[Navigation](../application-dev/reference/arkui-ts/ts-basic-components-navigation.md)
 
-[NavRouter](../application-dev/reference/arkui-ts/ts-basic-components-navrouter.md/)
+[NavRouter](../application-dev/reference/arkui-ts/ts-basic-components-navrouter.md)
 
-[NavDestination](../application-dev/reference/arkui-ts/ts-basic-components-navdestination.md/)
+[NavDestination](../application-dev/reference/arkui-ts/ts-basic-components-navdestination.md)
 
