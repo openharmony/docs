@@ -167,12 +167,12 @@ function certSample() {
 
 | 实例名        | 接口名                                                       | 描述                                   |
 | ------------- | ------------------------------------------------------------ | -------------------------------------- |
-| cryptoCert    | createCertExtension(inStream : EncodingBlob, callback : AsyncCallback) : void<sup>10+</sup> | 使用callback方式创建证书扩展域段的对象 |
-| cryptoCert    | createCertExtension(inStream : EncodingBlob) : Promise<sup>10+</sup> | 使用promise方式创建证书扩展域段的对象  |
-| CertExtension | getEncoded() : EncodingBlob<sup>10+</sup>                    | 获取证书扩展域段序列化数据             |
-| CertExtension | getOidList(valueType : ExtensionOidType) : DataArray<sup>10+</sup> | 获取证书扩展域段对象标识符列表         |
-| CertExtension | getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob<sup>10+</sup> | 获取证书扩展域段对象信息               |
-| CertExtension | checkCA() : number<sup>10+</sup>                             | 校验证书是否为CA证书                   |
+| cryptoCert    | createCertExtension(inStream : EncodingBlob, callback : AsyncCallback) : void | 使用callback方式创建证书扩展域段的对象 |
+| cryptoCert    | createCertExtension(inStream : EncodingBlob) : Promise       | 使用promise方式创建证书扩展域段的对象  |
+| CertExtension | getEncoded() : EncodingBlob                                  | 获取证书扩展域段序列化数据             |
+| CertExtension | getOidList(valueType : ExtensionOidType) : DataArray         | 获取证书扩展域段对象标识符列表         |
+| CertExtension | getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob | 获取证书扩展域段对象信息               |
+| CertExtension | checkCA() : number                                           | 校验证书是否为CA证书                   |
 
 **开发步骤**
 
