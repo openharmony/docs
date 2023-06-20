@@ -1,4 +1,4 @@
-# 文本输入
+# 文本输入（TextInput/TextArea）
 
 
 TextInput、TextArea是输入框组件，通常用于响应用户的输入操作，比如评论区的输入、聊天框的输入、表格的输入等，也可以结合其它组件构建功能页面，例如登录注册页面。具体用法参考[TextInput](../reference/arkui-ts/ts-basic-components-textinput.md)、[TextArea](../reference/arkui-ts/ts-basic-components-textarea.md)。
