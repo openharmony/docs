@@ -289,45 +289,21 @@ export default class EntryAbility extends UIAbility {
 
 ### 开发步骤
 
-1. 申请权限。
+**前提条件：** 创建`WindowType.TYPE_FLOAT`即悬浮窗类型的窗口，需要申请`ohos.permission.SYSTEM_FLOAT_WINDOW`权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
 
-   创建`WindowType.TYPE_FLOAT`即悬浮窗类型的窗口，需要在`module.json5`文件的`requestPermissions`对象中配置`ohos.permission.SYSTEM_FLOAT_WINDOW`权限。更多配置信息详见[module.json5配置文件](../quick-start/module-configuration-file.md)。
-
-   > **说明：**
-   >
-   > 虽然悬浮窗具备始终在前台显示的能力，但如果创建悬浮窗的应用任务被系统回收，仍然会导致悬浮窗从界面移除。如果想要保持悬浮窗口始终在前台显示，请申请[长时任务](../task-management/continuous-task-dev-guide.md)。
-   
-   ```json
-   {
-     "module": {
-       "requestPermissions":[
-         {
-           "name" : "ohos.permission.SYSTEM_FLOAT_WINDOW",
-           "usedScene": {
-             "abilities": [
-               "EntryAbility"
-             ],
-             "when":"inuse"
-           }
-         }
-       ]
-     }
-   }
-   ```
-
-2. 创建悬浮窗。
+1. 创建悬浮窗。
 
    通过`window.createWindow`接口创建悬浮窗类型的窗口。
 
-3. 对悬浮窗进行属性设置等操作。
+2. 对悬浮窗进行属性设置等操作。
 
    悬浮窗窗口创建成功后，可以改变其大小、位置等，还可以根据应用需要设置悬浮窗背景色、亮度等属性。
 
-4. 加载显示悬浮窗的具体内容。
+3. 加载显示悬浮窗的具体内容。
 
    通过`setUIContent`和`showWindow`接口加载显示悬浮窗的具体内容。
 
-5. 销毁悬浮窗。
+4. 销毁悬浮窗。
 
    当不再需要悬浮窗时，可根据具体实现逻辑，使用`destroyWindow`接口销毁悬浮窗。
 
@@ -337,7 +313,7 @@ import window from '@ohos.window';
 
 export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage) {
-    // 2. 创建悬浮窗。
+    // 1.创建悬浮窗。
     let windowClass = null;
     let config = {
       name: "floatWindow", windowType: window.WindowType.TYPE_FLOAT, ctx: this.context
@@ -349,7 +325,7 @@ export default class EntryAbility extends UIAbility {
       }
       console.info('Succeeded in creating the floatWindow. Data: ' + JSON.stringify(data));
       windowClass = data;
-      // 3.悬浮窗窗口创建成功后，设置悬浮窗的位置、大小及相关属性等。
+      // 2.悬浮窗窗口创建成功后，设置悬浮窗的位置、大小及相关属性等。
       windowClass.moveWindowTo(300, 300, (err) => {
         if (err.code) {
           console.error('Failed to move the window. Cause:' + JSON.stringify(err));
@@ -364,14 +340,14 @@ export default class EntryAbility extends UIAbility {
         }
         console.info('Succeeded in changing the window size.');
       });
-      // 4.为悬浮窗加载对应的目标页面。
+      // 3.为悬浮窗加载对应的目标页面。
       windowClass.setUIContent("pages/page4", (err) => {
         if (err.code) {
           console.error('Failed to load the content. Cause:' + JSON.stringify(err));
           return;
         }
         console.info('Succeeded in loading the content.');
-        // 4.显示悬浮窗。
+        // 3.显示悬浮窗。
         windowClass.showWindow((err) => {
           if (err.code) {
             console.error('Failed to show the window. Cause: ' + JSON.stringify(err));
@@ -380,7 +356,7 @@ export default class EntryAbility extends UIAbility {
           console.info('Succeeded in showing the window.');
         });
       });
-      //5.销毁悬浮窗。当不再需要悬浮窗时，可根据具体实现逻辑，使用destroy对其进行销毁。
+      // 4.销毁悬浮窗。当不再需要悬浮窗时，可根据具体实现逻辑，使用destroy对其进行销毁。
       windowClass.destroyWindow((err) => {
         if (err.code) {
           console.error('Failed to destroy the window. Cause: ' + JSON.stringify(err));
