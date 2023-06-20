@@ -48,7 +48,7 @@
 | X509Cert        | getBasicConstraints() : number                               | 获取证书基本约束                             |
 | X509Cert        | getSubjectAltNames() : DataArray                             | 获取证书主体可选名称                         |
 | X509Cert        | getIssuerAltNames() : DataArray                              | 获取证书颁发者可选名称                       |
-
+| X509Cert        | getItem(itemType: CertItemType) : DataBlob<sup>10+</sup>          | 获取X509证书对应的字段                       |
 **开发步骤**
 
 示例：解析X509证书数据生成证书对象，并调用对象方法（包含场景1-6）
@@ -142,6 +142,105 @@ function certSample() {
             console.log("checkValidityWithDate failed, errCode: " + error.code + ", errMsg: " + error.message);
         }
     });
+}
+```
+
+## 使用证书扩展域段操作
+
+> **说明**
+>
+> 本场景基于API version 10，OH SDK版本4.0.9及以上，适用于JS语言开发
+
+**场景说明**
+
+使用证书扩展域段操作中，典型的场景有：
+
+1. 解析证书扩展域段数据生成证书扩展域段对象。
+2. 获取证书扩展域段信息，比如：证书扩展域段对象标识符列表，根据对象标识符获取具体数据等。
+3. 校验证书是否为CA证书。
+
+**接口及参数说明**
+
+详细接口说明可参考[API参考](../reference/apis/js-apis-cert.md)。
+
+以上场景涉及的常用接口如下表所示：
+
+| 实例名        | 接口名                                                       | 描述                                   |
+| ------------- | ------------------------------------------------------------ | -------------------------------------- |
+| cryptoCert    | createCertExtension(inStream : EncodingBlob, callback : AsyncCallback) : void<sup>10+</sup> | 使用callback方式创建证书扩展域段的对象 |
+| cryptoCert    | createCertExtension(inStream : EncodingBlob) : Promise<sup>10+</sup> | 使用promise方式创建证书扩展域段的对象  |
+| CertExtension | getEncoded() : EncodingBlob<sup>10+</sup>                    | 获取证书扩展域段序列化数据             |
+| CertExtension | getOidList(valueType : ExtensionOidType) : DataArray<sup>10+</sup> | 获取证书扩展域段对象标识符列表         |
+| CertExtension | getEntry(valueType: ExtensionEntryType, oid : DataBlob) : DataBlob<sup>10+</sup> | 获取证书扩展域段对象信息               |
+| CertExtension | checkCA() : number<sup>10+</sup>                             | 校验证书是否为CA证书                   |
+
+**开发步骤**
+
+示例：解析X509证书扩展域段数据生成证书扩展域段对象，并调用对象方法（包含场景1-3）
+
+```javascript
+import cryptoCert from '@ohos.security.cert';
+
+// 证书扩展域段数据，此处仅示例，业务需根据场景自行设置
+let certData = new Uint8Array([
+  0x30, 0x40, 0x30, 0x0F, 0x06, 0x03, 0x55, 0x1D, 
+  0x13, 0x01, 0x01, 0xFF, 0x04, 0x05, 0x30, 0x03,
+  0x01, 0x01, 0xFF, 0x30, 0x0E, 0x06, 0x03, 0x55, 
+  0x1D, 0x0F, 0x01, 0x01, 0xFF, 0x04, 0x04, 0x03,
+  0x02, 0x01, 0xC6, 0x30, 0x1D, 0x06, 0x03, 0x55, 
+  0x1D, 0x0E, 0x04, 0x16, 0x04, 0x14, 0xE0, 0x8C,
+  0x9B, 0xDB, 0x25, 0x49, 0xB3, 0xF1, 0x7C, 0x86, 
+  0xD6, 0xB2, 0x42, 0x87, 0x0B, 0xD0, 0x6B, 0xA0,
+  0xD9, 0xE4
+]);
+
+// string转Uint8Array
+function stringToUint8Array(str) {
+  var arr = [];
+  for (var i = 0, j = str.length; i < j; i++) {
+    arr.push(str.charCodeAt(i));
+  }
+  return new Uint8Array(arr);
+}
+
+// 证书扩展域段示例
+function certExtensionSample() {
+  let encodingBlob = {
+    data: certData,
+    // 证书扩展域段格式：当前仅支持DER格式
+    encodingFormat: cryptoCert.EncodingFormat.FORMAT_DER
+  };
+
+  // 创建证书扩展域段对象
+  cryptoCert.createCertExtension(encodingBlob, function (err, certExtension) {
+    if (err != null) {
+      // 创建证书扩展域段对象失败
+      console.log("createCertExtension failed, errCode: " + err.code + ", errMsg: " + err.message);
+      return;
+    }
+    // 创建证书扩展域段对象成功
+    console.log("createCertExtension success");
+    
+    try {
+      // 获取证书扩展域段对象的序列化数据
+      let encodedData = certExtension.getEncoded();
+      
+      // 获取证书扩展域段对象的对象标识符列表
+      let oidList = certExtension.getOidList(cryptoCert.ExtensionOidType.EXTENSION_OID_TYPE_ALL);
+      
+      // 根据对象标识符获取证书扩展域段信息
+      let oidData = "2.5.29.14";
+      let oid = {
+        data: stringToUint8Array(oidData),
+      }
+      let entry = certExtension.getEntry(cryptoCert.ExtensionEntryType.EXTENSION_ENTRY_TYPE_ENTRY, oid);
+        
+      // 校验证书是否为CA证书
+      let pathLen = certExtension.checkCA();
+    } catch (err) {
+      console.log("operation failed: " + JSON.stringify(err));
+    }
+  });
 }
 ```
 
