@@ -113,8 +113,9 @@ Enumerates the types of Extension abilities.
 | THUMBNAIL        | 13  | ThumbnailExtensionAbility: provides thumbnails for files. This ability is reserved.|
 | PREVIEW          | 14  | PreviewExtensionAbility: provides APIs for file preview so that other applications can be embedded and displayed in the current application. This ability is reserved.|
 | PRINT<sup>10+</sup> | 15 | PrintExtensionAbility: provides APIs for printing images. Printing documents is not supported yet.|
-| PUSH<sup>10+</sup> | 17 | **PushExtensionAbility**: provides APIs for pushing scenario-specific messages. This ability is reserved.|
+| PUSH<sup>10+</sup> | 17 | PushExtensionAbility: provides APIs for pushing scenario-specific messages. This ability is reserved.|
 | DRIVER<sup>10+</sup> | 18 | DriverExtensionAbility: provides APIs for the peripheral driver. This type of ability is not supported yet.|
+| APP_ACCOUNT_AUTHORIZATION<sup>10+</sup> | 19 | AuthorizationExtensionAbility: provides APIs to process authorization requests for application accounts and allow account authorization from a third-party (relative to the operating system vendor) ecosystem platform.|
 | UNSPECIFIED      | 255 | No type is specified. It is used together with **queryExtensionAbilityInfo** to query all types of Extension abilities.|
 
 
