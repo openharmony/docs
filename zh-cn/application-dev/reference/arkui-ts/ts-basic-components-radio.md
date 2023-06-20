@@ -62,6 +62,9 @@ struct RadioExample {
       Column() {
         Text('Radio1')
         Radio({ value: 'Radio1', group: 'radioGroup' }).checked(true)
+          .radioStyle({
+            checkedBackgroundColor: Color.Pink
+          })
           .height(50)
           .width(50)
           .onChange((isChecked: boolean) => {
@@ -71,6 +74,9 @@ struct RadioExample {
       Column() {
         Text('Radio2')
         Radio({ value: 'Radio2', group: 'radioGroup' }).checked(false)
+          .radioStyle({
+            checkedBackgroundColor: Color.Pink
+          })
           .height(50)
           .width(50)
           .onChange((isChecked: boolean) => {
@@ -80,6 +86,9 @@ struct RadioExample {
       Column() {
         Text('Radio3')
         Radio({ value: 'Radio3', group: 'radioGroup' }).checked(false)
+          .radioStyle({
+            checkedBackgroundColor: Color.Pink
+          })
           .height(50)
           .width(50)
           .onChange((isChecked: boolean) => {
@@ -90,4 +99,4 @@ struct RadioExample {
   }
 }
 ```
-![](figures/radio.gif)
+![radio](figures/radio.gif)
