@@ -485,6 +485,8 @@
       - [Hap包签名工具概述](security/hapsigntool-overview.md)
       - [Hap包签名工具指导](security/hapsigntool-guidelines.md)
       - [HarmonyAppProvision配置文件](security/app-provision-structure.md)
+  - AI
+      - [使用MindSpore Lite引擎进行模型推理](ai/mindspore-lite-js-guidelines.md)
   - 网络与连接
     - 网络管理
       - [网络管理开发概述](connectivity/net-mgmt-overview.md)
@@ -916,8 +918,6 @@
       - [@ohos.userIAM.userAuth (用户认证)](reference/apis/js-apis-useriam-userauth.md)
       - security
         - [PermissionRequestResult](reference/apis/js-apis-permissionrequestresult.md)
-    - AI
-      - [使用MindSpore Lite引擎进行模型推理](ai/mindspore-lite-js-guidelines.md)
     - 数据管理
       - [@ohos.data.cloudData (端云协同)](reference/apis/js-apis-data-cloudData.md)
       - [@ohos.data.dataAbility (DataAbility谓词)](reference/apis/js-apis-data-ability.md)

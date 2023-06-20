@@ -31,6 +31,7 @@
 - [WebGL](webgl/webgl-overview.md)
 - [媒体](media/media-application-overview.md)
 - [安全](security/userauth-overview.md)
+- [AI](ai/mindspore-lite-js-guidelines.md)
 - [网络与连接](connectivity/ipc-rpc-overview.md)
 - [电话服务](telephony/telephony-overview.md)
 - [数据管理](database/data-mgmt-overview.md)
