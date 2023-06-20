@@ -39,9 +39,9 @@ The identity authentication consists of the User_auth framework and basic authen
 
   To ensure user data security and authentication result accuracy, measures must be taken to protect the integrity of the key information exchanged between User_auth and basic authentication services. Public keys must be exchanged when the executor provided by a basic authentication service interworks with User_auth.
 
-  The executor uses the User_auth public key to verify scheduling instructions.
+    The executor uses the User_auth public key to verify scheduling instructions.
 
-  User_auth uses the executor public key to verify the authentication result accuracy and the integrity of the information exchanged with the executor.
+    User_auth uses the executor public key to verify the authentication result accuracy and the integrity of the information exchanged with the executor.
 
 - Authentication credential
 
@@ -61,7 +61,7 @@ The identity authentication consists of the User_auth framework and basic authen
 
 - IPC
 
-  Inter-Process Communication (IPC) is a mechanism that allows processes to communicate with each other. For details, see [IPC](https://gitee.com/openharmony/communication_ipc/blob/master/README.md).
+  Inter-process communication (IPC) is a mechanism that allows processes to communicate with each other. For details, see [IPC](https://gitee.com/openharmony/communication_ipc/blob/master/README.md).
 
 - HDI
 
@@ -88,30 +88,36 @@ The fingerprint_auth driver provides stable basic fingerprint authentication cap
 
 ### Available APIs
 
-The following table describes the C++ APIs generated from the Interface Definition Language (IDL) interface description. For details about the interface declaration, see the .idl file in **/drivers/interface/fingerprint_auth/v1_0/**.
+The following table describes the C++ APIs generated from the Interface Definition Language (IDL) interface description. For details about the interface declaration, see the .idl file in **/drivers/interface/fingerprint_auth/**.
 **Table 1** describes the HDI APIs for fingerprint credential enrollment, authentication, recognition, and deletion. **Table 2** describes the callbacks used to return the executor operation result to the framework or return the authentication tip information to upper-layer applications.
 
 **Table 1** Available APIs
 
 | API       | Description        |
 | -------------------------------- | ----------------------------------- |
-| GetExecutorList(std::vector<sptr<IExecutor>>& executorList)  | Obtains the executor list.    |
+| GetExecutorList(std::vector\<sptr\<V1_0::IExecutor>>& executorList)  | Obtains the executor list (version V1_0).|
+| GetExecutorListV1_1(std::vector\<sptr\<V1_1::IExecutor>>& executorList)      | Obtains the executor list (version V1_1).                        |
 | GetExecutorInfo(ExecutorInfo& info)                          | Obtains the executor information, including the executor type, executor role, authentication type, security level, and executor public key.|
 | GetTemplateInfo(uint64_t templateId, TemplateInfo& info)     | Obtains information about the template based on the specified ID.       |
-| OnRegisterFinish(const std::vector<uint64_t>& templateIdList,<br>        const std::vector<uint8_t>& frameworkPublicKey, const std::vector<uint8_t>& extraInfo) | Obtains the public key and template ID list from User_auth after the executor is registered successfully.|
-| Enroll(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,<br>        const sptr<IExecutorCallback>& callbackObj) | Enrolls a fingerprint.                                              |
-| Authenticate(uint64_t scheduleId, const std::vector<uint64_t>& templateIdList,<br>        const std::vector<uint8_t>& extraInfo, const sptr<IExecutorCallback>& callbackObj) | Authenticates a fingerprint.        |
-| Identify(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,<br>        const sptr<IExecutorCallback>& callbackObj) | Identifies a fingerprint.          |
-| Delete(const std::vector<uint64_t>& templateIdList)          | Deletes a fingerprint.       |
+| OnRegisterFinish(const std::vector\<uint64_t>& templateIdList,<br>        const std::vector\<uint8_t>& frameworkPublicKey, const std::vector\<uint8_t>& extraInfo) | Obtains the public key and template ID list from User_auth after the executor is registered successfully.|
+| Enroll(uint64_t scheduleId, const std::vector\<uint8_t>& extraInfo,<br>        const sptr\<IExecutorCallback>& callbackObj) | Enrolls a fingerprint.                                              |
+| Authenticate(uint64_t scheduleId, const std::vector\<uint64_t>& templateIdList,<br>        const std::vector\<uint8_t>& extraInfo, const sptr\<IExecutorCallback>& callbackObj) | Authenticates a fingerprint (version V1_0).        |
+| AuthenticateV1_1(uint64_t scheduleId, const std::vector\<uint64_t>& templateIdList,<br>        bool endAfterFirstFail, const std::vector\<uint8_t>& extraInfo, const sptr\<IExecutorCallback>& callbackObj) | Authenticates a fingerprint (version V1_1).        |
+| Identify(uint64_t scheduleId, const std::vector\<uint8_t>& extraInfo,<br>        const sptr\<IExecutorCallback>& callbackObj) | Identifies a fingerprint.          |
+| Delete(const std::vector\<uint64_t>& templateIdList)          | Deletes a fingerprint.       |
 | Cancel(uint64_t scheduleId)     | Cancels a fingerprint enrollment, authentication, or identification operation based on the **scheduleId**.    |
-| SendCommand(int32_t commandId, const std::vector<uint8_t>& extraInfo,<br>        const sptr<IExecutorCallback>& callbackObj) | Sends commands to the Fingerprint_auth driver.      |
+| SendCommand(int32_t commandId, const std::vector\<uint8_t>& extraInfo,<br>        const sptr\<IExecutorCallback>& callbackObj) | Sends commands to the Fingerprint_auth driver.      |
+| GetProperty(const std::vector\<uint64_t>& templateIdList,<br>const std::vector\<GetPropertyType>& propertyTypes, Property& property) | Obtains executor property information.|
+| SetCachedTemplates(const std::vector\<uint64_t> &templateIdList) | Sets a list of templates to be cached.|
+| RegisterSaCommandCallback(const sptr\<ISaCommandCallback> &callbackObj) | Registers a callback to be invoked when an SA command is executed.|
 
 **Table 2** Callbacks
 
 | API                                                      | Description                |
 | ------------------------------------------------------------ | ------------------------ |
-| IExecutorCallback::OnResult(int32_t code, const std::vector<uint8_t>& extraInfo) | Called to return the operation result.    |
-| IExecutorCallback::OnTip(int32_t code, const std::vector<uint8_t>& extraInfo) | Called to return the interaction information about the operation process.|
+| IExecutorCallback::OnResult(int32_t code, const std::vector\<uint8_t>& extraInfo) | Called to return the operation result.    |
+| IExecutorCallback::OnTip(int32_t code, const std::vector\<uint8_t>& extraInfo) | Called to return the interaction information about the operation process.|
+| ISaCommandCallback::OnSaCommands(const std::vector\<SaCommand>& commands) | Called to send the command list.|
 
 ### How to Develop
 
@@ -119,12 +125,12 @@ The following uses the Hi3516D V300 development board as an example to demonstra
 
 ```undefined
 // drivers/peripheral/fingerprint_auth
-├── BUILD.gn     # Build script
-├── bundle.json # Component description file
-└── hdi_service # Fingerprint_auth driver implementation
-    ├── BUILD.gn     # Build script
-    ├── include      # Header files
-    └── src          # Source files
+├── BUILD.gn       # Build script
+├── bundle.json    # Component description file
+└── hdi_service    # Fingerprint_auth driver implementation
+    ├── BUILD.gn   # Build script
+    ├── include    # Header files
+    └── src        # Source files
         ├── executor_impl.cpp                      # Implementation of authentication and enrollment APIs
         ├── fingerprint_auth_interface_driver.cpp  # Fingerprint_auth driver entry
         └── fingerprint_auth_interface_service.cpp # Implementation of the API for obtaining the executor list
@@ -140,7 +146,7 @@ The development procedure is as follows:
        struct IDeviceIoService ioService;
        OHOS::sptr<OHOS::IRemoteObject> stub;
    };
-   
+
    // Enable the IPC service to call the response API.
    static int32_t FingerprintAuthInterfaceDriverDispatch(struct HdfDeviceIoClient *client, int cmdId, struct HdfSBuf *data,
        struct HdfSBuf *reply)
@@ -148,11 +154,11 @@ The development procedure is as follows:
        IAM_LOGI("start");
        auto *hdfFingerprintAuthInterfaceHost = CONTAINER_OF(client->device->service,
            struct HdfFingerprintAuthInterfaceHost, ioService);
-   
+
        OHOS::MessageParcel *dataParcel = nullptr;
        OHOS::MessageParcel *replyParcel = nullptr;
        OHOS::MessageOption option;
-   
+
        if (SbufToParcel(data, &dataParcel) != HDF_SUCCESS) {
            IAM_LOGE("%{public}s:invalid data sbuf object to dispatch", __func__);
            return HDF_ERR_INVALID_PARAM;
@@ -161,10 +167,10 @@ The development procedure is as follows:
            IAM_LOGE("%{public}s:invalid reply sbuf object to dispatch", __func__);
            return HDF_ERR_INVALID_PARAM;
        }
-   
+
        return hdfFingerprintAuthInterfaceHost->stub->SendRequest(cmdId, *dataParcel, *replyParcel, option);
    }
-   
+
    // Initialize the HdfFingerprintAuthInterfaceDriver object.
    int HdfFingerprintAuthInterfaceDriverInit(struct HdfDeviceObject *deviceObject)
    {
@@ -175,7 +181,7 @@ The development procedure is as follows:
        }
        return HDF_SUCCESS;
    }
-   
+
    // Bind the service provided by the Fingerprint_auth driver to the HDF.
    int HdfFingerprintAuthInterfaceDriverBind(struct HdfDeviceObject *deviceObject)
    {
@@ -185,29 +191,29 @@ The development procedure is as follows:
            IAM_LOGE("%{public}s: failed to create HdfFaceAuthInterfaceHost object", __func__);
            return HDF_FAILURE;
        }
-   
+
        hdfFingerprintAuthInterfaceHost->ioService.Dispatch = FingerprintAuthInterfaceDriverDispatch;
        hdfFingerprintAuthInterfaceHost->ioService.Open = NULL;
        hdfFingerprintAuthInterfaceHost->ioService.Release = NULL;
-   
+
        auto serviceImpl = IFingerprintAuthInterface::Get(true);
        if (serviceImpl == nullptr) {
            IAM_LOGE("%{public}s: failed to implement service", __func__);
            return HDF_FAILURE;
        }
-   
+
        hdfFingerprintAuthInterfaceHost->stub = OHOS::HDI::ObjectCollector::GetInstance().GetOrNewObject(serviceImpl,
            IFaceAuthInterface::GetDescriptor());
        if (hdfFingerprintAuthInterfaceHost->stub == nullptr) {
            IAM_LOGE("%{public}s: Failed to get stub object", __func__);
            return HDF_FAILURE;
        }
-   
+
        deviceObject->service = &hdfFingerprintAuthInterfaceHost->ioService;
        IAM_LOGI("success");
        return HDF_SUCCESS;
    }
-   
+
    // Release the resources used by the Fingerprint_auth driver.
    void HdfFingerprintAuthInterfaceDriverRelease(struct HdfDeviceObject *deviceObject)
    {
@@ -217,7 +223,7 @@ The development procedure is as follows:
        delete hdfFaceAuthInterfaceHost;
        IAM_LOGI("success");
    }
-   
+
    // Register the Fingerprint_auth driver entry data structure object.
    struct HdfDriverEntry g_fingerprintAuthInterfaceDriverEntry = {
        .moduleVersion = 1,
@@ -226,7 +232,7 @@ The development procedure is as follows:
        .Init = HdfFingerprintAuthInterfaceDriverInit,
        .Release = HdfFingerprintAuthInterfaceDriverRelease,
    };
-   
+
    // Call HDF_INIT to register the driver entry with the HDF. When loading the driver, the HDF calls the Bind() function and then the Init() function. If the Init() function fails to be called, the HDF will call Release() to release driver resources and exit the driver model.
    HDF_INIT(g_fingerprintAuthInterfaceDriverEntry);
    ```
@@ -239,15 +245,15 @@ The development procedure is as follows:
    public:
        ExecutorImpl(struct ExecutorInfo executorInfo);
        virtual ~ExecutorImpl() {}
-   
+
    private:
        struct ExecutorInfo executorInfo_; // Executor information
    };
-   
+
    static constexpr uint16_t SENSOR_ID = 123; // Executor sensor ID
    static constexpr uint32_t EXECUTOR_TYPE = 123; // Executor type
    static constexpr size_t PUBLIC_KEY_LEN = 32; //32-byte public key of the executor
-   
+
    // Create an HDI service object.
    extern "C" IFaceAuthInterface *FingerprintAuthInterfaceImplGetInstance(void)
    {
@@ -258,9 +264,9 @@ The development procedure is as follows:
        }
        return fingerprintAuthInterfaceService;
    }
-   
+
    // Obtain the executor list and create an executor.
-   int32_t GetExecutorList(std::vector<sptr<IExecutor>>& executorList)
+   int32_t GetExecutorListV1_1(std::vector<sptr<V1_1::IExecutor>>& executorList)
    {
        IAM_LOGI("interface mock start");
        executorList.clear();
@@ -278,13 +284,24 @@ The development procedure is as follows:
            IAM_LOGE("executor is nullptr");
            return HDF_FAILURE;
        }
-       executorList.push_back(sptr<IExecutor>(executor));
+       executorList.push_back(sptr<V1_1::IExecutor>(executor));
        IAM_LOGI("interface mock success");
        return HDF_SUCCESS;
    }
+
+   // Obtain the executor list. The method of V1_0 is called to invoke the method of V1_1 through parameter conversion.
+   int32_t GetExecutorList(std::vector<sptr<V1_0::IExecutor>> &executorList)
+   {
+       std::vector<sptr<V1_1::IExecutor>> executorListV1_1;
+       int32_t result = GetExecutorListV1_1(executorListV1_1);
+       for (auto &executor : executorListV1_1) {
+           executorList.push_back(executor);
+       }
+       return result;
+   }
    ```
 
-3. Implement functions of the executor. For details about the code, see [executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/fingerprint_auth/hdi_service/src/executor_impl.cpp).<br>The sample code is as follows:
+3. Implement each function of the executor. For details about the code, see [executor_impl.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/fingerprint_auth/hdi_service/src/executor_impl.cpp).<br>The sample code is as follows:
 
    ```c++
    // Obtain the executor information.
@@ -295,7 +312,7 @@ The development procedure is as follows:
        IAM_LOGI("Executor information got successfully");
        return HDF_SUCCESS;
    }
-   
+
    // Obtain template information based on templateId.
    int32_t GetTemplateInfo(uint64_t templateId, TemplateInfo& info)
    {
@@ -305,7 +322,7 @@ The development procedure is as follows:
        IAM_LOGI("Template information got successfully");
        return HDF_SUCCESS;
    }
-   
+
    // After the executor is successfully registered, obtain the public key and template ID list from User_auth and save the public key. The executor compares its template ID list with the template ID list obtained and updates its template ID list.
    int32_t OnRegisterFinish(const std::vector<uint64_t>& templateIdList,
        const std::vector<uint8_t>& frameworkPublicKey, const std::vector<uint8_t>& extraInfo)
@@ -317,7 +334,7 @@ The development procedure is as follows:
        IAM_LOGI("registration finished");
        return HDF_SUCCESS;
    }
-   
+
    // Enroll fingerprints.
    int32_t Enroll(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,
        const sptr<IExecutorCallback>& callbackObj)
@@ -333,16 +350,25 @@ The development procedure is as follows:
        }
        return HDF_SUCCESS;
    }
-   
-   // Authenticate fingerprints.
-   int32_t Authenticate(uint64_t scheduleId, const std::vector<uint64_t>& templateIdList,
+
+   // Call Authenticate() of V1_0 to invoke authenticate() of V1_1.
+   int32_t Authenticate(uint64_t scheduleId, const std::vector<uint64_t> &templateIdList,
+       const std::vector<uint8_t> &extraInfo, const sptr<IExecutorCallback> &callbackObj)
+   {
+       IAM_LOGI("interface mock start");
+       return AuthenticateV1_1(scheduleId, templateIdList, true, extraInfo, callbackObj);
+   }
+
+   // Call Authenticate() of V1_1 to implement fingerprint authentication.
+   int32_t AuthenticateV1_1(uint64_t scheduleId, const std::vector<uint64_t>& templateIdList, bool endAfterFirstFail,
        const std::vector<uint8_t>& extraInfo, const sptr<IExecutorCallback>& callbackObj)
    {
        IAM_LOGI("interface mock start");
        static_cast<void>(scheduleId);
        static_cast<void>(templateIdList);
+       static_cast<void>(endAfterFirstFail);
        static_cast<void>(extraInfo);
-       IAM_LOGI("authenticate, result is %{public}d", ResultCode::NOT_ENROLLED);
+       IAM_LOGI("authenticateV1_1, result is %{public}d", ResultCode::NOT_ENROLLED);
        int32_t ret = callbackObj->OnResult(ResultCode::NOT_ENROLLED, {});
        if (ret != ResultCode::SUCCESS) {
            IAM_LOGE("callback result is %{public}d", ret);
@@ -350,7 +376,7 @@ The development procedure is as follows:
        }
        return HDF_SUCCESS;
    }
-   
+
    // Identify fingerprints.
    int32_t Identify(uint64_t scheduleId, const std::vector<uint8_t>& extraInfo,
        const sptr<IExecutorCallback>& callbackObj)
@@ -366,7 +392,7 @@ The development procedure is as follows:
        }
        return HDF_SUCCESS;
    }
-   
+
    // Delete fingerprints.
    int32_t Delete(const std::vector<uint64_t>& templateIdList)
    {
@@ -375,7 +401,7 @@ The development procedure is as follows:
        IAM_LOGI("delete success");
        return HDF_SUCCESS;
    }
-   
+
    // Cancel the operation based on the specified scheduleId.
    int32_t Cancel(uint64_t scheduleId)
    {
@@ -384,7 +410,7 @@ The development procedure is as follows:
        IAM_LOGI("cancel success");
        return HDF_SUCCESS;
    }
-   
+
    // Send template locking or unlocking command from the Fingerprint_auth service to the Fingerprint_auth driver.
    int32_t SendCommand(int32_t commandId, const std::vector<uint8_t>& extraInfo,
        const sptr<IExecutorCallback>& callbackObj)
@@ -419,8 +445,34 @@ The development procedure is as follows:
        }
        return HDF_SUCCESS;
    }
+
+   // Obtain executor properties.
+   int32_t ExecutorImpl::GetProperty(
+       const std::vector<uint64_t> &templateIdList, const std::vector<GetPropertyType> &propertyTypes, Property &property)
+   {
+       IAM_LOGI("interface mock start");
+       property = {};
+       IAM_LOGI("get property success");
+       return HDF_SUCCESS;
+   }
+
+   // Set a list of templates to be cached.
+   int32_t ExecutorImpl::SetCachedTemplates(const std::vector<uint64_t> &templateIdList)
+   {
+       IAM_LOGI("interface mock start");
+       IAM_LOGI("set cached templates success");
+       return HDF_SUCCESS;
+   }
+
+   // Register the callback to be invoked when the SA command is executed.
+   int32_t ExecutorImpl::RegisterSaCommandCallback(const sptr<ISaCommandCallback> &callbackObj)
+   {
+       IAM_LOGI("interface mock start");
+       IAM_LOGI("register sa command callback success");
+       return HDF_SUCCESS;
+   }
    ```
-   
+
 4. Modify **serviceName2Config** in the **fingerprint_auth_service.cpp** file if you need to add a driver or modify driver information.
 
    ```c++

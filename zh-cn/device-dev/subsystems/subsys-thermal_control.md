@@ -52,7 +52,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     | name="current" | 充电电流管控动作 | event | 为1时发送事件，为0时不发送事件 | int | 0，1 |
     | name="voltage" | 充电电压管控动作（控制快充和慢充时的充电电压大小） | protocol | 支持的充电协议，快充（sc）和慢充（buck） | string | sc，buck |
     | name="voltage" | 充电电压管控动作 | event | 为1时发送事件，为0时不发送事件 | int | 0，1 |
-    | name="process_ctrl" | 进程管控动作（控制前台和后台进程存活状态） | event | 为1时发送事件，为0时不发送事件 | int | 0，1 |
+    | name="process_ctrl" | 进程管控动作（控制前台和后台进程存活状态） | event | 为1时发送事件，为0时不发送事件，为空时默认值为0 | int | 0，1 |
     | name="shut_down" | 关机管控动作（控制是否关机） | event | 为1时发送事件，为0时不发送事件 | int | 0，1 |
     | name="thermallevel" | 热等级管控动作（控制热等级上报） | event | 为1时发送事件，为0时不发送事件 | int | 0，1 |
     | name="popup" | 弹窗管控动作（控制是否弹窗） | 无 | 无 | 无 | 无 |
@@ -67,7 +67,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
         <item name="volume" uid="2001,2002"/>
         <item name="current" protocol="sc,buck" event="1"/>
         <item name="voltage" protocol="sc,buck" event="1"/>
-        <item name="process_ctrl" param="32,64,128,256" event=""/>
+        <item name="process_ctrl" event=""/>
         <item name="shut_down" event="0"/>
         <item name="thermallevel" event="0"/>
         <item name="popup"/>
@@ -143,7 +143,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     name: volume	uid: 2001,2002	strict: 0	enableEvent: 0
     name: current	protocol: sc,buck	strict: 0	enableEvent: 1
     name: voltage	protocol: sc,buck	strict: 0	enableEvent: 1
-    name: process_ctrl	params: 32,64,128,256	strict: 0	enableEvent: 0
+    name: process_ctrl	strict: 0	enableEvent: 0
     name: shut_down	strict: 0	enableEvent: 0
     name: thermallevel	strict: 0	enableEvent: 0
     name: popup	strict: 0	enableEvent: 0

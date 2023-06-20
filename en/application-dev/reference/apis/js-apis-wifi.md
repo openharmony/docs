@@ -31,6 +31,17 @@ Enables WLAN.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Example**
+
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	wifi.enableWifi();
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.disableWifi
 
@@ -50,6 +61,18 @@ Disables WLAN.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Example**
+
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	wifi.disableWifi();
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+
+```
 
 ## wifi.isWifiActive
 
@@ -67,6 +90,18 @@ Checks whether WLAN is enabled.
   | -------- | -------- |
   | boolean | Returns **true** if WLAN is enabled; returns **false** otherwise.|
 
+**Example**
+
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let isActivate = wifi.isActivate();
+	console.info("isActivate:" + isActivate);
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.scan
 
@@ -84,6 +119,17 @@ Starts a scan for WLAN.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Example**
+
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	wifi.scan();
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.getScanInfos
 
@@ -119,46 +165,47 @@ Obtains the scan result. This API uses an asynchronous callback to return the re
   | callback | AsyncCallback&lt;&nbsp;Array&lt;[WifiScanInfo](#wifiscaninfo)&gt;&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the detected hotspots. Otherwise, **err** is a non-zero value and **data** is empty.|
 
 **Example**
-  ```js
-  import wifi from '@ohos.wifi';
-  
-  wifi.getScanInfos((err, result) => {
-      if (err) {
-          console.error("get scan info error");
-          return;
-      }
-  
-      var len = Object.keys(result).length;
-      console.log("wifi received scan info: " + len);
-      for (var i = 0; i < len; ++i) {
-          console.info("ssid: " + result[i].ssid);
-          console.info("bssid: " + result[i].bssid);
-          console.info("capabilities: " + result[i].capabilities);
-          console.info("securityType: " + result[i].securityType);
-          console.info("rssi: " + result[i].rssi);
-          console.info("band: " + result[i].band);
-          console.info("frequency: " + result[i].frequency);
-          console.info("channelWidth: " + result[i].channelWidth);
-          console.info("timestamp: " + result[i].timestamp);
-      }
-  });
-  
-  wifi.getScanInfos().then(result => {
-      var len = Object.keys(result).length;
-      console.log("wifi received scan info: " + len);
-      for (var i = 0; i < len; ++i) {
-          console.info("ssid: " + result[i].ssid);
-          console.info("bssid: " + result[i].bssid);
-          console.info("capabilities: " + result[i].capabilities);
-          console.info("securityType: " + result[i].securityType);
-          console.info("rssi: " + result[i].rssi);
-          console.info("band: " + result[i].band);
-          console.info("frequency: " + result[i].frequency);
-          console.info("channelWidth: " + result[i].channelWidth);
-          console.info("timestamp: " + result[i].timestamp);
-      }
-  });
-  ```
+
+```js
+import wifi from '@ohos.wifi';
+
+wifi.getScanInfos((err, result) => {
+    if (err) {
+        console.error("get scan info error");
+        return;
+    }
+
+    var len = Object.keys(result).length;
+    console.log("wifi received scan info: " + len);
+    for (var i = 0; i < len; ++i) {
+        console.info("ssid: " + result[i].ssid);
+        console.info("bssid: " + result[i].bssid);
+        console.info("capabilities: " + result[i].capabilities);
+        console.info("securityType: " + result[i].securityType);
+        console.info("rssi: " + result[i].rssi);
+        console.info("band: " + result[i].band);
+        console.info("frequency: " + result[i].frequency);
+        console.info("channelWidth: " + result[i].channelWidth);
+        console.info("timestamp: " + result[i].timestamp);
+    }
+});
+
+wifi.getScanInfos().then(result => {
+    var len = Object.keys(result).length;
+    console.log("wifi received scan info: " + len);
+    for (var i = 0; i < len; ++i) {
+        console.info("ssid: " + result[i].ssid);
+        console.info("bssid: " + result[i].bssid);
+        console.info("capabilities: " + result[i].capabilities);
+        console.info("securityType: " + result[i].securityType);
+        console.info("rssi: " + result[i].rssi);
+        console.info("band: " + result[i].band);
+        console.info("frequency: " + result[i].frequency);
+        console.info("channelWidth: " + result[i].channelWidth);
+        console.info("timestamp: " + result[i].timestamp);
+    }
+});
+```
 
 
 ## WifiScanInfo
@@ -238,6 +285,25 @@ Adds network configuration. This API uses a promise to return the result.
   | -------- | -------- |
   | Promise&lt;number&gt; | Promise used to return the WLAN configuration ID. If **-1** is returned, the network configuration fails to be added.|
 
+  **Example**
+
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let config = {
+		ssid : "****",
+		preSharedKey : "****",
+		securityType : 0
+	}
+	wifi.addDeviceConfig(config).then(result => {
+		console.info("result:" + JSON.stringify(result));
+	});	
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
+
 ## WifiDeviceConfig
 
 Represents the WLAN configuration.
@@ -252,13 +318,13 @@ Represents the WLAN configuration.
 | preSharedKey | string | Yes| No| PSK of the hotspot.|
 | isHiddenSsid | boolean | Yes| No| Whether the network is hidden.|
 | securityType | [WifiSecurityType](#wifisecuritytype) | Yes| No| Security type.|
-| creatorUid | number | Yes| No| ID of the creator.<br> **System API**: This is a system API.|
-| disableReason | number | Yes| No| Reason for disabling WLAN.<br> **System API**: This is a system API.|
-| netId | number | Yes| No| Network ID.<br> **System API**: This is a system API.|
-| randomMacType | number | Yes| No| Random MAC type.<br> **System API**: This is a system API.|
-| randomMacAddr | string | Yes| No| Random MAC address.<br> **System API**: This is a system API.|
-| ipType | [IpType](#iptype7) | Yes| No| IP address type.<br> **System API**: This is a system API.|
-| staticIp | [IpConfig](#ipconfig7) | Yes| No| Static IP address configuration.<br> **System API**: This is a system API.|
+| creatorUid | number | Yes| No| ID of the creator.<br>**System API**: This is a system API.|
+| disableReason | number | Yes| No| Reason for disabling WLAN.<br>**System API**: This is a system API.|
+| netId | number | Yes| No| Network ID.<br>**System API**: This is a system API.|
+| randomMacType | number | Yes| No| Random MAC type.<br>**System API**: This is a system API.|
+| randomMacAddr | string | Yes| No| Random MAC address.<br>**System API**: This is a system API.|
+| ipType | [IpType](#iptype7) | Yes| No| IP address type.<br>**System API**: This is a system API.|
+| staticIp | [IpConfig](#ipconfig7) | Yes| No| Static IP address configuration.<br>**System API**: This is a system API.|
 
 
 ## IpType<sup>7+</sup>
@@ -312,7 +378,24 @@ Adds network configuration. This API uses an asynchronous callback to return the
   | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
   | callback | AsyncCallback&lt;number&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the network configuration ID. If **data** is **-1**, the operation has failed. If **err** is not **0**, an error has occurred.|
 
+**Example**
 
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let config = {
+		ssid : "****",
+		preSharedKey : "****",
+		securityType : 0
+	}
+	wifi.addDeviceConfig(config,(error,result) => {
+		console.info("result:" + JSON.stringify(result));
+	});	
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 ## wifi.addUntrustedConfig<sup>7+</sup>
 
 addUntrustedConfig(config: WifiDeviceConfig): Promise&lt;boolean&gt;
@@ -335,6 +418,23 @@ Adds the configuration of an untrusted network. This API uses a promise to retur
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let config = {
+		ssid : "****",
+		preSharedKey : "****",
+		securityType : 0
+	}
+	wifi.addUntrustedConfig(config).then(result => {
+		console.info("result:" + JSON.stringify(result));
+	});	
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.addUntrustedConfig<sup>7+</sup>
 
@@ -353,6 +453,23 @@ Adds the configuration of an untrusted network. This API uses an asynchronous ca
   | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to add.|
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If the operation fails, **data** is **false**. If **err** is not **0**, an error has occurred.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let config = {
+		ssid : "****",
+		preSharedKey : "****",
+		securityType : 0
+	}
+	wifi.addUntrustedConfig(config,(error,result) => {
+		console.info("result:" + JSON.stringify(result));
+	});	
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.removeUntrustedConfig<sup>7+</sup>
 
@@ -376,6 +493,21 @@ Removes the configuration of an untrusted network. This API uses a promise to re
   | -------- | -------- |
   | Promise&lt;boolean&gt; | Promise used to return the result. If the operation is successful, **true** is returned; otherwise, **false** is returned.|
 
+**Example**
+
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let networkId = 0;
+	wifi.removeUntrustedConfig(networkId).then(result => {
+		console.info("result:" + JSON.stringify(result));
+	});	
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
+
 
 ## wifi.removeUntrustedConfig<sup>7+</sup>
 
@@ -394,6 +526,19 @@ Removes the configuration of an untrusted network. This API uses an asynchronous
 | config | [WifiDeviceConfig](#wifideviceconfig) | Yes| WLAN configuration to remove.|
   | callback | AsyncCallback&lt;boolean&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is **true**. If the operation fails, **data** is **false**. If **err** is not **0**, an error has occurred.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let networkId = 0;
+	wifi.removeUntrustedConfig(networkId,(error,result) => {
+	console.info("result:" + JSON.stringify(result));
+	});	
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.connectToNetwork
 
@@ -419,6 +564,18 @@ Connects to the specified network.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Example**
+
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let networkId = 0;
+	wifi.connectToNetwork(networkId);
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}	
+```
 
 ## wifi.connectToDevice
 
@@ -445,6 +602,22 @@ Connects to the specified network.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let config = {
+		ssid : "****",
+		preSharedKey : "****",
+		securityType : 3
+	}
+	wifi.connectToDevice(config);
+			
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.disconnect
 
@@ -465,6 +638,16 @@ Disconnects the network.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	wifi.disconnect();
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.getSignalLevel
 
@@ -489,6 +672,20 @@ Obtains the WLAN signal level.
   | -------- | -------- |
   | number | Signal level obtained. The value range is [0, 4].|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let rssi = 0;
+	let band = 0;
+	let level = wifi.getSignalLevel(rssi,band);
+	console.info("lelvel:" + JSON.stringify(lelvel));
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+
+```
 
 ## wifi.getLinkedInfo
 
@@ -524,23 +721,23 @@ Obtains WLAN connection information. This API uses an asynchronous callback to r
   | callback | AsyncCallback&lt;[WifiLinkedInfo](#wifilinkedinfo)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the WLAN connection information obtained. If **err** is not **0**, an error has occurred.|
 
 **Example**
-  ```js
-  import wifi from '@ohos.wifi';
-  
-  wifi.getLinkedInfo((err, data) => {
-      if (err) {
-          console.error("get linked info error");
-          return;
-      }
-      console.info("get wifi linked info: " + JSON.stringify(data));
-  });
-  
-  wifi.getLinkedInfo().then(data => {
-      console.info("get wifi linked info: " + JSON.stringify(data));
-  }).catch(error => {
-      console.info("get linked info error");
-  });
-  ```
+```js
+import wifi from '@ohos.wifi';
+
+wifi.getLinkedInfo((err, data) => {
+    if (err) {
+        console.error("get linked info error");
+        return;
+    }
+    console.info("get wifi linked info: " + JSON.stringify(data));
+});
+
+wifi.getLinkedInfo().then(data => {
+    console.info("get wifi linked info: " + JSON.stringify(data));
+}).catch(error => {
+    console.info("get linked info error");
+});
+```
 
 
 ## WifiLinkedInfo
@@ -553,18 +750,18 @@ Represents the WLAN connection information.
 | -------- | -------- | -------- | -------- | -------- |
 | ssid | string | Yes| No| SSID of the hotspot, in UTF-8 format.|
 | bssid | string | Yes| No| BSSID of the hotspot.|
-| networkId | number | Yes| No| Network configuration ID.<br> **System API**: This is a system API.|
+| networkId | number | Yes| No| Network configuration ID.<br>**System API**: This is a system API.|
 | rssi | number | Yes| No| RSSI of the hotspot, in dBm.|
 | band | number | Yes| No| Frequency band of the WLAN AP.|
 | linkSpeed | number | Yes| No| Speed of the WLAN AP.|
 | frequency | number | Yes| No| Frequency of the WLAN AP.|
 | isHidden | boolean | Yes| No| Whether to hide the WLAN AP.|
 | isRestricted | boolean | Yes| No| Whether to restrict data volume at the WLAN AP.|
-| chload | number | Yes| No| Channel load. A larger value indicates a higher load.<br> **System API**: This is a system API.|
-| snr | number | Yes| No| Signal-to-noise ratio (SNR).<br> **System API**: This is a system API.|
+| chload | number | Yes| No| Channel load. A larger value indicates a higher load.<br>**System API**: This is a system API.|
+| snr | number | Yes| No| Signal-to-noise ratio (SNR).<br>**System API**: This is a system API.|
 | macAddress | string | Yes| No| MAC address of the device.|
 | ipAddress | number | Yes| No| IP address of the device that sets up the WLAN connection.|
-| suppState | [SuppState](#suppstate) | Yes| No| Supplicant state.<br> **System API**: This is a system API.|
+| suppState | [SuppState](#suppstate) | Yes| No| Supplicant state.<br>**System API**: This is a system API.|
 | connState | [ConnState](#connstate) | Yes| No| WLAN connection state.|
 
 
@@ -684,6 +881,19 @@ Checks whether the device supports the specified WLAN feature.
   | -------- | -------- |
   | boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let featureId = 0;
+	let ret = wifi.isFeatureSupported(featureId);
+	console.info("isFeatureSupported:" + ret);
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+
+```
 
 ## wifi.getDeviceMacAddress<sup>7+</sup>
 
@@ -703,6 +913,18 @@ Obtains the device MAC address.
   | -------- | -------- |
   | string[] | MAC address obtained.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let ret = wifi.getDeviceMacAddress();
+	console.info("deviceMacAddress:" + JSON.stringify(ret));
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+
+```
 
 ## wifi.getIpInfo<sup>7+</sup>
 
@@ -720,6 +942,17 @@ Obtains IP information.
   | -------- | -------- |
   | [IpInfo](#ipinfo7) | IP information obtained.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let info = wifi.getIpInfo();
+	console.info("info:" + JSON.stringify(info));
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## IpInfo<sup>7+</sup>
 
@@ -754,6 +987,17 @@ Obtains the country code.
   | -------- | -------- |
   | string | Country code obtained.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let code = wifi.getCountryCode();
+	console.info("code:" + code);
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.reassociate<sup>7+</sup>
 
@@ -773,6 +1017,16 @@ Re-associates with the network.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	wifi.reassociate();
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.reconnect<sup>7+</sup>
 
@@ -792,6 +1046,16 @@ Reconnects to the network.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	wifi.reconnect();
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.getDeviceConfigs<sup>7+</sup>
 
@@ -811,6 +1075,17 @@ Obtains network configuration.
   | -------- | -------- |
   | &nbsp;Array&lt;[WifiDeviceConfig](#wifideviceconfig)&gt; | Array of network configuration obtained.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let configs = wifi.getDeviceConfigs();
+	console.info("configs:" + JSON.stringify(configs));
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.updateNetwork<sup>7+</sup>
 
@@ -836,6 +1111,22 @@ Updates network configuration.
   | -------- | -------- |
   | number | ID of the updated network configuration. The value **-1** indicates that the operation has failed.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let config = {
+		ssid : "****",
+		preSharedKey : "****",
+		securityType : 3
+	}
+	let ret = wifi.updateNetwork(config);
+	console.error("ret:" + ret);		
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.disableNetwork<sup>7+</sup>
 
@@ -861,6 +1152,17 @@ Disables network configuration.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let netId = 0;
+	wifi.disableNetwork(netId);		
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.removeAllNetwork<sup>7+</sup>
 
@@ -880,6 +1182,16 @@ Removes the configuration of all networks.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	wifi.removeAllNetwork();		
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.removeDevice<sup>7+</sup>
 
@@ -905,6 +1217,17 @@ Removes the specified network configuration.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let id = 0;
+	wifi.removeDevice(id);		
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.enableHotspot<sup>7+</sup>
 
@@ -924,6 +1247,16 @@ Enables this hotspot.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	wifi.enableHotspot();	
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.disableHotspot<sup>7+</sup>
 
@@ -943,6 +1276,16 @@ Disables this hotspot.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Example**
+```js
+import wifi from '@ohos.wifiManager';
+
+try {
+	wifiManager.disableHotspot();	
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.isHotspotDualBandSupported<sup>7+</sup>
 
@@ -962,6 +1305,17 @@ Checks whether the hotspot supports dual band.
   | -------- | -------- |
   | boolean | Returns **true** if the feature is supported; returns **false** otherwise.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let ret = wifi.isHotspotDualBandSupported();
+	console.info("result:" + ret);		
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.isHotspotActive<sup>7+</sup>
 
@@ -981,6 +1335,17 @@ Checks whether this hotspot is active.
   | -------- | -------- |
   | boolean | Returns **true** if the hotspot is active; returns **false** otherwise.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let ret = wifi.isHotspotActive();
+	console.info("result:" + ret);		
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.setHotspotConfig<sup>7+</sup>
 
@@ -1006,6 +1371,25 @@ Sets hotspot configuration.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let config = {
+		ssid: "****",
+		securityType: 3,
+		band: 0,
+		channel: 0,
+		preSharedKey: "****",
+		maxConn: 0
+	}
+	let ret = wifi.setHotspotConfig();
+	console.info("result:" + ret);		
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## HotspotConfig<sup>7+</sup>
 
@@ -1042,6 +1426,17 @@ obtains hotspot configuration.
   | -------- | -------- |
   | [HotspotConfig](#hotspotconfig7) | Hotspot configuration obtained.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let config = wifi.getHotspotConfig();
+	console.info("result:" + JSON.stringify(config));		
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.getStations<sup>7+</sup>
 
@@ -1061,6 +1456,17 @@ Obtains information about the connected stations.
   | -------- | -------- |
   | &nbsp;Array&lt;[StationInfo](#stationinfo7)&gt; | Connected stations obtained.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let stations = wifi.getStations();
+	console.info("result:" + JSON.stringify(stations));		
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## StationInfo<sup>7+</sup>
 
@@ -1136,6 +1542,22 @@ Obtains P2P link information. This API uses an asynchronous callback to return t
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the P2P link information. If **err** is not **0**, an error has occurred.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+wifi.getP2pLinkedInfo((err, data) => {
+   if (err) {
+       console.error("get p2p linked info error");
+       return;
+   }
+	console.info("get wifi p2p linked info: " + JSON.stringify(data));
+});
+
+wifi.getP2pLinkedInfo().then(data => {
+	console.info("get wifi p2p linked info: " + JSON.stringify(data));
+});
+```
 
 ## wifi.getCurrentGroup<sup>8+</sup>
 
@@ -1170,6 +1592,22 @@ Obtains the current P2P group information. This API uses an asynchronous callbac
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiP2pGroupInfo](#wifip2pgroupinfo8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the group information obtained. If **err** is not **0**, an error has occurred.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+wifi.getCurrentGroup((err, data) => {
+   if (err) {
+       console.error("get current P2P group error");
+       return;
+   }
+	console.info("get current P2P group: " + JSON.stringify(data));
+});
+
+wifi.getCurrentGroup().then(data => {
+	console.info("get current P2P group: " + JSON.stringify(data));
+});
+```
 
 ## wifi.getP2pPeerDevices<sup>8+</sup>
 
@@ -1204,6 +1642,22 @@ Obtains the peer device list in the P2P connection. This API uses an asynchronou
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | Yes| Callback invoked to return the result. If the operation is successful, **err** is **0** and **data** is the peer device list obtained. If **err** is not **0**, an error has occurred.|
 
+**Example**
+```js
+import wifi from '@ohos.wifiManager';
+
+wifi.getP2pPeerDevices((err, data) => {
+   if (err) {
+       console.error("get P2P peer devices error");
+       return;
+   }
+	console.info("get P2P peer devices: " + JSON.stringify(data));
+});
+
+wifi.getP2pPeerDevices().then(data => {
+	console.info("get P2P peer devices: " + JSON.stringify(data));
+});
+```
 
 ## WifiP2pDevice<sup>8+</sup>
 
@@ -1257,6 +1711,24 @@ Creates a P2P group.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let config = {
+		deviceAddress: "****",
+		netId: 0,
+		passphrase: "*****",
+		groupName: "****",
+		goBand: 0
+	}
+	wifi.createGroup(config);	
+	
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## WifiP2PConfig<sup>8+</sup>
 
@@ -1302,6 +1774,16 @@ Removes this P2P group.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	wifi.removeGroup();	
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.p2pConnect<sup>8+</sup>
 
@@ -1328,71 +1810,71 @@ Sets up a P2P connection.
 
 
 **Example**
-  ```js
-  import wifi from '@ohos.wifi';
-  
-  var recvP2pConnectionChangeFunc = result => {
-      console.info("p2p connection change receive event: " + JSON.stringify(result));
-      wifi.getP2pLinkedInfo((err, data) => {
-          if (err) {
-              console.error('failed to get getP2pLinkedInfo: ' + JSON.stringify(err));
-              return;
-          }
-          console.info("get getP2pLinkedInfo: " + JSON.stringify(data));
-      });
-  }
-  wifi.on("p2pConnectionChange", recvP2pConnectionChangeFunc);
-  
-  var recvP2pDeviceChangeFunc = result => {
-      console.info("p2p device change receive event: " + JSON.stringify(result));
-  }
-  wifi.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
-  
-  var recvP2pPeerDeviceChangeFunc = result => {
-      console.info("p2p peer device change receive event: " + JSON.stringify(result));
-      wifi.getP2pPeerDevices((err, data) => {
-          if (err) {
-              console.error('failed to get peer devices: ' + JSON.stringify(err));
-              return;
-          }
-          console.info("get peer devices: " + JSON.stringify(data));
-          var len = Object.keys(data).length;
-          for (var i = 0; i < len; ++i) {
-              if (data[i].deviceName === "my_test_device") {
-                  console.info("p2p connect to test device: " + data[i].deviceAddress);
-                  var config = {
-                      "deviceAddress":data[i].deviceAddress,
-                      "netId":-2,
-                      "passphrase":"",
-                      "groupName":"",
-                      "goBand":0,
-                  }
-                  wifi.p2pConnect(config);
-              }
-          }
-      });
-  }
-  wifi.on("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
-  
-  var recvP2pPersistentGroupChangeFunc = () => {
-      console.info("p2p persistent group change receive event");
-  
-      wifi.getCurrentGroup((err, data) => {
-          if (err) {
-              console.error('failed to get current group: ' + JSON.stringify(err));
-              return;
-          }
-          console.info("get current group: " + JSON.stringify(data));
-      });
-  }
-  wifi.on("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);
-  
-  setTimeout(function() {wifi.off("p2pConnectionChange", recvP2pConnectionChangeFunc);}, 125 * 1000);
-  setTimeout(function() {wifi.off("p2pDeviceChange", recvP2pDeviceChangeFunc);}, 125 * 1000);
-  setTimeout(function() {wifi.off("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);}, 125 * 1000);
-  setTimeout(function() {wifi.off("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);}, 125 * 1000);
-  console.info("start discover devices -> " + wifi.startDiscoverDevices());
-  ```
+```js
+import wifi from '@ohos.wifi';
+
+var recvP2pConnectionChangeFunc = result => {
+    console.info("p2p connection change receive event: " + JSON.stringify(result));
+    wifi.getP2pLinkedInfo((err, data) => {
+        if (err) {
+            console.error('failed to get getP2pLinkedInfo: ' + JSON.stringify(err));
+            return;
+        }
+        console.info("get getP2pLinkedInfo: " + JSON.stringify(data));
+    });
+}
+wifi.on("p2pConnectionChange", recvP2pConnectionChangeFunc);
+
+var recvP2pDeviceChangeFunc = result => {
+    console.info("p2p device change receive event: " + JSON.stringify(result));
+}
+wifi.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
+
+var recvP2pPeerDeviceChangeFunc = result => {
+    console.info("p2p peer device change receive event: " + JSON.stringify(result));
+    wifi.getP2pPeerDevices((err, data) => {
+        if (err) {
+            console.error('failed to get peer devices: ' + JSON.stringify(err));
+            return;
+        }
+        console.info("get peer devices: " + JSON.stringify(data));
+        var len = Object.keys(data).length;
+        for (var i = 0; i < len; ++i) {
+            if (data[i].deviceName === "my_test_device") {
+                console.info("p2p connect to test device: " + data[i].deviceAddress);
+                var config = {
+                    "deviceAddress":data[i].deviceAddress,
+                    "netId":-2,
+                    "passphrase":"",
+                    "groupName":"",
+                    "goBand":0,
+                }
+                wifi.p2pConnect(config);
+            }
+        }
+    });
+}
+wifi.on("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
+
+var recvP2pPersistentGroupChangeFunc = () => {
+    console.info("p2p persistent group change receive event");
+
+    wifi.getCurrentGroup((err, data) => {
+        if (err) {
+            console.error('failed to get current group: ' + JSON.stringify(err));
+            return;
+        }
+        console.info("get current group: " + JSON.stringify(data));
+    });
+}
+wifi.on("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);
+
+setTimeout(function() {wifi.off("p2pConnectionChange", recvP2pConnectionChangeFunc);}, 125 * 1000);
+setTimeout(function() {wifi.off("p2pDeviceChange", recvP2pDeviceChangeFunc);}, 125 * 1000);
+setTimeout(function() {wifi.off("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);}, 125 * 1000);
+setTimeout(function() {wifi.off("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);}, 125 * 1000);
+console.info("start discover devices -> " + wifi.startDiscoverDevices());
+```
 
 ## wifi.p2pCancelConnect<sup>8+</sup>
 
@@ -1410,6 +1892,16 @@ Cancels this P2P connection.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	wifi.p2pCancelConnect();	
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.startDiscoverDevices<sup>8+</sup>
 
@@ -1427,6 +1919,16 @@ Starts to discover devices.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	wifi.startDiscoverDevices();	
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.stopDiscoverDevices<sup>8+</sup>
 
@@ -1444,6 +1946,16 @@ Stops discovering devices.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	wifi.stopDiscoverDevices();	
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.deletePersistentGroup<sup>8+</sup>
 
@@ -1470,6 +1982,17 @@ Deletes a persistent group.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let netId = 0;
+	wifi.deletePersistentGroup(netId);	
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## WifiP2pGroupInfo<sup>8+</sup>
 
@@ -1514,6 +2037,17 @@ Sets the device name.
   | -------- | -------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+try {
+	let name = "****";
+	wifi.setDeviceName(netId);	
+}catch(error){
+	console.error("failed:" + JSON.stringify(error));
+}
+```
 
 ## wifi.on('wifiStateChange')<sup>7+</sup>
 
@@ -1560,19 +2094,19 @@ Unregisters the WLAN state change events.
   | callback | Callback&lt;number&gt; | No| Callback for the WLAN state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
 **Example**
-  ```js
-  import wifi from '@ohos.wifi';
-  
-  var recvPowerNotifyFunc = result => {
-      console.info("Receive power state change event: " + result);
-  }
-  
-  // Register an event.
-  wifi.on("wifiStateChange", recvPowerNotifyFunc);
-  
-  // Unregister an event.
-  wifi.off("wifiStateChange", recvPowerNotifyFunc);
-  ```
+```js
+import wifi from '@ohos.wifi';
+
+var recvPowerNotifyFunc = result => {
+    console.info("Receive power state change event: " + result);
+}
+
+// Register an event.
+wifi.on("wifiStateChange", recvPowerNotifyFunc);
+
+// Unregister an event.
+wifi.off("wifiStateChange", recvPowerNotifyFunc);
+```
 
 
 ## wifi.on('wifiConnectionChange')<sup>7+</sup>
@@ -1617,6 +2151,20 @@ Unregisters the WLAN connection state change events.
   | type | string | Yes| Event type. The value is **wifiConnectionChange**.|
   | callback | Callback&lt;number&gt; | No| Callback for the WLAN connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+var recvWifiConnectionChangeFunc = result => {
+    console.info("Receive wifi connection change event: " + result);
+}
+
+// Register an event.
+wifi.on("wifiConnectionChange", recvWifiConnectionChangeFunc);
+
+// Unregister an event.
+wifi.off("wifiConnectionChange", recvWifiConnectionChangeFunc);
+```
 
 ## wifi.on('wifiScanStateChange')<sup>7+</sup>
 
@@ -1660,6 +2208,20 @@ Unregisters the WLAN scan state change events.
 | type | string | Yes| Event type. The value is **wifiScanStateChange**.|
 | callback | Callback&lt;number&gt; | No| Callback for the WLAN scan state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+var recvWifiScanStateChangeFunc = result => {
+    console.info("Receive Wifi scan state change event: " + result);
+}
+
+// Register an event.
+wifi.on("wifiScanStateChange", recvWifiScanStateChangeFunc);
+
+// Unregister an event.
+wifi.off("wifiScanStateChange", recvWifiScanStateChangeFunc);
+```
 
 ## wifi.on('wifiRssiChange')<sup>7+</sup>
 
@@ -1696,7 +2258,20 @@ Unregisters the RSSI change events.
   | type | string | Yes| Event type. The value is **wifiRssiChange**.|
 | callback | Callback&lt;number&gt; | No| Callback for the RSSI. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
 
+var recvWifiRssiChangeFunc = result => {
+    console.info("Receive wifi rssi change event: " + result);
+}
+
+// Register an event.
+wifi.on("wifiRssiChange", recvWifiRssiChangeFunc);
+
+// Unregister an event.
+wifi.off("wifiRssiChange", recvWifiRssiChangeFunc);
+```
 ## wifi.on('hotspotStateChange')<sup>7+</sup>
 
 on(type: "hotspotStateChange", callback: Callback&lt;number&gt;): void
@@ -1723,6 +2298,20 @@ Registers the hotspot state change events.
 | 2 | Activating|
 | 3 | Deactivating|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+var recvHotspotStateChangeFunc = result => {
+    console.info("Receive hotspot state change event: " + result);
+}
+
+// Register an event.
+wifi.on("hotspotStateChange", recvHotspotStateChangeFunc);
+
+// Unregister an event.
+wifi.off("hotspotStateChange", recvHotspotStateChangeFunc);
+```
 
 ## wifi.off('hotspotStateChange')<sup>7+</sup>
 
@@ -1786,6 +2375,20 @@ Unregisters the P2P state change events.
   | type | string | Yes| Event type. The value is **p2pStateChange**.|
 | callback | Callback&lt;number&gt; | No| Callback for the P2P state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+var recvP2pStateChangeFunc = result => {
+    console.info("Receive p2p state change event: " + result);
+}
+
+// Register an event.
+wifi.on("p2pStateChange", recvP2pStateChangeFunc);
+
+// Unregister an event.
+wifi.off("p2pStateChange", recvP2pStateChangeFunc);
+```
 
   ## wifi.on('p2pConnectionChange')<sup>8+</sup>
 
@@ -1822,6 +2425,20 @@ Unregisters the P2P connection state change events.
   | type | string | Yes| Event type. The value is **p2pConnectionChange**.|
 | callback | Callback&lt;[WifiP2pLinkedInfo](#wifip2plinkedinfo8)&gt; | No| Callback for the P2P connection state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+var recvP2pConnectionChangeFunc = result => {
+    console.info("Receive p2p connection change event: " + result);
+}
+
+// Register an event.
+wifi.on("p2pConnectionChange", recvP2pConnectionChangeFunc);
+
+// Unregister an event.
+wifi.off("p2pConnectionChange", recvP2pConnectionChangeFunc);
+```
 
 ## wifi.on('p2pDeviceChange')<sup>8+</sup>
 
@@ -1858,6 +2475,20 @@ Unregisters the P2P device state change events.
   | type | string | Yes| Event type. The value is **p2pDeviceChange**.|
 | callback | Callback&lt;[WifiP2pDevice](#wifip2pdevice8)&gt; | No| Callback for the P2P device state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+var recvP2pDeviceChangeFunc = result => {
+    console.info("Receive recv p2p device change event: " + result);
+}
+
+// Register an event.
+wifi.on("p2pDeviceChange", recvP2pDeviceChangeFunc);
+
+// Unregister an event.
+wifi.off("p2pDeviceChange", recvP2pDeviceChangeFunc);
+```
 
 ## wifi.on('p2pPeerDeviceChange')<sup>8+</sup>
 
@@ -1894,6 +2525,20 @@ Unregisters the P2P peer device state change events.
   | type | string | Yes| Event type. The value is **p2pPeerDeviceChange**.|
 | callback | Callback&lt;[WifiP2pDevice[]](#wifip2pdevice8)&gt; | No| Callback for the peer device state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+var recvP2pPeerDeviceChangeFunc = result => {
+    console.info("Receive recv p2p peer device change event: " + result);
+}
+
+// Register an event.
+wifi.on("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
+
+// Unregister an event.
+wifi.off("p2pPeerDeviceChange", recvP2pPeerDeviceChangeFunc);
+```
 
 ## wifi.on('p2pPersistentGroupChange')<sup>8+</sup>
 
@@ -1930,6 +2575,21 @@ Unregisters the P2P persistent group state change events.
   | type | string | Yes| Event type. The value is **p2pPersistentGroupChange**.|
 | callback | Callback&lt;void&gt; | No| Callback for the P2P persistent group state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
 
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+var recvP2pPersistentGroupChangeFunc = result => {
+    console.info("Receive recv p2p persistent group change event: " + result);
+}
+
+// Register an event.
+wifi.on("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);
+
+// Unregister an event.
+wifi.off("p2pPersistentGroupChange", recvP2pPersistentGroupChangeFunc);
+
+```
 
 ## wifi.on('p2pDiscoveryChange')<sup>8+</sup>
 
@@ -1972,3 +2632,18 @@ Unregisters the P2P device discovery state change events.
   | -------- | -------- | -------- | -------- |
   | type | string | Yes| Event type. The value is **p2pDiscoveryChange**.|
 | callback | Callback&lt;number&gt; | No| Callback for the P2P device discovery state. If this parameter is not specified, all callbacks associated with the specified event will be unregistered.|
+
+**Example**
+```js
+import wifi from '@ohos.wifi';
+
+var recvP2pDiscoveryChangeFunc = result => {
+    console.info("Receive recv p2p discovery change event: " + result);
+}
+
+// Register an event.
+wifi.on("p2pDiscoveryChange", recvP2pDiscoveryChangeFunc);
+
+// Unregister an event.
+wifi.off("p2pDiscoveryChange", recvP2pDiscoveryChangeFunc);
+```

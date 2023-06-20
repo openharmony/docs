@@ -2397,7 +2397,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   ```ts
   // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -2415,10 +2415,10 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -4860,7 +4860,7 @@ Reads the exception information from this **MessageParcel** object.
   ```ts
   // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -4878,10 +4878,10 @@ Reads the exception information from this **MessageParcel** object.
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -5452,6 +5452,7 @@ Marshals this **Parcelable** object into a **MessageSequence** object.
   | Type   | Description                            |
   | ------- | -------------------------------- |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+
 **Example**
 
   ```ts
@@ -5557,6 +5558,7 @@ Marshals the sequenceable object into a **MessageParcel** object.
   | Type   | Description                             |
   | ------- | --------------------------------  |
   | boolean | Returns **true** if the operation is successful; returns **false** otherwise.|
+
 **Example**
 
   ```ts
@@ -5673,7 +5675,7 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
   ```ts
   // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -5691,10 +5693,10 @@ Obtains a proxy or remote object. This API must be implemented by its derived cl
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6117,7 +6119,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   ```ts
   // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6135,10 +6137,10 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6193,7 +6195,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   ```ts
   // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6211,10 +6213,10 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6277,7 +6279,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   ```ts
   // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6295,10 +6297,10 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6354,7 +6356,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
   ```ts
   // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6385,10 +6387,10 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
       result.data.reclaim();
       result.reply.reclaim();
   }
-  
+
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6435,7 +6437,7 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
   ```ts
   // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6466,10 +6468,10 @@ Sends a **MessageParcel** message to the remote process in synchronous or asynch
       result.data.reclaim();
       result.reply.reclaim();
   }
-  
+
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6519,7 +6521,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   ```ts
   // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6537,10 +6539,10 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6585,7 +6587,7 @@ Obtains the **LocalInterface** object of an interface token.
   ```ts
   // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6603,10 +6605,10 @@ Obtains the **LocalInterface** object of an interface token.
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6647,7 +6649,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   ```ts
   // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6665,10 +6667,10 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6689,7 +6691,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   }
   ```
 
-### addDeathRecippient<sup>(deprecated)</sup>
+### addDeathRecipient<sup>(deprecated)</sup>
 
 >This API is no longer maintained since API version 9. You are advised to use [registerDeathRecipient](#registerdeathrecipient9).
 
@@ -6719,7 +6721,7 @@ Adds a callback for receiving the death notifications of the remote object, incl
   ```ts
   // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6737,14 +6739,14 @@ Adds a callback for receiving the death notifications of the remote object, incl
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
-  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **addDeathRecippient()** of the proxy object is called to add a callback for receiving the death notification of the remove object.
+  The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **addDeathRecipient()** of the proxy object is called to add a callback for receiving the death notification of the remove object.
 
   ```ts
   class MyDeathRecipient {
@@ -6786,7 +6788,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   ```ts
   // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6804,10 +6806,10 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6821,8 +6823,8 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   }
   let deathRecipient = new MyDeathRecipient();
   try {
-      proxy.registerDeathRecippient(deathRecipient, 0);
-      proxy.unregisterDeathRecippient(deathRecipient, 0);
+      proxy.registerDeathRecipient(deathRecipient, 0);
+      proxy.unregisterDeathRecipient(deathRecipient, 0);
   } catch(error) {
       console.info("proxy register deathRecipient fail, errorCode " + error.code);
       console.info("proxy register deathRecipient fail, errorMessage " + error.message);
@@ -6859,7 +6861,7 @@ Removes the callback used to receive death notifications of the remote object.
   ```ts
   // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6877,10 +6879,10 @@ Removes the callback used to receive death notifications of the remote object.
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -6893,7 +6895,7 @@ Removes the callback used to receive death notifications of the remote object.
       }
   }
   let deathRecipient = new MyDeathRecipient();
-  proxy.addDeathRecippient(deathRecipient, 0);
+  proxy.addDeathRecipient(deathRecipient, 0);
   proxy.removeDeathRecipient(deathRecipient, 0);
   ```
 
@@ -6927,7 +6929,7 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
   ```ts
   // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -6945,10 +6947,10 @@ For details about the error codes, see [RPC Error Codes](../errorcodes/errorcode
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
   The proxy object in the **onConnect** callback can be assigned a value only after the ability is connected asynchronously. Then, **getDescriptor()** of the proxy object is called to obtain the interface descriptor of the object.
@@ -6986,7 +6988,7 @@ Obtains the interface descriptor of this proxy object.
   ```ts
   // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -7004,10 +7006,10 @@ Obtains the interface descriptor of this proxy object.
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -7039,7 +7041,7 @@ Checks whether the **RemoteObject** is dead.
   ```ts
   // Import @ohos.ability.featureAbility only for the application developed based on the FA model.
   // import FA from "@ohos.ability.featureAbility";
-  
+
   let proxy;
   let connect = {
       onConnect: function(elementName, remoteProxy) {
@@ -7057,10 +7059,10 @@ Checks whether the **RemoteObject** is dead.
       "bundleName": "com.ohos.server",
       "abilityName": "com.ohos.server.EntryAbility",
   };
-  
+
   // Use this method to connect to the ability for the FA model.
   // FA.connectAbility(want,connect);
-  
+
   globalThis.context.connectServiceExtensionAbility(want, connect);
   ```
 
@@ -7095,9 +7097,9 @@ A constructor used to create a **MessageOption** object.
 
 **Parameters**
 
-  | Name   | Type  | Mandatory| Description                                  |
-  | --------- | ------ | ---- | -------------------------------------- |
-  | syncFlags | number | No  | Call flag, which can be synchronous or asynchronous. The default value is **synchronous**.|
+| Name| Type   | Mandatory| Description                                  |
+| ------ | ------- | ---- | -------------------------------------- |
+| async  | boolean | No  | Call flag, which can be synchronous or asynchronous. The default value is **synchronous**.|
 
 
 **Example**
@@ -7146,7 +7148,7 @@ Checks whether **SendMessageRequest** is called synchronously or asynchronously.
 
   | Type   | Description                                    |
   | ------- | ---------------------------------------- |
-  | boolean | Returns **true** if **SendMessageRequest** is called synchronously; returns **false** if **SendMessageRequest** is called asynchronously.|
+  | boolean | Returns **true** if **SendMessageRequest** is called asynchronously; returns **false** if it is called synchronously.|
 
 **Example**
 
@@ -7825,7 +7827,7 @@ Sends a **MessageSequence** message to the remote process in synchronous or asyn
 
   | Type                        | Description                                         |
   | ---------------------------- | --------------------------------------------- |
-  | Promise&lt;RequestResult&gt; | Promise used to return the **sendRequestResult** object.|
+  | Promise&lt;RequestResult&gt; | Promise used to return the **RequestResult** instance.    |
 
 **Example**
 
@@ -9101,29 +9103,30 @@ Reads data from the shared file associated with this **Ashmem** object.
 
  ```ts
   import Ability from '@ohos.app.ability.UIAbility';
+
   export default class MainAbility extends Ability {
-    onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility onCreate");
-        globalThis.context = this.context;
-    }
-    onDestroy() {
-        console.log("[Demo] MainAbility onDestroy");
-    }
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.log("[Demo] MainAbility onWindowStageCreate");
-    }
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("[Demo] MainAbility onWindowStageDestroy");
-    }
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("[Demo] MainAbility onForeground");
-    }
-    onBackground() {
-        // Ability has back to background
-        console.log("[Demo] MainAbility onBackground");
-    }
+      onCreate(want, launchParam) {
+          console.log("[Demo] MainAbility onCreate");
+          globalThis.context = this.context;
+      }
+      onDestroy() {
+          console.log("[Demo] MainAbility onDestroy");
+      }
+      onWindowStageCreate(windowStage) {
+          // Main window is created, set main page for this ability
+          console.log("[Demo] MainAbility onWindowStageCreate");
+      }
+      onWindowStageDestroy() {
+          // Main window is destroyed, release UI related resources
+          console.log("[Demo] MainAbility onWindowStageDestroy");
+      }
+      onForeground() {
+          // Ability has brought to foreground
+          console.log("[Demo] MainAbility onForeground");
+      }
+      onBackground() {
+          // Ability has back to background
+          console.log("[Demo] MainAbility onBackground");
+      }  
   };
  ```

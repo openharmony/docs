@@ -29,7 +29,7 @@ import common from '@ohos.app.ability.common';
 | bundleCodeDir | string | Yes   | No   | Bundle code directory. Do not access resource files by concatenating paths. Use the [resourceManager API](js-apis-resource-manager.md) instead.|
 | distributedFilesDir | string | Yes   | No   | Distributed file directory.|
 | eventHub | [EventHub](js-apis-inner-application-eventHub.md) | Yes   | No   | Event hub that implements event subscription, unsubscription, and triggering.|
-| area | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | Yes   | No   | Area in which the file to be access is located.|
+| area | contextConstant.[AreaMode](js-apis-app-ability-contextConstant.md) | Yes   | No   | Encryption level of the directory. |
 
 ## Context.createBundleContext
 
@@ -40,6 +40,8 @@ Creates the context based on the bundle name.
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 
@@ -102,6 +104,8 @@ createModuleContext(bundleName: string, moduleName: string): Context;
 Creates the context based on the bundle name and module name.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
 
 **Parameters**
 

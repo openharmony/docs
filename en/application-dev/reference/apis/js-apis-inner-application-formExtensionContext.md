@@ -23,7 +23,7 @@ Before using the **ServiceExtensionContext** module, you must first obtain a **F
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import formBindingData from '@ohos.app.form.formBindingData';
 
-export default class MyFormExtensionAbility extends FormExtensionAbility {
+class MyFormExtensionAbility extends FormExtensionAbility {
   onAddForm(want) {
     let formContext = this.context; // Obtain a FormExtensionContext instance.
     // ...

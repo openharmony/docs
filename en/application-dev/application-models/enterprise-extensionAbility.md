@@ -60,15 +60,15 @@ To implement EnterpriseAdminExtensionAbility, you need to activate the device ad
    };
    ```
 
-4. Register **ServiceExtensionAbility** in the [**module.json5**](../quick-start/module-configuration-file.md) file corresponding to the project module. Set **type** to **enterpriseAdmin** and **srcEntrance** to the path of the ExtensionAbility code.
+4. Register **ServiceExtensionAbility** in the [**module.json5**](../quick-start/module-configuration-file.md) file corresponding to the project module. Set **type** to **enterpriseAdmin** and **srcEntry** to the path of the ExtensionAbility code.
 
    ```ts
    "extensionAbilities": [
          {
            "name": "ohos.samples.enterprise_admin_ext_ability",
            "type": "enterpriseAdmin",
-           "visible": true,
-           "srcEntrance": "./ets/enterpriseextability/EnterpriseAdminAbility.ts"
+           "exported": true,
+           "srcEntry": "./ets/enterpriseextability/EnterpriseAdminAbility.ts"
          }
        ]
    ```

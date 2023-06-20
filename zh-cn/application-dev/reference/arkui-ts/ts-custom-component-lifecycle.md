@@ -1,12 +1,11 @@
 # 自定义组件的生命周期
 
-
 自定义组件的生命周期回调函数用于通知用户该自定义组件的生命周期，这些回调函数是私有的，在运行时由开发框架在特定的时间进行调用，不能从应用程序中手动调用这些回调函数。
 
-
->**说明：**
+>  **说明：**
 >
->允许在生命周期函数中使用Promise和异步回调函数，比如网络资源获取，定时器设置等；
+>  - 本模块首批接口从API version 7开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+>  - 允许在生命周期函数中使用Promise和异步回调函数，比如网络资源获取，定时器设置等。
 
 
 ## aboutToAppear
@@ -113,6 +112,63 @@ onMeasure?(children: Array&lt;LayoutChild&gt;, constraint: ConstraintSizeOptions
 | children   | Array&lt;[LayoutChild](#layoutchild9)&gt; | 子组件布局信息。         |
 | constraint | [ConstraintSizeOptions](ts-types.md#constraintsizeoptions) | 父组件constraint信息。 |
 
+## onRecycle<sup>10+</sup>
+
+onRecycle?(params: { [key: string]: unknown }): void
+
+当一个可复用的自定义组件从复用缓存中重新加入到节点树时，触发onRecycle生命周期回调，并将组件的构造参数传递给onRecycle。
+
+从API version 10开始，该接口支持在ArkTS卡片中使用。
+
+**参数：**
+
+| 参数名    | 类型                         | 说明         |
+| ------ | -------------------------- | ---------- |
+| params | { [key: string]: unknown } | 自定义组件的构造参数 |
+
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct Index {
+  @State message: string = 'Hello World'
+  @State switch: boolean = true
+
+  build() {
+    Column() {
+      Button(this.message)
+        .fontSize(50)
+        .fontWeight(FontWeight.Bold)
+        .onClick(() => {
+          this.switch = !this.switch
+        })
+      if (this.switch) {
+        Child()
+      }
+    }
+    .height("100%")
+    .width('100%')
+  }
+}
+
+@Recycle
+@Component
+struct Child {
+  onRecycle(params) {
+    console.info("Recycle Child")
+  }
+
+  build() {
+    Column() {
+      Text("Child Component")
+        .fontSize(20)
+    }
+    .borderWidth(2)
+    .height(100)
+  }
+}
+```
 
 ## LayoutChild<sup>9+</sup>
 

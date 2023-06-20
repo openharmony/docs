@@ -128,7 +128,7 @@ Obtains the time elapsed since the Unix epoch. This API uses an asynchronous cal
 
 | Name  | Type              | Mandatory| Description                           |
 | -------- | ----------- | ---- | ---------------------------------- |
-| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time elapsed since the Unix epoch.        |
+| callback | AsyncCallback&lt;number&gt; | Yes  | Callback used to return the time elapsed since the Unix epoch, in milliseconds.        |
 
 **Example**
 

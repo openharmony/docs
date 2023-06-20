@@ -35,14 +35,15 @@ Deletes a widget. After this API is called, the application can no longer use th
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 201 | Permissions denied. |
+| 202 | The application is not a system application. |
 | 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500060 | A service connection error happened, please try again later. |
-| 202 | The application is not a system application. |
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -98,7 +99,8 @@ Deletes a widget. After this API is called, the application can no longer use th
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Parameters**
 
@@ -146,7 +148,8 @@ Releases a widget. After this API is called, the application can no longer use t
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -195,7 +198,8 @@ Releases a widget. After this API is called, the application can no longer use t
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -249,7 +253,8 @@ Releases a widget. After this API is called, the application can no longer use t
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -297,7 +302,8 @@ Requests a widget update. This API uses an asynchronous callback to return the r
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -350,7 +356,8 @@ Requests a widget update. This API uses a promise to return the result.
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -399,7 +406,8 @@ Converts a temporary widget to a normal one. This API uses an asynchronous callb
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501002 | The number of forms exceeds upper bound. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -452,7 +460,8 @@ Converts a temporary widget to a normal one. This API uses a promise to return t
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501002 | The number of forms exceeds upper bound. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -498,7 +507,8 @@ Instructs the widget framework to make a widget visible. After this API is calle
 | 16500050 | An IPC connection error happened. |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -549,7 +559,8 @@ Instructs the widget framework to make a widget visible. After this API is calle
 | 16500050 | An IPC connection error happened. |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -595,7 +606,8 @@ Instructs the widget framework to make a widget invisible. After this API is cal
 | 16500050 | An IPC connection error happened. |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -646,7 +658,8 @@ Instructs the widget framework to make a widget invisible. After this API is cal
 | 16500050 | An IPC connection error happened. |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -693,7 +706,8 @@ Instructs the widget framework to make a widget updatable. After this API is cal
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -745,7 +759,8 @@ Instructs the widget framework to make a widget updatable. After this API is cal
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -793,7 +808,8 @@ Instructs the widget framework to make a widget not updatable. After this API is
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -846,7 +862,8 @@ Instructs the widget framework to make a widget not updatable. After this API is
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -885,7 +902,8 @@ Checks whether the system is ready. This API uses an asynchronous callback to re
 | -------- | -------- |
 | 202 | The application is not a system application.   |
 | 401 | If the input parameter is not valid parameter. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -922,7 +940,8 @@ Checks whether the system is ready. This API uses a promise to return the result
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 202 | The application is not a system application.   |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -960,7 +979,8 @@ Obtains the widget information provided by all applications on the device. This 
 | 16500050 | An IPC connection error happened. |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Parameters**
 
@@ -1005,7 +1025,8 @@ Obtains the widget information provided by all applications on the device. This 
 | 16500050 | An IPC connection error happened. |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Return value**
 
@@ -1057,7 +1078,8 @@ Obtains the widget information provided by a given application on the device. Th
 | 16500060 | A service connection error happened, please try again later. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -1106,7 +1128,8 @@ Obtains the widget information provided by a given application on the device. Th
 | 16500060 | A service connection error happened, please try again later. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -1160,7 +1183,8 @@ Obtains the widget information provided by a given application on the device. Th
 | 16500060 | A service connection error happened, please try again later. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -1170,6 +1194,97 @@ import formHost from '@ohos.app.form.formHost';
 try {
   formHost.getFormsInfo('com.example.ohos.formjsdemo', 'entry').then((data) => {
     console.log('formHost getFormsInfo, data: ${JSON.stringify(data)}');
+  }).catch((error) => {
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
+  });
+} catch(error) {
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## getRunningFormInfos<sup>10+</sup>
+
+getRunningFormInfos(callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;, hostBundleName?: string): void
+
+Obtains information about all non-temporary widgets running on the device. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| callback | AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt; | Yes| Callback used to return the result. If the widget information is obtained, **error** is undefined and **data** is the information obtained.|
+| hostBundleName | string | No|  Name of the bundle that functions as the widget host. If this parameter is specified, only the information about the non-temporary widgets that are running under the widget host is returned.<br>By default, information about all running non-temporary widgets on the device is returned.|
+
+**Error codes**
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+
+**Example**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+
+try {
+  formHost.getRunningFormInfos((error, data) => {
+    if (error) {
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
+    } else {
+      console.log('formHost getRunningFormInfos, data: ${JSON.stringify(data)}');
+    }
+  }, 'com.example.ohos.formjsdemo');
+} catch(error) {
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## getRunningFormInfos<sup>10+</sup>
+
+getRunningFormInfos(hostBundleName?: string):  Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
+
+Obtains information about all non-temporary widgets running on the device. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| hostBundleName | string | No|  Name of the bundle that functions as the widget host. If this parameter is specified, only the information about the non-temporary widgets that are running under the widget host is returned.<br>By default, information about all running non-temporary widgets on the device is returned.|
+
+**Return value**
+
+| Type                                                        | Description                               |
+| :----------------------------------------------------------- | :---------------------------------- |
+| Promise&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the information obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16500060 | A service connection error happened, please try again later. |
+
+**Example**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+
+try {
+  formHost.getRunningFormInfos('com.example.ohos.formjsdemo').then((data) => {
+    console.log('formHost getRunningFormInfos, data: ${JSON.stringify(data)}');
   }).catch((error) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });
@@ -1205,7 +1320,8 @@ Deletes invalid widgets from the list. This API uses an asynchronous callback to
 | 16500050 | An IPC connection error happened. |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -1258,7 +1374,8 @@ Deletes invalid widgets from the list. This API uses a promise to return the res
 | 16500050 | An IPC connection error happened. |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -1305,7 +1422,8 @@ Obtains the widget state. This API uses an asynchronous callback to return the r
 | 16500060 | A service connection error happened, please try again later. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -1368,7 +1486,8 @@ Obtains the widget state. This API uses a promise to return the result.
 | 16500060 | A service connection error happened, please try again later. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -1408,7 +1527,7 @@ Subscribes to widget uninstall events. This API uses an asynchronous callback to
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| type | string | Yes  | Event type. The value **'formUninstall'** indicates a widget uninstallation event.|
+| type | string | Yes  | Event type. The value **'formUninstall'** indicates a widget uninstall event.|
 | callback | Callback&lt;string&gt; | Yes| Callback used to return the widget ID.|
 
 **Error codes**
@@ -1417,7 +1536,8 @@ Subscribes to widget uninstall events. This API uses an asynchronous callback to
 | -------- | -------- |
 | 202 | The application is not a system application. |
 | 401 | If the input parameter is not valid parameter. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -1442,8 +1562,8 @@ Unsubscribes from widget uninstall events. This API uses an asynchronous callbac
 
 | Name| Type   | Mandatory| Description   |
 | ------ | ------ | ---- | ------- |
-| type | string | Yes  | Event type. The value **'formUninstall'** indicates a widget uninstallation event.|
-| callback | Callback&lt;string&gt; | No| Callback used to return the widget ID. If it is left unspecified, it indicates the callback for all the events that have been subscribed.<br> The value must be the same as that in **on('formUninstall')**.|
+| type | string | Yes  | Event type. The value **'formUninstall'** indicates a widget uninstall event.|
+| callback | Callback&lt;string&gt; | No| Callback used to return the widget ID. If it is left unspecified, it indicates the callback for all the events that have been subscribed.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formUninstall')**. |
 
 **Error codes**
 
@@ -1451,7 +1571,8 @@ Unsubscribes from widget uninstall events. This API uses an asynchronous callbac
 | -------- | -------- |
 | 202 | The application is not a system application. |
 | 401 | If the input parameter is not valid parameter. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -1463,6 +1584,140 @@ let callback = function(formId) {
 }
 formHost.off('formUninstall', callback);
 ```
+
+## on('formAdd')<sup>10+</sup>
+
+ on(type: 'formAdd', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
+
+Subscribes to widget addition events. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| type | string | Yes  | Event type. The value **'formAdd'** indicates a widget addition event.|
+| callback | Callback&lt;formInfo.RunningFormInfo&gt; | Yes| Callback used to return **RunningFormInfo** of the new widget.|
+| bundleName | string | No| Name of the bundle that functions as the widget host. By default, widget addition events of all widget hosts are subscribed to.|
+
+**Example**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+let bundleName = 'ohos.samples.FormApplication';
+let callback = function(data) {
+  console.log('a new form added, data: ${JSON.stringify(data)');
+}
+
+formHost.on('formAdd', callback);
+formHost.on('formAdd', callback, bundleName);
+```
+
+## off('formAdd')<sup>10+</sup>
+
+ off(type: "formAdd", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
+
+Unsubscribes from widget addition events. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| type | string | Yes  | Event type. The value **'formAdd'** indicates a widget addition event.|
+| callback | Callback&lt;formInfo.RunningFormInfo&gt; | No| Callback used to return **RunningFormInfo**. By default, all the subscriptions to the specified event are canceled.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formAdd')**.|
+| bundleName | string | No| Name of the bundle that functions as the widget host.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('formAdd')**.<br>By default, the subscriptions for all the widget hosts are canceled.|
+
+**Example**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+let bundleName = 'ohos.samples.FormApplication';
+let callback = function(data) {
+  console.log('a new form added, data: ${JSON.stringify(data)');
+}
+
+formHost.off('formAdd', callback);
+formHost.off('formAdd', callback, bundleName);
+```
+> **NOTE**
+>
+> - **on('formAdd', callback)** and **off('formAdd', callback)** must be used in pairs.
+> - **on('formAdd', callback, bundleName)** and **off('formAdd', callback, bundleName)** must be used in pairs.
+> - To cancel the subscription with a given callback or for a given bundle name, the **callback** or **bundleName** parameter in **off()** must be set to the same value as that in **on()**.
+
+## on('formRemove')<sup>10+</sup>
+
+ on(type: 'formRemove', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
+
+Subscribes to widget removal events. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| type | string | Yes  | Event type. The value **'formRemove'** indicates a widget removal event.|
+| callback | Callback&lt;formInfo.RunningFormInfo&gt; | Yes| Callback used to return **RunningFormInfo** of the removed widget.|
+| bundleName | string | No| Name of the bundle that functions as the widget host. By default, widget removal events of all widget hosts are subscribed to.|
+
+**Example**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+let bundleName = 'ohos.samples.FormApplication';
+let callback = function(data) {
+  console.log('a new form added, data: ${JSON.stringify(data)');
+}
+
+formHost.on('formRemove', callback);
+formHost.on('formRemove', callback, bundleName);
+```
+
+## off('formRemove')<sup>10+</sup>
+
+ off(type: "formRemove", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
+
+Unsubscribes from widget removal events. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name| Type   | Mandatory| Description   |
+| ------ | ------ | ---- | ------- |
+| type | string | Yes  | Event type. The value **'formRemove'** indicates a widget removal event.|
+| callback | Callback&lt;formInfo.RunningFormInfo&gt; | No| Callback used to return **RunningFormInfo**. By default, all the subscriptions to the specified event are canceled.<br>To cancel the subscription with a given callback, this parameter must be set to the same value as **callback** in **on('formRemove')**. |
+| bundleName | string | No| Name of the bundle that functions as the widget host.<br>To cancel the subscription for a given bundle name, this parameter must be set to the same value as **bundleName** in **on('formRemove')**.<br>By default, the subscriptions for all the widget hosts are canceled. |
+
+**Example**
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+let bundleName = 'ohos.samples.FormApplication';
+let callback = function(data) {
+  console.log('a new form added, data: ${JSON.stringify(data)');
+}
+
+formHost.off('formRemove', callback);
+formHost.off('formRemove', callback, bundleName);
+```
+> **NOTE**
+>
+> - **on('formRemove', callback)** and **off('formRemove', callback)** must be used in pairs.
+> - **on('formRemove', callback, bundleName)** and **off('formRemove', callback, bundleName)** must be used in pairs.
+> - To cancel the subscription with a given callback or for a given bundle name, the **callback** or **bundleName** parameter in **off()** must be set to the same value as that in **on()**.
 
 ## notifyFormsVisible
 
@@ -1493,7 +1748,8 @@ Instructs the widgets to make themselves visible. This API uses an asynchronous 
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -1546,7 +1802,8 @@ Instructs the widgets to make themselves visible. This API uses a promise to ret
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -1594,7 +1851,8 @@ Instructs the widgets to enable or disable updates. This API uses an asynchronou
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -1647,7 +1905,8 @@ Instructs the widgets to enable or disable updates. This API uses a promise to r
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -1694,7 +1953,8 @@ Shares a specified widget with a remote device. This API uses an asynchronous ca
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -1748,7 +2008,8 @@ Shares a specified widget with a remote device. This API uses a promise to retur
 | 16501000 | An internal functional error occurred. |
 | 16501001 | The ID of the form to be operated does not exist. |
 | 16501003 | The form can not be operated by the current application. |
-|For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -1796,7 +2057,8 @@ Notifies that the privacy protection status of the specified widgets changes. Th
 | 16500050 | An IPC connection error happened. |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
-| For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|                    |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -1817,7 +2079,7 @@ try {
 
 ## notifyFormsPrivacyProtected
 
-function notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Promise\<void\>;
+notifyFormsPrivacyProtected(formIds: Array\<string\>, isProtected: boolean): Promise\<void\>;
 
 Notifies that the privacy protection status of the specified widgets changes. This API uses a promise to return the result.
 
@@ -1848,7 +2110,8 @@ Notifies that the privacy protection status of the specified widgets changes. Th
 | 16500050 | An IPC connection error happened. |
 | 16500060 | A service connection error happened, please try again later. |
 | 16501000 | An internal functional error occurred. |
-| For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).|                    |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
@@ -1867,7 +2130,7 @@ try {
 
 ## acquireFormData<sup>10+</sup>
 
-acquireFormData(formId: string, callback: AsyncCallback\<void>): void
+acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>): void;
 
 Requests data from the widget provider. This API uses an asynchronous callback to return the result.
 
@@ -1883,14 +2146,14 @@ Requests data from the widget provider. This API uses an asynchronous callback t
 
 **Error codes**
 
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
-
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 16500050 | An IPC connection error happened. |
 | 16500060 | A service connection error happened, please try again later. |
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 **Example**
 
@@ -1911,7 +2174,7 @@ try {
 
 ## acquireFormData<sup>10+</sup>
 
-function acquireFormData(formId: string): Promise\<void\>;
+acquireFormData(formId: string): Promise<{[key: string]: Object}>;
 
 Requests data from the widget provider. This API uses a promise to return the result.
 
@@ -1933,8 +2196,6 @@ Requests data from the widget provider. This API uses a promise to return the re
 
 **Error codes**
 
-For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
-
 | Error Code ID| Error Message|
 | -------- | -------- |
 | 16500050 | An IPC connection error happened. |
@@ -1942,7 +2203,7 @@ For details about the error codes, see [Form Error Codes](../errorcodes/errorcod
 | 16500100 | Failed to obtain the configuration information. |
 | 16501000 | An internal functional error occurred. |
 
-**Example**
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
@@ -1953,6 +2214,193 @@ try {
     console.log('formHost acquireFormData success');
   }).catch((error) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
+  });
+} catch(error) {
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## getRunningFormInfosByFilter<sup>10+</sup>
+
+getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
+
+Obtains the information about widget hosts based on the widget provider information. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name     | Type           | Mandatory| Description                            |
+| ----------- | --------------- | ---- | -------------------------------- |
+| formProviderFilter     | [formInfo.FormProviderFilter](js-apis-app-form-formInfo.md#formProviderFilter) | Yes  | Information about the widget provider.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md#RunningFormInfo)&gt;&gt; | Promise used to return the widget host information obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16501000  | An internal functional error occurred. |
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+
+let formInstanceFilter = {
+  bundleName: "com.example.formprovide",
+  abilityName: "EntryFormAbility",
+  formName: "widget",
+  moduleName: "entry"
+}
+try {
+  formHost.getRunningFormInfosByFilter(formInstanceFilter).then(data1 => {
+    console.info('formHost getRunningFormInfosByFilter return err :');
+  }).catch((error) => {
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
+  });
+} catch(error) {
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## getRunningFormInfosByFilter<sup>10+</sup>
+
+getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
+
+Obtains the information about widget hosts based on the widget provider information. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name     | Type           | Mandatory| Description                            |
+| ----------- | --------------- | ---- | -------------------------------- |
+| formProviderFilter     | formInfo.FormProviderFilter [formInfo.FormProviderFilter](js-apis-app-form-formInfo.md#formProviderFilter) | Yes  | Information about the widget provider.|
+| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget host information is obtained, **error** is **undefined** and **data** is the information obtained; otherwise, **data** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16501000  | An internal functional error occurred. |
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+
+let formInstanceFilter = {
+  bundleName: "com.example.formprovide",
+  abilityName: "EntryFormAbility",
+  formName: "widget",
+  moduleName: "entry"
+}
+try {
+  formHost.getRunningFormInfosByFilter(formInstanceFilter,(error, data) => {
+    if (error) {
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
+    } else {
+      console.log('formHost getRunningFormInfosByFilter, data: ${JSON.stringify(data)}');
+    }
+  });
+} catch(error) {
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## getRunningFormInfoById<sup>10+</sup>
+
+getRunningFormInfoById(formId: string): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
+
+Obtains the information about widget hosts based on the widget ID. This API uses a promise to return the result.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name     | Type           | Mandatory| Description                            |
+| ----------- | --------------- | ---- | -------------------------------- |
+| formId     | string | Yes  | Widget ID.|
+
+**Return value**
+
+| Type               | Description                     |
+| ------------------- | ------------------------- |
+| Promise&lt;Array&lt;formInfo.RunningFormInfo[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise used to return the widget host information obtained. |
+
+**Error codes**
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16501000  | An internal functional error occurred. |
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+let formId = '12400633174999288';
+try {
+  formHost.getRunningFormInfoById(formId).then(data1 => {
+    console.info('formHost getRunningFormInfoById return err :');
+  }).catch((error) => {
+    console.error(`error, code: ${error.code}, message: ${error.message}`);
+  });
+} catch(error) {
+  console.error(`catch error, code: ${error.code}, message: ${error.message}`);
+}
+```
+
+## getRunningFormInfoById<sup>10+</sup>
+
+getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
+
+Obtains the information about widget hosts based on the widget ID. This API uses an asynchronous callback to return the result.
+
+**Required permissions**: ohos.permission.REQUIRE_FORM
+
+**System capability**: SystemCapability.Ability.Form
+
+**Parameters**
+
+| Name     | Type           | Mandatory| Description                            |
+| ----------- | --------------- | ---- | -------------------------------- |
+| formId     | string | Yes  | Widget ID.|
+| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Yes| Callback used to return the result. If the widget host information is obtained, **error** is **undefined** and **data** is the information obtained; otherwise, **data** is an error object.|
+
+**Error codes**
+
+For details about the error codes, see [Form Error Codes](../errorcodes/errorcode-form.md).
+
+| Error Code ID| Error Message|
+| -------- | -------- |
+| 16500050 | An IPC connection error happened. |
+| 16501000  | An internal functional error occurred. |
+
+```ts
+import formHost from '@ohos.app.form.formHost';
+
+let formId = '12400633174999288';
+try {
+  formHost.getRunningFormInfoById(formId,(error, data) => {
+    if (error) {
+      console.error(`error, code: ${error.code}, message: ${error.message}`);
+    } else {
+      console.log('formHost getRunningFormInfoById, data: ${JSON.stringify(data)}');
+    }
   });
 } catch(error) {
   console.error(`catch error, code: ${error.code}, message: ${error.message}`);

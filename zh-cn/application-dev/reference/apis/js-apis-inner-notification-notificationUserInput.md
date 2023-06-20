@@ -8,6 +8,6 @@
 
 **系统能力**：SystemCapability.Notification.Notification
 
-| 名称     | 类型   | 可读 | 可写 | 说明                          |
+| 名称     | 类型   | 只读 | 必填 | 说明                          |
 | -------- | ------ | --- | ---- | ----------------------------- |
-| inputKey | string | 是  | 是  | 用户输入时用于标识此输入的key。 |
+| inputKey | string | 否  | 是  | 用户输入时用于标识此输入的key。 |

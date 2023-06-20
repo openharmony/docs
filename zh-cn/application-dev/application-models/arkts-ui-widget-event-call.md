@@ -60,7 +60,7 @@
   }
   
   function FunBCall(data) {
-    console.info('FunACall param:' + JSON.stringify(data.readString()));
+    console.info('FunBCall param:' + JSON.stringify(data.readString()));
     return null;
   }
   
@@ -71,10 +71,12 @@
         // 监听call事件所需的方法
         this.callee.on('funA', FunACall);
         this.callee.on('funB', FunBCall);
-      } catch (error) {
+      } catch (err) {
         console.error(`Failed to register callee on. Cause: ${JSON.stringify(err)}`);
       }
     }
+  
+    ...
   
     // 进程退出时，解除监听
     onDestroy() {

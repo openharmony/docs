@@ -1,4 +1,4 @@
-# Screen Hopping Error Codes
+# Screen Hopping Error Codes (To Be Deprecated)
 
 > **NOTE**
 >

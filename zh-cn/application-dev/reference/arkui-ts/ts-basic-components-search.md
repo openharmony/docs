@@ -20,7 +20,7 @@ Search(options?: { value?: string; placeholder?: ResourceStr; icon?: string; con
 | ----------- | ---------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | value       | string                                               | 否   | 设置当前显示的搜索文本内容。<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | placeholder | [ResourceStr](ts-types.md#resourcestr)<sup>10+</sup> | 否   | 设置无输入时的提示文本。                                     |
-| icon        | string                                               | 否   | 设置搜索图标路径，默认使用系统搜索图标。<br/>图标所支持的图片类型能力参考[Image](ts-basic-components-image.md)组件。 |
+| icon        | string                                               | 否   | 设置搜索图标路径，默认使用系统搜索图标。<br/>**说明：** <br/>icon的数据源支持本地图片和网络图片。<br/>-&nbsp;支持的图片格式包括png、jpg、bmp、svg、gif和pixelmap。<br/>-&nbsp;支持Base64字符串。格式data:image/[png\|jpeg\|bmp\|webp];base64,[base64 data], 其中[base64 data]为Base64字符串数据。 |
 | controller  | SearchController                                     | 否   | 设置Search组件控制器。                                       |
 
 ## 属性
@@ -66,9 +66,9 @@ Search(options?: { value?: string; placeholder?: ResourceStr; icon?: string; con
 
 | 名称                    | 描述             |
 | ----------------------- | ---------------- |
-| CONSTANT<sup>10+</sup>  | 清除按钮常显样式。 |
-| INVISIBLE<sup>10+</sup> | 清除按钮常隐样式。 |
-| INPUT<sup>10+</sup>     | 清除按钮输入样式。 |
+| CONSTANT  | 清除按钮常显样式。 |
+| INVISIBLE | 清除按钮常隐样式。 |
+| INPUT     | 清除按钮输入样式。 |
 
 ## 事件
 
@@ -104,6 +104,8 @@ caretPosition(value: number): void
 
 ##  示例
 
+### 示例1
+
 ```ts
 // xxx.ets
 @Entry
@@ -119,7 +121,7 @@ struct SearchExample {
       Text('onChange:' + this.changeValue).fontSize(18).margin(15)
       Search({ value: this.changeValue, placeholder: 'Type to search...', controller: this.controller })
         .searchButton('SEARCH')
-        .width(400)
+        .width('95%')
         .height(40)
         .backgroundColor('#F5F5F5')
         .placeholderColor(Color.Grey)
@@ -143,3 +145,43 @@ struct SearchExample {
 ```
 
 ![search](figures/search.gif)
+
+### 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SearchButtoonExample {
+  @State submitValue: string = ''
+
+  build() {
+    Column() {
+      Text('onSubmit:' + this.submitValue).fontSize(18).margin(15)
+      Search({ placeholder: 'Type to search...' })
+        .searchButton('SEARCH')
+        .searchIcon({
+          src: $r('app.media.search')
+        })
+        .cancelButton({
+          style: CancelButtonStyle.CONSTANT,
+          icon: {
+            src: $r('app.media.cancel')
+          }
+        })
+        .width('90%')
+        .height(40)
+        .backgroundColor('#F5F5F5')
+        .placeholderColor(Color.Grey)
+        .placeholderFont({ size: 14, weight: 400 })
+        .textFont({ size: 14, weight: 400 })
+        .onSubmit((value: string) => {
+          this.submitValue = value
+        })
+        .margin(20)
+    }.width('100%')
+  }
+}
+```
+
+![searchButton](figures/searchButton.gif)

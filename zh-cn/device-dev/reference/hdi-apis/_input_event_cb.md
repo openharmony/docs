@@ -1,26 +1,26 @@
 # InputEventCb
 
 
-## **概述**
+## 概述
 
 此结构体定义了输入事件回调函数并提供给Input服务使用。
 
 **相关模块:**
 
-[Input](input.md)
+[Input](_input.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| ([EventPkgCallback](#eventpkgcallback)&nbsp;)(const&nbsp;[InputEventPackage](_input_event_package.md)&nbsp;\*\*pkgs,&nbsp;uint32_t&nbsp;count,&nbsp;uint32_t&nbsp;devIndex) | 输入事件数据上报的回调函数。 | 
+| (\*&nbsp;[EventPkgCallback](#eventpkgcallback)&nbsp;)(const&nbsp;[InputEventPackage](_input_event_package.md)&nbsp;\*\*pkgs,&nbsp;uint32_t&nbsp;count,&nbsp;uint32_t&nbsp;devIndex) | void<br/>输入事件数据上报的回调函数。 | 
 
 
-## **类成员变量说明**
+## 类成员变量说明
 
 
 ### EventPkgCallback
@@ -30,7 +30,7 @@
 void(* InputEventCb::EventPkgCallback) (const InputEventPackage **pkgs, uint32_t count, uint32_t devIndex)
 ```
 
-**描述：**
+**描述:**
 
 输入事件数据上报的回调函数。
 

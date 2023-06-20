@@ -7,6 +7,12 @@ The **EventHub** module provides APIs to subscribe to, unsubscribe from, and tri
 >  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version. 
 >  - The APIs of this module can be used only in the stage model.
 
+## Modules to Import
+
+```ts
+import common from '@ohos.app.ability.common';
+```
+
 ## Usage
 
 Before using any APIs in the **EventHub**, you must obtain an **EventHub** instance through the member variable **context** of the **UIAbility** instance.

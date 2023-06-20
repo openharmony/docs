@@ -1,4 +1,4 @@
-# \@Styles：定义组件重用样式
+# \@Styles装饰器：定义组件重用样式
 
 
 如果每个组件的样式都需要单独设置，在开发过程中会出现大量代码在进行重复样式设置，虽然可以复制粘贴，但为了代码简洁性和后续方便维护，我们推出了可以提炼公共样式进行复用的装饰器\@Styles。
@@ -94,7 +94,7 @@ struct FancyUse {
       Text('FancyA')
         .globalFancy ()
         .fontSize(30)
-      // 使用全局的@Styles封装的样式
+      // 使用组件内的@Styles封装的样式
       Text('FancyB')
         .fancy()
         .fontSize(30)

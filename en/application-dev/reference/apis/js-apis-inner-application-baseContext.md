@@ -6,6 +6,12 @@
 >
 > The initial APIs of this module are supported since API version 8. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
+## Modules to Import
+
+```ts
+import common from '@ohos.app.ability.common';
+```
+
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 | Name      | Type  | Readable  | Writable  | Description     |

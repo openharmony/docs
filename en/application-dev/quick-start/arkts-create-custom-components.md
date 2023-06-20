@@ -114,15 +114,28 @@ To fully understand the preceding example, a knowledge of the following concepts
   }
   ```
 
+- \@Recycle: A custom component decorated with \@Recycle can be reused.
+
+  > **NOTE**
+  >
+  > Since API version 10, this decorator is supported in ArkTS widgets.
+
+  ```ts
+  @Recycle
+  @Component
+  struct MyComponent {
+  }
+  ```
+
 
 ## Member Functions/Variables
 
-In addition to the mandatory** build()** function, a custom component may implement other member functions with the following restrictions:
+In addition to the mandatory **build()** function, a custom component may implement other member functions with the following restrictions:
 
 
 - Static functions are not supported.
 
-- Access to the member functions is always private. Defining **private** access is optional. Defining access other than **private** is a syntax error.
+- Access to the member functions is always private.
 
 
 A custom component can also implement member variables with the following restrictions:
@@ -130,7 +143,7 @@ A custom component can also implement member variables with the following restri
 
 - Static member variables are not supported.
 
-- Access to the member variables is always private.The access rules of member variables are the same as those of member functions.
+- Access to the member variables is always private. The access rules of member variables are the same as those of member functions.
 
 - Local initialization is optional for some member variables and mandatory for others. For details about whether local initialization or initialization from the parent component is required, see [State Management](arkts-state-management-overview.md).
 
@@ -378,4 +391,5 @@ In the preceding example:
 2. The **StyleExample** parent component holds a **Controller** instance and with which calls the **changeText** API of **Controller**. That is, the value of the state variable **value** of **MyComponent** is changed through the **this** pointer of the **MyComponent** child component held by the controller.
 
 Through the encapsulation of the controller, **MyComponent** exposes the **changeText** API. All instances that hold the controller can call the **changeText** API to change the value of the **MyComponent** state variable **value**.
+
 <!--no_check-->

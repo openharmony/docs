@@ -180,7 +180,7 @@ try {
 
 off(type: "change", listener?: Callback&lt;DeviceListener&gt;): void
 
-取消监听输入设备的热插拔事件。
+取消监听输入设备的热插拔事件。在应用退出前调用，取消监听。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.InputDevice
 
@@ -498,15 +498,15 @@ try {
 
 | 名称        | 类型   | 可读   | 可写   | 说明      |
 | --------- | ------ | ---- | ---- | ------- |
-| touchMajor  | string | 是 | 否 | 表示touchMajor轴。  |
-| touchMinor  | string | 是 | 否 | 表示touchMinor轴。  |
-| toolMinor   | string | 是 | 否 | 表示toolMinor轴。   |
-| toolMajor   | string | 是 | 否 | 表示toolMajor轴。   |
+| touchmajor  | string | 是 | 否 | 表示touchmajor轴。  |
+| touchminor  | string | 是 | 否 | 表示touchminor轴。  |
+| toolminor   | string | 是 | 否 | 表示toolminor轴。   |
+| toolmajor   | string | 是 | 否 | 表示toolmajor轴。   |
 | orientation | string | 是 | 否 | 表示orientation轴。 |
 | pressure    | string | 是 | 否 | 表示pressure轴。    |
 | x           | string | 是 | 否 | 表示x轴。           |
 | y           | string | 是 | 否 | 表示y轴。           |
-| NULL        | string | 是 | 否 | 无。              |
+| null        | string | 是 | 否 | 无。              |
 
 ## AxisRange
 

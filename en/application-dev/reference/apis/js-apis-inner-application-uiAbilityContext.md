@@ -7,6 +7,12 @@
 >  - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 >  - The APIs of this module can be used only in the stage model.
 
+## Modules to Import
+
+```ts
+import common from '@ohos.app.ability.common';
+```
+
 ## Attributes
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
@@ -361,7 +367,7 @@ try {
     // Carry out normal service processing.
     console.info('startAbilityForResult succeed');
   });
-} catch (paramError) {
+} catch (err) {
   // Process input parameter errors.
   console.error(`startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
 }
@@ -779,7 +785,7 @@ try {
       // Process service logic errors.
       console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
     });
-} catch (paramError) {
+} catch (err) {
   // Process input parameter errors.
   console.error(`startServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
 }
@@ -1391,6 +1397,7 @@ let want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'ServiceExtensionAbility'
 };
+let commRemote;
 let options = {
   onConnect(elementName, remote) {
     commRemote = remote;
@@ -1460,6 +1467,7 @@ let want = {
   abilityName: 'ServiceExtensionAbility'
 };
 let accountId = 100;
+let commRemote;
 let options = {
   onConnect(elementName, remote) {
     commRemote = remote;
@@ -1516,6 +1524,7 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   ```ts
 // connection is the return value of connectServiceExtensionAbility.
 let connection = 1;
+let commRemote;
 
 try {
   this.context.disconnectServiceExtensionAbility(connection, (err) => {
@@ -1564,6 +1573,24 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
   ```ts
 // connection is the return value of connectServiceExtensionAbility.
 let connection = 1;
+let commRemote;
+
+try {
+  this.context.disconnectServiceExtensionAbility(connection, (err) => {
+    commRemote = null;
+    if (err.code) {
+      // Process service logic errors.
+      console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // Carry out normal service processing.
+    console.info('disconnectServiceExtensionAbility succeed');
+  });
+} catch (err) {
+  commRemote = null;
+  // Process input parameter errors.
+  console.error(`disconnectServiceExtensionAbility failed, code is ${err.code}, message is ${err.message}`);
+}
 
 try {
   this.context.disconnectServiceExtensionAbility(connection, (err) => {
@@ -1677,11 +1704,11 @@ try {
       // Carry out normal service processing.
       caller = obj;
       console.info('startAbilityByCall succeed');
-    }).catch((error) => {
+    }).catch((err) => {
     // Process service logic errors.
     console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
   });
-} catch (paramError) {
+} catch (err) {
   // Process input parameter errors.
   console.error(`startAbilityByCall failed, code is ${err.code}, message is ${err.message}`);
 }
@@ -2065,6 +2092,8 @@ For details about the error codes, see [Ability Error Codes](../errorcodes/error
 **Example**
 
   ```ts
+  import image from '@ohos.multimedia.image';
+
   let imagePixelMap;
   let color = new ArrayBuffer(0);
   let initializationOptions = {
@@ -2284,4 +2313,290 @@ try {
   // Process input parameter errors.
   console.error(`requestDialogService failed, code is ${err.code}, message is ${err.message}`);
 }
+  ```
+  ## UIAbilityContext.startRecentAbility
+
+startRecentAbility(want: Want, callback: AsyncCallback&lt;void&lt;): void;
+
+Starts an ability. If the ability has multiple instances, the latest instance is started. This API uses an asynchronous callback to return the result.
+
+Observe the following when using this API:
+ - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+**Example**
+
+  ```ts
+let want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+
+try {
+  this.context.startRecentAbility(want, (err) => {
+    if (err.code) {
+      // Process service logic errors.
+      console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // Carry out normal service processing.
+    console.info('startRecentAbility succeed');
+  });
+} catch (err) {
+  // Process input parameter errors.
+  console.error(`startRecentAbility failed failed, code is ${err.code}, message is ${err.message}`);
+}
+  ```
+## UIAbilityContext.startRecentAbility
+
+startRecentAbility(want: Want, options: StartOptions, callback: AsyncCallback&lt;void&lt;): void;
+
+Starts an ability with the start options specified. If the ability has multiple instances, the latest instance is started. This API uses an asynchronous callback to return the result.
+You can use this API to carry start options.
+
+Observe the following when using this API:
+ - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | Yes| Parameters used for starting the ability.|
+| callback | AsyncCallback\<void> | Yes| Callback used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+**Example**
+
+  ```ts
+let want = {
+  deviceId: '',
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let options = {
+  windowMode: 0
+};
+
+try {
+  this.context.startRecentAbility(want, options, (err) => {
+    if (err.code) {
+      // Process service logic errors.
+      console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+      return;
+    }
+    // Carry out normal service processing.
+    console.info('startRecentAbility succeed');
+  });
+} catch (err) {
+  // Process input parameter errors.
+  console.error(`startRecentAbility failed failed, code is ${err.code}, message is ${err.message}`);
+}
+  ```
+## UIAbilityContext.startRecentAbility
+
+startRecentAbility(want: Want, options?: StartOptions): Promise&lt;void&lt;;
+
+Starts an ability. If the ability has multiple instances, the latest instance is started.
+This API uses a promise to return the result.
+
+Observe the following when using this API:
+ - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - For details about the startup rules for the components in the stage model, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | Yes| Want information about the target ability.|
+| options | [StartOptions](js-apis-app-ability-startOptions.md) | No| Parameters used for starting the ability.|
+
+**Error codes**
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000001 | The specified ability does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Can not start invisible component. |
+| 16000005 | The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | The crowdtesting application expires. |
+| 16000009 | An ability cannot be started or stopped in Wukong mode. |
+| 16000010 | The call with the continuation flag is forbidden. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal error. |
+| 16000053 | The ability is not on the top of the UI. |
+| 16000055 | Installation-free timed out. |
+| 16200001 | The caller has been released. |
+
+**Example**
+
+  ```ts
+let want = {
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility'
+};
+let options = {
+  windowMode: 0,
+};
+
+try {
+  this.context.startRecentAbility(want, options)
+    .then(() => {
+      // Carry out normal service processing.
+      console.info('startRecentAbility succeed');
+    })
+    .catch((err) => {
+      // Process service logic errors.
+      console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+    });
+} catch (err) {
+  // Process input parameter errors.
+  console.error(`startRecentAbility failed, code is ${err.code}, message is ${err.message}`);
+}
+  ```
+
+## UIAbilityContext.startAbilityByCallWithAccount
+
+startAbilityByCallWithAccount(want: Want, accountId: number): Promise&lt;Caller&gt;;
+
+Starts an ability with the account ID specified and obtains the caller object for communicating with the ability.
+
+Observe the following when using this API:
+ - If an application needs to call this API to start an ability that belongs to another user, it must have the **ohos.permission.ABILITY_BACKGROUND_COMMUNICATION** and **ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS** permissions.
+ - If an application running in the background needs to call this API to start an ability, it must have the **ohos.permission.START_ABILITIES_FROM_BACKGROUND** permission.
+ - If **exported** of the target ability is **false** in cross-application scenarios, the caller must have the **ohos.permission.START_INVISIBLE_ABILITY** permission.
+ - The rules for using this API in the same-device and cross-device scenarios are different. For details, see [Component Startup Rules (Stage Model)](../../application-models/component-startup-rules.md).
+
+**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+
+**System API**: This is a system API and cannot be called by third-party applications.
+
+**Parameters**
+
+| Name| Type| Mandatory| Description|
+| -------- | -------- | -------- | -------- |
+| want | [Want](js-apis-application-want.md) | Yes| Information about the ability to start, including **abilityName**, **moduleName**, **bundleName**, **deviceId** (optional), and **parameters** (optional). If **deviceId** is left blank or null, the local ability is started. If **parameters** is left blank or null, the ability is started in the background.|
+| accountId | number | Yes| ID of a system account. The value **-1** indicates the current user. For details, see [getCreatedOsAccountsCount](js-apis-osAccount.md#getosaccountlocalidfromprocess).|
+
+**Return value**
+
+| Type| Description|
+| -------- | -------- |
+| Promise&lt;Caller&gt; | Promise used to return the caller object to communicate with.|
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------------------------------- |
+| 16000001 | Input error. The specified ability name does not exist. |
+| 16000002 | Incorrect ability type. |
+| 16000004 | Visibility verification failed. |
+| 16000005 | Static permission denied. The specified process does not have the permission. |
+| 16000006 | Cross-user operations are not allowed. |
+| 16000008 | Crowdtest App Expiration. |
+| 16000011 | The context does not exist. |
+| 16000050 | Internal Error. |
+| 16200001 | The caller has been released.        |
+
+For details about the error codes, see [Ability Error Codes](../errorcodes/errorcode-ability.md).
+
+**Example**
+
+  ```ts
+  let caller;
+
+  // ID of a system account. The value -1 indicates the current user.
+  let accountId = -1;
+
+  // Specify the ability to start.
+  let want = {
+      bundleName: 'com.acts.actscalleeabilityrely',
+      moduleName: 'entry',
+      abilityName: 'EntryAbility'
+      deviceId: ''
+      parameters: {
+        // If the value of 'ohos.aafwk.param.callAbilityToForeground' is true, the ability is started in the foreground. If the value is false or not set, the ability is started in the background.
+        'ohos.aafwk.param.callAbilityToForeground': true
+      }
+  };
+
+  try {
+    this.context.startAbilityByCallWithAccount(want, accountId)
+      .then((obj) => {
+        // Carry out normal service processing.
+        caller = obj;
+        console.log('startAbilityByCallWithAccount succeed');
+      }).catch((error) => {
+        // Process service logic errors.
+        console.error('startAbilityByCallWithAccount failed, error.code: ${error.code}, error.message: ${error.message}');
+      });
+  } catch (paramError) {
+    // Process input parameter errors.
+    console.error('error.code: ${paramError.code}, error.message: ${paramError.message}');
+  }
   ```

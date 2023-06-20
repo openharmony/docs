@@ -502,7 +502,7 @@ createPanel(ctx: BaseContext, info: PanelInfo, callback: AsyncCallback\<Panel>):
 
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
-| 12800004   | not an input method extension |
+| 12800004   | not an input method extension. |
 
 **示例：**
 
@@ -550,7 +550,7 @@ createPanel(ctx: BaseContext, info: PanelInfo): Promise\<Panel>
 
 | 错误码ID   | 错误信息                       |
 | ---------- | ----------------------------- |
-| 12800004   | not an input method extension |
+| 12800004   | not an input method extension. |
 
 **示例：**
 
@@ -953,7 +953,7 @@ setUiContent(path: string, storage: LocalStorage, callback: AsyncCallback\<void>
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | 是   | 设置加载页面的路径。 |
-| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
+| storage | [LocalStorage](../arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
 | callback | AsyncCallback\<void> | 是   | 回调函数。当面板页面内容加载成功，err为undefined，否则err为错误对象。 |
 
 **示例：**
@@ -987,7 +987,7 @@ setUiContent(path: string, storage: LocalStorage): Promise\<void>
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
 | path | string | 是   | 设置加载页面的路径。 |
-| storage | [LocalStorage](../../quick-start/arkts-state-mgmt-application-level.md#localstorage) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
+| storage | [LocalStorage](../arkui-ts/ts-state-management.md#localstorage9) | 是   | 存储单元，为应用程序范围内的可变状态属性和非可变状态属性提供存储。|
 
 **返回值：**
 
@@ -1067,7 +1067,7 @@ resize(width: number, height: number): Promise\<void>;
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise<void> | 无返回结果的Promise对象。  |
+| Promise\<void> | 无返回结果的Promise对象。  |
 
 **示例：**
 
@@ -1139,7 +1139,7 @@ moveTo(x: number, y: number): Promise\<void>
 
 | 类型   | 说明                             |
 | ------- | ------------------------------ |
-| Promise<void> | 无返回结果的Promise对象。  |
+| Promise\<void> | 无返回结果的Promise对象。  |
 
 **示例：**
 
@@ -1186,7 +1186,7 @@ panel.show((err) => {
 
 show(): Promise\<void>
 
-显示当前面板，使用callback异步回调。
+显示当前面板，使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1237,7 +1237,7 @@ panel.hide((err) => {
 
 hide(): Promise\<void>
 
-隐藏当前面板，使用callback异步回调。
+隐藏当前面板，使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1905,7 +1905,7 @@ try {
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
 
-删除光标后固定长度的文本。使用callback异步回调。
+删除光标后固定长度的文本。使用promise异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -2485,7 +2485,7 @@ sendExtendAction(action: ExtendAction): Promise&lt;void&gt;
 
 | 错误码ID | 错误信息                       |
 | -------- | ------------------------------ |
-| 12800003 | Input method client error.     |
+| 12800003 | input method client error.     |
 | 12800006 | Input method controller error. |
 
 **示例：**
@@ -2521,8 +2521,8 @@ try {
 
 | 名称      | 类型 | 可读 | 可写 | 说明         |
 | --------- | -------- | ---- | ---- | ------------ |
-| keyCode   | number   | 是   | 否   | 按键的键值。 |
-| keyAction | number   | 是   | 否   | 按键的状态。 |
+| keyCode   | number   | 是   | 否   | 按键的键值。键码值说明参考[KeyCode](js-apis-keycode.md#keycode)。 |
+| keyAction | number   | 是   | 否   | 按键事件类型。<br/>- 当值为2时，表示按下事件；<br/>- 当值为3时，表示抬起事件。 |
 
 ## PanelFlag<sup>10+</sup>
 
@@ -2814,7 +2814,7 @@ textInputClient.deleteBackward(length, (err, result) => {
 
 deleteBackward(length:number): Promise&lt;boolean&gt;
 
-删除光标后固定长度的文本。使用callback异步回调。
+删除光标后固定长度的文本。使用promise异步回调。
 
 > **说明：**
 >

@@ -199,7 +199,7 @@ Defines the authentication parameters.
 | Name       | Type                  | Mandatory  | Description        |
 | --------- | -------------------- | ---- | ---------- |
 | authType  | number               | Yes   | Authentication type.     |
-| extraInfo | {[key:string] : any} | No   | Extended field.|
+| extraInfo | {[key:string] : any} | No   | Extended field. Optional. The default value is **undefined**.|
 
 ## AuthInfo
 
@@ -211,7 +211,7 @@ Defines authentication information.
 | --------- | -------------------- | ---- | ---------- |
 | authType  | number               | Yes   | Authentication type.     |
 | token     | number               | Yes   | Authentication token.  |
-| extraInfo | {[key:string] : any} | No   | Extended field.|
+| extraInfo | {[key:string] : any} | No   | Extended field. Optional. The default value is **undefined**.|
 
 ## PublishInfo<sup>9+</sup>
 
@@ -338,7 +338,7 @@ Obtains all trusted devices. This API uses a promise to return the result.
 
   | Type                                      | Description                   |
   | ---------------------------------------- | --------------------- |
-  | Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise used to return the list of trusted devices.|
+  | Promise&lt;Array&lt;[DeviceInfo](#deviceinfo)&gt;&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -440,7 +440,7 @@ Obtains local device information. This API uses a promise to return the result.
 
   | Type                                      | Description                   |
   | ---------------------------------------- | --------------------- |
-  | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the local device information.|
+  | Promise&lt;[DeviceInfo](#deviceinfo)&gt; | Promise used to return the result.|
 
 **Error codes**
 
@@ -487,6 +487,8 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
   ```js
   try {
+    // Network ID of the device, which can be obtained from the trusted device list
+    let networkId = "xxxxxxx"
     dmInstance.getDeviceInfo(networkId, (err, data) => {
     if (err) {
       console.error("getDeviceInfo errCode:" + err.code + ",errMessage:" + err.message);
@@ -530,6 +532,8 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 **Example**
 
   ```js
+  // Network ID of the device, which can be obtained from the trusted device list
+  let networkId = "xxxxxxx"
   dmInstance.getDeviceInfo(networkId).then((data) => {
     console.log('get device info: ' + JSON.stringify(data));
   }).catch((err) => {
@@ -541,7 +545,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 startDeviceDiscovery(subscribeInfo: SubscribeInfo): void
 
-Starts to discover peripheral devices.
+Starts to discover peripheral devices. The discovery process automatically stops when 2 minutes have elapsed. A maximum of 99 devices can be discovered.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -575,7 +579,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
       "capability": 1
   };
   try {
-    dmInstance.startDeviceDiscovery(subscribeInfo); // The deviceFound callback is invoked to notify the application when a device is discovered.
+    dmInstance.startDeviceDiscovery(subscribeInfo); // The deviceFound callback is called to notify the application when a device is discovered.
   } catch (err) {
     console.error("startDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
   }
@@ -585,7 +589,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 startDeviceDiscovery(subscribeInfo: SubscribeInfo, filterOptions?: string): void
 
-Starts to discover peripheral devices and filters discovered devices.
+Starts to discover peripheral devices and filters discovered devices. The discovery process automatically stops when 2 minutes have elapsed. A maximum of 99 devices can be discovered.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -594,7 +598,7 @@ Starts to discover peripheral devices and filters discovered devices.
   | Name           | Type                      | Mandatory  | Description   |
   | ------------- | ------------------------------- | ---- | -----  |
   | subscribeInfo | [SubscribeInfo](#subscribeinfo) | Yes  | Subscription information.|
-  | filterOptions | string                          | No  | Options for filtering discovered devices.|
+  | filterOptions | string                          | No  | Options for filtering discovered devices. Optional. The default value is **undefined**, indicating that discovery of offline devices.|
 
 **Error codes**
 
@@ -673,7 +677,7 @@ For details about the error codes, see [Device Management Error Codes](../errorc
 
 publishDeviceDiscovery(publishInfo: PublishInfo): void
 
-Publishes device information for discovery purposes.
+Publishes device information for discovery purposes. The publish process automatically stops when 2 minutes have elapsed.
 
 **System capability**: SystemCapability.DistributedHardware.DeviceManager
 
@@ -944,11 +948,11 @@ Obtains the registration information of the credential.
     "userId" : "123"
   }
   try {
-    dmClass.requestCredentialRegisterInfo(credentialInfo, (data) => {
+    dmInstance.requestCredentialRegisterInfo(credentialInfo, (data) => {
       if (data) {
           console.info("requestCredentialRegisterInfo result:" + JSON.stringify(data));
       } else {
-          console.info.push("requestCredentialRegisterInfo result: data is null");
+          console.info("requestCredentialRegisterInfo result: data is null");
       }
     });
   } catch (err) {
@@ -995,11 +999,11 @@ Imports credential information.
     ]
   }
   try {
-    dmClass.importCredential(credentialInfo, (data) => {
+    dmInstance.importCredential(credentialInfo, (data) => {
       if (data) {
           console.info("importCredential result:" + JSON.stringify(data));
       } else {
-          console.info.push("importCredential result: data is null");
+          console.info("importCredential result: data is null");
       }
     });
   } catch (err) {
@@ -1031,11 +1035,11 @@ Deletes credential information.
     "userId" : "123"
   }
   try {
-    dmClass.deleteCredential(queryInfo, (data) => {
+    dmInstance.deleteCredential(queryInfo, (data) => {
       if (data) {
           console.info("deleteCredential result:" + JSON.stringify(data));
       } else {
-          console.info.push("deleteCredential result: data is null");
+          console.info("deleteCredential result: data is null");
       }
     });
   } catch (err) {

@@ -427,6 +427,7 @@
        - [Plug-in Management](subsystems/subsys-boot-init-plugin.md)
        - [omponent-based Startup](subsystems/subsys-boot-init-sub-unit.md)
        - [init Run Log Standardization](subsystems/subsys-boot-init-log.md)
+       - [Seccomp Policy Development](subsystems/subsys-boot-init-seccomp.md)
      - [appspawn Module](subsystems/subsys-boot-appspawn.md)
      - [bootstrap Module](subsystems/subsys-boot-bootstrap.md)
      - [FAQs](subsystems/subsys-boot-faqs.md)
@@ -533,5 +534,6 @@
     - [Porting](faqs/faqs-porting.md)
     - [Startup](faqs/faqs-startup.md)
     - [System Applications](faqs/faqs-system-applications.md)
+- [Disclaimer Notice](disclaimer.md)
   
    

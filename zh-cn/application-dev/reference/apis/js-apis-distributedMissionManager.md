@@ -360,7 +360,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 
 迁移任务，以回调函数的方式返回。
 
-**需要权限**：ohos.permission.MANAGE_MISSIONS and ohos.permission.DISTRIBUTED_DATASYNC
+**需要权限**：ohos.permission.MANAGE_MISSIONS，ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -368,8 +368,8 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback, callba
 
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
-| parameter | [ContinueDeviceInfo](#js-apis-inner-application-continueDeviceInfo.md) | 是    | 迁移信息。 |
-| options | [ContinueCallback](#js-apis-inner-application-continueCallback.md) | 是    | 迁移任务完成回调函数。 |
+| parameter | [ContinueDeviceInfo](js-apis-inner-application-continueDeviceInfo.md) | 是    | 迁移信息。 |
+| options | [ContinueCallback](js-apis-inner-application-continueCallback.md) | 是    | 迁移任务完成回调函数。 |
 | callback | AsyncCallback&lt;void&gt; | 是    | 执行结果回调函数。 |
 
 **错误码：**
@@ -418,7 +418,7 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 
 迁移任务，以promise方式返回执行结果。
 
-**需要权限**：ohos.permission.MANAGE_MISSIONS and ohos.permission.DISTRIBUTED_DATASYNC
+**需要权限**：ohos.permission.MANAGE_MISSIONS，ohos.permission.DISTRIBUTED_DATASYNC
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
@@ -426,8 +426,8 @@ continueMission(parameter: ContinueDeviceInfo, options: ContinueCallback): Promi
 
 | 参数名       | 类型                                      | 必填   | 说明    |
 | --------- | --------------------------------------- | ---- | ----- |
-| parameter | [ContinueDeviceInfo](#js-apis-inner-application-continueDeviceInfo.md) | 是    | 迁移信息。 |
-| options | [ContinueCallback](#js-apis-inner-application-continueCallback.md) | 是    | 迁移任务完成回调函数。 |
+| parameter | [ContinueDeviceInfo](js-apis-inner-application-continueDeviceInfo.md) | 是    | 迁移信息。 |
+| options | [ContinueCallback](js-apis-inner-application-continueCallback.md) | 是    | 迁移任务完成回调函数。 |
 
 **返回值：**
 

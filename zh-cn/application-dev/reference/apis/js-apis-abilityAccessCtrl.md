@@ -73,7 +73,7 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 try {
-    atManager.checkAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS").then((data) => {
+    atManager.checkAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data) => {
         console.log(`checkAccessToken success, data->${JSON.stringify(data)}`);
     }).catch((err) => {
         console.log(`checkAccessToken fail, err->${JSON.stringify(err)}`);
@@ -117,7 +117,7 @@ verifyAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus
 ```js
 let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-let data = atManager.verifyAccessTokenSync(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+let data = atManager.verifyAccessTokenSync(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
 console.log(`data->${JSON.stringify(data)}`);
 ```
 
@@ -168,7 +168,7 @@ let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlags = 1;
 try {
-    atManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlags).then(() => {
+    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags).then(() => {
         console.log('grantUserGrantedPermission success');
     }).catch((err) => {
         console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
@@ -197,7 +197,7 @@ grantUserGrantedPermission(tokenID: number, permissionName: Permissions, permiss
 | tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。|
 | permissionName | Permissions              | 是   | 被授予的权限名称，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
 | permissionFlags  | number | 是   | 授权选项<br>- 0表示权限未经过用户主动设置。<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 4表示当次权限设置为系统授权，用户不可更改这个权限授权状态。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 授予应用user grant权限。当授予权限成功时，err为undefine；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 授予应用user grant权限。当授予权限成功时，err为undefined；否则为错误对象。 |
 
 **错误码：**
 
@@ -220,7 +220,7 @@ let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlags = 1;
 try {
-    atManager.grantUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlags, (err, data) => {
+    atManager.grantUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags, (err, data) => {
         if (err) {
             console.log(`grantUserGrantedPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -279,7 +279,7 @@ let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlags = 1;
 try {
-    atManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlags).then(() => {
+    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags).then(() => {
         console.log('revokeUserGrantedPermission success');
     }).catch((err) => {
         console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
@@ -308,7 +308,7 @@ revokeUserGrantedPermission(tokenID: number, permissionName: Permissions, permis
 | tokenID      | number              | 是   | 目标应用的身份标识。可通过应用的[ApplicationInfo](js-apis-bundleManager-applicationInfo.md)获得。           |
 | permissionName | Permissions              | 是   | 被撤销的权限名称，合法的权限名取值可在[系统权限定义列表](../../security/permission-list.md)中查询。 |
 | permissionFlags  | number | 是   | 授权选项<br>- 0表示权限未经过用户主动设置。<br>- 1表示当次用户若选择禁止该权限，下次权限弹窗仍可以弹出申请用户授权。<br>- 2表示当次用户若选择禁止该权限，下次不会再弹出权限弹窗，需要用户在setting的权限管理中进行授权。<br>- 4表示当次权限设置为系统授权，用户不可更改这个权限授权状态。 |
-| callback | AsyncCallback&lt;void&gt; | 是 | 撤销应用user grant权限。当撤销权限成功时，err为undefine；否则为错误对象。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 撤销应用user grant权限。当撤销权限成功时，err为undefined；否则为错误对象。 |
 
 **错误码：**
 
@@ -331,7 +331,7 @@ let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 let permissionFlags = 1;
 try {
-    atManager.revokeUserGrantedPermission(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS", permissionFlags, (err, data) => {
+    atManager.revokeUserGrantedPermission(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS', permissionFlags, (err, data) => {
         if (err) {
             console.log(`revokeUserGrantedPermission fail, err->${JSON.stringify(err)}`);
         } else {
@@ -388,7 +388,7 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
 try {
-    atManager.getPermissionFlags(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS").then((data) => {
+    atManager.getPermissionFlags(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS').then((data) => {
         console.log(`getPermissionFlags success, data->${JSON.stringify(data)}`);
     }).catch((err) => {
         console.log(`getPermissionFlags fail, err->${JSON.stringify(err)}`);
@@ -460,16 +460,16 @@ on(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionLi
 **示例：**
 
 ```js
-import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
+import {Permissions} from '@ohos.abilityAccessCtrl';
 import bundleManager from '@ohos.bundle.bundleManager';
 
 let atManager = abilityAccessCtrl.createAtManager();
 let appInfo = bundleManager.getApplicationInfoSync('com.example.myapplication', 0, 100);
 let tokenIDList: Array<number> = [appInfo.accessTokenId];
-let permissionList: Array<Permissions> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
+let permissionList: Array<Permissions> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
 try {
     atManager.on('permissionStateChange', tokenIDList, permissionList, (data) => {
-        console.debug("receive permission state change, data:" + JSON.stringify(data));
+        console.debug('receive permission state change, data:' + JSON.stringify(data));
     });
 } catch(err) {
     console.log(`catch err->${JSON.stringify(err)}`);
@@ -504,20 +504,20 @@ off(type: 'permissionStateChange', tokenIDList: Array&lt;number&gt;, permissionL
 | 错误码ID | 错误信息 |
 | -------- | -------- |
 | 12100001 | The parameter is invalid. The tokenIDs or permissionNames in the list are all invalid. |
-| 12100004 | The interface is not used together with "on". |
+| 12100004 | The interface is not used together with 'on'. |
 | 12100007 | Service is abnormal. |
 | 12100008 | Out of memory. |
 
 **示例：**
 
 ```js
-import abilityAccessCtrl, {Permissions} from '@ohos.abilityAccessCtrl';
+import {Permissions} from '@ohos.abilityAccessCtrl';
 import bundleManager from '@ohos.bundle.bundleManager';
 
 let atManager = abilityAccessCtrl.createAtManager();
 let appInfo = bundleManager.getApplicationInfoSync('com.example.myapplication', 0, 100);
 let tokenIDList: Array<number> = [appInfo.accessTokenId];
-let permissionList: Array<Permissions> = ["ohos.permission.DISTRIBUTED_DATASYNC"];
+let permissionList: Array<Permissions> = ['ohos.permission.DISTRIBUTED_DATASYNC'];
 try {
     atManager.off('permissionStateChange', tokenIDList, permissionList);
 } catch(err) {
@@ -557,7 +557,7 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-let promise = atManager.verifyAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+let promise = atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
 promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
@@ -598,10 +598,10 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 let atManager = abilityAccessCtrl.createAtManager();
 try {
-    atManager.requestPermissionsFromUser(this.context, ["ohos.permission.CAMERA"], (err, data)=>{
-        console.info("data:" + JSON.stringify(data));
-        console.info("data permissions:" + data.permissions);
-        console.info("data authResults:" + data.authResults);
+    atManager.requestPermissionsFromUser(this.context, ['ohos.permission.CAMERA'], (err, data)=>{
+        console.info('data:' + JSON.stringify(data));
+        console.info('data permissions:' + data.permissions);
+        console.info('data authResults:' + data.authResults);
     });
 } catch(err) {
     console.log(`catch err->${JSON.stringify(err)}`);
@@ -649,12 +649,12 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 let atManager = abilityAccessCtrl.createAtManager();
 try {
-    atManager.requestPermissionsFromUser(this.context, ["ohos.permission.CAMERA"]).then((data) => {
-        console.info("data:" + JSON.stringify(data));
-        console.info("data permissions:" + data.permissions);
-        console.info("data authResults:" + data.authResults);
+    atManager.requestPermissionsFromUser(this.context, ['ohos.permission.CAMERA']).then((data) => {
+        console.info('data:' + JSON.stringify(data));
+        console.info('data permissions:' + data.permissions);
+        console.info('data authResults:' + data.authResults);
     }).catch((err) => {
-        console.info("data:" + JSON.stringify(err));
+        console.info('data:' + JSON.stringify(err));
     })
 } catch(err) {
     console.log(`catch err->${JSON.stringify(err)}`);
@@ -693,7 +693,7 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 
 let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-let promise = atManager.verifyAccessToken(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+let promise = atManager.verifyAccessToken(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
 promise.then(data => {
     console.log(`promise: data->${JSON.stringify(data)}`);
 });
@@ -733,7 +733,7 @@ checkAccessTokenSync(tokenID: number, permissionName: Permissions): GrantStatus;
 ```js
 let atManager = abilityAccessCtrl.createAtManager();
 let tokenID = 0; // 系统应用可以通过bundleManager.getApplicationInfo获取,普通应用可以通过bundleManager.getBundleInfoForSelf获取
-let data = atManager.checkAccessTokenSync(tokenID, "ohos.permission.GRANT_SENSITIVE_PERMISSIONS");
+let data = atManager.checkAccessTokenSync(tokenID, 'ohos.permission.GRANT_SENSITIVE_PERMISSIONS');
 console.log(`data->${JSON.stringify(data)}`);
 ```
 

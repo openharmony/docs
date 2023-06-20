@@ -1,5 +1,8 @@
 # 应用开发导读
 
+> **说明**：
+> 您当前正在浏览OpenHarmony 4.0 Beta1版本的配套文档，请获取与该版本[配套的SDK](../release-notes/OpenHarmony-v4.0-beta1.md#配套关系)开发应用。
+
 应用开发文档用于指导开发者通过OpenHarmony提供的接口完成应用开发。当前应用开发文档提供了在标准系统上开发应用的JS接口。
 
 在应用开发的文档中，您可以获取到如下几方面的内容：
@@ -59,12 +62,11 @@ DevEco Studio工具是OpenHarmony应用开发的推荐IDE工具。
 API参考提供了OpenHarmony全量组件和接口的参考文档，可以帮助开发者快速查找到指定接口的详细描述和调用方法。
 
 内容包括：
-
+- [ArkTS接口参考](reference/apis/development-intro.md)
 - [组件参考（基于TS扩展的声明式开发范式）](reference/arkui-ts/ts-components-summary.md)
 - [组件参考（兼容JS的类Web开发范式-ArkUI.Full）](reference/arkui-js/js-components-common-attributes.md)
 - [组件参考（兼容JS的类Web开发范式-ArkUI.Lite）](reference/arkui-js-lite/js-framework-file.md)
 - [JS服务卡片UI组件参考](reference/js-service-widget-ui/js-service-widget-file.md)
-- [接口参考（ArkTS及JS API）](reference/apis/development-intro.md)
 - 接口参考（Native API）
   - [OpenHarmony Native API](reference/native-apis/_o_h___native_x_component.md)
   - [Native API标准库](reference/native-lib/third_party_libc/musl.md)

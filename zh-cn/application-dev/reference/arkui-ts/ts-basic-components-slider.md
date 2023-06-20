@@ -22,7 +22,7 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| value | number | 否 | 当前进度值。<br/>默认值：0<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| value | number | 否 | 当前进度值。<br/>默认值：参数min<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | min | number | 否 | 设置最小值。<br/>默认值：0 |
 | max | number | 否 | 设置最大值。<br/>默认值：100<br/>**说明：** <br/>min >= max异常情况，min取默认值0，max取默认值100。<br/>value不在[min, max]范围之内，取min/max，靠近min取min，靠近max取max。 |
 | step | number | 否 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max]<br/>**说明：** <br/>设置小于0或百分比的值时，按默认值显示。 |
@@ -83,7 +83,7 @@ Slier组件滑块形状枚举。
 
 | 名称 | 功能描述 |
 | -------- | -------- |
-| onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void) | Slider拖到或点击时触发事件回调。<br/>value：当前滑动进度值。若返回值有小数，可使用number.toFixed()方法将数据处理为预期的精度。<br/>mode：事件触发的相关状态值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>Begin和End状态当手势点击时都会触发，Moving和Click状态当value值发生变换时触发。<br/>当连贯动作为拖动动作时，不触发Click状态。<br/>value值的变化范围为对应步长steps数组。 |
+| onChange(callback:&nbsp;(value:&nbsp;number,&nbsp;mode:&nbsp;SliderChangeMode)&nbsp;=&gt;&nbsp;void) | Slider拖动或点击时触发事件回调。<br/>value：当前滑动进度值。若返回值有小数，可使用number.toFixed()方法将数据处理为预期的精度。<br/>mode：事件触发的相关状态值。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>Begin和End状态当手势点击时都会触发，Moving和Click状态当value值发生变化时触发。<br/>当连贯动作为拖动动作时，不触发Click状态。<br/>value值的变化范围为对应步长steps数组。 |
 
 ## SliderChangeMode枚举说明
 

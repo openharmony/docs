@@ -2,8 +2,7 @@
 
 > **NOTE**
 >
-> - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-> - The APIs provided by this module are system APIs.
+> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 
 ## Modules to Import
 
@@ -110,17 +109,18 @@ Enumerates the camera error codes, which are returned when an API call is incorr
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
-| Name                      | Value  | Description           |
-| ------------------------- | ---- | ------------    |
-| INVALID_ARGUMENT       | 7400101    | A parameter is missing or the parameter type is incorrect.  |
-| OPERATION_NOT_ALLOWED    | 7400102    | The operation is not allowed.    |
-| SESSION_NOT_CONFIG    | 7400103    | The session is not configured.      |
-| SESSION_NOT_RUNNING  | 7400104    | The session is not running.   |
-| SESSION_CONFIG_LOCKED  | 7400105    | The session configuration is locked.    |
-| DEVICE_SETTING_LOCKED  | 7400106    | The device setting is locked.    |
-| CONFILICT_CAMERA  | 7400107    | The device is already started.    |
-| DEVICE_DISABLED  | 7400108    | The camera is disabled for security reasons.    |
-| SERVICE_FATAL_ERROR  | 7400201    | An error occurs in the camera service.    |
+| Name                      | Value         | Description           |
+| -------------------------  | ----       | ------------    |
+| INVALID_ARGUMENT           | 7400101    | A parameter is missing or the parameter type is incorrect.  |
+| OPERATION_NOT_ALLOWED      | 7400102    | The operation is not allowed.    |
+| SESSION_NOT_CONFIG         | 7400103    | The session is not configured.      |
+| SESSION_NOT_RUNNING        | 7400104    | The session is not running.   |
+| SESSION_CONFIG_LOCKED      | 7400105    | The session configuration is locked.    |
+| DEVICE_SETTING_LOCKED      | 7400106    | The device setting is locked.    |
+| CONFLICT_CAMERA            | 7400107    | The device is already started.    |
+| DEVICE_DISABLED            | 7400108    | The camera is disabled for security reasons.    |
+| DEVICE_PREEMPTED           | 7400109    | The camera is preempted.    |
+| SERVICE_FATAL_ERROR        | 7400201    | An error occurs in the camera service.    |
 
 ## CameraManager
 
@@ -203,7 +203,7 @@ isCameraMuteSupported(): boolean
 
 Checks whether the camera can be muted.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -225,7 +225,7 @@ muteCamera(mute: boolean): void
 
 Mutes or unmutes the camera.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -550,7 +550,7 @@ Listens for camera status changes. This API uses an asynchronous callback to ret
 **Example**
 
 ```js
-cameraManager.on('cameraStatus', (cameraStatusInfo) => {
+cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
     console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
     console.log(`status: ${cameraStatusInfo.status}`);
 })
@@ -562,7 +562,7 @@ on(type: 'cameraMute', callback: AsyncCallback\<boolean\>): void
 
 Listens for camera mute status changes. This API uses an asynchronous callback to return the result.
 
-This is a system API.
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.Multimedia.Camera.Core
 
@@ -630,6 +630,20 @@ Enumerates the camera connection types.
 | CAMERA_CONNECTION_USB_PLUGIN | 1    | Camera connected using USB.|
 | CAMERA_CONNECTION_REMOTE     | 2    | Remote camera.|
 
+## HostDeviceType
+
+Enumerates the remote camera types.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+| Name                         | Value      | Description          |
+| ---------------------------- | ----     | ------------- |
+| UNKNOWN_TYPE                 | 0        | Unknown type.     |
+| PHONE                        | 0x0E     | Camera of a smartphone.|
+| TABLET                       | 0x11     | Camera of a tablet.|
+
 ## CameraDevice
 
 Defines the camera device information.
@@ -642,6 +656,8 @@ Defines the camera device information.
 | cameraPosition | [CameraPosition](#cameraposition) | Yes  | Camera position.   |
 | cameraType     | [CameraType](#cameratype)         | Yes  | Camera type.   |
 | connectionType | [ConnectionType](#connectiontype) | Yes  | Camera connection type.|
+| hostDeviceName | string                            | Yes  | Name of the remote device.<br>**System API**: This is a system API.|
+| hostDeviceType | [hostDeviceType](#hostdevicetype) | Yes  | Type of the remote device.<br>**System API**: This is a system API.|
 
 ## Size
 
@@ -1679,7 +1695,7 @@ The coordinate system is based on the horizontal device direction with the devic
 
 | Name          | Type                           | Mandatory| Description                |
 | ------------- | -------------------------------| ---- | ------------------- |
-| exposurePoint | [Point](#point)                | Yes  | Exposure point.             |
+| exposurePoint | [Point](#point)                | Yes  | Metering point. The value range of x and y must be within [0,1]. If a value less than 0 is passed, the value **0** is used. If a value greater than **1** is passed, the value **1** is used.            |
 
 **Return value**
 
@@ -1754,7 +1770,7 @@ Before the setting, you are advised to use **[getExposureBiasRange](#getexposure
 
 | Name    | Type                           | Mandatory| Description                |
 | -------- | -------------------------------| ---- | ------------------- |
-| exposureBias   | number                   | Yes  | Exposure bias to set, which must be within the range obtained by running **getExposureBiasRange** interface. If the API call fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| exposureBias   | number                   | Yes  | EV. The supported EV range can be obtained by calling **getExposureBiasRange**. If the value passed is not within the supported range, the nearest critical point is used. There is a step for EV. For example, if the step is 0.5 and this parameter is set to 1.2, the EV that takes effect is 1.0. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned. |
 
 **Error codes**
 
@@ -1788,7 +1804,7 @@ Obtains the exposure value in use.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| number    | Exposure value obtained. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned.|
+| number    | Exposure value obtained. There is a step for EV. For example, if the step is 0.5 and this parameter is set to 1.2, the EV that takes effect is 1.0. If the operation fails, an error code defined in [CameraErrorCode](#cameraerrorcode) is returned. |
 
 **Error codes**
 
@@ -1936,7 +1952,7 @@ The coordinate system is based on the horizontal device direction with the devic
 
 | Name     | Type                    | Mandatory| Description                |
 | -------- | ----------------------- | ---- | ------------------- |
-| Point1    | [Point](#point)         | Yes  | Focal point.               |
+| Point1    | [Point](#point)         | Yes  | Focal point. The value range of x and y must be within [0,1]. If a value less than 0 is passed, the value **0** is used. If a value greater than **1** is passed, the value **1** is used.  |
 
 **Return value**
 
@@ -2075,7 +2091,7 @@ Sets a zoom ratio, with a maximum precision of two decimal places.
 
 | Name      | Type                 | Mandatory| Description                |
 | --------- | -------------------- | ---- | ------------------- |
-| zoomRatio | number               | Yes  | Zoom ratio. You can use **getZoomRatioRange** to obtain the supported values.|
+| zoomRatio | number               | Yes  | Zoom ratio. The supported zoom ratio range can be obtained by calling **getZoomRatioRange**. If the value passed is not within the supported range, the nearest critical point is used.|
 
 **Return value**
 
@@ -2735,7 +2751,7 @@ Captures a photo with the specified shooting parameters. This API uses a promise
 
 | Name    | Type                                        | Mandatory| Description     |
 | ------- | ------------------------------------------- | ---- | -------- |
-| setting | [PhotoCaptureSetting](#photocapturesetting) | No  | Shooting settings.|
+| setting | [PhotoCaptureSetting](#photocapturesetting) | No  | Shooting parameters. The input of **undefined** is processed as if no parameters were passed.|
 
 **Return value**
 

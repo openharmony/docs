@@ -32,26 +32,26 @@ ArkCompiler是一种统一编程平台，包含编译器、工具链、运行时
 
 ## 开发步骤
 
-1. 生成编译产物ark_js_vm及ts2panda。
+1. 生成编译产物ark_js_vm及es2panda。
     ```shell
     python ark.py x64.release
     ```
     - ark_js_vm：运行abc文件的可执行程序。
-    - ts2panda：将ArkTS文件转换生成ArkCompiler字节码文件的工具。
+    - es2panda：将ArkTS文件转换生成ArkCompiler字节码文件的工具。
 
 2. 使用ts2panda将TypeScript文件转换为abc文件。
     ```shell
-    prebuilts/build-tools/common/nodejs/node-v12.18.4-linux-x64/bin/node --expose-gc out/x64.release/clang_x64/obj/arkcompiler/ets_frontend/ts2panda/build/src/index.js helloworld.ts --opt-level 0
+    out/x64.release/arkcompiler/ets_frontend/es2abc helloworld.ts
     ```
     TypeScript用例文件helloworld.ts源码。
     ```JavaScript
-    declare function print(arg:any):string;
-    print("Hello world!");
+    declare function print(arg:string):string;
+    print('Hello world!');
     ```
 
 3. 执行生成的abc文件。
     ```shell
-    out/x64.release/clang_x64/arkcompiler/ets_runtime/ark_js_vm helloworld.abc
+    out/x64.release/arkcompiler/ets_runtime/ark_js_vm helloworld.abc
     ```
     abc文件：ArkCompiler字节码文件。
     

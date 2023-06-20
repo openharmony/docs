@@ -64,5 +64,6 @@
   - [常见问题-设备开发](faqs/Readme-CN.md)
   - [HDI接口参考](reference/hdi-apis/Readme-CN.md)
   - [CMSIS API参考](reference/kernel/cmsis/Readme-CN.md)
+- [免责声明](disclaimer.md)
 - 贡献
   - [参与贡献](../contribute/贡献文档.md) 

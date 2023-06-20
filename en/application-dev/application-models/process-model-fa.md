@@ -1,4 +1,4 @@
-# Process Model (FA Model)
+# Process Model Overview (FA Model)
 
 
 The OpenHarmony process model is shown below.
@@ -8,9 +8,9 @@ The OpenHarmony process model is shown below.
 
 - WebView has an independent rendering process, which is **Render process** in yellow in the figure.
 
-  **Figure 1** Process model 
+**Figure 1** Process model
 
-  ![process-model-fa](figures/process-model-fa.png)
+![process-model-fa](figures/process-model-fa.png)
 
 
 OpenHarmony provides two inter-process communication (IPC) mechanisms.
@@ -19,4 +19,3 @@ OpenHarmony provides two inter-process communication (IPC) mechanisms.
 - [Common Events](common-event-fa.md): This mechanism is used in one-to-many communication scenarios. Multiple subscribers may receive events at the same time.
 
 - [Background Services](rpc.md): This mechanism is implemented through [ServiceAbility](serviceability-overview.md).
-

@@ -153,14 +153,14 @@ Creates a spring animation curve. If multiple spring animations are applied to t
 | --------- | ------ | ---- | ----- |
 | response  | number | No   | Duration of one complete oscillation,<br>Default value: **0.55**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.55**.|
 | dampingFraction      | number | No   | Damping coefficient.<br>**0**: undamped. In this case, the spring oscillates forever.<br>> 0 and < 1: underdamped. In this case, the spring overshoots the equilibrium position.<br>**1**: critically damped.<br>> 1: overdamped. In this case, the spring approaches equilibrium gradually.<br>Default value: **0.825**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.55**.|
-| overlapDuration | number | No   | Duration for animations to overlap, in seconds. When animations overlap, if the **response** values of the two animations are different, they will transit smoothly over this duration.<br><br>Default value: **0**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0**.<br>The spring animation curve is physics-based. Its duration depends on the **springMotion** parameters and the previous velocity, rather than the **duration** parameter in **[animation](../arkui-ts/ts-animatorproperty.md)** or **[animateTo](../arkui-ts/ts-explicit-animation.md)**. The time cannot be normalized. Therefore, the interpolation cannot be obtained by using the **[interpolate](#interpolate)** function of the curve.|
+| overlapDuration | number | No   | Duration for animations to overlap, in seconds. When animations overlap, if the **response** values of the two animations are different, they will transit smoothly over this duration.<br><br>Default value: **0**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0**.<br>The spring animation curve is physics-based. Its duration depends on the **springMotion** parameters and the previous velocity, rather than the **duration** parameter in [animation](../arkui-ts/ts-animatorproperty.md) or [animateTo](../arkui-ts/ts-explicit-animation.md). The time cannot be normalized. Therefore, the interpolation cannot be obtained by using the **[interpolate](#interpolate)** function of the curve.|
 
 
 **Return value**
 
 | Type                          | Description            |
 | ---------------------------------- | ---------------- |
-|  [ICurve](#icurve)| Curve.<br>**NOTE**<br>The spring animation curve is physics-based. Its duration depends on the **springMotion** parameters and the previous velocity, rather than the **duration** parameter in **animation** or **animateTo**. The time cannot be normalized. Therefore, the interpolation cannot be obtained by using the **[interpolate](#interpolate)** function of the curve.|
+|  [ICurve](#icurve)| Curve.<br>**NOTE**<br>The spring animation curve is physics-based. Its duration depends on the **springMotion** parameters and the previous velocity, rather than the **duration** parameter in [animation](../arkui-ts/ts-animatorproperty.md) or [animateTo](../arkui-ts/ts-explicit-animation.md). The time cannot be normalized. Therefore, the interpolation cannot be obtained by using the **[interpolate](#interpolate)** function of the curve.|
 
 **Example**
 
@@ -187,13 +187,13 @@ Creates a responsive spring animation curve. It is a special case of [springMoti
 | --------- | ------ | ---- | ----- |
 | response  | number | No   | See **response** in **springMotion**.<br>Default value: **0.15**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.15**.|
 | dampingFraction      | number | No   | See **dampingFraction** in **springMotion**.<br>Default value: **0.86**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.86**.|
-| overlapDuration | number | No   | See **overlapDuration** in **springMotion**.<br>Default value: **0.25**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.25**.<br> To apply custom settings for a spring animation, you are advised to use **springMotion**. When using **responsiveSpringMotion**, you are advised to retain the default settings.<br>The duration of the responsive spring animation depends on the **responsiveSpringMotion** parameters and the previous velocity, rather than the **duration** parameter in **[animation](../arkui-ts/ts-animatorproperty.md)** or **[animateTo](../arkui-ts/ts-explicit-animation.md)**. In addition, the interpolation cannot be obtained by using the **[interpolate](#interpolate)** function of the curve.|
+| overlapDuration | number | No   | See **overlapDuration** in **springMotion**.<br>Default value: **0.25**<br>Unit: second<br>Value range: [0, +∞)<br>**NOTE**<br>A value less than 0 evaluates to the default value **0.25**.<br> To apply custom settings for a spring animation, you are advised to use **springMotion**. When using **responsiveSpringMotion**, you are advised to retain the default settings.<br>The duration of the responsive spring animation depends on the **responsiveSpringMotion** parameters and the previous velocity, rather than the **duration** parameter in [animation](../arkui-ts/ts-animatorproperty.md) or [animateTo](../arkui-ts/ts-explicit-animation.md). In addition, the interpolation cannot be obtained by using the [interpolate](#interpolate) function of the curve.|
 
 **Return value**
 
 | Type                          | Description            |
 | ---------------------------------- | ---------------- |
-|  [ICurve](#icurve)| Curve.<br>**NOTE**<br>1. To apply custom settings for a spring animation, you are advised to use **springMotion**. When using **responsiveSpringMotion**, you are advised to retain the default settings.<br>2. The duration of the responsive spring animation depends on the **responsiveSpringMotion** parameters and the previous velocity, rather than the **duration** parameter in **animation** or **animateTo**. In addition, the interpolation cannot be obtained by using the **interpolate** function of the curve.|
+|  [ICurve](#icurve)| Curve.<br>**NOTE**<br>1. To apply custom settings for a spring animation, you are advised to use **springMotion**. When using **responsiveSpringMotion**, you are advised to retain the default settings.<br>2. The duration of the responsive spring animation depends on the **responsiveSpringMotion** parameters and the previous velocity, rather than the **duration** parameter in **animation** or **animateTo**. In addition, the interpolation cannot be obtained by using the [interpolate](#interpolate) function of the curve.|
 
 **Example**
 
@@ -203,7 +203,7 @@ Curves.responsiveSpringMotion() // Create a responsive spring animation curve wi
 ```
 
 
-##  Curves.interpolatingSpringCurve<sup>10+</sup>
+##  Curves.interpolatingSpring<sup>10+</sup>
 
 interpolatingSpring(velocity: number, mass: number, stiffness: number, damping: number): ICurve
 
@@ -220,13 +220,11 @@ Creates an interpolating spring curve animated from 0 to 1. The actual animation
 | stiffness | number | Yes   | Stiffness. It is the degree to which an object deforms by resisting the force applied. In an elastic system, the greater the stiffness, the stronger the ability to resist deformation, and the faster the speed of restoring to the equilibrium position.|
 | damping   | number | Yes   | Damping. It is a pure number and has no real physical meaning. It is used to describe the oscillation and attenuation of the system after being disturbed. The larger the damping, the smaller the number of oscillations of elastic motion, and the smaller the oscillation amplitude.|
 
-
 **Return value**
 
 | Type                          | Description            |
 | ---------------------------------- | ---------------- |
 |  [ICurve](#icurve)| Interpolation curve.|
-
 
 **Example**
 
@@ -234,6 +232,37 @@ Creates an interpolating spring curve animated from 0 to 1. The actual animation
 import Curves from '@ohos.curves'
 Curves.interpolatingSpring(100, 1, 228, 30) // Create an interpolating spring curve whose duration is subject to spring parameters.
 ```
+
+## Curves.customCurve<sup>10+</sup>
+
+customCurve(interpolate: (fraction: number) => number): ICurve
+
+Creates a custom curve.
+
+**System capability**: SystemCapability.ArkUI.ArkUI.Full
+
+**Parameters**
+
+| Name     | Type                        | Mandatory| Description                                                        |
+| ----------- | ---------------------------- | ---- | ------------------------------------------------------------ |
+| interpolate | (fraction: number) => number | Yes  | Custom interpolation callback.<br>**fraction**: input x value for interpolation when the animation starts. Value range: [0, 1]<br>The return value is the y value of the curve. Value range: [0, 1]<br>**NOTE**<br>If **fraction** is **0**, the return value **0** corresponds to the animation start point; any other return value means that the animation jumps at the start point.<br>If **fraction** is **1**, the return value **1** corresponds to the animation end point; any other return value means that the end value of the animation is not the value of the state variable, which will result in an effect of transition from that end value to the value of the state variable.|
+
+**Return value**
+
+| Type             | Description            |
+| ----------------- | ---------------- |
+| [ICurve](#icurve) | Interpolation curve.|
+
+**Example**
+
+```ts
+import Curves from '@ohos.curves'
+interpolate(fraction) {
+    return Math.sqrt(fraction);
+  }
+Curves.customCurve(this.interpolate) // Create a custom curve.
+```
+
 
 
 ## ICurve

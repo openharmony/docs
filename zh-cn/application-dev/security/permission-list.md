@@ -994,6 +994,16 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.ENTERPRISE_SET_SCREENOFF_TIME
+
+允许设备管理员设置系统休眠时间。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.NFC_TAG
 
 允许应用读取Tag卡片。
@@ -1891,6 +1901,16 @@
 ## ohos.permission.ACCESS_CAST_ENGINE_STREAM
 
 允许应用调用系统资源投射能力。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.CLOUDDATA_CONFIG
+
+允许应用获取配置数据库端云信息能力。
 
 **权限级别**：system_basic
 

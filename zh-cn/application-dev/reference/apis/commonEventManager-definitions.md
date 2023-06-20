@@ -1,7 +1,7 @@
 # 系统公共事件定义
 
 本文档提供OpenHarmony系统所定义的公共事件类型的索引。
-公共事件类型定义在[ohos.commonEvent模块的Support枚举](./js-apis-commonEventManager.md#support)中。
+公共事件类型定义在[ohos.commonEventManager模块的Support枚举](./js-apis-commonEventManager.md#support)中。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -65,6 +65,7 @@
 > 说明：
 >
 > 从API Version 10 开始废弃。
+> 建议使用[COMMON_EVENT_SCREEN_UNLOCKED<sup>10+<sup>](#common_event_screen_unlocked10)替代。
 
 ## COMMON_EVENT_TIME_TICK
 表示系统时间更改的公共事件的动作。
@@ -664,33 +665,33 @@ Wi-Fi P2P群组信息已更改。
 
 ## COMMON_EVENT_USB_STATE<sup>9+</sup>
 表示USB设备状态发生变化的公共事件。
-- 值： usual.event.hardware.usb.action.USB_STATE
-- 订阅者所需权限： 无
 
-## COMMON_EVENT_USB_PORT_CHANGED<sup>9+</sup>
+具体查看[USB公共事件](common_event/commonEvent-usb.md)。
+
+## **COMMON_EVENT_USB_PORT_CHANGED**<sup>9+</sup>
 表示用户设备的USB端口状态发生改变的公共事件。
-- 值： usual.event.hardware.usb.action.USB_PORT_CHANGED
-- 订阅者所需权限： 无
+
+具体查看[USB公共事件](common_event/commonEvent-usb.md)。
 
 ## COMMON_EVENT_USB_DEVICE_ATTACHED
 当用户设备作为USB主机时，USB设备已挂载的公共事件的动作。
-- 值： usual.event.hardware.usb.action.USB_DEVICE_ATTACHED
-- 订阅者所需权限： 无
+
+具体查看[USB公共事件](common_event/commonEvent-usb.md)。
 
 ## COMMON_EVENT_USB_DEVICE_DETACHED
 当用户设备作为USB主机时，USB设备被卸载的公共事件的动作。
-- 值： usual.event.hardware.usb.action.USB_DEVICE_DETACHED
-- 订阅者所需权限： 无
+
+具体查看[USB公共事件](common_event/commonEvent-usb.md)。
 
 ## COMMON_EVENT_USB_ACCESSORY_ATTACHED
 （预留事件，暂未支持）表示已连接USB附件的公共事件的动作。
-- 值： usual.event.hardware.usb.action.USB_ACCESSORY_ATTACHED
-- 订阅者所需权限： 无
+
+具体查看[USB公共事件](common_event/commonEvent-usb.md)。
 
 ## COMMON_EVENT_USB_ACCESSORY_DETACHED
 （预留事件，暂未支持）表示USB附件被卸载的公共事件的动作。
-- 值： usual.event.data.DISK_MOUNTED
-- 订阅者所需权限： 无
+
+具体查看[USB公共事件](common_event/commonEvent-usb.md)。
 
 ## COMMON_EVENT_DISK_REMOVED
 （预留事件，暂未支持）外部存储设备状态变更为移除时发送此公共事件。
@@ -909,3 +910,7 @@ Wi-Fi P2P群组信息已更改。
 
 - 值：usual.event.SCREEN_UNLOCKED
 - 订阅者所需权限：无
+
+## [COMMON_EVENT_QUICK_FIX_REVOKE_RESULT<sup>10+<sup>](./common_event/commonEvent-ability.md#common_event_quick_fix_revoke_result10)
+
+指示撤销快速修复的动作。

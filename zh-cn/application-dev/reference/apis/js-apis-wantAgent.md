@@ -20,6 +20,8 @@ getWant(agent: WantAgent, callback: AsyncCallback\<Want\>): void
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
 | 参数名     | 类型                       | 必填 | 说明                    |
@@ -90,6 +92,8 @@ getWant(agent: WantAgent): Promise\<Want\>
 获取WantAgent中的Want(Promise形式)。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+
+**系统API**：该接口为系统接口，三方应用不支持调用。
 
 **参数：**
 
@@ -350,7 +354,7 @@ getBundleName(agent: WantAgent): Promise\<string\>
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-**参数：**
+**参数：** 
 
 | 参数名  | 类型      | 必填 | 说明          |
 | ----- | --------- | ---- | ------------- |

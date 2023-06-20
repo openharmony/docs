@@ -610,7 +610,7 @@ try {
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.BarrierFree.Accessibility.Core
 
-## attributeNames
+### attributeNames
 
 attributeNames\<T extends keyof ElementAttributeValues>(): Promise\<Array\<T>>;
 
@@ -636,7 +636,7 @@ rootElement.attributeNames().then((data) => {
     console.log('failed to get attribute names, because ${JSON.stringify(err)}');
 });
 ```
-## attributeNames
+### attributeNames
 
 attributeNames\<T extends keyof ElementAttributeValues>(callback: AsyncCallback\<Array\<T>>): void;
 
@@ -664,7 +664,7 @@ rootElement.attributeNames((err, data) => {
     console.info('get attribute names success');
 });
 ```
-## AccessibilityElement.attributeValue
+### attributeValue
 
 attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T): Promise\<ElementAttributeValues[T]>;
 
@@ -709,7 +709,7 @@ try {
     console.error('failed to get attribute value, because ${JSON.stringify(exception)}');
 }
 ```
-## AccessibilityElement.attributeValue
+### attributeValue
 
 attributeValue\<T extends keyof ElementAttributeValues>(attributeName: T, 
     callback: AsyncCallback\<ElementAttributeValues[T]>): void;
@@ -752,7 +752,7 @@ try {
     console.error('failed to get attribute value, because ${JSON.stringify(exception)}');
 }
 ```
-## actionNames
+### actionNames
 
 actionNames(): Promise\<Array\<string>>;
 
@@ -778,7 +778,7 @@ rootElement.actionNames().then((data) => {
     console.error('failed to get action names because ${JSON.stringify(err)}');
 });
 ```
-## actionNames
+### actionNames
 
 actionNames(callback: AsyncCallback\<Array\<string>>): void;
 
@@ -806,7 +806,7 @@ rootElement.actionNames((err, data) => {
     console.info('get action names success');
 });
 ```
-## performAction
+### performAction
 
 performAction(actionName: string, parameters?: object): Promise\<void>;
 
@@ -819,7 +819,7 @@ performAction(actionName: string, parameters?: object): Promise\<void>;
 | 参数名         | 类型                                     | 必填   | 说明             |
 | ----------- | ---------------------------------------- | ---- | -------------- |
 | actionName | string | 是    | 表示属性的名称，取值参考[Action](./js-apis-accessibility.md#action)。 
-| parameters | object | 否    | 表示执行操作时所需要的参数；当前版本暂不支持。     |
+| parameters | object | 否    | 表示执行操作时所需要的参数；默认为空；当前版本暂不支持。     |
 
 **返回值：**
 
@@ -849,7 +849,7 @@ try {
     console.error('failed to perform action, because ${JSON.stringify(exception)}');
 }
 ```
-## performAction
+### performAction
 
 performAction(actionName: string, callback: AsyncCallback\<void>): void;
 
@@ -888,7 +888,7 @@ try {
     console.error('failed to perform action, because ${JSON.stringify(exception)}');
 }
 ```
-## performAction
+### performAction
 
 performAction(actionName: string, parameters: object, callback: AsyncCallback\<void>): void;
 
@@ -901,7 +901,7 @@ performAction(actionName: string, parameters: object, callback: AsyncCallback\<v
 | 参数名        | 类型                        | 必填   | 说明                                       |
 | ---------- | ------------------------- | ---- | ---------------------------------------- |
 | actionName | string                    | 是    | 表示属性的名称，取值参考[Action](./js-apis-accessibility.md#action)。 |
-| parameters | object                    | 是    | 表示执行操作时所需要的参数；当前版本暂不支持。                  |
+| parameters | object                    | 是    | 表示执行操作时所需要的参数；默认为空；当前版本暂不支持。                  |
 | callback   | AsyncCallback&lt;void&gt; | 是    | 回调函数，表示执行指定操作的回调。                        |
 
 **错误码：**
@@ -932,7 +932,7 @@ try {
     console.error('failed to perform action, because ${JSON.stringify(exception)}');
 }
 ```
-## findElement('content')
+### findElement('content')
 
 findElement(type: 'content', condition: string): Promise\<Array\<AccessibilityElement>>;
 
@@ -971,7 +971,7 @@ try {
     console.error('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```
-## findElement('content')
+### findElement('content')
 
 findElement(type: 'content', condition: string, callback: AsyncCallback\<Array\<AccessibilityElement>>): void;
 
@@ -1007,7 +1007,7 @@ try {
     console.error('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```
-## findElement('focusType')
+### findElement('focusType')
 
 findElement(type: 'focusType', condition: FocusType): Promise\<AccessibilityElement>;
 
@@ -1046,7 +1046,7 @@ try {
     console.error('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```
-## findElement('focusType')
+### findElement('focusType')
 
 findElement(type: 'focusType', condition: FocusType, callback: AsyncCallback\<AccessibilityElement>): void;
 
@@ -1082,7 +1082,7 @@ try {
     console.error('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```
-## findElement('focusDirection')
+### findElement('focusDirection')
 
 findElement(type: 'focusDirection', condition: FocusDirection): Promise\<AccessibilityElement>;
 
@@ -1121,7 +1121,7 @@ try {
     console.error('failed to find element, because ${JSON.stringify(exception)}');
 }
 ```
-## findElement('focusDirection')
+### findElement('focusDirection')
 
 findElement(type: 'focusDirection', condition: FocusDirection, callback: AsyncCallback\<AccessibilityElement>): void;
 

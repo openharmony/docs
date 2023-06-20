@@ -18,9 +18,9 @@ Enumerates the states of an accessibility application.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-| Name| Description|
-| -------- | -------- |
-| enable | The accessibility application is enabled.|
+| Name     | Description      |
+| ------- | -------- |
+| enable  | The accessibility application is enabled.|
 | disable | The accessibility application is disabled.|
 | install | The accessibility application has been installed.|
 
@@ -30,13 +30,13 @@ Enumerates the types of accessibility applications.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-| Name| Description|
-| -------- | -------- |
-| audible | The accessibility application provides audible feedback.|
-| generic | The accessibility application provides generic feedback.|
-| haptic | The accessibility application provides haptic feedback.|
-| spoken  | The accessibility application provides spoken feedback.|
-| visual | The accessibility application provides visual feedback.|
+| Name              | Description       |
+| ---------------- | --------- |
+| audible          | The accessibility application provides audible feedback.|
+| generic          | The accessibility application provides generic feedback.|
+| haptic           | The accessibility application provides haptic feedback.|
+| spoken           | The accessibility application provides spoken feedback.|
+| visual           | The accessibility application provides visual feedback.|
 | all<sup>9+</sup> | All the preceding types.|
 
 ## AccessibilityAbilityInfo
@@ -47,16 +47,16 @@ Provides information about an accessibility application.
 
 ### Attributes
 
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| id | string | Yes| No| Ability ID.|
-| name | string | Yes| No| Ability name.|
-| bundleName | string | Yes| No| Bundle name.|
-| targetBundleNames<sup>9+</sup> | Array&lt;string&gt; | Yes| No| Name of the target bundle.|
-| abilityTypes | Array&lt;[AbilityType](#abilitytype)&gt; | Yes| No| Accessibility application type.|
-| capabilities | Array&lt;[Capability](#capability)&gt; | Yes| No| Capabilities list of the accessibility application.|
-| description | string | Yes| No| Description of the accessibility application.|
-| eventTypes | Array&lt;[EventType](#eventtype)&gt; | Yes| No| List of events that the accessibility application focuses on.|
+| Name                            | Type                                      | Readable  | Writable  | Description              |
+| ------------------------------ | ---------------------------------------- | ---- | ---- | ---------------- |
+| id                             | string                                   | Yes   | No   | Ability ID.|
+| name                           | string                                   | Yes   | No   | Ability name.      |
+| bundleName                     | string                                   | Yes   | No   | Bundle name.       |
+| targetBundleNames<sup>9+</sup> | Array&lt;string&gt;                      | Yes   | No   | Name of the target bundle.  |
+| abilityTypes                   | Array&lt;[AbilityType](#abilitytype)&gt; | Yes   | No   | Accessibility application type.         |
+| capabilities                   | Array&lt;[Capability](#capability)&gt;   | Yes   | No   | Capabilities list of the accessibility application.       |
+| description                    | string                                   | Yes   | No   | Description of the accessibility application.         |
+| eventTypes                     | Array&lt;[EventType](#eventtype)&gt;     | Yes   | No   | List of events that the accessibility application focuses on. |
 
 ## Action
 
@@ -64,24 +64,24 @@ Describes the target action supported by an accessibility application.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-| Name| Description|
-| -------- | -------- |
-| click | Clicking.|
-| longClick | Long pressing.|
-| scrollForward | Scrolling forward. Not supported currently. |
-| scrollBackward | Scrolling backward. Not supported currently. |
-| focus | Obtaining focus. Not supported currently. |
-| clearFocus | Clearing focus. Not supported currently. |
-| clearSelection | Clearing selection. Not supported currently. |
-| accessibilityFocus | Obtaining the accessibility focus. |
-| clearAccessibilityFocus | Clearing the accessibility focus. |
-| cut | Cut. Not supported currently. |
-| copy | Copy. Not supported currently. |
-| paste | Paste. Not supported currently. |
-| select | Select. Not supported currently. |
-| setText | Setting the text. Not supported currently. |
-| delete | Delete. Not supported currently. |
-| setSelection | Setting the selection. Not supported currently. |
+| Name                     | Description                |
+| ----------------------- | ------------------ |
+| click                   | Clicking.           |
+| longClick               | Long pressing.           |
+| scrollForward           | Scrolling forward. Not supported currently.|
+| scrollBackward          | Scrolling backward. Not supported currently.|
+| focus                   | Obtaining focus. Not supported currently.|
+| clearFocus              | Clearing focus. Not supported currently.|
+| clearSelection          | Clearing selection. Not supported currently.|
+| accessibilityFocus      | Obtaining the accessibility focus.      |
+| clearAccessibilityFocus | Clearing the accessibility focus.      |
+| cut                     | Cut. Not supported currently.  |
+| copy                    | Copy. Not supported currently.  |
+| paste                   | Paste. Not supported currently.  |
+| select                  | Select. Not supported currently.  |
+| setText                 | Setting the text. Not supported currently.|
+| delete                  | Delete. Not supported currently.  |
+| setSelection            | Setting the selection. Not supported currently.  |
 
 ## Capability
 
@@ -89,13 +89,13 @@ Enumerates the capabilities of an accessibility application.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-| Name| Description|
-| -------- | -------- |
-| retrieve | Capability to retrieve the window content.|
-| touchGuide | Capability of touch guide mode.|
-| keyEventObserver | Capability to filter key events.|
-| zoom | Capability to control the display zoom level. Not supported currently. |
-| gesture | Capability to perform gesture actions.|
+| Name              | Description                   |
+| ---------------- | --------------------- |
+| retrieve         | Capability to retrieve the window content.         |
+| touchGuide       | Capability of touch guide mode.         |
+| keyEventObserver | Capability to filter key events.         |
+| zoom             | Capability to control the display zoom level. Not supported currently.|
+| gesture          | Capability to perform gesture actions.         |
 
 ## CaptionsFontEdgeType<sup>8+</sup>
 
@@ -103,12 +103,12 @@ Enumerates the font edge types of captions.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
-| Name| Description|
-| -------- | -------- |
-| none | No effect.|
-| raised | Raised effect.|
-| depressed | Depressed effect.|
-| uniform | Uniform effect.|
+| Name        | Description   |
+| ---------- | ----- |
+| none       | No effect. |
+| raised     | Raised effect.|
+| depressed  | Depressed effect.|
+| uniform    | Uniform effect.|
 | dropShadow | Drop shadow effect.|
 
 ## CaptionsFontFamily<sup>8+</sup>
@@ -117,16 +117,16 @@ Enumerates the font families of captions.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
-| Name| Description|
-| -------- | -------- |
-| default | Default font family.|
-| monospacedSerif | Monospaced Serif fonts, which use the same width for each character.|
-| serif | Serif fonts.|
+| Name                 | Description               |
+| ------------------- | ----------------- |
+| default             | Default font family.            |
+| monospacedSerif     | Monospaced Serif fonts, which use the same width for each character.     |
+| serif               | Serif fonts.        |
 | monospacedSansSerif | Monospaced Sans Serif fonts, which use the same width for each character.|
-| sansSerif | Sans Serif fonts.|
-| casual | Casual fonts.|
-| cursive | Cursive fonts.|
-| smallCapitals | Small caps fonts.|
+| sansSerif           | Sans Serif fonts.   |
+| casual              | Casual fonts.           |
+| cursive             | Cursive fonts.            |
+| smallCapitals       | Small caps fonts.        |
 
 ## CaptionsStyle<sup>8+</sup>
 
@@ -134,14 +134,14 @@ Describes the style of captions.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Hearing
 
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| fontFamily | [CaptionsFontFamily](#captionsfontfamily8) | Yes| No| Font family of captions.|
-| fontScale | number | Yes| No| Font scale of captions.|
-| fontColor | number \| string | Yes| No| Font color of captions.|
-| fontEdgeType | [CaptionsFontEdgeType](#captionsfontedgetype8) | Yes| No| Font edge type of captions.|
-| backgroundColor | number \| string | Yes| No| Background color of captions.|
-| windowColor | number \| string | Yes| No| Window color of captions.|
+| Name             | Type                                      | Readable  | Writable  | Description         |
+| --------------- | ---------------------------------------- | ---- | ---- | ----------- |
+| fontFamily      | [CaptionsFontFamily](#captionsfontfamily8) | Yes   | No   | Font family of captions.    |
+| fontScale       | number                                   | Yes   | No   | Font scale of captions.|
+| fontColor       | number \| string                         | Yes   | No   | Font color of captions.  |
+| fontEdgeType    | [CaptionsFontEdgeType](#captionsfontedgetype8) | Yes   | No   | Font edge type of captions.  |
+| backgroundColor | number \| string                         | Yes   | No   | Background color of captions.  |
+| windowColor     | number \| string                         | Yes   | No   | Window color of captions.  |
 
 ## CaptionsManager<sup>8+</sup>
 
@@ -151,10 +151,10 @@ Implements configuration management for captions. Before calling any API of **Ca
 
 ### Attributes
 
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| enabled | boolean | Yes| No| Whether to enable captions configuration.|
-| style | [CaptionsStyle](#captionsstyle8) | Yes| No| Style of captions.|
+| Name     | Type                              | Readable  | Writable  | Description         |
+| ------- | -------------------------------- | ---- | ---- | ----------- |
+| enabled | boolean                          | Yes   | No   | Whether to enable captions configuration.|
+| style   | [CaptionsStyle](#captionsstyle8) | Yes   | No   | Style of captions.    |
 
 ### on('enableChange')
 
@@ -164,10 +164,10 @@ Enables listening for the enabled status changes of captions configuration. This
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to listen for, which is set to **'enableChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | Yes| Callback invoked when the enabled status of captions configuration changes.|
+| Name     | Type                     | Mandatory  | Description                                     |
+| -------- | ----------------------- | ---- | --------------------------------------- |
+| type     | string                  | Yes   | Type of the event to listen for, which is set to **'enableChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | Yes   | Callback invoked when the enabled status of captions configuration changes.             |
 
 **Example**
 
@@ -190,10 +190,10 @@ Enables listening for captions style changes. This API uses an asynchronous call
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to listen for, which is set to **'styleChange'** in this API.|
-| callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | Yes| Callback invoked when the style of captions changes.|
+| Name     | Type                                      | Mandatory  | Description                                |
+| -------- | ---------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                   | Yes   | Type of the event to listen for, which is set to **'styleChange'** in this API.|
+| callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | Yes   | Callback invoked when the style of captions changes.           |
 
 **Example**
 
@@ -218,10 +218,10 @@ Disables listening for the enabled status changes of captions configuration. Thi
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to listen for, which is set to **'enableChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | No| Callback invoked when the enabled status of captions configuration changes.|
+| Name     | Type                     | Mandatory  | Description                                      |
+| -------- | ----------------------- | ---- | ---------------------------------------- |
+| type     | string                  | Yes   | Type of the event to listen for, which is set to **'enableChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | No   | Callback for the event.          |
 
 **Example**
 
@@ -244,10 +244,10 @@ Disables listening for captions style changes. This API uses an asynchronous cal
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to listen for, which is set to **'styleChange'** in this API.|
-| callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | No| Callback invoked when the style of captions changes.|
+| Name     | Type                                      | Mandatory  | Description                                  |
+| -------- | ---------------------------------------- | ---- | ------------------------------------ |
+| type     | string                                   | Yes   | Type of the event to listen for, which is set to **'styleChange'** in this API.|
+| callback | Callback&lt;[CaptionsStyle](#captionsstyle8)&gt; | No   | Callback for the event.             |
 
 **Example**
 
@@ -272,22 +272,22 @@ Describes a GUI change event.
 
 ### Attributes
 
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| type | [EventType](#eventtype) | Yes| Yes| Accessibility event type.|
-| windowUpdateType | [WindowUpdateType](#windowupdatetype) | Yes| Yes| Window update type.|
-| bundleName | string | Yes| Yes| Target application name.|
-| componentType | string | Yes| Yes| Type of the event source component, for example, button or chart.|
-| pageId | number | Yes| Yes| Page ID of the event source.|
-| description | string | Yes| Yes| Event description. Not supported currently. |
-| triggerAction | [Action](#action) | Yes| Yes| Action that triggers the event.|
-| textMoveUnit | [TextMoveUnit](#textmoveunit) | Yes| Yes| Text movement unit. Not supported currently. |
-| contents | Array&lt;string&gt; | Yes| Yes| Array of contents.|
-| lastContent | string | Yes| Yes| Latest content.|
-| beginIndex | number | Yes| Yes| Sequence number of the first item displayed on the page. Not supported currently. |
-| currentIndex | number | Yes| Yes| Sequence number of the current item. Not supported currently. |
-| endIndex | number | Yes| Yes| Sequence number of the last item displayed on the page. Not supported currently. |
-| itemCount | number | Yes| Yes| Total number of items. Not supported currently. |
+| Name              | Type                                   | Readable  | Writable  | Description                   |
+| ---------------- | ------------------------------------- | ---- | ---- | --------------------- |
+| type             | [EventType](#eventtype)               | Yes   | Yes   | Accessibility event type.             |
+| windowUpdateType | [WindowUpdateType](#windowupdatetype) | Yes   | Yes   | Window update type.              |
+| bundleName       | string                                | Yes   | Yes   | Target application name.               |
+| componentType    | string                                | Yes   | Yes   | Type of the event source component, for example, button or chart.      |
+| pageId           | number                                | Yes   | Yes   | Page ID of the event source.           |
+| description      | string                                | Yes   | Yes   | Event description. Not supported currently.       |
+| triggerAction    | [Action](#action)                     | Yes   | Yes   | Action that triggers the event.        |
+| textMoveUnit     | [TextMoveUnit](#textmoveunit)         | Yes   | Yes   | Text movement unit. Not supported currently.     |
+| contents         | Array&lt;string&gt;                   | Yes   | Yes   | Array of contents.                |
+| lastContent      | string                                | Yes   | Yes   | Latest content.                |
+| beginIndex       | number                                | Yes   | Yes   | Sequence number of the first item displayed on the page. Not supported currently.|
+| currentIndex     | number                                | Yes   | Yes   | Sequence number of the current item. Not supported currently.     |
+| endIndex         | number                                | Yes   | Yes   | Sequence number of the last item displayed on the page. Not supported currently.|
+| itemCount        | number                                | Yes   | Yes   | Total number of items. Not supported currently.       |
 
 ### constructor
 
@@ -299,9 +299,9 @@ Implements a constructor.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| jsonObject | string | Yes| JSON string required for creating an object.|
+| Name       | Type    | Mandatory  | Description                  |
+| ---------- | ------ | ---- | -------------------- |
+| jsonObject | string | Yes   | JSON string required for creating an object.|
 
 **Example**
 
@@ -319,19 +319,19 @@ Enumerates accessibility event types.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-| Name| Description|
-| -------- | -------- |
-| click | Event of clicking a component.|
-| longClick | Event of long-pressing a component.|
-| select | Event of selecting a component. Not supported currently. |
-| focus | Event indicating that the component obtains the focus. Not supported currently. |
-| textUpdate | Event indicating that the component text has been updated. Not supported currently. |
-| hoverEnter | Event indicating that the hover enters a component. Not supported currently. |
-| hoverExit | Event indicating that the hover exits a component. Not supported currently. |
-| scroll | Event of the scroll view. Not supported currently. |
-| textSelectionUpdate | Event indicating that the selected text has been updated. Not supported currently. |
-| accessibilityFocus | Event indicating that the accessibility focus has been obtained.|
-| accessibilityFocusClear | Event indicating that the accessibility focus has been cleared.|
+| Name                     | Description                    |
+| ----------------------- | ---------------------- |
+| click                   | Event of clicking a component.            |
+| longClick               | Event of long-pressing a component.            |
+| select                  | Event of selecting a component. Not supported currently.   |
+| focus                   | Event indicating that the component obtains the focus. Not supported currently. |
+| textUpdate              | Event indicating that the component text has been updated. Not supported currently.|
+| hoverEnter              | Event indicating that the hover enters a component. Not supported currently. |
+| hoverExit               | Event indicating that the hover exits a component. Not supported currently. |
+| scroll                  | Event of the scroll view. Not supported currently.   |
+| textSelectionUpdate     | Event indicating that the selected text has been updated. Not supported currently.|
+| accessibilityFocus      | Event indicating that the accessibility focus has been obtained.         |
+| accessibilityFocusClear | Event indicating that the accessibility focus has been cleared.         |
 
 ## TextMoveUnit
 
@@ -339,12 +339,12 @@ Enumerates the movement units for traversing the node text.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-| Name| Description|
-| -------- | -------- |
-| char | The movement unit for traversing the node text is by character.|
-| word | The movement unit for traversing the node text is by word.|
-| line | The movement unit for traversing the node text is by line.|
-| page | The movement unit for traversing the node text is by page.|
+| Name       | Description             |
+| --------- | --------------- |
+| char      | The movement unit for traversing the node text is by character.|
+| word      | The movement unit for traversing the node text is by word. |
+| line      | The movement unit for traversing the node text is by line. |
+| page      | The movement unit for traversing the node text is by page. |
 | paragraph | The movement unit for traversing the node text is by paragraph.|
 
 ## WindowUpdateType
@@ -353,13 +353,13 @@ Enumerates window update types.
 
 **System capability**: SystemCapability.BarrierFree.Accessibility.Core
 
-| Name| Description|
-| -------- | -------- |
-| add | Window adding.|
-| remove | Window deletion.|
-| bounds | Window boundary change.|
+| Name    | Description                |
+| ------ | ------------------ |
+| add    | Window adding.      |
+| remove | Window deletion.   |
+| bounds | Window boundary change.   |
 | active | Window activity change.|
-| focus | Window focus change.|
+| focus  | Window focus change.  |
 
 ## accessibility.getAbilityLists<sup>(deprecated)</sup>
 
@@ -376,15 +376,15 @@ Obtains the accessibility application list. This API uses a promise to return th
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| abilityType | [AbilityType](#abilitytype) | Yes| Accessibility application type.|
-| stateType | [AbilityState](#abilitystate) | Yes| Accessibility application status.|
+| Name        | Type                           | Mandatory  | Description      |
+| ----------- | ----------------------------- | ---- | -------- |
+| abilityType | [AbilityType](#abilitytype)   | Yes   | Accessibility application type.|
+| stateType   | [AbilityState](#abilitystate) | Yes   | Accessibility application status.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type                                      | Description                   |
+| ---------------------------------------- | --------------------- |
 | Promise&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | Promise used to return the accessibility application list.|
 
 **Example**
@@ -426,11 +426,11 @@ Obtains the accessibility application list. This API uses an asynchronous callba
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| abilityType | [AbilityType](#abilitytype) | Yes| Accessibility application type.|
-| stateType | [AbilityState](#abilitystate) | Yes| Accessibility application status.|
-| callback | AsyncCallback&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | Yes| Callback used to return the accessibility application list.|
+| Name        | Type                                      | Mandatory  | Description              |
+| ----------- | ---------------------------------------- | ---- | ---------------- |
+| abilityType | [AbilityType](#abilitytype)              | Yes   | Accessibility application type.        |
+| stateType   | [AbilityState](#abilitystate)            | Yes   | Accessibility application status.        |
+| callback    | AsyncCallback&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | Yes   | Callback used to return the accessibility application list.|
 
 **Example**
 
@@ -470,15 +470,15 @@ Obtains the accessibility application list. This API uses a promise to return th
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| abilityType | [AbilityType](#abilitytype) | Yes| Accessibility application type.|
-| stateType | [AbilityState](#abilitystate) | Yes| Accessibility application status.|
+| Name        | Type                           | Mandatory  | Description      |
+| ----------- | ----------------------------- | ---- | -------- |
+| abilityType | [AbilityType](#abilitytype)   | Yes   | Accessibility application type.|
+| stateType   | [AbilityState](#abilitystate) | Yes   | Accessibility application status.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type                                      | Description                   |
+| ---------------------------------------- | --------------------- |
 | Promise&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | Promise used to return the accessibility application list.|
 
 **Example**
@@ -515,11 +515,11 @@ Obtains the accessibility application list. This API uses an asynchronous callba
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| abilityType | [AbilityType](#abilitytype) | Yes| Accessibility application type.|
-| stateType | [AbilityState](#abilitystate) | Yes| Accessibility application status.|
-| callback | AsyncCallback&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | Yes| Callback used to return the accessibility application list.|
+| Name        | Type                                      | Mandatory  | Description              |
+| ----------- | ---------------------------------------- | ---- | ---------------- |
+| abilityType | [AbilityType](#abilitytype)              | Yes   | Accessibility application type.        |
+| stateType   | [AbilityState](#abilitystate)            | Yes   | Accessibility application status.        |
+| callback    | AsyncCallback&lt;Array&lt;[AccessibilityAbilityInfo](#accessibilityabilityinfo)&gt;&gt; | Yes   | Callback used to return the accessibility application list.|
 
 **Example**
 
@@ -557,8 +557,8 @@ Obtains a **CaptionsManager** instance.
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type                                  | Description        |
+| ------------------------------------ | ---------- |
 | [CaptionsManager](#captionsmanager8) | Captions configuration.|
 
 **Example**
@@ -577,10 +577,10 @@ Enables listening for the enabled status changes of the accessibility applicatio
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to listen for, which is set to **'accessibilityStateChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | Yes| Callback used to return the result.|
+| Name     | Type                     | Mandatory  | Description                                      |
+| -------- | ----------------------- | ---- | ---------------------------------------- |
+| type     | string                  | Yes   | Type of the event to listen for, which is set to **'accessibilityStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | Yes   | Callback used to return the result.          |
 
 **Example**
 
@@ -604,10 +604,10 @@ Enables listening for the enabled status changes of the touch guide mode. This A
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type | string | Yes| Type of the event to listen for, which is set to **'touchGuideStateChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | Yes| Callback used to return the result.|
+| Name     | Type                     | Mandatory  | Description                                      |
+| -------- | ----------------------- | ---- | ---------------------------------------- |
+| type     | string                  | Yes   | Type of the event to listen for, which is set to **'touchGuideStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | Yes   | Callback used to return the result.          |
 
 **Example**
 
@@ -631,10 +631,10 @@ Disables listening for the enabled status changes of the accessibility applicati
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type |  string | No| Type of the event to listen for, which is set to **'accessibilityStateChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | No| Callback used to return the result.|
+| Name     | Type                     | Mandatory  | Description                                      |
+| -------- | ----------------------- | ---- | ---------------------------------------- |
+| type     | string                  | No   | Type of the event to listen for, which is set to **'accessibilityStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | No   | Callback for the event.          |
 
 **Example**
 
@@ -658,10 +658,10 @@ Disables listening for the enabled status changes of the touch guide mode. This 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| type |  string | No| Type of the event to listen for, which is set to **'touchGuideStateChange'** in this API.|
-| callback | Callback&lt;boolean&gt; | No| Callback used to return the result.|
+| Name     | Type                     | Mandatory  | Description                                      |
+| -------- | ----------------------- | ---- | ---------------------------------------- |
+| type     | string                  | No   | Type of the event to listen for, which is set to **'touchGuideStateChange'** in this API.|
+| callback | Callback&lt;boolean&gt; | No   | Callback for the event.          |
 
 **Example**
 
@@ -685,8 +685,8 @@ Checks whether accessibility is enabled. This API uses a promise to return the r
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type                    | Description                                      |
+| ---------------------- | ---------------------------------------- |
 | Promise&lt;boolean&gt; | Promise used to return the result. Returns **true** if accessibility is enabled; returns **false** otherwise.|
 
 **Example**
@@ -709,9 +709,9 @@ Checks whether accessibility is enabled. This API uses an asynchronous callback 
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. Returns **true** if accessibility is enabled; returns **false** otherwise.|
+| Name     | Type                          | Mandatory  | Description                                 |
+| -------- | ---------------------------- | ---- | ----------------------------------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. Returns **true** if accessibility is enabled; returns **false** otherwise.|
 
 **Example**
 
@@ -735,8 +735,8 @@ Checks whether touch guide mode is enabled. This API uses a promise to return th
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type                    | Description                                      |
+| ---------------------- | ---------------------------------------- |
 | Promise&lt;boolean&gt; | Promise used to return the result. Returns **true** if touch guide mode is enabled; returns **false** otherwise.|
 
 **Example**
@@ -759,9 +759,9 @@ Checks whether touch guide mode is enabled. This API uses an asynchronous callba
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| callback | AsyncCallback&lt;boolean&gt; | Yes| Callback used to return the result. Returns **true** if touch guide mode is enabled; returns **false** otherwise.|
+| Name     | Type                          | Mandatory  | Description                                   |
+| -------- | ---------------------------- | ---- | ------------------------------------- |
+| callback | AsyncCallback&lt;boolean&gt; | Yes   | Callback used to return the result. Returns **true** if touch guide mode is enabled; returns **false** otherwise.|
 
 **Example**
 
@@ -790,14 +790,14 @@ Sends an accessibility event. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| event | [EventInfo](#eventinfo) | Yes| Accessibility event.|
+| Name  | Type                     | Mandatory  | Description      |
+| ----- | ----------------------- | ---- | -------- |
+| event | [EventInfo](#eventinfo) | Yes   | Accessibility event.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type                 | Description              |
+| ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
@@ -830,10 +830,10 @@ Sends an accessibility event. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| event | [EventInfo](#eventinfo) | Yes| Accessibility event.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation fails, **error** that contains data is returned. |
+| Name     | Type                       | Mandatory  | Description                                      |
+| -------- | ------------------------- | ---- | ---------------------------------------- |
+| event    | [EventInfo](#eventinfo)   | Yes   | Accessibility event.                                 |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation fails, **error** that contains data is returned.|
 
 **Example**
 
@@ -862,14 +862,14 @@ Sends an accessibility event. This API uses a promise to return the result.
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| event | [EventInfo](#eventinfo) | Yes| Accessibility event.|
+| Name  | Type                     | Mandatory  | Description      |
+| ----- | ----------------------- | ---- | -------- |
+| event | [EventInfo](#eventinfo) | Yes   | Accessibility event.|
 
 **Return value**
 
-| Type| Description|
-| -------- | -------- |
+| Type                 | Description              |
+| ------------------- | ---------------- |
 | Promise&lt;void&gt; | Promise that returns no value.|
 
 **Example**
@@ -901,10 +901,10 @@ Sends an accessibility event. This API uses an asynchronous callback to return t
 
 **Parameters**
 
-| Name| Type| Mandatory| Description|
-| -------- | -------- | -------- | -------- |
-| event | [EventInfo](#eventinfo) | Yes| Accessibility event.|
-| callback | AsyncCallback&lt;void&gt; | Yes| Callback used to return the result. If the operation fails, **error** that contains data is returned. |
+| Name     | Type                       | Mandatory  | Description                                      |
+| -------- | ------------------------- | ---- | ---------------------------------------- |
+| event    | [EventInfo](#eventinfo)   | Yes   | Accessibility event.                                 |
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback used to return the result. If the operation fails, **error** that contains data is returned.|
 
 **Example**
 

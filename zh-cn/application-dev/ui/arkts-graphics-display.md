@@ -1,4 +1,4 @@
-# 显示图片
+# 显示图片（Image）
 
 
 开发者经常需要在应用中显示一些图片，例如：按钮中的logo、网络图片、本地图片等。在应用中显示图片需要使用Image组件实现，Image支持多种图片格式，包括png、jpg、bmp、svg和gif，具体用法请参考[Image](../reference/arkui-ts/ts-basic-components-image.md)组件。
@@ -26,6 +26,7 @@ Image支持加载存档图、多媒体像素图两种类型。
 存档图类型的数据源可以分为本地资源、网络资源、Resource资源、媒体库datashare资源和base64。
 
 - 本地资源
+
   创建文件夹，将本地图片放入ets文件夹下的任意位置。
 
   Image组件引入本地图片路径，即可显示图片（根目录为ets文件夹）。
@@ -36,6 +37,7 @@ Image支持加载存档图、多媒体像素图两种类型。
   ```
 
 - 网络资源
+
   引入网络图片需申请权限ohos.permission.INTERNET，具体申请方式请参考[权限申请声明](../security/accesstoken-guidelines.md)。此时，Image组件的src参数为网络图片的链接。
 
   ```ts
@@ -43,6 +45,7 @@ Image支持加载存档图、多媒体像素图两种类型。
   ```
 
 - Resource资源
+
   使用资源格式可以跨包/跨模块引入图片，resources文件夹下的图片都可以通过$r资源接口读 取到并转换到Resource格式。
 
   **图1** resouces  
@@ -68,6 +71,7 @@ Image支持加载存档图、多媒体像素图两种类型。
   ```
 
 - 媒体库datashare
+
   支持datashare://路径前缀的字符串，用于访问通过媒体库提供的图片路径。
 
   1. 调用接口获取图库的照片url。

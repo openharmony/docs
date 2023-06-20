@@ -1,4 +1,4 @@
-# 切换按钮
+# 切换按钮（Toggle）
 
 
 Toggle组件提供状态按钮样式，勾选框样式及开关样式，一般用于两种状态之间的切换。具体用法请参考[Toggle](../reference/arkui-ts/ts-basic-components-toggle.md)。
@@ -18,7 +18,7 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 该接口用于创建切换按钮，其中ToggleType为开关类型，包括Button、Checkbox和Switch，isOn为切换按钮的状态，接口调用有以下两种形式：
 
 
-- 创建不包含子组件的Toogle。
+- 创建不包含子组件的Toggle。
   当ToggleType为Checkbox或者Switch时，用于创建不包含子组件的Toggle：
 
 

@@ -1229,10 +1229,10 @@ To adapt the multimedia subsystem, you need to add the `histreamer` component in
     {
       "component": "histreamer",
       "features": [
-        "multimedia_histreamer_enable_plugin_hdi_adapter = true",
-        "multimedia_histreamer_enable_plugin_minimp3_adapter = true",
-        "multimedia_histreamer_enable_plugin_ffmpeg_adapter = false",
-        "config_ohos_multimedia_histreamer_stack_size = 65536"
+        "histreamer_enable_plugin_hdi_adapter = true",
+        "histreamer_enable_plugin_minimp3_adapter = true",
+        "histreamer_enable_plugin_ffmpeg_adapter = false",
+        "config_ohos_histreamer_stack_size = 65536"
       ]
     }
   ]
@@ -1241,12 +1241,12 @@ To adapt the multimedia subsystem, you need to add the `histreamer` component in
 
 The configuration items of the `histreamer` component are described as follows:
 
-| Item                                             | Description                           |
-| --------------------------------------------------- | ------------------------------- |
-| multimedia_histreamer_enable_plugin_hdi_adapter     | Whether to enable histreamer to connect to the HDMI interface.|
-| multimedia_histreamer_enable_plugin_minimp3_adapter | Whether to enable the plug-in to adapt to miniMP3.        |
-| multimedia_histreamer_enable_plugin_ffmpeg_adapter  | Whether to enable the plug-in to adapt to FFmpeg.         |
-| config_ohos_multimedia_histreamer_stack_size        | Size of the histreamer stack.           |
+| Item                                     | Description                                                   |
+| ---------------------------------------- | ------------------------------------------------------------- |
+| histreamer_enable_plugin_hdi_adapter     | Whether to enable histreamer to connect to the HDMI interface.|
+| histreamer_enable_plugin_minimp3_adapter | Whether to enable the plug-in to adapt to miniMP3.            |
+| histreamer_enable_plugin_ffmpeg_adapter  | Whether to enable the plug-in to adapt to FFmpeg.             |
+| config_ohos_histreamer_stack_size        | Size of the histreamer stack.                                 |
 
 #### utils Subsystem Adaptation
 

@@ -112,7 +112,7 @@ struct Index {
 
 | 名称           | 类型                                                                                                | 必填 | 说明                      |
 | -------------- | -------------------------------------------------------------------------------------------------- | ---- | ----------------------------------------------- |
-| textContent    | string                                                                                             | 是   | 设置被计算文本内容。                                  |
+| textContent | string                                                                                             | 是   | 设置被计算文本内容。                                  |
 | constraintWidth<sup>10+</sup> | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../arkui-ts/ts-types.md#resource)   | 否   | 设置被计算文本布局宽度。<br/>**说明：** 默认单位为vp                               |
 | fontSize       | number&nbsp;\|&nbsp;string&nbsp;\|&nbsp;[Resource](../arkui-ts/ts-types.md#resource)               | 否   | 设置被计算文本字体大小，fontSize为number类型时，使用fp单位。<br/>默认值：16fp。<br/>**说明：** 不支持设置百分比字符串。    |
 | fontStyle      | number&nbsp;\|&nbsp;[FontStyle](../arkui-ts/ts-appendix-enums.md#fontstyle)                        | 否   | 设置被计算文本字体样式。<br>默认值：FontStyle.Normal            |

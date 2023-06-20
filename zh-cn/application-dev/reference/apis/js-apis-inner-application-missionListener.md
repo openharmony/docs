@@ -2,6 +2,10 @@
 
 定义系统任务状态监听，可以通过[on](js-apis-app-ability-missionManager.md#missionmanageron)注册。
 
+> **说明：**
+> 
+> 本模块首批接口从API version 8开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。 
+
 ## 导入模块
 
 ```ts
@@ -16,9 +20,9 @@ import missionManager from '@ohos.app.ability.missionManager';
 | onMissionDestroyed   | function               | 否   | 表示当系统销毁任务时回调执行。 |
 | onMissionSnapshotChanged   | function               | 否   | 表示当系统更新任务缩略图时回调执行。 |
 | onMissionMovedToFront   | function               | 否   | 表示当系统将任务移动到前台时回调执行。 |
-| onMissionLabelUpdated   | function               | 否   | 表示当系统更新任务标签时回调执行。 |
-| onMissionIconUpdated   | function               | 否   | 表示当系统更新任务图标时回调执行。 |
-| onMissionClosed   | function               | 否   | 表示当系统关闭任务时回调执行。 |
+| onMissionLabelUpdated<sup>9+</sup>   | function               | 否   | 表示当系统更新任务标签时回调执行。 |
+| onMissionIconUpdated<sup>9+</sup>   | function               | 否   | 表示当系统更新任务图标时回调执行。 |
+| onMissionClosed<sup>9+</sup>   | function               | 否   | 表示当系统关闭任务时回调执行。 |
 
 **示例：**
 ```ts

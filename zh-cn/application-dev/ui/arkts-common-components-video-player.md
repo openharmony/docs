@@ -1,4 +1,4 @@
-# 视频播放
+# 视频播放（Video）
 
 
 Video组件用于播放视频文件并控制其播放状态，常用于为短视频应用和应用内部视频的列表页面。当视频完整出现时会自动播放，用户点击视频区域则会暂停播放，同时显示播放进度条，通过拖动播放进度条指定视频播放到具体位置。具体用法请参考[Video](../reference/arkui-ts/ts-media-components-video.md)。
@@ -69,6 +69,27 @@ Video组件支持加载本地视频和网络视频。
    }
   }
   ```
+
+### 加载沙箱路径视频
+
+支持file:///data/storage路径前缀的字符串，用于读取应用沙箱路径内的资源。需要保证应用沙箱目录路径下的文件存在并且有可读权限。
+
+```ts
+@Component
+export struct VideoPlayer {
+  private controller: VideoController;
+  private videosrc: string = 'file:///data/storage/el2/base/haps/entry/files/show.mp4'
+
+  build() {
+    Column() {
+      Video({
+        src: this.videosrc,
+        controller: this.controller
+      })
+    }
+  }
+}
+```
 
 
 ### 加载网络视频

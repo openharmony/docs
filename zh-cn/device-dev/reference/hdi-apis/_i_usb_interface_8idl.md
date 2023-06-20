@@ -1,7 +1,7 @@
 # IUsbInterface.idl
 
 
-## **概述**
+## 概述
 
 声明标准的USB驱动接口函数。
 
@@ -15,17 +15,17 @@
 
 **相关模块:**
 
-[USB](usb.md)
+[USB](_u_s_b.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### 类
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [IUsbInterface](interface_i_usb_interface.md) | 定义USB驱动基本的操作功能。 | 
+| [IUsbInterface](interface_i_usb_interface.md) | interface<br/>定义USB驱动基本的操作功能。 | 
 
 
 ### 关键字

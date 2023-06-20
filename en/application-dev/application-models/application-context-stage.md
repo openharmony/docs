@@ -3,16 +3,16 @@
 
 ## Overview
 
-[Context](../reference/apis/js-apis-inner-application-context.md) is the context of an object in an application. It provides basic information about the application, for example, **resourceManager**, **applicationInfo**, **dir** (application development path), and **area** (encrypted area). It also provides basic methods such as **createBundleContext()** and **getApplicationContext()**. The UIAbility component and ExtensionAbility derived class components have their own **Context** classes, for example, the base class **Context**, **ApplicationContext**, **AbilityStageContext**, **UIAbilityContext**, **ExtensionContext**, and **ServiceExtensionContext**.
+[Context](../reference/apis/js-apis-inner-application-context.md) is the context of an object in an application. It provides basic information about the application, for example, **resourceManager**, **applicationInfo**, **dir** (application file path), and **area** (encryption level). It also provides basic methods such as **createBundleContext()** and **getApplicationContext()**. The UIAbility component and ExtensionAbility derived class components have their own **Context** classes, for example, the base class **Context**, **ApplicationContext**, **AbilityStageContext**, **UIAbilityContext**, **ExtensionContext**, and **ServiceExtensionContext**.
 
-- The figure below illustrates the inheritance relationship of contexts.
+- The figure below illustrates the inheritance relationship of contexts. 
 
   ![context-inheritance](figures/context-inheritance.png)
-
-- The figure below illustrates the holding relationship of contexts.
+  
+- The figure below illustrates the holding relationship of contexts. 
 
   ![context-holding](figures/context-holding.png)
-
+  
 - The following describes the information provided by different contexts.
   - [UIAbilityContext](../reference/apis/js-apis-inner-application-uiAbilityContext.md): Each UIAbility has the **Context** attribute, which provides APIs to operate an application component, obtain the application component configuration, and more.
     
@@ -21,7 +21,7 @@
      export default class EntryAbility extends UIAbility {
        onCreate(want, launchParam) {
          let uiAbilityContext = this.context;
-         // ...
+         ...
        }
      }
      ```
@@ -36,7 +36,7 @@
      export default class MyService extends ServiceExtensionAbility {
        onCreate(want) {
          let serviceExtensionContext = this.context;
-         // ...
+         ...
        }
      }
      ```
@@ -47,7 +47,7 @@
      export default class MyAbilityStage extends AbilityStage {
        onCreate() {
          let abilityStageContext = this.context;
-         // ...
+         ...
        }
      }
      ```
@@ -58,7 +58,7 @@
      export default class EntryAbility extends UIAbility {
        onCreate(want, launchParam) {
          let applicationContext = this.context.getApplicationContext();
-         // ...
+         ...
        }
      }
      ```
@@ -70,108 +70,111 @@
 This topic describes how to use the context in the following scenarios:
 
 
-- [Obtaining the Application Development Path](#obtaining-the-application-development-path)
-- [Obtaining and Modifying Encryption Areas](#obtaining-and-modifying-encryption-areas)
+- [Obtaining Application File Paths](#obtaining-application-file-paths)
+- [Obtaining and Modifying Encryption Levels](#obtaining-and-modifying-encryption-levels)
 - [Creating Context of Another Application or Module](#creating-context-of-another-application-or-module)
 - [Subscribing to UIAbility Lifecycle Changes in a Process](#subscribing-to-uiability-lifecycle-changes-in-a-process)
 
 
-### Obtaining the Application Development Path
+### Obtaining Application File Paths
 
-The following table describes the application development paths obtained from context.
+The base class [Context](../reference/apis/js-apis-inner-application-context.md) provides the capability of obtaining application file paths. **ApplicationContext**, **AbilityStageContext**, **UIAbilityContext**, and **ExtensionContext** inherit this capability. The application file paths are a type of application sandbox paths. For details, see [Application Sandbox Directory](../file-management/app-sandbox-directory.md).
 
-**Table 1** Application development paths
+The application file paths obtained by the preceding contexts are different.
 
-| Name| Type| Readable| Writable| Description|
-| -------- | -------- | -------- | -------- | -------- |
-| bundleCodeDir       | string   | Yes  | No  | Path for storing the application's installation package, that is, installation directory of the application on the internal storage. Do not access resource files by concatenating paths. Use [@ohos.resourceManager] instead.                  |
-| cacheDir | string | Yes| No| Path for storing the application's cache files, that is, cache directory of the application on the internal storage.<br>It is the content of **Storage** of an application under **Settings > Apps & services > Apps**.|
-| filesDir            | string   | Yes  | No  | Path for storing the application's common files, that is, file directory of the application on the internal storage.<br>Files in this directory may be synchronized to other directories during application migration or backup.|
-| preferencesDir      | string   | Yes  | Yes  | Path for storing the application's preference files, that is, preferences directory of the application.                |
-| tempDir             | string   | Yes  | No  | Path for storing the application's temporary files.<br>Files in this directory are deleted after the application is uninstalled.|
-| databaseDir         | string   | Yes  | No  | Path for storing the application's database, that is, storage directory of the local database.                        |
-| distributedFilesDir | string | Yes| No| Path for storing the application's distributed files.|
+- The application file path obtained through **ApplicationContext** is at the application level. This path is recommended for storing global application information, and the files in the path will be deleted when the application is uninstalled.
 
-The capability of obtaining the application development path is provided by the base class **Context**. This capability is also provided by **ApplicationContext**, **AbilityStageContext**, **UIAbilityContext**, and **ExtensionContext**. However, the paths obtained from different contexts may differ, as shown below.
-
-**Figure 1** Application development paths obtained from context
-
-![context-dir](figures/context-dir.png)
-
-- Obtain the application-level path through **ApplicationContext**. It is recommended that global application information be stored in this path. Files stored in this path will be deleted only when the application is uninstalled.
-    | Name| Path|
+  | Name| Path|
   | -------- | -------- |
-  | bundleCodeDir | {Path prefix}/el1/bundle/|
-  | cacheDir | {Path prefix}/{Encryption level}/base/cache/|
-  | filesDir | {Path prefix}/{Encryption level}/base/files/|
-  | preferencesDir | {Path prefix}/{Encryption level}/base/preferences/|
-  | tempDir | {Path prefix}/{Encryption level}/base/temp/|
-  | databaseDir | {Path prefix}/{Encryption level}/database/|
-  | distributedFilesDir | {Path prefix}/el2/distributedFiles/|
+  | bundleCodeDir | <Path prefix>/el1/bundle/|
+  | cacheDir | <Path prefix>/<Encryption level>/base/cache/|
+  | filesDir | <Path prefix>/<Encryption level>/base/files/|
+  | preferencesDir | <Path prefix>/<Encryption level>/base/preferences/|
+  | tempDir | <Path prefix>/<Encryption level>/base/temp/|
+  | databaseDir | <Path prefix>/<Encryption level>/database/|
+  | distributedFilesDir | <Path prefix>/el2/distributedFiles/|
 
-- Obtain the HAP level path through **AbilityStageContext**, **UIAbilityContext**, and **ExtensionContext**. It is recommended that the HAP information be stored in this path. The file content stored in this path will be deleted when the HAP is uninstalled. The file content in the application-level path will be deleted only after all the HAPs of the application are uninstalled.
-    | Name| Path|
+  The sample code is as follows:
+
+    ```ts
+    import UIAbility from '@ohos.app.ability.UIAbility';
+    
+    export default class EntryAbility extends UIAbility {
+      onCreate(want, launchParam) {
+        let applicationContext = this.context.getApplicationContext();
+        let cacheDir = applicationContext.cacheDir;
+        let tempDir = applicationContext.tempDir;
+        let filesDir = applicationContext.filesDir;
+        let databaseDir = applicationContext.databaseDir;
+        let bundleCodeDir = applicationContext.bundleCodeDir;
+        let distributedFilesDir = applicationContext.distributedFilesDir;
+        let preferencesDir = applicationContext.preferencesDir;
+        ...
+      }
+    }
+    ```
+
+- The application file path obtained through **AbilityStageContext**, **UIAbilityContext**, or **ExtensionContext** is at the HAP level. This path is recommended for storing HAP-related information, and the files in this path are deleted when the HAP is uninstalled. However, the deletion does not affect the files in the application-level path unless all HAPs of the application are uninstalled.
+
+  | Name| Path|
   | -------- | -------- |
-  | bundleCodeDir | {Path prefix}/el1/bundle/|
-  | cacheDir | {Path prefix}/{Encryption level}/base/**haps/{moduleName}**/cache/|
-  | filesDir | {Path prefix}/{Encryption level}/base/**haps/{moduleName}**/files/|
-  | preferencesDir | {Path prefix}/{Encryption level}/base/**haps/{moduleName}**/preferences/|
-  | tempDir | {Path prefix}/{Encryption level}/base/**haps/{moduleName}**/temp/|
-  | databaseDir | {Path prefix}/{Encryption level}/database/**{moduleName}**/|
-  | distributedFilesDir | {Path prefix}/el2/distributedFiles/**{moduleName}**/|
+  | bundleCodeDir | <Path prefix>/el1/bundle/|
+  | cacheDir | <Path prefix>/<Encryption level>/base/**haps/\<module-name>**/cache/|
+  | filesDir | <Path prefix>/<Encryption level>/base/**haps/\<module-name>**/files/|
+  | preferencesDir | <Path prefix>/<Encryption level>/base/**haps/\<module-name>**/preferences/|
+  | tempDir | <Path prefix>/<Encryption level>/base/**haps/\<module-name>**/temp/|
+  | databaseDir | <Path prefix>/<Encryption level>/database/**\<module-name>**/|
+  | distributedFilesDir | <Path prefix>/el2/distributedFiles/**\<module-name>**/|
 
-The sample code for obtaining the application development paths is as follows:
+  The sample code is as follows:
 
-
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
-    let cacheDir = this.context.cacheDir;
-    let tempDir = this.context.tempDir;
-    let filesDir = this.context.filesDir;
-    let databaseDir = this.context.databaseDir;
-    let bundleCodeDir = this.context.bundleCodeDir;
-    let distributedFilesDir = this.context.distributedFilesDir;
-    let preferencesDir = this.context.preferencesDir;
-    // ...
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
+  export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+      let cacheDir = this.context.cacheDir;
+      let tempDir = this.context.tempDir;
+      let filesDir = this.context.filesDir;
+      let databaseDir = this.context.databaseDir;
+      let bundleCodeDir = this.context.bundleCodeDir;
+      let distributedFilesDir = this.context.distributedFilesDir;
+      let preferencesDir = this.context.preferencesDir;
+      ...
+    }
   }
-}
-```
+  ```
+
+
+### Obtaining and Modifying Encryption Levels
+
+Encrypting application files enhances data security by preventing files from unauthorized access. Different application files require different levels of protection. For private files, such as alarms and wallpapers, the application must place them in a directory with the device-level encryption (EL1) to ensure that they can be accessed before the user enters the password. For sensitive files, such as personal privacy data, the application must place them in a directory with the user-level encryption (EL2).
+
+In practice, you need to select a proper encryption level based on scenario-specific requirements to protect application data security. The proper use of EL1 and the EL2 can efficiently improve the security.
 
 > **NOTE**
 >
-> The sample code obtains the sandbox path of the application development path. The absolute path can be obtained by running the **find / -name <fileName>** command in the hdc shell after file creation or modification.
-
-### Obtaining and Modifying Encryption Areas
-
-Encrypting application files enhances data security by preventing files from unauthorized access. Different application files require different levels of protection. For private files, such as alarms and wallpapers, the application must place them in the device-level encryption area (EL1) to ensure that they can be accessed before the user enters the password. For sensitive files, such as personal privacy data, the application must place them in the user-level encryption area (EL2).
-
-In practice, you need to select a proper encrypted area based on scenario-specific requirements to protect application data security. The proper use of EL1 and the EL2 can efficiently improve the security.
-
-> **NOTE**
+> - AreaMode.EL1: device-level encryption. Directories with this encryption level are accessible after the device is powered on.
 >
-> - AreaMode.EL1: device-level encryption area, which is accessible after the device is powered on.
->
-> - AreaMode.EL2: user-level encryption area, which is accessible only after the device is powered on and the password is entered (for the first time).
+> - AreaMode.EL2: user-level encryption. Directories with this encryption level are accessible only after the device is powered on and the password is entered (for the first time).
 
-You can obtain and set the encryption area by reading and writing the [area attribute in Context](../reference/apis/js-apis-inner-application-context.md).
+You can obtain and set the encryption level by reading and writing the **area** attribute in [Context](../reference/apis/js-apis-inner-application-context.md).
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import contextConstant from '@ohos.app.ability.contextConstant';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     // Before storing common information, switch the encryption level to EL1.
-    if (this.context.area === 1) {// Obtain the area.
-      this.context.area = 0; // Modify the area.
+    if (this.context.area === contextConstant.AreaMode.EL2) { // Obtain the area.
+      this.context.area = contextConstant.AreaMode.EL1; // Modify the area.
     }
     // Store common information.
 
     // Before storing sensitive information, switch the encryption level to EL2.
-    if (this.context.area === 0) { // Obtain the area.
-      this.context.area = 1; // Modify the area.
+    if (this.context.area === contextConstant.AreaMode.EL1) { // Obtain the area.
+      this.context.area = contextConstant.AreaMode.EL2; // Modify the area.
     }
     // Store sensitive information.
   }
@@ -181,17 +184,17 @@ export default class EntryAbility extends UIAbility {
 
 ### Creating Context of Another Application or Module
 
-The base class **Context** provides [createBundleContext(bundleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatebundlecontext), [createModuleContext(moduleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext), and [createModuleContext(bundleName:string, moduleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext-1) to create the context of other applications or modules, so as to obtain the resource information, for example, [obtaining the application development paths](#obtaining-the-application-development-path) of other modules.
+The base class **Context** provides [createBundleContext(bundleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatebundlecontext), [createModuleContext(moduleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext), and [createModuleContext(bundleName:string, moduleName:string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext-1) to create the context of other applications or modules, so as to obtain the resource information, for example, [obtaining application file paths](#obtaining-application-development-paths) of other modules.
 
 - Call **createBundleContext(bundleName:string)** to create the context of another application.
   > **NOTE**
   >
   > To obtain the context of another application:
-  > 
+  >
   > - Request the **ohos.permission.GET_BUNDLE_INFO_PRIVILEGED** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
-  > 
+  >
   > - This is a system API and cannot be called by third-party applications.
-
+  
   For example, application information displayed on the home screen includes the application name and icon. The home screen application calls the foregoing method to obtain the context information, so as to obtain the resource information including the application name and icon.
   
   ```ts
@@ -202,11 +205,11 @@ The base class **Context** provides [createBundleContext(bundleName:string)](../
       let bundleName2 = 'com.example.application';
       let context2 = this.context.createBundleContext(bundleName2);
       let label2 = context2.applicationInfo.label;
-      // ...
+      ...
     }
   }
   ```
-
+  
 - Call **createModuleContext(bundleName:string, moduleName:string)** to obtain the context of a specified module of another application. After obtaining the context, you can obtain the resource information of that module.
   > **NOTE**
   >
@@ -224,7 +227,7 @@ The base class **Context** provides [createBundleContext(bundleName:string)](../
       let bundleName2 = 'com.example.application';
       let moduleName2 = 'module1';
       let context2 = this.context.createModuleContext(bundleName2, moduleName2);
-      // ...
+      ...
     }
   }
   ```
@@ -238,7 +241,7 @@ The base class **Context** provides [createBundleContext(bundleName:string)](../
     onCreate(want, launchParam) {
       let moduleName2 = 'module1';
       let context2 = this.context.createModuleContext(moduleName2);
-      // ...
+      ...
     }
   }
   ```
@@ -266,53 +269,53 @@ export default class EntryAbility extends UIAbility {
     let abilityLifecycleCallback = {
       // Called when a UIAbility is created.
       onAbilityCreate(uiAbility) {
-        console.log(TAG, `onAbilityCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.info(TAG, `onAbilityCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       },
       // Called when a window is created.
       onWindowStageCreate(uiAbility, windowStage: window.WindowStage) {
-        console.log(TAG, `onWindowStageCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
-        console.log(TAG, `onWindowStageCreate windowStage: ${JSON.stringify(windowStage)}`);
+        console.info(TAG, `onWindowStageCreate uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.info(TAG, `onWindowStageCreate windowStage: ${JSON.stringify(windowStage)}`);
       },
       // Called when the window becomes active.
       onWindowStageActive(uiAbility, windowStage: window.WindowStage) {
-        console.log(TAG, `onWindowStageActive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
-        console.log(TAG, `onWindowStageActive windowStage: ${JSON.stringify(windowStage)}`);
+        console.info(TAG, `onWindowStageActive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.info(TAG, `onWindowStageActive windowStage: ${JSON.stringify(windowStage)}`);
       },
       // Called when the window becomes inactive.
       onWindowStageInactive(uiAbility, windowStage: window.WindowStage) {
-        console.log(TAG, `onWindowStageInactive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
-        console.log(TAG, `onWindowStageInactive windowStage: ${JSON.stringify(windowStage)}`);
+        console.info(TAG, `onWindowStageInactive uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.info(TAG, `onWindowStageInactive windowStage: ${JSON.stringify(windowStage)}`);
       },
       // Called when the window is destroyed.
       onWindowStageDestroy(uiAbility, windowStage: window.WindowStage) {
-        console.log(TAG, `onWindowStageDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
-        console.log(TAG, `onWindowStageDestroy windowStage: ${JSON.stringify(windowStage)}`);
+        console.info(TAG, `onWindowStageDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.info(TAG, `onWindowStageDestroy windowStage: ${JSON.stringify(windowStage)}`);
       },
       // Called when the UIAbility is destroyed.
       onAbilityDestroy(uiAbility) {
-        console.log(TAG, `onAbilityDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.info(TAG, `onAbilityDestroy uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       },
       // Called when the UIAbility is switched from the background to the foreground.
       onAbilityForeground(uiAbility) {
-        console.log(TAG, `onAbilityForeground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.info(TAG, `onAbilityForeground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       },
       // Called when the UIAbility is switched from the foreground to the background.
       onAbilityBackground(uiAbility) {
-        console.log(TAG, `onAbilityBackground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.info(TAG, `onAbilityBackground uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       },
       // Called when UIAbility is continued on another device.
       onAbilityContinue(uiAbility) {
-        console.log(TAG, `onAbilityContinue uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
+        console.info(TAG, `onAbilityContinue uiAbility.launchWant: ${JSON.stringify(uiAbility.launchWant)}`);
       }
     }
     // Obtain the application context.
     let applicationContext = this.context.getApplicationContext();
     // Register the application lifecycle callback.
     this.lifecycleId = applicationContext.on('abilityLifecycle', abilityLifecycleCallback);
-    console.log(TAG, `register callback number: ${this.lifecycleId}`);
+    console.info(TAG, `register callback number: ${this.lifecycleId}`);
   }
 
-  // ...
+  ...
 
   onDestroy() {
     // Obtain the application context.

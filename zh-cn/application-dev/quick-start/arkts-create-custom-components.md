@@ -114,6 +114,19 @@ struct ParentComponent {
   }
   ```
 
+- \@Recycle：\@Recycle装饰的自定义组件具备可复用能力
+
+  > **说明：**
+  >
+  > 从API version 10开始，该装饰器支持在ArkTS卡片中使用。
+
+  ```ts
+  @Recycle
+  @Component
+  struct MyComponent {
+  }
+  ```
+
 
 ## 成员函数/变量
 

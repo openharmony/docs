@@ -586,11 +586,11 @@ The version of shared bundle is dependent on other applications.
 
 **Description**
 
-Other applications depend on the shared library, causing the uninstallation to fail.
+Other applications depend on the shared library, causing the uninstall to fail.
 
 **Possible Causes**
-1. The version specified during the uninstallation is the latest version of the shared library, and the shared library is depended on by other applications.
-2. No version is not specified during the uninstallation, meaning that all versions of the shared library will be uninstalled, and the shared library is depended on by other applications.
+1. The version specified during the uninstall is the latest version of the shared library, and the shared library is depended on by other applications.
+2. No version is not specified during the uninstall, meaning that all versions of the shared library will be uninstalled, and the shared library is depended on by other applications.
 
 **Solution**
 1. Check whether the shared library to uninstall is depended on by other applications.
@@ -607,7 +607,7 @@ The specified shared bundle does not exist.
 The shared library to uninstall does not exist.
 
 **Possible Causes**
-1. The version specified during the uninstallation is different from the version of the shared library installed.
+1. The version specified during the uninstall is different from the version of the shared library installed.
 2. The shared library to uninstall is not installed.
 
 **Solution**
@@ -649,3 +649,118 @@ During application uninstall, the bundle name of an inter-application shared lib
 **Solution**
 1. Use the **-s** parameter to specify the application to be uninstalled as a shared library application.
 2. Use the **bundleName** and **versionCode** parameters in **UninstallParam** to specify the bundle name and version of the shared library to be uninstalled.
+
+## 17700041 Application Installation Is Not Allowed by Enterprise Device Management
+
+**Error Message**
+
+Failed to install because enterprise device management disallow install.
+
+**Description**
+
+The installation of this application is prohibited by enterprise device management.
+
+**Possible Causes**
+
+The enterprise device management does not allow the installation of this application.
+
+**Solution**
+
+Check whether the application installation is prohibited by the enterprise device management.
+
+## 17700042 Incorrect URI in the Data Proxy
+
+**Error Message**
+
+Failed to install the HAP because of incorrect URI in the data proxy.
+
+**Description**
+
+During application installation, the URI of the data proxy is incorrectly configured.
+
+**Possible Causes**
+
+1. The bundle name in the URI is different from that of the current application.
+2. The URI is duplicate.
+
+**Solution**
+
+1. Change the bundle name in the URI to that of the current application.
+2. Change duplicate URIs. Ensure that the URI of each data proxy is unique.
+
+## 17700043 Incorrect Permission Configuration in the Data Proxy
+
+**Error Message**
+
+Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core).
+
+**Description**
+
+During application installation, the permission level of the data proxy of a non-system application is too low. The permission level should be **system_basic** or **system_core**.
+
+**Possible Causes**
+
+1. No permission is configured for the data proxy of a non-system application.
+1. The permission level of the data proxy of a non-system application is too low.
+
+**Solution**
+
+1. Configure the read and write permissions in the data proxy.
+2. Change the read and write permissions in the data proxy and ensure that the permission level is **system_basic** or **system_core**.
+
+## 17700044 Field isolationMode in the HAP Conflicts with the Device Isolation Mode
+
+**Error Message**
+
+Failed to install the HAP because the isolationMode configured is not supported.
+
+**Description**
+
+During application installation, the value of **isolationMode** in the HAP conflicts with the isolation mode of the device.
+
+**Possible Causes**
+
+1. The device supports the isolation mode (the value of **supportIsolationMode** is **true**), whereas the value of **isolationMode** in the HAP is **nonisolationOnly**.
+2. The device does not support the isolation mode (the value of **supportIsolationMode** is **false**), whereas the value of **isolationMode** in the HAP is **isolationOnly**.
+
+**Solution**
+
+Set the **isolationMode** field in the HAP based on the isolation mode of the device.
+
+## 17700045 Application Uninstall Is Not Allowed by Enterprise Device Management
+
+**Error Message**
+
+Failed to uninstall because enterprise device management disallow uninstall.
+
+**Description**
+
+The uninstall of this application is prohibited by enterprise device management.
+
+**Possible Causes**
+
+The enterprise device management does not allow the uninstall of this application.
+
+**Solution**
+
+Check whether the application uninstall is prohibited by the enterprise device management.
+
+## 17700047 Application Version To Be Updated Is Not Later Than the Current Version
+
+**Error Message**
+
+Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode.
+
+**Description**
+
+The version of the application to be updated is not later than the current version.
+
+**Possible Causes**
+
+1. The version number of the application to be updated is earlier than or equal to that of the current version number.
+2. When **installFlag** is set to **NORMAL**, the version number of the application to be updated must be later than the installed version number.
+
+**Solution**
+
+1. Set the version number of the application to be later than the current version number.
+2. If you want to update the application without changing the version number, set **installFlag** to **REPLACE_EXISTING**.

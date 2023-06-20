@@ -595,8 +595,8 @@ Failed to install the HAP because the isolationMode configured is not supported.
 安装应用时，设置的isolationMode与系统配置项所允许的系统配置项矛盾。
 
 **可能原因**<br/>
-1. 设备支持隔离模式，即supportIsolationMode为true时，HAP配置的isolationMode为nonisolationOnly。
-2. 设备不支持隔离模式，即supportIsolationMode为false时，HAP配置的isolationMode为isolationOnly。
+1. 设备支持隔离模式，即persist.bms.supportIsolationMode为true时，HAP配置的isolationMode为nonisolationOnly。
+2. 设备不支持隔离模式，即persist.bms.supportIsolationMode为false时，HAP配置的isolationMode为isolationOnly。
 
 **处理步骤**<br/>
 1. 按照设备的隔离模式正确配置HAP字段isolationMode。
@@ -613,3 +613,18 @@ Failed to uninstall because enterprise device management disallow uninstall.
 
 **处理步骤**<br/>
 1. 请在设备中检查应用是否被企业设备管理禁止卸载安装。
+
+## 17700047 要更新的应用版本没有大于当前版本
+**错误信息**<br/>
+Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode.
+
+**错误描述**<br/>
+安装应用时，要更新的应用版本没有大于当前版本。
+
+**可能原因**<br/>
+1. 安装应用的版本号小于等于已安装应用的版本号。
+2. installFlag被设置为NORMAL，此时待更新的应用的版本号必须大于当前已安装的版本。
+
+**处理步骤**<br/>
+1. 设置应用的版本号大于当前版本。
+2. 如果希望应用更新但版本号不升级，需要设置installFlag为REPLACE_EXISTING。

@@ -71,7 +71,7 @@ The identity authentication consists of the User_auth framework and basic authen
 - Kit
 
   The kit provides basic APIs for third-party applications.
-  
+
 - Inner API
 
   Inner API is an API provided by OpenHarmony for system applications.
@@ -95,7 +95,7 @@ You can develop drivers to call Hardware Device Interface (HDI) APIs based on th
 
 **Figure 2** User_auth service and User_auth driver APIs
 
-![image](figures/user_auth_service_and_driver_api.png "interaction between the user_auth service and driver")
+![image](figures/user_auth_service_and_driver_api.png "Interaction")
 
 ### Constraints
 
@@ -109,7 +109,7 @@ The User_auth driver provides stable user credential management, authentication 
 
 ### Available APIs
 
-The following table describes the C++ APIs generated from the Interface Definition Language (IDL) interface description. For details about the interface declaration, see the .idl file in **/drivers/interface/user_auth/v1_0/**.
+The following table describes the C++ APIs generated from the Interface Definition Language (IDL) interface description. For details about the interface declaration, see the .idl file in **/drivers/interface/user_auth**.
 **Table 1** describes the HDI APIs for executor registration, credential enrollment and deletion, user authentication, and user identification.
 
 **Table 1** Available APIs
@@ -117,38 +117,40 @@ The following table describes the C++ APIs generated from the Interface Definiti
 | API      | Description    |
 | --------------------------- | --------------------------- |
 | Init()           | Initializes cached information.                       |
-| AddExecutor(const ExecutorRegisterInfo& info, uint64_t& index, std::vector<uint8_t>& publicKey,<br>        std::vector<uint64_t>& templateIds) | Adds an executor to obtain the authentication capability.          |
+| AddExecutor(const ExecutorRegisterInfo& info, uint64_t& index, std::vector\<uint8_t>& publicKey,<br>        std::vector\<uint64_t>& templateIds) | Adds an executor to obtain the authentication capability.          |
 | DeleteExecutor(uint64_t index)            | Deletes an executor.      |
-| OpenSession(int32_t userId, std::vector<uint8_t>& challenge) | Opens a session for authentication credential management.     |
+| OpenSession(int32_t userId, std::vector\<uint8_t>& challenge) | Opens a session for authentication credential management.     |
 | CloseSession(int32_t userId)        | Closes a session for authentication credential management.           |
-| BeginEnrollment(int32_t userId, const std::vector<uint8_t>& authToken, const EnrollParam& param,<br>        ScheduleInfo& info) | Enrolls the user authentication credential. If a user has enrolled a PIN, the old PIN will be overwritten.|
-| UpdateEnrollmentResult(int32_t userId, const std::vector<uint8_t>& scheduleResult, uint64_t& credentialId,<br>        CredentialInfo& oldInfo) | Updates the data to complete this enrollment.  |
+| BeginEnrollment(int32_t userId, const std::vector\<uint8_t>& authToken, const EnrollParam& param,<br>        ScheduleInfo& info) | Enrolls the user authentication credential (version V1_0). If a user has enrolled a PIN, the old PIN will be overwritten .|
+| UpdateEnrollmentResult(int32_t userId, const std::vector\<uint8_t>& scheduleResult, uint64_t& credentialId,<br>        CredentialInfo& oldInfo) | Updates the data to complete this enrollment.  |
 | CancelEnrollment(int32_t userId)     | Cancels an enrollment operation.         |
-| DeleteCredential(int32_t userId, uint64_t credentialId, const std::vector<uint8_t>& authToken,<br>        CredentialInfo& info) | Deletes credential information based on the specified **credentialId**.                              |
-| DeleteUser(int32_t userId, const std::vector<uint8_t>& authToken,<br>        std::vector<CredentialInfo>& deletedInfos) | Deletes a user PIN from User_auth.                       |
-| EnforceDeleteUser(int32_t userId, std::vector<CredentialInfo>& deletedInfos) | Forcibly deletes a user. This API will be called when a user is deleted from the system.              |
-| GetCredential(int32_t userId, AuthType authType, std::vector<CredentialInfo>& infos) | Obtains user credential information by authentication type.            |
-| GetSecureInfo(int32_t userId, uint64_t& secureUid, std::vector<EnrolledInfo>& infos) | Obtains the secure user ID and the enrolled tag ID of each authentication type.            |
-| BeginAuthentication(uint64_t contextId, const AuthSolution& param,<br>        std::vector<ScheduleInfo>& scheduleInfos) | Starts an authentication to generate the authentication scheme and scheduling information.                          |
-| UpdateAuthenticationResult(uint64_t contextId, const std::vector<uint8_t>& scheduleResult,<br>        AuthResultInfo& info) | Updates the authentication result to evaluate the authentication scheme.                  |
+| DeleteCredential(int32_t userId, uint64_t credentialId, const std::vector\<uint8_t>& authToken,<br>        CredentialInfo& info) | Deletes credential information based on the specified **credentialId**.                              |
+| DeleteUser(int32_t userId, const std::vector\<uint8_t>& authToken,<br>        std::vector\<CredentialInfo>& deletedInfos) | Deletes a user PIN from User_auth.                       |
+| EnforceDeleteUser(int32_t userId, std::vector\<CredentialInfo>& deletedInfos) | Forcibly deletes a user. This API will be called when a user is deleted from the system.              |
+| GetCredential(int32_t userId, AuthType authType, std::vector\<CredentialInfo>& infos) | Obtains user credential information by authentication type.            |
+| GetSecureInfo(int32_t userId, uint64_t& secureUid, std::vector\<EnrolledInfo>& infos) | Obtains the secure user ID and the enrolled tag ID of each authentication type.            |
+| BeginAuthentication(uint64_t contextId, const AuthSolution& param,<br>        std::vector\<ScheduleInfo>& scheduleInfos) | Starts authentication and generates the authentication scheme and scheduling information (version V1_0).                          |
+| UpdateAuthenticationResult(uint64_t contextId, const std::vector\<uint8_t>& scheduleResult,<br>        AuthResultInfo& info) | Updates the authentication result to evaluate the authentication scheme.                  |
 | CancelAuthentication(uint64_t contextId)      | Cancels an authentication.            |
-| BeginIdentification(uint64_t contextId, AuthType authType, const std::vector<int8_t>& challenge,<br>        uint32_t executorId, ScheduleInfo& scheduleInfo) | Starts an identification to generate the identification scheme and scheduling information.                          |
-| UpdateIdentificationResult(uint64_t contextId, const std::vector<uint8_t>& scheduleResult,<br>        IdentifyResultInfo& info) | Updates the identification result to evaluate the identification scheme.                  |
+| BeginIdentification(uint64_t contextId, AuthType authType, const std::vector\<int8_t>& challenge,<br>        uint32_t executorId, ScheduleInfo& scheduleInfo) | Starts identification and generates the identification scheme and scheduling information (version V1_0).                          |
+| UpdateIdentificationResult(uint64_t contextId, const std::vector\<uint8_t>& scheduleResult,<br>        IdentifyResultInfo& info) | Updates the identification result to evaluate the identification scheme.                  |
 | CancelIdentification(uint64_t contextId)             | Cancels an identification.             |
 | GetAuthTrustLevel(int32_t userId, AuthType authType, uint32_t& authTrustLevel) | Obtains the authentication trust level of the specified authentication type.    |
-| GetValidSolution(int32_t userId, const std::vector<AuthType>& authTypes, uint32_t authTrustLevel,<br>        std::vector<AuthType>& validTypes) | Obtains the valid authentication scheme based on the authentication trust level for a user.                  |
-
+| GetValidSolution(int32_t userId, const std::vector\<AuthType>& authTypes, uint32_t authTrustLevel,<br>        std::vector\<AuthType>& validTypes) | Obtains the valid authentication scheme based on the authentication trust level for a user.                  |
+| BeginEnrollmentV1_1(int32_t userId, const std::vector\<uint8_t>& authToken, const EnrollParam& param, ScheduleInfoV1_1& info) | Enrolls the user authentication credential (version V1_1). If a user has enrolled a PIN, the old PIN will be overwritten.|
+| BeginAuthenticationV1_1(uint64_t contextId, const AuthSolution& param,  std::vector\<ScheduleInfoV1_1>& scheduleInfos) | Starts authentication and generates the authentication scheme and scheduling information (version V1_1).                          |
+| BeginIdentificationV1_1(uint64_t contextId, AuthType authType,<br/> const std::vector\<uint8_t>& challenge, uint32_t executorSensorHint, ScheduleInfoV1_1& scheduleInfo) | Starts identification and generates the identification scheme and scheduling information (version V1_1). |
 ### How to Develop
 
 The following uses the Hi3516D V300 development board as an example to demonstrate how to develop the User_auth driver. <br/>The directory structure is as follows:
 
 ```undefined
 // drivers/peripheral/user_auth
-├── BUILD.gn       # Build script
-├── bundle.json    # Component description file
-└── hdi_service    # User_auth driver implementation
-    ├── BUILD.gn   # Build script
-    ├── module     # Implementation of functionalities
+├── BUILD.gn     # Build script
+├── bundle.json  # Component description file
+└── hdi_service  # User_auth driver implementation
+    ├── BUILD.gn # Build script
+    ├── module   # Implementation of functionalities
     └── service
         ├── user_auth_interface_driver.cpp  # User_auth driver entry
         └── user_auth_interface_service.cpp # Implementation of the APIs for obtaining the executor list
@@ -164,17 +166,17 @@ The development procedure is as follows:
        struct IDeviceIoService ioService;
        OHOS::sptr<OHOS::IRemoteObject> stub;
    };
-   
+
    // Enable the IPC service to call the response API.
    static int32_t UserAuthInterfaceDriverDispatch(struct HdfDeviceIoClient *client, int cmdId, struct HdfSBuf *data,
        struct HdfSBuf *reply)
    {
        auto *hdfUserAuthInterfaceHost = CONTAINER_OF(client->device->service, struct HdfUserAuthInterfaceHost, ioService);
-   
+
        OHOS::MessageParcel *dataParcel = nullptr;
        OHOS::MessageParcel *replyParcel = nullptr;
        OHOS::MessageOption option;
-   
+
        if (SbufToParcel(data, &dataParcel) != HDF_SUCCESS) {
            HDF_LOGE("%{public}s:invalid data sbuf object to dispatch", __func__);
            return HDF_ERR_INVALID_PARAM;
@@ -183,10 +185,10 @@ The development procedure is as follows:
            HDF_LOGE("%{public}s:invalid reply sbuf object to dispatch", __func__);
            return HDF_ERR_INVALID_PARAM;
        }
-   
+
        return hdfUserAuthInterfaceHost->stub->SendRequest(cmdId, *dataParcel, *replyParcel, option);
    }
-   
+
    // Initialize the HdfUserAuthInterfaceDriver object.
    int HdfUserAuthInterfaceDriverInit(struct HdfDeviceObject *deviceObject)
    {
@@ -194,46 +196,46 @@ The development procedure is as follows:
        OHOS::UserIAM::Common::Init();
        return HDF_SUCCESS;
    }
-   
+
    // Bind the service provided by the User_auth driver to the HDF.
    int HdfUserAuthInterfaceDriverBind(struct HdfDeviceObject *deviceObject)
    {
        HDF_LOGI("HdfUserAuthInterfaceDriverBind enter");
-   
+
        auto *hdfUserAuthInterfaceHost = new (std::nothrow) HdfUserAuthInterfaceHost;
        if (hdfUserAuthInterfaceHost == nullptr) {
-           HDF_LOGE("%{public}s: Failed to create HdfUserAuthInterfaceHost object", __func__);
+           HDF_LOGE("%{public}s: failed to create HdfUserAuthInterfaceHost object", __func__);
            return HDF_FAILURE;
        }
-   
+
        hdfUserAuthInterfaceHost->ioService.Dispatch = UserAuthInterfaceDriverDispatch;
        hdfUserAuthInterfaceHost->ioService.Open = NULL;
        hdfUserAuthInterfaceHost->ioService.Release = NULL;
-   
+
        auto serviceImpl = IUserAuthInterface::Get(true);
        if (serviceImpl == nullptr) {
-           HDF_LOGE("%{public}s: Failed to obtain service", __func__);
+           HDF_LOGE("%{public}s: failed to implement service", __func__);
            return HDF_FAILURE;
        }
-   
+
        hdfUserAuthInterfaceHost->stub = OHOS::HDI::ObjectCollector::GetInstance().GetOrNewObject(serviceImpl,
            IUserAuthInterface::GetDescriptor());
        if (hdfUserAuthInterfaceHost->stub == nullptr) {
            HDF_LOGE("%{public}s: failed to get stub object", __func__);
            return HDF_FAILURE;
        }
-   
+
        deviceObject->service = &hdfUserAuthInterfaceHost->ioService;
        return HDF_SUCCESS;
    }
-   
+
    // Release resources of the User_auth driver.
    void HdfUserAuthInterfaceDriverRelease(struct HdfDeviceObject *deviceObject){
        HDF_LOGI("HdfUserAuthInterfaceDriverRelease enter");
        auto *hdfUserAuthInterfaceHost = CONTAINER_OF(deviceObject->service, struct HdfUserAuthInterfaceHost, ioService);
        delete hdfUserAuthInterfaceHost;
    }
-   
+
    // Register the User_auth driver entry data structure object.
    struct HdfDriverEntry g_userAuthInterfaceDriverEntry = {
        .moduleVersion = 1,
@@ -242,7 +244,7 @@ The development procedure is as follows:
        .Init = HdfUserAuthInterfaceDriverInit,
        .Release = HdfUserAuthInterfaceDriverRelease,
    };
-   
+
    // Call HDF_INIT to register the driver entry with the HDF. When loading the driver, the HDF calls the Bind() function and then the Init() function. If the Init() function fails to be called, the HDF will call Release() to release driver resources and exit the driver model.
    #ifndef __cplusplus
    extern "C" {
@@ -267,14 +269,14 @@ The development procedure is as follows:
        GlobalUnLock();
        return ret;
    }
-   
+
    // Delete the executor.
    int32_t UserAuthInterfaceService::DeleteExecutor(uint64_t index)
    {
        return UnRegisterExecutor(index);
    }
    ```
-   
+
 3. Enroll user authentication data. For details about the code, see [user_auth_interface_service.cpp](https://gitee.com/openharmony/drivers_peripheral/blob/master/user_auth/hdi_service/service/user_auth_interface_service.cpp).
 
    ```c++
@@ -286,13 +288,13 @@ The development procedure is as follows:
        int32_t ret = OpenEditSession(userId, &challengeU64);
        challenge.resize(sizeof(uint64_t));
        if (memcpy_s(&challenge[0], challenge.size(), &challengeU64, sizeof(uint64_t)) != EOK) {
-           IAM_LOGE("Failed to copy challengeU64");
+           IAM_LOGE("failed to copy challengeU64");
            return RESULT_BAD_COPY;
        }
        GlobalUnLock();
        return ret;
    }
-   
+
    // Close the session for authentication credential management.
    int32_t UserAuthInterfaceService::CloseSession(int32_t userId)
    {
@@ -301,10 +303,10 @@ The development procedure is as follows:
        GlobalUnLock();
        return ret;
    }
-   
-   // Start an authentication to generate enrollment and scheduling information.
-   int32_t UserAuthInterfaceService::BeginEnrollment(int32_t userId, const std::vector<uint8_t>& authToken,
-       const EnrollParam& param, ScheduleInfo& info)
+
+   // Start enrollment and generate scheduling information (V1_1).
+   int32_t UserAuthInterfaceService::BeginEnrollmentV1_1(int32_t userId, const std::vector<uint8_t>& authToken,
+       const EnrollParam& param, ScheduleInfoV1_1& info)
    {
        IAM_LOGI("start");
        GlobalLock();
@@ -342,7 +344,18 @@ The development procedure is as follows:
        GlobalUnLock();
        return ret;
    }
-   
+
+   // Start enrollment and generate scheduling information (V1_0 version). The method of V1_0 is called to invoke the method of V1_1 through parameter conversion.
+   int32_t UserAuthInterfaceService::BeginEnrollment(int32_t userId, const std::vector<uint8_t> &authToken,
+       const EnrollParam &param, ScheduleInfo &info)
+   {
+       IAM_LOGI("start");
+       ScheduleInfoV1_1 infoV1_1;
+       int32_t ret = BeginEnrollmentV1_1(userId, authToken, param, infoV1_1);
+       CopyScheduleInfoV1_1ToV1_0(infoV1_1, info);
+       return ret;
+   }
+
    // Cancel the enrollment operation.
    int32_t UserAuthInterfaceService::CancelEnrollment(int32_t userId)
    {
@@ -350,7 +363,7 @@ The development procedure is as follows:
        BreakOffCoauthSchedule(userId);
        return RESULT_SUCCESS;
    }
-   
+
    // Update the enrolled credential information.
    int32_t UserAuthInterfaceService::UpdateEnrollmentResult(int32_t userId, const std::vector<uint8_t>& scheduleResult,
        uint64_t& credentialId, CredentialInfo& oldInfo)
@@ -405,14 +418,14 @@ The development procedure is as follows:
        }
        return userAuthInterfaceService;
    }
-   
+
    // Start an authentication to generate the authentication scheme and scheduling information.
-   int32_t UserAuthInterfaceService::BeginAuthentication(uint64_t contextId, const AuthSolution& param,
-       std::vector<ScheduleInfo>& infos)
+   int32_t UserAuthInterfaceService::BeginAuthenticationV1_1(uint64_t contextId, const AuthSolution& param,
+       std::vector<ScheduleInfoV1_1>& infos)
    {
        IAM_LOGI("start");
        if (param.challenge.size() != sizeof(uint64_t)) {
-           IAM_LOGE("Failed to copy the challenge");
+           IAM_LOGE("Failed to copy challenge");
            return RESULT_BAD_PARAM;
        }
        GlobalLock();
@@ -425,7 +438,7 @@ The development procedure is as follows:
        solutionIn.authTrustLevel = param.authTrustLevel;
        if (memcpy_s(&solutionIn.challenge, sizeof(uint64_t), &param.challenge[0],
            param.challenge.size()) != EOK) {
-           IAM_LOGE("Failed to copy the challenge");
+           IAM_LOGE("Failed to copy challenge");
            GlobalUnLock();
            return RESULT_BAD_COPY;
        }
@@ -436,7 +449,7 @@ The development procedure is as follows:
            return ret;
        }
        for (uint32_t i = 0; i < scheduleIdNum; i++) {
-           ScheduleInfo temp;
+           ScheduleInfoV1_1 temp;
            if (!CopyScheduleInfo(schedulesGet + i, &temp)) {
                infos.clear();
                ret = RESULT_GENERAL_ERROR;
@@ -448,7 +461,18 @@ The development procedure is as follows:
        GlobalUnLock();
        return ret;
    }
-   
+
+   // Start user authentication, generate the authentication scheme and scheduling information. The method of V1_0 is called to invoke the method of V1_1 through parameter conversion.
+   int32_t UserAuthInterfaceService::BeginAuthentication(uint64_t contextId, const AuthSolution &param,
+       std::vector<ScheduleInfo> &infos)
+   {
+       IAM_LOGI("start");
+       std::vector<ScheduleInfoV1_1> infosV1_1;
+       int32_t ret = BeginAuthenticationV1_1(contextId, param, infosV1_1);
+       CopyScheduleInfosV1_1ToV1_0(infosV1_1, infos);
+       return ret;
+   }
+
    // Update the authentication result to evaluate the authentication scheme.
    int32_t UserAuthInterfaceService::UpdateAuthenticationResult(uint64_t contextId,
        const std::vector<uint8_t>& scheduleResult, AuthResultInfo& info)
@@ -471,7 +495,7 @@ The development procedure is as follows:
        UserAuthTokenHal authTokenHal;
        info.result = RequestAuthResultFunc(contextId, scheduleResultBuffer, &authTokenHal);
        if (info.result != RESULT_SUCCESS) {
-           IAM_LOGE("Failed to execute the function");
+           IAM_LOGE("Failed to execute func");
            DestoryBuffer(scheduleResultBuffer);
            GlobalUnLock();
            return info.result;
@@ -487,7 +511,7 @@ The development procedure is as follows:
        GlobalUnLock();
        return RESULT_SUCCESS;
    }
-   
+
    // Cancel the authentication.
    int32_t UserAuthInterfaceService::CancelAuthentication(uint64_t contextId)
    {
@@ -496,7 +520,7 @@ The development procedure is as follows:
        uint32_t scheduleIdNum = 0;
        int32_t ret = CancelContextFunc(contextId, nullptr, &scheduleIdNum);
        if (ret != RESULT_SUCCESS) {
-           IAM_LOGE("Failed to execute the function");
+           IAM_LOGE("Failed to execute func");
            GlobalUnLock();
            return ret;
        }

@@ -20,18 +20,16 @@ Functions of the files are as follows:
 Functions of the folders are as follows:
 
 - The **app.js** file manages global JS logics and application lifecycle.
-
 - The **pages** directory stores all component pages.
-
-- The **common** directory stores public resource files, such as media resources and JavaScript files.
+- The **common** directory stores public resource files, such as media resources and **.js** files.
+- The **i18n** folder stores resources in different languages, for example, UI strings and image paths.
 
 >  **NOTE**
-> - The following reserved folders cannot be renamed:
+>
+>  - The **i18n** folder is a reserved one and cannot be renamed.
 >
 >
->
-> 
-> - The folders marked as optional in the directory structure can be created as needed after you create the project in DevEco Studio.
+>  - The folders marked as optional in the directory structure can be created as needed after you create the project in DevEco Studio.
 
 
 ## File Access Rules
@@ -52,7 +50,7 @@ Application resources can be accessed via an absolute or relative path. In this 
 >
 >  - If code files A and B are in the same directory, you can use either a relative or absolute path in code file B to reference resource files.
 >
->  - If code files A and B are in different directories, you must use an absolute path in code file B to reference resource files. The reason is that the directory of code file B changes during Webpack packaging.
+>  - If code files A and B are in different directories, you must use an absolute path in code file B to reference resource files, because the directory of code file B changes during Webpack packaging.
 >
 
 
@@ -60,8 +58,16 @@ Application resources can be accessed via an absolute or relative path. In this 
 
   **Table 1** Supported image formats
 
-| Format| Supported Version| File Name Extension|
-| -------- | -------- | -------- |
-| BMP | API Version 3+ | .bmp |
-| JPEG | API Version 3+ | .jpg |
-| PNG | API Version 3+ | .png |
+| Format  | Supported Version                    | File Name Extension|
+| ---- | ------------------------ | ------- |
+| BMP  | API version 4+ | .bmp    |
+| JPEG | API version 4+ | .jpg    |
+| PNG  | API version 4+ | .png    |
+
+## Storage Directory
+
+Since API version 5, the [\<image>](js-components-basic-image.md) component supports access to images in the private directory of an application.
+
+| Directory Type  | Prefix           | Access Visibility | Description                         |
+| ------ | --------------- | ------ | --------------------------- |
+| Private directory of the application| internal://app/ | Current application only| The directory is deleted when the application is uninstalled. Access to the parent directory using **../** is prohibited.|

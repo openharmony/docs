@@ -31,7 +31,7 @@ Marks the start of a timeslice trace task.
 | -------- | -------- | -------- | -------- |
 | name | string | Yes| Name of a timeslice trace task.|
 | taskId | number | Yes| ID of a timeslice trace task.|
-| expectedTime | number | No| Expected duration of the trace, in ms.|
+| expectedTime | number | No| Expected duration of the trace, in ms. By default, no value is passed. |
 
 
 **Example**

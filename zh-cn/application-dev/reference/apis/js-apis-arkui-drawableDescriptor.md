@@ -1,4 +1,4 @@
-#@ohos.arkui.drawableDescriptor(DrawableDescriptor)
+# @ohos.arkui.drawableDescriptor (DrawableDescriptor)
 
 本模块提供获取pixelMap的能力，包括前景、背景、蒙版和分层图标。
 
@@ -32,16 +32,25 @@ constructor()
 当传入资源id或name为包含前景和背景资源的json文件时，生成LayeredDrawableDescriptor对象。
 
 **示例：**
-```js
+```ts
+// xxx.ets
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
+
 @Entry
 @Component
 struct Index {
   private resManager = getContext().resourceManager
-  let drawable1 = resManager.getDrawableDescriptor($r('app.media.icon').id)
-  let drawable2 = resManager.getDrawableDescriptorByName(icon)
-  let layeredDrawable1 = resManager.getDrawableDescriptor($r('app.media.file').id)
-  let layeredDrawable1 = resManager.getDrawableDescriptor(file)
- }
+
+  build() {
+    Row() {
+      Column() {
+        Image((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon').id))))
+        Image(((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
+          .id))).getForeground()).getPixelMap())
+      }.height('50%')
+    }.width('50%')
+  }
+}
 ```
 
 ## DrawableDescriptor.getPixelMap
@@ -58,8 +67,8 @@ getPixelMap(): image.PixelMap;
 | [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | PixelMap |
 
 **示例：**
-  ```js
-  @State pixmap: PixelMap = drawable1.getPixelMap();
+  ```ts
+pixmap: PixelMap = drawable1.getPixelMap();
   ```
 
 ## LayeredDrawableDescriptor.getPixelMap
@@ -76,8 +85,8 @@ getPixelMap(): image.PixelMap;
 | [image.PixelMap](../apis/js-apis-image.md#pixelmap7) | PixelMap |
 
 **示例：**
-  ```js
-  @State pixmap: PixelMap = layeredDrawable1.getPixelMap();
+  ```ts
+pixmap: PixelMap = layeredDrawable1.getPixelMap();
   ```
 
 ## LayeredDrawableDescriptor.getForeground
@@ -94,8 +103,8 @@ getForeground(): DrawableDescriptor;
 | [DrawableDescriptor](#drawabledescriptor) | DrawableDescriptor对象 |
 
 **示例：**
-  ```js
-  @State drawable: DrawableDescriptor = layeredDrawable1.getForeground();
+  ```ts
+drawable: DrawableDescriptor = layeredDrawable1.getForeground();
   ```
 
 ## LayeredDrawableDescriptor.getBackground
@@ -112,8 +121,8 @@ getBackground(): DrawableDescriptor;
 | [DrawableDescriptor](#drawabledescriptor) | DrawableDescriptor对象 |
 
 **示例：**
-  ```js
-  @State drawable: DrawableDescriptor = layeredDrawable1.getBackground();
+  ```ts
+drawable: DrawableDescriptor = layeredDrawable1.getBackground();
   ```
 
 ## LayeredDrawableDescriptor.getMask
@@ -130,6 +139,6 @@ getMask(): DrawableDescriptor;
 | [DrawableDescriptor](#drawabledescriptor) | DrawableDescriptor对象 |
 
 **示例：**
-  ```js
-  @State drawable: DrawableDescriptor = layeredDrawable1.getMask();
+  ```ts
+drawable: DrawableDescriptor = layeredDrawable1.getMask();
   ```

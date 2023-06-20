@@ -19,9 +19,9 @@ import backup from '@ohos.file.backup';
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
-| 名称       | 类型   | 必填 | 说明    |
-| ---------- | ------ | ---- | ------------------------- |
-| bundleName | string | 是   | 应用名称，可通过[bundle.BundleInfo](js-apis-bundle-BundleInfo.md)提供的获取方式获取。                  |
+| 名称       | 类型   | 必填 | 说明                                                                                           |
+| ---------- | ------ | ---- | ---------------------------------------------------------------------------------------------- |
+| bundleName | string | 是   | 应用名称，可通过[bundle.BundleInfo](js-apis-bundle-BundleInfo.md)提供的获取方式获取。          |
 | uri        | string | 是   | 应用沙箱内待传输文件的名称，当前uri尚未升级为标准格式，仅接受0-9a-zA-Z下划线(_)点(.)组成的名称 |
 
 ## FileData
@@ -63,21 +63,22 @@ onFileReady : AsyncCallback&lt;File&gt;
 
 > **说明：**
 >
-> AsyncCallback回调中返回的File 所属file.backup.[File](#file)类型，返回的文件归备份服务所有，一旦文件关闭，备份服务将选择合适的实际去清理，但客户端必须关闭文件句柄。
+> AsyncCallback回调中返回的File 所属file.backup.[File](#file)类型，返回的文件归备份服务所有，一旦文件关闭，备份服务将选择合适的时机去清理，但客户端必须关闭文件句柄。
 
 **系统能力**：SystemCapability.FileManagement.StorageService.Backup
 
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
-| 13900005 | I/O error |
-| 13900011 | Out of memory |
-| 13900020 | Invalid argument |
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
 | 13900025 | No space left on device |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error           |
 
 **示例：**
 
@@ -103,14 +104,15 @@ onBundleBegin : AsyncCallback&lt;string&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
-| 13900005 | I/O error |
-| 13900011 | Out of memory |
-| 13900020 | Invalid argument |
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
 | 13900025 | No space left on device |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error           |
 
 **示例：**
 
@@ -134,14 +136,15 @@ onBundleEnd : AsyncCallback&lt;string&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
-| 13900005 | I/O error |
-| 13900011 | Out of memory |
-| 13900020 | Invalid argument |
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
 | 13900025 | No space left on device |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error           |
 
 **示例：**
 
@@ -165,14 +168,15 @@ onAllBundlesEnd : AsyncCallback&lt;undefined&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
-| 13900005 | I/O error |
-| 13900011 | Out of memory |
-| 13900020 | Invalid argument |
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
 | 13900025 | No space left on device |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error           |
 
 **示例：**
 
@@ -213,20 +217,21 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                  |
-| -------- | ------------------------- | ---- | --------------------- |
+| 参数名   | 类型                                       | 必填 | 说明                                                   |
+| -------- | ------------------------------------------ | ---- | ------------------------------------------------------ |
 | callback | AsyncCallback&lt;[FileData](#filedata)&gt; | 是   | 回调函数。当获取成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
-| 13900005 | I/O error |
-| 13900011 | Out of memory |
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
 | 13900025 | No space left on device |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error           |
 
 **示例：**
 
@@ -258,7 +263,7 @@ getLocalCapabilities(callback: AsyncCallback&lt;FileData&gt;): void
     "versionCode" : 1000000,
     "versionName" : "1.0.0"
     }],
-  "deviceType" : "phone",
+  "deviceType" : "default",
   "systemFullName" : "OpenHarmony-4.0.0.0"
  }
  ```
@@ -275,31 +280,34 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
 
 **返回值：**
 
-| 类型             | 说明                     |
-| -------------------- | ------------------ |
+| 类型                                 | 说明                                                |
+| ------------------------------------ | --------------------------------------------------- |
 | Promise&lt;[FileData](#filedata)&gt; | Promise对象，返回描述本地能力的Json文件的FileData。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
-| 13900005 | I/O error |
-| 13900011 | Out of memory |
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
 | 13900025 | No space left on device |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error           |
 
 **示例：**
 
   ```js
   import fs from '@ohos.file.fs';
-  try {
-    let fileData = await backup.getLocalCapabilities();
-    console.info('getLocalCapabilities success');
-    fs.closeSync(fileData.fd);
-  } catch (err) {
-    console.error('getLocalCapabilities failed with err: ' + err);
+  async function getLocalCapabilities() {
+    try {
+      let fileData = await backup.getLocalCapabilities();
+      console.info('getLocalCapabilities success');
+      fs.closeSync(fileData.fd);
+    } catch (err) {
+      console.error('getLocalCapabilities failed with err: ' + err);
+    }
   }
   ```
 
@@ -316,7 +324,7 @@ getLocalCapabilities(): Promise&lt;FileData&gt;
     "versionCode" : 1000000,
     "versionName" : "1.0.0"
     }],
-  "deviceType" : "phone",
+  "deviceType" : "default",
   "systemFullName" : "OpenHarmony-4.0.0.0"
  }
  ```
@@ -342,6 +350,75 @@ constructor(callbacks: GeneralCallbacks);
 | callback | [GeneralCallbacks](#generalcallbacks) | 是   | 备份流程所需的回调。 |
 
 **示例：**
+
+  ```js
+  import fs from '@ohos.file.fs';
+  let generalCallbacks = backup.GeneralCallbacks({
+    onFileReady: (err, file) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + err);
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleBegin failed with err: ' + err);
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleEnd failed with err: ' + err);
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + err);
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    }
+  });
+  let sessionBackup = new backup.SessionBackup(generalCallbacks);
+  ```
+
+### appendBundles
+
+appendBundles(bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): void
+
+添加需要备份的应用。当前整个流程中，在获取SessionBackup类的实例后只能调用一次。使用callback异步回调。
+
+**需要权限**：ohos.permission.BACKUP
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名          | 类型                      | 必填 | 说明                                                           |
+| --------------- | ------------------------- | ---- | -------------------------------------------------------------- |
+| bundlesToBackup | string[]                  | 是   | 需要备份的应用名称的数组。                                     |
+| callback        | AsyncCallback&lt;void&gt; | 是   | 回调函数。当添加备份应用成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900001 | Operation not permitted |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
+| 13900025 | No space left on device |
+| 13900042 | Unknown error           |
+
+**示例：**
+
 
   ```js
   import fs from '@ohos.file.fs';
@@ -375,41 +452,6 @@ constructor(callbacks: GeneralCallbacks);
       console.info('service died');
     }
   });
-  ```
-
-### appendBundles
-
-appendBundles(bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): void
-
-添加需要备份的应用。当前整个流程中，在获取SessionBackup类的实例后只能调用一次。使用callback异步回调。
-
-**需要权限**：ohos.permission.BACKUP
-
-**系统能力**：SystemCapability.FileManagement.StorageService.Backup
-
-**参数：**
-
-| 参数名          | 类型                      | 必填 | 说明                                                           |
-| --------------- | ------------------------- | ---- | -------------------------------------------------------------- |
-| bundlesToBackup | string[]                  | 是   | 需要备份的应用名称的数组。                                     |
-| callback        | AsyncCallback&lt;void&gt; | 是   | 回调函数。当添加备份应用成功，err为undefined，否则为错误对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
-| 13900001 | Operation not permitted |
-| 13900005 | I/O error |
-| 13900011 | Out of memory |
-| 13900020 | Invalid argument |
-| 13900025 | No space left on device |
-| 13900042 | Unknown error |
-
-**示例：**
-
-  ```js
   try {
     sessionBackup.appendBundles(['com.example.hiworld'], (err) => {
       if (err) {
@@ -447,24 +489,58 @@ appendBundles(bundlesToBackup: string[]): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
 | 13900001 | Operation not permitted |
-| 13900005 | I/O error |
-| 13900011 | Out of memory |
-| 13900020 | Invalid argument |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
 | 13900025 | No space left on device |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error           |
 
 **示例：**
 
   ```js
-  try {
-    await sessionBackup.appendBundles(['com.example.hiworld']);
-    console.info('appendBundles success');
-  } catch (err) {
+  import fs from '@ohos.file.fs';
+  let sessionBackup = new backup.SessionBackup({
+    onFileReady: (err, file) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + err);
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleBegin failed with err: ' + err);
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleEnd failed with err: ' + err);
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + err);
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    }
+  });
+  async function appendBundles() {
+    try {
+      await sessionBackup.appendBundles(['com.example.hiworld']);
+      console.info('appendBundles success');
+    } catch (err) {
     console.error('appendBundles failed with err: ' + err);
+    }
   }
   ```
 
@@ -487,6 +563,80 @@ constructor(callbacks: GeneralCallbacks);
 | 参数名   | 类型                                  | 必填 | 说明                 |
 | -------- | ------------------------------------- | ---- | -------------------- |
 | callback | [GeneralCallbacks](#generalcallbacks) | 是   | 恢复流程所需的回调。 |
+
+**示例：**
+
+  ```js
+  import fs from '@ohos.file.fs';
+  let generalCallbacks = backup.GeneralCallbacks({
+    onFileReady: (err, file) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + err);
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleBegin failed with err: ' + err);
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleEnd failed with err: ' + err);
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + err);
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    }
+  });
+  let sessionRestore = new backup.SessionRestore(generalCallbacks);
+  ```
+
+### appendBundles
+
+appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): void
+
+添加需要恢复的应用。当前整个流程中，在获取SessionRestore类的实例后只能调用一次。使用callback异步回调。
+
+> **说明：**
+>
+> - 服务在恢复时需要其能力文件进行相关校验。
+> - 因此remoteCapabilitiesFd可通过备份端服务所提供的[getLocalCapabilities](#backupgetlocalcapabilities)接口获取，可对其内容根据恢复应用的实际状况修改参数。也可通过getLocalCapabilities提供的json示例自行生成能力文件。
+
+**需要权限**：ohos.permission.BACKUP
+
+**系统能力**：SystemCapability.FileManagement.StorageService.Backup
+
+**参数：**
+
+| 参数名               | 类型                      | 必填 | 说明                                                           |
+| -------------------- | ------------------------- | ---- | -------------------------------------------------------------- |
+| remoteCapabilitiesFd | number                    | 是   | 用于恢复所需能力文件的文件描述符。                             |
+| bundlesToBackup      | string[]                  | 是   | 需要恢复的应用名称的数组。                                     |
+| callback             | AsyncCallback&lt;void&gt; | 是   | 回调函数。当添加恢复应用成功，err为undefined，否则为错误对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
+| 13900001 | Operation not permitted |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
+| 13900025 | No space left on device |
+| 13900042 | Unknown error           |
 
 **示例：**
 
@@ -518,62 +668,23 @@ constructor(callbacks: GeneralCallbacks);
       }
       console.info('onAllBundlesEnd success');
     },
-    onRestoreServiceDied: () => {
+    onBackupServiceDied: () => {
       console.info('service died');
     }
   });
-  ```
-
-### appendBundles
-
-appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[], callback: AsyncCallback&lt;void&gt;): void
-
-添加需要恢复的应用。当前整个流程中，在获取SessionRestore类的实例后只能调用一次。使用callback异步回调。
-
-> **说明：**
->
-> - 服务在恢复时需要其能力文件进行相关校验。
-> - 因此remoteCapabilitiesFd可通过备份端服务所提供的[getLocalCapabilities](#backupgetlocalcapabilities)接口获取，可对其内容根据恢复应用的实际状况修改参数。也可通过getLocalCapabilities提供的json示例自行生成能力文件。
-
-**需要权限**：ohos.permission.BACKUP
-
-**系统能力**：SystemCapability.FileManagement.StorageService.Backup
-
-**参数：**
-
-| 参数名               | 类型                      | 必填 | 说明                                                           |
-| -------------------- | ------------------------- | ---- | -------------------------------------------------------------- |
-| remoteCapabilitiesFd | number                    | 是   | 用于恢复所需能力文件的文件描述符。                             |
-| bundlesToBackup      | string[]                  | 是   | 需要恢复的应用名称的数组。                                     |
-| callback             | AsyncCallback&lt;void&gt; | 是   | 回调函数。当添加恢复应用成功，err为undefined，否则为错误对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
-| 13900001 | Operation not permitted |
-| 13900005 | I/O error |
-| 13900011 | Out of memory |
-| 13900020 | Invalid argument |
-| 13900025 | No space left on device |
-| 13900042 | Unknown error |
-
-**示例：**
-
-  ```js
-  try {
-    let fileData = await backup.getLocalCapabilities();
-    console.info('getLocalCapabilities success');
-    sessionRestore.appendBundles(fileData.fd, ['com.example.hiworld'], (err) => {
+  async function appendBundles() {
+    try {
+      let fileData = await backup.getLocalCapabilities();
+      console.info('getLocalCapabilities success');
+      sessionRestore.appendBundles(fileData.fd, ['com.example.hiworld'], (err) => {
       if (err) {
         console.error('appendBundles failed with err: ' + err);
       }
       console.info('appendBundles success');
     });
-  } catch (err) {
-    console.error('appendBundles failed with err: ' + err);
+    } catch (err) {
+      console.error('getLocalCapabilities failed with err: ' + err);
+    }
   }
   ```
 
@@ -608,26 +719,60 @@ appendBundles(remoteCapabilitiesFd: number, bundlesToBackup: string[]): Promise&
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
 | 13900001 | Operation not permitted |
-| 13900005 | I/O error |
-| 13900011 | Out of memory |
-| 13900020 | Invalid argument |
+| 13900005 | I/O error               |
+| 13900011 | Out of memory           |
+| 13900020 | Invalid argument        |
 | 13900025 | No space left on device |
-| 13900042 | Unknown error |
+| 13900042 | Unknown error           |
 
 **示例：**
 
   ```js
-  try {
-    let fileData = await backup.getLocalCapabilities();
-    console.info('getLocalCapabilities success');
-    await sessionRestore.appendBundles(fileData.fd, ['com.example.hiworld']);
-    console.info('appendBundles success');
-  } catch (err) {
-    console.error('appendBundles failed with err: ' + err);
+  import fs from '@ohos.file.fs';
+  let sessionRestore = new backup.SessionRestore({
+    onFileReady: (err, file) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + err);
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleBegin failed with err: ' + err);
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleEnd failed with err: ' + err);
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + err);
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    }
+  });
+  async function appendBundles() {
+    try {
+      let fileData = await backup.getLocalCapabilities();
+      console.info('getLocalCapabilities success');
+      await sessionRestore.appendBundles(fileData.fd, ['com.example.hiworld']);
+      console.info('appendBundles success');
+    } catch (err) {
+      console.error('getLocalCapabilities failed with err: ' + err);
+    }
   }
   ```
 
@@ -658,18 +803,49 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
 | 13900001 | Operation not permitted |
-| 13900020 | Invalid argument |
-| 13900042 | Unknown error |
+| 13900020 | Invalid argument        |
+| 13900042 | Unknown error           |
 
 **示例：**
 
   ```js
-  try {
-    sessionRestore.getFileHandle({
+  import fs from '@ohos.file.fs';
+  let sessionRestore = new backup.SessionRestore({
+    onFileReady: (err, file) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + err);
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleBegin failed with err: ' + err);
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleEnd failed with err: ' + err);
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + err);
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    }
+  });
+  sessionRestore.getFileHandle({
       bundleName: "com.example.hiworld",
       uri: "test.txt"
       }, (err, file) => {
@@ -678,9 +854,6 @@ getFileHandle(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
       }
       console.info('getFileHandle success');
     });
-  } catch (err) {
-    console.error('getFileHandle failed with err: ' + err);
-  }
   ```
 
 ### getFileHandle
@@ -715,24 +888,58 @@ getFileHandle(fileMeta: FileMeta): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
 | 13900001 | Operation not permitted |
-| 13900020 | Invalid argument |
-| 13900042 | Unknown error |
+| 13900020 | Invalid argument        |
+| 13900042 | Unknown error           |
 
 **示例：**
 
   ```js
-  try {
-    await sessionRestore.getFileHandle({
-      bundleName: "com.example.hiworld",
-      uri: "test.txt"
+  import fs from '@ohos.file.fs';
+  let sessionRestore = new backup.SessionRestore({
+    onFileReady: (err, file) => {
+      if (err) {
+        console.error('onFileReady failed with err: ' + err);
+      }
+      console.info('onFileReady success');
+      fs.closeSync(file.fd);
+    },
+    onBundleBegin: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleBegin failed with err: ' + err);
+      }
+      console.info('onBundleBegin success');
+    },
+    onBundleEnd: (err, bundleName) => {
+      if (err) {
+        console.error('onBundleEnd failed with err: ' + err);
+      }
+      console.info('onBundleEnd success');
+    },
+    onAllBundlesEnd: (err) => {
+      if (err) {
+        console.error('onAllBundlesEnd failed with err: ' + err);
+      }
+      console.info('onAllBundlesEnd success');
+    },
+    onBackupServiceDied: () => {
+      console.info('service died');
+    }
+  });
+  async function getFileHandle() {
+    try {
+      await sessionRestore.getFileHandle({
+        bundleName: "com.example.hiworld",
+        uri: "test.txt"
       });
-    console.info('getFileHandle success');
-  } catch (err) {
-    console.error('getFileHandle failed with err: ' + err);
+      console.info('getFileHandle success');
+    } catch (err) {
+      console.error('getFileHandle failed with err: ' + err);
+    }
   }
   ```
 
@@ -762,36 +969,62 @@ publishFile(fileMeta: FileMeta, callback: AsyncCallback&lt;void&gt;): void
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
 | 13900001 | Operation not permitted |
-| 13900020 | Invalid argument |
-| 13900042 | Unknown error |
+| 13900020 | Invalid argument        |
+| 13900042 | Unknown error           |
 
 **示例：**
 
   ```js
-  try {
-    onFileReady: (err, file) => {
-      if (err) {
-        console.error('onFileReady failed with err: ' + err);
-      }
-      console.info('onFileReady success');
-      fs.closeSync(file.fd);
-      sessionRestore.publishFile({
-      bundleName: file.bundleName,
-      uri: file.uri
-      }, (err) => {
+  import fs from '@ohos.file.fs';
+  let g_session;
+  function createSessionRestore() {
+    let sessionRestore = new backup.SessionRestore({
+      onFileReady: (err, file) => {
         if (err) {
-          console.error('publishFile failed with err: ' + err);
+          console.error('onFileReady failed with err: ' + err);
         }
-        console.info('publishFile success');
-      });
-    }
-  } catch (err) {
-    console.error('publishFile failed with err: ' + err);
+        console.info('onFileReady success');
+        fs.closeSync(file.fd);
+        g_session.publishFile({
+          bundleName: file.bundleName,
+          uri: file.uri
+        }, (err) => {
+          if (err) {
+            console.error('publishFile failed with err: ' + err);
+          }
+          console.info('publishFile success');
+        });
+      },
+      onBundleBegin: (err, bundleName) => {
+        if (err) {
+          console.error('onBundleBegin failed with err: ' + err);
+        }
+        console.info('onBundleBegin success');
+      },
+      onBundleEnd: (err, bundleName) => {
+        if (err) {
+          console.error('onBundleEnd failed with err: ' + err);
+        }
+        console.info('onBundleEnd success');
+      },
+      onAllBundlesEnd: (err) => {
+        if (err) {
+          console.error('onAllBundlesEnd failed with err: ' + err);
+        }
+        console.info('onAllBundlesEnd success');
+      },
+      onBackupServiceDied: () => {
+        console.info('service died');
+      }
+    });
+    return sessionRestore;
   }
+  g_session = createSessionRestore();
   ```
 
 ### publishFile
@@ -825,30 +1058,60 @@ publishFile(fileMeta: FileMeta): Promise&lt;void&gt;
 **错误码：**
 
 以下错误码的详细介绍请参见[文件管理子系统错误码](../errorcodes/errorcode-filemanagement.md)。
-| 错误码ID                     | 错误信息        |
-| ---------------------------- | ---------- |
-| 13600001 | IPC error |
+
+| 错误码ID | 错误信息                |
+| -------- | ----------------------- |
+| 13600001 | IPC error               |
 | 13900001 | Operation not permitted |
-| 13900020 | Invalid argument |
-| 13900042 | Unknown error |
+| 13900020 | Invalid argument        |
+| 13900042 | Unknown error           |
 
 **示例：**
 
   ```js
-  try {
-    onFileReady: (err, file) => {
-      if (err) {
-        console.error('onFileReady failed with err: ' + err);
-      }
-      console.info('onFileReady success');
-      fs.closeSync(file.fd);
-      await sessionRestore.publishFile({
+  import fs from '@ohos.file.fs';
+  let g_session;
+  async function publishFile(file)
+  {
+    await g_session.publishFile({
       bundleName: file.bundleName,
       uri: file.uri
-      });
-      console.info('publishFile success');
-    },
-  } catch (err) {
-    console.error('publishFile failed with err: ' + err);
+    });
   }
+  function createSessionRestore() {
+    let sessionRestore = new backup.SessionRestore({
+      onFileReady: (err, file) => {
+        if (err) {
+          console.error('onFileReady failed with err: ' + err);
+        }
+        console.info('onFileReady success');
+        fs.closeSync(file.fd);
+        publishFile(file);
+        console.info('publishFile success');
+      },
+      onBundleBegin: (err, bundleName) => {
+        if (err) {
+          console.error('onBundleBegin failed with err: ' + err);
+        }
+        console.info('onBundleBegin success');
+      },
+      onBundleEnd: (err, bundleName) => {
+        if (err) {
+          console.error('onBundleEnd failed with err: ' + err);
+        }
+        console.info('onBundleEnd success');
+      },
+      onAllBundlesEnd: (err) => {
+        if (err) {
+          console.error('onAllBundlesEnd failed with err: ' + err);
+        }
+        console.info('onAllBundlesEnd success');
+      },
+      onBackupServiceDied: () => {
+        console.info('service died');
+      }
+    });
+    return sessionRestore;
+  }
+  g_session = createSessionRestore();
   ```

@@ -8,7 +8,7 @@
 
 **错误信息**
 
-The dataShareHelper is not initialized successfully.
+The DataShareHelper is not initialized successfully.
 
 **错误描述**
 
@@ -23,3 +23,40 @@ The dataShareHelper is not initialized successfully.
 
 1. 咨询DataShare服务端提供者，获取正确的uri路径。
 2. DataShare仅支持Stage模型，检查context是否为Stage模型的context。
+
+## 15700011 添加/删除模板异常
+
+**错误信息**
+
+The uri is not exist.
+
+**错误描述**
+
+添加/删除模板异常时，系统会产生此错误码。
+
+**可能原因**
+
+1. 添加模板异常时，接口addTemplate的入参uri不正确。
+2. 删除模板异常时，接口delTemplate的入参uri不正确。
+
+**处理步骤**
+
+咨询DataShare服务端提供者，获取正确的uri路径。
+
+## 15700012 数据区不存在
+
+**错误信息**
+
+The data area is not exist.
+
+**错误描述**
+
+数据更新异常时，系统会产生此错误码。
+
+**可能原因**
+
+数据更新异常时，接口publish的入参bundleName不正确。
+
+**处理步骤**
+
+咨询DataShare服务端提供者，获取正确的bundleName。

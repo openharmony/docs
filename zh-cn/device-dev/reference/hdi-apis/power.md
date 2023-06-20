@@ -1,22 +1,22 @@
 # Power
 
 
-## **概述**
+## 概述
 
-提供休眠/唤醒操作、订阅休眠/唤醒状态、运行锁管理的接口。
+提供休眠/唤醒操作、订阅休眠/唤醒状态和运行锁管理的接口。
 
 电源模块为电源服务提供的休眠/唤醒操作、订阅休眠/唤醒状态和运行锁管理的接口。 服务获取此模块的对象或代理后，可以调用相关的接口对设备进行休眠/唤醒、订阅休眠/唤醒状态和管理运行锁。
 
-**Since**:
+**Since:**
 
 3.1
 
-**Version**:
+**Version:**
 
 1.0
 
 
-## **汇总**
+## 汇总
 
 
 ### 文件
@@ -32,15 +32,15 @@
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [IPowerHdiCallback](interface_i_power_hdi_callback.md) | 休眠/唤醒状态的回调。 | 
-| [IPowerInterface](interface_i_power_interface.md) | 休眠/唤醒操作、订阅休眠/唤醒状态、运行锁管理的接口。 | 
+| [IPowerHdiCallback](interface_i_power_hdi_callback.md) | interface<br/>休眠/唤醒状态的回调。 | 
+| [IPowerInterface](interface_i_power_interface.md) | interface<br/>休眠/唤醒操作、订阅休眠/唤醒状态、运行锁管理的接口。 | 
 
 
 ### 枚举
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [PowerHdfCmd](#powerhdfcmd)&nbsp;{&nbsp;&nbsp;&nbsp;CMD_REGISTER_CALLBCK&nbsp;=&nbsp;0,&nbsp;CMD_START_SUSPEND,&nbsp;CMD_STOP_SUSPEND,&nbsp;CMD_FORCE_SUSPEND,&nbsp;&nbsp;&nbsp;CMD_SUSPEND_BLOCK,&nbsp;CMD_SUSPEND_UNBLOCK,&nbsp;CMD_DUMP&nbsp;} | 枚举电源命令的参数。 | 
+| [PowerHdfCmd](#powerhdfcmd)&nbsp;{&nbsp;CMD_REGISTER_CALLBCK&nbsp;=&nbsp;0,&nbsp;CMD_START_SUSPEND,&nbsp;CMD_STOP_SUSPEND,&nbsp;CMD_FORCE_SUSPEND,&nbsp;&nbsp;&nbsp;CMD_SUSPEND_BLOCK,&nbsp;CMD_SUSPEND_UNBLOCK,&nbsp;CMD_DUMP&nbsp;} | 枚举电源命令的参数。 | 
 | [PowerHdfCallbackCmd](#powerhdfcallbackcmd)&nbsp;{&nbsp;CMD_ON_SUSPEND&nbsp;=&nbsp;0,&nbsp;CMD_ON_WAKEUP&nbsp;} | 枚举电源状态回调的参数。 | 
 | [PowerHdfState](#powerhdfstate)&nbsp;{&nbsp;AWAKE&nbsp;=&nbsp;0,&nbsp;INACTIVE,&nbsp;SLEEP&nbsp;} | 枚举电源的状态。 | 
 
@@ -52,7 +52,7 @@
 | package&nbsp;ohos.hdi.power.v1_0 | 电源模块接口的包路径。 | 
 
 
-## **枚举类型说明**
+## 枚举类型说明
 
 
 ### PowerHdfCallbackCmd
@@ -62,7 +62,7 @@
 enum PowerHdfCallbackCmd
 ```
 
-**描述：**
+**描述:**
 
 枚举电源状态回调的参数。
 
@@ -79,7 +79,7 @@ enum PowerHdfCallbackCmd
 enum PowerHdfCmd
 ```
 
-**描述：**
+**描述:**
 
 枚举电源命令的参数。
 
@@ -101,7 +101,7 @@ enum PowerHdfCmd
 enum PowerHdfState
 ```
 
-**描述：**
+**描述:**
 
 枚举电源的状态。
 

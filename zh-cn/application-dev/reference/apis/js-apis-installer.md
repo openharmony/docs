@@ -124,6 +124,7 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
+| 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 
 **示例：**
 
@@ -190,6 +191,7 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
+| 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 
 **示例：**
 
@@ -260,6 +262,7 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 | 17700042 | Failed to install the HAP because of incorrect URI in the data proxy. |
 | 17700043 | Failed to install the HAP because of low APL in the non-system data proxy (required APL: system_basic or system_core). |
 | 17700044 | Failed to install the HAP because the isolationMode configured is not supported. |
+| 17700047 | Failed to install the HAP because the VersionCode to be updated is not greater than the current VersionCode. |
 
 **示例：**
 
@@ -770,7 +773,7 @@ try {
 | installFlag                    | number                         | 否                        | 指示安装标志，枚举值：0：应用初次安装，1：应用覆盖安装，默认值为应用初次安装 |
 | isKeepData                     | boolean                        | 否                       | 卸载时是否保留数据目录，默认值为false。 |
 | hashParams        | Array<[HashParam](#hashparam)> | 否 | 哈希值参数，默认值为空。         |
-| crowdtestDeadline| number                         | 否                        |[众测](https://developer.huawei.com/consumer/cn/agconnect/crowd-test/)截止日期，默认值为-1。 |
+| crowdtestDeadline| number                         | 否                        | 众测活动的截止日期，默认值为-1，表示无截止日期约束。 |
 | sharedBundleDirPaths<sup>10+</sup> | Array\<String> | 否 |共享包文件所在路径，默认值为空。 |
 
 ## UninstallParam<sup>10+</sup>

@@ -18,6 +18,10 @@
       - [Configuring Parameters for Accelerating Local Build](subsys-build-reference.md)
       - [Viewing Ninja Build Information](subsys-build-reference.md)
       - [HAP Build Guide](subsys-build-gn-hap-compilation-guide.md)
+      - Rust Build Guide
+        - [Rust Module Configuration Rules and Guide](subsys-build-rust-compilation.md)
+        - [Using Interactive Tools](subsys-build-bindgen-cxx-guide.md)
+        - [Using Cargo2gn](subsys-build-cargo2gn-guide.md)
       - [FAQs](subsys-build-FAQ.md)
 - [ArkCompiler Development](subsys-arkcompiler-guide.md)
 - [Distributed Remote Startup](subsys-remote-start.md)
@@ -74,6 +78,7 @@
       - [Plug-in Management](subsys-boot-init-plugin.md)
       - [Component-based Startup](subsys-boot-init-sub-unit.md)
       - [init Run Log Standardization](subsys-boot-init-log.md)
+      - [Seccomp Policy Development](subsys-boot-init-seccomp.md)
   - [appspawn Module](subsys-boot-appspawn.md)
   - [bootstrap Module](subsys-boot-bootstrap.md)
   - [FAQs](subsys-boot-faqs.md)
@@ -122,3 +127,5 @@
         - [Thermal Scene Customization](subsys-thermal_scene.md)
     - Power Management
         - [Power Mode Customization](subsys-power-mode-customization.md)
+        - [Default Hibernation Behavior Customization](subsys-power-default-sleep-behavior-customization.md)
+        - [Wakeup Source Customization](subsys-power-wakeup-source-customization.md)

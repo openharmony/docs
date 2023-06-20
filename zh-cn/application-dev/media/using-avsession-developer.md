@@ -16,15 +16,15 @@
 
 | 接口名 | 说明 | 
 | -------- | -------- |
-| createAVSession(context: Context, tag: string, type: AVSessionType, callback: AsyncCallback&lt;AVSession&gt;): void | 创建媒体会话。<br/>一个UIAbility只能存在一个媒体会话，重复创建会失败。 | 
-| setAVMetadata(data: AVMetadata, callback: AsyncCallback&lt;void&gt;): void | 设置媒体会话元数据。 | 
-| setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback&lt;void&gt;): void | 设置媒体会话播放状态。 | 
-| setLaunchAbility(ability: WantAgent, callback: AsyncCallback&lt;void&gt;): void | 设置启动UIAbility。 | 
-| getController(callback: AsyncCallback&lt;AVSessionController&gt;): void | 获取当前会话自身控制器。 | 
-| getOutputDevice(callback: AsyncCallback&lt;OutputDeviceInfo&gt;): void | 获取播放设备相关信息。 |
-| activate(callback: AsyncCallback&lt;void&gt;): void | 激活媒体会话。 | 
-| deactivate(callback: AsyncCallback&lt;void&gt;): void | 禁用当前会话。 |
-| destroy(callback: AsyncCallback&lt;void&gt;): void | 销毁媒体会话。 | 
+| createAVSession(context: Context, tag: string, type: AVSessionType, callback: AsyncCallback&lt;AVSession&gt;): void<sup>10+<sup> | 创建媒体会话。<br/>一个UIAbility只能存在一个媒体会话，重复创建会失败。 | 
+| setAVMetadata(data: AVMetadata, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | 设置媒体会话元数据。 | 
+| setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | 设置媒体会话播放状态。 | 
+| setLaunchAbility(ability: WantAgent, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | 设置启动UIAbility。 | 
+| getController(callback: AsyncCallback&lt;AVSessionController&gt;): void<sup>10+<sup> | 获取当前会话自身控制器。 | 
+| getOutputDevice(callback: AsyncCallback&lt;OutputDeviceInfo&gt;): void<sup>10+<sup> | 获取播放设备相关信息。 |
+| activate(callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | 激活媒体会话。 | 
+| deactivate(callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | 禁用当前会话。 |
+| destroy(callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | 销毁媒体会话。 | 
 | setAVQueueItems(items: Array&lt;AVQueueItem&gt;, callback: AsyncCallback&lt;void&gt;): void <sup>10+<sup> | 设置媒体播放列表。 |
 | setAVQueueTitle(title: string, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | 设置媒体播放列表名称。 |
 | dispatchSessionEvent(event: string, args: {[key: string]: Object}, callback: AsyncCallback&lt;void&gt;): void<sup>10+<sup> | 设置会话内自定义事件。 |
@@ -143,7 +143,7 @@
    ```ts
    // 假设已经创建了一个session，如何创建session可以参考之前的案例
    let session: AVSessionManager.AVSession = ALREADY_CREATE_A_SESSION;
-   let wantAgentInfo: {
+   let wantAgentInfo = {
        wants: [
            {
                bundleName: 'com.example.musicdemo',

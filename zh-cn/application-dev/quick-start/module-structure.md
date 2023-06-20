@@ -191,69 +191,6 @@ metadata对象示例：
 
 ## abilities对象的内部结构
 
-**OpenHarmony中不允许应用隐藏入口图标**
-
-OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置入口图标，那么系统会给该应用创建一个默认的图标显示在桌面上;<br>
-用户点击该图标，将跳转到Settings的应用管理中对应的应用详情页面（图1）中。<br>
-如果应用想要隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。
-
-**场景说明：** 该功能能防止一些恶意应用，故意配置无入口图标，导致用户找不到软件所在的位置，无法操作卸载应用，在一定程度上保证用户的手机安全
-
-**入口图标的设置:** 需要在配置文件（config.json）中abilities配置下设置icon，label以及skills,而且skills的配置下必须同时包含“ohos.want.action.home” 和 “entity.system.home”:
-```
-{
-  "module":{
-
-    ...
-
-    "abilities": [{
-      "icon": "$media:icon",
-      "label": "Login",
-      "skills": [{
-        "actions": ["ohos.want.action.home"],
-        "entities": ["entity.system.home"],
-        "uris": []
-      }]
-    }],
-
-    ...
-
-  }
-}
-```
-
-**入口图标及入口标签的显示规则**
-* HAP中包含Page类型的PageAbility
-  * 配置文件（config.json）中abilities配置中设置了入口图标
-    * 该应用没有隐藏图标的特权
-      * 显示桌面图标为该PageAbility配置的图标
-      * 显示桌面Label为该PageAbility配置的Label（如果没有配置Label，返回包名）
-      * 显示组件名为该PageAbility的组件名
-      * 用户点击该桌面图标，页面跳转到该PageAbility首页
-    * 该应用具有隐藏图标的特权
-      * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
-  * 配置文件（config.json）中abilities配置中未设置入口图标
-    * 该应用没有隐藏图标的特权
-      * 显示桌面图标为系统默认图标
-      * 显示桌面Label为该应用的包名
-      * 用户点击该桌面图标，页面跳转到该应用的详情页面（图1）
-    * 该应用具有隐藏图标的特权
-      * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
-* HAP中不包含Page类型的PageAbility
-  * 该应用没有隐藏图标的特权
-    * 显示桌面图标为系统默认图标
-    * 显示桌面Label为该应用的包名
-    * 用户点击该桌面图标，页面跳转到该应用的详情页面（图1）
-  * 该应用具有隐藏图标的特权
-    * 桌面查询时不返回应用信息，不会在桌面上显示对应的图标。
-
-注：应用详情页面（图1）中显示的label可能与桌面上显示的不同。如果非Page类型的PageAbility配置了入口图标和label，那么详情页中显示的即为配置的。<br><br>
-
-图1
-
-![应用的详情页例图](figures/application_details.jpg)
-
-
 **表8** **abilities对象的内部结构说明**
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
@@ -288,6 +225,60 @@ OpenHarmony系统对无图标应用严格管控。如果HAP中没有配置入口
 | startWindowBackground | 标识该Ability启动页面背景颜色资源文件的索引。该标签仅适用于page类型的Ability。取值示例：$color:red。 | 字符串 | 可缺省，缺省值为空。 |
 | removeMissionAfterTerminate | 该标签标识Ability销毁后是否从任务列表中移除任务。该标签仅适用于page类型的Ability。true表示销毁后移除任务，&nbsp;false表示销毁后不移除任务。 | 布尔值 | 可缺省，缺省值为false。 |
 
+
+**OpenHarmony中不允许应用隐藏入口图标**
+
+OpenHarmony系统对无图标应用严格管控，防止一些恶意应用故意配置无入口图标，导致用户找不到软件所在的位置，无法操作卸载应用，在一定程度上保证用户终端设备的安全。
+
+**入口图标的设置:** 需要在配置文件（config.json）中abilities配置下设置icon，label以及skills，而且skills的配置下必须同时包含“ohos.want.action.home” 和 “entity.system.home”。
+```
+{
+  "module":{
+
+    ...
+
+    "abilities": [{
+      "icon": "$media:icon",
+      "label": "Login",
+      "skills": [{
+        "actions": ["ohos.want.action.home"],
+        "entities": ["entity.system.home"],
+        "uris": []
+      }]
+    }],
+
+    ...
+
+  }
+}
+```
+
+如果应用确需隐藏入口图标，需要配置AllowAppDesktopIconHide应用特权，具体配置方式参考[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)。详细的入口图标及入口标签的显示规则如下。
+* HAP中包含Page类型的PageAbility
+  * 配置文件（config.json）中abilities配置中设置了入口图标
+    * 该应用没有隐藏图标的特权
+      * 系统将使用该PageAbility配置的icon作为入口图标，并显示在桌面上。用户点击该图标，页面跳转到该PageAbility首页。
+      * 系统将使用该PageAbility配置的label作为入口标签，并显示在桌面上（如果没有配置label，返回包名）。
+    * 该应用具有隐藏图标的特权
+      * 桌面查询时不返回应用信息，不会在桌面上显示对应的入口图标和标签。
+  * 配置文件（config.json）中abilities配置中未设置入口图标
+    * 该应用没有隐藏图标的特权
+      * 系统将使用系统默认图标作为入口图标，并显示在桌面上。用户点击该图标，页面跳转到应用管理中对应的应用详情页面（参考下图）。
+      * 系统将使用应用的包名作为入口标签，并显示在桌面上。
+    * 该应用具有隐藏图标的特权
+      * 桌面查询时不返回应用信息，不会在桌面上显示对应的入口图标和标签。
+* HAP中不包含Page类型的PageAbility
+  * 该应用没有隐藏图标的特权
+    * 系统将使用系统默认图标作为入口图标，并显示在桌面上。用户点击该图标，页面跳转到应用管理中对应的应用详情页面（参考下图）。
+    * 系统将使用应用的包名作为入口标签，并显示在桌面上。
+  * 该应用具有隐藏图标的特权
+    * 桌面查询时不返回应用信息，不会在桌面上显示对应的入口图标和标签。
+
+**图1** 应用的详情页示意图 
+
+![应用的详情页例图](figures/application_details.jpg)
+
+注：应用详情页面中显示的label可能与桌面上显示的不同。如果非Page类型的PageAbility配置了入口图标和label，那么详情页中显示的即为配置的。<br>
 ## uriPermission对象的内部结构
 
 **表9** **uriPermission对象的内部结构说明**

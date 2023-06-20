@@ -1,32 +1,36 @@
 # HdfMotionEvent
 
 
-## **概述**
+## 概述
 
 上报手势识别数据结构。
 
 上报手势识别数据事件信息包括手势识别类型、手势识别结果、手势识别状态、手势识别数据长度、手势识别数据。
 
+**Since:**
+
+3.2
+
 **相关模块:**
 
-[Motion](motion.md)
+[Motion](_motion.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [motion](#motion) | 手势识别类型。 | 
-| [result](#result) | 手势识别结果。 | 
-| [status](#status) | 手势识别状态。 | 
-| [datalen](#datalen) | 手势识别数据长度。 | 
-| [data](#data) | 手势识别数据。 | 
+| [motion](#motion) | int<br/>手势识别类型。 | 
+| [result](#result) | int<br/>手势识别结果。 | 
+| [status](#status) | int<br/>手势识别状态。 | 
+| [datalen](#datalen) | int<br/>手势识别数据长度。 | 
+| [data](#data) | int[]<br/>手势识别数据。 | 
 
 
-## **类成员变量说明**
+## 类成员变量说明
 
 
 ### data
@@ -36,7 +40,7 @@
 int [] HdfMotionEvent::data
 ```
 
-**描述：**
+**描述:**
 
 手势识别数据。
 
@@ -48,7 +52,7 @@ int [] HdfMotionEvent::data
 int HdfMotionEvent::datalen
 ```
 
-**描述：**
+**描述:**
 
 手势识别数据长度。
 
@@ -60,7 +64,7 @@ int HdfMotionEvent::datalen
 int HdfMotionEvent::motion
 ```
 
-**描述：**
+**描述:**
 
 手势识别类型。
 
@@ -72,7 +76,7 @@ int HdfMotionEvent::motion
 int HdfMotionEvent::result
 ```
 
-**描述：**
+**描述:**
 
 手势识别结果。
 
@@ -84,6 +88,6 @@ int HdfMotionEvent::result
 int HdfMotionEvent::status
 ```
 
-**描述：**
+**描述:**
 
 手势识别状态。

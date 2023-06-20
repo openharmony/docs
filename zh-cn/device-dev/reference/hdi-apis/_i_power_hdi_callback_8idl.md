@@ -1,13 +1,13 @@
 # IPowerHdiCallback.idl
 
 
-## **概述**
+## 概述
 
 休眠/唤醒状态的回调。
 
 电源模块为电源服务提供的订阅休眠/唤醒状态的回调。
 
-**Since：**
+**Since:**
 
 3.1
 
@@ -20,14 +20,14 @@
 [Power](power.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### 类
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [IPowerHdiCallback](interface_i_power_hdi_callback.md) | 休眠/唤醒状态的回调。 | 
+| [IPowerHdiCallback](interface_i_power_hdi_callback.md) | interface<br/>休眠/唤醒状态的回调。 | 
 
 
 ### 关键字

@@ -2,7 +2,7 @@
 
 ## 使用XComponent组件显示相机的预览输出流时，如何获取相机的帧数据
 
-适用于：OpenHarmony 3.2 版本  API 9 Stage模型
+适用于：OpenHarmony 3.2 版本  API 9
 
 **问题现象**
 
@@ -35,7 +35,7 @@
 
 ## 如何获取前置摄像头的预览图像
 
-适用于：OpenHarmony 3.2版本  API 9 Stage模型
+适用于：OpenHarmony 3.2版本  API 9
 
 **解决措施**
 
@@ -76,7 +76,7 @@
 
 ## 如何设置相机焦距
 
-适用于：OpenHarmony 3.2版本  API 9 Stage模型
+适用于：OpenHarmony 3.2版本  API 9
 
 **解决措施**
 
@@ -86,7 +86,7 @@
 
 ## 如何后台播放音乐
 
-适用于：OpenHarmony 3.2版本  API 9 Stage模型
+适用于：OpenHarmony 3.2版本  API 9
 
 **问题现象**
 
@@ -105,7 +105,7 @@ AVSession对媒体播放做了管控，当三方应用从前台切入后台或�
 
 ## 创建多个视频组件无法播放
 
-适用于：OpenHarmony 3.2版本 API 9 Stage模型
+适用于：OpenHarmony 3.2版本 API 9
 
 **问题现象**
 
@@ -115,10 +115,9 @@ AVSession对媒体播放做了管控，当三方应用从前台切入后台或�
 
 当前限制最多创建13个媒体播放实例。
 
-
 ## 如何直接调起图片库
 
-适用于：OpenHarmony 3.2版本   API 9 Stage模型
+适用于：OpenHarmony 3.2版本   API 9
 
 **解决措施**
 
@@ -133,4 +132,68 @@ let want = {
 let context = getContext(this) as common.UIAbilityContext;
 context.startAbility(want);
 ```
+
+## 如何申请设备上的媒体读写权限 
+
+适用于：OpenHarmony 3.2版本   API 9 Stage模型
+
+**解决措施**
+
+1. 在module.json5配置文件中配置媒体读写权限ohos.permission.READ\_MEDIA和ohos.permission.WRITE\_MEDIA。
+
+    示例：
+
+    ```
+    {
+      "module" : {
+        "requestPermissions":[
+          {
+            "name" : "ohos.permission.READ_MEDIA",
+            "reason": "$string:reason"
+          },
+          {
+            "name" : "ohos.permission.WRITE_MEDIA",
+            "reason": "$string:reason"
+          }
+        ]
+      }
+    }
+    ```
+
+2. 这两个权限的授权方式均为user\_grant，因此需要调用requestPermissionsFromUser接口，以动态弹窗的方式向用户申请授权。
+
+    ```
+    let context = getContext(this) as common.UIAbilityContext;
+    let atManager = abilityAccessCtrl.createAtManager();
+    let permissions: Array<string> = ['ohos.permission.READ_MEDIA','ohos.permission.WRITE_MEDIA']
+    atManager.requestPermissionsFromUser(context, permissions)
+    .then((data) => {
+        console.log("Succeed to request permission from user with data: " + JSON.stringify(data))
+    }).catch((error) => {
+        console.log("Failed to request permission from user with error: " + JSON.stringify(error))
+    })
+    ```
+
+## 如何检测当前相机服务的状态 
+
+适用于：OpenHarmony 3.2版本 API 9 Stage模型
+
+**解决措施**
+
+cameraManager通过设置状态回调返回相机状态。
+
+```
+cameraManager.on('cameraStatus', (cameraStatusInfo) => {
+  console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
+  console.log(`status: ${cameraStatusInfo.status}`);
+})
+```
+相机状态：CameraStatus
+枚举，相机状态。
+CAMERA_STATUS_APPEAR 0 新的相机出现。
+CAMERA_STATUS_DISAPPEAR 1 相机被移除。
+CAMERA_STATUS_AVAILABLE 2 相机可用。
+CAMERA_STATUS_UNAVAILABLE 3 相机不可用。
+
+参考文档：[CameraStatus](../reference/apis/js-apis-camera.md#oncamerastatus)
 

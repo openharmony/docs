@@ -46,7 +46,7 @@ The command contains the following options:
 
 With the preceding **patch.json**, .abc, and .so files, run the following command to generate an .hqf file using the **app_packing_tool.jar** tool in the **toolchains** folder in the local OpenHarmony SDK path:
 ```shell
-$ java -jar app_packing_tool.jar --mode hqf --json-path patch.json --lib-path libs --ets-patch patchs --out-path entry-default-unsigned.hqf --force true
+$ java -jar app_packing_tool.jar --mode hqf --json-path patch.json --lib-path libs --ets-path patchs --out-path entry-default-unsigned.hqf --force true
 ```
 
 The command contains the following options.

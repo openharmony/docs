@@ -15,10 +15,7 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 
 ## Attributes
 
-
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
-
-**System API**: This is a system API and cannot be called by third-party applications.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |

@@ -2132,6 +2132,23 @@ getCurrentP2pGroup(callback: AsyncCallback&lt;WifiP2pGroupInfo&gt;): void
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2801000  | Operation failed.|
+	
+**示例：**
+```
+	import wifi from '@ohos.wifiManager';
+
+	wifi.getCurrentP2pGroup((err, data) => {
+    if (err) {
+        console.error("get current P2P group error");
+        return;
+    }
+		console.info("get current P2P group: " + JSON.stringify(data));
+	});
+
+	wifi.getCurrentP2pGroup().then(data => {
+		console.info("get current P2P group: " + JSON.stringify(data));
+	});
+```
 
 **示例：**
 ```js

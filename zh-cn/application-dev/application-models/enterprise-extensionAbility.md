@@ -1,4 +1,4 @@
-# EnterpriseAdminExtensionAbility开发指南
+# EnterpriseAdminExtensionAbility
 
 ## EnterpriseAdminExtensionAbility简介
 
