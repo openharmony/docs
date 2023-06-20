@@ -331,9 +331,3 @@ Grid() {
 >**说明：**
 >
 >cachedCount的增加会增大UI的CPU、内存开销。使用时需要根据实际情况，综合性能和用户体验进行调整。
-
-## 相关实例
-
-如需详细了解网格布局的实现，请参考以下示例：
-
-- [分布式计算器](https://gitee.com/openharmony/applications_app_samples/tree/master/Preset/EtsDistributedCalc)
