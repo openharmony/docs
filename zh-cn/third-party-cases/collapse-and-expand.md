@@ -53,9 +53,9 @@
                 .margin({ bottom: 30 })
         
                 Column() {
-                    RowItem({ props: { title: '英雄', name1: '孙悟空', name2: '蛮族之王', name3: '武器大师' } })
+                    RowItem({ props: { title: 'AAAAA', name1: 'BBBBB', name2: 'CCCCC', name3: '武器大师' } })
                     // 文本折叠时，type为DOWN
-                    RowItem({ props: { name1: '伊泽瑞尔', name2: '加里奥', name3: '卡特琳娜', type: 'DOWN', onFlagChange: this.onFlagChange } })  
+                    RowItem({ props: { name1: 'DDDDD', name2: 'EEEEE', name3: 'FFFFF', type: 'DOWN', onFlagChange: this.onFlagChange } })  
 
                     //被折叠的文本内容
                     ...  
@@ -73,11 +73,11 @@
     ```ts
     CollapseAndExpand({
         items: [
-            { id: 0, name1: '潮汐海灵', name2: '暗夜猎手', name3: '厄斐琉斯' },
-            { id: 1, name1: '涤魂圣枪', name2: '圣枪游侠', name3: '法外狂徒' },
-            { id: 2, name1: '北地之怒', name2: '不羁之悦', name3: '傲之追猎者' },
+            { id: 0, name1: 'GGGGG', name2: 'HHHHH', name3: 'JJJJJ' },
+            { id: 1, name1: 'KKKKK', name2: 'LLLLL', name3: 'MMMMM' },
+            { id: 2, name1: 'NNNNN', name2: 'OOOOO', name3: 'PPPPP' },
             // 文本展开时，type为UP
-            { id: 3, name1: '艾瑞莉娅', name2: '战争之影', name3: '时间刺客', type: 'UP', onFlagChange: this.onFlagChange }
+            { id: 3, name1: 'QQQQQ', name2: 'RRRRR', name3: 'SSSSS', type: 'UP', onFlagChange: this.onFlagChange }
         ],
     })
     ```
@@ -206,12 +206,12 @@ struct CollapseAndExpandDemo {
 
             Column() {
                 RowItem({ 
-                    props: { title: '英雄', name1: '孙悟空', name2: '蛮族之王', name3: '武器大师' } })
+                    props: { title: '英雄', name1: 'AAAAA', name2: 'BBBBB', name3: 'CCCCC' } })
                 RowItem({ 
                     props: { 
-                        name1: '伊泽瑞尔', 
-                        name2: '加里奥', 
-                        name3: '卡特琳娜', 
+                        name1: 'DDDDD', 
+                        name2: 'EEEEE', 
+                        name3: 'FFFFF', 
                         // 文本折叠时，type为DOWN
                         type: 'DOWN', 
                         onFlagChange: this.onFlagChange  
@@ -220,13 +220,13 @@ struct CollapseAndExpandDemo {
                 // 直接调用折叠展开组件
                 CollapseAndExpand({
                     items: [
-                        { id: 0, name1: '潮汐海灵', name2: '暗夜猎手', name3: '厄斐琉斯' },
-                        { id: 1, name1: '涤魂圣枪', name2: '圣枪游侠', name3: '法外狂徒' },
-                        { id: 2, name1: '北地之怒', name2: '不羁之悦', name3: '傲之追猎者' },
+                        { id: 0, name1: 'GGGGG', name2: 'HHHHH', name3: 'JJJJJ' },
+                        { id: 1, name1: 'KKKKK', name2: 'LLLLL', name3: 'MMMMM' },
+                        { id: 2, name1: 'NNNNN', name2: 'OOOOO', name3: 'PPPPP' },
                         { id: 3, 
-                        name1: '艾瑞莉娅', 
-                        name2: '战争之影', 
-                        name3: '时间刺客', 
+                        name1: 'QQQQQ', 
+                        name2: 'RRRRR', 
+                        name3: 'SSSSS', 
                         // 文本折叠时，type为UP
                         type: 'UP', 
                         onFlagChange: this.onFlagChange }  
