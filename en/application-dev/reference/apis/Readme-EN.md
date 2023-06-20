@@ -16,7 +16,7 @@
     - [@ohos.app.ability.StartOptions (StartOptions)](js-apis-app-ability-startOptions.md)
     - [@ohos.app.ability.UIAbility (UIAbility)](js-apis-app-ability-uiAbility.md)
     - [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](js-apis-app-form-formExtensionAbility.md)
-    - [@ohos.application.DataShareExtensionAbility (DataShare Extension Ability)](js-apis-application-dataShareExtensionAbility.md)
+    - [@ohos.application.DataShareExtensionAbility (DataShareExtensionAbility)](js-apis-application-dataShareExtensionAbility.md)
     - [@ohos.application.StaticSubscriberExtensionAbility (StaticSubscriberExtensionAbility)](js-apis-application-staticSubscriberExtensionAbility.md)
   - FA Model
     - [@ohos.ability.ability (Ability)](js-apis-ability-ability.md)
@@ -186,6 +186,7 @@
   - [@ohos.arkui.componentSnapshot (Component Snapshot)](js-apis-arkui-componentSnapshot.md)
   - [@ohos.arkui.drawableDescriptor (DrawableDescriptor)](js-apis-arkui-drawableDescriptor.md)
   - [@ohos.curves (Interpolation Calculation)](js-apis-curve.md)
+  - [@ohos.font (Custom Font Registration)](js-apis-font.md)
   - [@ohos.matrix4 (Matrix Transformation)](js-apis-matrix4.md)
   - [@ohos.mediaquery (Media Query)](js-apis-mediaquery.md)
   - [@ohos.pluginComponent (PluginComponentManager)](js-apis-plugincomponent.md)
@@ -193,7 +194,7 @@
   - [@ohos.router (Page Routing)](js-apis-router.md)
   - [@ohos.measure (Text Measurement)](js-apis-measure.md)
   - [@ohos.uiAppearance (UI Appearance)](js-apis-uiappearance.md)
-
+  
 - Graphics 
   - [@ohos.animation.windowAnimationManager (Window Animation Management)](js-apis-windowAnimationManager.md)
   - [@ohos.application.WindowExtensionAbility (WindowExtensionAbility)](js-apis-application-windowExtensionAbility.md)
@@ -214,10 +215,10 @@
   - [@ohos.multimedia.image (Image Processing)](js-apis-image.md)
   - [@ohos.multimedia.media (Media)](js-apis-media.md)
   - [@ohos.multimedia.systemSoundManager (System Sound Management)](js-apis-systemSoundManager.md)
-  - Multimedia
+  - multimedia
     - [ringtonePlayer (Ringtone Player)](js-apis-inner-multimedia-ringtonePlayer.md)
 
-- Resource Manager
+- Resource Management
   - [@ohos.i18n (Internationalization)](js-apis-i18n.md)
   - [@ohos.intl (Internationalization)](js-apis-intl.md)
   - [@ohos.resourceManager (Resource Manager)](js-apis-resource-manager.md)
@@ -250,7 +251,7 @@
   - [@ohos.data.dataSharePredicates (DataShare Predicates)](js-apis-data-dataSharePredicates.md)
   - [@ohos.data.dataShareResultSet (DataShare Result Set)](js-apis-data-DataShareResultSet.md)
   - [@ohos.data.distributedDataObject (Distributed Data Object)](js-apis-data-distributedobject.md)
-  - [@ohos.data.distributedKVStore (Distributed KV Store)](js-apis-distributedKVStore.md) 
+  - [@ohos.data.distributedKVStore (Distributed KV Store)](js-apis-distributedKVStore.md)
   - [@ohos.data.preferences (User Preferences)](js-apis-data-preferences.md)
   - [@ohos.data.relationalStore (RDB Store)](js-apis-data-relationalStore.md)
   - [@ohos.data.UDMF (Unfied Data Management Framework)](js-apis-data-udmf.md)
@@ -293,17 +294,17 @@
   - [@ohos.request (Upload and Download)](js-apis-request.md)
 
 - Connectivity
-  - [@ohos.bluetooth (Bluetooth)(To Be Deprecated Soon)](js-apis-bluetooth.md)
-  - [@ohos.bluetoothManager (Bluetooth)(js-apis-bluetoothManager.md)
+  - [@ohos.bluetooth (Bluetooth) (To Be Deprecated Soon)](js-apis-bluetooth.md)
+  - [@ohos.bluetoothManager (Bluetooth) (Recommended)](js-apis-bluetoothManager.md)
   - [@ohos.connectedTag (Active Tags)](js-apis-connectedTag.md)
   - [@ohos.nfc.cardEmulation (Standard NFC Card Emulation)](js-apis-cardEmulation.md)
   - [@ohos.nfc.controller (Standard NFC)](js-apis-nfcController.md)
   - [@ohos.nfc.tag (Standard NFC Tags)](js-apis-nfcTag.md)
   - [@ohos.rpc (RPC)](js-apis-rpc.md)
-  - [@ohos.wifiManager (WLAN)](js-apis-wifiManager.md)
-  - [@ohos.wifiManagerExt (WLAN Extension)](js-apis-wifiManagerExt.md)
-  - [@ohos.wifi (WLAN)(To Be Deprecated Soon)](js-apis-wifi.md)
-  - [@ohos.wifiext (WLAN Extension)(To Be Deprecated Soon)](js-apis-wifiext.md)
+  - [@ohos.wifiManager (WLAN) (Recommended)](js-apis-wifiManager.md)
+  - [@ohos.wifiManagerExt (WLAN Extension) (Recommended)](js-apis-wifiManagerExt.md)
+  - [@ohos.wifi (WLAN) (To Be Deprecated Soon)](js-apis-wifi.md)
+  - [@ohos.wifiext (WLAN Extension) (To Be Deprecated Soon)](js-apis-wifiext.md)
   - tag
     - [nfctech (Standard NFC Technologies)](js-apis-nfctech.md)
     - [tagSession (Standard NFC Tag Session)](js-apis-tagSession.md)
@@ -336,9 +337,9 @@
   - [@ohos.web.webview (Webview)](js-apis-webview.md)
   - [Console](js-apis-logs.md)
   - [Timer](js-apis-timer.md)
-  - [SysCap](js-apis-syscap.md)
+  - [syscap](js-apis-syscap.md)
   - application
-    - [AccessibilityExtensionContext (Accessibility Extension Context)](js-apis-inner-application-accessibilityExtensionContext.md)
+    - [AccessibilityExtensionContext](js-apis-inner-application-accessibilityExtensionContext.md)
 
 - Device Management
   - [@ohos.batteryInfo (Battery Information)](js-apis-battery-info.md)
@@ -351,7 +352,7 @@
   - [@ohos.geoLocationManager (Geolocation Manager)](js-apis-geoLocationManager.md)
   - [@ohos.multimodalInput.inputConsumer (Input Consumer)](js-apis-inputconsumer.md)
   - [@ohos.multimodalInput.inputDevice (Input Device)](js-apis-inputdevice.md)
-  - [@ohos.multimodalInput.inputDeviceCooperate (Screen Hopping)](js-apis-cooperate.md)
+  - [@ohos.multimodalInput.inputDeviceCooperate (Screen Hopping) (To Be Deprecated Soon)](js-apis-cooperate.md)
   - [@ohos.multimodalInput.inputEvent (Input Event)](js-apis-inputevent.md)
   - [@ohos.multimodalInput.inputEventClient (Key Event Injection)](js-apis-inputeventclient.md)
   - [@ohos.multimodalInput.inputMonitor (Input Monitor)](js-apis-inputmonitor.md)
@@ -380,7 +381,9 @@
 
 - Customization
   - [@ohos.configPolicy (Configuration Policy)](js-apis-configPolicy.md)
-  - [@ohos.enterprise.accountManager (Account Management)](js-apis-enterprise-accountManager.md)
+
+- Enterprise Device Management
+  - [@ohos.enterprise.accountManager(Account Management)](js-apis-enterprise-accountManager.md)
   - [@ohos.enterprise.adminManager (Enterprise Device Management)](js-apis-enterprise-adminManager.md)
   - [@ohos.enterprise.applicationManager (Application Management)](js-apis-enterprise-applicationManager.md)
   - [@ohos.enterprise.bundleManager (Bundle Management)](js-apis-enterprise-bundleManager.md)
@@ -391,7 +394,7 @@
   - [@ohos.enterprise.networkManager (Network Management)](js-apis-enterprise-networkManager.md)
   - [@ohos.enterprise.wifiManager (Wi-Fi Management)](js-apis-enterprise-wifiManager.md)
 
-- Language Base Class Library 
+- Language Base Class Library
   - [@ohos.buffer (Buffer)](js-apis-buffer.md)
   - [@ohos.convertxml (XML-to-JavaScript Conversion)](js-apis-convertxml.md)
   - [@ohos.process (Obtaining Process Information)](js-apis-process.md)
@@ -450,7 +453,7 @@
   - [@system.device (Device Information)](js-apis-system-device.md)
   - [@system.fetch (Data Request)](js-apis-system-fetch.md)
   - [@system.file (File Storage)](js-apis-system-file.md)
-  - [@system.geolocation (Geographic Location)](js-apis-system-location.md)
+  - [@system.geolocation (Geolocation)](js-apis-system-location.md)
   - [@system.mediaquery (Media Query)](js-apis-system-mediaquery.md)
   - [@system.network (Network State)](js-apis-system-network.md)
   - [@system.notification (Notification)](js-apis-system-notification.md)
@@ -476,4 +479,4 @@
     - [remoteAbilityInfo](js-apis-bundle-remoteAbilityInfo.md)
     - [shortcutInfo](js-apis-bundle-ShortcutInfo.md)
   - data/rdb
-    - [resultSet](js-apis-data-resultset.md)
+    - [resultSet](js-apis-data-resultset.md) 
