@@ -144,7 +144,7 @@
 | ------ | ---------------------------------------- | ---- | ---------------------------------------- |
 | size   | [Length](#length)                        | 否    | 设置文本尺寸，Length为number类型时，使用fp单位。不支持设置百分比字符串。 |
 | weight | [FontWeight](ts-appendix-enums.md#fontweight) \| number \| string | 否    | 设置文本的字体粗细，number类型取值[100, 900]，取值间隔为100，默认为400，取值越大，字体越粗。 |
-| family | string \| [Resource](#resource)          | 否    | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。例如：HarmonyOS Sans'。且当前只支持这种字体。 |
+| family | string \| [Resource](#resource)          | 否    | 设置文本的字体列表。使用多个字体，使用','进行分割，优先级按顺序生效。'Arial, HarmonyOS Sans'。当前只支持'HarmonyOS Sans'字体。 |
 | style  | [FontStyle](ts-appendix-enums.md#fontstyle) | 否    | 设置文本的字体样式。                               |
 
 ## Area<sup>8+</sup>
