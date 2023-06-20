@@ -388,7 +388,7 @@ abilityManager.getTopAbility().then((data) => {
 
 acquireShareData(missionId: number, callback: AsyncCallback<{[key: string]: Object}>): void;
 
-获取目标应用的分享数据（callback形式）。其中，missionId是分享数据目标应用的missionId，启动应用后通过hdc shell aa dump -a 命令查看或者使用[missionManager.getMissionInfos()](js-apis-app-ability-missionManager.md#getmissioninfos)方法获取，callback是目标应用onShare()生命周期方法回调的分享数据，分享数据填充可看[UIAbility.onShare()](js-apis-app-ability-uiAbility.md#onshare)。
+系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（callback形式）。
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
@@ -429,7 +429,7 @@ try {
 
 acquireShareData(missionId: number): Promise<{[key: string]: Object}>;
 
-获取目标应用的分享数据（Promise形式）。其中，missionId是分享数据目标应用的missionId，启动应用后通过hdc shell aa dump -a 命令查看或者使用[missionManager.getMissionInfos()](js-apis-app-ability-missionManager.md#getmissionInfos)方法获取，Promise<{[key: string]: Object}>是目标应用onShare()生命周期方法回调的分享数据，分享数据填充可看[UIAbility.onShare()](js-apis-app-ability-uiAbility.md#onshare)。
+系统弹框通过该接口发起原子化服务分享，调用到目标UIAbility的onShare，返回分享数据（Promise形式）。
  
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
 
