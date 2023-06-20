@@ -1,7 +1,7 @@
 # LifecycleApp Switching
 
 
-| API in the FA Model| Corresponding d.ts File in the Stage Model| Corresponding API in the Stage Model|
+| API in the FA Model| Corresponding .d.ts File in the Stage Model| Corresponding API in the Stage Model|
 | -------- | -------- | -------- |
 | onShow?(): void; | \@ohos.window.d.ts | [on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void;](../reference/apis/js-apis-window.md#onwindowstageevent9)<br>Listens for the switching to the [foreground](../reference/apis/js-apis-window.md#windowstageeventtype9).|
 | onHide?(): void; | \@ohos.window.d.ts | [on(eventType: 'windowStageEvent', callback: Callback&lt;WindowStageEventType&gt;): void;](../reference/apis/js-apis-window.md#onwindowstageevent9)<br>Listens for the switching to the [background](../reference/apis/js-apis-window.md#windowstageeventtype9).|
@@ -14,7 +14,7 @@
 | onRestoreData?(data: Object): void; | \@ohos.app.ability.UIAbility.d.ts | [onCreate(want: Want, param: AbilityConstant.LaunchParam): void;](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncreate)<br>[onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant)<br>In multiton or singleton mode, the target ability completes data restoration in the **onCreate()** callback. In the callback, **launchParam.launchReason** is used to determine whether it is a continuation-based launch scenario. If it is, the data saved before continuation can be obtained from the **want** parameter.|
 | onRemoteTerminated?(): void; | application\ContinueCallback.d.ts | [onContinueDone(result: number): void;](../reference/apis/js-apis-distributedMissionManager.md#continuecallback) |
 | onSaveAbilityState?(outState: PacMap): void; | \@ohos.app.ability.UIAbility.d.ts | [onSaveState(reason: AbilityConstant.StateType, wantParam : {[key: string]: any}): AbilityConstant.OnSaveResult;](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonsavestate) |
-| onRestoreAbilityState?(inState: PacMap): void; | \@ohos.app.ability.UIAbility.d.ts | [onCreate(want: Want, param: AbilityConstant.LaunchParam): void;](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncreate)<br>After the application is restarted, the **onCreate()** callback is triggered. In the callback, **launchParam.launchReason** is used to determine whether it is a self-recovery scenario. If it is, the data saved before the restart can be obtained from the **want** parameter.|
+| onRestoreAbilityState?(inState: PacMap): void; | \@ohos.app.ability.UIAbility.d.ts | [onCreate(want: Want, param: AbilityConstant.LaunchParam): void;](../reference/apis/js-apis-app-ability-uiAbility.md#abilityoncreate)<br>After an application is restarted, the **onCreate()** callback is triggered. In the callback, **launchParam.launchReason** is used to determine whether it is a self-recovery scenario. If it is, the data saved before the restart can be obtained from the **want** parameter.|
 | onInactive?(): void; | \@ohos.app.ability.UIAbility.d.ts | [onBackground(): void;](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonbackground) |
 | onActive?(): void; | \@ohos.app.ability.UIAbility.d.ts | [onForeground(): void;](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonforeground) |
 | onNewWant?(want: Want): void; | \@ohos.app.ability.UIAbility.d.ts | [onNewWant(want: Want, launchParams: AbilityConstant.LaunchParam): void;](../reference/apis/js-apis-app-ability-uiAbility.md#abilityonnewwant) |

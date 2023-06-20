@@ -1,6 +1,6 @@
 # Subscribing to System Environment Variable Changes
 
-System environment variables are system settings (for example, the system language or screen direction) of a device that may change during the running of an application.
+System environment variables are system settings (for example, the system language or screen orientation) of a device that may change during the running of an application.
 
 By subscribing to the changes of system environment variables, the application can detect the changes in a timely manner and process the changes accordingly, providing better user experience. For example, when the system language changes, the application can display the UI in the new language; when the user rotates the device to landscape or portrait mode, the application can re-arrange the UI to adapt to the new screen orientation and size.
 
