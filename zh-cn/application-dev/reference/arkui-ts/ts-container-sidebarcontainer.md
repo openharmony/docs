@@ -34,6 +34,7 @@ SideBarContainer( type?: SideBarContainerType )
 | -------- | -------- |
 | Embed | 侧边栏嵌入到组件内，和内容区并列显示。 |
 | Overlay | 侧边栏浮在内容区上面。 |
+| AUTO | 组件尺寸大于等于minSideBarWidth+minContentWidth时，采用Embed模式显示。<br/>组件尺寸小于minSideBarWidth+minContentWidth时，采用Overlay模式显示。|
 
 ## 属性
 
@@ -50,6 +51,7 @@ SideBarContainer( type?: SideBarContainerType )
 | autoHide<sup>9+</sup> | boolean | 设置当侧边栏拖拽到小于最小宽度后，是否自动隐藏。<br/>默认值：true<br>**说明：** <br>受minSideBarWidth属性方法影响，minSideBarWidth属性方法未设置值使用默认值。<br/>拖拽过程中判断是否要自动隐藏。小于最小宽度时需要阻尼效果触发隐藏（越界一段距离） |
 | sideBarPosition<sup>9+</sup> | [SideBarPosition](#sidebarposition9枚举说明) | 设置侧边栏显示位置。<br/>默认值：SideBarPosition.Start |
 | divider<sup>10+</sup>        | [DividerStyle](#dividerstyle10对象说明) \| null | 设置分割线的样式。<br/>- 默认为DividerStyle：显示分割线。<br/>- null：不显示分割线。 |
+| minContentWidth<sup>10+</sup> | Dimension | SideBarContainer组件内容区的最小宽度。<br/>默认值：360<br/>单位：vp |
 
 ## ButtonStyle对象说明
 
