@@ -189,6 +189,7 @@ struct GridExample {
       .width('90%')
       .backgroundColor(0xFAEEE0)
       .height(300)
+      .scrollBar(BarState.Off)
       Button('next page')
         .onClick(() => { // 点击后滑到下一页
           this.scroller.scrollPage({ next: true })
