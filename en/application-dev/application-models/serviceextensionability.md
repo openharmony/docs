@@ -226,7 +226,7 @@ A system application uses the [startServiceExtensionAbility()](../reference/apis
      "abilityName": "ServiceExtAbility"
    };
    context.stopServiceExtensionAbility(want).then(() => {
-     console.info('Succeeded in stoping ServiceExtensionAbility.');
+     console.info('Succeeded in stopping ServiceExtensionAbility.');
    }).catch((err) => {
      console.error(`Failed to stop ServiceExtensionAbility. Code is ${err.code}, message is ${err.message}`);
    })
@@ -267,7 +267,7 @@ The ServiceExtensionAbility returns an IRemoteObject in the **onConnect()** call
   };
   let options = {
     onConnect(elementName, remote) {
-      /* The input parameter remote is the object returned by the ServiceExtensionAbility in the onConnect lifecycle callback.
+      /* remote is the object returned by the ServiceExtensionAbility in the onConnect lifecycle callback.
        * This object is used for communication with the ServiceExtensionAbility. For details, see the section below.
        */
       console.info('onConnect callback');
@@ -346,7 +346,9 @@ After obtaining the [rpc.RemoteObject](../reference/apis/js-apis-rpc.md#iremoteo
         console.info(`onConnect remote is null`);
         return;
       }
-      // Directly call the RPC interface to send messages to the server. The client needs to serialize the input parameters and deserialize the return values. The process is complex.
+      /* Directly call the RPC interface to send messages to the server.
+       * The client needs to serialize the input parameters and deserialize the return values. The process is complex.
+       */ 
       let option = new rpc.MessageOption();
       let data = new rpc.MessageSequence();
       let reply = new rpc.MessageSequence();
@@ -440,7 +442,9 @@ When a ServiceExtensionAbility is used to provide sensitive services, the client
   
       let callerTokenId = rpc.IPCSkeleton.getCallingTokenId();
       let accessManger = abilityAccessCtrl.createAtManager();
-      // The permission to be verified varies depending on the service requirements. ohos.permission.SET_WALLPAPER is only an example.
+      /* The permission to be verified varies depending on the service requirements.
+       * ohos.permission.SET_WALLPAPER is only an example.
+       */
       let grantStatus =
           accessManger.verifyAccessTokenSync(callerTokenId, "ohos.permission.SET_WALLPAPER");
       if (grantStatus === abilityAccessCtrl.GrantStatus.PERMISSION_DENIED) {
