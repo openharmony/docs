@@ -136,12 +136,12 @@ import accessibility from '@ohos.accessibility';
 
 | 名称              | 类型                                       | 可读   | 可写   | 说明          |
 | --------------- | ---------------------------------------- | ---- | ---- | ----------- |
-| fontFamily      | [CaptionsFontFamily](#captionsfontfamily8) | 是    | 否    | 描述字幕字体。     |
-| fontScale       | number                                   | 是    | 否    | 描述字幕字体缩放系数。 |
-| fontColor       | number \| string                         | 是    | 否    | 描述字幕字体颜色。   |
-| fontEdgeType    | [CaptionsFontEdgeType](#captionsfontedgetype8) | 是    | 否    | 描述字幕字体边缘。   |
-| backgroundColor | number \| string                         | 是    | 否    | 描述字幕背景颜色。   |
-| windowColor     | number \| string                         | 是    | 否    | 描述字幕窗口颜色。   |
+| fontFamily      | [CaptionsFontFamily](#captionsfontfamily8) | 是    | 否    | 描述字幕字体，当前版本暂不支持。     |
+| fontScale       | number                                   | 是    | 否    | 描述字幕字体缩放系数，当前版本暂不支持。 |
+| fontColor       | number \| string                         | 是    | 否    | 描述字幕字体颜色，当前版本暂不支持。   |
+| fontEdgeType    | [CaptionsFontEdgeType](#captionsfontedgetype8) | 是    | 否    | 描述字幕字体边缘，当前版本暂不支持。   |
+| backgroundColor | number \| string                         | 是    | 否    | 描述字幕背景颜色，当前版本暂不支持。   |
+| windowColor     | number \| string                         | 是    | 否    | 描述字幕窗口颜色，当前版本暂不支持。   |
 
 ## CaptionsManager<sup>8+</sup>
 
