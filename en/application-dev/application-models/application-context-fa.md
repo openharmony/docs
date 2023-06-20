@@ -44,7 +44,7 @@ For details about the APIs, see [API Reference](../reference/apis/js-apis-inner-
    }
    ```
 
-2. Set the display orientation of the host featureAbility.
+2. Set the display orientation of the **featureAbility**.
    
    ```ts
    import featureAbility from '@ohos.ability.featureAbility'
