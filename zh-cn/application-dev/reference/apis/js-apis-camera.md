@@ -3403,7 +3403,7 @@ on(type: 'error', callback: ErrorCallback\<BusinessError\>): void
 **示例：**
 
 ```js
-metadataOutput.on('error', (err, metadataOutputError) => {
+metadataOutput.on('error', (metadataOutputError) => {
     console.log(`Metadata output error code: ${metadataOutputError.code}`);
 })
 ```

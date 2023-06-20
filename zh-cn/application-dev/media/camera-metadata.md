@@ -60,7 +60,7 @@ Metadata主要是通过一个TAG（Key），去找对应的Data，用于传递�
 - 通过注册回调函数，获取监听metadata流的错误结果，callback返回metadata输出接口使用错误时返回的错误码，错误码类型参见[CameraErrorCode](../reference/apis/js-apis-camera.md#cameraerrorcode)。
     
   ```ts
-  metadataOutput.on('error', (err, metadataOutputError) => {
+  metadataOutput.on('error', (metadataOutputError) => {
       console.info(`Metadata output error code: ${metadataOutputError.code}`);
   })
   ```
