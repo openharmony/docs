@@ -156,6 +156,7 @@
   - [ImageBitmap对象](ts-components-canvas-imagebitmap.md)
   - [ImageData对象](ts-components-canvas-imagedata.md)
   - [Matrix2D](ts-components-canvas-matrix2d.md)
+  - [OffscreenCanvas](ts-components-offscreencanvas.md)
   - [OffscreenCanvasRenderingContext2D对象](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D对象](ts-components-canvas-path2d.md)
 - 动画
