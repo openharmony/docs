@@ -18,7 +18,7 @@ Toggle(options: { type: ToggleType, isOn?: boolean })
 该接口用于创建切换按钮，其中ToggleType为开关类型，包括Button、Checkbox和Switch，isOn为切换按钮的状态，接口调用有以下两种形式：
 
 
-- 创建不包含子组件的Toogle。
+- 创建不包含子组件的Toggle。
   当ToggleType为Checkbox或者Switch时，用于创建不包含子组件的Toggle：
 
 
