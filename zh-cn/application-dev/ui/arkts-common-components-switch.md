@@ -1,4 +1,4 @@
-# 切换按钮
+# 切换按钮（Toggle）
 
 
 Toggle组件提供状态按钮样式，勾选框样式及开关样式，一般用于两种状态之间的切换。具体用法请参考[Toggle](../reference/arkui-ts/ts-basic-components-toggle.md)。
