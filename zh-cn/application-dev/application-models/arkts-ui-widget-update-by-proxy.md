@@ -66,13 +66,13 @@
   }
   ```
 
-- 在[onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform)回调中配置订阅信息[proxies](../reference/apis/js-apis-app-form-formBindingData.md#proxydata)，并通过[formBinding](../reference/apis/js-apis-app-form-formBindingData.md#formbindingdata)返回给卡片管理服务。示例中将key设置为"detail"，subscriberId设置为"11"。
+- 在[onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform)回调中配置订阅信息[proxyData](../reference/apis/js-apis-app-form-formBindingData.md#proxydata10)，并通过[formBinding](../reference/apis/js-apis-app-form-formBindingData.md#formbindingdata)返回给卡片管理服务。示例中将key设置为"detail"，subscriberId设置为"11"。
   > **说明：**
   >
   > key可以是uri也可以是简单字符串，subscriberId默认值为当前formId，实际取值都依赖于数据发布方的定义。
   ```ts
   import formBindingData from '@ohos.app.form.formBindingData';
-  
+
   let dataShareHelper;
   onAddForm(want) {
     let formData = {};
@@ -88,14 +88,14 @@
   }
   ```
 
-- 在卡片页面代码widgets.abc中，通过LocalStorage变量获取订阅到的数据。示例中，通过'detail'获取订阅的数据，并在Text组件显示。
+- 在卡片页面代码widgets.abc中，通过LocalStorage变量获取订阅到的数据，LocalStorage绑定了一个字符串，以key:value的键值对格式来刷新卡片订阅数据，其中key必须与卡片提供方订阅的key保持一致。示例中，通过'detail'获取订阅的数据，并在Text组件显示。
   ```ts
   let storage = new LocalStorage();
   @Entry(storage)
   @Component
   struct Index {
     @LocalStorageProp('detail') detail: string = '加载中...';
-  
+
     build() {
       Row() {
         Column() {
@@ -138,7 +138,7 @@
   }
   ```
 
-- 在[onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform)回调中添加订阅模板[addTemplate]([../reference/apis/js-apis-data-dataShare.md#addtemplate10)，通过模板谓词告诉数据库订阅的数据条件。然后配置订阅信息[proxies](../reference/apis/js-apis-app-form-formBindingData.md#proxydata)，并通过[formBinding](../reference/apis/js-apis-app-form-formBindingData.md#formbindingdata)返回给卡片管理服务。示例中将谓词设置为`"list" : "select type from TBL00 limit 0,1"`，表示从TBL00数据库中获取type列的第一条数据，数据将会以`{"list":[{"type":"value0"}]}`格式返回到卡片页面代码widgets.abc中。
+- 在[onAddForm](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform)回调中添加订阅模板[addTemplate](../reference/apis/js-apis-data-dataShare.md#addtemplate10)，通过模板谓词告诉数据库订阅的数据条件。然后配置订阅信息[proxyData](../reference/apis/js-apis-app-form-formBindingData.md#proxydata10)，并通过[formBinding](../reference/apis/js-apis-app-form-formBindingData.md#formbindingdata)返回给卡片管理服务。示例中将谓词设置为`"list" : "select type from TBL00 limit 0,1"`，表示从TBL00数据库中获取type列的第一条数据，数据将会以`{"list":[{"type":"value0"}]}`格式返回到卡片页面代码widgets.abc中。
 
   > **说明：**
   >
@@ -177,7 +177,7 @@
   }
   ```
 
-- 在卡片页面代码widgets.abc中，通过LocalStorage变量获取订阅到的数据。示例中，通过'list'获取订阅的数据，并把第一个元素的值显示在Text组件上。
+- 在卡片页面代码widgets.abc中，通过LocalStorage变量获取订阅到的数据，LocalStorage绑定了一个字符串，以key:value的键值对格式来刷新卡片订阅数据，其中key必须与卡片提供方订阅的key保持一致。示例中，通过'list'获取订阅的数据，并把第一个元素的值显示在Text组件上。
   ```ts
   let storage = new LocalStorage();
   @Entry(storage)
@@ -189,7 +189,7 @@
     readonly FULL_WIDTH_PERCENT: string = '100%';
     readonly FULL_HEIGHT_PERCENT: string = '100%';
     @LocalStorageProp('list') list: Array<object> = [{"type": "a"}];
-  
+
     build() {
       Row() {
         Column() {
