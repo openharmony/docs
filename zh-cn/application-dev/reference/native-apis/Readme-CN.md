@@ -80,7 +80,7 @@
   - [oh_predicates.h](oh__predicates_8h.md)
   - [oh_value_object.h](oh__value__object_8h.md)
   - [oh_values_bucket.h](oh__values__bucket_8h.md)
-  - [relational_store_error_code.h](relational__store_error__code_8h.md)
+  - [relational_store_error_code.h](relational__store__error__code_8h.md)
   - [relational_store.h](relational__store_8h.md)
   - [syscap_ndk.h](syscap__ndk_8h.md)
   - [purgeable_memory.h](purgeable__memory_8h.md)
