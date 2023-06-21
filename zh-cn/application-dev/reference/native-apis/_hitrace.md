@@ -21,7 +21,9 @@ hiTraceMeter为开发者提供系统性能打点接口。
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [trace.h](trace_8h.md) | HiTraceMeterH模块打点接口定义，通过这些接口实现性能打点相关功能。\n**引用文件：**<hitrace/trace.h>\n**库：**libhitrace_ndk.z.so | 
+| [trace.h](trace_8h.md) | HiTraceMeterH模块打点接口定义，通过这些接口实现性能打点相关功能。\n
+    **引用文件：**<hitrace/trace.h>\n
+    **库：**libhitrace_ndk.z.so | 
 
 
 ### 函数
