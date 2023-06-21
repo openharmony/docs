@@ -996,7 +996,7 @@ createImageSource(uri: string): ImageSource
 ```js
 //Stage模型
 const context = getContext(this);
-const path = context.cacheDir + "/test.jpg";
+const path = context.cacheDir() + "/test.jpg";
 const imageSourceApi = image.createImageSource(path);
 ```
 
