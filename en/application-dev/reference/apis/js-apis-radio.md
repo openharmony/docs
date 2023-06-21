@@ -550,7 +550,7 @@ Checks whether the current device supports 5G \(NR\).
 
 > **NOTE**
 >
-> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isNRSupported](#radioisnrsupported9) instead.
+> This API is supported since API version 7 and deprecated since API version 9. You are advised to use [isNRSupported](#radioisnrsupported9).
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -575,7 +575,7 @@ Checks whether the current device supports 5G \(NR\).
 
 > **NOTE**
 >
-> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [isNRSupported](#radioisnrsupported9-1) instead.
+> This API is supported since API version 8 and deprecated since API version 9. You are advised to use [isNRSupported](#radioisnrsupported9-1).
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -998,7 +998,7 @@ radio.getIMEI((err, data) => {
 
 getIMEI\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the IMEI of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
+Obtains the IMEI of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1041,7 +1041,7 @@ radio.getIMEI(slotId, (err, data) => {
 
 getIMEI\(slotId?: number\): Promise\<string\>
 
-Obtains the IMEI of the SIM card in the specified card slot. This API uses a promise to return the result.
+Obtains the IMEI of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1132,7 +1132,7 @@ radio.getMEID((err, data) => {
 
 getMEID\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the MEID of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
+Obtains the MEID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1175,7 +1175,7 @@ radio.getMEID(slotId, (err, data) => {
 
 getMEID\(slotId?: number\): Promise\<string\>
 
-Obtains the MEID of the SIM card in the specified card slot. This API uses a promise to return the result.
+Obtains the MEID of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1266,7 +1266,7 @@ radio.getUniqueDeviceId((err, data) => {
 
 getUniqueDeviceId\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the unique device ID of the SIM card in a card slot. This API uses an asynchronous callback to return the result.
+Obtains the unique device ID of the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -1309,7 +1309,7 @@ radio.getUniqueDeviceId(slotId, (err, data) => {
 
 getUniqueDeviceId\(slotId?: number\): Promise\<string\>
 
-Obtains the unique device ID of the SIM card in the specified card slot. This API uses a promise to return the result.
+Obtains the unique device ID of the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -1824,11 +1824,15 @@ promise.then(data => {
 });
 ```
 
-## radio.getNrOptionMode<sup>8+</sup>
+## radio.getNrOptionMode<sup>(deprecated)</sup>
 
 getNrOptionMode\(callback: AsyncCallback\<NrOptionMode\>\): void
 
 Obtains the NR option mode. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 10. You are advised to use [getNROptionMode](#radiogetnroptionmode10).
 
 **System API**: This is a system API.
 
@@ -1838,7 +1842,7 @@ Obtains the NR option mode. This API uses an asynchronous callback to return the
 
 | Name  | Type                                           | Mandatory| Description      |
 | -------- | ----------------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | Yes  | Callback used to return the result.|
+| callback | AsyncCallback\<[NrOptionMode](#nroptionmodedeprecated)\> | Yes  | Callback used to return the result.|
 
 **Error codes**
 
@@ -1862,11 +1866,15 @@ radio.getNrOptionMode((err, data) => {
 ```
 
 
-## radio.getNrOptionMode<sup>8+</sup>
+## radio.getNrOptionMode<sup>(deprecated)</sup>
 
 getNrOptionMode\(slotId: number, callback: AsyncCallback\<NrOptionMode\>\): void
 
-Obtains the NR option mode for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+Obtains the NR option mode. This API uses an asynchronous callback to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 10. You are advised to use [getNROptionMode](#radiogetnroptionmode10).
 
 **System API**: This is a system API.
 
@@ -1875,9 +1883,9 @@ Obtains the NR option mode for the SIM card in the specified slot. This API uses
 **Parameters**
 
 | Name  | Type                                           | Mandatory| Description                                  |
-| -------- | ----------------------------------------------- | ---- | -------------------------------------- |
+| -------- | ----------------------------------------------- | ---- | ------------------------------------- |
 | slotId   | number                                          | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
-| callback | AsyncCallback\<[NrOptionMode](#nroptionmode8)\> | Yes  | Callback used to return the result.                            |
+| callback | AsyncCallback\<[NrOptionMode](#nroptionmodedeprecated)\> | Yes  | Callback used to return the result.                   |
 
 **Error codes**
 
@@ -1902,11 +1910,15 @@ radio.getNrOptionMode(slotId, (err, data) => {
 ```
 
 
-## radio.getNrOptionMode<sup>8+</sup>
+## radio.getNrOptionMode<sup>(deprecated)</sup>
 
 getNrOptionMode\(slotId?: number\): Promise\<NrOptionMode\>
 
 Obtains the NR option mode for the SIM card in the specified slot. This API uses a promise to return the result.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 10. You are advised to use [getNROptionMode](#radiogetnroptionmode10).
 
 **System API**: This is a system API.
 
@@ -1920,9 +1932,9 @@ Obtains the NR option mode for the SIM card in the specified slot. This API uses
 
 **Return value**
 
-| Type                                     | Description                   |
-| ----------------------------------------- | ----------------------- |
-| Promise\<[NrOptionMode](#nroptionmode8)\> | Promise used to return the result.|
+| Type                                              | Description                   |
+| -------------------------------------------------- | ----------------------- |
+| Promise\<[NrOptionMode](#nroptionmodedeprecated)\> | Promise used to return the result. |
 
 **Error codes**
 
@@ -2581,7 +2593,7 @@ radio.off('imsRegStateChange', 0, radio.ImsServiceType.TYPE_VIDEO, data => {
 
 getBasebandVersion\(slotId: number, callback: AsyncCallback\<string\>\): void
 
-Obtains the baseband version of the device. This API uses an asynchronous callback to return the result.
+Obtains the baseband version of the device for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
@@ -2624,7 +2636,7 @@ radio.getBasebandVersion(slotId, (err, data) => {
 
 getBasebandVersion\(slotId: number\): Promise\<string\>
 
-Obtains the baseband version of the device. This API uses a promise to return the result.
+Obtains the baseband version of the device for the SIM card in the specified slot. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
@@ -2671,9 +2683,193 @@ promise.then(data => {
 ```
 
 
+## radio.setNROptionMode<sup>10+</sup>
+
+setNROptionMode\(slotId: number, mode: NROptionMode, callback: AsyncCallback\<void\>\): void
+
+Sets the NR mode for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                                             | Mandatory| Description                                  |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------- |
+| slotId   | number                                           | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2 |
+| mode     | [NROptionMode](#nroptionmode10)                  | Yes  | Enumerates NR selection modes.                         |
+| callback | AsyncCallback\<void\>                            | Yes  | Callback used to return the result.                             |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                    |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let slotId = 0;
+radio.setNROptionMode(slotId, 1, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.setNROptionMode<sup>10+</sup>
+
+setNROptionMode\(slotId: number, mode: NROptionMode\): Promise\<void\>
+
+Sets the NR mode for the SIM card in the specified slot. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**Required permission**: ohos.permission.SET_TELEPHONY_STATE
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name|              Type              | Mandatory| Description                                  |
+| ------ | ------------------------------- | ---- | ------------------------------------- |
+| slotId | number                          | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+| mode   | [NROptionMode](#nroptionmode10) | Yes  | Enumerates NR selection modes.                        |
+
+**Return value**
+
+|        Type      |            Description        |
+| ----------------- | ----------------------- |
+| Promise\<void\>   | Promise used to return the result. |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                     |
+| -------- | -------------------------------------------- |
+| 201      | Permission denied.                           |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let slotId = 0;
+let promise = radio.setNROptionMode(slotId, 1);
+promise.then(data => {
+    console.log(`setNROptionMode success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`setNROptionMode failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
+## radio.getNROptionMode<sup>10+</sup>
+
+getNROptionMode\(slotId: number, callback: AsyncCallback\<NROptionMode\>\): void
+
+Obtains the NR option mode for the SIM card in the specified slot. This API uses an asynchronous callback to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name  | Type                                             | Mandatory| Description                                  |
+| -------- | ------------------------------------------------ | ---- | -------------------------------------- |
+| slotId   | number                                           | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2 |
+| callback | AsyncCallback\<[NROptionMode](#nroptionmode10)\> | Yes  | Callback used to return the result.                             |
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                  Error Message                    |
+| -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let slotId = 0;
+radio.getNROptionMode(slotId, (err, data) => {
+    console.log(`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`);
+});
+```
+
+
+## radio.getNROptionMode<sup>10+</sup>
+
+getNROptionMode\(slotId: number\): Promise\<NROptionMode\>
+
+Obtains the NR option mode for the SIM card in the specified slot. This API uses a promise to return the result.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+**Parameters**
+
+| Name| Type  | Mandatory| Description                                  |
+| ------ | ------ | ---- | ------------------------------------- |
+| slotId | number | Yes  | Card slot ID.<br>- **0**: card slot 1<br>- **1**: card slot 2|
+
+**Return value**
+
+| Type                                     | Description                   |
+| ----------------------------------------- | ----------------------- |
+| Promise\<[NROptionMode](#nroptionmode10)\> | Promise used to return the result.|
+
+**Error codes**
+
+For details about the following error codes, see [Telephony Error Codes](../../reference/errorcodes/errorcode-telephony.md).
+
+| ID|                 Error Message                    |
+| -------- | -------------------------------------------- |
+| 202      | Non-system applications use system APIs.     |
+| 401      | Parameter error.                             |
+| 8300001  | Invalid parameter value.                     |
+| 8300002  | Operation failed. Cannot connect to service. |
+| 8300003  | System internal error.                       |
+| 8300999  | Unknown error code.                          |
+
+**Example**
+
+```js
+let slotId = 0;
+let promise = radio.getNROptionMode(slotId);
+promise.then(data => {
+    console.log(`getNROptionMode success, promise: data->${JSON.stringify(data)}`);
+}).catch(err => {
+    console.error(`getNROptionMode failed, promise: err->${JSON.stringify(err)}`);
+});
+```
+
+
 ## RadioTechnology
 
- Enumerates radio access technologies.
+Enumerates radio access technologies.
 
 **System capability**: SystemCapability.Telephony.CoreService
 
@@ -2947,9 +3143,13 @@ Defines the WCDMA cell information.
 | mcc    | string |  Yes | Mobile country code.|
 | mnc    | string |  Yes | Mobile network code.  |
 
-## NrOptionMode<sup>8+</sup>
+## NrOptionMode<sup>(deprecated)</sup>
 
 Enumerates NR selection modes.
+
+> **NOTE**
+>
+> This API is supported since API version 8 and deprecated since API version 10. You are advised to use [NROptionMode](#nroptionmode10).
 
 **System API**: This is a system API.
 
@@ -2961,6 +3161,21 @@ Enumerates NR selection modes.
 | NR_OPTION_NSA_ONLY   | 1    | NR selection mode in 5G non-standalone networking.        |
 | NR_OPTION_SA_ONLY    | 2    | NR selection mode in 5G non-standalone networking.          |
 | NR_OPTION_NSA_AND_SA | 3    | NR selection mode in non-standalone and standalone networking.|
+
+## NROptionMode<sup>10+</sup>
+
+Enumerates NR selection modes.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Telephony.CoreService
+
+| Name                | Value  | Description                             |
+| -------------------- | ---- | --------------------------------- |
+| NR_OPTION_UNKNOWN    | 0    | Unknown NR selection mode.                |
+| NR_OPTION_NSA_ONLY   | 1    | NR selection mode in 5G non-standalone networking.        |
+| NR_OPTION_SA_ONLY    | 2    | NR selection mode in 5G non-standalone networking.          |
+| NR_OPTION_NSA_AND_SA | 3    | NR selection mode in non-standalone and standalone networking. |
 
 ## NetworkSearchResult
 
