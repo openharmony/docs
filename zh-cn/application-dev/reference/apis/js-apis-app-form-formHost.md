@@ -2405,7 +2405,7 @@ try {
 
 ## on('notifyVisible')<sup>10+</sup>
 
- on(type: 'notifyVisible', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
+ on(type: 'notifyVisible', observerCallback: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;, bundleName?: string): void
 
 订阅通知卡片可见的事件。使用callback异步回调，返回通知所有变更为可见的卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
 
@@ -2415,11 +2415,11 @@ try {
 
 **参数：**
 
-| 参数名     | 类型                                            | 必填 | 说明                                                         |
-| ---------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type       | string                                          | 是   | 仅允许填写'notifyVisible'，表示订阅通知卡片可见的事件。            |
-| callback   | Callback <&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;> | 是   | 回调函数。返回订阅通知卡片可见的RunningFormInfo。            |
-| bundleName | string                                          | 否   | 指定卡片使用方的bundleName，用于订阅卡片在该使用方的可见状态变更事件。 |
+| 参数名     | 类型                                                         | 必填 | 说明                                                         |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type       | string                                                       | 是   | 仅允许填写'notifyVisible'，表示订阅通知卡片可见的事件。      |
+| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是   | 回调函数。返回订阅通知卡片可见的RunningFormInfo。            |
+| bundleName | string                                                       | 否   | 指定卡片使用方的bundleName，用于订阅卡片在该使用方的可见状态变更事件。 |
 
 **示例：**
 
@@ -2436,7 +2436,7 @@ formHost.on('notifyVisible', callback, bundleName);
 
 ## off('notifyVisible')<sup>10+</sup>
 
- off(type: "notifyVisible", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
+ off(type: "notifyVisible", observerCallback?: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;, bundleName?: string): void
 
 取消订阅通知卡片可见的事件。
 
@@ -2446,11 +2446,11 @@ formHost.on('notifyVisible', callback, bundleName);
 
 **参数：**
 
-| 参数名     | 类型                                            | 必填 | 说明                                                         |
-| ---------- | ----------------------------------------------- | ---- | ------------------------------------------------------------ |
-| type       | string                                          | 是   | 仅允许填写'notifyVisible'，表示取消订阅通知卡片为可见的事件。      |
-| callback   | Callback <&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;> | 否   | 入参，注册时注册进去的callback。缺省时，表示注销对应已注册订阅的回调。<br> 需与对应on('notifyVisible')的callback一致。 |
-| bundleName | string                                          | 否   | 指定卡片使用方的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 用于订阅卡片在该使用方的可见状态变更事件。 |
+| 参数名     | 类型                                                         | 必填 | 说明                                                         |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type       | string                                                       | 是   | 仅允许填写'notifyVisible'，表示取消订阅通知卡片为可见的事件。 |
+| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 否   | 入参，注册时注册进去的callback。缺省时，表示注销对应已注册订阅的回调。<br> 需与对应on('notifyVisible')的callback一致。 |
+| bundleName | string                                                       | 否   | 指定卡片使用方的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 用于订阅卡片在该使用方的可见状态变更事件。 |
 
 **示例：**
 
@@ -2474,7 +2474,7 @@ formHost.off('notifyVisible', callback, bundleName);
 
 ## on('notifyInvisible')<sup>10+</sup>
 
- on(type: 'notifyInvisible', observerCallback: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
+ on(type: 'notifyInvisible', observerCallback: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;>, bundleName?: string): void
 
 订阅通知卡片不可见的事件。使用callback异步回调，返回通知所有变更为不可见的卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
 
@@ -2484,11 +2484,11 @@ formHost.off('notifyVisible', callback, bundleName);
 
 **参数：**
 
-| 参数名     | 类型                                     | 必填 | 说明                                                         |
-| ---------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| type       | string                                   | 是   | 仅允许填写'notifyInvisible'，表示订阅卡片不可见的事件。            |
-| callback   | Callback <&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;> | 是   | 回调函数。返回订阅通知卡片不可见的RunningFormInfo。          |
-| bundleName | string                                   | 否   | 指定卡片使用方的bundleName，用于订阅卡片在该使用方的可见状态变更事件。 |
+| 参数名     | 类型                                                         | 必填 | 说明                                                         |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type       | string                                                       | 是   | 仅允许填写'notifyInvisible'，表示订阅卡片不可见的事件。      |
+| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是   | 回调函数。返回订阅通知卡片不可见的RunningFormInfo。          |
+| bundleName | string                                                       | 否   | 指定卡片使用方的bundleName，用于订阅卡片在该使用方的可见状态变更事件。 |
 
 **示例：**
 
@@ -2505,7 +2505,7 @@ formHost.on('notifyInvisible', callback, bundleName);
 
 ## off('notifyInvisible')<sup>10+</sup>
 
- off(type: "notifyInvisible", observerCallback?: Callback&lt;formInfo.RunningFormInfo&gt;, bundleName?: string): void
+ off(type: "notifyInvisible", observerCallback?: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)>&gt;, bundleName?: string): void
 
 取消订阅通知卡片不可见事件。
 
@@ -2515,11 +2515,11 @@ formHost.on('notifyInvisible', callback, bundleName);
 
 **参数：**
 
-| 参数名     | 类型                                     | 必填 | 说明                                                         |
-| ---------- | ---------------------------------------- | ---- | ------------------------------------------------------------ |
-| type       | string                                   | 是   | 仅允许填写'notifyInvisible'，表示卡片可见性变更为不可见。          |
-| callback   | Callback <&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;> | 否   | 入参，注册时注册进去的callback。缺省时，表示注销对应已注册事件回调。<br/> 需与对应on('notifyVisible')的callback一致。 |
-| bundleName | string                                   | 否   | 指定卡片使用方的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 用于订阅卡片在该使用方的可见状态变更事件。 |
+| 参数名     | 类型                                                         | 必填 | 说明                                                         |
+| ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
+| type       | string                                                       | 是   | 仅允许填写'notifyInvisible'，表示卡片可见性变更为不可见。    |
+| callback   | Callback &lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 否   | 入参，注册时注册进去的callback。缺省时，表示注销对应已注册事件回调。<br/> 需与对应on('notifyVisible')的callback一致。 |
+| bundleName | string                                                       | 否   | 指定卡片使用方的bundleName。<br> 填写该参数时，与注册时填写bundleName的on接口对应。<br> 用于订阅卡片在该使用方的可见状态变更事件。 |
 
 **示例：**
 
