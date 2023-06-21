@@ -11,7 +11,7 @@ A custom dialog box is a dialog box you customize by using APIs of the **CustomD
 
 ## APIs
 
-CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean, gridCount?: number, maskColor?: ResourceColor, openAnimation?: AnimateParam, closeAniamtion?: AnimateParam, showInSubWindow?: boolean})
+CustomDialogController(value:{builder: CustomDialog, cancel?: () =&gt; void, autoCancel?: boolean, alignment?: DialogAlignment, offset?: Offset, customStyle?: boolean, gridCount?: number, maskColor?: ResourceColor, openAnimation?: AnimateParam, closeAniamtion?: AnimateParam})
 
 
 **Parameters**
@@ -108,9 +108,10 @@ struct CustomDialogUser {
     customStyle: false
   })
 
+  // Delete the dialogController instance and set it to undefined when the custom component is about to be destroyed.
   aboutToDisappear() {
-    delete this.dialogController,
-    this.dialogController = undefined
+    delete this.dialogController, // Delete the dialogController instance.
+    this.dialogController = undefined // Set dialogController to undefined.
   }
 
   onCancel() {

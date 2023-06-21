@@ -42,7 +42,7 @@
     - [Hit Test Control](ts-universal-attributes-hit-test-behavior.md)
     - [Background Blur](ts-universal-attributes-backgroundBlurStyle.md)
     - [restoreId](ts-universal-attributes-restoreId.md)
-  - Gesture Processing
+  - Gesture Handling
     - [Gesture Binding Methods](ts-gesture-settings.md)
     - Basic Gestures
       - [TapGesture](ts-basic-gestures-tapgesture.md)
@@ -61,7 +61,7 @@
   - [DataPanel](ts-basic-components-datapanel.md)
   - [DatePicker](ts-basic-components-datepicker.md)
   - [Divider](ts-basic-components-divider.md)
-  - [Formcomponent](ts-basic-components-formcomponent.md)
+  - [FormComponent](ts-basic-components-formcomponent.md)
   - [Gauge](ts-basic-components-gauge.md)
   - [Image](ts-basic-components-image.md)
   - [ImageAnimator](ts-basic-components-imageanimator.md)
@@ -144,7 +144,6 @@
   - [ImageData](ts-components-canvas-imagedata.md)
   - [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md)
   - [Path2D](ts-components-canvas-path2d.md)
-  - [Lottie](ts-components-canvas-lottie.md)
 - Animation
   - [AnimatorProperty](ts-animatorproperty.md)
   - [Explicit Animatio](ts-explicit-animation.md)
