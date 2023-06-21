@@ -36,10 +36,10 @@ import display from '@ohos.display';
 
 | 名称   | 类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | 是   | 是   | 矩形区域的左边界，单位为像素。 |
-| top    | number   | 是   | 是   | 矩形区域的上边界，单位为像素。 |
-| width  | number   | 是   | 是   | 矩形区域的宽度，单位为像素。   |
-| height | number   | 是   | 是   | 矩形区域的高度，单位为像素。   |
+| left   | number   | 是   | 是   | 矩形区域的左边界，单位为像素，该参数应为整数。 |
+| top    | number   | 是   | 是   | 矩形区域的上边界，单位为像素，该参数应为整数。 |
+| width  | number   | 是   | 是   | 矩形区域的宽度，单位为像素，该参数应为整数。   |
+| height | number   | 是   | 是   | 矩形区域的高度，单位为像素，该参数应为整数。   |
 
 ## WaterfallDisplayAreaRects<sup>9+</sup>
 
@@ -183,7 +183,7 @@ hasPrivateWindow(displayId: number): boolean
 
 | 参数名 | 类型                      | 必填 | 说明       |
 | ------ | ------------------------- | ---- |----------|
-| id     | number                    | 是   | 显示设备的id。 |
+| id     | number                    | 是   | 显示设备的id，该参数仅支持整数输入。 |
 
 **返回值：**
 
@@ -436,7 +436,7 @@ getCutoutInfo(callback: AsyncCallback&lt;CutoutInfo&gt;): void
 
 | 参数名      | 类型                        | 必填 | 说明                                                         |
 | ----------- | --------------------------- | ---- | ------------------------------------------------------------ |
-| callback    | AsyncCallback&lt;[CutoutInfo](#cutoutinfo9)&gt;   | 是   | 回调函数。返回描述不可用屏幕区域的CutoutInfo对象。。 |
+| callback    | AsyncCallback&lt;[CutoutInfo](#cutoutinfo9)&gt;   | 是   | 回调函数。返回描述不可用屏幕区域的CutoutInfo对象。 |
 
 **错误码：**
 
