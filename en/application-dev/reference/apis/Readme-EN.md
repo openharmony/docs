@@ -421,6 +421,7 @@
 
 - Test
   - [@ohos.application.testRunner (TestRunner)](js-apis-application-testRunner.md)
+  - [@ohos.deviceAttest (Device Attestation)](js-apis-deviceAttest.md)
   - [@ohos.uitest (UiTest)](js-apis-uitest.md)
 
 - APIs No Longer Maintained
