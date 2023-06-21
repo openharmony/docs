@@ -405,7 +405,7 @@
   - [@ohos.configPolicy (配置策略)](js-apis-configPolicy.md)
 
 - 企业设备管理
-  - [企业设备管理概述](企业设备管理概述.md)
+  - [企业设备管理概述 (仅对系统应用开放)](enterpriseDeviceManagement-overview.md)
   - [@ohos.enterprise.accountManager (帐户管理)](js-apis-enterprise-accountManager.md)
   - [@ohos.enterprise.adminManager (企业设备管理)](js-apis-enterprise-adminManager.md)
   - [@ohos.enterprise.applicationManager (应用管理)](js-apis-enterprise-applicationManager.md)
