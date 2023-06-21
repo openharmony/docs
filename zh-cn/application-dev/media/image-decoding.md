@@ -144,3 +144,8 @@
    ```ts
    const pixelMap = await imageSource.createPixelMap();
    ```
+
+5. 释放pixelMap。
+   ```ts
+   pixelMap.release();
+   ```
