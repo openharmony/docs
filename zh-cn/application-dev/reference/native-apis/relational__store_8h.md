@@ -1,4 +1,4 @@
-# relation_store.h
+# relational_store.h
 
 
 ## 概述
