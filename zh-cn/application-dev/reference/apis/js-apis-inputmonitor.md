@@ -214,7 +214,7 @@ try {
 
 ## inputMonitor.on(pinch)<sup>10+</sup>
 
-on(type: "pinch", receiver: Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md/#pinch)&gt;): void
+on(type: "pinch", receiver: Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt;): void
 
 开始监听全局触控板捏合事件。
 
@@ -227,7 +227,7 @@ on(type: "pinch", receiver: Callback&lt;[Pinch](js-apis-multimodalinput-gesturee
 | 参数名       | 类型                         | 必填   | 说明                  |
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | 是    | 输入设备事件类型，取值“pinch”。 |
-| receiver | Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md/#pinch)&gt; | 是    | 回调函数，异步上报捏合输入事件。  |
+| receiver | Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt; | 是    | 回调函数，异步上报捏合输入事件。  |
 
   **示例：**
 
@@ -244,7 +244,7 @@ try {
 
 ## inputMonitor.off(pinch)<sup>10+</sup>
 
-off(type: "pinch", receiver?: Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md/#pinch)&gt;): void
+off(type: "pinch", receiver?: Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt;): void
 
 停止监听全局触控板捏合事件。
 
@@ -257,7 +257,7 @@ off(type: "pinch", receiver?: Callback&lt;[Pinch](js-apis-multimodalinput-gestur
 | 参数名       | 类型                         | 必填   | 说明                  |
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | 是    | 输入设备事件类型，取值“pinch”。 |
-| receiver | Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md/#pinch)&gt; | 否    | 需要取消监听的回调函数，若无此参数，则取消当前应用监听的所有回调函数。 |
+| receiver | Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt; | 否    | 需要取消监听的回调函数，若无此参数，则取消当前应用监听的所有回调函数。 |
 
 **示例：**
 
@@ -293,7 +293,7 @@ try {
 
 ## inputMonitor.on(threeFingersSwipe)<sup>10+</sup>
 
-on(type: "threeFingersSwipe", receiver: Callback&lt;[ThreeFingersSwipe](js-apis-multimodalinput-gestureevent.md/#threefingersswipe)&gt;): void
+on(type: "threeFingersSwipe", receiver: Callback&lt;[ThreeFingersSwipe](js-apis-multimodalinput-gestureevent.md#threefingersswipe)&gt;): void
 
 开始监听全局触控板三指滑动事件。
 
@@ -306,7 +306,7 @@ on(type: "threeFingersSwipe", receiver: Callback&lt;[ThreeFingersSwipe](js-apis-
 | 参数名       | 类型                         | 必填   | 说明                  |
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | 是    | 输入设备事件类型，取值“threeFingersSwipe”。 |
-| receiver | Callback&lt;[ThreeFingersSwipe](js-apis-multimodalinput-gestureevent.md/#threefingersswipe)&gt; | 是    | 回调函数，异步上报三指滑动输入事件。  |
+| receiver | Callback&lt;[ThreeFingersSwipe](js-apis-multimodalinput-gestureevent.md#threefingersswipe)&gt; | 是    | 回调函数，异步上报三指滑动输入事件。  |
 
   **示例：**
 
@@ -323,7 +323,7 @@ try {
 
 ## inputMonitor.off(threeFingersSwipe)<sup>10+</sup>
 
-off(type: "threeFingersSwipe", receiver?: Callback&lt;[ThreeFingersSwipe](js-apis-multimodalinput-gestureevent.md/#threefingersswipe)&gt;): void
+off(type: "threeFingersSwipe", receiver?: Callback&lt;[ThreeFingersSwipe](js-apis-multimodalinput-gestureevent.md#threefingersswipe)&gt;): void
 
 停止监听全局触控板三指滑动事件。
 
@@ -336,7 +336,7 @@ off(type: "threeFingersSwipe", receiver?: Callback&lt;[ThreeFingersSwipe](js-api
 | 参数名       | 类型                         | 必填   | 说明                  |
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | 是    | 输入设备事件类型，取值“threeFingersSwipe”。 |
-| receiver | Callback&lt;[ThreeFingersSwipe](js-apis-multimodalinput-gestureevent.md/#threefingersswipe)&gt; | 否    | 需要取消监听的回调函数，若无此参数，则取消当前应用监听的所有回调函数。 |
+| receiver | Callback&lt;[ThreeFingersSwipe](js-apis-multimodalinput-gestureevent.md#threefingersswipe)&gt; | 否    | 需要取消监听的回调函数，若无此参数，则取消当前应用监听的所有回调函数。 |
 
 **示例：**
 
@@ -372,7 +372,7 @@ try {
 
 ## inputMonitor.on(fourFingersSwipe)<sup>10+</sup>
 
-on(type: "fourFingersSwipe", receiver: Callback&lt;[FourFingersSwipe](js-apis-multimodalinput-gestureevent.md/#fourfingersswipe)&gt;): void
+on(type: "fourFingersSwipe", receiver: Callback&lt;[FourFingersSwipe](js-apis-multimodalinput-gestureevent.md#fourfingersswipe)&gt;): void
 
 开始监听全局触控板四指滑动事件。
 
@@ -385,7 +385,7 @@ on(type: "fourFingersSwipe", receiver: Callback&lt;[FourFingersSwipe](js-apis-mu
 | 参数名       | 类型                         | 必填   | 说明                  |
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | 是    | 输入设备事件类型，取值“fourFingersSwipe”。 |
-| receiver | Callback&lt;[FourFingersSwipe](js-apis-multimodalinput-gestureevent.md/#fourfingersswipe)&gt; | 是    | 回调函数，异步上报四指滑动输入事件。  |
+| receiver | Callback&lt;[FourFingersSwipe](js-apis-multimodalinput-gestureevent.md#fourfingersswipe)&gt; | 是    | 回调函数，异步上报四指滑动输入事件。  |
 
   **示例：**
 
@@ -402,7 +402,7 @@ try {
 
 ## inputMonitor.off(fourFingersSwipe)<sup>10+</sup>
 
-off(type: "fourFingersSwipe", receiver?: Callback&lt;[FourFingersSwipe](js-apis-multimodalinput-gestureevent.md/#fourfingersswipe)&gt;): void
+off(type: "fourFingersSwipe", receiver?: Callback&lt;[FourFingersSwipe](js-apis-multimodalinput-gestureevent.md#fourfingersswipe)&gt;): void
 
 停止监听全局触控板四指滑动事件。
 
@@ -415,7 +415,7 @@ off(type: "fourFingersSwipe", receiver?: Callback&lt;[FourFingersSwipe](js-apis-
 | 参数名       | 类型                         | 必填   | 说明                  |
 | -------- | -------------------------- | ---- | ------------------- |
 | type     | string                     | 是    | 输入设备事件类型，取值“fourFingersSwipe”。 |
-| receiver | Callback&lt;[FourFingersSwipe](js-apis-multimodalinput-gestureevent.md/#fourfingersswipe)&gt; | 否    | 需要取消监听的回调函数，若无此参数，则取消当前应用监听的所有回调函数。 |
+| receiver | Callback&lt;[FourFingersSwipe](js-apis-multimodalinput-gestureevent.md#fourfingersswipe)&gt; | 否    | 需要取消监听的回调函数，若无此参数，则取消当前应用监听的所有回调函数。 |
 
 **示例：**
 
