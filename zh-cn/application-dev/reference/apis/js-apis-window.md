@@ -50,13 +50,13 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称 | 类型 | 必填 | 说明 |
-| ---------- | -------------------------- | -- | ----------------------------------- |
-| name       | string                     | 是 | 窗口名字。                         |
-| windowType | [WindowType](#windowtype7) | 是 | 窗口类型。                         |
+| 名称 | 类型 | 必填 | 说明                                                                          |
+| ---------- | -------------------------- | -- |-----------------------------------------------------------------------------|
+| name       | string                     | 是 | 窗口名字。                                                                       |
+| windowType | [WindowType](#windowtype7) | 是 | 窗口类型。                                                                       |
 | ctx        | [BaseContext](js-apis-inner-application-baseContext.md) | 否 | 当前应用上下文信息。不设置，则默认为空。<br>FA模型下不需要使用该参数，即可创建子窗口。<br>Stage模型下需要使用该参数，用于创建系统窗口。 |
-| displayId  | number                     | 否 | 当前物理屏幕id。不设置，则默认为-1。 |
-| parentId   | number                     | 否 | 父窗口id。不设置，则默认为-1。      |
+| displayId  | number                     | 否 | 当前物理屏幕id。不设置，则默认为-1，该参数应为整数。                                             |
+| parentId   | number                     | 否 | 父窗口id。不设置，则默认为-1，该参数应为整数。                                                           |
 
 ## AvoidAreaType<sup>7+</sup>
 
@@ -177,7 +177,7 @@ import window from '@ohos.window';
 
 | 名称       | 类型                                            | 可读 | 可写 | 说明                         |
 | ---------- | --------------------------------------------------- | ---- | ---- | ---------------------------- |
-| displayId  | number                                              | 是   | 否   | 当前物理屏幕id。             |
+| displayId  | number                                              | 是   | 否   | 当前物理屏幕id，该参数应为整数。             |
 | regionTint | Array<[SystemBarRegionTint](#systembarregiontint8)> | 是   | 否   | 当前已改变的所有系统栏信息。 |
 
 ## Rect<sup>7+</sup>
@@ -188,10 +188,10 @@ import window from '@ohos.window';
 
 | 名称   | 类型 | 可读 | 可写 | 说明               |
 | ------ | -------- | ---- | ---- | ------------------ |
-| left   | number   | 是   | 是   | 矩形区域的左边界，单位为px。 |
-| top    | number   | 是   | 是   | 矩形区域的上边界，单位为px。 |
-| width  | number   | 是   | 是   | 矩形区域的宽度，单位为px。 |
-| height | number   | 是   | 是   | 矩形区域的高度，单位为px。 |
+| left   | number   | 是   | 是   | 矩形区域的左边界，单位为px，该参数为整数。 |
+| top    | number   | 是   | 是   | 矩形区域的上边界，单位为px，该参数应为整数。 |
+| width  | number   | 是   | 是   | 矩形区域的宽度，单位为px，该参数应为整数。 |
+| height | number   | 是   | 是   | 矩形区域的高度，单位为px，该参数应为整数。 |
 
 ## AvoidArea<sup>7+</sup>
 
@@ -215,8 +215,8 @@ import window from '@ohos.window';
 
 | 名称   | 类型 | 可读 | 可写 | 说明       |
 | ------ | -------- | ---- | ---- | ---------- |
-| width  | number   | 是   | 是   | 窗口宽度，单位为px。 |
-| height | number   | 是   | 是   | 窗口高度，单位为px。 |
+| width  | number   | 是   | 是   | 窗口宽度，单位为px，该参数应为整数。 |
+| height | number   | 是   | 是   | 窗口高度，单位为px，该参数应为整数。 |
 
 ## WindowProperties
 
@@ -224,21 +224,21 @@ import window from '@ohos.window';
 
 **系统能力：** SystemCapability.WindowManager.WindowManager.Core
 
-| 名称                                  | 类型                  | 可读 | 可写 | 说明                                                         |
-| ------------------------------------- | ------------------------- | ---- | ---- | ------------------------------------------------------------ |
-| windowRect<sup>7+</sup>               | [Rect](#rect7)             | 是   | 是   | 窗口尺寸。                                                   |
-| type<sup>7+</sup>                     | [WindowType](#windowtype7) | 是   | 是   | 窗口类型。                                                   |
-| isFullScreen                          | boolean                   | 是   | 是   | 是否全屏，默认为false。true表示全屏；false表示非全屏。 |
-| isLayoutFullScreen<sup>7+</sup>       | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。true表示沉浸式；false表示非沉浸式。 |
-| focusable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。true表示可聚焦；false表示不可聚焦。 |
-| touchable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。true表示可触摸；false表示不可触摸。 |
-| brightness                            | number                    | 是   | 是   | 屏幕亮度， 可设置的亮度范围为0~1，其中1表示最大亮度值。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1。 |
-| dimBehindValue<sup>(deprecated)</sup> | number                    | 是   | 是   | 靠后窗口的暗度值，取值范围为0~1，1表示最暗。<br>- **说明：** 从API version 9开始废弃。<br>- 从 API version 7开始支持。 |
-| isKeepScreenOn                        | boolean                   | 是   | 是   | 屏幕是否常亮，默认为false。true表示常亮；false表示不常亮。 |
-| isPrivacyMode<sup>7+</sup>            | boolean                   | 是   | 是   | 隐私模式，默认为false。true表示模式开启；false表示模式关闭。 |
-| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | 是   | 是   | 窗口是否为圆角。默认为false。true表示圆角；false表示非圆角。<br>- **说明：** 从API version 9开始废弃。<br/>- 从 API version 7开始支持。 |
-| isTransparent<sup>7+</sup>            | boolean                   | 是   | 是   | 窗口是否透明。默认为false。true表示透明；false表示不透明。 |
-| id<sup>9+</sup>                       | number                    | 是   | 否   | 窗口ID，默认值为0.0。                                                  |
+| 名称                                  | 类型                  | 可读 | 可写 | 说明                                                                                                     |
+| ------------------------------------- | ------------------------- | ---- | ---- |--------------------------------------------------------------------------------------------------------|
+| windowRect<sup>7+</sup>               | [Rect](#rect7)             | 是   | 是   | 窗口尺寸。                                                                                                  |
+| type<sup>7+</sup>                     | [WindowType](#windowtype7) | 是   | 是   | 窗口类型。                                                                                                  |
+| isFullScreen                          | boolean                   | 是   | 是   | 是否全屏，默认为false。true表示全屏；false表示非全屏。                                                                     |
+| isLayoutFullScreen<sup>7+</sup>       | boolean                   | 是   | 是   | 窗口是否为沉浸式，默认为false。true表示沉浸式；false表示非沉浸式。                                                               |
+| focusable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可聚焦，默认为true。true表示可聚焦；false表示不可聚焦。                                                                 |
+| touchable<sup>7+</sup>                | boolean                   | 是   | 否   | 窗口是否可触摸，默认为true。true表示可触摸；false表示不可触摸。                                                                 |
+| brightness                            | number                    | 是   | 是   | 屏幕亮度。该参数为浮点数，可设置的亮度范围为[0.0, 1.0]，其取1.0时表示最大亮度值。如果窗口没有设置亮度值，表示亮度跟随系统，此时获取到的亮度值为-1。                      |
+| dimBehindValue<sup>(deprecated)</sup> | number                    | 是   | 是   | 靠后窗口的暗度值。该参数为浮点数，取值范围为[0.0, 1.0]，其取1.0表示最暗。<br>- **说明：** 从API version 9开始废弃。<br>- 从 API version 7开始支持。 |
+| isKeepScreenOn                        | boolean                   | 是   | 是   | 屏幕是否常亮，默认为false。true表示常亮；false表示不常亮。                                                                   |
+| isPrivacyMode<sup>7+</sup>            | boolean                   | 是   | 是   | 隐私模式，默认为false。true表示模式开启；false表示模式关闭。                                                                  |
+| isRoundCorner<sup>(deprecated)</sup>  | boolean                   | 是   | 是   | 窗口是否为圆角。默认为false。true表示圆角；false表示非圆角。<br>- **说明：** 从API version 9开始废弃。<br/>- 从 API version 7开始支持。      |
+| isTransparent<sup>7+</sup>            | boolean                   | 是   | 是   | 窗口是否透明。默认为false。true表示透明；false表示不透明。                                                                   |
+| id<sup>9+</sup>                       | number                    | 是   | 否   | 窗口ID，默认值为0，该参数应为整数。                                                                                    |
 
 ## ColorSpace<sup>8+</sup>
 
@@ -259,12 +259,12 @@ import window from '@ohos.window';
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称   | 类型 | 可读 | 可写 | 说明                                               |
-| ------ | -------- | ---- | ---- | -------------------------------------------------- |
-| x      | number   | 否   | 是   | X轴的缩放参数，默认值为1.0。                       |
-| y      | number   | 否   | 是   | Y轴的缩放参数，默认值为1.0。                       |
-| pivotX | number   | 否   | 是   | 缩放中心点X轴坐标，默认值为0.5， 取值范围0.0~1.0。 |
-| pivotY | number   | 否   | 是   | 缩放中心点Y轴坐标，默认值为0.5， 取值范围0.0~1.0。 |
+| 名称   | 类型 | 可读 | 可写 | 说明                                         |
+| ------ | -------- | ---- | ---- |--------------------------------------------|
+| x      | number   | 否   | 是   | X轴的缩放参数。该参数为浮点数，默认值为1.0。                   |
+| y      | number   | 否   | 是   | Y轴的缩放参数。该参数为浮点数，默认值为1.0。                   |
+| pivotX | number   | 否   | 是   | 缩放中心点X轴坐标。该参数为浮点数，默认值为0.5， 取值范围[0.0, 1.0]。 |
+| pivotY | number   | 否   | 是   | 缩放中心点Y轴坐标。该参数为浮点数，默认值为0.5， 取值范围[0.0, 1.0]。 |
 
 ## RotateOptions<sup>9+</sup>
 
@@ -274,13 +274,13 @@ import window from '@ohos.window';
 
 **系统能力**：SystemCapability.WindowManager.WindowManager.Core
 
-| 名称   | 类型 | 可读 | 可写 | 说明                                               |
-| ------ | -------- | ---- | ---- | -------------------------------------------------- |
-| x      | number   | 否   | 是   | 绕X轴的旋转角度，默认值为0.0。                     |
-| y      | number   | 否   | 是   | 绕Y轴的旋转角度，默认值为0.0。                     |
-| z      | number   | 否   | 是   | 绕Z轴的旋转角度，默认值为0.0。                     |
-| pivotX | number   | 否   | 是   | 旋转中心点X轴坐标，默认值为0.5， 取值范围0.0~1.0。 |
-| pivotY | number   | 否   | 是   | 旋转中心点Y轴坐标，默认值为0.5， 取值范围0.0~1.0。 |
+| 名称   | 类型 | 可读 | 可写 | 说明                                          |
+| ------ | -------- | ---- | ---- |---------------------------------------------|
+| x      | number   | 否   | 是   | 绕X轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
+| y      | number   | 否   | 是   | 绕Y轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
+| z      | number   | 否   | 是   | 绕Z轴的旋转角度。该参数为浮点数，默认值为0.0。                   |
+| pivotX | number   | 否   | 是   | 旋转中心点X轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。 |
+| pivotY | number   | 否   | 是   | 旋转中心点Y轴坐标。该参数为浮点数，默认值为0.5， 取值范围为[0.0, 1.0]。  |
 
 ## TranslateOptions<sup>9+</sup>
 
@@ -292,9 +292,9 @@ import window from '@ohos.window';
 
 | 名称 | 类型 | 可读 | 可写 | 说明                         |
 | ---- | -------- | ---- | ---- | ---------------------------- |
-| x    | number   | 否   | 是   | X轴的平移参数，默认值为0.0。 |
-| y    | number   | 否   | 是   | Y轴的平移参数，默认值为0.0。 |
-| z    | number   | 否   | 是   | Z轴的平移参数，默认值为0.0。 |
+| x    | number   | 否   | 是   | X轴的平移参数。该参数为浮点数，默认值为0.0。 |
+| y    | number   | 否   | 是   | Y轴的平移参数。该参数为浮点数，默认值为0.0。 |
+| z    | number   | 否   | 是   | Z轴的平移参数。该参数为浮点数，默认值为0.0。 |
 
 ## WindowEventType<sup>10+</sup>
 
@@ -544,7 +544,7 @@ minimizeAll(id: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明           |
 | -------- | ------------------------- | ---- | -------------- |
-| id       | number                    | 是   | 显示设备[Display](js-apis-display.md#display)的ID号。 |
+| id       | number                    | 是   | 显示设备[Display](js-apis-display.md#display)的ID号，该参数仅支持整数输入。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调信息。     |
 
 **错误码：**
@@ -593,7 +593,7 @@ minimizeAll(id: number): Promise&lt;void&gt;
 
 | 参数名   | 类型                      | 必填 | 说明           |
 | -------- | ------------------------- | ---- | -------------- |
-| id       | number                    | 是   | 显示设备[Display](js-apis-display.md#display)的ID号。 |
+| id       | number                    | 是   | 显示设备[Display](js-apis-display.md#display)的ID号，该参数仅支持整数输入。 |
 
 **返回值：**
 
@@ -1719,8 +1719,8 @@ moveWindowTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | ------------------------- | -- | --------------------------------------------- |
-| x        | number                    | 是 | 窗口在x轴方向移动的值，值为正表示右移，单位为px。 |
-| y        | number                    | 是 | 窗口在y轴方向移动的值，值为正表示下移，单位为px。 |
+| x        | number                    | 是 | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入。 |
+| y        | number                    | 是 | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。                                     |
 
 **错误码：**
@@ -1762,8 +1762,8 @@ moveWindowTo(x: number, y: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -- | ----- | -- | --------------------------------------------- |
-| x | number | 是 | 窗口在x轴方向移动的值，值为正表示右移，单位为px。 |
-| y | number | 是 | 窗口在y轴方向移动的值，值为正表示下移，单位为px。 |
+| x | number | 是 | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入。 |
+| y | number | 是 | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入。 |
 
 **返回值：**
 
@@ -1815,8 +1815,8 @@ resize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | ------------------------- | -- | ------------------------ |
-| width    | number                    | 是 | 目标窗口的宽度，单位为px。 |
-| height   | number                    | 是 | 目标窗口的高度，单位为px。 |
+| width    | number                    | 是 | 目标窗口的宽度，单位为px，该参数仅支持整数输入。 |
+| height   | number                    | 是 | 目标窗口的高度，单位为px，该参数仅支持整数输入。 |
 | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。                |
 
 **错误码：**
@@ -1864,8 +1864,8 @@ resize(width: number, height: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------ | ------ | -- | ------------------------ |
-| width  | number | 是 | 目标窗口的宽度，单位为px。 |
-| height | number | 是 | 目标窗口的高度，单位为px。 |
+| width  | number | 是 | 目标窗口的宽度，单位为px，该参数仅支持整数输入。 |
+| height | number | 是 | 目标窗口的高度，单位为px，该参数仅支持整数输入。 |
 
 **返回值：**
 
@@ -2801,10 +2801,10 @@ on(type: 'keyboardHeightChange', callback: Callback&lt;number&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                | 必填 | 说明                                                         |
-| -------- | ------------------- | ---- | ------------------------------------------------------------ |
+| 参数名   | 类型                | 必填 | 说明                                        |
+| -------- | ------------------- | ---- |-------------------------------------------|
 | type     | string              | 是   | 监听事件，固定为'keyboardHeightChange'，即键盘高度变化事件。 |
-| callback | Callback&lt;number&gt; | 是   | 回调函数。返回当前的键盘高度。                               |
+| callback | Callback&lt;number&gt; | 是   | 回调函数。返回当前的键盘高度，返回值为整数。                    |
 
 **示例：**
 
@@ -2831,7 +2831,7 @@ off(type: 'keyboardHeightChange', callback?: Callback&lt;number&gt;): void
 | 参数名   | 类型                   | 必填 | 说明                                                         |
 | -------- | ---------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                 | 是   | 监听事件，固定为'keyboardHeightChange'，即键盘高度变化事件。 |
-| callback | Callback&lt;number&gt; | 否   | 回调函数。返回当前的键盘高度。                               |
+| callback | Callback&lt;number&gt; | 否   | 回调函数。返回当前的键盘高度，返回值为整数。                               |
 
 **示例：**
 
@@ -2884,10 +2884,10 @@ off(type: 'touchOutside', callback?: Callback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名   | 类型                   | 必填 | 说明                                                         |
-| -------- | ---------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                 | 是   | 监听事件，固定为'touchOutside'，即本窗口范围外的点击事件。 |
-| callback | Callback&lt;number&gt; | 否   | 回调函数。当点击事件发生在本窗口范围之外的回调。                               |
+| 参数名   | 类型                   | 必填 | 说明                                   |
+| -------- |----------------------| ---- |--------------------------------------|
+| type     | string               | 是   | 监听事件，固定为'touchOutside'，即本窗口范围外的点击事件。 |
+| callback | Callback&lt;void&gt; | 否   | 回调函数。当点击事件发生在本窗口范围之外的回调。             |
 
 **示例：**
 
@@ -3579,10 +3579,10 @@ setWindowBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): vo
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| ---------- | ------------------------- | -- | --------------------------------- |
-| brightness | number                    | 是 | 屏幕亮度值，值为0-1之间。1表示最亮。 |
-| callback   | AsyncCallback&lt;void&gt; | 是 | 回调函数。                         |
+| 参数名 | 类型 | 必填 | 说明                                        |
+| ---------- | ------------------------- | -- |-------------------------------------------|
+| brightness | number                    | 是 | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]。其取1.0时表示最亮。 |
+| callback   | AsyncCallback&lt;void&gt; | 是 | 回调函数。                                     |
 
 **错误码：**
 
@@ -3622,9 +3622,9 @@ setWindowBrightness(brightness: number): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名 | 类型 | 必填 | 说明 |
-| ---------- | ------ | -- | --------------------------------- |
-| brightness | number | 是 | 屏幕亮度值，值为0-1之间。1表示最亮。 |
+| 参数名 | 类型 | 必填 | 说明                                     |
+| ---------- | ------ | -- |----------------------------------------|
+| brightness | number | 是 | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]。1.0表示最亮。 |
 
 **返回值：**
 
@@ -4242,9 +4242,9 @@ opacity(opacity: number): void
 
 **参数：**
 
-| 参数名  | 类型   | 必填 | 说明                                                        |
-| ------- | ------ | ---- | ----------------------------------------------------------- |
-| opacity | number | 是   | 不透明度，范围0.0~1.0。0.0表示完全透明，1.0表示完全不透明。 |
+| 参数名  | 类型   | 必填 | 说明                                                 |
+| ------- | ------ | ---- |----------------------------------------------------|
+| opacity | number | 是   | 不透明度。该参数为浮点数，取值范围为[0.0, 1.0]。0.0表示完全透明，1.0表示完全不透明。 |
 
 **错误码：**
 
@@ -4462,9 +4462,9 @@ setBlur(radius: number): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| radius | number | 是   | 表示窗口模糊的半径值，取值范围为大于等于0，0表示关闭窗口模糊。 |
+| 参数名 | 类型   | 必填 | 说明                                               |
+| ------ | ------ | ---- |--------------------------------------------------|
+| radius | number | 是   | 表示窗口模糊的半径值。该参数为浮点数，取值范围为[0, +∞)，取值为0.0时表示关闭窗口模糊。 |
 
 **错误码：**
 
@@ -4497,9 +4497,9 @@ setBackdropBlur(radius: number): void
 
 **参数：**
 
-| 参数名 | 类型   | 必填 | 说明                                                         |
-| ------ | ------ | ---- | ------------------------------------------------------------ |
-| radius | number | 是   | 表示窗口背景模糊的半径值，取值范围为大于等于0，0表示关闭窗口背景模糊。 |
+| 参数名 | 类型   | 必填 | 说明                                                    |
+| ------ | ------ | ---- |-------------------------------------------------------|
+| radius | number | 是   | 表示窗口背景模糊的半径值。该参数为浮点数，取值范围为[0.0, +∞)，取值为0.0表示关闭窗口背景模糊。 |
 
 **错误码：**
 
@@ -4567,12 +4567,12 @@ setShadow(radius: number, color?: string, offsetX?: number, offsetY?: number): v
 
 **参数：**
 
-| 参数名  | 类型   | 必填 | 说明                                                         |
-| ------- | ------ | ---- | ------------------------------------------------------------ |
-| radius  | number | 是   | 表示窗口边缘阴影的模糊半径，取值范围为大于等于0，0表示关闭窗口边缘阴影。 |
+| 参数名  | 类型   | 必填 | 说明                                                          |
+| ------- | ------ | ---- |-------------------------------------------------------------|
+| radius  | number | 是   | 表示窗口边缘阴影的模糊半径。该参数为浮点数，取值范围为[0.0, +∞)，取值为0.0时表示关闭窗口边缘阴影。     |
 | color   | string | 否   | 表示窗口边缘阴影的颜色，为十六进制RGB或ARGB颜色，不区分大小写，例如`#00FF00`或`#FF00FF00`。 |
-| offsetX | number | 否   | 表示窗口边缘阴影的X轴的偏移量，单位为px。                    |
-| offsetY | number | 否   | 表示窗口边缘阴影的Y轴的偏移量，单位为px。                    |
+| offsetX | number | 否   | 表示窗口边缘阴影的X轴的偏移量。该参数为浮点数，单位为px。                              |
+| offsetY | number | 否   | 表示窗口边缘阴影的Y轴的偏移量。该参数为浮点数，单位为px。                              |
 
 **错误码：**
 
@@ -4605,9 +4605,9 @@ setCornerRadius(cornerRadius: number): void
 
 **参数：**
 
-| 参数名      | 类型    | 必填 | 说明                 |
-| ----------- | ------- | ---- | -------------------- |
-| radius | number | 是   | 表示窗口圆角的半径值，取值范围为大于等于0，0表示没有窗口圆角。 |
+| 参数名      | 类型    | 必填 | 说明                                                 |
+| ----------- | ------- | ---- |----------------------------------------------------|
+| radius | number | 是   | 表示窗口圆角的半径值。该参数为浮点数，取值范围为[0.0, +∞)，取值为0.0时表示没有窗口圆角。 |
 
 **错误码：**
 
@@ -4716,9 +4716,9 @@ setAspectRatio(ratio: number): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名             | 类型    | 必填 | 说明                                                         |
-| ------------------ | ------- | ---- | ------------------------------------------------------------ |
-| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比，取值范围为大于0。 |
+| 参数名             | 类型    | 必填 | 说明                                        |
+| ------------------ | ------- | ---- |-------------------------------------------|
+| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，取值范围为(0.0, +∞)。 |
 
 **返回值：**
 
@@ -4763,10 +4763,10 @@ setAspectRatio(ratio: number, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名             | 类型    | 必填 | 说明                                                         |
-| ------------------ | ------- | ---- | ------------------------------------------------------------ |
-| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比，取值范围为大于0。 |
-| callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。           |
+| 参数名             | 类型    | 必填 | 说明                                         |
+| ------------------ | ------- | ---- |--------------------------------------------|
+| ratio | number | 是   | 除边框装饰之外的窗口内容布局的宽高比。该参数为浮点数，取值范围为(0.0, +∞)。 |
+| callback    | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                      |
 
 **错误码：**
 
@@ -5103,8 +5103,8 @@ moveTo(x: number, y: number, callback: AsyncCallback&lt;void&gt;): void
 
 | 参数名   | 类型                      | 必填 | 说明                                              |
 | -------- | ------------------------- | ---- | ------------------------------------------------- |
-| x        | number                    | 是   | 窗口在x轴方向移动的值，值为正表示右移，单位为px。 |
-| y        | number                    | 是   | 窗口在y轴方向移动的值，值为正表示下移，单位为px。 |
+| x        | number                    | 是   | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入。 |
+| y        | number                    | 是   | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                        |
 
 **示例：**
@@ -5137,8 +5137,8 @@ moveTo(x: number, y: number): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                                              |
 | ------ | ------ | ---- | ------------------------------------------------- |
-| x      | number | 是   | 窗口在x轴方向移动的值，值为正表示右移，单位为px。 |
-| y      | number | 是   | 窗口在y轴方向移动的值，值为正表示下移，单位为px。 |
+| x      | number | 是   | 窗口在x轴方向移动的值，值为正表示右移，单位为px，该参数仅支持整数输入。 |
+| y      | number | 是   | 窗口在y轴方向移动的值，值为正表示下移，单位为px，该参数仅支持整数输入。 |
 
 **返回值：**
 
@@ -5181,8 +5181,8 @@ resetSize(width: number, height: number, callback: AsyncCallback&lt;void&gt;): v
 
 | 参数名   | 类型                      | 必填 | 说明                       |
 | -------- | ------------------------- | ---- | -------------------------- |
-| width    | number                    | 是   | 目标窗口的宽度，单位为px。 |
-| height   | number                    | 是   | 目标窗口的高度，单位为px。 |
+| width    | number                    | 是   | 目标窗口的宽度，单位为px，该参数仅支持整数输入。 |
+| height   | number                    | 是   | 目标窗口的高度，单位为px，该参数仅支持整数输入。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。                 |
 
 **示例：**
@@ -5221,8 +5221,8 @@ resetSize(width: number, height: number): Promise&lt;void&gt;
 
 | 参数名 | 类型   | 必填 | 说明                       |
 | ------ | ------ | ---- | -------------------------- |
-| width  | number | 是   | 目标窗口的宽度，单位为px。 |
-| height | number | 是   | 目标窗口的高度，单位为px。 |
+| width  | number | 是   | 目标窗口的宽度，单位为px，该参数仅支持整数输入。 |
+| height | number | 是   | 目标窗口的高度，单位为px，该参数仅支持整数输入。 |
 
 **返回值：**
 
@@ -6179,10 +6179,10 @@ setBrightness(brightness: number, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名     | 类型                      | 必填 | 说明                                 |
-| ---------- | ------------------------- | ---- | ------------------------------------ |
-| brightness | number                    | 是   | 屏幕亮度值，值为0-1之间。1表示最亮。 |
-| callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。                           |
+| 参数名     | 类型                      | 必填 | 说明                                    |
+| ---------- | ------------------------- | ---- |---------------------------------------|
+| brightness | number                    | 是   | 屏幕亮度值。该参数为浮点数，取值范围为[0.0, 1.0]。,1表示最亮。 |
+| callback   | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                 |
 
 **示例：**
 
@@ -6213,9 +6213,9 @@ setBrightness(brightness: number): Promise&lt;void&gt;
 
 **参数：**
 
-| 参数名     | 类型   | 必填 | 说明                                 |
-| ---------- | ------ | ---- | ------------------------------------ |
-| brightness | number | 是   | 屏幕亮度值，值为0-1之间。1表示最亮。 |
+| 参数名     | 类型   | 必填 | 说明                                       |
+| ---------- | ------ | ---- |------------------------------------------|
+| brightness | number | 是   | 屏幕亮度值。该参数为浮点数。取值范围为[0.0, 1.0],取1.0时表示最亮。 |
 
 **返回值：**
 
@@ -6249,10 +6249,10 @@ setDimBehind(dimBehindValue: number, callback: AsyncCallback&lt;void&gt;): void
 
 **参数：**
 
-| 参数名         | 类型                      | 必填 | 说明                                               |
-| -------------- | ------------------------- | ---- | -------------------------------------------------- |
-| dimBehindValue | number                    | 是   | 表示靠后的窗口的暗度值，取值范围为0-1，1表示最暗。 |
-| callback       | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                         |
+| 参数名         | 类型                      | 必填 | 说明                                     |
+| -------------- | ------------------------- | ---- |----------------------------------------|
+| dimBehindValue | number                    | 是   | 表示靠后的窗口的暗度值，取值范围为[0.0, 1.0]，取1.0时表示最暗。 |
+| callback       | AsyncCallback&lt;void&gt; | 是   | 回调函数。                                  |
 
 **示例：**
 
