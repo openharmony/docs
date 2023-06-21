@@ -3,25 +3,34 @@
 
 ## 场景介绍
 
-为了构建OpenHarmony数据跨应用/设备交互的标准定义，降低应用/业务数据交互成本，促进数据生态建设，UDMF提供了标准化的数据定义，统一定义了多种常用的数据类型。应用可以使用统一数据管理框架提供的接口创建和使用这些标准化数据类型。
+为了构建OpenHarmony数据跨应用、跨设备交互的标准定义，降低应用/业务数据交互成本，促进数据生态建设，UDMF提供了标准化的数据定义，统一定义了多种常用的数据类型。应用可以使用统一数据管理框架提供的接口创建和使用这些标准化数据类型。
 
 
 ## 约束限制
 
 - UDMF中每条数据记录大小不超过2MB。
-- UDMF支持批量数据记录的分组管理，每个分组最多支持512条数据，整体大小不超过4MB。
+- UDMF支持批量数据记录的分组管理，每个分组整体大小不超过4MB。
+
 
 ## 接口说明
 
-以下是键值型数据库持久化功能的相关接口，大部分为异步接口。异步接口均有callback和Promise两种返回形式，下表均以callback形式为例，更多接口及使用方式请见[分布式键值数据库](../reference/apis/js-apis-distributedKVStore.md)。
+UDMF支持的标准化数据类型列表，请见接口参考中的[UnifiedDataType](../reference/apis/js-apis-data-udmf.md#UnifiedDataType)。
 
-| 接口名称 | 描述 | 
-| -------- | -------- |
-| createKVManager(config: KVManagerConfig): KVManager | 创建一个KVManager对象实例，用于管理数据库对象。 | 
-| getKVStore&lt;T&gt;(storeId: string, options: Options, callback: AsyncCallback&lt;T&gt;): void | 指定Options和storeId，创建并得到指定类型的KVStore数据库。 | 
-| put(key: string, value: Uint8Array\|string\|number\|boolean, callback: AsyncCallback&lt;void&gt;): void | 添加指定类型的键值对到数据库。 | 
-| get(key: string, callback: AsyncCallback&lt;Uint8Array\|string\|boolean\|number&gt;): void | 获取指定键的值。 | 
-| delete(key: string, callback: AsyncCallback&lt;void&gt;): void | 从数据库中删除指定键值的数据。 | 
+UDMF标准化数据类型均为数据记录[UnifiedRecord](../reference/apis/js-apis-data-udmf.md#UnifiedRecord)的子类，如下表所示，
+通过基类的getType方法可以获取具体的数据类型。
+
+| 接口名称           | 描述                                                                                            | 
+|-------------------|-----------------------------------------------------------------------------------------------|
+| getType(): string | 获取当前数据记录对应的具体数据类型，见[UnifiedDataType](../reference/apis/js-apis-data-udmf.md#UnifiedDataType)。 |
+
+UDMF支持批量数据记录的分组管理，通过统一数据对象[UnifiedData](../reference/apis/js-apis-data-udmf.md#UnifiedData)封装一组数据记录，
+UnifiedData的接口如下表所示。
+
+| 接口名称                                   | 描述                                                                       | 
+|----------------------------------------|--------------------------------------------------------------------------|
+| constructor(record: UnifiedRecord)     | 用于创建带有一条数据记录的统一数据对象。                                                     |
+| addRecord(record: UnifiedRecord): void | 在当前统一数据对象中添加一条数据记录。                                                      |
+| getRecords(): Array<UnifiedRecord>     | 将当前统一数据对象中的所有数据记录取出，通过本接口取出的数据为UnifiedRecord类型，需通过getType获取数据类型后转为子类再使用。 |
 
 
 ## 开发步骤
