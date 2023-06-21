@@ -23,7 +23,7 @@ import DataShareExtensionAbility from '@ohos.application.DataShareExtensionAbili
 
 | 名称 | 类型 | 可读 | 可写 | 说明 | 
 | -------- | -------- | -------- | -------- | -------- |
-| context | [ExtensionContext](js-apis-inner-application-extensionContext.md)  | 是 | 否 |表示数据共享扩展能力上下文。 | 
+| context<sup>10+</sup> | [ExtensionContext](js-apis-inner-application-extensionContext.md)  | 是 | 否 |表示数据共享扩展能力上下文。继承自[ExtensionContext] |
 
 ## onCreate
 
