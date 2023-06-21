@@ -823,7 +823,6 @@ setScreenRotationLocked(isLocked: boolean): Promise&lt;void&gt;
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
 
 **示例：**
-123456
 
 ```js
 let isLocked = false;
