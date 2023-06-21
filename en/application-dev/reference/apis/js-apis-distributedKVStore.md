@@ -128,7 +128,7 @@ Enumerates the distributed KV store types.
 | Name                | Description                                                        |
 | -------------------- | ------------------------------------------------------------ |
 | DEVICE_COLLABORATION | Device KV store.<br> The device KV store manages data by device, which eliminates conflicts. Data can be queried by device.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.DistributedKVStore|
-| SINGLE_VERSION       | Single KV store.<br> The single KV store does not differentiate data by device. If the same key is modified by different devices, the data will be overwritten.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core|
+| SINGLE_VERSION       | Single KV store.<br>The single KV store does not differentiate data by device. If entries with the same key are modified on different devices, the value will be overwritten.<br>**System capability**: SystemCapability.DistributedDataManager.KVStore.Core |
 
 ## SecurityLevel
 
@@ -138,10 +138,10 @@ Enumerates the KV store security levels.
 
 | Name       | Description                                                        |
 | -------:   | ------------------------------------------------------------ |
-| S1         | The KV store security level is low. If data leakage occurs, minor impact will be caused on the database. For example, a KV store that contains system data such as wallpapers.|
-| S2         | The KV store security level is medium. If data leakage occurs, moderate impact will be caused on the database. For example, a KV store that contains information created by users or call records, such as audio or video clips.|
-| S3         |  The KV store security level is high. If data leakage occurs, major impact will be caused on the database. For example, a KV store that contains information such as user fitness, health, and location data.|
-| S4         |  The KV store security level is critical. If data leakage occurs, severe impact will be caused on the database. For example, a KV store that contains information such as authentication credentials and financial data.|
+| S1         | Low security level. Disclosure, tampering, corruption, or loss of the data may cause minor impact on an individual or group.<br>Examples: gender and nationality information, and user application records|
+| S2         | Medium security level. Disclosure, tampering, corruption, or loss of the data may cause major impact on an individual or group.<br>Examples: mailing addresses and nicknames of individuals|
+| S3         | High security level. Disclosure, tampering, corruption, or loss of the data may cause critical impact on an individual or group.<br>Examples: real-time precise positioning information and movement trajectory |
+| S4         | Critical security level. Disclosure, tampering, corruption, or loss of the data may cause significant adverse impact on an individual or group.<br>Examples: political opinions, religious and philosophical belief, trade union membership, genetic data, biological information, health and sexual life status, sexual orientation, device authentication, and personal credit card information|
 
 ## Options
 
@@ -1316,7 +1316,7 @@ try {
     console.info(`query is ${query.getSqlLike()}`);
     query = null;
 } catch (e) {
-    console.error(`duplicated calls should be ok.ode is ${e.code},message is ${e.message}`);
+    console.error(`duplicated calls should be ok.code is ${e.code},message is ${e.message}`);
 }
 ```
 
@@ -4737,7 +4737,7 @@ Unsubscribes from data changes.
 | Name  | Type                                                 | Mandatory| Description                                                    |
 | -------- | --------------------------------------------------------- | ---- | -------------------------------------------------------- |
 | event    | string                                                    | Yes  | Event to unsubscribe from. The value is **dataChange**, which indicates a data change event.|
-| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback for data changes. If the callback is not specified, all subscriptions to the data change event will be canceled. |
+| listener | Callback&lt;[ChangeNotification](#changenotification)&gt; | No  | Callback for the data change event. If the callback is not specified, all subscriptions to the data change event are canceled.|
 
 **Error codes**
 
@@ -6095,7 +6095,7 @@ try {
 
 getResultSet(query: Query, callback:AsyncCallback&lt;KVStoreResultSet&gt;): void
 
-Obtains a **KVStoreResultSet** object that matches the specified device ID and **Query** object. This API uses a promise to return the result.
+Obtains a **KVStoreResultSet** object that matches the specified **Query** object for this device. This API uses an asynchronous callback to return the result.
 
 **System capability**: SystemCapability.DistributedDataManager.KVStore.Core
 
