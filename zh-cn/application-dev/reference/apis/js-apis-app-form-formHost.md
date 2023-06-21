@@ -2407,7 +2407,9 @@ try {
 
  on(type: 'notifyVisible', observerCallback: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt;, bundleName?: string): void
 
-订阅通知卡片可见的事件。使用callback异步回调，返回通知所有变更为可见的卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+订阅通知卡片可见的事件。触发通知卡片可见场景为:
+
+​ 1.调用notifyVisibleForms接口通知对应卡片可见性变更为可见状态
 
 **需要权限**：ohos.permission.REQUIRE_FORM
 
@@ -2476,7 +2478,9 @@ formHost.off('notifyVisible', callback, bundleName);
 
  on(type: 'notifyInvisible', observerCallback: Callback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;>, bundleName?: string): void
 
-订阅通知卡片不可见的事件。使用callback异步回调，返回通知所有变更为不可见的卡片的[RunningFormInfo](js-apis-app-form-formInfo.md)。
+订阅通知卡片不可见的事件。触发通知卡片不可见场景为:
+
+​ 1.调用notifyInvisibleForms接口通知对应卡片可见性变更为不可见状态
 
 **需要权限**：ohos.permission.REQUIRE_FORM
 
