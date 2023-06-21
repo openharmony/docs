@@ -110,6 +110,11 @@
 
    解码完成，获取到PixelMap对象后，可以进行后续[图片处理](image-transformation.md)。
 
+5. 释放pixelMap。
+   ```ts
+   pixelMap.release();
+   ```
+
 ## 开发示例-对资源文件中的图片进行解码
 
 1. 获取resourceManager资源管理。
