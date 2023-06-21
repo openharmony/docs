@@ -280,7 +280,6 @@ close(file: number|File): Promise&lt;void&gt;
   let file = fs.openSync(filePath);
   fs.close(file).then(() => {
       console.info("close file succeed");
-      fs.closeSync(file);
   }).catch((err) => {
       console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
   });
@@ -3330,18 +3329,18 @@ open接口flags参数常量。文件打开标签。
 
 **系统能力**：SystemCapability.FileManagement.File.FileIO
 
-| 名称   | 类型   | 可读 |  可写  | 说明      |
-| ---- | ------ |---- |----| ------- |
-| READ_ONLY | number |  是  | 否   | 只读打开。 |
-| WRITE_ONLY | number | 是  | 否    | 只写打开。 |
-| READ_WRITE | number | 是  | 否    | 读写打开。 |
-| CREATE | number | 是  | 否    | 若文件不存在，则创建文件。 |
-| TRUNC | number | 是  | 否    | 如果文件存在且以只写或读写的方式打开文件，则将其长度裁剪为零。 |
-| APPEND | number | 是  | 否   | 以追加方式打开，后续写将追加到文件末尾。 |
-| NONBLOCK | number | 是  | 否    | 如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续 IO 进行非阻塞操作。 |
-| DIR | number | 是  | 否    | 如果path不指向目录，则出错。 |
-| NOFOLLOW | number | 是  | 否    | 如果path指向符号链接，则出错。 |
-| SYNC | number | 是  | 否    | 以同步IO的方式打开文件。 |
+| 名称   | 类型   | 值  | 说明      |
+| ---- | ------ |---- | ------- |
+| READ_ONLY | number |  0o0   | 只读打开。 |
+| WRITE_ONLY | number | 0o1    | 只写打开。 |
+| READ_WRITE | number | 0o2    | 读写打开。 |
+| CREATE | number | 0o100    | 若文件不存在，则创建文件。 |
+| TRUNC | number | 0o1000    | 如果文件存在且以只写或读写的方式打开文件，则将其长度裁剪为零。 |
+| APPEND | number | 0o2000   | 以追加方式打开，后续写将追加到文件末尾。 |
+| NONBLOCK | number | 0o4000    | 如果path指向FIFO、块特殊文件或字符特殊文件，则本次打开及后续 IO 进行非阻塞操作。 |
+| DIR | number | 0o200000    | 如果path不指向目录，则出错。 |
+| NOFOLLOW | number | 0o400000    | 如果path指向符号链接，则出错。 |
+| SYNC | number | 0o4010000    | 以同步IO的方式打开文件。 |
 
 ## Filter
 
