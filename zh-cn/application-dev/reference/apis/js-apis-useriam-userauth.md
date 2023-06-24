@@ -12,6 +12,673 @@
 import userIAM_userAuth from '@ohos.userIAM.userAuth';
 ```
 
+## WindowModeType<sup>10+</sup>
+
+表示用户身份认证控件的窗口类型。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+| 名称       | 值   | 说明       |
+| ---------- | ---- | ---------- |
+| DIALOG_BOX | 1    | 弹框类型。 |
+| FULLSCREEN | 2    | 全屏类型   |
+
+## AuthParam<sup>10+</sup>
+
+用户认证相关参数。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+| 名称           | 类型                               | 必填 | 说明                                   |
+| -------------- | ---------------------------------- | ---- | -------------------------------------- |
+| challenge      | Uint8Array                         | 是   | 挑战值，最大长度为32字节，可以填null。 |
+| authType       | [UserAuthType](#userauthtype8)[]   | 是   | 认证类型。                             |
+| authTrustLevel | [AuthTrustLevel](#authtrustlevel8) | 是   | 认证信任等级。                         |
+
+## WidgetParam<sup>10+</sup>
+
+统一认证控件相关参数。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+| 名称                 | 类型                                | 必填 | 说明                 |
+| -------------------- | ----------------------------------- | ---- | -------------------- |
+| title                | string                              | 是   | 认证控件标题。       |
+| navigationButtonTest | string                              | 否   | 导航按键的说明文本。 |
+| windowModeType       | [WindowModeType](#windowmodetype10) | 否   | 控件是否全屏显示。   |
+
+## UseAuthResult<sup>10+</sup>
+
+用户认证结果。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+| 名称     | 类型                           | 必填 | 说明                 |
+| -------- | ------------------------------ | ---- | -------------------- |
+| result   | number                         | 是   | 用户认证结果         |
+| token    | Uint8Array                     | 否   | 认证通过的令牌信息。 |
+| authType | [UserAuthType](#userauthtype8) | 否   | 认证类型             |
+
+## IAuthCallback<sup>10+</sup>
+
+返回认证结果的回调对象。
+
+### onResult<sup>10+</sup>
+
+onResult(result: UseAuthResult): void;
+
+回调函数，返回认证结果。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+**参数：**
+
+| 参数名 | 类型                               | 必填 | 说明       |
+| ------ | ---------------------------------- | ---- | ---------- |
+| result | [UseAuthResult](useauthresult10) | 是   | 认证结果。 |
+
+**示例：**
+
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+AuthParam authParam = {
+    challenge: new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+    authType: userIAM_userAuth.UserAuthType.PIN;
+    authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL1;
+}
+WidgetParam widgetParam = {
+    title: "输入口令密码";
+    windowMode: userIAM_userAuth.WindowModeType.DIALOG_BOX;
+}
+let userAuthInstance;
+try {
+    userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+    console.info("get userAuth instance success");
+} catch (error) {
+    console.info("get userAuth instance failed, error = " + error);
+}
+
+try {
+    userAuthInstance.on('result', {
+    	callback: onResult(result) {
+            console.log("authV10 result " + result.result);
+            console.log("authV10 token " + result.token);
+            console.log("authV10 authType " + result.authType);
+        }
+     });
+    console.info("subscribe authentication event success");
+} catch (error) {
+    console.info("subscribe authentication event failed" + error);
+    //do error
+}
+```
+
+## UserAuthInstance<sup>10+</sup>
+
+用于执行用户身份认证，并支持使用统一用户身份认证控件。
+
+### on<sup>10+</sup>
+
+on(type: 'result', callback: IAuthCallback): void;
+
+订阅用户身份认证结果。
+
+> **说明：**使用获取到的[UserAuthInstance](#userauthinstance10)对象调用该接口进行订阅。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+**参数：**
+
+| 参数名   | 类型                             | 必填 | 说明                                       |
+| -------- | -------------------------------- | ---- | ------------------------------------------ |
+| type     | 'result'                         | 是   | 订阅事件类型，表明该事件用来返回认证结果。 |
+| callback | [IAuthCallback](iauthcallback10) | 是   | 认证接口的回调函数，用于返回认证结果。     |
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 401      | Incorrect parameters.    |
+| 12500002 | General operation error. |
+
+**示例：**
+
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+AuthParam authParam = {
+    challenge: new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+    authType: userIAM_userAuth.UserAuthType.PIN;
+    authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL1;
+}
+WidgetParam widgetParam = {
+    title: "输入口令密码";
+    windowMode: userIAM_userAuth.WindowModeType.DIALOG_BOX;
+}
+let userAuthInstance;
+try {
+    userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+    console.info("get userAuth instance success");
+} catch (error) {
+    console.info("get userAuth instance failed, error = " + error);
+}
+
+try {
+    userAuthInstance.on('result', {
+    	callback: onResult(result) {
+            console.log("authV10 result " + result.result);
+            console.log("authV10 token " + result.token);
+            console.log("authV10 authType " + result.authType);
+        }
+     });
+    console.info("subscribe authentication event success");
+} catch (error) {
+    console.info("subscribe authentication event failed" + error);
+    //do error
+}
+```
+
+### off<sup>10+</sup>
+
+off(type: 'result', callback?: IAuthCallback): void;
+
+取消订阅用户身份认证结果。
+
+> **说明：**需要使用已经成功订阅事件的[UserAuthInstance](#userauthinstance10)对象调用该接口进行取消订阅。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+**参数：**
+
+| 参数名   | 类型                             | 必填 | 说明                                       |
+| -------- | -------------------------------- | ---- | ------------------------------------------ |
+| type     | 'result'                         | 是   | 订阅事件类型，表明该事件用来返回认证结果。 |
+| callback | [IAuthCallback](iauthcallback10) | 否   | 认证接口的回调函数，用于返回认证结果。     |
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 401      | Incorrect parameters.    |
+| 12500002 | General operation error. |
+
+**示例：**
+
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+AuthParam authParam = {
+    challenge: new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+    authType: userIAM_userAuth.UserAuthType.PIN;
+    authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL1;
+}
+WidgetParam widgetParam = {
+    title: "输入口令密码";
+    windowMode: userIAM_userAuth.WindowModeType.DIALOG_BOX;
+}
+let userAuthInstance;
+try {
+    userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+    console.info("get userAuth instance success");
+} catch (error) {
+    console.info("get userAuth instance failed, error = " + error);
+}
+
+//订阅认证结果
+try {
+    userAuthInstance.on('result', {
+    	callback: onResult(result) {
+            console.log("authV10 result " + result.result);
+            console.log("authV10 token " + result.token);
+            console.log("authV10 authType " + result.authType);
+        }
+     });
+    console.info("subscribe authentication event success");
+} catch (error) {
+    console.info("subscribe authentication event failed" + error);
+    //do error
+}
+//取消订阅认证结果
+try {
+    userAuthInstance.off('result');
+    console.info("cancel subscribe authentication event success");
+} catch (error) {
+    console.info("cancel subscribe authentication event failed" + error);
+    //do error
+}
+```
+
+### start<sup>10+</sup>
+
+start(): void;
+
+开始认证。
+
+> **说明：**使用获取到的[UserAuthInstance](#userauthinstance10)对象调用该接口进行认证。
+
+**需要权限**：ohos.permission.ACCESS_BIOMETRIC
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
+
+**错误码：**
+
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
+| 201      | Permission verification failed.                  |
+| 401      | Incorrect parameters.                            |
+| 12500001 | Authentication failed.                           |
+| 12500002 | General operation error.                         |
+| 12500003 | The operation is canceled.                       |
+| 12500004 | The operation is time-out.                       |
+| 12500005 | The authentication type is not supported.        |
+| 12500006 | The authentication trust level is not supported. |
+| 12500007 | The authentication task is busy.                 |
+| 12500009 | The authenticator is locked.                     |
+| 12500010 | The type of credential has not been enrolled.    |
+| 12500011 | The authentication is canceled from widget.      |
+
+**示例：**
+
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+AuthParam authParam = {
+    challenge: new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+    authType: userIAM_userAuth.UserAuthType.PIN;
+    authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL1;
+}
+WidgetParam widgetParam = {
+    title: "输入口令密码";
+    windowMode: userIAM_userAuth.WindowModeType.DIALOG_BOX;
+}
+let userAuthInstance;
+try {
+    userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+    console.info("get userAuth instance success");
+} catch (error) {
+    console.info("get userAuth instance failed, error = " + error);
+}
+
+try {
+    userAuthInstance.start();
+    console.info("userAuthInstanceV10 start auth success");
+} catch (error) {
+    console.info("userAuthInstanceV10 start auth failed, error = " + error);
+    //do error
+}
+```
+
+### cancel<sup>10+</sup>
+
+cancel(): void;
+
+取消认证。
+
+> **说明：**使用获取到的[UserAuthInstance](#userauthinstance10)对象调用该接口进行取消认证，此UserAuthInstance需要是正在进行认证的对象。
+
+**需要权限**：ohos.permission.ACCESS_BIOMETRIC
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 201      |                          |
+| 401      | Incorrect parameters.    |
+| 12500002 | General operation error. |
+
+**示例：**
+
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+AuthParam authParam = {
+    challenge: new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+    authType: userIAM_userAuth.UserAuthType.PIN;
+    authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL1;
+}
+WidgetParam widgetParam = {
+    title: "输入口令密码";
+    windowMode: userIAM_userAuth.WindowModeType.DIALOG_BOX;
+}
+
+let userAuthInstance;
+try {
+    userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+    console.info("get userAuth instance success");
+} catch (error) {
+    console.info("get userAuth instance failed, error = " + error);
+}
+
+//开始认证
+try {
+    userAuthInstance.start();
+    console.info("userAuthInstanceV10 start auth success");
+} catch (error) {
+    console.info("userAuthInstanceV10 start auth failed, error = " + error);
+    //do error
+}
+
+//取消认证
+try {
+    userAuthInstance.cancel();
+    console.info("cancel auth success");
+} catch (error) {
+    console.info("cancel auth failed, error = " + error);
+    //do error
+}
+```
+
+## userIAM_userAuth.getUserAuthInstance<sup>10+</sup>
+
+getUserAuthInstance(authParam: AuthParam, widgetParam: WidgetParam): UserAuthInstance;
+
+获取[UserAuthInstance](#userauthinstance10)对象，用于执行用户身份认证，并支持使用统一用户身份认证控件。
+
+> **说明：**
+> 每个UserAuthInstance只能进行一次认证，若需要再次进行认证则需重新获取UserAuthInstance。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+**参数：**
+
+| 参数名      | 类型                          | 必填 | 说明                                   |
+| ----------- | ----------------------------- | ---- | -------------------------------------- |
+| authParam   | [AuthParam](authparam10)      | 是   | 挑战值，最大长度为32字节，可以填null。 |
+| widgetParam | [WidgetParam](#widgetparam10) | 是   | 认证类型，当前支持FACE。               |
+
+**返回值：**
+
+| 类型                                    | 说明         |
+| --------------------------------------- | ------------ |
+| [UserAuthInstance](#userauthinstance10) | 认证器对象。 |
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
+
+**错误码：**
+
+| 错误码ID | 错误信息                                         |
+| -------- | ------------------------------------------------ |
+| 401      | Incorrect parameters.                            |
+| 12500002 | General operation error.                         |
+| 12500005 | The authentication type is not supported.        |
+| 12500006 | The authentication trust level is not supported. |
+
+**示例：**
+
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+AuthParam authParam = {
+    challenge: new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]);
+    authType: userIAM_userAuth.UserAuthType.PIN;
+    authTrustLevel: userIAM_userAuth.AuthTrustLevel.ATL1;
+}
+WidgetParam widgetParam = {
+    title: "输入口令密码";
+    windowMode: userIAM_userAuth.WindowModeType.DIALOG_BOX;
+}
+
+try {
+    let userAuthInstance = userIAM_userAuth.getUserAuthInstance(authParam, widgetParam);
+    console.info("get userAuth instance success");
+} catch (error) {
+    console.info("get userAuth instance failed, error = " + error);
+}
+```
+
+## NoticeType<sup>10+</sup>
+
+用户身份认证的通知类型。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+| 名称          | 值   | 说明                 |
+| ------------- | ---- | -------------------- |
+| WIDGET_NOTICE | 1    | 表示来自控件的通知。 |
+
+## userIAM_userAuth.sendNotice<sup>10+</sup>
+
+sendNotice(noticeType: NoticeType, eventData: string): void;
+
+在使用统一身份认证控件进行用户身份认证时，用于接收来自统一身份认证控件的通知。
+
+**需要权限**：ohos.permission.SUPPORT_USER_AUTH
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+**参数：**
+
+| 参数名     | 类型                      | 必填 | 说明       |
+| ---------- | ------------------------- | ---- | ---------- |
+| noticeType | [NoticeType](#noticetype) | 是   | 通知类型。 |
+| eventData  | string                    | 是   | 事件数据。 |
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
+
+**错误码：**
+
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 201      | Permission verification failed.         |
+| 202      | The caller is not a system application. |
+| 401      | Incorrect parameters.                   |
+| 12500002 | General operation error.                |
+
+**示例：**
+
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+let noticeType = userIAM_userAuth.NoticeType.WIDGET_NOTICE;
+sendNotice(noticeType, {"eventData" : "EVENT_AUTH_TYPE_READY"});
+```
+
+## UserAuthWidgetMgr<sup>10+</sup>
+
+控件管理接口，提供控件注册、管理、调度。
+
+### on<sup>10+</sup>
+
+on(type: 'command', callback: IAuthWidgetCallback): void;
+
+身份认证控件订阅来自用户认证框架的命令。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+**参数：**
+
+| 参数名   | 类型                                          | 必填 | 说明                                                         |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | 'command'                                     | 是   | 订阅事件类型，表明该事件用于用户认证框架向身份认证控件发送命令。 |
+| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | 是   | 控件管理接口的回调函数，用于用户认证框架向身份认证控件发送命令。 |
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 401      | Incorrect parameters.    |
+| 12500002 | General operation error. |
+
+**示例：**
+
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+let version = 1;
+let userAuthWidgetMgr;
+try {
+    userAuthWidgetMgr = userIAM_userAuth.getUserAuthWidgetMgr(version);
+    console.info("get userAuthWidgetMgr instance success");
+} catch (error) {
+    console.info("get userAuthWidgetMgr instance failed, error = " + error);
+}
+
+try {
+    userAuthWidgetMgr.on('command', {
+    	callback: sendCommand(cmdData) {
+            console.log("The cmdData is " + cmdData);
+        }
+     })
+    console.info("subscribe authentication event success");
+} catch (error) {
+    console.info("subscribe authentication event failed, error = " + error);
+}
+```
+
+### off<sup>10+</sup>
+
+off(type: 'command', callback?: IAuthWidgetCallback): void;
+
+身份认证控件取消订阅来自用户认证框架的命令。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+**参数：**
+
+| 参数名   | 类型                                          | 必填 | 说明                                                         |
+| -------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| type     | 'command'                                     | 是   | 订阅事件类型，表明该事件用于用户认证框架向身份认证控件发送命令。 |
+| callback | [IAuthWidgetCallback](#iauthwidgetcallback10) | 否   | 控件管理接口的回调函数，用于用户认证框架向身份认证控件发送命令。 |
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
+
+**错误码：**
+
+| 错误码ID | 错误信息                 |
+| -------- | ------------------------ |
+| 401      | Incorrect parameters.    |
+| 12500002 | General operation error. |
+
+**示例：**
+
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+let version = 1;
+let userAuthWidgetMgr;
+try {
+    userAuthWidgetMgr = userIAM_userAuth.getUserAuthWidgetMgr(version);
+    console.info("get userAuthWidgetMgr instance success");
+} catch (error) {
+    console.info("get userAuthWidgetMgr instance failed, error = " + error);
+}
+
+//订阅用户身份认证框架的命令
+try {
+    userAuthWidgetMgr.on('command', {
+    	callback: sendCommand(cmdData) {
+            console.log("The cmdData is " + cmdData);
+        }
+     })
+    console.info("subscribe authentication event success");
+} catch (error) {
+    console.info("subscribe authentication event failed, error = " + error);
+}
+//取消订阅用户身份认证框架的命令
+try {
+    userAuthWidgetMgr.off('command');
+    console.info("cancel subscribe authentication event success");
+} catch (error) {
+    console.info("cancel subscribe authentication event failed, error = " + error);
+}
+```
+
+## userIAM_userAuth.getUserAuthWidgetMgr<sup>10+</sup>
+
+getUserAuthWidgetMgr(version: number): UserAuthWidgetMgr;
+
+获取UserAuthWidgetMgr对象，用于执行用户身份认证。
+
+> **说明：**
+> 每个UserAuthInstance只能进行一次认证，若需要再次进行认证则需重新获取UserAuthInstance。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                 |
+| ------- | ------ | ---- | -------------------- |
+| version | number | 是   | 表示认证控件的版本。 |
+
+**返回值：**
+
+| 类型                                      | 说明         |
+| ----------------------------------------- | ------------ |
+| [UserAuthWidgetMgr](#userauthwidgetmgr10) | 认证器对象。 |
+
+以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
+
+**错误码：**
+
+| 错误码ID | 错误信息                                |
+| -------- | --------------------------------------- |
+| 201      | Permission verification failed.         |
+| 202      | The caller is not a system application. |
+| 401      | Incorrect parameters.                   |
+| 12500002 | General operation error.                |
+
+**示例：**
+
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+let version = 1;
+try {
+    let userAuthWidgetMgr = userIAM_userAuth.getUserAuthWidgetMgr(version);
+    console.info("get userAuthWidgetMgr instance success");
+} catch (error) {
+    console.info("get userAuthWidgetMgr instance failed, error = " + error);
+}
+```
+
+## IAuthWidgetCallback<sup>10+</sup>
+
+认证控件通过该回调获取用户认证框架发送的命令。
+
+### sendCommand<sup>10+</sup>
+
+sendCommand(cmdData: string): void;
+
+回调函数，用于用户认证框架向控件发送命令。
+
+**系统能力**：SystemCapability.UserIAM.UserAuth.Core
+
+**参数：**
+
+| 参数名  | 类型   | 必填 | 说明                               |
+| ------- | ------ | ---- | ---------------------------------- |
+| cmdData | string | 是   | 用户身份认证框架向控件发送的命令。 |
+
+**示例：**
+
+```js
+import userIAM_userAuth from '@ohos.userIAM.userAuth';
+
+let version = 1;
+try {
+    let userAuthWidgetMgr = userIAM_userAuth.getUserAuthWidgetMgr(version);
+    userAuthWidgetMgr.on('command', {
+    	callback: sendCommand(cmdData) {
+            console.log("The cmdData is " + cmdData);
+        }
+     })
+    console.info("subscribe authentication event success");
+} catch (error) {
+    console.info("subscribe authentication event failed, error = " + error);
+}
+```
+
 ## AuthResultInfo<sup>9+</sup>
 
 表示认证结果信息。
@@ -72,7 +739,7 @@ callback(result : EventInfo) : void
 
 | 参数名    | 类型                       | 必填 | 说明                           |
 | --------- | -------------------------- | ---- | ------------------------------ |
-| result    | [EventInfo](#eventinfo9)     | 是   | 返回的认证结果信息或提示信息。  |
+| result    | [EventInfo](#eventinfo9+)     | 是   | 返回的认证结果信息或提示信息。  |
 
 **示例：**
 
@@ -122,18 +789,24 @@ try {
 }
 ```
 
-## AuthInstance<sup>9+</sup>
+## AuthInstance<sup>(deprecated)</sup>
 
 执行用户认证的对象。
 
-### on<sup>9+</sup>
+> **说明：**
+> 从 API version 9 开始支持，从 API version 10 开始废弃，请使用[UserAuthInstance](#userauthinstance10)替代。
+
+### on<sup>(deprecated)</sup>
 
 on : (name : AuthEventKey, callback : AuthEvent) => void
 
 订阅指定类型的用户认证事件。
 
 > **说明：**
-> 使用获取到的[AuthInstance](#authinstance9)对象调用该接口进行订阅。
+> 从 API version 9 开始支持，从 API version 10 开始废弃。
+
+> **说明：**
+> 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行订阅。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -193,14 +866,17 @@ try {
 }
 ```
 
-### off<sup>9+</sup>
+### off<sup>(deprecated)</sup>
 
 off : (name : AuthEventKey) => void
 
 取消订阅特定类型的认证事件。
 
+>**说明：**
+>从 API version 9 开始支持，从 API version 10 开始废弃。
+
 > **说明：**
-> 需要使用已经成功订阅事件的[AuthInstance](#authinstance9)对象调用该接口进行取消订阅。
+> 需要使用已经成功订阅事件的[AuthInstance](#authinstancedeprecated)对象调用该接口进行取消订阅。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -256,14 +932,17 @@ try {
 }
 ```
 
-### start<sup>9+</sup>
+### start<sup>(deprecated)</sup>
 
 start : () => void
 
 开始认证。
 
 > **说明：**
-> 使用获取到的[AuthInstance](#authinstance9)对象调用该接口进行认证。
+> 从 API version 9 开始支持，从 API version 10 开始废弃。
+
+> **说明：**
+> 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行认证。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -305,14 +984,17 @@ try {
 }
 ```
 
-### cancel<sup>9+</sup>
+### cancel<sup>(deprecated)</sup>
 
 cancel : () => void
 
 取消认证。
 
 > **说明：**
-> 使用获取到的[AuthInstance](#authinstance9)对象调用该接口进行取消认证，此[AuthInstance](#authinstance9)需要是正在进行认证的对象。
+> 从 API version 9 开始支持，从 API version 10 开始废弃。
+
+> **说明：**
+> 使用获取到的[AuthInstance](#authinstancedeprecated)对象调用该接口进行取消认证，此[AuthInstance](#authinstancedeprecated)需要是正在进行认证的对象。
 
 **需要权限**：ohos.permission.ACCESS_BIOMETRIC
 
@@ -346,11 +1028,14 @@ try {
 }
 ```
 
-## userIAM_userAuth.getAuthInstance<sup>9+</sup>
+## userIAM_userAuth.getAuthInstance<sup>(deprecated)</sup>
 
 getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel : AuthTrustLevel): AuthInstance
 
 获取AuthInstance对象，用于执行用户身份认证。
+
+> **说明：**
+> 从 API version 9 开始支持，从 API version 10 开始废弃，请使用[getUserAuthInstance](#userIAM_userAuth.getUserauthinstance10)替代。
 
 > **说明：**
 > 每个AuthInstance只能进行一次认证，若需要再次进行认证则需重新获取AuthInstance。
@@ -367,9 +1052,9 @@ getAuthInstance(challenge : Uint8Array, authType : UserAuthType, authTrustLevel 
 
 **返回值：**
 
-| 类型                                      | 说明         |
-| ----------------------------------------- | ------------ |
-| [AuthInstance](#authinstance9) | 认证器对象。 |
+| 类型                                    | 说明         |
+| --------------------------------------- | ------------ |
+| [AuthInstance](#authinstancedeprecated) | 认证器对象。 |
 
 以下错误码的详细介绍请参见[用户认证错误码](../errorcodes/errorcode-useriam.md)
 
@@ -460,8 +1145,9 @@ try {
 | BUSY                    | 12500007      | 忙碌状态。           |
 | LOCKED                  | 12500009      | 认证器已锁定。       |
 | NOT_ENROLLED            | 12500010      | 用户未录入认证信息。 |
+| CANCELED_FROM_WIDGET | 12500011 | 当前的认证操作被用户从控件取消。返回这个错误码，表示使用应用自定义认证。 |
 
-## UserAuth<sup>8+</sup>
+## UserAuth<sup>(deprecated)</sup>
 
 认证器对象。
 
@@ -472,7 +1158,7 @@ constructor()
 创建认证器对象。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃，请使用[getAuthInstance](#useriam_userauthgetauthinstance9)替代。
+> 从 API version 8 开始支持，从 API version 9 开始废弃，请使用[getAuthInstance](#useriam_userauthgetauthinstancedeprecated)替代。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -480,7 +1166,7 @@ constructor()
 
 | 类型                   | 说明                 |
 | ---------------------- | -------------------- |
-| [UserAuth](#userauth8) | 认证器对象。 |
+| [UserAuth](#userauthdeprecated) | 认证器对象。 |
 
 **示例：**
 
@@ -742,7 +1428,7 @@ auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLe
 表示认证结果的对象。
 
 > **说明：**
-> 从 API version 8 开始支持，从 API version 9 开始废弃，建议使用[AuthResultInfo](#authresultinfo9)代替。
+> 从 API version 8 开始支持，从 API version 9 开始废弃。
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
@@ -818,10 +1504,11 @@ auth.auth(null, userIAM_userAuth.UserAuthType.FACE, userIAM_userAuth.AuthTrustLe
 
 **系统能力**：SystemCapability.UserIAM.UserAuth.Core
 
-| 名称        |   值   | 说明       |
-| ----------- | ------ | ---------- |
-| FACE        | 2      | 人脸认证。 |
-| FINGERPRINT | 4      | 指纹认证。 |
+| 名称        | 值   | 说明       |
+| ----------- | ---- | ---------- |
+| PIN         | 1    | 口令认证。 |
+| FACE        | 2    | 人脸认证。 |
+| FINGERPRINT | 4    | 指纹认证。 |
 
 ## AuthTrustLevel<sup>8+</sup>
 
@@ -863,7 +1550,7 @@ getAuthenticator(): Authenticator
 认证器对象。
 
 > **说明：**
-> 从 API version 8 开始废弃，建议使用[UserAuth](#userauth8)替代。
+> 从 API version 8 开始废弃，建议使用[UserAuth](#userauthdeprecated)替代。
 
 ### execute<sup>(deprecated)</sup>
 
