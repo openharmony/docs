@@ -6,7 +6,7 @@ Applicable to: OpenHarmony 3.2 Beta (API version 9)
 
 **Solution**
 
-**extraData** indicates additional data in an HTTP request. It varies depending on the HTTP request method.
+**extraData** specifies additional data in an HTTP request. It varies depending on the HTTP request method.
 
 -   If the HTTP request uses a POST or PUT method, **extraData** serves as the content of the HTTP request.
 -   If the HTTP request uses a GET, OPTIONS, DELETE, TRACE, or CONNECT method, **extraData** serves as a supplement to the HTTP request parameters and will be added to the URL when the request is sent.
