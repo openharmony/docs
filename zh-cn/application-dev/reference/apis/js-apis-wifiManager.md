@@ -1662,21 +1662,6 @@ isBandTypeSupported(bandType: WifiBandType): boolean
 	}
 ```
 
-## WifiBandType <sup>10+</sup>
-
-表示wifi频段类型的枚举。
-
-**系统能力：** SystemCapability.Communication.WiFi.STA
-
-| 名称 | 值 | 说明 |
-| -------- | -------- | -------- |
-| WIFI_BAND_NONE | 0 | 未定义。 |
-| WIFI_BAND_2G | 1 | 2G频段。 |
-| WIFI_BAND_5G | 2 | 5G频段。 |
-| WIFI_BAND_6G | 3 | 6G频段。 |
-| WIFI_BAND_60G | 4 | 60G频段。|
-
-
 ## wifi.get5GChannelList<sup>10+</sup>
 
 get5GChannelList(): Array&lt;number&gt;
@@ -1732,7 +1717,7 @@ getDisconnectedReason(): DisconnectedReason
 
 | **类型** | **说明** |
 | -------- | -------- |
-| [DisconnectedReason](#disconnectedreason10) | 最近断开的原因 |
+| DisconnectedReason | 最近断开的原因 |
 
 **示例：**
 ```js
