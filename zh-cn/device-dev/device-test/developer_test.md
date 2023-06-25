@@ -126,174 +126,308 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
 **TDD测试（C++）**
 
-用例源文件命名规范
+- 用例源文件命名规范
 
-测试用例源文件名称和测试套内容保持一致，文件命名采用全小写+下划线方式命名，以test结尾，具体格式为：[功能]_[子功能]_test，子功能支持向下细分。
-示例：
-```
-calculator_sub_test.cpp
-```
+    测试用例源文件名称和测试套内容保持一致，文件命名采用全小写+下划线方式命名，以test结尾，具体格式为：[功能]_[子功能]_test，子功能支持向下细分。
 
-用例示例
-```c++
-/*
- * Copyright (c) 2021 XXXX Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+单线程示例：
+    ```
+    calculator_sub_test.cpp
+    ```
 
-#include "calculator.h"
-#include <gtest/gtest.h>
+- 用例示例
+    ```
+    /*
+     * Copyright (c) 2021 XXXX Device Co., Ltd.
+     * Licensed under the Apache License, Version 2.0 (the "License");
+     * you may not use this file except in compliance with the License.
+     * You may obtain a copy of the License at
+     *
+     *     http://www.apache.org/licenses/LICENSE-2.0
+     *
+     * Unless required by applicable law or agreed to in writing, software
+     * distributed under the License is distributed on an "AS IS" BASIS,
+     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     * See the License for the specific language governing permissions and
+     * limitations under the License.
+     */
+    
+    #include "calculator.h"
+    #include <gtest/gtest.h>
+    
+    using namespace testing::ext;
+    
+    class CalculatorSubTest : public testing::Test {
+    public:
+        static void SetUpTestCase(void);
+        static void TearDownTestCase(void);
+        void SetUp();
+        void TearDown();
+    };
+    
+    void CalculatorSubTest::SetUpTestCase(void)
+    {
+        // input testsuit setup step，setup invoked before all testcases
+    }
+    
+    void CalculatorSubTest::TearDownTestCase(void)
+    {
+        // input testsuit teardown step，teardown invoked after all testcases
+    }
+    
+    void CalculatorSubTest::SetUp(void)
+    {
+        // input testcase setup step，setup invoked before each testcases
+    }
+    
+    void CalculatorSubTest::TearDown(void)
+    {
+        // input testcase teardown step，teardown invoked after each testcases
+    }
+    
+    /**
+     * @tc.name: integer_sub_001
+     * @tc.desc: Verify the sub function.
+     * @tc.type: FUNC
+     * @tc.require: issueNumber
+     */
+    HWTEST_F(CalculatorSubTest, integer_sub_001, TestSize.Level1)
+    {
+        // step 1:调用函数获取结果
+        int actual = Sub(4，0)；
+    
+        // Step 2:使用断言比较预期与实际结果
+        EXPECT_EQ(4, actual);
+    }
+    ```
+    详细内容介绍：
+    1. 添加测试用例文件头注释信息
+	    ```
+    	/*
+    	 * Copyright (c) 2021 XXXX Device Co., Ltd.
+    	 * Licensed under the Apache License, Version 2.0 (the "License");
+    	 * you may not use this file except in compliance with the License.
+    	 * You may obtain a copy of the License at
+    	 *
+    	 *     http://www.apache.org/licenses/LICENSE-2.0
+    	 *
+    	 * Unless required by applicable law or agreed to in writing, software
+    	 * distributed under the License is distributed on an "AS IS" BASIS,
+    	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    	 * See the License for the specific language governing permissions and
+    	 * limitations under the License.
+    	 */
+    	```
+    2. 引用测试框架头文件和命名空间
+	    ```
+    	#include <gtest/gtest.h>
+    	
+    	using namespace testing::ext;
+    	```
+    3. 添加被测试类的头文件
+	    ```
+    	#include "calculator.h"
+    	```
+    4. 定义测试套（测试类）
+	    ```
+    	class CalculatorSubTest : public testing::Test {
+    	public:
+    	    static void SetUpTestCase(void);
+    	    static void TearDownTestCase(void);
+    	    void SetUp();
+    	    void TearDown();
+    	};
+        
+    	void CalculatorSubTest::SetUpTestCase(void)
+    	{
+    	    // input testsuit setup step，setup invoked before all testcases
+    	}
+        
+    	void CalculatorSubTest::TearDownTestCase(void)
+    	{
+    	    // input testsuit teardown step，teardown invoked after all testcases
+    	}
+        
+    	void CalculatorSubTest::SetUp(void)
+    	{
+    	    // input testcase setup step，setup invoked before each testcases
+    	}
+        
+    	void CalculatorSubTest::TearDown(void)
+    	{
+    	    // input testcase teardown step，teardown invoked after each testcases
+    	}
+    	```
+	    > **注意：** 在定义测试套时，测试套名称应与编译目标保持一致，采用大驼峰风格。
 
-using namespace testing::ext;
+    5. 测试用例实现，包含用例注释和逻辑实现
+	    ```
+    	/**
+    	 * @tc.name: integer_sub_001
+    	 * @tc.desc: Verify the sub function.
+    	 * @tc.type: FUNC
+    	 * @tc.require: issueNumber
+    	 */
+    	HWTEST_F(CalculatorSubTest, integer_sub_001, TestSize.Level1)
+    	{
+    	    //step 1:调用函数获取结果
+    	    int actual = Sub(4，0)；
+        
+    	    //Step 2:使用断言比较预期与实际结果
+    	    EXPECT_EQ(4, actual);
+    	}
+    	```
+		> **注意：** @tc.require: 格式必须以AR/SR或issue开头： 如：issueI56WJ7
 
-class CalculatorSubTest : public testing::Test {
-public:
-    static void SetUpTestCase(void);
-    static void TearDownTestCase(void);
-    void SetUp();
-    void TearDown();
-};
+多线程示例：
+    ```
+    base_object_test.cpp
+    ```
 
-void CalculatorSubTest::SetUpTestCase(void)
-{
-    // input testsuit setup step，setup invoked before all testcases
-}
+- 多线程用例示例
+    ```
+    // 测试用例文件头注释信息及用例注释同单线程用例示例。
+    
+    #include "base_object.h"
+    #include <gtest/gtest.h>
+	#include <gtest/hwext/gtest-multithread.h>
+	#include <unistd.h>
+    
+    using namespace testing::ext;
+    using namespace testing::mt;
 
-void CalculatorSubTest::TearDownTestCase(void)
-{
-    // input testsuit teardown step，teardown invoked after all testcases
-}
+	namespace OHOS {
+	namespace AAFwk {
+    class AAFwkBaseObjectTest : public testing::Test {......}
 
-void CalculatorSubTest::SetUp(void)
-{
-    // input testcase setup step，setup invoked before each testcases
-}
+	// Step 1:待测函数，返回阶乘结果
+	int factorial(int n)
+	{
+		int result = 1;
+		for (int i = 1; i <= n; i++) {
+			result *= i;
+		}
+		printf("Factorial Function Result : %d! = %d\n", n, result);
+		return result;
+	} 
 
-void CalculatorSubTest::TearDown(void)
-{
-    // input testcase teardown step，teardown invoked after each testcases
-}
+	// Step 2:使用断言比较预期与实际结果
+	void factorial_test()
+	{
+		int ret = factorial(3); // 调用函数获取结果
+		std::thread::id this_id = std::this_thread::get_id();
+		std::ostringstream oss;
+		oss << this_id;
+		std::string this_id_str = oss.str();
+		long int thread_id = atol(this_id_str.c_str());
+		printf("running thread...: %ld\n", thread_id); // 输出当前线程的id
+		EXPECT_EQ(ret, 6);
+	}
 
-/**
- * @tc.name: integer_sub_001
- * @tc.desc: Verify the sub function.
- * @tc.type: FUNC
- * @tc.require: issueNumber
- */
-HWTEST_F(CalculatorSubTest, integer_sub_001, TestSize.Level1)
-{
-    // step 1:调用函数获取结果
-    int actual = Sub(4，0)；
+	HWTEST_F(AAFwkBaseObjectTest, Factorial_test_001, TestSize.Level1)
+	{
+		SET_THREAD_NUM(4);
+		printf("Factorial_test_001 BEGIN\n");
+		GTEST_RUN_TASK(factorial_test);
+		printf("Factorial_test_001 END\n");
+	}
 
-    // Step 2:使用断言比较预期与实际结果
-    EXPECT_EQ(4, actual);
-}
-```
-详细内容介绍：
+	HWMTEST_F(AAFwkBaseObjectTest, Factorial_test_002, TestSize.Level1, 6)
+	{
+		printf("Factorial_test_002 BEGIN\n");
+		factorial_test();
+		printf("Factorial_test_002 END\n");
+	}
 
-1.添加测试用例文件头注释信息
+	}  // namespace AAFwk
+	}  // namespace OHOS
 
-```
-/*
- * Copyright (c) 2021 XXXX Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-```
+    ```
+    详细内容介绍：
+    1. 添加测试用例文件头注释信息
 
-2.引用测试框架头文件和命名空间
+		> **注意：** 与单线程用例标准一致。
 
-```c++
-#include <gtest/gtest.h>
+    2. 引用测试框架头文件和命名空间
+	    ```
+    	#include <gtest/gtest.h>
+    	#include <gtest/hwext/gtest-multithread.h>
+		#include <unistd.h>
+    	using namespace testing::ext;
+   		using namespace testing::mt;
+    	```
+    3. 添加被测试类的头文件
+	    ```
+    	#include "base_object.h"
+    	```
+    4. 定义测试套（测试类）
+	    ```
+    	class AAFwkBaseObjectTest : public testing::Test {......}
 
-using namespace testing::ext;
-```
+    	```
+	    > **注意：** 与单线程用例标准一致。
 
-3.添加被测试类的头文件
+    5. 测试用例实现，包含用例注释和逻辑实现
 
-```c++
-#include "calculator.h"
-```
+	    ```
+		// Step 1:待测函数，返回阶乘结果
+		int factorial(int n)
+		{
+			int result = 1;
+			for (int i = 1; i <= n; i++) {
+				result *= i;
+			}
+			printf("Factorial Function Result : %d! = %d\n", n, result);
+			return result;
+		} 
+	
+		// Step 2:使用断言比较预期与实际结果
+		void factorial_test()
+		{
+			int ret = factorial(3); // 调用函数获取结果
+			std::thread::id this_id = std::this_thread::get_id();
+			std::ostringstream oss;
+			oss << this_id;
+			std::string this_id_str = oss.str();
+			long int thread_id = atol(this_id_str.c_str());
+			printf("running thread...: %ld\n", thread_id); // 输出当前线程的id
+			EXPECT_EQ(ret, 6);
+		}
 
-4.定义测试套（测试类）
+		// GTEST_RUN_TASK(TestFunction)多线程启动函数，参数为自定义函数。
+		// 未调用SET_THREAD_NUM()时，默认线程数10个。		
+    	HWTEST_F(AAFwkBaseObjectTest, Factorial_test_001, TestSize.Level1)
+    	{
+			SET_THREAD_NUM(4); // 设置线程数量，同一测试套中可动态设置线程数。
+			printf("Factorial_test_001 BEGIN\n");
+			GTEST_RUN_TASK(factorial_test); // 启动factorial_test任务的多线程执行
+			printf("Factorial_test_001 END\n");
+    	}
 
-```c++
-class CalculatorSubTest : public testing::Test {
-public:
-    static void SetUpTestCase(void);
-    static void TearDownTestCase(void);
-    void SetUp();
-    void TearDown();
-};
+		// HWMTEST_F(TEST_SUITE, TEST_TC, TEST_LEVEL, THREAD_NUM)
+		// THREAD_NUM可设置用例执行的线程数量。
+		// HWMTEST_F会创建指定数量的线程并执行被测函数。
+    	HWMTEST_F(AAFwkBaseObjectTest, Factorial_test_002, TestSize.Level1, 6)
+    	{
+			printf("Factorial_test_002 BEGIN\n");
+			factorial_test();
+			printf("Factorial_test_002 END\n");
+    	}
+		// 新增多线程接口MTEST_ADD_TASK(THREAD_ID,ThreadTestFunc),注册多线程，但不在该用例中执行，之后统一执行，适合多个用例组合场景下的多线程测试。
+		// THREAD_ID从0开始定义区别不同的线程，也可以使用随机THREAD_ID，即传入RANDOM_THREAD_ID,此场景下THREAD_ID是不会重复的。
+		// 新增多线程接口MTEST_POST_RUN(),统一执行之前注册的多线程用例。
+    	```
+		> **注意：** 用例注释与单线程用例标准一致。
+		
+	    在编写用例时，我们提供了四种用例模板供您选择。
+	
+	    |      类型 |    描述 |
+    	| ------------| ------------|
+    	| HWTEST(A,B,C)| 用例执行不依赖Setup&Teardown时，可选取|
+    	| HWTEST_F(A,B,C)| 用例执行(不含参数)依赖于Setup&Teardown时，可选取|
+		| HWMTEST_F(A,B,C,D)| 多线程用例执行依赖于Setup&Teardown时，可选取|
+    	| HWTEST_P(A,B,C)| 用例执行(含参数)依赖于Set&Teardown时，可选取|
 
-void CalculatorSubTest::SetUpTestCase(void)
-{
-    // input testsuit setup step，setup invoked before all testcases
-}
-
-void CalculatorSubTest::TearDownTestCase(void)
-{
-    // input testsuit teardown step，teardown invoked after all testcases
-}
-
-void CalculatorSubTest::SetUp(void)
-{
-    // input testcase setup step，setup invoked before each testcases
-}
-
-void CalculatorSubTest::TearDown(void)
-{
-    // input testcase teardown step，teardown invoked after each testcases
-}==
-```
-> **注意：** 在定义测试套时，测试套名称应与编译目标保持一致，采用大驼峰风格。
-
-5.测试用例实现，包含用例注释和逻辑实现
-
-```c++
-/**
- * @tc.name: integer_sub_001
- * @tc.desc: Verify the sub function.
- * @tc.type: FUNC
- * @tc.require: issueNumber
- */
-HWTEST_F(CalculatorSubTest, integer_sub_001, TestSize.Level1)
-{
-    //step 1:调用函数获取结果
-    int actual = Sub(4，0)；
-
-    //Step 2:使用断言比较预期与实际结果
-    EXPECT_EQ(4, actual);
-}
-```
-> **注意：** @tc.require: 格式必须以AR/SR或issue开头： 如：issueI56WJ7
-
-在编写用例时，我们提供了三种用例模板供您选择。
-
-| 类型            | 描述                                             |
-| --------------- | ------------------------------------------------ |
-| HWTEST(A,B,C)   | 用例执行不依赖Setup&Teardown时，可选取           |
-| HWTEST_F(A,B,C) | 用例执行(不含参数)依赖于Setup&Teardown时，可选取 |
-| HWTEST_P(A,B,C) | 用例执行(含参数)依赖于Set&Teardown时，可选取     |
 
 其中，参数A，B，C的含义如下：
 
@@ -303,6 +437,7 @@ HWTEST_F(CalculatorSubTest, integer_sub_001, TestSize.Level1)
 
 - 参数C为测试用例等级，具体分为门禁level0 以及非门禁level1-level4共五个等级，其中非门禁level1-level4等级的具体选取规则为：测试用例功能越重要，level等级越低。
 
+- 参数D为多线程用例执行的线程数量设置。
 
 **注意：**
 
@@ -721,31 +856,38 @@ group("unittest") {
 [Benchmark编译文件编写规范](https://gitee.com/openharmony/test_developertest/blob/master/libs/benchmark/README_zh.md)
       
 
-**编译入口配置文件ohos.build**
+**编译入口配置文件bundle.json**
 
 当完成用例编译配置文件编写后，需要进一步编写部件编译配置文件，以关联到具体的测试用例。
 ```
-"partA": {
-    "module_list": [
-          
+"build": {
+    "sub_component": [
+		"//test/testfwk/developer_test/examples/app_info:app_info",  
+		"//test/testfwk/developer_test/examples/detector:detector",  
+		"//test/testfwk/developer_test/examples/calculator:calculator"
     ],
     "inner_list": [
-          
+		{
+			"header": {
+				"header_base": "////test/testfwk/developer_test/examples/detector/include",
+				"header_files": [
+					"detector.h"
+				]
+		},
+		"name": "//test/testfwk/developer_test/examples/detector:detector"
+	  }
     ],
-    "system_kits": [
-          
-    ],
-    "test_list": [ //配置模块calculator下的test
-      "//system/subsystem/partA/calculator/test:unittest",  
-      "//system/subsystem/partA/calculator/test:fuzztest",
-      "//system/subsystem/partA/calculator/test:benchmarktest"
+    "test": [ //配置模块calculator下的test
+      "//test/testfwk/developer_test/examples/app_info/test:unittest",  
+      "//test/testfwk/developer_test/examples/calculator/test:unittest",
+      "//test/testfwk/developer_test/examples/calculator/test:fuzztest"
  }
 ```
 > **说明：** test_list中配置的是对应模块的测试用例。
 
 ## 测试资源配置
 
-试依赖资源主要包括测试用例在执行过程中需要的图片文件，视频文件、第三方库等对外的文件资源。
+试依赖资源主要包括测试用例在执行过程中需要的图片文件，视频文件、第三方库等对外的文件资源，目前只支持静态资源的配置。
 
 依赖资源文件配置步骤如下：
 
@@ -776,7 +918,7 @@ ohos_unittest("CalculatorSubTest") {
 >- target_name: 测试套的名称，定义在测试目录的BUILD.gn中。preparer: 表示该测试套执行前执行的动作。
 >- src="res": 表示测试资源位于test目录下的resource目录下，src="out"：表示位于out/release/$(部件)目录下。
 
-## 执行测试用例
+## 测试用例执行
 
 ### 配置文件
 
@@ -834,34 +976,8 @@ ohos_unittest("CalculatorSubTest") {
 ```
 >**说明：** 在执行测试用例之前，若使用HDC连接设备，用例仅需配置设备IP和端口号即可，其余信息均默认不修改。
 
-### 执行命令说明
-
-1. 启动测试框架
-	```
-	start.bat
-	```
-2. 选择产品形态
-
-    进入测试框架，系统会自动提示您选择产品形态，请根据实际的开发板进行选择。
-
-	如需手动添加，请在config/framework_config.xml的\<productform\>标签内增加产品项。
-
-3. 执行测试用例
-
-    当选择完产品形态，可参考如下指令执行测试用例。
-	```
-	run -t UT -ts CalculatorSubTest -tc interger_sub_00l
-	```
-	执行命令参数说明：
-	```
-	-t [TESTTYPE]: 指定测试用例类型，有UT，MST，ST，PERF，FUZZ，BENCHMARK等。（必选参数）
-	-tp [TESTPART]: 指定部件，可独立使用。
-	-tm [TESTMODULE]: 指定模块，不可独立使用，需结合-tp指定上级部件使用。
-	-ts [TESTSUITE]: 指定测试套，可独立使用。
-	-tc [TESTCASE]: 指定测试用例，不可独立使用，需结合-ts指定上级测试套使用。
-	-h : 帮助命令。
-
-#### Windows环境执行
+### Windows环境执行
+#### 测试用例编译
 
 由于Windows环境下无法实现用例编译，因此执行用例前需要在Linux环境下进行用例编译，用例编译命令：
 ```
@@ -874,7 +990,7 @@ ohos_unittest("CalculatorSubTest") {
 
 编译完成后，测试用例将自动保存在out/ohos-arm-release/packages/phone/tests目录下。
 
-##### 搭建执行环境
+#### 搭建执行环境
 1. 在Windows环境创建测试框架目录Test，并在此目录下创建testcase目录
 
 2. 从Linux环境拷贝测试框架developertest和xdevice到创建的Test目录下，拷贝编译好的测试用例到testcase目录下
@@ -894,6 +1010,56 @@ ohos_unittest("CalculatorSubTest") {
 	```
 	>**说明：** `<testcase>`标签表示是否需要编译用例；`<dir>`标签表示测试用例查找路径。
 
+#### 执行用例命令
+
+1. 启动测试框架
+	```
+	start.bat
+	```
+2. 选择产品形态
+
+    进入测试框架，系统会自动提示您选择产品形态，请根据实际的开发板进行选择。
+
+	如需手动添加，请在config/framework_config.xml的\<productform\>标签内增加产品项。
+
+3. 执行测试用例
+
+    当选择完产品形态，可参考如下指令执行TDD测试用例。
+	```
+	run -t UT
+	run -t UT -tp PartName
+	run -t UT -tp PartName -tm TestModuleName
+	run -t UT -tp ability_base -ts base_object_test
+	run -t UT -tp PartName -tm TestModuleName -ts CalculatorSubTest
+	run -t UT -ts base_object_test
+	run -t UT -ts base_object_test -tc AAFwkBaseObjectTest.BaseObject_test_001
+	run -t UT -ts CalculatorSubTest -tc CalculatorSubTest.interger_sub_00l
+	run -t UT -cov coverage
+	run -t UT -ra random
+	run -t UT -ts base_object_test --repeat 5
+	run -hl
+	run -rh 3
+	run --retry
+	```
+
+	
+	执行命令参数说明：
+	```
+	-t [TESTTYPE]: 指定测试用例类型，有UT，MST，ST，PERF，FUZZ，BENCHMARK，另外还有ACTS，HATS等。（必选参数）
+	-tp [TESTPART]: 指定部件，可独立使用。
+	-tm [TESTMODULE]: 指定模块，不可独立使用，需结合-tp指定上级部件使用。
+	-ts [TESTSUITE]: 指定测试套，可独立使用。
+	-tc [TESTCASE]: 指定测试用例，同时需要注明测试套内class名称，不可独立使用，需结合-ts指定上级测试套使用。
+	-cov [COVERAGE]: 覆盖率执行参数。
+	-h : 帮助命令
+	-ra [random]: c++用例乱序执行参数。
+	--repeat : 支持设置用例执行次数。
+	-hl [HISTORYLIST]: 显示最近10条测试用例，超过10条，只显示最近10条。
+	-rh [RUNHISTORY]: 执行历史记录的第几条记录运行
+	--retry：检查上次运行结果，如果有失败用例则重复测试
+	```
+
+	
 #### Linux环境执行
 
 如是直接连接Linux机器，则可直接使用上面的执行命令执行命令
@@ -912,6 +1078,109 @@ ohos_unittest("CalculatorSubTest") {
 	hdc_std -s xx.xx.xx.xx:8710 list targets
 	```
 	>**说明：** 此处IP填写设备侧IP地址。
+
+##### 执行用例命令
+1. 启动测试框架
+	```
+	./start.sh
+	```
+2. 选择产品形态
+
+    进入测试框架，系统会自动提示您选择产品形态，请根据实际的开发板进行选择。
+
+	若需要自测试框架编译测试用例，且没有找到需要的产品形态需手动添加，请在config/framework_config.xml的\<productform\>标签内增加产品项。
+
+	```
+	<framework_config>
+	 <productform>
+	  <option name="ipcamera_hispark_aries" />
+	  <option name="ipcamera_hispark_taurus" />
+	  <option name="wifiiot_hispark_pegasus" />
+	  <option name="" />
+	 </productform>
+	</framework_config>
+
+	```
+
+3. 执行测试用例
+
+    1）TDD命令
+
+    测试框架在执行用例时会根据指令找到所需用例，自动实现用例编译，执行过程，完成自动化测试。
+	```
+	run -t UT
+	run -t UT -tp PartName
+	run -t UT -tp PartName -tm TestModuleName
+	run -t UT -tp ability_base -ts base_object_test
+	run -t UT -tp PartName -tm TestModuleName -ts CalculatorSubTest
+	run -t UT -ts base_object_test
+	run -t UT -ts base_object_test -tc AAFwkBaseObjectTest.BaseObject_test_001
+	run -t UT -ts CalculatorSubTest -tc CalculatorSubTest.interger_sub_00l
+	run -t -cov coverage
+	run -t UT -ra random
+	run -t UT -tp PartName -pd partdeps
+	run -t UT -ts base_object_test --repeat 5
+	run -hl
+	run -rh 3
+	run --retry
+	```
+	执行命令参数说明：
+	```
+	-t [TESTTYPE]: 指定测试用例类型，有UT，MST，ST，PERF，FUZZ，BENCHMARK等。（必选参数）
+	-tp [TESTPART]: 指定部件，可独立使用。
+	-tm [TESTMODULE]: 指定模块，不可独立使用，需结合-tp指定上级部件使用。
+	-ts [TESTSUITE]: 指定测试套，可独立使用。
+	-tc [TESTCASE]: 指定测试用例，同时需要注明测试套内class名称，不可独立使用，需结合-ts指定上级测试套使用。
+	-cov [COVERAGE]: 覆盖率执行参数。
+	-h : 帮助命令
+	-ra [random]: c++用例乱序执行参数
+	-pd [partdeps]: 二级依赖部件执行参数
+	--repeat : 支持设置用例执行次数。
+	-hl [HISTORYLIST]: 显示最近10条测试用例，超过10条，只显示最近10条。
+	-rh [RUNHISTORY]: 执行历史记录的第几条记录运行
+	--retry：检查上次运行结果，如果有失败用例则重复测试
+	```
+
+	在linux下可以使用help命令查看有哪些产品形态、测试类型、支持的子系统、部件
+	```
+	查看帮助命令：help
+	查看show命令：help show
+	查看支持的设备形态：   show productlist
+	查看支持的测试类型：   show typelist
+	查看支持的测试子系统： show subsystemlist
+	查看支持的测试部件：   show partlist
+	```
+	2)ACTS/HATS命令
+
+	当选择完产品形态，可以参考如下执行ACTS或HATS测试用例
+	```
+	run -t ACTS
+	run -t HATS
+	run -t ACTS -ss arkui
+	run -t ACTS -ss arkui, modulemanager
+	run -t ACTS -ss arkui -ts ActsAceEtsTest
+	run -t HATS -ss telephony -ts HatsHdfV1RilServiceTest
+	run -t ACTS -ss arkui -tp ActsPartName
+	run -t ACTS -ss arkui -ts ActsAceEtsTest,ActsAceEtsResultTest
+	run -t HATS -ss powermgr -ts HatsPowermgrBatteryTest,HatsPowermgrThermalTest
+	run -t ACTS -ss arkui -ts ActsAceEtsTest -ta class:alphabetIndexerTest#alphabetIndexerTest001
+	run -t ACTS -ss arkui -ts ActsAceEtsTest -ta class:alphabetIndexerTest#alphabetIndexerTest001 --repeat 2
+	run -hl
+	run -rh 1
+	run --retry
+	```
+	执行命令参数说明，ACTS和HATS命令参数一致，与TDD有所不同：
+	```
+	-t [TESTTYPE]: 指定测试用例类型，有ACTS，HATS等。（必选参数）
+	-ss [SUBSYSTEM]: 指定子系统，可单独使用，且可以执行多个子系统，用逗号隔开。
+	-tp [TESTPART]: 指定部件，可独立使用。
+	-ts [TESTSUITE]: 指定测试套，可独立使用，且可以执行多个测试套，用逗号隔开。
+	-ta [TESTARGS]: 指定测试类测试方法，需结合-ts指定上级测试套使用。
+	--repeat : 支持设置用例执行次数。
+	-hl [HISTORYLIST]: 显示最近10条测试用例，超过10条，只显示最近10条。
+	-rh [RUNHISTORY]: 执行历史记录的第几条记录运行
+	--retry：检查上次运行结果，如果有失败用例则重复测试
+	```
 
 ## 查看测试结果
 
