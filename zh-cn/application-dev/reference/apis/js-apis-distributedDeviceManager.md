@@ -26,7 +26,7 @@ import deviceManager from '@ohos.distributedDeviceManager';
 ```
 
 
-## deviceManager.createDeviceManager<sup>10+</sup>
+## deviceManager.createDeviceManager
 
 createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager&gt;): void
 
@@ -58,7 +58,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
   }
   ```
 
-## DeviceBasicInfo<sup>10+</sup>
+## DeviceBasicInfo
 
 设备信息。
 
@@ -71,7 +71,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | deviceType             | number                    | 是    | 设备类型。    |
 | networkId              | string                    | 是    | 设备网络标识。  |
 
-## DeviceStatusChange<sup>10+</sup>
+## DeviceStatusChange
 
 表示设备状态变化的枚举。
 
@@ -84,7 +84,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | UNAVAILABLE | 2    | 设备物理下线，此时状态未知。           |
 
 
-## DiscoverMode<sup>10+</sup>
+## DiscoverMode
 
 表示发现模式的枚举。
 
@@ -98,7 +98,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | DISCOVER_MODE_ACTIVE  | 0xAA | 主动模式。 |
 
 
-## ExchangeFreq <sup>10+</sup>
+## ExchangeFreq 
 
 表示发现频率的枚举。
 
@@ -114,7 +114,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | SUPER_HIGH | 3    | 超高频率。 |
 
 
-## BindParam<sup>10+</sup>
+## BindParam
 
 认证参数。
 
@@ -125,7 +125,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | bindType  | number               | 是    | 认证类型。      |
 | extraInfo | {[key:string]&nbsp;:&nbsp;any} | 否    | 认证参数可扩展字段。可选，默认为undefined。 |
 
-## AuthInfo<sup>10+</sup>
+## AuthInfo
 
 认证信息。
 
@@ -139,7 +139,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | token     | number               | 是    | 认证Token。   |
 | extraInfo | {[key:string]&nbsp;:&nbsp;any} | 否    | 认证信息可扩展字段。可选，默认为undefined。 |
 
-## PublishInfo<sup>10+</sup>
+## PublishInfo
 
 发布设备参数
 
@@ -158,7 +158,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 设备管理实例，用于获取可信设备和本地设备的相关信息。在调用DeviceManager的方法前，需要先通过createDeviceManager构建一个DeviceManager实例dmInstance。
 
-### releaseDeviceManager<sup>10+</sup>
+### releaseDeviceManager
 
 releaseDeviceManager(): void
 
@@ -184,7 +184,7 @@ releaseDeviceManager(): void
   }
   ```
 
-### getAvailableDeviceListSync<sup>10+</sup>
+### getAvailableDeviceListSync
 
 getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;
 
@@ -216,7 +216,7 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;
   }
   ```
 
-### getAvailableDeviceList<sup>10+</sup>
+### getAvailableDeviceList
 
 getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt;): void
 
@@ -254,7 +254,7 @@ getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt
   }
   ```
 
-### getAvailableDeviceList<sup>10+</sup>
+### getAvailableDeviceList
 
 getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;
 
@@ -286,7 +286,7 @@ getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;
   });
   ```
 
-### getLocalDeviceNetworkIdSync<sup>10+</sup>
+### getLocalDeviceNetworkIdSync
 
 getLocalDeviceNetworkIdSync(): string
 
@@ -319,7 +319,7 @@ getLocalDeviceNetworkIdSync(): string
   }
   ```
 
-### getLocalDeviceNameSync<sup>10+</sup>
+### getLocalDeviceNameSync
 
 getLocalDeviceNameSync(): string
 
@@ -352,7 +352,7 @@ getLocalDeviceNameSync(): string
   }
   ```
 
-### getLocalDeviceTypeSync<sup>10+</sup>
+### getLocalDeviceTypeSync
 
 getLocalDeviceTypeSync(): number
 
@@ -385,7 +385,7 @@ getLocalDeviceTypeSync(): number
   }
   ```
 
-### getLocalDeviceIdSync<sup>10+</sup>
+### getLocalDeviceIdSync
 
 getLocalDeviceIdSync(): string
 
@@ -418,7 +418,7 @@ getLocalDeviceIdSync(): string
   }
   ```
 
-### getDeviceNameSync<sup>10+</sup>
+### getDeviceNameSync
 
 getDeviceNameSync(networkId: string): string;
 
@@ -459,7 +459,7 @@ getDeviceNameSync(networkId: string): string;
   }
   ```
 
-### getDeviceTypeSync<sup>10+</sup>
+### getDeviceTypeSync
 
 getDeviceTypeSync(networkId: string): number;
 
@@ -500,7 +500,7 @@ getDeviceTypeSync(networkId: string): number;
   }
   ```
 
-### startDeviceDiscovery<sup>10+</sup>
+### startDeviceDiscovery
 
 startDeviceDiscovery(subscribeId: number, filterOptions?: string): void;
 
@@ -545,7 +545,7 @@ startDeviceDiscovery(subscribeId: number, filterOptions?: string): void;
   }
   ```
 
-### stopDeviceDiscovery<sup>10+</sup>
+### stopDeviceDiscovery
 
 stopDeviceDiscovery(subscribeId: number): void
 
@@ -579,7 +579,7 @@ stopDeviceDiscovery(subscribeId: number): void
   }
   ```
 
-### publishDeviceDiscovery<sup>10+</sup>
+### publishDeviceDiscovery
 
 publishDeviceDiscovery(publishInfo: PublishInfo): void
 
@@ -622,7 +622,7 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
   }
   ```
 
-### unPublishDeviceDiscovery<sup>10+</sup>
+### unPublishDeviceDiscovery
 
 unPublishDeviceDiscovery(publishId: number): void
 
@@ -658,7 +658,7 @@ unPublishDeviceDiscovery(publishId: number): void
   }
   ```
 
-### bindDevice<sup>10+</sup>
+### bindDevice
 
 bindDevice(deviceId: string, bindParam: BindParam, callback: AsyncCallback<{deviceId: string}>): void;
 
@@ -711,7 +711,7 @@ bindDevice(deviceId: string, bindParam: BindParam, callback: AsyncCallback<{devi
   }
   ```
 
-### unbindDevice<sup>10+</sup>
+### unbindDevice
 
 unbindDevice(deviceId: string): void;
 
@@ -744,7 +744,7 @@ unbindDevice(deviceId: string): void;
   }
   ```
 
-### verifyAuthInfo<sup>10+</sup>
+### verifyAuthInfo
 
 verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string, level: number}&gt;): void
 
@@ -790,7 +790,7 @@ verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string,
   }
   ```
 
-### setUserOperation<sup>10+</sup>
+### setUserOperation
 
 setUserOperation(operateAction: number, params: string): void;
 
@@ -826,7 +826,7 @@ setUserOperation(operateAction: number, params: string): void;
   }
   ```
 
-### requestCredentialRegisterInfo<sup>10+</sup>
+### requestCredentialRegisterInfo
 
 requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{registerInfo: string}>): void;
 
@@ -863,7 +863,7 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
   }
   ```
 
-### importCredential<sup>10+</sup>
+### importCredential
 
 importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
 
@@ -916,7 +916,7 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
   }
   ```
 
-### deleteCredential<sup>10+</sup>
+### deleteCredential
 
 deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
 
@@ -954,7 +954,7 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
   }
   ```
 
-### on('uiStateChange')<sup>10+</sup>
+### on('uiStateChange')
 
 on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void;
 
@@ -986,7 +986,7 @@ ui状态变更回调。
   }
   ```
 
-### off('uiStateChange')<sup>10+</sup>
+### off('uiStateChange')
 
 off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
@@ -1013,7 +1013,7 @@ off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
   }
   ```
 
-### on('deviceStatusChange')<sup>10+</sup>
+### on('deviceStatusChange')
 
 on(type: 'deviceStatusChange', callback: Callback<{ action: DeviceStatusChange, device: DeviceBasicInfo }>): void;
 
@@ -1040,7 +1040,7 @@ on(type: 'deviceStatusChange', callback: Callback<{ action: DeviceStatusChange, 
   }
   ```
 
-### off('deviceStatusChange')<sup>10+</sup>
+### off('deviceStatusChange')
 
 off(type: 'deviceStatusChange', callback?: Callback<{ action: DeviceStatusChange, device: DeviceBasicInfo }>): void;
 
@@ -1067,7 +1067,7 @@ off(type: 'deviceStatusChange', callback?: Callback<{ action: DeviceStatusChange
   }
   ```
 
-### on('discoverSuccess')<sup>10+</sup>
+### on('discoverSuccess')
 
 on(type: 'discoverSuccess', callback: Callback<{ subscribeId: number, device: DeviceBasicInfo }>): void;
 
@@ -1094,7 +1094,7 @@ on(type: 'discoverSuccess', callback: Callback<{ subscribeId: number, device: De
   }
   ```
 
-### off('discoverSuccess')<sup>10+</sup>
+### off('discoverSuccess')
 
 off(type: 'discoverSuccess', callback?: Callback<{ subscribeId: number, device: DeviceBasicInfo }>): void;
 
@@ -1121,7 +1121,7 @@ off(type: 'discoverSuccess', callback?: Callback<{ subscribeId: number, device: 
   }
   ```
 
-### on('discoverFail')<sup>10+</sup>
+### on('discoverFail')
 
 on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: number }&gt;): void
 
@@ -1148,7 +1148,7 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
   }
   ```
 
-### off('discoverFail')<sup>10+</sup>
+### off('discoverFail')
 
 off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: number }&gt;): void
 
@@ -1175,7 +1175,7 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
   }
   ```
 
-### on('publishSuccess')<sup>10+</sup>
+### on('publishSuccess')
 
 on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void
 
@@ -1204,7 +1204,7 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
   }
   ```
 
-### off('publishSuccess')<sup>10+</sup>
+### off('publishSuccess')
 
 off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): void
 
@@ -1233,7 +1233,7 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
   }
   ```
 
-### on('publishFail')<sup>10+</sup>
+### on('publishFail')
 
 on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
@@ -1262,7 +1262,7 @@ on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: numbe
   }
   ```
 
-### off('publishFail')<sup>10+</sup>
+### off('publishFail')
 
 off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void
 
@@ -1291,7 +1291,7 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
   }
   ```
 
-### on('serviceDie')<sup>10+</sup>
+### on('serviceDie')
 
 on(type: 'serviceDie', callback: () =&gt; void): void
 
@@ -1318,7 +1318,7 @@ on(type: 'serviceDie', callback: () =&gt; void): void
   }
   ```
 
-### off('serviceDie')<sup>10+</sup>
+### off('serviceDie')
 
 off(type: 'serviceDie', callback?: () =&gt; void): void
 
@@ -1344,3 +1344,4 @@ off(type: 'serviceDie', callback?: () =&gt; void): void
     console.error("serviceDie errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
+  
