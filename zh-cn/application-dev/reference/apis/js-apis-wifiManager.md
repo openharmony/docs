@@ -1708,6 +1708,55 @@ get5GChannelList(): Array&lt;number&gt;
 		console.error("failed:" + JSON.stringify(error));
 	}
 ```
+## wifi.getDisconnectedReason<sup>10+</sup>
+
+getDisconnectedReason(): DisconnectedReason
+
+获取最近一次断连原因
+
+**系统接口：** 此接口为系统接口。
+
+**需要权限：** ohos.permission.GET_WIFI_INFO 和 ohos.permission.GET_WIFI_CONFIG
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+**错误码：**
+
+以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
+
+| **错误码ID** | **错误信息** |
+  | -------- | -------- |
+| 2601000  | Operation failed.|
+
+**返回值：**
+
+| **类型** | **说明** |
+| -------- | -------- |
+| [DisconnectedReason](#DisconnectedReason10) | 最近断开的原因 |
+
+**示例：**
+```js
+	import wifiManager from '@ohos.wifiManager';
+
+	try {
+		let disconnectedReason = wifiManager.getDisconnectedReason();	
+        console.info("disconnectedReason:" + disconnectedReason);
+	}catch(error){
+		console.error("failed:" + JSON.stringify(error));
+	}
+```
+
+## DisconnectedReason <sup>10+</sup>
+
+表示wifi断开原因的枚举。
+
+**系统能力：** SystemCapability.Communication.WiFi.STA
+
+| 名称 | 值 | 说明 |
+| -------- | -------- | -------- |
+| DISC_REASON_DEFAULT  | 0 | 默认原因。 |
+| DISC_REASON_WRONG_PWD  | 1 | 密码错误。 |
+| DISC_REASON_CONNECTION_FULL  | 2 | 路由器的连接数已达到最大数量限制。 |
 
 ## wifi.enableHotspot<sup>9+</sup>
 
@@ -2284,6 +2333,8 @@ getP2pLocalDevice(callback: AsyncCallback&lt;WifiP2pDevice&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | callback | AsyncCallback&lt;[WifiP2pDevice](#wifip2pdevice9)&gt; | 是 | 回调函数。当操作成功时，err为0，data表示本端设备信息。如果error为非0，表示处理出现错误。 |
+
+**错误码：**
 
 | **错误码ID** | **错误信息** |
   | -------- | -------- |
