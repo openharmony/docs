@@ -1121,6 +1121,60 @@ off(type: 'discoverSuccess', callback?: Callback<{ subscribeId: number, device: 
   }
   ```
 
+### on('deviceNameChange')
+
+on(type: 'deviceNameChange', callback: Callback<{ deviceName: string }>): void;
+
+注册设备名称改变回调监听。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**参数：**
+
+  | 参数名       | 类型                                     | 必填   | 说明                             |
+  | -------- | ---------------------------------------- | ---- | ------------------------------ |
+  | type     | string                                   | 是    | 注册设备名称改变回调，以便在设备名称改变时通知应用程序。 |
+  | callback | Callback&lt;{&nbsp;deviceName:&nbsp;string}&gt; | 是    | 注册设备名称改变的回调方法。                 |
+
+**示例：**
+
+  ```js
+  try {
+    dmInstance.on('deviceNameChange', (data) => {
+        console.info("deviceNameChange on:" + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("deviceNameChange errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
+
+### off('deviceNameChange')
+
+off(type: 'deviceNameChange', callback?: Callback<{ deviceName: string }>): void;
+
+取消注册设备名称改变回调监听。
+
+**系统能力**：SystemCapability.DistributedHardware.DeviceManager
+
+**参数：**
+
+  | 参数名       | 类型                                     | 必填   | 说明                             |
+  | -------- | ---------------------------------------- | ---- | ------------------------------ |
+  | type     | string                                   | 是    | 取消注册设备名称改变回调。 |
+  | callback | Callback&lt;{&nbsp;deviceName:&nbsp;string}&gt; | 否    | 指示要取消注册设备名称改变的回调方法。                 |
+
+**示例：**
+
+  ```js
+  try {
+    dmInstance.off('deviceNameChange', (data) => {
+      console.info('deviceNameChange' + JSON.stringify(data));
+    });
+  } catch (err) {
+    console.error("deviceNameChange errCode:" + err.code + ",errMessage:" + err.message);
+  }
+  ```
+
 ### on('discoverFail')
 
 on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: number }&gt;): void
