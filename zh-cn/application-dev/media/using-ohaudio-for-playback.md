@@ -1,4 +1,4 @@
-# OHAudio
+# 使用OHAudio开发音频播放功能
 
 OHAudio是OpenHarmony在API10中引入的一套全新C API，此API在设计上实现归一，同时支持普通音频通路和低时延通路。
 
@@ -31,72 +31,76 @@ OH_AudioStreamBuilder_Destroy(builder);
 ```
 
 ## 开发步骤及注意事项
-详细的API说明请参考OHAudio API参考。
+
+详细的API说明请参考[OHAudio API参考](../reference/native-apis/_o_h_audio.md)。
+
 开发者可以通过以下几个步骤来实现一个简单的播放功能。
 
-**1. 创建构造器**
+1. 创建构造器
 
-```
-OH_AudioStreamBuilder* builder;
-OH_AudioStreamBuilder_Create(&builder, AUDIOSTREAM_TYPE_RERNDERER);
-```
+    ```c++
+    OH_AudioStreamBuilder* builder;
+    OH_AudioStreamBuilder_Create(&builder, AUDIOSTREAM_TYPE_RERNDERER);
+    ```
 
-**2. 配置音频流参数**
+2. 配置音频流参数
 
-创建音频播放构造器后，可以设置音频流所需要的参数，可以参考下面的案例。
+    创建音频播放构造器后，可以设置音频流所需要的参数，可以参考下面的案例。
 
-```
-OH_AudioStreamBuilder_SetSamplingRate(builder, rate);
-OH_AudioStreamBuilder_SetChannelCount(builder, channelCount);
-OH_AudioStreamBuilder_SetSampleFormat(builder, format);
-OH_AudioStreamBuilder_SetEncodingType(builder, encodingType);
-OH_AudioStreamBuilder_SetRendererInfo(builder, usage, content);
-```
+    ```c++
+    OH_AudioStreamBuilder_SetSamplingRate(builder, rate);
+    OH_AudioStreamBuilder_SetChannelCount(builder, channelCount);
+    OH_AudioStreamBuilder_SetSampleFormat(builder, format);
+    OH_AudioStreamBuilder_SetEncodingType(builder, encodingType);
+    OH_AudioStreamBuilder_SetRendererInfo(builder, usage, content);
+    ```
 
-注意，播放的音频数据要通过回调接口写入，开发者要实现回调接口，使用`OH_AudioStreamBuilder_SetRendererCallback`设置回调函数。回调函数接口声明如下。
+    注意，播放的音频数据要通过回调接口写入，开发者要实现回调接口，使用`OH_AudioStreamBuilder_SetRendererCallback`设置回调函数。回调函数接口声明如下。
 
-```
-typedef struct OH_AudioRenderer_Callbacks_Struct {
-    /**
-     * This function pointer will point to the callback function that
-     * is used to write audio data
-     */
-    int32_t (*OH_AudioRenderer_OnWriteData)(
-            OH_AudioRenderer* renderer,
-            void* userData,
-            void* buffer,
-            int32_t lenth);
-} OH_AudioRenderer_Callbacks;
-```
+    ```c++
+    typedef struct OH_AudioRenderer_Callbacks_Struct {
+        /**
+        * This function pointer will point to the callback function that
+        * is used to write audio data
+        */
+        int32_t (*OH_AudioRenderer_OnWriteData)(
+                OH_AudioRenderer* renderer,
+                void* userData,
+                void* buffer,
+                int32_t lenth);
+    } OH_AudioRenderer_Callbacks;
+    ```
 
-**3. 设置回调函数**
+3. 设置回调函数
 
-```
-OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
-```
+    ```c++
+    OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
+    ```
 
-**4. 构造播放音频流**
+4. 构造播放音频流
 
-```
-OH_AudioRenderer* audioRenderer;
-OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
-```
+    ```c++
+    OH_AudioRenderer* audioRenderer;
+    OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+    ```
 
-**5. 使用音频流**
+5. 使用音频流
 
-音频流包含下面接口，用来实现对音频流的控制。
+    音频流包含下面接口，用来实现对音频流的控制。
 
-| 接口                                                         | 说明         |
-| ------------------------------------------------------------ | ------------ |
-| OH_AudioStream_Result OH_AudioRenderer_Start(OH_AudioRenderer* renderer) | 开始播放     |
-| OH_AudioStream_Result OH_AudioRenderer_Pause(OH_AudioRenderer* renderer) | 暂停播放     |
-| OH_AudioStream_Result OH_AudioRenderer_Stop(OH_AudioRenderer* renderer) | 停止播放     |
-| OH_AudioStream_Result OH_AudioRenderer_Flush(OH_AudioRenderer* renderer) | 释放缓存数据 |
-| OH_AudioStream_Result OH_AudioRenderer_Release(OH_AudioRenderer* renderer) | 释放播放实例 |
+    | 接口                                                         | 说明         |
+    | ------------------------------------------------------------ | ------------ |
+    | OH_AudioStream_Result OH_AudioRenderer_Start(OH_AudioRenderer* renderer) | 开始播放     |
+    | OH_AudioStream_Result OH_AudioRenderer_Pause(OH_AudioRenderer* renderer) | 暂停播放     |
+    | OH_AudioStream_Result OH_AudioRenderer_Stop(OH_AudioRenderer* renderer) | 停止播放     |
+    | OH_AudioStream_Result OH_AudioRenderer_Flush(OH_AudioRenderer* renderer) | 释放缓存数据 |
+    | OH_AudioStream_Result OH_AudioRenderer_Release(OH_AudioRenderer* renderer) | 释放播放实例 |
 
 ## 完整示例
+
 参考以下示例，完成一次播放音频的完整流程。
-```
+
+```c++
 #include <iostream>
 #include <cstdint>
 #include <cstdio>

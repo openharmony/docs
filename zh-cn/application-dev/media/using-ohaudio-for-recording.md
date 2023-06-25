@@ -1,4 +1,4 @@
-# OHAudio
+# 使用OHAudio开发音频录制功能
 
 OHAudio是OpenHarmony在API10中引入的一套全新C API，此API在设计上实现归一，同时支持普通音频通路和低时延通路。
 
@@ -31,70 +31,74 @@ OH_AudioStreamBuilder_Destroy(builder);
 ```
 
 ## 开发步骤及注意事项
-详细的API说明请参考OHAudio API参考。
+
+详细的API说明请参考[OHAudio API参考](../reference/native-apis/_o_h_audio.md)。
+
 开发者可以通过以下几个步骤来实现一个简单的录制功能。
 
-1. **创建构造器**
 
-```
-OH_AudioStreamBuilder* builder;
-OH_AudioStreamBuilder_Create(&builder, AUDIOSTREAM_TYPE_CAPTURER);
-```
+1. 创建构造器
 
-2. **配置音频流参数**
+    ```c++
+    OH_AudioStreamBuilder* builder;
+    OH_AudioStreamBuilder_Create(&builder, AUDIOSTREAM_TYPE_CAPTURER);
+    ```
 
-创建音频播放构造器后，可以设置音频流所需要的参数，可以参考下面的案例。
+2. 配置音频流参数
 
-```
-OH_AudioStreamBuilder_SetSamplingRate(builder, rate);
-OH_AudioStreamBuilder_SetChannelCount(builder, channelCount);
-OH_AudioStreamBuilder_SetSampleFormat(builder, format);
-OH_AudioStreamBuilder_SetEncodingType(builder, encodingType);
-OH_AudioStreamBuilder_SetCapturerInfo(builder, sourceType);
-```
+    创建音频播放构造器后，可以设置音频流所需要的参数，可以参考下面的案例。
 
-同样，音频录制的音频数据要通过回调接口写入，开发者要实现回调接口，使用`OH_AudioStreamBuilder_SetCapturerCallback`设置回调函数。回调函数接口声明如下。
+    ```c++
+    OH_AudioStreamBuilder_SetSamplingRate(builder, rate);
+    OH_AudioStreamBuilder_SetChannelCount(builder, channelCount);
+    OH_AudioStreamBuilder_SetSampleFormat(builder, format);
+    OH_AudioStreamBuilder_SetEncodingType(builder, encodingType);
+    OH_AudioStreamBuilder_SetCapturerInfo(builder, sourceType);
+    ```
 
-```
-typedef struct OH_AudioCapturer_Callbacks_Struct {
-    /**
-     * This function pointer will point to the callback function that
-     * is used to read audio data
-     */
-    int32_t (*OH_AudioCapturer_OnReadData)(
-            OH_AudioCapturer* capturer,
-            void* userData,
-            void* buffer,
-            int32_t lenth);
-} OH_AudioCapturer_Callbacks;
-```
+    同样，音频录制的音频数据要通过回调接口写入，开发者要实现回调接口，使用`OH_AudioStreamBuilder_SetCapturerCallback`设置回调函数。回调函数接口声明如下。
 
-3. **设置音频回调函数**
+    ```c++
+    typedef struct OH_AudioCapturer_Callbacks_Struct {
+        /**
+        * This function pointer will point to the callback function that
+        * is used to read audio data
+        */
+        int32_t (*OH_AudioCapturer_OnReadData)(
+                OH_AudioCapturer* capturer,
+                void* userData,
+                void* buffer,
+                int32_t lenth);
+    } OH_AudioCapturer_Callbacks;
+    ```
 
-```
-OH_AudioStreamBuilder_SetCapturerCallback(builder, callbacks, nullptr);
-```
+3. 设置音频回调函数
 
-4. **构造播放音频流**
+    ```c++
+    OH_AudioStreamBuilder_SetCapturerCallback(builder, callbacks, nullptr);
+    ```
 
-```
-OH_AudioCapturer* audioCapturer;
-OH_AudioStreamBuilder_GenerateCapturer(builder, &audioCapturer);
-```
+4. 构造播放音频流
 
-5. **使用音频流**
+    ```c++
+    OH_AudioCapturer* audioCapturer;
+    OH_AudioStreamBuilder_GenerateCapturer(builder, &audioCapturer);
+    ```
 
-录制音频流包含下面接口，用来实现对音频流的控制。
+5. 使用音频流
 
-| 接口                                                         | 说明         |
-| ------------------------------------------------------------ | ------------ |
-| OH_AudioStream_Result OH_AudioCapturer_Start(OH_AudioCapturer* capturer) | 开始录制     |
-| OH_AudioStream_Result OH_AudioCapturer_Pause(OH_AudioCapturer* capturer) | 暂停录制     |
-| OH_AudioStream_Result OH_AudioCapturer_Stop(OH_AudioCapturer* capturer) | 停止录制     |
-| OH_AudioStream_Result OH_AudioCapturer_Flush(OH_AudioCapturer* capturer) | 释放缓存数据 |
-| OH_AudioStream_Result OH_AudioCapturer_Release(OH_AudioCapturer* capturer) | 释放录制实例 |
+    录制音频流包含下面接口，用来实现对音频流的控制。
+
+    | 接口                                                         | 说明         |
+    | ------------------------------------------------------------ | ------------ |
+    | OH_AudioStream_Result OH_AudioCapturer_Start(OH_AudioCapturer* capturer) | 开始录制     |
+    | OH_AudioStream_Result OH_AudioCapturer_Pause(OH_AudioCapturer* capturer) | 暂停录制     |
+    | OH_AudioStream_Result OH_AudioCapturer_Stop(OH_AudioCapturer* capturer) | 停止录制     |
+    | OH_AudioStream_Result OH_AudioCapturer_Flush(OH_AudioCapturer* capturer) | 释放缓存数据 |
+    | OH_AudioStream_Result OH_AudioCapturer_Release(OH_AudioCapturer* capturer) | 释放录制实例 |
 
 ## 完整示例
+
 参考以下示例，完成一次录制`10s`时长音频的完整流程。
 
 ```
