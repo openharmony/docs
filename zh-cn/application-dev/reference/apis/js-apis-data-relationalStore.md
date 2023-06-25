@@ -336,38 +336,39 @@ class EntryAbility extends UIAbility {
 
 ## AssetStatus<sup>10+</sup>
 
-描述资产附件的状态。请使用枚举名称而非枚举值。
+描述资产附件的状态枚举z。请使用枚举名称而非枚举值。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | 名称                              | 值   | 说明             |
 | ------------------------------- | --- | -------------- |
-| ASSET_NORMAL<sup>10+</sup>      | -   | 表示资产状态正常。      |
-| ASSET_INSERT<sup>10+</sup>      | -   | 表示资产需要插入到云端。   |
-| ASSET_UPDATE<sup>10+</sup>      | -   | 表示资产需要更新到云端。   |
-| ASSET_DELETE<sup>10+</sup>      | -   | 表示资产需要在云端删除。   |
-| ASSET_ABNORMAL<sup>10+</sup>    | -   | 表示资产状态异常。      |
-| ASSET_DOWNLOADING<sup>10+</sup> | -   | 表示资产正在下载到本地设备。 |
+| ASSET_NORMAL     | -   | 表示资产状态正常。      |
+| ASSET_ABNORMAL    | -   | 表示资产状态异常。      |
+| ASSET_DOWNLOADING | -   | 表示资产正在下载到本地设备。 |
 
 ## Asset<sup>10+</sup>
 
-记录资产附件的相关信息。资产类型的相关接口暂不支持Datashare。
+记录资产附件（文件、图片、视频等类型文件）的相关信息。资产类型的相关接口暂不支持Datashare。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | 名称          | 类型                          | 必填  | 说明           |
 | ----------- | --------------------------- | --- | ------------ |
 | name        | string                      | 是   | 资产的名称。       |
-| uri         | string                      | 是   | 资产的uri       |
+| uri         | string                      | 是   | 资产的uri。       |
 | path        | string                      | 是   | 资产的路径。       |
-| createTime  | string                      | 是   | 资产被创建出来的时间   |
-| modify Time | string                      | 是   | 资产最后一次被修改的时间 |
-| size        | string                      | 是   | 资产占用空间的大小    |
-| status      | [AssetStatus](#assetstatus) | 否   | 资产的状态        |
+| createTime  | string                      | 是   | 资产被创建出来的时间。   |
+| modify Time | string                      | 是   | 资产最后一次被修改的时间。 |
+| size        | string                      | 是   | 资产占用空间的大小。    |
+| status      | [AssetStatus](#assetstatus10) | 否   | 资产的状态，默认值为ASSET_NORMAL。        |
 
 ## Assets<sup>10+</sup>
 
-表示[Asset](#asset)类型的数组
+表示[Asset](#asset10)类型的数组
+
+| 类型    | 说明                 |
+| ------- | -------------------- |
+| [Asset](#asset10)[] | 表示[Asset](#asset10)类型的数组。   |
 
 ## ValueType
 
@@ -381,9 +382,9 @@ class EntryAbility extends UIAbility {
 | number  | 表示值类型为数字。   |
 | string  | 表示值类型为字符。   |
 | boolean | 表示值类型为布尔值。 |
-| Uint8Array           | 表示值类型为uint8类型的数组            |
-| Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset)     |
-| Asstes<sup>10+</sup> | 表示值类型为附件数组[Assets](#assets) |
+| Uint8Array           | 表示值类型为Uint8类型的数组。            |
+| Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset10)。     |
+| Asstes<sup>10+</sup> | 表示值类型为附件数组[Assets](#assets10)。 |
 
 ## ValuesBucket
 
@@ -423,14 +424,14 @@ class EntryAbility extends UIAbility {
 
 ## ChangeType<sup>10+</sup>
 
-描述数据变更类型。
+描述数据变更类型的枚举。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
 | 名称                         | 值   | 说明                         |
 | -------------------------- | --- | -------------------------- |
-| DATA_CHANGE<sup>10+</sup>  | -   | 表示是数据发生变更。请使用枚举名称而非枚举值。    |
-| ASSET_CHANGE<sup>10+</sup> | -   | 表示是资产附件发生了变更。请使用枚举名称而非枚举值。 |
+| DATA_CHANGE  | -   | 表示是数据发生变更。请使用枚举名称而非枚举值。    |
+| ASSET_CHANGE | -   | 表示是资产附件发生了变更。请使用枚举名称而非枚举值。 |
 
 ## ChangeInfo<sup>10+</sup>
 
@@ -440,20 +441,20 @@ class EntryAbility extends UIAbility {
 
 | 名称       | 类型                                 | 必填  | 说明                                                                                                                   |
 | -------- | ---------------------------------- | --- | -------------------------------------------------------------------------------------------------------------------- |
-| table    | string                             | 是   | 表示发生变化的表的名称。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.                                   |
-| type     | [ChangeType](#changetype)          | 是   | 表示发生变化的类型。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.                                     |
-| inserted | Array\<string\> \| Array\<number\> | 是   | 记录插入数据的位置，如果主键是string类型，该值是主键的值，否则该值表示插入数据的行号。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore. |
-| updated  | Array\<string\> \| Array\<number\> | 是   | 记录更新数据的位置，如果主键是string类型，该值是主键的值，否则该值表示更新数据的行号。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore. |
-| deleted  | Array\<string\> \| Array\<number\> | 是   | 记录删除数据的位置，如果主键是string类型，该值是主键的值，否则该值表示删除数据的行号。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore. |
+| table    | string                             | 是   | 表示发生变化的表的名称。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core                                   |
+| type     | [ChangeType](#changetype)          | 是   | 表示发生变化的数据的类型，数据或者资产附件发生变化。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core  |
+| inserted | Array\<string\> \| Array\<number\> | 是   | 记录插入数据的位置，如果该表的主键是string类型，该值是主键的值，否则该值表示插入数据的行号。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core  |
+| updated  | Array\<string\> \| Array\<number\> | 是   | 记录更新数据的位置，如果该表的主键是string类型，该值是主键的值，否则该值表示更新数据的行号。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core  |
+| deleted  | Array\<string\> \| Array\<number\> | 是   | 记录删除数据的位置，如果该表的主键是string类型，该值是主键的值，否则该值表示删除数据的行号。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core  |
 
 ## DistributedType<sup>10+</sup>
 
-描述表的分布式类型。
+描述表的分布式类型的枚举。
 
-| 名称                              | 值   | 说明                                                                                                 |
-| ------------------------------- | --- | -------------------------------------------------------------------------------------------------- |
-| DISTRIBUTED_DEVICE<sup>10+</sup>| 0   | 表示表在不同设备之间分布式。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.               |
-| DISTRIBUTED_CLOUD<sup>10+</sup> | -   | 表示表在设备和云端之间分布式。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| 名称                | 值   | 说明                                                                                                 |
+| ------------------ | --- | -------------------------------------------------------------------------------------------------- |
+| DISTRIBUTED_DEVICE | 0   | 表示表在不同设备之间分布式。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.               |
+| DISTRIBUTED_CLOUD  | -   | 表示表在设备和云端之间分布式。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 
 ## DistributedConfig<sup>10+</sup>
 
@@ -461,9 +462,9 @@ class EntryAbility extends UIAbility {
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 名称                     | 类型      | 必填  | 说明                                                     |
-| ---------------------- | ------- | --- | ------------------------------------------------------ |
-| autoSync<sup>10+</sup> | boolean | 是   | 该值为true时，表示该表支持自动同步和手动同步；该值为false时，表示该表只支持手动同步，不支持自动同步 |
+| 名称     | 类型      | 必填  | 说明                                                     |
+| -------- | ------- | --- | ------------------------------------------------------ |
+| autoSync | boolean | 是   | 该值为true时，表示该表支持自动同步和手动同步；该值为false时，表示该表只支持手动同步，不支持自动同步。 |
 
 ## ConflictResolution<sup>10+</sup>
 
@@ -3001,7 +3002,7 @@ promise.then(() => {
 ```
 ### setDistributedTables<sup>10+</sup>
 
-setDistributedTables(tables: Array&lt;string&gt;, type: [DistributedType](#distributedtype), callback: AsyncCallback&lt;void&gt;): void
+setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, callback: AsyncCallback&lt;void&gt;): void
 
 设置分布式列表，使用callback异步回调。
 
@@ -3013,18 +3014,13 @@ setDistributedTables(tables: Array&lt;string&gt;, type: [DistributedType](#distr
 
 | 参数名      | 类型                                  | 必填  | 说明              |
 | -------- | ----------------------------------- | --- | --------------- |
-| tables   | Array&lt;string&gt;                 | 是   | 要设置的分布式列表表名     |
-| type     | [DistributedType](#distributedtype) | 是   | 表的分布式类型         |
+| tables   | Array&lt;string&gt;                 | 是   | 要设置的分布式列表表名。     |
+| type     | [DistributedType](#distributedtype) | 是   | 表的分布式类型。         |
 | callback | AsyncCallback&lt;void&gt;           | 是   | 指定callback回调函数。 |
 
 **错误码：**
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                         |
-| --------- | -------------------------------- |
-| 401       | The parameter type is incorrect. |
-| 801       | Capability not supported.        |
 
 **示例：**
 
@@ -3053,7 +3049,7 @@ store.setDistributedTables(["EMPLOYEE"], DistributedType.DISTRIBUTED_CLOUD, func
 | 参数名    | 类型                                      | 必填  | 说明           |
 | ------ | --------------------------------------- | --- | ------------ |
 | tables | Array&lt;string&gt;                     | 是   | 要设置的分布式列表表名。 |
-| type   | [DistributedType](#distributedtype)     | 否   | 表的分布式类型      |
+| type   | [DistributedType](#distributedtype)     | 否   | 表的分布式类型。      |
 | config | [DistributedConfig](#distributedconfig) | 否   | 表的分布式配置信息。   |
 
 **返回值**：
@@ -3061,15 +3057,6 @@ store.setDistributedTables(["EMPLOYEE"], DistributedType.DISTRIBUTED_CLOUD, func
 | 类型                  | 说明               |
 | ------------------- | ---------------- |
 | Promise&lt;void&gt; | 无返回结果的Promise对象。 |
-
-**错误码：**
-
-以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
-
-| **错误码ID** | **错误信息**                         |
-| --------- | -------------------------------- |
-| 401       | The parameter type is incorrect. |
-| 801       | Capability not supported.        |
 
 **示例：**
 
@@ -3917,7 +3904,7 @@ const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
 
 ### getAsset<sup>10+</sup>
 
-getAsset(columnIndex: number): [Asset](#asset)
+getAsset(columnIndex: number): Asset
 
 以[Asset](#asset)形式获取当前行中指定列的值。
 
@@ -3941,7 +3928,6 @@ getAsset(columnIndex: number): [Asset](#asset)
 
 | **错误码ID** | **错误信息**                                                     |
 | --------- | ------------------------------------------------------------ |
-| 401       | The parameter check failed.                                  |
 | 14800013  | The column value is null or the column type is incompatible. |
 
 **示例：**
@@ -3952,7 +3938,7 @@ const doc = resultSet.getAsset(resultSet.getColumnIndex("DOC"));
 
 ### getAssets<sup>10+</sup>
 
-getAsset(columnIndex: number): [Assets](#assets)
+getAsset(columnIndex: number): Assets
 
 以[Assets](#assets)形式获取当前行中指定列的值。
 
@@ -3966,9 +3952,9 @@ getAsset(columnIndex: number): [Assets](#assets)
 
 **返回值：**
 
-| 类型                              | 说明                           |
-| ------------------------------- | ---------------------------- |
-| [Assets](#assets)<sup>10+</sup> | 以[Assets](#assets)形式返回指定列的值。 |
+| 类型              | 说明                           |
+| ---------------- | ---------------------------- |
+| [Assets](#assets)| 以[Assets](#assets)形式返回指定列的值。 |
 
 **错误码：**
 
@@ -3976,7 +3962,6 @@ getAsset(columnIndex: number): [Assets](#assets)
 
 | **错误码ID** | **错误信息**                                                     |
 | --------- | ------------------------------------------------------------ |
-| 401       | The parameter check failed.                                  |
 | 14800013  | The column value is null or the column type is incompatible. |
 
 **示例：**
