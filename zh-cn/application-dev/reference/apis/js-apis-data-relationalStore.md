@@ -334,6 +334,41 @@ class EntryAbility extends UIAbility {
 | S3   | 3    | 表示数据库的安全级别为高级别，当数据泄露时会产生重大影响。例如，包含用户运动、健康、位置等信息的数据库。 |
 | S4   | 4    | 表示数据库的安全级别为关键级别，当数据泄露时会产生严重影响。例如，包含认证凭据、财务数据等信息的数据库。 |
 
+## AssetStatus<sup>10+</sup>
+
+描述资产附件的状态。请使用枚举名称而非枚举值。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称                              | 值   | 说明             |
+| ------------------------------- | --- | -------------- |
+| ASSET_NORMAL<sup>10+</sup>      | -   | 表示资产状态正常。      |
+| ASSET_INSERT<sup>10+</sup>      | -   | 表示资产需要插入到云端。   |
+| ASSET_UPDATE<sup>10+</sup>      | -   | 表示资产需要更新到云端。   |
+| ASSET_DELETE<sup>10+</sup>      | -   | 表示资产需要在云端删除。   |
+| ASSET_ABNORMAL<sup>10+</sup>    | -   | 表示资产状态异常。      |
+| ASSET_DOWNLOADING<sup>10+</sup> | -   | 表示资产正在下载到本地设备。 |
+
+## Asset<sup>10+</sup>
+
+记录资产附件的相关信息。资产类型的相关接口暂不支持Datashare。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称          | 类型                          | 必填  | 说明           |
+| ----------- | --------------------------- | --- | ------------ |
+| name        | string                      | 是   | 资产的名称。       |
+| uri         | string                      | 是   | 资产的uri       |
+| path        | string                      | 是   | 资产的路径。       |
+| createTime  | string                      | 是   | 资产被创建出来的时间   |
+| modify Time | string                      | 是   | 资产最后一次被修改的时间 |
+| size        | string                      | 是   | 资产占用空间的大小    |
+| status      | [AssetStatus](#assetstatus) | 否   | 资产的状态        |
+
+## Assets<sup>10+</sup>
+
+表示[Asset](#asset)类型的数组
+
 ## ValueType
 
 用于表示允许的数据字段类型。
@@ -342,9 +377,13 @@ class EntryAbility extends UIAbility {
 
 | 类型    | 说明                 |
 | ------- | -------------------- |
+| null    | 表示值类型为空。   |
 | number  | 表示值类型为数字。   |
 | string  | 表示值类型为字符。   |
 | boolean | 表示值类型为布尔值。 |
+| Uint8Array           | 表示值类型为uint8类型的数组            |
+| Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset)     |
+| Asstes<sup>10+</sup> | 表示值类型为附件数组[Assets](#assets) |
 
 ## ValuesBucket
 
@@ -352,9 +391,9 @@ class EntryAbility extends UIAbility {
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
-| 键类型 | 值类型                                                      |
-| ------ | ----------------------------------------------------------- |
-| string | [ValueType](#valuetype)\|&nbsp;Uint8Array&nbsp;\|&nbsp;null |
+| 键类型 | 值类型                   |
+| ------ | ----------------------- |
+| string | [ValueType](#valuetype) |
 
 ## SyncMode
 
@@ -364,8 +403,11 @@ class EntryAbility extends UIAbility {
 
 | 名称           | 值   | 说明                               |
 | -------------- | ---- | ---------------------------------- |
-| SYNC_MODE_PUSH | 0    | 表示数据从本地设备推送到远程设备。 |
-| SYNC_MODE_PULL | 1    | 表示数据从远程设备拉至本地设备。   |
+| SYNC_MODE_PUSH                       | 0   | 表示数据从本地设备推送到远程设备。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core                     |
+| SYNC_MODE_PULL                       | 1   | 表示数据从远程设备拉至本地设备。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core                      |
+| SYNC_MODE_TIME_FIRST<sup>10+</sup>   | -   | 表示数据从修改时间较近的一端同步到修改时间较远的一端。请使用枚举名称而非枚举值。 <br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | -   | 表示数据从本地设备同步到云端。请使用枚举名称而非枚举值。 <br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client             |
+| SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | -   | 表示数据从云端同步到本地设备。请使用枚举名称而非枚举值。 <br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client             |
 
 ## SubscribeType
 
@@ -378,6 +420,50 @@ class EntryAbility extends UIAbility {
 | SUBSCRIBE_TYPE_REMOTE | 0    | 订阅远程数据更改。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core |
 | SUBSCRIBE_TYPE_CLOUD<sup>10+</sup> | -  | 订阅云端数据更改。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 | SUBSCRIBE_TYPE_CLOUD_DETAILS<sup>10+</sup> | -  | 订阅云端数据更改详情。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+
+## ChangeType<sup>10+</sup>
+
+描述数据变更类型。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称                         | 值   | 说明                         |
+| -------------------------- | --- | -------------------------- |
+| DATA_CHANGE<sup>10+</sup>  | -   | 表示是数据发生变更。请使用枚举名称而非枚举值。    |
+| ASSET_CHANGE<sup>10+</sup> | -   | 表示是资产附件发生了变更。请使用枚举名称而非枚举值。 |
+
+## ChangeInfo<sup>10+</sup>
+
+记录端云同步过程详情。
+
+**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client
+
+| 名称       | 类型                                 | 必填  | 说明                                                                                                                   |
+| -------- | ---------------------------------- | --- | -------------------------------------------------------------------------------------------------------------------- |
+| table    | string                             | 是   | 表示发生变化的表的名称。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.                                   |
+| type     | [ChangeType](#changetype)          | 是   | 表示发生变化的类型。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.                                     |
+| inserted | Array\<string\> \| Array\<number\> | 是   | 记录插入数据的位置，如果主键是string类型，该值是主键的值，否则该值表示插入数据的行号。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore. |
+| updated  | Array\<string\> \| Array\<number\> | 是   | 记录更新数据的位置，如果主键是string类型，该值是主键的值，否则该值表示更新数据的行号。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore. |
+| deleted  | Array\<string\> \| Array\<number\> | 是   | 记录删除数据的位置，如果主键是string类型，该值是主键的值，否则该值表示删除数据的行号。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore. |
+
+## DistributedType<sup>10+</sup>
+
+描述表的分布式类型。
+
+| 名称                              | 值   | 说明                                                                                                 |
+| ------------------------------- | --- | -------------------------------------------------------------------------------------------------- |
+| DISTRIBUTED_DEVICE<sup>10+</sup>| 0   | 表示表在不同设备之间分布式。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.               |
+| DISTRIBUTED_CLOUD<sup>10+</sup> | -   | 表示表在设备和云端之间分布式。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+
+## DistributedConfig<sup>10+</sup>
+
+记录表的分布式配置信息。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+| 名称                     | 类型      | 必填  | 说明                                                     |
+| ---------------------- | ------- | --- | ------------------------------------------------------ |
+| autoSync<sup>10+</sup> | boolean | 是   | 该值为true时，表示该表支持自动同步和手动同步；该值为false时，表示该表只支持手动同步，不支持自动同步 |
 
 ## ConflictResolution<sup>10+</sup>
 
@@ -2913,6 +2999,90 @@ promise.then(() => {
   console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
 })
 ```
+### setDistributedTables<sup>10+</sup>
+
+setDistributedTables(tables: Array&lt;string&gt;, type: [DistributedType](#distributedtype), callback: AsyncCallback&lt;void&gt;): void
+
+设置分布式列表，使用callback异步回调。
+
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名      | 类型                                  | 必填  | 说明              |
+| -------- | ----------------------------------- | --- | --------------- |
+| tables   | Array&lt;string&gt;                 | 是   | 要设置的分布式列表表名     |
+| type     | [DistributedType](#distributedtype) | 是   | 表的分布式类型         |
+| callback | AsyncCallback&lt;void&gt;           | 是   | 指定callback回调函数。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                         |
+| --------- | -------------------------------- |
+| 401       | The parameter type is incorrect. |
+| 801       | Capability not supported.        |
+
+**示例：**
+
+```js
+store.setDistributedTables(["EMPLOYEE"], DistributedType.DISTRIBUTED_CLOUD, function (err) {
+  if (err) {
+    console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`SetDistributedTables successfully.`);
+})
+```
+
+### setDistributedTables<sup>10+</sup>
+
+ setDistributedTables(tables: Array&lt;string&gt;, type?: number, config?: DistributedConfig): Promise&lt;void&gt;
+
+设置分布式列表，使用Promise异步回调。
+
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名    | 类型                                      | 必填  | 说明           |
+| ------ | --------------------------------------- | --- | ------------ |
+| tables | Array&lt;string&gt;                     | 是   | 要设置的分布式列表表名。 |
+| type   | [DistributedType](#distributedtype)     | 否   | 表的分布式类型      |
+| config | [DistributedConfig](#distributedconfig) | 否   | 表的分布式配置信息。   |
+
+**返回值**：
+
+| 类型                  | 说明               |
+| ------------------- | ---------------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                         |
+| --------- | -------------------------------- |
+| 401       | The parameter type is incorrect. |
+| 801       | Capability not supported.        |
+
+**示例：**
+
+```js
+let config = new DistributedConfig();
+config.autoSync = true;
+let promise = store.setDistributedTables(["EMPLOYEE"], DistributedType.DISTRIBUTED_CLOUD, config);
+promise.then(() => {
+  console.info(`SetDistributedTables successfully.`);
+}).catch((err) => {
+  console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
+})
+```
 
 ### obtainDistributedTableName
 
@@ -3183,6 +3353,37 @@ try {
 }
 ```
 
+### on('dataChange')<sup>10+</sup>
+
+on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo)&gt;&gt;): void
+
+注册数据库的观察者。当分布式数据库中的数据发生更改时，将调用回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名      | 类型                                                                                            | 必填  | 说明                                                                                                                                                       |
+| -------- | --------------------------------------------------------------------------------------------- | --- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| event    | string                                                                                        | 是   | 取值为'dataChange'，表示数据更改。                                                                                                                                  |
+| type     | [SubscribeType](#subscribetype)                                                               | 是   | 订阅类型。                                                                                                                                                    |
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo)&gt;&gt; | 是   | 指分布式数据库中数据更改事件的观察者。Array&lt;string>为数据库中的数据发生改变的对端设备ID。 Array&lt;[ChangeInfo](#changeinfo)&gt;为数据库中的数据发生改变的信息，只有订阅类型为SUBSCRIBE_TYPE_CLOUD_DETAILS时才可以使用。 |
+
+**示例：**
+
+```js
+function storeObserver(devices) {
+  for (let i = 0; i < devices.length; i++) {
+    console.info(`device= ${devices[i]} data changed`);
+  }
+}
+try {
+  store.on('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_CLOUD_DETAILS, storeObserver);
+} catch (err) {
+  console.error(`Register observer failed, code is ${err.code},message is ${err.message}`);
+}
+```
+
 ### off('dataChange')
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
@@ -3209,6 +3410,37 @@ function storeObserver(devices) {
 }
 try {
   store.off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_REMOTE, storeObserver);
+} catch (err) {
+  console.error(`Unregister observer failed, code is ${err.code},message is ${err.message}`);
+}
+```
+
+### off('dataChange')<sup>10+</sup>
+
+off(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo)&gt;&gt;): void
+
+从数据库中删除指定类型的指定观察者, 使用callback异步回调。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名      | 类型                                                                                            | 必填  | 说明                                                                                                                                                       |
+| -------- | --------------------------------------------------------------------------------------------- | --- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| event    | string                                                                                        | 是   | 取值为'dataChange'，表示数据更改。                                                                                                                                  |
+| type     | [SubscribeType](#subscribetype)                                                               | 是   | 订阅类型。                                                                                                                                                    |
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;[ChangeInfo](#changeinfo)&gt;&gt; | 否   | 指分布式数据库中数据更改事件的观察者。Array&lt;string>为数据库中的数据发生改变的对端设备ID。 Array&lt;[ChangeInfo](#changeinfo)&gt;为数据库中的数据发生改变的信息，只有订阅类型为SUBSCRIBE_TYPE_CLOUD_DETAILS时才可以使用。 |
+
+**示例：**
+
+```js
+function storeObserver(devices) {
+  for (let i = 0; i < devices.length; i++) {
+    console.info(`device= ${devices[i]} data changed`);
+  }
+}
+try {
+  store.off('dataChange', relationalStore.SubscribeType.SUBSCRIBE_TYPE_CLOUD_DETAILS, storeObserver);
 } catch (err) {
   console.error(`Unregister observer failed, code is ${err.code},message is ${err.message}`);
 }
@@ -3682,6 +3914,77 @@ getDouble(columnIndex: number): number
   ```js
 const salary = resultSet.getDouble(resultSet.getColumnIndex("SALARY"));
   ```
+
+### getAsset<sup>10+</sup>
+
+getAsset(columnIndex: number): [Asset](#asset)
+
+以[Asset](#asset)形式获取当前行中指定列的值。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名         | 类型     | 必填  | 说明           |
+| ----------- | ------ | --- | ------------ |
+| columnIndex | number | 是   | 指定的列索引，从0开始。 |
+
+**返回值：**
+
+| 类型              | 说明                         |
+| --------------- | -------------------------- |
+| [Asset](#asset) | 以[Asset](#asset)形式返回指定列的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                     |
+| --------- | ------------------------------------------------------------ |
+| 401       | The parameter check failed.                                  |
+| 14800013  | The column value is null or the column type is incompatible. |
+
+**示例：**
+
+```js
+const doc = resultSet.getAsset(resultSet.getColumnIndex("DOC"));
+```
+
+### getAssets<sup>10+</sup>
+
+getAsset(columnIndex: number): [Assets](#assets)
+
+以[Assets](#assets)形式获取当前行中指定列的值。
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名         | 类型     | 必填  | 说明           |
+| ----------- | ------ | --- | ------------ |
+| columnIndex | number | 是   | 指定的列索引，从0开始。 |
+
+**返回值：**
+
+| 类型                              | 说明                           |
+| ------------------------------- | ---------------------------- |
+| [Assets](#assets)<sup>10+</sup> | 以[Assets](#assets)形式返回指定列的值。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
+
+| **错误码ID** | **错误信息**                                                     |
+| --------- | ------------------------------------------------------------ |
+| 401       | The parameter check failed.                                  |
+| 14800013  | The column value is null or the column type is incompatible. |
+
+**示例：**
+
+```js
+const docs = resultSet.getAssets(resultSet.getColumnIndex("DOCS"));
+```
+
 
 ### isColumnNull
 
