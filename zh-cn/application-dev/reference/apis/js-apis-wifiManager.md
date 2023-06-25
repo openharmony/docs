@@ -1732,7 +1732,7 @@ getDisconnectedReason(): DisconnectedReason
 
 | **类型** | **说明** |
 | -------- | -------- |
-| [DisconnectedReason](#DisconnectedReason10) | 最近断开的原因 |
+| [DisconnectedReason](#disconnectedreason10) | 最近断开的原因 |
 
 **示例：**
 ```js
