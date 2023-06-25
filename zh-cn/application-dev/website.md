@@ -1048,6 +1048,7 @@
       - [@ohos.brightness (屏幕亮度)](reference/apis/js-apis-brightness.md)
       - [@ohos.charger (充电类型)](reference/apis/js-apis-charger.md)
       - [@ohos.cooperate (键鼠穿越)](reference/apis/js-apis-devicestatus-cooperate.md)
+      - [@ohos.deviceAttest (设备证明)](reference/apis/js-apis-deviceAttest.md)
       - [@ohos.deviceInfo (设备信息)](reference/apis/js-apis-device-info.md)
       - [@ohos.distributedHardware.deviceManager (设备管理)](reference/apis/js-apis-device-manager.md)
       - [@ohos.geoLocationManager (位置服务)](reference/apis/js-apis-geoLocationManager.md)
@@ -1084,6 +1085,7 @@
     - 定制管理
       - [@ohos.configPolicy (配置策略)](reference/apis/js-apis-configPolicy.md)
     - 企业设备管理
+      - [企业设备管理概述 (仅对系统应用开放)](reference/apis/enterpriseDeviceManagement-overview.md)
       - [@ohos.enterprise.accountManager (帐户管理)](reference/apis/js-apis-enterprise-accountManager.md)
       - [@ohos.enterprise.adminManager (企业设备管理)](reference/apis/js-apis-enterprise-adminManager.md)
       - [@ohos.enterprise.applicationManager (应用管理)](reference/apis/js-apis-enterprise-applicationManager.md)
@@ -1121,7 +1123,6 @@
       - [@ohos.xml (xml解析与生成)](reference/apis/js-apis-xml.md)
     - 测试
       - [@ohos.application.testRunner (TestRunner)](reference/apis/js-apis-application-testRunner.md)
-      - [@ohos.deviceAttest (设备证明)](reference/apis/js-apis-deviceAttest.md)
       - [@ohos.uitest (UiTest)](reference/apis/js-apis-uitest.md)
     - 已停止维护的接口
       - [@ohos.backgroundTaskManager (后台任务管理)](reference/apis/js-apis-backgroundTaskManager.md)
