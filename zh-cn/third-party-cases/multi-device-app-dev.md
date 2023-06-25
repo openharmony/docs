@@ -1,22 +1,22 @@
 # Navigation如何实现多场景UI适配
 ## 场景介绍
-日常应用如微信、钉钉、welink等，聊天窗口在不同的设备上拥有不同的表现，如：
-* 在phone设备上，导航栏和内容区在多窗口中体现。
+应用在不同屏幕大小的设备上运行时，往往有不同的UI适配，以聊天应用举例：
+* 在窄屏设备上，联系人和聊天区在多窗口中体现。
 
-* 在Foldable设备上，导航栏和内容区在同一窗口体现。
+* 在宽屏设备上，联系人和聊天区在同一窗口体现。
 
-  但是此时开发者又想通过一套代码来实现，ArkUI针对这种场景提供了分栏组件，本例见简单介绍下如何使用分栏组件实现上述场景。
+要做好适配，往往需要开发者开发多套代码，以便运行在不同设备上。但是这样耗时耗力，于是ArkUI针对这种场景提供了分栏组件，可以通过一套代码完成不同设别的适配，本例简单介绍下如何使用分栏组件实现上述场景。
 
 ## 效果呈现
-效果图如下所示（模拟器设备：phone、Foldable）：
+效果图如下所示：
 
-phone设备效果图：
+窄屏设备效果图：
 
-![navigation_phone](figures/navigation_phone.PNG) 
+![navigation_small](figures/navigation_small.PNG) 
 
-Foldable设备效果图：
+宽屏设备效果图：
 
-![navigation_Foldable](figures/navigation_Foldable.PNG)
+![navigation_large](figures/navigation_large.PNG)
 ## 运行环境
 本例基于以下环境开发，开发者也可以基于其它适配的版本进行开发：
 - IDE：DevEco Studio 3.1 Release
