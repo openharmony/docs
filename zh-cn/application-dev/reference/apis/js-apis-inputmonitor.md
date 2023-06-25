@@ -1,6 +1,6 @@
 # @ohos.multimodalInput.inputMonitor (输入监听)
 
-输入监听模块，提供了监听输入设备事件（当前支持触摸屏和鼠标）的能力。
+输入监听模块，提供了监听输入设备事件（当前支持触屏、鼠标和触控板手势）的能力。
 
 >  **说明：**
 >
@@ -17,11 +17,11 @@ import inputMonitor from '@ohos.multimodalInput.inputMonitor';
 ```
 
 
-## inputMonitor.on
+## inputMonitor.on('touch')
 
-on(type: "touch", receiver: TouchEventReceiver): void
+on(type: 'touch', receiver: TouchEventReceiver): void
 
-开始监听全局触屏事件。
+监听全局触屏事件。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
@@ -38,7 +38,7 @@ on(type: "touch", receiver: TouchEventReceiver): void
 
 ```js
 try {
-  inputMonitor.on("touch", (touchEvent) => {
+  inputMonitor.on('touch', (touchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(touchEvent)}`);
     return false;
   });
@@ -47,11 +47,11 @@ try {
 }
 ```
 
-## inputMonitor.on<sup>9+</sup>
+## inputMonitor.on('mouse')<sup>9+</sup>
 
-on(type: "mouse", receiver: Callback&lt;MouseEvent&gt;): void
+on(type: 'mouse', receiver: Callback&lt;MouseEvent&gt;): void
 
-开始监听全局鼠标事件。
+监听全局鼠标事件。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
@@ -68,7 +68,7 @@ on(type: "mouse", receiver: Callback&lt;MouseEvent&gt;): void
 
 ```js
 try {
-  inputMonitor.on("mouse", (mouseEvent) => {
+  inputMonitor.on('mouse', (mouseEvent) => {
     console.log(`Monitor on success ${JSON.stringify(mouseEvent)}`);
     return false;
   });
@@ -79,11 +79,11 @@ try {
 
 
 
-## inputMonitor.off
+## inputMonitor.off('touch')
 
-off(type: "touch", receiver?: TouchEventReceiver): void
+off(type: 'touch', receiver?: TouchEventReceiver): void
 
-停止监听全局触屏事件。
+取消监听全局触屏事件。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
@@ -105,8 +105,8 @@ function callback(touchEvent) {
   return false;
 };
 try {
-  inputMonitor.on("touch", callback);
-  inputMonitor.off("touch", callback);
+  inputMonitor.on('touch', callback);
+  inputMonitor.off('touch', callback);
   console.log(`Monitor off success`);
 } catch (error) {
   console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -120,19 +120,19 @@ function callback(touchEvent) {
   return false;
 };
 try {
-  inputMonitor.on("touch", callback);
-  inputMonitor.off("touch");
+  inputMonitor.on('touch', callback);
+  inputMonitor.off('touch');
   console.log(`Monitor off success`);
 } catch (error) {
   console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
-## inputMonitor.off<sup>9+</sup>
+## inputMonitor.off('mouse')<sup>9+</sup>
 
-off(type: "mouse", receiver?: Callback&lt;MouseEvent&gt;): void
+off(type: 'mouse', receiver?: Callback&lt;MouseEvent&gt;): void
 
-停止监听全局鼠标事件。
+取消监听全局鼠标事件。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
@@ -154,8 +154,8 @@ function callback(mouseEvent) {
   return false;
 };
 try {
-  inputMonitor.on("mouse", callback);
-  inputMonitor.off("mouse", callback);
+  inputMonitor.on('mouse', callback);
+  inputMonitor.off('mouse', callback);
   console.log(`Monitor off success`);
 } catch (error) {
   console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -169,8 +169,8 @@ function callback(mouseEvent) {
   return false;
 };
 try {
-  inputMonitor.on("mouse", callback);
-  inputMonitor.off("mouse");
+  inputMonitor.on('mouse', callback);
+  inputMonitor.off('mouse');
   console.log(`Monitor off success`);
 } catch (error) {
   console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -201,7 +201,7 @@ try {
 
 ```js
 try {
-  inputMonitor.on("touch", touchEvent => {
+  inputMonitor.on('touch', touchEvent => {
     if (touchEvent.touches.length == 3) { // 当前有三个手指按下
       return true;
     }
@@ -212,11 +212,11 @@ try {
 }
 ```
 
-## inputMonitor.on(pinch)<sup>10+</sup>
+## inputMonitor.on('pinch')<sup>10+</sup>
 
-on(type: "pinch", receiver: Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt;): void
+on(type: 'pinch', receiver: Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt;): void
 
-开始监听全局触控板捏合事件。
+监听全局的触控板捏合事件。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
@@ -233,7 +233,7 @@ on(type: "pinch", receiver: Callback&lt;[Pinch](js-apis-multimodalinput-gesturee
 
 ```js
 try {
-  inputMonitor.on("pinch", (pinchEvent) => {
+  inputMonitor.on('pinch', (pinchEvent) => {
     console.log(`Monitor on success ${JSON.stringify(pinchEvent)}`);
     return false;
   });
@@ -242,11 +242,11 @@ try {
 }
 ```
 
-## inputMonitor.off(pinch)<sup>10+</sup>
+## inputMonitor.off('pinch')<sup>10+</sup>
 
-off(type: "pinch", receiver?: Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt;): void
+off(type: 'pinch', receiver?: Callback&lt;[Pinch](js-apis-multimodalinput-gestureevent.md#pinch)&gt;): void
 
-停止监听全局触控板捏合事件。
+取消监听全局的触控板捏合事件。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
@@ -268,8 +268,8 @@ function callback(pinchEvent) {
   return false;
 };
 try {
-  inputMonitor.on("pinch", callback);
-  inputMonitor.off("pinch", callback);
+  inputMonitor.on('pinch', callback);
+  inputMonitor.off('pinch', callback);
   console.log(`Monitor off success`);
 } catch (error) {
   console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -283,19 +283,19 @@ function callback(pinchEvent) {
   return false;
 };
 try {
-  inputMonitor.on("pinch", callback);
-  inputMonitor.off("pinch");
+  inputMonitor.on('pinch', callback);
+  inputMonitor.off('pinch');
   console.log(`Monitor off success`);
 } catch (error) {
   console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
 
-## inputMonitor.on(threeFingersSwipe)<sup>10+</sup>
+## inputMonitor.on('threeFingersSwipe')<sup>10+</sup>
 
-on(type: "threeFingersSwipe", receiver: Callback&lt;[ThreeFingersSwipe](js-apis-multimodalinput-gestureevent.md#threefingersswipe)&gt;): void
+on(type: 'threeFingersSwipe', receiver: Callback&lt;[ThreeFingersSwipe](js-apis-multimodalinput-gestureevent.md#threefingersswipe)&gt;): void
 
-开始监听全局触控板三指滑动事件。
+监听全局的触控板三指滑动事件。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
@@ -312,7 +312,7 @@ on(type: "threeFingersSwipe", receiver: Callback&lt;[ThreeFingersSwipe](js-apis-
 
 ```js
 try {
-  inputMonitor.on("threeFingersSwipe", (threeFingersSwipe) => {
+  inputMonitor.on('threeFingersSwipe', (threeFingersSwipe) => {
     console.log(`Monitor on success ${JSON.stringify(threeFingersSwipe)}`);
     return false;
   });
@@ -321,11 +321,11 @@ try {
 }
 ```
 
-## inputMonitor.off(threeFingersSwipe)<sup>10+</sup>
+## inputMonitor.off('threeFingersSwipe')<sup>10+</sup>
 
-off(type: "threeFingersSwipe", receiver?: Callback&lt;[ThreeFingersSwipe](js-apis-multimodalinput-gestureevent.md#threefingersswipe)&gt;): void
+off(type: 'threeFingersSwipe', receiver?: Callback&lt;[ThreeFingersSwipe](js-apis-multimodalinput-gestureevent.md#threefingersswipe)&gt;): void
 
-停止监听全局触控板三指滑动事件。
+取消监听全局的触控板三指滑动事件。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
@@ -347,7 +347,7 @@ function callback(threeFingersSwipe) {
   return false;
 };
 try {
-  inputMonitor.on("threeFingersSwipe", callback);
+  inputMonitor.on('threeFingersSwipe', callback);
   inputMonitor.off("threeFingersSwipe", callback);
   console.log(`Monitor off success`);
 } catch (error) {
@@ -370,11 +370,11 @@ try {
 }
 ```
 
-## inputMonitor.on(fourFingersSwipe)<sup>10+</sup>
+## inputMonitor.on('fourFingersSwipe')<sup>10+</sup>
 
-on(type: "fourFingersSwipe", receiver: Callback&lt;[FourFingersSwipe](js-apis-multimodalinput-gestureevent.md#fourfingersswipe)&gt;): void
+on(type: 'fourFingersSwipe', receiver: Callback&lt;[FourFingersSwipe](js-apis-multimodalinput-gestureevent.md#fourfingersswipe)&gt;): void
 
-开始监听全局触控板四指滑动事件。
+监听全局的触控板四指滑动事件。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
@@ -391,7 +391,7 @@ on(type: "fourFingersSwipe", receiver: Callback&lt;[FourFingersSwipe](js-apis-mu
 
 ```js
 try {
-  inputMonitor.on("fourFingersSwipe", (fourFingersSwipe) => {
+  inputMonitor.on('fourFingersSwipe', (fourFingersSwipe) => {
     console.log(`Monitor on success ${JSON.stringify(fourFingersSwipe)}`);
     return false;
   });
@@ -400,11 +400,11 @@ try {
 }
 ```
 
-## inputMonitor.off(fourFingersSwipe)<sup>10+</sup>
+## inputMonitor.off('fourFingersSwipe')<sup>10+</sup>
 
-off(type: "fourFingersSwipe", receiver?: Callback&lt;[FourFingersSwipe](js-apis-multimodalinput-gestureevent.md#fourfingersswipe)&gt;): void
+off(type: 'fourFingersSwipe', receiver?: Callback&lt;[FourFingersSwipe](js-apis-multimodalinput-gestureevent.md#fourfingersswipe)&gt;): void
 
-停止监听全局触控板四指滑动事件。
+取消监听全局的触控板四指滑动事件。
 
 **需要权限：** ohos.permission.INPUT_MONITORING
 
@@ -426,8 +426,8 @@ function callback(fourFingersSwipe) {
   return false;
 };
 try {
-  inputMonitor.on("fourFingersSwipe", callback);
-  inputMonitor.off("fourFingersSwipe", callback);
+  inputMonitor.on('fourFingersSwipe', callback);
+  inputMonitor.off('fourFingersSwipe', callback);
   console.log(`Monitor off success`);
 } catch (error) {
   console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
@@ -441,8 +441,8 @@ function callback(fourFingersSwipe) {
   return false;
 };
 try {
-  inputMonitor.on("fourFingersSwipe", callback);
-  inputMonitor.off("fourFingersSwipe");
+  inputMonitor.on('fourFingersSwipe', callback);
+  inputMonitor.off('fourFingersSwipe');
   console.log(`Monitor off success`);
 } catch (error) {
   console.log(`Monitor execute failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
