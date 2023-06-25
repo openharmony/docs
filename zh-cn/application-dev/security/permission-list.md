@@ -2097,3 +2097,13 @@
 **授权方式**：system_grant
 
 **ACL使能**：FALSE
+
+## ohos.permission.SUPPORT_USER_AUTH
+
+允许应用与用户认证框架交互和注册扩展能力。
+
+**权限级别**: system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
