@@ -55,7 +55,7 @@ struct AspectRatioExample {
             Text(item)
               .backgroundColor(0xbbb2cb)
               .fontSize(40)
-              .height(160)
+              .width('100%')
               .aspectRatio(1.5)
           }
         }, item => item)
@@ -132,5 +132,7 @@ struct DisplayPriorityExample {
 }
 
 ```
+
+横屏显示
 
 ![zh-cn_image_0000001219662667](figures/zh-cn_image_0000001219662667.gif)
