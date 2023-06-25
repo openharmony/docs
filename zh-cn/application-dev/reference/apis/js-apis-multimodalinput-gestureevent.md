@@ -21,7 +21,7 @@ import { Pinch, ThreeFingersSwipe, FourFingersSwipe, ActionType } from '@ohos.mu
 | 名称             | 类型        | 可读   | 可写   | 说明                                       |
 | -------------- | ----------- | ---- | ---- | ---------------------------------------- |
 | type         | [ActionType](#actiontype)   | 是    | 否    | 捏合事件类型                                   |
-| scale        | number      | 是    | 否    | 捏合度                             |
+| scale        | number      | 是    | 否    | 捏合度，取值范围大于等于0                             |
 
 ## ThreeFingersSwipe
 
