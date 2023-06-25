@@ -45,13 +45,16 @@ resetFactory(admin: Want, callback: AsyncCallback\<void>): void
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-deviceControl.resetFactory(wantTemp, (error) => {
-    if (error) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+
+deviceControl.resetFactory(wantTemp, (err) => {
+  if (err) {
+    console.error(`Failed to reset factory. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.log('Succeeded in resetting factory');
 })
 ```
 
@@ -92,11 +95,12 @@ resetFactory(admin: Want): Promise\<void>
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
+
 deviceControl.resetFactory(wantTemp).then(() => {
-}).catch((error) => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+}).catch((err) => {
+  console.error(`Failed to reset factory. Code is ${err.code}, message is ${err.message}`);
 })
 ```

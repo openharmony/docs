@@ -46,13 +46,16 @@ disallowAddLocalAccount(admin: Want, disallow: boolean, callback: AsyncCallback&
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-accountManager.disallowAddLocalAccount(wantTemp, true, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+
+accountManager.disallowAddLocalAccount(wantTemp, true, (err) => {
+  if (err) {
+    console.error(`Failed to disallow add local account. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in disallowing add local account');
 });
 ```
 
@@ -94,12 +97,13 @@ disallowAddLocalAccount(admin: Want, disallow: boolean): Promise&lt;void&gt;
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 accountManager.disallowAddLocalAccount(wantTemp, true).then(() => {
-    console.log("success");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info('Succeeded in disallowing add local account');
+}).catch((err) => {
+  console.error(`Failed to disallow add local account. Code: ${err.code}, message: ${err.message}`);
 });
 ```

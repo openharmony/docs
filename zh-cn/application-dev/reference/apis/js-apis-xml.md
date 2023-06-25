@@ -380,6 +380,7 @@ constructor(buffer: ArrayBuffer | DataView, encoding?: string)
 **示例：**
 
 ```js
+import util from '@ohos.util';
 let strXml =
     '<?xml version="1.0" encoding="utf-8"?>' +
     '<!DOCTYPE note [\n<!ENTITY foo "baa">]>' +
@@ -431,6 +432,7 @@ parse(option: ParseOptions): void
 **示例：**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -498,6 +500,7 @@ getColumnNumber(): number
 **示例：**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -541,6 +544,7 @@ getDepth(): number
 **示例：**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -587,6 +591,7 @@ getLineNumber(): number
 **示例：**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -630,6 +635,7 @@ getName(): string
 **示例：**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -672,6 +678,7 @@ getNamespace(): string
 **示例：**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -714,6 +721,7 @@ getPrefix(): string
 **示例：**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -757,6 +765,7 @@ getText(): string
 **示例：**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -799,6 +808,7 @@ isEmptyElementTag(): boolean
 **示例：**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -841,6 +851,7 @@ isWhitespace(): boolean
 **示例：**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +
@@ -882,6 +893,7 @@ getAttributeCount(): number
 **示例：**
 
 ```js
+import util from '@ohos.util';
 let strXml =
             '<?xml version="1.0" encoding="utf-8"?>' +
             '<note importance="high" logged="true">' +

@@ -45,15 +45,16 @@ isWifiActive(admin: Want, callback: AsyncCallback&lt;boolean&gt;): void
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-wifiManager.isWifiActive(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log("result:" + result);
+
+wifiManager.isWifiActive(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to query is wifi active or not. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in query is wifi active or not, result : ${result}`);
 });
 ```
 
@@ -94,13 +95,14 @@ isWifiActive(admin: Want): Promise&lt;boolean&gt;
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 wifiManager.isWifiActive(wantTemp).then((result) => {
-    console.log("result:" + result);
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info(`Succeeded in query is wifi active or not, result : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to query is wifi active or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -137,20 +139,21 @@ setWifiProfile(admin: Want, profile: WifiProfile, callback: AsyncCallback&lt;voi
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let profile : wifiManager.WifiProfile = {
-    "ssid": "name",
-    "preSharedKey": "passwd",
-    "securityType": wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
+let profile: wifiManager.WifiProfile = {
+  'ssid': 'name',
+  'preSharedKey': 'passwd',
+  'securityType': wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
 };
-wifiManager.setWifiProfile(wantTemp, profile, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-        return;
-    }
-    console.log("set wifi success");
+
+wifiManager.setWifiProfile(wantTemp, profile, (err) => {
+  if (err) {
+    console.error(`Failed to set wifi profile. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in setting wifi profile');
 });
 ```
 
@@ -192,18 +195,19 @@ setWifiProfile(admin: Want, profile: WifiProfile): Promise&lt;void&gt;
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let profile : wifiManager.WifiProfile = {
-    "ssid": "name",
-    "preSharedKey": "passwd",
-    "securityType": wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
+  'ssid': 'name',
+  'preSharedKey': 'passwd',
+  'securityType': wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
 };
+
 wifiManager.setWifiProfile(wantTemp, profile).then(() => {
-    console.log("set wifi success");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info('Succeeded in setting wifi profile');
+}).catch((err) => {
+  console.error(`Failed to set wifi profile. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 

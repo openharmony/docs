@@ -482,10 +482,11 @@ resize(inputs: MSTensor[], dims: Array&lt;Array&lt;number&gt;&gt;): boolean
 
 ```js
 let model_file = '/path/to/xxx.ms';
-let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
-const modelInputs = mindSporeLiteModel.getInputs();
-let new_dim = new Array([1,32,32,1]);
-mindSporeLiteModel.resize(modelInputs, new_dim);
+mindSporeLite.loadModelFromFile(model_file).then((mindSporeLiteModel) => {
+  const modelInputs = mindSporeLiteModel.getInputs();
+  let new_dim = new Array([1,32,32,1]);
+  mindSporeLiteModel.resize(modelInputs, new_dim);
+})
 ```
 
 ## MSTensor
@@ -511,14 +512,15 @@ mindSporeLiteModel.resize(modelInputs, new_dim);
 
 ```js
 let model_file = '/path/to/xxx.ms';
-let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
-const modelInputs = mindSporeLiteModel.getInputs();
-console.log(modelInputs[0].name);
-console.log(modelInputs[0].shape.toString());
-console.log(modelInputs[0].elementNum.toString());
-console.log(modelInputs[0].dtype.toString());
-console.log(modelInputs[0].format.toString());
-console.log(modelInputs[0].dataSize.toString());
+mindSporeLite.loadModelFromFile(model_file).then((mindSporeLiteModel) => {
+  const modelInputs = mindSporeLiteModel.getInputs();
+  console.log(modelInputs[0].name);
+  console.log(modelInputs[0].shape.toString());
+  console.log(modelInputs[0].elementNum.toString());
+  console.log(modelInputs[0].dtype.toString());
+  console.log(modelInputs[0].format.toString());
+  console.log(modelInputs[0].dataSize.toString());
+})
 ```
 
 ### getData
@@ -538,12 +540,21 @@ getData(): ArrayBuffer
 **示例：** 
 
 ```js
-//如果已经获取了输入张量
-result.predict(modelInputs, (result) => {
-  let output = new Float32Array(result[0].getData());
-  for (let i = 0; i < output.length; i++) {
-    console.log(output[i].toString());
-  }
+import resourceManager from '@ohos.resourceManager'
+@State inputName: string = 'input_data.bin';
+let syscontext = globalThis.context;
+syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
+  this.inputBuffer = buffer;
+  let model_file = '/path/to/xxx.ms';
+  let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
+  const modelInputs = mindSporeLiteModel.getInputs();
+  modelInputs[0].setData(this.inputBuffer.buffer);
+  result.predict(modelInputs).then((result) => {
+    let output = new Float32Array(result[0].getData());
+    for (let i = 0; i < output.length; i++) {
+      console.log(output[i].toString());
+    }
+  })
 })
 ```
 

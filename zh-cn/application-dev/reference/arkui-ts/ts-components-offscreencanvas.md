@@ -170,14 +170,14 @@ getContext(contextType: "2d", option?: RenderingContextSettings): OffscreenCanva
 
 | 参数        | 类型                                                         | 必填 | 默认值 | 说明                                                         |
 | ----------- | ------------------------------------------------------------ | ---- | ------ | ------------------------------------------------------------ |
-| contextType | string                                                       | 是   | "2d"   | OffscreenCanvas组件绘图上下文的类型。                        |
+| contextType | string                                                       | 是   | "2d"   | OffscreenCanvas组件绘图上下文的类型，当前仅支持"2d"类型。                       |
 | option      | [RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings) | 否   | -      | 见[RenderingContextSettings](ts-canvasrenderingcontext2d.md#renderingcontextsettings)。 |
 
 **返回值：**
 
 | 类型                                                         | 描述                              |
 | ------------------------------------------------------------ | --------------------------------- |
-| [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md) | OffscreenCanvas组件的绘图上下文。 |
+| [OffscreenCanvasRenderingContext2D](ts-offscreencanvasrenderingcontext2d.md) | OffscreenCanvas组件的绘图上下文。如果getContext方法的入参contextType为"2d"以外类型（包括null或者undefined），返回null。 |
 
 **示例：**
 

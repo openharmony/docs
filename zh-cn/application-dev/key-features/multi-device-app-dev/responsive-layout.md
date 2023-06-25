@@ -428,7 +428,7 @@ struct GridRowSample3 {
       gutter: {x: {sm: 8, md: 16, lg: 24}, y: {sm: 8, md: 16, lg: 24}}}) {
       ForEach(this.bgColors, (bgColor)=>{
         GridCol({span: {sm: 2, md: 2, lg: 2}}) {
-          Row().backgroundColor(bgColor).height(30)
+          Row().backgroundColor(bgColor).height(30).width('100%')
         }
       })
     }
@@ -461,7 +461,7 @@ struct GridRowSample4 {
         GridCol({span:{xs: 12, sm: 12, md: 12, lg:12}}) {
           Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
             Text("padding").fontSize(24).fontWeight(FontWeight.Medium)
-          }.backgroundColor('#19000000')
+          }.backgroundColor('#19000000').width('100%')
         }
       }
       .height(50)
@@ -484,7 +484,7 @@ struct GridRowSample4 {
         GridCol({span:{xs: 12, sm: 12, md: 12, lg:12}}) {
           Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
             Text("margin").fontSize(24).fontWeight(FontWeight.Medium)
-          }.backgroundColor('#19000000')
+          }.backgroundColor('#19000000').width('100%')
         }
       }
       .height(50)
@@ -543,7 +543,7 @@ struct GridRowSample5 {
             Text('' + item.index).fontSize(24)
           }
           .justifyContent(FlexAlign.Center)
-          .backgroundColor(item.color).height(30)
+          .backgroundColor(item.color).height(30).width('100%')
         }
       })
     }
@@ -585,7 +585,7 @@ struct GridRowSample6 {
             Text('' + item.index).fontSize(24)
           }
           .justifyContent(FlexAlign.Center)
-          .backgroundColor(item.color).height(30)
+          .backgroundColor(item.color).height(30).width('100%')
         }
       })
     }
@@ -627,7 +627,7 @@ struct GridRowSample7 {
             Text('' + item.index).fontSize(24)
           }
           .justifyContent(FlexAlign.Center)
-          .backgroundColor(item.color).height(30)
+          .backgroundColor(item.color).height(30).width('100%')
         }
       })
     }
@@ -671,7 +671,7 @@ struct GridRowSample8 {
             Text('' + item.index).fontSize(24)
           }
           .justifyContent(FlexAlign.Center)
-          .backgroundColor(item.color).height(30)
+          .backgroundColor(item.color).height(30).width('100%')
         }
       })
     }
@@ -714,7 +714,7 @@ struct GridRowSample9 {
                 Text('' + item.index).fontSize(24)
               }
               .justifyContent(FlexAlign.Center)
-              .backgroundColor(item.color).height(30)
+              .backgroundColor(item.color).height(30).width('100%')
             }
           })
         }

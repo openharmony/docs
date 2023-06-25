@@ -89,11 +89,7 @@ You can draw custom graphics on the canvas in any of the following ways:
   import lottie from '@ohos/lottie'
   ```
 
-  For details about the APIs, see [Lottie](../reference/arkui-ts/ts-components-canvas-lottie.md).
-
-  >**NOTE**
-  >
-  >Before using Lottie for the first time, run the **ohpm install \@ohos/lottieETS** command in the Terminal window to download Lottie.
+  For details about the APIs, see [Lottie](https://gitee.com/openharmony-tpc/lottieETS).
 
 
 ## Initializing the Canvas Component
@@ -117,7 +113,7 @@ Canvas(this.context)
 
 ## Canvas Component Drawing Modes
 
-Two modes are available for drawing with the **Canvas** component: 
+Two modes are available for drawing with the **Canvas** component:
 
 - After the **onReady()** callback of the **Canvas** component is invoked, use the **CanvasRenderingContext2D** and **OffscreenCanvasRenderingContext2D** objects to call related APIs for drawing.
 
@@ -159,9 +155,8 @@ Two modes are available for drawing with the **Canvas** component:
 
 - Draw a basic shape.
   
-
-You can draw a basic shape by calling APIs such as [arc](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#arc), [ellipse](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#ellipse), and [rect](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#rect).
-
+  You can draw a basic shape by calling APIs such as [arc](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#arc), [ellipse](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#ellipse), and [rect](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#rect).
+  
   ```ts
   Canvas(this.context)
     .width('100%')
@@ -183,9 +178,9 @@ You can draw a basic shape by calling APIs such as [arc](../reference/arkui-ts/t
   })
   
   ```
-
+  
 ![2023022794521(1)](figures/2023022794521(1).jpg)
-
+  
 - Draw text.
 
   You can use APIs such as [fillText](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#filltext) and [strokeText](../reference/arkui-ts/ts-canvasrenderingcontext2d.md#stroketext) to draw text.
@@ -345,4 +340,3 @@ You can draw a basic shape by calling APIs such as [arc](../reference/arkui-ts/t
   ```
 
   ![2023032422159](figures/2023032422159.jpg)
-

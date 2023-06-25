@@ -665,10 +665,12 @@ notificationSubscribe.removeAll(userId, removeAllCallback);
 
 **系统能力**：以下各项对应的系统能力均为SystemCapability.Notification.Notification
 
-| 名称  | 类型   | 只读 | 必填 | 说明     |
-| ----- | ------ | ---- | --- | -------- |
-| id    | number | 否  | 是  | 通知ID。   |
-| label | string | 否  | 否  | 通知标签。 |
+**系统API**: 此接口为系统接口，三方应用不支持调用。
+
+| 名称  | 类型   | 可读 |  | 必填 | 说明     |
+| ----- | ------ | ---- | --- | -------- | -------- |
+| id    | number | 是 | 是 | 是  | 通知ID。   |
+| label | string | 是 | 是 | 否  | 通知标签。 |
 
 ## RemoveReason
 

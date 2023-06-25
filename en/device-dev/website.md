@@ -93,40 +93,62 @@
     - [Porting Verification](porting/porting-minichip-verification.md)
 
     - [FAQs](porting/porting-chip-faqs.md)
-- Small System SoC Porting Guide
+  - Small System SoC Porting Guide
   
-  - Porting Preparation
+    - Porting Preparation
   
-    - [Before You Start](porting/porting-smallchip-prepare-needs.md)
+      - [Before You Start](porting/porting-smallchip-prepare-needs.md)
   
-    - [Compilation and Building](porting/porting-smallchip-prepare-building.md)
+      - [Compilation and Building](porting/porting-smallchip-prepare-building.md)
   
-  - Kernel Porting
+    - Kernel Porting
   
-    - [LiteOS Cortex-A](porting/porting-smallchip-kernel-a.md)
+      - [LiteOS Cortex-A](porting/porting-smallchip-kernel-a.md)
   
-    - [Linux Kernel](porting/porting-smallchip-kernel-linux.md)
+      - [Linux Kernel](porting/porting-smallchip-kernel-linux.md)
   
-  - Driver Porting
+    - Driver Porting
   
-    - [Porting Overview](porting/porting-smallchip-driver-overview.md)
+      - [Porting Overview](porting/porting-smallchip-driver-overview.md)
   
-    - [Platform Driver Porting](porting/porting-smallchip-driver-plat.md)
+      - [Platform Driver Porting](porting/porting-smallchip-driver-plat.md)
   
-    - [Device Driver Porting](porting/porting-smallchip-driver-oom.md)
+      - [Device Driver Porting](porting/porting-smallchip-driver-oom.md)
+
   - Standard System SoC Porting Guide
 
     - [Standard System Porting Guide](porting/standard-system-porting-guide.md)
 
     - [A Method for Rapidly Porting the OpenHarmony Linux Kernel](porting/porting-linux-kernel.md)
--  Third-Party Library Porting Guide for Mini and Small Systems
+
+  - Third-Party Library Porting Guide for Mini and Small Systems
   
-  - [Overview](porting/porting-thirdparty-overview.md)
-  - [Porting a Library Built Using CMake](porting/porting-thirdparty-cmake.md)
-  - [Porting a Library Built Using Makefile](porting/porting-thirdparty-makefile.md)
-- Mini System SoC Porting Cases
-  - [Mini-System Devices with Screens — Bestechnic SoC Porting Case](porting/porting-bes2600w-on-minisystem-display-demo.md)
-  - [Combo Solution – ASR Chip Porting Case](porting/porting-asr582x-combo-demo.md)
+    - [Overview](porting/porting-thirdparty-overview.md)
+
+    - [Porting a Library Built Using CMake](porting/porting-thirdparty-cmake.md)
+
+    - [Porting a Library Built Using Makefile](porting/porting-thirdparty-makefile.md)
+
+  - Mini System SoC Porting Cases
+
+      - [Mini-System Devices with Screens — Bestechnic SoC Porting Case](porting/porting-bes2600w-on-minisystem-display-demo.md)
+      - [Combo Solution – ASR Chip Porting Case](porting/porting-asr582x-combo-demo.md)
+
+      - [IoT Solution - Chipsea CST85 Chip Porting Case](porting/porting-cst85f01-combo-demo.md)
+
+      - [Mini System STM32F407 SoC Porting Case](porting/porting-stm32f407-on-minisystem-eth.md)
+
+      - [Combo Solution – W800 Chip Porting Case](porting/porting-w800-combo-demo.md)
+
+  - Small System SoC Porting Cases
+
+      - [Small System STM32MP1 SoC Porting Case](porting/porting-stm32mp15xx-on-smallsystem.md)
+
+  - Standard System SoC Porting Cases
+
+      - [Standard System Solution – Rockchip RK3568 Porting Case](porting/porting-dayu200-on_standard-demo.md)
+      - [Standard System Solution – Rockchip RK3566 Porting Case](https://gitee.com/openharmony/vendor_kaihong/blob/master/khdvk_3566b/porting-khdvk_3566b-on_standard-demo.md)
+      - [Standard System Solution – Yangfan Porting Case](porting/porting-yangfan-on_standard-demo.md)
 - Subsystem Development
 
   -  Kernel
@@ -155,6 +177,7 @@
          - [Exception Debugging](kernel/kernel-mini-memory-exception.md)
          - [Trace](kernel/kernel-mini-memory-trace.md)
          - [LMS](kernel/kernel-mini-memory-lms.md)
+         - [Shell](kernel/kernel-mini-debug-shell.md)
        - Appendix
          - [Kernel Coding Specification](kernel/kernel-mini-appx-code.md)
          - [Standard Libraries](kernel/kernel-mini-appx-lib.md)
@@ -190,6 +213,7 @@
          - [Dynamic Loading and Linking](kernel/kernel-small-bundles-linking.md)
          - [Virtual Dynamic Shared Object](kernel/kernel-small-bundles-share.md)
          - [LiteIPC](kernel/kernel-small-bundles-ipc.md)
+         - [Container](kernel/kernel-small-bundles-container.md)
          - File Systems
            - [Virtual File System](kernel/kernel-small-bundles-fs-virtual.md)
            - [Supported File Systems](kernel/kernel-small-bundles-fs-support.md)
@@ -293,14 +317,7 @@
            - [Lightweight CPU Isolation](kernel/kernel-standard-sched-cpuisolation.md)
   -  Drivers
      - [Driver Overview](driver/driver-overview-foundation.md)
-     - HDF
-       - [HDF Overview](driver/driver-hdf-overview.md)
-       - [Driver Development](driver/driver-hdf-development.md)
-       - [Driver Loading](driver/driver-hdf-load.md)
-       - [Driver Service Management](driver/driver-hdf-servicemanage.md)
-       - [Driver Message Mechanism Management](driver/driver-hdf-message-management.md)
-       - [Driver Configuration Management](driver/driver-hdf-manage.md)
-       - [HDF Development Example](driver/driver-hdf-sample.md)
+     - [Configuration Management](driver/driver-hdf-manage.md)
      - Platform Driver Development
        - [ADC](driver/driver-platform-adc-develop.md)
        - [DAC](driver/driver-platform-dac-develop.md)
@@ -428,6 +445,7 @@
        - [omponent-based Startup](subsystems/subsys-boot-init-sub-unit.md)
        - [init Run Log Standardization](subsystems/subsys-boot-init-log.md)
        - [Seccomp Policy Development](subsystems/subsys-boot-init-seccomp.md)
+       - [DeviceInfo Adaptation](subsystems/subsys-boot-init-deviceInfo.md)
      - [appspawn Module](subsystems/subsys-boot-appspawn.md)
      - [bootstrap Module](subsystems/subsys-boot-bootstrap.md)
      - [FAQs](subsystems/subsys-boot-faqs.md)
@@ -471,7 +489,9 @@
        - [Thermal Policy Customization](subsystems/subsys-thermal_policy.md)
        - [Thermal Scene Customization](subsystems/subsys-thermal_scene.md)
      - Power Management
-       - [Power Mode Customization](subsystems/subsys-power-mode-customization.md)  
+       - [Power Mode Customization](subsystems/subsys-power-mode-customization.md)
+       - [Default Hibernation Behavior Customization](subsystems/subsys-power-default-sleep-behavior-customization.md) 
+       - [Wakeup Source Customization](subsystems/subsys-power-wakeup-source-customization.md)
 - Featured Topics
   - HPM Part
     - [HPM Part Overview](hpm-part/hpm-part-about.md)

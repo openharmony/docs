@@ -46,15 +46,17 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: AsyncCal
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
-bundleManager.addAllowedInstallBundles(wantTemp, appIds, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+bundleManager.addAllowedInstallBundles(wantTemp, appIds, (err) => {
+  if (err) {
+    console.error(`Failed to add allowed install bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in adding allowed install bundles');
 });
 ```
 
@@ -92,15 +94,17 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number, ca
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
-bundleManager.addAllowedInstallBundles(wantTemp, appIds, 100, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+bundleManager.addAllowedInstallBundles(wantTemp, appIds, 100, (err) => {
+  if (err) {
+    console.error(`Failed to add allowed install bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in adding allowed install bundles');
 });
 ```
 
@@ -143,15 +147,15 @@ addAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number): 
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
 bundleManager.addAllowedInstallBundles(wantTemp, appIds, 100).then(() => {
-    console.log("success");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info('Succeeded in adding allowed install bundles');
+}).catch((err) => {
+  console.error(`Failed to add allowed install bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -188,15 +192,17 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
-bundleManager.removeAllowedInstallBundles(wantTemp, appIds, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+bundleManager.removeAllowedInstallBundles(wantTemp, appIds, (err) => {
+  if (err) {
+    console.error(`Failed to remove allowed install bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in removing allowed install bundles');
 });
 ```
 
@@ -234,15 +240,17 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number,
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
-bundleManager.removeAllowedInstallBundles(wantTemp, appIds, 100, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+bundleManager.removeAllowedInstallBundles(wantTemp, appIds, 100, (err) => {
+  if (err) {
+    console.error(`Failed to remove allowed install bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in removing allowed install bundles');
 });
 ```
 
@@ -285,15 +293,15 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
 bundleManager.removeAllowedInstallBundles(wantTemp, appIds, 100).then(() => {
-    console.log("success");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info('Succeeded in removing allowed install bundles');
+}).catch((err) => {
+  console.error(`Failed to remove allowed install bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -329,14 +337,16 @@ getAllowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;string
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
-bundleManager.getAllowedInstallBundles(wantTemp, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+bundleManager.getAllowedInstallBundles(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get allowed install bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting allowed install bundles, result : ${JSON.stringify(result)}`);
 });
 ```
 
@@ -373,14 +383,16 @@ getAllowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback&lt
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
-bundleManager.getAllowedInstallBundles(wantTemp, 100, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+bundleManager.getAllowedInstallBundles(wantTemp, 100, (err, result) => {
+  if (err) {
+    console.error(`Failed to get allowed install bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting allowed install bundles, result : ${JSON.stringify(result)}`);
 });
 ```
 
@@ -422,13 +434,14 @@ getAllowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;stri
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-bundleManager.getAllowedInstallBundles(wantTemp, 100).then(() => {
-    console.log("success");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+
+bundleManager.getAllowedInstallBundles(wantTemp, 100).then((result) => {
+  console.info(`Succeeded in getting allowed install bundles, result : ${JSON.stringify(result)}`);
+}).catch((err) => {
+  console.error(`Failed to get allowed install bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -465,15 +478,17 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: Async
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
-bundleManager.addDisallowedInstallBundles(wantTemp, appIds, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+bundleManager.addDisallowedInstallBundles(wantTemp, appIds, (err) => {
+  if (err) {
+    console.error(`Failed to add disallowed install bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in adding disallowed install bundles');
 });
 ```
 
@@ -511,15 +526,17 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number,
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
-bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100, (err) => {
+  if (err) {
+    console.error(`Failed to add disallowed install bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in adding disallowed install bundles');
 });
 ```
 
@@ -562,15 +579,15 @@ addDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: number
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
 bundleManager.addDisallowedInstallBundles(wantTemp, appIds, 100).then(() => {
-    console.log("success");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info('Succeeded in adding disallowed install bundles');
+}).catch((err) => {
+  console.error(`Failed to add disallowed install bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -607,15 +624,17 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, callback: As
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
-bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, (err) => {
+  if (err) {
+    console.error(`Failed to remove disallowed install bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in removing disallowed install bundles');
 });
 ```
 
@@ -653,15 +672,17 @@ removeAllowedInstallBundles(admin: Want, appIds: Array\<string>, userId: number,
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
-bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, 100, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, 100, (err) => {
+  if (err) {
+    console.error(`Failed to remove disallowed install bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in removing disallowed install bundles');
 });
 ```
 
@@ -704,15 +725,15 @@ removeDisallowedInstallBundles(admin: Want, appIds: Array\<string>, userId?: num
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
 bundleManager.removeDisallowedInstallBundles(wantTemp, appIds, 100).then(() => {
-    console.log("success");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info('Succeeded in removing disallowed install bundles');
+}).catch((err) => {
+  console.error(`Failed to remove disallowed install bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -748,14 +769,16 @@ getDisallowedInstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;str
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
-bundleManager.getDisallowedInstallBundles(wantTemp, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+bundleManager.getDisallowedInstallBundles(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get disallowed install bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting disallowed install bundles, result : ${JSON.stringify(result)}`);
 });
 ```
 
@@ -792,14 +815,16 @@ getDisallowedInstallBundles(admin: Want, userId: number, callback: AsyncCallback
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility',
 };
 
-bundleManager.getDisallowedInstallBundles(wantTemp, 100, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+bundleManager.getDisallowedInstallBundles(wantTemp, 100, (err, result) => {
+  if (err) {
+    console.error(`Failed to get disallowed install bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting disallowed install bundles, result : ${JSON.stringify(result)}`);
 });
 ```
 
@@ -841,14 +866,16 @@ getDisallowedInstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt;s
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-bundleManager.getDisallowedInstallBundles(wantTemp, 100).then(() => {
-    console.log("success");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+
+bundleManager.getDisallowedInstallBundles(wantTemp, 100).then((result) => {
+  console.info(`Succeeded in getting disallowed install bundles, result : ${JSON.stringify(result)}`);
+}).catch((err) => {
+  console.error(`Failed to get disallowed install bundles. Code is ${err.code}, message is ${err.message}`);
 });
+```
 
 ## bundleManager.addDisallowedUninstallBundles
 
@@ -883,15 +910,17 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, callback: Asy
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
-bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, (err) => {
+  if (err) {
+    console.error(`Failed to add disallowed uninstall bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in adding disallowed uninstall bundles');
 });
 ```
 
@@ -929,15 +958,17 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId: numbe
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
-bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, 100, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, 100, (err) => {
+  if (err) {
+    console.error(`Failed to add disallowed uninstall bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in adding disallowed uninstall bundles');
 });
 ```
 
@@ -980,15 +1011,15 @@ addDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: numb
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
 bundleManager.addDisallowedUninstallBundles(wantTemp, appIds, 100).then(() => {
-    console.log("success");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info('Succeeded in adding disallowed uninstall bundles');
+}).catch((err) => {
+  console.error(`Failed to add disallowed uninstall bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1025,15 +1056,17 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, callback: 
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
-bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, (err) => {
+  if (err) {
+    console.error(`Failed to remove disallowed uninstall bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in removing disallowed uninstall bundles');
 });
 ```
 
@@ -1071,15 +1104,17 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId: nu
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+    bundleName: 'com.example.myapplication',
+    abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
-bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, 100, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, 100, (err) => {
+  if (err) {
+    console.error(`Failed to remove disallowed uninstall bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in removing disallowed uninstall bundles');
 });
 ```
 
@@ -1122,15 +1157,15 @@ removeDisallowedUninstallBundles(admin: Want, appIds: Array\<string>, userId?: n
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-let appIds = ["com.example.myapplication"];
+let appIds = ['com.example.myapplication'];
 
 bundleManager.removeDisallowedUninstallBundles(wantTemp, appIds, 100).then(() => {
-    console.log("success");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+  console.info('Succeeded in removing disallowed uninstall bundles');
+}).catch((err) => {
+  console.error(`Failed to remove disallowed uninstall bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1166,16 +1201,16 @@ getDisallowedUninstallBundles(admin: Want, callback: AsyncCallback&lt;Array&lt;s
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
-bundleManager.getDisallowedUninstallBundles(wantTemp, (error, data) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    } else {
-        console.log("success: " + data);
-    }
+bundleManager.getDisallowedUninstallBundles(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get disallowed uninstall bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting disallowed uninstall bundles, result : ${JSON.stringify(result)}`);
 });
 ```
 
@@ -1212,16 +1247,16 @@ getDisallowedUninstallBundles(admin: Want, userId: number, callback: AsyncCallba
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
-bundleManager.getDisallowedUninstallBundles(wantTemp, 100, (error, data) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    } else {
-        console.log("success: " + data);
-    }
+bundleManager.getDisallowedUninstallBundles(wantTemp, 100, (err, result) => {
+  if (err) {
+    console.error(`Failed to get disallowed uninstall bundles. Code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting disallowed uninstall bundles, result : ${JSON.stringify(result)}`);
 });
 ```
 
@@ -1263,13 +1298,14 @@ getDisallowedUninstallBundles(admin: Want, userId?: number): Promise&lt;Array&lt
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-bundleManager.getDisallowedUninstallBundles(wantTemp, 100).then((data) => {
-    console.log("success: " + data);
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+
+bundleManager.getDisallowedUninstallBundles(wantTemp, 100).then((result) => {
+  console.info(`Succeeded in getting disallowed uninstall bundles, result : ${JSON.stringify(result)}`);
+}).catch((err) => {
+  console.error(`Failed to get disallowed uninstall bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```
 
@@ -1306,16 +1342,15 @@ uninstall(admin: Want, bundleName: string, callback: AsyncCallback&lt;void&gt;):
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
-bundleManager.uninstall(wantTemp, "bundleName", (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    } else {
-        console.log("success.");
-    }
+bundleManager.uninstall(wantTemp, 'bundleName', (err) => {
+  if (err) {
+    console.error(`Failed to uninstall bundles. Code is ${err.code}, message is ${err.message}`);
+  }
+  console.info('Succeeded in uninstalling bundles');
 });
 ```
 
@@ -1353,16 +1388,15 @@ uninstall(admin: Want, bundleName: string, userId: number, callback: AsyncCallba
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
-bundleManager.uninstall(wantTemp, "bundleName", 100, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    } else {
-        console.log("success.");
-    }
+bundleManager.uninstall(wantTemp, 'bundleName', 100, (err) => {
+  if (err) {
+    console.error(`Failed to uninstall bundles. Code is ${err.code}, message is ${err.message}`);
+  }
+  console.info('Succeeded in uninstalling bundles');
 });
 ```
 
@@ -1400,16 +1434,15 @@ uninstall(admin: Want, bundleName: string, isKeepData: boolean, callback: AsyncC
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
-bundleManager.uninstall(wantTemp, "bundleName", true, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    } else {
-        console.log("success.");
-    }
+bundleManager.uninstall(wantTemp, 'bundleName', true, (err) => {
+  if (err) {
+    console.error(`Failed to uninstall bundles. Code is ${err.code}, message is ${err.message}`);
+  }
+  console.info('Succeeded in uninstalling bundles');
 });
 ```
 
@@ -1448,16 +1481,15 @@ uninstall(admin: Want, bundleName: string, userId: number, isKeepData: boolean, 
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 
-bundleManager.uninstall(wantTemp, "bundleName", 100, true, (error) => {
-    if (error != null) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    } else {
-        console.log("success.");
-    }
+bundleManager.uninstall(wantTemp, 'bundleName', 100, true, (err) => {
+  if (err) {
+    console.error(`Failed to uninstall bundles. Code is ${err.code}, message is ${err.message}`);
+  }
+  console.info('Succeeded in uninstalling bundles');
 });
 ```
 
@@ -1501,12 +1533,13 @@ uninstall(admin: Want, bundleName: string, userId?: number, isKeepData?: boolean
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-bundleManager.uninstall(wantTemp, "bundleName", 100, true).then(() => {
-    console.log("success.");
-}).catch(error => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+
+bundleManager.uninstall(wantTemp, 'bundleName', 100, true).then(() => {
+  console.info('Succeeded in uninstalling bundles');
+}).catch((err) => {
+  console.error(`Failed to uninstall bundles. Code is ${err.code}, message is ${err.message}`);
 });
 ```

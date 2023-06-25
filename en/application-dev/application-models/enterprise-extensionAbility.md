@@ -1,4 +1,4 @@
-# EnterpriseAdminExtensionAbility Development
+# EnterpriseAdminExtensionAbility
 
 ## Introduction to EnterpriseAdminExtensionAbility
 
@@ -8,34 +8,35 @@ EnterpriseAdminExtensionAbility is a mandatory component for Mobile Device Manag
 
 EnterpriseAdminExtensionAbility is applicable only to enterprise administrator applications.
 
-## Observing Activation/Deactivation of a Device Administrator Application and Installation/Removal of an Application
+
+## Observing Activation/Deactivation of a Device Administrator Application and Installation/Uninstallation of an Application
 
 ### Overview
 
-**onAdminEnabled**: When an enterprise administrator or employee deploys an MDM application and activates the device administrator application, this callback is invoked to notify the MDM application that the DeviceAdmin permission is activated. The initialization policy of the MDM application can set in **onAdminEnabled**.
+**onAdminEnabled**: called when an enterprise administrator or employee deploys an MDM application and enables the DeviceAdmin permission for the application. The MDM application can set the initialization policy in the **onAdminEnabled** callback.
 
-**onAdminDisabled**: When the device administrator application is deactivated, the callback is invoked to notify the MDM application that the DeviceAdmin permission is deactivated.
+**onAdminDisabled**: called when the system or employee disables the DeviceAdmin permission to notify the enterprise administrator that the device is no longer managed.
 
-**onBundleAdded**: The enterprise administrator can subscribe to application installation and uninstallation events. When an application is installed on an enterprise device, the MDM application reports the event in this callback to notify the enterprise administrator.
+**onBundleAdded**: The enterprise administrator can subscribe to application installation events. When an application is installed on an enterprise device, the MDM application reports the event in this callback to notify the enterprise administrator.
 
-**onBundleRemoved**: When an application is removed from an enterprise device, the MDM application reports the event in this callback to notify the enterprise administrator.
+**onBundleRemoved**: The enterprise administrator can subscribe to application uninstallation events. When an application is uninstalled on an enterprise device, the MDM application reports the event in this callback to notify the enterprise administrator.
 
 ### Available APIs
 
 | Class                           | API                                 | Description                        |
 | ------------------------------ | ----------------------------------------- | ---------------------------- |
-| EnterpriseAdminExtensionAbility | onAdminEnabled(): void                    | Called when a device administrator application is activated.  |
-| EnterpriseAdminExtensionAbility | onAdminDisabled(): void                   | Called when a device administrator application is deactivated.|
-| EnterpriseAdminExtensionAbility | onBundleAdded(bundleName: string): void   | Called when an application is installed on a device.            |
-| EnterpriseAdminExtensionAbility | onBundleRemoved(bundleName: string): void | Called when an application is removed from a device.            |
+| EnterpriseAdminExtensionAbility | onAdminEnabled(): void                    | Called when the device administrator application is disabled.  |
+| EnterpriseAdminExtensionAbility | onAdminDisabled(): void                   | Called when the device administrator application is enabled.|
+| EnterpriseAdminExtensionAbility | onBundleAdded(bundleName: string): void   | Called when the MDM application is installed.            |
+| EnterpriseAdminExtensionAbility | onBundleRemoved(bundleName: string): void | Called when the MDM application is uninstalled.            |
 
 ### How to Develop
 
 To implement EnterpriseAdminExtensionAbility, you need to activate the device administrator application and create **ExtensionAbility** in the code directory of the device administrator application. The procedure is as follows:
 
 1. In the **ets** directory of the target module, right-click and choose **New > Directory** to create a directory named **EnterpriseExtAbility**.
-2. Right-click the **EnterpriseExtAbility** directory, and choose **New > TypeScript File** to create a file named **EnterpriseExtAbility.ts**.
-3. Open the **EnterpriseExtAbility.ts** file and import the **EnterpriseAdminExtensionAbility** module. Inherit the **EnterpriseAdminExtensionAbility** module to the custom class and add application notification callbacks, such as **onAdminEnabled()** and **onAdminDisabled()**. When the device administrator application is activated or deactivated, the device administrator can receive notifications.
+2. Right-click the **EnterpriseExtAbility** directory and choose **New > TypeScript File** to create a file named **EnterpriseExtAbility.ts**.
+3. Open the **EnterpriseExtAbility.ts** file and import the **EnterpriseAdminExtensionAbility** module. Customize a class that inherits from **EnterpriseAdminExtensionAbility** and add the required callbacks, such as **onAdminEnabled()** and **onAdminDisabled()**, When the device administrator application is activated or deactivated, the device administrator can receive notifications.
 
    ```ts
    import EnterpriseAdminExtensionAbility from '@ohos.enterprise.EnterpriseAdminExtensionAbility';

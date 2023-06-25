@@ -35,6 +35,7 @@
 | 名称                  | 类型                    | 可读 | 可写 | 说明                 |
 | --------------------- | ----------------------- | ---- | ---- | ---------------------|
 | name                  | string                  | 是   | 是   | 需要使用的权限名称。   |
+| moduleName<sup>10+</sup>            | string                  | 是   | 是   | 申请该权限的module名称。   |
 | reason                | string                  | 是   | 是   | 描述申请权限的原因。  |
 | reasonId              | number                  | 是   | 是   | 描述申请权限的原因ID。 |
 | usedScene             | [UsedScene](#usedscene) | 是   | 是   | 权限使用的场景和时机。 |

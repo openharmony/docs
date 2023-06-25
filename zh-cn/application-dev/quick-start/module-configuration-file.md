@@ -97,6 +97,7 @@ module.json5配置文件包含以下标签。
 | [proxyDatas](#proxydatas标签) | 标识当前Module提供的数据代理列表。| 对象数组 | 该标签可缺省，缺省值为空。|
 | isolationMode | 标识当前Module的多进程配置项。类型有4种，分别：<br/>-&nbsp;nonisolationFirst：优先在非独立进程中运行。<br/>-&nbsp;isolationFirst：优先在独立进程中运行。<br/>-&nbsp;isolationOnly：只在独立进程中运行。<br/>-&nbsp;nonisolationOnly：只在非独立进程中运行。 |字符串|该标签可缺省, 缺省值为nonisolationFirst。|
 | generateBuildHash |标识当前HAP/HSP是否由打包工具生成哈希值。如果存在，则在系统OTA升级但应用的versionCode保持不变时，可根据哈希值判断应用是否需要升级。<br/>该字段仅在[app.json5文件](./app-configuration-file.md)中的generateBuildHash字段为false时使能。<br/><strong>注：</strong>该字段仅对预置应用生效。|布尔值|该标签可缺省, 缺省值为false。|
+| compressNativeLibs | 标识libs库是否以压缩存储的方式打包到HAP。如果配置为"false"，则libs库以不压缩的方式存储，HAP在安装时无需解压libs，运行时会直接从HAP内加载libs库。 | 布尔值 | 可缺省，缺省值为true。 |
 
 ## deviceTypes标签
 
@@ -180,7 +181,7 @@ deviceTypes示例：
 
 | 属性名称 | 含义 | 数据类型 | 是否可缺省 |
 | -------- | -------- | -------- | -------- |
-| name | 该标签标识数据项的键名称，字符串类型（最大长度255字节）。 | 字符串 | 该标签可缺省，缺省值为空。 |
+| name | 该标签标识数据项的名称，字符串类型（最大长度255字节）。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | value | 该标签标识数据项的值，标签值为字符串（最大长度255字节）。 | 字符串 | 该标签可缺省，缺省值为空。 |
 | resource | 该标签标识定义用户自定义数据格式，标签值为标识该数据的资源的索引值。该标签最大字节长度为255字节。 | 字符串 | 该标签可缺省，缺省值为空。 |
 

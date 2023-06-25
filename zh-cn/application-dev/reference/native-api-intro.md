@@ -3,6 +3,7 @@
 Native API是OpenHarmony SDK上提供的一组native开发接口与工具集合（也称为NDK），方便开发者使用C或者C++语言实现应用的关键功能。Native API只覆盖了OHOS基础的一些底层能力，如libc，图形库，窗口系统，多媒体，压缩库等，并没有完全提供类似于JS API上的完整的OHOS 平台能力。在应用中使用Native API会编译成动态库打包到应用中。
 
 ## 名词概念
+
 |名词|名词解释|
 |--|--|
 |Native API|OHOS SDK里面native包提供的，面向三方应用开发的Native 接口以及相应编译脚本，编译工具链。包括C运行时基础库libc，3D图形库opengl，面向JS与C跨语言的接口Node-API等，具体内容详见下表。|
@@ -10,6 +11,7 @@ Native API是OpenHarmony SDK上提供的一组native开发接口与工具集合�
 |SDK CAPI|OHOS Native API中的C语言接口，以及工具链部分，当前OHOS的Native API里面只包含C语言接口，因此Native API与CAPI意思一样，建议交流的时候使用CAPI，防止Native API与napi缩写混用。|
 |Node-API|曾用名napi，是OHOS中提供JS与C跨语言调用的接口，是Native API接口中的一部分. 该接口在Node.js提供的Node-API基础上扩展而来，但不完全与Node.js中的Node-API完全兼容。 |
 |napi|Node-API的曾用名，当前Node-API头文件中的接口仍然以napi_开头，不建议使用。|
+
 ## Native API构成介绍
 
 ### Native API目录结构
@@ -42,14 +44,13 @@ Native API在SDK包的位置为$(SDK_ROOT)/native目录，主要有以下几个�
 |Mindspore|AI模型接口库|9|
 |包管理|包服务接口，方便查询应用包信息|8|
 
-
 ### Native API相关资料
-* 《[Native API参考手册](./native-apis/Readme-CN.md)》，介绍各个API参考手册
-* 《[Native API中支持的标准库](../reference/native-lib/Readme-CN.md)》，介绍Native API支持的开源标准库
-* 《[Native API开发指南](../napi/Readme-CN.md)》，结合具体的例子，场景介绍各类接口的使用
-* 《[使用NDK编译一个Cmake C/C++工程文档](../quick-start/howto-migrate-cmake-with-ohosndk.md)》，介绍如何使用使用Native API开发一个Cmake工程
-* 《[Node-API在应用工程中的使用指导](../napi/napi-guidelines.md)》, 如何使用Node-API接口
 
+* [Native API参考](native-apis/_o_h___native_x_component.md)，介绍各个API参考手册
+* [Native API中支持的标准库](../reference/native-lib/third_party_libc/musl.md)，介绍Native API支持的开源标准库
+* [Native API开发指南](../napi/napi-guidelines.md)，结合具体的例子，场景介绍各类接口的使用
+* [使用NDK编译一个Cmake C/C++工程文档](../faqs/howto-migrate-cmake-with-ohosndk.md)，介绍如何使用使用Native API开发一个Cmake工程
+* [Node-API在应用工程中的使用指导](../napi/napi-guidelines.md), 如何使用Node-API接口
 
 ## 使用建议
 
@@ -68,5 +69,5 @@ Native API在SDK包的位置为$(SDK_ROOT)/native目录，主要有以下几个�
 
 ## 维测能力
 
-1. OHOS官方提供lldb remote方式代码调试，详细参看《[lldb参考手册](https://gitee.com/openharmony/third_party_llvm-project/blob/master/lldb/README_zh.md)》
-2. musl库的log维测能力，请参看[libc库](./native-lib/third_party_libc/musl.md)维测章节
+1. OHOS官方提供lldb remote方式代码调试，详细参看[lldb参考手册](https://gitee.com/openharmony/third_party_llvm-project/blob/master/lldb/README_zh.md)。
+2. musl库的log维测能力，请参看[libc库](./native-lib/third_party_libc/musl.md)维测章节。

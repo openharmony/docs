@@ -3947,11 +3947,11 @@ try{
 
 **系统API**：此接口为系统接口，三方应用不支持调用。
 
-| 名称  | 类型                                  | 只读 | 必填 | 说明                   |
-| ----- | ------------------------------------- | ---- | ---- | ---------------------- |
-| type  | [DoNotDisturbType](#donotdisturbtype) | 否   | 是   | 免打扰设置的时间类型。 |
-| begin | Date                                  | 否   | 是   | 免打扰设置的起点时间。 |
-| end   | Date                                  | 否   | 是   | 免打扰设置的终点时间。 |
+| 名称  | 类型                                  | 可读 | 可写 | 必填 | 说明                   |
+| ----- | ------------------------------------- | ---- | ---- | ---- | ---------------------- |
+| type  | [DoNotDisturbType](#donotdisturbtype) | 是   | 是   | 是   | 免打扰设置的时间类型。 |
+| begin | Date                                  | 是   | 是   | 是   | 免打扰设置的起点时间。 |
+| end   | Date                                  | 是   | 是   | 是   | 免打扰设置的终点时间。 |
 
 ## DoNotDisturbType
 
@@ -4041,11 +4041,11 @@ try{
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-| 名称  | 类型                                  | 只读 | 必填 | 说明                   |
-| ----- | ------------------------------------- | ---- | ---- | ---------------------- |
-| bundleName  | string                          | 否   | 是   | bundle名称。 |
-| notificationId | number                       | 否   | 是   | 通知Id。     |
-| contentType   | [ContentType](#contenttype)   | 否   | 是   | 通知类型。   |
+| 名称  | 类型                                  | 可读 | 可写 | 必填 | 说明                   |
+| ----- | ------------------------------------- | ---- | ---- | ---------------------- | ---------------------- |
+| bundleName  | string                          | 是  | 是  | 是   | bundle名称。 |
+| notificationId | number                       | 是  | 是  | 是   | 通知Id。     |
+| contentType   | [ContentType](#contenttype)   | 是  | 是  | 是   | 通知类型。   |
 
 ## NotificationCheckResult<sup>10+</sup>
 
@@ -4055,7 +4055,7 @@ try{
 
 **需要权限**：ohos.permission.NOTIFICATION_CONTROLLER 和 ohos.permission.NOTIFICATION_AGENT_CONTROLLER
 
-| 名称  | 类型                                  | 只读 | 必填 | 说明                   |
-| ----- | ------------------------------------- | ---- | ---- | ---------------------- |
-| code  | number                          | 否   | 是   | 0-display, 1-no display。 |
-| message | string                       | 否   | 是   | 结果信息。    |
+| 名称  | 类型                                  | 可读 |  | 必填 | 说明                   |
+| ----- | ------------------------------------- | ---- | ---- | ---------------------- | ---------------------- |
+| code  | number                          | 是  | 是  | 是   | 0-display, 1-no display。 |
+| message | string                       | 是  | 是  | 是   | 结果信息。    |

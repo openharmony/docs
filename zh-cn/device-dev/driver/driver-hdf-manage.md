@@ -94,13 +94,14 @@ typedef enum {
 
 针对驱动服务管理功能，HDF框架开放了以下接口供开发者调用，如下表所示：
 
+**表1** 服务管理接口
+
 | 方法                                                         | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | int32_t (*Bind)(struct HdfDeviceObject *deviceObject)        | 需要驱动开发者实现Bind函数，将自己的服务接口绑定到HDF框架中。 |
 | const struct HdfObject *DevSvcManagerClntGetService(const char *svcName) | 获取驱动的服务。                                             |
 | int HdfDeviceSubscribeService( struct HdfDeviceObject *deviceObject, const char *serviceName, struct SubscriberCallback callback) | 订阅驱动的服务。                                             |
 
-**表1** 服务管理接口
 
 ### 驱动消息机制管理
 
@@ -116,6 +117,8 @@ typedef enum {
 
 ​                2. 用户态应用接收驱动主动上报事件。
 
+**表2** 消息机制接口
+
 | 方法                                                         | 描述                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | struct HdfIoService *HdfIoServiceBind(const char *serviceName); | 用户态获取驱动的服务，获取该服务之后通过服务中的Dispatch方法向驱动发送消息。 |
@@ -123,7 +126,7 @@ typedef enum {
 | int HdfDeviceRegisterEventListener(struct HdfIoService *target, struct HdfDevEventlistener *listener); | 用户态程序注册接收驱动上报事件的操作方法。                   |
 | int32_t HdfDeviceSendEvent(const struct HdfDeviceObject *deviceObject, uint32_t id, const struct HdfSBuf *data) | 驱动主动上报事件接口。                                       |
 
-**表1** 消息机制接口
+
 
 ### 配置管理
 
@@ -150,6 +153,8 @@ HCS的语法介绍如下：
 
 HCS配置语法保留了以下关键字。
 
+**表3** HCS配置语法保留关键字
+
 | 关键字     | 用途                       | 说明                                       |
 | ---------- | -------------------------- | ------------------------------------------ |
 | root       | 配置根节点                 | -                                          |
@@ -158,7 +163,7 @@ HCS配置语法保留了以下关键字。
 | template   | 定义模板节点               | -                                          |
 | match_attr | 用于标记节点的匹配查找属性 | 解析配置时可以使用该属性的值查找到对应节点 |
 
-**表1** HCS配置语法保留关键字
+
 
 ##### 基本结构
 
