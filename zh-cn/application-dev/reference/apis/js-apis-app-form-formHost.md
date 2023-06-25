@@ -2409,7 +2409,7 @@ try {
 
 订阅通知卡片可见的事件。触发通知卡片可见场景为:
 
-​ 1.调用notifyVisibleForms接口通知对应卡片可见性变更为可见状态
+​ 调用notifyVisibleForms接口通知对应卡片可见性变更为可见状态
 
 **需要权限**：ohos.permission.REQUIRE_FORM
 
@@ -2480,7 +2480,7 @@ formHost.off('notifyVisible', callback, bundleName);
 
 订阅通知卡片不可见的事件。触发通知卡片不可见场景为:
 
-​ 1.调用notifyInvisibleForms接口通知对应卡片可见性变更为不可见状态
+​ 调用notifyInvisibleForms接口通知对应卡片可见性变更为不可见状态
 
 **需要权限**：ohos.permission.REQUIRE_FORM
 
