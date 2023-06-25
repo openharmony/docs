@@ -196,7 +196,7 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;
 
   | 名称                                        | 说明        |
   | ------------------------------------------- | --------- |
-  | Array&lt;[DeviceBasicInfo](#deviceinfo)&gt; | 返回可信设备列表。 |
+  | Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt; | 返回可信设备列表。 |
 
 **错误码：**
 
@@ -228,7 +228,7 @@ getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt
 
   | 参数名       | 类型                                     | 必填   | 说明                    |
   | -------- | ---------------------------------------- | ---- | --------------------- |
-  | callback | AsyncCallback&lt;Array&lt;[DeviceBasicInfo](#deviceinfo)&gt;&gt; | 是    | 获取所有可信设备列表的回调，返回设备信息。 |
+  | callback | AsyncCallback&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | 是    | 获取所有可信设备列表的回调，返回设备信息。 |
 
 **错误码：**
 
@@ -266,7 +266,7 @@ getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;
 
   | 类型                                                       | 说明                               |
   | ---------------------------------------------------------- | ---------------------------------- |
-  | Promise&lt;Array&lt;[DeviceBasicInfo](#deviceinfo)&gt;&gt; | Promise实例，用于获取异步返回结果。 |
+  | Promise&lt;Array&lt;[DeviceBasicInfo](#devicebasicinfo)&gt;&gt; | Promise实例，用于获取异步返回结果。 |
 
 **错误码：**
 
