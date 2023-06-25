@@ -366,6 +366,7 @@
   - [@ohos.brightness (屏幕亮度)](js-apis-brightness.md)
   - [@ohos.charger (充电类型)](js-apis-charger.md)
   - [@ohos.cooperate (键鼠穿越)](js-apis-devicestatus-cooperate.md)
+  - [@ohos.deviceAttest (设备证明)](js-apis-deviceAttest.md)
   - [@ohos.deviceInfo (设备信息)](js-apis-device-info.md)
   - [@ohos.distributedHardware.deviceManager (设备管理)](js-apis-device-manager.md)
   - [@ohos.geoLocationManager (位置服务)](js-apis-geoLocationManager.md)
@@ -445,7 +446,6 @@
 
 - 测试
   - [@ohos.application.testRunner (TestRunner)](js-apis-application-testRunner.md)
-  - [@ohos.deviceAttest (设备证明)](js-apis-deviceAttest.md)
   - [@ohos.uitest (UiTest)](js-apis-uitest.md)
 
 - 已停止维护的接口
