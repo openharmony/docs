@@ -361,7 +361,7 @@ class EntryAbility extends UIAbility {
 | uri         | string                      | 是   | 资产的uri，在系统里的绝对路径。       |
 | path        | string                      | 是   | 资产在应用沙箱里的路径。       |
 | createTime  | string                      | 是   | 资产被创建出来的时间。   |
-| modify Time | string                      | 是   | 资产最后一次被修改的时间。 |
+| modifyTime  | string                      | 是   | 资产最后一次被修改的时间。 |
 | size        | string                      | 是   | 资产占用空间的大小。    |
 | status      | [AssetStatus](#assetstatus10) | 否   | 资产的状态，默认值为ASSET_NORMAL。        |
 
@@ -425,7 +425,7 @@ class EntryAbility extends UIAbility {
 
 ## ChangeType<sup>10+</sup>
 
-描述数据变更类型的枚举。
+描述数据变更类型的枚举。请使用枚举名称而非枚举值。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -433,8 +433,8 @@ class EntryAbility extends UIAbility {
 
 | 名称                         | 值   | 说明                         |
 | -------------------------- | --- | -------------------------- |
-| DATA_CHANGE  | -   | 表示是数据发生变更。请使用枚举名称而非枚举值。    |
-| ASSET_CHANGE | -   | 表示是资产附件发生了变更。请使用枚举名称而非枚举值。 |
+| DATA_CHANGE  | -   | 表示是数据发生变更。   |
+| ASSET_CHANGE | -   | 表示是资产附件发生了变更。 |
 
 ## ChangeInfo<sup>10+</sup>
 
@@ -458,8 +458,8 @@ class EntryAbility extends UIAbility {
 
 | 名称                | 值   | 说明                                                                                                 |
 | ------------------ | --- | -------------------------------------------------------------------------------------------------- |
-| DISTRIBUTED_DEVICE | 0   | 表示表在不同设备之间分布式。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core               |
-| DISTRIBUTED_CLOUD  | -   | 表示表在设备和云端之间分布式。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| DISTRIBUTED_DEVICE | 0   | 表示在不同设备之间分布式的列表。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core               |
+| DISTRIBUTED_CLOUD  | -   | 表示在设备和云端之间分布式的列表。请使用枚举名称而非枚举值。<br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
 
 ## DistributedConfig<sup>10+</sup>
 
@@ -3018,8 +3018,8 @@ store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIB
 | 参数名 | 类型                                      | 必填 | 说明                                                 |
 | ------ | ----------------------------------------- | ---- | ---------------------------------------------------- |
 | tables | Array&lt;string&gt;                       | 是   | 要设置的分布式列表表名。                             |
-| type   | [DistributedType](#distributedtype10)     | 否   | 表的分布式类型。<br> API version 10新增可选参数。默认值是DISTRIBUTED_DEVICE。    |
-| config | [DistributedConfig](#distributedconfig10) | 否   | 表的分布式配置信息。<br/> API version 10新增可选参数。不传入时默认只支持手动同步。 |
+| type   | [DistributedType<sup>10+</sup>](#distributedtype10)     | 否   | 表的分布式类型。<br> API version 10新增可选参数。默认值是DISTRIBUTED_DEVICE。    |
+| config | [DistributedConfig<sup>10+</sup>](#distributedconfig10) | 否   | 表的分布式配置信息。<br/> API version 10新增可选参数。不传入时默认autoSync为false，即只支持手动同步。 |
 
 **返回值**：
 
@@ -3062,7 +3062,7 @@ setDistributedTables(tables: Array&lt;string&gt;, type: number, config: Distribu
 | 参数名      | 类型                                  | 必填  | 说明              |
 | -------- | ----------------------------------- | --- | --------------- |
 | tables   | Array&lt;string&gt;                 | 是   | 要设置的分布式列表表名。     |
-| type     | number | 是   | 表的分布式类型。         |
+| type     | number | 是   | 表的分布式类型。目前支持的入参值为: 0、relationalStore.DistributedType.DISTRIBUTED_CLOUD。<br> 当type为0时，表示表在不同设备之间分布式。<br> 当type为relationalStore.DistributedType.DISTRIBUTED_CLOUD时，表示表在设备和云端之间分布式。         |
 | config | [DistributedConfig](#distributedconfig10) | 是 | 表的分布式配置信息。 |
 | callback | AsyncCallback&lt;void&gt;           | 是   | 指定callback回调函数。 |
 
@@ -3332,7 +3332,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)    | 是   | 订阅类型。 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;ChangeInfo&gt;&gt;<sup>10+</sup> | 是   | 回调函数。<br>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号。 <br> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;ChangeInfo&gt;&gt;<sup>10+</sup> | 是   | 回调函数。<br>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端帐号。 <br> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。 |
 
 **示例：**
 
@@ -3363,7 +3363,7 @@ off(event:'dataChange', type: SubscribeType, observer?: Callback&lt;Array&lt;str
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)     | 是   | 订阅类型。                                 |
-| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;ChangeInfo&gt;&gt;<sup>10+</sup> | 否 | 回调函数。<br/>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br/> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号ID。 <br/> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br> 当observer没有传入时，表示取消当前type类型下所有数据变更的事件监听。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;ChangeInfo&gt;&gt;<sup>10+</sup> | 否 | 回调函数。<br/>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br/> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端帐号。 <br/> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br> 当observer没有传入时，表示取消当前type类型下所有数据变更的事件监听。 |
 
 **示例：**
 
@@ -3867,7 +3867,7 @@ getAsset(columnIndex: number): Asset
 
 | 类型              | 说明                         |
 | --------------- | -------------------------- |
-| [Asset](#asset10) | 以[Asset](#asset10)形式返回指定列的值。 |
+| [Asset](#asset10) | 以Asset形式返回指定列的值。 |
 
 **错误码：**
 
@@ -3875,7 +3875,7 @@ getAsset(columnIndex: number): Asset
 
 | **错误码ID** | **错误信息**                                                     |
 | --------- | ------------------------------------------------------------ |
-| 14800013  | the column value is null or the column type is incompatible. |
+| 14800013  | The column value is null or the column type is incompatible. |
 
 **示例：**
 
@@ -3909,7 +3909,7 @@ getAssets(columnIndex: number): Assets
 
 | **错误码ID** | **错误信息**                                                 |
 | ------------ | ------------------------------------------------------------ |
-| 14800013     | the column value is null or the column type is incompatible. |
+| 14800013     | The column value is null or the column type is incompatible. |
 
 **示例：**
 
