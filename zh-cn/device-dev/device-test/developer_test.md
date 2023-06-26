@@ -667,7 +667,8 @@ group("unittest") {
 	  include_dirs = [ "../../../include" ]
 	}
 	```
-	> **说明：** 
+	> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+	>  
 	> 一般在此处对相关配置进行设置，在测试用例编译脚本中可直接引用。
 
 5. 指定测试用例编译目标输出的文件名称
@@ -710,7 +711,8 @@ group("unittest") {
 	  deps = [":CalculatorSubTest"]
 	}
 	```
-	> **说明：** 
+	> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+	>  
 	> 进行条件分组的目的在于执行用例时可以选择性地执行某一种特定类型的用例。
 
 - **JavaScript用例编译配置示例**
@@ -1023,7 +1025,8 @@ ohos_unittest("CalculatorSubTest") {
 	  <dir>D:\Test\testcase\tests</dir>
 	</test_cases>
 	```
-	>**说明：** 
+	> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+	>  
 	> `<testcase>`标签表示是否需要编译用例；`<dir>`标签表示测试用例查找路径。
 
 #### 执行用例命令
