@@ -246,7 +246,7 @@ HUKS Core的销毁，一般用于释放全局变量，包括锁，销毁内存�
   3. keyAlias -> dataLen != 0
   <br></br>
   <strong>const struct HuksBlob *key</strong>
-  待导入的密钥明文材料，密钥材料格式见[密钥材料格式](../../application-dev/security/huks-appendix.md#密钥材料格式)，要求：
+  待导入的密钥明文材料，密钥材料格式见<a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/huks-appendix.md#%E5%AF%86%E9%92%A5%E6%9D%90%E6%96%99%E6%A0%BC%E5%BC%8F">密钥材料格式</a>，要求：
   1. key != null
   2. key -> data != null
   3. key -> dataLen != 0
@@ -310,7 +310,7 @@ HUKS Core的销毁，一般用于释放全局变量，包括锁，销毁内存�
   3. wrappingEncKey -> dataLen != 0
   <br></br>
   <strong>const struct HuksBlob *wrappedKeyData</strong>
-  要导入的密钥的密钥材料数据，格式参考[加密导入密钥材料](../../application-dev/security/huks-guidelines.md#加密导入)，要求：
+  要导入的密钥的密钥材料数据，格式参考<a href="https://gitee.com/openharmony/docs/blob/master/zh-cn/application-dev/security/huks-guidelines.md#%E5%8A%A0%E5%AF%86%E5%AF%BC%E5%85%A5">加密导入材料格式</a>，要求：
   1. wrappedKeyData != null
   2. wrappedKeyData -> data != null
   3. wrappedKeyData -> dataLen != 0
@@ -639,7 +639,7 @@ HUKS Core的销毁，一般用于释放全局变量，包括锁，销毁内存�
   获取密钥证书操作的参数，如challenge等
   <br></br>
   <strong>struct HuksBlob *certChain</strong>
-  出参，存放证书链，格式参考上述[证书链格式](#证书链格式)
+  出参，存放证书链，格式参考上述证书链格式
   </pre>
 </details>
 <br></br>
