@@ -96,37 +96,18 @@
 
 | ISSUE                                                        | 问题描述                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [I6Q0BP](https://gitee.com/openharmony/ability_form_fwk/issues/I6Q0BP) | 【OpenHarmony  3.2.11.1】【ability】【TOD】【rk3568】【必现-5/5】masterXTS执行测试，元能力测试套执行结果存在fail |
-| [I70G1T](https://gitee.com/openharmony/applications_camera/issues/I70G1T) | 【OpenHarmony 3.2.12.2sp1】【应用子系统】【ToC】【RK3568】【必现】在RK3568设备上对Openharmony  进行动态内存测试，com.ohos.camera 进程 基线值 0 KB，实测值 42550KB，超基线41.55M |
-| [I70VQX](https://gitee.com/openharmony/xts_acts/issues/I70VQX) | 【OpenHarmony  3.2.12.5】【xts_acts】【Misc软件服务子系统】【ToD】【RK3568】【必现】inputEngine属性接口覆盖 |
-| [I72AD8](https://gitee.com/openharmony/drivers_peripheral/issues/I72AD8) | 【OpenHarmony 3.2.12.2 sp2】【驱动子系统】【ToC】【RK3568】【必现】相机黑屏，测试用例执行失败 |
-| [I73A19](https://gitee.com/openharmony/multimedia_audio_framework/issues/I73A19) | 【OpenHarmony 3.2.12.3】【RK3568】【压力测试】【ToC】【高概率】【wukong】出现16次  ，进程com.ohos.setting下出现appfreeze问题，栈名：libaudio_policy_service.z.so |
-| [I77YI6](https://gitee.com/openharmony/xts_acts/issues/I77YI6) | 【OpenHarmony4.0.7.2】【RK3568】【多模子系统3.2Release】【ToD】【必现】 多模子系统用例修改调整 |
-| [I790E9](https://gitee.com/openharmony/xts_hats/issues/I790E9) | 【OpenHarmony  3.2Release】【驱动子系统】【ToC】【RK3568】【必现】HatsHdfAudioCaptureAttrTest和HatsHdfAudioCaptureVolumeTest  测试套用例失败 |
-| [I79Z81](https://gitee.com/openharmony/xts_acts/issues/I79Z81) | 【OpenHarmony 3.2.12.2】【xts_acts】【Misc软件服务子系统】【ToD】【RK3568】【必现】优化input用例时延 |
-| [I774YK](https://gitee.com/openharmony/window_window_manager/issues/I774YK) | 【OpenHarmony 4.0.7.2】【资料】【ToD】【必现】【WMS】ohos.display.d.ts文件中，跨平台接口的参数未添加 |
-| [I6QTIN](https://gitee.com/openharmony/release-management/issues/I6QTIN) | 【OpenHarmony】【体验测试】【版本号：3.2.10.11】【rk3568】【ToC】【概率：必现】新建联系人场景---应用业务逻辑问题：应用不应该使用系统默认的转场动效(默认300ms)，需要应用实现窗口动效,Android的窗口动效80ms。 |
-| [I6QTLI](https://gitee.com/openharmony/release-management/issues/I6QTLI) | 【OpenHarmony】【体验测试】【版本号：3.2.10.11】【rk3568】【ToC】【概率：必现】删除联系人场景---应用业务逻辑问题：已拆解出主线程同步等待子线程成146ms做数据库查询动作 |
-| [I6R1F4](https://gitee.com/openharmony/release-management/issues/I6R1F4) | 【OpenHarmony】【体验测试】【版本号：3.2.10.11】【rk3568】【ToC】【概率：必现】输入法弹出标准值279ms，实际值740.3ms |
-| [I6R21B](https://gitee.com/openharmony/release-management/issues/I6R21B) | 【OpenHarmony】【体验测试】【版本号：3.2.10.11】【rk3568】【ToC】【概率：必现】状态栏下拉标准值68ms，实际值177.7ms |
-| [I55ZAC](https://gitee.com/openharmony/applications_contacts/issues/I55ZAC) | 【OpenHarmony】【applications_contacts】【版本号：3.2.3.2】【rk3568】【概率：必现】联系人-拨号子Tab切换完成时延标准值：250ms，实际值：325ms，超基线75ms |
-| [I5G02U](https://gitee.com/openharmony/applications_contacts/issues/I5G02U) | 【OpenHarmony】【applications_contacts】【版本号：3.2.5.1】【rk3568】【概率：必现】联系人-拨号子Tab切换完成时延标准值：250ms，实际值：490.3ms，超基线240.3ms |
-| [I6B4U3](https://gitee.com/openharmony/applications_launcher/issues/I6B4U3) | 【OpenHarmony 3.2.10.5(Mr)】【RK3568】【压力测试】【ToC】【低概率1/10】【xts】出现3次  由进程com.ohos.launcher出现appfreeze |
-| [I6KYOV](https://gitee.com/openharmony/applications_launcher/issues/I6KYOV) | 【3.2 monthly】Launcher 反复同时点击桌面文件夹和home键 会出现状态栏、导航栏闪黑现象 |
-| [I6OUPH](https://gitee.com/openharmony/xts_acts/issues/I6OUPH) | 【OpenHarmony  3.2release】【distributed_schedule_lite】IUnknownTestSuite模块执行一条failed项 |
-| [I6T84B](https://gitee.com/openharmony/applications_launcher/issues/I6T84B) | 【OpenHarmony  3.2.10.11】【稳定性】【TOC】【rk3568】【必现-5/5】应用遍历测试：com.ohos.launcher出现错误 “APP_FREEZE” |
-| [I6U00Q](https://gitee.com/openharmony/device_board_hihope/issues/I6U00Q) | 【3.2Release】Rk3568使用3.5mm耳机播放音频文件，存在pop音     |
-| [I6V2F6](https://gitee.com/openharmony/drivers_peripheral/issues/I6V2F6) | 【OpenHarmony 3.2.11.9】【驱动子系统】【ToC】【RK3568】【必现】在RK3568设备上对Openharmony  进行动态内存测试，codec_host 进程 基线值 2367.6KB，实测值 17585KB，超基线14.86M |
-| [I6WBVF](https://gitee.com/openharmony/arkui_ace_engine/issues/I6WBVF) | [OH-3.2Release]界面置灰，且实际上不可点击的控件信息中enabled属性仍为true，与规格不符，影响自动化测试功能 |
-| [I70T6E](https://gitee.com/openharmony/web_webview/issues/I70T6E) | 【OpenHarmony 3.2.12.2】【RK3568】【压力测试】【ToC】【低概率1/10】【wukong】出现1次  由进程com.ohos.note下的Chrome_IOThread线程导致libweb_engine.so出现cppcrash |
-| [I72P6D](https://gitee.com/openharmony/graphic_graphic_2d/issues/I72P6D) | 【OpenHarmony  3.2.12.2】【RK3568】【压力测试】【ToC】【必现10/10】反复移动卡片到合法区域挤位，导致libskia_ohos.z.so出现内存泄露 |
-| [I72P6H](https://gitee.com/openharmony/graphic_graphic_2d/issues/I72P6H) | 【OpenHarmony  3.2.12.2】【RK3568】【压力测试】【ToC】【必现10/10】反复移动文件夹到合法区域挤位，导致libskia_ohos.z.so出现内存泄露 |
-| [I76JRL](https://gitee.com/openharmony/drivers_peripheral/issues/I76JRL) | 【OpenHarmony  3.2.11.9】【RK3568】【压力测试】【ToC】【低概率1/10】【wukong】出现1次，camera_host进程下offlinepipeline发生cppcrash，信息为libcamera_pipeline_core.z.so。 |
-| [I76N61](https://gitee.com/openharmony/graphic_graphic_2d/issues/I76N61) | 【OpenHarmony  3.2.12.2】【RK3568】【压力测试】【ToC】【必现10/10】反复进入某相册的图片宫格浏览界面，导致libmali-bifrost-g52-g2p0-ohos.so出现内存泄露 |
-| [I76N63](https://gitee.com/openharmony/graphic_graphic_2d/issues/I76N63) | 【OpenHarmony  3.2.12.2】【RK3568】【压力测试】【ToC】【必现10/10】反复在dock栏添加/移除应用，导致libmali-bifrost-g52-g2p0-ohos.so出现内存泄露 |
-| [I77HM5](https://gitee.com/openharmony/powermgr_battery_statistics/issues/I77HM5) | 【OpenHarmany-3.2release】battery_stattistic部件API文档描述与代码实现不一致 |
-| [I77UBT](https://gitee.com/openharmony/third_party_chromium/issues/I77UBT) | 鸿蒙系统OpenHarmony-3.2-Release分支的源码与其给浏览内核提供的patch代码不一致，导致2个编译报错 |
-| [I79SUV](https://gitee.com/openharmony/xts_acts/issues/I79SUV) | 【OpenHarmony-3.2-Release】【通知子系统】【XTS】3.2Release  acts缺少ActsNotificationRequestTest源码 |
+| [I70T6E](https://gitee.com/openharmony/web_webview/issues/I70T6E) | 【OpenHarmony 3.2.12.2】【RK3568】【压力测试】【ToC】【低概率1/10】【wukong】出现1次 由进程com.ohos.note下的Chrome_IOThread线程导致libweb_engine.so出现cppcrash |
+| [I76JRL](https://gitee.com/openharmony/drivers_peripheral/issues/I76JRL) | 【OpenHarmony 3.2.11.9】【RK3568】【压力测试】【ToC】【低概率1/10】【wukong】出现1次，camera_host进程下offlinepipeline发生cppcrash，信息为libcamera_pipeline_core.z.so。 |
+| [I7C0LX](https://gitee.com/openharmony/developtools_profiler/issues/I7C0LX) | 【OpenHarmony 3.2.13.1】【RK3568】【压力测试】【ToC】【高概率6/10】【wukong】出现650次，com.ohos.smartperf应用出现jscrash，内容信息为initDb。 |
+| [I7C0SA](https://gitee.com/openharmony/vendor_hihope/issues/I7C0SA) | 【OpenHarmony 3.2.13.1】【RK3568】【压力测试】【ToC】【高概率】【wukong】出现27次 由进程com.ohos.systemui下的RSRenderThread线程导致libmali-bifrost-g52-g2p0-ohos.so出现cppcrash |
+| [I7C10M](https://gitee.com/openharmony/security_privacy_center/issues/I7C10M) | 【OpenHarmony 3.2.13.1】【RK3568】【压力测试】【ToC】【高概率6/10】【wukong】出现39次，com.ohos.certmanager出现jscrash，内容信息为saveAllMaps。 |
+| [I7CA2W](https://gitee.com/openharmony/multimedia_medialibrary_standard/issues/I7CA2W) | 【OpenHarmony 3.2.13.1】【RK3568】【压力测试】【ToC】【高概率】【wukong】出现358次， 由进程com.ohos.medialibrary.medialibrarydata下com.ohos.medial线程出现cppcrash，崩溃栈显示为libmedialibrary_data_extension.z.so |
+| [I7CA7A](https://gitee.com/openharmony/distributeddatamgr_relational_store/issues/I7CA7A) | 【OpenHarmony 3.2.13.1】【RK3568】【压力测试】【ToC】【高概率 8/10】【wukong】出现1131次，由进程com.ohos.contactsdataability下的IPC_2_4692线程导致librdb_data_share_adapter.z.so出现cppcrash |
+| [I7CBLV](https://gitee.com/openharmony/bundlemanager_bundle_framework/issues/I7CBLV) | 【OpenHarmony 3.2.13.1】【RK3568】【压力测试】【ToC】【高概率】【wukong】出现1249次，com.ohos.note下出现jscrash问题，栈名：getFolderText与createRdbStore |
+| [I7CBWQ](https://gitee.com/openharmony/applications_mms/issues/I7CBWQ) | 【OpenHarmony 3.2.13.1】【RK3568】【压力测试】【ToC】【低概率】【wukong】出现6次关键应用: com.ohos.mms由于STRINGID:APPLICATION_BLOCK_INPUT卡在libeventhandler.z.so |
+| [I7CWA0](https://gitee.com/openharmony/communication_ipc/issues/I7CWA0) | 【OpenHarmony 3.2.13.1】【RK3568】【压力测试】【ToC】【低概率】【wukong】出现1次 由关键进程com.ohos.contacts下的IPC_3_17363线程导致libipc_core.z.so出现cppcrash |
+| [I7CYM3](https://gitee.com/openharmony/applications_camera/issues/I7CYM3) | 【OpenHarmony 3.2.13.1】【RK3568】【压力测试】【ToC】【高概率8/10】【wukong】出现1800次，com.ohos.camer出现jscrash问题，栈名：getInstance |
+
 
 ## 修复安全issue列表
 
@@ -134,35 +115,89 @@
 
 | ISSUE                                                        | 问题描述                                            |
 | ------------------------------------------------------------ | --------------------------------------------------- |
-| [I6QYWE](https://gitee.com/openharmony/kernel_linux_5.10/issues/I6QYWE) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-1281  |
-| [I6VUAY](https://gitee.com/openharmony/third_party_freetype/issues/I6VUAY) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2004  |
-| [I6YQP4](https://gitee.com/openharmony/third_party_jerryscript/issues/I6YQP4) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-30408 |
-| [I70CNH](https://gitee.com/openharmony/third_party_chromium/issues/I70CNH) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2459  |
+| [I6QYVO](https://gitee.com/openharmony/kernel_linux_5.10/issues/I6QYVO) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2021-3923 |
+| [I6QYVZ](https://gitee.com/openharmony/kernel_linux_5.10/issues/I6QYVZ) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-28772 |
+| [I6QYWE](https://gitee.com/openharmony/kernel_linux_5.10/issues/I6QYWE) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-1281 |
+| [I6RAW6](https://gitee.com/openharmony/kernel_linux_5.10/issues/I6RAW6) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-0590 |
+| [I6UW4T](https://gitee.com/openharmony/kernel_linux_5.10/issues/I6UW4T) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-29156 |
+| [I6UW51](https://gitee.com/openharmony/kernel_linux_5.10/issues/I6UW51) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-2978 |
+| [I6UW52](https://gitee.com/openharmony/kernel_linux_5.10/issues/I6UW52) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-3176 |
+| [I6UW55](https://gitee.com/openharmony/kernel_linux_5.10/issues/I6UW55) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-45934 |
+| [I6UW56](https://gitee.com/openharmony/kernel_linux_5.10/issues/I6UW56) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-47521 |
+| [I6VUAY](https://gitee.com/openharmony/third_party_freetype/issues/I6VUAY) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2004 |
+| [I6XC4Y](https://gitee.com/openharmony/kernel_linux_5.10/issues/I6XC4Y) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2162 |
+| [I6ZM02](https://gitee.com/openharmony/kernel_linux_5.10/issues/I6ZM02) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-0179 |
+| [I70CNH](https://gitee.com/openharmony/third_party_chromium/issues/I70CNH) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2459 |
+| [I70SLA](https://gitee.com/openharmony/kernel_linux_5.10/issues/I70SLA) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-1078 |
+| [I722JK](https://gitee.com/openharmony/third_party_nghttp2/issues/I722JK) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-0326 |
+| [I722JP](https://gitee.com/openharmony/third_party_nghttp2/issues/I722JP) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-0240 |
+| [I722K2](https://gitee.com/openharmony/third_party_nghttp2/issues/I722K2) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-42915 |
+| [I722K4](https://gitee.com/openharmony/third_party_nghttp2/issues/I722K4) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-42916 |
+| [I722K6](https://gitee.com/openharmony/third_party_nghttp2/issues/I722K6) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-32207 |
+| [I722K8](https://gitee.com/openharmony/third_party_nghttp2/issues/I722K8) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-32221 |
+| [I722UD](https://gitee.com/openharmony/third_party_nghttp2/issues/I722UD) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-32206 |
+| [I722UL](https://gitee.com/openharmony/third_party_nghttp2/issues/I722UL) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-25313 |
+| [I722UN](https://gitee.com/openharmony/third_party_nghttp2/issues/I722UN) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-25314 |
+| [I722UP](https://gitee.com/openharmony/third_party_nghttp2/issues/I722UP) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-25315 |
+| [I722UV](https://gitee.com/openharmony/third_party_nghttp2/issues/I722UV) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-25235 |
+| [I722V1](https://gitee.com/openharmony/third_party_nghttp2/issues/I722V1) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-25236 |
+| [I722V6](https://gitee.com/openharmony/third_party_nghttp2/issues/I722V6) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-23990 |
+| [I722VB](https://gitee.com/openharmony/third_party_nghttp2/issues/I722VB) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-23852 |
+| [I722VJ](https://gitee.com/openharmony/third_party_nghttp2/issues/I722VJ) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2021-45960 |
+| [I722VL](https://gitee.com/openharmony/third_party_nghttp2/issues/I722VL) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2021-46143 |
+| [I722VN](https://gitee.com/openharmony/third_party_nghttp2/issues/I722VN) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-22822 |
+| [I722VP](https://gitee.com/openharmony/third_party_nghttp2/issues/I722VP) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-22824 |
+| [I722VR](https://gitee.com/openharmony/third_party_nghttp2/issues/I722VR) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-22823 |
+| [I722VU](https://gitee.com/openharmony/third_party_nghttp2/issues/I722VU) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-22827 |
+| [I722WC](https://gitee.com/openharmony/third_party_nghttp2/issues/I722WC) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-22825 |
+| [I722WM](https://gitee.com/openharmony/third_party_nghttp2/issues/I722WM) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-22826 |
+| [I722WV](https://gitee.com/openharmony/third_party_nghttp2/issues/I722WV) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2021-39275 |
+| [I722X0](https://gitee.com/openharmony/third_party_nghttp2/issues/I722X0) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2021-36160 |
+| [I722X4](https://gitee.com/openharmony/third_party_nghttp2/issues/I722X4) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2021-33193 |
+| [I722XQ](https://gitee.com/openharmony/third_party_musl/issues/I722XQ) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-21538 |
 | [I72RUE](https://gitee.com/openharmony/kernel_linux_5.10/issues/I72RUE) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-47518 |
-| [I72SDD](https://gitee.com/openharmony/kernel_linux_5.10/issues/I72SDD) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-3545  |
-| [I72SDF](https://gitee.com/openharmony/kernel_linux_5.10/issues/I72SDF) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-4696  |
+| [I72SDD](https://gitee.com/openharmony/kernel_linux_5.10/issues/I72SDD) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-3545 |
+| [I72SDF](https://gitee.com/openharmony/kernel_linux_5.10/issues/I72SDF) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-4696 |
 | [I72SKQ](https://gitee.com/openharmony/kernel_linux_5.10/issues/I72SKQ) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-47519 |
-| [I73C2J](https://gitee.com/openharmony/kernel_linux_5.10/issues/I73C2J) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2513  |
+| [I73C2J](https://gitee.com/openharmony/kernel_linux_5.10/issues/I73C2J) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2513 |
 | [I73C2O](https://gitee.com/openharmony/kernel_linux_5.10/issues/I73C2O) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-28893 |
 | [I73MW6](https://gitee.com/openharmony/kernel_linux_5.10/issues/I73MW6) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-23222 |
 | [I73MWI](https://gitee.com/openharmony/kernel_linux_5.10/issues/I73MWI) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-32250 |
 | [I73MWQ](https://gitee.com/openharmony/kernel_linux_5.10/issues/I73MWQ) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-34918 |
 | [I73MX2](https://gitee.com/openharmony/kernel_linux_5.10/issues/I73MX2) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-36946 |
-| [I73PF6](https://gitee.com/openharmony/third_party_chromium/issues/I73PF6) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2726  |
-| [I749IX](https://gitee.com/openharmony/third_party_chromium/issues/I749IX) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2721  |
+| [I73PF6](https://gitee.com/openharmony/third_party_chromium/issues/I73PF6) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2726 |
+| [I749IX](https://gitee.com/openharmony/third_party_chromium/issues/I749IX) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2721 |
 | [I74HC1](https://gitee.com/openharmony/third_party_curl/issues/I74HC1) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-28320 |
 | [I74HCG](https://gitee.com/openharmony/third_party_curl/issues/I74HCG) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-28322 |
 | [I74HD3](https://gitee.com/openharmony/third_party_curl/issues/I74HD3) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-28321 |
-| [I76NLQ](https://gitee.com/openharmony/third_party_chromium/issues/I76NLQ) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2724  |
-| [I76NLT](https://gitee.com/openharmony/third_party_chromium/issues/I76NLT) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2722  |
+| [I76NLQ](https://gitee.com/openharmony/third_party_chromium/issues/I76NLQ) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2724 |
+| [I76NLT](https://gitee.com/openharmony/third_party_chromium/issues/I76NLT) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2722 |
 | [I77U26](https://gitee.com/openharmony/kernel_linux_5.10/issues/I77U26) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2021-43389 |
 | [I77XID](https://gitee.com/openharmony/kernel_linux_5.10/issues/I77XID) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-25375 |
-| [I78I9U](https://gitee.com/openharmony/kernel_linux_5.10/issues/I78I9U) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-2588  |
-| [I78R59](https://gitee.com/openharmony/kernel_linux_5.10/issues/I78R59) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-3635  |
-| [I78R5B](https://gitee.com/openharmony/kernel_linux_5.10/issues/I78R5B) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-3649  |
-| [I79CK8](https://gitee.com/openharmony/kernel_linux_5.10/issues/I79CK8) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2021-3600  |
-| [I79LH8](https://gitee.com/openharmony/third_party_openssl/issues/I79LH8) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2650  |
-| [I7A1M8](https://gitee.com/openharmony/kernel_linux_5.10/issues/I7A1M8) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-3006  |
+| [I78I9U](https://gitee.com/openharmony/kernel_linux_5.10/issues/I78I9U) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-2588 |
+| [I78R59](https://gitee.com/openharmony/kernel_linux_5.10/issues/I78R59) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-3635 |
+| [I78R5B](https://gitee.com/openharmony/kernel_linux_5.10/issues/I78R5B) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2022-3649 |
+| [I79CK8](https://gitee.com/openharmony/kernel_linux_5.10/issues/I79CK8) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2021-3600 |
+| [I79LH8](https://gitee.com/openharmony/third_party_openssl/issues/I79LH8) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2650 |
+| [I79NDI](https://gitee.com/openharmony/third_party_chromium/issues/I79NDI) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2936 |
+| [I79NEF](https://gitee.com/openharmony/third_party_chromium/issues/I79NEF) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2937 |
+| [I7A1M8](https://gitee.com/openharmony/kernel_linux_5.10/issues/I7A1M8) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-3006 |
+| [I7AJ6J](https://gitee.com/openharmony/third_party_chromium/issues/I7AJ6J) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2935 |
+| [I7AJ6M](https://gitee.com/openharmony/third_party_chromium/issues/I7AJ6M) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2933 |
+| [I7AJ6P](https://gitee.com/openharmony/third_party_chromium/issues/I7AJ6P) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2931 |
+| [I7AJ6S](https://gitee.com/openharmony/third_party_chromium/issues/I7AJ6S) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2932 |
+| [I7AJ6W](https://gitee.com/openharmony/third_party_chromium/issues/I7AJ6W) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2929 |
+| [I7AJHL](https://gitee.com/openharmony/third_party_chromium/issues/I7AJHL) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2940 |
+| [I7AJHO](https://gitee.com/openharmony/third_party_chromium/issues/I7AJHO) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2941 |
+| [I7AJHR](https://gitee.com/openharmony/third_party_chromium/issues/I7AJHR) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2938 |
+| [I7AJHU](https://gitee.com/openharmony/third_party_chromium/issues/I7AJHU) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2939 |
+| [I7AJHX](https://gitee.com/openharmony/third_party_chromium/issues/I7AJHX) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2930 |
+| [I7AJI0](https://gitee.com/openharmony/third_party_chromium/issues/I7AJI0) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-2934 |
+| [I7B049](https://gitee.com/openharmony/third_party_glib/issues/I7B049) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-32643 |
+| [I7B04Z](https://gitee.com/openharmony/third_party_glib/issues/I7B04Z) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-32636 |
+| [I7B05A](https://gitee.com/openharmony/third_party_glib/issues/I7B05A) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-32611 |
+| [I7B05I](https://gitee.com/openharmony/third_party_glib/issues/I7B05I) | 【漏洞】 【OpenHarmony-3.2-Release】 CVE-2023-32665 |
+
 
 ## 遗留缺陷列表
 
@@ -170,5 +205,11 @@
 
 | ISSUE | 问题描述 | 影响 | 计划解决日期 |
 | ----- | -------- | ---- | ------------ |
-|       |          |      |              |
-|       |          |      |              |
+| I6SXBI | 【OpenHarmony 3.2.11.6】【RK3568】【压力测试】【ToC】【低概率】【wukong】出现由进程ohos.samples.distributedcalc下的libdistributeddata.z.so cppcrash | 计算器应用快速启动和退出场景，启动后1秒内退出，导致JS对象读取数据库成功前JS对象被析构，只有LOG报错但用户无感知，对2C无影响 | 2023年7月15日 |
+| I6TRE6 | 进程com.ohos.contacts下的com.ohos.contacts线程导致libdatashare_consumer.z.so低概率出现crash。 | 联系人应用快速启动和退出场景，发现在启动后600ms内退出，联系人进程低概率出现crash，出现crash后联系人进程会被重新拉起，影响可控。 | 2023年7月15日 |
+| I72P5E | 反复进入大图浏览界面后返回，导致libace.z.so出现内存泄露 | 从图库进入大图浏览界面后返回，ArkUI模块每次泄露10kb，应用点返回后，内存回收 | 2023年7月15日 |
+| I72P5I | 反复进入某相册的图片宫格浏览界面，导致libace.z.so出现内存泄露 | 进入某相册的图片宫格浏览界面后返回，ArkUI每次泄露19kb，应用点返回后，内存回收 | 2023年7月15日 |
+| I76N0Y | 反复在dock栏添加/移除应用，导致libace.z.so出现内存泄露 | 移动卡片到合法区域，ArkUI每次泄露99kb，非常用场景，应用重启内存回收。 | 2023年7月15日 |
+| I6XHE7 | NAPIRemoteObject模块内存泄露 | JS应用需要IPC需要建立NAPIRemoteObject对象进程通信，创建一次可以循环使用，建立一次后泄露1.2kb，应用不需要反复创建新对象，泄露量可控，应用进程退出会释放掉 | 2023年7月15日 |
+| I7D4CH | 【OpenHarmony】【体验测试】【版本号：3.2.13.1】【rk3568】【ToC】【概率：必现】首次启动短信息完成时延2300ms，实际值2537ms，超基线237ms | 版本为了合入I7CBSM稳定性问题，修改rdb数据锁保护范围，导致联系人加载耗时增加，平均劣化约9%，影响可控，跟踪在后续版本优化。 | 2023年7月15日 |
+
