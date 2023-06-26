@@ -180,7 +180,7 @@ postMessage(message: Object, transfer: ArrayBuffer[]): void;
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 10200004 | Worker instance is not running.           |
-| 10200006 | Serializing an uncaught exception failed. |
+| 10200006 | An exception occurred during serialization. |
 
 **示例：**
 
@@ -213,7 +213,7 @@ postMessage(message: Object, options?: PostMessageOptions): void
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 10200004 | Worker instance is not running.           |
-| 10200006 | Serializing an uncaught exception failed. |
+| 10200006 | An exception occurred during serialization. |
 
 **示例：**
 
@@ -866,7 +866,7 @@ Worker线程向宿主线程发送消息。
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 10200004 | Worker instance is not running.           |
-| 10200006 | Serializing an uncaught exception failed. |
+| 10200006 | An exception occurred during serialization. |
 
 **示例：**
 
@@ -914,7 +914,7 @@ Worker线程向宿主线程发送消息。
 | 错误码ID | 错误信息                                |
 | -------- | ----------------------------------------- |
 | 10200004 | Worker instance is not running.           |
-| 10200006 | Serializing an uncaught exception failed. |
+| 10200006 | An exception occurred during serialization. |
 
 **示例：**
 

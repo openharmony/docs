@@ -23,8 +23,8 @@
 | [oh_predicates.h](oh__predicates_8h.md) | 表示关系型数据库（RDB）的谓词。<br>引用文件：\<database/rdb/oh_predicates.h> |
 | [oh_value_object.h](oh__value__object_8h.md) | 提供类型转换方法。<br>引用文件：\<database/rdb/oh_value_object.h> |
 | [oh_values_bucket.h](oh__values__bucket_8h.md) | 用于存储键值对的类型。<br>引用文件：\<database/rdb/oh_values_bucket.h> |
-| [relation_error_code.h](relation__error__code_8h.md) | 声明关系型数据库（RDB）的错误码信息。<br>引用文件：\<database/rdb/relation_error_code.h> |
-| [relation_store.h](relation__store_8h.md) | 提供管理关系数据库（RDB）方法的接口。<br>引用文件：\<database/rdb/relation_store.h> |
+| [relational_store.h](relational__store_8h.md) | 提供管理关系数据库（RDB）方法的接口。<br>引用文件：\<database/rdb/relational_store.h> |
+| [relational_store_error_code.h](relational__store__error__code_8h.md) | 声明关系型数据库（RDB）的错误码信息。<br>引用文件：\<database/rdb/relational_error_code.h> |
 
 
 ### 结构体
@@ -47,16 +47,17 @@
 | [OH_Predicates](#oh_predicates) | 表示谓词。 |
 | [OH_VObject](#oh_vobject) | 表示允许的数据字段类型。 |
 | [OH_VBucket](#oh_vbucket) | 用于存储键值对的类型。 |
+| [OH_Rdb_ErrCode](#oh_rdb_errcode) | 表示错误码信息。 |
 
 
 ### 枚举
 
 | 名称 | 描述 |
 | -------- | -------- |
-| [OH_ColumnType](#oh_columntype) {<br/>TYPE_NULL = 0, TYPE_INT64, TYPE_REAL, TYPE_TEXT,<br/>TYPE_BLOB<br/>} | 数据库字段类型. |
+| [OH_ColumnType](#oh_columntype) {<br/>TYPE_NULL = 0, TYPE_INT64, TYPE_REAL, TYPE_TEXT,<br/>TYPE_BLOB<br/>} | 数据库字段类型。 |
 | [OH_OrderType](#oh_ordertype) { ASC = 0, DESC = 1 } | 排序方式。 |
-| [OH_Rdb_ErrCode](#oh_rdb_errcode) { RDB_ERR_INVALID_ARGS = -2, RDB_ERR = -1, RDB_ERR_OK = 0 } | 表示错误码信息。 |
 | [OH_Rdb_SecurityLevel](#oh_rdb_securitylevel) { S1 = 1, S2, S3, S4 } | 数据库的安全级别枚举。 |
+| [OH_Rdb_ErrCode](#oh_rdb_errcode) {<br/>RDB_ERR = -1, RDB_OK = 0, E_BASE = 14800000, RDB_E_NOT_SUPPORTED = 801,<br/>RDB_E_ERROR = E_BASE, RDB_E_INVALID_ARGS = (E_BASE + 1), RDB_E_CANNOT_UPDATE_READONLY = (E_BASE + 2), RDB_E_REMOVE_FILE = (E_BASE + 3),<br/>RDB_E_EMPTY_TABLE_NAME = (E_BASE + 5), RDB_E_EMPTY_VALUES_BUCKET = (E_BASE + 6), RDB_E_EXECUTE_IN_STEP_QUERY = (E_BASE + 7), RDB_E_INVALID_COLUMN_INDEX = (E_BASE + 8),<br/>RDB_E_INVALID_COLUMN_TYPE = (E_BASE + 9), RDB_E_EMPTY_FILE_NAME = (E_BASE + 10), RDB_E_INVALID_FILE_PATH = (E_BASE + 11), RDB_E_TRANSACTION_IN_EXECUTE = (E_BASE + 12),<br/>RDB_E_INVALID_STATEMENT = (E_BASE + 13), RDB_E_EXECUTE_WRITE_IN_READ_CONNECTION = (E_BASE + 14), RDB_E_BEGIN_TRANSACTION_IN_READ_CONNECTION = (E_BASE + 15), RDB_E_NO_TRANSACTION_IN_SESSION = (E_BASE + 16),<br/>RDB_E_MORE_STEP_QUERY_IN_ONE_SESSION = (E_BASE + 17), RDB_E_NO_ROW_IN_QUERY = (E_BASE + 18), RDB_E_INVALID_BIND_ARGS_COUNT = (E_BASE + 19), RDB_E_INVALID_OBJECT_TYPE = (E_BASE + 20),<br/>RDB_E_INVALID_CONFLICT_FLAG = (E_BASE + 21), RDB_E_HAVING_CLAUSE_NOT_IN_GROUP_BY = (E_BASE + 22), RDB_E_NOT_SUPPORTED_BY_STEP_RESULT_SET = (E_BASE + 23), RDB_E_STEP_RESULT_SET_CROSS_THREADS = (E_BASE + 24),<br/>RDB_E_STEP_RESULT_QUERY_NOT_EXECUTED = (E_BASE + 25), RDB_E_STEP_RESULT_IS_AFTER_LAST = (E_BASE + 26), RDB_E_STEP_RESULT_QUERY_EXCEEDED = (E_BASE + 27), RDB_E_STATEMENT_NOT_PREPARED = (E_BASE + 28),<br/>RDB_E_EXECUTE_RESULT_INCORRECT = (E_BASE + 29), RDB_E_STEP_RESULT_CLOSED = (E_BASE + 30), RDB_E_RELATIVE_PATH = (E_BASE + 31), RDB_E_EMPTY_NEW_ENCRYPT_KEY = (E_BASE + 32),<br/>RDB_E_CHANGE_UNENCRYPTED_TO_ENCRYPTED = (E_BASE + 33), RDB_E_CHANGE_ENCRYPT_KEY_IN_BUSY = (E_BASE + 34), RDB_E_STEP_STATEMENT_NOT_INIT = (E_BASE + 35), RDB_E_NOT_SUPPORTED_ATTACH_IN_WAL_MODE = (E_BASE + 36),<br/>RDB_E_CREATE_FOLDER_FAIL = (E_BASE + 37), RDB_E_SQLITE_SQL_BUILDER_NORMALIZE_FAIL = (E_BASE + 38), RDB_E_STORE_SESSION_NOT_GIVE_CONNECTION_TEMPORARILY = (E_BASE + 39), RDB_E_STORE_SESSION_NO_CURRENT_TRANSACTION = (E_BASE + 40),<br/>RDB_E_NOT_SUPPORT = (E_BASE + 41), RDB_E_INVALID_PARCEL = (E_BASE + 42), RDB_E_QUERY_IN_EXECUTE = (E_BASE + 43), RDB_E_SET_PERSIST_WAL = (E_BASE + 44),<br/>RDB_E_DB_NOT_EXIST = (E_BASE + 45), RDB_E_ARGS_READ_CON_OVERLOAD = (E_BASE + 46), RDB_E_WAL_SIZE_OVER_LIMIT = (E_BASE + 47), RDB_E_CON_OVER_LIMIT = (E_BASE + 48)<br/>} | 表示错误码信息。 |
 
 
 ### 函数
@@ -90,7 +91,7 @@
 | -------- | -------- |
 | OH_Cursor::id | OH_Cursor结构体的唯一标识符。 |
 | [OH_Cursor::getColumnCount](#getcolumncount) | 函数指针，获取结果集中的列数。 |
-| [OH_Cursor::getColumnType](#getcolumntype) | 函数指针，根据指定的列索引获取列名。 |
+| [OH_Cursor::getColumnType](#getcolumntype) | 函数指针，根据指定的列索引获取列类型。 |
 | [OH_Cursor::getColumnIndex](#getcolumnindex) | 函数指针，根据指定的列名获取列索引。 |
 | [OH_Cursor::getColumnName](#getcolumnname) | 函数指针，根据指定的列索引获取列名。 |
 | [OH_Cursor::getRowCount](#getrowcount) | 函数指针，获取结果集中的行数。 |
@@ -135,7 +136,7 @@
 | [OH_VObject::destroyValueObject](#destroyvalueobject) | 销毁[OH_VObject](_o_h___v_object.md)对象，并回收该对象占用的内存。 |
 | [OH_VBucket::id](#id-34) | OH_VBucket结构体的唯一标识符。 |
 | [OH_VBucket::capability](#capability) | 表示结构体的存储键值对的数量 |
-| [OH_VBucket::putText](#puttext-12) | 将const char\*值放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
+| [OH_VBucket::putText](#puttext-12) | 将char\*值放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
 | [OH_VBucket::putInt64](#putint64-12) | 将int64_t值放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
 | [OH_VBucket::putReal](#putreal) | 将double值放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中**。** |
 | [OH_VBucket::putBlob](#putblob) | 将const uint8_t \*值放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。 |
@@ -177,6 +178,18 @@ typedef struct OH_Predicates OH_Predicates
 表示谓词。
 
 
+### OH_Rdb_ErrCode
+
+
+```
+typedef enum OH_Rdb_ErrCode OH_Rdb_ErrCode
+```
+
+**描述:**
+
+表示错误码信息。
+
+
 ### OH_VBucket
 
 
@@ -213,7 +226,7 @@ enum OH_ColumnType
 
 **描述:**
 
-数据库字段类型.
+数据库字段类型。
 
 | 枚举值 | 描述 |
 | -------- | -------- |
@@ -254,9 +267,58 @@ enum OH_Rdb_ErrCode
 
 | 枚举值 | 描述 |
 | -------- | -------- |
-| RDB_ERR_INVALID_ARGS | 参数非法。 |
 | RDB_ERR | 执行出错。 |
-| RDB_ERR_OK | 执行成功。 |
+| RDB_OK | 执行成功。 |
+| E_BASE | 异常错误代码的基础。 |
+| RDB_E_NOT_SUPPORTED | RDB不具备该能力。 |
+| RDB_E_ERROR | 常见异常的错误代码。 |
+| RDB_E_INVALID_ARGS | 参数非法。 |
+| RDB_E_CANNOT_UPDATE_READONLY | 更新只读数据库。 |
+| RDB_E_REMOVE_FILE | 删除文件失败。 |
+| RDB_E_EMPTY_TABLE_NAME | 表名为空。 |
+| RDB_E_EMPTY_VALUES_BUCKET | 键值对内容为空。 |
+| RDB_E_EXECUTE_IN_STEP_QUERY | 查询时执行的SQL语句错误。 |
+| RDB_E_INVALID_COLUMN_INDEX | 列索引非法. |
+| RDB_E_INVALID_COLUMN_TYPE | 列类型非法. |
+| RDB_E_EMPTY_FILE_NAME | 文件名称为空。 |
+| RDB_E_INVALID_FILE_PATH | 文件路径非法。 |
+| RDB_E_TRANSACTION_IN_EXECUTE | 开启事务执行出错， |
+| RDB_E_INVALID_STATEMENT | SQL语句预编译出错. |
+| RDB_E_EXECUTE_WRITE_IN_READ_CONNECTION | 在读连接中执行写操作。 |
+| RDB_E_BEGIN_TRANSACTION_IN_READ_CONNECTION | 在读连接中开启事务。 |
+| RDB_E_NO_TRANSACTION_IN_SESSION | 在数据库会话中不存在开启的事务. |
+| RDB_E_MORE_STEP_QUERY_IN_ONE_SESSION | 在一个数据库会话中执行多次查询。 |
+| RDB_E_NO_ROW_IN_QUERY | 查询得到的结果集不存在任何记录。 |
+| RDB_E_INVALID_BIND_ARGS_COUNT | SQL语句中绑定的参数个数非法。 |
+| RDB_E_INVALID_OBJECT_TYPE | 对象类型非法。 |
+| RDB_E_INVALID_CONFLICT_FLAG | 冲突解决类型非法。 |
+| RDB_E_HAVING_CLAUSE_NOT_IN_GROUP_BY | HAVING关键字只能用于GROUP BY之后. |
+| RDB_E_NOT_SUPPORTED_BY_STEP_RESULT_SET | 不支持step形式数据库结果集。 |
+| RDB_E_STEP_RESULT_SET_CROSS_THREADS | 结果集查询出错。 |
+| RDB_E_STEP_RESULT_QUERY_NOT_EXECUTED | 结果集查询语句未被执行。 |
+| RDB_E_STEP_RESULT_IS_AFTER_LAST | 结果集的游标已经处于最后一行。 |
+| RDB_E_STEP_RESULT_QUERY_EXCEEDED | 结果集查询次数已经超过上限。 |
+| RDB_E_STATEMENT_NOT_PREPARED | SQL语句未被预编译。 |
+| RDB_E_EXECUTE_RESULT_INCORRECT | 数据库执行结果异常. |
+| RDB_E_STEP_RESULT_CLOSED | 结果集已经关闭。 |
+| RDB_E_RELATIVE_PATH | 相对路径。 |
+| RDB_E_EMPTY_NEW_ENCRYPT_KEY | 新的密钥文件为空。 |
+| RDB_E_CHANGE_UNENCRYPTED_TO_ENCRYPTED | 将非加密的数据库更改为加密数据库。 |
+| RDB_E_CHANGE_ENCRYPT_KEY_IN_BUSY | 在数据库繁忙时更新数据库密钥。 |
+| RDB_E_STEP_STATEMENT_NOT_INIT | 预编译的SQL语句未被初始化。 |
+| RDB_E_NOT_SUPPORTED_ATTACH_IN_WAL_MODE | 在WAL日志模式下不支持ATTACH操作。 |
+| RDB_E_CREATE_FOLDER_FAIL | 创建文件夹失败。 |
+| RDB_E_SQLITE_SQL_BUILDER_NORMALIZE_FAIL | SQL语句构建失败。 |
+| RDB_E_STORE_SESSION_NOT_GIVE_CONNECTION_TEMPORARILY | 数据库会话暂未提供连接。 |
+| RDB_E_STORE_SESSION_NO_CURRENT_TRANSACTION | 数据库会话不具有当前的事务。 |
+| RDB_E_NOT_SUPPORT | 不支持当前操作。 |
+| RDB_E_INVALID_PARCEL | 当前PARCEL非法。 |
+| RDB_E_QUERY_IN_EXECUTE | 执行query查询出错。 |
+| RDB_E_SET_PERSIST_WAL | 设置WAL模式下数据库文件的持久化时出错。 |
+| RDB_E_DB_NOT_EXIST | 数据库不存在。 |
+| RDB_E_ARGS_READ_CON_OVERLOAD | 设置的读连接数大于上限。 |
+| RDB_E_WAL_SIZE_OVER_LIMIT | WAL日志文件大小超过默认值。 |
+| RDB_E_CON_OVER_LIMIT | 数据库连接数已用完。 |
 
 
 ### OH_Rdb_SecurityLevel
@@ -412,11 +474,11 @@ OH_Predicates* OH_Rdb_CreatePredicates (const char * table)
 [OH_Predicates](_o_h___predicates.md).
 
 
-### OH_Rdb_CreateValueObject(void)
+### OH_Rdb_CreateValueObject()
 
 
 ```
-OH_VObject* OH_Rdb_CreateValueObject ()
+OH_VObject* OH_Rdb_CreateValueObject (void )
 ```
 
 **描述:**
@@ -432,11 +494,11 @@ OH_VObject* OH_Rdb_CreateValueObject ()
 [OH_VObject](_o_h___v_object.md).
 
 
-### OH_Rdb_CreateValuesBucket(void)
+### OH_Rdb_CreateValuesBucket()
 
 
 ```
-OH_VBucket* OH_Rdb_CreateValuesBucket ()
+OH_VBucket* OH_Rdb_CreateValuesBucket (void )
 ```
 
 **描述:**
@@ -735,7 +797,7 @@ int OH_Rdb_SetVersion (OH_Rdb_Store * store, int version )
 | 名称 | 描述 |
 | -------- | -------- |
 | store | 表示指向[OH_Rdb_Store](_o_h___rdb___store.md)实例的指针。 |
-| version | 示版本号。 |
+| version | 表示版本号。 |
 
 **返回:**
 
@@ -781,7 +843,7 @@ int OH_Rdb_Update (OH_Rdb_Store * store, OH_VBucket * valuesBucket, OH_Predicate
 
 
 ```
-OH_Predicates(* OH_Predicates::andOperate) (OH_Predicates *predicates)
+OH_Predicates*(* OH_Predicates::andOperate) (OH_Predicates *predicates)
 ```
 
 **描述:**
@@ -809,7 +871,7 @@ OH_Predicates(* OH_Predicates::andOperate) (OH_Predicates *predicates)
 
 
 ```
-OH_Predicates(* OH_Predicates::beginWrap) (OH_Predicates *predicates)
+OH_Predicates*(* OH_Predicates::beginWrap) (OH_Predicates *predicates)
 ```
 
 **描述:**
@@ -837,7 +899,7 @@ OH_Predicates(* OH_Predicates::beginWrap) (OH_Predicates *predicates)
 
 
 ```
-OH_Predicates(* OH_Predicates::between) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates*(* OH_Predicates::between) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **描述:**
@@ -879,7 +941,7 @@ uint16_t OH_VBucket::capability
 
 
 ```
-OH_Predicates(* OH_Predicates::clear) (OH_Predicates *predicates)
+OH_Predicates*(* OH_Predicates::clear) (OH_Predicates *predicates)
 ```
 
 **描述:**
@@ -1035,7 +1097,7 @@ int(* OH_VBucket::destroyValuesBucket) (OH_VBucket *bucket)
 
 
 ```
-OH_Predicates(* OH_Predicates::distinct) (OH_Predicates *predicates)
+OH_Predicates*(* OH_Predicates::distinct) (OH_Predicates *predicates)
 ```
 
 **描述:**
@@ -1063,7 +1125,7 @@ OH_Predicates(* OH_Predicates::distinct) (OH_Predicates *predicates)
 
 
 ```
-OH_Predicates(* OH_Predicates::endWrap) (OH_Predicates *predicates)
+OH_Predicates*(* OH_Predicates::endWrap) (OH_Predicates *predicates)
 ```
 
 **描述:**
@@ -1091,7 +1153,7 @@ OH_Predicates(* OH_Predicates::endWrap) (OH_Predicates *predicates)
 
 
 ```
-OH_Predicates(* OH_Predicates::equalTo) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates*(* OH_Predicates::equalTo) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **描述:**
@@ -1239,7 +1301,7 @@ int(* OH_Cursor::getColumnType) (OH_Cursor *cursor, int32_t columnIndex, OH_Colu
 
 **描述:**
 
-函数指针，根据指定的列索引获取列名。
+函数指针，根据指定的列索引获取列类型。
 
 **参数:**
 
@@ -1428,7 +1490,7 @@ int(* OH_Cursor::goToNextRow) (OH_Cursor *cursor)
 
 
 ```
-OH_Predicates(* OH_Predicates::greaterThan) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates*(* OH_Predicates::greaterThan) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **描述:**
@@ -1458,7 +1520,7 @@ OH_Predicates(* OH_Predicates::greaterThan) (OH_Predicates *predicates, const ch
 
 
 ```
-OH_Predicates(* OH_Predicates::greaterThanOrEqualTo) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates*(* OH_Predicates::greaterThanOrEqualTo) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **描述:**
@@ -1488,7 +1550,7 @@ OH_Predicates(* OH_Predicates::greaterThanOrEqualTo) (OH_Predicates *predicates,
 
 
 ```
-OH_Predicates(* OH_Predicates::groupBy) (OH_Predicates *predicates, char const *const *fields, int length)
+OH_Predicates*(* OH_Predicates::groupBy) (OH_Predicates *predicates, char const *const *fields, int length)
 ```
 
 **描述:**
@@ -1566,7 +1628,7 @@ OH_Rdb_Store结构体的唯一标识符。
 
 
 ```
-OH_Predicates(* OH_Predicates::in) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates*(* OH_Predicates::in) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **描述:**
@@ -1608,7 +1670,7 @@ bool OH_Rdb_Config::isEncrypt
 
 
 ```
-OH_Predicates(* OH_Predicates::isNotNull) (OH_Predicates *predicates, const char *field)
+OH_Predicates*(* OH_Predicates::isNotNull) (OH_Predicates *predicates, const char *field)
 ```
 
 **描述:**
@@ -1665,7 +1727,7 @@ int(* OH_Cursor::isNull) (OH_Cursor *cursor, int32_t columnIndex, bool *isNull)
 
 
 ```
-OH_Predicates(* OH_Predicates::isNull) (OH_Predicates *predicates, const char *field)
+OH_Predicates*(* OH_Predicates::isNull) (OH_Predicates *predicates, const char *field)
 ```
 
 **描述:**
@@ -1694,7 +1756,7 @@ OH_Predicates(* OH_Predicates::isNull) (OH_Predicates *predicates, const char *f
 
 
 ```
-OH_Predicates(* OH_Predicates::lessThan) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates*(* OH_Predicates::lessThan) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **描述:**
@@ -1724,7 +1786,7 @@ OH_Predicates(* OH_Predicates::lessThan) (OH_Predicates *predicates, const char 
 
 
 ```
-OH_Predicates(* OH_Predicates::lessThanOrEqualTo) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates*(* OH_Predicates::lessThanOrEqualTo) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **描述:**
@@ -1754,7 +1816,7 @@ OH_Predicates(* OH_Predicates::lessThanOrEqualTo) (OH_Predicates *predicates, co
 
 
 ```
-OH_Predicates(* OH_Predicates::like) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates*(* OH_Predicates::like) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **描述:**
@@ -1784,7 +1846,7 @@ OH_Predicates(* OH_Predicates::like) (OH_Predicates *predicates, const char *fie
 
 
 ```
-OH_Predicates(* OH_Predicates::limit) (OH_Predicates *predicates, unsigned int value)
+OH_Predicates*(* OH_Predicates::limit) (OH_Predicates *predicates, unsigned int value)
 ```
 
 **描述:**
@@ -1813,7 +1875,7 @@ OH_Predicates(* OH_Predicates::limit) (OH_Predicates *predicates, unsigned int v
 
 
 ```
-OH_Predicates(* OH_Predicates::notBetween) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates*(* OH_Predicates::notBetween) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **描述:**
@@ -1843,7 +1905,7 @@ OH_Predicates(* OH_Predicates::notBetween) (OH_Predicates *predicates, const cha
 
 
 ```
-OH_Predicates(* OH_Predicates::notEqualTo) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates*(* OH_Predicates::notEqualTo) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **描述:**
@@ -1873,7 +1935,7 @@ OH_Predicates(* OH_Predicates::notEqualTo) (OH_Predicates *predicates, const cha
 
 
 ```
-OH_Predicates(* OH_Predicates::notIn) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
+OH_Predicates*(* OH_Predicates::notIn) (OH_Predicates *predicates, const char *field, OH_VObject *valueObject)
 ```
 
 **描述:**
@@ -1903,7 +1965,7 @@ OH_Predicates(* OH_Predicates::notIn) (OH_Predicates *predicates, const char *fi
 
 
 ```
-OH_Predicates(* OH_Predicates::offset) (OH_Predicates *predicates, unsigned int rowOffset)
+OH_Predicates*(* OH_Predicates::offset) (OH_Predicates *predicates, unsigned int rowOffset)
 ```
 
 **描述:**
@@ -1932,7 +1994,7 @@ OH_Predicates(* OH_Predicates::offset) (OH_Predicates *predicates, unsigned int 
 
 
 ```
-OH_Predicates(* OH_Predicates::orderBy) (OH_Predicates *predicates, const char *field, OH_OrderType type)
+OH_Predicates*(* OH_Predicates::orderBy) (OH_Predicates *predicates, const char *field, OH_OrderType type)
 ```
 
 **描述:**
@@ -1962,7 +2024,7 @@ OH_Predicates(* OH_Predicates::orderBy) (OH_Predicates *predicates, const char *
 
 
 ```
-OH_Predicates(* OH_Predicates::orOperate) (OH_Predicates *predicates)
+OH_Predicates*(* OH_Predicates::orOperate) (OH_Predicates *predicates)
 ```
 
 **描述:**
@@ -2175,7 +2237,7 @@ int(* OH_VBucket::putText) (OH_VBucket *bucket, const char *field, const char *v
 
 **描述:**
 
-将const char\*值放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。
+将char\*值放入给定列名的[OH_VBucket](_o_h___v_bucket.md)对象中。
 
 **参数:**
 

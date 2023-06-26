@@ -47,6 +47,7 @@
 > 说明：
 >
 > 从API Version 10 开始废弃。
+> 建议使用[COMMON_EVENT_SCREEN_UNLOCKED<sup>10+<sup>](./common_event/commonEvent-screenlock.md)替代。
 
 ## [COMMON_EVENT_TIME_TICK](./common_event/commonEvent-time.md)
 表示系统时间更改的公共事件的动作。
@@ -457,20 +458,14 @@ Wi-Fi P2P群组信息已更改。
 - 值： usual.event.bluetooth.a2dpsink.AUDIO_STATE_UPDATE
 - 订阅者所需权限： ohos.permission.USE_BLUETOOTH
 
-## COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED
-指示设备NFC适配器状态已更改的公共事件的操作。
-- 值： usual.event.nfc.action.ADAPTER_STATE_CHANGED
-- 订阅者所需权限： 无
+## [COMMON_EVENT_NFC_ACTION_ADAPTER_STATE_CHANGED](./common_event/commonEvent-nfc.md)
+指示设备NFC状态已更改的公共事件的操作。
 
-## COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED
-（预留事件，暂未支持）检测到NFC RF字段处于使能状态的公共事件的动作。
-- 值： usual.event.nfc.action.RF_FIELD_ON_DETECTED
-- 订阅者所需权限： ohos.permission.MANAGE_SECURE_SETTINGS
+## [COMMON_EVENT_NFC_ACTION_RF_FIELD_ON_DETECTED](./common_event/commonEvent-nfc.md)
+检测到NFC场强进入的公共事件。
 
-## COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED
-（预留事件，暂未支持）检测到NFC RF字段处于关闭状态的公共事件的动作。
-- 值： usual.event.nfc.action.RF_FIELD_OFF_DETECTED
-- 订阅者所需权限： ohos.permission.MANAGE_SECURE_SETTINGS
+## [COMMON_EVENT_NFC_ACTION_RF_FIELD_OFF_DETECTED](./common_event/commonEvent-nfc.md)
+检测到NFC场强离开的公共事件。
 
 ## [COMMON_EVENT_DISCHARGING](./common_event/commonEvent-powermgr.md)
 表示系统停止为电池充电的公共事件的动作。
@@ -743,3 +738,21 @@ Wi-Fi P2P群组信息已更改。
 ## [COMMON_EVENT_AUDIO_QUALITY_CHANGE](./common_event/commonEvent-telephony.md)
 
 提示音频质量发生变化。
+
+## [COMMON_EVENT_NET_QUOTA_WARNING<sup>10+<sup>](./common_event/commonEvent-netmanager.md)
+提示网络流量使用达到设定的告警阈值。
+
+## [COMMON_EVENT_NET_QUOTA_LIMIT_REMINDED<sup>10+<sup>](./common_event/commonEvent-netmanager.md)
+提示网络流量使用达到设定的上限阈值，仍能继续使用。
+
+## [OMMON_EVENT_NET_QUOTA_LIMIT<sup>10+<sup>](./common_event/commonEvent-netmanager.md)
+提示网络流量使用达到设定的上限阈值，不能继续使用。
+
+## [COMMON_EVENT_HTTP_PROXY_CHANGE<sup>10+<sup>](./common_event/commonEvent-netmanager.md)
+提示网络Http代理配置信息更新。
+
+## [COMMON_EVENT_AIRPLANE_MODE_CHANGED<sup>10+<sup>](./common_event/commonEvent-netmanager.md)
+提示飞行模式状态变化。
+
+## [COMMON_EVENT_CONNECTIVITY_CHANGE<sup>10+<sup>](./common_event/commonEvent-netmanager.md)
+提示网络连接状态变化。

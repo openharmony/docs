@@ -1,6 +1,6 @@
 # SecPasteButton
 
-安全控件的粘贴按钮，用户通过点击该粘贴按钮，可以临时获取读取剪贴板权限，而不会触发toast提示。
+安全组件的粘贴按钮，用户通过点击该粘贴按钮，可以临时获取读取剪贴板权限，而不会触发toast提示。
 
 > **说明：**
 >
@@ -29,7 +29,7 @@
 
 ## 属性
 
-不支持通用属性，仅继承[安全控件通用属性](ts-universal-attributes-securitycomponent.md#属性)。
+不支持通用属性，仅继承[安全组件通用属性](ts-universal-attributes-securitycomponent.md#属性)。
 
 ## PasteIconStyle枚举说明
 

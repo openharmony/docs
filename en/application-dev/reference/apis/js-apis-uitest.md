@@ -20,7 +20,7 @@ This module provides the following functions:
 ## Modules to Import
 
 ```js
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton} from '@ohos.UiTest';
+import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix, UiDirection, MouseButton, UIElementInfo, UIEventObserver} from '@ohos.UiTest';
 ```
 
 ## MatchPattern
@@ -141,10 +141,31 @@ Describes the injected simulated mouse button.
 | MOUSE_BUTTON_RIGHT  | 1    | Right button on the mouse.  |
 | MOUSE_BUTTON_MIDDLE | 2    | Middle button on the mouse.|
 
+## UIElementInfo<sup>10+</sup>
+
+Provides information about the UI event.
+
+**System capability**: SystemCapability.Test.UiTest
+
+| Name      | Type  | Readable| Writable| Description                 |
+| ---------- | ------ | ---- | ---- | --------------------- |
+| bundleName | string | Yes  | No  | Bundle name of the home application.     |
+| type       | string | Yes  | No  | Component or window type.      |
+| text       | string | Yes  | No  | Text information of the component or window.|
+
 ## On<sup>9+</sup>
 
 Since API version 9, the UiTest framework provides a wide range of UI component feature description APIs in the **On** class to filter and match components.
-The API capabilities provided by the **On** class exhibit the following features: 1. Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component. <br>2. Provide multiple match patterns for component attributes. <br>3. Support absolute positioning and relative positioning for components. APIs such as [ON.isBefore](#isbefore9) and [ON.isAfter](#isafter9) can be used to specify the features of adjacent components to assist positioning. <br>All APIs provided in the **On** class are synchronous. You are advised to use the static constructor **ON** to create an **On** object in chain mode.
+
+The API capabilities provided by the **On** class exhibit the following features:
+
+- Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component.
+
+- Provide multiple match patterns for component attributes.
+
+- Support absolute positioning and relative positioning for components. APIs such as [ON.isBefore](#isbefore9) and [ON.isAfter](#isafter9) can be used to specify the features of adjacent components to assist positioning. 
+
+All APIs provided in the **On** class are synchronous. You are advised to use the static constructor **ON** to create an **On** object in chain mode.
 
 ```js
 ON.text('123').type('button');
@@ -244,7 +265,7 @@ Specifies the clickable status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | No  | Clickable status of the target component.<br>**true**: clickable.<br>**false**: not clickable.<br>Default value: **true** |
+| b      | boolean | No  | Clickable status of the target component.<br>**true**: clickable.<br>**false**: not clickable.<br> Default value: **true**|
 
 **Return value**
 
@@ -270,7 +291,7 @@ Specifies the long-clickable status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | No  | Long-clickable status of the target component.<br>**true**: long-clickable.<br>**false**: not long-clickable.<br>Default value: **true** |
+| b      | boolean | No  | Long-clickable status of the target component.<br>**true**: long-clickable.<br>**false**: not long-clickable.<br> Default value: **true**|
 
 **Return value**
 
@@ -297,7 +318,7 @@ Specifies the scrollable status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                       |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| b      | boolean | No  | Scrollable status of the target component.<br>**true**: scrollable.<br>**false**: not scrollable.<br>Default value: **true** |
+| b      | boolean | No  | Scrollable status of the target component.<br>**true**: scrollable.<br>**false**: not scrollable.<br> Default value: **true**|
 
 **Return value**
 
@@ -323,7 +344,7 @@ Specifies the enabled status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                     |
 | ------ | ------- | ---- | --------------------------------------------------------- |
-| b      | boolean | No  | Enabled status of the target component.<br>**true**: enabled.<br>**false**: not enabled.<br>Default value: **true** |
+| b      | boolean | No  | Enabled status of the target component.<br>**true**: enabled.<br>**false**: not enabled.<br> Default value: **true**|
 
 **Return value**
 
@@ -349,7 +370,7 @@ Specifies the focused status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                 |
 | ------ | ------- | ---- | ----------------------------------------------------- |
-| b      | boolean | No  | Focused status of the target component.<br>**true**: focused.<br>**false**: not focused.<br>Default value: **true** |
+| b      | boolean | No  | Focused status of the target component.<br>**true**: focused.<br>**false**: not focused.<br> Default value: **true**|
 
 **Return value**
 
@@ -375,7 +396,7 @@ Specifies the selected status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | No  | Selected status of the target component.<br>**true**: selected.<br>**false**: not selected.<br>Default value: **true** |
+| b      | boolean | No  | Selected status of the target component.<br>**true**: selected.<br>**false**: not selected.<br> Default value: **true**|
 
 **Return value**
 
@@ -401,7 +422,7 @@ Specifies the checked status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | No  | Checked status of the target component.<br>**true**: checked.<br>**false**: not checked.<br>Default value: **false** |
+| b      | boolean | No  | Checked status of the target component.<br>**true**: checked.<br>**false**: not checked.<br> Default value: **false**|
 
 **Return value**
 
@@ -427,7 +448,7 @@ Specifies the checkable status attribute of the target component.
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | No  | Checkable status of the target component.<br>**true**: checkable.<br>**false**: not checkable.<br>Default value: **false** |
+| b      | boolean | No  | Checkable status of the target component.<br>**true**: checkable.<br>**false**: not checkable.<br> Default value: **false**|
 
 **Return value**
 
@@ -523,7 +544,7 @@ let on = ON.within(ON.type('List')); // Create an On object using the static con
 
 inWindow(bundleName: string): On;
 
-Specifies that the target component is within the given application window.
+Specifies that the target component is located within the given application window.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -542,12 +563,13 @@ Specifies that the target component is within the given application window.
 **Example**
 
 ```js
-let on = ON.inWindow('com.uitestScene.acts'); // Create an On object using the static constructor ON, specifying that the target component is within the given application window.
+let on = ON.inWindow('com.uitestScene.acts'); // Create an On object using the static constructor ON, specifying that the target component is located within the given application window.
 ```
 
 ## Component<sup>9+</sup>
 
-In **UiTest** of API version 9, the **Component** class represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection.
+Represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection.
+
 All APIs provided in this class use a promise to return the result and must be invoked using **await**.
 
 ### click<sup>9+</sup>
@@ -564,8 +586,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -591,8 +613,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -618,8 +640,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -651,8 +673,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -684,8 +706,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -717,8 +739,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -750,8 +772,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -783,8 +805,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -816,8 +838,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -853,8 +875,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -890,8 +912,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -899,7 +921,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 async function demo() {
     let driver = Driver.create();
     let checkBox = await driver.findComponent(ON.type('Checkbox'));
-    if(await checkBox.isChecked) {
+    if(await checkBox.isChecked()) {
         console.info('This checkBox is checked');
     } else {
         console.info('This checkBox is not checked');
@@ -927,8 +949,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -936,7 +958,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 async function demo() {
     let driver = Driver.create();
     let checkBox = await driver.findComponent(ON.type('Checkbox'));
-    if(await checkBox.isCheckable) {
+    if(await checkBox.isCheckable()) {
         console.info('This checkBox is checkable');
     } else {
         console.info('This checkBox is not checkable');
@@ -964,8 +986,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -1002,8 +1024,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -1040,8 +1062,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -1077,8 +1099,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -1114,8 +1136,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -1139,8 +1161,8 @@ Clears text in this component. This API is applicable to text boxes.
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -1178,8 +1200,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -1211,8 +1233,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -1244,8 +1266,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -1277,8 +1299,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -1311,8 +1333,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -1344,8 +1366,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the component is invisible or destroyed.           |
 
 **Example**
 
@@ -1360,6 +1382,7 @@ async function demo() {
 ## Driver<sup>9+</sup>
 
 The **Driver** class is the main entry to the UiTest framework. It provides APIs for features such as component matching/search, key injection, coordinate clicking/sliding, and screenshot.
+
 All APIs provided by this class, except for **Driver.create()**, use a promise to return the result and must be invoked using **await**.
 
 ### create<sup>9+</sup>
@@ -1382,7 +1405,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message          |
 | -------- | ------------------ |
-| 17000001 | Initialize failed. |
+| 17000001 | if the test framework failed to initialize. |
 
 **Example**
 
@@ -1412,7 +1435,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -1449,7 +1472,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -1486,7 +1509,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -1523,7 +1546,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -1561,7 +1584,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -1592,8 +1615,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000003 | Component existence assertion failed.    |
+| 17000002 | if the async function was not called with await. |
+| 17000003 | if the assertion failed.    |
 
 **Example**
 
@@ -1618,7 +1641,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -1649,7 +1672,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -1682,7 +1705,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -1715,7 +1738,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -1747,7 +1770,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -1779,7 +1802,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -1814,7 +1837,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -1849,7 +1872,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -1886,7 +1909,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -1917,7 +1940,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -1948,7 +1971,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -1979,7 +2002,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -2010,7 +2033,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -2041,7 +2064,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -2066,7 +2089,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -2091,7 +2114,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -2129,7 +2152,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -2163,7 +2186,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -2201,7 +2224,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -2221,7 +2244,7 @@ async function demo() {
 
 ### fling<sup>10+</sup>
 
-fling(direction: UiDirection, speed: number): Promise<void>;
+fling(direction: UiDirection, speed: number): Promise\<void>;
 
 Simulates a fling operation on the screen, in the specified direction and speed.
 
@@ -2240,7 +2263,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -2253,7 +2276,7 @@ async function demo() {
 
 ### screenCapture<sup>10+</sup>
 
-screenCapture(savePath: string, rect?: Rect): Promise<boolean>;
+screenCapture(savePath: string, rect?: Rect): Promise\<boolean>;
 
 Captures the specified area of the current screen and saves the captured screenshot as a PNG image to the specified path.
 
@@ -2278,7 +2301,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -2291,7 +2314,7 @@ async function demo() {
 
 ### mouseClick<sup>10+</sup>
 
-mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise<void>;
+mouseClick(p: Point, btnId: MouseButton, key1?: number, key2?: number): Promise\<void>;
 
 Injects a mouse click at the specified coordinates, with the optional key or key combination. For example, if the value of **key1** is **2072**, the **Ctrl** button is pressed with the mouse click.
 
@@ -2302,8 +2325,8 @@ Injects a mouse click at the specified coordinates, with the optional key or key
 | Name| Type                         | Mandatory| Description               |
 | ------ | ----------------------------- | ---- | ------------------- |
 | p      | [Point](#point9)              | Yes  | Coordinates of the mouse click.   |
-| btnId  | [MouseButton](#mousebutton10) | Yes  | Mouse button pressesd.   |
-| key1   | number                        | Yes  | The first key value.|
+| btnId  | [MouseButton](#mousebutton10) | Yes  | Mouse button pressed.   |
+| key1   | number                        | No  | The first key value.|
 | key2   | number                        | No  | The second key value.|
 
 **Error codes**
@@ -2312,7 +2335,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -2325,7 +2348,7 @@ async function demo() {
 
 ### mouseScroll<sup>10+</sup>
 
-mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): Promise<void>;
+mouseScroll(p: Point, down: boolean, d: number, key1?: number, key2?: number): Promise\<void>;
 
 Injects a mouse scroll action at the specified coordinates, with the optional key or key combination. For example, if the value of **key1** is **2072**, the **Ctrl** button is pressed with mouse scrolling.
 
@@ -2338,7 +2361,7 @@ Injects a mouse scroll action at the specified coordinates, with the optional ke
 | p      | [Point](#point9) | Yes  | Coordinates of the mouse click.                                   |
 | down   | boolean          | Yes  | Whether the scroll wheel slides downward.                             |
 | d      | number           | Yes  | Number of grids by which the scroll wheel slides. Sliding by one grid means a 120-pixel offset of the target point.|
-| key1   | number           | Yes  | The first key value.                                |
+| key1   | number           | No  | The first key value.                                |
 | key2   | number           | No  | The second key value.                                |
 
 **Error codes**
@@ -2347,7 +2370,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -2360,7 +2383,7 @@ async function demo() {
 
 ### mouseMoveTo<sup>10+</sup>
 
-mouseMoveTo(p: Point): Promise<void>;
+mouseMoveTo(p: Point): Promise\<void>;
 
 Moves the cursor to the target point.
 
@@ -2378,7 +2401,7 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
+| 17000002 | if the async function was not called with await. |
 
 **Example**
 
@@ -2386,6 +2409,37 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 async function demo() {
     let driver = Driver.create();
     await driver.mouseMoveTo({x:100, y:100})
+}
+```
+
+### createUIEventObserver<sup>10+</sup>
+
+createUIEventObserver(): UIEventObserver;
+
+Creates a UI event listener.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Return value**
+
+| Type                                           | Description                                 |
+| ----------------------------------------------- | ------------------------------------- |
+| Promise\<[UIEventObserver](#uieventobserver10)> | Promise used to return the target window.|
+
+**Error codes**
+
+For details about the error codes, see [UiTest Error Codes](../errorcodes/errorcode-uitest.md).
+
+| ID| Error Message                                |
+| -------- | ---------------------------------------- |
+| 17000002 | if the async function was not called with await. |
+
+**Example**
+
+```js
+async function demo() {
+    let driver = Driver.create();
+    let obeserver = await driver.createUiEventObserve();
 }
 ```
 
@@ -2455,6 +2509,7 @@ async function demo() {
 ## UiWindow<sup>9+</sup>
 
 The **UiWindow** class represents a window on the UI and provides APIs for obtaining window attributes, dragging a window, and adjusting the window size.
+
 All APIs provided in this class use a promise to return the result and must be invoked using **await**.
 
 ### getBundleName<sup>9+</sup>
@@ -2477,8 +2532,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.           |
 
 **Example**
 
@@ -2510,8 +2565,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.           |
 
 **Example**
 
@@ -2543,8 +2598,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.           |
 
 **Example**
 
@@ -2576,8 +2631,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.          |
 
 **Example**
 
@@ -2609,8 +2664,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.           |
 
 **Example**
 
@@ -2642,8 +2697,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.           |
 
 **Example**
 
@@ -2669,8 +2724,8 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.           |
 
 **Example**
 
@@ -2703,9 +2758,9 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
-| 17000005 | This operation is not supported.         |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.           |
+| 17000005 | if the action is not supported on this window.         |
 
 **Example**
 
@@ -2739,9 +2794,9 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
-| 17000005 | This operation is not supported.         |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.           |
+| 17000005 | if the action is not supported on this window.         |
 
 **Example**
 
@@ -2767,9 +2822,9 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                                |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
-| 17000005 | This operation is not supported.         |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.         |
+| 17000005 | if the action is not supported on this window.         |
 
 **Example**
 
@@ -2795,9 +2850,9 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
-| 17000005 | This operation is not supported.         |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.           |
+| 17000005 | if the action is not supported on this window.         |
 
 **Example**
 
@@ -2823,9 +2878,9 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
-| 17000005 | This operation is not supported.         |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.          |
+| 17000005 | if the action is not supported on this window.         |
 
 **Example**
 
@@ -2851,9 +2906,9 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
-| 17000005 | This operation is not supported.         |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.          |
+| 17000005 | if the action is not supported on this window.         |
 
 **Example**
 
@@ -2879,9 +2934,9 @@ For details about the error codes, see [UiTest Error Codes](../errorcodes/errorc
 
 | ID| Error Message                              |
 | -------- | ---------------------------------------- |
-| 17000002 | API does not allow calling concurrently. |
-| 17000004 | Component lost/UiWindow lost.            |
-| 17000005 | This operation is not supported.         |
+| 17000002 | if the async function was not called with await. |
+| 17000004 | if the window is invisible or destroyed.           |
+| 17000005 | if the action is not supported on this window.         |
 
 **Example**
 
@@ -2893,10 +2948,78 @@ async function demo() {
 }
 ```
 
+## UIEventObserver<sup>10+</sup>
+
+UI event listener.
+
+### once('toastShow')
+
+once(type: 'toastShow', callback: Callback\<UIElementInfo>):void;
+
+Subscribes to events of the toast component. This API uses a callback to return the result.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name  | Type                                        | Mandatory| Description                             |
+| -------- | -------------------------------------------- | ---- | --------------------------------- |
+| type     | string                                       | Yes  | Event type. The value is fixed at **'toastShow'**.|
+| callback | Callback\<[UIElementInfo](#uielementinfo10)> | Yes  | Callback used to return the result.         |
+
+**Example**
+
+```js
+async function demo() {
+    let observer = await driver.createUIEventObserver()
+    let  callback = (UIElementInfo)=>{
+        console.info(UIElementInfo.bundleName)
+        console.info(UIElementInfo.text)
+        console.info(UIElementInfo.type)
+     }
+    observer.once('toastShow', callback)
+}
+```
+
+### once('dialogShow')
+
+once(type: 'dialogShow', callback: Callback\<UIElementInfo>): void;
+
+Subscribes to events of the dialog component. This API uses a callback to return the result.
+
+**System capability**: SystemCapability.Test.UiTest
+
+**Parameters**
+
+| Name  | Type                                        | Mandatory| Description                              |
+| -------- | -------------------------------------------- | ---- | ---------------------------------- |
+| type     | string                                       | Yes  | Event type. The value is fixed at **'dialogShow'**.|
+| callback | Callback\<[UIElementInfo](#uielementinfo10)> | Yes  | Callback used to return the result.          |
+
+**Example**
+
+```js
+async function demo() {
+    let observer = await driver.createUIEventObserver()
+    let  callback = (UIElementInfo)=>{
+        console.info(UIElementInfo.bundleName)
+        console.info(UIElementInfo.text)
+        console.info(UIElementInfo.type)
+     }
+    observer.once('dialogShow', callback)
+}
+```
+
 ## By<sup>(deprecated)</sup>
 
 The UiTest framework provides a wide range of UI component feature description APIs in the **By** class to filter and match components.
-The API capabilities provided by the **By** class exhibit the following features: <br>1. Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component. <br>2. Provide multiple match patterns for component attributes. <br>3. Support absolute positioning and relative positioning for components. APIs such as [By.isBefore<sup>(deprecated)</sup>](#isbeforedeprecated) and [By.isAfter<sup>(deprecated)</sup>](#isafterdeprecated) can be used to specify the features of adjacent components to assist positioning. <br>All APIs provided in the **By** class are synchronous. You are advised to use the static constructor **BY** to create a **By** object in chain mode.
+The API capabilities provided by the **By** class exhibit the following features: 
+
+- Allow one or more attributes as the match conditions. For example, you can specify both the **text** and **id** attributes to find the target component. 
+- Provide multiple match patterns for component attributes.
+- Support absolute positioning and relative positioning for components. APIs such as [By.isBefore<sup>(deprecated)</sup>](#isbeforedeprecated) and [By.isAfter<sup>(deprecated)</sup>](#isafterdeprecated) can be used to specify the features of adjacent components to assist positioning.
+
+All APIs provided in the **By** class are synchronous. You are advised to use the static constructor **BY** to create a **By** object in chain mode.
 
 This API is deprecated since API version 9. You are advised to use [On<sup>9+</sup>](#on9) instead.
 
@@ -2910,7 +3033,7 @@ text(txt: string, pattern?: MatchPattern): By
 
 Specifies the text attribute of the target component. Multiple match patterns are supported.
 
-This API is deprecated since API version 9. You are advised to use [text<sup>9+</sup>](#text9).
+This API is deprecated since API version 9. You are advised to use [text<sup>9+</sup>](#text9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -2940,7 +3063,7 @@ key(key: string): By
 
 Specifies the key attribute of the target component.
 
-This API is deprecated since API version 9. You are advised to use [id<sup>9+</sup>](#id9).
+This API is deprecated since API version 9. You are advised to use [id<sup>9+</sup>](#id9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -2998,7 +3121,7 @@ type(tp: string): By
 
 Specifies the type attribute of the target component.
 
-This API is deprecated since API version 9. You are advised to use [type<sup>9+</sup>](#type9).
+This API is deprecated since API version 9. You are advised to use [type<sup>9+</sup>](#type9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3027,7 +3150,7 @@ clickable(b?: boolean): By
 
 Specifies the clickable status attribute of the target component.
 
-This API is deprecated since API version 9. You are advised to use [clickable<sup>9+</sup>](#clickable9).
+This API is deprecated since API version 9. You are advised to use [clickable<sup>9+</sup>](#clickable9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3035,7 +3158,7 @@ This API is deprecated since API version 9. You are advised to use [clickable<su
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | No  | Clickable status of the target component.<br>**true**: clickable.<br>**false**: not clickable.<br>Default value: **true** |
+| b      | boolean | No  | Clickable status of the target component.<br>**true**: clickable.<br>**false**: not clickable.<br> Default value: **true**|
 
 **Return value**
 
@@ -3056,7 +3179,7 @@ scrollable(b?: boolean): By
 
 Specifies the scrollable status attribute of the target component.
 
-This API is deprecated since API version 9. You are advised to use [scrollable<sup>9+</sup>](#scrollable9).
+This API is deprecated since API version 9. You are advised to use [scrollable<sup>9+</sup>](#scrollable9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3064,7 +3187,7 @@ This API is deprecated since API version 9. You are advised to use [scrollable<s
 
 | Name| Type   | Mandatory| Description                                                       |
 | ------ | ------- | ---- | ----------------------------------------------------------- |
-| b      | boolean | No  | Scrollable status of the target component.<br>**true**: scrollable.<br>**false**: not scrollable.<br>Default value: **true** |
+| b      | boolean | No  | Scrollable status of the target component.<br>**true**: scrollable.<br>**false**: not scrollable.<br> Default value: **true**|
 
 **Return value**
 
@@ -3084,7 +3207,7 @@ enabled(b?: boolean): By
 
 Specifies the enabled status attribute of the target component.
 
-This API is deprecated since API version 9. You are advised to use [enabled<sup>9+</sup>](#enabled9).
+This API is deprecated since API version 9. You are advised to use [enabled<sup>9+</sup>](#enabled9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3092,7 +3215,7 @@ This API is deprecated since API version 9. You are advised to use [enabled<sup>
 
 | Name| Type   | Mandatory| Description                                                     |
 | ------ | ------- | ---- | --------------------------------------------------------- |
-| b      | boolean | No  | Enabled status of the target component.<br>**true**: enabled.<br>**false**: not enabled.<br>Default value: **true** |
+| b      | boolean | No  | Enabled status of the target component.<br>**true**: enabled.<br>**false**: not enabled.<br> Default value: **true**|
 
 **Return value**
 
@@ -3112,7 +3235,7 @@ focused(b?: boolean): By
 
 Specifies the focused status attribute of the target component.
 
-This API is deprecated since API version 9. You are advised to use [focused<sup>9+</sup>](#focused9).
+This API is deprecated since API version 9. You are advised to use [focused<sup>9+</sup>](#focused9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3120,7 +3243,7 @@ This API is deprecated since API version 9. You are advised to use [focused<sup>
 
 | Name| Type   | Mandatory| Description                                                 |
 | ------ | ------- | ---- | ----------------------------------------------------- |
-| b      | boolean | No  | Focused status of the target component.<br>**true**: focused.<br>**false**: not focused.<br>Default value: **true** |
+| b      | boolean | No  | Focused status of the target component.<br>**true**: focused.<br>**false**: not focused.<br> Default value: **true**|
 
 **Return value**
 
@@ -3140,7 +3263,7 @@ selected(b?: boolean): By
 
 Specifies the selected status of the target component.
 
-This API is deprecated since API version 9. You are advised to use [selected<sup>9+</sup>](#selected9).
+This API is deprecated since API version 9. You are advised to use [selected<sup>9+</sup>](#selected9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3148,7 +3271,7 @@ This API is deprecated since API version 9. You are advised to use [selected<sup
 
 | Name| Type   | Mandatory| Description                                                        |
 | ------ | ------- | ---- | ------------------------------------------------------------ |
-| b      | boolean | No  | Selected status of the target component.<br>**true**: selected.<br>**false**: not selected.<br>Default value: **true** |
+| b      | boolean | No  | Selected status of the target component.<br>**true**: selected.<br>**false**: not selected.<br> Default value: **true**|
 
 **Return value**
 
@@ -3168,7 +3291,7 @@ isBefore(by: By): By
 
 Specifies that the target component is located before the given attribute component.
 
-This API is deprecated since API version 9. You are advised to use [isBefore<sup>9+</sup>](#isbefore9).
+This API is deprecated since API version 9. You are advised to use [isBefore<sup>9+</sup>](#isbefore9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3194,9 +3317,9 @@ let by = BY.isBefore(BY.text('123')); // Use the static constructor BY to create
 
 isAfter(by: By): By
 
-Specifies the target component is located after the given attribute component.
+Specifies that the target component is located after the given attribute component.
 
-This API is deprecated since API version 9. You are advised to use [isAfter<sup>9+</sup>](#isafter9).
+This API is deprecated since API version 9. You are advised to use [isAfter<sup>9+</sup>](#isafter9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3221,6 +3344,7 @@ let by = BY.isAfter(BY.text('123')); // Use the static constructor BY to create 
 ## UiComponent<sup>(deprecated)</sup>
 
 In **UiTest**, the **UiComponent** class represents a component on the UI and provides APIs for obtaining component attributes, clicking a component, scrolling to search for a component, and text injection.
+
 All APIs provided in this class use a promise to return the result and must be invoked using **await**.
 
 This API is deprecated since API version 9. You are advised to use [Component<sup>9+</sup>](#component9) instead.
@@ -3231,7 +3355,7 @@ click(): Promise\<void>
 
 Clicks this component.
 
-This API is deprecated since API version 9. You are advised to use [click<sup>9+</sup>](#click9).
+This API is deprecated since API version 9. You are advised to use [click<sup>9+</sup>](#click9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3251,7 +3375,7 @@ doubleClick(): Promise\<void>
 
 Double-clicks this component.
 
-This API is deprecated since API version 9. You are advised to use [doubleClick<sup>9+</sup>](#doubleclick9).
+This API is deprecated since API version 9. You are advised to use [doubleClick<sup>9+</sup>](#doubleclick9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3271,7 +3395,7 @@ longClick(): Promise\<void>
 
 Long-clicks this component.
 
-This API is deprecated since API version 9. You are advised to use [longClick<sup>9+</sup>](#longclick9).
+This API is deprecated since API version 9. You are advised to use [longClick<sup>9+</sup>](#longclick9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3317,7 +3441,7 @@ getKey(): Promise\<string>
 
 Obtains the key of this component.
 
-This API is deprecated since API version 9. You are advised to use [getId<sup>9+</sup>](#getid9).
+This API is deprecated since API version 9. You are advised to use [getId<sup>9+</sup>](#getid9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3343,7 +3467,7 @@ getText(): Promise\<string>
 
 Obtains the text information of this component.
 
-This API is deprecated since API version 9. You are advised to use [getText<sup>9+</sup>](#gettext9).
+This API is deprecated since API version 9. You are advised to use [getText<sup>9+</sup>](#gettext9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3369,7 +3493,7 @@ getType(): Promise\<string>
 
 Obtains the type of this component.
 
-This API is deprecated since API version 9. You are advised to use [getType<sup>9+</sup>](#gettype9).
+This API is deprecated since API version 9. You are advised to use [getType<sup>9+</sup>](#gettype9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3395,7 +3519,7 @@ isClickable(): Promise\<boolean>
 
 Obtains the clickable status of this component.
 
-This API is deprecated since API version 9. You are advised to use [isClickable<sup>9+</sup>](#isclickable9).
+This API is deprecated since API version 9. You are advised to use [isClickable<sup>9+</sup>](#isclickable9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3425,7 +3549,7 @@ isScrollable(): Promise\<boolean>
 
 Obtains the scrollable status of this component.
 
-This API is deprecated since API version 9. You are advised to use [isScrollable<sup>9+</sup>](#isscrollable9).
+This API is deprecated since API version 9. You are advised to use [isScrollable<sup>9+</sup>](#isscrollable9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3456,7 +3580,7 @@ isEnabled(): Promise\<boolean>
 
 Obtains the enabled status of this component.
 
-This API is deprecated since API version 9. You are advised to use [isEnabled<sup>9+</sup>](#isenabled9).
+This API is deprecated since API version 9. You are advised to use [isEnabled<sup>9+</sup>](#isenabled9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3487,7 +3611,7 @@ isFocused(): Promise\<boolean>
 
 Obtains the focused status of this component.
 
-This API is deprecated since API version 9. You are advised to use [isFocused<sup>9+</sup>](#isfocused9).
+This API is deprecated since API version 9. You are advised to use [isFocused<sup>9+</sup>](#isfocused9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3517,7 +3641,7 @@ isSelected(): Promise\<boolean>
 
 Obtains the selected status of this component.
 
-This API is deprecated since API version 9. You are advised to use [isSelected<sup>9+</sup>](#isselected9).
+This API is deprecated since API version 9. You are advised to use [isSelected<sup>9+</sup>](#isselected9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3547,7 +3671,7 @@ inputText(text: string): Promise\<void>
 
 Enters text into this component (available for text boxes).
 
-This API is deprecated since API version 9. You are advised to use [inputText<sup>9+</sup>](#inputtext9).
+This API is deprecated since API version 9. You are advised to use [inputText<sup>9+</sup>](#inputtext9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3573,7 +3697,7 @@ scrollSearch(by: By): Promise\<UiComponent>
 
 Scrolls on this component to search for the target component (applicable to components that support scrolling, such as **\<List>**).
 
-This API is deprecated since API version 9. You are advised to use [scrollSearch<sup>9+</sup>](#scrollsearch9).
+This API is deprecated since API version 9. You are advised to use [scrollSearch<sup>9+</sup>](#scrollsearch9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3602,6 +3726,7 @@ async function demo() {
 ## UiDriver<sup>(deprecated)</sup>
 
 The **UiDriver** class is the main entry to the UiTest framework. It provides APIs for features such as component matching/search, key injection, coordinate clicking/sliding, and screenshot.
+
 All APIs provided by this class, except for **UiDriver.create()**, use a promise to return the result and must be invoked using **await**.
 
 This API is deprecated since API version 9. You are advised to use [Driver<sup>9+</sup>](#driver9) instead.
@@ -3612,7 +3737,7 @@ static create(): UiDriver
 
 Creates a **UiDriver** object and returns the object created. This API is a static API.
 
-This API is deprecated since API version 9. You are advised to use [create<sup>9+</sup>](#create9).
+This API is deprecated since API version 9. You are advised to use [create<sup>9+</sup>](#create9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3636,7 +3761,7 @@ delayMs(duration: number): Promise\<void>
 
 Delays this **UiDriver** object within the specified duration.
 
-This API is deprecated since API version 9. You are advised to use [delayMs<sup>9+</sup>](#delayms9).
+This API is deprecated since API version 9. You are advised to use [delayMs<sup>9+</sup>](#delayms9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3661,7 +3786,7 @@ findComponent(by: By): Promise\<UiComponent>
 
 Searches this **UiDriver** object for the target component that matches the given attributes.
 
-This API is deprecated since API version 9. You are advised to use [findComponent<sup>9+</sup>](#findcomponent9).
+This API is deprecated since API version 9. You are advised to use [findComponent<sup>9+</sup>](#findcomponent9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3692,7 +3817,7 @@ findComponents(by: By): Promise\<Array\<UiComponent>>
 
 Searches this **UiDriver** object for all components that match the given attributes.
 
-This API is deprecated since API version 9. You are advised to use [findComponents<sup>9+</sup>](#findcomponents9).
+This API is deprecated since API version 9. You are advised to use [findComponents<sup>9+</sup>](#findcomponents9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3723,7 +3848,7 @@ assertComponentExist(by: By): Promise\<void>
 
 Asserts that a component that matches the given attributes exists on the current page. If the component does not exist, the API throws a JS exception, causing the current test case to fail.
 
-This API is deprecated since API version 9. You are advised to use [assertComponentExist<sup>9+</sup>](#assertcomponentexist9).
+This API is deprecated since API version 9. You are advised to use [assertComponentExist<sup>9+</sup>](#assertcomponentexist9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3748,7 +3873,7 @@ pressBack(): Promise\<void>
 
 Presses the Back button on this **UiDriver** object.
 
-This API is deprecated since API version 9. You are advised to use [pressBack<sup>9+</sup>](#pressback9).
+This API is deprecated since API version 9. You are advised to use [pressBack<sup>9+</sup>](#pressback9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3767,7 +3892,7 @@ triggerKey(keyCode: number): Promise\<void>
 
 Triggers the key of this **UiDriver** object that matches the given key code.
 
-This API is deprecated since API version 9. You are advised to use [triggerKey<sup>9+</sup>](#triggerkey9).
+This API is deprecated since API version 9. You are advised to use [triggerKey<sup>9+</sup>](#triggerkey9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3793,7 +3918,7 @@ click(x: number, y: number): Promise\<void>
 
 Clicks a specific point of this **UiDriver** object based on the given coordinates.
 
-This API is deprecated since API version 9. You are advised to use [click<sup>9+</sup>](#click9).
+This API is deprecated since API version 9. You are advised to use [click<sup>9+</sup>](#click9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3819,7 +3944,7 @@ doubleClick(x: number, y: number): Promise\<void>
 
 Double-clicks a specific point of this **UiDriver** object based on the given coordinates.
 
-This API is deprecated since API version 9. You are advised to use [doubleClick<sup>9+</sup>](#doubleclick9).
+This API is deprecated since API version 9. You are advised to use [doubleClick<sup>9+</sup>](#doubleclick9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3845,7 +3970,7 @@ longClick(x: number, y: number): Promise\<void>
 
 Long-clicks a specific point of this **UiDriver** object based on the given coordinates.
 
-This API is deprecated since API version 9. You are advised to use [longClick<sup>9+</sup>](#longclick9).
+This API is deprecated since API version 9. You are advised to use [longClick<sup>9+</sup>](#longclick9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3871,7 +3996,7 @@ swipe(startx: number, starty: number, endx: number, endy: number): Promise\<void
 
 Swipes on this **UiDriver** object from the start point to the end point based on the given coordinates.
 
-This API is deprecated since API version 9. You are advised to use [swipe<sup>9+</sup>](#swipe9).
+This API is deprecated since API version 9. You are advised to use [swipe<sup>9+</sup>](#swipe9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 
@@ -3899,7 +4024,7 @@ screenCap(savePath: string): Promise\<boolean>
 
 Captures the current screen of this **UiDriver** object and saves it as a PNG image to the given save path.
 
-This API is deprecated since API version 9. You are advised to use [screenCap<sup>9+</sup>](#screencap9).
+This API is deprecated since API version 9. You are advised to use [screenCap<sup>9+</sup>](#screencap9) instead.
 
 **System capability**: SystemCapability.Test.UiTest
 

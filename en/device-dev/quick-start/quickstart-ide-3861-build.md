@@ -13,11 +13,17 @@ With DevEco Device Tool, you can easily build source code of the Hi3861V100 deve
 
    ![en-us_image_0000001275483042](figures/en-us_image_0000001275483042.png)
 
-2. On the **Tool Chain** tab page, DevEco Device Tool automatically checks whether the dependent compiler toolchain is complete. If a message is displayed indicating that some tools are missing, click **Install** to automatically install the required tools.
+2. On the **Tool Chain** tab page, DevEco Device Tool automatically checks whether the dependent compiler toolchain is complete.
+
+   - If any tool is indicated as **uninstalled** (![status_uninstall](figures/status_uninstall.png)), click **Download Uninstalled Tools** to install all the required tools, or click **Download** next to a tool to install the specific tool.
+   - If some tool types are missing, click **Add Utility** to add them.
+   - If **Download** is not available for a missing tool, it is not cataloged in DevEco Device Tool. In this case, you need to download the tool to the local host and click **Import** to import it.
+   - If the status of **OpenHarmony Environment Dependency** is abnormal (![status_uninstall](figures/status_uninstall.png), click **Install**.
 
    ![en-us_image_0000001333256741](figures/en-us_image_0000001333256741.png)
 
-3. Install the toolchain related to Hi3861V100. Certain tools may require the root access to install. In this case, enter the user password in the **TERMINAL** window.
+   Certain tools may require the root access to install. For these tools, enter the user password in the **TERMINAL** window as prompted.
+
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
    >
    > - If pip fails to be installed, [change the Python source](https://device.harmonyos.com/en/docs/documentation/guide/ide-set-python-source-0000001227639986) and try again.
@@ -25,19 +31,17 @@ With DevEco Device Tool, you can easily build source code of the Hi3861V100 deve
 
    ![en-us_image_0000001280938208](figures/en-us_image_0000001280938208.png)
 
-   After the toolchain is automatically installed, the figure below is displayed.
+   After the installation is complete, the status of the tools and environment dependencies is displayed as ![status_install](figures/status_install.png).
 
-   ![en-us_image_0000001281378224](figures/en-us_image_0000001281378224.png)
-
-4. On the **wifiiot_hispark_pegasus** tab page, set **build_type**, whose default value is **debug**.
+3. On the **wifiiot_hispark_pegasus** tab page, set **build_type**, whose default value is **debug**.
 
    ![en-us_image_0000001333581089](figures/en-us_image_0000001333581089.png)
 
-5. Choose **PROJECT TASKS** > **wifiiot_hispark_pegasus** > **Build** to start building.
+4. Choose **PROJECT TASKS** > **wifiiot_hispark_pegasus** > **Build** to start building.
 
    ![en-us_image_0000001281221352](figures/en-us_image_0000001281221352.png)
 
-6. Wait until **SUCCESS** is displayed in the **TERMINAL** window, indicating that the build is complete.
+5. Wait until **SUCCESS** is displayed in the **TERMINAL** window, indicating that the build is complete.
 
    ![en-us_image_0000001405938781](figures/en-us_image_0000001405938781.png)
 

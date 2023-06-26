@@ -27,7 +27,7 @@ let dataShareHelper;
 let uri = ("datashare:///com.samples.datasharetest.DataShare");
 await dataShare.createDataShareHelper(this.context, uri, (err, data) => {
 	if (err != undefined) {
-        console.info("createDataShareHelper fail, error message : " + err);
+        console.error("createDataShareHelper fail, error message : " + err);
     } else {
         console.info("createDataShareHelper end, data : " + data);
         dataShareHelper = data;
@@ -39,10 +39,10 @@ let da = new dataSharePredicates.DataSharePredicates();
 let resultSet;
 da.equalTo("name", "ZhangSan");
 dataShareHelper.query(uri, da, columns).then((data) => {
-    console.log("query end, data : " + data);
+    console.info("query end, data : " + data);
     resultSet = data;
 }).catch((err) => {
-	console.log("query fail, error message : " + err);
+	console.error("query fail, error message : " + err);
 });
 ```
 

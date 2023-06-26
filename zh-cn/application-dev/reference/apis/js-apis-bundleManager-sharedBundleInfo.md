@@ -9,6 +9,8 @@
 
  共享包信息。
 
+**系统接口：** 此接口为系统接口。
+
 **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 
 | 名称             | 类型                           | 可读 | 可写 | 说明                   |
@@ -20,6 +22,8 @@
 ## SharedModuleInfo
 
 共享模块信息。
+
+ **系统接口：** 此接口为系统接口。
 
  **系统能力:** 以下各项对应的系统能力均为SystemCapability.BundleManager.BundleFramework.Core。
 

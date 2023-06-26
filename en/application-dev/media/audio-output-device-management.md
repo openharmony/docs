@@ -45,16 +45,14 @@ Set a listener to listen for changes of the device connection state. When a devi
 ```ts
 // Listen for connection state changes of audio devices.
 audioRoutingManager.on('deviceChange', audio.DeviceFlag.OUTPUT_DEVICES_FLAG, (deviceChanged) => {
-  console.info('device change type: ' + deviceChanged.type); // Device connection state change. The value 0 means that the device is connected and 1 means that the device is disconnected.
-  console.info('device descriptor size : ' + deviceChanged.deviceDescriptors.length);
-  console.info('device change descriptor: ' + deviceChanged.deviceDescriptors[0].deviceRole); // Device role.
-  console.info('device change descriptor: ' + deviceChanged.deviceDescriptors[0].deviceType); // Device type.
+  console.info(`device change type : ${deviceChanged.type}`);  // Device connection state change. The value 0 means that the device is connected and 1 means that the device is disconnected.
+  console.info(`device descriptor size : ${deviceChanged.deviceDescriptors.length}`);
+  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceRole}`);  // Device role.
+  console.info(`device change descriptor : ${deviceChanged.deviceDescriptors[0].deviceType}`);  // Device type.
 });
 
 // Cancel the listener for the connection state changes of audio devices.
-audioRoutingManager.off('deviceChange', (deviceChanged) => {
-  console.info('Should be no callback.');
-});
+audioRoutingManager.off('deviceChange');
 ```
 
 ## Selecting an Audio Output Device (for System Applications only)
@@ -87,4 +85,47 @@ async function selectOutputDevice(){
     console.error(`Invoke selectOutputDevice failed, code is ${err.code}, message is ${err.message}`);
   });
 }
+```
+
+## Obtaining Information About the Output Device with the Highest Priority
+
+Call **getPreferOutputDeviceForRendererInfo()** to obtain the output device with the highest priority.
+
+> **NOTE**
+>
+> The output device with the highest priority is the device that will output audio.
+
+```ts
+let rendererInfo = {
+    content : audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags : 0,
+}
+
+async function getPreferOutputDeviceForRendererInfo() {
+  audioRoutingManager.getPreferOutputDeviceForRendererInfo(rendererInfo).then((desc) => {
+    console.info(`device descriptor: ${desc}`);
+  }).catch((err) => {
+    console.error(`Result ERROR: ${err}`);
+  })
+}
+```
+
+## Listening for Changes of the Output Device with the Highest Priority
+
+```ts
+let rendererInfo = {
+    content : audio.ContentType.CONTENT_TYPE_MUSIC,
+    usage : audio.StreamUsage.STREAM_USAGE_MEDIA,
+    rendererFlags : 0,
+}
+
+// Listen for changes of the output device with the highest priority.
+audioRoutingManager.on('preferOutputDeviceChangeForRendererInfo', rendererInfo, (desc) => {
+    console.info(`device change descriptor : ${desc.deviceDescriptors[0].deviceRole}`);  // Device role.
+    console.info(`device change descriptor : ${desc.deviceDescriptors[0].deviceType}`);  // Device type.
+});
+
+// Cancel the listening for changes of the output device with the highest priority.
+audioRoutingManager.off('preferOutputDeviceChangeForRendererInfo');
 ```

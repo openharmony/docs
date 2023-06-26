@@ -259,6 +259,103 @@ try {
 ```
 
 
+## bluetoothManager.pairCredibleDevice<sup>10+</sup>
+
+pairCredibleDevice(deviceId: string, transport: BluetoothTransport, callback: AsyncCallback&lt;void&gt;): void
+
+Pairs a trusted remote device whose address is obtained in a non-Bluetooth scan mode (such as using NFC).
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type    | Mandatory  | Description                                 |
+| -------- | ------ | ---- | ----------------------------------- |
+| deviceId | string | Yes   | Address of the remote device to pair, for example, XX:XX:XX:XX:XX:XX.|
+| transport | [BluetoothTransport](#bluetoothtransport10) | Yes   | Device type, for example, a classic Bluetooth device or a Bluetooth low energy (BLE) device.|
+| callback | AsyncCallback&lt;void&gt; | Yes   | Callback invoked to return the result. If the operation is successful, **err** is **undefined**. Otherwise, **err** is an error object.  |
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+try {
+    bluetoothManager.pairCredibleDevice("68:13:24:79:4C:8C", 1, err => {
+        if (err) {
+            console.error("errCode:" + err.code + ",errMessage:" + err.message);
+            return;
+        }
+        console.info("pairCredibleDevice,err:" + JSON.stringify(err));
+    });
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+
+## bluetoothManager.pairCredibleDevice<sup>10+</sup>
+
+pairCredibleDevice(deviceId: string, transport: BluetoothTransport): Promise&lt;void&gt;
+
+Pairs a trusted remote device whose address is obtained in a non-Bluetooth scan mode (such as using NFC).
+
+**System API**: This is a system API.
+
+**Required permissions**: ohos.permission.DISCOVER_BLUETOOTH
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+**Parameters**
+
+| Name     | Type    | Mandatory  | Description                                 |
+| -------- | ------ | ---- | ----------------------------------- |
+| deviceId | string | Yes   | Address of the remote device to pair, for example, XX:XX:XX:XX:XX:XX.|
+| transport | [BluetoothTransport](#bluetoothtransport10) | Yes   | Device type, for example, a classic Bluetooth device or a BLE device.|
+
+**Return value**
+
+| Type                                             | Description               |
+| ------------------------------------------------- | ------------------- |
+| Promise&lt;void&gt; | Promise used to return the result.|
+
+**Error codes**
+
+For details about the error codes, see [Bluetooth Error Codes](../errorcodes/errorcode-bluetoothManager.md).
+
+| ID| Error Message|
+| -------- | ---------------------------- |
+|2900001 | Service stopped.                         |
+|2900003 | Bluetooth switch is off.                 |
+|2900099 | Operation failed.                        |
+
+**Example**
+
+```js
+try {
+    bluetoothManager.pairCredibleDevice("68:13:24:79:4C:8C", 0).then(() => {
+        console.info("PairCredibleDevice");
+    }, err => {
+        console.error("PairCredibleDevice:errCode" + err.code + ",errMessage:" + err.message);
+    });
+} catch (err) {
+    console.error("errCode:" + err.code + ",errMessage:" + err.message);
+}
+```
+
+
 ## bluetoothManager.getProfileConnectionState<a name="getProfileConnectionState"></a>
 
 getProfileConnectionState(profileId: ProfileId): ProfileConnectionState
@@ -694,7 +791,7 @@ try {
 ```
 
 
-## bluetoothManager.setDevicePinCode<sup>10+</sup><a name="setDevicePinCode"></a>
+## bluetoothManager.setDevicePinCode<sup>10+</sup><a name="setDevicePinCode-1"></a>
 
 setDevicePinCode(device: string, code: string): Promise&lt;void&gt;
 
@@ -985,7 +1082,7 @@ try {
 
 on(type: "stateChange", callback: Callback&lt;BluetoothState&gt;): void
 
-Subscribes to the Bluetooth connection state change events.
+Subscribes to Bluetooth state events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1024,7 +1121,7 @@ try {
 
 off(type: "stateChange", callback?: Callback&lt;BluetoothState&gt;): void
 
-Unsubscribes from the Bluetooth connection state change events.
+Unsubscribes from Bluetooth state events.
 
 **Required permissions**: ohos.permission.USE_BLUETOOTH
 
@@ -1900,7 +1997,7 @@ Subscribes to the A2DP connection state change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an A2DP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the A2DP connection state change event.                       |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the A2DP connection state change event.                              |
 
 **Return value**
 
@@ -1930,7 +2027,7 @@ Unsubscribes from the A2DP connection state change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an A2DP connection state change event.|
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No   | Callback for the A2DP connection state change event.                           |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No   | Callback for the A2DP connection state change event.                              |
 
 **Return value**
 
@@ -2087,7 +2184,7 @@ Subscribes to the HFP connection state change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event. |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the HFP connection state change event.                 |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | Yes   | Callback invoked to return the HFP connection state change event.                              |
 
 **Example**
 
@@ -2114,7 +2211,7 @@ Unsubscribes from the HFP connection state change events.
 | Name     | Type                                      | Mandatory  | Description                                      |
 | -------- | ---------------------------------------- | ---- | ---------------------------------------- |
 | type     | string                                   | Yes   | Event type. The value **connectionStateChange** indicates an HFP connection state change event. |
-| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No   | Callback for the HFP connection state change event.                         |
+| callback | Callback&lt;[StateChangeParam](#StateChangeParam)&gt; | No   | Callback for the HFP connection state change event.                              |
 
 **Example**
 
@@ -2167,7 +2264,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 try {
-    let hidHostProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+    let hidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
     hidHostProfile.connect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2208,7 +2305,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 try {
-    let hidHostProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+    let hidHostProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
     hidHostProfile.disconnect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2237,7 +2334,7 @@ Subscribes to the HidHost connection state change events.
 function onReceiveEvent(data) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
-let hidHost = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+let hidHost = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -2263,7 +2360,7 @@ Unsubscribes from the HidHost connection state change events.
 function onReceiveEvent(data) {
     console.info('hidHost state = '+ JSON.stringify(data));
 }
-let hidHost = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
+let hidHost = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_HID_HOST) as bluetoothManager.HidHostProfile;
 hidHost.on('connectionStateChange', onReceiveEvent);
 hidHost.off('connectionStateChange', onReceiveEvent);
 ```
@@ -2307,7 +2404,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 try {
-    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     panProfile.disconnect('XX:XX:XX:XX:XX:XX');
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2336,7 +2433,7 @@ Subscribes to the PAN connection state change events.
 function onReceiveEvent(data) {
     console.info('pan state = '+ JSON.stringify(data));
 }
-let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
 ```
 
@@ -2362,7 +2459,7 @@ Unsubscribes from the PAN connection state change events.
 function onReceiveEvent(data) {
     console.info('pan state = '+ JSON.stringify(data));
 }
-let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
 panProfile.on('connectionStateChange', onReceiveEvent);
 panProfile.off('connectionStateChange', onReceiveEvent);
 ```
@@ -2401,7 +2498,7 @@ For details about the error codes, see [Bluetooth Error Codes](../errorcodes/err
 
 ```js
 try {
-    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     panProfile.setTethering(true);
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -2429,7 +2526,7 @@ Obtains the network sharing status.
 
 ```js
 try {
-    let panProfile = bluetoothManager.getProfileInst(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
+    let panProfile = bluetoothManager.getProfileInstance(bluetoothManager.ProfileId.PROFILE_PAN_NETWORK) as bluetoothManager.PanProfile;
     let ret = panProfile.isTetheringOn();
 } catch (err) {
     console.error("errCode:" + err.code + ",errMessage:" + err.message);
@@ -4355,6 +4452,7 @@ Defines the content of a BLE advertisement packet.
 | serviceUuids    | Array&lt;string&gt;                      | Yes   | Yes   | List of service UUIDs to broadcast.|
 | manufactureData | Array&lt;[ManufactureData](#manufacturedata)&gt; | Yes   | Yes   | List of manufacturers to broadcast.          |
 | serviceData     | Array&lt;[ServiceData](#servicedata)&gt; | Yes   | Yes   | List of service data to broadcast.              |
+| includeDeviceName<sup>10+</sup> | boolean                  | Yes   | Yes   | Whether the device name is contained. This parameter is optional.       |
 
 
 ## ManufactureData
@@ -4391,7 +4489,7 @@ Defines the pairing request parameters.
 | -------- | ------ | ---- | ---- | ----------- |
 | deviceId | string | Yes   | No   | ID of the device to pair.|
 | pinCode  | string | Yes   | No   | Key for the device pairing.  |
-| pinType<sup>10+</sup> | [PinType](#pintype10) | Yes   | No   | Type of the device to pair.  |
+| pinType<sup>10+</sup> | [PinType](#pintype10) | Yes   | No   | Type of the device to pair.<br>This is a system API.  |
 
 
 ## BondStateParam<a name="BondStateParam"></a>
@@ -4424,13 +4522,13 @@ Defines the properties of a GATT characteristic.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-| Name      | Type  | Read-only  | Mandatory  | Description         |
-| -------- | ------ | ---- | ---- | ----------- |
-| write<sup>10+</sup>    | boolean | Yes  | Yes   | Permits writes of the characteristic value (with a response).|
-| writeNoResponse<sup>10+</sup> | boolean | Yes   | Yes   | Permits writes of the characteristic value (without a response).|
-| read<sup>10+</sup> | boolean   | Yes   | Yes   | Permits reads of the characteristic value.|
-| notify<sup>10+</sup> | boolean   | Yes   | Yes   | Permits notifications of the characteristic value.|
-| indicate<sup>10+</sup> | boolean   | Yes   | Yes   | Permits notifications of the characteristic value without acknowledgement.|
+| Name      | Type | Mandatory  | Description         |
+| -------- | ------ |---- | ----------- |
+| write<sup>10+</sup>    | boolean | Yes | Permits writes of the characteristic value (with a response).|
+| writeNoResponse<sup>10+</sup> | boolean | Yes   | Permits writes of the characteristic value (without a response).|
+| read<sup>10+</sup> | boolean   |  Yes   | Permits reads of the characteristic value.|
+| notify<sup>10+</sup> | boolean   | Yes   | Permits notifications of the characteristic value.|
+| indicate<sup>10+</sup> | boolean   | Yes   | Permits notifications of the characteristic value without acknowledgement.|
 
 
 ## DeviceClass<a name="DeviceClass"></a>
@@ -4589,19 +4687,33 @@ Enumerates the Bluetooth profiles. API version 9 is added with **PROFILE_HID_HOS
 | PROFILE_PAN_NETWORK | 7 | PAN profile. |
 
 
-## PinType<sup>10+</sup><a name="PinType"></a>
+## BluetoothTransport<sup>10+</sup><a name="BluetoothTransport"></a>
 
-Enumerates the Bluetooth pairing types.
+Enumerates the device types. The default device type is **TRANSPORT_BR_EDR**.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Name                              | Value   | Description             |
 | -------------------------------- | ------ | --------------- |
-| PIN_TYPE_ENTER_PIN_CODE<sup>10+</sup> | 0 | The user needs to enter the PIN displayed on the peer device.|
-| PIN_TYPE_ENTER_PASSKEY<sup>10+</sup>  | 1 | The user needs to enter the PASSKEY displayed on the peer device. |
-| PIN_TYPE_CONFIRM_PASSKEY<sup>10+</sup>  | 2 | The user needs to confirm the PASSKEY displayed on the local device. |
-| PIN_TYPE_NO_PASSKEY_CONSENT<sup>10+</sup>  | 3 | There is no PASSKEY, and the user needs to accept or reject the pairing request. |
-| PIN_TYPE_NOTIFY_PASSKEY<sup>10+</sup>   | 4 | The user needs to enter the PASSKEY displayed on the local device on the peer device. |
-| PIN_TYPE_DISPLAY_PIN_CODE<sup>10+</sup>    | 5 | The user needs to enter the PIN displayed on the peer device for Bluetooth 2.0 devices. |
-| PIN_TYPE_OOB_CONSENT<sup>10+</sup>    | 6 | The user needs to accept or reject the out of band (OOB) pairing request. |
-| PIN_TYPE_PIN_16_DIGITS<sup>10+</sup>    | 7 | The user needs to enter the 16-digit PIN displayed on the peer device. |
+| TRANSPORT_BR_EDR<sup>10+</sup>   | 0 | Classic Bluetooth (BR/EDR) device.|
+| TRANSPORT_LE<sup>10+</sup>  | 1 | BLE device. |
+
+
+## PinType<sup>10+</sup><a name="PinType"></a>
+
+Enumerates the Bluetooth pairing types.
+
+**System API**: This is a system API.
+
+**System capability**: SystemCapability.Communication.Bluetooth.Core
+
+| Name                              | Value   | Description             |
+| -------------------------------- | ------ | --------------- |
+| PIN_TYPE_ENTER_PIN_CODE<sup>10+</sup> | 0 | The user needs to enter the PIN displayed on the peer device.<br>This is a system API.|
+| PIN_TYPE_ENTER_PASSKEY<sup>10+</sup>  | 1 | The user needs to enter the PASSKEY displayed on the peer device.<br>This is a system API. |
+| PIN_TYPE_CONFIRM_PASSKEY<sup>10+</sup>  | 2 | The user needs to confirm the PASSKEY displayed on the local device.<br>This is a system API. |
+| PIN_TYPE_NO_PASSKEY_CONSENT<sup>10+</sup>  | 3 | There is no PASSKEY, and the user needs to accept or reject the pairing request.<br>This is a system API. |
+| PIN_TYPE_NOTIFY_PASSKEY<sup>10+</sup>   | 4 | The user needs to enter the PASSKEY displayed on the local device on the peer device.<br>This is a system API. |
+| PIN_TYPE_DISPLAY_PIN_CODE<sup>10+</sup>    | 5 | The user needs to enter the PIN displayed on the peer device for Bluetooth 2.0 devices.<br>This is a system API. |
+| PIN_TYPE_OOB_CONSENT<sup>10+</sup>    | 6 | The user needs to accept or reject the out of band (OOB) pairing request.<br>This is a system API. |
+| PIN_TYPE_PIN_16_DIGITS<sup>10+</sup>    | 7 | The user needs to enter the 16-digit PIN displayed on the peer device.<br>This is a system API. |

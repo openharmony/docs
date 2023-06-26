@@ -19,7 +19,7 @@ This document provides the HUKS specifications. Mandatory specifications are alg
 | ECC    |        8+         | 256, 384, 521|Yes|
 | Ed25519 |        8+         | 256    |Yes|
 | X25519  |        8+         | 256    |Yes|
-| DSA    |        8+         | An integer multiple of 8, ranging from 8 to 1024 (inclusive)   |No|
+| DSA    |        8+         | An integer multiple of 8, ranging from 512 to 1024 (inclusive)    |No|
 | DH    |        8+         | 2048                |Yes|
 | DH    |        8+         | 3072, 4096               |No|
 | SM2    |        9+         | 256                |Yes|
@@ -54,7 +54,7 @@ This document provides the HUKS specifications. Mandatory specifications are alg
 | ED25519/NoDigest     |  8+       | If **NoDigest** is used, **TAG HuksKeyDigest.HUKS_DIGEST_NONE** must be set.|Yes|
 | SM2/SM3|9+      | |Yes|
 
-### key Agreement Algorithms
+### Key Agreement Algorithms
 
 | Algorithm  | API Level| Remarks    | Mandatory|
 | ------ | :-----------: | ------------------------------ |:-----------: |
@@ -148,7 +148,7 @@ let rsa2048KeyPairMaterial = new Uint8Array([
 The key algorithm is a value of [HuksKeyAlg](../reference/apis/js-apis-huks.md#hukskeyalg).
 
 - **RSA Key Pair Material Format**
-    | Key Algorithm| Key Size| Modulus n Length L<sub>n</sub>| Public Key Exponent e Length L<sub>e</sub> | Private Key Exponent d Length L<sub>d</sub>| n | e | d |
+    | Key Algorithm| Key Size| Modulus n Length L<sub>n</sub>| Public Key Exponent e Length L<sub>e</sub>| Private Key Exponent d Length L<sub>d</sub>| n | e | d |
     | :----: |:----:|:----:|:----:|:----:|:----:|:----:|:----:|
     |4 bytes|4 bytes|4 bytes|4 bytes|4 bytes|L<sub>n</sub> bytes|L<sub>e</sub> bytes|L<sub>d</sub> bytes|
 

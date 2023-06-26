@@ -1536,7 +1536,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 ## ohos.permission.securityguard.REQUEST_SECURITY_MODEL_RESULT
 
@@ -1556,7 +1556,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：FALSE
+**ACL使能**：TRUE
 
 ## ohos.permission.READ_ACCESSIBILITY_CONFIG
 
@@ -2037,3 +2037,73 @@
 **授权方式**：system_grant
 
 **ACL使能**：TRUE
+
+## ohos.permission.MANAGE_ECOLOGICAL_RULE
+
+允许为管控服务设置场景值生成规则和配套的体验。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.GET_SCENE_CODE
+
+允许应用获取指定应用当前的场景值。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.FILE_GUARD_MANAGER
+
+允许应用进行公共目录扫描及设置文件扩展属性。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.SET_FILE_GUARD_POLICY
+
+允许应用下发文件管控策略。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.securityguard.SET_MODEL_STATE
+
+允许应用控制设备风险管理平台模型开关。
+
+**权限级别**：system_core
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
+## ohos.permission.hsdr.HSDR_ACCESS
+
+允许应用访问安全检测与响应框架。
+
+**权限级别**：normal
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE
+
+## ohos.permission.SUPPORT_USER_AUTH
+
+允许应用与用户认证框架交互和注册扩展能力。
+
+**权限级别**: system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：FALSE

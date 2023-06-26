@@ -2418,6 +2418,61 @@ try {
 }
 ```
 
+### getUIContext<sup>10+</sup>
+
+getUIContext(): UIContext
+
+Obtain a **UIContext** instance.
+
+**Model restriction**: This API can be used only in the stage model.
+
+**System capability**: SystemCapability.WindowManager.WindowManager.Core
+
+**Return value**
+
+| Type      | Description                  |
+| ---------- | ---------------------- |
+| [UIContext](./js-apis-arkui-UIContext.md#uicontext) | **UIContext** instance obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Window Error Codes](../errorcodes/errorcode-window.md).
+
+| ID| Error Message|
+| ------- | ------------------------------ |
+| 1300002 | This window state is abnormal. |
+
+**Example**
+
+```ts
+import UIAbility from '@ohos.app.ability.UIAbility';
+
+export default class EntryAbility extends UIAbility {
+    onWindowStageCreate(windowStage) {
+        // Load content for the main window.
+        windowStage.loadContent("pages/page2", (err) => {
+            if (err.code) {
+                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+                return;
+            }
+            console.info('Succeeded in loading the content.');
+        });
+        // Obtain the main window.
+        let windowClass = null;
+        windowStage.getMainWindow((err, data) => {
+            if (err.code) {
+                console.error('Failed to obtain the main window. Cause: ' + JSON.stringify(err));
+                return;
+            }
+            windowClass = data;
+            console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+            // Obtain a UIContext instance.
+            globalThis.uiContext = windowClass.getUIContext();
+        })
+    }
+};
+```
+
 ### setUIContent<sup>9+</sup>
 
 setUIContent(path: string, callback: AsyncCallback&lt;void&gt;): void
@@ -7439,3 +7494,5 @@ controller.animationForHidden = (context : window.TransitionContext) => {
     console.info('complete transition end');
 };
 ```
+
+ <!--no_check--> 

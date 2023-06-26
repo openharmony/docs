@@ -13,22 +13,25 @@ With DevEco Device Tool, you can easily build source code of the Rockchip RK3568
 
    ![en-us_image_0000001327669509](figures/en-us_image_0000001327669509.png)
 
-2. On the **Tool Chain** tab page, DevEco Device Tool automatically checks whether the dependent compiler toolchain is complete. If a message is displayed indicating that some tools are missing, click **Install** to automatically install the required tools.
+2. On the **Tool Chain** tab page, DevEco Device Tool automatically checks whether the dependent compiler toolchain is complete.
+
+   - If any tool is indicated as **uninstalled** (![status_uninstall](figures/status_uninstall.png)), click **Download Uninstalled Tools** to install all the required tools, or click **Download** next to a tool to install the specific tool.
+   - If some tool types are missing, click **Add Utility** to add them.
+   - If **Download** is not available for a missing tool, it is not cataloged in DevEco Device Tool. In this case, you need to download the tool to the local host and click **Import** to import it.
+   - If the status of **OpenHarmony Environment Dependency** is abnormal (![status_uninstall](figures/status_uninstall.png), click **Install**.
+
+   ![rk3568_false](figures/rk3568_false.png)
+
+   Certain tools may require the root access to install. For these tools, enter the user password in the **TERMINAL** window as prompted.
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
    >
    > - If pip fails to be installed, [change the Python source](https://device.harmonyos.com/en/docs/documentation/guide/ide-set-python-source-0000001227639986) and try again.
    > - If APT fails to be installed, [change the APT source](https://device.harmonyos.com/en/docs/documentation/guide/faq-toolchain-install-0000001301623822) and try again.
-
-   ![en-us_image_0000001292531806](figures/en-us_image_0000001292531806.png)
-
-   Install the toolchain related to RK3568. Certain tools may require the root access to install. In this case, enter the user password in the **TERMINAL** window.
-
+   
    ![en-us_image_0000001327429541](figures/en-us_image_0000001327429541.png)
 
-   After the toolchain is automatically installed, the figure below is displayed.
-
-   ![en-us_image_0000001349388493](figures/en-us_image_0000001349388493.png)
+   After the installation is complete, the status of the tools and environment dependencies is displayed as ![status_install](figures/status_install.png).
 
 3. On the **rk3568** tab page, set **build_type**, whose default value is **debug**.
 

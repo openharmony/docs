@@ -4,18 +4,16 @@
 - About OpenHarmony
   - [OpenHarmony Project](../OpenHarmony-Overview.md)
   - [Glossary](../glossary.md)
-  - [OpenHarmony Release Notes](../release-notes/Readme.md)
+  - [Release Notes](../release-notes/Readme.md)
 - Quick Start
   - Getting Started
     - [Before You Start](quick-start/start-overview.md)
     - [Getting Started with ArkTS in Stage Model](quick-start/start-with-ets-stage.md)
-    - [Getting Started with ArkTS in FA Model](quick-start/start-with-ets-fa.md)
-    - [Getting Started with JavaScript in FA Model](quick-start/start-with-js-fa.md)
   - Development Fundamentals
     - Application Package Fundamentals
       - [Application Package Overview](quick-start/application-package-overview.md)
       - Application Package Structure
-        - [Application Package Structure in Stage Model)](quick-start/application-package-structure-stage.md)
+        - [Application Package Structure in Stage Model](quick-start/application-package-structure-stage.md)
         - [Application Package Structure in FA Model](quick-start/application-package-structure-fa.md)
       - Multi-HAP Mechanism
         - [Multi-HAP Design Objectives](quick-start/multi-hap-objective.md)
@@ -37,9 +35,9 @@
     - Application Configuration Files in FA Model
       - [Application Configuration File Overview (FA Model)](quick-start/application-configuration-file-overview-fa.md)
       - [Internal Structure of the app Tag](quick-start/app-structure.md)
-      - [Internal structure of deviceConfig Tag](quick-start/deviceconfig-structure.md)
+      - [Internal Structure of the deviceConfig Tag](quick-start/deviceconfig-structure.md)
       - [Internal Structure of the module Tag](quick-start/module-structure.md)
-    - [Resource Categories and Access](quick-start/resource-categories-and-access.md)
+  - [Resource Categories and Access](quick-start/resource-categories-and-access.md)
   - Learning ArkTS
     - [Getting Started with ArkTS](quick-start/arkts-get-started.md)
     - Basic Syntax
@@ -49,7 +47,7 @@
         - [Creating a Custom Component](quick-start/arkts-create-custom-components.md)
         - [Page and Custom Component Lifecycle](quick-start/arkts-page-custom-components-lifecycle.md)
       - [\@Builder: Custom Builder Function](quick-start/arkts-builder.md)
-      - [\@BuilderParam: @Builder Function Reference](quick-start/arkts-builderparam.md)
+      - [\@BuilderParam: \@Builder Function Reference](quick-start/arkts-builderparam.md)
       - [\@Styles: Definition of Resusable Styles](quick-start/arkts-style.md)
       - [\@Extend: Extension of Built-in Components](quick-start/arkts-extend.md)
       - [stateStyles: Polymorphic Style](quick-start/arkts-statestyles.md)
@@ -72,7 +70,7 @@
         - [\@Watch: Getting Notified of State Variable Changes](quick-start/arkts-watch.md)
         - [$$ Syntax: Two-Way Synchronization of Built-in Components](quick-start/arkts-two-way-sync.md)
     - Rendering Control
-      - [Rendering Control Overview](quick-start/arkts-rendering-control-overview.md)
+      - [Overview of Rendering Control](quick-start/arkts-rendering-control-overview.md)
       - [if/else: Conditional Rendering](quick-start/arkts-rendering-control-ifelse.md)
       - [ForEach: Rendering of Repeated Content](quick-start/arkts-rendering-control-foreach.md)
       - [LazyForEach: Lazy Data Loading](quick-start/arkts-rendering-control-lazyforeach.md)
@@ -95,14 +93,14 @@
   - [DFX](dfx/Readme-EN.md)
   - [Internationalization](internationalization/Readme-EN.md)
   - [Application Test](application-test/Readme-EN.md)
-  - [OpenHarmony IDL Specifications and User Guide](IDL/idl-guidelines.md)
+  - [IDL Specifications and User Guide](IDL/idl-guidelines.md)
   - [Native APIs](napi/Readme-EN.md)
 - Tools
   - [DevEco Studio (OpenHarmony) User Guide](quick-start/deveco-studio-user-guide-for-openharmony.md)
   - [Debugging Tools](tools/Readme-EN.md)
 - Hands-On Tutorials
   - [Samples](https://gitee.com/openharmony/applications_app_samples/blob/master/README.md)
-  - [Codelabs](https://gitee.com/openharmony/codelabs)
+  - [Codelabs](https://gitee.com/openharmony/codelabs/tree/master)
 - API References
   - [SystemCapability](reference/syscap.md)
   - [SystemCapability List](reference/syscap-list.md)
@@ -113,10 +111,9 @@
     - [ArkTS and JS APIs](reference/apis/Readme-EN.md)
     - [Error Codes](reference/errorcodes/Readme-EN.md)
     - Native APIs
-      - [Native APIs](reference/native-apis/Readme-EN.md)
+      - [Native API Reference](reference/native-apis/Readme-EN.md)
       - [Standard Libraries](reference/native-lib/third_party_libc/musl.md)
       - [Node_API](reference/native-lib/third_party_napi/napi.md)
 - [FAQs](faqs/Readme-EN.md)
 - Contribution
   - [How to Contribute](../contribute/documentation-contribution.md)
-<!--no_check-->

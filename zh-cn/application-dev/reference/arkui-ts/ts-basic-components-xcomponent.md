@@ -14,20 +14,39 @@
 
 ## 接口
 
-  XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
+**方法1：**  XComponent(value: {id: string, type: string, libraryname?: string, controller?: XComponentController})
 
 **参数:** 
 
-| 参数名         | 参数类型                                     | 必填   | 描述                                       |
-| ----------- | ---------------------------------------- | ---- | ---------------------------------------- |
-| id          | string                                   | 是    | 组件的唯一标识，支持最大的字符串长度128。                   |
-| type        | string                                   | 是    | 用于指定XComponent组件类型，可选值为：<br/>-"surface"：用于EGL/OpenGLES和媒体数据写入，组件内容单独送显，直接合成到屏幕。<br/>-"component"<sup>9+</sup> ：XComponent将变成一个容器组件，并可在其中执行非UI逻辑以动态加载显示内容。 |
-| libraryname | string                                   | 否    | 应用Native层编译输出动态库名称，仅XComponent类型为"surface"时有效。 |
-| controller  | [XComponentcontroller](#xcomponentcontroller) | 否    | 给组件绑定一个控制器，通过控制器调用组件方法，仅XComponent类型为"surface"时有效。 |
+| 参数名      | 参数类型                                      | 必填 | 描述                                                         |
+| ----------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| id          | string                                        | 是   | 组件的唯一标识，支持最大的字符串长度128。                    |
+| type        | string                                        | 是   | 用于指定XComponent组件类型，可选值仅有两个为：<br/>-"surface"：用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容单独展示到屏幕上。<br/>-"component"<sup>9+</sup> ：XComponent将变成一个容器组件，并可在其中执行非UI逻辑以动态加载显示内容。<br/>其他值均会被视为"surface"类型 |
+| libraryname | string                                        | 否   | 应用Native层编译输出动态库名称，仅XComponent类型为"surface"时有效。 |
+| controller  | [XComponentcontroller](#xcomponentcontroller) | 否   | 给组件绑定一个控制器，通过控制器调用组件方法，仅XComponent类型为"surface"时有效。 |
+
+**方法2：**  XComponent(value: {id: string, type: XComponentType, libraryname?: string, controller?: XComponentController})<sup>10+</sup>
+
+**参数:** 
+
+| 参数名      | 参数类型                                      | 必填 | 描述                                                         |
+| ----------- | --------------------------------------------- | ---- | ------------------------------------------------------------ |
+| id          | string                                        | 是   | 组件的唯一标识，支持最大的字符串长度128。                    |
+| type        | [XComponentType](#xcomponenttype10枚举说明)   | 是   | 用于指定XComponent组件类型。                                 |
+| libraryname | string                                        | 否   | 用Native层编译输出动态库名称，仅类型为SURFACE或TEXTURE时有效。 |
+| controller  | [XComponentcontroller](#xcomponentcontroller) | 否   | 给组件绑定一个控制器，通过控制器调用组件方法，仅类型为SURFACE或TEXTURE时有效。 |
+
+## XComponentType<sup>10+</sup>枚举说明
+
+| 名称      | 描述                                                         |
+| --------- | ------------------------------------------------------------ |
+| SURFACE   | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容单独展示到屏幕上。 |
+| COMPONENT | XComponent将变成一个容器组件，并可在其中执行非UI逻辑以动态加载显示内容。 |
+| TEXTURE   | 用于EGL/OpenGLES和媒体数据写入，开发者定制的绘制内容会和XComponent组件的内容合成后展示到屏幕上。 |
 
 > **说明：**
 >
-> type为"component"时，XComponent作为容器，子组件沿垂直方向布局：
+> type为COMPONENT("component")时，XComponent作为容器，子组件沿垂直方向布局：
 >
 > - 垂直方向上对齐格式：[FlexAlign](ts-appendix-enums.md#flexalign).Start
 > - 水平方向上对齐格式：[FlexAlign](ts-appendix-enums.md#flexalign).Center
@@ -39,13 +58,14 @@
 > 内部所写的非UI逻辑需要封装在一个或多个函数内。
 
 ## 属性
-- XComponent显示的内容，可由开发者自定义绘制，通用属性不支持[背景设置](./ts-universal-attributes-background.md)、[透明度设置](./ts-universal-attributes-opacity.md)和[图像效果](./ts-universal-attributes-image-effect.md)。
-- type为"surface"时建议使用EGL/OpenGLES提供的接口设置相关内容。
-- type为"component"时建议使用挂载子组件的方式进行设置相关内容。
+- XComponent显示的内容，可由开发者自定义绘制，通用属性中的[背景设置](./ts-universal-attributes-background.md)、[透明度设置](./ts-universal-attributes-opacity.md)和[图像效果](./ts-universal-attributes-image-effect.md)按照type类型有限支持。
+- type为SURFACE("surface")时上述通用属性均不支持，建议使用EGL/OpenGLES提供的接口设置相关内容。
+- type为COMPONENT("component")时上述通用属性均不支持，建议使用挂载子组件的方式进行设置相关内容。
+- type为TEXTURE时通用属性可以支持[背景颜色设置](./ts-universal-attributes-background.md)和[透明度设置](./ts-universal-attributes-opacity.md)，[除颜色外的背景设置](./ts-universal-attributes-background.md)和[图像效果](./ts-universal-attributes-image-effect.md)暂不支持，建议使用EGL/OpenGLES提供的接口设置相关内容。
 
 ## 事件
 
-仅type为"surface"时以下事件有效。不支持[通用事件](ts-universal-events-click.md)和[手势](ts-gesture-settings.md)。
+仅type为SURFACE("surface")或TEXTURE时以下事件有效。不支持[通用事件](ts-universal-events-click.md)和[手势](ts-gesture-settings.md)。
 
 ### onLoad
 
@@ -79,7 +99,7 @@ xcomponentController: XComponentController = new XComponentController()
 
 getXComponentSurfaceId(): string
 
-获取XComponent对应Surface的ID，供@ohos接口使用，使用方式可参考[相机管理](../apis/js-apis-camera.md)，仅XComponent类型为"surface"时有效。
+获取XComponent对应Surface的ID，供@ohos接口使用，使用方式可参考[相机管理](../apis/js-apis-camera.md)，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
 
 **返回值:**
@@ -93,7 +113,7 @@ getXComponentSurfaceId(): string
 
 setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number}): void
 
-设置XComponent持有Surface的宽度和高度，仅XComponent类型为"surface"时有效。
+设置XComponent持有Surface的宽度和高度，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
 
 **参数:**
@@ -108,7 +128,7 @@ setXComponentSurfaceSize(value: {surfaceWidth: number, surfaceHeight: number}): 
 
 getXComponentContext(): Object
 
-获取XComponent实例对象的context，仅XComponent类型为"surface"时有效。
+获取XComponent实例对象的context，仅XComponent类型为SURFACE("surface")或TEXTURE时有效。
 
 **返回值:**
 

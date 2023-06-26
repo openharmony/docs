@@ -3,7 +3,7 @@
 
 ## When to Use
 
-Multi-device coordination involves the following scenarios:
+Multi-device collaboration involves the following scenarios:
 
 - [Starting UIAbility or ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-or-serviceextensionability-across-devices-no-data-returned)
 
@@ -18,13 +18,14 @@ Multi-device coordination involves the following scenarios:
 
 The figure below shows the multi-device collaboration process.
 
-**Figure 1** Multi-device collaboration process 
+**Figure 1** Multi-device collaboration process
+
 ![hop-multi-device-collaboration](figures/hop-multi-device-collaboration.png)
 
 
 ## Constraints
 
-- Since multi-device collaboration task management is not available, you can obtain the device list by developing system applications. Access to third-party applications is not supported.
+- Since multi-device collaboration task management is not available, you can obtain the device list by developing system applications. Third-party applications cannot access the device list.
 
 - Multi-device collaboration must comply with [Inter-Device Component Startup Rules](component-startup-rules.md#inter-device-component-startup-rules).
 
@@ -51,7 +52,7 @@ On device A, touch the **Start** button provided by the initiator application to
 
 1. Request the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
 
-2. Display a dialog box to ask authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/accesstoken-guidelines.md#requesting-user-authorization).
+2. Display a dialog box to ask for authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/accesstoken-guidelines.md#requesting-user-authorization).
 
 3. Obtain the device ID of the target device.
 
@@ -119,7 +120,7 @@ On device A, touch the **Start** button provided by the initiator application to
 
 ## Starting UIAbility Across Devices (Data Returned)
 
-On device A, touch the **Start** button provided by the initiator application to start a specified UIAbility on device B. When the UIAbility on device B exits, a value is sent back to the initiator application.
+On device A, touch the **Start** button provided by the initiator application to start a specified UIAbility on device B. When the UIAbility on device B exits, a value is returned to the initiator application.
 
 
 ### Available APIs
@@ -137,7 +138,7 @@ On device A, touch the **Start** button provided by the initiator application to
 
 1. Request the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
 
-2. Display a dialog box to ask authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/accesstoken-guidelines.md#requesting-user-authorization).
+2. Display a dialog box to ask for authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/accesstoken-guidelines.md#requesting-user-authorization).
 
 3. Set the target component parameters on the initiator, and call **startAbilityForResult()** to start the target UIAbility. **data** in the asynchronous callback is used to receive the information returned by the target UIAbility to the initiator UIAbility after the target UIAbility terminates itself. For details about how to implement **getRemoteDeviceId()**, see [Starting UIAbility or ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-or-serviceextensionability-across-devices-no-data-returned).
 
@@ -156,7 +157,7 @@ On device A, touch the **Start** button provided by the initiator application to
    })
    ```
 
-4. After the UIAbility task at the target device is complete, call **terminateSelfWithResult()** to return the data to the initiator UIAbility.
+4. After the UIAbility task on the target device is complete, call **terminateSelfWithResult()** to return the data to the initiator UIAbility.
 
    ```ts
    const RESULT_CODE: number = 1001;
@@ -214,7 +215,7 @@ A system application can connect to a service on another device by calling [conn
 
 1. Request the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
 
-2. Display a dialog box to ask authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/accesstoken-guidelines.md#requesting-user-authorization).
+2. Display a dialog box to ask for authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/accesstoken-guidelines.md#requesting-user-authorization).
 
 3. (Optional) [Implement a background service](serviceextensionability.md#implementing-a-background-service). Perform this operation only if no background service is available.
 
@@ -223,7 +224,7 @@ A system application can connect to a service on another device by calling [conn
    - Set the target component parameters, including the target device ID, bundle name, and ability name.
    - Call **connectServiceExtensionAbility** to initiate a connection.
    - Receive the service handle returned by the target device when the connection is successful.
-   - Perform cross-device invoking and obtain the result returned by the target service.
+   - Perform cross-device call and obtain the result returned by the target service.
      
       ```ts
       import rpc from '@ohos.rpc';
@@ -311,7 +312,7 @@ The following describes how to implement multi-device collaboration through cros
 
 1. Request the **ohos.permission.DISTRIBUTED_DATASYNC** permission. For details, see [Declaring Permissions in the Configuration File](../security/accesstoken-guidelines.md#declaring-permissions-in-the-configuration-file).
 
-2. Display a dialog box to ask authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/accesstoken-guidelines.md#requesting-user-authorization).
+2. Display a dialog box to ask for authorization from the user when the application is started for the first time. For details, see [Requesting User Authorization](../security/accesstoken-guidelines.md#requesting-user-authorization).
 
 3. Create the CalleeAbility.
    

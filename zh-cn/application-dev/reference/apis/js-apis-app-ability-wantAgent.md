@@ -620,7 +620,7 @@ getWant(agent: WantAgent): Promise\<Want\>
 
 | 类型                                                        | 说明                                                         |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Want\> | 以Promise形式返回获取WantAgent对象的want。 |
+| Promise\<[Want](js-apis-app-ability-want.md)\> | 以Promise形式返回获取WantAgent对象的want。 |
 
 **错误码：**
 

@@ -25,8 +25,8 @@ import screenshot from '@ohos.screenshot';
 | ---------------------- | ------------- | ---- | ------------------------------------------------------------ |
 | screenRect             | [Rect](#rect) | 否   | 表示截取图像的区域，不传值默认为全屏。                       |
 | imageSize              | [Size](#size) | 否   | 表示截取图像的大小，不传值默认为全屏。                       |
-| rotation               | number        | 否   | 表示截取图像的旋转角度，当前仅支持输入值为0，默认值为0。     |
-| displayId<sup>8+</sup> | number        | 否   | 表示截取图像的显示设备[Display](js-apis-display.md#display)的ID号。 |
+| rotation               | number        | 否   | 表示截取图像的旋转角度，当前仅支持输入值为0，默认值为0，该参数应为整数。     |
+| displayId<sup>8+</sup> | number        | 否   | 表示截取图像的显示设备[Display](js-apis-display.md#display)的ID号，该参数应为整数。 |
 
 
 ## Rect
@@ -37,10 +37,10 @@ import screenshot from '@ohos.screenshot';
 
 | 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| left   | number | 是   | 表示截取图像区域的左边界，单位为像素。 |
-| top    | number | 是   | 表示截取图像区域的上边界，单位为像素。 |
-| width  | number | 是   | 表示截取图像区域的宽度，单位为像素。 |
-| height | number | 是   | 表示截取图像区域的高度，单位为像素。 |
+| left   | number | 是   | 表示截取图像区域的左边界，单位为像素，该参数应为整数。 |
+| top    | number | 是   | 表示截取图像区域的上边界，单位为像素，该参数应为整数。 |
+| width  | number | 是   | 表示截取图像区域的宽度，单位为像素，该参数应为整数。 |
+| height | number | 是   | 表示截取图像区域的高度，单位为像素，该参数应为整数。 |
 
 
 ## Size
@@ -51,8 +51,8 @@ import screenshot from '@ohos.screenshot';
 
 | 名称 | 类型   | 必填 | 说明                                                         |
 | ------ | ------ | ---- | ------------------------------------------------------------ |
-| width  | number | 是   | 表示截取图像的宽度，单位为像素。 |
-| height | number | 是   | 表示截取图像的高度，单位为像素。 |
+| width  | number | 是   | 表示截取图像的宽度，单位为像素，该参数应为整数。 |
+| height | number | 是   | 表示截取图像的高度，单位为像素，该参数应为整数。 |
 
 ## screenshot.save
 

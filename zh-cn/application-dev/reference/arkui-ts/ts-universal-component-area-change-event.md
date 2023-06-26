@@ -11,7 +11,7 @@
 
 | 名称                                       | 支持冒泡 | 功能描述                                     |
 | ---------------------------------------- | ---- | ---------------------------------------- |
-| onAreaChange(event:&nbsp;(oldValue:&nbsp;[Area](ts-types.md#area8),&nbsp;newValue:&nbsp;[Area](ts-types.md#area8))&nbsp;=&gt;&nbsp;void) | 否    | 组件区域变化时触发该回调。 |
+| onAreaChange(event:&nbsp;(oldValue:&nbsp;[Area](ts-types.md#area8),&nbsp;newValue:&nbsp;[Area](ts-types.md#area8))&nbsp;=&gt;&nbsp;void) | 否    | 组件区域变化时触发该回调。仅会响应由布局变化所导致的组件大小、位置发生变化时的回调。由绘制变化所导致的渲染属性变化不会响应回调，如translate、offset。 |
 
 
 ## 示例

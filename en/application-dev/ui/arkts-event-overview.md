@@ -1,23 +1,23 @@
-# Event Overview
+# Interaction Event Overview
 
 
-Interaction events are classified into touchscreen events, keyboard and mouse events, and focus events based on trigger types.
+Interaction events are classified based on trigger types into touchscreen events, keyboard and mouse events, and focus events.
 
 
-- [Touchscreen event](arkts-common-events-touch-screen-event.md): single-finger or single-stroke operation performed by a finger or stylus on the touchscreen.
+- [Touchscreen event](arkts-common-events-touch-screen-event.md): an event triggered by the operation performed a finger or stylus on the touchscreen.
 
-- [Keyboard and mouse event](arkts-common-events-device-input-event.md): includes operation events of the peripheral mouse or touchpad and key events of the peripheral keyboard.
-  - The mouse event refers to an event responded to when an operation is performed with a peripheral mouse/touchpad.
-  - The key event refer to an event responded to when an operation is performed with a peripheral keyboard.
+- [Keyboard and mouse event](arkts-common-events-device-input-event.md): an event triggered by an operation performed on a peripheral mouse, touchpad, or keyboard.
+  - The mouse event refers to an event responded to when an operation is performed with a peripheral mouse or touchpad.
+  - The keyboard event refera to an event responded to when an operation is performed with a peripheral keyboard.
 
-- [Focus event](arkts-common-events-focus-event.md): controls the focusability and response events of the component in the preceding ways.
-
-
-The gesture event includes the gesture binding method and the bound gesture. The bound gesture may be classified into two types: a single gesture and a combined gesture, and is distinguished according to complexity of the gesture.
+- [Focus event](arkts-common-events-focus-event.md): an event triggered when a component receives or loses focus.
 
 
-- [Gesture binding](arkts-gesture-events-binding.md): binds a single gesture or a combination of gestures to a component and declares the response priority of the bound gesture.
+The gesture event includes the gesture binding method and the bound gesture – a single or combined gesture.
 
-- [Single gesture](arkts-gesture-events-single-gesture.md): basic unit of a gesture, which is a part of all complex gestures.
 
-- [Combined gesture](arkts-gesture-events-combined-gestures.md): a combination of multiple single gestures. Multiple single gestures can be combined into a combined gesture according to a declared type and a certain rule, and the combined gesture can be used.
+- [Gesture binding method](arkts-gesture-events-binding.md): a method that binds a single or combined gesture to a component and declares the response priority of the bound gesture.
+
+- [Single gesture](arkts-gesture-events-single-gesture.md): basic unit of gestures, which is a part of all complex gestures.
+
+- [Combined gesture](arkts-gesture-events-combined-gestures.md): a combination of single gestures brought together according to a declared type and a certain rule.

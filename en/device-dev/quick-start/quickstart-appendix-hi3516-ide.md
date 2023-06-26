@@ -4,12 +4,12 @@
 >
 > Since OpenHarmony 3.2, the standard system does not perform adaptation verification for the Hi3516D V300 development board. You are advised to use RK3568 to develop standard-system devices.
 >
-> If you still need to use Hi3516DV300 to develop standard-system devices, adaptation may fail. In this case, contact the chip supplier to obtain the adaptation guide or complete adaptation by yourself.
+> If you still use Hi3516D V300 to develop standard-system devices, adaptation may fail. Contact the chip supplier to obtain the adaptation guide and complete adaptation by yourself.
 
-In addition to the small system, the Hi3516DV300 development board also supports the standard system. This topic describes how to develop the standard system on Hi3516DV300 by using DevEco Device Tool.
+In addition to the small system, the Hi3516D V300 development board also supports the standard system. This topic describes how to develop the standard system on Hi3516DV300 with DevEco Device Tool, by walking you through a simple example.
 
 
-The following exemplifies how to run the first program on the development board. This program displays the message "Hello World!" .
+The following exemplifies how to run the first program on the development board. This program displays the message "Hello World!"
 
 
 Before development, complete the following preparations:
@@ -49,44 +49,44 @@ Perform the steps below in the source code directory:
 1. Create a directory and write the service code.
    
    Create the **applications/sample/hello/src/helloworld.c** directory and file whose code is shown in the following example. You can customize the content to be printed. For example, you can change **World** to **OHOS**. Declare the string printing function **HelloPrint** in the **helloworld.h** file. You can use either C or C++ to develop a program.
-
-
-   ```
-   #include <stdio.h>
-   #include "helloworld.h"
-   int main(int argc, char **argv)
-   {
-       HelloPrint();
-       return 0;
-   }
-   void HelloPrint()
-   {
-       printf("\n\n");
-       printf("\n\t\tHello World!\n");
-       printf("\n\n");
-   }
-   ```
-
+   
+   
+      ```
+      #include <stdio.h>
+      #include "helloworld.h"
+      int main(int argc, char **argv)
+      {
+          HelloPrint();
+          return 0;
+      }
+      void HelloPrint()
+      {
+          printf("\n\n");
+          printf("\n\t\tHello World!\n");
+          printf("\n\n");
+      }
+      ```
+   
    Add the header file **applications/sample/hello/include/helloworld.h**. The sample code is as follows:
-
-
-   ```
-   #ifndef HELLOWORLD_H
-   #define HELLOWORLD_H
-   #ifdef __cplusplus
-   #if __cplusplus
-   extern "C" {
-   #endif
-   #endif
-   void HelloPrint();
-   #ifdef __cplusplus
-   #if __cplusplus
-   }
-   #endif
-   #endif
-   #endif // HELLOWORLD_H
-   ```
-
+   
+   
+      ```
+      #ifndef HELLOWORLD_H
+      #define HELLOWORLD_H
+      #ifdef __cplusplus
+      #if __cplusplus
+      extern "C" {
+      #endif
+      #endif
+      void HelloPrint();
+      #ifdef __cplusplus
+      #if __cplusplus
+      }
+      #endif
+      #endif
+      #endif // HELLOWORLD_H
+      ```
+   
 2. Create a build file.
    1. Create the **applications/sample/hello/BUILD.gn** file. The file content is as follows:
       
@@ -106,7 +106,8 @@ Perform the steps below in the source code directory:
          configs = []
          deps =[]    # Internal dependencies of the component.
          part_name = "hello"    # Component name. This parameter is mandatory.
-         install_enable = true # Whether to install the software by default. This parameter is optional. By default, the software is not installed.
+         install_enable = true # Whether to install the software by default. This parameter is optional.
+                                 By default, the software is not installed.
        }
        ```
    2. Create the **applications/sample/hello/bundle.json** file and add the description of the **sample** component. The content is as follows:
@@ -145,11 +146,11 @@ Perform the steps below in the source code directory:
            }
        }
        ```
-
-       The **bundle.json** file consists of two parts. The first part describes the information about the subsystem to which the component belongs, and the second part defines the build configuration for the component. When adding a component, you must specify the **sub_component** of the component. If there are APIs provided for other components, add them in **inner_kits**. If there are test cases, add them in **test**.
-
+   
+    The **bundle.json** file consists of two parts. The first part describes the information about the subsystem to which the component belongs, and the second part defines the build configuration for the component. When adding a component, you must specify the **sub_component** of the component. Add the APIs provided for other components, if any, in **inner_kits**. Add the test cases, if any, in **test**.
+   
 3. Modify the subsystem configuration file.
-
+   
    Add the configuration of the new subsystem to the **build/subsystem_config.json** file.
 
 
@@ -161,9 +162,9 @@ Perform the steps below in the source code directory:
    ```
 
 4. Modify the product configuration file.
-
+   
    In the **productdefine/common/products/Hi3516DV300.json** file, add the **hello** part after the existing part.
-
+   
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
    >
    > In this example, the OpenHarmony-v3.1-Release version is used, where the Hi3516 configuration file is **productdefine/common/products/Hi3516DV300.json**. In OpenHarmony-v3.2-Beta2 and later versions, the Hi3516 configuration file is **vendor/hisilicon/Hi3516DV300/config.json**.
@@ -189,22 +190,25 @@ With DevEco Device Tool, you can easily build source code of the Hi3516DV300 dev
    
    ![en-us_image_0000001274745038](figures/en-us_image_0000001274745038.png)
 
-2. On the **Tool Chain** tab page, DevEco Device Tool automatically checks whether the dependent compiler toolchain is complete. If a message is displayed indicating that some tools are missing, click **Install** to automatically install the required tools.
-   
-   ![en-us_image_0000001292531862](figures/en-us_image_0000001292531862.png)
+2. On the **Tool Chain** tab page, DevEco Device Tool automatically checks whether the dependent compiler toolchain is complete.
 
-3. Install the toolchain related to Hi3516DV300. Certain tools may require the root access to install. In this case, enter the user password in the **TERMINAL** window.
+   - If any tool is indicated as **uninstalled** (![status_uninstall](figures/status_uninstall.png)), click **Download Uninstalled Tools** to install all the required tools, or click **Download** next to a tool to install the specific tool.
+   - If some tool types are missing, click **Add Utility** to add them.
+   - If **Download** is not available for a missing tool, it is not cataloged in DevEco Device Tool. In this case, you need to download the tool to the local host and click **Import** to import it.
+   - If the status of **OpenHarmony Environment Dependency** is abnormal (![status_uninstall](figures/status_uninstall.png), click **Install**.
+   
+   ![3516_standard_false](figures/3516_standard_false.png)
+
+   Certain tools may require the root access to install. For these tools, enter the user password in the **TERMINAL** window as prompted.
 
    > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
    >
    > - If pip fails to be installed, [change the Python source](https://device.harmonyos.com/en/docs/documentation/guide/ide-set-python-source-0000001227639986) and try again.
-   > - If APT fails to be installed, [change the APT source](https://device.harmonyos.com/en/docs/documentation/guide/faq-toolchain-install-0000001301623822) and try again.
+   > - If apt fails to be installed, [change the apt source](https://device.harmonyos.com/en/docs/documentation/guide/faq-toolchain-install-0000001301623822) and try again.
 
    ![en-us_image_0000001274748606](figures/en-us_image_0000001274748606.png)
 
-   After the toolchain is automatically installed, the figure below is displayed.
-
-   ![en-us_image_0000001296270098](figures/en-us_image_0000001296270098.png)
+   After the installation is complete, the status of the tools and environment dependencies is displayed as ![status_install](figures/status_install.png).
 
 4. On the **hispark_taurus_standard** tab page, set **build_type**, whose default value is **debug**.
    
@@ -251,9 +255,12 @@ Hi3516DV300 supports burning for the standard system through the USB port and ne
    
    ![en-us_image_0000001275752808](figures/en-us_image_0000001275752808.png)
 
-4. On the **Tool Chain** tab page, set the Uploader burning tool. You can click **Install** on this page to install the tool online.
-   
-   ![Phoenix-upload](figures/Phoenix-upload.png)
+4. On the **Tool Chain** tab page, DevEco Device Tool automatically checks for the uploader tool.
+
+   - If the tool is indicated as **uninstalled** (![status_uninstall](figures/status_uninstall.png)), click **Download Uninstalled Tools** to install all the required tools, or click **Download** next to a tool to install the specific tool.
+   - If **Download** is not available for a missing tool, it is not cataloged in DevEco Device Tool. In this case, you need to download the tool to the local host and click **Import** to import it.
+
+   ![3516_standard_false](figures/3516_standard_false.png)
 
 5. On the **hispark_taurus_standard** tab page, set the burning options. The settings are automatically saved.
 

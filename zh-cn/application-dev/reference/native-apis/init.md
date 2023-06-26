@@ -19,7 +19,7 @@
 
 | 名称 | 描述 | 
 | -------- | -------- |
-| [syscap_ndk.h](syscap__ndk_8h.md) | 查询单个系统能力是否被支持的API。 | 
+| [syscap_ndk.h](syscap__ndk_8h.md) | 查询单个系统能力是否被支持的API。 <br>**引用文件**：<syscap_ndk.h> <br>**库**：libdeviceinfo_ndk.z.so| 
 
 
 ### 函数
