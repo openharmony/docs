@@ -294,6 +294,7 @@
   - [@ohos.net.mdns (MDNS管理)](js-apis-net-mdns.md)
   - [@ohos.net.sharing (网络共享管理)](js-apis-net-sharing.md)
   - [@ohos.net.socket (Socket连接)](js-apis-socket.md)
+  - [@ohos.net.statistics (流量管理)](js-apis-net-statistics.md)
   - [@ohos.net.webSocket (WebSocket连接)](js-apis-webSocket.md)
   - [@ohos.request (上传下载)](js-apis-request.md)
 
