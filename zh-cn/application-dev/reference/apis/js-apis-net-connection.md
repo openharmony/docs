@@ -1937,7 +1937,7 @@ connection.getDefaultNet().then(function (netHandle) {
 | ------ | ------ | --- |------------------------- |
 | host  | string | 否  |  代理服务器主机名。 |
 | port  | number | 否  |  主机端口。 |
-| exclusionList  | Array<string> | 否  | 不使用代理的主机名列表，具体规则如下：<br/>1、域名匹配规则：<br/>（1）完全匹配：主机名必须与列表中的主机名完全相同。<br/>（2）包含字符串：主机名只要包含列表中的任意一个主机名子串，就可以匹配。<br/>例如，如果在主机名列表中设置了 “ample.com”，则  “ample.com”、“www.ample.com”、“ample.com:80”都会被匹配，而 “www.example.com”、“ample.com.org”则不会被匹配。<br/>2、IP 地址匹配规则：<br/>（1）完全匹配：IP 地址必须与列表中的 IP 地址完全相同。<br/>3、匹配规则不区分大小写。<br/>4、匹配主机名时，不考虑http和https等协议前缀。 |
+| exclusionList  | Array<string> | 否  | 不使用代理的主机名列表，具体规则如下：<br/>1、域名匹配规则：<br/>（1）完全匹配：主机名必须与列表中的主机名完全相同。<br/>（2）包含字符串：主机名只要包含列表中的任意一个主机名子串，就可以匹配。<br/>例如，如果在主机名列表中设置了 “ample.com”，则  “ample.com”、“www.ample.com”、“ample.com:80”都会被匹配，而 “www.example.com”、“ample.com.org”则不会被匹配。<br/>2、IP 地址匹配规则：<br/>（1）完全匹配：IP 地址必须与列表中的 IP 地址完全相同。<br/>3、单个“*”是唯一有效的通配符，与所有主机匹配，表示禁用代理。<br/>4、匹配规则不区分大小写。<br/>5、匹配主机名时，不考虑http和https等协议前缀。 |
 
 ## NetSpecifier<sup>8+</sup>
 
