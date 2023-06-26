@@ -41,7 +41,7 @@
 ### 媒体
 - [常见图片编辑](image-edit.md)
 
-### 一多
+### 一次开发，多端部署
 - [Navigation如何实现多场景UI适配](multi-device-app-dev.md)
 
 
