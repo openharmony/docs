@@ -23,7 +23,7 @@ HiLog模块实现日志打印功能。
 
 | 文件名称 | 描述 |
 | -------- | -------- |
-| [log.h](log_8h.md) | HiLog模块日志接口定义，通过这些接口实现日志打印相关功能。<br>引用文件：<hilog/log.h> |
+| [log.h](log_8h.md) | HiLog模块日志接口定义，通过这些接口实现日志打印相关功能。<br>**引用文件**：<hilog/log.h> <br>**库**：libhitrace_ndk.z.so |
 
 
 ### 宏定义
