@@ -1,12 +1,11 @@
 # Custom Component Lifecycle
 
-
 The lifecycle callbacks of a custom component are used to notify users of the lifecycle of the component. These callbacks are private and are invoked by the development framework at a specified time at runtime. They cannot be manually invoked from applications.
-
 
 >**NOTE**
 >
->Promise and asynchronous callback functions can be used in lifecycle functions, for example, network resource getters and timer setters.
+>- The initial APIs of this module are supported since API version 7. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+>- Promise and asynchronous callback functions can be used in lifecycle functions, for example, network resource getters and timer setters.
 
 
 ## aboutToAppear
@@ -123,8 +122,8 @@ Since API version 10, this API is supported in ArkTS widgets.
 
 **Parameters**
 
-| Name| Type                      | Description                |
-| ------ | -------------------------- | -------------------- |
+| Name   | Type                        | Description        |
+| ------ | -------------------------- | ---------- |
 | params | { [key: string]: unknown } | Parameters used for constructing the custom component.|
 
 
