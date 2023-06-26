@@ -280,7 +280,6 @@ close(file: number|File): Promise&lt;void&gt;
   let file = fs.openSync(filePath);
   fs.close(file).then(() => {
       console.info("close file succeed");
-      fs.closeSync(file);
   }).catch((err) => {
       console.info("close file failed with error message: " + err.message + ", error code: " + err.code);
   });
