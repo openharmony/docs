@@ -335,6 +335,61 @@ OHOS_REPORT_STATUS: taskconsuming=16029
 
 > 当处于breakOnError模式，用例发生错误时,注意查看Ignore以及中断说明。
 
+## 用户操作录制
+### 开启录制功能
+> 将当前执行的Ui操作记录到/data/local/tmp/layout/record.csv
+
+```shell  
+ hdc shell uitest uiRecord record
+```
+### 查看操作数据
+#### 使用命令打印数据
+```shell  
+ hdc shell uitest uiRecord read
+```
+#### 使用命令导出 record.csv
+```shell  
+hdc file recv /data/local/tmp/layout/record.csv D:\tool
+```
+- record 数据字段含义请参考如下示例数据。
+```
+{
+	"ABILITY": "com.ohos.launcher.MainAbility", // 前台应用程序
+	"BUNDLE": "com.ohos.launcher", // 点击应用程序名称
+	"CENTER_X": "", // 模拟捏合中心X, pinch事件
+	"CENTER_Y": "", // 模拟捏合中心Y, pinch事件
+	"EVENT_TYPE": "pointer", //  
+	"LENGTH": "0", // 总体步长
+	"OP_TYPE": "click", //事件类型 click, doubleclick, longClick, drag, pinch(捏合), swipe, fling, home, recent, back
+	"VELO": "0.000000", // 离手速度
+	"direction.X": "0.000000",// 总体移动X方向
+	"direction.Y": "0.000000", // 总体移动Y方向
+	"duration": 33885000.0, // 手势操作持续时间
+	"fingerList": [{
+		"LENGTH": "0", // 总体步长
+		"MAX_VEL": "40000", // 最大速度
+		"VELO": "0.000000", // 离手速度
+		"W1_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // 起点控件bounds
+		"W1_HIER": "ROOT,3,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0", // 起点控件hierarchy
+		"W1_ID": "", // 起点控件id
+		"W1_Text": "", // 起点控件text
+		"W1_Type": "Image", // 起点控件类型
+		"W2_BOUNDS": "{"bottom":361,"left":37,"right":118,"top":280}", // 终点控件bounds
+		"W2_HIER": "ROOT,3,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,0", // 终点控件hierarchy
+		"W2_ID": "", // 终点控件id
+		"W2_Text": "", // 终点控件text
+		"W2_Type": "Image", // 终点控件类型
+		"X2_POSI": "47", // 终点X
+		"X_POSI": "47", // 起点X
+		"Y2_POSI": "301", // 终点Y
+		"Y_POSI": "301", // 起点Y
+		"direction.X": "0.000000", // x方向移动量
+		"direction.Y": "0.000000" // Y方向移动量
+	}],
+	"fingerNumber": "1" //手指数量
+}
+```
+
 ## 相关实例
 
 ### 单元测试脚本实例
