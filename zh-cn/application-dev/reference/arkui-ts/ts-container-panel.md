@@ -40,6 +40,7 @@ Panel(show: boolean)
 | miniHeight | string&nbsp;\|&nbsp;number | 指定PanelMode.Mini状态下的高度。<br/>默认值：48<br/>单位：vp<br/>**说明：** <br/>不支持设置百分比。 |
 | show | boolean | 当滑动面板弹出时调用。 |
 | backgroundMask<sup>9+</sup>|[ResourceColor](ts-types.md#resourcecolor)|指定Panel的背景蒙层。|
+| showCloseIcon<sup>10+</sup> | boolean | 设置是否显示关闭图标，true表示显示，false表示不显示。<br/>默认值：false |
 
 ## PanelType枚举说明
 
@@ -93,6 +94,7 @@ struct PanelExample {
       .type(PanelType.Foldable).mode(PanelMode.Half)
       .dragBar(true) // 默认开启
       .halfHeight(500) // 默认一半
+      .showCloseIcon(true) // 显示关闭图标
       .onChange((width: number, height: number, mode: PanelMode) => {
         console.info(`width:${width},height:${height},mode:${mode}`)
       })
