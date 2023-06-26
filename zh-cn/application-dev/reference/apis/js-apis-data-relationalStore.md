@@ -336,7 +336,7 @@ class EntryAbility extends UIAbility {
 
 ## AssetStatus<sup>10+</sup>
 
-描述资产附件的状态枚举z。请使用枚举名称而非枚举值。
+描述资产附件的状态枚举。请使用枚举名称而非枚举值。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -344,7 +344,7 @@ class EntryAbility extends UIAbility {
 | ------------------------------- | --- | -------------- |
 | ASSET_NORMAL     | -   | 表示资产状态正常。      |
 | ASSET_INSERT | - | 表示资产需要插入到云端。 |
-| ASSET_UPLOAD | - | 表示资产需要更新到云端。 |
+| ASSET_UPDATE | - | 表示资产需要更新到云端。 |
 | ASSET_DELETE | - | 表示资产需要在云端删除。 |
 | ASSET_ABNORMAL    | -   | 表示资产状态异常。      |
 | ASSET_DOWNLOADING | -   | 表示资产正在下载到本地设备。 |
@@ -358,8 +358,8 @@ class EntryAbility extends UIAbility {
 | 名称          | 类型                          | 必填  | 说明           |
 | ----------- | --------------------------- | --- | ------------ |
 | name        | string                      | 是   | 资产的名称。       |
-| uri         | string                      | 是   | 资产的uri。       |
-| path        | string                      | 是   | 资产的路径。       |
+| uri         | string                      | 是   | 资产的uri，在系统里的绝对路径。       |
+| path        | string                      | 是   | 资产在应用沙箱里的路径。       |
 | createTime  | string                      | 是   | 资产被创建出来的时间。   |
 | modify Time | string                      | 是   | 资产最后一次被修改的时间。 |
 | size        | string                      | 是   | 资产占用空间的大小。    |
@@ -367,7 +367,7 @@ class EntryAbility extends UIAbility {
 
 ## Assets<sup>10+</sup>
 
-表示[Asset](#asset10)类型的数组
+表示[Asset](#asset10)类型的数组。
 
 | 类型    | 说明                 |
 | ------- | -------------------- |
@@ -381,11 +381,11 @@ class EntryAbility extends UIAbility {
 
 | 类型    | 说明                 |
 | ------- | -------------------- |
-| null    | 表示值类型为空。   |
+| null<sup>10+</sup>    | 表示值类型为空。   |
 | number  | 表示值类型为数字。   |
 | string  | 表示值类型为字符。   |
 | boolean | 表示值类型为布尔值。 |
-| Uint8Array           | 表示值类型为Uint8类型的数组。            |
+| Uint8Array<sup>10+</sup>           | 表示值类型为Uint8类型的数组。            |
 | Asset<sup>10+</sup>  | 表示值类型为附件[Asset](#asset10)。     |
 | Assets<sup>10+</sup> | 表示值类型为附件数组[Assets](#assets10)。 |
 
@@ -469,7 +469,7 @@ class EntryAbility extends UIAbility {
 
 | 名称     | 类型    | 必填 | 说明                                                         |
 | -------- | ------- | ---- | ------------------------------------------------------------ |
-| autoSync | boolean | 是   | 该值为true时，表示该表支持自动同步和手动同步；该值为false时，表示该表只支持手动同步，不支持自动同步。<br>默认值是false。 |
+| autoSync | boolean | 是   | 该值为true时，表示该表支持自动同步和手动同步；该值为false时，表示该表只支持手动同步，不支持自动同步。 |
 
 ## ConflictResolution<sup>10+</sup>
 
@@ -2942,7 +2942,7 @@ setDistributedTables(tables: Array&lt;string&gt;, callback: AsyncCallback&lt;voi
 
 | 参数名   | 类型                      | 必填 | 说明                   |
 | -------- | ------------------------- | ---- | ---------------------- |
-| tables   | Array&lt;string&gt;       | 是   | 要设置的分布式列表表名 |
+| tables   | Array&lt;string&gt;       | 是   | 要设置的分布式列表表名。 |
 | callback | AsyncCallback&lt;void&gt; | 是   | 指定callback回调函数。 |
 
 **错误码：**
@@ -2980,7 +2980,7 @@ setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, callbac
 | 参数名   | 类型                                 | 必填 | 说明                   |
 | -------- | ------------------------------------ | ---- | ---------------------- |
 | tables   | Array&lt;string&gt;                  | 是   | 要设置的分布式列表表名 |
-| type     | [DistributedType](distributedtype10) | 是   | 表的分布式类型。       |
+| type     | [DistributedType](#distributedtype10) | 是   | 表的分布式类型。       |
 | callback | AsyncCallback&lt;void&gt;            | 是   | 指定callback回调函数。 |
 
 **错误码：**
@@ -2994,7 +2994,7 @@ setDistributedTables(tables: Array&lt;string&gt;, type: DistributedType, callbac
 **示例：**
 
 ```js
-store.setDistributedTables(["EMPLOYEE"], DistributedType.DISTRIBUTED_CLOUD, function (err) {
+store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, function (err) {
   if (err) {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -3005,7 +3005,7 @@ store.setDistributedTables(["EMPLOYEE"], DistributedType.DISTRIBUTED_CLOUD, func
 
 ### setDistributedTables
 
- setDistributedTables(*tables*: Array&lt;string>, type?: DistributedType, config?: DistributedConfig): Promise&lt;void>
+ setDistributedTables(tables: Array&lt;string>, type?: DistributedType, config?: DistributedConfig): Promise&lt;void>
 
 设置分布式列表，使用Promise异步回调。
 
@@ -3018,8 +3018,8 @@ store.setDistributedTables(["EMPLOYEE"], DistributedType.DISTRIBUTED_CLOUD, func
 | 参数名 | 类型                                      | 必填 | 说明                                                 |
 | ------ | ----------------------------------------- | ---- | ---------------------------------------------------- |
 | tables | Array&lt;string&gt;                       | 是   | 要设置的分布式列表表名。                             |
-| type   | number                                    | 否   | 表的分布式类型。<br> API version 10新增可选参数。    |
-| config | [DistributedConfig](#distributedconfig10) | 否   | 表的分布式配置信息。<br/> API version 10新增可选参数 |
+| type   | [DistributedType](#distributedtype10)     | 否   | 表的分布式类型。<br> API version 10新增可选参数。默认值是DISTRIBUTED_DEVICE。    |
+| config | [DistributedConfig](#distributedconfig10) | 否   | 表的分布式配置信息。<br/> API version 10新增可选参数。不传入时默认只支持手动同步。 |
 
 **返回值**：
 
@@ -3040,7 +3040,7 @@ store.setDistributedTables(["EMPLOYEE"], DistributedType.DISTRIBUTED_CLOUD, func
 ```js
 let config = new DistributedConfig();
 config.autoSync = true;
-let promise = store.setDistributedTables(["EMPLOYEE"], DistributedType.DISTRIBUTED_CLOUD, config);
+let promise = store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, config);
 promise.then(() => {
   console.info(`SetDistributedTables successfully.`);
 }).catch((err) => {
@@ -3071,7 +3071,7 @@ setDistributedTables(tables: Array&lt;string&gt;, type: number, config: Distribu
 ```js
 let config = new DistributedConfig();
 config.autoSync = true;
-store.setDistributedTables(["EMPLOYEE"], DistributedType.DISTRIBUTED_CLOUD, config, function (err) {
+store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, config, function (err) {
   if (err) {
     console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
     return;
@@ -3332,7 +3332,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)    | 是   | 订阅类型。 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;ChangeInfo&gt;&gt;<sup>10+</sup> | 是   | 回调函数。<br>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号ID。 <br> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;ChangeInfo&gt;&gt;<sup>10+</sup> | 是   | 回调函数。<br>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号。 <br> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。 |
 
 **示例：**
 
@@ -3363,7 +3363,7 @@ off(event:'dataChange', type: SubscribeType, observer?: Callback&lt;Array&lt;str
 | -------- | ---------------------------------- | ---- | ------------------------------------------ |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)     | 是   | 订阅类型。                                 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; | 否 | 回调函数。<br/>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br/> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号ID。 <br/> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br> 当observer没有传入时，表示取消当前type类型下所有数据变更的事件监听。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt;\| Callback&lt;Array&lt;ChangeInfo&gt;&gt;<sup>10+</sup> | 否 | 回调函数。<br/>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br/> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端账号ID。 <br/> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。<br> 当observer没有传入时，表示取消当前type类型下所有数据变更的事件监听。 |
 
 **示例：**
 
@@ -3907,9 +3907,9 @@ getAssets(columnIndex: number): Assets
 
 以下错误码的详细介绍请参见[关系型数据库错误码](../errorcodes/errorcode-data-rdb.md)。
 
-| **错误码ID** | **错误信息**                                                     |
-| --------- | ------------------------------------------------------------ |
-| 14800013  | The column value is null or the column type is incompatible. |
+| **错误码ID** | **错误信息**                                                 |
+| ------------ | ------------------------------------------------------------ |
+| 14800013     | the column value is null or the column type is incompatible. |
 
 **示例：**
 
