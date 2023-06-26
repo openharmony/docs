@@ -17,7 +17,7 @@ OpenHarmony的自动化测试框架arkxtest，作为工具集的重要组成部�
   ![](figures/UnitTest.PNG)
 
   图2.脚本基础流程运行图
- 
+
   ![](figures/TestFlow.PNG)
 
 > **说明：**
@@ -335,32 +335,35 @@ OHOS_REPORT_STATUS: taskconsuming=16029
 
 > 当处于breakOnError模式，用例发生错误时,注意查看Ignore以及中断说明。
 
-## 用户操作录制
-### 开启录制功能
-> 将当前执行的Ui操作记录到/data/local/tmp/layout/record.csv
+## 录制用户操作
+### 使用录制功能
+> 将当前解决界面操作记录到/data/local/tmp/layout/record.csv，结束录制操作使用Ctrl+C结束录制
 
 ```shell  
  hdc shell uitest uiRecord record
 ```
-### 查看操作数据
-#### 使用命令打印数据
+### 查看录制数据
+支持两种方式查看数据。
+
+#### 命令读取并打印录制数据
+
 ```shell  
  hdc shell uitest uiRecord read
 ```
-#### 使用命令导出 record.csv
+#### 命令导出 record.csv文件查看录制数据
 ```shell  
 hdc file recv /data/local/tmp/layout/record.csv D:\tool
 ```
 - record 数据字段含义请参考如下示例数据。
 ```
 {
-	"ABILITY": "com.ohos.launcher.MainAbility", // 前台应用程序
-	"BUNDLE": "com.ohos.launcher", // 点击应用程序名称
+	"ABILITY": "com.ohos.launcher.MainAbility", // 前台应用界面
+	"BUNDLE": "com.ohos.launcher", // 操作应用
 	"CENTER_X": "", // 模拟捏合中心X, pinch事件
 	"CENTER_Y": "", // 模拟捏合中心Y, pinch事件
 	"EVENT_TYPE": "pointer", //  
 	"LENGTH": "0", // 总体步长
-	"OP_TYPE": "click", //事件类型 click, doubleclick, longClick, drag, pinch(捏合), swipe, fling, home, recent, back
+	"OP_TYPE": "click", //事件类型，当前支持点击、双击、长按、拖拽、捏合、滑动、抛滑动作录制
 	"VELO": "0.000000", // 离手速度
 	"direction.X": "0.000000",// 总体移动X方向
 	"direction.Y": "0.000000", // 总体移动Y方向
