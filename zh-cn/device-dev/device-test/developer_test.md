@@ -95,7 +95,8 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
 6. 如果设备仅支持串口输出测试结果，则需要安装NFS Server
 
-    > **说明：**
+	> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+	> 
 	> 此操作针对小型或轻量设备，不针对标准设备。
 
     - Windows环境下安装，安装haneWIN NFS Server1.2.50软件包。
@@ -653,7 +654,8 @@ group("unittest") {
 	```
 	module_output_path = "developertest/calculator"
 	```
-	> **说明：** 
+	> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+	> 
 	> 此处输出路径为部件/模块名。
 
 4. 配置依赖包含目录
@@ -689,7 +691,8 @@ group("unittest") {
 	}
 	```
 
-    > **说明：**
+	> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+	> 
 	> 根据测试类型的不同，在具体编写过程中可选择不同的测试类型。
 	 > - ohos_unittest：单元测试
 	 > - ohos_moduletest：模块测试
@@ -751,7 +754,8 @@ import("//build/test.gni")
 ```
 module_output_path = "developertest/app_info"
 ```
-> **说明：** 
+> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+> 
 > 此处输出路径为部件/模块名。
 
 4.指定测试用例编译目标输出的文件名称
@@ -760,7 +764,8 @@ module_output_path = "developertest/app_info"
 ohos_js_unittest("GetAppInfoJsTest") {
 }
 ```
-> **说明：**
+> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+> 
 > - 使用模板ohos_js_unittest定义js测试套，注意与C++用例区分。
 > - js测试套编译输出文件为hap类型，hap名为此处定义的测试套名，测试套名称必须以JsTest结尾。
 
@@ -846,7 +851,8 @@ group("unittest") {
   deps = [ ":GetAppInfoJsTest" ]
 }
 ```
-> **说明：** 
+> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+> 
 > 进行条件分组的目的在于执行用例时可以选择性地执行某一种特定类型的用例。
 
 **Fuzzing安全测试**
@@ -885,7 +891,8 @@ group("unittest") {
       "//test/testfwk/developer_test/examples/calculator/test:fuzztest"
  }
 ```
-> **说明：** 
+> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+> 
 > test_list中配置的是对应模块的测试用例。
 
 ## 测试资源配置
@@ -917,7 +924,8 @@ ohos_unittest("CalculatorSubTest") {
   resource_config_file = "//system/subsystem/partA/test/resource/calculator/ohos_test.xml"
 }
 ```
->**说明：**
+> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+> 
 >- target_name: 测试套的名称，定义在测试目录的BUILD.gn中。preparer: 表示该测试套执行前执行的动作。
 >- src="res": 表示测试资源位于test目录下的resource目录下，src="out"：表示位于out/release/$(部件)目录下。
 
@@ -976,7 +984,8 @@ ohos_unittest("CalculatorSubTest") {
   </NFS>
 </user_config>
 ```
->**说明：** 
+> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+> 
 > 在执行测试用例之前，若使用HDC连接设备，用例仅需配置设备IP和端口号即可，其余信息均默认不修改。
 
 ### Windows环境执行
@@ -987,7 +996,8 @@ ohos_unittest("CalculatorSubTest") {
 ./build.sh --product-name {product_name} --build-target make_test
 ```
 
->说明: 
+> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+> 
 >- product-name：指定编译产品名称。
 >- build-target：指定所需编译用例，make_test表示指定全部用例，实际开发中可指定特定用例。
 
@@ -998,7 +1008,8 @@ ohos_unittest("CalculatorSubTest") {
 
 2. 从Linux环境拷贝测试框架developertest和xdevice到创建的Test目录下，拷贝编译好的测试用例到testcase目录下。
 	
-	>**说明：** 
+	> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+	>  
 	> 将测试框架及测试用例从Linux环境移植到Windows环境，以便后续执行。
 	
 3. 修改user_config.xml
@@ -1075,13 +1086,17 @@ ohos_unittest("CalculatorSubTest") {
 	hdc_std kill
 	hdc_std -m -s 0.0.0.0:8710
 	```
-	>**说明：** IP和端口号为默认值。
+	> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+	> 
+	> IP和端口号为默认值。
 
 2. HDC Client指令：
 	```
 	hdc_std -s xx.xx.xx.xx:8710 list targets
 	```
-	>**说明：** 此处IP填写设备侧IP地址。
+	> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+	> 
+	> 此处IP填写设备侧IP地址。
 
 3. 修改配置文件user_config.xml
 	```xml
@@ -1214,7 +1229,9 @@ ohos_unittest("CalculatorSubTest") {
 ```
 test/developertest/reports/xxxx_xx_xx_xx_xx_xx
 ```
->**说明：** 测试报告文件目录将自动生成。
+> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+>  
+> 测试报告文件目录将自动生成。
 
 该目录中包含以下几类结果：
 | 类型                                 | 描述               |
