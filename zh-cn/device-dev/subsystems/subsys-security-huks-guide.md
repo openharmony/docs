@@ -103,10 +103,10 @@ HUKS Core作为向应用提供密钥库能力的基础，包括密钥管理及�
 | [ExportChipsetPlatformPublicKey()](#exportchipsetplatformpublickey)        | 导出芯片平台级密钥对的公钥。     | 出参为ECC P256的x y轴值裸数据，各32字节                      | 无 |
 | [UpgradeKey()](#upgradekey)        | 升级密钥文件。     | 无                      | 无 |
 | [GenerateRandom()](#generaterandom)        | 生成安全随机数     | 无                      | 无 |
-| [Encrypt()](#encrypt)        | 单次加密     | 无                      | 无 |
-| [Decrypt()](#decrypt)        | 单次解密     | 无                      | 无 |
-| [Sign()](#sign)        | 单次签名     | 无                      | 无 |
-| [Verify()](#verify)        | 单次验签     | 无                      | 无 |
+| [Encrypt()](#encrypt)        | 加密     | 无                      | 无 |
+| [Decrypt()](#decrypt)        | 解密     | 无                      | 无 |
+| [Sign()](#sign)        | 签名     | 无                      | 无 |
+| [Verify()](#verify)        | 验签     | 无                      | 无 |
 | [AgreeKey()](#agreekey)        | 密钥协商     | 无                      | 无 |
 | [DeriveKey()](#derivekey)        | 密钥派生     | 无                      | 无 |
 | [Mac()](#mac)        | 消息认证码     | 无                      | 无 |
@@ -1040,7 +1040,7 @@ HUKS Core的销毁，一般用于释放全局变量，包括锁，销毁内存�
 
 - - -
 
-#### mac
+#### Mac
 
 **接口描述**
 
