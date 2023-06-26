@@ -93,29 +93,49 @@ By default, the associated SysCap set of an application is the union of multiple
 
 ### Checking Whether an API Is Available
 
-- Method 1: Use the **canIUse()** API to check whether a SysCap is supported.
+You can use either the ArtTS or native API to determine whether an API is available.
 
-   ```ts
-   if (canIUse("SystemCapability.ArkUI.ArkUI.Full")) {
-   	   console.log("This device supports SystemCapability.ArkUI.ArkUI.Full.");
-   } else {
-	   console.log("This device does not support SystemCapability.ArkUI.ArkUI.Full.");
-   }
-   ```
+- ArkTS API
 
-- Method 2: Import a module using the **import** API. If the current device does not support the module, the import result is **undefined**. Before using an API, you must make sure the API is available.
+  - Method 1: Use the **canIUse()** API to check whether a SysCap is supported.
 
-   ```ts
-   import geolocation from '@ohos.geolocation';
+    ```ts
+    if (canIUse("SystemCapability.ArkUI.ArkUI.Full")) {
+	   console.log("This device supports SystemCapability.ArkUI.ArkUI.Full.");
+    } else {
+       console.log("This device does not support SystemCapability.ArkUI.ArkUI.Full.");
+    }
+    ```
 
-   if (geolocation) {
-	   geolocation.getCurrentLocation((location) => {
-		   console.log(location.latitude, location.longitude);
-	   });
-   } else {
-	   console.log('This device does not support location information.');
-   }
-   ```
+  - Method 2: Import a module using the **import** API. If the current device does not support the module, the import result is **undefined**. Before using an API, you must make sure the API is available.
+
+	```ts
+	import geolocation from '@ohos.geolocation';
+
+	if (geolocation) {
+	geolocation.getCurrentLocation((location) => {
+		console.log(location.latitude, location.longitude);
+	});
+	} else {
+	console.log('This device does not support location information.');
+	}
+	```
+- Native API
+
+	```c
+	#include <stdio.h>
+	#include <stdlib.h>
+	#include "syscap_ndk.h"
+
+	char syscap[] = "SystemCapability.ArkUI.ArkUI.Full";
+	bool result = canIUse(syscap);
+	if (result) {
+		printf("SysCap: %s is supported!\n", syscap);
+	} else {
+		printf("SysCap: %s is not supported!\n", syscap);
+	}
+	```
+
 You can also find out the SysCap to which an API belongs by referring to the API reference document.
 
 ### Checking the Differences Between Devices with a Specific SysCap

@@ -214,15 +214,15 @@ thisArg?: Object): void
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值。 |
+| thisArg | Object | 否 | callbackfn被调用时用作this值，默认值为当前实例对象。 |
 
 callbackfn的参数说明：
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | value | T | 是 | 当前遍历到的元素。 |
-| index | number | 否 | 当前遍历到的下标值。 |
-| stack | Stack&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
+| index | number | 否 | 当前遍历到的下标值，默认值为0。 |
+| stack | Stack&lt;T&gt; | 否 | 当前调用forEach方法的实例对象，默认值为当前实例对象。 |
 
 **错误码：**
 

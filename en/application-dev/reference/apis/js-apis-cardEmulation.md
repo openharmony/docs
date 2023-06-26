@@ -17,16 +17,15 @@ import cardEmulation from '@ohos.nfc.cardEmulation';
 Enumerates the NFC card emulation types.
 
 > **NOTE**
->
 > This parameter is supported since API version 6 and deprecated since API version 9. You are advised to use [hasHceCapability](#hashcecapability9).
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
-| Name| Value| Description|
-| -------- | -------- | -------- |
-| HCE | 0 | HCE.|
-| UICC | 1 | Subscriber identity module (SIM) card emulation.|
-| ESE | 2 | embedded Secure Element (eSE) emulation.|
+| Name  | Value   | Description      |
+| ---- | ---- | -------- |
+| HCE  | 0    | HCE.|
+| UICC | 1    | Subscriber identity module (SIM) card emulation.|
+| ESE  | 2    | embedded Secure Element (eSE) emulation. |
 
 ## CardType<sup>9+</sup>
 
@@ -34,10 +33,10 @@ Enumerates the types of services used by the card emulation application.
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
-| Name| Value| Description|
-| -------- | -------- | -------- |
+| Name     | Value        | Description               |
+| ------- | --------- | ----------------- |
 | PAYMENT | "payment" | Payment type.|
-| OTHER | "other" | Other types.|
+| OTHER   | "other"   | Other types.|
 
 ## isSupported
 
@@ -46,21 +45,20 @@ isSupported(feature: number): boolean
 Checks whether a certain type of card emulation is supported.
 
 > **NOTE**
-> 
 > This parameter is supported since API version 6 and deprecated since API version 9. You are advised to use [hasHceCapability](#hashcecapability9).
 
 **System capability**: SystemCapability.Communication.NFC.CardEmulation
 
 **Parameters**
 
-| Name | Type    | Mandatory| Description                   |
-| ------- | -------- | ---- | ----------------------- |
-| feature | number | Yes  | Card emulation type. For details, see [FeatureType](#featuretype).|
+| Name    | Type    | Mandatory  | Description                                      |
+| ------- | ------ | ---- | ---------------------------------------- |
+| feature | number | Yes   | Card emulation type. For details, see [FeatureType](#featuretype).|
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
+| **Type** | **Description**                                |
+| ------- | -------------------------------------- |
 | boolean | Returns **true** if the card emulation type is supported; returns **false** otherwise.|
 
 ## hasHceCapability<sup>9+</sup>
@@ -75,8 +73,8 @@ Checks whether HCE is supported.
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
+| **Type** | **Description**                          |
+| ------- | -------------------------------- |
 | boolean | Returns **true** if HCE is supported; returns **false** otherwise.|
 
 ## isDefaultService<sup>9+</sup>
@@ -91,15 +89,15 @@ Checks whether an application is the default application of the specified servic
 
 **Parameters**
 
-| Name | Type    | Mandatory| Description                   |
-| ------- | -------- | ---- | ----------------------- |
-| elementName | [ElementName](js-apis-bundleManager-elementName.md#elementname) | Yes| Application description, which consists of the bundle name and component name.|
-| type | [CardType](#cardtype9) | Yes| Card emulation service type.|
+| Name        | Type                                      | Mandatory  | Description                     |
+| ----------- | ---------------------------------------- | ---- | ----------------------- |
+| elementName | [ElementName](js-apis-bundleManager-elementName.md#elementname) | Yes   | Application description, which consists of the bundle name and component name.|
+| type        | [CardType](#cardtype9)                   | Yes   | Card emulation service type.               |
 
 **Return value**
 
-| **Type**| **Description**|
-| -------- | -------- |
+| **Type** | **Description**                              |
+| ------- | ------------------------------------ |
 | boolean | Returns **true** if the application is the default payment application; returns **false** otherwise.|
 
 **Example**
@@ -110,13 +108,11 @@ import cardEmulation from '@ohos.nfc.cardEmulation';
 var isHceSupported = cardEmulation.isSupported(cardEmulation.FeatureType.HCE);
 if (!isHceSupported) {
     console.log('this device is not supported for HCE, ignore it.');
-    return;
 }
 
 var hasHceCap = cardEmulation.hasHceCapability();
 if (!hasHceCap) {
     console.log('this device hasHceCapability false, ignore it.');
-    return;
 }
 
 var elementName = {

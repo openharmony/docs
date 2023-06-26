@@ -93,7 +93,15 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.INSTALL_BUNDLE
+**Required permissions**: ohos.permission.INSTALL_BUNDLE or ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>
+
+> **NOTE**
+>
+> Since API version 10, this API can be called with the **ohos.permission.INSTALL_ENTERPRISE_BUNDLE** permission.
+>
+> To install an enterprise application, you must have the **ohos.permission.INSTALL_ENTERPRISE_BUNDLE** permission.
+>
+> To install a common application, you must have the **ohos.permission.INSTALL_BUNDLE** permission.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -162,7 +170,15 @@ Installs a bundle. This API uses an asynchronous callback to return the result.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.INSTALL_BUNDLE
+**Required permissions**: ohos.permission.INSTALL_BUNDLE or ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>
+
+> **NOTE** 
+>
+> Since API version 10, this API can be called with the **ohos.permission.INSTALL_ENTERPRISE_BUNDLE** permission.
+>
+> To install an enterprise application, you must have the **ohos.permission.INSTALL_ENTERPRISE_BUNDLE** permission.
+>
+> To install a common application, you must have the **ohos.permission.INSTALL_BUNDLE** permission.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
@@ -226,7 +242,15 @@ Installs a bundle. This API uses a promise to return the result.
 
 **System API**: This is a system API.
 
-**Required permissions**: ohos.permission.INSTALL_BUNDLE
+**Required permissions**: ohos.permission.INSTALL_BUNDLE or ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>
+
+> **NOTE** 
+>
+> Since API version 10, this API can be called with the **ohos.permission.INSTALL_ENTERPRISE_BUNDLE** permission.
+>
+> To install an enterprise application, you must have the **ohos.permission.INSTALL_ENTERPRISE_BUNDLE** permission.
+>
+> To install a common application, you must have the **ohos.permission.INSTALL_BUNDLE** permission.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 

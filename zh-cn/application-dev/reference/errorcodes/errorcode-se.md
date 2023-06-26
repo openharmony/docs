@@ -1,4 +1,4 @@
-# SE错误码
+# SE(secureElement)错误码
 
 > **说明：**
 >

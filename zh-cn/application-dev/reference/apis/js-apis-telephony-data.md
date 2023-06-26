@@ -768,6 +768,26 @@ promise.then(() => {
 });
 ```
 
+## data.getDefaultCellularDataSimId<sup>10+</sup>
+
+getDefaultCellularDataSimId(): number
+
+获取默认移动数据的SIM卡ID。
+
+**系统能力**：SystemCapability.Telephony.CellularData
+
+**返回值：**
+
+| 类型              | 说明                                                         |
+| ------ | -------------------------------------------------- |
+| number | 获取默认移动数据的SIM卡ID。<br/>与SIM卡绑定，从1开始递增。 |
+
+**示例：**
+
+```js
+console.log("Result: "+ data.getDefaultCellularDataSimId())
+```
+
 ## DataFlowType
 
 描述蜂窝数据流类型。 

@@ -66,9 +66,9 @@ Search(options?: { value?: string; placeholder?: ResourceStr; icon?: string; con
 
 | 名称                    | 描述             |
 | ----------------------- | ---------------- |
-| CONSTANT<sup>10+</sup>  | 清除按钮常显样式。 |
-| INVISIBLE<sup>10+</sup> | 清除按钮常隐样式。 |
-| INPUT<sup>10+</sup>     | 清除按钮输入样式。 |
+| CONSTANT  | 清除按钮常显样式。 |
+| INVISIBLE | 清除按钮常隐样式。 |
+| INPUT     | 清除按钮输入样式。 |
 
 ## 事件
 
@@ -104,6 +104,8 @@ caretPosition(value: number): void
 
 ##  示例
 
+### 示例1
+
 ```ts
 // xxx.ets
 @Entry
@@ -119,7 +121,7 @@ struct SearchExample {
       Text('onChange:' + this.changeValue).fontSize(18).margin(15)
       Search({ value: this.changeValue, placeholder: 'Type to search...', controller: this.controller })
         .searchButton('SEARCH')
-        .width(400)
+        .width('95%')
         .height(40)
         .backgroundColor('#F5F5F5')
         .placeholderColor(Color.Grey)
@@ -143,3 +145,43 @@ struct SearchExample {
 ```
 
 ![search](figures/search.gif)
+
+### 示例2
+
+```ts
+// xxx.ets
+@Entry
+@Component
+struct SearchButtoonExample {
+  @State submitValue: string = ''
+
+  build() {
+    Column() {
+      Text('onSubmit:' + this.submitValue).fontSize(18).margin(15)
+      Search({ placeholder: 'Type to search...' })
+        .searchButton('SEARCH')
+        .searchIcon({
+          src: $r('app.media.search')
+        })
+        .cancelButton({
+          style: CancelButtonStyle.CONSTANT,
+          icon: {
+            src: $r('app.media.cancel')
+          }
+        })
+        .width('90%')
+        .height(40)
+        .backgroundColor('#F5F5F5')
+        .placeholderColor(Color.Grey)
+        .placeholderFont({ size: 14, weight: 400 })
+        .textFont({ size: 14, weight: 400 })
+        .onSubmit((value: string) => {
+          this.submitValue = value
+        })
+        .margin(20)
+    }.width('100%')
+  }
+}
+```
+
+![searchButton](figures/searchButton.gif)

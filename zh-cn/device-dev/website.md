@@ -320,14 +320,7 @@
            - [CPU轻量级隔离](kernel/kernel-standard-sched-cpuisolation.md)
   -  驱动
      - [驱动概述](driver/driver-overview-foundation.md)
-     - HDF驱动框架
-       - [HDF开发概述](driver/driver-hdf-overview.md)
-       - [驱动开发](driver/driver-hdf-development.md)
-       - [驱动加载](driver/driver-hdf-load.md)
-       - [驱动服务管理](driver/driver-hdf-servicemanage.md)
-       - [驱动消息机制管理](driver/driver-hdf-message-management.md)
-       - [配置管理](driver/driver-hdf-manage.md)
-       - [HDF开发实例](driver/driver-hdf-sample.md)
+     - [HDF驱动开发流程](driver/driver-hdf-manage.md)
      - 平台驱动开发
        - [ADC](driver/driver-platform-adc-develop.md)
        - [DAC](driver/driver-platform-dac-develop.md)

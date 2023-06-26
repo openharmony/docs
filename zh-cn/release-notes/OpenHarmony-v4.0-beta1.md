@@ -293,8 +293,8 @@ OpenHarmony 4.0 Beta1版本开始提供首批API Level 10接口。
 | -------- | -------- | -------- |
 | OpenHarmony | 4.0&nbsp;Beta1 | NA |
 | Public&nbsp;SDK | Ohos_sdk_public&nbsp;4.0.7.5&nbsp;(API&nbsp;Version&nbsp;10&nbsp;Beta1) | 面向应用开发者提供，不包含需要使用系统权限的系统接口。通过DevEco&nbsp;Studio默认获取的SDK为Public&nbsp;SDK。 |
-| HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 4.0&nbsp;Beta1 | OpenHarmony应用开发推荐使用。(*待发布*) |
-| HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.1&nbsp;Release | OpenHarmony智能设备集成开发环境推荐使用。 |
+| HUAWEI&nbsp;DevEco&nbsp;Studio（可选） | 4.0&nbsp;Beta1 | OpenHarmony应用开发推荐使用。获取方式：<br />[Windows(64-bit)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/38/v3/efALRNm3TJuKHfv-1xzjew/devecostudio-windows-4.0.0.201.zip?HW-CC-KV=V1&HW-CC-Date=20230613T085338Z&HW-CC-Expire=315360000&HW-CC-Sign=49E7D85C8A485D5D1F04944DFE1AFCFEE3F60E03D25A01BEFE12BA6CEADD19E0)  <br />SHA256校验码：7d2885b052afb92af8eb2d28ce2704515cd5fdbe7dd01f874bcdd876e11b890a<br />[Mac(X86)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/71/v3/A3thi3-kRTSeO4Jp0DSigA/devecostudio-mac-4.0.0.201.zip?HW-CC-KV=V1&HW-CC-Date=20230613T085132Z&HW-CC-Expire=315360000&HW-CC-Sign=BA233FE054A7D07F4B1C3ED80C84F9DD29112E49BB6D5D1506C5A5A0238741AD)  <br />SHA256校验码：ce2582eac70e8e15abcded00065ae0047f3815fe2b0c90d56c0bdbc5561a51c3<br />[Mac(ARM)](https://contentcenter-vali-drcn.dbankcdn.cn/pvt_2/DeveloperAlliance_package_901_9/ed/v3/IFYYMuT9SbCPCHZntvlrKQ/devecostudio-mac-arm-4.0.0.201.zip?HW-CC-KV=V1&HW-CC-Date=20230613T085231Z&HW-CC-Expire=315360000&HW-CC-Sign=8F98E23E393E3D0D104BDBF7F33684D36C48613303909E6D04D016DB0E7E8696)  <br />SHA256校验码：5da2baad7475857a1c59315663b7dcdf85219ffd652d5a7be160c8d2225358a7 |
+| HUAWEI&nbsp;DevEco&nbsp;Device&nbsp;Tool（可选） | 3.1&nbsp;Release | OpenHarmony智能设备集成开发环境推荐使用。获取方式：<br />[点击跳转至下载页面](https://device.harmonyos.com/cn/develop/ide#download) |
 
 
 ## 源码获取
@@ -400,10 +400,9 @@ OpenHarmony 4.0 Beta1的API范围相比3.2 Release，API变更的清单请参见
 
 | 子系统 | 名称 | 简介 | 开发语言 |
 | -------- | -------- | -------- | -------- |
-| 媒体 | [媒体会话——控制方](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-v4.0-Beta1/code/BasicFeature/Media/AVSession/MediaController)（仅对系统应用开放） | 本示例主要展示了媒体会话（媒体控制方，MediaController）的相关功能，使用\@ohos.multimedia.avsession等接口实现媒体提供方与媒体控制方自定义信息的交互功能。 | ArkTS |
-| 媒体 | [媒体会话——提供方](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-v4.0-Beta1/code/BasicFeature/Media/AVSession/MediaProvider) | 本示例主要展示了媒体会话（媒体提供方，MediaProvider）的相关功能，使用\@ohos.multimedia.avsession等接口实现媒体提供方与媒体控制方自定义信息的交互功能。 | ArkTS |
-| 媒体 | [音频管理](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-v4.0-Beta1/code/BasicFeature/Media/Audio) | 本示例主要展示了音频的相关功能，使用\@ohos.multimedia.audio等接口实现音频的发声设备的切换与查询和音频焦点功能。 | ArkTS |
-| DFX | [应用故障恢复](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-v4.0-Beta1/code/BasicFeature/DFX/AppRecovery) | 本示例展示了在应用中如何适配故障恢复相关接口。 | ArkTS |
+| 媒体 | [媒体会话——控制方](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta1/code/BasicFeature/Media/AVSession/MediaController)（仅对系统应用开放） | 本示例主要展示了媒体会话（媒体控制方，MediaController）的相关功能，使用\@ohos.multimedia.avsession等接口实现媒体提供方与媒体控制方自定义信息的交互功能。 | ArkTS |
+| 媒体 | [媒体会话——提供方](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta1/code/BasicFeature/Media/AVSession/MediaProvider) | 本示例主要展示了媒体会话（媒体提供方，MediaProvider）的相关功能，使用\@ohos.multimedia.avsession等接口实现媒体提供方与媒体控制方自定义信息的交互功能。 | ArkTS |
+| 媒体 | [音频管理](https://gitee.com/openharmony/applications_app_samples/tree/OpenHarmony-4.0-Beta1/code/BasicFeature/Media/Audio) | 本示例主要展示了音频的相关功能，使用\@ohos.multimedia.audio等接口实现音频的发声设备的切换与查询和音频焦点功能。 | ArkTS |
 
 请访问[Samples](https://gitee.com/openharmony/applications_app_samples)仓了解更多信息。
 

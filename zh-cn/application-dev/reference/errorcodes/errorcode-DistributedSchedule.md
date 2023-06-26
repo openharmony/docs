@@ -193,6 +193,26 @@ The local continuation task is already in progress.
 
 请检查是否已经发起了迁移并未结束。
 
+## 16300507 获取指定的bundleName的missionInfo失败
+
+**错误描述**
+
+当调用distributedMissionManager.continueMission接口获取指定bundleName的missionInfo失败时，会报此错误码。
+
+**错误信息**
+
+Failed to get the missionInfo of the specified bundle name.
+
+**可能原因**
+
+该错误码表示获取指定的bundleName的missionInfo失败，可能原因如下。
+1. bundleName输入错误。
+2. bundleName对应的missionInfo确实不存在。
+
+**处理步骤**
+
+请检查输入的bundleName是否正确。
+
 ## 3 序列化对象失败
 
 **错误描述**

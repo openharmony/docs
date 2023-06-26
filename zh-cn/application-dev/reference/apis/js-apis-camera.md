@@ -576,7 +576,7 @@ on(type: 'cameraMute', callback: AsyncCallback\<boolean\>): void
 **示例：**
 
 ```js
-cameraManager.on('cameraMute', (curMuetd) => {
+cameraManager.on('cameraMute', (err, curMuetd) => {
     let isMuted = curMuetd;
 })
 ```
@@ -2283,7 +2283,7 @@ on(type: 'focusStateChange', callback: AsyncCallback\<FocusState\>): void
 **示例：**
 
 ```js
-captureSession.on('focusStateChange', (focusState) => {
+captureSession.on('focusStateChange', (err, focusState) => {
     console.log(`Focus state  : ${focusState}`);
 })
 ```
@@ -2885,7 +2885,7 @@ on(type: 'captureStart', callback: AsyncCallback\<number\>): void
 **示例：**
 
 ```js
-photoOutput.on('captureStart', (captureId) => {
+photoOutput.on('captureStart', (err, captureId) => {
     console.log(`photo capture stated, captureId : ${captureId}`);
 })
 ```
@@ -2908,7 +2908,7 @@ on(type: 'frameShutter', callback: AsyncCallback\<FrameShutterInfo\>): void
 **示例：**
 
 ```js
-photoOutput.on('frameShutter', (frameShutterInfo) => {
+photoOutput.on('frameShutter', (err, frameShutterInfo) => {
     console.log(`photo capture end, captureId : ${frameShutterInfo.captureId}`);
     console.log(`Timestamp for frame : ${frameShutterInfo.timestamp}`);
 })
@@ -2932,7 +2932,7 @@ on(type: 'captureEnd', callback: AsyncCallback\<CaptureEndInfo\>): void
 **示例：**
 
 ```js
-photoOutput.on('captureEnd', (captureEndInfo) => {
+photoOutput.on('captureEnd', (err, captureEndInfo) => {
     console.log(`photo capture end, captureId : ${captureEndInfo.captureId}`);
     console.log(`frameCount : ${captureEndInfo.frameCount}`);
 })
@@ -3380,7 +3380,7 @@ on(type: 'metadataObjectsAvailable', callback: AsyncCallback\<Array\<MetadataObj
 **示例：**
 
 ```js
-metadataOutput.on('metadataObjectsAvailable', (metadataObjectArr) => {
+metadataOutput.on('metadataObjectsAvailable', (err, metadataObjectArr) => {
     console.log(`metadata output metadataObjectsAvailable`);
 })
 ```

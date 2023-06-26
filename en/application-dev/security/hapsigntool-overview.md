@@ -2,7 +2,9 @@
 
 To ensure the integrity and secure source of OpenHarmony applications, the applications must be signed during the build process. Only signed applications can be installed, run, and debugged on real devices. [developtools_hapsigner](https://gitee.com/openharmony/developtools_hapsigner) provides the source code of the OpenHarmony Ability Package (HAP) signing tool - hapsigner. This tool can be used to generate key pairs, certificate signing requests (CSRs), certificates, profile signatures, and HAP signatures.
 
-> **NOTE**<br>For applications that do not need to apply for permissions using the ACL, DevEco Studio provides an auto signing solution to implement one-click signing of applications or services. For details, see [Having Your App Automatically Signed](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465).
+> **NOTE**
+>
+> For applications that do not need to apply for permissions using the ACL, DevEco Studio provides an auto signing solution to implement one-click signing of applications or services. For details, see [Having Your App Automatically Signed](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ohos-auto-configuring-signature-information-0000001271659465).
 
 ## Basic Concepts
 

@@ -367,6 +367,7 @@ Audio/Video播放demo可参考：[音频播放开发指导](../../media/using-av
 | videoScaleType<sup>9+</sup>                         | [VideoScaleType](#videoscaletype9)                           | 是   | 是   | 视频缩放模式，默认VIDEO_SCALE_TYPE_FIT_CROP，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
 | audioInterruptMode<sup>9+</sup>                     | [audio.InterruptMode](js-apis-audio.md#interruptmode9)       | 是   | 是   | 音频焦点模型，默认SHARE_MODE，动态属性。<br/>只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
 | audioRendererInfo<sup>10+</sup>                     | [audio.AudioRendererInfo](js-apis-audio.md#audiorendererinfo8) | 是   | 是   | 设置音频渲染信息，默认值contentType为CONTENT_TYPE_MUSIC，streamUsage为STREAM_USAGE_MEDIA。<br/>只允许在**initialized**状态下设置 |
+| audioEffectMode<sup>10+</sup>                       | [audio.AudioEffectMode](js-apis-audio.md#audioeffectmode10)  | 是   | 是   | 设置音频音效模式，默认值为EFFECT_DEFAULT，动态属性。audioRendererInfo的contentType和streamUsage变动时会恢复为默认值，只允许在**prepared**/**playing**/**paused**/**completed**状态下设置。 |
 | state<sup>9+</sup>                                  | [AVPlayerState](#avplayerstate9)                             | 是   | 否   | 音视频播放的状态，全状态有效，可查询参数。                   |
 | currentTime<sup>9+</sup>                            | number                                                       | 是   | 否   | 视频的当前播放位置，单位为毫秒（ms），可查询参数。<br/>返回为(-1)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。<br/>直播场景默认返回(-1)。 |
 | duration<sup>9+</sup><a name=avplayer_duration></a> | number                                                       | 是   | 否   | 视频时长，单位为毫秒（ms），可查询参数。<br/>返回为(-1)表示无效值，**prepared**/**playing**/**paused**/**completed**状态下有效。<br/>直播场景默认返回(-1)。 |
@@ -1017,7 +1018,7 @@ selectTrack(index: number): void
 
 ```js
 let index = 2
-avPlayer.setBitrate(index)
+avPlayer.selectTrack(index)
 ```
 
 ### deselectTrack<sup>10+</sup><a name=avplayer_deselecttrack></a>
@@ -1070,7 +1071,7 @@ getCurrentTrack(trackType: MediaType, callback: AsyncCallback\<number>): void
 let mediaType = media.MediaType.MEDIA_TYPE_AUD;
 let trackIndex = null;
 
-avPlayer.getCurrentTrack(mediaType  (err, index) => {
+avPlayer.getCurrentTrack(mediaType, (err, index) => {
   if (err == null) {
     console.info('getCurrentTrack success');
     trackIndex = index;
@@ -1639,7 +1640,7 @@ avPlayer.off('startRenderFrame')
 
 on(type: 'videoSizeChange', callback: (width: number, height: number) => void): void
 
-监听视频播放宽高变化事件，仅视频播放支持该订阅事件，默认只在prepread状态上报一次，但HLS协议码流会在切换分辨率时上报；
+监听视频播放宽高变化事件，仅视频播放支持该订阅事件，默认只在prepared状态上报一次，但HLS协议码流会在切换分辨率时上报；
 
 **系统能力：** SystemCapability.Multimedia.Media.AVPlayer
 

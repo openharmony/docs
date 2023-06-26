@@ -137,9 +137,87 @@ try {
 }
 ```
 
+## wallpaper.setCustomWallpaper<sup>10+</sup>
+
+setCustomWallpaper(source: string, wallpaperType: WallpaperType, callback: AsyncCallback&lt;void&gt;): void
+
+将指定uri的内容设置为壁纸资源，仅当com.ohos.sceneboard存在时，支持使用该接口。使用callback异步回调。
+
+**需要权限**：ohos.permission.SET_WALLPAPER
+
+**系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| source | string | 是 | 自定义壁纸的Uri路径。 |
+| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+| callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，设置壁纸成功，error为undefined，否则返回error信息。 |
+
+**示例：**
+
+```js
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.zip";
+try {
+    wallpaper.setCustomWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM, (error) => {
+        if (error) {
+            console.error(`failed to setCustomWallpaper because: ${JSON.stringify(error)}`);
+            return;
+        }
+        console.log(`success to setCustomWallpaper.`);
+    });
+} catch (error) {
+    console.error(`failed to setCustomWallpaper because: ${JSON.stringify(error)}`);
+}
+
+```
+
+## wallpaper.setCustomWallpaper<sup>10+</sup>
+
+setCustomWallpaper(source: string, wallpaperType: WallpaperType): Promise&lt;void&gt;
+
+将指定uri的内容设置为壁纸资源，仅当com.ohos.sceneboard存在时，支持使用该接口。使用Promise异步回调。
+
+**需要权限**：ohos.permission.SET_WALLPAPER
+
+**系统能力**: SystemCapability.MiscServices.Wallpaper
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+| 参数名 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| source | string | 是 | 自定义壁纸的Uri路径。 |
+| wallpaperType | [WallpaperType](#wallpapertype) | 是 | 壁纸类型。 |
+
+**返回值：**
+
+| 类型 | 说明 |
+| -------- | -------- |
+| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+
+**示例：**
+
+```js
+let wallpaperPath = "/data/storage/el2/base/haps/entry/files/test.zip";
+try {
+    wallpaper.setCustomWallpaper(wallpaperPath, wallpaper.WallpaperType.WALLPAPER_SYSTEM).then(() => {
+        console.log(`success to setCustomWallpaper.`);
+    }).catch((error) => {
+        console.error(`failed to setCustomWallpaper because: ${JSON.stringify(error)}`);
+    });
+} catch (error) {
+    console.error(`failed to setCustomWallpaper because: ${JSON.stringify(error)}`);
+}
+```
+
 ## wallpaper.on('wallpaperChange')<sup>10+</sup>
 
-on(type: 'wallpaperChange', callback: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType) =&gt; void): void
+on(type: 'wallpaperChange', callback: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType, uri?: string) =&gt; void): void
 
 订阅壁纸变化通知事件。
 
@@ -152,7 +230,7 @@ on(type: 'wallpaperChange', callback: (wallpaperType: WallpaperType, resourceTyp
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 事件回调类型。支持的事件为'wallpaperChange'，完成壁纸切换后触发该事件。 |
-| callback | function | 是 | 壁纸变化触发该回调方法，返回壁纸类型和壁纸资源类型。<br/>- wallpaperType<br/>  壁纸类型。<br/>- resourceType<br/>  壁纸资源类型。 |
+| callback | function | 是 | 壁纸变化触发该回调方法，返回壁纸类型和壁纸资源类型。<br/>- wallpaperType：壁纸类型。<br/>- resourceType：壁纸资源类型。<br/>- uri：壁纸资源地址。 |
 
 **示例：**
 
@@ -169,7 +247,7 @@ try {
 
 ## wallpaper.off('wallpaperChange')<sup>10+</sup>
 
-off(type: 'wallpaperChange', callback?: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType) =&gt; void): void
+off(type: 'wallpaperChange', callback?: (wallpaperType: WallpaperType, resourceType: WallpaperResourceType, uri?: string) =&gt; void): void
 
 取消订阅壁纸变化通知事件。
 
@@ -182,7 +260,7 @@ off(type: 'wallpaperChange', callback?: (wallpaperType: WallpaperType, resourceT
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | type | string | 是 | 事件回调类型。支持的事件为'wallpaperChange'，完成壁纸切换后触发该事件。 |
-| callback | function | 否 |   表示要取消的壁纸变化回调，不填写该参数则取消订阅该type对应的所有回调。<br/>- wallpaperType<br/>  壁纸类型。<br/>- resourceType<br/>  壁纸资源类型。 |
+| callback | function | 否 |   表示要取消的壁纸变化回调，不填写该参数则取消订阅该type对应的所有回调。<br/>- wallpaperType：壁纸类型。<br/>- resourceType：壁纸资源类型。<br/>- uri：壁纸资源地址。 |
 
 **示例：**
 

@@ -5,17 +5,17 @@
   - [Interpretation of the Application Model](application-model-description.md)
 - Stage Model Development
   - [Stage Model Development Overview](stage-model-development-overview.md)
-  - Stage Mode Application Components
+  - Stage Model Application Components
     - [Application- or Component-Level Configuration](application-component-configuration-stage.md)
     - UIAbility Component
-      - [UIAbility Component Overview](uiability-overview.md)
-      - [UIAbility Component Lifecycle](uiability-lifecycle.md)
-      - [UIAbility Component Launch Type](uiability-launch-type.md)
-      - [UIAbility Component Usage](uiability-usage.md)
-      - [Data Synchronization Between UIAbility and UI](uiability-data-sync-with-ui.md)
+      - [UIAbility Overview](uiability-overview.md)
+      - [UIAbility Lifecycle](uiability-lifecycle.md)
+      - [UIAbility Launch Type](uiability-launch-type.md)
+      - [UIAbility Usage](uiability-usage.md)
+      - [Data Synchronization Between UIAbility and UI Page](uiability-data-sync-with-ui.md)
       - [Interaction Between Intra-Device UIAbility Components](uiability-intra-device-interaction.md)
     - ExtensionAbility Component
-      - [ExtensionAbility Component Overview](extensionability-overview.md)
+      - [ExtensionAbility Overview](extensionability-overview.md)
       - [ServiceExtensionAbility](serviceextensionability.md)
       - [AccessibilityExtensionAbility](accessibilityextensionability.md)
       - [EnterpriseAdminExtensionAbility](enterprise-extensionAbility.md)
@@ -56,12 +56,13 @@
       - [Using Explicit Want to Start an Application Component](ability-startup-with-explicit-want.md)
       - [Using Implicit Want to Open a Website](ability-startup-with-implicit-want.md)
       - [Using Want to Share Data Between Applications](data-share-via-want.md)
-    - [Component Startup Rules](component-startup-rules.md)
-    - Inter-Device Application Component Interaction (Continuation) 
+    - [Component Startup Rules (Stage Model)](component-startup-rules.md)
+    - Inter-Device Application Component Interaction (Continuation)
       - [Continuation Overview](inter-device-interaction-hop-overview.md)
       - [Cross-Device Migration (for System Applications Only)](hop-cross-device-migration.md)
       - [Multi-device Collaboration (for System Applications Only)](hop-multi-device-collaboration.md)
     - [Subscribing to System Environment Variable Changes](subscribe-system-environment-variable-changes.md)
+    - [Setting Atomic Services to Support Sharing](atomic-services-support-sharing.md)
   - Process Model
     - [Process Model Overview](process-model-stage.md)
     - Common Events
@@ -81,16 +82,16 @@
   - Mission Management
     - [Mission Management Scenarios](mission-management-overview.md)
     - [Mission and Launch Type](mission-management-launch-type.md)
-    - [Page Stack and MissionList](page-mission-stack.md)
+    - [Page Stack and Mission List](page-mission-stack.md)
     - [Setting the Icon and Name of a Mission Snapshot](mission-set-icon-name-for-task-snapshot.md)
   - [Application Configuration File](config-file-stage.md)
 - FA Model Development
   - [FA Model Development Overview](fa-model-development-overview.md)
-  - FA Mode Application Components
+  - FA Model Application Components
     - [Application- or Component-Level Configuration](application-component-configuration-fa.md)
     - PageAbility Component Development
-      - [PageAbility Component Overview](pageability-overview.md)
-      - [PageAbility Component Configuration](pageability-configuration.md)
+      - [PageAbility Overview](pageability-overview.md)
+      - [PageAbility Configuration](pageability-configuration.md)
       - [PageAbility Lifecycle](pageability-lifecycle.md)
       - [PageAbility Launch Type](pageability-launch-type.md)
       - [Creating a PageAbility](create-pageability.md)
@@ -102,15 +103,15 @@
       - [Requesting Permissions](request-permissions.md)
       - [Redirection Rules](redirection-rules.md)
     - ServiceAbility Component Development
-      - [ServiceAbility Component Overview](serviceability-overview.md)
-      - [ServiceAbility Component Configuration](serviceability-configuration.md)
+      - [ServiceAbility Overview](serviceability-overview.md)
+      - [ServiceAbility Configuration](serviceability-configuration.md)
       - [ServiceAbility Lifecycle](serviceability-lifecycle.md)
       - [Creating a ServiceAbility](create-serviceability.md)
       - [Starting a ServiceAbility](start-serviceability.md)
       - [Connecting to a ServiceAbility](connect-serviceability.md)
     - DataAbility Component Development
-      - [DataAbility Component Overview](dataability-overview.md)
-      - [DataAbility Component Configuration](dataability-configuration.md)
+      - [DataAbility Overview](dataability-overview.md)
+      - [DataAbility Configuration](dataability-configuration.md)
       - [DataAbility Lifecycle](dataability-lifecycle.md)
       - [Creating a DataAbility](create-dataability.md)
       - [Starting a DataAbility](start-dataability.md)
@@ -119,7 +120,7 @@
     - [Widget Development](widget-development-fa.md)
     - [Context](application-context-fa.md)
     - [Want](want-fa.md)
-    - [Component Startup Rules](component-startup-rules-fa.md)
+    - [Component Startup Rules (FA Model)](component-startup-rules-fa.md)
   - Process Model
     - [Process Model Overview](process-model-fa.md)
     - [Common Events](common-event-fa.md)

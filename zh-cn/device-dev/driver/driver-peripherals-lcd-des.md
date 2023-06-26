@@ -6,7 +6,7 @@
 
 LCD（Liquid Crystal Display）驱动编程，通过对显示器上电、初始化显示器驱动IC（Integrated Circuit）内部寄存器等操作，使其可以正常工作。
 
-基于HDF（Hardware Driver Foundation）[驱动框架](../driver/driver-hdf-overview.md)构建的Display驱动模型作用如下：
+基于HDF（Hardware Driver Foundation）[驱动框架](driver-hdf-manage.md)构建的Display驱动模型作用如下：
 
 - 为LCD器件驱动开发提供了基础驱动框架，提升驱动开发效率。
 

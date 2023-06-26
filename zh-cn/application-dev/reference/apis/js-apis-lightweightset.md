@@ -588,14 +588,14 @@ forEach(callbackFn: (value?: T, key?: T, set?: LightWeightSet&lt;T&gt;) => void,
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | callbackFn | function | 是 | 回调函数。 |
-| thisArg | Object | 否 | callbackfn被调用时用作this值。 |
+| thisArg | Object | 否 | callbackfn被调用时用作this值，默认值为当前实例对象。 |
 
 callbackfn的参数说明：
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| value | T | 否 | 当前遍历到的元素。 |
-| key | T | 否 | 当前遍历到的元素（和value相同）。 |
-| set | LightWeightSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象。 |
+| value | T | 否 | 当前遍历到的元素键值对的值，默认值为首个键值对的值。 |
+| key | T | 否 | 当前遍历到的元素键值对的键（和value相同），默认值为首个键值对的键。 |
+| set | LightWeightSet&lt;T&gt; | 否 | 当前调用forEach方法的实例对象，默认值为当前实例对象。 |
 
 **错误码：**
 

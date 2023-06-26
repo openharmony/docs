@@ -2160,9 +2160,11 @@ import formHost from '@ohos.app.form.formHost';
 
 let formId = '12400633174999288';
 try {
-  formHost.acquireFormData(formId, (error) => {
+  formHost.acquireFormData(formId, (error, data) => {
     if (error) {
       console.error(`error, code: ${error.code}, message: ${error.message}`);
+    } else {
+      console.log('formHost acquireFormData, data: ${JSON.stringify(data)}');
     }
   });
 } catch(error) {
@@ -2190,7 +2192,7 @@ acquireFormData(formId: string): Promise<{[key: string]: Object}>;
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;void&gt; | 无返回结果的Promise对象。 |
+| Promise<{[key: string]: Object}>| 以Promise方式返回接口运行结果及分享数据。 |
 
 **错误码：**
 
@@ -2210,8 +2212,8 @@ import formHost from '@ohos.app.form.formHost';
 
 let formId = '12400633174999288';
 try {
-  formHost.acquireFormData(formId).then(() => {
-    console.log('formHost acquireFormData success');
+  formHost.acquireFormData(formId).then((data) => {
+    console.log('formHost acquireFormData success' + data);
   }).catch((error) => {
     console.error(`error, code: ${error.code}, message: ${error.message}`);
   });

@@ -1088,7 +1088,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyPairSpec; // asyKeyPairSpec为全量密钥参数，此处省略生成过程
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
-asyKeyGenerator.generateKeyPair((err, keyPair) => {
+asyKeyGeneratorBySpec.generateKeyPair((err, keyPair) => {
   if (err) {
     console.error("generateKeyPair: error.");
     return;
@@ -1126,7 +1126,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyPairSpec; // asyKeyPairSpec为全量密钥参数，此处省略生成过程
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
-let keyGenPromise = asyKeyGenerator.generateKeyPair();
+let keyGenPromise = asyKeyGeneratorBySpec.generateKeyPair();
 keyGenPromise.then( keyPair => {
   console.info("generateKeyPair success.");
 }).catch(error => {
@@ -1163,7 +1163,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyPairSpec; // asyKeyPairSpec为全量密钥参数
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
-asyKeyGenerator.generatePriKey((err, prikey) => {
+asyKeyGeneratorBySpec.generatePriKey((err, prikey) => {
   if (err) {
     console.error("generatePriKey: error.");
     return;
@@ -1201,7 +1201,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyPairSpec; // asyKeyPairSpec为全量密钥参数
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
-let keyGenPromise = asyKeyGenerator.generatePriKey();
+let keyGenPromise = asyKeyGeneratorBySpec.generatePriKey();
 keyGenPromise.then( priKey => {
   console.info("generatePriKey success.");
 }).catch(error => {
@@ -1238,7 +1238,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyPairSpec; // asyKeyPairSpec为全量密钥参数，此处省略生成过程
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
-asyKeyGenerator.generateKeyPair((err, pubKey) => {
+asyKeyGeneratorBySpec.generateKeyPair((err, pubKey) => {
   if (err) {
     console.error("generatePubKey: error.");
     return;
@@ -1276,7 +1276,7 @@ import cryptoFramework from "@ohos.security.cryptoFramework"
 
 let asyKeyPairSpec; // asyKeyPairSpec为全量密钥参数，此处省略生成过程
 let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
-let keyGenPromise = asyKeyGenerator.generatePubKey();
+let keyGenPromise = asyKeyGeneratorBySpec.generatePubKey();
 keyGenPromise.then( pubKey => {
   console.info("generatePubKey success.");
 }).catch(error => {
@@ -3584,7 +3584,7 @@ try {
 }
 
 try {
-  let randData = random.generateRandomSync(12);
+  let randData = rand.generateRandomSync(12);
   if (randData != null) {
     console.info("[Sync]: rand result: " + randData.data);
   } else {

@@ -1,10 +1,12 @@
-# Application Privilege Configuration Guide
+# Application Privilege Configuration
 
 Application privileges are high-level capabilities of an application, for example, restricting an application from being uninstalled or restricting application data from being deleted.
 
 OpenHarmony provides both general and device-specific application privileges. The latter can be configured by device vendors for applications on different devices. The privileges configured in the **install_list_capability.json** file take precedence over the privileges configured in the signature certificate.
 
-> **NOTE**<br>To avoid user dissatisfaction or even infringement, do not abuse application privileges.
+> **NOTE**
+> - To avoid user dissatisfaction or even infringement, do not abuse application privileges.
+> - The method of changing the application's APL in its profile applies only to the applications or services in debug mode. For a commercial application, apply for a release certificate and profile in the corresponding application market.
 
 ## General Application Privileges
 
@@ -18,6 +20,8 @@ General application privileges are privileges available to applications on all t
 | AllowAppDesktopIconHide | Allows the application icon to be hidden from the home screen.|
 | AllowAbilityPriorityQueried | Allows an ability to configure and query the priority.   |
 | AllowAbilityExcludeFromMissions | Allows an ability to be hidden in the mission stack.|
+| AllowAppShareLibrary | Allows an application to provide the [inter-application HSP capability](../../application-dev/quick-start/cross-app-hsp.md) for other applications.|
+| AllowMissionNotCleared | Allows an ability not to be cleared from the task list.|
 
 ### How to Configure
 
@@ -63,7 +67,8 @@ In addition to general application privileges, device vendors can define device-
 | allowAbilityExcludeFromMissions | bool | false| Allows an ability to be hidden in the mission stack.|
 | allowAppUsePrivilegeExtension | bool | false|Allows an application to use ServiceExtension and DataExtension abilities.|
 | allowFormVisibleNotify | bool | false| Allows a widget to be visible on the home screen.|
-| allowAppShareLibrary | bool | false | Allows an application to provide the [inter-application HSP capability](../../application-dev/quick-start/cross-app-hsp.md) for other applications.
+| allowAppShareLibrary | bool | false | Allows an application to provide the [inter-application HSP capability](../../application-dev/quick-start/cross-app-hsp.md) for other applications.|
+| allowMissionNotCleared | bool | false | Allows an ability not to be cleared from the task list.|
 
 ### How to Configure
 
@@ -92,6 +97,7 @@ Configure the required privileges in the [configuration file](https://gitee.com/
             "allowAppUsePrivilegeExtension": true, // Allow the application to use ServiceExtension and DataExtension abilities.
             "allowFormVisibleNotify": true // Allow a widget to be visible on the home screen.
             "allowAppShareLibrary": true // Allow the application to provide the inter-application HSP capability.
+            "allowMissionNotCleared": true // Allow an ability not to be cleared from the task list.
         },
 }
 ```
@@ -131,8 +137,9 @@ Configure the required privileges in the [configuration file](https://gitee.com/
 
 3. Use keytool to run the following command to obtain the certificate fingerprint.
 
-   > **NOTE**<br>You can obtain keytool from the **\tools\openjdk\bin** directory after DevEco Studio is installed.
-
+   > **NOTE**
+   >
+   > You can obtain keytool from the **\tools\openjdk\bin** directory after DevEco Studio is installed.
    ```shell
    keytool -printcert -file profile.cer
    

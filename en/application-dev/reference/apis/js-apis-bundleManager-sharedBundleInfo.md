@@ -10,6 +10,8 @@ The **SharedBundleInfo** module provides information about the shared bundle. Th
 
 Defines the shared bundle information.
 
+**System API**: This is a system API.
+
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 
 | Name            | Type                          | Readable| Writable| Description                  |
@@ -21,6 +23,8 @@ Defines the shared bundle information.
 ## SharedModuleInfo
 
 Defines the shared module information.
+
+**System API**: This is a system API.
 
 **System capability**: SystemCapability.BundleManager.BundleFramework.Core
 

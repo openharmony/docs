@@ -105,6 +105,7 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
 
   ```js
   let uploadTask;
+  let context;
   let uploadConfig = {
     url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
@@ -113,15 +114,19 @@ uploadFile(context: BaseContext, config: UploadConfig): Promise&lt;UploadTask&gt
     data: [{ name: "name123", value: "123" }],
   };
   try {
-    request.uploadFile(globalThis.abilityContext, uploadConfig).then((data) => {
+    request.uploadFile(context, uploadConfig).then((data) => {
       uploadTask = data;
     }).catch((err) => {
-        console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
+      console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
     });
   } catch (err) {
-    console.error('err.code : ' + err.code + ', err.message : ' + err.message);
+    console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
   }
   ```
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 
 ## request.uploadFile<sup>9+</sup>
@@ -154,6 +159,7 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
 
   ```js
   let uploadTask;
+  let context;
   let uploadConfig = {
     url: 'http://patch',
     header: { key1: "value1", key2: "value2" },
@@ -162,17 +168,21 @@ uploadFile(context: BaseContext, config: UploadConfig, callback: AsyncCallback&l
     data: [{ name: "name123", value: "123" }],
   };
   try {
-    request.uploadFile(globalThis.abilityContext, uploadConfig, (err, data) => {
+    request.uploadFile(context, uploadConfig, (err, data) => {
       if (err) {
-          console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
-          return;
+        console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
+        return;
       }
       uploadTask = data;
     });
   } catch (err) {
-    console.error('err.code : ' + err.code + ', err.message : ' + err.message);
+    console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
   }
   ```
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ## request.upload<sup>(deprecated)</sup>
 
@@ -212,9 +222,9 @@ upload(config: UploadConfig): Promise&lt;UploadTask&gt;
     data: [{ name: "name123", value: "123" }],
   };
   request.upload(uploadConfig).then((data) => {
-      uploadTask = data;
+    uploadTask = data;
   }).catch((err) => {
-      console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
   })
   ```
 
@@ -252,11 +262,11 @@ upload(config: UploadConfig, callback: AsyncCallback&lt;UploadTask&gt;): void
     data: [{ name: "name123", value: "123" }],
   };
   request.upload(uploadConfig, (err, data) => {
-      if (err) {
-          console.error('Failed to request the upload. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      uploadTask = data;
+    if (err) {
+      console.error(`Failed to request the upload. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    uploadTask = data;
   });
   ```
 
@@ -294,7 +304,7 @@ on(type: 'progress', callback:(uploadedSize: number, totalSize: number) =&gt; vo
 
   ```js
   let upProgressCallback = (uploadedSize, totalSize) => {
-      console.info("upload totalSize:" + totalSize + "  uploadedSize:" + uploadedSize);
+    console.info("upload totalSize:" + totalSize + "  uploadedSize:" + uploadedSize);
   };
   uploadTask.on('progress', upProgressCallback);
   ```
@@ -327,7 +337,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
 
   ```js
   let headerCallback = (headers) => {
-      console.info("upOnHeader headers:" + JSON.stringify(headers));
+    console.info("upOnHeader headers:" + JSON.stringify(headers));
   };
   uploadTask.on('headerReceive', headerCallback);
   ```
@@ -361,7 +371,7 @@ on(type: 'headerReceive', callback:  (header: object) =&gt; void): void
   ```js
   let upCompleteCallback = (taskStates) => {
     for (let i = 0; i < taskStates.length; i++ ) {
-        console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
+      console.info("upOnComplete taskState:" + JSON.stringify(taskStates[i]));
     }
   };
   uploadTask.on('complete', upCompleteCallback);
@@ -396,7 +406,7 @@ off(type:  'progress',  callback?: (uploadedSize: number, totalSize: number) =&g
 
   ```js
   let upProgressCallback = (uploadedSize, totalSize) => {
-      console.info('Upload delete progress notification.' + 'totalSize:' + totalSize + 'uploadedSize:' + uploadedSize);
+    console.info('Upload delete progress notification.' + 'totalSize:' + totalSize + 'uploadedSize:' + uploadedSize);
   };
   uploadTask.off('progress', upProgressCallback);
   ```
@@ -423,7 +433,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
 
   ```js
   let headerCallback = (header) => {
-      console.info(`Upload delete headerReceive notification. header: ${JSON.stringify(header)}`);
+    console.info(`Upload delete headerReceive notification. header: ${JSON.stringify(header)}`);
   };
   uploadTask.off('headerReceive', headerCallback);
   ```
@@ -451,7 +461,7 @@ off(type: 'headerReceive', callback?: (header: object) =&gt; void): void
   let upCompleteCallback = (taskStates) => {
     console.info('Upload delete complete notification.');
     for (let i = 0; i < taskStates.length; i++ ) {
-        console.info('taskState:' + JSON.stringify(taskStates[i]));
+      console.info('taskState:' + JSON.stringify(taskStates[i]));
     }
   };
   uploadTask.off('complete', upCompleteCallback);
@@ -484,13 +494,13 @@ delete(): Promise&lt;boolean&gt;
 
   ```js
   uploadTask.delete().then((result) => {
-      if (result) {
-          console.info('Upload task removed successfully. ');
-      } else {
-          console.error('Failed to remove the upload task. ');
-      }
+    if (result) {
+      console.info('Succeeded in deleting the upload task.');
+    } else {
+      console.error(`Failed to delete the upload task. Code: ${err.code}, message: ${err.message}`);
+    }
   }).catch((err) => {
-      console.error('Failed to remove the upload task. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to delete the upload task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -515,15 +525,15 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 
   ```js
   uploadTask.delete((err, result) => {
-      if (err) {
-          console.error('Failed to remove the upload task. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      if (result) {
-          console.info('Upload task removed successfully.');
-      } else {
-          console.error('Failed to remove the upload task.');
-      }
+    if (err) {
+      console.error(`Failed to delete the upload task. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    if (result) {
+      console.info('Succeeded in deleting the upload task.');
+    } else {
+      console.error(`Failed to delete the upload task. Code: ${err.code}, message: ${err.message}`);
+    }
   });
   ```
 
@@ -550,13 +560,13 @@ remove(): Promise&lt;boolean&gt;
 
   ```js
   uploadTask.remove().then((result) => {
-      if (result) {
-          console.info('Upload task removed successfully. ');
-      } else {
-          console.error('Failed to remove the upload task. ');
-      }
+    if (result) {
+      console.info('Succeeded in removing the upload task.');
+    } else {
+      console.error(`Failed to remove the upload task. Code: ${err.code}, message: ${err.message}`);
+    }
   }).catch((err) => {
-      console.error('Failed to remove the upload task. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to remove the upload task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -583,15 +593,15 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
   ```js
   uploadTask.remove((err, result) => {
-      if (err) {
-          console.error('Failed to remove the upload task. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      if (result) {
-          console.info('Upload task removed successfully.');
-      } else {
-          console.error('Failed to remove the upload task.');
-      }
+    if (err) {
+      console.error(`Failed to remove the upload task. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    if (result) {
+      console.info('Succeeded in removing the upload task.');
+    } else {
+      console.error(`Failed to remove the upload task. Code: ${err.code}, message: ${err.message}`);
+    }
   });
   ```
 
@@ -688,16 +698,21 @@ downloadFile(context: BaseContext, config: DownloadConfig): Promise&lt;DownloadT
 
   ```js
   let downloadTask;
+  let context;
   try {
-    request.downloadFile(globalThis.abilityContext, { url: 'https://xxxx/xxxx.hap' }).then((data) => {
-        downloadTask = data;
+    request.downloadFile(context, { url: 'https://xxxx/xxxx.hap' }).then((data) => {
+      downloadTask = data;
     }).catch((err) => {
-        console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
     })
   } catch (err) {
-    console.error('err.code : ' + err.code + ', err.message : ' + err.message);
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
   }
   ```
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 
 ## request.downloadFile<sup>9+</sup>
@@ -733,19 +748,24 @@ downloadFile(context: BaseContext, config: DownloadConfig, callback: AsyncCallba
 
   ```js
   let downloadTask;
+  let context;
   try {
-    request.downloadFile(globalThis.abilityContext, { url: 'https://xxxx/xxxxx.hap', 
+    request.downloadFile(context, { url: 'https://xxxx/xxxxx.hap', 
     filePath: 'xxx/xxxxx.hap'}, (err, data) => {
-        if (err) {
-            console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
-            return;
-        }
-        downloadTask = data;
+      if (err) {
+        console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      downloadTask = data;
     });
   } catch (err) {
-    console.error('err.code : ' + err.code + ', err.message : ' + err.message);
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
   }
   ```
+
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ## request.download<sup>(deprecated)</sup>
 
@@ -778,9 +798,9 @@ download(config: DownloadConfig): Promise&lt;DownloadTask&gt;
   ```js
   let downloadTask;
   request.download({ url: 'https://xxxx/xxxx.hap' }).then((data) => {
-      downloadTask = data;
+    downloadTask = data;
   }).catch((err) => {
-      console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
+    console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
   })
   ```
 
@@ -812,11 +832,11 @@ download(config: DownloadConfig, callback: AsyncCallback&lt;DownloadTask&gt;): v
   let downloadTask;
   request.download({ url: 'https://xxxx/xxxxx.hap', 
   filePath: 'xxx/xxxxx.hap'}, (err, data) => {
-      if (err) {
-          console.error('Failed to request the download. Cause: ' + JSON.stringify(err));
-          return;
-      }
-      downloadTask = data;
+    if (err) {
+      console.error(`Failed to request the download. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    downloadTask = data;
   });
   ```
 
@@ -853,7 +873,7 @@ on(type: 'progress', callback:(receivedSize: number, totalSize: number) =&gt; vo
 
   ```js
   let progresCallback = (receivedSize, totalSize) => {
-      console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
+    console.info("download receivedSize:" + receivedSize + " totalSize:" + totalSize);
   };
   downloadTask.on('progress', progresCallback);
   ```
@@ -880,7 +900,7 @@ off(type: 'progress', callback?: (receivedSize: number, totalSize: number) =&gt;
 
   ```js
   let progresCallback = (receivedSize, totalSize) => {
-      console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
+    console.info('Download delete progress notification.' + 'receivedSize:' + receivedSize + 'totalSize:' + totalSize);
   };
   downloadTask.off('progress', progresCallback);
   ```
@@ -907,17 +927,17 @@ on(type: 'complete'|'pause'|'remove', callback:() =&gt; void): void
 
   ```js
   let completeCallback = () => {
-      console.info('Download task completed.');
+    console.info('Download task completed.');
   };
   downloadTask.on('complete', completeCallback);
 
   let pauseCallback = () => {
-      console.info('Download task pause.');
+    console.info('Download task pause.');
   };
   downloadTask.on('pause', pauseCallback);
 
   let removeCallback = () => {
-      console.info('Download task remove.');
+    console.info('Download task remove.');
   };
   downloadTask.on('remove', removeCallback);
   ```
@@ -944,17 +964,17 @@ off(type: 'complete'|'pause'|'remove', callback?:() =&gt; void): void
 
   ```js
   let completeCallback = () => {
-      console.info('Download delete complete notification.');
+    console.info('Download delete complete notification.');
   };
   downloadTask.off('complete', completeCallback);
 
   let pauseCallback = () => {
-      console.info('Download delete pause notification.');
+    console.info('Download delete pause notification.');
   };
   downloadTask.off('pause', pauseCallback);
 
   let removeCallback = () => {
-      console.info('Download delete remove notification.');
+    console.info('Download delete remove notification.');
   };
   downloadTask.off('remove', removeCallback);
   ```
@@ -987,7 +1007,7 @@ on(type: 'fail', callback: (err: number) =&gt; void): void
 
   ```js
   let failCallback = (err) => {
-      console.info('Download task failed. Cause:' + err);
+    console.error(`Failed to download the task. Code: ${err.code}, message: ${err.message}`);
   };
   downloadTask.on('fail', failCallback);
   ```
@@ -1014,7 +1034,7 @@ off(type: 'fail', callback?: (err: number) =&gt; void): void
 
   ```js
   let failCallback = (err) => {
-      console.info(`Download delete fail notification. err: ${err.message}`);
+    console.error(`Failed to download the task. Code: ${err.code}, message: ${err.message}`);
   };
   downloadTask.off('fail', failCallback);
   ```
@@ -1039,13 +1059,13 @@ delete(): Promise&lt;boolean&gt;
 
   ```js
   downloadTask.delete().then((result) => {
-      if (result) {
-          console.info('Download task removed.');
-      } else {
-          console.error('Failed to remove the download task.');
-      }
+  if (result) {
+    console.info('Succeeded in removing the download task.');
+  } else {
+    console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
+  }
   }).catch ((err) => {
-      console.error('Failed to remove the download task.');
+    console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1070,15 +1090,15 @@ delete(callback: AsyncCallback&lt;boolean&gt;): void
 
   ```js
   downloadTask.delete((err, result)=>{
-      if(err) {
-          console.error('Failed to remove the download task.');
-          return;
-      } 
-      if (result) {
-          console.info('Download task removed.');
-      } else {
-          console.error('Failed to remove the download task.');
-      } 
+    if(err) {
+      console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
+      return;
+    } 
+    if (result) {
+      console.info('Succeeded in removing the download task.');
+    } else {
+      console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
+    } 
   });
   ```
 
@@ -1103,9 +1123,9 @@ getTaskInfo(): Promise&lt;DownloadInfo&gt;
 
   ```js
   downloadTask.getTaskInfo().then((downloadInfo) => {    
-      console.info('Download task queried. Data:' + JSON.stringify(downloadInfo))
+    console.info('Succeeded in querying the download task')
   }) .catch((err) => {
-      console.error('Failed to query the download task. Cause:' + err)
+    console.error(`Failed to query the download task. Code: ${err.code}, message: ${err.message}`)
   });
   ```
 
@@ -1130,11 +1150,11 @@ getTaskInfo(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
   ```js
   downloadTask.getTaskInfo((err, downloadInfo)=>{
-      if(err) {
-          console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
-      } else {
-          console.info('download query success. data:'+ JSON.stringify(downloadInfo));
-      }
+    if(err) {
+      console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
+    } else {
+      console.info('Succeeded in querying the download mimeType');
+    }
   });
   ```
 
@@ -1159,9 +1179,9 @@ getTaskMimeType(): Promise&lt;string&gt;
 
   ```js
   downloadTask.getTaskMimeType().then((data) => {    
-      console.info('Download task queried. Data:' + JSON.stringify(data));
+    console.info('Succeeded in querying the download MimeType');
   }).catch((err) => {
-      console.error('Failed to query the download MimeType. Cause:' + JSON.stringify(err))
+    console.error(`Failed to query the download MimeType. Code: ${err.code}, message: ${err.message}`)
   });
   ```
 
@@ -1186,11 +1206,11 @@ getTaskMimeType(callback: AsyncCallback&lt;string&gt;): void;
 
   ```js
   downloadTask.getTaskMimeType((err, data)=>{
-      if(err) {
-          console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
-      } else {
-          console.info('Download task queried. data:' + JSON.stringify(data));
-      }
+    if(err) {
+      console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
+    } else {
+      console.info('Succeeded in querying the download mimeType');
+    }
   });
   ```
 
@@ -1215,13 +1235,13 @@ suspend(): Promise&lt;boolean&gt;
 
   ```js
   downloadTask.suspend().then((result) => {    
-      if (result) {
-           console.info('Download task paused. ');
-      } else {
-          console.error('Failed to pause the download task. Cause:' + JSON.stringify(result));
-      }
+    if (result) {
+      console.info('Succeeded in pausing the download task.');
+    } else {
+      console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
+    }
   }).catch((err) => {
-      console.error('Failed to pause the download task. Cause:' + JSON.stringify(err));
+    console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1246,15 +1266,15 @@ suspend(callback: AsyncCallback&lt;boolean&gt;): void
 
   ```js
   downloadTask.suspend((err, result)=>{
-      if(err) {
-          console.error('Failed to pause the download task. Cause:' + JSON.stringify(err));
-          return;
-      }
-      if (result) {
-           console.info('Download task paused. ');
-      } else {
-          console.error('Failed to pause the download task. Cause:' + JSON.stringify(result));
-      }
+    if(err) {
+      console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    if (result) {
+      console.info('Succeeded in pausing the download task.');
+    } else {
+      console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
+    }
   });
   ```
 
@@ -1279,14 +1299,14 @@ restore(): Promise&lt;boolean&gt;
 
   ```js
   downloadTask.restore().then((result) => {
-      if (result) {
-          console.info('Download task resumed.')
-      } else {
-          console.error('Failed to resume the download task. ');
-      }
-      console.info('Download task resumed.')
+    if (result) {
+      console.info('Succeeded in resuming the download task.')
+    } else {
+      console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
+    }
+    console.info('Succeeded in resuming the download task.')
   }).catch((err) => {
-      console.error('Failed to resume the download task. Cause:' + err);
+    console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1311,18 +1331,17 @@ restore(callback: AsyncCallback&lt;boolean&gt;): void
 
   ```js
   downloadTask.restore((err, result)=>{
-      if (err) {
-          console.error('Failed to resume the download task. Cause:' + err);
-          return;
-      } 
-      if (result) {
-          console.info('Download task resumed.');
-      } else {
-          console.error('Failed to resume the download task.');
-      }
+    if (err) {
+      console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
+      return;
+    } 
+    if (result) {
+      console.info('Succeeded in resuming the download task.');
+    } else {
+      console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
+    }
   });
   ```
-
 
 
 ### remove<sup>(deprecated)</sup>
@@ -1347,13 +1366,13 @@ remove(): Promise&lt;boolean&gt;
 
   ```js
   downloadTask.remove().then((result) => {
-      if (result) {
-          console.info('Download task removed.');
-      } else {
-          console.error('Failed to remove the download task.');
-      }
+    if (result) {
+      console.info('Succeeded in removing the download task.');
+    } else {
+      console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
+    }
   }).catch ((err) => {
-      console.error('Failed to remove the download task.');
+    console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1380,15 +1399,15 @@ remove(callback: AsyncCallback&lt;boolean&gt;): void
 
   ```js
   downloadTask.remove((err, result)=>{
-      if(err) {
-          console.error('Failed to remove the download task.');
-          return;
-      } 
-      if (result) {
-          console.info('Download task removed.');
-      } else {
-          console.error('Failed to remove the download task.');
-      } 
+    if(err) {
+      console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
+      return;
+    } 
+    if (result) {
+      console.info('Succeeded in removing the download task.');
+    } else {
+      console.error(`Failed to remove the download task. Code: ${err.code}, message: ${err.message}`);
+    } 
   });
   ```
 
@@ -1415,9 +1434,9 @@ query(): Promise&lt;DownloadInfo&gt;
 
   ```js
   downloadTask.query().then((downloadInfo) => {    
-      console.info('Download task queried. Data:' + JSON.stringify(downloadInfo))
+    console.info('Succeeded in querying the download task.')
   }) .catch((err) => {
-      console.error('Failed to query the download task. Cause:' + err)
+    console.error(`Failed to query the download task. Code: ${err.code}, message: ${err.message}`)
   });
   ```
 
@@ -1444,11 +1463,11 @@ query(callback: AsyncCallback&lt;DownloadInfo&gt;): void
 
   ```js
   downloadTask.query((err, downloadInfo)=>{
-      if(err) {
-          console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
-      } else {
-          console.info('download query success. data:'+ JSON.stringify(downloadInfo));
-      }
+    if(err) {
+      console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
+    } else {
+      console.info('Succeeded in querying the download task.');
+    }
   });
   ```
 
@@ -1475,9 +1494,9 @@ queryMimeType(): Promise&lt;string&gt;
 
   ```js
   downloadTask.queryMimeType().then((data) => {    
-      console.info('Download task queried. Data:' + JSON.stringify(data));
+    console.info('Succeededto in querying the download MimeType.');
   }).catch((err) => {
-      console.error('Failed to query the download MimeType. Cause:' + JSON.stringify(err))
+    console.error(`Failed to query the download MimeType. Code: ${err.code}, message: ${err.message}`)
   });
   ```
 
@@ -1504,11 +1523,11 @@ queryMimeType(callback: AsyncCallback&lt;string&gt;): void;
 
   ```js
   downloadTask.queryMimeType((err, data)=>{
-      if(err) {
-          console.error('Failed to query the download mimeType. Cause:' + JSON.stringify(err));
-      } else {
-          console.info('Download task queried. data:' + JSON.stringify(data));
-      }
+    if(err) {
+      console.error(`Failed to query the download mimeType. Code: ${err.code}, message: ${err.message}`);
+    } else {
+      console.info('Succeeded in querying the download mimeType.');
+    }
   });
   ```
 
@@ -1535,13 +1554,13 @@ pause(): Promise&lt;void&gt;
 
   ```js
   downloadTask.pause().then((result) => {    
-      if (result) {
-           console.info('Download task paused. ');
-      } else {
-          console.error('Failed to pause the download task. Cause:' + JSON.stringify(result));
-      }
+    if (result) {
+      console.info('Succeeded in pausing the download task.');
+    } else {
+      console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
+    }
   }).catch((err) => {
-      console.error('Failed to pause the download task. Cause:' + JSON.stringify(err));
+    console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1568,15 +1587,15 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   downloadTask.pause((err, result)=>{
-      if(err) {
-          console.error('Failed to pause the download task. Cause:' + JSON.stringify(err));
-          return;
-      }
-      if (result) {
-           console.info('Download task paused. ');
-      } else {
-          console.error('Failed to pause the download task. Cause:' + JSON.stringify(result));
-      }
+    if(err) {
+      console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    if (result) {
+      console.info('Succeeded in pausing the download task.');
+    } else {
+      console.error(`Failed to pause the download task. Code: ${err.code}, message: ${err.message}`);
+    }
   });
   ```
 
@@ -1603,14 +1622,14 @@ resume(): Promise&lt;void&gt;
 
   ```js
   downloadTask.resume().then((result) => {
-      if (result) {
-          console.info('Download task resumed.')
-      } else {
-          console.error('Failed to resume the download task. ');
-      }
-      console.info('Download task resumed.')
+    if (result) {
+      console.info('Succeeded in resuming the download task.')
+    } else {
+      console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
+    }
+    console.info('Succeeded in resuming the download task.')
   }).catch((err) => {
-      console.error('Failed to resume the download task. Cause:' + err);
+    console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -1637,15 +1656,15 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   downloadTask.resume((err, result)=>{
-      if (err) {
-          console.error('Failed to resume the download task. Cause:' + err);
-          return;
-      } 
-      if (result) {
-          console.info('Download task resumed.');
-      } else {
-          console.error('Failed to resume the download task.');
-      }
+    if (err) {
+      console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    if (result) {
+      console.info('Succeeded in resuming the download task.');
+    } else {
+      console.error(`Failed to resume the download task. Code: ${err.code}, message: ${err.message}`);
+    }
   });
   ```
 
@@ -1895,6 +1914,7 @@ on(event: "progress" | "completed" | "failed", callback: (progress: Progress) =&
 **示例：**
 
   ```js
+  let context;
   let attachments = [{
                        name: "taskOnTest",
                        value: {
@@ -1928,16 +1948,19 @@ on(event: "progress" | "completed" | "failed", callback: (progress: Progress) =&
   let createOnCallback = (progress) => {
     console.info('upload task completed.');
   };
-  request.agent.create(globalThis.abilityContext, conf).then((task)=> {
+  request.agent.create(context, conf).then((task)=> {
     task.on('progress', createOnCallback);
     task.on('completed', createOnCallback);
     task.on('failed', createOnCallback);
-    console.info(`create a upload task successfully. result: ${task.tid}`);
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
   }).catch((err) => {
-    console.error(`Failed to create a upload task, because: ${JSON.stringify(err)}`);
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ### off('progress'|'completed'|'failed')<sup>10+</sup>
 
@@ -1951,7 +1974,7 @@ off(event: "progress" | "completed" | "failed", callback?: (progress: Progress) 
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | evt | string | 是 | 订阅的事件类型。<br>- 取值为'progress'，表示任务进度；<br/>- 取值为'completed'，表示任务已完成；<br/>- 取值为'failed'，表示任务失败。 |
+  | event | string | 是 | 订阅的事件类型。<br>- 取值为'progress'，表示任务进度；<br/>- 取值为'completed'，表示任务已完成；<br/>- 取值为'failed'，表示任务失败。 |
   | callback | function | 否 | 发生相关的事件时触发该回调方法，返回任务进度的数据结构|
 
 **错误码：**
@@ -1965,6 +1988,7 @@ off(event: "progress" | "completed" | "failed", callback?: (progress: Progress) 
 **示例：**
 
   ```js
+  let context;
   let attachments = [{
                        name: "taskOffTest",
                        value: {
@@ -1998,19 +2022,22 @@ off(event: "progress" | "completed" | "failed", callback?: (progress: Progress) 
   let createOffCallback = (progress) => {
     console.info('upload task completed.');
   };
-  request.agent.create(globalThis.abilityContext, conf).then((task)=> {
+  request.agent.create(context, conf).then((task)=> {
     task.on('progress', createOffCallback);
     task.on('completed', createOffCallback);
     task.on('failed', createOffCallback);
     task.off('progress', createOffCallback);
     task.off('completed', createOffCallback);
     task.off('failed', createOffCallback);
-    console.info(`create a upload task successfully. result: ${task.tid}`);
+    console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
   }).catch((err) => {
-    console.error(`Failed to create a upload task, because: ${JSON.stringify(err)}`);
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ### start<sup>10+</sup>
 
@@ -2040,6 +2067,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
+  let context;
   let conf = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
@@ -2062,20 +2090,23 @@ start(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(globalThis.abilityContext, conf).then((task) => {
+  request.agent.create(context, conf).then((task) => {
     task.start((err) => {
       if (err) {
-        console.error(`Failed to start the download task, because: ${JSON.stringify(err)}`);
+        console.error(`Failed to start the download task, Code: ${err.code}, message: ${err.message}`);
         return;
       }
-      console.info(`start a download task successfully. `);
-    })
-    console.info(`create a download task successfully. result: ${task.tid}`);
+      console.info(`Succeeded in starting a download task.`);
+    });
+    console.info(`Succeeded in creating a download task. result: ${task.tid}`);
   }).catch((err) => {
-    console.error(`Failed to create a download task, because: ${JSON.stringify(err)}`);
+    console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ### start<sup>10+</sup>
 
@@ -2105,6 +2136,7 @@ start(): Promise&lt;void&gt;
 **示例：**
 
   ```js
+  let context;
   let conf = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
@@ -2127,18 +2159,21 @@ start(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(globalThis.abilityContext, conf).then((task) => {
+  request.agent.create(context, conf).then((task) => {
     task.start().then(() => {
-      console.info(`start a download task successfully. `);
+      console.info(`Succeeded in starting a download task.`);
     }).catch((err) => {
-      console.error(`Failed to start the download task, because: ${JSON.stringify(err)}`);
+      console.error(`Failed to start the download task, Code: ${err.code}, message: ${err.message}`);
     });
-    console.info(`create a download task successfully. result: ${task.tid}`);
+    console.info(`Succeeded in creating a download task. result: ${task.tid}`);
   }).catch((err) => {
-    console.error(`Failed to create a download task, because: ${JSON.stringify(err)}`);
+    console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ### pause<sup>10+</sup>
 
@@ -2167,6 +2202,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
+  let context;
   let conf = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
@@ -2189,17 +2225,17 @@ pause(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(globalThis.abilityContext, conf).then((task) => {
+  request.agent.create(context, conf).then((task) => {
     task.pause((err) => {
       if (err) {
-        console.error(`Failed to pause the download task, because: ${JSON.stringify(err)}`);
+        console.error(`Failed to pause the download task, Code: ${err.code}, message: ${err.message}`);
         return;
       }
-      console.info(`pause a download task successfully. `);
-    })
-    console.info(`create a download task successfully. result: ${task.tid}`);
+      console.info(`Succeeded in pausing a download task. `);
+    });
+    console.info(`Succeeded in creating a download task. result: ${task.tid}`);
   }).catch((err) => {
-    console.error(`Failed to create a download task, because: ${JSON.stringify(err)}`);
+    console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2231,6 +2267,7 @@ pause(): Promise&lt;void&gt;
 **示例：**
 
   ```js
+  let context;
   let conf = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
@@ -2253,15 +2290,15 @@ pause(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(globalThis.abilityContext, conf).then((task) => {
+  request.agent.create(context, conf).then((task) => {
     task.pause().then(() => {
-      console.info(`pause a upload task successfully. `);
+      console.info(`Succeeded in pausing a download task. `);
     }).catch((err) => {
-      console.error(`Failed to pause the upload task, because: ${JSON.stringify(err)}`);
+      console.error(`Failed to pause the upload task, Code: ${err.code}, message: ${err.message}`);
     });
-    console.info(`create a upload task successfully. result: ${task.tid}`);
+    console.info(`Succeeded in creating a download task. result: ${task.tid}`);
   }).catch((err) => {
-    console.error(`Failed to create a upload task, because: ${JSON.stringify(err)}`);
+    console.error(`Failed to create a upload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2295,6 +2332,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
+  let context;
   let conf = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
@@ -2317,15 +2355,17 @@ resume(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(globalThis.abilityContext, conf).then((task) => {
-    task.resume().then(() => {
-      console.info(`resume a download task successfully. `);
-    }).catch((err) => {
-      console.error(`Failed to resume the download task, because: ${JSON.stringify(err)}`);
+  request.agent.create(context, conf).then((task) => {
+    task.resume((err) => {
+      if (err) {
+        console.error(`Failed to resume the download task, Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`Succeeded in resuming a download task. `);
     });
-    console.info(`create a download task successfully. result: ${task.tid}`);
+    console.info(`Succeeded in creating a download task. result: ${task.tid}`);
   }).catch((err) => {
-    console.error(`Failed to create a download task, because: ${JSON.stringify(err)}`);
+    console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2359,6 +2399,7 @@ resume(): Promise&lt;void&gt;
 **示例：**
 
   ```js
+  let context;
   let conf = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
@@ -2381,17 +2422,15 @@ resume(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(globalThis.abilityContext, conf).then((task) => {
-    task.resume((err) => {
-      if (err) {
-        console.error(`Failed to resume the download task, because: ${JSON.stringify(err)}`);
-        return;
-      }
-      console.info(`resume a download task successfully. `);
-    })
-    console.info(`create a download task successfully. result: ${task.tid}`);
+  request.agent.create(context, conf).then((task) => {
+    task.resume().then(() => {
+      console.info(`Succeeded in resuming a download task. `);
+    }).catch((err) => {
+      console.error(`Failed to resume the download task, Code: ${err.code}, message: ${err.message}`);
+    });
+    console.info(`Succeeded in creating a download task. result: ${task.tid}`);
   }).catch((err) => {
-    console.error(`Failed to create a download task, because: ${JSON.stringify(err)}`);
+    console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2408,7 +2447,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | function | 是 | 回调函数，重新启动任务成功，err为undefined，否则为错误对象 |
+  | callback | function | 是 | 回调函数，停止任务成功，err为undefined，否则为错误对象 |
 
 **错误码：**
 
@@ -2422,6 +2461,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 **示例：**
 
   ```js
+  let context;
   let conf = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
@@ -2444,15 +2484,17 @@ stop(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(globalThis.abilityContext, conf).then((task) => {
-    task.stop().then(() => {
-      console.info(`stop a download task successfully. `);
-    }).catch((err) => {
-      console.error(`Failed to stop the download task, because: ${JSON.stringify(err)}`);
+  request.agent.create(context, conf).then((task) => {
+    task.stop((err) => {
+      if (err) {
+        console.error(`Failed to stop the download task, Code: ${err.code}, message: ${err.message}`);
+        return;
+      }
+      console.info(`Succeeded in stopping a download task. `);
     });
-    console.info(`create a download task successfully. result: ${task.tid}`);
+    console.info(`Succeeded in creating a download task. result: ${task.tid}`);
   }).catch((err) => {
-    console.error(`Failed to create a download task, because: ${JSON.stringify(err)}`);
+    console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2483,6 +2525,7 @@ stop(): Promise&lt;void&gt;
 **示例：**
 
   ```js
+  let context;
   let conf = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
@@ -2505,17 +2548,15 @@ stop(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(globalThis.abilityContext, conf).then((task) => {
-    task.stop((err) => {
-      if (err) {
-        console.error(`Failed to stop the download task, because: ${JSON.stringify(err)}`);
-        return;
-      }
-      console.info(`stop a download task successfully. `);
-    })
-    console.info(`create a download task successfully. result: ${task.tid}`);
+  request.agent.create(context, conf).then((task) => {
+    task.stop().then(() => {
+      console.info(`Succeeded in stopping a download task. `);
+    }).catch((err) => {
+      console.error(`Failed to stop the download task, Code: ${err.code}, message: ${err.message}`);
+    });
+    console.info(`Succeeded in creating a download task. result: ${task.tid}`);
   }).catch((err) => {
-    console.error(`Failed to create a download task, because: ${JSON.stringify(err)}`);
+    console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
@@ -2552,6 +2593,7 @@ create(context: BaseContext, conf: Conf, callback: AsyncCallback&lt;Task&gt;): v
 **示例：**
 
   ```js
+  let context;
   let attachments = [{
                        name: "reeateTest",
                        value: {
@@ -2582,15 +2624,18 @@ create(context: BaseContext, conf: Conf, callback: AsyncCallback&lt;Task&gt;): v
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(globalThis.abilityContext, conf, (err, task) => {
+  request.agent.create(context, conf, (err, task) => {
     if (err) {
-      console.error(`Failed to create a upload task, because: ${err.message}`);
+      console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`create a upload task successfully. result: ${task.conf}`);
+    console.info(`Succeeded in creating a download task. result: ${task.conf}`);
   });
   ```
 
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ## request.agent.create<sup>10+</sup>
 
@@ -2630,6 +2675,7 @@ create(context: BaseContext, conf: Conf): Promise&lt;Task&gt;
 **示例：**
 
   ```js
+  let context;
   let attachments = [{
                        name: "reeateTest",
                        value: {
@@ -2660,13 +2706,16 @@ create(context: BaseContext, conf: Conf): Promise&lt;Task&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(globalThis.abilityContext, conf).then((task)=> {
-    console.info(`create a upload task successfully. result: ${task.conf}`);
+  request.agent.create(context, conf).then((task)=> {
+    console.info(`Succeeded in creating a download task. result: ${task.conf}`);
   }).catch((err) => {
-    console.error(`Failed to create a upload task, because: ${err.message}`);
+    console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
+> **说明：**
+>
+> 示例中context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ## request.agent.remove<sup>10+</sup>
 
@@ -2697,10 +2746,10 @@ remove(id: string, callback: AsyncCallback&lt;void&gt;): void
   ```js
   request.agent.remove("id", (err) => {
     if (err) {
-      console.error(`Failed to remove a upload task, because: ${JSON.stringify(err)}`);
+      console.error(`Failed to removing a download task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`remove a upload task successfully.`);
+    console.info(`Succeeded in creating a download task.`);
   });
   ```
 
@@ -2738,9 +2787,9 @@ remove(id: string): Promise&lt;void&gt;
 
   ```js
   request.agent.remove("id").then(() => {
-    console.info(`remove a upload task successfully. `);
+    console.info(`Succeeded in removing a download task. `);
   }).catch((err) => {
-    console.error(`Failed to remove a upload task, because: ${JSON.stringify(err)}`);
+    console.error(`Failed to remove a download task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 

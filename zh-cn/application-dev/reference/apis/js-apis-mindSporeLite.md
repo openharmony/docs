@@ -31,7 +31,7 @@ import mindSporeLite from '@ohos.ai.mindSporeLite';
 **示例：** 
 
 ```js
-let context = {} as any;
+let context: mindSporeLite.Context = {};
 context.target = ['cpu','nnrt'];
 ```
 
@@ -55,7 +55,8 @@ CPU后端设备选项。
 **示例：** 
 
 ```js
-let context = {} as any;
+let context: mindSporeLite.Context = {};
+context.cpu = {};
 context.target = ['cpu'];
 context.cpu.threadAffinityMode = 0;
 context.cpu.precisionMode = 'preferred_fp16';
@@ -123,9 +124,8 @@ loadModelFromFile(model: string, context: Context, callback: Callback&lt;Model&g
 **示例：** 
 
 ```js
-let context = {
-  'target': ['cpu']
-};
+let context: mindSporeLite.Context = {};
+let context = {'target': ['cpu']};
 let model_file = '/path/to/xxx.ms';
 mindSporeLite.loadModelFromFile(model_file, context, (result) => {
   const modelInputs = result.getInputs();
@@ -136,7 +136,7 @@ mindSporeLite.loadModelFromFile(model_file, context, (result) => {
 
 loadModelFromFile(model: string, context?: Context): Promise&lt;Model&gt;
 
-从完整路径加载输入模型用于推理。使用Promise异步回调。
+从完整路径加载输入模型用于推理。使用Promise异步函数。
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
@@ -182,11 +182,12 @@ loadModelFromBuffer(model: ArrayBuffer, callback: Callback&lt;Model&gt;): void
 ```js
 import resourceManager from '@ohos.resourceManager'
 @State modelName: string = 'xxx.ms';
-context.resourceManager.getRawFileContent(this.modelName).then((error,buffer) => {
+let syscontext = globalThis.context;
+syscontext.resourceManager.getRawFileContent(this.modelName).then((buffer) => {
   this.modelBuffer = buffer;
-}).catch(error) {
+}).catch(error => {
   console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
-}
+})
 mindSporeLite.loadModelFromBuffer(this.modelBuffer.buffer, (result) => {
   const modelInputs = result.getInputs();
   console.log(modelInputs[0].name);
@@ -213,12 +214,14 @@ loadModelFromBuffer(model: ArrayBuffer, context: Context, callback: Callback&lt;
 ```js
 import resourceManager from '@ohos.resourceManager'
 @State modelName: string = 'xxx.ms';
-context.resourceManager.getRawFileContent(this.modelName).then((error,buffer) => {
+let syscontext = globalThis.context;
+syscontext.resourceManager.getRawFileContent(this.modelName).then((error,buffer) => {
   this.modelBuffer = buffer;
-}).catch(error) {
+}).catch(error => {
   console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
-}
-let context = {'target': ['cpu']};
+})
+let context: mindSporeLite.Context = {};
+context = {'target': ['cpu']};
 mindSporeLite.loadModelFromBuffer(this.modelBuffer.buffer, context, (result) => {
   const modelInputs = result.getInputs();
   console.log(modelInputs[0].name);
@@ -228,7 +231,7 @@ mindSporeLite.loadModelFromBuffer(this.modelBuffer.buffer, context, (result) => 
 
 loadModelFromBuffer(model: ArrayBuffer, context?: Context): Promise&lt;Model&gt;
 
-从内存加载输入模型用于推理。使用Promise异步回调。
+从内存加载输入模型用于推理。使用Promise异步函数。
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
@@ -250,11 +253,12 @@ loadModelFromBuffer(model: ArrayBuffer, context?: Context): Promise&lt;Model&gt;
 ```js
 import resourceManager from '@ohos.resourceManager'
 @State modelName: string = 'xxx.ms';
-context.resourceManager.getRawFileContent(this.modelName).then((error,buffer) => {
+let syscontext = globalThis.context;
+syscontext.resourceManager.getRawFileContent(this.modelName).then((buffer) => {
   this.modelBuffer = buffer;
-}).catch(error) {
+}).catch(error => {
   console.error('Failed to get buffer, error code: ${error.code},message:${error.message}.');
-}
+})
 mindSporeLite.loadModelFromBuffer(model_file).then((result) => {
   const modelInputs = result.getInputs();
   console.log(modelInputs[0].name);
@@ -280,11 +284,10 @@ loadModelFromFd(model: number, callback: Callback&lt;Model&gt;): void
 ```js
 import fs from '@ohos.file.fs';
 let model_file = '/path/to/xxx.ms';
-fs.open(model_file, 0, async function(err, file) {
-  mindSporeLite.loadModelFromFd(file.fd, (result) => {
-  	const modelInputs = result.getInputs();
-  	console.log(modelInputs[0].name);
-  })
+let file = await fs.open(model_file, 0);
+mindSporeLite.loadModelFromFd(file.fd, (result) => {
+  const modelInputs = result.getInputs();
+  console.log(modelInputs[0].name);
 })
 ```
 ## mindSporeLite.loadModelFromFd
@@ -308,19 +311,19 @@ loadModelFromFd(model: number, context: Context, callback: Callback&lt;Model&gt;
 ```js
 import fs from '@ohos.file.fs';
 let model_file = '/path/to/xxx.ms';
-let context = {'target': ['cpu']};
-fs.open(model_file, 0, async function(err, file) {
-  mindSporeLite.loadModelFromFd(file.fd, context, (result) => {
-    const modelInputs = result.getInputs();
-    console.log(modelInputs[0].name);
-  })
+let context : mindSporeLite.Context = {};
+context = {'target': ['cpu']};
+let file = await fs.open(model_file, 0);
+mindSporeLite.loadModelFromFd(file.fd, context, (result) => {
+  const modelInputs = result.getInputs();
+  console.log(modelInputs[0].name);
 })
 ```
 ## mindSporeLite.loadModelFromFd
 
 loadModelFromFd(model: number, context?: Context): Promise&lt; Model&gt;
 
-从文件描述符加载输入模型用于推理。使用Promise异步回调。
+从文件描述符加载输入模型用于推理。使用Promise异步函数。
 
 **系统能力：** SystemCapability.AI.MindSporeLite
 
@@ -342,12 +345,11 @@ loadModelFromFd(model: number, context?: Context): Promise&lt; Model&gt;
 ```js
 import fs from '@ohos.file.fs';
 let model_file = '/path/to/xxx.ms';
-fs.open(model_file, 0, async function(err, file) {
-  let mindSporeLiteModel = await mindSporeLite.loadModelFromFd(file.fd);
-  mindSporeLite.loadModelFromFd(file.fd).then((result) => {
-    const modelInputs = result.getInputs();
-    console.log(modelInputs[0].name);
-  })
+let file = await fs.open(model_file, 0);
+let mindSporeLiteModel = await mindSporeLite.loadModelFromFd(file.fd);
+mindSporeLite.loadModelFromFd(file.fd).then((result) => {
+  const modelInputs = result.getInputs();
+  console.log(modelInputs[0].name);
 })
 ```
 ## Model
@@ -399,7 +401,8 @@ predict(inputs: MSTensor[], callback: Callback&lt;Model&gt;): void
 ```js
 import resourceManager from '@ohos.resourceManager'
 @State inputName: string = 'input_data.bin';
-context.resourceManager.getRawFileContent(this.inputName).then((error,buffer) => {
+let syscontext = globalThis.context;
+syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
   this.inputBuffer = buffer;
   let model_file = '/path/to/xxx.ms';
   let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
@@ -417,7 +420,7 @@ context.resourceManager.getRawFileContent(this.inputName).then((error,buffer) =>
 
 predict(inputs: MSTensor[]): Promise&lt;MSTensor[]&gt;
 
-执行推理模型。使用Promise异步回调。
+执行推理模型。使用Promise异步函数。
 
 **系统能力：**  SystemCapability.AI.MindSporeLite
 
@@ -438,7 +441,8 @@ predict(inputs: MSTensor[]): Promise&lt;MSTensor[]&gt;
 ```js
 import resourceManager from '@ohos.resourceManager'
 @State inputName: string = 'input_data.bin';
-context.resourceManager.getRawFileContent(this.inputName).then((error,buffer) => {
+let syscontext = globalThis.context;
+syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
   this.inputBuffer = buffer;
   let model_file = '/path/to/xxx.ms';
   let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
@@ -478,10 +482,11 @@ resize(inputs: MSTensor[], dims: Array&lt;Array&lt;number&gt;&gt;): boolean
 
 ```js
 let model_file = '/path/to/xxx.ms';
-let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
-const modelInputs = mindSporeLiteModel.getInputs();
-let new_dim = new Array([1,32,32,1]);
-mindSporeLiteModel.resize(modelInputs, new_dim);
+mindSporeLite.loadModelFromFile(model_file).then((mindSporeLiteModel) => {
+  const modelInputs = mindSporeLiteModel.getInputs();
+  let new_dim = new Array([1,32,32,1]);
+  mindSporeLiteModel.resize(modelInputs, new_dim);
+})
 ```
 
 ## MSTensor
@@ -507,14 +512,15 @@ mindSporeLiteModel.resize(modelInputs, new_dim);
 
 ```js
 let model_file = '/path/to/xxx.ms';
-let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
-const modelInputs = mindSporeLiteModel.getInputs();
-console.log(modelInputs[0].name);
-console.log(modelInputs[0].shape.toString());
-console.log(modelInputs[0].elementNum.toString());
-console.log(modelInputs[0].dtype.toString());
-console.log(modelInputs[0].format.toString());
-console.log(modelInputs[0].dataSize.toString());
+mindSporeLite.loadModelFromFile(model_file).then((mindSporeLiteModel) => {
+  const modelInputs = mindSporeLiteModel.getInputs();
+  console.log(modelInputs[0].name);
+  console.log(modelInputs[0].shape.toString());
+  console.log(modelInputs[0].elementNum.toString());
+  console.log(modelInputs[0].dtype.toString());
+  console.log(modelInputs[0].format.toString());
+  console.log(modelInputs[0].dataSize.toString());
+})
 ```
 
 ### getData
@@ -534,12 +540,21 @@ getData(): ArrayBuffer
 **示例：** 
 
 ```js
-//如果已经获取了输出张量
-result.predict(modelInputs, (result) => {
-  let output = new Float32Array(result[0].getData());
-  for (let i = 0; i < output.length; i++) {
-    console.log(output[i].toString());
-  }
+import resourceManager from '@ohos.resourceManager'
+@State inputName: string = 'input_data.bin';
+let syscontext = globalThis.context;
+syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
+  this.inputBuffer = buffer;
+  let model_file = '/path/to/xxx.ms';
+  let mindSporeLiteModel = await mindSporeLite.loadModelFromFile(model_file);
+  const modelInputs = mindSporeLiteModel.getInputs();
+  modelInputs[0].setData(this.inputBuffer.buffer);
+  result.predict(modelInputs).then((result) => {
+    let output = new Float32Array(result[0].getData());
+    for (let i = 0; i < output.length; i++) {
+      console.log(output[i].toString());
+    }
+  })
 })
 ```
 
@@ -562,7 +577,8 @@ setData(inputArray: ArrayBuffer): void
 ```js
 import resourceManager from '@ohos.resourceManager'
 @State inputName: string = 'input_data.bin';
-context.resourceManager.getRawFileContent(this.inputName).then((error,buffer) => {
+let syscontext = globalThis.context;
+syscontext.resourceManager.getRawFileContent(this.inputName).then((buffer) => {
   this.inputBuffer = buffer;
 })
 let model_file = '/path/to/xxx.ms';

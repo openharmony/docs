@@ -204,7 +204,7 @@ concat(list: Buffer[] | Uint8Array[], totalLength?: number): Buffer
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | list | Buffer[]&nbsp;\|&nbsp;Uint8Array[] | 是 | 实例数组。 |
-| totalLength | number | 否 | 需要复制的总字节长度。 |
+| totalLength | number | 否 | 需要复制的总字节长度，默认值为0。 |
 
 **返回值：**
 

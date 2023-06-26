@@ -1,7 +1,7 @@
 # DataAbilityHelper Switching
 
 
-  | API in the FA Model| Corresponding d.ts File in the Stage Model| Corresponding API in the Stage Model| 
+  | API in the FA Model| Corresponding .d.ts File in the Stage Model| Corresponding API in the Stage Model| 
 | -------- | -------- | -------- |
 | [openFile(uri: string, mode: string, callback: AsyncCallback&lt;number&gt;): void;](../reference/apis/js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperopenfile)<br>[openFile(uri: string, mode: string): Promise&lt;number&gt;;](../reference/apis/js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperopenfile-1) | \@ohos.data.fileAccess.d.ts | [openFile(uri: string, flags: OPENFLAGS) : Promise&lt;number&gt;;](../reference/apis/js-apis-fileAccess.md#fileaccesshelperopenfile)<br>[openFile(uri: string, flags: OPENFLAGS, callback: AsyncCallback&lt;number&gt;) : void;](../reference/apis/js-apis-fileAccess.md#fileaccesshelperopenfile) |
 | [on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void;](../reference/apis/js-apis-inner-ability-dataAbilityHelper.md#dataabilityhelperon) | \@ohos.data.dataShare.d.ts | [on(type: 'dataChange', uri: string, callback: AsyncCallback&lt;void&gt;): void;](../reference/apis/js-apis-data-dataShare.md#ondatachange) |

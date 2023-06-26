@@ -1,4 +1,4 @@
-# WLAN扩展接口
+# @ohos.wifiManagerExt (WLAN扩展接口)
 该模块主要提供WLAN扩展接口，供非通用类型产品使用。
 
 > **说明：**
@@ -26,7 +26,7 @@ enableHotspot(): void;
 
 以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
 
-| **类型** | **说明** |
+| **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2701000  | Operation failed.|
 
@@ -44,7 +44,7 @@ disableHotspot(): void;
 
 以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
 
-| **类型** | **说明** |
+| **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2701000  | Operation failed.|
 
@@ -68,11 +68,11 @@ getSupportedPowerMode(): Promise&lt;Array&lt;PowerMode&gt;&gt;
 
 以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
 
-| **类型** | **说明** |
+| **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2701000  | Operation failed.|
 
-## PowerMode
+## PowerMode<sup>9+</sup>
 
 表示功率模式的枚举。
 
@@ -105,7 +105,7 @@ getSupportedPowerMode(callback: AsyncCallback&lt;Array&lt;PowerMode&gt;&gt;): vo
 
 以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
 
-| **类型** | **说明** |
+| **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2701000  | Operation failed.|
 
@@ -129,7 +129,7 @@ getPowerMode(): Promise&lt;PowerMode&gt;
 
 以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
 
-| **类型** | **说明** |
+| **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2701000  | Operation failed.|
 
@@ -153,13 +153,13 @@ getPowerMode(callback: AsyncCallback&lt;PowerMode&gt;): void
 
 以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
 
-| **类型** | **说明** |
+| **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2701000  | Operation failed.|
 
 ## wifiext.setPowerMode<sup>9+</sup>
 
-setPowerMode(model: PowerMode) : boolean;
+setPowerMode(model: PowerMode) : void;
 
  设置功率模式。
 
@@ -177,6 +177,6 @@ setPowerMode(model: PowerMode) : boolean;
 
 以下错误码的详细介绍请参见[WIFI错误码](../errorcodes/errorcode-wifi.md)。
 
-| **类型** | **说明** |
+| **错误码ID** | **错误信息** |
   | -------- | -------- |
 | 2701000  | Operation failed.|

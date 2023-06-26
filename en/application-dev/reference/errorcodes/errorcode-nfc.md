@@ -47,3 +47,21 @@ An error occurs when the NFC service executes the tag service logic.
 3. Connect to the tag and then perform the read and write operations.
 4. Touch and read the card again.
 5. Exit the app and read the card again.
+
+## 3200101
+
+**Error Message**
+
+Connected NFC tag running state is abnormal in service.
+
+**Description**
+
+An error occurs when the service logic of the active NFC tag is executed.
+
+**Possible Causes**
+1. The parameter values of the active NFC tag does not match the API called.
+2. The active NFC tag chip does not respond within the specified time or returns an error state.
+
+**Solution**
+1. Check that the active NFC tag parameters match the API called.
+2. Touch and read the card again.

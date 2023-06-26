@@ -10,9 +10,10 @@ This document describes the general development process for MindSpore Lite model
 
 Before getting started, you need to understand the following basic concepts:
 
-**Tensor**: a special data structure that is similar to arrays and matrices. It is a basic data structure used in MindSpore Lite network operations.
+**Tensor**: a special data structure that is similar to arrays and matrices. It is basic data structure used in MindSpore Lite network operations.
 
-**Float16 inference**: a mode in which Float16 is used for inference. Float16, also called half-precision, uses 16 bits to represent a number. 
+**Float16 inference mode**: a mode that uses half-precision inference. Float16 uses 16 bits to represent a number and therefore it is also called half-precision.
+
 
 
 ## Available APIs
@@ -23,7 +24,7 @@ APIs involved in MindSpore Lite model inference are categorized into context API
 | ------------------ | ----------------- |
 |OH_AI_ContextHandle OH_AI_ContextCreate()|Creates a context object.|
 |void OH_AI_ContextSetThreadNum(OH_AI_ContextHandle context, int32_t thread_num)|Sets the number of runtime threads.|
-| void OH_AI_ContextSetThreadAffinityMode(OH_AI_ContextHandle context, int mode)|Sets the affinity mode for binding runtime threads to CPU cores, which are classified into large, medium, and small cores based on the CPU frequency. You only need to bind the large or medium cores, but not small cores.|
+| void OH_AI_ContextSetThreadAffinityMode(OH_AI_ContextHandle context, int mode)|Sets the affinity mode for binding runtime threads to CPU cores, which are classified into large, medium, and small cores based on the CPU frequency. You only need to bind the large or medium cores, but not small cores.
 |OH_AI_DeviceInfoHandle OH_AI_DeviceInfoCreate(OH_AI_DeviceType device_type)|Creates a runtime device information object.|
 |void OH_AI_ContextDestroy(OH_AI_ContextHandle *context)|Destroys a context object.|
 |void OH_AI_DeviceInfoSetEnableFP16(OH_AI_DeviceInfoHandle device_info, bool is_fp16)|Sets whether to enable float16 inference. This function is available only for CPU and GPU devices.|
@@ -53,9 +54,7 @@ The following figure shows the development process for MindSpore Lite model infe
 **Figure 1** Development process for MindSpore Lite model inference
 ![how-to-use-mindspore-lite](figures/01.png)
 
-Before moving to the main process, you need to reference related header files and compile functions to generate random input.
-
-Example code:
+Before moving to the development process, you need to reference related header files and compile functions to generate random input. The sample code is as follows:
 
 ```c
 #include <stdlib.h>
@@ -81,15 +80,18 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
 ```
 
 The development process consists of the following main steps:
-
 1. Prepare the required model.
 
     The required model can be downloaded directly or obtained using the model conversion tool.
   
      - If the downloaded model is in the `.ms` format, you can use it directly for inference. The following uses the **mobilenetv2.ms** model as an example.
-     - If the downloaded model uses a third-party framework, such as TensorFlow, TensorFlow Lite, Caffe, or ONNX, you can use the [model conversion tool](https://www.mindspore.cn/lite/docs/en/r1.5/use/downloads.html#id1) to convert it to the `.ms` format.
+     - If the downloaded model uses a third-party framework, such as TensorFlow, TensorFlow Lite, Caffe, or ONNX, you can use the [model conversion tool](https://www.mindspore.cn/lite/docs/zh-CN/r1.5/use/downloads.html#id1) to convert it to the .ms format.
 
 2. Create a context, and set parameters such as the number of runtime threads and device type.
+
+    The following describes two typical scenarios:
+
+    Scenario 1: Only the CPU inference context is created.
   
     ```c
     // Create a context, and set the number of runtime threads to 2 and the thread affinity mode to 1 (big cores first).
@@ -112,6 +114,44 @@ The development process consists of the following main steps:
     OH_AI_ContextAddDeviceInfo(context, cpu_device_info);
     ```
 
+    Scenario 2: The neural network runtime (NNRT) and CPU heterogeneous inference contexts are created.
+
+    NNRT is the runtime for cross-chip inference computing in the AI field. Generally, the acceleration hardware connected to NNRT, such as the NPU, has strong inference capabilities but supports only a limited number of operators, whereas the general-purpose CPU has weak inference capabilities but supports a wide range of operators. MindSpore Lite supports NNRT/CPU heterogeneous inference. Model operators are preferentially scheduled to NNRT inference. If certain operators are not supported by NNRT, then they are scheduled to the CPU for inference. The following is the sample code for configuring NNRT/CPU heterogeneous inference:
+
+   > **NOTE**
+   >
+   > NNRT/CPU heterogeneous inference requires access of NNRT hardware. For details, see [OpenHarmony/ai_neural_network_runtime](https://gitee.com/openharmony/ai_neural_network_runtime).
+
+    ```c
+    // Create a context, and set the number of runtime threads to 2 and the thread affinity mode to 1 (big cores first).
+    OH_AI_ContextHandle context = OH_AI_ContextCreate();
+    if (context == NULL) {
+      printf("OH_AI_ContextCreate failed.\n");
+      return OH_AI_STATUS_LITE_ERROR;
+    }
+    // Preferentially use NNRT inference.
+    // Use the NNRT hardware of the first ACCELERATORS class to create the NNRT device information and configure the high-performance inference mode for the NNRT hardware. You can also use OH_AI_GetAllNNRTDeviceDescs() to obtain the list of NNRT devices in the current environment, search for a specific device by device name or type, and use the device as the NNRT inference hardware.
+    OH_AI_DeviceInfoHandle nnrt_device_info = OH_AI_CreateNNRTDeviceInfoByType(OH_AI_NNRTDEVICE_ACCELERATORS);
+    if (nnrt_device_info == NULL) {
+      printf("OH_AI_DeviceInfoCreate failed.\n");
+      OH_AI_ContextDestroy(&context);
+      return OH_AI_STATUS_LITE_ERROR;
+    }
+    OH_AI_DeviceInfoSetPerformaceMode(nnrt_device_info, OH_AI_PERFORMANCE_HIGH);
+    OH_AI_ContextAddDeviceInfo(context, nnrt_device_info);
+
+    // Configure CPU inference.
+    OH_AI_DeviceInfoHandle cpu_device_info = OH_AI_DeviceInfoCreate(OH_AI_DEVICETYPE_CPU);
+    if (cpu_device_info == NULL) {
+      printf("OH_AI_DeviceInfoCreate failed.\n");
+      OH_AI_ContextDestroy(&context);
+      return OH_AI_STATUS_LITE_ERROR;
+    }
+    OH_AI_ContextAddDeviceInfo(context, cpu_device_info);
+    ```
+
+    
+
 3. Create, load, and build the model.
 
     Call **OH_AI_ModelBuildFromFile** to load and build the model.
@@ -127,7 +167,7 @@ The development process consists of the following main steps:
       return OH_AI_STATUS_LITE_ERROR;
     }
 
-    // Load and build the model. The model type is OH_AI_MODELTYPE_MINDIR.
+    // Load and build the inference model. The model type is OH_AI_MODELTYPE_MINDIR.
     int ret = OH_AI_ModelBuildFromFile(model, argv[1], OH_AI_MODELTYPE_MINDIR, context);
     if (ret != OH_AI_STATUS_SUCCESS) {
       printf("OH_AI_ModelBuildFromFile failed, ret: %d.\n", ret);
@@ -219,7 +259,7 @@ The development process consists of the following main steps:
             dl
     )
     ```
-   - To use ohos-sdk for cross compilation, you need to set the native toolchain path for the CMake tool as follows: `-DCMAKE_TOOLCHAIN_FILE="/xxx/ohos-sdk/linux/native/build/cmake/ohos.toolchain.camke"`.
+   - To use ohos-sdk for cross compilation, you need to set the native toolchain path for the CMake tool as follows: `-DCMAKE_TOOLCHAIN_FILE="/xxx/native/build/cmake/ohos.toolchain.camke"`.
     
    - The toolchain builds a 64-bit application by default. To build a 32-bit application, add the following configuration: `-DOHOS_ARCH="armeabi-v7a"`.
 
@@ -240,3 +280,7 @@ The development process consists of the following main steps:
     output data is:
     0.000018 0.000012 0.000026 0.000194 0.000156 0.001501 0.000240 0.000825 0.000016 0.000006 0.000007 0.000004 0.000004 0.000004 0.000015 0.000099 0.000011 0.000013 0.000005 0.000023 0.000004 0.000008 0.000003 0.000003 0.000008 0.000014 0.000012 0.000006 0.000019 0.000006 0.000018 0.000024 0.000010 0.000002 0.000028 0.000372 0.000010 0.000017 0.000008 0.000004 0.000007 0.000010 0.000007 0.000012 0.000005 0.000015 0.000007 0.000040 0.000004 0.000085 0.000023 
     ```
+
+## Samples
+The following sample is provided to help you better understand how to use MindSpore Lite:
+- [Simple MindSpore Lite Tutorial](https://gitee.com/openharmony/third_party_mindspore/tree/OpenHarmony-3.2-Release/mindspore/lite/examples/quick_start_c)

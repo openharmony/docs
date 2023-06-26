@@ -92,7 +92,12 @@ install(hapFilePaths: Array&lt;string&gt;, installParam: InstallParam, callback:
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>
+> **说明：** 从API version 10起，可通过ohos.permission.INSTALL_ENTERPRISE_BUNDLE权限调用此接口。
+>
+> 安装企业应用需要ohos.permission.INSTALL_ENTERPRISE_BUNDLE权限
+>
+> 安装普通应用需要ohos.permission.INSTALL_BUNDLE权限
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -161,7 +166,12 @@ install(hapFilePaths: Array&lt;string&gt;, callback: AsyncCallback&lt;void&gt;):
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>
+> **说明：** 从API version 10起，可通过ohos.permission.INSTALL_ENTERPRISE_BUNDLE权限调用此接口。
+>
+> 安装企业应用需要ohos.permission.INSTALL_ENTERPRISE_BUNDLE权限
+>
+> 安装普通应用需要ohos.permission.INSTALL_BUNDLE权限
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
@@ -225,7 +235,12 @@ install(hapFilePaths: Array\<string\>, installParam?: InstallParam) : Promise\<v
 
 **系统接口：** 此接口为系统接口。
 
-**需要权限：** ohos.permission.INSTALL_BUNDLE
+**需要权限：** ohos.permission.INSTALL_BUNDLE 或 ohos.permission.INSTALL_ENTERPRISE_BUNDLE<sup>10+</sup>
+> **说明：** 从API version 10起，可通过ohos.permission.INSTALL_ENTERPRISE_BUNDLE权限调用此接口。
+>
+> 安装企业应用需要ohos.permission.INSTALL_ENTERPRISE_BUNDLE权限
+>
+> 安装普通应用需要ohos.permission.INSTALL_BUNDLE权限
 
 **系统能力：** SystemCapability.BundleManager.BundleFramework.Core
 
