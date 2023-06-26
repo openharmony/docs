@@ -21,7 +21,7 @@
 
 Image(src: PixelMap | ResourceStr | DrawableDescriptor)
 
-通过图片数据源获取图片，用于后续渲染展示。Image组件加载图片失败或图片尺寸为0时，图片组件大小自动为0，不跟随父组件的布局约束。
+通过图片数据源获取图片，用于后续渲染展示。
 
 从API version 9开始，该接口支持在ArkTS卡片中使用。
 
