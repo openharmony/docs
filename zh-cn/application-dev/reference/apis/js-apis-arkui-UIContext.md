@@ -875,6 +875,382 @@ router.replaceUrl({
 });
 ```
 
+### pushNamedRoute
+
+pushNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
+
+跳转到指定的命名路由页面。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明        |
+| ------- | ------------------------------- | ---- | --------- |
+| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 跳转页面描述信息。 |
+
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| Promise&lt;void&gt; | 异常返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 100001    | if UI execution context not found. |
+| 100003    | if the pages are pushed too much. |
+| 100004    | if the named route is not exist. |
+
+**示例：**
+
+```ts
+let router = uiContext.getRouter();
+router.pushNamedRoute({
+  name: 'myPage',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
+    }
+  }
+})
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  })
+```
+
+### pushNamedRoute
+
+pushNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;): void
+
+跳转到指定的命名路由页面。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明        |
+| ------- | ------------------------------- | ---- | --------- |
+| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 跳转页面描述信息。 |
+| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 100001    | if UI execution context not found. |
+| 100003    | if the pages are pushed too much. |
+| 100004    | if the named route is not exist. |
+
+**示例：**
+
+```ts
+let router = uiContext.getRouter();
+router.pushNamedRoute({
+  name: 'myPage',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
+    }
+  }
+}, (err) => {
+  if (err) {
+    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('pushNamedRoute success');
+})
+```
+### pushNamedRoute
+
+pushNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&gt;
+
+跳转到指定的命名路由页面。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明         |
+| ------- | ------------------------------- | ---- | ---------- |
+| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 跳转页面描述信息。  |
+| mode    | [RouterMode](js-apis-router.md#routermode9)      | 是    | 跳转页面使用的模式。 |
+
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| Promise&lt;void&gt; | 异常返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 100001    | if UI execution context not found. |
+| 100003    | if the pages are pushed too much. |
+| 100004    | if the named route is not exist. |
+
+**示例：**
+
+```ts
+let router = uiContext.getRouter();
+router.pushNamedRoute({
+  name: 'myPage',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
+    }
+  }
+}, router.RouterMode.Standard)
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  })
+```
+
+### pushNamedRoute
+
+pushNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
+
+跳转到指定的命名路由页面。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明         |
+| ------- | ------------------------------- | ---- | ---------- |
+| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 跳转页面描述信息。  |
+| mode    | [RouterMode](js-apis-router.md#routermode9)      | 是    | 跳转页面使用的模式。 |
+| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 100001    | if UI execution context not found. |
+| 100003    | if the pages are pushed too much. |
+| 100004    | if the named route is not exist. |
+
+**示例：**
+
+```ts
+let router = uiContext.getRouter();
+router.pushNamedRoute({
+  name: 'myPage',
+  params: {
+    data1: 'message',
+    data2: {
+      data3: [123, 456, 789]
+    }
+  }
+}, router.RouterMode.Standard, (err) => {
+  if (err) {
+    console.error(`pushNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('pushNamedRoute success');
+})
+```
+
+### replaceNamedRoute
+
+replaceNamedRoute(options: NamedRouterOptions): Promise&lt;void&gt;
+
+用指定的命名路由页面替换当前页面，并销毁被替换的页面。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                            | 必填 | 说明               |
+| ------- | ------------------------------- | ---- | ------------------ |
+| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是   | 替换页面描述信息。 |
+
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| Promise&lt;void&gt; | 异常返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 100001    | if UI execution context not found. |
+| 100004    | if the named route is not exist. |
+
+**示例：**
+
+```ts
+let router = uiContext.getRouter();
+router.replaceNamedRoute({
+  name: 'myPage',
+  params: {
+    data1: 'message'
+  }
+})
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  })
+```
+
+### replaceNamedRoute
+
+replaceNamedRoute(options: NamedRouterOptions, callback: AsyncCallback&lt;void&gt;): void
+
+用指定的命名路由页面替换当前页面，并销毁被替换的页面。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名  | 类型                            | 必填 | 说明               |
+| ------- | ------------------------------- | ---- | ------------------ |
+| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是   | 替换页面描述信息。 |
+| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 100001    | if UI execution context not found. |
+| 100004    | if the named route is not exist. |
+
+**示例：**
+
+```ts
+let router = uiContext.getRouter();
+router.replaceNamedRoute({
+  name: 'myPage',
+  params: {
+    data1: 'message'
+  }
+}, (err) => {
+  if (err) {
+    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('replaceNamedRoute success');
+})
+```
+
+### replaceNamedRoute
+
+replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode): Promise&lt;void&gt;
+
+用指定的命名路由页面替换当前页面，并销毁被替换的页面。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明         |
+| ------- | ------------------------------- | ---- | ---------- |
+| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 替换页面描述信息。  |
+| mode    | [RouterMode](js-apis-router.md#routermode9)      | 是    | 跳转页面使用的模式。 |
+
+
+**返回值：**
+
+| 类型                | 说明        |
+| ------------------- | --------- |
+| Promise&lt;void&gt; | 异常返回结果。 |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 100001    | if can not get the delegate. |
+| 100004    | if the named route is not exist. |
+
+**示例：**
+
+```ts
+let router = uiContext.getRouter();
+router.replaceNamedRoute({
+  name: 'myPage',
+  params: {
+    data1: 'message'
+  }
+}, router.RouterMode.Standard)
+  .then(() => {
+    // success
+  })
+  .catch(err => {
+    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+  })
+```
+
+### replaceNamedRoute
+
+replaceNamedRoute(options: NamedRouterOptions, mode: RouterMode, callback: AsyncCallback&lt;void&gt;): void
+
+用指定的命名路由页面替换当前页面，并销毁被替换的页面。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：**
+
+| 参数名     | 类型                              | 必填   | 说明         |
+| ------- | ------------------------------- | ---- | ---------- |
+| options | [NamedRouterOptions](js-apis-router.md#namedrouteroptions10) | 是    | 替换页面描述信息。  |
+| mode    | [RouterMode](js-apis-router.md#routermode9)      | 是    | 跳转页面使用的模式。 |
+| callback | AsyncCallback&lt;void&gt;      | 是   | 异常响应回调。   |
+
+**错误码：**
+
+以下错误码的详细介绍请参见[ohos.router(页面路由)](../errorcodes/errorcode-router.md)错误码。
+
+| 错误码ID   | 错误信息 |
+| --------- | ------- |
+| 100001    | if UI execution context not found. |
+| 100004    | if the named route is not exist. |
+
+**示例：**
+
+```ts
+let router = uiContext.getRouter();
+router.replaceNamedRoute({
+  name: 'myPage',
+  params: {
+    data1: 'message'
+  }
+}, router.RouterMode.Standard, (err) => {
+  if (err) {
+    console.error(`replaceNamedRoute failed, code is ${err.code}, message is ${err.message}`);
+    return;
+  }
+  console.info('replaceNamedRoute success');
+});
+```
+
 ### back
 
 back(options?: RouterOptions ): void

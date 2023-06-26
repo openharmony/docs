@@ -1258,11 +1258,11 @@ promise.then(() => {
 });
 ```
 
-### on<sup>10+</sup>
+### on('show')<sup>10+</sup>
 
-on(type: 'show' | 'hide', callback: () => void): void
+on(type: 'show', callback: () => void): void
 
-监听当前面板状态，使用callback异步回调。
+监听当前面板显示状态，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1270,7 +1270,7 @@ on(type: 'show' | 'hide', callback: () => void): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| type | 'show'\|'hide' | 是 | 监听当前面板的状态类型，show表示显示状态，hide表示隐藏状态 |
+| type | string | 是 | 监听当前面板的状态类型。 <br/>- type为`show`表示显示状态。 |
 | callback | () => void | 是   | 回调函数。 |
 
 **示例：**
@@ -1281,11 +1281,11 @@ panel.on('show', () => {
 });
 ```
 
-### off<sup>10+</sup>
+### on('hide')<sup>10+</sup>
 
-off(type: 'show' | 'hide', callback?: () => void): void
+on(type: 'hide', callback: () => void): void
 
-取消监听当前面板状态，使用callback异步回调。
+监听当前面板隐藏状态，使用callback异步回调。
 
 **系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
@@ -1293,13 +1293,57 @@ off(type: 'show' | 'hide', callback?: () => void): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | -------- |
-| type | 'show'\|'hide' | 是 | 要取消监听的当前面板状态类型，show表示显示状态，hide表示隐藏状态 |
+| type | string | 是 | 监听当前面板的状态类型。 <br/>- type为`hide`表示隐藏状态。 |
+| callback | () => void | 是   | 回调函数。 |
+
+**示例：**
+
+```js
+panel.on('hide', () => {
+  console.log('Panel is hiding.');
+});
+```
+
+### off('show')<sup>10+</sup>
+
+off(type: 'show', callback?: () => void): void
+
+取消监听当前面板显示状态，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| type | string | 是 | 要取消监听的当前面板状态类型。 <br/>- type为`show`表示显示状态。 |
 | callback | () => void | 否   | 回调函数。 |
 
 **示例：**
 
 ```js
 panel.off('show');
+```
+
+### off('hide')<sup>10+</sup>
+
+off(type: 'hide', callback?: () => void): void
+
+取消监听当前面板隐藏状态，使用callback异步回调。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
+
+**参数：**
+
+| 参数名   | 类型                   | 必填 | 说明     |
+| -------- | ---------------------- | ---- | -------- |
+| type | string | 是 | 要取消监听的当前面板状态类型。 <br/>- type为`hide`表示隐藏状态。 |
+| callback | () => void | 否   | 回调函数。 |
+
+**示例：**
+
+```js
+panel.off('hide');
 ```
 
 ### changeFlag<sup>10+</sup>

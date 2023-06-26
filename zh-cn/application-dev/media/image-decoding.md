@@ -13,7 +13,7 @@
    ```
 
 2. 获取图片。
-   - 方法一：获取沙箱路径。具体请参考[获取应用文件路径](../application-models/application-context-stage.md#获取应用开发路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../file-management/app-sandbox-directory.md)。
+   - 方法一：获取沙箱路径。具体请参考[获取应用文件路径](../application-models/application-context-stage.md#获取应用文件路径)。应用沙箱的介绍及如何向应用沙箱推送文件，请参考[文件管理](../file-management/app-sandbox-directory.md)。
         
       ```ts
       // Stage模型参考如下代码
@@ -110,6 +110,11 @@
 
    解码完成，获取到PixelMap对象后，可以进行后续[图片处理](image-transformation.md)。
 
+5. 释放pixelMap。
+   ```ts
+   pixelMap.release();
+   ```
+
 ## 开发示例-对资源文件中的图片进行解码
 
 1. 获取resourceManager资源管理。
@@ -138,4 +143,9 @@
      
    ```ts
    const pixelMap = await imageSource.createPixelMap();
+   ```
+
+5. 释放pixelMap。
+   ```ts
+   pixelMap.release();
    ```
