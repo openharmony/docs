@@ -87,7 +87,7 @@ typedef struct NativePixelMap
 用于定义NativePixelMap数据类型名称。
 
 **起始版本：** 
-9
+10
 
 
 ## 枚举类型说明
@@ -145,7 +145,7 @@ PixelMap alpha 类型的枚举。
 | OHOS_PIXEL_MAP_ALPHA_TYPE_UNPREMUL| 预除的格式 | 
 
 **起始版本：** 
-9
+10
 
 ### anonymous enum
 
@@ -162,7 +162,7 @@ PixelMap 缩放类型的枚举。
 | OHOS_PIXEL_MAP_SCALE_MODE_CENTER_CROP| 以中心进行缩放的格式 | 
 
 **起始版本：** 
-9
+10
 
 
 ### anonymous enum
@@ -180,7 +180,7 @@ PixelMap 编辑类型的枚举。
 | OHOS_PIXEL_MAP_EDITABLE| 可编辑的格式 | 
 
 **起始版本：** 
-9
+10
 
 
 ## 函数说明
@@ -272,7 +272,7 @@ int32_t OH_PixelMap_CreateAlphaPixelMap (napi_env env, napi_value source, napi_v
 CreateAlphaPixelMap
 
 **起始版本：** 
-9
+10
 
 
 ### OH_PixelMap_CreatePixelMap()
@@ -303,7 +303,7 @@ int32_t OH_PixelMap_CreatePixelMap (napi_env env, OhosPixelMapCreateOps info, vo
 CreatePixelMap
 
 **起始版本：** 
-9
+10
 
 
 ### OH_PixelMap_Crop()
@@ -334,7 +334,7 @@ int32_t OH_PixelMap_Crop (const NativePixelMap * native, int32_t x, int32_t y, i
 Crop
 
 **起始版本：** 
-9
+10
 
 
 ### OH_PixelMap_Flip()
@@ -363,7 +363,7 @@ int32_t OH_PixelMap_Flip (const NativePixelMap * native, int32_t x, int32_t y )
 Flip
 
 **起始版本：** 
-9
+10
 
 
 ### OH_PixelMap_GetBytesNumberPerRow()
@@ -391,7 +391,7 @@ int32_t OH_PixelMap_GetBytesNumberPerRow (const NativePixelMap * native, int32_t
 GetBytesNumberPerRow
 
 **起始版本：** 
-9
+10
 
 ### OH_PixelMap_GetDensity()
 
@@ -418,7 +418,7 @@ int32_t OH_PixelMap_GetDensity (const NativePixelMap * native, int32_t * density
 GetDensity
 
 **起始版本：** 
-9
+10
 
 
 ### OH_PixelMap_GetIsEditable()
@@ -446,7 +446,7 @@ int32_t OH_PixelMap_GetIsEditable (const NativePixelMap * native, int32_t * edit
 GetIsEditable
 
 **起始版本：** 
-9
+10
 
 
 ### OH_PixelMap_InitNativePixelMap()
@@ -474,7 +474,7 @@ NativePixelMap* OH_PixelMap_InitNativePixelMap (napi_env env, napi_value source 
 InitNativePixelMap
 
 **起始版本：** 
-9
+10
 
 
 ### OH_PixelMap_IsSupportAlpha()
@@ -502,7 +502,7 @@ int32_t OH_PixelMap_IsSupportAlpha (const NativePixelMap * native, int32_t * alp
 IsSupportAlpha
 
 **起始版本：** 
-9
+10
 
 
 
@@ -531,7 +531,7 @@ int32_t OH_PixelMap_Rotate (const NativePixelMap * native, float angle )
 Rotate
 
 **起始版本：** 
-9
+10
 
 
 ### OH_PixelMap_Scale()
@@ -560,7 +560,7 @@ int32_t OH_PixelMap_Scale (const NativePixelMap * native, float x, float y )
 Scale
 
 **起始版本：** 
-9
+10
 
 
 ### OH_PixelMap_SetAlphaAble()
@@ -588,7 +588,7 @@ int32_t OH_PixelMap_SetAlphaAble (const NativePixelMap * native, int32_t alpha )
 SetAlphaAble
 
 **起始版本：** 
-9
+10
 
 
 ### OH_PixelMap_SetDensity()
@@ -616,7 +616,7 @@ int32_t OH_PixelMap_SetDensity (const NativePixelMap * native, int32_t density )
 GetDensity
 
 **起始版本：** 
-9
+10
 
 
 ### OH_PixelMap_SetOpacity()
@@ -644,7 +644,7 @@ int32_t OH_PixelMap_SetOpacity (const NativePixelMap * native, float opacity )
 SetOpacity
 
 **起始版本：** 
-9
+10
 
 
 ### OH_PixelMap_Translate()
@@ -673,7 +673,7 @@ int32_t OH_PixelMap_Translate (const NativePixelMap * native, float x, float y )
 Translate
 
 **起始版本：** 
-9
+10
 
 
 ### OH_UnAccessPixels()
