@@ -40,6 +40,7 @@ TextArea(value?:{placeholder?: ResourceStr, text?: ResourceStr, controller?: Tex
 | maxLength<sup>10+</sup>   | number                                                       | 设置文本的最大输入字符数。<br/>默认不设置最大输入字符数限制。 |
 | showCounter<sup>10+</sup> | boolean                                                      | 设置文本最大输入字符数后，是否显示字数。<br/>默认值：false   |
 | style<sup>10+</sup>       | [TextContentStyle](ts-appendix-enums.md#textcontentstyle10)  | 设置文本框多态样式。<br/>默认值：TextContentStyle.DEFAULT    |
+| enableKeyboardOnFocus<sup>10+</sup> | boolean | TextArea获焦时，是否绑定输入法<br/>默认值：true。从API version 10开始，获焦默认绑定输入法。 |
 
 >  **说明：**
 >
