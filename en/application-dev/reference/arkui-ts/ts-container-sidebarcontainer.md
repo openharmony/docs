@@ -34,6 +34,7 @@ SideBarContainer( type?: SideBarContainerType )
 | -------- | -------- |
 | Embed | The sidebar is embedded in the component and displayed side by side with the content area.|
 | Overlay | The sidebar is displayed overlaid on the content area.|
+| AUTO | The sidebar is displayed in Embed mode when the component size is greater than or equal to the sum of **minSideBarWidth** and **minContentWidth**<br>and in Overlay mode otherwise.|
 
 ## Attributes
 
@@ -50,6 +51,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | autoHide<sup>9+</sup> | boolean | Whether to automatically hide the sidebar when it is dragged to be smaller than the minimum width.<br>Default value: **true**<br>**NOTE**<br>The value is subject to the **minSideBarWidth** attribute method. If it is not set in **minSideBarWidth**, the default value is used.<br>Whether the sidebar should be hidden is determined when it is being dragged. When its width is less than the minimum width, the damping effect is required to trigger hiding (a distance out of range).|
 | sideBarPosition<sup>9+</sup> | [SideBarPosition](#sidebarposition9) | Position of the sidebar.<br>Default value: **SideBarPosition.Start**|
 | divider<sup>10+</sup>        | [DividerStyle](#dividerstyle10) \| null | Divider style.<br>- **DividerStyle** (default): The divider is displayed.<br>- **null**: The divider is not displayed.|
+| minContentWidth<sup>10+</sup> | Dimension | Minimum width of the content area of the sidebar container.<br>Default value: **360**<br>Unit: vp|
 
 ## ButtonStyle
 
