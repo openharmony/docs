@@ -49,7 +49,7 @@
 通过repo + ssh 下载（需注册公钥，请参考[码云帮助中心](https://gitee.com/help/articles/4191)）。
 
  ```
- repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v3.2.1-Release --no-repo-verify
+ repo init -u git@gitee.com:openharmony/manifest.git -b refs/tags/OpenHarmony-v3.2.2-Release --no-repo-verify
  repo sync -c
  repo forall -c 'git lfs pull'
  ```
@@ -60,7 +60,7 @@
 
 从版本发布Tag节点获取源码。可获取与版本发布时完全一致的源码。
  ```
- repo init -u https://gitee.com/openharmony/manifest -b refs/tags/OpenHarmony-v3.2.1-Release --no-repo-verify
+ repo init -u https://gitee.com/openharmony/manifest -b refs/tags/OpenHarmony-v3.2.2-Release --no-repo-verify
  repo sync -c
  repo forall -c 'git lfs pull'
  ```
@@ -71,14 +71,14 @@
 
 | 版本源码                              | **版本信息**  | **下载站点**                                                 | **SHA256校验码**                                             |
 | ------------------------------------- | ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 全量代码（标准、轻量和小型系统）      | 3.2.2 Release | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.2/code-v3.2.2-Release.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.2/code-v3.2.2-Release.tar.gz.sha256) |
-| Hi3861解决方案（二进制）              | 3.2.2 Release | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.2/hispark_pegasus.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.2/hispark_pegasus.tar.gz.sha256) |
-| Hi3516解决方案-LiteOS（二进制）       | 3.2.2 Release | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.2/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.2/hispark_taurus_LiteOS.tar.gz.sha256) |
-| Hi3516解决方案-Linux（二进制）        | 3.2.2 Release | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.2/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.2/hispark_taurus_Linux.tar.gz.sha256) |
-| RK3568标准系统解决方案（二进制）      | 3.2.2 Release | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.2/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.2/dayu200_standard_arm32.tar.gz.sha256) |
-| 标准系统Public SDK包（Mac）           | 3.2.13.5      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.2/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.2/ohos-sdk-mac-public.tar.gz.sha256) |
-| 标准系统Public SDK包（Mac-M1）        | 3.2.13.5      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.2/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.2/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) |
-| 标准系统Public SDK包（Windows/Linux） | 3.2.13.5      | [站点](https://repo.huaweicloud.com/openharmony/os/3.2.2/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://repo.huaweicloud.com/openharmony/os/3.2.2/ohos-sdk-windows_linux-public.tar.gz.sha256) |
+| 全量代码（标准、轻量和小型系统）      | 3.2.2 Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/code-v3.2.2-Release.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/code-v3.2.2-Release.tar.gz.sha256) |
+| Hi3861解决方案（二进制）              | 3.2.2 Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/hispark_pegasus.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/hispark_pegasus.tar.gz.sha256) |
+| Hi3516解决方案-LiteOS（二进制）       | 3.2.2 Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/hispark_taurus_LiteOS.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/hispark_taurus_LiteOS.tar.gz.sha256) |
+| Hi3516解决方案-Linux（二进制）        | 3.2.2 Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/hispark_taurus_Linux.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/hispark_taurus_Linux.tar.gz.sha256) |
+| RK3568标准系统解决方案（二进制）      | 3.2.2 Release | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/dayu200_standard_arm32.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/dayu200_standard_arm32.tar.gz.sha256) |
+| 标准系统Public SDK包（Mac）           | 3.2.13.5      | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/ohos-sdk-mac-public.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/ohos-sdk-mac-public.tar.gz.sha256) |
+| 标准系统Public SDK包（Mac-M1）        | 3.2.13.5      | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/L2-SDK-MAC-M1-PUBLIC.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/L2-SDK-MAC-M1-PUBLIC.tar.gz.sha256) |
+| 标准系统Public SDK包（Windows/Linux） | 3.2.13.5      | [站点](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/ohos-sdk-windows_linux-public.tar.gz) | [SHA256校验码](https://mirrors.huaweicloud.com/openharmony/os/3.2.2/ohos-sdk-windows_linux-public.tar.gz.sha256) |
 
 ## 更新说明
 
