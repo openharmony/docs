@@ -1345,3 +1345,372 @@ try {
   console.log(`getTouchpadPointerSpeed failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
 }
 ```
+
+## pointer.setTouchpadPinchSwitch<sup>10+</sup>
+
+setTouchpadPinchSwitch(state: boolean, callback: AsyncCallback\<void>): void
+
+设置触控板双指捏合功能开关，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                        | 必填   | 说明                                    |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| state | boolean | 是    |触控板双指捏合功能开关开启状态。 true代表开启，false代表关闭，默认开启。   |
+| callback | AsyncCallback\<void> | 是    | 回调函数。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setTouchpadTapSwitch(true, (error) => {
+    if (error) {
+      console.log(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setTouchpadPinchSwitch success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadPinchSwitch<sup>10+</sup>
+
+setTouchpadPinchSwitch(state: boolean): Promise\<void>
+
+设置触控板双指捏合功能开关，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| state | boolean| 是    |  触控板双指捏合功能开关开启状态。 true代表开启，false代表关闭，默认开启。  |
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise\<void> | Promise对象。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setTouchpadPinchSwitch(false).then(() => {
+    console.log(`setTouchpadPinchSwitch success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadPinchSwitch<sup>10+</sup>
+
+getTouchpadPinchSwitch(callback:  AsyncCallback\<boolean>): void
+
+获取触控板双指捏合能力开启状态，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                          | 必填   | 说明             |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板双指捏合功能开启状态。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getTouchpadPinchSwitch((error, state) => {
+    console.log(`getTouchpadPinchSwitch success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadPinchSwitch<sup>10+</sup>
+
+getTouchpadPinchSwitch(): Promise\<boolean>
+
+获取触控板双指捏合功能开启状态，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**返回值**：
+
+| 参数                    | 说明                  |
+| --------------------- | ------------------- |
+| Promise\<boolean> | Promise实例，异步返回触控板双指捏合功能开启状态。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getTouchpadPinchSwitch().then((state) => {
+    console.log(`getTouchpadPinchSwitch success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadPinchSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadSwipeSwitch<sup>10+</sup>
+
+setTouchpadSwipeSwitch(state: boolean, callback: AsyncCallback\<void>): void
+
+设置触控板轻多指滑动功能开关，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                        | 必填   | 说明                                    |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| state | boolean | 是    |触控板多指滑动开关开启状态。 true代表多指滑动开启，false代表多指滑动关闭，默认开启。   |
+| callback | AsyncCallback\<void> | 是    | 回调函数。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setTouchpadSwipeSwitch(true, (error) => {
+    if (error) {
+      console.log(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setTouchpadSwipeSwitch success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadSwipeSwitch<sup>10+</sup>
+
+setTouchpadSwipeSwitch(state: boolean): Promise\<void>
+
+设置触控板多指滑动功能开关，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| state | boolean| 是    |  触控板多指滑动功能开关开启状态。 true代表多指滑动开启，false代表多指滑动关闭，默认开启。  |
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise\<void> | Promise对象。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setTouchpadSwipeSwitch(false).then(() => {
+    console.log(`setTouchpadSwipeSwitch success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadSwipeSwitch<sup>10+</sup>
+
+getTouchpadSwipeSwitch(callback:  AsyncCallback\<boolean>): void
+
+获取触控板多指滑动能力开启状态，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                          | 必填   | 说明             |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback\<boolean> | 是    | 回调函数，异步返回触控板多指滑动功能开启状态。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getTouchpadSwipeSwitch((error, state) => {
+    console.log(`getTouchpadSwipeSwitch success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadSwipeSwitch<sup>10+</sup>
+
+getTouchpadSwipeSwitch(): Promise\<boolean>
+
+获取触控板多指滑动功能开启状态，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**返回值**：
+
+| 参数                    | 说明                  |
+| --------------------- | ------------------- |
+| Promise\<boolean> | Promise实例，异步返回触控板多指滑动功能开启状态。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getTouchpadSwipeSwitch().then((state) => {
+    console.log(`getTouchpadSwipeSwitch success, state: ${JSON.stringify(state)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadSwipeSwitch failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadRightClickType<sup>10+</sup>
+
+setTouchpadRightClickType(type: RightClickType, callback: AsyncCallback\<void>): void
+
+设置触控板右键菜单类型，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                        | 必填   | 说明                                    |
+| -------- | ------------------------- | ---- | ------------------------------------- |
+| type| RightClickType| 是    |type代表触控板右键菜单类型。枚举取值范围TOUCHPAD_RIGHT_BUTTON 、TOUCHPAD_LEFT_BUTTON 、TOUCHPAD_TWO_FINGER_TAP ， 默认 TOUCHPAD_RIGHT_BUTTON 。  |
+| callback | AsyncCallback\<void> | 是    | 回调函数。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setTouchpadRightClickType(RightClickType::TOUCHPAD_RIGHT_BUTTON , (error) => {
+    if (error) {
+      console.log(`setTouchpadRightClickType, error: ${JSON.stringify(error, [`code`, `message`])}`);
+      return;
+    }
+    console.log(`setTouchpadRightClickType success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.setTouchpadRightClickType<sup>10+</sup>
+
+setTouchpadRightClickType(type: RightClickType): Promise\<void>
+
+设置触控板右键菜单类型，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名    | 类型     | 必填   | 说明                                  |
+| ----- | ------ | ---- | ----------------------------------- |
+| type| RightClickType| 是    | type代表触控板右键菜单类型。枚举取值范围TOUCHPAD_RIGHT_BUTTON 、TOUCHPAD_LEFT_BUTTON 、TOUCHPAD_TWO_FINGER_TAP ， 默认 TOUCHPAD_RIGHT_BUTTON 。    |
+
+**返回值**：
+
+| 参数                  | 说明               |
+| ------------------- | ---------------- |
+| Promise\<void> | Promise对象。 |
+
+**示例**：
+
+```js
+try {
+  pointer.setTouchpadRightClickType(RightClickType::TOUCHPAD_RIGHT_BUTTON ).then(() => {
+    console.log(`setTouchpadRightClickType success`);
+  });
+} catch (error) {
+  console.log(`setTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadRightClickType<sup>10+</sup>
+
+getTouchpadRightClickType(callback: AsyncCallback\<RightClickType>): void
+
+获取触控板右键菜单类型，使用AsyncCallback异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**参数**：
+
+| 参数名       | 类型                          | 必填   | 说明             |
+| -------- | --------------------------- | ---- | -------------- |
+| callback | AsyncCallback\<RightClickType> | 是    | 回调函数，异步返回触控板右键菜单类型。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getTouchpadRightClickType((error, type) => {
+    console.log(`getTouchpadRightClickType success, type: ${JSON.stringify(type)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
+
+## pointer.getTouchpadRightClickType<sup>10+</sup>
+
+getTouchpadRightClickType(): Promise\<RightClickType>
+
+获取触控板右键菜单类型，使用Promise异步方式返回结果。
+
+**系统能力**：SystemCapability.MultimodalInput.Input.Pointer
+
+**系统API**: 此接口为系统接口。
+
+**返回值**：
+
+| 参数                    | 说明                  |
+| --------------------- | ------------------- |
+| Promise\<RightClickType > | Promise实例，异步返回触控板右键菜单类型。 |
+
+**示例**：
+
+```js
+try {
+  pointer.getTouchpadRightClickType().then((type) => {
+    console.log(`getTouchpadRightClickType success, typeed: ${JSON.stringify(type)}`);
+  });
+} catch (error) {
+  console.log(`getTouchpadRightClickType failed, error: ${JSON.stringify(error, [`code`, `message`])}`);
+}
+```
