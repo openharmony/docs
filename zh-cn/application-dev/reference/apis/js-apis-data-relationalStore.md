@@ -2877,7 +2877,7 @@ try {
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-从数据库中删除指定类型的指定观察者, 使用callback异步回调。
+从数据库中删除指定类型的指定观察者。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
