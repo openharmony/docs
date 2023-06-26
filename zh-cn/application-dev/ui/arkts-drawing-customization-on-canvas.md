@@ -340,8 +340,8 @@ OffscreenCanvasRenderingContext2D对象和CanvasRenderingContext2D对象提供�
 
   ![2023032422159](figures/2023032422159.jpg)
 
-  ## 相关实例
+## 相关实例
 
-  使用画布绘制自定义图形，有以下相关实例可供参考：
+使用画布绘制自定义图形，有以下相关实例可供参考：
 
-  - [Lottie动画](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Lottie)
+- [Lottie动画](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/Game/Lottie)
