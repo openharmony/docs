@@ -660,7 +660,7 @@ unPublishDeviceDiscovery(publishId: number): void
 
 ### bindDevice
 
-bindDevice(deviceId: string, bindParam: BindParam, callback: AsyncCallback<{deviceId: string}>): void;
+bindDevice(deviceId: string, bindParam: BindParam, callback: AsyncCallback&lt;{deviceId: string}&gt;): void;
 
 认证设备。
 
@@ -828,7 +828,7 @@ setUserOperation(operateAction: number, params: string): void;
 
 ### requestCredentialRegisterInfo
 
-requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{registerInfo: string}>): void;
+requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback&lt;{registerInfo: string}&gt;): void;
 
 获取凭据的注册信息。
 
@@ -841,7 +841,7 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
   | requestInfo   | string          | 是    | 请求凭据信息。       |
-  | callback      | AsyncCallback<{registerInfo: string}>         | 是    | 凭据的注册信息回调。 |
+  | callback      | AsyncCallback&lt;{registerInfo: string}&gt;         | 是    | 凭据的注册信息回调。 |
 
 **示例：**
 
@@ -865,7 +865,7 @@ requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{regi
 
 ### importCredential
 
-importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
+importCredential(credentialInfo: string, callback: AsyncCallback&lt;{resultInfo: string}&gt;): void;
 
 导入凭据信息。
 
@@ -878,7 +878,7 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
   | credentialInfo| string          | 是    | 导入凭据信息。       |
-  | callback      | AsyncCallback<{resultInfo: string}>           | 是    | 导入凭据结果回调。 |
+  | callback      | AsyncCallback&lt;{resultInfo: string}&gt;           | 是    | 导入凭据结果回调。 |
 
 **示例：**
 
@@ -918,7 +918,7 @@ importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: st
 
 ### deleteCredential
 
-deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}>): void;
+deleteCredential(queryInfo: string, callback: AsyncCallback&lt;{resultInfo: string}&gt;): void;
 
 删除凭据信息。
 
@@ -931,7 +931,7 @@ deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
   | queryInfo     | string          | 是    | 删除凭据信息。       |
-  | callback      | AsyncCallback<{resultInfo: string}>           | 是    | 删除凭据结果回调。 |
+  | callback      | AsyncCallback&lt;{resultInfo: string}&gt;           | 是    | 删除凭据结果回调。 |
 
 **示例：**
 
@@ -1015,7 +1015,7 @@ off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
 ### on('deviceStatusChange')
 
-on(type: 'deviceStatusChange', callback: Callback<{ action: DeviceStatusChange, device: DeviceBasicInfo }>): void;
+on(type: 'deviceStatusChange', callback: Callback&lt;{ action: DeviceStatusChange, device: DeviceBasicInfo }&gt;): void;
 
 注册设备状态回调。
 
@@ -1042,7 +1042,7 @@ on(type: 'deviceStatusChange', callback: Callback<{ action: DeviceStatusChange, 
 
 ### off('deviceStatusChange')
 
-off(type: 'deviceStatusChange', callback?: Callback<{ action: DeviceStatusChange, device: DeviceBasicInfo }>): void;
+off(type: 'deviceStatusChange', callback?: Callback&lt;{ action: DeviceStatusChange, device: DeviceBasicInfo }&gt;): void;
 
 取消注册设备状态回调。
 
@@ -1069,7 +1069,7 @@ off(type: 'deviceStatusChange', callback?: Callback<{ action: DeviceStatusChange
 
 ### on('discoverSuccess')
 
-on(type: 'discoverSuccess', callback: Callback<{ subscribeId: number, device: DeviceBasicInfo }>): void;
+on(type: 'discoverSuccess', callback: Callback&lt;{ subscribeId: number, device: DeviceBasicInfo }&gt;): void;
 
 注册发现设备成功回调监听。
 
@@ -1096,7 +1096,7 @@ on(type: 'discoverSuccess', callback: Callback<{ subscribeId: number, device: De
 
 ### off('discoverSuccess')
 
-off(type: 'discoverSuccess', callback?: Callback<{ subscribeId: number, device: DeviceBasicInfo }>): void;
+off(type: 'discoverSuccess', callback?: Callback&lt;{ subscribeId: number, device: DeviceBasicInfo }&gt;): void;
 
 取消注册设备发现回调。
 
@@ -1123,7 +1123,7 @@ off(type: 'discoverSuccess', callback?: Callback<{ subscribeId: number, device: 
 
 ### on('deviceNameChange')
 
-on(type: 'deviceNameChange', callback: Callback<{ deviceName: string }>): void;
+on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string }&gt;): void;
 
 注册设备名称改变回调监听。
 
@@ -1150,7 +1150,7 @@ on(type: 'deviceNameChange', callback: Callback<{ deviceName: string }>): void;
 
 ### off('deviceNameChange')
 
-off(type: 'deviceNameChange', callback?: Callback<{ deviceName: string }>): void;
+off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;): void;
 
 取消注册设备名称改变回调监听。
 

@@ -26,21 +26,21 @@
 | @ohos.distributedDeviceManager       | deviceManager        | **function** getDeviceTypeSync(networkId: string): number; | 是     |
 | @ohos.distributedDeviceManager       | deviceManager        | **function** startDeviceDiscovery(subscribeId: number, filterOptions?: string): void; | 是 |
 | @ohos.distributedDeviceManager       | deviceManager        | **function** stopDeviceDiscovery(subscribeId: number): void | 是       |
-| @ohos.distributedDeviceManager       | deviceManager        | **function** bindDevice(deviceId: string, bindParam: BindParam, callback: AsyncCallback<{deviceId: string}>): void; | 是      |
+| @ohos.distributedDeviceManager       | deviceManager        | **function** bindDevice(deviceId: string, bindParam: BindParam, callback: AsyncCallback&lt;{deviceId: string}&gt;): void; | 是      |
 | @ohos.distributedDeviceManager       | deviceManager        | **function** unbindDevice(deviceId: string): void; | 是     |
 | @ohos.distributedDeviceManager       | deviceManager        | **function** publishDeviceDiscovery(publishInfo: PublishInfo): void | 否    |
 | @ohos.distributedDeviceManager       | deviceManager        | **function** unPublishDeviceDiscovery(publishId: number): void | 否    |
 | @ohos.distributedDeviceManager       | deviceManager        | **function** verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string, level: number}&gt;): void | 否    |
 | @ohos.distributedDeviceManager       | deviceManager        | **function** setUserOperation(operateAction: number, params: string): void; | 否    |
-| @ohos.distributedDeviceManager       | deviceManager        | **function** requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback<{registerInfo: string}>): void; | 否     |
-| @ohos.distributedDeviceManager       | deviceManager        | **function** importCredential(credentialInfo: string, callback: AsyncCallback<{resultInfo: string}>): void; | 否    |
-| @ohos.distributedDeviceManager       | deviceManager        | **function** deleteCredential(queryInfo: string, callback: AsyncCallback<{resultInfo: string}>): void; | 否     |
-| @ohos.distributedDeviceManager       | deviceManager        | **function** on(type: 'deviceStatusChange', callback: Callback<{ action: DeviceStatusChange, device: DeviceBasicInfo }>): void; | 是       |
-| @ohos.distributedDeviceManager       | deviceManager        | **function** off(type: 'deviceStatusChange', callback?: Callback<{ action: DeviceStatusChange, device: DeviceBasicInfo }>): void; | 是       |
-| @ohos.distributedDeviceManager       | deviceManager        | **function** on(type: 'discoverSuccess', callback: Callback<{ subscribeId: number, device: DeviceBasicInfo }>): void; | 是   |
-| @ohos.distributedDeviceManager       | deviceManager        | **function** off(type: 'discoverSuccess', callback?: Callback<{ subscribeId: number, device: DeviceBasicInfo }>): void; | 是   |
-| @ohos.distributedDeviceManager       | deviceManager        | **function** on(type: 'deviceNameChange', callback: Callback<{ deviceName: string }>): void; | 是               |
-| @ohos.distributedDeviceManager       | deviceManager        | **function** off(type: 'deviceNameChange', callback?: Callback<{ deviceName: string }>): void; | 是               |
+| @ohos.distributedDeviceManager       | deviceManager        | **function** requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback&lt;{registerInfo: string}&gt;): void; | 否     |
+| @ohos.distributedDeviceManager       | deviceManager        | **function** importCredential(credentialInfo: string, callback: AsyncCallback&lt;{resultInfo: string}&gt;): void; | 否    |
+| @ohos.distributedDeviceManager       | deviceManager        | **function** deleteCredential(queryInfo: string, callback: AsyncCallback&lt;{resultInfo: string}&gt;): void; | 否     |
+| @ohos.distributedDeviceManager       | deviceManager        | **function** on(type: 'deviceStatusChange', callback: Callback&lt;{ action: DeviceStatusChange, device: DeviceBasicInfo }&gt;): void; | 是       |
+| @ohos.distributedDeviceManager       | deviceManager        | **function** off(type: 'deviceStatusChange', callback?: Callback&lt;{ action: DeviceStatusChange, device: DeviceBasicInfo }&gt;): void; | 是       |
+| @ohos.distributedDeviceManager       | deviceManager        | **function** on(type: 'discoverSuccess', callback: Callback&lt;{ subscribeId: number, device: DeviceBasicInfo }&gt;): void; | 是   |
+| @ohos.distributedDeviceManager       | deviceManager        | **function** off(type: 'discoverSuccess', callback?: Callback&lt;{ subscribeId: number, device: DeviceBasicInfo }&gt;): void; | 是   |
+| @ohos.distributedDeviceManager       | deviceManager        | **function** on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string }&gt;): void; | 是               |
+| @ohos.distributedDeviceManager       | deviceManager        | **function** off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;): void; | 是               |
 | @ohos.distributedDeviceManager       | deviceManager        | **function** on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: number }&gt;): void | 是   |
 | @ohos.distributedDeviceManager       | deviceManager        | **function** off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: number }&gt;): void | 是 |
 | @ohos.distributedDeviceManager       | deviceManager        | **function** on(type: 'serviceDie', callback: () =&gt; void): void | 是         |
