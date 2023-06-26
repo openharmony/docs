@@ -56,7 +56,7 @@
   - [以太网连接错误码](errorcode-net-ethernet.md)
   - [网络共享错误码](errorcode-net-sharing.md)
   - [MDNS错误码](errorcode-net-mdns.md)
-  - [流量管理](errorcode-net-statistics错误码.md)
+  - [流量管理](errorcode-net-statistics.md)
 - 通信与连接
   - [Bluetooth错误码](errorcode-bluetoothManager.md)
   - [WIFI错误码](errorcode-wifi.md)
