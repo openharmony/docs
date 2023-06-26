@@ -1,6 +1,6 @@
 # SecSaveButton
 
-安全控件的保存按钮，用户通过点击该保存按钮，可以临时获取存储权限，而不需要权限弹框授权确认。
+安全组件的保存按钮，用户通过点击该保存按钮，可以临时获取存储权限，而不需要权限弹框授权确认。
 
 > **说明：**
 >
@@ -56,7 +56,7 @@
 
 ## 属性
 
-不支持通用属性，仅继承[安全控件通用属性](ts-universal-attributes-securitycomponent.md#属性)。
+不支持通用属性，仅继承[安全组件通用属性](ts-universal-attributes-securitycomponent.md#属性)。
 
 ## 事件
 
