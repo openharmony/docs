@@ -359,6 +359,14 @@ Power management display
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | Yes     | No    | Yes    | Yes  | No  | Yes    | No          | No    |
 
+## SystemCapability.PowerManager.DisplayPowerManager.Lite
+
+Lite device capabilities of the system power management display
+
+| Default | Sports Watch| Smart Watch| Tablet| Head Unit| Smart TV| Smart Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| Yes     | Yes    | Yes    | Yes  | No  | Yes    | No          | No    |
+
 ## SystemCapability.PowerManager.ThermalManager
 
 Temperature control

@@ -359,6 +359,14 @@ GNSS硬件相关能力
 | ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
 | 是      | 否     | 是     | 是   | 否   | 是     | 否           | 否     |
 
+## SystemCapability.PowerManager.DisplayPowerManager.Lite
+
+轻设备系统显示能效管理
+
+| Default | 运动表 | 智能表 | 平板 | 车机 | 智慧屏 | Smart-Vision | Router |
+| ------- | ------ | ------ | ---- | ---- | ------ | ------------ | ------ |
+| 是      | 是     | 是     | 是   | 否   | 是     | 否           | 否     |
+
 ## SystemCapability.PowerManager.ThermalManager
 
 温控服务

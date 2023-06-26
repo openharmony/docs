@@ -21,7 +21,7 @@ getStatus(options?: GetStatusOptions): void;
 
 Obtains the current charging state and battery level.
 
-**System capability**: SystemCapability.PowerManager.BatteryManager.Core
+**System capability**: SystemCapability.PowerManager.BatteryManager.Lite
 
 **Parameters**
 
@@ -46,7 +46,7 @@ battery.getStatus({
 
 Object that contains the API calling result.
 
-**System capability**: SystemCapability.PowerManager.BatteryManager.Core
+**System capability**: SystemCapability.PowerManager.BatteryManager.Lite
 
 | Name  | Type                                               | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------- | ---- | ------------------------------------------------------------ |
@@ -58,7 +58,7 @@ Object that contains the API calling result.
 
 Defines a response that returns the charging status and remaining power of the device.
 
-**System capability**: SystemCapability.PowerManager.BatteryManager.Core
+**System capability**: SystemCapability.PowerManager.BatteryManager.Lite
 
 | Name| Type| Readable| Writable| Description|
 | -------- | -------- | -------- | -------- | -------- |
