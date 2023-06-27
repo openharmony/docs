@@ -907,29 +907,29 @@ group("unittest") {
 
 2. 在resource目录下对应的模块目录中创建一个ohos_test.xml文件，文件内容格式如下:
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration ver="2.0">
-    <target name="CalculatorSubTest">
-        <preparer>
-            <option name="push" value="test.jpg -> /data/test/resource" src="res"/>
-            <option name="push" value="libc++.z.so -> /data/test/resource" src="out"/>
-        </preparer>
-    </target>
-</configuration>
-```
+	```xml
+	<?xml version="1.0" encoding="UTF-8"?>
+	<configuration ver="2.0">
+		<target name="CalculatorSubTest">
+			<preparer>
+				<option name="push" value="test.jpg -> /data/test/resource" src="res"/>
+				<option name="push" value="libc++.z.so -> /data/test/resource" src="out"/>
+			</preparer>
+		</target>
+	</configuration>
+	```
 
-3.在测试用例的编译配置文件中定义resource_config_file进行指引，用来指定对应的资源文件ohos_test.xml。
+ 3. 在测试用例的编译配置文件中定义resource_config_file进行指引，用来指定对应的资源文件ohos_test.xml。
 
-```
-ohos_unittest("CalculatorSubTest") {
-  resource_config_file = "//system/subsystem/partA/test/resource/calculator/ohos_test.xml"
-}
-```
-> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
-> 
->- target_name: 测试套的名称，定义在测试目录的BUILD.gn中。preparer: 表示该测试套执行前执行的动作。
->- src="res": 表示测试资源位于test目录下的resource目录下，src="out"：表示位于out/release/$(部件)目录下。
+	```
+	ohos_unittest("CalculatorSubTest") {
+	resource_config_file = "//system/subsystem/partA/test/resource/calculator/ohos_test.xml"
+	}
+	```
+	> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+	> 
+	>- target_name: 测试套的名称，定义在测试目录的BUILD.gn中。preparer: 表示该测试套执行前执行的动作。
+	>- src="res": 表示测试资源位于test目录下的resource目录下，src="out"：表示位于out/release/$(部件)目录下。
 
 ## 测试用例执行
 
