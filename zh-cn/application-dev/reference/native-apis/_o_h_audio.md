@@ -49,7 +49,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [OH_AudioStream_Result](#oh_audiostream_result) { AUDIOSTREAM_SUCCESS, AUDIOSTREAM_ERROR_INVALID_PARAM, AUDIOSTREAM_ERROR_ILLEGAL_STATE, AUDIOSTREAM_ERROR_SYSTEM } | 音频错误码。 | 
-| [OH_AudioStream_Type](#oh_audiostream_type) { AUDIOSTREAM_TYPE_RERNDERER = 1, AUDIOSTREAM_TYPE_CAPTURER = 2 } | 音频流类型。 | 
+| [OH_AudioStream_Type](#oh_audiostream_type) { AUDIOSTREAM_TYPE_RENDERER = 1, AUDIOSTREAM_TYPE_CAPTURER = 2 } | 音频流类型。 | 
 | [OH_AudioStream_SampleFormat](#oh_audiostream_sampleformat) { AUDIOSTREAM_SAMPLE_U8 = 0, AUDIOSTREAM_SAMPLE_S16LE = 1, AUDIOSTREAM_SAMPLE_S24LE = 2, AUDIOSTREAM_SAMPLE_S32LE = 3 } | 定义音频流采样格式。 | 
 | [OH_AudioStream_EncodingType](#oh_audiostream_encodingtype) { **AUDIOSTREAM_ENCODING_TYPE_RAW** = 0 } | 定义音频流编码类型。 | 
 | [OH_AudioStream_Usage](#oh_audiostream_usage) { **AUDIOSTREAM_USAGE_UNKNOWN** = 0, **AUDIOSTREAM_USAGE_MUSIC** = 1, **AUDIOSTREAM_USAGE_COMMUNICATION** = 2, **AUDIOSTREAM_USAGE_GAME** = 11 } | 定义音频流使用场景。 | 
@@ -380,7 +380,7 @@ enum OH_AudioStream_Type
 
   | 枚举值 | 描述 | 
 | -------- | -------- |
-| AUDIOSTREAM_TYPE_RERNDERER | 该类型代表音频流是输出流。 | 
+| AUDIOSTREAM_TYPE_RENDERER | 该类型代表音频流是输出流。 | 
 | AUDIOSTREAM_TYPE_CAPTURER | 该类型代表音频流是输入流。 | 
 
 
@@ -1126,7 +1126,7 @@ OH_AudioStream_Result OH_AudioStreamBuilder_Create (OH_AudioStreamBuilder ** bui
 | 名称 | 描述 | 
 | -------- | -------- |
 | builder | 该引用指向创建的构造器的结果。 | 
-| type | 构造器的流类型。AUDIOSTREAM_TYPE_RERNDERER or AUDIOSTREAM_TYPE_CAPTURER | 
+| type | 构造器的流类型。AUDIOSTREAM_TYPE_RENDERER or AUDIOSTREAM_TYPE_CAPTURER | 
 
 **返回：**
 
