@@ -421,9 +421,9 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 	    |      类型 |    描述 |
     	| ------------| ------------|
     	| HWTEST(A,B,C)| 用例执行不依赖Setup&Teardown时，可选取|
-    	| HWTEST_F(A,B,C)| 用例执行(不含参数)依赖于Setup&Teardown时，可选取|
+    	| HWTEST_F(A,B,C)| 用例执行（不含参数）依赖于Setup&Teardown时，可选取|
 		| HWMTEST_F(A,B,C,D)| 多线程用例执行依赖于Setup&Teardown时，可选取|
-    	| HWTEST_P(A,B,C)| 用例执行(含参数)依赖于Set&Teardown时，可选取|
+    	| HWTEST_P(A,B,C)| 用例执行（含参数）依赖于Set&Teardown时，可选取|
 
 
 其中，参数A，B，C的含义如下：
