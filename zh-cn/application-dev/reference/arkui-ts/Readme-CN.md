@@ -47,8 +47,8 @@
       - [全屏模态转场](ts-universal-attributes-modal-transition.md)
       - [半模态转场](ts-universal-attributes-sheet-transition.md)
     - [隐私遮罩](ts-universal-attributes-obscured.md)
-  - [文本通用属性](ts-universal-attributes-text-style.md)
-  - [安全控件通用属性](ts-universal-attributes-securitycomponent.md)
+    - [文本通用](ts-universal-attributes-text-style.md)
+    - [安全控件通用](ts-universal-attributes-securitycomponent.md)
   - 手势处理
     - [绑定手势方法](ts-gesture-settings.md)
     - 基础手势
