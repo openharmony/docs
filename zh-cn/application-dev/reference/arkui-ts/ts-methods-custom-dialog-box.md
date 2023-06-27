@@ -43,7 +43,7 @@ dialogController : CustomDialogController = new CustomDialogController(value:{bu
 open(): void
 
 
-显示自定义弹窗内容，若已显示，则不生效。
+显示自定义弹窗内容，允许多次使用，但如果弹框为SubWindow模式，则该弹框不允许再弹出SubWindow弹框。
 
 
 ### close
@@ -62,6 +62,7 @@ struct CustomDialogExample {
   @Link textValue: string
   @Link inputValue: string
   controller: CustomDialogController
+  // 若尝试在CustomDialog中传入多个其他的Controller，以实现在CustomDialog中打开另一个或另一些CustomDialog，那么此处需要将指向自己的controller放在最后
   cancel: () => void
   confirm: () => void
 
@@ -87,6 +88,7 @@ struct CustomDialogExample {
           }).backgroundColor(0xffffff).fontColor(Color.Red)
       }.margin({ bottom: 10 })
     }
+    // dialog默认的borderRadius为24vp，如果需要使用border属性，请和borderRadius属性一起使用。
   }
 }
 
