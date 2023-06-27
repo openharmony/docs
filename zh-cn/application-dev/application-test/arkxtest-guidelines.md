@@ -353,7 +353,7 @@ OHOS_REPORT_STATUS: taskconsuming=16029
 ```
 #### 命令导出 record.csv文件查看录制数据
 ```shell  
-hdc file recv /data/local/tmp/layout/record.csv D:\tool  # D:\tool 可以自定义本地路径
+hdc file recv /data/local/tmp/layout/record.csv D:\tool  # D:\tool 为本地存储路径,用户可自定义
 ```
 - record 数据字段含义请参考如下示例数据。
 ```
