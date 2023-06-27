@@ -72,7 +72,6 @@
   - [OH_NativeXComponent_TouchPoint](_o_h___native_x_component___touch_point.md)
   - [OHExtDataHandle](_o_h_ext_data_handle.md)
   - [OHHDRMetaData](_o_h_h_d_r_meta_data.md)
-  - [OhosPixelMapCreateOps](_ohos_pixel_map_create_ops.md)
   - [OhosPixelMapInfo](_ohos_pixel_map_info.md)
   - [RawFileDescriptor](_raw_file_descriptor.md)
   - [Region](_region.md)
