@@ -19,5 +19,5 @@
 - 同设备跨应用数据共享（仅对系统应用开放）
   - [同设备跨应用数据共享概述](share-device-data-across-apps-overview.md)
   - [通过DataShareExtensionAbility实现数据共享](share-data-by-datashareextensionability.md)
-  - [通过数据代理服务实现数据共享静默访问](share-data-by-silent-access.md)
+  - [通过数据管理服务实现数据共享静默访问](share-data-by-silent-access.md)
 
