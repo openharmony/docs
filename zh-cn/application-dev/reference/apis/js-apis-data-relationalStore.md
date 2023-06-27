@@ -3008,6 +3008,39 @@ promise.then(() => {
 
 ### setDistributedTables<sup>10+</sup>
 
+setDistributedTables(tables: Array&lt;string&gt;, type: number, config: DistributedConfig, callback: AsyncCallback&lt;void&gt;): void
+
+设置分布式列表，使用callback异步回调。
+
+**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
+
+**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
+
+**参数：**
+
+| 参数名      | 类型                                  | 必填  | 说明              |
+| -------- | ----------------------------------- | --- | --------------- |
+| tables   | Array&lt;string&gt;                 | 是   | 要设置的分布式列表表名。     |
+| type     | number | 是   | 表的分布式类型。目前支持的入参值为: relationalStore.DistributedType.DISTRIBUTED_DEVICE、relationalStore.DistributedType.DISTRIBUTED_CLOUD。<br> 当type为relationalStore.DistributedType.DISTRIBUTED_DEVICE时，表示表在不同设备之间分布式。<br> 当type为relationalStore.DistributedType.DISTRIBUTED_CLOUD时，表示表在设备和云端之间分布式。 |
+| config | [DistributedConfig](#distributedconfig10) | 是 | 表的分布式配置信息。 |
+| callback | AsyncCallback&lt;void&gt;           | 是   | 指定callback回调函数。 |
+
+**示例：**
+
+```js
+let config = new DistributedConfig();
+config.autoSync = true;
+store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, config, function (err) {
+  if (err) {
+    console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
+    return;
+  }
+  console.info(`SetDistributedTables successfully.`);
+})
+```
+
+### setDistributedTables<sup>10+</sup>
+
  setDistributedTables(tables: Array&lt;string>, type?: number, config?: DistributedConfig): Promise&lt;void>
 
 设置分布式列表，使用Promise异步回调。
@@ -3018,11 +3051,11 @@ promise.then(() => {
 
 **参数：**
 
-| 参数名 | 类型                                                    | 必填 | 说明                                                         |
-| ------ | ------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| tables | Array&lt;string&gt;                                     | 是   | 要设置的分布式列表表名。                                     |
-| type   | number                                                  | 否   | 表的分布式类型。默认值是DISTRIBUTED_DEVICE。<br> 目前支持的入参值为: DISTRIBUTED_DEVICE、relationalStore.DistributedType.DISTRIBUTED_CLOUD。<br/> 当type为relationalStore.DistributedType.DISTRIBUTED_DEVICE时，表示表在不同设备之间分布式。<br/> 当type为relationalStore.DistributedType.DISTRIBUTED_CLOUD时，表示表在设备和云端之间分布式。 |
-| config | [DistributedConfig<sup>10+</sup>](#distributedconfig10) | 否   | 表的分布式配置信息。不传入时默认autoSync为false，即只支持手动同步。 |
+| 参数名 | 类型                                      | 必填 | 说明                                                         |
+| ------ | ----------------------------------------- | ---- | ------------------------------------------------------------ |
+| tables | Array&lt;string&gt;                       | 是   | 要设置的分布式列表表名。                                     |
+| type   | number                                    | 否   | 表的分布式类型。默认值是relationalStore.DistributedType.DISTRIBUTED_DEVICE。<br> 目前支持的入参值为: relationalStore.DistributedType.DISTRIBUTED_DEVICE、relationalStore.DistributedType.DISTRIBUTED_CLOUD。<br/> 当type为relationalStore.DistributedType.DISTRIBUTED_DEVICE时，表示表在不同设备之间分布式。<br/> 当type为relationalStore.DistributedType.DISTRIBUTED_CLOUD时，表示表在设备和云端之间分布式。 |
+| config | [DistributedConfig](#distributedconfig10) | 否   | 表的分布式配置信息。不传入时默认autoSync为false，即只支持手动同步。 |
 
 **返回值**：
 
@@ -3040,38 +3073,6 @@ promise.then(() => {
   console.info(`SetDistributedTables successfully.`);
 }).catch((err) => {
   console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
-})
-```
-### setDistributedTables<sup>10+</sup>
-
-setDistributedTables(tables: Array&lt;string&gt;, type: number, config: DistributedConfig, callback: AsyncCallback&lt;void&gt;): void
-
-设置分布式列表，使用callback异步回调。
-
-**需要权限：** ohos.permission.DISTRIBUTED_DATASYNC
-
-**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
-
-**参数：**
-
-| 参数名      | 类型                                  | 必填  | 说明              |
-| -------- | ----------------------------------- | --- | --------------- |
-| tables   | Array&lt;string&gt;                 | 是   | 要设置的分布式列表表名。     |
-| type     | number | 是   | 表的分布式类型。目前支持的入参值为: DISTRIBUTED_DEVICE、relationalStore.DistributedType.DISTRIBUTED_CLOUD。<br> 当type为relationalStore.DistributedType.DISTRIBUTED_DEVICE时，表示表在不同设备之间分布式。<br> 当type为relationalStore.DistributedType.DISTRIBUTED_CLOUD时，表示表在设备和云端之间分布式。 |
-| config | [DistributedConfig](#distributedconfig10) | 是 | 表的分布式配置信息。 |
-| callback | AsyncCallback&lt;void&gt;           | 是   | 指定callback回调函数。 |
-
-**示例：**
-
-```js
-let config = new DistributedConfig();
-config.autoSync = true;
-store.setDistributedTables(["EMPLOYEE"], relationalStore.DistributedType.DISTRIBUTED_CLOUD, config, function (err) {
-  if (err) {
-    console.error(`SetDistributedTables failed, code is ${err.code},message is ${err.message}`);
-    return;
-  }
-  console.info(`SetDistributedTables successfully.`);
 })
 ```
 
@@ -3317,7 +3318,7 @@ promise.then((result) =>{
 
 on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-注册数据库的观察者。当分布式数据库中的数据发生更改时，将调用回调。
+注册数据库的数据变更的事件监听。当分布式数据库中的数据发生更改时，将调用回调。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
@@ -3358,7 +3359,7 @@ on(event: 'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;stri
 | -------- | ----------------------------------- | ---- | ------------------------------------------- |
 | event    | string                              | 是   | 取值为'dataChange'，表示数据更改。          |
 | type     | [SubscribeType](#subscribetype)    | 是   | 订阅类型。 |
-| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;ChangeInfo&gt;&gt;<sup>10+</sup> | 是   | 回调函数。<br>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端帐号。 <br> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。 |
+| observer | Callback&lt;Array&lt;string&gt;&gt; \| Callback&lt;Array&lt;ChangeInfo&gt;&gt; | 是   | 回调函数。<br>当type为SUBSCRIBE_TYPE_REMOTE，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的对端设备ID。<br> 当type为SUBSCRIBE_TYPE_CLOUD，observer类型需为Callback&lt;Array&lt;string&gt;&gt;，其中Array&lt;string&gt;为数据库中的数据发生改变的云端帐号。 <br> 当type为SUBSCRIBE_TYPE_CLOUD_DETAILS，observer类型需为Callback&lt;Array&lt;ChangeInfo&gt;&gt;，其中Array&lt;ChangeInfo&gt;为数据库端云同步过程的详情。 |
 
 **示例：**
 
@@ -3379,7 +3380,7 @@ try {
 
 off(event:'dataChange', type: SubscribeType, observer: Callback&lt;Array&lt;string&gt;&gt;): void
 
-从数据库中删除指定类型的指定观察者, 使用callback异步回调。
+取消数据变更的事件监听。
 
 **系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core
 
