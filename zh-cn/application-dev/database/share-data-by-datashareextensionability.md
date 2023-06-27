@@ -154,11 +154,11 @@
    
    **表2** data_share_config.json对应属性字段
 
-| 属性名称          | 备注说明                                     | 必填   |
-| ------------- | ---------------------------------------- | ---- |
-| tableConfig   | 配置标签。                                    | 是    |
-| uri           | 指定配置生效的范围，uri支持以下三种格式，优先级为**表配置>库配置>\***，如果同时配置，高优先级会覆盖低优先级 。<br /> 1. "*" : 所有的数据库和表。<br /> 2. "datashareproxy://{bundleName}/{moduleName}/{storeName}" : 指定数据库。<br /> 3. "datashareproxy://{bundleName}/{moduleName}/{storeName}/{tableName}" : 指定表。 | 是    |
-| crossUserMode | 标识数据是否为多用户共享，配置为1则多用户数据共享，配置为2则多用户数据隔离。  | 是    |
+   | 属性名称          | 备注说明                                     | 必填   |
+   | ------------- | ---------------------------------------- | ---- |
+   | tableConfig   | 配置标签。                                    | 是    |
+   | uri           | 指定配置生效的范围，uri支持以下三种格式，优先级为**表配置>库配置>\***，如果同时配置，高优先级会覆盖低优先级 。<br /> 1. "*" : 所有的数据库和表。<br /> 2. "datashareproxy://{bundleName}/{moduleName}/{storeName}" : 指定数据库。<br /> 3. "datashareproxy://{bundleName}/{moduleName}/{storeName}/{tableName}" : 指定表。 | 是    |
+   | crossUserMode | 标识数据是否为多用户共享，配置为1则多用户数据共享，配置为2则多用户数据隔离。  | 是    |
 
    **data_share_config.json配置样例**
 
