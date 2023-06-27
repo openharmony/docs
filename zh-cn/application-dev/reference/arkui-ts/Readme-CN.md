@@ -32,7 +32,7 @@
     - [栅格设置](ts-universal-attributes-grid.md)
     - [颜色渐变](ts-universal-attributes-gradient-color.md)
     - [Popup控制](ts-universal-attributes-popup.md)
-    - [Menu控制](ts-universal-attributes-menu.md)
+    - [菜单控制](ts-universal-attributes-menu.md)
     - [焦点控制](ts-universal-attributes-focus.md)
     - [悬浮态效果](ts-universal-attributes-hover-effect.md)
     - [组件标识](ts-universal-attributes-component-id.md)
