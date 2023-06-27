@@ -23,19 +23,26 @@
 - [水波纹动画开发](water-wave-animation.md)
 - [属性动画示例](property-animation.md)
 - [如何使用OpenGL实现3D图形](how-to-use-opengl-to-draw-3d-graphics.md)
-- [控制页面刷新范围](overall-and-part-refresh.md)
 - [常见弹窗的使用](diverse-dialogues.md)
+- [折叠展开动效](collapse-and-expand.md)
 - [列表上拉加载更多内容](list-pullup-loading-data.md)
+### 装饰器
+- [控制页面刷新范围](overall-and-part-refresh.md)
+- [如何监听多层状态变化](observed-and-objectlink.md)
 
 ### 网络管理
 - [如何请求并加载网络图片](how-to-load-images-from-internet.md)
 
 ### 窗口管理
 - [如何实现沉浸模式](immersion-mode.md)
+- [如何创建悬浮窗](float-window.md)
 - [保持屏幕常亮](keep-screen-on.md)
 
 ### 媒体
 - [常见图片编辑](image-edit.md)
+
+### 一次开发，多端部署
+- [Navigation如何实现多场景UI适配](multi-device-app-dev.md)
 
 
 
