@@ -940,7 +940,7 @@ reports/platform_log_xxxx_xx_xx_xx_xx_xx.log
 ```
 
 ## 执行覆盖率用例
-各子系统可按照以下方式，执行用例，生成gcda数据后方可生成覆盖率报告
+各子系统可按照以下方式，执行用例，生成gcda数据后方可生成覆盖率报告。
 
 1. （可选执行）为了屏蔽非核心代码产生的冗余分支数据，可以在源码编译之前进入/test/testfwk/developer_test/localCoverage/restore_comment目录下执行：
 
@@ -965,7 +965,7 @@ reports/platform_log_xxxx_xx_xx_xx_xx_xx.log
        4）安装selectolax, 安装命令: pip install selectolax
        5）安装CppHeaderParser, 安装命令 pip install CppHeaderParser
 
-4. 远程映射设备，修改usr_config.xml中的ip号，设备映射方式查看上面介绍的远程端口映射，
+4. 远程映射设备，修改usr_config.xml中的ip号，设备映射方式查看上面介绍的远程端口映射。
 
        <!-- 配置远程映射机器的IP(设备挂载的pc的ip) -->
        <device type="usb-hdc">
@@ -974,9 +974,8 @@ reports/platform_log_xxxx_xx_xx_xx_xx_xx.log
          <sn></sn>
        </device>
 
-5. 执行 ./start.sh
+5. 执行 ./start.sh，输入运行命令，示例如下：
 
-       命令例如下：
        run -t UT -tp 部件名 -cov coverage
        run -t UT -ss 子系统名 -cov coverage
        run -t UT -ss 子系统名 -tp 部件名 -cov coverage
@@ -984,7 +983,7 @@ reports/platform_log_xxxx_xx_xx_xx_xx_xx.log
 
    **注意：** 执行以上命令必须添加 -cov coverage 参数
 
-6. 从以下路径获取覆盖率报告路径
+6. 从以下路径获取覆盖率报告：
 
    代码覆盖率报告：/test/testfwk/developer_test/localCoverage/codeCoverage/results/coverage/reports/cxx/html
 
