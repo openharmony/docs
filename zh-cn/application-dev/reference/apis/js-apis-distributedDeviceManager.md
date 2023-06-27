@@ -28,7 +28,7 @@ import deviceManager from '@ohos.distributedDeviceManager';
 
 ## deviceManager.createDeviceManager
 
-createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager&gt;): void
+createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager&gt;): void;
 
 创建一个设备管理器实例。
 
@@ -160,7 +160,7 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 
 ### releaseDeviceManager
 
-releaseDeviceManager(): void
+releaseDeviceManager(): void;
 
 设备管理实例不再使用后，通过该方法释放DeviceManager实例。
 
@@ -186,7 +186,7 @@ releaseDeviceManager(): void
 
 ### getAvailableDeviceListSync
 
-getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;
+getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;;
 
 同步获取所有可信设备列表。
 
@@ -218,7 +218,7 @@ getAvailableDeviceListSync(): Array&lt;DeviceBasicInfo&gt;
 
 ### getAvailableDeviceList
 
-getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt;): void
+getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt;): void;
 
 获取所有可信设备列表。使用callback异步回调。
 
@@ -256,7 +256,7 @@ getAvailableDeviceList(callback:AsyncCallback&lt;Array&lt;DeviceBasicInfo&gt;&gt
 
 ### getAvailableDeviceList
 
-getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;
+getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;;
 
 获取所有可信设备列表。使用Promise异步回调。
 
@@ -288,7 +288,7 @@ getAvailableDeviceList(): Promise&lt;Array&lt;DeviceBasicInfo&gt;&gt;
 
 ### getLocalDeviceNetworkIdSync
 
-getLocalDeviceNetworkIdSync(): string
+getLocalDeviceNetworkIdSync(): string;
 
 同步获取本地设备网络标识。
 
@@ -321,7 +321,7 @@ getLocalDeviceNetworkIdSync(): string
 
 ### getLocalDeviceNameSync
 
-getLocalDeviceNameSync(): string
+getLocalDeviceNameSync(): string;
 
 同步获取本地设备名称。
 
@@ -354,7 +354,7 @@ getLocalDeviceNameSync(): string
 
 ### getLocalDeviceTypeSync
 
-getLocalDeviceTypeSync(): number
+getLocalDeviceTypeSync(): number;
 
 同步获取本地设备类型。
 
@@ -387,7 +387,7 @@ getLocalDeviceTypeSync(): number
 
 ### getLocalDeviceIdSync
 
-getLocalDeviceIdSync(): string
+getLocalDeviceIdSync(): string;
 
 同步获取本地设备id。
 
@@ -547,7 +547,7 @@ startDeviceDiscovery(subscribeId: number, filterOptions?: string): void;
 
 ### stopDeviceDiscovery
 
-stopDeviceDiscovery(subscribeId: number): void
+stopDeviceDiscovery(subscribeId: number): void;
 
 停止发现周边设备。
 
@@ -581,7 +581,7 @@ stopDeviceDiscovery(subscribeId: number): void
 
 ### publishDeviceDiscovery
 
-publishDeviceDiscovery(publishInfo: PublishInfo): void
+publishDeviceDiscovery(publishInfo: PublishInfo): void;
 
 发布设备发现。发布状态持续两分钟，超过两分钟会停止发布。
 
@@ -624,7 +624,7 @@ publishDeviceDiscovery(publishInfo: PublishInfo): void
 
 ### unPublishDeviceDiscovery
 
-unPublishDeviceDiscovery(publishId: number): void
+unPublishDeviceDiscovery(publishId: number): void;
 
 停止发布设备发现。
 
@@ -746,7 +746,7 @@ unbindDevice(deviceId: string): void;
 
 ### verifyAuthInfo
 
-verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string, level: number}&gt;): void
+verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string, level: number}&gt;): void;
 
 验证认证信息。
 
@@ -1098,7 +1098,7 @@ on(type: 'discoverSuccess', callback: Callback&lt;{ subscribeId: number, device:
 
 off(type: 'discoverSuccess', callback?: Callback&lt;{ subscribeId: number, device: DeviceBasicInfo }&gt;): void;
 
-取消注册设备发现回调。
+取消注册设备发现成功回调。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -1125,7 +1125,7 @@ off(type: 'discoverSuccess', callback?: Callback&lt;{ subscribeId: number, devic
 
 on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string }&gt;): void;
 
-注册设备名称改变回调监听。
+注册设备名称变更回调监听。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -1152,7 +1152,7 @@ on(type: 'deviceNameChange', callback: Callback&lt;{ deviceName: string }&gt;): 
 
 off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;): void;
 
-取消注册设备名称改变回调监听。
+取消注册设备名称变更回调监听。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -1177,7 +1177,7 @@ off(type: 'deviceNameChange', callback?: Callback&lt;{ deviceName: string }&gt;)
 
 ### on('discoverFail')
 
-on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: number }&gt;): void
+on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: number }&gt;): void;
 
 注册设备发现失败回调监听。
 
@@ -1204,7 +1204,7 @@ on(type: 'discoverFail', callback: Callback&lt;{ subscribeId: number, reason: nu
 
 ### off('discoverFail')
 
-off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: number }&gt;): void
+off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: number }&gt;): void;
 
 取消注册设备发现失败回调。
 
@@ -1231,9 +1231,9 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
 
 ### on('publishSuccess')
 
-on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void
+on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void;
 
-注册发布设备发现回调监听。
+注册发布设备成功回调监听。
 
 **系统能力**：SystemCapability.DistributedHardware.DeviceManager
 
@@ -1260,7 +1260,7 @@ on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): voi
 
 ### off('publishSuccess')
 
-off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): void
+off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): void;
 
 取消注册设备发布成功回调。
 
@@ -1289,7 +1289,7 @@ off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): v
 
 ### on('publishFail')
 
-on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void
+on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void;
 
 注册设备发布失败回调监听。
 
@@ -1318,7 +1318,7 @@ on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: numbe
 
 ### off('publishFail')
 
-off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void
+off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void;
 
 取消注册设备发布失败回调。
 
@@ -1347,7 +1347,7 @@ off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: num
 
 ### on('serviceDie')
 
-on(type: 'serviceDie', callback: () =&gt; void): void
+on(type: 'serviceDie', callback: () =&gt; void): void;
 
 注册设备管理服务死亡监听。
 
@@ -1374,7 +1374,7 @@ on(type: 'serviceDie', callback: () =&gt; void): void
 
 ### off('serviceDie')
 
-off(type: 'serviceDie', callback?: () =&gt; void): void
+off(type: 'serviceDie', callback?: () =&gt; void): void;
 
 取消注册设备管理服务死亡监听。
 
