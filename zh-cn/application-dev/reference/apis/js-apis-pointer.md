@@ -1540,7 +1540,7 @@ try {
 
 getTouchpadSwipeSwitch(callback:  AsyncCallback\<boolean>): void
 
-获取触控板多指滑动能力开启状态，使用AsyncCallback异步方式返回结果。
+获取触控板多指滑动功能开启状态，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
