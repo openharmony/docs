@@ -1585,7 +1585,6 @@
       - [OH_NativeXComponent_TouchPoint](reference/native-apis/_o_h___native_x_component___touch_point.md)
       - [OHExtDataHandle](reference/native-apis/_o_h_ext_data_handle.md)
       - [OHHDRMetaData](reference/native-apis/_o_h_h_d_r_meta_data.md)
-      - [OhosPixelMapCreateOps](reference/native-apis/_ohos_pixel_map_create_ops.md)
       - [OhosPixelMapInfo](reference/native-apis/_ohos_pixel_map_info.md)
       - [RawFileDescriptor](reference/native-apis/_raw_file_descriptor.md)
       - [Region](reference/native-apis/_region.md)
