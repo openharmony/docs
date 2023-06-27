@@ -664,6 +664,16 @@
 
 **ACL使能**：TRUE
 
+## ohos.permission.GET_NETWORK_STATS
+
+允许应用程序获取历史流量信息和监听流量变化。
+
+**权限级别**：system_basic
+
+**授权方式**：system_grant
+
+**ACL使能**：TRUE
+
 ## ohos.permission.SET_ABILITY_CONTROLLER
 
 允许设置ability组件启动和停止控制权。
