@@ -24,7 +24,7 @@ getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | nic | string | 是   | 指定查询的网卡名。                   |
-| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取网卡实时下行流量时，err为undefined，stats为获取到的网卡实时下行流量；否则为错误对象|
+| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取网卡实时下行流量时，error为undefined，stats为获取到的网卡实时下行流量；否则为错误对象|
 
 **错误码：**
 
@@ -43,7 +43,7 @@ getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
-  statistics.getIfaceRxBytes("wlan0", (error, data) => {
+  statistics.getIfaceRxBytes("wlan0", (error, stats) => {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(stats))
   })
@@ -103,7 +103,7 @@ getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | nic | string | 是   | 指定查询的网卡名。                   |
-| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取网卡实时上行流量时，err为undefined，stats为获取到的网卡实时下行流量；否则为错误对象|
+| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取网卡实时上行流量时，error为undefined，stats为获取到的网卡实时上行流量；否则为错误对象|
 
 **错误码：**
 
@@ -122,7 +122,7 @@ getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
-  statistics.getIfaceTxBytes("wlan0", (error, data) => {
+  statistics.getIfaceTxBytes("wlan0", (error, stats) => {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(stats))
   })
@@ -181,7 +181,7 @@ getCellularRxBytes(callback: AsyncCallback\<number>): void;
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取蜂窝实时下行流量时，err为undefined，stats为获取到的蜂窝实时下行流量；否则为错误对象|
+| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取蜂窝实时下行流量时，error为undefined，stats为获取到的蜂窝实时下行流量；否则为错误对象|
 
 **错误码：**
 
@@ -196,7 +196,7 @@ getCellularRxBytes(callback: AsyncCallback\<number>): void;
 **示例：**
 
 ```js
-  statistics.getCellularRxBytes((error, data) => {
+  statistics.getCellularRxBytes((error, stats) => {
     console.log(JSON.stringify(error))
     console.log(JSON.stringify(stats))
   })
@@ -248,7 +248,7 @@ getCellularTxBytes(callback: AsyncCallback\<number>): void;
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取蜂窝实时上行流量时，err为undefined，stats为获取到的蜂窝实时上行流量；否则为错误对象|
+| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取蜂窝实时上行流量时，error为undefined，stats为获取到的蜂窝实时上行流量；否则为错误对象|
 
 **错误码：**
 
@@ -318,7 +318,7 @@ getAllRxBytes(callback: AsyncCallback\<number>): void;
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取所有网卡实时下行流量，err为undefined，stats为获取到的所有网卡实时下行流量；否则为错误对象|
+| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取所有网卡实时下行流量，error为undefined，stats为获取到的所有网卡实时下行流量；否则为错误对象|
 
 **错误码：**
 
@@ -386,7 +386,7 @@ getAllTxBytes(callback: AsyncCallback\<number>): void;
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取所有网卡实时上行流量，err为undefined，stats为获取到的所有网卡实时上行流量；否则为错误对象|
+| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取所有网卡实时上行流量，error为undefined，stats为获取到的所有网卡实时上行流量；否则为错误对象|
 
 **错误码：**
 
@@ -455,7 +455,7 @@ getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | uid | number | 是   | 指定查询的应用uid。                   |
-| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取应用实时下行流量时，err为undefined，stats为获取到的应用实时下行流量；否则为错误对象|
+| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取应用实时下行流量时，error为undefined，stats为获取到的应用实时下行流量；否则为错误对象|
 
 **错误码：**
 
@@ -532,7 +532,7 @@ getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | uid | number | 是   | 指定查询的应用uid。                   |
-| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取应用实时上行流量时，err为undefined，stats为获取到的应用实时上行流量；否则为错误对象|
+| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取应用实时上行流量时，error为undefined，stats为获取到的应用实时上行流量；否则为错误对象|
 
 **错误码：**
 
