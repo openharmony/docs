@@ -1428,7 +1428,7 @@ policy.on('netUidPolicyChange', (data) => {
 
 off(type: "netUidPolicyChange", callback?: Callback<{ uid: number, policy: NetUidPolicy }>): void
 
-注册policy发生改变时的回调，使用callback方式作为异步方法。
+注销policy发生改变时的回调，使用callback方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -1504,7 +1504,7 @@ policy.on('netUidRuleChange', (data) => {
 
 off(type: "netUidRuleChange", callback?: Callback<{ uid: number, rule: NetUidRule }>): void
 
-注册rule发生改变时的回调，使用callback方式作为异步方法。
+注销rule发生改变时的回调，使用callback方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -1580,7 +1580,7 @@ policy.on('netMeteredIfacesChange', (data) => {
 
 off(type: "netMeteredIfacesChange", callback?: Callback\<Array\<string>>): void
 
-注册计量iface发生改变时的回调，使用callback方式作为异步方法。
+注销计量iface发生改变时的回调，使用callback方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -1656,7 +1656,7 @@ policy.on('netQuotaPolicyChange', (data) => {
 
 off(type: "netQuotaPolicyChange", callback?: Callback\<Array\<NetQuotaPolicy>>): void
 
-注册计量网络策略发生改变时的回调，使用callback方式作为异步方法。
+注销计量网络策略发生改变时的回调，使用callback方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -1732,7 +1732,7 @@ policy.on('netBackgroundPolicyChange', (data) => {
 
 off(type: "netBackgroundPolicyChange", callback?: Callback\<boolean>): void
 
-注册后台网络策略发生改变时的回调，使用callback方式作为异步方法。
+注销后台网络策略发生改变时的回调，使用callback方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -1838,7 +1838,7 @@ policy.off('netBackgroundPolicyChange', (data) => {
 | ---------------------- | ----- | ------------ |
 | LIMIT_ACTION_NONE     | -1 | 默认值。 |
 | LIMIT_ACTION_ACCESS_DISABLED  | 0  | 当配额策略达到限制时，访问被禁用。 |
-| LIMIT_ACTION_ALERT_ONLY| 1  | 当配额策略达到限制时，用户将自动计费。 |
+| LIMIT_ACTION_ALERT_ONLY| 1  | 当配额策略达到限制时，将警告用户。 |
 
 ## NetUidRule<sup>10+</sup>
 
