@@ -298,7 +298,7 @@ appManager.getRunningProcessInformation((err, data) => {
 });
 ```
 
-## appManager.isSharedBundleRunning
+## appManager.isSharedBundleRunning<sup>10+</sup>
 
 isSharedBundleRunning(bundleName: string, versionCode: number): Promise\<boolean>;
 
@@ -323,11 +323,20 @@ isSharedBundleRunning(bundleName: string, versionCode: number): Promise\<boolean
 | -------- | -------- |
 | Promise\<boolean> | Promise对象。返回true表示共享库正在使用，返回false表示共享库不在使用。 |
 
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
+
 **示例：**
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
 
+const bundleName = "this is a bundleName";
+const versionCode = 1;
 appManager.isSharedBundleRunning(bundleName, versionCode).then((data) => {
     console.log('The shared bundle running is: ${JSON.stringify(data)}');
 }).catch((error) => {
@@ -335,7 +344,7 @@ appManager.isSharedBundleRunning(bundleName, versionCode).then((data) => {
 });
 ```
 
-## appManager.isSharedBundleRunning
+## appManager.isSharedBundleRunning<sup>10+</sup>
 
 isSharedBundleRunning(bundleName: string, versionCode: number, callback: AsyncCallback\<boolean>): void;
 
@@ -353,18 +362,22 @@ isSharedBundleRunning(bundleName: string, versionCode: number, callback: AsyncCa
 | --------- | ---------------------------------------- | ---- | -------------- |
 | bundleName    | string   | 是    | 表示要查询的共享库包名。 |
 | versionCode   | number   | 是    | 表示要查询的共享库版本号。      |
-
-**参数：**
-
-| 类型 | 说明 |
-| -------- | -------- |
 |AsyncCallback\<boolean>> | 回调函数。返回true表示共享库正在使用，返回false表示共享库不在使用。 |
+
+**错误码**：
+
+| 错误码ID | 错误信息 |
+| 16000050 | Internal error. |
+
+以上错误码详细介绍请参考[errcode-ability](../errorcodes/errorcode-ability.md)。
 
 **示例：**
 
 ```ts
 import appManager from '@ohos.app.ability.appManager';
 
+const bundleName = "this is a bundleName";
+const versionCode = 1;
 appManager.isSharedBundleRunning(bundleName, versionCode, (err, data) => {
     if (err) {
         console.error('err: ${JSON.stringify(err)}');
@@ -749,7 +762,7 @@ killProcessWithAccount(bundleName: string, accountId: number): Promise\<void\>
 >
 > 当accountId为当前用户时，不需要校验ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS权限。
 
-**需要权限**：ohos.permission.CLEAN_BACKGROUND_PROCESSES，ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.CLEAN_BACKGROUND_PROCESSES, ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -799,7 +812,7 @@ killProcessWithAccount(bundleName: string, accountId: number, callback: AsyncCal
 >
 > 当accountId为当前用户时，不需要校验ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS权限。
 
-**需要权限**：ohos.permission.CLEAN_BACKGROUND_PROCESSES，ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
+**需要权限**：ohos.permission.CLEAN_BACKGROUND_PROCESSES, ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 

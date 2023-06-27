@@ -14,11 +14,13 @@ Mission迁移完成后调用，返回迁移结果。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Mission
 
+**系统API**：该接口为系统接口，三方应用不支持调用。
+
 **参数：**
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | result |  number | 否 | 迁移任务的结果。 |
+  | result |  number | 是 | 迁移任务的结果。 |
 
 **示例：**
 

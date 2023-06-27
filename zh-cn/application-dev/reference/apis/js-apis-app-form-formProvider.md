@@ -539,7 +539,7 @@ isRequestPublishFormSupported(callback: AsyncCallback&lt;boolean&gt;): void
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 202 | The application is not a system application. |
+| 202 | If the application is not a system application. |
 | 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16501000 | An internal functional error occurred. |
@@ -602,7 +602,7 @@ isRequestPublishFormSupported(): Promise&lt;boolean&gt;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
-| 202 | The application is not a system application. |
+| 202 | If the application is not a system application. |
 | 16500050 | An IPC connection error happened. |
 | 16501000 | An internal functional error occurred. |
 
