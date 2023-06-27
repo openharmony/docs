@@ -6,7 +6,7 @@ A service widget (also called widget) is a set of UI components that display imp
 
 ## Service Widget Architecture
 
-  **Figure 1** Service widget architecture
+**Figure 1** Service widget architecture
 
 ![WidgetArchitecture](figures/WidgetArchitecture.png)
 
@@ -24,7 +24,7 @@ Before you get started, it would be helpful if you have a basic understanding of
 
 Below is the typical procedure of using the widget:
 
-  **Figure 2** Typical procedure of using the widget
+**Figure 2** Typical procedure of using the widget
 
 ![WidgetUse](figures/WidgetUse.png)
 
@@ -55,4 +55,4 @@ ArkTS widgets and JS widgets have different implementation principles and featur
 | Custom drawing| Not supported| Supported|
 | Logic code execution (excluding the import capability)| Not supported| Supported|
 
-As can be seen above, ArkTS widgets have more capabilities and use cases than JS widgets. Therefore, ArkTS widgets are always recommended, except for the case where the widget consists of only static pages.
+As can be seen above, ArkTS widgets provide more capabilities and use cases than JS widgets. Therefore, ArkTS widgets are always recommended, except for the case where the widget consists of only static pages.

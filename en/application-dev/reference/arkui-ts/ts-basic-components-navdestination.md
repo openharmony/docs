@@ -9,10 +9,9 @@
 
 ## Child Components
 
-> **NOTE**
->
-> - Supported types of child components: built-in components and custom components, with support for ([if/else](../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)) rendering control.
-> - Number of child components: multiple.
+Supported types of child components: built-in components and custom components, with support for ([if/else](../../quick-start/arkts-rendering-control-ifelse.md), [ForEach](../../quick-start/arkts-rendering-control-foreach.md), and [LazyForEach](../../quick-start/arkts-rendering-control-lazyforeach.md)) rendering control.
+
+Number of child components: multiple.
 
 
 ## APIs
@@ -31,4 +30,11 @@ In addition to the [backgroundColor](ts-universal-attributes-background.md) attr
 
 ## Events
 
-The [universal events](ts-universal-events-click.md) are supported.
+In addition to the [universal events](ts-universal-events-click.md), the following events are supported.
+
+
+| Name                                      | Description                                    |
+| ---------------------------------------- | ---------------------------------------- |
+| onShown(callback: (param: unknown) =&gt; void)<sup>10+</sup> | Called when the navigation destination page is displayed. **param**: parameter information of the navigation destination page.<br>**NOTE**<br>The **onShown** API will be changed to **onShown(callback: () =&gt; void)**.|
+| onHidden(callback: () =&gt; void)<sup>10+</sup> | Called when the navigation destination page is hidden.|
+| onBackPressed(callback: () =&gt; boolean)<sup>10+</sup> | Called when the back button is pressed.<br>The value **true** means that the back button logic is overridden, and **false** means that the previous page is displayed.<br>|

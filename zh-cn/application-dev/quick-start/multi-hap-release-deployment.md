@@ -51,7 +51,7 @@
     // 执行结果
     uninstall bundle successfully.
     ```
-    完成HAP安装或更新后，即可参考相关调试命令进行[调试](https://docs.openharmony.cn/pages/v3.2Beta/zh-cn/application-dev/tools/aa-tool.md/)。
+    完成HAP安装或更新后，即可参考相关调试命令进行[调试](../tools/aa-tool.md)。
 
 ## 发布
 当开发的程序包满足发布要求时，可以在工具中打包编译生成App包。将该App包上架到应用市场云端，应用市场会对上架的App包校验签名，校验签名通过后会将App包中的HAP拆分出来，同时对拆分出的HAP重新添加签名，然后对HAP进行分发。

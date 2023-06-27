@@ -31,7 +31,7 @@ get(id: string, callback: AsyncCallback<image.PixelMap>): void
 
 | 参数名      | 类型                                  | 必填   | 说明                                       |
 | -------- | ----------------------------------- | ---- | ---------------------------------------- |
-| id       | string                              | 是    | 目标组件的[ID 标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| id       | string                              | 是    | 目标组件的[组件标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
 | callback | AsyncCallback&lt;image.PixelMap&gt; | 是    | 截图返回结果的回调。                               |
 
 **示例：**
@@ -74,7 +74,7 @@ struct SnapshotExample {
 
 get(id: string): Promise<image.PixelMap>
 
-获取已加载的组件的截图，传入组件的[ID 标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过Promise返回结果。
+获取已加载的组件的截图，传入组件的[组件标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识)，找到对应组件进行截图。通过Promise返回结果。
 
 > **说明：**
 >
@@ -86,7 +86,7 @@ get(id: string): Promise<image.PixelMap>
 
 | 参数名  | 类型     | 必填   | 说明                                       |
 | ---- | ------ | ---- | ---------------------------------------- |
-| id   | string | 是    | 目标组件的[ID 标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
+| id   | string | 是    | 目标组件的[组件标识](../arkui-ts/ts-universal-attributes-component-id.md#组件标识) |
 
 **返回值：**
 
@@ -116,8 +116,8 @@ struct SnapshotExample {
       Image(this.pixmap)
         .width(300).height(300)
       // ...Component
-      // ...Components
-      // ...Components
+      // ...Component
+      // ...Component
       Button("click to generate UI snapshot")
         .onClick(() => {
           componentSnapshot.get("root")

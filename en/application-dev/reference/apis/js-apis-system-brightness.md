@@ -28,7 +28,7 @@ Obtains the current screen brightness.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [GetBrightnessOptions](#getbrightnessoptions) | No  | Options for obtaining the screen brightness.|
+| options | [GetBrightnessOptions](#getbrightnessoptions) | No  | Options for obtaining the screen brightness. This parameter is optional and is left blank by default.|
 
 **Example**
 
@@ -56,7 +56,7 @@ Sets the screen brightness.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [SetBrightnessOptions](#setbrightnessoptions) | No  | Options for setting the screen brightness.|
+| options | [SetBrightnessOptions](#setbrightnessoptions) | No  | Options for setting the screen brightness. This parameter is optional and is left blank by default.|
 
 **Example**
 
@@ -85,7 +85,7 @@ Obtains the screen brightness adjustment mode.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [GetBrightnessModeOptions](#getbrightnessmodeoptions) | No| Options for obtaining the screen brightness mode.|
+| options | [GetBrightnessModeOptions](#getbrightnessmodeoptions) | No| Options for obtaining the screen brightness mode. This parameter is optional and is left blank by default.|
 
 **Example**
 
@@ -112,7 +112,7 @@ Sets the screen brightness adjustment mode.
 **Parameters**
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [SetBrightnessModeOptions](#setbrightnessmodeoptions) | No  | Options for setting the screen brightness mode.|
+| options | [SetBrightnessModeOptions](#setbrightnessmodeoptions) | No  | Options for setting the screen brightness mode. This parameter is optional and is left blank by default.|
 
 **Example**
 
@@ -143,7 +143,7 @@ Sets whether to always keep the screen on. Call this API in **onShow()**.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| options | [SetKeepScreenOnOptions](#setkeepscreenonoptions) | No| Options for setting the screen to be steady on.|
+| options | [SetKeepScreenOnOptions](#setkeepscreenonoptions) | No| Options for setting the screen to be steady on. This parameter is optional and is left blank by default.|
 
 **Example**
 
@@ -166,9 +166,9 @@ Defines the options for obtaining the screen brightness.
 
 | Name    | Type                                                     | Mandatory| Description                                                        |
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| success  | (data: [BrightnessResponse](#brightnessresponse)) => void | No  | Called when API call is successful. **data** is a return value of the [BrightnessResponse](#brightnessresponse) type.|
-| fail     | (data: string, code: number) => void                      | No  | Called when API call has failed. **data** indicates the error information, and **code** indicates the error code.      |
-| complete | () => void                                                | No  | Called when the API call is complete.                                    |
+| success  | (data: [BrightnessResponse](#brightnessresponse)) => void | No  | Called when an API call is successful. **data** is a return value of the [BrightnessResponse](#brightnessresponse) type.|
+| fail     | (data: string, code: number) => void                      | No  | Called when an API call has failed. **data** indicates the error information, and **code** indicates the error code.      |
+| complete | () => void                                                | No  | Called when an API call is complete.                                    |
 
 ## SetBrightnessOptions
 
@@ -178,10 +178,10 @@ Defines the options for setting the screen brightness.
 
 | Name    | Type                                | Mandatory| Description                                                        |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------------ |
-| value    | number                               | Yes  | Screen brightness. The value is an integer ranging from **1** to **255**.<br>-&nbsp;If the value is less than or equal to **0**, value **1** will be used.<br>-&nbsp;If the value is greater than **255**, value **255** will be used.<br>-&nbsp;If the value contains decimals, the integral part of the value will be used. For example, if value **8.1** is set, value **8** will be used.|
-| success  | () => void                           | No  | Callback upon a successful API call.                                    |
-| fail     | (data: string, code: number) => void | No  | Called when API call has failed. **data** indicates the error information, and **code** indicates the error code.      |
-| complete | () => void                           | No  | Called when the API call is complete.                                    |
+| value    | number                               | Yes  | Screen brightness. The value is an integer ranging from **1** to **255**.<br>- If the value is less than or equal to **0**, value **1** will be used.<br>- If the value is greater than **255**, value **255** will be used.<br>- If the value contains decimals, the integral part of the value will be used. For example, if value **8.1** is set, value **8** will be used.|
+| success  | () => void                           | No  | Called when an API call is successful.                                    |
+| fail     | (data: string, code: number) => void | No  | Called when an API call has failed. **data** indicates the error information, and **code** indicates the error code.      |
+| complete | () => void                           | No  | Called when an API call is complete.                                    |
 
 ## BrightnessResponse
 
@@ -201,9 +201,9 @@ Defines the options for obtaining the screen brightness mode.
 
 | Name    | Type                                                        | Mandatory| Description                                                        |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| success  | (data: [BrightnessModeResponse](#brightnessmoderesponse)) => void | No  | Called when API call is successful. **data** is a return value of the [BrightnessModeResponse](#brightnessmoderesponse) type.|
-| fail     | (data: string, code: number) => void                         | No  | Called when API call has failed. **data** indicates the error information, and **code** indicates the error code.      |
-| complete | () => void                                                   | No  | Called when the API call is complete.                                    |
+| success  | (data: [BrightnessModeResponse](#brightnessmoderesponse)) => void | No  | Called when an API call is successful. **data** is a return value of the [BrightnessModeResponse](#brightnessmoderesponse) type.|
+| fail     | (data: string, code: number) => void                         | No  | Called when an API call has failed. **data** indicates the error information, and **code** indicates the error code.      |
+| complete | () => void                                                   | No  | Called when an API call is complete.                                    |
 
 ## SetBrightnessModeOptions
 
@@ -214,9 +214,9 @@ Defines the options for setting the screen brightness mode.
 | Name    | Type                                | Mandatory| Description                                                  |
 | -------- | ------------------------------------ | ---- | ------------------------------------------------------ |
 | mode     | number                               | Yes  | The value **0** indicates the manual adjustment mode, and the value **1** indicates the automatic adjustment mode.|
-| success  | () => void                           | No  | Callback upon a successful API call.                              |
-| fail     | (data: string, code: number) => void | No  | Called when API call has failed. **data** indicates the error information, and **code** indicates the error code.|
-| complete | () => void                           | No  | Called when the API call is complete.                              |
+| success  | () => void                           | No  | Called when an API call is successful.                              |
+| fail     | (data: string, code: number) => void | No  | Called when an API call has failed. **data** indicates the error information, and **code** indicates the error code.|
+| complete | () => void                           | No  | Called when an API call is complete.                              |
 
 ## BrightnessModeResponse
 
@@ -237,6 +237,6 @@ Defines the options for setting the screen to be steady on.
 | Name        | Type                                | Mandatory| Description                                                  |
 | ------------ | ------------------------------------ | ---- | ------------------------------------------------------ |
 | keepScreenOn | boolean                              | Yes  | The value **true** means to keep the screen steady on, and the value **false** indicates the opposite.         |
-| success      | () => void                           | No  | Callback upon a successful API call.                              |
-| fail         | (data: string, code: number) => void | No  | Called when API call has failed. **data** indicates the error information, and **code** indicates the error code.|
-| complete     | () => void                           | No  | Called when the API call is complete.                              |
+| success      | () => void                           | No  | Called when an API call is successful.                              |
+| fail         | (data: string, code: number) => void | No  | Called when an API call has failed. **data** indicates the error information, and **code** indicates the error code.|
+| complete     | () => void                           | No  | Called when an API call is complete.                              |

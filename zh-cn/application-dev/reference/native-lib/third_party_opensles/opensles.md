@@ -1,4 +1,4 @@
-# Native api中支持的OpenSL ES接口列表
+# OpenSL ES
 
 ## 简介
 

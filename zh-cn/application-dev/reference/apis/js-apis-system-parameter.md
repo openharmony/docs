@@ -30,13 +30,13 @@ getSync(key: string, def?: string): string
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | key | string | 是 | 待查询的系统参数Key。 |
-| def | string | 否 | def 为所要获取的系统参数的默认值 <br> def为可选参数，仅当系统参数不存在时生效 <br>def可以传undefined(返回空)或自定义的任意值 |
+| def | string | 否 | def为所要获取的系统参数的默认值 <br> def为可选参数，仅当系统参数不存在时生效 <br>def可以传undefined或自定义的任意值 |
 
 **返回值：**
 
 | 类型 | 说明 |
 | -------- | -------- |
-| string | 系统参数值，若key不存在，返回默认值。若未指定默认值，返回空字符串。 |
+| string | 系统参数值。<br> 若key存在,返回设定的值。<br> 若key不存在且def有效，返回def；若未指定def或def无效(如undefined)，返回空字符串。 |
 
 **示例：**
 
@@ -44,7 +44,7 @@ getSync(key: string, def?: string): string
 try {
     var info = systemparameter.getSync("const.ohos.apiversion");
     console.log(JSON.stringify(info));
-}catch(e){
+} catch(e) {
     console.log("getSync unexpected error: " + e);
 }
 ```
@@ -74,7 +74,7 @@ try {
     } else {
         console.log(" get test.parameter.key value err:" + err.code)
     }});
-}catch(e){
+} catch(e) {
     console.log("get unexpected error: " + e);
 }
 ```
@@ -106,7 +106,7 @@ try {
             console.log(" get test.parameter.key value err:" + err.code)
         }
     });
-}catch(e){
+} catch(e) {
     console.log("get unexpected error:" + e)
 }
 ```
@@ -124,7 +124,7 @@ get(key: string, def?: string): Promise&lt;string&gt;
 | 参数名 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | key | string | 是 | 待查询的系统参数Key。 |
-| def | string | 否 | def 为所要获取的系统参数的默认值 <br> def为可选参数，仅当系统参数不存在时生效 <br>def可以传undefined(返回空)或自定义的任意值 |
+| def | string | 否 | def为所要获取的系统参数的默认值 <br> def为可选参数，仅当系统参数不存在时生效 <br> def可以传undefined或自定义的任意值 |
 
 **返回值：**
 
@@ -142,7 +142,7 @@ try {
     }).catch(function (err) {
         console.log("get test.parameter.key error: " + err.code);
     });
-}catch(e){
+} catch(e) {
     console.log("get unexpected error: " + e);
 }
 ```
@@ -172,7 +172,7 @@ setSync(key: string, value: string): void
 ```ts
 try {
     systemparameter.setSync("test.parameter.key", "default");
-}catch(e){
+} catch(e) {
     console.log("set unexpected error: " + e);
 }
 ```
@@ -207,7 +207,7 @@ try {
     } else {
         console.log("set test.parameter.key value err:" + err.code)
     }});
-}catch(e){
+} catch(e) {
     console.log("set unexpected error: " + e);
 }
 ```
@@ -247,7 +247,7 @@ try {
     }).catch(function (err) {
         console.log(" set test.parameter.key error: " + err.code);
     });
-}catch(e){
+} catch(e) {
     console.log("set unexpected error: " + e);
 }
 ```

@@ -33,7 +33,7 @@ rating {
 }
 ```
 
-![en-us_image_0000001231843116](figures/en-us_image_0000001231843116.gif)
+![en-us_image_0000001227701031](figures/en-us_image_0000001227701031.gif)
 
 
 ## Setting the Rating Level
@@ -66,7 +66,7 @@ rating {
 }
 ```
 
-![en-us_image_0000001232003012](figures/en-us_image_0000001232003012.gif)
+![en-us_image_0000001227422709](figures/en-us_image_0000001227422709.gif)
 
 
 ## Setting the Rating Style
@@ -114,7 +114,7 @@ export default {
 }
 ```
 
-![en-us_image_0000001275803173](figures/en-us_image_0000001275803173.gif)
+![en-us_image_0000001178685854](figures/en-us_image_0000001178685854.gif)
 
 > **NOTE**
 > - You must set **star-background**, **star-secondary**, and **star-foreground**. Otherwise, the grey rating star applies, indicating that the image source is incorrectly set.
@@ -154,17 +154,17 @@ rating {
 
 ```js
 // xxx.js
-import prompt from '@system.prompt';
+import promptAction from '@ohos.promptAction';
 export default {
   showrating(e) {
-    prompt.showToast({
+    promptAction.showToast({
       message:'Current Rating' + e.rating
     })
   }
 }
 ```
 
-![en-us_image_0000001276003525](figures/en-us_image_0000001276003525.gif)
+![en-us_image_0000001181823160](figures/en-us_image_0000001181823160.gif)
 
 
 ## Example Scenario
@@ -256,4 +256,4 @@ export default {
 }
 ```
 
-![en-us_image_0000001275923005](figures/en-us_image_0000001275923005.gif)
+![en-us_image_0000001224086459](figures/en-us_image_0000001224086459.gif)

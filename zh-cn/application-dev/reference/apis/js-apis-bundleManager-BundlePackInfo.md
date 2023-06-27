@@ -1,5 +1,5 @@
 # BundlePackInfo
-此接口为系统
+
 > **说明：**
 > 本模块首批接口从API version 9 开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
 
@@ -9,7 +9,7 @@
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
 
 | 名称     | 类型                                    | 可读 | 可写 | 说明                      |
@@ -21,7 +21,7 @@
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
 | 名称                | 类型           | 可读 | 可写 | 说明                                                         |
 | ------------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -34,7 +34,7 @@
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
 | 名称    | 类型                                          | 可读 | 可写 | 说明                 |
 | ------- | --------------------------------------------- | ---- | ---- | -------------------- |
@@ -45,7 +45,7 @@
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
 | 名称       | 类型                | 可读 | 可写 | 说明                                   |
 | ---------- | ------------------- | ---- | ---- | -------------------------------------- |
@@ -56,7 +56,7 @@
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
 | 名称               | 类型                                              | 可读 | 可写 | 说明                               |
 | ------------------ | ------------------------------------------------- | ---- | ---- | ---------------------------------- |
@@ -71,7 +71,7 @@
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
 | 名称                | 类型    | 可读 | 可写 | 说明                                                         |
 | ------------------- | ------- | ---- | ---- | ------------------------------------------------------------ |
@@ -84,7 +84,7 @@
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
 | 名称    | 类型                                        | 可读 | 可写 | 说明                                                         |
 | ------- | ------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -97,7 +97,7 @@
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
 | 名称  | 类型                                        | 可读 | 可写 | 说明                                                         |
 | ----- | ------------------------------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -108,7 +108,7 @@
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
 | 名称                | 类型           | 可读 | 可写 | 说明                                                         |
 | ------------------- | -------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -124,7 +124,7 @@
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
 | 名称        | 类型   | 可读 | 可写 | 说明                 |
 | ----------- | ------ | ---- | ---- | -------------------- |
@@ -136,7 +136,7 @@
 
 **系统接口：** 此接口为系统接口。
 
-**系统能力：** SystemCapability.BundleManager.BundleFrameWork.FreeInstall
+**系统能力：** SystemCapability.BundleManager.BundleFramework.FreeInstall
 
 | 名称                     | 类型   | 可读 | 可写 | 说明                                                         |
 | ------------------------ | ------ | ---- | ---- | ------------------------------------------------------------ |

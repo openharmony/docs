@@ -62,8 +62,8 @@
 
 - 调用方传入的want参数的action不为空，待匹配应用组件的skills配置中的actions不为空且不包含调用方传入的want参数的action，则action匹配失败。
 
-  **图1** want参数的action匹配规则  
-![want-action](figures/want-action.png)  
+  **图1** want参数的action匹配规则
+![want-action](figures/want-action.png)
 
 
 ### want参数的entities匹配规则
@@ -80,8 +80,8 @@
 
 - 调用方传入的want参数的entities不为空，待匹配应用组件的skills配置中的entities不为空且不完全包含调用方传入的want参数的entities，则entities匹配失败。
 
-  **图2** want参数的entities匹配规则  
-![want-entities](figures/want-entities.png)  
+  **图2** want参数的entities匹配规则
+![want-entities](figures/want-entities.png)
 
 
 ### want参数的uri和type匹配规则
@@ -98,6 +98,7 @@
 - 调用方传入的want参数的uri不为空，type为空。
   1. 如果待匹配应用组件的skills配置中的uris数组为空，匹配失败。
   2. 如果待匹配应用组件的skills配置中的uris数组存在一条数据[uri匹配](#uri匹配规则)成功且type为空，则匹配成功，否则匹配失败。
+  3. 如果前两条均匹配失败，并且传入的uri为文件路径uri，则根据文件后缀获取文件的MIME类型，如果该类型与skills文件中配置的type相匹配，则匹配成功。
 
 - 调用方传入的want参数的uri为空，type不为空。
   1. 如果待匹配应用组件的skills配置中的uris数组为空，匹配失败。
@@ -109,16 +110,16 @@
 
 最左uri匹配：当配置文件待匹配应用组件的skills配置中的uris数组中只配置scheme；或者只配置scheme和host；或者只配置scheme、host和port时。传入want参数的uri的最左边依次需要和scheme，或者scheme和host，或者scheme、host和port都匹配，才满足最左uri匹配。
 
-**图3** want参数中uri和type皆不为空时的匹配规则   
-![want-uri-type1](figures/want-uri-type1.png)  
+**图3** want参数中uri和type皆不为空时的匹配规则
+![want-uri-type1](figures/want-uri-type1.png)
 
 为了简化描述：
 
 - 称调用方传入的want参数中的uri参数为w_uri；待匹配应用组件的skills配置中uri为s_uri，其中每个元素为s_uri。
 - 称调用方传入的want参数的type参数为w_type，待匹配应用组件的skills数组中uris的type数据为s_type。
 
-**图4** want参数中uri和type的具体匹配规则  
-![want-uri-type2](figures/want-uri-type2.png)  
+**图4** want参数中uri和type的具体匹配规则
+![want-uri-type2](figures/want-uri-type2.png)
 
 
 ### uri匹配规则

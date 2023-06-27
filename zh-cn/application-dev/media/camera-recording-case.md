@@ -22,7 +22,7 @@ if (!cameraManager) {
 } 
 
 // 监听相机状态变化
-cameraManager.on('cameraStatus', (cameraStatusInfo) => {
+cameraManager.on('cameraStatus', (err, cameraStatusInfo) => {
     console.log(`camera : ${cameraStatusInfo.camera.cameraId}`);
     console.log(`status: ${cameraStatusInfo.status}`);
 })

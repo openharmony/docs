@@ -50,8 +50,6 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
 
     | 配置项名称 | 配置项描述 | 数据类型 | 取值范围 |
     | -------- | -------- | -------- | -------- |
-    | interval | 温度跟踪日志的时间间隔，单位为毫秒 | int | >0 |
-    | width | 温度跟踪日志的宽度，单位为字符 | int | >0 |
     | outpath | 温度跟踪日志输出的路径 | string | 无 |
 
     **表2** node配置说明
@@ -63,7 +61,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
     | value | path | 获取thermal zone温度的路径 |
 
     ```shell
-    <tracing interval="5000" width="20" outpath="/data/log/thermal-log">
+    <tracing outpath="/data/log/thermal-log">
         <node>
             <title path="sys/class/thermal/thermal_zone0/type"/>
             <value path="sys/class/thermal/thermal_zone0/temp"/>
@@ -86,7 +84,7 @@ Linux调测环境，相关要求和配置可参考《[快速入门](../quick-sta
 
     thermal.para.dac：
     ```text
-    persist.thermal.log.="power_host:power_host:600" # 控制访问权限
+    persist.thermal.log.="power_host:power_host:500" # 控制访问权限
     ```
 
 6. 参考[默认热日志配置文件夹中的BUILD.gn](https://gitee.com/openharmony/drivers_peripheral/blob/master/thermal/interfaces/hdi_service/profile/BUILD.gn)编写BUILD.gn文件，将thermal_hdi_config.xml打包到`//vendor/etc/thermal_config/hdf`目录下：

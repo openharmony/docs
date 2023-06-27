@@ -3,6 +3,7 @@
 The **hiSysEvent** module provides the system event logging functions, such as configuring trace points, subscribing to system events, and querying system events written to the event file.
 
 > **NOTE**
+>
 > - The initial APIs of this module are supported since API version 9. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The APIs provided by this module are system APIs.
 
@@ -312,6 +313,8 @@ Defines arguments for an event query.
 | beginTime | number | Yes| Start time (13-digit timestamp) for the event query.|
 | endTime | number | Yes| End time (13-digit timestamp) for the event query.|
 | maxEvents | number | Yes| Maximum number of events that can be queried.|
+| fromSeq<sup>10+</sup> | number | No  | Start SN of the events to be queried. The default value is **-1**.|
+| toSeq<sup>10+</sup> | number | No  | End SN of the system events to be queried. The default value is **-1**.|
 
 ## QueryRule 
 
@@ -323,6 +326,7 @@ Defines event query rules.
 | -------- | -------- | -------- | -------- |
 | domain | string | Yes| Event domain.|
 | names | string[] | Yes| Array of event names. A **QueryRule** object contains multiple system event names.|
+| condition<sup>10+</sup> | string | No| Additional event conditions. The value of this parameter is in the format of {"version":"V1","condition":{"and":[{"param":"*Parameter*","op":"*Operator*","value":"*Comparison value*"}]}}.|
 
 ## Querier
 
@@ -399,6 +403,200 @@ try {
             // do something here.
         }
     })
+} catch (error) {
+    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+}
+```
+
+## hiSysEvent.exportSysEvents<sup>10+</sup>
+
+exportSysEvents(queryArg: QueryArg, rules: QueryRule[]): number
+
+Exports system events in batches and writes them as a file to the fixed directory of the application sandbox (that is, **/data/storage/el2/base/cache/hiview/event/**).
+
+**Required permission**: ohos.permission.READ_DFX_SYSEVENT
+
+**System capability**: SystemCapability.HiviewDFX.HiSysEvent
+
+**Parameters**
+
+| Name  | Type                     | Mandatory| Description                                      |
+| -------- | ------------------------- | ---- | ------------------------------------------ |
+| queryArg | [QueryArg](#queryarg)     | Yes  | Event query parameters for the export.                  |
+| rules    | [QueryRule](#queryrule)[] | Yes  | Array of event query rules for the export.|
+
+**Return value**
+
+| Type  | Description            |
+| ------ | ---------------- |
+| number | API call timestamp.|
+
+**Error codes**
+
+For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/errorcode-hisysevent.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 11200301 | Count of query rules is over limit. |
+| 11200302 | Invalid query rule.                 |
+| 11200304 | Export frequency is over limit.     |
+
+**Example**
+
+```
+import hiSysEvent from '@ohos.hiSysEvent';
+import fs from '@ohos.file.fs';
+
+try {
+    hiSysEvent.write({
+        domain: "RELIABILITY",
+        name: "STACK",
+        eventType: hiSysEvent.EventType.FAULT,
+        params: {
+            PID: 487,
+            UID: 103,
+            PACKAGE_NAME: "com.ohos.hisysevent.test",
+            PROCESS_NAME: "syseventservice",
+            MSG: "no msg."
+        }
+    }, (err, val) => {
+        // do something here.
+    })
+    
+    let time = hiSysEvent.exportSysEvents({
+        beginTime: -1,
+        endTime: -1,
+        maxEvents: 1,
+    }, [{
+        domain: "RELIABILITY",
+        names: ["STACK"],
+    }])
+    console.log(`receive export task time is : ${time}`);
+    
+    // Postpone reading of exported events.
+    setTimeout(function() {
+    	let eventDir = '/data/storage/el2/base/cache/hiview/event';
+    	let filenames = fs.listFileSync(eventDir);
+    	for (let i = 0; i < filenames.length; i++) {
+    		if (filenames[i].indexOf(time.toString()) != -1) {
+    			let res = fs.readTextSync(eventDir + '/' + filenames[i]);
+    			let events = JSON.parse('[' + res.slice(0, res.length - 1) + ']');
+    			console.log("read file end, events is :" + JSON.stringify(events));
+    		}
+    	}
+    }, 10000)
+} catch (error) {
+    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+}
+```
+
+## hiSysEvent.subscribe<sup>10+</sup>
+
+subscribe(rules: QueryRule[]): number
+
+Subscribes to real-time system events that occur occasionally or occur in a low frequency. These events are written as a file to the fixed directory of the application sandbox (that is, **/data/storage/el2/base/cache/hiview/event/**).
+
+**Required permission**: ohos.permission.READ_DFX_SYSEVENT
+
+**System capability**: SystemCapability.HiviewDFX.HiSysEvent
+
+**Parameters**
+
+| Name| Type                     | Mandatory| Description                                      |
+| ------ | ------------------------- | ---- | ------------------------------------------ |
+| rules  | [QueryRule](#queryrule)[] | Yes  | Array of event query rules for the subscription.|
+
+**Return value**
+
+| Type  | Description            |
+| ------ | ---------------- |
+| number | API call timestamp.|
+
+**Error codes**
+
+For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/errorcode-hisysevent.md).
+
+| ID| Error Message                           |
+| -------- | ----------------------------------- |
+| 11200301 | Count of query rules is over limit. |
+| 11200302 | Invalid query rule.                 |
+
+**Example**
+
+```
+import hiSysEvent from '@ohos.hiSysEvent';
+import fs from '@ohos.file.fs';
+
+try {
+    hiSysEvent.subscribe([{
+        domain: "RELIABILITY",
+        names: ["STACK"],
+    },{
+        domain: "BUNDLE_MANAGER",
+        names: ["BUNDLE_UNINSTALL"],
+      }])
+    hiSysEvent.write({
+        domain: "RELIABILITY",
+        name: "STACK",
+        eventType: hiSysEvent.EventType.FAULT,
+        params: {
+            PID: 487,
+            UID: 103,
+            PACKAGE_NAME: "com.ohos.hisysevent.test",
+            PROCESS_NAME: "syseventservice",
+            MSG: "no msg."
+        }
+    }, (err, val) => {
+        // do something here.
+    })
+
+    // Postpone reading of subscribed events.
+    setTimeout(function() {
+    	let eventDir = '/data/storage/el2/base/cache/hiview/event';
+    	let filenames = fs.listFileSync(eventDir);
+    	for (let i = 0; i < filenames.length; i++) {
+    		let res = fs.readTextSync(eventDir + '/' + filenames[i]);
+    		let events = JSON.parse('[' + res.slice(0, res.length - 1) + ']');
+    		console.log("read file end, events is :" + JSON.stringify(events));
+    	}
+    }, 10000)
+} catch (error) {
+    console.error(`error code: ${error.code}, error msg: ${error.message}`);
+}
+```
+
+## hiSysEvent.unsubscribe<sup>10+</sup>
+
+unsubscribe(): void
+
+Unsubscribes from system events.
+
+**Required permission**: ohos.permission.READ_DFX_SYSEVENT
+
+**System capability**: SystemCapability.HiviewDFX.HiSysEvent
+
+**Error codes**
+
+For details about the error codes, see [HiSysEvent Error Codes](../errorcodes/errorcode-hisysevent.md).
+
+| ID| Error Message           |
+| -------- | ------------------- |
+| 11200305 | Unsubscribe failed. |
+
+**Example**
+
+```
+import hiSysEvent from '@ohos.hiSysEvent';
+
+try {
+    hiSysEvent.subscribe([{
+        domain: "RELIABILITY",
+        names: ["STACK"],
+    },{
+        domain: "BUNDLE_MANAGER",
+        names: ["BUNDLE_UNINSTALL","BUNDLE_INSTALL"],
+      }])
+    hiSysEvent.unsubscribe();
 } catch (error) {
     console.error(`error code: ${error.code}, error msg: ${error.message}`);
 }

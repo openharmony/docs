@@ -18,7 +18,7 @@ import ability from '@ohos.ability.ability';
 Import the following modules based on the actual situation before using the current module:
 ```ts
 import ohos_data_ability from '@ohos.data.dataAbility';
-import ohos_data_rdb from '@ohos.data.rdb';
+import relationalStore from '@ohos.data.relationalStore'
 ```
 
 ## DataAbilityHelper.openFile

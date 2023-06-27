@@ -1,7 +1,7 @@
 # VGUSolid
 
 
-## **概述**
+## 概述
 
 颜色对象
 
@@ -10,12 +10,12 @@
 [Display](_display.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [color](_display.md#color-55) | 颜色值 | 
-| [opacity](_display.md#opacity-33) | 透明度.，取值范围&nbsp;0&nbsp;~&nbsp;255。 | 
+| [color](_display.md#color-55) | uint32_t<br/>颜色值 | 
+| [opacity](_display.md#opacity-33) | uint8_t<br/>透明度，值范围&nbsp;0&nbsp;~&nbsp;255 | 

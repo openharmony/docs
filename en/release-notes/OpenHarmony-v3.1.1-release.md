@@ -36,7 +36,7 @@ The Contacts application allows third-party applications to invoke the system ca
 | -------- | -------- | -------- |
 | OpenHarmony | 3.1.1 Release | NA |
 | Public SDK | Ohos_sdk_public 3.1.6.6 (API Version 8 Release)| This toolkit is intended for application developers and does not contain system APIs that require system permissions.<br>It is provided as standard in DevEco Studio 3.0 Beta4 or later.<br>The public SDK of API version 8 was released on July 6, 2022.|
-| Full SDK | Ohos_sdk_full&nbsp;3.1.6.5 (API Version 8 Release) | This toolkit is intended for original equipment manufacturers (OEMs) and contains system APIs that require system permissions.<br>To use the full SDK, manually obtain it from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](../application-dev/quick-start/full-sdk-switch-guide.md).|
+| Full SDK | Ohos_sdk_full 3.1.6.5 (API Version 8 Release) | This toolkit is intended for original equipment manufacturers (OEMs) and contains system APIs that require system permissions.<br>To use the full SDK, manually obtain it from the mirror and switch to it in DevEco Studio. For details, see [Guide to Switching to Full SDK](../application-dev/faqs/full-sdk-switch-guide.md).|
 | (Optional) HUAWEI DevEco Studio| 3.0 Beta3 for OpenHarmony | This tool is recommended for developing OpenHarmony applications.|
 | (Optional) HUAWEI DevEco Device Tool| 3.0 Release | This tool is recommended for developing OpenHarmony smart devices.|
 

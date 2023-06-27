@@ -3,7 +3,7 @@
 
 ## 概述
 
-[Context](../reference/apis/js-apis-inner-application-context.md)是应用中对象的上下文，其提供了应用的一些基础信息，例如resourceManager（资源管理）、applicationInfo（当前应用信息）、dir（应用开发路径）、area（文件分区）等，以及应用的一些基本方法，例如createBundleContext()、getApplicationContext()等。UIAbility组件和各种ExtensionAbility派生类组件都有各自不同的Context类。分别有基类Context、ApplicationContext、AbilityStageContext、UIAbilityContext、ExtensionContext、ServiceExtensionContext等Context。
+[Context](../reference/apis/js-apis-inner-application-context.md)是应用中对象的上下文，其提供了应用的一些基础信息，例如resourceManager（资源管理）、applicationInfo（当前应用信息）、dir（应用文件路径）、area（文件分区）等，以及应用的一些基本方法，例如createBundleContext()、getApplicationContext()等。UIAbility组件和各种ExtensionAbility派生类组件都有各自不同的Context类。分别有基类Context、ApplicationContext、AbilityStageContext、UIAbilityContext、ExtensionContext、ServiceExtensionContext等Context。
 
 - 各类Context的继承关系  
   ![context-inheritance](figures/context-inheritance.png)
@@ -68,78 +68,81 @@
 本章节通过如下典型场景来介绍Context的用法：
 
 
-- [获取应用开发路径](#获取应用开发路径)
+- [获取应用文件路径](#获取应用文件路径)
 - [获取和修改加密分区](#获取和修改加密分区)
 - [创建其他应用或其他Module的Context](#创建其他应用或其他module的context)
 - [订阅进程内UIAbility生命周期变化](#订阅进程内uiability生命周期变化)
 
 
-### 获取应用开发路径
+### 获取应用文件路径
 
-从Context中获取的应用开发路径如下表所示。
+[基类Context](../reference/apis/js-apis-inner-application-context.md)提供了获取应用文件路径的能力，ApplicationContext、AbilityStageContext、UIAbilityContext和ExtensionContext均继承该能力。应用文件路径属于应用沙箱路径，具体请参见[应用沙箱目录](../file-management/app-sandbox-directory.md)。
 
-**表1** 应用开发路径说明
+上述各类Context获取的应用文件路径有所不同。
 
-| 属性名称 | 参数类型 | 可读 | 可写 | 说明 |
-| -------- | -------- | -------- | -------- | -------- |
-| bundleCodeDir       | string   | 是   | 否   | 安装文件路径。应用在内部存储上的安装路径。                   |
-| cacheDir | string | 是 | 否 | 缓存文件路径。应用在内部存储上的缓存路径。<br/>对应于“设置&nbsp;&gt;&nbsp;应用管理”，找到对应应用的“存储”中的缓存内容。 |
-| filesDir            | string   | 是   | 否   | 通用文件路径。应用在内部存储上的文件路径。<br/>本目录下存放的文件可能会被应用迁移或者备份的时候同步到其他目录中。 |
-| preferencesDir      | string   | 是   | 是   | 首选项文件路径。指示应用程序首选项目录。                 |
-| tempDir             | string   | 是   | 否   | 临时文件路径。<br/>在应用卸载后，系统会删除存储在此目录中的文件。 |
-| databaseDir         | string   | 是   | 否   | 数据库路径。获取本地数据库存储路径。                         |
-| distributedFilesDir | string | 是 | 否 | 分布式文件路径。 |
+- 通过ApplicationContext获取应用级别的应用文件路径，此路径是应用全局信息推荐的存放路径，这些文件会跟随应用的卸载而删除。
 
-获取路径的能力是基类Context中提供的能力，因此在ApplicationContext、AbilityStageContext、UIAbilityContext和ExtensionContext中均可以获取，在各类Context中获取到的路径会有一些差别，具体差别如下图所示。
-
-**图1** Context中获取的应用开发路径  
-![context-dir](figures/context-dir.png)
-
-- 通过ApplicationContext获取的应用级别路径。应用全局信息建议存放的路径，存放在此路径的文件内容仅在应用卸载时会被删除。
-    | 属性 | 路径 |
+  | 属性 | 路径 |
   | -------- | -------- |
-  | bundleCodeDir | {路径前缀}/el1/bundle/ |
-  | cacheDir | {路径前缀}/{加密等级}/base/cache/ |
-  | filesDir | {路径前缀}/{加密等级}/base/files/ |
-  | preferencesDir | {路径前缀}/{加密等级}/base/preferences/ |
-  | tempDir | {路径前缀}/{加密等级}/base/temp/ |
-  | databaseDir | {路径前缀}/{加密等级}/database/ |
-  | distributedFilesDir | {路径前缀}/el2/distributedFiles/ |
+  | bundleCodeDir | <路径前缀>/el1/bundle/ |
+  | cacheDir | <路径前缀>/<加密等级>/base/cache/ |
+  | filesDir | <路径前缀>/<加密等级>/base/files/ |
+  | preferencesDir | <路径前缀>/<加密等级>/base/preferences/ |
+  | tempDir | <路径前缀>/<加密等级>/base/temp/ |
+  | databaseDir | <路径前缀>/<加密等级>/database/ |
+  | distributedFilesDir | <路径前缀>/el2/distributedFiles/ |
 
-- 通过AbilityStageContext、UIAbilityContext、ExtensionContext获取的HAP级别路径。HAP对应的信息建议存放的路径，存放在此路径的文件内容会跟随HAP的卸载而删除，不会影响应用级别路径的文件内容，除非该应用的HAP已全部卸载。
-    | 属性 | 路径 |
+  示例代码如下所示。
+
+    ```ts
+    import UIAbility from '@ohos.app.ability.UIAbility';
+    
+    export default class EntryAbility extends UIAbility {
+      onCreate(want, launchParam) {
+        let applicationContext = this.context.getApplicationContext();
+        let cacheDir = applicationContext.cacheDir;
+        let tempDir = applicationContext.tempDir;
+        let filesDir = applicationContext.filesDir;
+        let databaseDir = applicationContext.databaseDir;
+        let bundleCodeDir = applicationContext.bundleCodeDir;
+        let distributedFilesDir = applicationContext.distributedFilesDir;
+        let preferencesDir = applicationContext.preferencesDir;
+        ...
+      }
+    }
+    ```
+
+- 通过AbilityStageContext、UIAbilityContext、ExtensionContext获取HAP级别的应用文件路径。此路径是HAP相关信息推荐的存放路径，这些文件会跟随HAP的卸载而删除，但不会影响应用级别路径的文件，除非该应用的HAP已全部卸载。
+
+  | 属性 | 路径 |
   | -------- | -------- |
-  | bundleCodeDir | {路径前缀}/el1/bundle/ |
-  | cacheDir | {路径前缀}/{加密等级}/base/**haps/{moduleName}**/cache/ |
-  | filesDir | {路径前缀}/{加密等级}/base/**haps/{moduleName}**/files/ |
-  | preferencesDir | {路径前缀}/{加密等级}/base/**haps/{moduleName}**/preferences/ |
-  | tempDir | {路径前缀}/{加密等级}/base/**haps/{moduleName}**/temp/ |
-  | databaseDir | {路径前缀}/{加密等级}/database/**{moduleName}**/ |
-  | distributedFilesDir | {路径前缀}/el2/distributedFiles/**{moduleName}**/ |
+  | bundleCodeDir | <路径前缀>/el1/bundle/ |
+  | cacheDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/cache/ |
+  | filesDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/files/ |
+  | preferencesDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/preferences/ |
+  | tempDir | <路径前缀>/<加密等级>/base/**haps/\<module-name>**/temp/ |
+  | databaseDir | <路径前缀>/<加密等级>/database/**\<module-name>**/ |
+  | distributedFilesDir | <路径前缀>/el2/distributedFiles/**\<module-name>**/ |
 
-获取应用开发路径的示例代码如下所示。
+  示例代码如下所示。
 
-
-```ts
-import UIAbility from '@ohos.app.ability.UIAbility';
-
-export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
-    let cacheDir = this.context.cacheDir;
-    let tempDir = this.context.tempDir;
-    let filesDir = this.context.filesDir;
-    let databaseDir = this.context.databaseDir;
-    let bundleCodeDir = this.context.bundleCodeDir;
-    let distributedFilesDir = this.context.distributedFilesDir;
-    let preferencesDir = this.context.preferencesDir;
-    ...
+  ```ts
+  import UIAbility from '@ohos.app.ability.UIAbility';
+  
+  export default class EntryAbility extends UIAbility {
+    onCreate(want, launchParam) {
+      let cacheDir = this.context.cacheDir;
+      let tempDir = this.context.tempDir;
+      let filesDir = this.context.filesDir;
+      let databaseDir = this.context.databaseDir;
+      let bundleCodeDir = this.context.bundleCodeDir;
+      let distributedFilesDir = this.context.distributedFilesDir;
+      let preferencesDir = this.context.preferencesDir;
+      ...
+    }
   }
-}
-```
+  ```
 
-> **说明：**
->
-> 示例代码获取到的是应用开发路径的沙箱路径。其对应的绝对路径，在创建或者修改文件之后，可以在`hdc shell`中，通过`find / -name <文件名称>`命令查找获取。
 
 ### 获取和修改加密分区
 
@@ -153,22 +156,23 @@ export default class EntryAbility extends UIAbility {
 >
 > - AreaMode.EL2：用户级加密区，设备开机，首次输入密码后才能够访问的数据区。
 
-要实现获取和设置当前加密分区，可以通过读写[Context的area属性](../reference/apis/js-apis-inner-application-context.md)来实现。
+要实现获取和设置当前加密分区，可以通过读写[Context](../reference/apis/js-apis-inner-application-context.md)的`area`属性来实现。
 
 ```ts
 import UIAbility from '@ohos.app.ability.UIAbility';
+import contextConstant from '@ohos.app.ability.contextConstant';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
-    // 存储普通信息前，切换到EL1设备机加密
-    if (this.context.area === 1) { // 获取area
-      this.context.area = 0; // 修改area
+    // 存储普通信息前，切换到EL1设备级加密
+    if (this.context.area === contextConstant.AreaMode.EL2) { // 获取area
+      this.context.area = contextConstant.AreaMode.EL1; // 修改area
     }
     // 存储普通信息
 
     // 存储敏感信息前，切换到EL2用户级加密
-    if (this.context.area === 0) { // 获取area
-      this.context.area = 1; // 修改area
+    if (this.context.area === contextConstant.AreaMode.EL1) { // 获取area
+      this.context.area = contextConstant.AreaMode.EL2; // 修改area
     }
     // 存储敏感信息
   }
@@ -178,16 +182,17 @@ export default class EntryAbility extends UIAbility {
 
 ### 创建其他应用或其他Module的Context
 
-基类Context提供创建其他应用或其他Module的Context的方法有[createBundleContext(bundleName: string)](../reference/apis/js-apis-inner-application-context.md#contextcreatebundlecontext)、[createModuleContext(moduleName: string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext)和[createModuleContext(bundleName: string, moduleName: string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext-1)接口，创建其他应用或者其他Module的Context，从而通过该Context获取相应的资源信息（例如获取其他Module的[获取应用开发路径](#获取应用开发路径)信息）。
+基类Context提供创建其他应用或其他Module的Context的方法有[createBundleContext(bundleName: string)](../reference/apis/js-apis-inner-application-context.md#contextcreatebundlecontext)、[createModuleContext(moduleName: string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext)和[createModuleContext(bundleName: string, moduleName: string)](../reference/apis/js-apis-inner-application-context.md#contextcreatemodulecontext-1)接口，创建其他应用或者其他Module的Context，从而通过该Context获取相应的资源信息（例如获取其他Module的[获取应用文件路径](#获取应用文件路径)信息）。
 
-- 调用createBundleContext(bundleName:string)方法，创建其他应用的Context信息。
+- 调用`createBundleContext(bundleName:string)`方法，创建其他应用的Context信息。
   > **说明：**
+  >
   > 当获取的是其他应用的Context时：
-  > 
-  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参见[访问控制授权申请](../security/accesstoken-guidelines.md#配置文件权限声明)。
-  > 
+  >
+  > - 申请`ohos.permission.GET_BUNDLE_INFO_PRIVILEGED`权限，配置方式请参见[配置文件权限声明](../security/accesstoken-guidelines.md#配置文件权限声明)。
+  >
   > - 接口为系统接口，三方应用不支持调用。
-
+  
   例如在桌面上显示的应用信息，包括应用名称和应用图标等，桌面应用可以通过调用上述的方法获取相应应用的Context信息从而获取到相应的应用名称、图标等资源信息。
   
   ```ts
@@ -202,8 +207,8 @@ export default class EntryAbility extends UIAbility {
     }
   }
   ```
-
-- 调用createModuleContext(bundleName:string, moduleName:string)方法，获取指定应用指定Module的上下文信息。获取到指定应用指定Module的Context之后，即可获取到相应应用Module的资源信息。
+  
+- 调用`createModuleContext(bundleName:string, moduleName:string)`方法，获取指定应用指定Module的上下文信息。获取到指定应用指定Module的Context之后，即可获取到相应应用Module的资源信息。
   > **说明：**
   >
   > 当获取的是其他应用的指定Module的Context时：
@@ -225,7 +230,7 @@ export default class EntryAbility extends UIAbility {
   }
   ```
   
-- 调用createModuleContext(moduleName:string)方法，获取本应用中其他Module的Context。获取到其他Module的Context之后，即可获取到相应Module的资源信息。
+- 调用`createModuleContext(moduleName:string)`方法，获取本应用中其他Module的Context。获取到其他Module的Context之后，即可获取到相应Module的资源信息。
   
   ```ts
   import UIAbility from '@ohos.app.ability.UIAbility';

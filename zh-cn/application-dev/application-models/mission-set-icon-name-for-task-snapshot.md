@@ -7,7 +7,7 @@
 图1 UIAbility对应的任务快照   
 ![](figures/mission-list-recent.png)
 
-也可以使用[UIAbilityContext.setMissionIcon()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionicon)和[UIAbilityContext.setMissionLabel()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel)方法，根据需要自定义任务快照的图标和名称。例如，对于UIAbility的多实例启动模式，可以根据不同的功能配置相应的任务快照的图标和名称。
+也可以使用[`UIAbilityContext.setMissionIcon()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionicon)和[`UIAbilityContext.setMissionLabel()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel)方法，根据需要自定义任务快照的图标和名称。例如，对于UIAbility的多实例启动模式，可以根据不同的功能配置相应的任务快照的图标和名称。
 
 本文将从以下两个方面介绍。
 
@@ -16,11 +16,15 @@
 
 ## 设置任务快照的图标（仅对系统应用开放）
 
-通过调用[UIAbilityContext.setMissionIcon()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionicon)方法修改任务快照的图标。图片内容为[PixelMap](../reference/apis/js-apis-image.md#pixelmap7)类型对象。示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。
-```ts
-let imagePixelMap: PixelMap = undefined; // 需要获取图片PixelMap信息
+通过调用[`UIAbilityContext.setMissionIcon()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionicon)方法修改任务快照的图标。
 
-context.setMissionIcon(imagePixelMap, (err) => {
+示例中的context的获取方式请参见[获取UIAbility的上下文信息](uiability-usage.md#获取uiability的上下文信息)。示例中的`pixelMap`的获取方式请参见[图片解码](../media/image-decoding.md)。
+
+```ts
+let context = ...; // UIAbilityContext
+let pixelMap: PixelMap = ...; // 图片的PixelMap信息
+
+context.setMissionIcon(pixelMap, (err) => {
   if (err.code) {
     console.error(`Failed to set mission icon. Code is ${err.code}, message is ${err.message}`);
   }
@@ -34,10 +38,12 @@ context.setMissionIcon(imagePixelMap, (err) => {
 
 ## 设置任务快照的名称
 
-通过调用[UIAbilityContext.setMissionLabel()](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel)方法修改任务快照的名称。
+通过调用[`UIAbilityContext.setMissionLabel()`](../reference/apis/js-apis-inner-application-uiAbilityContext.md#uiabilitycontextsetmissionlabel)方法修改任务快照的名称。
 
 ```ts
-this.context.setMissionLabel('test').then(() => {
+let context = ...; // UIAbilityContext
+
+context.setMissionLabel('test').then(() => {
   console.info('Succeeded in seting mission label.');
 }).catch((err) => {
   console.error(`Failed to set mission label. Code is ${err.code}, message is ${err.message}`);

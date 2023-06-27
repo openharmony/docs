@@ -680,7 +680,7 @@ try {
 	let rssi = 0;
 	let band = 0;
 	let level = wifi.getSignalLevel(rssi,band);
-	console.info("lelvel:" + JSON.stringify(lelvel));
+	console.info("level:" + JSON.stringify(level));
 }catch(error){
 	console.error("failed:" + JSON.stringify(error));
 }
@@ -886,7 +886,7 @@ isFeatureSupported(featureId: number): boolean
 import wifi from '@ohos.wifi';
 
 try {
-	let featureId = 0；
+	let featureId = 0;
 	let ret = wifi.isFeatureSupported(featureId);
 	console.info("isFeatureSupported:" + ret);
 }catch(error){
@@ -1278,10 +1278,10 @@ disableHotspot(): boolean
 
 **示例：**
 ```js
-import wifi from '@ohos.wifiManager';
+import wifi from '@ohos.wifi';
 
 try {
-	wifiManager.disableHotspot();	
+	wifi.disableHotspot();	
 }catch(error){
 	console.error("failed:" + JSON.stringify(error));
 }
@@ -2043,7 +2043,7 @@ import wifi from '@ohos.wifi';
 
 try {
 	let name = "****";
-	wifi.setDeviceName(netId);	
+	wifi.setDeviceName(name);	
 }catch(error){
 	console.error("failed:" + JSON.stringify(error));
 }

@@ -26,6 +26,7 @@ import missionManager from '@ohos.app.ability.missionManager';
 | label | string | Yes| Yes| Label of the mission.|
 | iconPath | string | Yes| Yes| Path of the mission icon.|
 | continuable | boolean | Yes| Yes| Whether the mission can be continued on another device.|
+| unclearable<sup>10+</sup> | boolean | Yes| Yes| Whether the mission can be manually deleted.|
 
 **Example**
 ```ts
@@ -47,6 +48,7 @@ try {
     console.log('getMissionInfo label is: ${JSON.stringify(data.label)}');
     console.log('getMissionInfo iconPath is: ${JSON.stringify(data.iconPath)}');
     console.log('getMissionInfo continuable is: ${JSON.stringify(data.continuable)}');
+    console.log('getMissionInfo unclearable is: ${JSON.stringify(data.unclearable)}');
     });
 } catch (paramError) {
     console.error('error: ${paramError.code}, ${paramError.message}');

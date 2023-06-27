@@ -1,7 +1,7 @@
 # ISensorCallback
 
 
-## **概述**
+## 概述
 
 定义用于上报传感器数据的回调函数。
 
@@ -9,10 +9,10 @@
 
 **相关模块:**
 
-[Sensor](sensor.md)
+[Sensor](_sensor.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 成员函数
@@ -22,7 +22,7 @@
 | [OnDataEvent](#ondataevent)&nbsp;([in]&nbsp;struct&nbsp;[HdfSensorEvents](_hdf_sensor_events.md)&nbsp;event) | 定义上报传感器数据的功能。 | 
 
 
-## **成员函数说明**
+## 成员函数说明
 
 
 ### OnDataEvent()
@@ -32,7 +32,7 @@
 ISensorCallback::OnDataEvent ([in] struct HdfSensorEvents event)
 ```
 
-**描述：**
+**描述:**
 
 定义上报传感器数据的功能。
 

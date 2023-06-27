@@ -1,4 +1,4 @@
-# Developing a FileManager Application (Available Only for System Applications)
+# Developing a FileManager Application (for System Applications Only)
 
 OpenHarmony is prebuilt with the **FileManager** application. You can also develop your own **FileManager** as required.
 

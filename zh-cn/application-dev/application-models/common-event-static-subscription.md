@@ -93,25 +93,28 @@
    - permission：订阅者要求的发布者需要具备的权限，对于发布了目标事件但不具备permission中声明的权限的发布者将被视为非法事件不予发布。
    - events：订阅的目标事件列表。
 
-4. 修改设备的[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json)。[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_permissions.json)在设备上的路径为`/system/etc/app/install_list_permission.json`，设备开机启动时会读取该配置文件，在应用安装会对在文件中配置的`allowCommonEvent`公共事件类型进行授权。预授权配置文件字段内容包括`bundleName`、`app_signature`和`allowCommonEvent`。
+4. 修改设备的[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_capability.json)。[预置配置文件](https://gitee.com/openharmony/vendor_hihope/blob/master/rk3568/preinstall-config/install_list_capability.json)在设备上的路径为`/system/etc/app/install_list_capability.json`，设备开机启动时会读取该配置文件，在应用安装会对在文件中配置的`allowCommonEvent`公共事件类型进行授权。预授权配置文件字段内容包括`bundleName`、`app_signature`和`allowCommonEvent`。
 
    - `bundleName`字段配置为应用的Bundle名称。
-   - `app_signature`字段配置为应用的指纹信息。指纹信息的配置参见[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md#install_list_capabilityjson中配置)。
+   - `app_signature`字段配置为应用的指纹信息。指纹信息的配置请参见[应用特权配置指南](../../device-dev/subsystems/subsys-app-privilege-config-guide.md#install_list_capabilityjson中配置)。
    - `allowCommonEvent`字段配置为允许静态广播拉起的公共事件项。
-
-   > **说明**：当前仅支持预置应用配置该文件。
 
    ```json
    [
+     ...
      {
-       "bundleName": "com.example.myapplication", 
-       "app_signature": ["****"], 
-       "allowCommonEvent": ["usual.event.A", "usual.event.B"]
+       "bundleName": "com.example.myapplication", // Bundle名称
+       "app_signature": ["****"], // 指纹信息
+       "allowCommonEvent": ["usual.event.A", "usual.event.B"] // 允许静态广播拉起的公共事件项
      }
    ]
    ```
+   
+   > **说明**：
+   >
+   > 当前仅支持预置应用配置该文件。
 
-## 相关示例
+## 相关实例
 
 针对StaticSubscriberExtensionAbility开发，可参考如下实例：
 

@@ -12,6 +12,7 @@
     - [Using TonePlayer for Audio Playback (for System Applications Only)](using-toneplayer-for-playback.md)
     - [Audio Playback Concurrency Policy](audio-playback-concurrency.md)
     - [Volume Management](volume-management.md)
+    - [Audio Effect Management](audio-effect-management.md)
     - [Audio Playback Stream Management](audio-playback-stream-management.md)
     - [Audio Output Device Management](audio-output-device-management.md)
     - [Distributed Audio Playback (for System Applications Only)](distributed-audio-playback.md)
@@ -28,7 +29,7 @@
     - [Developing Audio Call](audio-call-development.md)
   - [Video Playback](video-playback.md)
   - [Video Recording](video-recording.md)
-- AVSession (for System Applications Only)
+- AVSession
   - [AVSession Overview](avsession-overview.md)
   - Local AVSession
     - [Local AVSession Overview](local-avsession-overview.md)
@@ -37,7 +38,7 @@
   - Distributed AVSession
     - [Distributed AVSession Overview](distributed-avsession-overview.md)
     - [Using Distributed AVSession](using-distributed-avsession.md)
-- Camera (for System Applications Only)
+- Camera
   - [Camera Overview](camera-overview.md)
   - Camera Development
     - [Camera Development Preparations](camera-preparation.md)
@@ -54,7 +55,8 @@
   - [Image Overview](image-overview.md)
   - [Image Decoding](image-decoding.md)
   - Image Processing
-    - [Image Transformation](image-transformation.md)
+    - [Image Transformation (ArkTS)](image-transformation.md)
+    - [Image Transformation (Native)](image-transformation-native.md)
     - [Pixel Map Operation](image-pixelmap-operation.md)
   - [Image Encoding](image-encoding.md)
   - [Image Tool](image-tool.md)

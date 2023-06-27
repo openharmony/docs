@@ -10,7 +10,7 @@ For details about the APIs, see [ohos.file.statvfs](../reference/apis/js-apis-fi
 
 | Module| API| Description|
 | -------- | -------- | -------- |
-| \@ohos.file.storageStatistic | getCurrentBundleStats | Obtains the storage space of the current application, in bytes.| 
+| \@ohos.file.storageStatistics | getCurrentBundleStats | Obtains the storage space of the current application, in bytes.| 
 | \@ohos.file.statvfs | getFreeSize | Obtains the free space of a file system, in bytes.| 
 | \@ohos.file.statvfs | getTotalSize | Obtains the total space of a file system, in bytes.| 
 

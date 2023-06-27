@@ -1,5 +1,4 @@
-# HDMI 
-
+# HDMI
 
 ## 概述 
 
@@ -19,18 +18,25 @@ HDMI（High Definition Multimedia Interface），即高清多媒体接口，是H
 
 - HDCP（High-bandwidth Digital Content Protection）：即高带宽数字内容保护技术，当用户对高清晰信号进行非法复制时，该技术会进行干扰，降低复制出来的影像的质量，从而对内容进行保护。
 
-
 ### 运作机制
 
-在HDF框架中，HDMI的接口适配模式采用独立服务模式（如图1）。在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。独立服务模式可以直接借助HDFDeviceManager的服务管理能力，但需要为每个设备单独配置设备节点，增加内存占用率。
+在HDF框架中，HDMI的接口适配模式拟采用独立服务模式（如图1）。在这种模式下，每一个设备对象会独立发布一个设备服务来处理外部访问，设备管理器收到API的访问请求之后，通过提取该请求的参数，达到调用实际设备对象的相应内部方法的目的。独立服务模式可以直接借助HDFDeviceManager的服务管理能力，但需要为每个设备单独配置设备节点，增加内存占用率。
 
- **图 1**  HDMI独立服务模式 
+HDMI模块各分层作用：
 
-![image1](figures/独立服务模式结构图.png)
+- 接口层提供打开HDMI设备、启动HDMI传输、停止HDMI传输、声音图像消隐设置、设置色彩深度、获取色彩深度、设置视频属性、获取视频属性、设置HDR属性、读取Sink端原始EDID数据、注册HDMI热插拔检测回调函数、注销HDMI热插拔检测回调函数、关闭HDMI设备的接口。
+
+- 核心层主要提供HDMI控制器的打开、关闭及管理的能力，通过钩子函数与适配层交互。
+
+- 适配层主要是将钩子函数的功能实例化，实现具体的功能。
+
+**图 1** HDMI独立服务模式
+
+![HDMI独立服务模式](figures/独立服务模式结构图.png)
 
 ### 约束与限制
 
-HDMI模块当前仅支持轻量和小型系统内核（LiteOS） 。
+HDMI模块当前仅支持轻量和小型系统内核（LiteOS），暂无实际适配驱动。
 
 ## 开发指导
 
@@ -41,6 +47,7 @@ HDMI具有体积小、传输速率高、传输带宽宽、兼容性好、能同�
 ### 接口说明
 
 HdmiCntlrOps定义：
+
 ```c
 struct HdmiCntlrOps {
     void (*hardWareInit)(struct HdmiCntlr *cntlr);
@@ -80,17 +87,17 @@ struct HdmiCntlrOps {
 };
 ```
 
-**表1** HdmiCntlrOps结构体成员的回调函数功能说明
+**表 1** HdmiCntlrOps结构体成员的回调函数功能说明
 
-| 函数成员                 | 入参                                                         | 出参                                   | 返回值             | 功能                                               |
+| 函数成员 | 入参 | 出参 | 返回值 | 功能 |
 | ------------------------ | ------------------------------------------------------------ | -------------------------------------- | ------------------ | -------------------------------------------------- |
-| hardWareInit             | **cntlr**：结构体指针，核心层HDMI控制器 | 无 | 无 | 初始化HDMI硬件 |
-| hardWareStatusGet        | **cntlr**：结构体指针，核心层HDMI控制器<br /> | **status**：HDMI硬件状态 ; | 无 | 获取HDMI当前硬件状态 |
-| controllerReset          | **cntlr**：结构体指针，核心层HDMI控制器 | 无 | 无 | 复位HDMI控制器 |
-| hotPlugStateGet          | **cntlr**：结构体指针，核心层HDMI控制器 | 无 | bool：HDMI热插拔状态 | 获取HDMI热插拔状态 |
+| hardWareInit | **cntlr**：结构体指针，核心层HDMI控制器 | 无 | 无 | 初始化HDMI硬件 |
+| hardWareStatusGet | **cntlr**：结构体指针，核心层HDMI控制器<br /> | **status**：HDMI硬件状态 ; | 无 | 获取HDMI当前硬件状态 |
+| controllerReset | **cntlr**：结构体指针，核心层HDMI控制器 | 无 | 无 | 复位HDMI控制器 |
+| hotPlugStateGet | **cntlr**：结构体指针，核心层HDMI控制器 | 无 | bool：HDMI热插拔状态 | 获取HDMI热插拔状态 |
 | hotPlugInterruptStateGet | **cntlr**：结构体指针，核心层HDMI控制器 | 无 | bool：HDMI热插拔中断状态 | 获取HDMI热插拔中断状态 |
-| lowPowerSet              | **cntlr**：结构体指针，核心层HDMI控制器<br />**enable**：bool，使能/去使能 | 无 | 无 | 使能/去使能低功耗 |
-| tmdsModeSet              | **cntlr**：结构体指针，核心层HDMI控制器<br />**mode**：TMDS模式 | 无 | 无 | 设置TMDS模式 |
+| lowPowerSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**enable**：bool，使能/去使能 | 无 | 无 | 使能/去使能低功耗 |
+| tmdsModeSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**mode**：TMDS模式 | 无 | 无 | 设置TMDS模式 |
 | tmdsConfigSet | **cntlr**：结构体指针，核心层HDMI控制器<br />**mode**：TMDS参数 | 无 | HDF_STATUS相关状态 | 配置TMDS参数 |
 | infoFrameEnable | **cntlr**：结构体指针，核心层HDMI控制器<br />**infoFrameType**：packet类型<br />**enable**：bool，使能/去使能 | 无 | 无 | 使能/去使能infoFrame |
 | infoFrameSend | **cntlr**：结构体指针，核心层HDMI控制器<br />**infoFrameType**：packet类型<br />**data**：infoFrame数据<br />**len**：数据长度 | 无 | HDF_STATUS相关状态 | 发送infoFrame |
@@ -120,19 +127,29 @@ struct HdmiCntlrOps {
 
 ### 开发步骤
 
-HDMI模块适配的三个环节是实例化驱动入口、配置属性文件以及实例化HDMI控制器对象。
+HDMI模块适配包含以下四个步骤：
 
-- 实例化驱动入口：
+- 实例化驱动入口
+
     - 实例化HdfDriverEntry结构体成员。
+
     - 调用HDF_INIT将HdfDriverEntry实例化对象注册到HDF框架中。
 
-- 配置属性文件：
+- 配置属性文件
+
     - 在device_info.hcs文件中添加deviceNode描述。
+
     - 【可选】添加hdmi_config.hcs器件属性文件。
 
-- 实例化HDMI控制器对象：
+- 实例化HDMI控制器对象
+
     - 初始化HdmiCntlr成员。
+
     - 实例化HdmiCntlr成员HdmiCntlrOps方法集合。
+
+- 驱动调试
+
+    【可选】针对新增驱动程序，建议验证驱动基本功能，例如挂载后的信息反馈，HDMI传输等。
 
 1. 实例化驱动入口
 
@@ -148,16 +165,14 @@ HDMI模块适配的三个环节是实例化驱动入口、配置属性文件以�
         .Bind = HdmiAdapterBind,
         .Init = HdmiAdapterInit,
         .Release = HdmiAdapterRelease,
-        .moduleName = "adapter_hdmi_driver",//【必要】与HCS里面的名字匹配
+        .moduleName = "adapter_hdmi_driver", // 【必要且与HCS文件中里面的moduleName匹配】
     };
-    HDF_INIT(g_hdmiDriverEntry);            // 调用HDF_INIT将驱动入口注册到HDF框架中
+    HDF_INIT(g_hdmiDriverEntry);             // 调用HDF_INIT将驱动入口注册到HDF框架中
     ```
 
 2. 配置属性文件
 
-    完成驱动入口注册之后，下一步请在device_info.hcs文件中添加deviceNode信息，并在hdmi_config.hcs中配置器件属性。deviceNode信息与驱动入口注册相关，器件属性值对于厂商驱动的实现以及核心层HdmiCntlr相关成员的默认值或限制范围有密切关系。
-
-    从第一个节点开始配置具体HDMI控制器信息，此节点并不表示某一路HDMI控制器，而是代表一个资源性质设备，用于描述一类HDMI控制器的信息。本例只有一个HDMI控制器，如有多个控制器，则需要在device_info文件增加deviceNode信息，以及在hdmi_config文件中增加对应的器件属性。
+    完成驱动入口注册之后，下一步请在device_info.hcs文件中添加deviceNode信息，并在hdmi_config.hcs中配置器件属性。deviceNode信息与驱动入口注册相关，器件属性值对于厂商驱动的实现以及核心层HdmiCntlr相关成员的默认值或限制范围有密切关系。从第一个节点开始配置具体HDMI控制器信息，此节点并不表示某一路HDMI控制器，而是代表一个资源性质设备，用于描述一类HDMI控制器的信息。本例只有一个HDMI控制器，如有多个控制器，则需要在device_info文件增加deviceNode信息，以及在hdmi_config文件中增加对应的器件属性。
 
     - device_info.hcs配置参考
 
@@ -181,8 +196,8 @@ HDMI模块适配的三个环节是实例化驱动入口、配置属性文件以�
     - hdmi_config.hcs 配置参考
 
         ```c
-         root {
-             platform {
+        root {
+            platform {
                 hdmi_config {
                     template hdmi_controller {     // 模板公共参数，继承该模板的节点如果使用模板中的默认值，则节点字段可以缺省。
                         match_attr = "";           //【必要】需要和device_info.hcs中的deviceMatchAttr值一致。
@@ -227,7 +242,7 @@ HDMI模块适配的三个环节是实例化驱动入口、配置属性文件以�
         }
         ```
 
-3. 实例化控制器对象
+3. 实例化HDMI控制器对象
 
     最后一步，完成驱动入口注册之后，要以核心层HdmiCntlr对象的初始化为核心，包括厂商自定义结构体（传递参数和数据），实例化HdmiCntlr成员HdmiCntlrOps（让用户可以通过接口来调用驱动底层函数），实现HdfDriverEntry成员函数（Bind，Init，Release）。
 
@@ -245,7 +260,6 @@ HDMI模块适配的三个环节是实例化驱动入口、配置属性文件以�
             uint32_t irqNum;                //【必要】中断号
         };
 
-        /* HdmiCntlr是核心层控制器结构体，其中的成员在Init函数中被赋值。 */
         struct HdmiCntlr {
             struct IDeviceIoService service;
             struct HdfDeviceObject *hdfDevObj;
@@ -320,16 +334,17 @@ HDMI模块适配的三个环节是实例化驱动入口、配置属性文件以�
         
         **返回值：**
 
-        HDF_STATUS相关状态（下表为部分展示，如需使用其他状态，可见//drivers/framework/include/utils/hdf_base.h中HDF_STATUS 定义）
+        HDF_STATUS相关状态 （表2为部分展示，如需使用其他状态，可参考//drivers/hdf_core/framework/include/utils/hdf_base.h中HDF_STATUS的定义）。
 
-        |状态(值)|状态描述|
-        |:-|:-|
-        |HDF_ERR_INVALID_OBJECT|控制器对象非法|
-        |HDF_ERR_INVALID_PARAM |参数非法|
-        |HDF_ERR_MALLOC_FAIL   |内存分配失败|
-        |HDF_ERR_IO            |I/O错误|
-        |HDF_SUCCESS           |传输成功|
-        |HDF_FAILURE           |传输失败|
+        **表 2** HDF_STATUS相关状态说明
+
+        | 状态(值) | 问题描述 |
+        | -------- | -------- |
+        | HDF_ERR_INVALID_OBJECT | 控制器对象非法 |
+        | HDF_ERR_MALLOC_FAIL | 内存分配失败 |
+        | HDF_ERR_IO | I/O&nbsp;错误 |
+        | HDF_SUCCESS | 初始化成功 |
+        | HDF_FAILURE | 初始化失败 |
 
         **函数说明：** 
 
@@ -358,13 +373,13 @@ HDMI模块适配的三个环节是实例化驱动入口、配置属性文件以�
             cntlr->hdfDevObj = obj;                  //【必要】使HdfDeviceObject与HdmiCntlr可以相互转化的前提
             obj->service = &cntlr->service;          //【必要】使HdfDeviceObject与HdmiCntlr可以相互转化的前提
             ret = HdmiAdapterCntlrParse(cntlr, obj); //【必要】初始化cntlr，失败则goto __ERR。
-            ... 
+            ...... 
             ret = HdmiAdapterHostParse(host, obj);   //【必要】初始化host对象的相关属性，失败则goto __ERR。
-            ...
+            ......
             ret = HdmiAdapterHostInit(host, cntlr);  // 厂商自定义的初始化，失败则goto __ERR。
-            ...
+            ......
             ret = HdmiCntlrAdd(cntlr);               // 调用核心层函数，失败则goto __ERR。
-            ...
+            ......
             HDF_LOGD("HdmiAdapterBind: success.");
             return HDF_SUCCESS;
         __ERR:
@@ -416,11 +431,13 @@ HDMI模块适配的三个环节是实例化驱动入口、配置属性文件以�
         static void HdmiAdapterRelease(struct HdfDeviceObject *obj)
         {
             struct HdmiCntlr *cntlr = NULL;
-            ...
+            ......
             cntlr = (struct HdmiCntlr *)obj->service;               // 这里有HdfDeviceObject到HdmiCntlr的强制转化，通过service成员，赋值见Bind函数。
-            ...
+            ......
             HimciDeleteHost((struct HimciAdapterHost *)cntlr->priv);// 厂商自定义的内存释放函数，这里有HdmiCntlr到HimciAdapterHost的强制转化。
         }
         ```
-        
 
+4. 驱动调试
+
+    【可选】针对新增驱动程序，建议验证驱动基本功能，例如挂载后的信息反馈，HDMI传输等。

@@ -13,7 +13,7 @@ Widget switching involves the following parts:
 | Configuration item location      | **formAbility** and **forms** are in the **config.json** file.| **extensionAbilities** (configuration for **formExtensionAbility**) is in the **module.json5** file in the level-1 directory, and **forms** (configuration for **forms** contained in **formExtensionAbility**) is in the **form_config.json** file in the level-2 directory.|
 | Widget code path    | Specified by **srcPath**, without the file name.                        | Specified by **srcEntry**, with the file name.                                          |
 | Programming language            | **srcLanguage** can be set to **js** or **ets**.               | This configuration item is unavailable. Only ets is supported.                                       |
-| Whether to enable widgets    | formsEnabled                                | This configuration item is unavailable. The setting of **type** set to **form** means that the widgets are enabled.                              |
+| Whether to enable widgets    | formsEnabled                                | This configuration item is unavailable. When **type** is set to **form**, widgets are enabled.                              |
 | Ability type     | type: service                              | type: form                                                  |
 | Level-2 directory configuration tag| This configuration item is unavailable.                                         | **metadata**, which consists of **name**, **value**, and **resource**, where **resource** points to the location of the **form_config.json** file in the level-2 directory.|
 

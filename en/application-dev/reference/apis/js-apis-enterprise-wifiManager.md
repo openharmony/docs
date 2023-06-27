@@ -4,7 +4,8 @@ The **wifiManager** module provides APIs for Wi-Fi management of enterprise devi
 
 > **NOTE**
 >
-> The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
+> - The APIs of this module can be called only after a [device administrator application](js-apis-enterprise-adminManager.md#adminmanagerenableadmin) is enabled.
 
 ## Modules to Import
 
@@ -16,7 +17,7 @@ import wifiManager from '@ohos.enterprise.wifiManager';
 
 isWifiActive(admin: Want, callback: AsyncCallback&lt;boolean&gt;): void
 
-Checks whether Wi-Fi is active through a device administrator application. This API uses an asynchronous callback to return the result.
+Checks whether Wi-Fi is active through the specified device administrator application. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -52,7 +53,7 @@ wifiManager.isWifiActive(wantTemp, (error, result) => {
         console.log("error code:" + error.code + " error message:" + error.message);
         return;
     }
-    console.log(result);
+    console.log("result:" + result);
 });
 ```
 
@@ -60,7 +61,7 @@ wifiManager.isWifiActive(wantTemp, (error, result) => {
 
 isWifiActive(admin: Want): Promise&lt;boolean&gt;
 
-Checks whether Wi-Fi is active through a device administrator application. This API uses a promise to return the result.
+Checks whether Wi-Fi is active through the specified device administrator application. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.ENTERPRISE_SET_WIFI
 
@@ -97,7 +98,7 @@ let wantTemp = {
     abilityName: "EntryAbility",
 };
 wifiManager.isWifiActive(wantTemp).then((result) => {
-    console.log(result);
+    console.log("result:" + result);
 }).catch(error => {
     console.log("error code:" + error.code + " error message:" + error.message);
 });
@@ -139,7 +140,7 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let profile : WifiProfile = {
+let profile : wifiManager.WifiProfile = {
     "ssid": "name",
     "preSharedKey": "passwd",
     "securityType": wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
@@ -194,12 +195,12 @@ let wantTemp = {
     bundleName: "com.example.myapplication",
     abilityName: "EntryAbility",
 };
-let profile : WifiProfile = {
+let profile : wifiManager.WifiProfile = {
     "ssid": "name",
     "preSharedKey": "passwd",
     "securityType": wifiManager.WifiSecurityType.WIFI_SEC_TYPE_PSK
 };
-wifiManager.isWifiActive(wantTemp, profile).then(() => {
+wifiManager.setWifiProfile(wantTemp, profile).then(() => {
     console.log("set wifi success");
 }).catch(error => {
     console.log("error code:" + error.code + " error message:" + error.message);

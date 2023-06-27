@@ -23,7 +23,7 @@ Figure 1 Overview of system parameter operation primitives
 | get      | Obtains the value of a system parameter.       |
 | set      | Sets the value of a system parameter.       |
 | wait     | Waits for value change of a system parameter synchronously.|
-| watch    | Observes value change of a system parameter asynchronously.|
+| watch    | Watches for the value change of a system parameter asynchronously.|
 
 #### Parameter Definition
 
@@ -227,7 +227,7 @@ The parameter management subsystem allows you to manage system parameters by run
     | param get [**key**] | Obtains the system parameter value of the specified key. If no key name is specified, all system parameter values will be returned.|
     | param set **key value** | Sets the specified value for the specified key.|
     | param wait **key** **value** | Waits for the system parameter value of the specified key to match the specified value. Fuzzy match is supported. For example, * indicates any value, and <strong>val</strong>* indicates matching of only the first three val characters.|
-    | param watch | Observes value change of a system parameter asynchronously.|
+    | param watch | Watches for the value change of a system parameter asynchronously.|
 
   - syspara API mode
 
@@ -244,7 +244,7 @@ The parameter management subsystem allows you to manage system parameters by run
     | const&nbsp;char\*&nbsp;GetBrand(void) | Obtains the device's brand name.|
     | const&nbsp;char\*&nbsp;GetMarketName(void) | Obtains the device's marketing name.|
     | const&nbsp;char\*&nbsp;GetProductSeries(void) | Obtains the device's product series name.|
-    | const&nbsp;char\*&nbsp;GetProductModel(void) | Obtains the device's authentication model.|
+    | const&nbsp;char\*&nbsp;GetProductModel(void) | Obtains the device's product model.|
     | const&nbsp;char\*&nbsp;GetSoftwareModel(void) | Obtains the device's software model.|
     | const&nbsp;char\*&nbsp;GetHardwareModel(void) | Obtains the device's hardware model.|
     | const&nbsp;char\*&nbsp;GetHardwareProfile(void) | Obtains the device's hardware profile.|

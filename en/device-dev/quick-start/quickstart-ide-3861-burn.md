@@ -28,15 +28,14 @@ The images of Hi3861V100 are burnt in the Windows environment. After burning is 
 
    ![en-us_image_0000001333802045](figures/en-us_image_0000001333802045.png)
 
-4. On the **Tool Chain** tab page, set the Uploader burning tool. You can click **Install** on this page to install the tool online.
+4. On the **Tool Chain** tab page, DevEco Device Tool automatically checks for the uploader tool.
 
-   > ![icon-note.gif](public_sys-resources/icon-note.gif) **NOTE**
-   >
-   > If a later version of Uploader is available or another burning tool is required, select it in **Uploader** > **Use Custom Burn Tool**.
+   - If any tool is indicated as **uninstalled** (![status_uninstall](figures/status_uninstall.png)), click **Download Uninstalled Tools** to install all the required tools, or click **Download** next to a tool to install the specific tool.
+   - If **Download** is not available for a missing tool, it is not cataloged in DevEco Device Tool. In this case, you need to download the tool to the local host and click **Import** to import it.
 
-   ![Phoenix-upload](figures/Phoenix-upload.png)
+   ![3861_false](figures/3861_false.png)
 
-5. On the **hi3861** tab page, set the burning options. The settings are automatically saved.
+5. On the **wifiiot_hispark_pegasus** tab page, set the burning options. The settings are automatically saved.
    - **upload_port**: Select the serial port number obtained.
    - **upload_protocol**: Select the burning protocol **hiburn-serial**.
    - **upload_partitions**: Select the file for burning. To modify the burning settings for a specific file, click ![en-us_image_0000001333642545](figures/en-us_image_0000001333642545.png) next to the file.

@@ -1,27 +1,31 @@
 # HdfFeatureInfo
 
 
-## **概述**
+## 概述
 
 feature对象信息。
 
+**Since:**
+3.2
+**Version:**
+1.0
 **相关模块:**
 
-[WLAN](wlan.md)
+[WLAN](_w_l_a_n.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [ifName](#ifname) | feature对象的网卡名称。 | 
-| [type](#type) | feature对象的类型。 | 
+| [ifName](#ifname) | String<br/>feature对象的网卡名称。&nbsp; | 
+| [type](#type) | int<br/>feature对象的类型。&nbsp; | 
 
 
-## **类成员变量说明**
+## 类成员变量说明
 
 
 ### ifName
@@ -30,9 +34,7 @@ feature对象信息。
 ```
 String HdfFeatureInfo::ifName
 ```
-
-**描述：**
-
+**描述:**
 feature对象的网卡名称。
 
 
@@ -42,7 +44,5 @@ feature对象的网卡名称。
 ```
 int HdfFeatureInfo::type
 ```
-
-**描述：**
-
+**描述:**
 feature对象的类型。

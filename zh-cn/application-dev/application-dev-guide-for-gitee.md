@@ -31,6 +31,7 @@
 - [WebGL](webgl/Readme-CN.md)
 - [媒体](media/Readme-CN.md)
 - [安全](security/Readme-CN.md)
+- [AI](ai/Readme-CN.md)
 - [网络与连接](connectivity/Readme-CN.md)
 - [电话服务](telephony/Readme-CN.md)
 - [数据管理](database/Readme-CN.md)

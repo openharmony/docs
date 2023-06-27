@@ -47,19 +47,20 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, callba
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let enterpriseInfo = {
-    name: "enterprise name",
-    description: "enterprise description"
+  name: 'enterprise name',
+  description: 'enterprise description'
 }
-adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_SUPER, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("enableAdmin success");
+
+adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_SUPER, (err) => {
+  if (err) {
+    console.error(`Failed to enable admin. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in enabling admin');
 });
 ```
 
@@ -99,19 +100,20 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let enterpriseInfo = {
-    name: "enterprise name",
-    description: "enterprise description"
+  name: 'enterprise name',
+  description: 'enterprise description'
 }
-adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("enableAdmin success");
+
+adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100, (err) => {
+  if (err) {
+    console.error(`Failed to enable admin. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in enabling admin');
 });
 ```
 
@@ -156,16 +158,16 @@ enableAdmin(admin: Want, enterpriseInfo: EnterpriseInfo, type: AdminType, userId
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let enterpriseInfo = {
-    name: "enterprise name",
-    description: "enterprise description"
+  name: 'enterprise name',
+  description: 'enterprise description'
 }
-adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100)
-.catch(error => {
-    console.log("error occurs" + error);
+
+adminManager.enableAdmin(wantTemp, enterpriseInfo, adminManager.AdminType.ADMIN_TYPE_NORMAL, 100).catch((err) => {
+  console.error(`Failed to enable admin. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -200,15 +202,16 @@ disableAdmin(admin: Want, callback: AsyncCallback\<void>): void
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-adminManager.disableAdmin(wantTemp, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("disableAdmin success ");
+
+adminManager.disableAdmin(wantTemp, (err) => {
+  if (err) {
+    console.error(`Failed to disable admin. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in disabling admin');
 });
 ```
 
@@ -244,15 +247,16 @@ disableAdmin(admin: Want, userId: number, callback: AsyncCallback\<void>): void
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-adminManager.disableAdmin(wantTemp, 100, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("disableAdmin success ");
+
+adminManager.disableAdmin(wantTemp, 100, (err) => {
+  if (err) {
+    console.error(`Failed to disable admin. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in disabling admin');
 });
 ```
 
@@ -293,11 +297,12 @@ disableAdmin(admin: Want, userId?: number): Promise\<void>
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-adminManager.disableAdmin(wantTemp, 100).catch(error => {
-    console.log("error occurs" + error);
+
+adminManager.disableAdmin(wantTemp, 100).catch((err) => {
+  console.error(`Failed to disable admin. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -331,13 +336,14 @@ disableSuperAdmin(bundleName: String, callback: AsyncCallback\<void>): void
 **示例**：
 
 ```js
-let bundleName = "com.example.myapplication";
-adminManager.disableSuperAdmin(bundleName, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("disableSuperAdmin success");
+let bundleName = 'com.example.myapplication';
+
+adminManager.disableSuperAdmin(bundleName, (err) => {
+  if (err) {
+    console.error(`Failed to disable super admin. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in disabling super admin');
 });
 ```
 
@@ -376,9 +382,10 @@ disableSuperAdmin(bundleName: String): Promise\<void>
 **示例**：
 
 ```js
-let bundleName = "com.example.myapplication";
-adminManager.disableSuperAdmin(bundleName).catch(error => {
-    console.log("error occurs" + error);
+let bundleName = 'com.example.myapplication';
+
+adminManager.disableSuperAdmin(bundleName).catch((err) => {
+  console.error(`Failed to disable super admin. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -403,15 +410,16 @@ isAdminEnabled(admin: Want, callback: AsyncCallback\<boolean>): void
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-adminManager.isAdminEnabled(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("result is " + result);
+
+adminManager.isAdminEnabled(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to query admin is enabled or not. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in querying admin is enabled or not, result : ${result}`);
 });
 ```
 
@@ -437,15 +445,16 @@ isAdminEnabled(admin: Want, userId: number, callback: AsyncCallback\<boolean>): 
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
-adminManager.isAdminEnabled(wantTemp, 100, (error, result) => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("result is " + result);
+
+adminManager.isAdminEnabled(wantTemp, 100, (err, result) => {
+  if (err) {
+    console.error(`Failed to query admin is enabled. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in querying admin is enabled or not, result : ${result}`);
 });
 ```
 
@@ -476,13 +485,14 @@ isAdminEnabled(admin: Want, userId?: number): Promise\<boolean>
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
+
 adminManager.isAdminEnabled(wantTemp, 100).then((result) => {
-    console.log("result is " + result);
-}).catch(error => {
-    console.log("error occurs" + error);
+  console.info(`Succeeded in querying admin is enabled or not, result : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to query admin is enabled or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -506,13 +516,14 @@ isSuperAdmin(bundleName: String, callback: AsyncCallback\<boolean>): void
 **示例**：
 
 ```js
-let bundleName = "com.example.myapplication";
-adminManager.isSuperAdmin(bundleName, (error, result) => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("result is " + result);
+let bundleName = 'com.example.myapplication';
+
+adminManager.isSuperAdmin(bundleName, (err, result) => {
+  if (err) {
+    console.error(`Failed to query admin is super admin or not. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in querying admin is super admin or not, result : ${result}`);
 });
 ```
 
@@ -541,11 +552,12 @@ isSuperAdmin(bundleName: String): Promise\<boolean>
 **示例**：
 
 ```js
-let bundleName = "com.example.myapplication";
+let bundleName = 'com.example.myapplication';
+
 adminManager.isSuperAdmin(bundleName).then((result) => {
-    console.log("result is " + result);
-}).catch(error => {
-    console.log("error occurs" + error);
+  console.info(`Succeeded in querying admin is super admin or not, result : ${result}`);
+}).catch((err) => {
+  console.error(`Failed to query admin is super admin or not. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -581,19 +593,20 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo, callback: AsyncCa
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let enterpriseInfo = {
-    name: "enterprise name",
-    description: "enterprise description"
+  name: 'enterprise name',
+  description: 'enterprise description'
 }
-adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, error => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log("setEnterpriseInfo success");
+
+adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo, (err) => {
+  if (err) {
+    console.error(`Failed to set enterprise info. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in setting enterprise info');
 });
 ```
 
@@ -634,15 +647,16 @@ setEnterpriseInfo(admin: Want, enterpriseInfo: EnterpriseInfo): Promise\<void>;
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
 let enterpriseInfo = {
-    name: "enterprise name",
-    description: "enterprise description"
+  name: 'enterprise name',
+  description: 'enterprise description'
 }
-adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo).catch(error => {
-    console.log("error occurs" + error);
+
+adminManager.setEnterpriseInfo(wantTemp, enterpriseInfo).catch((err) => {
+  console.error(`Failed to set enterprise info. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -675,16 +689,16 @@ getEnterpriseInfo(admin: Want, callback: AsyncCallback&lt;EnterpriseInfo&gt;): v
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
-adminManager.getEnterpriseInfo(wantTemp, (error, result) => {
-    if (error != null) {
-        console.log("error occurs" + error);
-        return;
-    }
-    console.log(result.name);
-    console.log(result.description);
+
+adminManager.getEnterpriseInfo(wantTemp, (err, result) => {
+  if (err) {
+    console.error(`Failed to get enterprise info. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info(`Succeeded in getting enterprise info, enterprise name : ${result.name}, enterprise description : ${result.description}`);
 });
 ```
 
@@ -722,14 +736,14 @@ getEnterpriseInfo(admin: Want): Promise&lt;EnterpriseInfo&gt;
 
 ```js
 let wantTemp = {
-    bundleName: "com.example.myapplication",
-    abilityName: "EntryAbility",
+  bundleName: 'com.example.myapplication',
+  abilityName: 'EntryAbility',
 };
+
 adminManager.getEnterpriseInfo(wantTemp).then((result) => {
-    console.log(result.name);
-    console.log(result.description);
-}).catch(error => {
-    console.log("error occurs" + error);
+  console.info(`Succeeded in getting enterprise info, enterprise name : ${result.name}, enterprise description : ${result.description}`);
+}).catch((err) => {
+  console.error(`Failed to get enterprise info. Code: ${err.code}, message: ${err.message}`);
 });
 ```
 
@@ -766,14 +780,17 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callback
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
 let events = [0, 1];
-adminManager.subscribeManagedEvent(wantTemp, events, (error) => {
-    if (error) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+
+adminManager.subscribeManagedEvent(wantTemp, events, (err) => {
+  if (err) {
+    console.error(`Failed to subscribe managed event. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in subscribe managed event');
 });
 ```
 
@@ -815,13 +832,14 @@ subscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promise
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
 let events = [0, 1];
+
 adminManager.subscribeManagedEvent(wantTemp, events).then(() => {
-}).catch((error) => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+}).catch((err) => {
+  console.error(`Failed to subscribe managed event. Code: ${err.code}, message: ${err.message}`);
 })
 ```
 
@@ -858,14 +876,17 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>, callba
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
 let events = [0, 1];
-adminManager.unsubscribeManagedEvent(wantTemp, events, (error) => {
-    if (error) {
-        console.log("error code:" + error.code + " error message:" + error.message);
-    }
+
+adminManager.unsubscribeManagedEvent(wantTemp, events, (err) => {
+  if (err) {
+    console.error(`Failed to unsubscribe managed event. Code: ${err.code}, message: ${err.message}`);
+    return;
+  }
+  console.info('Succeeded in unsubscribe managed event');
 });
 ```
 
@@ -907,13 +928,14 @@ unsubscribeManagedEvent(admin: Want, managedEvents: Array\<ManagedEvent>): Promi
 
 ```js
 let wantTemp = {
-    bundleName: "bundleName",
-    abilityName: "abilityName",
+  bundleName: 'bundleName',
+  abilityName: 'abilityName',
 };
 let events = [0, 1];
+
 adminManager.unsubscribeManagedEvent(wantTemp, events).then(() => {
-}).catch((error) => {
-    console.log("error code:" + error.code + " error message:" + error.message);
+}).catch((err) => {
+  console.error(`Failed to unsubscribe managed event. Code: ${err.code}, message: ${err.message}`);
 })
 ```
 

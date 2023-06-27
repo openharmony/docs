@@ -1,4 +1,4 @@
-# WindowExtensionAbility
+# WindowExtensionAbility（仅对系统应用开放）
 
 
 [WindowExtensionAbility](../reference/apis/js-apis-application-windowExtensionAbility.md)是一种ExtensionAbility组件，用于提供界面组合扩展能力，允许系统应用进行跨应用的界面拉起和嵌入。
@@ -15,7 +15,7 @@ WindowExtensionAbility必须和[AbilityComponent](../reference/arkui-ts/ts-conta
 >
 
 
-## 设置一个嵌入式UIAbility（仅对系统应用开放）
+## 设置一个嵌入式UIAbility
 
 WindowExtensionAbility提供了onConnect()、onDisconnect()和onWindowReady()生命周期回调，根据需要重写对应的回调方法。
 
@@ -79,7 +79,7 @@ WindowExtensionAbility提供了onConnect()、onDisconnect()和onWindowReady()生
    ```
 
 
-## 拉起一个嵌入式UIAbility（仅对系统应用开放）
+## 拉起一个嵌入式UIAbility
 
 系统应用可以通过AbilityComponent容器加载创建好的WindowExtensionAbility。
 
@@ -112,8 +112,8 @@ struct Index {
 }
 ```
 
-## 相关示例
+## 相关实例
 
-针对WindowExtensionAbility开发，有以下相关示例可供参考：
+针对WindowExtensionAbility开发，有以下相关实例可供参考：
 
 - [`WindowExtAbility`：WindowExtAbility的创建与使用（ArkTS）（API9）（Full SDK）](https://gitee.com/openharmony/applications_app_samples/tree/master/code/SystemFeature/WindowManagement/WindowExtAbility)

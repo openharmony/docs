@@ -55,7 +55,7 @@ Button('拉至后台')
       'abilityName': 'EntryAbility',
       'params': {
         'method': 'fun', // 自定义调用的方法名，必填
-        'message': 'testForcall' // 自定义要发送的message
+        'message': 'testForCall' // 自定义要发送的message
       }
     });
   })

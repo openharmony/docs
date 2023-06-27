@@ -1,57 +1,57 @@
 # CodecComponentType
 
 
-## **概述**
+## 概述
 
 Codec组件接口定义。
 
-主要提供以下功能:
+主要提供以下功能：
 
-- 获取组件的版本。
+- 获取组件的版本
 
-- 组件参数配置的获取和设置。
+- 组件参数配置的获取和设置
 
-- 发送命令至组件及获取组件状态。
+- 发送命令至组件及获取组件状态
 
-- 设置回调函数。
+- 设置回调函数
 
-- 设置/释放组件使用的buffer。
+- 设置/释放组件使用的buffer
 
-- 编解码输入输出buffer处理 具体方法使用详见函数说明。
+- 编解码输入输出buffer处理，具体方法使用详见函数说明。
 
 **相关模块:**
 
-[Codec](codec.md)
+[Codec](_codec.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| ([GetComponentVersion](#getcomponentversion)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*self,&nbsp;struct&nbsp;CompVerInfo&nbsp;\*verInfo) | 获取Codec组件版本号。 | 
-| ([SendCommand](#sendcommand)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*self,&nbsp;enum&nbsp;OMX_COMMANDTYPE&nbsp;cmd,&nbsp;uint32_t&nbsp;param,&nbsp;int8_t&nbsp;\*cmdData,&nbsp;uint32_t&nbsp;cmdDataLen) | 发送命令给组件。 | 
-| ([GetParameter](#getparameter)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*self,&nbsp;uint32_t&nbsp;paramIndex,&nbsp;int8_t&nbsp;\*paramStruct,&nbsp;uint32_t&nbsp;paramStructLen) | 获取组件参数设置。 | 
-| ([SetParameter](#setparameter)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*self,&nbsp;uint32_t&nbsp;index,&nbsp;int8_t&nbsp;\*paramStruct,&nbsp;uint32_t&nbsp;paramStructLen) | 设置组件需要的参数。 | 
-| ([GetConfig](#getconfig)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*self,&nbsp;uint32_t&nbsp;index,&nbsp;int8_t&nbsp;\*cfgStruct,&nbsp;uint32_t&nbsp;cfgStructLen) | 获取组件的配置结构。 | 
-| ([SetConfig](#setconfig)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*self,&nbsp;uint32_t&nbsp;index,&nbsp;int8_t&nbsp;\*cfgStruct,&nbsp;uint32_t&nbsp;cfgStructLen) | 设置组件的配置。 | 
-| ([GetExtensionIndex](#getextensionindex)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*self,&nbsp;const&nbsp;char&nbsp;\*paramName,&nbsp;uint32_t&nbsp;\*indexType) | 根据字符串获取组件的扩展索引。 | 
-| ([GetState](#getstate)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*self,&nbsp;enum&nbsp;OMX_STATETYPE&nbsp;\*state) | 获取组件的当前状态。 | 
-| ([ComponentTunnelRequest](#componenttunnelrequest)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*self,&nbsp;uint32_t&nbsp;port,&nbsp;int32_t&nbsp;tunneledComp,&nbsp;uint32_t&nbsp;tunneledPort,&nbsp;struct&nbsp;OMX_TUNNELSETUPTYPE&nbsp;\*tunnelSetup) | 设置组件采用Tunnel方式通信。 | 
-| ([UseBuffer](#usebuffer)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*self,&nbsp;uint32_t&nbsp;portIndex,&nbsp;struct&nbsp;OmxCodecBuffer&nbsp;\*buffer) | 指定组件端口的buffer。 | 
-| ([AllocateBuffer](#allocatebuffer)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*self,&nbsp;uint32_t&nbsp;portIndex,&nbsp;struct&nbsp;OmxCodecBuffer&nbsp;\*buffer) | 向组件申请端口buffer。 | 
-| ([FreeBuffer](#freebuffer)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*self,&nbsp;uint32_t&nbsp;portIndex,&nbsp;const&nbsp;struct&nbsp;OmxCodecBuffer&nbsp;\*buffer) | 释放buffer。 | 
-| ([EmptyThisBuffer](#emptythisbuffer)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*self,&nbsp;const&nbsp;struct&nbsp;OmxCodecBuffer&nbsp;\*buffer) | 编解码输入待处理buffer。 | 
-| ([FillThisBuffer](#fillthisbuffer)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*self,&nbsp;const&nbsp;struct&nbsp;OmxCodecBuffer&nbsp;\*buffer) | 编解码输出填充buffer。 | 
-| ([SetCallbacks](#setcallbacks)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*self,&nbsp;struct&nbsp;CodecCallbackType&nbsp;\*callback,&nbsp;int8_t&nbsp;\*appData,&nbsp;uint32_t&nbsp;appDataLen) | 设置Codec组件的回调函数。 | 
-| ([ComponentDeInit](#componentdeinit)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*self) | 组件去初始化。 | 
-| ([UseEglImage](#useeglimage)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*self,&nbsp;struct&nbsp;OmxCodecBuffer&nbsp;\*buffer,&nbsp;uint32_t&nbsp;portIndex,&nbsp;int8_t&nbsp;\*eglImage,&nbsp;uint32_t&nbsp;eglImageLen) | 使用已在EGL中申请的空间。 | 
-| ([ComponentRoleEnum](#componentroleenum)&nbsp;)(struct&nbsp;CodecComponentType&nbsp;\*self,&nbsp;uint8_t&nbsp;\*role,&nbsp;uint32_t&nbsp;roleLen,&nbsp;uint32_t&nbsp;index) | 获取组件角色。 | 
+| (\*&nbsp;[GetComponentVersion](#getcomponentversion)&nbsp;)(struct&nbsp;[CodecComponentType](zh-cn_topic_0000001602591461.xml)&nbsp;\*self,&nbsp;struct&nbsp;[CompVerInfo](_comp_ver_info.md)&nbsp;\*verInfo) | int32_t<br/>获取Codec组件版本号。 | 
+| (\*&nbsp;[SendCommand](#sendcommand)&nbsp;)(struct&nbsp;[CodecComponentType](zh-cn_topic_0000001602591461.xml)&nbsp;\*self,&nbsp;enum&nbsp;OMX_COMMANDTYPE&nbsp;cmd,&nbsp;uint32_t&nbsp;param,&nbsp;int8_t&nbsp;\*cmdData,&nbsp;uint32_t&nbsp;cmdDataLen) | int32_t<br/>发送命令给组件。 | 
+| (\*&nbsp;[GetParameter](#getparameter)&nbsp;)(struct&nbsp;[CodecComponentType](zh-cn_topic_0000001602591461.xml)&nbsp;\*self,&nbsp;uint32_t&nbsp;paramIndex,&nbsp;int8_t&nbsp;\*paramStruct,&nbsp;uint32_t&nbsp;paramStructLen) | int32_t<br/>获取组件参数设置。 | 
+| (\*&nbsp;[SetParameter](#setparameter)&nbsp;)(struct&nbsp;[CodecComponentType](zh-cn_topic_0000001602591461.xml)&nbsp;\*self,&nbsp;uint32_t&nbsp;index,&nbsp;int8_t&nbsp;\*paramStruct,&nbsp;uint32_t&nbsp;paramStructLen) | int32_t<br/>设置组件需要的参数。 | 
+| (\*&nbsp;[GetConfig](#getconfig)&nbsp;)(struct&nbsp;[CodecComponentType](zh-cn_topic_0000001602591461.xml)&nbsp;\*self,&nbsp;uint32_t&nbsp;index,&nbsp;int8_t&nbsp;\*cfgStruct,&nbsp;uint32_t&nbsp;cfgStructLen) | int32_t<br/>获取组件的配置结构。 | 
+| (\*&nbsp;[SetConfig](#setconfig)&nbsp;)(struct&nbsp;[CodecComponentType](zh-cn_topic_0000001602591461.xml)&nbsp;\*self,&nbsp;uint32_t&nbsp;index,&nbsp;int8_t&nbsp;\*cfgStruct,&nbsp;uint32_t&nbsp;cfgStructLen) | int32_t<br/>设置组件的配置。 | 
+| (\*&nbsp;[GetExtensionIndex](#getextensionindex)&nbsp;)(struct&nbsp;[CodecComponentType](zh-cn_topic_0000001602591461.xml)&nbsp;\*self,&nbsp;const&nbsp;char&nbsp;\*paramName,&nbsp;uint32_t&nbsp;\*indexType) | int32_t<br/>根据字符串获取组件的扩展索引。 | 
+| (\*&nbsp;[GetState](#getstate)&nbsp;)(struct&nbsp;[CodecComponentType](zh-cn_topic_0000001602591461.xml)&nbsp;\*self,&nbsp;enum&nbsp;OMX_STATETYPE&nbsp;\*state) | int32_t<br/>获取组件的当前状态。 | 
+| (\*&nbsp;[ComponentTunnelRequest](#componenttunnelrequest)&nbsp;)(struct&nbsp;[CodecComponentType](zh-cn_topic_0000001602591461.xml)&nbsp;\*self,&nbsp;uint32_t&nbsp;port,&nbsp;int32_t&nbsp;tunneledComp,&nbsp;uint32_t&nbsp;tunneledPort,&nbsp;struct&nbsp;OMX_TUNNELSETUPTYPE&nbsp;\*tunnelSetup) | int32_t<br/>设置组件采用Tunnel方式通信。 | 
+| (\*&nbsp;[UseBuffer](#usebuffer)&nbsp;)(struct&nbsp;[CodecComponentType](zh-cn_topic_0000001602591461.xml)&nbsp;\*self,&nbsp;uint32_t&nbsp;portIndex,&nbsp;struct&nbsp;[OmxCodecBuffer](_omx_codec_buffer.md)&nbsp;\*buffer) | int32_t<br/>指定组件端口的buffer。 | 
+| (\*&nbsp;[AllocateBuffer](#allocatebuffer)&nbsp;)(struct&nbsp;[CodecComponentType](zh-cn_topic_0000001602591461.xml)&nbsp;\*self,&nbsp;uint32_t&nbsp;portIndex,&nbsp;struct&nbsp;[OmxCodecBuffer](_omx_codec_buffer.md)&nbsp;\*buffer) | int32_t<br/>向组件申请端口buffer。 | 
+| (\*&nbsp;[FreeBuffer](#freebuffer)&nbsp;)(struct&nbsp;[CodecComponentType](zh-cn_topic_0000001602591461.xml)&nbsp;\*self,&nbsp;uint32_t&nbsp;portIndex,&nbsp;const&nbsp;struct&nbsp;[OmxCodecBuffer](_omx_codec_buffer.md)&nbsp;\*buffer) | int32_t<br/>释放buffer。 | 
+| (\*&nbsp;[EmptyThisBuffer](#emptythisbuffer)&nbsp;)(struct&nbsp;[CodecComponentType](zh-cn_topic_0000001602591461.xml)&nbsp;\*self,&nbsp;const&nbsp;struct&nbsp;[OmxCodecBuffer](_omx_codec_buffer.md)&nbsp;\*buffer) | int32_t<br/>编解码输入待处理buffer。 | 
+| (\*&nbsp;[FillThisBuffer](#fillthisbuffer)&nbsp;)(struct&nbsp;[CodecComponentType](zh-cn_topic_0000001602591461.xml)&nbsp;\*self,&nbsp;const&nbsp;struct&nbsp;[OmxCodecBuffer](_omx_codec_buffer.md)&nbsp;\*buffer) | int32_t<br/>编解码输出填充buffer。 | 
+| (\*&nbsp;[SetCallbacks](#setcallbacks)&nbsp;)(struct&nbsp;[CodecComponentType](zh-cn_topic_0000001602591461.xml)&nbsp;\*self,&nbsp;struct&nbsp;[CodecCallbackType](_codec_callback_type.md)&nbsp;\*callback,&nbsp;int8_t&nbsp;\*appData,&nbsp;uint32_t&nbsp;appDataLen) | int32_t<br/>设置Codec组件的回调函数。 | 
+| (\*&nbsp;[ComponentDeInit](#componentdeinit)&nbsp;)(struct&nbsp;[CodecComponentType](zh-cn_topic_0000001602591461.xml)&nbsp;\*self) | int32_t<br/>组件去初始化。 | 
+| (\*&nbsp;[UseEglImage](#useeglimage)&nbsp;)(struct&nbsp;[CodecComponentType](zh-cn_topic_0000001602591461.xml)&nbsp;\*self,&nbsp;struct&nbsp;[OmxCodecBuffer](_omx_codec_buffer.md)&nbsp;\*buffer,&nbsp;uint32_t&nbsp;portIndex,&nbsp;int8_t&nbsp;\*eglImage,&nbsp;uint32_t&nbsp;eglImageLen) | int32_t<br/>使用已在EGL中申请的空间。 | 
+| (\*&nbsp;[ComponentRoleEnum](#componentroleenum)&nbsp;)(struct&nbsp;[CodecComponentType](zh-cn_topic_0000001602591461.xml)&nbsp;\*self,&nbsp;uint8_t&nbsp;\*role,&nbsp;uint32_t&nbsp;roleLen,&nbsp;uint32_t&nbsp;index) | int32_t<br/>获取组件角色。 | 
 
 
-## **类成员变量说明**
+## 类成员变量说明
 
 
 ### AllocateBuffer
@@ -61,7 +61,7 @@ Codec组件接口定义。
 int32_t(* CodecComponentType::AllocateBuffer) (struct CodecComponentType *self, uint32_t portIndex, struct OmxCodecBuffer *buffer)
 ```
 
-**描述：**
+**描述:**
 
 向组件申请端口buffer。
 
@@ -99,7 +99,7 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，申请buffer失败。
 int32_t(* CodecComponentType::ComponentDeInit) (struct CodecComponentType *self)
 ```
 
-**描述：**
+**描述:**
 
 组件去初始化。
 
@@ -129,7 +129,7 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，去初始化失败。
 int32_t(* CodecComponentType::ComponentRoleEnum) (struct CodecComponentType *self, uint8_t *role, uint32_t roleLen, uint32_t index)
 ```
 
-**描述：**
+**描述:**
 
 获取组件角色。
 
@@ -162,7 +162,7 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，获取角色失败。
 int32_t(* CodecComponentType::ComponentTunnelRequest) (struct CodecComponentType *self, uint32_t port, int32_t tunneledComp, uint32_t tunneledPort, struct OMX_TUNNELSETUPTYPE *tunnelSetup)
 ```
 
-**描述：**
+**描述:**
 
 设置组件采用Tunnel方式通信。
 
@@ -176,7 +176,7 @@ int32_t(* CodecComponentType::ComponentTunnelRequest) (struct CodecComponentType
 | port | 输入参数，组件设置的端口。 | 
 | tunneledComp | 输入参数，组件的tunnel&nbsp;handle。 | 
 | tunneledPort | 输入参数，组件用来Tunnel通信的端口。 | 
-| tunnelSetup | 输入输出参数，指向Tunnel设置的结构体**OMX_TUNNELSETUPTYPE**指针。 | 
+| tunnelSetup | 输入输出参数，指向Tunnel设置的结构体OMX_TUNNELSETUPTYPE指针。 | 
 
 **返回:**
 
@@ -196,7 +196,7 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，设置失败。
 int32_t(* CodecComponentType::EmptyThisBuffer) (struct CodecComponentType *self, const struct OmxCodecBuffer *buffer)
 ```
 
-**描述：**
+**描述:**
 
 编解码输入待处理buffer。
 
@@ -227,7 +227,7 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，输入buffer失败。
 int32_t(* CodecComponentType::FillThisBuffer) (struct CodecComponentType *self, const struct OmxCodecBuffer *buffer)
 ```
 
-**描述：**
+**描述:**
 
 编解码输出填充buffer。
 
@@ -258,7 +258,7 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，填充buffer失败。
 int32_t(* CodecComponentType::FreeBuffer) (struct CodecComponentType *self, uint32_t portIndex, const struct OmxCodecBuffer *buffer)
 ```
 
-**描述：**
+**描述:**
 
 释放buffer。
 
@@ -296,7 +296,7 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，释放buffer失败。
 int32_t(* CodecComponentType::GetComponentVersion) (struct CodecComponentType *self, struct CompVerInfo *verInfo)
 ```
 
-**描述：**
+**描述:**
 
 获取Codec组件版本号。
 
@@ -327,7 +327,7 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，获取版本号失败。
 int32_t(* CodecComponentType::GetConfig) (struct CodecComponentType *self, uint32_t index, int8_t *cfgStruct, uint32_t cfgStructLen)
 ```
 
-**描述：**
+**描述:**
 
 获取组件的配置结构。
 
@@ -338,7 +338,7 @@ int32_t(* CodecComponentType::GetConfig) (struct CodecComponentType *self, uint3
   | 名称 | 描述 | 
 | -------- | -------- |
 | self | 输入参数，指向要操作的Codec组件指针。 | 
-| index | 输入参数，待填充结构的索引，详见**OMX_INDEXTYPE**。 | 
+| index | 输入参数，待填充结构的索引，详见OMX_INDEXTYPE。 | 
 | cfgStruct | 输入输出参数，指向由组件填充的应用程序分配的结构体指针。 | 
 | cfgStructLen | 输入参数，上层传入的cfgStruct字节数。 | 
 
@@ -360,7 +360,7 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，获取配置失败。
 int32_t(* CodecComponentType::GetExtensionIndex) (struct CodecComponentType *self, const char *paramName, uint32_t *indexType)
 ```
 
-**描述：**
+**描述:**
 
 根据字符串获取组件的扩展索引。
 
@@ -372,7 +372,7 @@ int32_t(* CodecComponentType::GetExtensionIndex) (struct CodecComponentType *sel
 | -------- | -------- |
 | self | 输入参数，指向要操作的Codec组件指针。 | 
 | paramName | 输入参数，组件用来转换为配置索引的字符串。 | 
-| indexType | 输出参数，由paramName转换的配置索引，详见**OMX_INDEXTYPE**。 | 
+| indexType | 输出参数，由paramName转换的配置索引，详见OMX_INDEXTYPE。 | 
 
 **返回:**
 
@@ -392,7 +392,7 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，获取扩展索引失败。
 int32_t(* CodecComponentType::GetParameter) (struct CodecComponentType *self, uint32_t paramIndex, int8_t *paramStruct, uint32_t paramStructLen)
 ```
 
-**描述：**
+**描述:**
 
 获取组件参数设置。
 
@@ -403,7 +403,7 @@ int32_t(* CodecComponentType::GetParameter) (struct CodecComponentType *self, ui
   | 名称 | 描述 | 
 | -------- | -------- |
 | self | 输入参数，指向要操作的Codec组件指针。 | 
-| paramIndex | 输入参数，待填充结构的索引，详见**OMX_INDEXTYPE**。 | 
+| paramIndex | 输入参数，待填充结构的索引，详见OMX_INDEXTYPE。 | 
 | paramStruct | 输入输出参数，指向由组件填充的应用程序分配的结构体指针。 | 
 | paramStructLen | 输入参数，paramStruct字节数。 | 
 
@@ -425,18 +425,18 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，获取参数失败。
 int32_t(* CodecComponentType::GetState) (struct CodecComponentType *self, enum OMX_STATETYPE *state)
 ```
 
-**描述：**
+**描述:**
 
 获取组件的当前状态。
 
-用户可调用此接口获取组件的当前状态，组件状态详见**OMX_STATETYPE**。
+用户可调用此接口获取组件的当前状态，组件状态详见OMX_STATETYPE。
 
 **参数:**
 
   | 名称 | 描述 | 
 | -------- | -------- |
 | self | 输入参数，指向要操作的Codec组件指针。 | 
-| state | 输出参数，指向获取到的状态指针，组件状态详见**OMX_STATETYPE**。 | 
+| state | 输出参数，指向获取到的状态指针，组件状态详见OMX_STATETYPE。 | 
 
 **返回:**
 
@@ -456,11 +456,11 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，获取状态失败。
 int32_t(* CodecComponentType::SendCommand) (struct CodecComponentType *self, enum OMX_COMMANDTYPE cmd, uint32_t param, int8_t *cmdData, uint32_t cmdDataLen)
 ```
 
-**描述：**
+**描述:**
 
 发送命令给组件。
 
-当命令为设置状态时，会有事件回调通知结果给上层，其他命令则没有事件上报。
+发送命令给组件，当命令为设置状态时，会有事件回调通知结果给上层，其他命令则没有事件上报。
 
 **参数:**
 
@@ -490,7 +490,7 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，发送命令失败。
 int32_t(* CodecComponentType::SetCallbacks) (struct CodecComponentType *self, struct CodecCallbackType *callback, int8_t *appData, uint32_t appDataLen)
 ```
 
-**描述：**
+**描述:**
 
 设置Codec组件的回调函数。
 
@@ -523,7 +523,7 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，设置回调失败。
 int32_t(* CodecComponentType::SetConfig) (struct CodecComponentType *self, uint32_t index, int8_t *cfgStruct, uint32_t cfgStructLen)
 ```
 
-**描述：**
+**描述:**
 
 设置组件的配置。
 
@@ -534,7 +534,7 @@ int32_t(* CodecComponentType::SetConfig) (struct CodecComponentType *self, uint3
   | 名称 | 描述 | 
 | -------- | -------- |
 | self | 输入参数，指向要操作的Codec组件指针。 | 
-| index | 输入参数，要设置的结构索引，详见**OMX_INDEXTYPE**。 | 
+| index | 输入参数，要设置的结构索引，详见OMX_INDEXTYPE。 | 
 | cfgStruct | 输入参数，指向组件用于初始化的应用程序分配结构的指针。 | 
 | cfgStructLen | 输入参数，cfgStruct字节数。 | 
 
@@ -556,7 +556,7 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，设置失败。
 int32_t(* CodecComponentType::SetParameter) (struct CodecComponentType *self, uint32_t index, int8_t *paramStruct, uint32_t paramStructLen)
 ```
 
-**描述：**
+**描述:**
 
 设置组件需要的参数。
 
@@ -567,7 +567,7 @@ int32_t(* CodecComponentType::SetParameter) (struct CodecComponentType *self, ui
   | 名称 | 描述 | 
 | -------- | -------- |
 | self | 输入参数，指向要操作的Codec组件指针。 | 
-| index | 输入参数，要设置的结构索引，详见**OMX_INDEXTYPE**。 | 
+| index | 输入参数，要设置的结构索引，详见OMX_INDEXTYPE。 | 
 | paramStruct | 输入参数，指向组件用于初始化的应用程序分配结构的指针。 | 
 | paramStructLen | 输入参数，paramStruct字节数。 | 
 
@@ -589,7 +589,7 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，设置参数失败。
 int32_t(* CodecComponentType::UseBuffer) (struct CodecComponentType *self, uint32_t portIndex, struct OmxCodecBuffer *buffer)
 ```
 
-**描述：**
+**描述:**
 
 指定组件端口的buffer。
 
@@ -627,7 +627,7 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，指定失败。
 int32_t(* CodecComponentType::UseEglImage) (struct CodecComponentType *self, struct OmxCodecBuffer *buffer, uint32_t portIndex, int8_t *eglImage, uint32_t eglImageLen)
 ```
 
-**描述：**
+**描述:**
 
 使用已在EGL中申请的空间。
 

@@ -1,7 +1,7 @@
 # CodecCallbackType
 
 
-## **概述**
+## 概述
 
 Codec回调接口定义。
 
@@ -17,23 +17,23 @@ Codec回调接口定义。
 
 **相关模块:**
 
-[Codec](codec.md)
+[Codec](_codec.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### Public 属性
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [remote](#remote) | 指向HdfRemoteService的指针。 | 
-| ([EventHandler](#eventhandler)&nbsp;)(struct&nbsp;CodecCallbackType&nbsp;\*self,&nbsp;enum&nbsp;OMX_EVENTTYPE&nbsp;event,&nbsp;struct&nbsp;EventInfo&nbsp;\*info) | 事件上报。 | 
-| ([EmptyBufferDone](#emptybufferdone)&nbsp;)(struct&nbsp;CodecCallbackType&nbsp;\*self,&nbsp;int8_t&nbsp;\*appData,&nbsp;uint32_t&nbsp;appDataLen,&nbsp;const&nbsp;struct&nbsp;OmxCodecBuffer&nbsp;\*buffer) | 上报输入buffer编码或者解码处理完毕。 | 
-| ([FillBufferDone](#fillbufferdone)&nbsp;)(struct&nbsp;CodecCallbackType&nbsp;\*self,&nbsp;int8_t&nbsp;\*appData,&nbsp;uint32_t&nbsp;appDataLen,&nbsp;struct&nbsp;OmxCodecBuffer&nbsp;\*buffer) | 上报输出buffer填充完毕。 | 
+| [remote](#remote) | struct&nbsp;HdfRemoteService&nbsp;\*<br/>指向HdfRemoteService的指针。 | 
+| (\*&nbsp;[EventHandler](#eventhandler)&nbsp;)(struct&nbsp;[CodecCallbackType](zh-cn_topic_0000001602431713.xml)&nbsp;\*self,&nbsp;enum&nbsp;OMX_EVENTTYPE&nbsp;event,&nbsp;struct&nbsp;[EventInfo](_event_info.md)&nbsp;\*info) | int32_t<br/>事件上报。 | 
+| (\*&nbsp;[EmptyBufferDone](#emptybufferdone)&nbsp;)(struct&nbsp;[CodecCallbackType](zh-cn_topic_0000001602431713.xml)&nbsp;\*self,&nbsp;int8_t&nbsp;\*appData,&nbsp;uint32_t&nbsp;appDataLen,&nbsp;const&nbsp;struct&nbsp;[OmxCodecBuffer](_omx_codec_buffer.md)&nbsp;\*buffer) | int32_t<br/>上报输入buffer编码或者解码处理完毕。 | 
+| (\*&nbsp;[FillBufferDone](#fillbufferdone)&nbsp;)(struct&nbsp;[CodecCallbackType](zh-cn_topic_0000001602431713.xml)&nbsp;\*self,&nbsp;int8_t&nbsp;\*appData,&nbsp;uint32_t&nbsp;appDataLen,&nbsp;struct&nbsp;[OmxCodecBuffer](_omx_codec_buffer.md)&nbsp;\*buffer) | int32_t<br/>上报输出buffer填充完毕。 | 
 
 
-## **类成员变量说明**
+## 类成员变量说明
 
 
 ### EmptyBufferDone
@@ -43,7 +43,7 @@ Codec回调接口定义。
 int32_t(* CodecCallbackType::EmptyBufferDone) (struct CodecCallbackType *self, int8_t *appData, uint32_t appDataLen, const struct OmxCodecBuffer *buffer)
 ```
 
-**描述：**
+**描述:**
 
 上报输入buffer编码或者解码处理完毕。
 
@@ -76,7 +76,7 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，上报失败。
 int32_t(* CodecCallbackType::EventHandler) (struct CodecCallbackType *self, enum OMX_EVENTTYPE event, struct EventInfo *info)
 ```
 
-**描述：**
+**描述:**
 
 事件上报。
 
@@ -120,7 +120,7 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，事件上报失败。
 int32_t(* CodecCallbackType::FillBufferDone) (struct CodecCallbackType *self, int8_t *appData, uint32_t appDataLen, struct OmxCodecBuffer *buffer)
 ```
 
-**描述：**
+**描述:**
 
 上报输出buffer填充完毕。
 
@@ -153,6 +153,6 @@ HDF_ERR_MALLOC_FAIL 表示申请内存失败，上报失败。
 struct HdfRemoteService* CodecCallbackType::remote
 ```
 
-**描述：**
+**描述:**
 
 指向HdfRemoteService的指针。

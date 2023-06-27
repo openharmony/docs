@@ -1,7 +1,7 @@
 # LifecycleForm Switching
 
 
-  | API in the FA Model| Corresponding d.ts File in the Stage Model| Corresponding API in the Stage Model| 
+  | API in the FA Model| Corresponding .d.ts File in the Stage Model| Corresponding API in the Stage Model| 
 | -------- | -------- | -------- |
 | onCreate?(want: Want): formBindingData.FormBindingData; | \@ohos.app.form.FormExtensionAbility.d.ts | [onAddForm(want: Want): formBindingData.FormBindingData;](../reference/apis/js-apis-app-form-formExtensionAbility.md#onaddform) |
 | onCastToNormal?(formId: string): void; | \@ohos.app.form.FormExtensionAbility.d.ts | [onCastToNormalForm(formId: string): void;](../reference/apis/js-apis-app-form-formExtensionAbility.md#oncasttonormalform) |

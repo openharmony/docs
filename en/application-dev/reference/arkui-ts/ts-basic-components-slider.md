@@ -22,7 +22,7 @@ Since API version 9, this API is supported in ArkTS widgets.
 
 | Name| Type| Mandatory| Description|
 | -------- | -------- | -------- | -------- |
-| value | number | No| Current progress.<br>Default value: **0**|
+| value | number | No| Current progress.<br>Default value: min<br>Since API version 10, this parameter supports [$$](../../quick-start/arkts-two-way-sync.md) for two-way binding of variables.|
 | min | number | No| Minimum value.<br>Default value: **0**|
 | max | number | No| Maximum value.<br>Default value: **100**<br>**NOTE**<br>If the value of **min** is greater than or equal to the value of **max**, the default value **0** is used for **min** and the default value **100** is used for **max**.<br>If the value is not within the [min, max] range, the value of **min** or **max**, whichever is closer.|
 | step | number | No| Step of the slider.<br>Default value: **1**<br>Value range: [0.01, max]<br>**NOTE**<br>If this parameter is set to a value less than 0 or a percentage, the default value is used.|

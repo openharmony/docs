@@ -1,7 +1,7 @@
 # ICameraHost.idl
 
 
-## **概述**
+## 概述
 
 Camera服务的管理类，对上层提供HDI接口。
 
@@ -15,20 +15,20 @@ Camera服务的管理类，对上层提供HDI接口。
 
 **相关模块:**
 
-[Camera](camera.md)
+[Camera](_camera.md)
 
 
-## **汇总**
+## 汇总
 
 
 ### 类
 
   | 名称 | 描述 | 
 | -------- | -------- |
-| [ICameraHost](interface_i_camera_host.md) | 定义Camera设备功能操作。 | 
+| [ICameraHost](interface_i_camera_host.md) | interface<br/>定义Camera设备功能操作。 | 
 
 
-### 关键字
+### 变量
 
   | 名称 | 描述 | 
 | -------- | -------- |

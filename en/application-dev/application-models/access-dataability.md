@@ -11,7 +11,7 @@ The basic dependency packages include:
 
 - @ohos.data.dataAbility
 
-- @ohos.data.rdb
+- @ohos.data.relationalStore
 
 
 The sample code for accessing a DataAbility is as follows:
@@ -23,7 +23,7 @@ The sample code for accessing a DataAbility is as follows:
    // Different from the URI defined in the config.json file, the URI passed in the parameter has an extra slash (/), three slashes in total.
    import featureAbility from '@ohos.ability.featureAbility'
    import ohos_data_ability from '@ohos.data.dataAbility'
-   import ohos_data_rdb from '@ohos.data.rdb'
+   import relationalStore from '@ohos.data.relationalStore'
    
    let urivar = "dataability:///com.ix.DataAbility"
    let DAHelper = featureAbility.acquireDataAbilityHelper(urivar);

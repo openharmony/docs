@@ -48,7 +48,7 @@ try {
     .then((uploadTask) => {
       uploadTask.on('complete', (taskStates) => {
         for (let i = 0; i < taskStates.length; i++) {
-          console.info(`upload complete taskState: ${JSON.stringify(taskStates[i])}');
+          console.info(`upload complete taskState: ${JSON.stringify(taskStates[i])}`);
         }
       });
     })

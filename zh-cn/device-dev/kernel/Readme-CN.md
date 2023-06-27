@@ -158,6 +158,7 @@
         - [标准系统内核概述](kernel-standard-overview.md)
         - [OpenHarmony开发板Patch使用指导](kernel-standard-patch.md)
         - [标准系统内核编译与构建指导](kernel-standard-build.md)
+        - [HCK内核解耦框架指导](kernel-standard-hck.md)
         - 内核增强特性
           - [Enhanced SWAP特性介绍](kernel-standard-mm-eswap.md)
           - [NewIP内核协议栈介绍](kernel-standard-newip.md)

@@ -23,7 +23,7 @@ try {
 
 ## How do I hide the status bar to get the immersive effect?
 
-Applicable to: OpenHarmony 3.2 Beta5 (API version 9, stage model) 
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9) 
 
 **Solution**
 
@@ -59,7 +59,7 @@ Applicable to: OpenHarmony 3.2 Beta5 (API version 9, stage model)
 
 ## How do I obtain the window width and height?
 
-Applicable to: OpenHarmony SDK 3.2 Beta5 (API version 9, stage model) 
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9, stage model) 
 
 **Solution**
 
@@ -90,3 +90,32 @@ try {
     console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
 }
 ```
+
+## How do I perform Gaussian blurring on images?
+
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+
+**Solution**
+
+Import the **@ohos.multimedia.image** and **@ohos.effectKit** modules to process the image and add the blur effect.
+
+**Example**
+
+```
+import image from "@ohos.multimedia.image";
+import effectKit from "@ohos.effectKit";
+
+  const color = new ArrayBuffer(96);
+  let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } };
+  image.createPixelMap(color, opts).then((pixelMap) => {
+    let radius = 5;  
+    let headFilter = effectKit.createEffect(pixelMap);  
+    if (headFilter != null) {
+      headFilter.blur(radius);
+    }
+  })
+```
+
+**Reference**
+
+[blur](../reference/apis/js-apis-effectKit.md#blur)

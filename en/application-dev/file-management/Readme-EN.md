@@ -10,13 +10,17 @@
     - [Obtaining Application and File System Space Statistics](app-fs-space-statistics.md)
   - [Sending Files to an Application Sandbox](send-file-to-app-sandbox.md)
   - [Sharing an Application File](share-app-file.md)
+  - Application Data Backup and Restoration
+    - [Application Data Backup and Restoration Overview](app-file-backup-overview.md)
+    - [Backing Up and Restoring Application Access Data](app-file-backup-extension.md)
+    - [Backing Up and Restoring Application-triggered Data (for System Applications Only)](app-file-backup.md)
 - User File
   - [User File Overview](user-file-overview.md)
   - Selecting and Saving User Files (FilePicker)
     - [Selecting User Files](select-user-file.md)
     - [Saving User Files](save-user-file.md)
-  - [Developing a FileManager Application (Available Only for System Applications)](dev-user-file-manager.md)
-  - [Managing External Storage Devices (Available Only for System Applications)](manage-external-storage.md)
+  - [Developing a FileManager Application (for System Applications Only)](dev-user-file-manager.md)
+  - [Managing External Storage Devices (for System Applications Only)](manage-external-storage.md)
 - Distributed File System
   - [Distributed File System Overview](distributed-fs-overview.md)
   - [Setting the Security Level of a Distributed File](set-security-label.md)

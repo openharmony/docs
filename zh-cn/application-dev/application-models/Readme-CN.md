@@ -42,12 +42,12 @@
             - [通过router或call事件刷新卡片内容](arkts-ui-widget-event-uiability.md)
           - 卡片数据交互
             - [卡片数据交互说明](arkts-ui-widget-interaction-overview.md)
-            - [定时刷新和定点刷新](arkts-ui-widget-update-by-time.md)
+            - [卡片定时刷新和定点刷新](arkts-ui-widget-update-by-time.md)
+            - [卡片代理刷新](arkts-ui-widget-update-by-proxy.md)
             - [刷新本地图片和网络图片](arkts-ui-widget-image-update.md)
             - [根据卡片状态刷新不同内容](arkts-ui-widget-update-by-status.md)
             - [使用方刷新卡片内容（仅对系统应用开放）](arkts-ui-widget-content-update.md)
       - [开发基于JS UI的卡片](js-ui-widget-development.md)
-      - [Stage模型服务卡片相关实例](service-widget-development-samples.md)
     - [AbilityStage组件容器](abilitystage.md)
     - [应用上下文Context](application-context-stage.md)
     - 信息传递载体Want
@@ -63,6 +63,7 @@
       - [跨端迁移（仅对系统应用开放）](hop-cross-device-migration.md)
       - [多端协同（仅对系统应用开放）](hop-multi-device-collaboration.md)
     - [订阅系统环境变量的变化](subscribe-system-environment-variable-changes.md)
+    - [原子化服务支持分享](atomic-services-support-sharing.md)
   - 了解进程模型
     - [进程模型概述](process-model-stage.md)
     - 公共事件

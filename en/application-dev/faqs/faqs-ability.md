@@ -1,8 +1,8 @@
-# Ability Development
+# Application Model Development
 
 ## How do I obtain a notification when the device orientation changes?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -14,7 +14,7 @@ Use the **UIAbility.onConfigurationUpdate\(\)** callback to subscribe to system 
 
 ## How do I redirect a user to a specified page after they touch a service widget?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -42,7 +42,7 @@ Create a background task to provide the background service.
 
 ## Can I create a UIAbility and specify the process to run the UIAbility in the FA and Stage models?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -59,7 +59,7 @@ Yes.
 
 ## What are the differences between the stage model and the FA model in intra-process object sharing?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -72,7 +72,7 @@ Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
 
 ## How do I use the lifecycle functions of AbilityStage?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -85,7 +85,7 @@ Add the field **"srcEntry": "./ets/myabilitystage/MyAbilityStage.ts"** under **m
 
 ## How do I delete the mission snapshot in Recents after terminateself is called in the multiton scenario?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -93,7 +93,7 @@ You can set **removeMissionAfterTerminate** to **true** in the **module.json5** 
 
 ## Why can't I start a UIAbility instance by using startAbility\(\)?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -102,7 +102,7 @@ Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
 
 ## How do I prevent "this" in a method from changing to "undefined" when the method is called?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -112,7 +112,7 @@ Method 2: Use the arrow function.
 
 ## What should I do when the error message "must have required property 'startWindowIcon'" is displayed during the UIAbility startup?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -135,11 +135,11 @@ Configure the **startWindowIcon** attribute under **abilities** in the **module.
 
 **Reference**
 
-[module.json5 Configuration File](../quick-start/module-configuration-file.md)
+[module.json5 File](../quick-start/module-configuration-file.md)
 
 ## Can I obtain the context through globalThis in the stage model?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 Do not use **globalThis** to obtain the context in the stage model.
 
@@ -151,7 +151,7 @@ This is because all the processes of an application share a JS VM instance in th
 
 ## What should I do when an error indicating too large size is reported during HAP deployment?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Symptom**
 
@@ -165,11 +165,11 @@ You can split the HAP into multiple HAPs.
 
 ## How is data returned when startAbilityForResult is called?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
-The target UIAbilities uses **AbilityContext.terminateSelfWithResult** to terminate itselef and pass the result to **startAbilityForResult**.
+The target UIAbilities uses **AbilityContext.terminateSelfWithResult** to terminate itself and pass the result to **startAbilityForResult**.
 
 **Reference**
 
@@ -178,7 +178,7 @@ The target UIAbilities uses **AbilityContext.terminateSelfWithResult** to termin
 
 ## How do I obtain the system timestamp?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -209,7 +209,7 @@ Use the **@ohos.systemDateTime** API as follows:
 
 ## How do I obtain the cache directory of the current application?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -221,7 +221,7 @@ Use **Context.cacheDir** to obtain the cache directory of the application.
 
 ## In which JS file is the service widget lifecycle callback invoked?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -233,7 +233,7 @@ When a widget is created, a **FormAblity.ts** file is generated, which contains 
 
 ## What should I do when the compilation on DevEco Studio fails while ServiceExtensionAbility and DataShareExtensionAbility APIs are used?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Symptom**
 
@@ -250,7 +250,7 @@ The SDK downloaded using DevEco Studio is the public SDK.
 
 **Solution**
 
-Third-party application cannot use **ServiceExtensionAbility** and **DataShareExtensionAbility**. To develop a system application, first [download the full SDK](../quick-start/full-sdk-switch-guide.md).
+Third-party application cannot use **ServiceExtensionAbility** and **DataShareExtensionAbility**. To develop a system application, first [download the full SDK](../faqs/full-sdk-switch-guide.md).
 
 ## How do I obtain the temp and files paths at the application level?
 
@@ -264,18 +264,99 @@ Obtain them from the application context. Specifically, use **this.context.getAp
 
 [Obtaining the Application Development Path](../application-models/application-context-stage.md#obtaining-the-application-development-path)
 
+## Why the application is not deleted from the background mission list after it calls terminateSelf?
 
-## Can the lifecycle callback of a released FA widget be triggered when the widget is displayed in the service center so that the user login information can be obtained without opening the FA application? 
-
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5
 
 **Solution**
 
-After a widget is added, the **onCreate()** lifecycle is triggered so that related user information (silent login) can be displayed even when the application is not started. However, users must manually add the widget after the application is installed.
+This is because the **removeMissionAfterTerminate** field under **abilities** in the **module.json5** file of the UIAbility is set to **false** (default value). To enable the application snapshot to be automatically deleted when the application is destroyed, set this field to **true**.
+
+**Reference**
+
+[module.json5 File](../quick-start/module-configuration-file.md)
+
+## How does an application developed in the stage model start an application developed in the FA model?
+
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+
+**Solution**
+
+Refer to the code snippet below: 
+
+```
+let want = {
+    deviceId: "", // An empty deviceId indicates the local device.
+    bundleName: "com.example.myapplication",
+    abilityName: "EntryAbility",
+    moduleName: "Module1", // moduleName is optional.
+    parameters: { // Custom information.
+    },
+}
+// context is the AbilityContext of the FA model to be started.
+context.startAbility(want).then(() => {
+    ...
+}).catch((err) => {
+    ...
+})
+```
+
+## Can atomic services be implemented using JavaScript code only?
+
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+
+**Solution**
+
+Currently, the directory structure of new widgets is css+hml+json. This means that the widgets cannot be implemented by using JavaScript code only. Event triggering and parameter transfer can be processed in JSON files.
+
+## Can the lifecycle callback of a released FA widget be triggered when the widget is displayed in the service center so that the user login information can be obtained without opening the FA application? 
+
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+
+**Solution**
+
+After a widget is added, the **onCreate\(\)** lifecycle is triggered so that related user information (silent login) can be displayed even when the application is not started. However, users must manually add the widget after the application is installed.
+
+## What should I do when the error message "\[c4d4d3492eb8531, 0, 0\] ContextDeal::startAbility fetchAbilities failed" is displayed during switching to another application?
+
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+
+**Symptom**
+
+The **startAbility** API reports an error during redirection.
+
+**Solution**
+
+Use **startAbility** for implementation as follows:
+
+```
+import featureAbility from '@ohos.ability.featureAbility'
+function onStartRemoteAbility() {
+console.info('onStartRemoteAbility begin');
+let params;
+let wantValue = {
+    bundleName: 'ohos.samples.etsDemo',
+    abilityName: 'ohos.samples.etsDemo.RemoteAbility',
+    deviceId: getRemoteDeviceId(),
+    parameters: params
+};
+console.info('onStartRemoteAbility want=' + JSON.stringify(wantValue));
+featureAbility.startAbility({
+    want: wantValue
+}).then((data) => {
+console.info('onStartRemoteAbility finished, ' + JSON.stringify(data));
+});
+console.info('onStartRemoteAbility end');
+}
+```
+
+**Reference**
+
+See [Starting a Local PageAbility] (../application-models/start-local-pageability.md).
 
 ## How do I implement service login by touching a widget?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -299,7 +380,7 @@ To create a service widget in the FA model, perform the following steps:
 
 ## How do I redirect to the application details page in Settings?
 
-Applicable to: OpenHarmony 3.2 Beta 5 (API version 9)
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
@@ -319,35 +400,33 @@ Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
 
 **Solution**
 
-You can use **UIAbility.Context** to obtain the context.
+You can use **UIAbility.Context** to obtain the context.  
 
 **Example**
 
 ```
-import UIAbility from '@ohos.app.ability.UIAbility';
+import common from '@ohos.app.ability.common';
 
-let UIAbilityContext = UIAbility.context;
-let ApplicationContext = UIAbility.context.getApplicationContext();
 @Entry
 @Component
 struct AbilityContextTest {
   // abilityContext
-  @State UIabilityInfo: string = 'Obtaining abilityInfo'
-  UIabilityContext: UIAbilityContext
+  @State UIAbilityInfo: string = 'Obtaining abilityInfo'
+  UIAbilityContext: common.UIAbilityContext
 
   aboutToAppear() {
     // Use getContext to obtain the context and convert it to abilityContext.
-    this.UIabilityContext = getContext(this) as UIAbilityContext
+    this.UIAbilityContext = getContext(this) as common.UIAbilityContext
   }
 
   build() {
     Row() {
       Column({ space: 20 }) {
-        Text(this.abilityInfo)
+        Text(this.UIAbilityInfo)
           .fontSize(20)
-          .onClick(()=>{
-            this.UIabilityInfo = JSON.stringify(this.UIabilityContext.UIabilityInfo)
-            console.log(`ContextDemo abilityInfo= ${this.UIabilityInfo}`)
+          .onClick(() => {
+            this.UIAbilityInfo = JSON.stringify(this.UIAbilityContext.abilityInfo)
+            console.log(`ContextDemo abilityInfo = ${this.UIAbilityInfo}`)
           })
       }
       .width('100%')
@@ -356,3 +435,51 @@ struct AbilityContextTest {
   }
 }
 ```
+
+## What should I do when starting a continuous task fails?
+
+Applicable to: OpenHarmony 3.2 Release (API version 9)
+
+**Symptom**
+
+A ServiceAbility is started by calling **featureAbility.startAbility\(\)**. When the ServiceAbility attempts to start a continuous task, the error message \{"code":201,"message":"BussinessError 201: Permission denied."\} is reported.
+
+**Solution**
+
+To start a continuous task in the background, you must configure the permission **ohos.permission.KEEP\_BACKGROUND\_RUNNING** in the **module.json5** file and declare the background mode for the ability that needs to use the continuous task.
+
+```
+"module": {
+    "abilities": [
+        {
+            "backgroundModes": [
+            "dataTransfer",
+            "location"
+            ], // Background mode
+        }
+    ],
+    "requestPermissions": [
+        {
+            "name": "ohos.permission.KEEP_BACKGROUND_RUNNING" // Continuous task permission
+        }
+    ]
+}
+```
+
+**Reference**
+
+[ServiceAbility Configuration Items - backgroundModes](../application-models/serviceability-configuration.md)
+
+[Continuous Task Permission](../security/permission-list.md#ohospermissionkeep_background_running)
+
+[Continuous Task Development](../task-management/continuous-task-dev-guide.md#development-in-the-stage-model)
+
+## How do FA widgets exchange data?
+
+Applicable to: OpenHarmony 3.2 Beta5 (API version 9)
+
+The widget interacts with the widget provider through the **postCardAction** API, and the provider updates data through the **updateForm** API.
+
+**Reference**
+
+[Widget Development in the FA Model](../application-models/widget-development-fa.md)

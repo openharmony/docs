@@ -22,7 +22,7 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 
 | 参数名 | 参数类型 | 必填 | 参数描述 |
 | -------- | -------- | -------- | -------- |
-| value | number | 否 | 当前进度值。<br/>默认值：min<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
+| value | number | 否 | 当前进度值。<br/>默认值：参数min<br />从API version 10开始，该参数支持[$$](../../quick-start/arkts-two-way-sync.md)双向绑定变量。 |
 | min | number | 否 | 设置最小值。<br/>默认值：0 |
 | max | number | 否 | 设置最大值。<br/>默认值：100<br/>**说明：** <br/>min >= max异常情况，min取默认值0，max取默认值100。<br/>value不在[min, max]范围之内，取min/max，靠近min取min，靠近max取max。 |
 | step | number | 否 | 设置Slider滑动步长。<br/>默认值：1<br/>取值范围：[0.01, max]<br/>**说明：** <br/>设置小于0或百分比的值时，按默认值显示。 |
@@ -47,7 +47,7 @@ Slider(options?: {value?: number, min?: number, max?: number, step?: number, sty
 | trackColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的背景颜色。 <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
 | selectedColor | [ResourceColor](ts-types.md#resourcecolor) | 设置滑轨的已滑动部分颜色。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。 |
 | showSteps | boolean | 设置当前是否显示步长刻度值。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。|
-| showTips | boolean | 设置滑动时是否显示百分比气泡提示。<br/>默认值：false <br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>当direction的属性值为Axis.Horizontal时，tip显示在滑块正上方。值为Axis.Vertical时，tip显示在滑块正左边。<br/>tip的绘制区域为Slider自身节点的overlay。<br/>Slider不设置边距，或者边距比较小时，tip会被截断。 |
+| showTips | value: boolean,<br/>content<sup>10+</sup>?: [ResourceStr](ts-types.md#resourcestr) | value：设置滑动时是否显示气泡提示。<br/>默认值：false <br/>content：设置气泡提示的文本内容，默认显示当前百分比。<br/>从API version 9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>当direction的值为Axis.Horizontal时，tip显示在滑块正上方。值为Axis.Vertical时，tip显示在滑块正左边。<br/>tip的绘制区域为Slider自身节点的overlay。<br/>Slider不设置边距或者边距比较小时，tip会被截断。|
 | trackThickness      | [Length](ts-types.md#length) | 设置滑轨的粗细。<br/>默认值：当参数style的值设置[SliderStyle](#sliderstyle枚举说明).OutSet 时为 4.0vp，[SliderStyle](#sliderstyle枚举说明).InSet时为20.0vp<br/>从APIversion9开始，该接口支持在ArkTS卡片中使用。<br/>**说明：** <br/>设置为小于0的值时，按默认值显示。 |
 | blockBorderColor<sup>10+</sup> | [ResourceColor](ts-types.md#resourcecolor) | 设置滑块描边颜色。 |
 | blockBorderWidth<sup>10+</sup> | [Length](ts-types.md#length) | 设置滑块描边粗细。 |

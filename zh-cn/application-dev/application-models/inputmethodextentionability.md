@@ -406,8 +406,8 @@
 
 
 
-## 相关示例
+## 相关实例
 
-针对InputMethodExtensionAbility开发，有以下相关示例可供参考：
+针对InputMethodExtensionAbility开发，有以下相关实例可供参考：
 
 - [Kika输入法](https://gitee.com/openharmony/applications_app_samples/tree/master/code/Solutions/InputMethod/KikaInput)

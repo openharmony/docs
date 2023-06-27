@@ -2,7 +2,7 @@
 
 Poor-performing code may work, but will take away from your application performance. This topic presents a line-up of recommendations that you can take to improve your implementation, thereby avoiding possible performance drop.
 
-## Lazy Loading
+## Using Lazy Loading
 
 When developing a long list, use of loop rendering, as in the code snippet below, can greatly slow down page loading and increase server load.
 
@@ -130,6 +130,226 @@ struct MyComponent {
 ![LazyForEach1](figures/LazyForEach1.gif)
 
 The preceding code initializes only three list elements during page loading and loads a new list item each time a list element is clicked.
+
+## Setting Width and Height for \<List> Components
+
+When a **\<List>** component is nested within a **\<Scroll>** component, all of its content will be loaded if its width and height is not specified, which may result in performance drop.
+
+>  **NOTE**
+>
+>  When a **\<List>** component is nested within a **\<Scroll>** component:
+>
+>  - If the width and height of the **\<List>** component are not set, all its child components are laid out.
+>  
+>  - If the width and height of the **\<List>** component are set, only child components within its display area are laid out.
+>  
+>  - When [ForEach](../quick-start/arkts-rendering-control-foreach.md) is used to load child components in the **\<List>** component, all child components are laid out, regardless of whether the width and height are set.
+>  
+>  - When [LazyForEach](../quick-start/arkts-rendering-control-lazyforeach.md) is used to load child components in the **\<List>** component, all child components are laid out if the component does not have its width and height specified; and only child components within its display area are laid out if the component has its width and height specified.
+
+```ts
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      console.info('add listener')
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      console.info('remove listener')
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index)
+    })
+  }
+
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index)
+    })
+  }
+
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: Array<string> = new Array(100).fill('test')
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0, data)
+    this.notifyDataAdd(index)
+  }
+
+  public pushData(data: string): void {
+    this.dataArray.push(data)
+    this.notifyDataAdd(this.dataArray.length - 1)
+  }
+}
+
+@Entry
+@Component
+struct MyComponent {
+  private data: MyDataSource = new MyDataSource()
+
+  build() {
+    Scroll() {
+      List() {
+        LazyForEach(this.data, (item: string, index: number) => {
+          ListItem() {
+            Row() {
+              Text('item value: ' + item + (index + 1)).fontSize(20).margin(10)
+            }
+          }
+        })
+      }
+    }
+  }
+}
+```
+
+In the above scenario, you are advised to set the width and height for the **\<List>** component.
+
+```ts
+class BasicDataSource implements IDataSource {
+  private listeners: DataChangeListener[] = []
+
+  public totalCount(): number {
+    return 0
+  }
+
+  public getData(index: number): any {
+    return undefined
+  }
+
+  registerDataChangeListener(listener: DataChangeListener): void {
+    if (this.listeners.indexOf(listener) < 0) {
+      console.info('add listener')
+      this.listeners.push(listener)
+    }
+  }
+
+  unregisterDataChangeListener(listener: DataChangeListener): void {
+    const pos = this.listeners.indexOf(listener);
+    if (pos >= 0) {
+      console.info('remove listener')
+      this.listeners.splice(pos, 1)
+    }
+  }
+
+  notifyDataReload(): void {
+    this.listeners.forEach(listener => {
+      listener.onDataReloaded()
+    })
+  }
+
+  notifyDataAdd(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataAdd(index)
+    })
+  }
+
+  notifyDataChange(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataChange(index)
+    })
+  }
+
+  notifyDataDelete(index: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataDelete(index)
+    })
+  }
+
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
+      listener.onDataMove(from, to)
+    })
+  }
+}
+
+class MyDataSource extends BasicDataSource {
+  private dataArray: Array<string> = new Array(100).fill('test')
+
+  public totalCount(): number {
+    return this.dataArray.length
+  }
+
+  public getData(index: number): any {
+    return this.dataArray[index]
+  }
+
+  public addData(index: number, data: string): void {
+    this.dataArray.splice(index, 0, data)
+    this.notifyDataAdd(index)
+  }
+
+  public pushData(data: string): void {
+    this.dataArray.push(data)
+    this.notifyDataAdd(this.dataArray.length - 1)
+  }
+}
+
+@Entry
+@Component
+struct MyComponent {
+  private data: MyDataSource = new MyDataSource()
+
+  build() {
+    Scroll() {
+      List() {
+        LazyForEach(this.data, (item: string, index: number) => {
+          ListItem() {
+            Text('item value: ' + item + (index + 1)).fontSize(20).margin(10)
+          }.width('100%')
+        })
+      }.width('100%').height(500)
+    }.backgroundColor(Color.Pink)
+  }
+}
+```
+
+![list1](figures/list1.gif)
 
 ## Prioritizing Conditional Rendering over Visibility Control
 

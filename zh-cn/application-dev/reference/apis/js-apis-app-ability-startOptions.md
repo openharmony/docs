@@ -19,7 +19,7 @@ import StartOptions from '@ohos.app.ability.StartOptions';
 
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
-| [windowMode](js-apis-app-ability-abilityConstant.md#abilityconstantwindowmode) | number | 否 | 窗口模式。 |
+| [windowMode](js-apis-app-ability-abilityConstant.md#abilityconstantwindowmode) | number | 否 | 窗口模式。<br>**系统API**：该接口为系统接口，三方应用不支持调用。 |
 | displayId | number | 否 | 屏幕ID。默认是0，表示当前屏幕。 |
 
 **示例：**
