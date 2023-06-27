@@ -169,7 +169,7 @@ struct FancyUse {
       Text(`${this.label}`)
         .fancyText(200, Color.Pink)
       Text(`${this.label}`)
-        .fancyText(200, Color.Orange)
+        .fancyText(300, Color.Orange)
     }.margin('20%')
   }
 }
