@@ -540,7 +540,7 @@
     - 同设备跨应用数据共享（仅对系统应用开放）
       - [同设备跨应用数据共享概述](database/share-device-data-across-apps-overview.md)
       - [通过DataShareExtensionAbility实现数据共享](database/share-data-by-datashareextensionability.md)
-      - [通过静默数据访问实现数据共享](database/share-data-by-silent-access.md)
+      - [通过数据管理服务实现数据共享静默访问](database/share-data-by-silent-access.md)
   - 文件管理
     - [文件管理概述](file-management/file-management-overview.md)
     - 应用文件
