@@ -13,10 +13,6 @@
 
 如果业务过于复杂，无法放到数据访问方，建议通过DataShareExtensionAbility拉起数据提供方实现功能。
 
-## 基本概念
-
-- **数据管理服务**：代理访问数据的常驻系统服务。
-
 
 ## 运作机制
 
@@ -245,7 +241,7 @@
 > - 不配置proxyDatas时，托管数据不允许其他应用访问。
 > - 不配置proxyDatas时，数据标识可以为简写，发布、订阅、查询数据可以使用简写的数据标识，如weather，可以不用全写为datashareproxy://com.acts.ohos.data.datasharetest/weather
 
-**表** module.json5对应属性字段
+**表3** module.json5中proxyDatas节点对应的属性字段
 
 | 属性名称                    | 备注说明                          | 必填   |
 | ----------------------- | ----------------------------- | ---- |
