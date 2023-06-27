@@ -109,8 +109,8 @@ finishAnimation(callback?: () => void): void
 | selectedItemWidth  | [Length](ts-types.md#length)        | 否     | 设置选中Swiper组件圆点导航指示器的宽。<br/>默认值：6<br/>单位：vp |
 | selectedItemHeight | [Length](ts-types.md#length)        | 否     | 设置选中Swiper组件圆点导航指示器的高。<br/>默认值：6<br/>单位：vp |
 | mask               | boolean       | 否     | 设置是否显示Swiper组件圆点导航指示器的蒙版样式。<br/>默认值：false |
-| color              | [ResourceColor](ts-types.md#resourcecolor) | 否     | 设置Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#007DFF' |
-| selectedColor      | [ResourceColor](ts-types.md#resourcecolor) | 否     | 设置选中Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#182431'（10%透明度） |
+| color              | [ResourceColor](ts-types.md#resourcecolor) | 否     | 设置Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#182431'（10%透明度） |
+| selectedColor      | [ResourceColor](ts-types.md#resourcecolor) | 否     | 设置选中Swiper组件圆点导航指示器的颜色。<br/>默认值：'\#007DFF' |
 
 ### DigitIndicator
 
