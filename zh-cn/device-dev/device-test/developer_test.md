@@ -939,7 +939,9 @@ test/developertest/reports/xxxx_xx_xx_xx_xx_xx
 reports/platform_log_xxxx_xx_xx_xx_xx_xx.log
 ```
 
-## 覆盖率用户指导
+## 执行覆盖率用例
+各子系统可按照以下方式，执行用例，生成gcda数据后方可生成覆盖率报告
+
 1. （可选执行）为了屏蔽非核心代码产生的冗余分支数据，可以在源码编译之前进入/test/testfwk/developer_test/localCoverage/restore_comment目录下执行：
 
        python3 build_before_generate.py
