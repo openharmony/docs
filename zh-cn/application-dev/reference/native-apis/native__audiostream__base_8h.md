@@ -43,7 +43,7 @@
 | 名称 | 描述 | 
 | -------- | -------- |
 | [OH_AudioStream_Result](_o_h_audio.md#oh_audiostream_result) { [AUDIOSTREAM_SUCCESS](_o_h_audio.md), [AUDIOSTREAM_ERROR_INVALID_PARAM](_o_h_audio.md), [AUDIOSTREAM_ERROR_ILLEGAL_STATE](_o_h_audio.md), [AUDIOSTREAM_ERROR_SYSTEM](_o_h_audio.md) } | 音频错误码。 | 
-| [OH_AudioStream_Type](_o_h_audio.md#oh_audiostream_type) { [AUDIOSTREAM_TYPE_RERNDERER](_o_h_audio.md) = 1, [AUDIOSTREAM_TYPE_CAPTURER](_o_h_audio.md) = 2 } | 音频流类型。 | 
+| [OH_AudioStream_Type](_o_h_audio.md#oh_audiostream_type) { [AUDIOSTREAM_TYPE_RENDERER](_o_h_audio.md) = 1, [AUDIOSTREAM_TYPE_CAPTURER](_o_h_audio.md) = 2 } | 音频流类型。 | 
 | [OH_AudioStream_SampleFormat](_o_h_audio.md#oh_audiostream_sampleformat) { [AUDIOSTREAM_SAMPLE_U8](_o_h_audio.md) = 0, [AUDIOSTREAM_SAMPLE_S16LE](_o_h_audio.md) = 1, [AUDIOSTREAM_SAMPLE_S24LE](_o_h_audio.md) = 2, [AUDIOSTREAM_SAMPLE_S32LE](_o_h_audio.md) = 3 } | 定义音频流采样格式。 | 
 | [OH_AudioStream_EncodingType](_o_h_audio.md#oh_audiostream_encodingtype) { **AUDIOSTREAM_ENCODING_TYPE_RAW** = 0 } | 定义音频流编码类型。 | 
 | [OH_AudioStream_Usage](_o_h_audio.md#oh_audiostream_usage) { **AUDIOSTREAM_USAGE_UNKNOWN** = 0, **AUDIOSTREAM_USAGE_MUSIC** = 1, **AUDIOSTREAM_USAGE_COMMUNICATION** = 2, **AUDIOSTREAM_USAGE_GAME** = 11 } | 定义音频流使用场景。 | 
