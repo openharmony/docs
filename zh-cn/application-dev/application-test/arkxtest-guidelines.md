@@ -50,13 +50,14 @@ OpenHarmony自动化脚本的编写主要基于DevEco Studio，并建议使用3.
 
 DevEco Studio可参考其官网介绍进行[下载](https://developer.harmonyos.com/cn/develop/deveco-studio#download)，并进行相关的配置动作。
 
+## 新建和编写测试脚本
 
-## 新建测试脚本
+### 新建测试脚本
 
 1. 在DevEco Studio中新建应用开发工程，其中ohos目录即为测试脚本所在的目录。
 2. 在工程目录下打开待测试模块下的ets文件，将光标置于代码中任意位置，单击**右键 > Show Context Actions** **> Create Ohos Test**或快捷键**Alt+enter** **> Create Ohos Test**创建测试类，更多指导请参考DevEco Studio中[指导](https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/harmonyos_jnit_jsunit-0000001092459608-V3?catalogVersion=V3#section13366184061415)。
 
-## 编写单元测试脚本
+### 编写单元测试脚本
 
 本章节主要描述单元测试框架支持能力，以及能力的使用方法。
 
@@ -101,7 +102,7 @@ export default function abilityTest() {
 }
 ```
 
-## 编写UI测试脚本
+### 编写UI测试脚本
 
 本章节主要介绍UI测试框架支持能力，以及对应能力API的使用方法。<br>UI测试基于单元测试，UI测试脚本在单元测试脚本上增加了对UiTest接口（提供链接）调用，进而完成对应的测试活动。<br>如下的示例代码是在上面的单元测试脚本基础上增量编写，实现的是在启动的应用页面上进行点击操作，然后检测当前页面变化是否为预期变化。
 
@@ -337,7 +338,7 @@ OHOS_REPORT_STATUS: taskconsuming=16029
 
 ## 录制用户操作
 ### 使用录制功能
-> 将当前解决界面操作记录到/data/local/tmp/layout/record.csv，结束录制操作使用Ctrl+C结束录制
+> 将当前界面操作记录到/data/local/tmp/layout/record.csv，结束录制操作使用Ctrl+C结束录制
 
 ```shell  
  hdc shell uitest uiRecord record
@@ -352,7 +353,7 @@ OHOS_REPORT_STATUS: taskconsuming=16029
 ```
 #### 命令导出 record.csv文件查看录制数据
 ```shell  
-hdc file recv /data/local/tmp/layout/record.csv D:\tool
+hdc file recv /data/local/tmp/layout/record.csv D:\tool  # D:\tool 可以自定义本地路径
 ```
 - record 数据字段含义请参考如下示例数据。
 ```
