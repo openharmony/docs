@@ -16,7 +16,7 @@ import policy from '@ohos.net.policy'
 
 setBackgroundAllowed(isAllowed: boolean, callback: AsyncCallback\<void>): void
 
-设置后台网络策略，使用callback方式作为异步方法。
+设置是否允许后台应用访问网络，使用callback方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -29,7 +29,7 @@ setBackgroundAllowed(isAllowed: boolean, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
 | isAllowed | boolean | 是   | 是否允许应用后台使用数据 |
-| callback | AsyncCallback\<void> | 是   | 回调函数，成功返回设置后台网络策略的结果，失败返回错误码错误信息。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数，成功时，err为undefined，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -45,7 +45,7 @@ setBackgroundAllowed(isAllowed: boolean, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-policy.setBackgroundAllowed(Boolean(Number.parseInt(this.isBoolean)), (error) => {
+policy.setBackgroundAllowed(true, (error) => {
   console.log(JSON.stringify(error))
 })
 ;
@@ -55,7 +55,7 @@ policy.setBackgroundAllowed(Boolean(Number.parseInt(this.isBoolean)), (error) =>
 
 setBackgroundAllowed(isAllowed: boolean): Promise\<void>
 
-设置后台网络策略，使用Promise方式作为异步方法。
+设置是否允许后台应用访问网络，使用Promise方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -89,7 +89,7 @@ setBackgroundAllowed(isAllowed: boolean): Promise\<void>
 **示例：**
 
 ```js
-policy.setBackgroundAllowed(Boolean(Number.parseInt(this.isBoolean))).then(function (error) {
+policy.setBackgroundAllowed(true).then(function (error) {
   console.log(JSON.stringify(error))
 })
 ```
@@ -98,7 +98,7 @@ policy.setBackgroundAllowed(Boolean(Number.parseInt(this.isBoolean))).then(funct
 
 isBackgroundAllowed(callback: AsyncCallback\<boolean>): void
 
-获取后台网络策略，使用callback方式作为异步方法。
+获取当前应用是否允许后台访问网络，使用callback方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -127,7 +127,6 @@ isBackgroundAllowed(callback: AsyncCallback\<boolean>): void
 
 ```js
 policy.isBackgroundAllowed((error, data) => {
-  this.callBack(error, data);
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 });
@@ -137,7 +136,7 @@ policy.isBackgroundAllowed((error, data) => {
 
 isBackgroundAllowed(): Promise\<boolean>;
 
-获取后台网络策略，使用Promise方式作为异步方法。
+获取当前应用是否允许后台访问网络，使用Promise方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -175,7 +174,7 @@ policy.isBackgroundAllowed().then(function (error, data) {
 
 setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>): void
 
-设置对应uid应用的访问计量网络的策略，使用callback方式作为异步方法。
+设置对应uid应用是否能够访问计量网络的策略，使用callback方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -189,7 +188,7 @@ setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>
 | -------- | --------------------------------------- | ---- | ---------- |
 | uid | number | 是   | 应用的唯一标识符 |
 | policy | [NetUidPolicy](#netuidpolicy) | 是 | 应用对应的策略 |
-| callback | AsyncCallback\<void> | 是   | 回调函数，成功返回设定结果。失败返回错误码错误信息。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数，成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -206,10 +205,10 @@ setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>
 
 ```js
 let param = {
-  uid: Number.parseInt(this.firstParam), policy: Number.parseInt(this.currentNetUidPolicy)
+  uid: Number.parseInt(11111), policy: Number.parseInt(policy.NetUidPolicy.NET_POLICY_NONE)
 }
-policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.currentNetUidPolicy), (error) => {
-  this.callBack(error);
+policy.setPolicyByUid(param, (error) => {
+   console.log(JSON.stringify(error))
 });
 ```
 
@@ -217,7 +216,7 @@ policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.cur
 
 setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
 
-设置对应uid应用的访问计量网络的策略，使用Promise方式作为异步方法。
+设置对应uid应用是否能够访问计量网络的策略，使用Promise方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -253,9 +252,9 @@ setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
 
 ```js
 let param = {
-  uid: Number.parseInt(this.firstParam), policy: Number.parseInt(this.currentNetUidPolicy)
+  uid: Number.parseInt(11111), policy: Number.parseInt(policy.NetUidPolicy.NET_POLICY_NONE)
 }
-policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.currentNetUidPolicy)).then(function (error) {
+policy.setPolicyByUid(param).then(function (error) {
   console.log(JSON.stringify(error))
 })
 ```
@@ -264,7 +263,7 @@ policy.setPolicyByUid(Number.parseInt(this.firstParam), Number.parseInt(this.cur
 
 getPolicyByUid(uid: number, callback: AsyncCallback\<NetUidPolicy>): void
 
-通过应用uid获取策略，使用callback方式作为异步方法。
+通过应用uid获取对应访问网络策略，使用callback方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -293,8 +292,9 @@ getPolicyByUid(uid: number, callback: AsyncCallback\<NetUidPolicy>): void
 **示例：**
 
 ```js
-policy.getPolicyByUid(Number.parseInt(this.firstParam), (error, data) => {
-  this.callBack(error, data);
+policy.getPolicyByUid(Number.parseInt(11111), (error, data) => {
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 });
 ```
 
@@ -302,7 +302,7 @@ policy.getPolicyByUid(Number.parseInt(this.firstParam), (error, data) => {
 
 getPolicyByUid(uid: number): Promise\<NetUidPolicy>;
 
-通过应用uid获取策略，使用Promise方式作为异步方法。
+通过应用uid获取对应访问网络策略，使用Promise方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -336,7 +336,7 @@ getPolicyByUid(uid: number): Promise\<NetUidPolicy>;
 **示例：**
 
 ```js
-policy.getPolicyByUid(Number.parseInt(this.firstParam)).then(function (error, data) {
+policy.getPolicyByUid(Number.parseInt(11111)).then(function (error, data) {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -346,7 +346,7 @@ policy.getPolicyByUid(Number.parseInt(this.firstParam)).then(function (error, da
 
 getUidsByPolicy(policy: NetUidPolicy, callback: AsyncCallback\<Array\<number>>): void
 
-通过策略获取设置这一策略的应用uid数组，使用callback方式作为异步方法。
+通过策略获取跟策略匹配的所有uid，使用callback方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -375,8 +375,9 @@ getUidsByPolicy(policy: NetUidPolicy, callback: AsyncCallback\<Array\<number>>):
 **示例：**
 
 ```js
-policy.getUidsByPolicy(Number.parseInt(this.currentNetUidPolicy), (error, data) => {
-  this.callBack(error, data);
+policy.getUidsByPolicy(Number.parseInt(11111), (error, data) => {
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 });
 ```
 
@@ -384,7 +385,7 @@ policy.getUidsByPolicy(Number.parseInt(this.currentNetUidPolicy), (error, data) 
 
 getUidsByPolicy(policy: NetUidPolicy): Promise\<Array\<number>>;
 
-通过策略获取设置这一策略的应用uid数组，使用Promise方式作为异步方法。
+通过策略获取跟策略匹配的所有uid，使用Promise方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -418,7 +419,7 @@ getUidsByPolicy(policy: NetUidPolicy): Promise\<Array\<number>>;
 **示例：**
 
 ```js
-policy.getUidsByPolicy(Number.parseInt(this.firstParam)).then(function (error, data) {
+policy.getUidsByPolicy(Number.parseInt(11111)).then(function (error, data) {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -457,7 +458,8 @@ getNetQuotaPolicies(callback: AsyncCallback\<Array\<NetQuotaPolicy>>): void
 
 ```js
 policy.getNetQuotaPolicies((error, data) => {
-  this.callBack(error, data);
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 });
 ```
 
@@ -516,7 +518,7 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>, callback: AsyncCallba
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
 | quotaPolicies | Array\<[NetQuotaPolicy](#netquotapolicy)> | 是 | 计量网络策略 |
-| callback | AsyncCallback\<void> | 是   | 回调函数，返回设定结果。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数，成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -532,21 +534,23 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>, callback: AsyncCallba
 **示例：**
 
 ```js
-let param = {
-  netType: Number.parseInt(this.netType),
-  simId: this.simId,
-  identity: this.identity,
-  periodDuration: this.periodDuration,
-  warningBytes: Number.parseInt(this.warningBytes),
-  limitBytes: Number.parseInt(this.limitBytes),
-  lastWarningRemind: this.lastWarningRemind,
-  lastLimitRemind: this.lastLimitRemind,
-  metered: Boolean(Number.parseInt(this.metered)),
-  limitAction: this.limitAction
-};
-this.netQuotaPolicyList.push(param);
+import connection from '@ohos.net.connection';
 
-policy.setNetQuotaPolicies(this.netQuotaPolicyList, (error) => {
+let netQuotaPolicyList = []
+
+let param = {
+  netType: Number.parseInt(connection.NetBearType.BEARER_CELLULAR),
+  simId: 1,
+  identity: "",
+  periodDuration: "M1",
+  warningBytes: Number.parseInt(40000),
+  limitBytes: Number.parseInt(50000),
+  metered: Boolean(Number.parseInt(true)),
+  limitAction: policy.LimitAction.LIMIT_ACTION_NONE
+};
+netQuotaPolicyList.push(param);
+
+policy.setNetQuotaPolicies(netQuotaPolicyList, (error) => {
   console.log(JSON.stringify(error))
 });
 ```
@@ -589,21 +593,23 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>): Promise\<void>;
 **示例：**
 
 ```js
-let param = {
-  netType: Number.parseInt(this.netType),
-  simId: this.simId,
-  identity: this.identity,
-  periodDuration: this.periodDuration,
-  warningBytes: Number.parseInt(this.warningBytes),
-  limitBytes: Number.parseInt(this.limitBytes),
-  lastWarningRemind: this.lastWarningRemind,
-  lastLimitRemind: this.lastLimitRemind,
-  metered: Boolean(Number.parseInt(this.metered)),
-  limitAction: this.limitAction
-};
-this.netQuotaPolicyList.push(param);
+import connection from '@ohos.net.connection';
 
-policy.setNetQuotaPolicies(this.netQuotaPolicyList).then(function (error) {
+let netQuotaPolicyList = []
+
+let param = {
+  netType: Number.parseInt(connection.NetBearType.BEARER_CELLULAR),
+  simId: 1,
+  identity: "",
+  periodDuration: "M1",
+  warningBytes: Number.parseInt(40000),
+  limitBytes: Number.parseInt(50000),
+  metered: Boolean(Number.parseInt(true)),
+  limitAction: policy.LimitAction.LIMIT_ACTION_NONE
+};
+netQuotaPolicyList.push(param);
+
+policy.setNetQuotaPolicies(netQuotaPolicyList).then(function (error) {
   console.log(JSON.stringify(error))
 })
 ```
@@ -643,10 +649,11 @@ isUidNetAllowed(uid: number, isMetered: boolean, callback: AsyncCallback\<boolea
 
 ```js
 let param = {
-  uid: Number.parseInt(this.firstParam), isMetered: Boolean(Number.parseInt(this.isBoolean))
+  uid: Number.parseInt(11111), isMetered: true
 }
-policy.isUidNetAllowed(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean)), (error, data) => {
-  this.callBack(error, data);
+policy.isUidNetAllowed(param, (error, data) => {
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 });
 ```
 
@@ -690,9 +697,9 @@ isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>;
 
 ```js
 let param = {
-  uid: Number.parseInt(this.firstParam), isMetered: Boolean(Number.parseInt(this.isBoolean))
+  uid: Number.parseInt(11111), isMetered: true
 }
-policy.isUidNetAllowed(Number.parseInt(this.firstParam), Boolean(Number.parseInt(this.isBoolean))).then(function (error, data) {
+policy.isUidNetAllowed(param).then(function (error, data) {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -733,10 +740,11 @@ isUidNetAllowed(uid: number, iface: string, callback: AsyncCallback\<boolean>): 
 
 ```js
 let param = {
-  uid: Number.parseInt(this.firstParam), iface: this.secondParam
+  uid: Number.parseInt(11111), iface: 'wlan0'
 }
-policy.isUidNetAllowed(Number.parseInt(this.firstParam), this.secondParam, (error, data) => {
-  this.callBack(error, data);
+policy.isUidNetAllowed(param, (error, data) => {
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 });
 ```
 
@@ -780,9 +788,9 @@ isUidNetAllowed(uid: number, iface: string): Promise\<boolean>;
 
 ```js
 let param = {
-  uid: Number.parseInt(this.firstParam), iface: this.secondParam
+  uid: Number.parseInt(11111), iface: 'wlan0'
 }
-policy.isUidNetAllowed(Number.parseInt(this.firstParam), this.secondParam).then(function (error, data) {
+policy.isUidNetAllowed(param).then(function (error, data) {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -792,7 +800,7 @@ policy.isUidNetAllowed(Number.parseInt(this.firstParam), this.secondParam).then(
 
 setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean, callback: AsyncCallback\<void>): void
 
-设置指定uid应用是否在休眠防火墙的白名单，使用callback方式作为异步方法。
+设置多个uid是否在休眠防火墙的白名单，使用callback方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -806,7 +814,7 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean, callback: Async
 | -------- | --------------------------------------- | ---- | ---------- |
 | uids | Array\<number> | 是 | app唯一标识符 |
 | isAllowed | boolean | 是 | 是否加入白名单 |
-| callback | callback: AsyncCallback\<void> | 是   | 回调函数，返回设定结果。 |
+| callback | callback: AsyncCallback\<void> | 是   | 回调函数，成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -823,7 +831,7 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean, callback: Async
 
 ```js
 let param = {
-  uids: [11111,22222], isAllowed: Boolean(Number.parseInt(this.isBoolean))
+  uids: [11111,22222], isAllowed: true
 }
 policy.setDeviceIdleTrustlist(param, (error) => {
   console.log(JSON.stringify(error))
@@ -834,7 +842,7 @@ policy.setDeviceIdleTrustlist(param, (error) => {
 
 setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>;
 
-设置指定uid应用是否在休眠防火墙的白名单，使用Promise方式作为异步方法。
+设置多个uid是否在休眠防火墙的白名单，使用Promise方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -870,7 +878,7 @@ setDeviceIdleTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>
 
 ```js
 let param = {
-  uids: [11111,22222], isAllowed: Boolean(Number.parseInt(this.isBoolean))
+  uids: [11111,22222], isAllowed: true
 }
 policy.setDeviceIdleTrustlist(param).then(function (error) {
   console.log(JSON.stringify(error))
@@ -881,7 +889,7 @@ policy.setDeviceIdleTrustlist(param).then(function (error) {
 
 getDeviceIdleTrustlist(callback: AsyncCallback\<Array\<number>>): void
 
-获取休眠模式白名单所包含的uid数组，使用callback方式作为异步方法。
+获取休眠模式白名单所包含的uid，使用callback方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -910,7 +918,8 @@ getDeviceIdleTrustlist(callback: AsyncCallback\<Array\<number>>): void
 
 ```js
 policy.getDeviceIdleTrustlist((error, data) => {
-  this.callBack(error, data);
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 });
 ```
 
@@ -918,7 +927,7 @@ policy.getDeviceIdleTrustlist((error, data) => {
 
 getDeviceIdleTrustlist(): Promise\<Array\<number>>;
 
-获取休眠模式白名单所包含的uid数组，使用Promise方式作为异步方法。
+获取休眠模式白名单所包含的uid，使用Promise方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -983,9 +992,9 @@ getBackgroundPolicyByUid(uid: number, callback: AsyncCallback\<NetBackgroundPoli
 **示例：**
 
 ```js
-this.firstParam = uid
-policy.getBackgroundPolicyByUid(Number.parseInt(this.firstParam), (error, data) => {
-  this.callBack(error, data);
+policy.getBackgroundPolicyByUid(Number.parseInt(11111), (error, data) => {
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 });
 ```
 
@@ -1027,8 +1036,7 @@ getBackgroundPolicyByUid(uid: number): Promise\<NetBackgroundPolicy>;
 **示例：**
 
 ```js
-this.firstParam = uid
-policy.getBackgroundPolicyByUid(Number.parseInt(this.firstParam)).then(function (error, data) {
+policy.getBackgroundPolicyByUid(Number.parseInt(11111)).then(function (error, data) {
   console.log(JSON.stringify(error))
   console.log(JSON.stringify(data))
 })
@@ -1051,7 +1059,7 @@ resetPolicies(simId: string, callback: AsyncCallback\<void>): void
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
 | simId | string | 是 | SIM卡ID|
-| callback | AsyncCallback\<void> | 是   | 回调函数，返回重置结果。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数，成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -1067,8 +1075,7 @@ resetPolicies(simId: string, callback: AsyncCallback\<void>): void
 **示例：**
 
 ```js
-this.firstParam = simId
-policy.resetPolicies(this.firstParam, (error) => {
+policy.resetPolicies(1, (error) => {
   console.log(JSON.stringify(error))
 });
 ```
@@ -1111,11 +1118,7 @@ resetPolicies(simId: string): Promise\<void>;
 **示例：**
 
 ```js
-policy.getUidsByPolicy(Number.parseInt(this.firstParam)).then(function (error, data) {
-
-})
-this.firstParam = simId
-policy.resetPolicies(this.firstParam).then(function (error) {
+policy.resetPolicies(1).then(function (error) {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1139,7 +1142,7 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType, 
 | netType | [NetBearType](js-apis-net-connection.md#netbeartype) | 是 | 网络类型 |
 | simId | string | 是 | SIM卡ID|
 | remindType | [RemindType](#remindtype) | 是 | 提醒类型 |
-| callback | AsyncCallback\<void> | 是   | 回调函数，返回更新结果。 |
+| callback | AsyncCallback\<void> | 是   | 回调函数，成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -1155,10 +1158,12 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType, 
 **示例：**
 
 ```js
+import connection from '@ohos.net.connection';
+
 let param = {
-  netType: Number.parseInt(this.netType), simId: this.firstParam, remindType: this.currentRemindType
+  netType: Number.parseInt(connection.NetBearType.BEARER_CELLULAR), simId: 1, remindType: policy.NetUidPolicy.NET_POLICY_NONE
 }
-policy.updateRemindPolicy(Number.parseInt(this.netType), this.firstParam, Number.parseInt(this.currentRemindType), (error) => {
+policy.updateRemindPolicy(param, (error) => {
   console.log(JSON.stringify(error))
 });
 ```
@@ -1203,10 +1208,12 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType):
 **示例：**
 
 ```js
+import connection from '@ohos.net.connection';
+
 let param = {
-  netType: Number.parseInt(this.netType), simId: this.firstParam, remindType: this.currentRemindType
+  netType: Number.parseInt(connection.NetBearType.BEARER_CELLULAR), simId: 1, remindType: policy.NetUidPolicy.NET_POLICY_NONE
 }
-policy.updateRemindPolicy(Number.parseInt(this.netType), this.firstParam, Number.parseInt(this.currentRemindType)).then(function (error) {
+policy.updateRemindPolicy(param).then(function (error) {
   console.log(JSON.stringify(error))
 })
 ```
@@ -1229,7 +1236,7 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean, callback: AsyncC
 | -------- | --------------------------------------- | ---- | ---------- |
 | uids | Array\<number> | 是 | app唯一标识符 |
 | isAllowed | boolean | 是 | 是否加入白名单 |
-| callback | callback: AsyncCallback\<void> | 是   | 回调函数，返回设定结果。 |
+| callback | callback: AsyncCallback\<void> | 是   | 回调函数，成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -1246,7 +1253,7 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean, callback: AsyncC
 
 ```js
 let param = {
-  uids: [11111,22222], isAllowed: Boolean(Number.parseInt(this.isBoolean))
+  uids: [11111,22222], isAllowed: true
 }
 policy.setDeviceIdleTrustlist(param, (error) => {
   console.log(JSON.stringify(error))
@@ -1293,7 +1300,7 @@ setPowerSaveTrustlist(uids: Array\<number>, isAllowed: boolean): Promise\<void>;
 
 ```js
 let param = {
-  uids: [11111,22222], isAllowed: Boolean(Number.parseInt(this.isBoolean))
+  uids: [11111,22222], isAllowed: true
 }
 policy.setDeviceIdleTrustlist(param).then(function (error) {
   console.log(JSON.stringify(error))
@@ -1333,7 +1340,8 @@ getPowerSaveTrustlist(callback: AsyncCallback\<Array\<number>>): void
 
 ```js
 policy.getPowerSaveTrustlist((error, data) => {
-  this.callBack(error, data);
+  console.log(JSON.stringify(error))
+  console.log(JSON.stringify(data))
 });
 ```
 
@@ -1412,7 +1420,7 @@ on(type: "netUidPolicyChange", callback: Callback\<{ uid: number, policy: NetUid
 
 ```js
 policy.on('netUidPolicyChange', (data) => {
-  this.log('on netUidPolicyChange: ' + JSON.stringify(data));
+  console.log('on netUidPolicyChange: ' + JSON.stringify(data));
 })
 ```
 
@@ -1450,7 +1458,7 @@ off(type: "netUidPolicyChange", callback?: Callback<{ uid: number, policy: NetUi
 
 ```js
 policy.off('netUidPolicyChange', (data) => {
-  this.log('off netUidPolicyChange: ' + JSON.stringify(data));
+  console.log('off netUidPolicyChange: ' + JSON.stringify(data));
 })
 ```
 
@@ -1488,7 +1496,7 @@ on(type: "netUidRuleChange", callback: Callback\<{ uid: number, rule: NetUidRule
 
 ```js
 policy.on('netUidRuleChange', (data) => {
-  this.log('on netUidRuleChange: ' + JSON.stringify(data));
+  console.log('on netUidRuleChange: ' + JSON.stringify(data));
 })
 ```
 
@@ -1526,7 +1534,7 @@ off(type: "netUidRuleChange", callback?: Callback<{ uid: number, rule: NetUidRul
 
 ```js
 policy.off('netUidRuleChange', (data) => {
-  this.log('off netUidRuleChange: ' + JSON.stringify(data));
+  console.log('off netUidRuleChange: ' + JSON.stringify(data));
 })
 ```
 
@@ -1564,7 +1572,7 @@ on(type: "netMeteredIfacesChange", callback: Callback\<Array\<string>>): void
 
 ```js
 policy.on('netMeteredIfacesChange', (data) => {
-  this.log('on netMeteredIfacesChange: ' + JSON.stringify(data));
+  console.log('on netMeteredIfacesChange: ' + JSON.stringify(data));
 })
 ```
 
@@ -1602,7 +1610,7 @@ off(type: "netMeteredIfacesChange", callback?: Callback\<Array\<string>>): void
 
 ```js
 policy.off('netMeteredIfacesChange', (data) => {
-  this.log('off netMeteredIfacesChange: ' + JSON.stringify(data));
+  console.log('off netMeteredIfacesChange: ' + JSON.stringify(data));
 })
 ```
 
@@ -1640,7 +1648,7 @@ on(type: "netQuotaPolicyChange", callback: Callback\<Array\<NetQuotaPolicy>>): v
 
 ```js
 policy.on('netQuotaPolicyChange', (data) => {
-  this.log('on netQuotaPolicyChange: ' + JSON.stringify(data));
+  console.log('on netQuotaPolicyChange: ' + JSON.stringify(data));
 })
 ```
 
@@ -1678,7 +1686,7 @@ off(type: "netQuotaPolicyChange", callback?: Callback\<Array\<NetQuotaPolicy>>):
 
 ```js
 policy.off('netQuotaPolicyChange', (data) => {
-  this.log('off netQuotaPolicyChange: ' + JSON.stringify(data));
+  console.log('off netQuotaPolicyChange: ' + JSON.stringify(data));
 })
 ```
 
@@ -1716,7 +1724,7 @@ on(type: "netBackgroundPolicyChange", callback: Callback\<boolean>): void
 
 ```js
 policy.on('netBackgroundPolicyChange', (data) => {
-  this.log('on netBackgroundPolicyChange: ' + JSON.stringify(data));
+  console.log('on netBackgroundPolicyChange: ' + JSON.stringify(data));
 })
 ```
 
@@ -1754,7 +1762,7 @@ off(type: "netBackgroundPolicyChange", callback?: Callback\<boolean>): void
 
 ```js
 policy.off('netBackgroundPolicyChange', (data) => {
-  this.log('off netBackgroundPolicyChange: ' + JSON.stringify(data));
+  console.log('off netBackgroundPolicyChange: ' + JSON.stringify(data));
 })
 ```
 
