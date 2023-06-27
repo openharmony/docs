@@ -298,7 +298,7 @@ getRequestCallback(want: Want): RequestCallback
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
-| 参数名      | 值          | 说明     |
+| 名称      | 值          | 说明     |
 | ------------ | ------------------ | ---------------------- |
 | RESULT_OK            | 0          | 表示成功。          |
 | RESULT_CANCEL        | 1          | 表示失败。          |
@@ -324,7 +324,7 @@ setRequestResult(result: RequestResult): void;
 
 设置请求结果
 
-**系统能力**：SystemCapability.Ability.AbilityRuntime.Core
+**系统能力**：SystemCapability.Ability.AbilityRuntime.AbilityCore
 
 **参数：**
 

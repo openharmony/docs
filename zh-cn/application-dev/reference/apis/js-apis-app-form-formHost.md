@@ -2144,6 +2144,8 @@ acquireFormData(formId: string, callback: AsyncCallback<{[key: string]: Object}>
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permissions denied. |
+| 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500060 | A service connection error happened, please try again later. |
 | 16500100 | Failed to obtain the configuration information. |
@@ -2196,6 +2198,8 @@ acquireFormData(formId: string): Promise<{[key: string]: Object}>;
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permissions denied. |
+| 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
 | 16500060 | A service connection error happened, please try again later. |
 | 16500100 | Failed to obtain the configuration information. |
@@ -2246,8 +2250,13 @@ getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter): Pr
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
+
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
@@ -2271,7 +2280,7 @@ try {
 
 ## getRunningFormInfosByFilter<sup>10+</sup>
 
-getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
+getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, callback: AsyncCallback&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;): void
 
 根据提供方信息查询卡片已有的使用方列表信息。使用callback异步回调。
 
@@ -2283,7 +2292,7 @@ getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, cal
 
 | 参数名      | 类型            | 必填 | 说明                             |
 | ----------- | --------------- | ---- | -------------------------------- |
-| formProviderFilter     | formInfo.FormProviderFilter [formInfo.FormProviderFilter](js-apis-app-form-formInfo.md#formProviderFilter) | 是   | 卡片提供方应用信息。 |
+| formProviderFilter     | [formInfo.FormProviderFilter](js-apis-app-form-formInfo.md#formProviderFilter) | 是   | 卡片提供方应用信息。 |
 | callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。返回查询到的使用方列表信息，error为undefined，data为查询到的使用方列表信息；否则为错误对象。 |
 
 **错误码：**
@@ -2292,8 +2301,13 @@ getRunningFormInfosByFilter(formProviderFilter: formInfo.FormProviderFilter, cal
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
+
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
@@ -2319,7 +2333,8 @@ try {
 
 ## getRunningFormInfoById<sup>10+</sup>
 
-getRunningFormInfoById(formId: string): Promise&lt;Array&lt;formInfo.RunningFormInfo&gt;&gt;
+function getRunningFormInfoById(formId: string): Promise&lt;formInfo.RunningFormInfo&gt;
+
 
 根据formId查询卡片已有的使用方列表信息。使用Promise异步回调。
 
@@ -2337,7 +2352,7 @@ getRunningFormInfoById(formId: string): Promise&lt;Array&lt;formInfo.RunningForm
 
 | 类型                | 说明                      |
 | ------------------- | ------------------------- |
-| Promise&lt;Array&lt;formInfo.RunningFormInfo[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | Promise对象，返回查询到的使用方列表信息。 |
+| Promise&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt; | Promise对象，返回查询到的使用方列表信息。 |
 
 **错误码：**
 
@@ -2345,8 +2360,13 @@ getRunningFormInfoById(formId: string): Promise&lt;Array&lt;formInfo.RunningForm
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
+
 
 ```ts
 import formHost from '@ohos.app.form.formHost';
@@ -2364,7 +2384,7 @@ try {
 
 ## getRunningFormInfoById<sup>10+</sup>
 
-getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;Array&lt;formInfo.FormInfo&gt;&gt;): void
+getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;formInfo.RunningFormInfo&gt;): void
 
 根据提供方信息查询卡片已有的使用方列表信息。使用callback异步回调。
 
@@ -2377,7 +2397,7 @@ getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;Array&lt;formI
 | 参数名      | 类型            | 必填 | 说明                             |
 | ----------- | --------------- | ---- | -------------------------------- |
 | formId     | string | 是   | 卡片标识。 |
-| callback | AsyncCallback&lt;Array&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt;&gt; | 是 | 回调函数。返回查询到的使用方列表信息，error为undefined，data为查询到的使用方列表信息；否则为错误对象。 |
+| callback | AsyncCallback&lt;[formInfo.RunningFormInfo](js-apis-app-form-formInfo.md)&gt; | 是 | 回调函数。返回查询到的使用方列表信息，error为undefined，data为查询到的使用方列表信息；否则为错误对象。 |
 
 **错误码：**
 
@@ -2385,7 +2405,11 @@ getRunningFormInfoById(formId: string, callback: AsyncCallback&lt;Array&lt;formI
 
 | 错误码ID | 错误信息 |
 | -------- | -------- |
+| 201 | Permissions denied. |
+| 202 | The application is not a system application. |
+| 401 | If the input parameter is not valid parameter. |
 | 16500050 | An IPC connection error happened. |
+| 16500100 | Failed to obtain the configuration information. |
 | 16501000  | An internal functional error occurred. |
 
 ```ts

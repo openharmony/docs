@@ -173,6 +173,8 @@ saveAppState(context?: UIAbilityContext): boolean;
 
 ```ts
 import appRecovery from '@ohos.app.ability.appRecovery';
+import errorManager from '@ohos.app.ability.errorManager';
+
 let observer = {
     onUnhandledException(errorMsg) {
         console.log('onUnhandledException, errorMsg: ', errorMsg);

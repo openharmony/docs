@@ -23,7 +23,7 @@ import common from '@ohos.app.ability.common';
 import FormExtensionAbility from '@ohos.app.form.FormExtensionAbility';
 import formBindingData from '@ohos.app.form.formBindingData';
 
-class MyFormExtensionAbility extends FormExtensionAbility {
+export default class MyFormExtensionAbility extends FormExtensionAbility {
   onAddForm(want) {
     let formContext = this.context; // 获取FormExtensionContext
     // ...

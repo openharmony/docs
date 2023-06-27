@@ -707,7 +707,7 @@ let connectId = featureAbility.connectAbility(
 );
 
 featureAbility.disconnectAbility(connectId).then((data) => {
-    console.log('data: ${data)}';
+    console.log('data: ${data)}')
 }).catch((error)=>{
     console.error('featureAbilityTest result errCode : ${error.code}');
 });
