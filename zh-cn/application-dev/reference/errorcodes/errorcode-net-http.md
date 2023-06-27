@@ -186,7 +186,7 @@ Failed writing received data to disk/application.
 
 **处理步骤**
 
-排查应用权限。
+排查应用权限及待下载的文件大小。
 
 ## 2300025 上传失败
 
