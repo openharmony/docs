@@ -1417,7 +1417,7 @@ try {
 
 getTouchpadPinchSwitch(callback:  AsyncCallback\<boolean>): void
 
-获取触控板双指捏合能力开启状态，使用AsyncCallback异步方式返回结果。
+获取触控板双指捏合功能开启状态，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -1473,7 +1473,7 @@ try {
 
 setTouchpadSwipeSwitch(state: boolean, callback: AsyncCallback\<void>): void
 
-设置触控板轻多指滑动功能开关，使用AsyncCallback异步方式返回结果。
+设置触控板多指滑动功能开关，使用AsyncCallback异步方式返回结果。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -1606,7 +1606,7 @@ setTouchpadRightClickType(type: RightClickType, callback: AsyncCallback\<void>):
 
 | 参数名       | 类型                        | 必填   | 说明                                    |
 | -------- | ------------------------- | ---- | ------------------------------------- |
-| type| RightClickType| 是    |type代表触控板右键菜单类型。枚举取值范围TOUCHPAD_RIGHT_BUTTON 、TOUCHPAD_LEFT_BUTTON 、TOUCHPAD_TWO_FINGER_TAP ， 默认 TOUCHPAD_RIGHT_BUTTON 。  |
+| type| RightClickType| 是    |type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左右区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻触。<br>默认为TOUCHPAD_RIGHT_BUTTON 。  |
 | callback | AsyncCallback\<void> | 是    | 回调函数。 |
 
 **示例**：
@@ -1639,7 +1639,7 @@ setTouchpadRightClickType(type: RightClickType): Promise\<void>
 
 | 参数名    | 类型     | 必填   | 说明                                  |
 | ----- | ------ | ---- | ----------------------------------- |
-| type| RightClickType| 是    | type代表触控板右键菜单类型。枚举取值范围TOUCHPAD_RIGHT_BUTTON 、TOUCHPAD_LEFT_BUTTON 、TOUCHPAD_TWO_FINGER_TAP ， 默认 TOUCHPAD_RIGHT_BUTTON 。    |
+| type| RightClickType| 是    | type代表触控板右键菜单类型。<br>- TOUCHPAD_RIGHT_BUTTON：触控板右键区域。<br>- TOUCHPAD_LEFT_BUTTON：触控板左右区域。<br>- TOUCHPAD_TWO_FINGER_TAP：双指轻触。<br>默认为TOUCHPAD_RIGHT_BUTTON 。 |
 
 **返回值**：
 
