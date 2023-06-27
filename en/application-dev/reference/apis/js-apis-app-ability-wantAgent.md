@@ -24,7 +24,7 @@ Obtains a **WantAgent** object. This API uses an asynchronous callback to return
 
 | Name    | Type                      | Mandatory| Description                   |
 | -------- | -------------------------- | ---- | ----------------------- |
-| info     | WantAgentInfo              | Yes  | Information about the **WantAgent** object to obtain.          |
+| info     | [WantAgentInfo](js-apis-inner-wantAgent-wantAgentInfo.md)              | Yes  | Information about the **WantAgent** object to obtain.          |
 | callback | AsyncCallback\<WantAgent\> | Yes  | Callback used to return the **WantAgent** object.|
 
 **Error codes**
@@ -596,7 +596,7 @@ Obtains the want in a **WantAgent** object. This API uses a promise to return th
 
 | Type                                                       | Description                                                        |
 | ----------------------------------------------------------- | ------------------------------------------------------------ |
-| Promise\<Want\> | Promise used to return the want.|
+| Promise\<[Want](js-apis-app-ability-want.md)\> | Promise used to return the want.|
 
 **Error codes**
 
@@ -841,7 +841,7 @@ Triggers a **WantAgent** object. This API uses an asynchronous callback to retur
 | Name       | Type                         | Mandatory| Description                           |
 | ----------- | ----------------------------- | ---- | ------------------------------- |
 | agent       | WantAgent                     | Yes  | Target **WantAgent** object.                  |
-| triggerInfo | TriggerInfo                   | Yes  | **TriggerInfo** object.                |
+| triggerInfo | [TriggerInfo](js-apis-inner-wantAgent-triggerInfo.md)                   | Yes  | **TriggerInfo** object.                |
 | callback    | AsyncCallback\<[CompleteData](#completedata)\> | No  | Callback used to return the result.|
 
 **Example**
