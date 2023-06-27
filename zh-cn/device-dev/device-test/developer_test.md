@@ -984,7 +984,7 @@ reports/platform_log_xxxx_xx_xx_xx_xx_xx.log
 
    **注意：** 执行以上命令必须添加 -cov coverage 参数
 
-6. 获取覆盖率报告，覆盖率报告路径从以下路径获取
+6. 从以下路径获取覆盖率报告路径
 
    代码覆盖率报告：/test/testfwk/developer_test/localCoverage/codeCoverage/results/coverage/reports/cxx/html
 
