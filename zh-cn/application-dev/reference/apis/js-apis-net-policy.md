@@ -187,7 +187,7 @@ setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
 | uid | number | 是   | app唯一标识符 |
-| policy | [NetUidPolicy](#policynetuidpolicy) | 是 | 应用对应的策略 |netuidpolicy
+| policy | [NetUidPolicy](#netuidpolicy10) | 是 | 应用对应的策略 |netuidpolicy
 | callback | AsyncCallback\<void> | 是   | 回调函数，成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
@@ -229,7 +229,7 @@ setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
 | uid | number | 是   | app唯一标识符 |
-| policy | [NetUidPolicy](#policynetuidpolicy) | 是 | 应用对应的策略 |
+| policy | [NetUidPolicy](#netuidpolicy10) | 是 | 应用对应的策略 |
 
 **返回值：**
 
@@ -276,7 +276,7 @@ getPolicyByUid(uid: number, callback: AsyncCallback\<NetUidPolicy>): void
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
 | uid | number | 是 | app唯一标识符 |
-| callback | AsyncCallback\<[NetUidPolicy](#policynetuidpolicy)> | 是   | 回调函数，成功返回获取策略结果，失败返回错误码错误信息。 |
+| callback | AsyncCallback\<[NetUidPolicy](#netuidpolicy10)> | 是   | 回调函数，成功返回获取策略结果，失败返回错误码错误信息。 |
 
 **错误码：**
 
@@ -320,7 +320,7 @@ getPolicyByUid(uid: number): Promise\<NetUidPolicy>;
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<[NetUidPolicy](#policynetuidpolicy)> | 以Promise形式返回获取策略结果。失败返回错误码错误信息。|
+| Promise\<[NetUidPolicy](#netuidpolicy10)> | 以Promise形式返回获取策略结果。失败返回错误码错误信息。|
 
 **错误码：**
 
@@ -358,7 +358,7 @@ getUidsByPolicy(policy: NetUidPolicy, callback: AsyncCallback\<Array\<number>>):
 
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
-| policy | [NetUidPolicy](#policynetuidpolicy) | 是 | 应用对应的计量网络下的策略 |
+| policy | [NetUidPolicy](#netuidpolicy10) | 是 | 应用对应的计量网络下的策略 |
 | callback | AsyncCallback\<Array\<number>> | 是   | 回调函数，成功返回应用的uid数组，失败返回错误码错误信息。|
 
 **错误码：**
@@ -397,7 +397,7 @@ getUidsByPolicy(policy: NetUidPolicy): Promise\<Array\<number>>;
 
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
-| policy | [NetUidPolicy](#policynetuidpolicy) | 是 | app对应的计量网络下的策略 |
+| policy | [NetUidPolicy](#netuidpolicy10) | 是 | app对应的计量网络下的策略 |
 
 **返回值：**
 
@@ -441,7 +441,7 @@ getNetQuotaPolicies(callback: AsyncCallback\<Array\<NetQuotaPolicy>>): void
 
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
-| callback | AsyncCallback\<Array\<[NetQuotaPolicy](#policynetquotapolicy)>> | 是   | 回调函数，返回获取结果。 |
+| callback | AsyncCallback\<Array\<[NetQuotaPolicy](#netquotapolicy10)>> | 是   | 回调函数，返回获取结果。 |
 
 **错误码：**
 
@@ -479,7 +479,7 @@ getNetQuotaPolicies(): Promise\<Array\<NetQuotaPolicy>>;
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<Array\<[NetQuotaPolicy](#policynetquotapolicy)>> | 以Promise形式返回设定结果。 |
+| Promise\<Array\<[NetQuotaPolicy](#netquotapolicy10)>> | 以Promise形式返回设定结果。 |
 
 **错误码：**
 
@@ -517,7 +517,7 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>, callback: AsyncCallba
 
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
-| quotaPolicies | Array\<[NetQuotaPolicy](#policynetquotapolicy)> | 是 | 计量网络策略 |
+| quotaPolicies | Array\<[NetQuotaPolicy](#netquotapolicy10)> | 是 | 计量网络策略 |
 | callback | AsyncCallback\<void> | 是   | 回调函数，成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
@@ -571,7 +571,7 @@ setNetQuotaPolicies(quotaPolicies: Array\<NetQuotaPolicy>): Promise\<void>;
 
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
-| quotaPolicies | Array\<[NetQuotaPolicy](#policynetquotapolicy)> | 是 | 计量网络策略 |
+| quotaPolicies | Array\<[NetQuotaPolicy](#netquotapolicy10)> | 是 | 计量网络策略 |
 
 **错误码：**
 
@@ -963,7 +963,7 @@ policy.getDeviceIdleTrustlist().then(function (error, data) {
 
 getBackgroundPolicyByUid(uid: number, callback: AsyncCallback\<NetBackgroundPolicy>): void
 
-获取指定uid能否访问后台网络，使用callback方式作为异步方法。
+获取指定uid是否能访问后台网络，使用callback方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -976,7 +976,7 @@ getBackgroundPolicyByUid(uid: number, callback: AsyncCallback\<NetBackgroundPoli
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
 | uid | number | 是 | app唯一标识符 |
-| callback | AsyncCallback\<[NetBackgroundPolicy](#policynetbackgroundpolicy)> | 是   | 回调函数，返回获取结果。 |
+| callback | AsyncCallback\<[NetBackgroundPolicy](#netbackgroundpolicy10)> | 是   | 回调函数，返回获取结果。 |
 
 **错误码：**
 
@@ -1020,7 +1020,7 @@ getBackgroundPolicyByUid(uid: number): Promise\<NetBackgroundPolicy>;
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<[NetBackgroundPolicy](#policynetbackgroundpolicy)> | 以Promise形式返回设定结果。 |
+| Promise\<[NetBackgroundPolicy](#netbackgroundpolicy10)> | 以Promise形式返回设定结果。 |
 
 **错误码：**
 
@@ -1141,7 +1141,7 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType, 
 | -------- | --------------------------------------- | ---- | ---------- |
 | netType | [NetBearType](js-apis-net-connection.md#netbeartype) | 是 | 网络类型 |
 | simId | string | 是 | SIM卡ID|
-| remindType | [RemindType](#policyremindtype) | 是 | 提醒类型 |
+| remindType | [RemindType](#remindtype10) | 是 | 提醒类型 |
 | callback | AsyncCallback\<void> | 是   | 回调函数，成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
@@ -1186,7 +1186,7 @@ updateRemindPolicy(netType: NetBearType, simId: string, remindType: RemindType):
 | -------- | --------------------------------------- | ---- | ---------- |
 | netType | [NetBearType](js-apis-net-connection.md#netbeartype) | 是 | 网络类型 |
 | simId | string | 是 | SIM卡ID|
-| remindType | [RemindType](#policyremindtype) | 是 | 提醒类型 |
+| remindType | [RemindType](#remindtype10) | 是 | 提醒类型 |
 
 **返回值：**
 
@@ -1403,7 +1403,7 @@ on(type: "netUidPolicyChange", callback: Callback\<{ uid: number, policy: NetUid
 | 参数名   | 类型                               | 必填 | 说明                                                         |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | type | string | 是 | policy发生改变的类型 |
-| callback | Callback\<{ uid: number, policy: [NetUidPolicy](#policynetuidpolicy) }> | 是   | 回调函数。注册policy发生改变时调用。 |
+| callback | Callback\<{ uid: number, policy: [NetUidPolicy](#netuidpolicy10) }> | 是   | 回调函数。注册policy发生改变时调用。 |
 
 **错误码：**
 
@@ -1441,7 +1441,7 @@ off(type: "netUidPolicyChange", callback?: Callback<{ uid: number, policy: NetUi
 | 参数名   | 类型                               | 必填 | 说明                                                         |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | type | string | 是 | policy发生改变的类型 |
-| callback | Callback\<{ uid: number, policy: [NetUidPolicy](#policynetuidpolicy) }> | 否   | 回调函数。注册policy发生改变时调用。 |
+| callback | Callback\<{ uid: number, policy: [NetUidPolicy](#netuidpolicy10) }> | 否   | 回调函数。注册policy发生改变时调用。 |
 
 **错误码：**
 
@@ -1479,7 +1479,7 @@ on(type: "netUidRuleChange", callback: Callback\<{ uid: number, rule: NetUidRule
 | 参数名   | 类型                               | 必填 | 说明                                                         |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | type | string | 是 | rule发生改变的类型 |
-| callback | Callback\<{ uid: number, rule: [NetUidRule](#policynetuidrule) }> | 是   | 回调函数。注册rule发生改变时的调用。 |
+| callback | Callback\<{ uid: number, rule: [NetUidRule](#netuidrule10) }> | 是   | 回调函数。注册rule发生改变时的调用。 |
 
 **错误码：**
 
@@ -1517,7 +1517,7 @@ off(type: "netUidRuleChange", callback?: Callback<{ uid: number, rule: NetUidRul
 | 参数名   | 类型                               | 必填 | 说明                                                         |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | type | string | 是 | rule发生改变的类型 |
-| callback | Callback\<{ uid: number, rule: [NetUidRule](#policynetuidrule) }> | 否   | 回调函数。注册rule发生改变时的调用。 |
+| callback | Callback\<{ uid: number, rule: [NetUidRule](#netuidrule10) }> | 否   | 回调函数。注册rule发生改变时的调用。 |
 
 **错误码：**
 
@@ -1631,7 +1631,7 @@ on(type: "netQuotaPolicyChange", callback: Callback\<Array\<NetQuotaPolicy>>): v
 | 参数名   | 类型                               | 必填 | 说明                                                         |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | type | string | 是 | 计量网络策略发生改变的类型 |
-| callback | Callback\<Array\<[NetQuotaPolicy](#policynetquotapolicy)>> | 是   | 回调函数。注册计量网络策略发生改变时调用。 |
+| callback | Callback\<Array\<[NetQuotaPolicy](#netquotapolicy10)>> | 是   | 回调函数。注册计量网络策略发生改变时调用。 |
 
 **错误码：**
 
@@ -1669,7 +1669,7 @@ off(type: "netQuotaPolicyChange", callback?: Callback\<Array\<NetQuotaPolicy>>):
 | 参数名   | 类型                               | 必填 | 说明                                                         |
 | -------- | ---------------------------------- | ---- | ------------------------------------------------------------ |
 | type | string | 是 | 计量网络策略发生改变的类型 |
-| callback | Callback\<Array\<[NetQuotaPolicy](#policynetquotapolicy)>> | 否   | 回调函数。注册计量网络策略发生改变时调用。 |
+| callback | Callback\<Array\<[NetQuotaPolicy](#netquotapolicy10)>> | 否   | 回调函数。注册计量网络策略发生改变时调用。 |
 
 **错误码：**
 
@@ -1791,8 +1791,8 @@ policy.off('netBackgroundPolicyChange', (data) => {
 
 | 名称                  | 类型                                |必填| 说明                                                         |
 | ----------------------- | ----------------------------------- |------| -------------------------------------------------------  |
-| networkMatchRule             | NetworkMatchRule               |是| 网络标识，用来确定设置哪一个网络
-| quotaPolicy             | QuotaPolicy                      |是| 具体的计量网络策略
+| networkMatchRule             | [NetworkMatchRule](#networkmatchrule10)               |是| 网络标识，用来确定设置哪一个网络
+| quotaPolicy             | [QuotaPolicy](#quotapolicy10)                      |是| 具体的计量网络策略
 
 ## NetworkMatchRule<sup>10+</sup>
 
@@ -1822,7 +1822,7 @@ policy.off('netBackgroundPolicyChange', (data) => {
 | warningBytes      | number                      |是| 发出警告的流量阈值。 |
 | limitBytes        | number                      |是| 流量设置的配额。 |
 | metered           | string                      |是| 是否为计量网络。 |
-| limitAction       | [LimitAction](#policylimitaction) |是| 到达流量限制后的动作。 |
+| limitAction       | [LimitAction](#limitaction10) |是| 到达流量限制后的动作。 |
 | lastWarningRemind | string                      |否| 最新一次发出警告的时间。 |
 | lastLimitRemind   | string                      |否| 最新一次配额耗尽的时间。 |
 
