@@ -91,7 +91,7 @@
 
 1. 数据提供方需要在module.json5中的proxyDatas节点定义要共享的表的标识，读写权限和基本信息。
 
-      **表1** module.json5中proxyDatas节点对应的属性字段
+   **表1** module.json5中proxyDatas节点对应的属性字段
 
    | 属性名称                    | 备注说明                                     | 必填   |
    | ----------------------- | ---------------------------------------- | ---- |
@@ -100,7 +100,7 @@
    | requiredWritePermission | 修改数据时需要的权限，不配置默认不允许其他APP修改数据。            | 否    |
    | metadata                | 数据源的信息，包含name和resource字段。<br /> name类型固定为"dataProperties"，是配置的唯一标识。 <br /> resource类型固定为"$profile:{fileName}"，表示配置文件的名称为{fileName}.json。 | 是    |
 
-      **module.json5配置样例：**
+   **module.json5配置样例：**
 
    ```json
    "proxyDatas":[
@@ -115,17 +115,15 @@
      }
    ]
    ```
+   **表2** my_config.json对应属性字段
 
-      **表2** my_config.json对应属性字段
+   | 属性名称  | 备注说明                                     | 必填   |
+   | ----- | ---------------------------------------- | ---- |
+   | path  | 指定数据源路径，目前支持关系型数据库，配置为库名/表名              | 是    |
+   | type  | 标识数据库类型，目前支持配置为rdb，表示关系型数据库。             | 是    |
+   | scope | 数据库所在范围。<br>1.module表示数据库位于本模块下；<br>2.application表示数据库位于本应用下。 | 否    |
 
-   | 属性名称        | 备注说明                                     | 必填   |
-   | ----------- | ---------------------------------------- | ---- |
-   | tableConfig | 配置标签。                                    | 是    |
-   | path        | 指定数据源路径，目前支持关系型数据库，配置为库名/表名              | 是    |
-   | type        | 标识数据库类型，目前支持配置为rdb，表示关系型数据库。             | 是    |
-   | scope       | 数据库所在范围。<br>1.module表示数据库位于本模块下；<br>2.application表示数据库位于本应用下。 | 否    |
-
-      **my_config.json配置样例**
+   **my_config.json配置样例**
 
    ```json
    {
