@@ -12,7 +12,7 @@ import dataAbility from '@ohos.data.dataAbility'
 import relationalStore from '@ohos.data.relationalStore'
 
 const TABLE_NAME = 'book'
-const STORE_CONFIG = { name: 'book.db' }
+const STORE_CONFIG = { name: 'book.db',securityLevel: 1 }
 const SQL_CREATE_TABLE = 'CREATE TABLE IF NOT EXISTS book(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, introduction TEXT NOT NULL)'
 let rdbStore: relationalStore.RdbStore = undefined
 
