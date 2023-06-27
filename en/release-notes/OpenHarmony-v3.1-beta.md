@@ -185,7 +185,7 @@ For details about the adaptation status, see [SIG-Devboard](https://gitee.com/op
 | [Intra- and Inter-page Navigation](https://gitee.com/openharmony/codelabs/tree/master/Ability/PageAbility)| This codelab shows how to switch between pages and within a page.| eTS |
 | [Transition Animation (eTS)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/TransitionAnimtaionEts)| This codelab shows how to implement page transition, component transition, and transition of shared elements based on OpenHarmony eTS UI components.| eTS |
 | [slider Usage (eTS)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/SliderApplicationEts)| This codelab shows how to use the OpenHarmony eTS UI component **\<slider>** to implement the animation effect when users adjust the size and speed of the windmill.| eTS |
-| [Dialog Box (eTS)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialogEts)| This codelab shows how to implement an alert dialog box and custom dialog box based on OpenHarmony eTS UI components.| eTS |
+| [Dialog Box (eTS)](https://gitee.com/openharmony/codelabs/tree/master/ETSUI/CustomDialog) | This codelab shows how to implement an alert dialog box and custom dialog box based on OpenHarmony eTS UI components.| eTS |
 
 
 ## Resolved Issues
