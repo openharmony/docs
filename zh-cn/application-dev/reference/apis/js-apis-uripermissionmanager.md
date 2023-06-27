@@ -11,7 +11,7 @@ URI权限管理模块。用于应用A授权/撤销授权URI给应用B
 
   
 ```js
-import uriPermissionManager from '@ohos.application.uriPermissionManager';
+import UriPermissionManager from '@ohos.application.uriPermissionManager';
 ```
 
 
@@ -20,6 +20,8 @@ import uriPermissionManager from '@ohos.application.uriPermissionManager';
 grantUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number, callback: AsyncCallback&lt;number&gt;): void
 
 授权URI给指定应用，通过callback返回结果。
+
+默认仅允许授权属于应用自身的URI，若拥有权限ohos.permission.PROXY_AUTHORIZATION_URI则无限制。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -49,9 +51,21 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number,
 **示例：**
     
   ```js
+  import uriPermissionManager from '@ohos.application.uriPermissionManager';
   import WantConstant from '@ohos.ability.wantConstant';
+  import fileio from '@ohos.fileio';
+  import fileUri from '@ohos.file.fileuri';
+
   let targetBundleName = 'com.example.test_case1'
-  let uri = "fileshare:///com.samples.filesharetest.FileShare/person/10"
+  let path = this.context.filesDir + '/newDir';
+  await fileio.mkdir(path, function (err) {
+    if (err) {
+      hilog.info(0x0000, 'testTag', "mkdir error"+err.message);
+    } else {
+      hilog.info(0x0000, 'testTag', "mkdir succeed");
+    }
+  });
+  let uri = fileUri.getUriFromPath(path);
   uriPermissionManager.grantUriPermission(uri, WantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName, (result) => {
       console.log("result.code = " + result.code)
   }) 
@@ -63,6 +77,8 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number,
 grantUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number): Promise&lt;number&gt;
 
 授权URI给指定应用，通过返回值返回结果。
+
+默认仅允许授权属于应用自身的URI，若拥有权限ohos.permission.PROXY_AUTHORIZATION_URI则无限制。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -97,9 +113,21 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number)
 **示例：**
     
   ```js
+  import uriPermissionManager from '@ohos.application.uriPermissionManager';
   import WantConstant from '@ohos.ability.wantConstant';
+  import fileio from '@ohos.fileio';
+  import fileUri from '@ohos.file.fileuri';
+
   let targetBundleName = 'com.example.test_case1'
-  let uri = "fileshare:///com.samples.filesharetest.FileShare/person/10"
+  let path = this.context.filesDir + '/newDir';
+  await fileio.mkdir(path, function (err) {
+    if (err) {
+      hilog.info(0x0000, 'testTag', "mkdir error"+err.message);
+    } else {
+      hilog.info(0x0000, 'testTag', "mkdir succeed");
+    }
+  });
+  let uri = fileUri.getUriFromPath(path);
   uriPermissionManager.grantUriPermission(uri, wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION, targetBundleName)
   .then((data) => {
       console.log('Verification succeeded.' + data)
@@ -112,6 +140,8 @@ grantUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number)
 revokeUriPermission(uri: string, accessTokenId: number, callback: AsyncCallback&lt;number&gt;): void
 
 撤销授权指定应用的URI，通过callback返回结果。
+
+默认仅允许撤销应用自身获得的其他应用URI，或应用授权给其他应用属于自身的URI。若拥有权限ohos.permission.PROXY_AUTHORIZATION_URI则无限制。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -138,9 +168,11 @@ revokeUriPermission(uri: string, accessTokenId: number, callback: AsyncCallback&
 **示例：**
     
   ```js
+  import uriPermissionManager from '@ohos.application.uriPermissionManager';
   import WantConstant from '@ohos.ability.wantConstant';
+  
   let targetBundleName = 'com.example.test_case1'
-  let URI = "fileshare:///com.samples.filesharetest.FileShare/person/10"
+  let uri = "file:///com.samples.filesharetest.FileShare/person/10"
   uriPermissionManager.revokeUriPermission(uri, targetBundleName, (result) => {
       console.log("result.code = " + result.code)
   }) 
@@ -152,6 +184,9 @@ revokeUriPermission(uri: string, accessTokenId: number, callback: AsyncCallback&
 revokeUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number): Promise&lt;number&gt;
 
 撤销授权指定应用的URI，通过返回值返回结果。
+
+
+默认仅允许撤销应用自身获得的其他应用URI，或应用授权给其他应用属于自身的URI。若拥有权限ohos.permission.PROXY_AUTHORIZATION_URI则无限制。
 
 **系统能力**：SystemCapability.Ability.AbilityRuntime.Core
 
@@ -183,9 +218,11 @@ revokeUriPermission(uri: string, flag: wantConstant.Flags, accessTokenId: number
 **示例：**
     
   ```js
+  import uriPermissionManager from '@ohos.application.uriPermissionManager';
   import WantConstant from '@ohos.ability.wantConstant';
+
   let targetBundleName = 'com.example.test_case1'
-  let uri = "fileshare:///com.samples.filesharetest.FileShare/person/10"
+  let uri = "file:///com.samples.filesharetest.FileShare/person/10"
   uriPermissionManager.revokeUriPermission(uri, targetBundleName)
   .then((data) => {
       console.log('Verification succeeded.' + data)
