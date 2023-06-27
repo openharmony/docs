@@ -182,7 +182,7 @@ Failed writing received data to disk/application.
 
 **可能原因**
 
-应用没有写文件权限。
+应用没有写文件权限或待下载的文件超过5M。
 
 **处理步骤**
 
