@@ -672,7 +672,7 @@
 
 **授权方式**：system_grant
 
-**ACL使能**：TRUE
+**ACL使能**：FALSE
 
 ## ohos.permission.SET_ABILITY_CONTROLLER
 
