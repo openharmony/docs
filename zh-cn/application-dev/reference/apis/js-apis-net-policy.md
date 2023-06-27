@@ -186,8 +186,8 @@ setPolicyByUid(uid: number, policy: NetUidPolicy, callback: AsyncCallback\<void>
 
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
-| uid | number | 是   | 应用的唯一标识符 |
-| policy | [NetUidPolicy](#netuidpolicy) | 是 | 应用对应的策略 |
+| uid | number | 是   | app唯一标识符 |
+| policy | [NetUidPolicy](#NetUidPolicy) | 是 | 应用对应的策略 |netuidpolicy
 | callback | AsyncCallback\<void> | 是   | 回调函数，成功返回空，失败返回错误码错误信息。 |
 
 **错误码：**
@@ -228,7 +228,7 @@ setPolicyByUid(uid: number, policy: NetUidPolicy): Promise\<void>;
 
 | 参数名   | 类型                                    | 必填 | 说明       |
 | -------- | --------------------------------------- | ---- | ---------- |
-| uid | number | 是   | 应用的唯一标识符 |
+| uid | number | 是   | app唯一标识符 |
 | policy | [NetUidPolicy](#netuidpolicy) | 是 | 应用对应的策略 |
 
 **返回值：**
@@ -618,7 +618,7 @@ policy.setNetQuotaPolicies(netQuotaPolicyList).then(function (error) {
 
 isUidNetAllowed(uid: number, isMetered: boolean, callback: AsyncCallback\<boolean>): void
 
-获取对应uid能否访问计量或非计量网络，使用callback方式作为异步方法。
+判断对应uid能否访问计量或非计量网络，使用callback方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -661,7 +661,7 @@ policy.isUidNetAllowed(param, (error, data) => {
 
 isUidNetAllowed(uid: number, isMetered: boolean): Promise\<boolean>;
 
-获取对应uid能否访问计量或非计量网络，使用Promise方式作为异步方法。
+判断对应uid能否访问计量或非计量网络，使用Promise方式作为异步方法。
 
 **系统接口**：此接口为系统接口。
 
@@ -771,7 +771,7 @@ isUidNetAllowed(uid: number, iface: string): Promise\<boolean>;
 
 | 类型                              | 说明                                  |
 | --------------------------------- | ------------------------------------- |
-| Promise\<boolean> | 以Promise形式返回设定结果。 |
+| Promise\<boolean> | 以Promise形式返回当前uid能否访问对应iface的网络。 |
 
 **错误码：**
 
