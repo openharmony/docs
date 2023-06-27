@@ -609,255 +609,255 @@ OpenHarmony系统开发人员在新增或修改代码之后，希望可以快速
 
 - **C++用例编译配置示例**
 
-```
-# Copyright (c) 2023 XXXX Device Co., Ltd.
-
-import("//build/test.gni")
-
-module_output_path = "developertest/calculator"
-
-config("module_private_config") {
-  visibility = [ ":*" ]
-
-  include_dirs = [ "../../../include" ]
-}
-
-ohos_unittest("CalculatorSubTest") {
-  module_out_path = module_output_path
-
-  sources = [
-    "../../../include/calculator.h",
-    "../../../src/calculator.cpp",
-  ]
-
-  sources += [ "calculator_sub_test.cpp" ]
-
-  configs = [ ":module_private_config" ]
-
-  deps = [ "//third_party/googletest:gtest_main" ]
-}
-
-group("unittest") {
-  testonly = true
-  deps = [":CalculatorSubTest"]
-}
-```
-详细内容如下：
-
-1. 添加文件头注释信息
-    ```
-	# Copyright (c) 2023 XXXX Device Co., Ltd.
 	```
-2. 导入编译模板文件
-    ```
+	# Copyright (c) 2023 XXXX Device Co., Ltd.
+
+	import("//build/test.gni")
+
+	module_output_path = "developertest/calculator"
+
+	config("module_private_config") {
+	visibility = [ ":*" ]
+
+	include_dirs = [ "../../../include" ]
+	}
+
+	ohos_unittest("CalculatorSubTest") {
+	module_out_path = module_output_path
+
+	sources = [
+		"../../../include/calculator.h",
+		"../../../src/calculator.cpp",
+	]
+
+	sources += [ "calculator_sub_test.cpp" ]
+
+	configs = [ ":module_private_config" ]
+
+	deps = [ "//third_party/googletest:gtest_main" ]
+	}
+
+	group("unittest") {
+	testonly = true
+	deps = [":CalculatorSubTest"]
+	}
+	```
+	详细内容如下：
+
+	1. 添加文件头注释信息
+		```
+		# Copyright (c) 2023 XXXX Device Co., Ltd.
+		```
+	2. 导入编译模板文件
+		```
+		import("//build/test.gni")
+		```
+	3. 指定文件输出路径
+		```
+		module_output_path = "developertest/calculator"
+		```
+		> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+		> 
+		> 此处输出路径为部件/模块名。
+
+	4. 配置依赖包含目录
+
+		```
+		config("module_private_config") {
+		visibility = [ ":*" ]
+		
+		include_dirs = [ "../../../include" ]
+		}
+		```
+		> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+		>  
+		> 一般在此处对相关配置进行设置，在测试用例编译脚本中可直接引用。
+
+	5. 指定测试用例编译目标输出的文件名称
+
+		```
+		ohos_unittest("CalculatorSubTest") {
+		}
+		```
+	6. 编写具体的测试用例编译脚本（添加需要参与编译的源文件、配置和依赖）
+		```
+		ohos_unittest("CalculatorSubTest") {
+		module_out_path = module_output_path
+		sources = [
+			"../../../include/calculator.h",
+			"../../../src/calculator.cpp",
+			"../../../test/calculator_sub_test.cpp"
+		]
+		sources += [ "calculator_sub_test.cpp" ]
+		configs = [ ":module_private_config" ]
+		deps = [ "//third_party/googletest:gtest_main" ]
+		}
+		```
+
+		> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+		> 
+		> 根据测试类型的不同，在具体编写过程中可选择不同的测试类型。
+		> - ohos_unittest：单元测试
+		> - ohos_moduletest：模块测试
+		> - ohos_systemtest：系统测试
+		> - ohos_performancetest：性能测试
+		> - ohos_securitytest：安全测试
+		> - ohos_reliabilitytest：可靠性测试
+		> - ohos_distributedtest：分布式测试
+
+	7. 对目标测试用例文件进行条件分组
+
+		```
+		group("unittest") {
+		testonly = true
+		deps = [":CalculatorSubTest"]
+		}
+		```
+		> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
+		>  
+		> 进行条件分组的目的在于执行用例时可以选择性地执行某一种特定类型的用例。
+
+- **JavaScript用例编译配置示例**
+
+	```
+	# Copyright (C) 2023 XXXX Device Co., Ltd.
+
+	import("//build/test.gni")
+
+	module_output_path = "developertest/app_info"
+
+	ohos_js_unittest("GetAppInfoJsTest") {
+	module_out_path = module_output_path
+
+	hap_profile = "./config.json"
+	certificate_profile = "//test/developertest/signature/openharmony_sx.p7b"
+	}
+
+	group("unittest") {
+	testonly = true
+	deps = [ ":GetAppInfoJsTest" ]
+	}
+	```
+
+	详细内容如下：
+
+	1.添加文件头注释信息
+
+	```
+	# Copyright (C) 2023 XXXX Device Co., Ltd.
+	```
+
+	2.导入编译模板文件
+
+	```
 	import("//build/test.gni")
 	```
-3. 指定文件输出路径
+
+	3.指定文件输出路径
+
 	```
-	module_output_path = "developertest/calculator"
+	module_output_path = "developertest/app_info"
 	```
 	> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
 	> 
 	> 此处输出路径为部件/模块名。
 
-4. 配置依赖包含目录
+	4.指定测试用例编译目标输出的文件名称
 
 	```
-	config("module_private_config") {
-	  visibility = [ ":*" ]
-	   
-	  include_dirs = [ "../../../include" ]
+	ohos_js_unittest("GetAppInfoJsTest") {
 	}
 	```
-	> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
-	>  
-	> 一般在此处对相关配置进行设置，在测试用例编译脚本中可直接引用。
-
-5. 指定测试用例编译目标输出的文件名称
-
-	```
-	ohos_unittest("CalculatorSubTest") {
-	}
-	```
-6. 编写具体的测试用例编译脚本（添加需要参与编译的源文件、配置和依赖）
-	```
-	ohos_unittest("CalculatorSubTest") {
-	  module_out_path = module_output_path
-	  sources = [
-	    "../../../include/calculator.h",
-	    "../../../src/calculator.cpp",
-	    "../../../test/calculator_sub_test.cpp"
-	  ]
-	  sources += [ "calculator_sub_test.cpp" ]
-	  configs = [ ":module_private_config" ]
-	  deps = [ "//third_party/googletest:gtest_main" ]
-	}
-	```
-
 	> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
 	> 
-	> 根据测试类型的不同，在具体编写过程中可选择不同的测试类型。
-	 > - ohos_unittest：单元测试
-	 > - ohos_moduletest：模块测试
-	 > - ohos_systemtest：系统测试
-	 > - ohos_performancetest：性能测试
-	 > - ohos_securitytest：安全测试
-	 > - ohos_reliabilitytest：可靠性测试
-	 > - ohos_distributedtest：分布式测试
+	> - 使用模板ohos_js_unittest定义js测试套，注意与C++用例区分。
+	> - js测试套编译输出文件为hap类型，hap名为此处定义的测试套名，测试套名称必须以JsTest结尾。
 
-7. 对目标测试用例文件进行条件分组
+	5.指定hap包配置文件config.json和签名文件，两个配置为必选项。
+
+	```
+	ohos_js_unittest("GetAppInfoJsTest") {
+	module_out_path = module_output_path
+	
+	hap_profile = "./config.json"
+	certificate_profile = "//test/developertest/signature/openharmony_sx.p7b"
+	}
+	```
+	config.json为hap编译所需配置文件，需要开发者根据被测sdk版本配置“target”项，其余项可默认，具体如下所示：
+
+	```json
+	{
+	"app": {
+		"bundleName": "com.example.myapplication",
+		"vendor": "example",
+		"version": {
+		"code": 1,
+		"name": "1.0"
+		},
+		"apiVersion": {
+			"compatible": 4,
+			"target": 5     // 根据被测sdk版本进行修改，此例为sdk5
+		}
+	},
+	"deviceConfig": {},
+	"module": {
+		"package": "com.example.myapplication",
+		"name": ".MyApplication",
+		"deviceType": [
+		"phone"
+		],
+		"distro": {
+		"deliveryWithInstall": true,
+		"moduleName": "entry",
+		"moduleType": "entry"
+		},
+		"abilities": [
+		{
+		"skills": [
+			{
+				"entities": [
+				"entity.system.home"
+				],
+				"actions": [
+				"action.system.home"
+				]
+			}
+			],
+			"name": "com.example.myapplication.MainAbility",
+			"icon": "$media:icon",
+			"description": "$string:mainability_description",
+			"label": "MyApplication",
+			"type": "page",
+			"launchType": "standard"
+		}
+		],
+		"js": [
+		{
+			"pages": [
+			"pages/index/index"
+			],
+			"name": "default",
+			"window": {
+				"designWidth": 720,
+				"autoDesignWidth": false
+			}
+			}
+		]
+		}
+	}
+	```
+
+	6.对目标测试用例文件进行条件分组
 
 	```
 	group("unittest") {
-	  testonly = true
-	  deps = [":CalculatorSubTest"]
+	testonly = true
+	deps = [ ":GetAppInfoJsTest" ]
 	}
 	```
 	> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
-	>  
+	> 
 	> 进行条件分组的目的在于执行用例时可以选择性地执行某一种特定类型的用例。
-
-- **JavaScript用例编译配置示例**
-
-```
-# Copyright (C) 2023 XXXX Device Co., Ltd.
-
-import("//build/test.gni")
-
-module_output_path = "developertest/app_info"
-
-ohos_js_unittest("GetAppInfoJsTest") {
-  module_out_path = module_output_path
-
-  hap_profile = "./config.json"
-  certificate_profile = "//test/developertest/signature/openharmony_sx.p7b"
-}
-
-group("unittest") {
-  testonly = true
-  deps = [ ":GetAppInfoJsTest" ]
-}
-```
-
-详细内容如下：
-
-1.添加文件头注释信息
-
-```
-# Copyright (C) 2023 XXXX Device Co., Ltd.
-```
-
-2.导入编译模板文件
-
-```
-import("//build/test.gni")
-```
-
-3.指定文件输出路径
-
-```
-module_output_path = "developertest/app_info"
-```
-> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
-> 
-> 此处输出路径为部件/模块名。
-
-4.指定测试用例编译目标输出的文件名称
-
-```
-ohos_js_unittest("GetAppInfoJsTest") {
-}
-```
-> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
-> 
-> - 使用模板ohos_js_unittest定义js测试套，注意与C++用例区分。
-> - js测试套编译输出文件为hap类型，hap名为此处定义的测试套名，测试套名称必须以JsTest结尾。
-
-5.指定hap包配置文件config.json和签名文件，两个配置为必选项。
-
-```
-ohos_js_unittest("GetAppInfoJsTest") {
-  module_out_path = module_output_path
-   
-  hap_profile = "./config.json"
-  certificate_profile = "//test/developertest/signature/openharmony_sx.p7b"
-}
-```
- config.json为hap编译所需配置文件，需要开发者根据被测sdk版本配置“target”项，其余项可默认，具体如下所示：
-
-```json
-{
-  "app": {
-    "bundleName": "com.example.myapplication",
-    "vendor": "example",
-    "version": {
-      "code": 1,
-      "name": "1.0"
-    },
-    "apiVersion": {
-           "compatible": 4,
-         "target": 5     // 根据被测sdk版本进行修改，此例为sdk5
-    }
-  },
-  "deviceConfig": {},
-  "module": {
-    "package": "com.example.myapplication",
-    "name": ".MyApplication",
-    "deviceType": [
-      "phone"
-    ],
-    "distro": {
-      "deliveryWithInstall": true,
-      "moduleName": "entry",
-      "moduleType": "entry"
-    },
-    "abilities": [
-      {
-      "skills": [
-          {
-            "entities": [
-              "entity.system.home"
-            ],
-            "actions": [
-              "action.system.home"
-            ]
-          }
-        ],
-        "name": "com.example.myapplication.MainAbility",
-        "icon": "$media:icon",
-        "description": "$string:mainability_description",
-        "label": "MyApplication",
-        "type": "page",
-        "launchType": "standard"
-      }
-    ],
-    "js": [
-      {
-        "pages": [
-          "pages/index/index"
-        ],
-        "name": "default",
-          "window": {
-             "designWidth": 720,
-             "autoDesignWidth": false
-          }
-        }
-      ]
-    }
-  }
-```
-
-6.对目标测试用例文件进行条件分组
-
-```
-group("unittest") {
-  testonly = true
-  deps = [ ":GetAppInfoJsTest" ]
-}
-```
-> ![icon-note.gif](/zh-cn/device-dev/driver/public_sys-resources/icon-note.gif) **说明：** 
-> 
-> 进行条件分组的目的在于执行用例时可以选择性地执行某一种特定类型的用例。
 
 **Fuzzing安全测试**
 
