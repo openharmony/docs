@@ -4,7 +4,7 @@
 
 #### 1.组件装饰器使用限制
 
-组件装饰器@Component、@Entry、 @Preview和@CustomDialog 不允许装饰除了struct组件之外其他组件。
+组件装饰器@Component、@Entry、 @Preview和@CustomDialog只能作用于struct组件，不能用于装饰类class。
 
 **示例：**
 
@@ -19,7 +19,7 @@ class Index {
 
 **变更影响**
 
-如果组件装饰器@Component、@Entry、 @Preview和@CustomDialog 没有装饰struct组件，编译报错。
+如果组件装饰器@Component、@Entry、 @Preview和@CustomDialog 不是装饰struct组件，编译报错。
 
 **关键的接口/组件变更**
 
@@ -27,7 +27,7 @@ class Index {
 
 **适配指导**
 
-组件装饰器@Component、@Entry、 @Preview和@CustomDialog修饰的其他的组件变成修饰struct组件。
+组件装饰器@Component、@Entry、 @Preview和@CustomDialog修饰struct组件。
 
 #### 2.组件成员变量装饰器使用限制
 
@@ -49,7 +49,7 @@ class Index {
 
 **变更影响**
 
-如果上述提到的组件成员变量装饰器没有装饰struct组件的成员变量，编译报错。
+如果上述提到的组件成员变量装饰器不是装饰struct组件的成员变量，编译报错。
 
 **关键的接口/组件变更**
 
