@@ -50,6 +50,7 @@ In addition to the [universal attributes](ts-universal-attributes-size.md), the 
 | syncLoad<sup>8+</sup>    | boolean                                  | Whether to load the image synchronously. By default, the image is loaded asynchronously. During synchronous loading, the UI thread is blocked and the placeholder diagram is not displayed.<br>Default value: **false**<br>Since API version 9, this API is supported in ArkTS widgets.|
 | copyOption<sup>9+</sup>  | [CopyOptions](ts-appendix-enums.md#copyoptions9) | Whether the image can be copied. (SVG images cannot be copied.)<br>When **copyOption** is set to a value other than **CopyOptions.None**, the image can be copied in various manners, such as long pressing, right-clicking, or pressing Ctrl+C.<br>Default value: **CopyOptions.None**<br>This API is supported in ArkTS widgets.|
 | colorFilter<sup>9+</sup> | [ColorFilter](ts-types.md#colorfilter9)  | Color filter of the image.<br>This API is supported in ArkTS widgets.      |
+| draggable<sup>9+</sup> | boolean                                  | Whether the image is draggable. This attribute cannot be used together with the [onDragStart](ts-universal-events-drag-drop.md) event.<br>Default value: **false** |
 
 >  **NOTE**
 >
