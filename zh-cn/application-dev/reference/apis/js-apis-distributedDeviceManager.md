@@ -10,9 +10,6 @@
 - 查询可信设备列表
 - 查询本地设备信息，包括设备名称，设备类型和设备标识
 
-系统应用可调用接口实现如下功能：
-
-- 发布设备发现
 
 > **说明：**
 >
@@ -84,36 +81,6 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | UNAVAILABLE | 2    | 设备物理下线，此时状态未知。           |
 
 
-## DiscoverMode
-
-表示发现模式的枚举。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
-
-**系统API**： 此接口为系统接口。
-
-| 名称                    | 值  | 说明    |
-| --------------------- | ---- | ----- |
-| DISCOVER_MODE_PASSIVE | 0x55 | 被动模式。 |
-| DISCOVER_MODE_ACTIVE  | 0xAA | 主动模式。 |
-
-
-## ExchangeFreq 
-
-表示发现频率的枚举。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
-
-**系统API**： 此接口为系统接口。
-
-| 名称         | 值  | 说明    |
-| ---------- | ---- | ----- |
-| LOW        | 0    | 低频率。  |
-| MID        | 1    | 中频率。  |
-| HIGH       | 2    | 高频率。  |
-| SUPER_HIGH | 3    | 超高频率。 |
-
-
 ## BindParam
 
 认证参数。
@@ -123,36 +90,8 @@ createDeviceManager(bundleName: string, callback: AsyncCallback&lt;DeviceManager
 | 名称        | 类型                   | 必填   | 说明         |
 | --------- | -------------------- | ---- | ---------- |
 | bindType  | number               | 是    | 认证类型。      |
-| extraInfo | {[key:string]&nbsp;:&nbsp;any} | 否    | 认证参数可扩展字段。可选，默认为undefined。 |
+| extraInfo | {[key:string]&nbsp;:&nbsp;Object} | 否    | 认证参数可扩展字段。可选，默认为undefined。 |
 
-## AuthInfo
-
-认证信息。
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
-
-**系统API**： 此接口为系统接口。
-
-| 名称        | 类型                   | 必填   | 说明         |
-| --------- | -------------------- | ---- | ---------- |
-| authType  | number               | 是    | 认证类型。      |
-| token     | number               | 是    | 认证Token。   |
-| extraInfo | {[key:string]&nbsp;:&nbsp;any} | 否    | 认证信息可扩展字段。可选，默认为undefined。 |
-
-## PublishInfo
-
-发布设备参数
-
-**系统能力**：以下各项对应的系统能力均为SystemCapability.DistributedHardware.DeviceManager
-
-**系统API**： 此接口为系统接口。
-
-| 名称          | 类型                              | 必填   | 说明                |
-| ------------- | --------------------------------- | ---- | ----------------- |
-| publishId     | number                            | 是    | 发布设备标识，用于标识不同的发布周期。 |
-| mode          | [DiscoverMode ](#discovermode)    | 是    | 发现模式。             |
-| freq          | [ExchangeFreq](#exchangefreq)     | 是    | 发现频率。             |
-| ranging       | boolean                           | 是    | 发布的设备是否支持测距能力。             |
 
 ## DeviceManager
 
@@ -520,9 +459,9 @@ getDeviceTypeSync(networkId: string): number;
   }
   ```
 
-### startDeviceDiscovery
+### startDiscovering
 
-startDeviceDiscovery(subscribeId: number, filterOptions?: string): void;
+startDiscovering(subscribeId: number, filterOptions?: string): void;
 
 发现周边设备。发现状态持续两分钟，超过两分钟，会停止发现，最大发现数量99个。
 
@@ -561,15 +500,15 @@ startDeviceDiscovery(subscribeId: number, filterOptions?: string): void;
     ]
   };
   try {
-    dmInstance.startDeviceDiscovery(subscribeId, filterOptions); // 当有设备发现时，通过deviceFound回调通知给应用程序
+    dmInstance.startDiscovering(subscribeId, filterOptions); // 当有设备发现时，通过discoverSuccess回调通知给应用程序
   } catch (err) {
-    console.error("startDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("startDiscovering errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
-### stopDeviceDiscovery
+### stopDiscovering
 
-stopDeviceDiscovery(subscribeId: number): void;
+stopDiscovering(subscribeId: number): void;
 
 停止发现周边设备。
 
@@ -595,100 +534,17 @@ stopDeviceDiscovery(subscribeId: number): void;
 
   ```js
   try {
-    // stopDeviceDiscovery和startDeviceDiscovery需配对使用，入参需要和startDeviceDiscovery接口传入的subscribeId值相等
+    // stopDiscovering和startDiscovering需配对使用，入参需要和startDiscovering接口传入的subscribeId值相等
     var subscribeId = 12345;
-    dmInstance.stopDeviceDiscovery(subscribeId);
+    dmInstance.stopDiscovering(subscribeId);
   } catch (err) {
-    console.error("stopDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("stopDiscovering errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
-### publishDeviceDiscovery
+### bindTarget
 
-publishDeviceDiscovery(publishInfo: PublishInfo): void;
-
-发布设备发现。发布状态持续两分钟，超过两分钟会停止发布。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM
-
-**系统能力**：SystemCapability.DistributedHardware.DeviceManager
-
-**系统API**： 此接口为系统接口。
-
-**参数：**
-
-  | 参数名          | 类型                        | 必填 | 说明    |
-  | ------------- | ------------------------------- | ---- | ----- |
-  | publishInfo   | [PublishInfo](#publishinfo)     | 是   | 发布设备发现信息。 |
-
-**错误码：**
-
-以下的错误码的详细介绍请参见[设备管理错误码](../errorcodes/errorcode-device-manager.md)
-
-| 错误码ID | 错误信息                                                        |
-| -------- | --------------------------------------------------------------- |
-| 11600101 | Failed to execute the function.                                 |
-| 11600105 | Publish invalid.                                                |
-
-**示例：**
-
-  ```js
-  // 生成发布标识，随机数确保每次调用发布接口的标识不一致
-  var publishId = Math.floor(Math.random() * 10000 + 1000);
-  var publishInfo = {
-      "publishId": publishId,
-      "mode": 0xAA, // 主动模式
-      "freq": 2,    // 高频率
-      "ranging": true  // 支持发现时测距
-  };
-  try {
-    dmInstance.publishDeviceDiscovery(publishInfo); // 当有发布结果时，通过回调通知给应用程序
-  } catch (err) {
-    console.error("publishDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-### unPublishDeviceDiscovery
-
-unPublishDeviceDiscovery(publishId: number): void;
-
-停止发布设备发现。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM
-
-**系统能力**：SystemCapability.DistributedHardware.DeviceManager
-
-**系统API**： 此接口为系统接口。
-
-**参数：**
-
-  | 参数名        | 类型 | 必填 | 说明  |
-  | ----------- | -------- | ---- | ----- |
-  | publishId   | number   | 是   | 发布标识。 |
-
-**错误码：**
-
-以下的错误码的详细介绍请参见[设备管理错误码](../errorcodes/errorcode-device-manager.md)
-
-| 错误码ID | 错误信息                                                        |
-| -------- | --------------------------------------------------------------- |
-| 11600101 | Failed to execute the function.                                 |
-
-**示例：**
-
-  ```js
-  try {
-    // unPublishDeviceDiscovery和publishDeviceDiscovery配对使用，入参需要和publishDeviceDiscovery接口传入的publishId值相等
-    var publishId = 12345;
-    dmInstance.unPublishDeviceDiscovery(publishId);
-  } catch (err) {
-    console.error("unPublishDeviceDiscovery errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-### bindDevice
-
-bindDevice(deviceId: string, bindParam: BindParam, callback: AsyncCallback&lt;{deviceId: string}&gt;): void;
+bindTarget(deviceId: string, bindParam: BindParam, callback: AsyncCallback&lt;{deviceId: string}&gt;): void;
 
 认证设备。
 
@@ -729,21 +585,21 @@ bindDevice(deviceId: string, bindParam: BindParam, callback: AsyncCallback&lt;{d
       'extraInfo': extraInfo
   }
   try {
-    dmInstance.bindDevice(deviceId, authParam, (err, data) => {
+    dmInstance.bindTarget(deviceId, authParam, (err, data) => {
       if (err) {
-          console.error("bindDevice errCode:" + err.code + ",errMessage:" + err.message);
+          console.error("bindTarget errCode:" + err.code + ",errMessage:" + err.message);
           return;
       }
-      console.info("bindDevice result:" + JSON.stringify(data));
+      console.info("bindTarget result:" + JSON.stringify(data));
     });
   } catch (err) {
-    console.error("bindDevice errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("bindTarget errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
-### unbindDevice
+### unbindTarget
 
-unbindDevice(deviceId: string): void;
+unbindTarget(deviceId: string): void;
 
 解除认证设备。
 
@@ -770,65 +626,17 @@ unbindDevice(deviceId: string): void;
   ```js
   try {
     var deviceId ="XXXXXXXX";
-    dmInstance.unbindDevice(deviceId);
+    dmInstance.unbindTarget(deviceId);
   } catch (err) {
-    console.error("unbindDevice errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("unbindTarget errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
-### verifyAuthInfo
+### replyUiAction
 
-verifyAuthInfo(authInfo: AuthInfo, callback: AsyncCallback&lt;{deviceId: string, level: number}&gt;): void;
+replyUiAction(action: number, params: string): void;
 
-验证认证信息。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM
-
-**系统能力**：SystemCapability.DistributedHardware.DeviceManager
-
-**系统API**： 此接口为系统接口。
-
-**参数：**
-
-  | 参数名       | 类型                                     | 必填   | 说明      |
-  | -------- | ---------------------------------------- | ---- | ------- |
-  | authInfo | [AuthInfo](#authinfo)                    | 是    | 认证信息。   |
-  | callback | AsyncCallback&lt;{deviceId:&nbsp;string,&nbsp;level:&nbsp;number}&gt; | 是    | 验证结果回调。 |
-
-**错误码：**
-
-以下的错误码的详细介绍请参见[设备管理错误码](../errorcodes/errorcode-device-manager.md)
-
-| 错误码ID | 错误信息                                                        |
-| -------- | --------------------------------------------------------------- |
-| 11600101 | Failed to execute the function.                                 |
-
-**示例：**
-
-  ```js
-  let authInfo = {
-    "authType": 1,
-    "token": 123456,
-    "extraInfo": {}
-  }
-  try {
-    dmInstance.verifyAuthInfo(authInfo, (err, data) => {
-    if (err) {
-        console.error("verifyAuthInfo errCode:" + err.code + ",errMessage:" + err.message);
-        return;
-    }
-    console.info("verifyAuthInfo result:" + JSON.stringify(data));
-    });
-  } catch (err) {
-    console.error("verifyAuthInfo errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-### setUserOperation
-
-setUserOperation(operateAction: number, params: string): void;
-
-设置用户ui操作行为。
+回复用户ui操作行为。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -840,7 +648,7 @@ setUserOperation(operateAction: number, params: string): void;
 
   | 参数名       | 类型            | 必填  | 说明                |
   | ------------- | --------------- | ---- | ------------------- |
-  | operateAction | number          | 是    | 用户操作动作。       |
+  | action        | number          | 是    | 用户操作动作。       |
   | params        | string          | 是    | 表示用户的输入参数。 |
 
 **示例：**
@@ -848,159 +656,25 @@ setUserOperation(operateAction: number, params: string): void;
   ```js
  try {
     /*
-      operateAction = 0 - 允许授权
-      operateAction = 1 - 取消授权
-      operateAction = 2 - 授权框用户操作超时
-      operateAction = 3 - 取消pin码框展示
-      operateAction = 4 - 取消pin码输入框展示
-      operateAction = 5 - pin码输入框确定操作
+      action = 0 - 允许授权
+      action = 1 - 取消授权
+      action = 2 - 授权框用户操作超时
+      action = 3 - 取消pin码框展示
+      action = 4 - 取消pin码输入框展示
+      action = 5 - pin码输入框确定操作
     */
     let operation = 0;
-    dmInstance.setUserOperation(operation, "extra")
+    dmInstance.replyUiAction(operation, "extra")
     } catch (err) {
-      console.error("setUserOperation errCode:" + err.code + ",errMessage:" + err.message);
+      console.error("replyUiAction errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
-### requestCredentialRegisterInfo
+### on('replyResult')
 
-requestCredentialRegisterInfo(requestInfo: string, callback: AsyncCallback&lt;{registerInfo: string}&gt;): void;
+on(type: 'replyResult', callback: Callback&lt;{ param: string}&gt;): void;
 
-获取凭据的注册信息。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM
-
-**系统能力**：SystemCapability.DistributedHardware.DeviceManager
-
-**系统API**： 此接口为系统接口。
-
-**参数：**
-
-  | 参数名       | 类型            | 必填  | 说明                |
-  | ------------- | --------------- | ---- | ------------------- |
-  | requestInfo   | string          | 是    | 请求凭据信息。       |
-  | callback      | AsyncCallback&lt;{registerInfo: string}&gt;         | 是    | 凭据的注册信息回调。 |
-
-**示例：**
-
-  ```js
-  let credentialInfo = {
-    "version" : "1.2.3",
-    "userId" : "123"
-  }
-  try {
-    dmInstance.requestCredentialRegisterInfo(credentialInfo, (data) => {
-      if (data) {
-          console.info("requestCredentialRegisterInfo result:" + JSON.stringify(data));
-      } else {
-          console.info("requestCredentialRegisterInfo result: data is null");
-      }
-    });
-  } catch (err) {
-    console.error("requestCredentialRegisterInfo err:" + err.code + "," + err.message);
-  }
-  ```
-
-### importCredential
-
-importCredential(credentialInfo: string, callback: AsyncCallback&lt;{resultInfo: string}&gt;): void;
-
-导入凭据信息。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM
-
-**系统能力**：SystemCapability.DistributedHardware.DeviceManager
-
-**系统API**： 此接口为系统接口。
-
-**参数：**
-
-  | 参数名       | 类型            | 必填  | 说明                |
-  | ------------- | --------------- | ---- | ------------------- |
-  | credentialInfo| string          | 是    | 导入凭据信息。       |
-  | callback      | AsyncCallback&lt;{resultInfo: string}&gt;           | 是    | 导入凭据结果回调。 |
-
-**示例：**
-
-  ```js
-  let credentialInfo = {
-    "processType" : 1,
-    "authType" : 1,
-    "userId" : "123",
-    "deviceId" : "aaa",
-    "version" : "1.2.3",
-    "devicePk" : "0000",
-    "credentialData" : 
-    [
-      {
-        "credentialType" : 2,
-        "credentialId" : "102",
-        "serverPk" : "3059301306072A8648CE3D020106082A8648CE3D03",
-        "pkInfoSignature" : "30440220490BCB4F822004C9A76AB8D97F80041FC0E",
-        "pkInfo" : "",
-        "authCode" : "",
-        "peerDeviceId" : ""
-      }
-    ]
-  }
-  try {
-    dmInstance.importCredential(credentialInfo, (data) => {
-      if (data) {
-          console.info("importCredential result:" + JSON.stringify(data));
-      } else {
-          console.info("importCredential result: data is null");
-      }
-    });
-  } catch (err) {
-    console.error("importCredential err:" + err.code + "," + err.message);
-  }
-  ```
-
-### deleteCredential
-
-deleteCredential(queryInfo: string, callback: AsyncCallback&lt;{resultInfo: string}&gt;): void;
-
-删除凭据信息。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM
-
-**系统能力**：SystemCapability.DistributedHardware.DeviceManager
-
-**系统API**： 此接口为系统接口。
-
-**参数：**
-
-  | 参数名       | 类型            | 必填  | 说明                |
-  | ------------- | --------------- | ---- | ------------------- |
-  | queryInfo     | string          | 是    | 删除凭据信息。       |
-  | callback      | AsyncCallback&lt;{resultInfo: string}&gt;           | 是    | 删除凭据结果回调。 |
-
-**示例：**
-
-  ```js
-  let queryInfo = {
-    "processType" : 1,
-    "authType" : 1,
-    "userId" : "123"
-  }
-  try {
-    dmInstance.deleteCredential(queryInfo, (data) => {
-      if (data) {
-          console.info("deleteCredential result:" + JSON.stringify(data));
-      } else {
-          console.info("deleteCredential result: data is null");
-      }
-    });
-  } catch (err) {
-    console.error("deleteCredential err:" + err.code + "," + err.message);
-  }
-  ```
-
-### on('uiStateChange')
-
-on(type: 'uiStateChange', callback: Callback&lt;{ param: string}&gt;): void;
-
-ui状态变更回调。
+回复UI操作结果回调。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -1019,22 +693,22 @@ ui状态变更回调。
 
   ```js
   try {
-    dmInstance.on('uiStateChange', (data) => {
-    console.log("uiStateChange executed, dialog closed" + JSON.stringify(data))
+    dmInstance.on('replyResult', (data) => {
+    console.log("replyResult executed, dialog closed" + JSON.stringify(data))
     var tmpStr = JSON.parse(data.param)
     var isShow = tmpStr.verifyFailed
-    console.log("uiStateChange executed, dialog closed" + isShow)
+    console.log("replyResult executed, dialog closed" + isShow)
   });
   } catch (err) {
-    console.error("uiStateChange errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("replyResult errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
-### off('uiStateChange')
+### off('replyResult')
 
-off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
+off(type: 'replyResult', callback?: Callback&lt;{ param: string}&gt;): void;
 
-取消ui状态变更回调。
+取消回复UI操作结果回调。
 
 **需要权限**：ohos.permission.ACCESS_SERVICE_DM
 
@@ -1053,9 +727,9 @@ off(type: 'uiStateChange', callback?: Callback&lt;{ param: string}&gt;): void;
 
   ```js
   try {
-    dmInstance.off('uiStateChange');
+    dmInstance.off('replyResult');
   } catch (err) {
-    console.error("uiStateChange errCode:" + err.code + ",errMessage:" + err.message);
+    console.error("replyResult errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
@@ -1288,130 +962,6 @@ off(type: 'discoverFail', callback?: Callback&lt;{ subscribeId: number, reason: 
     });
   } catch (err) {
     console.error("discoverFail errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-### on('publishSuccess')
-
-on(type: 'publishSuccess', callback: Callback&lt;{ publishId: number }&gt;): void;
-
-注册发布设备成功回调监听。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM
-
-**系统能力**：SystemCapability.DistributedHardware.DeviceManager
-
-**系统API**： 此接口为系统接口。
-
-**参数：**
-
-  | 参数名     | 类型                                 | 必填 | 说明                       |
-  | -------- | ---------------------------------------- | ---- | -------------------------- |
-  | type     | string                                   | 是   | 注册发布设备成功回调，以便将发布成功时通知应用程序。 |
-  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | 是   | 注册设备发布成功的回调方法。               |
-
-**示例：**
-
-  ```js
-  try {
-    dmInstance.on('publishSuccess', (data) => {
-      console.info("publishSuccess:" + JSON.stringify(data));
-    });
-  } catch (err) {
-    console.error("publishSuccess errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-### off('publishSuccess')
-
-off(type: 'publishSuccess', callback?: Callback&lt;{ publishId: number }&gt;): void;
-
-取消注册设备发布成功回调。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM
-
-**系统能力**：SystemCapability.DistributedHardware.DeviceManager
-
-**系统API**： 此接口为系统接口。
-
-**参数：**
-
-  | 参数名     | 类型                                 | 必填 | 说明                          |
-  | -------- | ---------------------------------------- | ---- | --------------------------- |
-  | type     | string                                   | 是   | 取消注册设备发布成功回调。                 |
-  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number&nbsp;}&gt;    | 否   | 指示要取消注册的设备发布成功回调。 |
-
-**示例：**
-
-  ```js
-  try {
-    dmInstance.off('publishSuccess', (data) => {
-      console.info('publishSuccess' + JSON.stringify(data));
-    });
-  } catch (err) {
-    console.error("publishSuccess errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-### on('publishFail')
-
-on(type: 'publishFail', callback: Callback&lt;{ publishId: number, reason: number }&gt;): void;
-
-注册设备发布失败回调监听。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM
-
-**系统能力**：SystemCapability.DistributedHardware.DeviceManager
-
-**系统API**： 此接口为系统接口。
-
-**参数：**
-
-  | 参数名     | 类型                                              | 必填 | 说明                             |
-  | -------- | ----------------------------------------------------- | ---- | ------------------------------ |
-  | type     | string                                                | 是   | 注册设备发布失败回调，以便在发布设备失败时通知应用程序。 |
-  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | 是   | 注册设备发布失败的回调方法。                 |
-
-**示例：**
-
-  ```js
-  try {
-    dmInstance.on('publishFail', (data) => {
-      console.info("publishFail on:" + JSON.stringify(data));
-    });
-  } catch (err) {
-    console.error("publishFail errCode:" + err.code + ",errMessage:" + err.message);
-  }
-  ```
-
-### off('publishFail')
-
-off(type: 'publishFail', callback?: Callback&lt;{ publishId: number, reason: number }&gt;): void;
-
-取消注册设备发布失败回调。
-
-**需要权限**：ohos.permission.ACCESS_SERVICE_DM
-
-**系统能力**：SystemCapability.DistributedHardware.DeviceManager
-
-**系统API**： 此接口为系统接口。
-
-**参数：**
-
-  | 参数名     | 类型                                              | 必填 | 说明                |
-  | -------- | ----------------------------------------------------- | ---- | ----------------- |
-  | type     | string                                                | 是   | 取消注册设备发布失败回调。     |
-  | callback | Callback&lt;{&nbsp;publishId:&nbsp;number,&nbsp;reason:&nbsp;number&nbsp;}&gt; | 否   | 指示要取消注册设备发布失败回调。 |
-
-**示例：**
-
-  ```js
-  try {
-    dmInstance.off('publishFail', (data) => {
-      console.info('publishFail' + JSON.stringify(data));
-    });
-  } catch (err) {
-    console.error("publishFail errCode:" + err.code + ",errMessage:" + err.message);
   }
   ```
 
