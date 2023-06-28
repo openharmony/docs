@@ -407,9 +407,9 @@ class EntryAbility extends UIAbility {
 | -------------- | ---- | ---------------------------------- |
 | SYNC_MODE_PUSH                       | 0   | 表示数据从本地设备推送到远程设备。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core                     |
 | SYNC_MODE_PULL                       | 1   | 表示数据从远程设备拉至本地设备。<br>**系统能力：** SystemCapability.DistributedDataManager.RelationalStore.Core                      |
-| SYNC_MODE_TIME_FIRST<sup>10+</sup>   | -   | 表示数据从修改时间较近的一端同步到修改时间较远的一端。请使用枚举名称而非枚举值。 <br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
-| SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | -   | 表示数据从本地设备同步到云端。请使用枚举名称而非枚举值。 <br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client             |
-| SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | -   | 表示数据从云端同步到本地设备。请使用枚举名称而非枚举值。 <br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client             |
+| SYNC_MODE_TIME_FIRST<sup>10+</sup>   | -   | 表示数据从修改时间较近的一端同步到修改时间较远的一端。请使用枚举名称而非枚举值。暂不支持端云手动同步。 <br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client |
+| SYNC_MODE_NATIVE_FIRST<sup>10+</sup> | -   | 表示数据从本地设备同步到云端。请使用枚举名称而非枚举值。暂不支持端云手动同步。 <br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client             |
+| SYNC_MODE_CLOUD_FIRST<sup>10+</sup>  | -   | 表示数据从云端同步到本地设备。请使用枚举名称而非枚举值。暂不支持端云手动同步。 <br>**系统能力：** SystemCapability.DistributedDataManager.CloudSync.Client             |
 
 ## SubscribeType
 
@@ -3206,7 +3206,7 @@ sync(mode: SyncMode, predicates: RdbPredicates, callback: AsyncCallback&lt;Array
 
 | 参数名     | 类型                                               | 必填 | 说明                                                         |
 | ---------- | -------------------------------------------------- | ---- | ------------------------------------------------------------ |
-| mode       | [SyncMode](#syncmode)                             | 是   | 指同步模式。该值可以是推、拉。                               |
+| mode       | [SyncMode](#syncmode)                             | 是   | 指同步模式。该值可以是relationalStore.SyncMode.SYNC_MODE_PUSH、relationalStore.SyncMode.SYNC_MODE_PULL。                               |
 | predicates | [RdbPredicates](#rdbpredicates)               | 是   | 约束同步数据和设备。                                         |
 | callback   | AsyncCallback&lt;Array&lt;[string, number]&gt;&gt; | 是   | 指定的callback回调函数，用于向调用者发送同步结果。string：设备ID；number：每个设备同步状态，0表示成功，其他值表示失败。 |
 
@@ -3265,7 +3265,7 @@ store.sync(relationalStore.SyncMode.SYNC_MODE_PUSH, predicates, function (err, r
 
 | 参数名     | 类型                                 | 必填 | 说明                           |
 | ---------- | ------------------------------------ | ---- | ------------------------------ |
-| mode       | [SyncMode](#syncmode)               | 是   | 指同步模式。该值可以是推、拉。 |
+| mode       | [SyncMode](#syncmode)               | 是   | 指同步模式。该值可以是relationalStore.SyncMode.SYNC_MODE_PUSH、relationalStore.SyncMode.SYNC_MODE_PULL。 |
 | predicates | [RdbPredicates](#rdbpredicates) | 是   | 约束同步数据和设备。           |
 
 **返回值**：
