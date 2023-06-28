@@ -28,7 +28,7 @@ getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;
 
 **错误码：**
 
-> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
+以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -70,7 +70,7 @@ getIfaceRxBytes(nic: string): Promise\<number>;
 
 **错误码：**
 
-> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
+以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -106,7 +106,7 @@ getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;
 
 **错误码：**
 
-> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
+以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -147,7 +147,7 @@ getIfaceTxBytes(nic: string): Promise\<number>;
 
 **错误码：**
 
-> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
+以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -182,7 +182,7 @@ getCellularRxBytes(callback: AsyncCallback\<number>): void;
 
 **错误码：**
 
-> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
+以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -216,7 +216,7 @@ getCellularRxBytes(): Promise\<number>;
 
 **错误码：**
 
-> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
+以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -250,7 +250,7 @@ getCellularTxBytes(callback: AsyncCallback\<number>): void;
 
 **错误码：**
 
-> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
+以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -284,7 +284,7 @@ getCellularTxBytes(): Promise\<number>;
 
 **错误码：**
 
-> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
+以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -318,7 +318,7 @@ getAllRxBytes(callback: AsyncCallback\<number>): void;
 
 **错误码：**
 
-> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
+以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -351,7 +351,7 @@ getAllRxBytes(): Promise\<number>;
 
 **错误码：**
 
-> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
+以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -384,7 +384,7 @@ getAllTxBytes(callback: AsyncCallback\<number>): void;
 
 **错误码：**
 
-> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
+以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -417,7 +417,7 @@ getAllTxBytes(): Promise\<number>;
 
 **错误码：**
 
-> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
+以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -451,7 +451,7 @@ getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;
 
 **错误码：**
 
-> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
+以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -491,7 +491,7 @@ getUidRxBytes(uid: number): Promise\<number>;
 
 **错误码：**
 
-> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
+以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -526,7 +526,7 @@ getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;
 
 **错误码：**
 
-> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
+以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -566,7 +566,7 @@ getUidTxBytes(uid: number): Promise\<number>;
 
 **错误码：**
 
-> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
+以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
