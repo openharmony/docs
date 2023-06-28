@@ -180,8 +180,8 @@ revokeUriPermission(uri: string, targetBundleName: string, callback: AsyncCallba
   import uriPermissionManager from '@ohos.application.uriPermissionManager';
   import WantConstant from '@ohos.ability.wantConstant';
   
-  let targetBundleName = 'com.example.test_case1'
-  let uri = "file:///com.samples.filesharetest.FileShare/person/10"
+  let targetBundleName = 'com.example.test_case2'
+  let uri = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir"
   uriPermissionManager.revokeUriPermission(uri, targetBundleName, (result) => {
       console.log("result.code = " + result.code)
   }) 
@@ -234,8 +234,8 @@ revokeUriPermission(uri: string, targetBundleName: string): Promise&lt;number&gt
   import uriPermissionManager from '@ohos.application.uriPermissionManager';
   import WantConstant from '@ohos.ability.wantConstant';
 
-  let targetBundleName = 'com.example.test_case1'
-  let uri = "file:///com.samples.filesharetest.FileShare/person/10"
+  let targetBundleName = 'com.example.test_case2'
+  let uri = "file://com.example.test_case1/data/storage/el2/base/haps/entry_test/files/newDir"
   uriPermissionManager.revokeUriPermission(uri, targetBundleName)
   .then((data) => {
       console.log('Verification succeeded.' + data)
