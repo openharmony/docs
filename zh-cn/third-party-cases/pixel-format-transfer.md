@@ -1,6 +1,6 @@
-# 像素转换（ArkTs）
+# 像素单位转换
 
-在日常应用页面布局设计时，开发者需要知道每个组件的样式及位置，这时就需要了解下长度单位及相互转换方法，ArkUI 开发框架提供了4种像素单位供开发者使用，分别是： px 、 vp 、 fp 和 lpx ，框架采用 vp 为基准数据单位，本篇就简单为大家介绍下像素单位的基本知识与像素单位转换API的使用。通过像素转换案例，向开发者讲解了如何使用像素单位设置组件的尺寸、字体的大小以及不同像素单位之间的转换方法。
+在日常应用页面布局设计时，开发者需要知道每个组件的样式及位置，这时就需要了解下像素单位及相互转换方法，ArkUI 开发框架提供了4种像素单位供开发者使用，分别是： px 、 vp 、 fp 和 lpx ，框架采用 vp 为基准数据单位，本篇就简单为大家介绍下像素单位的基本知识与像素单位转换API的使用。通过像素转换案例，向开发者讲解了如何使用像素单位设置组件的尺寸、字体的大小以及不同像素单位之间的转换方法。
 
 ## 效果呈现
 本例最终效果如下：
@@ -150,112 +150,112 @@
         具体代码如下：
         
         ```ts
-    // entry/src/main/ets/pages/IntroducitonPages.ets
-    import IntroductionViewModel from '../viewmodel/IntroductionViewModel';
-        
-        interface IntroductionItem {
-            name: string;
-            title: Resource;
-            subTitle: Resource;
-            value: string;
-            smallFontSize: number;
-            largeFontSize: number;
-    	}
-        
-        @Extend(Text) function titleTextStyle() {
-            .fontColor($r('app.color.title_font'))
-            .fontFamily('HarmonyHeiTi_Medium')
-            .fontWeight(500)
-    	}
-        
-        @Entry
-        @Component
-        struct IntroductionPage {
-            build() {
-                Column() {
-                    Navigation() {
-                        List({ space: 12 }) {
-                        //通过ForEach循环渲染Item，构建像素介绍页面
-                            ForEach(IntroductionViewModel.getIntroductionList(), (item: IntroductionItem) => {
-                                //渲染每个Item
-                                ListItem() {
-                                    Column() {
-                                        Text(item.name)
-                                            .titleTextStyle()
-                                            .fontSize('16fp')
-                                        Text(item.title)
-                                            .titleTextStyle()
-                                            .fontSize('14fp')
-                                            .fontFamily('HarmonyHeiTi')
-                                            .lineHeight('20fp')
-                                            .margin({ top: '8vp'})
-                                            .fontWeight(400)
-                                        // subTitle非空，添加Text组件，显示subTitle内容，同时添加样式；不存在则不显示
-                                        if (item.subTitle) {
-                                            Text(item.subTitle)
+        // entry/src/main/ets/pages/IntroducitonPages.ets
+        import IntroductionViewModel from '../viewmodel/IntroductionViewModel';
+            
+            interface IntroductionItem {
+                name: string;
+                title: Resource;
+                subTitle: Resource;
+                value: string;
+                smallFontSize: number;
+                largeFontSize: number;
+        	}
+            
+            @Extend(Text) function titleTextStyle() {
+                .fontColor($r('app.color.title_font'))
+                .fontFamily('HarmonyHeiTi_Medium')
+                .fontWeight(500)
+        	}
+            
+            @Entry
+            @Component
+            struct IntroductionPage {
+                build() {
+                    Column() {
+                        Navigation() {
+                            List({ space: 12 }) {
+                            //通过ForEach循环渲染Item，构建像素介绍页面
+                                ForEach(IntroductionViewModel.getIntroductionList(), (item: IntroductionItem) => {
+                                    //渲染每个Item
+                                    ListItem() {
+                                        Column() {
+                                            Text(item.name)
                                                 .titleTextStyle()
-                                                .opacity(0.6)
-                                                .lineHeight('16fp')
-                                                .fontSize('12fp')
-                                                .fontFamily($r('app.string.HarmonyHeiTi'))
-                                                .margin({ top: '20vp' })
-                                                .fontWeight(400)
-                                    }
-        
-                                        // value非空，添加Text组件且通过宽度属性设置不同的像素单位
-                                        if (item.value.length > 0) {
-                                            Text(item.value)
-                                                .titleTextStyle()
-                                                .fontColor($r('app.color.item_background'))
                                                 .fontSize('16fp')
-                                                .textAlign(TextAlign.Center)
-                                                .backgroundColor($r('app.color.blue_background'))
-                                                .height('28vp')
-                                                .width(item.value)
-                                                .borderRadius('4vp')
-                                                .margin({ top: '12vp' })
-                                        // value为空，添加两个text组件，使用fp像素单位设置为Text组件的字体大小
-                                        } else {
-                                            Column() {
-                                                Text($r('app.string.font_desc', item.smallFontSize))
+                                            Text(item.title)
+                                                .titleTextStyle()
+                                                .fontSize('14fp')
+                                                .fontFamily('HarmonyHeiTi')
+                                                .lineHeight('20fp')
+                                                .margin({ top: '8vp'})
+                                                .fontWeight(400)
+                                            // subTitle非空，添加Text组件，显示subTitle内容，同时添加样式；不存在则不显示
+                                            if (item.subTitle) {
+                                                Text(item.subTitle)
                                                     .titleTextStyle()
-                                                    .fontSize(item.smallFontSize)
-                                                Text($r('app.string.font_desc', item.largeFontSize))
-                                                    .titleTextStyle()
-                                                    .fontSize(item.largeFontSize)
-                                                    .margin({ top: '6vp' })
-                                            }
-                                                .alignItems(HorizontalAlign.Start)
-                                                .backgroundColor($r('app.color.font_background'))
-                                                .width('100%')
-                                                .borderRadius('12vp')
-                                                .padding('12vp')
-                                                .margin({ top: '12vp' })
+                                                    .opacity(0.6)
+                                                    .lineHeight('16fp')
+                                                    .fontSize('12fp')
+                                                    .fontFamily($r('app.string.HarmonyHeiTi'))
+                                                    .margin({ top: '20vp' })
+                                                    .fontWeight(400)
                                         }
+            
+                                            // value非空，添加Text组件且通过宽度属性设置不同的像素单位
+                                            if (item.value.length > 0) {
+                                                Text(item.value)
+                                                    .titleTextStyle()
+                                                    .fontColor($r('app.color.item_background'))
+                                                    .fontSize('16fp')
+                                                    .textAlign(TextAlign.Center)
+                                                    .backgroundColor($r('app.color.blue_background'))
+                                                    .height('28vp')
+                                                    .width(item.value)
+                                                    .borderRadius('4vp')
+                                                    .margin({ top: '12vp' })
+                                            // value为空，添加两个text组件，使用fp像素单位设置为Text组件的字体大小
+                                            } else {
+                                                Column() {
+                                                    Text($r('app.string.font_desc', item.smallFontSize))
+                                                        .titleTextStyle()
+                                                        .fontSize(item.smallFontSize)
+                                                    Text($r('app.string.font_desc', item.largeFontSize))
+                                                        .titleTextStyle()
+                                                        .fontSize(item.largeFontSize)
+                                                        .margin({ top: '6vp' })
+                                                }
+                                                    .alignItems(HorizontalAlign.Start)
+                                                    .backgroundColor($r('app.color.font_background'))
+                                                    .width('100%')
+                                                    .borderRadius('12vp')
+                                                    .padding('12vp')
+                                                    .margin({ top: '12vp' })
+                                            }
+                                        }
+                                        .alignItems(HorizontalAlign.Start)
+                                        .width('100%')
+                                        .padding('12vp')
+                                        .borderRadius('24vp')
+                                        .backgroundColor('#FFFFFF')
                                     }
-                                    .alignItems(HorizontalAlign.Start)
-                                    .width('100%')
-                                    .padding('12vp')
-                                    .borderRadius('24vp')
-                                    .backgroundColor('#FFFFFF')
-                                }
-                                .padding({
-                                left: '12vp',
-                                right: '12vp'
+                                    .padding({
+                                    left: '12vp',
+                                    right: '12vp'
+                                    })
                                 })
-                            })
+                            }
+                            .width('100%')
+                            .height('100%')
                         }
-                        .width('100%')
-                        .height('100%')
+                        .titleMode(NavigationTitleMode.Mini)
+                        .title('像素介绍')
                     }
-                    .titleMode(NavigationTitleMode.Mini)
-                    .title('像素介绍')
+                    .backgroundColor($r('app.color.page_background'))
+                    .width('100%')
+                    .height('100%')
                 }
-                .backgroundColor($r('app.color.page_background'))
-                .width('100%')
-                .height('100%')
             }
-        }
         ```
     
 3. 像素转换页面创建。
