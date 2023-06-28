@@ -220,7 +220,7 @@ java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-pa
 | dependencies         | List\<DependencyItem>                         | 标识hap包DependencyItem信息         | NA                             |
 | isJs                 | boolean                                       | 标识该应用是否是js应用              | FA模型特有            |
 | reqPermissions       | list\<ReqPermission>                          | 标识应用申请的权限的集合             | 对应stage模型的requestPermissions |
-| commonEvents         | CommonEvent结构体（见下述CommentEvent）       | 标识静态事件                         | NA     |
+| commonEvents         | CommonEvent结构体（见下述CommonEvent）       | 标识静态事件                         | NA     |
 | shortcuts            | list\<Shortcut>                               | 标识应用的shortcuts信息              | NA                  |
 | distroFilter         | DistroFilter结构体                            | 标识应用市场按设备形态分发的信息     | NA               |
 | srcEntrance          | String                                        | 标识应用对应的入口代码路径           | stage模型新增          |
@@ -510,15 +510,15 @@ java -jar app_unpacking_tool.jar --mode <option> --appqf-path <options> --out-pa
 
 | 字段                   | 类型                     | 描述                                               | 备注 |
 |------------------------|--------------------------|----------------------------------------------------| ---- |
-| name                   | String                   | 标识DefPermission的名称                         | NA   |
-| grantMode              | String                   | 标识DefPermission的grantMode                        | NA   |
-| availableLevel         | String                   | 标识DefPermission的组                               | NA   |
+| name                   | String                   | 标识DefinePermission的名称                         | NA   |
+| grantMode              | String                   | 标识DefinePermission的grantMode                        | NA   |
+| availableLevel         | String                   | 标识DefinePermission的组                               | NA   |
 | provisionEnable        | boolean                  | 标识模块定义权限的提供启用                           | NA   |
 | distributedSceneEnable | boolean                  | 标识ModuleDefinePermissions的distributedSceneEnable | NA   |
-| label                  | String                   | 标识DefPermission的标签                              | NA   |
-| description            | String                   | 标识DefPermission的描述                              | NA   |
-| descriptions           | HashMap\<String, String> | 标识多语言应用程序DefPermission的说明                | NA   |
-| labels                 | HashMap\<String, String> | 标识多语言应用程序DefPermission的标签                | NA   |
+| label                  | String                   | 标识DefinePermission的标签                              | NA   |
+| description            | String                   | 标识DefinePermission的描述                              | NA   |
+| descriptions           | HashMap\<String, String> | 标识多语言应用程序DefinePermission的说明                | NA   |
+| labels                 | HashMap\<String, String> | 标识多语言应用程序DefinePermission的标签                | NA   |
 
 ### DefPermissionsGroups结构体信息
 
