@@ -53,6 +53,7 @@
     框架搭好了，看下效果：
 
     ![checkbox-before-improve](figures/checkbox-before-improve.PNG)
+
     可以看到主选框和选项对齐了，接下来我们来调整下样式。
     先给CheckboxGroup取个名字：fruit_list，然后为各个Checkbox添加相同的group名称，这样就可以将Checkbox挂靠到CheckboxGroup下，剩下的就是给各个组件添加margin、fontSize等通用属性了，不清楚各个组件有哪些属性的请自行查阅组件参考，具体代码如下：
     ```ts
