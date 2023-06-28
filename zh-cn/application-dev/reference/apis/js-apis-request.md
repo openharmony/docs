@@ -1768,7 +1768,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | value | string \| [FileSpec](#filespec10) \| Array&lt;[FileSpec](#filespec10)&gt; | 是 | 表单参数值。 |
 
 
-## Conf<sup>10+</sup> 
+## Config<sup>10+</sup> 
 上传/下载任务的配置信息。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
@@ -1784,12 +1784,12 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | method | string | 否 | 上传或下载的HTTP标准方法，包括GET、POST和PUT，不区分大小写。<br/>-上传时，使用PUT或POST，默认值为PUT。<br/>-下载时，使用GET或POST，默认值为GET。 |
 | headers | object | 否 | 添加要包含在任务中的HTTPS标志头。<br/>-对于上传请求，默认的Content-Type为"multipart/form-data"。<br/>-对于下载请求，默认的Content-Type为"application/json"。 |
 | data | string \| Array&lt;[FormItem](#formitem10)&gt; | 否 | -下载时，data为字符串类型，通常使用json(object将被转换为json文本)，默认为空。<br/>-上传时，data是表单项数组Array&lt;[FormItem](#formitem10)&gt;，默认为空。 |
-| saveas | string | 否 | 保存下载文件的路径，包括如下两种：<br/>-相对路径，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"，位于调用方的缓存路径下。<br/>-uri路径，类似"datashare://bundle/xxx/yyy/zzz.html"，具备访问url路径权限的应用可使用，当前暂不支持。<br/>默认为相对路径，即下载至应用当前缓存路径下。 |
+| saveas | string | 否 | 保存下载文件的路径，包括如下两种：<br/>-相对路径，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"，位于调用方的缓存路径下。<br/>-uri路径，如"datashare://bundle/xxx/yyy/zzz.html"，仅对具有访问url路径权限的应用开放。该功能暂不支持。<br/>默认为相对路径，即下载至应用当前缓存路径下。 |
 | network | [Network](#network10) | 否 | 网络选项，当前支持无线网络WIFI和蜂窝数据网络CELLULAR，默认为ANY（WIFI或CELLULAR）。 |
-| metered | boolean | 否 | 是否允许在按流量计费的网络中工作，默认为false。 |
-| roaming | boolean | 否 | 是否允许在漫游网络中工作，默认为true。 |
-| retry | boolean | 否 | 是否为后台任务启用自动重试，仅应用于后台任务，默认为true。 |
-| redirect | boolean | 否 | 是否允许重定向，默认为true。 |
+| metered | boolean | 否 | 是否允许在按流量计费的网络中工作，默认为false。<br/>-true：是 <br/>-false：否|
+| roaming | boolean | 否 | 是否允许在漫游网络中工作，默认为true。<br/>-true：是 <br/>-false：否 |
+| retry | boolean | 否 | 是否为后台任务启用自动重试，仅应用于后台任务，默认为true。<br/>-true：是 <br/>-false：否 |
+| redirect | boolean | 否 | 是否允许重定向，默认为true。<br/>-true：是 <br/>-false：否 |
 | index | number | 否 | 任务的路径索引，通常用于任务断点续传，默认为0。 |
 | begins | number | 否 | 文件起点，通常用于断点续传。默认值为0，取值为闭区间。<br/>-下载时，请求读取服务器开始下载文件时的起点位置（http协议中设置"Range"选项）。<br/>-上传时，在上传开始时读取。 |
 | ends | number | 否 | 文件终点，通常用于断点续传。默认值为-1，取值为闭区间。<br/>-下载时，请求读取服务器开始下载文件时的结束位置（http协议中设置"Range"选项）。<br/>-上传时，在上传时结束读取。 |
@@ -1806,7 +1806,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
 | 名称 | 值 |说明 |
 | -------- | -------- |-------- |
-| INITIALIZED | 0x00 |通过配置信息（[Conf](#conf10)）创建初始化任务。 |
+| INITIALIZED | 0x00 |通过配置信息（[Config](#config10)）创建初始化任务。 |
 | WAITING | 0x10 |表示任务缺少运行或重试的资源与网络状态不匹配。 |
 | RUNNING | 0x20 |表示正在处理的任务。 |
 | RETRYING | 0x21 |表示任务至少失败一次，现在正在再次处理中。 |
@@ -1831,7 +1831,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | extras | object | 否 | 交互的额外内容，例如来自服务器的响应的header和body。 |
 
 
-## Broken<sup>10+</sup>  
+## Faults<sup>10+</sup>  
 
 定义任务失败的原因。
 
@@ -1846,8 +1846,22 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | FSIO | 0x40 |表示文件系统io错误，例如打开/查找/读取/写入/关闭。 |
 
 
+## Filter<sup>10+</sup>
+过滤条件。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+| 名称 | 类型 | 必填 | 说明 |
+| -------- | -------- | -------- | -------- |
+| bundle | string | 否 | 指定应用程序的包名，仅对系统应用开放。<br/>**系统接口**：此接口为系统接口。 |
+| before | number | 否 | 结束的Unix时间戳（毫秒），默认为调用时刻。 |
+| after | number | 否 | 开始的Unix时间戳（毫秒），默认值为调用时刻减24小时。 |
+| state | [State](#state10) | 否 | 指定任务的状态。 |
+| action | [Action](#action10) | 否 | 任务操作选项。<br/>-UPLOAD表示上传任务。<br/>-DOWNLOAD表示下载任务。 |
+| mode | [Mode](#mode10) | 否 | 任务模式。<br/>-FOREGROUND表示前端任务。<br/>-BACKGROUND表示后台任务。 |
+
 ## TaskInfo<sup>10+</sup> 
-查询结果的任务信息数据结构，提供普通查询和高级查询，两种字段的可见范围不同。
+查询结果的任务信息数据结构，提供普通查询和系统查询，两种字段的可见范围不同。
 
 **系统能力**: SystemCapability.Request.FileTransferAgent
 
@@ -1855,8 +1869,9 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | -------- | -------- | -------- | -------- |
 | uid | string | 否 | 应用程序的UID，仅用于系统查询。<br/>**系统接口**：此接口为系统接口。|
 | bundle | string | 否 | 应用程序的包名，仅用于系统查询。<br/>**系统接口**：此接口为系统接口。|
-| url | string | 否 | 任务的url，仅适用于普通应用查询，系统查询返回空字串。 |
-| data | string \| Array&lt;[FormItem](#formitem10)&gt; | 否 | 任务值。 |
+| saveas | string | 否 | 保存下载文件的路径，包括如下两种：<br/>-相对路径，如"./xxx/yyy/zzz.html"、"xxx/yyy/zzz.html"，位于调用方的缓存路径下。<br/>-uri路径，如"datashare://bundle/xxx/yyy/zzz.html"，仅对具有访问url路径权限的应用开放。该功能暂不支持。<br/>默认为相对路径，即下载至应用当前缓存路径下。|
+| url | string | 否 | 任务的url。<br/>- 通过[request.agent.show<sup>10+</sup>](#requestagentshow10-1)、[request.agent.touch<sup>10+</sup>](#requestagenttouch10-1)、[request.agent.query<sup>10+</sup>](#requestagentquery10-1)进行查询。其中，使用[request.agent.query<sup>10+</sup>](#requestagentquery10-1)进行查询时会返回空字符串。 |
+| data | string \| Array&lt;[FormItem](#formitem10)&gt; | 否 | 任务值。<br/>- 通过[request.agent.show<sup>10+</sup>](#requestagentshow10-1)、[request.agent.touch<sup>10+</sup>](#requestagenttouch10-1)、[request.agent.query<sup>10+</sup>](#requestagentquery10-1)进行查询。其中，使用[request.agent.query<sup>10+</sup>](#requestagentquery10-1)进行查询时会返回空字符串。 |
 | tid | string | 是 | 任务id。 |
 | title | string | 是 | 任务标题。 |
 | description | string | 是 | 任务描述。 |
@@ -1865,11 +1880,11 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | mimeType | string | 是 | 任务配置中的mimetype。 |
 | progress | [Progress](#progress10) | 是 | 任务的过程进度。 |
 | gauge | boolean | 是 | 后台任务的进度通知策略。 |
-| ctime | string | 是 | UTC模式中创建任务的日期和时间，由当前设备的系统生成的。|
-| mtime | string | 是 | UTC模式中修改任务的日期和时间，由当前设备的系统生成的。|
+| ctime | number | 是 | 创建任务的Unix时间戳（毫秒），由当前设备的系统生成。<br/>说明：使用[request.agent.search<sup>10+</sup>](#requestagentsearch10-1)进行查询时，该值需处于[after,before]区间内才可正常查询到任务id，before和after信息详见[Filter](#filter10)。
+| mtime | number | 是 | 任务状态改变时的Unix时间戳（毫秒），由当前设备的系统生成。|
 | retry | boolean | 是 | 任务的重试开关，仅应用于后台任务。 |
 | tries | number | 是 | 任务的尝试次数。 |
-| broken | [Broken](#broken10) | 是 | 任务的失败原因。<br/>-OTHERS表示其他故障。<br/>-DISCONNECT表示网络断开连接。<br/>-TIMEOUT表示任务超时。<br/>-PROTOCOL表示协议错误。<br/>-FSIO表示文件系统io错误。|
+| faults | [Faults](#faults10) | 是 | 任务的失败原因。<br/>-OTHERS表示其他故障。<br/>-DISCONNECT表示网络断开连接。<br/>-TIMEOUT表示任务超时。<br/>-PROTOCOL表示协议错误。<br/>-FSIO表示文件系统io错误。|
 | reason | string | 是 | 等待/失败/停止/暂停任务的原因。|
 | extras | string | 否 | 任务的额外部分。|
 
@@ -1885,7 +1900,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 | 名称 | 类型 | 必填 | 说明 |
 | -------- | -------- | -------- | -------- |
 | tid | string | 是 | 任务id，在系统上是唯一的，由系统自动生成。 |
-| conf | [Conf](#conf10) | 是 | 任务的配置信息。 |
+| config | [Config](#config10) | 是 | 任务的配置信息。 |
 
 
 ### on('progress')<sup>10+</sup>
@@ -1923,7 +1938,7 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
                          path: "./taskOnTest.avi",
                        }
                      }];
-  let conf = {
+  let config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOnTest',
@@ -1948,7 +1963,7 @@ on(event: 'progress', callback: (progress: Progress) =&gt; void): void
   let createOnCallback = (progress) => {
     console.info('upload task completed.');
   };
-  request.agent.create(context, conf).then((task)=> {
+  request.agent.create(context, config).then((task)=> {
     task.on('progress', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
   }).catch((err) => {
@@ -1995,7 +2010,7 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
                          path: "./taskOnTest.avi",
                        }
                      }];
-  let conf = {
+  let config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOnTest',
@@ -2020,7 +2035,7 @@ on(event: 'completed', callback: (progress: Progress) =&gt; void): void
   let createOnCallback = (progress) => {
     console.info('upload task completed.');
   };
-  request.agent.create(context, conf).then((task)=> {
+  request.agent.create(context, config).then((task)=> {
     task.on('completed', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
   }).catch((err) => {
@@ -2067,7 +2082,7 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
                          path: "./taskOnTest.avi",
                        }
                      }];
-  let conf = {
+  let config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOnTest',
@@ -2092,7 +2107,7 @@ on(event: 'failed', callback: (progress: Progress) =&gt; void): void
   let createOnCallback = (progress) => {
     console.info('upload task completed.');
   };
-  request.agent.create(context, conf).then((task)=> {
+  request.agent.create(context, config).then((task)=> {
     task.on('failed', createOnCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
   }).catch((err) => {
@@ -2140,7 +2155,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
                          path: "./taskOffTest.avi",
                        }
                      }];
-  let conf = {
+  let config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOffTest',
@@ -2165,7 +2180,7 @@ off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
   let createOffCallback = (progress) => {
     console.info('upload task completed.');
   };
-  request.agent.create(context, conf).then((task)=> {
+  request.agent.create(context, config).then((task)=> {
     task.on('progress', createOffCallback);
     task.off('progress', createOffCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
@@ -2213,7 +2228,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
                          path: "./taskOffTest.avi",
                        }
                      }];
-  let conf = {
+  let config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOffTest',
@@ -2238,7 +2253,7 @@ off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
   let createOffCallback = (progress) => {
     console.info('upload task completed.');
   };
-  request.agent.create(context, conf).then((task)=> {
+  request.agent.create(context, config).then((task)=> {
     task.on('completed', createOffCallback);
     task.off('completed', createOffCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
@@ -2286,7 +2301,7 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
                          path: "./taskOffTest.avi",
                        }
                      }];
-  let conf = {
+  let config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'taskOffTest',
@@ -2311,7 +2326,7 @@ off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
   let createOffCallback = (progress) => {
     console.info('upload task completed.');
   };
-  request.agent.create(context, conf).then((task)=> {
+  request.agent.create(context, config).then((task)=> {
     task.on('failed', createOffCallback);
     task.off('failed', createOffCallback);
     console.info(`Succeeded in creating a upload task. result: ${task.tid}`);
@@ -2353,7 +2368,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   let context;
-  let conf = {
+  let config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskStartTest',
@@ -2375,7 +2390,7 @@ start(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, conf).then((task) => {
+  request.agent.create(context, config).then((task) => {
     task.start((err) => {
       if (err) {
         console.error(`Failed to start the download task, Code: ${err.code}, message: ${err.message}`);
@@ -2422,7 +2437,7 @@ start(): Promise&lt;void&gt;
 
   ```js
   let context;
-  let conf = {
+  let config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskStartTest',
@@ -2444,7 +2459,7 @@ start(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, conf).then((task) => {
+  request.agent.create(context, config).then((task) => {
     task.start().then(() => {
       console.info(`Succeeded in starting a download task.`);
     }).catch((err) => {
@@ -2488,7 +2503,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   let context;
-  let conf = {
+  let config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskPauseTest',
@@ -2510,7 +2525,7 @@ pause(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, conf).then((task) => {
+  request.agent.create(context, config).then((task) => {
     task.pause((err) => {
       if (err) {
         console.error(`Failed to pause the download task, Code: ${err.code}, message: ${err.message}`);
@@ -2553,7 +2568,7 @@ pause(): Promise&lt;void&gt;
 
   ```js
   let context;
-  let conf = {
+  let config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskPauseTest',
@@ -2575,7 +2590,7 @@ pause(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, conf).then((task) => {
+  request.agent.create(context, config).then((task) => {
     task.pause().then(() => {
       console.info(`Succeeded in pausing a download task. `);
     }).catch((err) => {
@@ -2618,7 +2633,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   let context;
-  let conf = {
+  let config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskResumeTest',
@@ -2640,7 +2655,7 @@ resume(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, conf).then((task) => {
+  request.agent.create(context, config).then((task) => {
     task.resume((err) => {
       if (err) {
         console.error(`Failed to resume the download task, Code: ${err.code}, message: ${err.message}`);
@@ -2685,7 +2700,7 @@ resume(): Promise&lt;void&gt;
 
   ```js
   let context;
-  let conf = {
+  let config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskResumeTest',
@@ -2707,7 +2722,7 @@ resume(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, conf).then((task) => {
+  request.agent.create(context, config).then((task) => {
     task.resume().then(() => {
       console.info(`Succeeded in resuming a download task. `);
     }).catch((err) => {
@@ -2747,7 +2762,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
 
   ```js
   let context;
-  let conf = {
+  let config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskStopTest',
@@ -2769,7 +2784,7 @@ stop(callback: AsyncCallback&lt;void&gt;): void
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, conf).then((task) => {
+  request.agent.create(context, config).then((task) => {
     task.stop((err) => {
       if (err) {
         console.error(`Failed to stop the download task, Code: ${err.code}, message: ${err.message}`);
@@ -2811,7 +2826,7 @@ stop(): Promise&lt;void&gt;
 
   ```js
   let context;
-  let conf = {
+  let config = {
     action: request.agent.Action.DOWNLOAD,
     url: 'http://127.0.0.1',
     title: 'taskStopTest',
@@ -2833,7 +2848,7 @@ stop(): Promise&lt;void&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, conf).then((task) => {
+  request.agent.create(context, config).then((task) => {
     task.stop().then(() => {
       console.info(`Succeeded in stopping a download task. `);
     }).catch((err) => {
@@ -2847,7 +2862,7 @@ stop(): Promise&lt;void&gt;
 
 ## request.agent.create<sup>10+</sup>
 
-create(context: BaseContext, conf: Conf, callback: AsyncCallback&lt;Task&gt;): void
+create(context: BaseContext, config: Config, callback: AsyncCallback&lt;Task&gt;): void
 
 创建要上传或下载的任务，并将其排入队列，应用最多支持创建10个任务，服务承载的任务数最多为300个。使用callback异步回调。
 
@@ -2860,7 +2875,7 @@ create(context: BaseContext, conf: Conf, callback: AsyncCallback&lt;Task&gt;): v
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | conf | [Conf](#conf10) | 是 | 上传/下载任务的配置信息。 |
+  | config | [Config](#config10) | 是 | 上传/下载任务的配置信息。 |
   | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
   | callback | AsyncCallback&lt;[Task](#task10)&gt; | 是 | 回调函数，返回创建任务的配置信息。 |
 
@@ -2887,7 +2902,7 @@ create(context: BaseContext, conf: Conf, callback: AsyncCallback&lt;Task&gt;): v
                          path: "./reeateTest.avi",
                        }
                      }];
-  let conf = {
+  let config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'reeateTest',
@@ -2909,12 +2924,12 @@ create(context: BaseContext, conf: Conf, callback: AsyncCallback&lt;Task&gt;): v
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, conf, (err, task) => {
+  request.agent.create(context, config, (err, task) => {
     if (err) {
       console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
       return;
     }
-    console.info(`Succeeded in creating a download task. result: ${task.conf}`);
+    console.info(`Succeeded in creating a download task. result: ${task.config}`);
   });
   ```
 
@@ -2924,7 +2939,7 @@ create(context: BaseContext, conf: Conf, callback: AsyncCallback&lt;Task&gt;): v
 
 ## request.agent.create<sup>10+</sup>
 
-create(context: BaseContext, conf: Conf): Promise&lt;Task&gt;
+create(context: BaseContext, config: Config): Promise&lt;Task&gt;
 
 创建要上传或下载的任务，并将其排入队列，应用最多支持创建10个任务，服务承载的任务数最多为300个。使用Promise异步回调。
 
@@ -2938,7 +2953,7 @@ create(context: BaseContext, conf: Conf): Promise&lt;Task&gt;
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | context | [BaseContext](js-apis-inner-application-baseContext.md) | 是 | 基于应用程序的上下文。 |
-  | conf | [Conf](#conf10) | 是 | 上传/下载任务的配置信息。 |
+  | config | [Config](#config10) | 是 | 上传/下载任务的配置信息。 |
 
 **返回值：** 
 
@@ -2969,7 +2984,7 @@ create(context: BaseContext, conf: Conf): Promise&lt;Task&gt;
                          path: "./reeateTest.avi",
                        }
                      }];
-  let conf = {
+  let config = {
     action: request.agent.Action.UPLOAD,
     url: 'http://127.0.0.1',
     title: 'reeateTest',
@@ -2991,8 +3006,8 @@ create(context: BaseContext, conf: Conf): Promise&lt;Task&gt;
     precise: false,
     token: "it is a secret"
   };
-  request.agent.create(context, conf).then((task)=> {
-    console.info(`Succeeded in creating a download task. result: ${task.conf}`);
+  request.agent.create(context, config).then((task)=> {
+    console.info(`Succeeded in creating a download task. result: ${task.config}`);
   }).catch((err) => {
     console.error(`Failed to create a download task, Code: ${err.code}, message: ${err.message}`);
   });
@@ -3075,6 +3090,324 @@ remove(id: string): Promise&lt;void&gt;
     console.info(`Succeeded in removing a download task. `);
   }).catch((err) => {
     console.error(`Failed to remove a download task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+
+## request.agent.show<sup>10+</sup>
+
+show(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
+
+根据任务id查询任务的详细信息。使用callback异步回调。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | id | string | 是 | 任务id。 |
+  | callback | AsyncCallback&lt;TaskInfo&gt; | 是 | 回调函数，返回任务详细信息。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900006 | task not found error. |
+
+**示例：**
+
+  ```js
+  request.agent.show("123456", (err, TaskInfo) => {
+    if (err) {
+      console.error(`Failed to show a unload task, Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in showing a unload task.`);
+  });
+  ```
+
+
+## request.agent.show<sup>10+</sup>
+
+show(id: string): Promise&lt;TaskInfo&gt;
+
+根据任务id查询任务的详细信息。使用Promise异步回调。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | id | string | 是 | 任务id。 |
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;TaskInfo&gt; | Promise对象。返回任务详细信息的Promise对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900006 | task not found error. |
+
+**示例：**
+
+  ```js
+  request.agent.show("123456").then((TaskInfo) => {
+    console.info(`Succeeded in showing a unload task.`);
+  }).catch((err) => {
+    console.error(`Failed to show a unload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+
+## request.agent.touch<sup>10+</sup>
+
+touch(id: string, token: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
+
+根据任务id和token查询任务的详细信息。使用callback异步回调。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | id | string | 是 | 任务id。 |
+  | token | string | 是 | 任务查询token。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数，返回任务详细信息。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900006 | task not found error. |
+
+**示例：**
+
+  ```js
+  request.agent.touch("123456", "token", (err, TaskInfo) => {
+    if (err) {
+      console.error(`Failed to touch a unload task, Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in touching a unload task.`);
+  });
+  ```
+
+
+## request.agent.touch<sup>10+</sup>
+
+touch(id: string, token: string): Promise&lt;TaskInfo&gt;
+
+根据任务id和token查询任务的详细信息。使用Promise异步回调。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | id | string | 是 | 任务id。 |
+  | token | string | 是 | 任务查询token。 |
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;TaskInfo&gt; | Promise对象。返回任务详细信息的Promise对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900006 | task not found error. |
+
+**示例：**
+
+  ```js
+  request.agent.touch("123456", "token").then((TaskInfo) => {
+    console.info(`Succeeded in touching a unload task. `);
+  }).catch((err) => {
+    console.error(`Failed to touch a unload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+
+## request.agent.search<sup>10+</sup>
+
+search(filter: Filter, callback: AsyncCallback&lt;Array&lt;string&gt;&gt;): void
+
+根据[Filter](#filter10)过滤条件查找任务id。使用callback异步回调。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | filter | [Filter](#filter10) | 是 | 过滤条件。 |
+  | callback | AsyncCallback&lt;Array&lt;string&gt;&gt; | 是 | 回调函数，返回满足条件任务id。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+
+**示例：**
+
+  ```js
+  let filter ={
+    bundle:"com.example.myapplication",
+    action: request.agent.Action.UPLOAD,
+    mode:request.agent.Mode.BACKGROUND
+  }
+  request.agent.search(filter, (err, data) => {
+    if (err) {
+      console.error(`Failed to search a unload task, Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in searching a unload task. `);
+  });
+  ```
+
+
+## request.agent.search<sup>10+</sup>
+
+search(filter: Filter): Promise&lt;Array&lt;string&gt;&gt;
+
+根据[Filter](#filter10)过滤条件查找任务id。使用Promise异步回调。
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | filter | [Filter](#filter10) | 是 | 过滤条件。 |
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;Array&lt;string&gt;&gt; | Promise对象。返回满足条件任务id的Promise对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+
+**示例：**
+
+  ```js
+  let filter ={
+    bundle:"com.example.myapplication",
+    action: request.agent.Action.UPLOAD,
+    mode: request.agent.Mode.BACKGROUND
+  }
+  request.agent.search(filter).then((data) => {
+    console.info(`Succeeded in searching a unload task. `);
+  }).catch((err) => {
+    console.error(`Failed to search a unload task, Code: ${err.code}, message: ${err.message}`);
+  });
+  ```
+
+
+## request.agent.query<sup>10+</sup>
+
+query(id: string, callback: AsyncCallback&lt;TaskInfo&gt;): void
+
+根据任务id查询任务的详细信息。使用callback异步回调。
+
+**需要权限**：ohos.permission.DOWNLOAD_SESSION_MANAGER 或 ohos.permission.UPLOAD_SESSION_MANAGER
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | id | string | 是 | 任务id。 |
+  | callback | AsyncCallback&lt;TaskInfo&gt; | 是 | 回调函数，返回任务详细信息。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900006 | task not found error. |
+
+**示例：**
+
+  ```js
+  request.agent.query("123456", (err, TaskInfo) => {
+    if (err) {
+      console.error(`Failed to query a unload task, Code: ${err.code}, message: ${err.message}`);
+      return;
+    }
+    console.info(`Succeeded in querying a unload task. result: ${TaskInfo.uid}`);
+  });
+  ```
+
+
+## request.agent.query<sup>10+</sup>
+
+query(id: string): Promise&lt;TaskInfo&gt;
+
+根据任务id查询任务的详细信息。使用Promise异步回调。
+
+**需要权限**：ohos.permission.DOWNLOAD_SESSION_MANAGER 或 ohos.permission.UPLOAD_SESSION_MANAGER
+
+**系统能力**: SystemCapability.Request.FileTransferAgent
+
+**系统接口**：此接口为系统接口。
+
+**参数：**
+
+  | 参数名 | 类型 | 必填 | 说明 |
+  | -------- | -------- | -------- | -------- |
+  | id | string | 是 | 任务id。 |
+
+**返回值：** 
+
+| 类型                | 说明                      |
+| ------------------- | ------------------------- |
+| Promise&lt;TaskInfo&gt; | Promise对象。返回任务详细信息的Promise对象。 |
+
+**错误码：**
+以下错误码的详细介绍请参见[上传下载错误码](../errorcodes/errorcode-request.md)。
+
+  | 错误码ID | 错误信息 |
+  | -------- | -------- |
+  | 13400003 | task service ability error. |
+  | 21900006 | task not found error. |
+
+**示例：**
+
+  ```js
+  request.agent.query("123456",).then((TaskInfo) => {
+    console.info(`Succeeded in querying a unload task. result: ${TaskInfo.uid}`);
+  }).catch((err) => {
+    console.error(`Failed to query a unload task, Code: ${err.code}, message: ${err.message}`);
   });
   ```
 
