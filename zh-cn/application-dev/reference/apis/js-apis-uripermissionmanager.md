@@ -11,7 +11,7 @@ URI权限管理模块。用于应用A授权/撤销授权URI给应用B
 
   
 ```js
-import UriPermissionManager from '@ohos.application.uriPermissionManager';
+import uriPermissionManager from '@ohos.application.uriPermissionManager';
 ```
 
 
