@@ -26,6 +26,9 @@
 - [常见弹窗的使用](diverse-dialogues.md)
 - [折叠展开动效](collapse-and-expand.md)
 - [列表上拉加载更多内容](list-pullup-loading-data.md)
+- [如何删除多选框选项](delete-checkboxgroup-items.md)
+- [像素单位转换](pixel-format-transfer.md)
+
 ### 装饰器
 - [控制页面刷新范围](overall-and-part-refresh.md)
 - [如何监听多层状态变化](observed-and-objectlink.md)
@@ -38,8 +41,12 @@
 - [如何创建悬浮窗](float-window.md)
 - [保持屏幕常亮](keep-screen-on.md)
 
+### 数据管理
+- [用户首选项的基本使用](preferences-data-process.md)
+
 ### 媒体
 - [常见图片编辑](image-edit.md)
+- [图片格式转换](image-format-transfer.md)
 
 ### 一次开发，多端部署
 - [Navigation如何实现多场景UI适配](multi-device-app-dev.md)
