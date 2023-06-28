@@ -15,7 +15,7 @@ import statistics from '@ohos.net.statistics'
 
 getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;
 
-获取指定网卡实时下行流量。
+获取指定网卡实时下行流量，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -24,9 +24,11 @@ getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | nic | string | 是   | 指定查询的网卡名。                   |
-| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取网卡实时下行流量时，error为undefined，stats为获取到的网卡实时下行流量；否则为错误对象|
+| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取网卡实时下行流量时，error为undefined，stats为获取到的网卡实时下行流量(单位:字节)；否则为错误对象|
 
 **错误码：**
+
+> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -37,8 +39,6 @@ getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;
 | 2103011 | Failed to create map.             |
 | 2103012 | Get iface name failed.         |
 
-> **错误码说明：**
-> 以上错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 **示例：**
 
@@ -53,7 +53,7 @@ getIfaceRxBytes(nic: string, callback: AsyncCallback\<number>): void;
 
 getIfaceRxBytes(nic: string): Promise\<number>;
 
-获取指定网卡实时下行流量。
+获取指定网卡实时下行流量，使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -66,9 +66,11 @@ getIfaceRxBytes(nic: string): Promise\<number>;
 **返回值：**
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<number> | 以Promise形式返回获取结果。返回网卡实时下行流量 |
+| Promise\<number> | 以Promise形式返回获取结果。返回网卡实时下行流量(单位:字节)。 |
 
 **错误码：**
+
+> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -78,9 +80,6 @@ getIfaceRxBytes(nic: string): Promise\<number>;
 | 2103005 | Failed to read map.             |
 | 2103011 | Failed to create map.             |
 | 2103012 | Get iface name failed.         |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 **示例：**
 
@@ -94,7 +93,7 @@ getIfaceRxBytes(nic: string): Promise\<number>;
 
 getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;
 
-获取指定网卡实时上行流量。
+获取指定网卡实时上行流量，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -103,9 +102,11 @@ getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | nic | string | 是   | 指定查询的网卡名。                   |
-| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取网卡实时上行流量时，error为undefined，stats为获取到的网卡实时上行流量；否则为错误对象|
+| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取网卡实时上行流量时，error为undefined，stats为获取到的网卡实时上行流量(单位:字节)；否则为错误对象|
 
 **错误码：**
+
+> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -115,9 +116,6 @@ getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;
 | 2103005 | Failed to read map.             |
 | 2103011 | Failed to create map.             |
 | 2103012 | Get iface name failed.         |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 **示例：**
 
@@ -132,7 +130,7 @@ getIfaceTxBytes(nic: string, callback: AsyncCallback\<number>): void;
 
 getIfaceTxBytes(nic: string): Promise\<number>;
 
-获取指定网卡实时上行流量。
+获取指定网卡实时上行流量，使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -145,9 +143,11 @@ getIfaceTxBytes(nic: string): Promise\<number>;
 **返回值：**
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<number> | 以Promise形式返回获取结果。返回网卡实时上行流量 |
+| Promise\<number> | 以Promise形式返回获取结果。返回网卡实时上行流量(单位:字节)。 |
 
 **错误码：**
+
+> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -157,9 +157,6 @@ getIfaceTxBytes(nic: string): Promise\<number>;
 | 2103005 | Failed to read map.             |
 | 2103011 | Failed to create map.             |
 | 2103012 | Get iface name failed.         |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 **示例：**
 
@@ -173,7 +170,7 @@ getIfaceTxBytes(nic: string): Promise\<number>;
 
 getCellularRxBytes(callback: AsyncCallback\<number>): void;
 
-获取蜂窝实时下行流量。
+获取蜂窝实时下行流量，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -181,9 +178,11 @@ getCellularRxBytes(callback: AsyncCallback\<number>): void;
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取蜂窝实时下行流量时，error为undefined，stats为获取到的蜂窝实时下行流量；否则为错误对象|
+| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取蜂窝实时下行流量时，error为undefined，stats为获取到的蜂窝实时下行流量(单位:字节)；否则为错误对象|
 
 **错误码：**
+
+> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -206,16 +205,18 @@ getCellularRxBytes(callback: AsyncCallback\<number>): void;
 
 getCellularRxBytes(): Promise\<number>;
 
-获取蜂窝实时下行流量。
+获取蜂窝实时下行流量，使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **返回值：**
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<number> | 以Promise形式返回获取结果。返回蜂窝实时下行流量 |
+| Promise\<number> | 以Promise形式返回获取结果。返回蜂窝实时下行流量(单位:字节)。 |
 
 **错误码：**
+
+> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -224,9 +225,6 @@ getCellularRxBytes(): Promise\<number>;
 | 2103005 | Failed to read map.             |
 | 2103011 | Failed to create map.             |
 | 2103012 | Get iface name failed.         |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 **示例：**
 
@@ -240,7 +238,7 @@ getCellularRxBytes(): Promise\<number>;
 
 getCellularTxBytes(callback: AsyncCallback\<number>): void;
 
-获取蜂窝实时上行流量。
+获取蜂窝实时上行流量，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -248,9 +246,11 @@ getCellularTxBytes(callback: AsyncCallback\<number>): void;
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取蜂窝实时上行流量时，error为undefined，stats为获取到的蜂窝实时上行流量；否则为错误对象|
+| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取蜂窝实时上行流量时，error为undefined，stats为获取到的蜂窝实时上行流量(单位:字节)；否则为错误对象|
 
 **错误码：**
+
+> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -259,9 +259,6 @@ getCellularTxBytes(callback: AsyncCallback\<number>): void;
 | 2103005 | Failed to read map.             |
 | 2103011 | Failed to create map.             |
 | 2103012 | Get iface name failed.         |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 **示例：**
 
@@ -276,16 +273,18 @@ getCellularTxBytes(callback: AsyncCallback\<number>): void;
 
 getCellularTxBytes(): Promise\<number>;
 
-获取蜂窝实时上行流量。
+获取蜂窝实时上行流量，使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **返回值：**
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<number> | 以Promise形式返回获取结果。返回蜂窝实时上行流量 |
+| Promise\<number> | 以Promise形式返回获取结果。返回蜂窝实时上行流量(单位:字节)。 |
 
 **错误码：**
+
+> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -294,9 +293,6 @@ getCellularTxBytes(): Promise\<number>;
 | 2103005 | Failed to read map.             |
 | 2103011 | Failed to create map.             |
 | 2103012 | Get iface name failed.         |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 **示例：**
 
@@ -310,7 +306,7 @@ getCellularTxBytes(): Promise\<number>;
 
 getAllRxBytes(callback: AsyncCallback\<number>): void;
 
-获取所有网卡实时下行流量。
+获取所有网卡实时下行流量，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -318,9 +314,11 @@ getAllRxBytes(callback: AsyncCallback\<number>): void;
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取所有网卡实时下行流量，error为undefined，stats为获取到的所有网卡实时下行流量；否则为错误对象|
+| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取所有网卡实时下行流量，error为undefined，stats为获取到的所有网卡实时下行流量(单位:字节)；否则为错误对象|
 
 **错误码：**
+
+> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -328,9 +326,6 @@ getAllRxBytes(callback: AsyncCallback\<number>): void;
 | 2100003 | System internal error.         |
 | 2103005 | Failed to read map.             |
 | 2103011 | Failed to create map.             |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 **示例：**
 
@@ -345,16 +340,18 @@ getAllRxBytes(callback: AsyncCallback\<number>): void;
 
 getAllRxBytes(): Promise\<number>;
 
-获取所有网卡实时下行流量。
+获取所有网卡实时下行流量，使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **返回值：**
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<number> | 以Promise形式返回获取结果。返回所有网卡实时下行流量。 |
+| Promise\<number> | 以Promise形式返回获取结果。返回所有网卡实时下行流量(单位:字节)。 |
 
 **错误码：**
+
+> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -362,9 +359,6 @@ getAllRxBytes(): Promise\<number>;
 | 2100003 | System internal error.         |
 | 2103005 | Failed to read map.             |
 | 2103011 | Failed to create map.             |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 **示例：**
 
@@ -378,7 +372,7 @@ getAllRxBytes(): Promise\<number>;
 
 getAllTxBytes(callback: AsyncCallback\<number>): void;
 
-获取所有网卡实时上行流量。
+获取所有网卡实时上行流量，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -386,9 +380,11 @@ getAllTxBytes(callback: AsyncCallback\<number>): void;
 
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
-| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取所有网卡实时上行流量，error为undefined，stats为获取到的所有网卡实时上行流量；否则为错误对象|
+| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取所有网卡实时上行流量，error为undefined，stats为获取到的所有网卡实时上行流量(单位:字节)；否则为错误对象|
 
 **错误码：**
+
+> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -396,9 +392,6 @@ getAllTxBytes(callback: AsyncCallback\<number>): void;
 | 2100003 | System internal error.         |
 | 2103005 | Failed to read map.             |
 | 2103011 | Failed to create map.             |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 **示例：**
 
@@ -413,16 +406,18 @@ getAllTxBytes(callback: AsyncCallback\<number>): void;
 
 getAllTxBytes(): Promise\<number>;
 
-获取所有网卡实时上行流量。
+获取所有网卡实时上行流量，使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
 **返回值：**
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<number> | 以Promise形式返回获取结果。返回所有网卡实时上行流量。 |
+| Promise\<number> | 以Promise形式返回获取结果。返回所有网卡实时上行流量(单位:字节)。 |
 
 **错误码：**
+
+> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -430,9 +425,6 @@ getAllTxBytes(): Promise\<number>;
 | 2100003 | System internal error.         |
 | 2103005 | Failed to read map.             |
 | 2103011 | Failed to create map.             |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 **示例：**
 
@@ -446,7 +438,7 @@ getAllTxBytes(): Promise\<number>;
 
 getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;
 
-获取指定应用实时下行流量。
+获取指定应用实时下行流量，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -455,9 +447,11 @@ getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | uid | number | 是   | 指定查询的应用uid。                   |
-| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取应用实时下行流量时，error为undefined，stats为获取到的应用实时下行流量；否则为错误对象|
+| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取应用实时下行流量时，error为undefined，stats为获取到的应用实时下行流量(单位:字节)；否则为错误对象|
 
 **错误码：**
+
+> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -466,9 +460,6 @@ getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;
 | 2100003 | System internal error.         |
 | 2103005 | Failed to read map.             |
 | 2103011 | Failed to create map.             |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 **示例：**
 
@@ -483,7 +474,7 @@ getUidRxBytes(uid: number, callback: AsyncCallback\<number>): void;
 
 getUidRxBytes(uid: number): Promise\<number>;
 
-获取指定应用实时下行流量。
+获取指定应用实时下行流量，使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -496,9 +487,11 @@ getUidRxBytes(uid: number): Promise\<number>;
 **返回值：**
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<number> | 以Promise形式返回获取结果。返回指定应用实时下行流量。 |
+| Promise\<number> | 以Promise形式返回获取结果。返回指定应用实时下行流量(单位:字节)。 |
 
 **错误码：**
+
+> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -507,9 +500,6 @@ getUidRxBytes(uid: number): Promise\<number>;
 | 2100003 | System internal error.         |
 | 2103005 | Failed to read map.             |
 | 2103011 | Failed to create map.             |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 **示例：**
 
@@ -523,7 +513,7 @@ getUidRxBytes(uid: number): Promise\<number>;
 
 getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;
 
-获取指定应用实时上行流量。
+获取指定应用实时上行流量，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -532,9 +522,11 @@ getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;
 | 参数名       | 类型                          | 必填 | 说明                                                         |
 | ------------ | ----------------------------- | ---- | ------------------------------------------------------------ |
 | uid | number | 是   | 指定查询的应用uid。                   |
-| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取应用实时上行流量时，error为undefined，stats为获取到的应用实时上行流量；否则为错误对象|
+| callback | AsyncCallback\<number>         | 是   | 回调函数。当成功获取应用实时上行流量时，error为undefined，stats为获取到的应用实时上行流量(单位:字节)；否则为错误对象|
 
 **错误码：**
+
+> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -543,9 +535,6 @@ getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;
 | 2100003 | System internal error.         |
 | 2103005 | Failed to read map.             |
 | 2103011 | Failed to create map.             |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 **示例：**
 
@@ -560,7 +549,7 @@ getUidTxBytes(uid: number, callback: AsyncCallback\<number>): void;
 
 getUidTxBytes(uid: number): Promise\<number>;
 
-获取指定应用实时上行流量。
+获取指定应用实时上行流量，使用Promise方式作为异步方法。
 
 **系统能力**：SystemCapability.Communication.NetManager.Core
 
@@ -573,9 +562,11 @@ getUidTxBytes(uid: number): Promise\<number>;
 **返回值：**
 | 类型 | 说明 |
 | -------- | -------- |
-| Promise\<number> | 以Promise形式返回获取结果。返回指定应用实时上行流量。 |
+| Promise\<number> | 以Promise形式返回获取结果。返回指定应用实时上行流量(单位:字节)。 |
 
 **错误码：**
+
+> 以下错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 | 错误码ID | 错误信息                        |
 | ------- | -----------------------------  |
@@ -584,9 +575,6 @@ getUidTxBytes(uid: number): Promise\<number>;
 | 2100003 | System internal error.         |
 | 2103005 | Failed to read map.             |
 | 2103011 | Failed to create map.             |
-
-> **错误码说明：**
-> 以上错误码的详细介绍参见[statistics错误码](../errorcodes/errorcode-net-statistics)。
 
 **示例：**
 
